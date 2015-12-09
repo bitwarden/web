@@ -204,6 +204,10 @@ gulp.task('dist:clean', function (cb) {
 gulp.task('dist:move', function () {
     var moves = [
         {
+            src: '../../CNAME',
+            dest: paths.dist
+        },
+        {
             src: [
                 paths.npmDir + 'bootstrap/dist/**/bootstrap.min.js',
                 paths.npmDir + 'bootstrap/dist/**/bootstrap.min.css',
