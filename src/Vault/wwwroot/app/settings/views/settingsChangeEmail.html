@@ -1,0 +1,54 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="changeEmailModelLabel"><i class="fa fa-at"></i> Change Email</h4>
+</div>
+<form name="changeEmailForm" ng-submit="changeEmailForm.$valid && token(model)" api-form="tokenPromise" ng-show="!tokenSent && !processing">
+    <div class="modal-body">
+        <p>Below you can change your account's email address.</p>
+        <div class="callout callout-danger validation-errors" ng-show="changeEmailForm.$errors">
+            <h4>Errors have occured</h4>
+            <ul>
+                <li ng-repeat="e in changeEmailForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="masterPassword">Master Password</label>
+            <input type="password" id="masterPassword" name="MasterPasswordHash" ng-model="model.masterPassword" class="form-control"
+                   required api-field />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="newEmail">New Email</label>
+            <input type="email" id="newEmail" name="NewEmail" ng-model="model.newEmail" class="form-control" required api-field />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="changeEmailForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="changeEmailForm.$loading"></i>Submit
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
+<form name="changeEmailConfirmForm" ng-submit="changeEmailConfirmForm.$valid && confirm(model)" api-form="confirmPromise"
+      ng-show="tokenSent && !processing">
+    <div class="modal-body">
+        <p>We have emailed a verification code to <b>{{model.newEmail}}</b>. Please check your email for this code and enter it below to finalize your the email address change.</p>
+        <div class="callout callout-warning">
+            <h4><i class="fa fa-warning"></i> Warning</h4>
+            Proceeding will log you out of your current session, requiring you to log back in.
+        </div>
+        <div class="form-group" show-errors>
+            <label for="token">Code</label>
+            <input type="number" id="token" name="Token" ng-model="model.token" class="form-control" required api-field />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat">
+            Change Email
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
+<div ng-show="processing" class="modal-body text-center">
+    <p><i class="fa fa-cog fa-spin fa-3x"></i></p>
+    <p>Please wait. We are now changing your email and reencrypting all of your data. Do not close this window. You will be automatically logged out when this process has finished.</p>
+</div>

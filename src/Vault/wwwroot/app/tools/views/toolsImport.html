@@ -1,0 +1,21 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="importModelLabel"><i class="fa fa-cloud-upload"></i> Import</h4>
+</div>
+<form name="importForm" ng-submit="importForm.$valid && import(model)" api-form="importPromise">
+    <div class="modal-body">
+        <div class="callout callout-danger validation-errors" ng-show="importForm.$errors">
+            <h4>Errors have occured</h4>
+            <ul>
+                <li ng-repeat="e in importForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        Coming soon...
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="importForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="importForm.$loading"></i> Import
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>

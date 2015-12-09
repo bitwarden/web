@@ -1,0 +1,170 @@
+@import "theme.less";
+
+/* Theme Adjustments */
+
+@boxed-layout-bg-image-path: "../images/boxed-bg.png";
+
+body {
+    background-color: @gray;
+    .img-retina(@boxed-layout-bg-image-path, "../images/boxed-bg-2x.png", auto, auto);
+}
+
+body,
+.main-header .logo,
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.box-body > .table-responsive {
+    > .table {
+        margin-bottom: 0;
+    }
+
+    @media screen and (max-width: @screen-xs-max) {
+        border: none;
+        margin-bottom: 0;
+    }
+}
+
+.sidebar-form .form-group {
+    margin-bottom: 0;
+
+    input[type="text"], .form-control-feedback {
+        color: #999;
+    }
+}
+
+form div.validation-errors ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+
+    li {
+        margin-left: 0;
+    }
+}
+
+.login-page,
+.register-page {
+    background-color: @gray;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    .img-retina(@boxed-layout-bg-image-path, "../images/boxed-bg-2x.png", auto, auto);
+}
+
+.login-box-body,
+.register-box-body {
+    .boxShadow(0 0 8px rgba(0, 0, 0, 0.5));
+}
+
+.login-box, .register-box {
+    .checkbox {
+        margin-top: 0;
+    }
+
+    ul {
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+}
+
+.password-options {
+    float: right;
+
+    i {
+        margin: 0 5px;
+        cursor: pointer;
+    }
+}
+
+/* Buttons */
+
+.btn-table {
+    padding: 1px 5px;
+    line-height: 1;
+}
+
+.btn-box-tool {
+    font-size: 14px;
+}
+
+form .btn .loading-icon {
+    margin-right: 8px;
+}
+
+/* Modals */
+
+.modal-footer {
+    text-align: left;
+}
+
+/* Toastr */
+
+#toast-container {
+    position: absolute;
+
+    &.toast-top-right {
+        top: 65px;
+        right: 15px;
+
+        @media (max-width: @screen-xs-max) {
+            top: initial;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+        }
+    }
+
+    > .toast {
+        background-image: none !important;
+        .border-radius(0);
+        .boxShadow(0 0 8px rgba(0, 0, 0, 0.5));
+
+        @media (max-width: @screen-xs-max) {
+            width: 100%;
+        }
+
+        &.toast-danger, &.toast-error {
+            &:extend(.bg-red);
+
+            &:before {
+                content: "\f0e7";
+            }
+        }
+
+        &.toast-warning {
+            &:extend(.bg-yellow);
+
+            &:before {
+                content: "\f071";
+            }
+        }
+
+        &.toast-info {
+            &:extend(.bg-aqua);
+
+            &:before {
+                content: "\f005";
+            }
+        }
+
+        &.toast-success {
+            &:extend(.bg-green);
+
+            &:before {
+                content: "\f00C";
+            }
+        }
+
+        &:before {
+            position: fixed;
+            font-family: FontAwesome;
+            font-size: 24px;
+            line-height: 24px;
+            float: left;
+            color: #ffffff;
+            padding-right: 0.5em;
+            margin: auto 0.5em auto -1.5em;
+        }
+    }
+}

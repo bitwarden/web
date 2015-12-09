@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html ng-app="bit">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+
+    <title page-title>bitwarden.com Password Manager</title>
+
+    <!-- @if true !>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <meta name="x-stylesheet-test-bs" content="" class="invisible" />
+    <script>!function(a,b,c){var d,e=document,f=e.getElementsByTagName('SCRIPT'),g=f[f.length-1].previousElementSibling,h=e.defaultView&&e.defaultView.getComputedStyle?e.defaultView.getComputedStyle(g):g.currentStyle;if(h&&h[a]!==b)for(d=0;d<c.length;d++)e.write('<link rel="stylesheet" href="'+c[d]+'"/>')}('visibility','hidden',['lib\/bootstrap\/css\/bootstrap.min.css']);</script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <meta name="x-stylesheet-test-fa" content="" class="fa" />
+    <script>!function(a,b,c){var d,e=document,f=e.getElementsByTagName('SCRIPT'),g=f[f.length-1].previousElementSibling,h=e.defaultView&&e.defaultView.getComputedStyle?e.defaultView.getComputedStyle(g):g.currentStyle;if(h&&h[a]!==b)for(d=0;d<c.length;d++)e.write('<link rel="stylesheet" href="'+c[d]+'"/>')}('font-family','FontAwesome',['lib\/font-awesome\/css\/font-awesome.min.css']);</script>
+
+    <link rel="stylesheet" href="css/vault.min.css" />
+    <!-- @endif -->
+    <!-- @exclude -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+
+    <link rel="stylesheet" href="css/vault.css" />
+    <!-- @endexclude -->
+</head>
+<body ng-controller="mainController as main" class="layout-boxed skin-blue sidebar-mini {{main.bodyClass}}">
+    <div ui-view></div>
+
+    <!-- @if true !>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>(window.jQuery||document.write('<script src="lib\/jquery\/jquery.min.js"><\/script>'));</script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>((window.jQuery&&window.jQuery.fn&&window.jQuery.fn.modal)||document.write('<script src="lib\/bootstrap\/js\/bootstrap.min.js"><\/script>'));</script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>(window.angular||document.write('<script src="lib\/angular\/angular.min.js"><\/script>'));</script>
+
+    <script src="js/lib.min.js"></script>
+    <script src="js/app.min.js"></script>
+    <!-- @endif -->
+    <!-- @exclude -->
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/admin-lte/js/app.js"></script>
+
+    <script src="lib/sjcl/sjcl.js"></script>
+    <script src="lib/sjcl/cbc.js"></script>
+    <script src="lib/sjcl/bitArray.js"></script>
+
+    <script src="lib/papaparse/papaparse.js"></script>
+    <script src="lib/clipboard/clipboard.js"></script>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/angular-messages/angular-messages.js"></script>
+    <script src="lib/angular-jwt/angular-jwt.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="lib/angular-bootstrap/angular-bootstrap-tpls.js"></script>
+    <script src="lib/angular-md5/angular-md5.js"></script>
+    <script src="lib/angular-toastr/angular-toastr.tpls.js"></script>
+    <script src="lib/angular-bootstrap-show-errors/showErrors.js"></script>
+    <script src="lib/ngstorage/ngStorage.js"></script>
+    <script src="lib/ngclipboard/ngclipboard.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/settings.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/apiInterceptor.js"></script>
+
+    <script src="app/directives/directivesModule.js"></script>
+    <script src="app/directives/pageTitleDirective.js"></script>
+    <script src="app/directives/apiFormDirective.js"></script>
+    <script src="app/directives/apiFieldDirective.js"></script>
+    <script src="app/directives/masterPasswordDirective.js"></script>
+    <script src="app/directives/passwordMeterDirective.js"></script>
+    <script src="app/directives/passwordViewerDirective.js"></script>
+
+    <script src="app/services/servicesModule.js"></script>
+    <script src="app/services/tokenService.js"></script>
+    <script src="app/services/apiService.js"></script>
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/cryptoService.js"></script>
+    <script src="app/services/cipherService.js"></script>
+    <script src="app/services/validationService.js"></script>
+    <script src="app/services/passwordService.js"></script>
+
+    <script src="app/global/globalModule.js"></script>
+    <script src="app/global/mainController.js"></script>
+    <script src="app/global/topNavController.js"></script>
+    <script src="app/global/sideNavController.js"></script>
+
+    <script src="app/accounts/accountsModule.js"></script>
+    <script src="app/accounts/accountsLoginController.js"></script>
+    <script src="app/accounts/accountsLogoutController.js"></script>
+    <script src="app/accounts/accountsRegisterController.js"></script>
+    <script src="app/accounts/accountsRegisterFinalizeController.js"></script>
+    <script src="app/accounts/accountsPasswordHintController.js"></script>
+
+    <script src="app/vault/vaultModule.js"></script>
+    <script src="app/vault/vaultController.js"></script>
+    <script src="app/vault/vaultEditSiteController.js"></script>
+    <script src="app/vault/vaultAddSiteController.js"></script>
+    <script src="app/vault/vaultEditFolderController.js"></script>
+    <script src="app/vault/vaultAddFolderController.js"></script>
+
+    <script src="app/settings/settingsModule.js"></script>
+    <script src="app/settings/settingsController.js"></script>
+    <script src="app/settings/settingsChangePasswordController.js"></script>
+    <script src="app/settings/settingsChangeEmailController.js"></script>
+    <script src="app/settings/settingsTwoFactorController.js"></script>
+    <script src="app/settings/settingsSessionsController.js"></script>
+
+    <script src="app/tools/toolsModule.js"></script>
+    <script src="app/tools/toolsController.js"></script>
+    <script src="app/tools/toolsImportController.js"></script>
+    <script src="app/tools/toolsExportController.js"></script>
+    <script src="app/tools/toolsAuditsController.js"></script>
+    <!-- @endexclude -->
+</body>
+</html>

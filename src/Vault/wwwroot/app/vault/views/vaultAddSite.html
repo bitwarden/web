@@ -1,0 +1,92 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="addSiteModelLabel"><i class="fa fa-globe"></i> Add New Site</h4>
+</div>
+<form name="addSiteForm" ng-submit="addSiteForm.$valid && save(site)" api-form="savePromise">
+    <div class="modal-body">
+        <div class="callout callout-danger validation-errors" ng-show="addSiteForm.$errors">
+            <h4>Errors have occured</h4>
+            <ul>
+                <li ng-repeat="e in addSiteForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="uri">URI</label>
+            <div class="input-group">
+                <input type="url" id="uri" ng-model="site.uri" name="Uri" class="form-control" placeholder="http://..." required api-field />
+                <span class="input-group-btn" uib-tooltip="Copy URI" tooltip-placement="left">
+                    <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
+                            ngclipboard-error="clipboardError(e)"
+                            data-clipboard-target="#uri">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="Name" ng-model="site.name" class="form-control" required api-field />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="folder">Folder</label>
+                    <select id="folder" name="FolderId" ng-model="site.folderId" class="form-control" api-field>
+                        <option ng-repeat="folder in folders" value="{{folder.id}}">{{folder.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <input type="text" id="username" name="Username" ng-model="site.username" class="form-control" required api-field />
+                        <span class="input-group-btn" uib-tooltip="Copy Username" tooltip-placement="left">
+                            <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
+                                    ngclipboard-error="clipboardError(e)"
+                                    data-clipboard-target="#username">
+                                <i class="fa fa-clipboard"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <div class="pull-right password-options">
+                        <i class="fa fa-lg fa-refresh" uib-tooltip="Generate Password" tooltip-placement="left" ng-click="generatePassword()"></i>
+                        <i class="fa fa-lg fa-eye" uib-tooltip="Toggle Password" tooltip-placement="left" password-viewer="#password"></i>
+                    </div>
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input tabindex="-1" type="text" id="password-text" value="{{site.password}}" style="margin-left: -9999px;" />
+                        <input type="password" id="password" name="Password" ng-model="site.password" class="form-control" required api-field />
+                        <span class="input-group-btn" uib-tooltip="Copy Password" tooltip-placement="left">
+                            <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
+                                    ngclipboard-success="clipboardSuccess(e)"
+                                    ngclipboard-error="clipboardError(e, true)"
+                                    data-clipboard-target="#password-text">
+                                <i class="fa fa-clipboard"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div style="margin: -10px 0 15px 0;" password-meter="site.password" password-meter-username="site.username" outer-class="xs"></div>
+            </div>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="Notes" class="form-control" ng-model="site.notes" api-field></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="addSiteForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="addSiteForm.$loading"></i>Submit
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
