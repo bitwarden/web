@@ -1,0 +1,78 @@
+<div class="wrapper toast-target">
+    <header class="main-header" ng-controller="topNavController as topNav">
+        <a ui-sref="backend.vault" class="logo">
+            <span class="logo-mini"><i class="fa fa-shield"></i></span>
+            <span class="logo-lg"><i class="fa fa-shield"></i> <b>bit</b>warden</span>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref="frontend.logout">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="main-sidebar" ng-controller="sideNavController as sideNav">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="http://www.gravatar.com/avatar/{{ main.userProfile.email | gravatar }}.jpg?s=45&d=mm" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{main.userProfile.extended && main.userProfile.extended.name ? main.userProfile.extended.name : main.userProfile.email}}</p>
+                    <a ui-sref="frontend.logout">Log Out</a>
+                </div>
+            </div>
+            <form class="sidebar-form">
+                <label for="search" class="sr-only">Search</label>
+                <div class="form-group has-feedback">
+                    <input type="text" id="search" class="form-control" placeholder="Search vault..." ng-focus="searchVault()" ng-model="main.searchVaultText" />
+                    <span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </form>
+            <ul class="sidebar-menu">
+                <li class="treeview" ng-class="{active: $state.includes('backend.vault')}">
+                    <a ui-sref="backend.vault"><i class="fa fa-lock"></i> <span>My Vault</span></a>
+                    <ul class="treeview-menu menu-open">
+                        <li><a href="javascript:void(0)" ng-click="addSite()"><i class="fa fa-plus"></i> New Site</a></li>
+                        <li><a href="javascript:void(0)" ng-click="addFolder()"><i class="fa fa-folder"></i> New Folder</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: $state.includes('backend.settings')}">
+                    <a ui-sref="backend.settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
+                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0)" ng-click="changePassword()"><i class="fa fa-circle-o"></i> Change Password</a></li>
+                        <li><a href="javascript:void(0)" ng-click="changeEmail()"><i class="fa fa-circle-o"></i> Change Email</a></li>
+                        <li><a href="javascript:void(0)" ng-click="sessions()"><i class="fa fa-circle-o"></i> Deauthorize Sessions</a></li>
+                        <li><a href="javascript:void(0)" ng-click="twoFactor()"><i class="fa fa-circle-o"></i> Two-step Login</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: $state.includes('backend.tools')}">
+                    <a ui-sref="backend.tools"><i class="fa fa-wrench"></i> <span>Tools</span></a>
+                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0)" ng-click="import()"><i class="fa fa-circle-o"></i> Import</a></li>
+                        <li><a href="javascript:void(0)" ng-click="export()"><i class="fa fa-circle-o"></i> Export</a></li>
+                        <li><a href="javascript:void(0)" ng-click="audits()"><i class="fa fa-circle-o"></i> Audits</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper" ui-view>
+    </div>
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> {{main.version}}
+        </div>
+        <strong>Copyright &copy; <span ng-bind="currentYear"></span></strong>, bitwarden.com
+    </footer>
+</div>

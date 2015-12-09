@@ -1,0 +1,35 @@
+<p class="login-box-msg">Finalize the creation of your new account.</p>
+<form name="finalizeInfoForm" ng-submit="finalizeInfoForm.$valid && info()">
+    <div class="form-group has-feedback" show-errors>
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" name="Email" class="form-control" ng-model="model.email" placeholder="Email" readonly required>
+        <span class="fa fa-envelope form-control-feedback"></span>
+    </div>
+    <div class="form-group has-feedback" show-errors>
+        <label for="name" class="sr-only">Your Name</label>
+        <input type="text" id="name" name="Name" class="form-control" ng-model="model.name" placeholder="Your Name" required>
+        <span class="fa fa-user form-control-feedback"></span>
+        <p class="help-block">What should we call you?</p>
+    </div>
+    <div class="form-group has-feedback" show-errors>
+        <label for="masterPassword" class="sr-only">Master Password</label>
+        <input type="password" id="masterPassword" name="MasterPasswordHash" class="form-control" ng-model="model.masterPassword" placeholder="Master Password" required>
+        <span class="fa fa-lock form-control-feedback"></span>
+        <p class="help-block">The master password is the password you use to access your vault.</p>
+    </div>
+    <div class="form-group has-feedback" show-errors>
+        <label for="hint" class="sr-only">Master Password Hint</label>
+        <input type="text" id="hint" name="MasterPasswordHint" class="form-control" ng-model="model.masterPasswordHint" placeholder="Master Password Hint">
+        <span class="fa fa-lightbulb-o form-control-feedback"></span>
+        <p class="help-block">A master password hint can help you remember your password if you forget it.</p>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xs-7">
+            <a ui-sref="frontend.login.info">Cancel registration</a>
+        </div>
+        <div class="col-xs-5">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Continue</button>
+        </div>
+    </div>
+</form>

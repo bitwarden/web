@@ -1,0 +1,51 @@
+<section class="content-header">
+    <h1>
+        My Vault
+        <small>safe and secure</small>
+    </h1>
+</section>
+<section class="content">
+    <div class="box" ng-repeat="folder in folders | orderBy: 'name'">
+        <div class="box-header with-border">
+            <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}}</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" ng-click="deleteFolder(folder)" ng-show="canDeleteFolder(folder)" uib-tooltip="Delete">
+                    <i class="fa fa-trash"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" ng-click="editFolder(folder)" ng-show="folder.id" uib-tooltip="Edit">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body" ng-class="{'no-padding': folderSites.length}">
+            <div ng-show="!folderSites.length">
+                <p>No sites in this folder.</p>
+                <button type="button" ng-click="addSite(folder)" class="btn btn-default btn-flat">Add a Site</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover" ng-show="folderSites.length">
+                    <thead>
+                        <tr>
+                            <th style="max-width: 200px;">Site</th>
+                            <th>Username</th>
+                            <th style="min-width: 150px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="site in folderSites = (sites | filter: { folderId: folder.id } | filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
+                            <td>{{site.name}}</td>
+                            <td>{{site.username}}</td>
+                            <td class="text-right">
+                                <button type="button" ng-click="deleteSite(site)" class="btn btn-link btn-table" uib-tooltip="Delete"><i class="fa fa-lg fa-trash"></i></button>
+                                <button type="button" ng-click="editSite(site)" class="btn btn-link btn-table" uib-tooltip="View/Edit"><i class="fa fa-lg fa-pencil"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

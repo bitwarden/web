@@ -1,0 +1,46 @@
+<section class="content-header">
+    <h1>
+        Settings
+        <small>manage your account</small>
+    </h1>
+</section>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">General</h3>
+        </div>
+        <form role="form" name="profileForm" ng-submit="profileForm.$valid && save(model)" api-form="savePromise">
+            <div class="box-body">
+                <div class="callout callout-danger validation-errors" ng-show="profileForm.$errors">
+                    <h4>Errors have occured</h4>
+                    <ul>
+                        <li ng-repeat="e in profileForm.$errors">{{e}}</li>
+                    </ul>
+                </div>
+                <div class="form-group" show-errors>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="Name" ng-model="model.name" class="form-control" required api-field />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email - <a href="javascript:void(0)" ng-click="changeEmail()">change</a></label>
+                    <input type="text" id="email" ng-model="model.email" class="form-control" readonly />
+                </div>
+                <div class="form-group" show-errors>
+                    <label for="hint">Master Password Hint</label>
+                    <input type="text" id="hint" name="MasterPasswordHint" ng-model="model.masterPasswordHint" class="form-control" api-field />
+                </div>
+                <div class="form-group" show-errors>
+                    <label for="culture">Language/Culture</label>
+                    <select id="culture" name="Culture" ng-model="model.culture" class="form-control" api-field>
+                        <option value="en-US">English (US)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="profileForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="profileForm.$loading"></i>Save
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
