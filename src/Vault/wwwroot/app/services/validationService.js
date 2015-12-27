@@ -41,7 +41,18 @@
                 form.$errors = [];
             }
 
-            form.$errors.push(errorMessage);
+            var pushError = true;
+            for (var i = 0; i < form.$errors.length; i++) {
+                if (form.$errors[i] == errorMessage) {
+                    pushError = false;
+                    break;
+                }
+            }
+
+            if (pushError) {
+                form.$errors.push(errorMessage);
+            }
+
             if (key && key !== '' && form[key] && form[key].$registerApiError) {
                 form[key].$registerApiError();
             }

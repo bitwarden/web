@@ -50,7 +50,7 @@
                     $uibModalInstance.dismiss('cancel');
                     authService.logOut();
                     $state.go('frontend.login.info').then(function () {
-                        toastr.success('Please log back in.', 'Email Changed')
+                        toastr.success('Please log back in.', 'Email Changed');
                     });
                 }, function () {
                     // TODO: recovery mode

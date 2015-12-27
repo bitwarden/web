@@ -24,7 +24,7 @@ angular
                 folderId: encryptedSite.FolderId,
                 name: cryptoService.decrypt(encryptedSite.Name),
                 uri: cryptoService.decrypt(encryptedSite.Uri),
-                username: cryptoService.decrypt(encryptedSite.Username),
+                username: encryptedSite.Username && encryptedSite.Username !== '' ? cryptoService.decrypt(encryptedSite.Username) : null,
                 password: cryptoService.decrypt(encryptedSite.Password),
                 notes: encryptedSite.Notes && encryptedSite.Notes !== '' ? cryptoService.decrypt(encryptedSite.Notes) : null
             };
@@ -79,7 +79,7 @@ angular
                 folderId: unencryptedSite.folderId === '' ? null : unencryptedSite.folderId,
                 uri: cryptoService.encrypt(unencryptedSite.uri, key),
                 name: cryptoService.encrypt(unencryptedSite.name, key),
-                username: cryptoService.encrypt(unencryptedSite.username, key),
+                username: !unencryptedSite.username || unencryptedSite.username === '' ? null : cryptoService.encrypt(unencryptedSite.username, key),
                 password: cryptoService.encrypt(unencryptedSite.password, key),
                 notes: !unencryptedSite.notes || unencryptedSite.notes === '' ? null : cryptoService.encrypt(unencryptedSite.notes, key)
             };

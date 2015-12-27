@@ -11,7 +11,7 @@
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
                 $state.go('frontend.login.info').then(function () {
-                    toastr.success('Please log back in.', 'All Sessions Deauthorized')
+                    toastr.success('Please log back in.', 'All Sessions Deauthorized');
                 });
             }).$promise;
         };

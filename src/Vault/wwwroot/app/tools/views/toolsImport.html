@@ -10,7 +10,17 @@
                 <li ng-repeat="e in importForm.$errors">{{e}}</li>
             </ul>
         </div>
-        Coming soon...
+        <div class="form-group" show-errors>
+            <label for="source">Source</label>
+            <select id="source" name="source" ng-model="model.source" class="form-control">
+                <option value="local">bitwarden</option>
+                <option value="lastpass">LastPass</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="file">File</label>
+            <input type="file" id="file" name="file" />
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="importForm.$loading">

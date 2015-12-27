@@ -14,10 +14,12 @@
                 };
 
                 try { decSite.name = cryptoService.decrypt(sites.Data[i].Name); }
-                catch (err) { decSite.name = "[error: cannot decrypt]"; }
+                catch (err) { decSite.name = '[error: cannot decrypt]'; }
 
-                try { decSite.username = cryptoService.decrypt(sites.Data[i].Username); }
-                catch (err) { decSite.username = "[error: cannot decrypt]"; }
+                if (sites.Data[i].Username) {
+                    try { decSite.username = cryptoService.decrypt(sites.Data[i].Username); }
+                    catch (err) { decSite.username = '[error: cannot decrypt]'; }
+                }
 
                 decSites.push(decSite);
             }
@@ -37,7 +39,7 @@
                 };
 
                 try { decFolder.name = cryptoService.decrypt(folders.Data[i].Name); }
-                catch (err) { decFolder.name = "[error: cannot decrypt]"; }
+                catch (err) { decFolder.name = '[error: cannot decrypt]'; }
 
                 decFolders.push(decFolder);
             }
@@ -87,7 +89,7 @@
         };
 
         $scope.deleteSite = function (site) {
-            if (!confirm("Are you sure you want to delete this site (" + site.name + ")?")) {
+            if (!confirm('Are you sure you want to delete this site (' + site.name + ')?')) {
                 return;
             }
 
@@ -134,7 +136,7 @@
         };
 
         $scope.deleteFolder = function (folder) {
-            if (!confirm("Are you sure you want to delete this folder (" + folder.name + ")?")) {
+            if (!confirm('Are you sure you want to delete this folder (' + folder.name + ')?')) {
                 return;
             }
 

@@ -9,7 +9,7 @@
         $scope.account = _profile.email;
         $scope.enabled = function () {
             return _profile.extended && _profile.extended.twoFactorEnabled;
-        }
+        };
 
         $scope.auth = function (model) {
             _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);

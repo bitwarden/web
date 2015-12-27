@@ -37,7 +37,7 @@
                     $uibModalInstance.dismiss('cancel');
                     authService.logOut();
                     $state.go('frontend.login.info').then(function () {
-                        toastr.success('Please log back in.', 'Master Password Changed')
+                        toastr.success('Please log back in.', 'Master Password Changed');
                     });
                 }, function () {
                     // TODO: recovery mode
