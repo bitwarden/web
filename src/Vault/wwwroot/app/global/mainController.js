@@ -60,6 +60,10 @@ angular
             $scope.$broadcast('settingsSessions');
         };
 
+        $scope.delete = function () {
+            $scope.$broadcast('settingsDelete');
+        };
+
         $scope.twoFactor = function () {
             $scope.$broadcast('settingsTwoFactor');
         };

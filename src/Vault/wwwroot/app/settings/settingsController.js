@@ -69,4 +69,17 @@
         $scope.$on('settingsSessions', function (event, args) {
             $scope.sessions();
         });
+
+        $scope.delete = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsDelete.html',
+                controller: 'settingsDeleteController',
+                size: 'sm'
+            });
+        };
+
+        $scope.$on('settingsDelete', function (event, args) {
+            $scope.delete();
+        });
     });

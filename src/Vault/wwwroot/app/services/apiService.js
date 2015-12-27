@@ -33,7 +33,8 @@
             putTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'PUT', params: {} },
             postPasswordHint: { url: _apiUri + '/accounts/password-hint', method: 'POST', params: {} },
             putSecurityStamp: { url: _apiUri + '/accounts/security-stamp', method: 'PUT', params: {} },
-            'import': { url: _apiUri + '/accounts/import', method: 'POST', params: {} }
+            'import': { url: _apiUri + '/accounts/import', method: 'POST', params: {} },
+            postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} }
         });
 
         _service.auth = $resource(_apiUri + '/auth', {}, {

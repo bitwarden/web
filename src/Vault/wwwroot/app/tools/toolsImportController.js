@@ -77,7 +77,7 @@
         };
 
         function doImport(folders, sites, siteRelationships) {
-            $scope.importPromise = apiService.tools.import({
+            $scope.importPromise = apiService.accounts.import({
                 folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
                 sites: cipherService.encryptSites(sites, cryptoService.getKey()),
                 siteRelationships: siteRelationships
