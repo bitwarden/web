@@ -5,6 +5,7 @@
         $scope.model = { source: 'local' };
 
         $scope.import = function (model) {
+            $scope.processing = true;
             var file = document.getElementById('file').files[0];
 
             // local
@@ -77,7 +78,7 @@
         };
 
         function doImport(folders, sites, siteRelationships) {
-            $scope.importPromise = apiService.accounts.import({
+            apiService.accounts.import({
                 folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
                 sites: cipherService.encryptSites(sites, cryptoService.getKey()),
                 siteRelationships: siteRelationships
@@ -88,8 +89,8 @@
                 });
             }, function () {
                 $uibModalInstance.dismiss('cancel');
-                toastr.error('Something went wrong.', 'Oh No!');
-            }).$promise;
+                toastr.error('Something went wrong. Try again.', 'Oh No!');
+            });
         }
 
         $scope.close = function () {
