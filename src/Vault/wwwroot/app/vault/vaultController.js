@@ -5,7 +5,10 @@
         $scope.sites = [];
         $scope.folders = [];
 
+        $scope.loadingSites = true;
         apiService.sites.list({}, function (sites) {
+            $scope.loadingSites = false;
+
             var decSites = [];
             for (var i = 0; i < sites.Data.length; i++) {
                 var decSite = {
@@ -25,9 +28,14 @@
             }
 
             $scope.sites = decSites;
+        }, function () {
+            $scope.loadingSites = false;
         });
 
+        $scope.loadingFolders = true;
         apiService.folders.list({}, function (folders) {
+            $scope.loadingFolders = false;
+
             var decFolders = [{
                 id: null,
                 name: '(none)'
@@ -45,6 +53,8 @@
             }
 
             $scope.folders = decFolders;
+        }, function () {
+            $scope.loadingFolders = false;
         });
 
         $scope.editSite = function (site) {
