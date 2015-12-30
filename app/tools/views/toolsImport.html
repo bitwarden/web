@@ -2,20 +2,28 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="importModelLabel"><i class="fa fa-cloud-upload"></i> Import</h4>
 </div>
-<form name="importForm" ng-submit="importForm.$valid && import(model)" api-form="importPromise">
+<form name="importForm" ng-submit="importForm.$valid && import(model)" ng-show="!processing">
     <div class="modal-body">
-        <div class="callout callout-danger validation-errors" ng-show="importForm.$errors">
-            <h4>Errors have occured</h4>
-            <ul>
-                <li ng-repeat="e in importForm.$errors">{{e}}</li>
-            </ul>
+        <div class="form-group">
+            <label for="source">Source</label>
+            <select id="source" name="source" class="form-control" ng-model="model.source">
+                <option value="local">bitwarden</option>
+                <option value="lastpass">LastPass</option>
+            </select>
         </div>
-        Coming soon...
+        <div class="form-group">
+            <label for="file">File</label>
+            <input type="file" id="file" name="file" />
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="importForm.$loading">
-            <i class="fa fa-refresh fa-spin loading-icon" ng-show="importForm.$loading"></i> Import
+        <button type="submit" class="btn btn-primary btn-flat">
+            Import
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
     </div>
 </form>
+<div ng-show="processing" class="modal-body text-center">
+    <p><i class="fa fa-cog fa-spin fa-3x"></i></p>
+    <p>Please wait. We are now importing all of your data. Do not close this window. You will be redirected to your vault when the import has completed.</p>
+</div>
