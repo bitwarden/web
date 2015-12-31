@@ -58,6 +58,5 @@
             }
         };
 
-
         return _service;
     });

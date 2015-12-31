@@ -1,83 +1,16 @@
 ﻿angular
     .module('bit.tools')
 
-    .controller('toolsImportController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, toastr) {
+    .controller('toolsImportController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, toastr, importService) {
         $scope.model = { source: 'local' };
 
         $scope.import = function (model) {
             $scope.processing = true;
             var file = document.getElementById('file').files[0];
-
-            // local
-            if (model.source == 'local') {
-                Papa.parse(file, {
-                    header: true,
-                    complete: function (results) {
-                        console.log(results);
-                    }
-                });
-            } // lastpass
-            else if (model.source == 'lastpass') {
-                Papa.parse(file, {
-                    header: true,
-                    complete: function (results) {
-                        var folders = [],
-                            sites = [],
-                            siteRelationships = [];
-
-                        angular.forEach(results.data, function (value, key) {
-                            if (!value.url || value.url === '') {
-                                return;
-                            }
-
-                            var folderIndex = folders.length,
-                                siteIndex = sites.length,
-                                hasFolder = value.grouping && value.grouping !== '' && value.grouping != '(none)',
-                                addFolder = hasFolder;
-
-                            if (hasFolder) {
-                                for (var i = 0; i < folders.length; i++) {
-                                    if (folders[i].name == value.grouping) {
-                                        addFolder = false;
-                                        folderIndex = i;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            sites.push({
-                                uri: value.url,
-                                username: value.username && value.username !== '' ? value.username : null,
-                                password: value.password,
-                                notes: value.extra && value.extra !== '' ? value.extra : null,
-                                name: value.name
-                            });
-
-                            if (addFolder) {
-                                folders.push({
-                                    name: value.grouping
-                                });
-                            }
-
-                            if (hasFolder) {
-                                var relationship = {
-                                    key: siteIndex,
-                                    value: folderIndex
-                                };
-                                siteRelationships.push(relationship);
-                            }
-                        });
-
-                        doImport(folders, sites, siteRelationships);
-                    }
-                });
-            }
-            else {
-                // source not supported
-            }
+            importService.import(model.source, file, importSuccess, importError);
         };
 
-        function doImport(folders, sites, siteRelationships) {
+        function importSuccess(folders, sites, siteRelationships) {
             apiService.accounts.import({
                 folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
                 sites: cipherService.encryptSites(sites, cryptoService.getKey()),
@@ -87,10 +20,12 @@
                 $state.go('backend.vault').then(function () {
                     toastr.success('Data has been successfully imported into your vault.', 'Import Success');
                 });
-            }, function () {
-                $uibModalInstance.dismiss('cancel');
-                toastr.error('Something went wrong. Try again.', 'Oh No!');
-            });
+            }, importError);
+        }
+
+        function importError() {
+            $uibModalInstance.dismiss('cancel');
+            toastr.error('Something went wrong. Try again.', 'Oh No!');
         }
 
         $scope.close = function () {

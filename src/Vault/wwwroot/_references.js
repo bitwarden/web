@@ -24,6 +24,7 @@
 /// <reference path="app/services/authService.js" />
 /// <reference path="app/services/cipherService.js" />
 /// <reference path="app/services/cryptoService.js" />
+/// <reference path="app/services/importservice.js" />
 /// <reference path="app/services/passwordservice.js" />
 /// <reference path="app/services/servicesModule.js" />
 /// <reference path="app/services/tokenService.js" />
