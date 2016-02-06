@@ -8,7 +8,6 @@ angular
             scope: {
                 password: '=passwordMeter',
                 username: '=passwordMeterUsername',
-                value: '=passwordMeterStrength',
                 outerClass: '@?'
             },
             link: function (scope) {
