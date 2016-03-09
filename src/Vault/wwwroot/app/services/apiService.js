@@ -22,7 +22,6 @@
         });
 
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
-            registerToken: { url: _apiUri + '/accounts/register-token', method: 'POST', params: {} },
             register: { url: _apiUri + '/accounts/register', method: 'POST', params: {} },
             emailToken: { url: _apiUri + '/accounts/email-token', method: 'POST', params: {} },
             email: { url: _apiUri + '/accounts/email', method: 'PUT', params: {} },

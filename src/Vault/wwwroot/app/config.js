@@ -114,27 +114,6 @@ angular
                     pageTitle: 'Register',
                     bodyClass: 'register-page'
                 }
-            })
-            .state('frontend.registerFinalize', {
-                controller: 'accountsRegisterFinalizeController',
-                templateUrl: 'app/accounts/views/accountsRegisterFinalize.html',
-                data: {
-                    bodyClass: 'register-page'
-                }
-            })
-            .state('frontend.registerFinalize.info', {
-                url: '^/register/finalize',
-                templateUrl: 'app/accounts/views/accountsRegisterFinalizeInfo.html',
-                data: {
-                    pageTitle: 'Finalize Registration'
-                }
-            })
-            .state('frontend.registerFinalize.confirm', {
-                url: '^/register/finalize/confirm',
-                templateUrl: 'app/accounts/views/accountsRegisterFinalizeConfirm.html',
-                data: {
-                    pageTitle: 'Finalize Registration (Confirm)'
-                }
             });
     })
     .run(function ($rootScope, authService, jwtHelper, tokenService, $state) {

@@ -5,7 +5,6 @@
 /// <reference path="app/accounts/accountsmodule.js" />
 /// <reference path="app/accounts/accountspasswordhintcontroller.js" />
 /// <reference path="app/accounts/accountsRegisterController.js" />
-/// <reference path="app/accounts/accountsRegisterFinalizeController.js" />
 /// <reference path="app/apiInterceptor.js" />
 /// <reference path="app/app.js" />
 /// <reference path="app/config.js" />
