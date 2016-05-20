@@ -1,27 +1,49 @@
 {
     "version": "0.0.1",
-    "environment":  "Development",
+    "environment": "Development",
 
     "dependencies": {
-        "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final"
+        "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
+        "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
+        "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final"
     },
 
-    "commands": {
-        "web": "Microsoft.AspNet.Server.Kestrel"
+    "tools": {
+        "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+            "version": "1.0.0-preview1-final",
+            "imports": "portable-net45+win8+dnxcore50"
+        }
     },
 
     "frameworks": {
-        "dnx451": { }
+        "net46": { }
     },
 
-    "exclude": [
-        "wwwroot",
-        "node_modules"
-    ],
-    "publishExclude": [
-        "**.user",
-        "**.vspscc"
-    ]
+    "buildOptions": {
+        "emitEntryPoint": true,
+        "preserveCompilationContext": true
+    },
+
+    "runtimeOptions": {
+        "gcServer": false,
+        "gcConcurrent": true
+    },
+
+    "publishOptions": {
+        "include": [
+            "wwwroot",
+            "Views",
+            "settings.json",
+            "settings.Development.json",
+            "settings.Production.json",
+            "settings.Staging.json",
+            "web.config"
+        ]
+    },
+
+    "scripts": {
+        "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+    },
+
+    "userSecretsId": "aspnet-Vault-20160519103145"
 }

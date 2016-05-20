@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bit.Vault
@@ -11,11 +10,7 @@ namespace Bit.Vault
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseIISPlatformHandler();
             app.UseFileServer();
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
