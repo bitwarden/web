@@ -24,7 +24,7 @@
                 complete: function (results) {
                     var folders = [],
                         sites = [],
-                        siteRelationships = [];
+                        folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (!value.uri || value.uri === '') {
@@ -65,11 +65,11 @@
                                 key: siteIndex,
                                 value: folderIndex
                             };
-                            siteRelationships.push(relationship);
+                            folderRelationships.push(relationship);
                         }
                     });
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, sites, folderRelationships);
                 }
             });
         }

@@ -10,11 +10,11 @@
             importService.import(model.source, file, importSuccess, importError);
         };
 
-        function importSuccess(folders, sites, siteRelationships) {
-            apiService.accounts.import({
+        function importSuccess(folders, sites, folderRelationships) {
+            apiService.ciphers.import({
                 folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
                 sites: cipherService.encryptSites(sites, cryptoService.getKey()),
-                siteRelationships: siteRelationships
+                folderRelationships: folderRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
                 $state.go('backend.vault').then(function () {
