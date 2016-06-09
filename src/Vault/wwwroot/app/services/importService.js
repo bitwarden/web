@@ -47,6 +47,7 @@
                         }
 
                         sites.push({
+                            favorite: value.favorite != null ? value.favorite : false,
                             uri: value.uri,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password,
@@ -103,6 +104,7 @@
                         }
 
                         sites.push({
+                            favorite: false,
                             uri: value.url,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password,

@@ -25,6 +25,7 @@
             get: { method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             'import': { url: _apiUri + '/ciphers/import', method: 'POST', params: {} },
+            favorite: { url: _apiUri + '/ciphers/:id/favorite', method: 'PUT', params: { id: '@id' } },
             del: { method: 'DELETE', params: { id: '@id' } }
         });
 

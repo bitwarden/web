@@ -46,7 +46,7 @@
                                 <button type="button" ng-click="deleteSite(site)" class="btn btn-link btn-table" uib-tooltip="Delete"><i class="fa fa-lg fa-trash"></i></button>
                                 <button type="button" ng-click="editSite(site)" class="btn btn-link btn-table" uib-tooltip="View/Edit"><i class="fa fa-lg fa-pencil"></i></button>
                             </td>
-                            <td>{{site.name}}</td>
+                            <td>{{site.name}} <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="site.favorite"></i></td>
                             <td>{{site.username}}</td>
                         </tr>
                     </tbody>

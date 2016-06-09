@@ -13,7 +13,8 @@
             for (var i = 0; i < sites.Data.length; i++) {
                 var decSite = {
                     id: sites.Data[i].Id,
-                    folderId: sites.Data[i].FolderId
+                    folderId: sites.Data[i].FolderId,
+                    favorite: sites.Data[i].Favorite
                 };
 
                 try { decSite.name = cryptoService.decrypt(sites.Data[i].Name); }
@@ -74,6 +75,7 @@
                     site[0].folderId = editedSite.folderId;
                     site[0].name = editedSite.name;
                     site[0].username = editedSite.username;
+                    site[0].favorite = editedSite.favorite;
                 }
             });
         };
