@@ -85,6 +85,12 @@
             <label for="notes">Notes</label>
             <textarea id="notes" name="Notes" class="form-control" ng-model="site.notes" api-field></textarea>
         </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="site.favorite" name="Favorite" />
+                Favorite
+            </label>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="editSiteForm.$loading">
