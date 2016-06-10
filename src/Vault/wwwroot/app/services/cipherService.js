@@ -78,7 +78,7 @@ angular
                 id: unencryptedSite.id,
                 'type': 1,
                 folderId: unencryptedSite.folderId === '' ? null : unencryptedSite.folderId,
-                favorite: unencryptedSite.favorite != null ? unencryptedSite.favorite : false,
+                favorite: unencryptedSite.favorite !== null ? unencryptedSite.favorite : false,
                 uri: cryptoService.encrypt(unencryptedSite.uri, key),
                 name: cryptoService.encrypt(unencryptedSite.name, key),
                 username: !unencryptedSite.username || unencryptedSite.username === '' ? null : cryptoService.encrypt(unencryptedSite.username, key),

@@ -47,7 +47,7 @@
                         }
 
                         sites.push({
-                            favorite: value.favorite != null ? value.favorite : false,
+                            favorite: value.favorite !== null ? value.favorite : false,
                             uri: value.uri,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password,
