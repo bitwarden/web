@@ -104,7 +104,7 @@
                         }
 
                         sites.push({
-                            favorite: false,
+                            favorite: value.fav == '1',
                             uri: value.url,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password,
