@@ -2,6 +2,7 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, $uibTooltipProvider, toastrConfig) {
+        jwtInterceptorProvider.urlParam = 'access_token';
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService) {
             if (config.url.indexOf(appSettings.apiUri) === 0) {
                 return tokenService.getToken();
@@ -19,13 +20,11 @@ angular
             popupDelay: 600
         });
 
-        if (!$httpProvider.defaults.headers.get) {
-            $httpProvider.defaults.headers.get = {};
+        if ($httpProvider.defaults.headers.post) {
+            $httpProvider.defaults.headers.post = {};
         }
 
-        $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
-        $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
-        $httpProvider.defaults.headers.get.Pragma = 'no-cache';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'text/plain; charset=utf-8';
 
         $httpProvider.interceptors.push('apiInterceptor');
         $httpProvider.interceptors.push('jwtInterceptor');
