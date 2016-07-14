@@ -10,7 +10,7 @@
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },
-            del: { method: 'POST', params: { id: '@id/delete' } }
+            del: { url: _apiUri + '/sites/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
         _service.folders = $resource(_apiUri + '/folders/:id', {}, {
@@ -18,7 +18,7 @@
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },
-            del: { method: 'POST', params: { id: '@id/delete' } }
+            del: { url: _apiUri + '/folders/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
         _service.ciphers = $resource(_apiUri + '/ciphers/:id', {}, {
@@ -26,7 +26,7 @@
             list: { method: 'GET', params: {} },
             'import': { url: _apiUri + '/ciphers/import', method: 'POST', params: {} },
             favorite: { url: _apiUri + '/ciphers/:id/favorite', method: 'POST', params: { id: '@id' } },
-            del: { method: 'POST', params: { id: '@id/delete' } }
+            del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
