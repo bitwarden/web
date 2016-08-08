@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bit.Vault
+namespace Bit.Web
 {
     public class Startup
     {

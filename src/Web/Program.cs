@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Bit.Vault
+namespace Bit.Web
 {
     public class Program
     {
