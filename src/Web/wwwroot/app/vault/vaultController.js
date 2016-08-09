@@ -58,6 +58,14 @@
             $scope.loadingFolders = false;
         });
 
+        $scope.folderSort = function (item) {
+            if (!item.id) {
+                return '';
+            }
+
+            return item.name.toLowerCase();
+        };
+
         $scope.editSite = function (site) {
             var editModel = $uibModal.open({
                 animation: true,
