@@ -6,6 +6,8 @@
         'angular-md5',
         'ui.bootstrap.showErrors',
         'toastr',
+        'angulartics',
+        'angulartics.google.analytics',
 
         'bit.directives',
         'bit.services',

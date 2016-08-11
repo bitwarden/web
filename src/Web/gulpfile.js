@@ -158,6 +158,13 @@ gulp.task('lib', ['clean:lib'], function () {
         {
             src: paths.npmDir + 'clipboard/dist/clipboard*.js',
             dest: paths.libDir + 'clipboard'
+        },
+        {
+            src: [
+                paths.npmDir + 'angulartics-google-analytics/lib/angulartics*.js',
+                paths.npmDir + 'angulartics/src/angulartics.js'
+            ],
+            dest: paths.libDir + 'angulartics'
         }
     ];
 
