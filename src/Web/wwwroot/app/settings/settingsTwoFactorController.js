@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsTwoFactorController', function ($scope, apiService, $uibModalInstance, cryptoService, authService, $q, toastr) {
+    .controller('settingsTwoFactorController', function ($scope, apiService, $uibModalInstance, cryptoService, authService, $q, toastr, $analytics) {
+        $analytics.eventTrack('settingsTwoFactorController', { category: 'Modal' });
         var _issuer = 'bitwarden',
             _profile = authService.getUserProfile(),
             _masterPasswordHash;
@@ -39,15 +40,17 @@
             var request = {
                 enabled: !currentlyEnabled,
                 token: model ? model.token : null,
-                masterPasswordHash: _masterPasswordHash,
+                masterPasswordHash: _masterPasswordHash
             };
 
             $scope.updatePromise = apiService.accounts.putTwoFactor({}, request, function (response) {
                 if (response.TwoFactorEnabled) {
+                    $analytics.eventTrack('Enabled Two-step Login');
                     toastr.success('Two-step login has been enabled.');
                     if (_profile.extended) _profile.extended.twoFactorEnabled = true;
                 }
                 else {
+                    $analytics.eventTrack('Disabled Two-step Login');
                     toastr.success('Two-step login has been disabled.');
                     if (_profile.extended) _profile.extended.twoFactorEnabled = false;
                 }

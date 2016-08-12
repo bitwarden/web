@@ -289,6 +289,7 @@ gulp.task('dist:js:lib', function () {
         .src([
             paths.libDir + 'sjcl/sjcl.js',
             paths.libDir + 'sjcl/*.js',
+            paths.libDir + 'angulartics/angulartics.js',
             paths.libDir + '**/*.js',
             '!' + paths.libDir + '**/*.min.js',
             '!' + paths.libDir + 'angular/**/*',

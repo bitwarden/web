@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.tools')
 
-    .controller('toolsExportController', function ($scope, apiService, authService, $uibModalInstance, cryptoService, cipherService, $q, toastr) {
+    .controller('toolsExportController', function ($scope, apiService, authService, $uibModalInstance, cryptoService, cipherService, $q, toastr, $analytics) {
+        $analytics.eventTrack('toolsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
             apiService.sites.list({ expand: ['folder'] }, function (sites) {
@@ -36,6 +37,7 @@
                         document.body.removeChild(a);
                     }
 
+                    $analytics.eventTrack('Exported Data');
                     toastr.success('Your data has been exported. Check your browser\'s downloads folder.', 'Success!');
                     $scope.close();
                 }
@@ -56,7 +58,7 @@
         function makeFileName() {
             var now = new Date();
             var dateString =
-                now.getFullYear() + '' + padNumber((now.getMonth() + 1), 2) + '' + padNumber(now.getDate(), 2) +
+                now.getFullYear() + '' + padNumber(now.getMonth() + 1, 2) + '' + padNumber(now.getDate(), 2) +
                 padNumber(now.getHours(), 2) + '' + padNumber(now.getMinutes(), 2) +
                 padNumber(now.getSeconds(), 2);
 

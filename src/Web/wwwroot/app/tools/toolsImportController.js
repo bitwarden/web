@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.tools')
 
-    .controller('toolsImportController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, toastr, importService) {
+    .controller('toolsImportController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, toastr, importService, $analytics) {
+        $analytics.eventTrack('toolsImportController', { category: 'Modal' });
         $scope.model = { source: 'local' };
 
         $scope.import = function (model) {
@@ -18,6 +19,7 @@
             }, function () {
                 $uibModalInstance.dismiss('cancel');
                 $state.go('backend.vault').then(function () {
+                    $analytics.eventTrack('Imported Data', { label: model.source });
                     toastr.success('Data has been successfully imported into your vault.', 'Import Success');
                 });
             }, importError);

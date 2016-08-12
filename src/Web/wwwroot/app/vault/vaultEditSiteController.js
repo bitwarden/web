@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultEditSiteController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, siteId, folders) {
+    .controller('vaultEditSiteController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, siteId, folders, $analytics) {
+        $analytics.eventTrack('vaultEditSiteController', { category: 'Modal' });
         $scope.folders = folders;
         $scope.site = {};
 
@@ -12,6 +13,7 @@
         $scope.save = function (model) {
             var site = cipherService.encryptSite(model);
             $scope.savePromise = apiService.sites.put({ id: siteId }, site, function (siteResponse) {
+                $analytics.eventTrack('Edited Site');
                 var decSite = cipherService.decryptSite(siteResponse);
                 $uibModalInstance.close(decSite);
             }).$promise;
@@ -19,6 +21,7 @@
 
         $scope.generatePassword = function () {
             if (!$scope.site.password || confirm('Are you sure you want to overwrite the current password?')) {
+                $analytics.eventTrack('Generated Password From Edit');
                 $scope.site.password = passwordService.generatePassword({ length: 10, special: true });
             }
         };
@@ -37,7 +40,7 @@
 
         function selectPassword(e) {
             var target = $(e.trigger).parent().prev();
-            if (target.attr('type') == 'text') {
+            if (target.attr('type') === 'text') {
                 target.select();
             }
         }

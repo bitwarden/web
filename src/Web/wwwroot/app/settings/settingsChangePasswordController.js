@@ -2,9 +2,10 @@
     .module('bit.settings')
 
     .controller('settingsChangePasswordController', function ($scope, $state, apiService, $uibModalInstance,
-        cryptoService, authService, cipherService, validationService, $q, toastr) {
+        cryptoService, authService, cipherService, validationService, $q, toastr, $analytics) {
+        $analytics.eventTrack('settingsChangePasswordController', { category: 'Modal' });
         $scope.save = function (model, form) {
-            if ($scope.model.newMasterPassword != $scope.model.confirmNewMasterPassword) {
+            if ($scope.model.newMasterPassword !== $scope.model.confirmNewMasterPassword) {
                 validationService.addError(form, 'ConfirmNewMasterPassword', 'New master password confirmation does not match.', true);
                 return;
             }
@@ -36,6 +37,7 @@
                 $scope.savePromise = apiService.accounts.putPassword(request, function () {
                     $uibModalInstance.dismiss('cancel');
                     authService.logOut();
+                    $analytics.eventTrack('Changed Password');
                     $state.go('frontend.login.info').then(function () {
                         toastr.success('Please log back in.', 'Master Password Changed');
                     });

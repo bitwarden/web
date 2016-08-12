@@ -1,7 +1,7 @@
 angular
     .module('bit.accounts')
 
-    .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService, $state, appSettings) {
+    .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService, $state, appSettings, $analytics) {
         var rememberedEmail = $cookies.get(appSettings.rememberdEmailCookieName);
         if (rememberedEmail) {
             $scope.model = {
@@ -29,9 +29,11 @@ angular
 
                 var profile = authService.getUserProfile();
                 if (profile.twoFactor) {
+                    $analytics.eventTrack('Logged In To Two-step');
                     $state.go('frontend.login.twoFactor');
                 }
                 else {
+                    $analytics.eventTrack('Logged In');
                     $state.go('backend.vault');
                 }
             });
@@ -42,6 +44,7 @@ angular
             $scope.twoFactorPromise = authService.logInTwoFactor(model.code, "Authenticator");
 
             $scope.twoFactorPromise.then(function () {
+                $analytics.eventTrack('Logged In From Two-step');
                 $state.go('backend.vault');
             });
         };

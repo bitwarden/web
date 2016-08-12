@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsChangeEmailController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, authService, $q, toastr) {
+    .controller('settingsChangeEmailController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, authService, $q, toastr, $analytics) {
+        $analytics.eventTrack('settingsChangeEmailController', { category: 'Modal' });
         var _masterPasswordHash,
             _newMasterPasswordHash,
             _newKey;
@@ -48,6 +49,7 @@
 
                 $scope.confirmPromise = apiService.accounts.email(request, function () {
                     $uibModalInstance.dismiss('cancel');
+                    $analytics.eventTrack('Changed Email');
                     authService.logOut();
                     $state.go('frontend.login.info').then(function () {
                         toastr.success('Please log back in.', 'Email Changed');

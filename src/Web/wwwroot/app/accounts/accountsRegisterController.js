@@ -1,7 +1,7 @@
 angular
     .module('bit.accounts')
 
-    .controller('accountsRegisterController', function ($scope, $location, apiService, cryptoService, validationService) {
+    .controller('accountsRegisterController', function ($scope, $location, apiService, cryptoService, validationService, $analytics) {
         var params = $location.search();
 
         $scope.success = false;
@@ -11,7 +11,7 @@ angular
 
         $scope.registerPromise = null;
         $scope.register = function (form) {
-            if ($scope.model.masterPassword != $scope.model.confirmMasterPassword) {
+            if ($scope.model.masterPassword !== $scope.model.confirmMasterPassword) {
                 validationService.addError(form, 'ConfirmMasterPassword', 'Master password confirmation does not match.', true);
                 return;
             }
@@ -26,6 +26,7 @@ angular
 
             $scope.registerPromise = apiService.accounts.register(request, function () {
                 $scope.success = true;
+                $analytics.eventTrack('Registered');
             }).$promise;
         };
     });
