@@ -75,7 +75,7 @@ angular
             }
 
             var decodedToken = jwtHelper.decodeToken(token);
-            var twoFactor = decodedToken.authmethod == "TwoFactor";
+            var twoFactor = decodedToken.authmethod === "TwoFactor";
 
             _userProfile = {
                 id: decodedToken.nameid,

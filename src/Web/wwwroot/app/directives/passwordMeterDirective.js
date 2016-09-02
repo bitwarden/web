@@ -3,7 +3,9 @@ angular
 
     .directive('passwordMeter', function () {
         return {
-            template: '<div class="progress {{outerClass}}"><div class="progress-bar progress-bar-{{valueClass}}" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width : ( value + \'%\' ) }"><span class="sr-only">{{value}}%</span></div></div>',
+            template: '<div class="progress {{outerClass}}"><div class="progress-bar progress-bar-{{valueClass}}" ' +
+                + 'role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100" ' +
+                + 'ng-style="{width : ( value + \'%\' ) }"><span class="sr-only">{{value}}%</span></div></div>',
             restrict: 'A',
             scope: {
                 password: '=passwordMeter',
@@ -12,15 +14,15 @@ angular
             },
             link: function (scope) {
                 var measureStrength = function (username, password) {
-                    if (!password || password == username) {
+                    if (!password || password === username) {
                         return 0;
                     }
 
                     var strength = password.length;
 
                     if (username && username !== '') {
-                        if (username.indexOf(password) != -1) strength -= 15;
-                        if (password.indexOf(username) != -1) strength -= username.length;
+                        if (username.indexOf(password) !== -1) strength -= 15;
+                        if (password.indexOf(username) !== -1) strength -= username.length;
                     }
 
                     if (password.length > 0 && password.length <= 4) strength += password.length;
@@ -47,7 +49,6 @@ angular
                         case 0:
                         case 1:
                             return 'danger';
-
                         case 2:
                             return 'warning';
                         case 3:

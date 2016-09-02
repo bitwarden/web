@@ -99,7 +99,7 @@ angular
             }
 
             var encPieces = encValue.split('|');
-            if (encPieces.length != 2) {
+            if (encPieces.length !== 2) {
                 return '';
             }
 
