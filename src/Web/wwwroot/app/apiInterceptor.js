@@ -7,7 +7,7 @@ angular
                 return config;
             },
             response: function (response) {
-                if (response.status === 401 || response.status == 403) {
+                if (response.status === 401 || response.status === 403) {
                     $injector.get('authService').logOut();
                     $injector.get('$state').go('frontend.login.info').then(function () {
                         toastr.warning('Your login session has expired.', 'Logged out');
@@ -17,7 +17,7 @@ angular
                 return response || $q.when(response);
             },
             responseError: function (rejection) {
-                if (rejection.status === 401 || rejection.status == 403) {
+                if (rejection.status === 401 || rejection.status === 403) {
                     $injector.get('authService').logOut();
                     $injector.get('$state').go('frontend.login.info').then(function () {
                         toastr.warning('Your login session has expired.', 'Logged out');

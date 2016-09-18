@@ -43,7 +43,7 @@
 
             var pushError = true;
             for (var i = 0; i < form.$errors.length; i++) {
-                if (form.$errors[i] == errorMessage) {
+                if (form.$errors[i] === errorMessage) {
                     pushError = false;
                     break;
                 }
