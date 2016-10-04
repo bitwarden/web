@@ -5,8 +5,22 @@
         cryptoService, authService, cipherService, validationService, $q, toastr, $analytics) {
         $analytics.eventTrack('settingsChangePasswordController', { category: 'Modal' });
         $scope.save = function (model, form) {
+            var error = false;
+
+            if ($scope.model.newMasterPassword.length < 8 || !/[a-z]/i.test($scope.model.newMasterPassword) ||
+                /^[a-zA-Z]*$/.test($scope.model.newMasterPassword)) {
+                validationService.addError(form, 'NewMasterPasswordHash',
+                    'Master password must be at least 8 characters long and contain at least 1 letter and 1 number ' +
+                    'or special character.', true);
+                error = true;
+            }
             if ($scope.model.newMasterPassword !== $scope.model.confirmNewMasterPassword) {
-                validationService.addError(form, 'ConfirmNewMasterPassword', 'New master password confirmation does not match.', true);
+                validationService.addError(form, 'ConfirmNewMasterPasswordHash',
+                    'New master password confirmation does not match.', true);
+                error = true;
+            }
+
+            if (error) {
                 return;
             }
 
