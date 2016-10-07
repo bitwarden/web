@@ -3,10 +3,10 @@
         <i class="fa fa-shield"></i> <b>bit</b>warden
     </div>
     <div class="register-box-body">
-        <p class="login-box-msg">Register for a new account.</p>
+        <p class="login-box-msg">Create a new account.</p>
         <div class="text-center" ng-show="success">
             <div class="callout callout-success">
-                <h4>You're Registered!</h4>
+                <h4>Account Created!</h4>
                 <p>You may now log in to your new account.</p>
             </div>
             <a ui-sref="frontend.login.info">Ready to log in?</a>
@@ -28,8 +28,8 @@
             </div>
             <div class="form-group has-feedback" show-errors>
                 <label for="name" class="sr-only">Your Name</label>
-                <input type="text" id="name" name="Name" class="form-control" ng-model="model.name" placeholder="Your Name"
-                       required api-field>
+                <input type="text" id="name" name="Name" class="form-control" ng-model="model.name"
+                       placeholder="Your Name" api-field>
                 <span class="fa fa-user form-control-feedback"></span>
                 <p class="help-block">What should we call you?</p>
             </div>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-xs-5">
                     <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="registerForm.$loading">
-                        <i class="fa fa-refresh fa-spin loading-icon" ng-show="registerForm.$loading"></i>Register
+                        <i class="fa fa-refresh fa-spin loading-icon" ng-show="registerForm.$loading"></i>Submit
                     </button>
                 </div>
             </div>

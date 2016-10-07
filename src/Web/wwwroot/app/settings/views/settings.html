@@ -21,7 +21,8 @@
                         </div>
                         <div class="form-group" show-errors>
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="Name" ng-model="model.name" class="form-control" required api-field />
+                            <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
+                                   required api-field />
                         </div>
                         <div class="form-group">
                             <label for="email">Email - <a href="javascript:void(0)" ng-click="changeEmail()">change</a></label>
@@ -29,7 +30,8 @@
                         </div>
                         <div class="form-group" show-errors>
                             <label for="hint">Master Password Hint</label>
-                            <input type="text" id="hint" name="MasterPasswordHint" ng-model="model.masterPasswordHint" class="form-control" api-field />
+                            <input type="text" id="hint" name="MasterPasswordHint" ng-model="model.masterPasswordHint"
+                                   class="form-control" api-field />
                         </div>
                         <div class="form-group" show-errors>
                             <label for="culture">Language/Culture</label>
@@ -40,9 +42,11 @@
                     </div>
                     <div class="col-sm-3 settings-photo">
                         <a href="http://www.gravatar.com/" target="_blank">
-                            <img src="//www.gravatar.com/avatar/{{ main.userProfile.email | gravatar }}.jpg?s=150&d=mm" class="img-rounded img-responsive" alt="User Image">
+                            <img src="//www.gravatar.com/avatar/{{ main.userProfile.email | gravatar }}.jpg?s=150&d=mm"
+                                 class="img-rounded img-responsive" alt="User Image">
                         </a>
-                        <a href="http://www.gravatar.com/" target="_blank" class="btn btn-link">Update Photo</a>
+                        <a href="http://www.gravatar.com/" target="_blank" class="btn btn-link"
+                           analytics-on="click" analytics-event="Clicked Update Photo">Update Photo</a>
                     </div>
                 </div>
             </div>
