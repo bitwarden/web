@@ -82,7 +82,7 @@ angular
             var response = {};
             var params = {
                 mode: "cbc",
-                iv: sjcl.random.randomWords(4, 0)
+                iv: sjcl.random.randomWords(4, 10)
             };
 
             var ctJson = sjcl.encrypt(key, plaintextValue, params, response);
