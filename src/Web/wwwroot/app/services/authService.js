@@ -6,6 +6,7 @@ angular
             _userProfile = null;
 
         _service.logIn = function (email, masterPassword) {
+            email = email.toLowerCase();
             var key = cryptoService.makeKey(masterPassword, email);
 
             var request = {

@@ -9,14 +9,15 @@
 
         $scope.token = function (model) {
             _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
+            var newEmail = model.newEmail.toLowerCase();
 
             var request = {
-                newEmail: model.newEmail,
+                newEmail: newEmail,
                 masterPasswordHash: _masterPasswordHash
             };
 
             $scope.tokenPromise = apiService.accounts.emailToken(request, function () {
-                _newKey = cryptoService.makeKey(model.masterPassword, model.newEmail);
+                _newKey = cryptoService.makeKey(model.masterPassword, newEmail);
                 _newMasterPasswordHash = cryptoService.hashPassword(model.masterPassword, _newKey);
 
                 $scope.tokenSent = true;
@@ -41,7 +42,7 @@
             $q.all([sitesPromise, foldersPromise]).then(function () {
                 var request = {
                     token: model.token,
-                    newEmail: model.newEmail,
+                    newEmail: model.newEmail.toLowerCase(),
                     masterPasswordHash: _masterPasswordHash,
                     newMasterPasswordHash: _newMasterPasswordHash,
                     ciphers: reencryptedSites.concat(reencryptedFolders)

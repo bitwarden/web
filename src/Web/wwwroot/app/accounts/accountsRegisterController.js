@@ -26,10 +26,11 @@ angular
                 return;
             }
 
-            var key = cryptoService.makeKey($scope.model.masterPassword, $scope.model.email);
+            var email = $scope.model.email.toLowerCase();
+            var key = cryptoService.makeKey($scope.model.masterPassword, email);
             var request = {
                 name: $scope.model.name,
-                email: $scope.model.email,
+                email: email,
                 masterPasswordHash: cryptoService.hashPassword($scope.model.masterPassword, key),
                 masterPasswordHint: $scope.model.masterPasswordHint
             };

@@ -25,7 +25,7 @@
             $scope.processing = true;
 
             var profile = authService.getUserProfile();
-            var newKey = cryptoService.makeKey(model.newMasterPassword, profile.email);
+            var newKey = cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
 
             var reencryptedSites = [];
             var sitesPromise = apiService.sites.list({ dirty: false }, function (encryptedSites) {
