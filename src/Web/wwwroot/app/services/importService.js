@@ -181,6 +181,9 @@
                         success(folders, sites, siteRelationships);
                     }
                 }
+                else {
+                    error();
+                }
             };
 
             reader.onerror = function (evt) {

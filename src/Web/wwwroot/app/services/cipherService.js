@@ -24,9 +24,9 @@ angular
                 folderId: encryptedSite.FolderId,
                 favorite: encryptedSite.Favorite,
                 name: cryptoService.decrypt(encryptedSite.Name),
-                uri: cryptoService.decrypt(encryptedSite.Uri),
+                uri: encryptedSite.Uri && encryptedSite.Uri !== '' ? cryptoService.decrypt(encryptedSite.Uri) : null,
                 username: encryptedSite.Username && encryptedSite.Username !== '' ? cryptoService.decrypt(encryptedSite.Username) : null,
-                password: cryptoService.decrypt(encryptedSite.Password),
+                password: encryptedSite.Password && encryptedSite.Password !== '' ? cryptoService.decrypt(encryptedSite.Password) : null,
                 notes: encryptedSite.Notes && encryptedSite.Notes !== '' ? cryptoService.decrypt(encryptedSite.Notes) : null
             };
 
@@ -79,10 +79,10 @@ angular
                 'type': 1,
                 folderId: unencryptedSite.folderId === '' ? null : unencryptedSite.folderId,
                 favorite: unencryptedSite.favorite !== null ? unencryptedSite.favorite : false,
-                uri: cryptoService.encrypt(unencryptedSite.uri, key),
+                uri: !unencryptedSite.uri || unencryptedSite.uri === '' ? null : cryptoService.encrypt(unencryptedSite.uri, key),
                 name: cryptoService.encrypt(unencryptedSite.name, key),
                 username: !unencryptedSite.username || unencryptedSite.username === '' ? null : cryptoService.encrypt(unencryptedSite.username, key),
-                password: cryptoService.encrypt(unencryptedSite.password, key),
+                password: !unencryptedSite.password || unencryptedSite.password === '' ? null : cryptoService.encrypt(unencryptedSite.password, key),
                 notes: !unencryptedSite.notes || unencryptedSite.notes === '' ? null : cryptoService.encrypt(unencryptedSite.notes, key)
             };
         };
