@@ -243,11 +243,11 @@
                                     site.name = value;
                                     break;
                                 case 'Notes':
-                                    site.notes = site.notes == null ? value + '\n' : site.notes + value + '\n';
+                                    site.notes = site.notes === null ? value + '\n' : site.notes + value + '\n';
                                     break;
                                 default:
                                     // other custom fields
-                                    site.notes = site.notes == null ? key + ': ' + value + '\n'
+                                    site.notes = site.notes === null ? key + ': ' + value + '\n'
                                         : site.notes + key + ': ' + value + '\n';
                                     break;
                             }
@@ -270,8 +270,8 @@
 
                 var groups = node.find('> Group');
                 if (groups.length) {
-                    for (var i = 0; i < groups.length; i++) {
-                        traverse($(groups[i]), false, groupName);
+                    for (var k = 0; k < groups.length; k++) {
+                        traverse($(groups[k]), false, groupName);
                     }
                 }
             }
