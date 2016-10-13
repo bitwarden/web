@@ -33,10 +33,6 @@
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
-                        if (!value.uri || value.uri === '') {
-                            return;
-                        }
-
                         var folderIndex = folders.length,
                             siteIndex = sites.length,
                             hasFolder = value.folder && value.folder !== '',
@@ -54,11 +50,11 @@
 
                         sites.push({
                             favorite: value.favorite !== null ? value.favorite : false,
-                            uri: value.uri,
+                            uri: value.uri && value.uri !== '' ? value.uri : null,
                             username: value.username && value.username !== '' ? value.username : null,
-                            password: value.password,
+                            password: value.password && value.password !== '' ? value.password : null,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
-                            name: value.name
+                            name: value.name && value.name !== '' ? value.name : '--',
                         });
 
                         if (addFolder) {
@@ -132,10 +128,6 @@
                     siteRelationships = [];
 
                 angular.forEach(data, function (value, key) {
-                    if (!value.url || value.url === '') {
-                        return;
-                    }
-
                     var folderIndex = folders.length,
                         siteIndex = sites.length,
                         hasFolder = value.grouping && value.grouping !== '' && value.grouping !== '(none)',
@@ -153,11 +145,11 @@
 
                     sites.push({
                         favorite: value.fav === '1',
-                        uri: value.url,
+                        uri: value.url && value.url !== '' ? value.url : null,
                         username: value.username && value.username !== '' ? value.username : null,
-                        password: value.password,
+                        password: value.password && value.password !== '' ? value.password : null,
                         notes: value.extra && value.extra !== '' ? value.extra : null,
-                        name: value.name
+                        name: value.name && value.name !== '' ? value.name : '--',
                     });
 
                     if (addFolder) {
@@ -192,9 +184,9 @@
                             favorite: false,
                             uri: value.URL && value.URL !== '' ? value.URL : null,
                             username: value.Login && value.Login !== '' ? value.Login : null,
-                            password: value.Password,
+                            password: value.Password && value.Password !== '' ? value.Password : null,
                             notes: value.Notes && value.Notes !== '' ? value.Notes : null,
-                            name: value.Title
+                            name: value.Title && value.Title !== '' ? value.Title : '--',
                         });
                     });
 
@@ -253,11 +245,11 @@
                         var siteIndex = sites.length;
                         var site = {
                             favorite: false,
-                            uri: '',
-                            username: '',
-                            password: '',
-                            notes: '',
-                            name: ''
+                            uri: null,
+                            username: null,
+                            password: null,
+                            notes: null,
+                            name: null
                         };
 
                         var entryStrings = entry.find('> String');
@@ -294,7 +286,7 @@
                             }
                         }
 
-                        if (site.name === '') {
+                        if (site.name === null) {
                             site.name = '--';
                         }
 
