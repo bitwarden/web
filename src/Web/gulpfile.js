@@ -30,6 +30,8 @@ paths.lessDir = 'less/';
 paths.cssDir = paths.webroot + 'css/';
 paths.jsDir = paths.webroot + 'js/';
 
+var randomString = Math.random().toString(36).substring(7);
+
 gulp.task('lint', function () {
     return gulp.src(paths.webroot + 'app/**/*.js')
         .pipe(jshint())
@@ -261,7 +263,7 @@ gulp.task('dist:css', function () {
             paths.cssDir + '**/*.css',
             '!' + paths.cssDir + '**/*.min.css'
         ])
-        .pipe(preprocess({ context: settings }))
+        .pipe(preprocess({ context: { cacheTag: randomString } }))
         .pipe(cssmin())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(paths.dist + 'css'));
@@ -277,7 +279,7 @@ gulp.task('dist:js:app', function () {
         ]);
 
     merge(mainStream, config())
-        .pipe(preprocess({ context: settings }))
+        .pipe(preprocess({ context: { cacheTag: randomString } }))
         .pipe(concat(paths.dist + '/js/app.min.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
@@ -306,7 +308,7 @@ gulp.task('dist:preprocess', function () {
         .src([
             paths.dist + '/**/*.html'
         ], { base: '.' })
-        .pipe(preprocess({ context: settings }))
+        .pipe(preprocess({ context: { cacheTag: randomString }}))
         .pipe(gulp.dest('.'));
 });
 
