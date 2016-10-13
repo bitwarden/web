@@ -12,8 +12,11 @@
                 case 'lastpass':
                     importLastPass(file, success, error);
                     break;
-                case 'safeincloud':
-                    importSafeInCloud(file, success, error);
+                case 'safeincloudcsv':
+                    importSafeInCloudCsv(file, success, error);
+                    break;
+                case 'keypassxml':
+                    importKeyPassXml(file, success, error);
                     break;
                 default:
                     error();
@@ -135,7 +138,7 @@
             });
         }
 
-        function importSafeInCloud(file, success, error) {
+        function importSafeInCloudCsv(file, success, error) {
             Papa.parse(file, {
                 header: true,
                 complete: function (results) {
@@ -157,6 +160,118 @@
                     success(folders, sites, siteRelationships);
                 }
             });
+        }
+
+        function importKeyPassXml(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var xmlDoc = $.parseXML(evt.target.result),
+                    xml = $(xmlDoc);
+
+                var root = xml.find('Root');
+                if (root.length) {
+                    var group = root.find('> Group');
+                    if (group.length) {
+                        traverse($(group[0]), true, '');
+                        success(folders, sites, siteRelationships);
+                    }
+                }
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
+
+            function traverse(node, isRootNode, groupNamePrefix) {
+                var nodeEntries = [];
+                var folderIndex = folders.length;
+                var groupName = groupNamePrefix;
+
+                if (!isRootNode) {
+                    if (groupName !== '') {
+                        groupName += ' > ';
+                    }
+                    groupName += node.find('> Name').text();
+                    folders.push({
+                        name: groupName
+                    });
+                }
+
+                var entries = node.find('> Entry');
+                if (entries.length) {
+                    for (var i = 0; i < entries.length; i++) {
+                        var entry = $(entries[i]);
+                        var siteIndex = sites.length;
+                        var site = {
+                            favorite: false,
+                            uri: '',
+                            username: '',
+                            password: '',
+                            notes: '',
+                            name: ''
+                        };
+
+                        var entryStrings = entry.find('> String');
+                        for (var j = 0; j < entryStrings.length; j++) {
+                            var entryString = $(entryStrings[j]);
+
+                            var key = entryString.find('> Key').text();
+                            var value = entryString.find('> Value').text();
+                            if (value === '') {
+                                continue;
+                            }
+
+                            switch (key) {
+                                case 'URL':
+                                    site.uri = value;
+                                    break;
+                                case 'UserName':
+                                    site.username = value;
+                                    break;
+                                case 'Password':
+                                    site.password = value;
+                                    break;
+                                case 'Title':
+                                    site.name = value;
+                                    break;
+                                case 'Notes':
+                                    site.notes = site.notes == null ? value + '\n' : site.notes + value + '\n';
+                                    break;
+                                default:
+                                    // other custom fields
+                                    site.notes = site.notes == null ? key + ': ' + value + '\n'
+                                        : site.notes + key + ': ' + value + '\n';
+                                    break;
+                            }
+                        }
+
+                        if (site.name === '') {
+                            site.name = '--';
+                        }
+
+                        sites.push(site);
+
+                        if (!isRootNode) {
+                            siteRelationships.push({
+                                key: siteIndex,
+                                value: folderIndex
+                            });
+                        }
+                    }
+                }
+
+                var groups = node.find('> Group');
+                if (groups.length) {
+                    for (var i = 0; i < groups.length; i++) {
+                        traverse($(groups[i]), false, groupName);
+                    }
+                }
+            }
         }
 
         return _service;
