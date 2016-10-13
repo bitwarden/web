@@ -82,60 +82,100 @@
         }
 
         function importLastPass(file, success, error) {
-            Papa.parse(file, {
-                header: true,
-                complete: function (results) {
-                    var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+            if (file.type === 'text/html') {
+                var reader = new FileReader();
+                reader.readAsText(file, 'utf-8');
+                reader.onload = function (evt) {
+                    var doc = $(evt.target.result);
+                    var pre = doc.find('pre');
 
-                    angular.forEach(results.data, function (value, key) {
-                        if (!value.url || value.url === '') {
-                            return;
-                        }
-
-                        var folderIndex = folders.length,
-                            siteIndex = sites.length,
-                            hasFolder = value.grouping && value.grouping !== '' && value.grouping !== '(none)',
-                            addFolder = hasFolder;
-
-                        if (hasFolder) {
-                            for (var i = 0; i < folders.length; i++) {
-                                if (folders[i].name === value.grouping) {
-                                    addFolder = false;
-                                    folderIndex = i;
-                                    break;
-                                }
+                    if (pre.length === 1) {
+                        var csv = pre.text().trim();
+                        var results = Papa.parse(csv, { header: true });
+                        parseData(results.data);
+                    }
+                    else {
+                        var foundPre = false;
+                        for (var i = 0; i < doc.length; i++) {
+                            if (doc[i].tagName === 'PRE') {
+                                foundPre = true;
+                                var csv = doc[i].outerText.trim();
+                                var results = Papa.parse(csv, { header: true });
+                                parseData(results.data);
+                                break;
                             }
                         }
 
-                        sites.push({
-                            favorite: value.fav === '1',
-                            uri: value.url,
-                            username: value.username && value.username !== '' ? value.username : null,
-                            password: value.password,
-                            notes: value.extra && value.extra !== '' ? value.extra : null,
-                            name: value.name
-                        });
-
-                        if (addFolder) {
-                            folders.push({
-                                name: value.grouping
-                            });
+                        if (!foundPre) {
+                            error();
                         }
+                    }
+                };
 
-                        if (hasFolder) {
-                            var relationship = {
-                                key: siteIndex,
-                                value: folderIndex
-                            };
-                            siteRelationships.push(relationship);
+                reader.onerror = function (evt) {
+                    error();
+                };
+            }
+            else {
+                Papa.parse(file, {
+                    header: true,
+                    complete: function (results) {
+                        parseData(results.data);
+                    }
+                });
+            }
+
+            function parseData(data) {
+                var folders = [],
+                    sites = [],
+                    siteRelationships = [];
+
+                angular.forEach(data, function (value, key) {
+                    if (!value.url || value.url === '') {
+                        return;
+                    }
+
+                    var folderIndex = folders.length,
+                        siteIndex = sites.length,
+                        hasFolder = value.grouping && value.grouping !== '' && value.grouping !== '(none)',
+                        addFolder = hasFolder;
+
+                    if (hasFolder) {
+                        for (var i = 0; i < folders.length; i++) {
+                            if (folders[i].name === value.grouping) {
+                                addFolder = false;
+                                folderIndex = i;
+                                break;
+                            }
                         }
+                    }
+
+                    sites.push({
+                        favorite: value.fav === '1',
+                        uri: value.url,
+                        username: value.username && value.username !== '' ? value.username : null,
+                        password: value.password,
+                        notes: value.extra && value.extra !== '' ? value.extra : null,
+                        name: value.name
                     });
 
-                    success(folders, sites, siteRelationships);
-                }
-            });
+                    if (addFolder) {
+                        folders.push({
+                            name: value.grouping
+                        });
+                    }
+
+                    if (hasFolder) {
+                        var relationship = {
+                            key: siteIndex,
+                            value: folderIndex
+                        };
+                        siteRelationships.push(relationship);
+                    }
+                });
+
+                success(folders, sites, siteRelationships);
+            }
         }
 
         function importSafeInCloudCsv(file, success, error) {
