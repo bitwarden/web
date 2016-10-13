@@ -88,10 +88,11 @@
                 reader.onload = function (evt) {
                     var doc = $(evt.target.result);
                     var pre = doc.find('pre');
+                    var csv, results;
 
                     if (pre.length === 1) {
-                        var csv = pre.text().trim();
-                        var results = Papa.parse(csv, { header: true });
+                        csv = pre.text().trim();
+                        results = Papa.parse(csv, { header: true });
                         parseData(results.data);
                     }
                     else {
@@ -99,8 +100,8 @@
                         for (var i = 0; i < doc.length; i++) {
                             if (doc[i].tagName === 'PRE') {
                                 foundPre = true;
-                                var csv = doc[i].outerText.trim();
-                                var results = Papa.parse(csv, { header: true });
+                                csv = doc[i].outerText.trim();
+                                results = Papa.parse(csv, { header: true });
                                 parseData(results.data);
                                 break;
                             }
