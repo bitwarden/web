@@ -18,6 +18,9 @@
                 case 'keypassxml':
                     importKeyPassXml(file, success, error);
                     break;
+                case 'padlockcsv':
+                    importPadlockCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -191,6 +194,94 @@
                     });
 
                     success(folders, sites, siteRelationships);
+                }
+            });
+        }
+
+        function importPadlockCsv(file, success, error) {
+            Papa.parse(file, {
+                complete: function (results) {
+                    var folders = [],
+                        sites = [],
+                        folderRelationships = [];
+
+                    var customFieldHeaders = [];
+
+                    // CSV index ref: 0 = name, 1 = category, 2 = username, 3 = password, 4+ = custom fields
+
+                    for (var i = 0; i < results.data.length; i++) {
+                        var value = results.data[i];
+                        if (i === 0) {
+                            // header row
+                            for (var j = 4; j < value.length; j++) {
+                                customFieldHeaders.push(value[j]);
+                            }
+
+                            continue;
+                        }
+
+                        var folderIndex = folders.length,
+                            siteIndex = sites.length,
+                            hasFolder = value[1] && value[1] !== '',
+                            addFolder = hasFolder;
+
+                        if (hasFolder) {
+                            for (j = 0; j < folders.length; j++) {
+                                if (folders[j].name === value[1]) {
+                                    addFolder = false;
+                                    folderIndex = j;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var site = {
+                            favorite: false,
+                            uri: null,
+                            username: value[2] && value[2] !== '' ? value[2] : null,
+                            password: value[3] && value[3] !== '' ? value[3] : null,
+                            notes: null,
+                            name: value[0] && value[0] !== '' ? value[0] : '--',
+                        };
+
+                        if (customFieldHeaders.length) {
+                            for (j = 4; j < value.length; j++) {
+                                var cf = value[j];
+                                if (!cf || cf === '') {
+                                    continue;
+                                }
+
+                                var cfHeader = customFieldHeaders[j - 4];
+                                if (cfHeader.toLowerCase() === 'url' || cfHeader.toLowerCase() === 'uri') {
+                                    site.uri = cf;
+                                }
+                                else {
+                                    if (site.notes === null) {
+                                        site.notes = '';
+                                    }
+
+                                    site.notes += cfHeader + ': ' + cf + '\n';
+                                }
+                            }
+                        }
+
+                        sites.push(site);
+
+                        if (addFolder) {
+                            folders.push({
+                                name: value[1]
+                            });
+                        }
+
+                        if (hasFolder) {
+                            folderRelationships.push({
+                                key: siteIndex,
+                                value: folderIndex
+                            });
+                        }
+                    }
+
+                    success(folders, sites, folderRelationships);
                 }
             });
         }
