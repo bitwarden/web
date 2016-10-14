@@ -1,3 +1,5 @@
+[![Join the chat at https://gitter.im/bitwarden/Lobby](https://badges.gitter.im/bitwarden/Lobby.svg)](https://gitter.im/bitwarden/Lobby)
+
 # bitwarden Web
 
 The bitwarden Web project is an AngularJS application that powers the web vault (https://vault.bitwarden.com/).
