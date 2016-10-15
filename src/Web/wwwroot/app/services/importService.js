@@ -275,7 +275,7 @@
                                         site.notes = text;
                                     }
                                     else if (type === 'website') {
-                                        site.uri = text;
+                                        site.uri = trimUri(text);
                                     }
                                 }
                             }
