@@ -27,6 +27,14 @@
             }
         };
 
+        function trimUri(uri) {
+            if (uri.length > 2000) {
+                return uri.substring(0, 2000);
+            }
+
+            return uri;
+        }
+
         function importLocal(file, success, error) {
             Papa.parse(file, {
                 header: true,
@@ -53,7 +61,7 @@
 
                         sites.push({
                             favorite: value.favorite !== null ? value.favorite : false,
-                            uri: value.uri && value.uri !== '' ? value.uri : null,
+                            uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password && value.password !== '' ? value.password : null,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
@@ -148,7 +156,7 @@
 
                     sites.push({
                         favorite: value.fav === '1',
-                        uri: value.url && value.url !== '' ? value.url : null,
+                        uri: value.url && value.url !== '' ? trimUri(value.url) : null,
                         username: value.username && value.username !== '' ? value.username : null,
                         password: value.password && value.password !== '' ? value.password : null,
                         notes: value.extra && value.extra !== '' ? value.extra : null,
@@ -185,7 +193,7 @@
                     angular.forEach(results.data, function (value, key) {
                         sites.push({
                             favorite: false,
-                            uri: value.URL && value.URL !== '' ? value.URL : null,
+                            uri: value.URL && value.URL !== '' ? trimUri(value.URL) : null,
                             username: value.Login && value.Login !== '' ? value.Login : null,
                             password: value.Password && value.Password !== '' ? value.Password : null,
                             notes: value.Notes && value.Notes !== '' ? value.Notes : null,
@@ -209,11 +217,14 @@
 
                     // CSV index ref: 0 = name, 1 = category, 2 = username, 3 = password, 4+ = custom fields
 
-                    for (var i = 0; i < results.data.length; i++) {
+                    var i = 0,
+                        j = 0;
+
+                    for (i = 0; i < results.data.length; i++) {
                         var value = results.data[i];
                         if (i === 0) {
                             // header row
-                            for (var j = 4; j < value.length; j++) {
+                            for (j = 4; j < value.length; j++) {
                                 customFieldHeaders.push(value[j]);
                             }
 
@@ -253,7 +264,7 @@
 
                                 var cfHeader = customFieldHeaders[j - 4];
                                 if (cfHeader.toLowerCase() === 'url' || cfHeader.toLowerCase() === 'uri') {
-                                    site.uri = cf;
+                                    site.uri = trimUri(cf);
                                 }
                                 else {
                                     if (site.notes === null) {
@@ -355,7 +366,7 @@
 
                             switch (key) {
                                 case 'URL':
-                                    site.uri = value;
+                                    site.uri = trimUri(value);
                                     break;
                                 case 'UserName':
                                     site.username = value;
