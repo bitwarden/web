@@ -31,8 +31,8 @@
         };
 
         function trimUri(uri) {
-            if (uri.length > 2000) {
-                return uri.substring(0, 2000);
+            if (uri.length > 1000) {
+                return uri.substring(0, 1000);
             }
 
             return uri;
