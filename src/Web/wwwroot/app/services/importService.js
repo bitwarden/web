@@ -21,6 +21,9 @@
                 case 'padlockcsv':
                     importPadlockCsv(file, success, error);
                     break;
+                case '1password1pif':
+                    import1Password1Pif(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -410,6 +413,76 @@
                     }
                 }
             }
+        }
+
+        function import1Password1Pif(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            var i = 0,
+                j = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var fileContent = evt.target.result;
+                var jsonParts = fileContent.split(/(?:\r\n|\r|\n)\*\*\*.*?\*\*\*(?:\r\n|\r|\n)/);
+                var jsonString = '[' + jsonParts.join(',') + ']';
+                var items = JSON.parse(jsonString);
+
+                for (i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if (item.typeName !== 'webforms.WebForm') {
+                        continue;
+                    }
+
+                    var site = {
+                        favorite: item.openContents && item.openContents.faveIndex ? true : false,
+                        uri: item.location && item.location !== '' ? trimUri(item.location) : null,
+                        username: null,
+                        password: null,
+                        notes: null,
+                        name: item.title && item.title !== '' ? item.title : '--',
+                    };
+
+                    if (item.secureContents) {
+                        if (item.secureContents.notesPlain) {
+                            site.notes = item.secureContents.notesPlain;
+                        }
+
+                        if (item.secureContents.fields) {
+                            for (j = 0; j < item.secureContents.fields.length; j++) {
+                                var field = item.secureContents.fields[j];
+                                if (field.designation === 'username') {
+                                    site.username = field.value;
+                                }
+                                else if (field.designation === 'password') {
+                                    site.password = field.value;
+                                }
+                                else {
+                                    if (site.notes === null) {
+                                        site.notes = '';
+                                    }
+                                    else {
+                                        site.notes += '\n';
+                                    }
+
+                                    site.notes += (field.name + ': ' + field.value + '\n');
+                                }
+                            }
+                        }
+                    }
+
+                    sites.push(site);
+                }
+
+                success(folders, sites, siteRelationships);
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
         }
 
         return _service;
