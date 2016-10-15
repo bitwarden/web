@@ -15,6 +15,9 @@
                 case 'safeincloudcsv':
                     importSafeInCloudCsv(file, success, error);
                     break;
+                case 'safeincloudxml':
+                    importSafeInCloudXml(file, success, error);
+                    break;
                 case 'keypassxml':
                     importKeyPassXml(file, success, error);
                     break;
@@ -207,6 +210,102 @@
                     success(folders, sites, siteRelationships);
                 }
             });
+        }
+
+        function importSafeInCloudXml(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [],
+                foldersIndex = [];
+
+            var i = 0,
+                j = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var xmlDoc = $.parseXML(evt.target.result),
+                    xml = $(xmlDoc);
+
+                var db = xml.find('database');
+                if (db.length) {
+                    var labels = db.find('> label');
+                    if (labels.length) {
+                        for (i = 0; i < labels.length; i++) {
+                            var label = $(labels[i]);
+                            foldersIndex[label.attr('id')] = folders.length;
+                            folders.push({
+                                name: label.attr('name')
+                            });
+                        }
+                    }
+
+                    var cards = db.find('> card');
+                    if (cards.length) {
+                        for (i = 0; i < cards.length; i++) {
+                            var card = $(cards[i]);
+                            if (card.attr('template') === 'true') {
+                                continue;
+                            }
+
+                            var site = {
+                                favorite: false,
+                                uri: null,
+                                username: null,
+                                password: null,
+                                notes: null,
+                                name: card.attr('title'),
+                            };
+
+                            var fields = card.find('> field');
+                            for (j = 0; j < fields.length; j++) {
+                                var field = $(fields[j]);
+
+                                var text = field.text();
+                                var type = field.attr('type');
+
+                                if (text && text !== '') {
+                                    if (type === 'login') {
+                                        site.username = text;
+                                    }
+                                    else if (type === 'password') {
+                                        site.password = text;
+                                    }
+                                    else if (type === 'notes') {
+                                        site.notes = text;
+                                    }
+                                    else if (type === 'website') {
+                                        site.uri = text;
+                                    }
+                                }
+                            }
+
+                            sites.push(site);
+
+                            labels = card.find('> label_id');
+                            if (labels.length) {
+                                var labelId = $(labels[0]).text();
+                                var folderIndex = foldersIndex[labelId];
+                                if (labelId !== null && labelId !== '' && folderIndex !== null) {
+                                    siteRelationships.push({
+                                        key: sites.length - 1,
+                                        value: folderIndex
+                                    });
+                                }
+                            }
+                        }
+                    }
+
+                    success(folders, sites, siteRelationships);
+                }
+                else {
+                    error();
+                }
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
         }
 
         function importPadlockCsv(file, success, error) {
