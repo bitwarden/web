@@ -5,6 +5,11 @@
         var _service = {};
 
         _service.import = function (source, file, success, error) {
+            if (!file) {
+                error();
+                return;
+            }
+
             switch (source) {
                 case 'local':
                     importLocal(file, success, error);

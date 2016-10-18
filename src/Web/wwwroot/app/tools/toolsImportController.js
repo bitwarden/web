@@ -25,9 +25,15 @@
             }, importError);
         }
 
-        function importError() {
+        function importError(errorMessage) {
+            $analytics.eventTrack('Import Data Failed', { label: $scope.model.source });
             $uibModalInstance.dismiss('cancel');
-            toastr.error('Something went wrong. Try again.', 'Oh No!');
+            if (errorMessage) {
+                toastr.error(errorMessage);
+            }
+            else {
+                toastr.error('Something went wrong. Try again.', 'Oh No!');
+            }
         }
 
         $scope.close = function () {
