@@ -44,6 +44,7 @@
         function importLocal(file, success, error) {
             Papa.parse(file, {
                 header: true,
+                encoding: 'UTF-8',
                 complete: function (results) {
                     var folders = [],
                         sites = [],
@@ -105,16 +106,22 @@
 
                     if (pre.length === 1) {
                         csv = pre.text().trim();
-                        results = Papa.parse(csv, { header: true });
+                        results = Papa.parse(csv, {
+                            header: true,
+                            encoding: 'UTF-8'
+                        });
                         parseData(results.data);
                     }
                     else {
                         var foundPre = false;
                         for (var i = 0; i < doc.length; i++) {
-                            if (doc[i].tagName === 'PRE') {
+                            if (doc[i].tagName.toLowerCase() === 'pre') {
                                 foundPre = true;
                                 csv = doc[i].outerText.trim();
-                                results = Papa.parse(csv, { header: true });
+                                results = Papa.parse(csv, {
+                                    header: true,
+                                    encoding: 'UTF-8'
+                                });
                                 parseData(results.data);
                                 break;
                             }
@@ -133,6 +140,7 @@
             else {
                 Papa.parse(file, {
                     header: true,
+                    encoding: 'UTF-8',
                     complete: function (results) {
                         parseData(results.data);
                     }
@@ -191,6 +199,7 @@
         function importSafeInCloudCsv(file, success, error) {
             Papa.parse(file, {
                 header: true,
+                encoding: 'UTF-8',
                 complete: function (results) {
                     var folders = [],
                         sites = [],
@@ -310,6 +319,7 @@
 
         function importPadlockCsv(file, success, error) {
             Papa.parse(file, {
+                encoding: 'UTF-8',
                 complete: function (results) {
                     var folders = [],
                         sites = [],
