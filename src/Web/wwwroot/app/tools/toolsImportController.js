@@ -12,6 +12,11 @@
         };
 
         function importSuccess(folders, sites, folderRelationships) {
+            if (!folder.length && !sites.length) {
+                toastr.error('Nothing was imported.');
+                return;
+            }
+
             apiService.ciphers.import({
                 folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
                 sites: cipherService.encryptSites(sites, cryptoService.getKey()),
