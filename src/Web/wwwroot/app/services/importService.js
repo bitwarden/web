@@ -41,11 +41,21 @@
             return uri;
         }
 
+        function parseCsvErrors(results) {
+            if (results.errors && results.errors.length) {
+                for (var i = 0; i < results.errors.length; i++) {
+                    console.warn('Error parsing row ' + results.errors[i].row + ': ' + results.errors[i].message);
+                }
+            }
+        }
+
         function importLocal(file, success, error) {
             Papa.parse(file, {
                 header: true,
                 encoding: 'UTF-8',
                 complete: function (results) {
+                    parseCsvErrors(results);
+
                     var folders = [],
                         sites = [],
                         folderRelationships = [];
@@ -142,6 +152,7 @@
                     header: true,
                     encoding: 'UTF-8',
                     complete: function (results) {
+                        parseCsvErrors(results);
                         parseData(results.data);
                     }
                 });
@@ -201,6 +212,8 @@
                 header: true,
                 encoding: 'UTF-8',
                 complete: function (results) {
+                    parseCsvErrors(results);
+
                     var folders = [],
                         sites = [],
                         siteRelationships = [];
@@ -321,6 +334,8 @@
             Papa.parse(file, {
                 encoding: 'UTF-8',
                 complete: function (results) {
+                    parseCsvErrors(results);
+
                     var folders = [],
                         sites = [],
                         folderRelationships = [];
