@@ -12,6 +12,9 @@
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}}</h3>
             <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-flat" ng-click="addSite(folder)" uib-tooltip="Add Site">
+                    <i class="fa fa-plus"></i>
+                </button>
                 <button type="button" class="btn btn-box-tool" ng-click="deleteFolder(folder)" ng-show="canDeleteFolder(folder)" uib-tooltip="Delete">
                     <i class="fa fa-trash"></i>
                 </button>
@@ -38,6 +41,7 @@
                             <th style="width: 75px; min-width: 75px;"></th>
                             <th>Site</th>
                             <th style="width: 300px;">Username</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +52,24 @@
                             </td>
                             <td>{{site.name}} <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="site.favorite"></i></td>
                             <td>{{site.username}}</td>
+                            <td>
+                              <span class="input-group-btn" uib-tooltip="Copy Username" tooltip-placement="left">
+                                  <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
+                                          ngclipboard-error="clipboardError(e)"
+                                          data-clipboard-target="#username">
+                                      <i class="fa fa-clipboard"></i>
+                                  </button>
+                              </span>
+
+                              <span class="input-group-btn" uib-tooltip="Copy Password" tooltip-placement="left">
+                                  <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
+                                          ngclipboard-success="clipboardSuccess(e)"
+                                          ngclipboard-error="clipboardError(e, true)"
+                                          data-clipboard-target="#password-text">
+                                      <i class="fa fa-clipboard"></i>
+                                  </button>
+                              </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
