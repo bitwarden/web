@@ -13,6 +13,7 @@
 
         function importSuccess(folders, sites, folderRelationships) {
             if (!folders.length && !sites.length) {
+                $uibModalInstance.dismiss('cancel');
                 toastr.error('Nothing was imported.');
                 return;
             }

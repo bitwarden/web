@@ -32,6 +32,9 @@
                 case '1password1pif':
                     import1Password1Pif(file, success, error);
                     break;
+                case 'chromecsv':
+                    importChromeCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -556,12 +559,18 @@
             reader.readAsText(file, 'utf-8');
             reader.onload = function (evt) {
                 var fileContent = evt.target.result;
-                var jsonParts = fileContent.split(/(?:\r\n|\r|\n)\*\*\*.*?\*\*\*(?:\r\n|\r|\n)/);
-                var jsonString = '[' + jsonParts.join(',') + ']';
-                var items = JSON.parse(jsonString);
+                var fileLines = fileContent.split(/(?:\r\n|\r|\n)/);
+                //var jsonParts = fileContent.split(/(?:\r\n|\r|\n)\*\*\*.*?\*\*\*(?:\r\n|\r|\n)/);
+                //var jsonString = '[' + jsonParts.join(',') + ']';
+                //var items = JSON.parse(jsonString);
 
-                for (i = 0; i < items.length; i++) {
-                    var item = items[i];
+                for (i = 0; i < fileLines.length; i++) {
+                    var line = fileLines[i];
+                    if (!line.length || line[0] !== '{') {
+                        continue;
+                    }
+
+                    var item = JSON.parse(line);
                     if (item.typeName !== 'webforms.WebForm') {
                         continue;
                     }
@@ -576,7 +585,7 @@
                     };
 
                     if (item.secureContents) {
-                        if (item.secureContents.notesPlain) {
+                        if (item.secureContents.notesPlain && item.secureContents.notesPlain !== '') {
                             site.notes = item.secureContents.notesPlain;
                         }
 
@@ -612,6 +621,33 @@
             reader.onerror = function (evt) {
                 error();
             };
+        }
+
+        function importChromeCsv(file, success, error) {
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        siteRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        sites.push({
+                            favorite: false,
+                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                            username: value.username && value.username !== '' ? value.username : null,
+                            password: value.password && value.password !== '' ? value.password : null,
+                            notes: null,
+                            name: value.name && value.name !== '' ? value.name : '--',
+                        });
+                    });
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
         }
 
         return _service;
