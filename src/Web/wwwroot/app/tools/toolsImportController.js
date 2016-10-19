@@ -12,7 +12,7 @@
         };
 
         function importSuccess(folders, sites, folderRelationships) {
-            if (!folder.length && !sites.length) {
+            if (!folders.length && !sites.length) {
                 toastr.error('Nothing was imported.');
                 return;
             }
