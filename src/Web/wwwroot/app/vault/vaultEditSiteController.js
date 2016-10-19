@@ -38,6 +38,14 @@
             alert('Your web browser does not support easy clipboard copying. Copy it manually instead.');
         };
 
+        $scope.folderSort = function (item) {
+            if (!item.id) {
+                return '';
+            }
+
+            return item.name.toLowerCase();
+        };
+
         function selectPassword(e) {
             var target = $(e.trigger).parent().prev();
             if (target.attr('type') === 'text') {
