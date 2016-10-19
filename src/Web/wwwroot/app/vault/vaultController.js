@@ -155,6 +155,18 @@
             });
         };
 
+        $scope.clipboardSuccess = function (e) {
+            e.clearSelection();
+            selectPassword(e);
+        };
+
+        $scope.clipboardError = function (e, password) {
+            if (password) {
+                selectPassword(e);
+            }
+            alert('Your web browser does not support easy clipboard copying. Copy it manually instead.');
+        };
+        
         $scope.deleteFolder = function (folder) {
             if (!confirm('Are you sure you want to delete this folder (' + folder.name + ')?')) {
                 return;
