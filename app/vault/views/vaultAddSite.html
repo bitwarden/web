@@ -34,7 +34,7 @@
                 <div class="form-group" show-errors>
                     <label for="folder">Folder</label>
                     <select id="folder" name="FolderId" ng-model="site.folderId" class="form-control" api-field>
-                        <option ng-repeat="folder in folders" value="{{folder.id}}">{{folder.name}}</option>
+                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">{{folder.name}}</option>
                     </select>
                 </div>
             </div>
