@@ -560,9 +560,6 @@
             reader.onload = function (evt) {
                 var fileContent = evt.target.result;
                 var fileLines = fileContent.split(/(?:\r\n|\r|\n)/);
-                //var jsonParts = fileContent.split(/(?:\r\n|\r|\n)\*\*\*.*?\*\*\*(?:\r\n|\r|\n)/);
-                //var jsonString = '[' + jsonParts.join(',') + ']';
-                //var items = JSON.parse(jsonString);
 
                 for (i = 0; i < fileLines.length; i++) {
                     var line = fileLines[i];
