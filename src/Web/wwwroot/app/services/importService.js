@@ -35,6 +35,9 @@
                 case 'chromecsv':
                     importChromeCsv(file, success, error);
                     break;
+                case 'firefoxpasswordexportercsvxml':
+                    importFirefoxPasswordExporterCsvXml(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -645,6 +648,95 @@
                     success(folders, sites, siteRelationships);
                 }
             });
+        }
+
+        function importFirefoxPasswordExporterCsvXml(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            function getNameFromHost(host) {
+                var name = '--';
+                try {
+                    if (host && host !== '') {
+                        var parser = document.createElement('a');
+                        parser.href = host;
+                        if (parser.hostname) {
+                            name = parser.hostname;
+                        }
+                    }
+                }
+                catch (e) {
+                    // do nothing
+                }
+
+                return name;
+            }
+
+            if (file.type === 'text/xml') {
+                var reader = new FileReader();
+                reader.readAsText(file, 'utf-8');
+                reader.onload = function (evt) {
+                    var xmlDoc = $.parseXML(evt.target.result),
+                        xml = $(xmlDoc);
+
+                    var entries = xml.find('entry');
+                    for (var i = 0; i < entries.length; i++) {
+                        var entry = $(entries[i]);
+                        if (!entry) {
+                            continue;
+                        }
+
+                        var host = entry.attr('host'),
+                            user = entry.attr('user'),
+                            password = entry.attr('password');
+
+                        sites.push({
+                            favorite: false,
+                            uri: host && host !== '' ? trimUri(host) : null,
+                            username: user && user !== '' ? user : null,
+                            password: password && password !== '' ? password : null,
+                            notes: null,
+                            name: getNameFromHost(host),
+                        });
+                    }
+
+                    success(folders, sites, siteRelationships);
+                };
+
+                reader.onerror = function (evt) {
+                    error();
+                };
+            }
+            else {
+                // currently bugged due to the comment
+                // ref: https://github.com/mholt/PapaParse/issues/351
+
+                error('Only .xml exports are supported.');
+                return;
+
+                //Papa.parse(file, {
+                //    comments: '#',
+                //    header: true,
+                //    encoding: 'UTF-8',
+                //    complete: function (results) {
+                //        parseCsvErrors(results);
+
+                //        angular.forEach(results.data, function (value, key) {
+                //            sites.push({
+                //                favorite: false,
+                //                uri: value.hostname && value.hostname !== '' ? trimUri(value.hostname) : null,
+                //                username: value.username && value.username !== '' ? value.username : null,
+                //                password: value.password && value.password !== '' ? value.password : null,
+                //                notes: null,
+                //                name: getNameFromHost(value.hostname),
+                //            });
+                //        });
+
+                //        success(folders, sites, siteRelationships);
+                //    }
+                //});
+            }
         }
 
         return _service;
