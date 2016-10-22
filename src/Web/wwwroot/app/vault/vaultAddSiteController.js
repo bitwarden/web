@@ -38,10 +38,6 @@
         };
 
         $scope.folderSort = function (item) {
-            if (!item.id) {
-                return '';
-            }
-
             return item.name.toLowerCase();
         };
 
