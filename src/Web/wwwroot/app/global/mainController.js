@@ -43,7 +43,6 @@ angular
         };
 
         $scope.toggleSideNav = function() {
-            console.log('hi');
             $scope.$broadcast('settingsToggleSideNav');
         };
 
