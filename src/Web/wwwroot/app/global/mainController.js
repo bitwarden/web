@@ -16,10 +16,6 @@ angular
                     $.AdminLTE.layout.fix();
                     $.AdminLTE.layout.fixSidebar();
                 }
-
-                if ($.AdminLTE.pushMenu) {
-                    $.AdminLTE.pushMenu.expandOnHover();
-                }
             }
         });
 
@@ -35,6 +31,21 @@ angular
                 vm.bodyClass = '';
             }
         });
+
+        $scope.waitClick = function (state, callback) {
+            if ($state.includes(state)) {
+              callback();
+            } else {
+                $state.go(state).then(function() {
+                  callback();
+                });
+            }
+        };
+
+        $scope.toggleSideNav = function() {
+            console.log('hi');
+            $scope.$broadcast('settingsToggleSideNav');
+        };
 
         $scope.searchVault = function () {
             $state.go('backend.vault');
