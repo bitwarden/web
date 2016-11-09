@@ -31,15 +31,40 @@
             }, importError);
         }
 
-        function importError(errorMessage) {
+        function importError(error) {
             $analytics.eventTrack('Import Data Failed', { label: $scope.model.source });
             $uibModalInstance.dismiss('cancel');
-            if (errorMessage) {
-                toastr.error(errorMessage);
+
+            if (error) {
+                var data = error.data;
+                if (data && data.ValidationErrors) {
+                    var message = '';
+                    for (var key in data.ValidationErrors) {
+                        if (!data.ValidationErrors.hasOwnProperty(key)) {
+                            continue;
+                        }
+
+                        for (var i = 0; i < data.ValidationErrors[key].length; i++) {
+                            message += (key + ': ' + data.ValidationErrors[key][i] + ' ');
+                        }
+                    }
+
+                    if (message !== '') {
+                        toastr.error(message);
+                        return;
+                    }
+                }
+                else if (data && data.Message) {
+                    toastr.error(data.Message);
+                    return;
+                }
+                else {
+                    toastr.error(error);
+                    return;
+                }
             }
-            else {
-                toastr.error('Something went wrong. Try again.', 'Oh No!');
-            }
+
+            toastr.error('Something went wrong. Try again.', 'Oh No!');
         }
 
         $scope.close = function () {
