@@ -38,6 +38,9 @@
                 case 'firefoxpasswordexportercsvxml':
                     importFirefoxPasswordExporterCsvXml(file, success, error);
                     break;
+                case 'upmcsv':
+                    importUpmCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -747,6 +750,34 @@
                 //    }
                 //});
             }
+        }
+
+        function importUpmCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        siteRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        if (value.length === 5) {
+                            sites.push({
+                                favorite: false,
+                                uri: value[3] && value[3] !== '' ? trimUri(value[3]) : null,
+                                username: value[1] && value[1] !== '' ? value[1] : null,
+                                password: value[2] && value[2] !== '' ? value[2] : null,
+                                notes: value[4] && value[4] !== '' ? value[4] : null,
+                                name: value[0] && value[0] !== '' ? value[0] : '--',
+                            });
+                        }
+                    });
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
         }
 
         return _service;
