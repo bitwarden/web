@@ -219,7 +219,7 @@
                     }
                 });
 
-                if (badDataSites > (data.length / 2)) {
+                if (badDataSites && badDataSites > (data.length / 2)) {
                     error('CSV data is not formatted correctly from LastPass. Please check your import file and try again.');
                 }
                 else {
