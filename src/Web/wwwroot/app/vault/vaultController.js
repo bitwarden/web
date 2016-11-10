@@ -127,7 +127,9 @@
 
             apiService.sites.del({ id: site.id }, function () {
                 var index = $scope.sites.indexOf(site);
-                $scope.sites.splice(index, 1);
+                if (index > -1) {
+                    $scope.sites.splice(index, 1);
+                }
             });
         };
 
@@ -174,7 +176,9 @@
 
             apiService.folders.del({ id: folder.id }, function () {
                 var index = $scope.folders.indexOf(folder);
-                $scope.folders.splice(index, 1);
+                if (index > -1) {
+                    $scope.folders.splice(index, 1);
+                }
             });
         };
 
