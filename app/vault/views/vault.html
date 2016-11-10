@@ -12,6 +12,9 @@
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}}</h3>
             <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" ng-click="addSite(folder)" uib-tooltip="Add Site">
+                    <i class="fa fa-plus"></i>
+                </button>
                 <button type="button" class="btn btn-box-tool" ng-click="deleteFolder(folder)" ng-show="canDeleteFolder(folder)" uib-tooltip="Delete">
                     <i class="fa fa-trash"></i>
                 </button>
