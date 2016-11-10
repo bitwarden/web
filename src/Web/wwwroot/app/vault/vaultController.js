@@ -77,13 +77,25 @@
                 }
             });
 
-            editModel.result.then(function (editedSite) {
-                var site = $filter('filter')($scope.sites, { id: editedSite.id }, true);
-                if (site && site.length > 0) {
-                    site[0].folderId = editedSite.folderId;
-                    site[0].name = editedSite.name;
-                    site[0].username = editedSite.username;
-                    site[0].favorite = editedSite.favorite;
+            editModel.result.then(function (returnVal) {
+                if (returnVal.action === 'edit') {
+                    var siteToUpdate = $filter('filter')($scope.sites, { id: returnVal.data.id }, true);
+
+                    if (siteToUpdate && siteToUpdate.length > 0) {
+                        siteToUpdate[0].folderId = returnVal.data.folderId;
+                        siteToUpdate[0].name = returnVal.data.name;
+                        siteToUpdate[0].username = returnVal.data.username;
+                        siteToUpdate[0].favorite = returnVal.data.favorite;
+                    }
+                }
+                else if (returnVal.action === 'delete') {
+                    var siteToDelete = $filter('filter')($scope.sites, { id: returnVal.data }, true);
+                    if (siteToDelete && siteToDelete.length > 0) {
+                        var index = $scope.sites.indexOf(siteToDelete[0]);
+                        if (index > -1) {
+                            $scope.sites.splice(index, 1);
+                        }
+                    }
                 }
             });
         };

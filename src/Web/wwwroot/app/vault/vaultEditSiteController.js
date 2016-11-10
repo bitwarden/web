@@ -15,7 +15,10 @@
             $scope.savePromise = apiService.sites.put({ id: siteId }, site, function (siteResponse) {
                 $analytics.eventTrack('Edited Site');
                 var decSite = cipherService.decryptSite(siteResponse);
-                $uibModalInstance.close(decSite);
+                $uibModalInstance.close({
+                    action: 'edit',
+                    data: decSite
+                });
             }).$promise;
         };
 
@@ -48,6 +51,19 @@
                 target.select();
             }
         }
+
+        $scope.delete = function () {
+            if (!confirm('Are you sure you want to delete this site (' + $scope.site.name + ')?')) {
+                return;
+            }
+
+            apiService.sites.del({ id: $scope.site.id }, function () {
+                $uibModalInstance.close({
+                    action: 'delete',
+                    data: $scope.site.id
+                });
+            });
+        };
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
