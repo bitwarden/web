@@ -5,7 +5,7 @@
             <span class="logo-lg"><i class="fa fa-shield"></i> <b>bit</b>warden</span>
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
-            <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a ng-click="toggleSideNav()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -45,12 +45,12 @@
                     <a ui-sref="backend.vault"><i class="fa fa-lock"></i> <span>My Vault</span></a>
                     <ul class="treeview-menu menu-open">
                         <li>
-                            <a href="javascript:void(0)" ng-click="addSite()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.vault', addSite)">
                                 <i class="fa fa-plus"></i> New Site
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="addFolder()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.vault', newFolder)">
                                 <i class="fa fa-folder"></i> New Folder
                             </a>
                         </li>
@@ -60,27 +60,27 @@
                     <a ui-sref="backend.settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="javascript:void(0)" ng-click="changePassword()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.settings', changePassword)">
                                 <i class="fa fa-circle-o"></i> Change Password
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="changeEmail()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.settings', changeEmail)">
                                 <i class="fa fa-circle-o"></i> Change Email
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="sessions()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.settings', sessions)">
                                 <i class="fa fa-circle-o"></i> Deauthorize Sessions
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="twoFactor()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.settings', twoFactor)">
                                 <i class="fa fa-circle-o"></i> Two-step Login
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="delete()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.settings', delete)">
                                 <i class="fa fa-circle-o"></i> Delete Account
                             </a>
                         </li>
@@ -90,17 +90,17 @@
                     <a ui-sref="backend.tools"><i class="fa fa-wrench"></i> <span>Tools</span></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="javascript:void(0)" ng-click="import()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.tools', import)">
                                 <i class="fa fa-circle-o"></i> Import
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="export()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.tools', export)">
                                 <i class="fa fa-circle-o"></i> Export
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" ng-click="audits()">
+                            <a href="javascript:void(0)" ng-click="waitClick('backend.tools', audits)">
                                 <i class="fa fa-circle-o"></i> Audits
                             </a>
                         </li>

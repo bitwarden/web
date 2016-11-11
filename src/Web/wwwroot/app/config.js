@@ -115,7 +115,7 @@ angular
                 }
             });
     })
-    .run(function ($rootScope, authService, jwtHelper, tokenService, $state) {
+    .run(function ($rootScope, authService, sideNavService, jwtHelper, tokenService, $state) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (!toState.data || !toState.data.authorize) {
                 if (authService.isAuthenticated() && !jwtHelper.isTokenExpired(tokenService.getToken())) {
@@ -130,6 +130,10 @@ angular
                 event.preventDefault();
                 authService.logOut();
                 $state.go('frontend.login.info');
+            }
+
+            if (sideNavService.isToggled()) {
+                $('body').addClass('sidebar-collapse');
             }
         });
     });
