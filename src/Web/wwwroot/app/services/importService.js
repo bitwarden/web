@@ -41,6 +41,9 @@
                 case 'upmcsv':
                     importUpmCsv(file, success, error);
                     break;
+                case 'keepercsv':
+                    importKeeperCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -776,6 +779,83 @@
                     });
 
                     success(folders, sites, siteRelationships);
+                }
+            });
+        }
+
+        function importKeeperCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        folderRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        if (value.length >= 6) {
+                            var folderIndex = folders.length,
+                                siteIndex = sites.length,
+                                hasFolder = value[0] && value[0] !== '',
+                                addFolder = hasFolder,
+                                i = 0;
+
+                            if (hasFolder) {
+                                for (i = 0; i < folders.length; i++) {
+                                    if (folders[i].name === value[0]) {
+                                        addFolder = false;
+                                        folderIndex = i;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            var site = {
+                                favorite: false,
+                                uri: value[4] && value[4] !== '' ? trimUri(value[4]) : null,
+                                username: value[2] && value[2] !== '' ? value[2] : null,
+                                password: value[3] && value[3] !== '' ? value[3] : null,
+                                notes: value[5] && value[5] !== '' ? value[5] : null,
+                                name: value[1] && value[1] !== '' ? value[1] : '--',
+                            };
+
+                            if (value.length > 6) {
+                                // we have some custom fields. add them to notes.
+
+                                if (site.notes === null) {
+                                    site.notes = '';
+                                }
+                                else {
+                                    site.notes += '\n';
+                                }
+
+                                for (i = 6; i < value.length; i = i + 2) {
+                                    var cfName = value[i];
+                                    var cfValue = value[i + 1];
+                                    site.notes += (cfName + ': ' + cfValue + '\n');
+                                }
+                            }
+
+                            sites.push(site);
+
+                            if (addFolder) {
+                                folders.push({
+                                    name: value[0]
+                                });
+                            }
+
+                            if (hasFolder) {
+                                var relationship = {
+                                    key: siteIndex,
+                                    value: folderIndex
+                                };
+                                folderRelationships.push(relationship);
+                            }
+                        }
+                    });
+
+                    success(folders, sites, folderRelationships);
                 }
             });
         }
