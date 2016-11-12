@@ -44,6 +44,9 @@
                 case 'keepercsv':
                     importKeeperCsv(file, success, error);
                     break;
+                case 'passworddragonxml':
+                    importPasswordDragonXml(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -858,6 +861,125 @@
                     success(folders, sites, folderRelationships);
                 }
             });
+        }
+
+        function importPasswordDragonXml(file, success, error) {
+            var folders = [],
+                sites = [],
+                folderRelationships = [],
+                foldersIndex = [],
+                j = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var xmlDoc = $.parseXML(evt.target.result),
+                    xml = $(xmlDoc);
+
+                var pwManager = xml.find('PasswordManager');
+                if (pwManager.length) {
+                    var records = pwManager.find('> record');
+                    if (records.length) {
+                        for (var i = 0; i < records.length; i++) {
+                            var record = $(records[i]);
+
+                            var accountNameNode = record.find('> Account-Name'),
+                                accountName = accountNameNode.length ? $(accountNameNode) : null,
+                                userIdNode = record.find('> User-Id'),
+                                userId = userIdNode.length ? $(userIdNode) : null,
+                                passwordNode = record.find('> Password'),
+                                password = passwordNode.length ? $(passwordNode) : null,
+                                urlNode = record.find('> URL'),
+                                url = urlNode.length ? $(urlNode) : null,
+                                notesNode = record.find('> Notes'),
+                                notes = notesNode.length ? $(notesNode) : null,
+                                categoryNode = record.find('> Category'),
+                                category = categoryNode.length ? $(categoryNode) : null,
+                                categoryText = category ? category.text() : null;
+
+                            var folderIndex = folders.length,
+                                siteIndex = sites.length,
+                                hasFolder = categoryText && categoryText !== '' && categoryText !== 'Unfiled',
+                                addFolder = hasFolder;
+
+                            if (hasFolder) {
+                                for (j = 0; j < folders.length; j++) {
+                                    if (folders[j].name === categoryText) {
+                                        addFolder = false;
+                                        folderIndex = j;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            var site = {
+                                favorite: false,
+                                uri: url && url.text() !== '' ? trimUri(url.text()) : null,
+                                username: userId && userId.text() !== '' ? userId.text() : null,
+                                password: password && password.text() !== '' ? password.text() : null,
+                                notes: notes && notes.text() !== '' ? notes.text() : null,
+                                name: accountName && accountName.text() !== '' ? accountName.text() : '--',
+                            };
+
+                            var attributesSelector = '';
+                            for (j = 1; j <= 10; j++) {
+                                attributesSelector += '> Attribute-' + j;
+                                if (j < 10) {
+                                    attributesSelector += ', ';
+                                }
+                            }
+
+                            var attributes = record.find(attributesSelector);
+                            if (attributes.length) {
+                                // we have some attributes. add them to notes.
+                                for (j = 0; j < attributes.length; j++) {
+                                    var attr = $(attributes[j]),
+                                        attrName = attr.prop('tagName'),
+                                        attrValue = attr.text();
+
+                                    if (!attrValue || attrValue === '' || attrValue === 'null') {
+                                        continue;
+                                    }
+
+                                    if (site.notes === null) {
+                                        site.notes = '';
+                                    }
+                                    else {
+                                        site.notes += '\n';
+                                    }
+
+                                    site.notes += (attrName + ': ' + attrValue);
+                                }
+                            }
+
+                            sites.push(site);
+
+                            if (addFolder) {
+                                folders.push({
+                                    name: categoryText
+                                });
+                            }
+
+                            if (hasFolder) {
+                                var relationship = {
+                                    key: siteIndex,
+                                    value: folderIndex
+                                };
+                                folderRelationships.push(relationship);
+                            }
+                        }
+                    }
+
+                    success(folders, sites, folderRelationships);
+                }
+                else {
+                    error();
+                }
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
         }
 
         return _service;
