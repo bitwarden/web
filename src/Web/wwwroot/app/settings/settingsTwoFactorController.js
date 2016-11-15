@@ -33,6 +33,10 @@
         };
 
         function formatString(s) {
+            if (!s) {
+                return null;
+            }
+
             return s.replace(/(.{4})/g, '$1 ').trim().toUpperCase();
         }
 
