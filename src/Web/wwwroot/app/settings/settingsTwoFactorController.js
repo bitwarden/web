@@ -22,7 +22,8 @@
                 var key = response.AuthenticatorKey;
                 $scope.twoFactorModel = {
                     enabled: response.TwoFactorEnabled,
-                    key: key.replace(/(.{4})/g, '$1 ').trim(),
+                    key: formatString(key),
+                    recovery: formatString(response.TwoFactorRecoveryCode),
                     qr: 'https://chart.googleapis.com/chart?chs=120x120&chld=L|0&cht=qr&chl=otpauth://totp/' +
                         _issuer + ':' + encodeURIComponent(_profile.email) +
                         '%3Fsecret=' + encodeURIComponent(key) +
@@ -30,6 +31,10 @@
                 };
             }).$promise;
         };
+
+        function formatString(s) {
+            return s.replace(/(.{4})/g, '$1 ').trim().toUpperCase();
+        }
 
         $scope.update = function (model) {
             var currentlyEnabled = $scope.twoFactorModel.enabled;
@@ -39,7 +44,7 @@
 
             var request = {
                 enabled: !currentlyEnabled,
-                token: model ? model.token : null,
+                token: model.token,
                 masterPasswordHash: _masterPasswordHash
             };
 
