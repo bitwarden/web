@@ -38,6 +38,7 @@
             putProfile: { url: _apiUri + '/accounts/profile', method: 'POST', params: {} },
             getTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'GET', params: {} },
             putTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'POST', params: {} },
+            postTwoFactorRecover: { url: _apiUri + '/accounts/two-factor-recover', method: 'POST', params: {} },
             postPasswordHint: { url: _apiUri + '/accounts/password-hint', method: 'POST', params: {} },
             putSecurityStamp: { url: _apiUri + '/accounts/security-stamp', method: 'POST', params: {} },
             'import': { url: _apiUri + '/accounts/import', method: 'POST', params: {} },

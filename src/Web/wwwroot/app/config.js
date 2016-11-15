@@ -105,6 +105,15 @@ angular
                     bodyClass: 'login-page'
                 }
             })
+            .state('frontend.recover', {
+                url: '^/recover',
+                templateUrl: 'app/accounts/views/accountsRecover.html',
+                controller: 'accountsRecoverController',
+                data: {
+                    pageTitle: 'Recover Account',
+                    bodyClass: 'login-page'
+                }
+            })
             .state('frontend.register', {
                 url: '^/register',
                 templateUrl: 'app/accounts/views/accountsRegister.html',

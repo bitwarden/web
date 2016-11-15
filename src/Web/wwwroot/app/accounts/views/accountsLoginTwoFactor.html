@@ -13,7 +13,10 @@
         <span class="fa fa-lock form-control-feedback"></span>
     </div>
     <div class="row">
-        <div class="col-xs-offset-7 col-xs-5">
+        <div class="col-xs-7">
+            <a ui-sref="frontend.recover">Lost authenticator app?</a>
+        </div>
+        <div class="col-xs-5">
             <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="twoFactorForm.$loading">
                 <i class="fa fa-refresh fa-spin loading-icon" ng-show="twoFactorForm.$loading"></i>Log In
             </button>
