@@ -34,7 +34,7 @@ angular
 
         _service.logInTwoFactor = function (code, provider) {
             var request = {
-                code: code,
+                code: code.replace(' ', ''),
                 provider: provider
             };
 
