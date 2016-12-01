@@ -190,9 +190,9 @@ function config() {
             constants: _.merge({}, {
                 appSettings: {
                     version: project.version,
-                    environment: project.environment
+                    environment: project.production ? 'Production' : 'Development'
                 }
-            }, require('./settings.' + project.environment + '.json') || {})
+            }, require('./settings' + (project.production ? '.Production' : '') + '.json') || {})
         }));
 }
 
