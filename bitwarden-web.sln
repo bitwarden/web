@@ -3,34 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{860863C9-0436-43D4-840D-FE919C9F6FFC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14FE7221-D377-4AD5-9A9E-4541577CF05A}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		CNAME = CNAME
-		global.json = global.json
-		NuGet.Config = NuGet.Config
-		README.md = README.md
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "bitwarden-web", ".", "{25BEDEF4-2CAF-445A-807D-63C17FF85694}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_15509"
+		Debug.AspNetCompiler.PhysicalPath = "."
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_15509\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_15509"
+		Release.AspNetCompiler.PhysicalPath = "."
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_15509\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "15509"
+		SlnRelativePath = "."
+		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web", "src\Web\Web.xproj", "{0BEBF47C-BA0B-48AC-B48C-718F94084AD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BEBF47C-BA0B-48AC-B48C-718F94084AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BEBF47C-BA0B-48AC-B48C-718F94084AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BEBF47C-BA0B-48AC-B48C-718F94084AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BEBF47C-BA0B-48AC-B48C-718F94084AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25BEDEF4-2CAF-445A-807D-63C17FF85694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25BEDEF4-2CAF-445A-807D-63C17FF85694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{0BEBF47C-BA0B-48AC-B48C-718F94084AD5} = {860863C9-0436-43D4-840D-FE919C9F6FFC}
 	EndGlobalSection
 EndGlobal

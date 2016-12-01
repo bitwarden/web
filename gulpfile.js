@@ -15,19 +15,19 @@ var gulp = require('gulp'),
     merge = require('merge-stream'),
     ngConfig = require('gulp-ng-config'),
     settings = require('./settings.json'),
-    project = require('./project.json'),
+    project = require('./package.json'),
     jshint = require('gulp-jshint'),
     _ = require('lodash');
 
 var paths = {};
-paths.dist = '../../dist/';
-paths.webroot = './wwwroot/'
+paths.dist = './dist/';
+paths.webroot = './src/'
 paths.js = paths.webroot + 'js/**/*.js';
 paths.minJs = paths.webroot + 'js/**/*.min.js';
 paths.concatJsDest = paths.webroot + 'js/bw.min.js';
 paths.libDir = paths.webroot + 'lib/';
 paths.npmDir = 'node_modules/';
-paths.lessDir = 'less/';
+paths.lessDir = paths.webroot + 'less/';
 paths.cssDir = paths.webroot + 'css/';
 paths.jsDir = paths.webroot + 'js/';
 
@@ -329,6 +329,6 @@ gulp.task('deploy', ['dist'], function () {
 gulp.task('serve', function () {
     connect.server({
         port: 4001,
-        root: ['wwwroot']
+        root: ['src']
     });
 });
