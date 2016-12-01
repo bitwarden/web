@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     ghPages = require('gulp-gh-pages'),
     less = require('gulp-less'),
+    connect = require('gulp-connect'),
     ngAnnotate = require('gulp-ng-annotate'),
     preprocess = require('gulp-preprocess'),
     runSequence = require('run-sequence'),
@@ -323,4 +324,11 @@ gulp.task('dist', ['build'], function (cb) {
 gulp.task('deploy', ['dist'], function () {
     return gulp.src(paths.dist + '**/*')
         .pipe(ghPages({ cacheDir: paths.dist + '.publish' }));
+});
+
+gulp.task('serve', function () {
+    connect.server({
+        port: 4001,
+        root: ['wwwroot']
+    });
 });
