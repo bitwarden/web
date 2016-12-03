@@ -214,7 +214,7 @@ gulp.task('dist:clean', function (cb) {
 gulp.task('dist:move', function () {
     var moves = [
         {
-            src: '../../CNAME',
+            src: './CNAME',
             dest: paths.dist
         },
         {
