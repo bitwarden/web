@@ -5,7 +5,8 @@ angular
         var _service = {},
             _key,
             _b64Key,
-            _aes;
+            _aes,
+            _aesWithMac;
 
         sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity."]();
 
@@ -32,6 +33,16 @@ angular
             }
 
             return _key;
+        };
+
+        _service.getEncKey = function (key) {
+            key = key || _service.getKey();
+            return key.slice(0, 4);
+        };
+
+        _service.getMacKey = function (key) {
+            key = key || _service.getKey();
+            return key.slice(4);
         };
 
         _service.clearKey = function () {
@@ -70,45 +81,90 @@ angular
             return _aes;
         };
 
+        _service.getAesWithMac = function () {
+            if (!_aesWithMac && _service.getKey()) {
+                _aesWithMac = new sjcl.cipher.aes(_service.getEncKey());
+            }
+
+            return _aesWithMac;
+        };
+
         _service.encrypt = function (plaintextValue, key) {
             if (!_service.getKey() && !key) {
                 throw 'Encryption key unavailable.';
             }
 
-            if (!key) {
-                key = _service.getKey();
+            // TODO: Turn on whenever ready to support encrypt-then-mac
+            var encKey = null;
+            if (false) {
+                encKey = _service.getEncKey(key);
+            }
+            else {
+                encKey = key || _service.getKey();
             }
 
             var response = {};
             var params = {
-                mode: "cbc",
+                mode: 'cbc',
                 iv: sjcl.random.randomWords(4, 10)
             };
 
-            var ctJson = sjcl.encrypt(key, plaintextValue, params, response);
+            var ctJson = sjcl.encrypt(encKey, plaintextValue, params, response);
 
             var ct = ctJson.match(/"ct":"([^"]*)"/)[1];
             var iv = sjcl.codec.base64.fromBits(response.iv);
 
-            return iv + "|" + ct;
+            var cipherString = iv + '|' + ct;
+
+            // TODO: Turn on whenever ready to support encrypt-then-mac
+            if (false) {
+                var mac = computeMac(ct, response.iv);
+                cipherString = cipherString + '|' + mac;
+            }
+
+            return cipherString;
         };
 
         _service.decrypt = function (encValue) {
-            if (!_service.getAes()) {
+            if (!_service.getAes() || !_service.getAesWithMac()) {
                 throw 'AES encryption unavailable.';
             }
 
             var encPieces = encValue.split('|');
-            if (encPieces.length !== 2) {
+            if (encPieces.length !== 2 && encPieces.length !== 3) {
                 return '';
             }
 
             var ivBits = sjcl.codec.base64.toBits(encPieces[0]);
             var ctBits = sjcl.codec.base64.toBits(encPieces[1]);
 
-            var decBits = sjcl.mode.cbc.decrypt(_service.getAes(), ctBits, ivBits, null);
+            var computedMac = null;
+            if (encPieces.length === 3) {
+                computedMac = computeMac(ctBits, ivBits);
+                if (computedMac !== encPieces[2]) {
+                    console.error('MAC failed.');
+                    return '';
+                }
+            }
+
+            var decBits = sjcl.mode.cbc.decrypt(computedMac ? _service.getAesWithMac() : _service.getAes(), ctBits, ivBits, null);
             return sjcl.codec.utf8String.fromBits(decBits);
         };
+
+        function computeMac(ct, iv) {
+            if (typeof ct === 'string') {
+                ct = sjcl.codec.base64.toBits(ct);
+            }
+            if (typeof iv === 'string') {
+                iv = sjcl.codec.base64.toBits(iv);
+            }
+
+            var macKey = _service.getMacKey();
+            var hmac = new sjcl.misc.hmac(macKey, sjcl.hash.sha256);
+            var bits = iv.concat(ct);
+            var mac = hmac.encrypt(bits);
+            return sjcl.codec.base64.fromBits(mac);
+        }
 
         return _service;
     });
