@@ -46,7 +46,7 @@ angular
         };
 
         _service.clearKey = function () {
-            _key = _b64Key = _aes = null;
+            _key = _b64Key = _aes = _aesWithMac = null;
             delete $sessionStorage.key;
         };
 
