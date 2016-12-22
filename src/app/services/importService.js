@@ -50,6 +50,9 @@
                 case 'enpasscsv':
                     importEnpassCsv(file, success, error);
                     break;
+                case 'pwsafexml':
+                    importPasswordSafeXml(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1047,6 +1050,108 @@
                     success(folders, sites, siteRelationships);
                 }
             });
+        }
+
+        function importPasswordSafeXml(file, success, error) {
+            var folders = [],
+                sites = [],
+                folderRelationships = [],
+                foldersIndex = [],
+                j = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var xmlDoc = $.parseXML(evt.target.result),
+                    xml = $(xmlDoc);
+
+                var pwsafe = xml.find('passwordsafe');
+                if (pwsafe.length) {
+                    var notesDelimiter = pwsafe.attr('delimiter');
+
+                    var entries = pwsafe.find('> entry');
+                    if (entries.length) {
+                        for (var i = 0; i < entries.length; i++) {
+                            var entry = $(entries[i]);
+
+                            var titleNode = entry.find('> title'),
+                                title = titleNode.length ? $(titleNode) : null,
+                                usernameNode = entry.find('> username'),
+                                username = usernameNode.length ? $(usernameNode) : null,
+                                emailNode = entry.find('> email'),
+                                email = emailNode.length ? $(emailNode) : null,
+                                emailText = email ? email.text() : null,
+                                passwordNode = entry.find('> password'),
+                                password = passwordNode.length ? $(passwordNode) : null,
+                                urlNode = entry.find('> url'),
+                                url = urlNode.length ? $(urlNode) : null,
+                                notesNode = entry.find('> notes'),
+                                notes = notesNode.length ? $(notesNode) : null,
+                                notesText = notes ? notes.text().split(notesDelimiter).join('\n') : null,
+                                groupNode = entry.find('> group'),
+                                group = groupNode.length ? $(groupNode) : null,
+                                groupText = group ? group.text().split('.').join(' > ') : null;
+
+                            var folderIndex = folders.length,
+                                siteIndex = sites.length,
+                                hasFolder = groupText && groupText !== '',
+                                addFolder = hasFolder;
+
+                            if (hasFolder) {
+                                for (j = 0; j < folders.length; j++) {
+                                    if (folders[j].name === groupText) {
+                                        addFolder = false;
+                                        folderIndex = j;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            var site = {
+                                favorite: false,
+                                uri: url && url.text() !== '' ? trimUri(url.text()) : null,
+                                username: username && username.text() !== '' ? username.text() : null,
+                                password: password && password.text() !== '' ? password.text() : null,
+                                notes: notes && notesText !== '' ? notesText : null,
+                                name: title && title.text() !== '' ? title.text() : '--',
+                            };
+
+                            if (!site.username && emailText && emailText !== '') {
+                                site.username = emailText;
+                            }
+                            else if (emailText && emailText !== '') {
+                                site.notes = site.notes === null ? 'Email: ' + emailText
+                                    : site.notes + '\n' + 'Email: ' + emailText;
+                            }
+
+                            sites.push(site);
+
+                            if (addFolder) {
+                                folders.push({
+                                    name: groupText
+                                });
+                            }
+
+                            if (hasFolder) {
+                                var relationship = {
+                                    key: siteIndex,
+                                    value: folderIndex
+                                };
+                                folderRelationships.push(relationship);
+                            }
+                        }
+                    }
+
+                    success(folders, sites, folderRelationships);
+                }
+                else {
+                    error();
+                }
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
         }
 
         return _service;
