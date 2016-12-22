@@ -47,6 +47,9 @@
                 case 'passworddragonxml':
                     importPasswordDragonXml(file, success, error);
                     break;
+                case 'enpasscsv':
+                    importEnpassCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -980,6 +983,70 @@
             reader.onerror = function (evt) {
                 error();
             };
+        }
+
+        function importEnpassCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        siteRelationships = [];
+
+                    for (var j = 0; j < results.data.length; j++) {
+                        var row = results.data[j];
+                        if (row.length < 2) {
+                            continue;
+                        }
+                        if (j === 0 && row[0] === 'Title') {
+                            continue;
+                        }
+
+                        var note = row[row.length - 1];
+                        var site = {
+                            name: row[0],
+                            favorite: false,
+                            uri: null,
+                            password: null,
+                            username: null,
+                            notes: note && note !== '' ? note : null,
+                        };
+
+                        if (row.length > 2 && (row.length % 2) === 0) {
+                            for (var i = 0; i < row.length - 2; i += 2) {
+                                var value = row[i + 2];
+                                if (!value || value === '') {
+                                    continue;
+                                }
+
+                                var field = row[i + 1];
+                                var fieldLower = field.toLowerCase();
+
+                                if (fieldLower === 'url' && !site.uri) {
+                                    site.uri = trimUri(value);
+                                }
+                                else if ((fieldLower === 'username' || fieldLower === 'email') && !site.username) {
+                                    site.username = value;
+                                }
+                                else if (fieldLower === 'password' && !site.password) {
+                                    site.password = value;
+                                }
+                                else {
+                                    // other custom fields
+                                    site.notes = site.notes === null ? field + ': ' + value
+                                        : site.notes + '\n' + field + ': ' + value;
+                                }
+                            }
+                        }
+
+                        sites.push(site);
+                    }
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
         }
 
         return _service;
