@@ -53,6 +53,9 @@
                 case 'pwsafexml':
                     importPasswordSafeXml(file, success, error);
                     break;
+                case 'dashlanecsv':
+                    importDashlaneCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1014,7 +1017,7 @@
                             uri: null,
                             password: null,
                             username: null,
-                            notes: note && note !== '' ? note : null,
+                            notes: note && note !== '' ? note : null
                         };
 
                         if (row.length > 2 && (row.length % 2) === 0) {
@@ -1152,6 +1155,121 @@
             reader.onerror = function (evt) {
                 error();
             };
+        }
+
+        function importDashlaneCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        siteRelationships = [];
+
+                    for (var j = 0; j < results.data.length; j++) {
+                        var skip = false;
+                        var row = results.data[j];
+                        if (!row.length || row.length === 1) {
+                            continue;
+                        }
+
+                        var site = {
+                            name: row[0] && row[0] !== '' ? row[0] : '--',
+                            favorite: false,
+                            uri: null,
+                            password: null,
+                            username: null,
+                            notes: null
+                        };
+
+                        if (row.length === 2) {
+                            site.uri = trimUri(row[1]);
+                        }
+                        else if (row.length === 3) {
+                            site.uri = trimUri(row[1]);
+                            site.username = row[2];
+                        }
+                        else if (row.length === 4) {
+                            if (row[2] === '' && row[3] === '') {
+                                site.username = row[1];
+                                site.notes = row[2] + '\n' + row[3];
+                            }
+                            else {
+                                site.username = row[2];
+                                site.notes = row[1] + '\n' + row[3];
+                            }
+                        }
+                        else if (row.length === 5) {
+                            site.uri = trimUri(row[1]);
+                            site.username = row[2];
+                            site.password = row[3];
+                            site.notes = row[4];
+                        }
+                        else if (row.length === 6) {
+                            if (row[2] === '') {
+                                site.username = row[3];
+                                site.notes = row[5];
+                            }
+                            else {
+                                site.username = row[2];
+                                site.notes = row[3] + '\n' + row[5];
+                            }
+
+                            site.uri = trimUri(row[1]);
+                            site.password = row[4];
+                        }
+                        else if (row.length === 7) {
+                            if (row[2] === '') {
+                                site.username = row[3];
+                                site.notes = row[4] + '\n' + row[6];
+                            }
+                            else {
+                                site.username = row[2];
+                                site.notes = row[3] + '\n' + row[4] + '\n' + row[6];
+                            }
+
+                            site.uri = trimUri(row[1]);
+                            site.password = row[5];
+                        }
+                        else {
+                            site.notes = '';
+                            for (var i = 1; i < row.length; i++) {
+                                site.notes = site.notes + row[i] + '\n';
+                                if (row[i] === 'NO_TYPE') {
+                                    skip = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (site.uri && site.uri.indexOf('.') >= 0) {
+                            site.uri = 'http://' + site.uri.toLowerCase().trim();
+                        }
+
+                        if (skip) {
+                            continue;
+                        }
+
+                        if (site.username === '') {
+                            site.username = null;
+                        }
+                        if (site.password === '') {
+                            site.password = null;
+                        }
+                        if (site.notes === '') {
+                            site.notes = null;
+                        }
+                        if (site.uri === '') {
+                            site.uri = null;
+                        }
+
+                        sites.push(site);
+                    }
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
         }
 
         return _service;
