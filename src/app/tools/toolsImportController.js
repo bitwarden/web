@@ -13,9 +13,16 @@
 
         function importSuccess(folders, sites, folderRelationships) {
             if (!folders.length && !sites.length) {
-                $uibModalInstance.dismiss('cancel');
-                toastr.error('Nothing was imported.');
+                importError('Nothing was imported.');
                 return;
+            }
+            else if (sites.length) {
+                var halfway = Math.floor(sites.length / 2);
+                var last = sites.length - 1;
+                if (siteIsBadData(sites[0]) && siteIsBadData(sites[halfway]) && siteIsBadData(sites[last])) {
+                    importError('CSV data is not formatted correctly. Please check your import file and try again.');
+                    return;
+                }
             }
 
             apiService.ciphers.import({
@@ -29,6 +36,10 @@
                     toastr.success('Data has been successfully imported into your vault.', 'Import Success');
                 });
             }, importError);
+        }
+
+        function siteIsBadData(site) {
+            return (site.name === null || site.name === '--') && (site.password === null || site.password === '');
         }
 
         function importError(error) {

@@ -190,8 +190,7 @@
             function parseData(data) {
                 var folders = [],
                     sites = [],
-                    siteRelationships = [],
-                    badDataSites = 0;
+                    siteRelationships = [];
 
                 angular.forEach(data, function (value, key) {
                     var folderIndex = folders.length,
@@ -207,10 +206,6 @@
                                 break;
                             }
                         }
-                    }
-
-                    if ((!value.name || value.name === '') && (!value.password || value.password === '')) {
-                        badDataSites++;
                     }
 
                     sites.push({
@@ -237,12 +232,7 @@
                     }
                 });
 
-                if (badDataSites && badDataSites > (data.length / 2)) {
-                    error('CSV data is not formatted correctly from LastPass. Please check your import file and try again.');
-                }
-                else {
-                    success(folders, sites, siteRelationships);
-                }
+                success(folders, sites, siteRelationships);
             }
         }
 
