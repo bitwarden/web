@@ -56,6 +56,9 @@
                 case 'dashlanecsv':
                     importDashlaneCsv(file, success, error);
                     break;
+                case 'stickypasswordxml':
+                    importStickyPasswordXml(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1260,6 +1263,123 @@
                     success(folders, sites, siteRelationships);
                 }
             });
+        }
+
+        function importStickyPasswordXml(file, success, error) {
+            var folders = [],
+                sites = [],
+                folderRelationships = [],
+                foldersIndex = [],
+                j = 0;
+
+            function buildGroupText(database, groupId, groupText) {
+                var group = database.find('> Groups > Group[ID="' + groupId + '"]');
+                if (group.length) {
+                    if (groupText && groupText !== '') {
+                        groupText = ' > ' + groupText;
+                    }
+                    groupText = group.attr('Name') + groupText;
+                    var parentGroupId = group.attr('ParentID');
+                    return buildGroupText(database, parentGroupId, groupText);
+                }
+                return groupText;
+            }
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var xmlDoc = $.parseXML(evt.target.result),
+                    xml = $(xmlDoc);
+
+                var database = xml.find('root > Database');
+                if (database.length) {
+                    var logins = database.find('> Logins > Login');
+                    if (logins.length) {
+                        for (var i = 0; i < logins.length; i++) {
+                            var login = $(logins[i]);
+
+                            var usernameText = login.attr('Name'),
+                                passwordText = login.attr('Password'),
+                                accountId = login.attr('ID'),
+                                titleText = null,
+                                linkText = null,
+                                notesText = null,
+                                groupId = null,
+                                groupText = null;
+
+                            if (accountId && accountId !== '') {
+                                var accountLogin =
+                                    database.find('> Accounts > Account > LoginLinks > Login[SourceLoginID="' + accountId + '"]');
+                                if (accountLogin.length) {
+                                    var account = accountLogin.parent().parent();
+                                    if (account.length) {
+                                        titleText = account.attr('Name');
+                                        linkText = account.attr('Link');
+                                        groupId = account.attr('ParentID');
+                                        notesText = account.attr('Comments');
+                                        if (notesText) {
+                                            notesText = notesText.split('/n').join('\n');
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (groupId && groupId !== '') {
+                                groupText = buildGroupText(database, groupId, '');
+                            }
+
+                            var folderIndex = folders.length,
+                                siteIndex = sites.length,
+                                hasFolder = groupText && groupText !== '',
+                                addFolder = hasFolder;
+
+                            if (hasFolder) {
+                                for (j = 0; j < folders.length; j++) {
+                                    if (folders[j].name === groupText) {
+                                        addFolder = false;
+                                        folderIndex = j;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            var site = {
+                                favorite: false,
+                                uri: linkText && linkText !== '' ? trimUri(linkText) : null,
+                                username: usernameText && usernameText !== '' ? usernameText : null,
+                                password: passwordText && passwordText !== '' ? passwordText : null,
+                                notes: notesText && notesText !== '' ? notesText : null,
+                                name: titleText && titleText !== '' ? titleText : '--',
+                            };
+
+                            sites.push(site);
+
+                            if (addFolder) {
+                                folders.push({
+                                    name: groupText
+                                });
+                            }
+
+                            if (hasFolder) {
+                                var relationship = {
+                                    key: siteIndex,
+                                    value: folderIndex
+                                };
+                                folderRelationships.push(relationship);
+                            }
+                        }
+                    }
+
+                    success(folders, sites, folderRelationships);
+                }
+                else {
+                    error();
+                }
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
         }
 
         return _service;
