@@ -62,6 +62,9 @@
                 case 'msecurecsv':
                     importmSecureCsv(file, success, error);
                     break;
+                case 'truekeyjson':
+                    importTrueKeyJson(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1469,6 +1472,86 @@
                     success(folders, sites, folderRelationships);
                 }
             });
+        }
+
+        function importTrueKeyJson(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [],
+                i = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var fileContent = evt.target.result;
+                var fileJson = JSON.parse(fileContent);
+                if (fileJson) {
+                    if (fileJson.logins) {
+                        for (i = 0; i < fileJson.logins.length; i++) {
+                            var login = fileJson.logins[i];
+                            sites.push({
+                                favorite: login.favorite && login.favorite === true,
+                                uri: login.url && login.url !== '' ? trimUri(login.url) : null,
+                                username: login.login && login.login !== '' ? login.login : null,
+                                password: login.password && login.password !== '' ? login.password : null,
+                                notes: null,
+                                name: login.name && login.name !== '' ? login.name : '--',
+                            });
+                        }
+                    }
+
+                    if (fileJson.documents) {
+                        for (i = 0; i < fileJson.documents.length; i++) {
+                            var doc = fileJson.documents[i];
+                            var note = {
+                                favorite: false,
+                                uri: null,
+                                username: null,
+                                password: null,
+                                notes: '',
+                                name: doc.title && doc.title !== '' ? doc.title : '--',
+                            };
+
+                            if (doc.kind === 'note') {
+                                if (!doc.document_content || doc.document_content === '') {
+                                    continue;
+                                }
+                                note.notes = doc.document_content;
+                            }
+                            else {
+                                for (var property in doc) {
+                                    if (doc.hasOwnProperty(property)) {
+                                        if (property === 'title' || property === 'hexColor' || property === 'kind' ||
+                                            doc[property] === '' || doc[property] === null) {
+                                            continue;
+                                        }
+
+                                        if (note.notes !== '') {
+                                            note.notes = note.notes + '\n';
+                                        }
+                                        note.notes = note.notes + property + ': ' + doc[property];
+                                    }
+                                }
+                            }
+
+                            if (!note.notes || note.notes === '') {
+                                continue;
+                            }
+                            else {
+                                note.notes = note.notes.split('\\n').join('\n');
+                            }
+
+                            sites.push(note);
+                        }
+                    }
+                }
+
+                success(folders, sites, siteRelationships);
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
         }
 
         return _service;
