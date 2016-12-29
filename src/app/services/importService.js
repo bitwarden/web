@@ -59,6 +59,9 @@
                 case 'stickypasswordxml':
                     importStickyPasswordXml(file, success, error);
                     break;
+                case 'msecurecsv':
+                    importmSecureCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1380,6 +1383,92 @@
             reader.onerror = function (evt) {
                 error();
             };
+        }
+
+        function importmSecureCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        folderRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        if (value.length >= 3) {
+                            var folderIndex = folders.length,
+                                siteIndex = sites.length,
+                                hasFolder = value[0] && value[0] !== '' && value[0] !== 'Unassigned',
+                                addFolder = hasFolder,
+                                i = 0;
+
+                            if (hasFolder) {
+                                for (i = 0; i < folders.length; i++) {
+                                    if (folders[i].name === value[0]) {
+                                        addFolder = false;
+                                        folderIndex = i;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            var site = {
+                                favorite: false,
+                                uri: null,
+                                username: null,
+                                password: null,
+                                notes: '',
+                                name: value[2] && value[2] !== '' ? value[2] : null
+                            };
+
+                            if (value[1] === 'Web Logins') {
+                                site.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
+                                site.username = value[5] && value[5] !== '' ? value[5] : null;
+                                site.password = value[6] && value[6] !== '' ? value[6] : null;
+                                site.notes = value[3] && value[3] !== '' ? value[3] : null;
+                            }
+                            else if (value.length > 3) {
+                                for (var j = 3; j < value.length; j++) {
+                                    if (value[j] && value[j] !== '') {
+                                        if (site.notes !== '') {
+                                            site.notes = site.notes + '\n';
+                                        }
+
+                                        site.notes = site.notes + value[j];
+                                    }
+                                }
+                            }
+
+                            if (value[1] && value[1] !== '' && value[1] !== 'Web Logins') {
+                                site.name = value[1] + ': ' + site.name;
+                            }
+
+                            if (site.notes === '') {
+                                site.notes = null;
+                            }
+
+                            sites.push(site);
+
+                            if (addFolder) {
+                                folders.push({
+                                    name: value[0]
+                                });
+                            }
+
+                            if (hasFolder) {
+                                var relationship = {
+                                    key: siteIndex,
+                                    value: folderIndex
+                                };
+                                folderRelationships.push(relationship);
+                            }
+                        }
+                    });
+
+                    success(folders, sites, folderRelationships);
+                }
+            });
         }
 
         return _service;
