@@ -1426,7 +1426,7 @@
                                 site.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
                                 site.username = value[5] && value[5] !== '' ? value[5] : null;
                                 site.password = value[6] && value[6] !== '' ? value[6] : null;
-                                site.notes = value[3] && value[3] !== '' ? value[3] : null;
+                                site.notes = value[3] && value[3] !== '' ? value[3].split('\\n').join('\n') : null;
                             }
                             else if (value.length > 3) {
                                 for (var j = 3; j < value.length; j++) {
