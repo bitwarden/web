@@ -68,6 +68,9 @@
                 case 'clipperzhtml':
                     importClipperzHtml(file, success, error);
                     break;
+                case 'avirajson':
+                    importAviraJson(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1634,6 +1637,60 @@
                         }
 
                         sites.push(site);
+                    }
+                }
+
+                success(folders, sites, siteRelationships);
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
+        }
+
+        function importAviraJson(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [],
+                i = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var fileContent = evt.target.result;
+                var fileJson = JSON.parse(fileContent);
+                if (fileJson) {
+                    if (fileJson.accounts) {
+                        for (i = 0; i < fileJson.accounts.length; i++) {
+                            var account = fileJson.accounts[i];
+                            var site = {
+                                favorite: account.is_favorite && account.is_favorite === true,
+                                uri: account.domain && account.domain !== '' ? trimUri(account.domain) : null,
+                                username: account.username && account.username !== '' ? account.username : null,
+                                password: account.password && account.password !== '' ? account.password : null,
+                                notes: null,
+                                name: account.label && account.label !== '' ? account.label : account.domain,
+                            };
+
+                            if (account.email && account.email !== '') {
+                                if (!site.username || site.username === '') {
+                                    site.username = account.email;
+                                }
+                                else {
+                                    site.notes = account.email;
+                                }
+                            }
+
+                            if (!site.name || site.name === '') {
+                                site.name = '--';
+                            }
+
+                            if (site.uri && !site.uri.startsWith('http')) {
+                                site.uri = 'http://' + site.uri;
+                            }
+
+                            sites.push(site);
+                        }
                     }
                 }
 
