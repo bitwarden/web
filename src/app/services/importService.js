@@ -4,6 +4,65 @@
     .factory('importService', function () {
         var _service = {};
 
+        var _passwordFieldNames = [
+            'password', 'pass word', 'passphrase', 'pass phrase',
+            'pass', 'code', 'code word', 'codeword',
+            'secret', 'secret word',
+            'key', 'keyword', 'key word', 'keyphrase', 'key phrase',
+            'form_pw', 'wppassword', 'pin', 'pwd', 'pw', 'pword', 'passwd',
+            'p', 'serial', 'serial#', 'license key', 'reg #',
+
+            // Non-English names
+            'passwort'
+        ];
+
+        var _usernameFieldNames = [
+            'user', 'name', 'user name', 'username', 'login name',
+            'email', 'e-mail', 'id', 'userid', 'user id',
+            'login', 'form_loginname', 'wpname', 'mail',
+            'loginid', 'login id', 'log',
+            'first name', 'last name', 'card#', 'account #',
+            'member', 'member #',
+
+            // Non-English names
+            'nom', 'benutzername'
+        ];
+
+        var _notesFieldNames = [
+            "note", "notes", "comment", "comments", "memo",
+            "description", "free form", "freeform",
+            "free text", "freetext", "free",
+
+            // Non-English names
+            "kommentar"
+        ];
+
+        var _uriFieldNames = [
+            'url', 'hyper link', 'hyperlink', 'link',
+            'host', 'hostname', 'host name', 'server', 'address',
+            'hyper ref', 'href', 'web', 'website', 'web site', 'site',
+            'web-site',
+
+            // Non-English names
+            'ort', 'adresse'
+        ];
+
+        function isField(fieldText, refFieldValues) {
+            if (!fieldText || fieldText === '') {
+                return false;
+            }
+
+            fieldText = fieldText.trim().toLowerCase();
+
+            for (var i = 0; i < refFieldValues.length; i++) {
+                if (fieldText === refFieldValues[i]) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         _service.import = function (source, file, success, error) {
             if (!file) {
                 error();
@@ -70,6 +129,9 @@
                     break;
                 case 'avirajson':
                     importAviraJson(file, success, error);
+                    break;
+                case 'roboformhtml':
+                    importRoboFormHtml(file, success, error);
                     break;
                 default:
                     error();
@@ -1691,6 +1753,85 @@
 
                             sites.push(site);
                         }
+                    }
+                }
+
+                success(folders, sites, siteRelationships);
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
+        }
+
+        function importRoboFormHtml(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var doc = $(evt.target.result.split('&shy;').join('').split('<WBR>').join(''));
+                var outterTables = doc.find('table.nobr');
+                if (outterTables.length) {
+                    for (var i = 0; i < outterTables.length; i++) {
+                        var outterTable = $(outterTables[i]);
+                        var site = {
+                            favorite: false,
+                            uri: null,
+                            username: null,
+                            password: null,
+                            notes: '',
+                            name: outterTable.find('span.caption').text()
+                        };
+
+                        var url = outterTable.find('.subcaption').text();
+                        if (url && url !== '') {
+                            if (!url.startsWith('http')) {
+                                url = 'http://' + url;
+                            }
+                            site.uri = trimUri(url.toLowerCase());
+                        }
+
+                        var fields = [];
+                        $.each(outterTable.find('table td:not(.subcaption)'), function (indexInArray, valueOfElement) {
+                            $(valueOfElement).find('br').replaceWith('\n');
+                            var t = $(valueOfElement).text();
+                            if (t !== '') {
+                                fields.push(t.split('\\n').join('\n'));
+                            }
+                        });
+
+                        if (fields.length && (fields.length % 2 === 0))
+                            for (var j = 0; j < fields.length; j += 2) {
+                                var field = fields[j];
+                                var fieldValue = fields[j + 1];
+
+                                if (!site.password && isField(field.replace(':', ''), _passwordFieldNames)) {
+                                    site.password = fieldValue;
+                                }
+                                else if (!site.username && isField(field.replace(':', ''), _usernameFieldNames)) {
+                                    site.username = fieldValue;
+                                }
+                                else {
+                                    if (site.notes !== '') {
+                                        site.notes = site.notes + '\n';
+                                    }
+
+                                    site.notes = site.notes + field + ' ' + fieldValue;
+                                }
+                            }
+
+                        if (!site.notes || site.notes === '') {
+                            site.notes = null;
+                        }
+
+                        if (!site.name || site.name === '') {
+                            site.name = '--';
+                        }
+
+                        sites.push(site);
                     }
                 }
 
