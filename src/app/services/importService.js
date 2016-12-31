@@ -65,6 +65,9 @@
                 case 'truekeyjson':
                     importTrueKeyJson(file, success, error);
                     break;
+                case 'clipperzhtml':
+                    importClipperzHtml(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -1543,6 +1546,94 @@
 
                             sites.push(note);
                         }
+                    }
+                }
+
+                success(folders, sites, siteRelationships);
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
+        }
+
+        function importClipperzHtml(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var doc = $(evt.target.result);
+                var textarea = doc.find('textarea');
+                var json = textarea && textarea.length ? textarea.val() : null;
+                var entries = json ? JSON.parse(json) : null;
+
+                if (entries && entries.length) {
+                    for (var i = 0; i < entries.length; i++) {
+                        var entry = entries[i];
+
+                        var site = {
+                            favorite: false,
+                            uri: null,
+                            username: null,
+                            password: null,
+                            notes: '',
+                            name: entry.label && entry.label !== '' ? entry.label.split(' ')[0] : '--',
+                        };
+
+                        if (entry.data && entry.data.notes && entry.data.notes !== '') {
+                            site.notes = entry.data.notes.split('\\n').join('\n');
+                        }
+
+                        if (entry.currentVersion && entry.currentVersion.fields) {
+                            for (var property in entry.currentVersion.fields) {
+                                if (entry.currentVersion.fields.hasOwnProperty(property)) {
+                                    var field = entry.currentVersion.fields[property];
+                                    var actionType = field.actionType.toLowerCase();
+
+                                    switch (actionType) {
+                                        case 'password':
+                                            site.password = field.value;
+                                            break;
+                                        case 'email':
+                                        case 'username':
+                                        case 'user':
+                                        case 'name':
+                                            site.username = field.value;
+                                            break;
+                                        case 'url':
+                                            site.uri = trimUri(field.value);
+                                            break;
+                                        case 'none':
+                                        default:
+                                            var normalizedLabel = field.label.toLowerCase();
+                                            if (!site.username &&
+                                                (normalizedLabel === 'email' || normalizedLabel === 'username')) {
+                                                site.username = field.value;
+                                            }
+                                            else if (!site.password &&
+                                                (normalizedLabel === 'password' || normalizedLabel === 'pw')) {
+                                                site.password = field.value;
+                                            }
+                                            else {
+                                                if (site.notes && site.notes !== '') {
+                                                    site.notes = site.notes + '\n';
+                                                }
+                                                site.notes = site.notes + field.label + ': ' + field.value;
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (site.notes === '') {
+                            site.notes = null;
+                        }
+
+                        sites.push(site);
                     }
                 }
 
