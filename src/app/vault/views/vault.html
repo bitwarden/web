@@ -1,7 +1,7 @@
 ﻿<section class="content-header">
     <h1>
         My Vault
-        <small>safe and secure</small>
+        <small>{{folders.length > 0 ? folders.length - 1 : 0}} folders, {{sites.length}} sites</small>
     </h1>
 </section>
 <section class="content">
@@ -10,7 +10,7 @@
     </div>
     <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}}</h3>
+            <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}} <small>{{folderSites.length}} sites</small></h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" ng-click="addSite(folder)" uib-tooltip="Add Site">
                     <i class="fa fa-plus"></i>
