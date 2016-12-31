@@ -1673,13 +1673,10 @@
                                             break;
                                         case 'none':
                                         default:
-                                            var normalizedLabel = field.label.toLowerCase();
-                                            if (!site.username &&
-                                                (normalizedLabel === 'email' || normalizedLabel === 'username')) {
+                                            if (!site.username && isField(field.label, _usernameFieldNames)) {
                                                 site.username = field.value;
                                             }
-                                            else if (!site.password &&
-                                                (normalizedLabel === 'password' || normalizedLabel === 'pw')) {
+                                            else if (!site.password && isField(field.label, _passwordFieldNames)) {
                                                 site.password = field.value;
                                             }
                                             else {
