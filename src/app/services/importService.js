@@ -4,6 +4,85 @@
     .factory('importService', function () {
         var _service = {};
 
+        _service.import = function (source, file, success, error) {
+            if (!file) {
+                error();
+                return;
+            }
+
+            switch (source) {
+                case 'local':
+                    importLocal(file, success, error);
+                    break;
+                case 'lastpass':
+                    importLastPass(file, success, error);
+                    break;
+                case 'safeincloudcsv':
+                    importSafeInCloudCsv(file, success, error);
+                    break;
+                case 'safeincloudxml':
+                    importSafeInCloudXml(file, success, error);
+                    break;
+                case 'keepassxml':
+                    importKeePassXml(file, success, error);
+                    break;
+                case 'padlockcsv':
+                    importPadlockCsv(file, success, error);
+                    break;
+                case '1password1pif':
+                    import1Password1Pif(file, success, error);
+                    break;
+                case 'chromecsv':
+                    importChromeCsv(file, success, error);
+                    break;
+                case 'firefoxpasswordexportercsvxml':
+                    importFirefoxPasswordExporterCsvXml(file, success, error);
+                    break;
+                case 'upmcsv':
+                    importUpmCsv(file, success, error);
+                    break;
+                case 'keepercsv':
+                    importKeeperCsv(file, success, error);
+                    break;
+                case 'passworddragonxml':
+                    importPasswordDragonXml(file, success, error);
+                    break;
+                case 'enpasscsv':
+                    importEnpassCsv(file, success, error);
+                    break;
+                case 'pwsafexml':
+                    importPasswordSafeXml(file, success, error);
+                    break;
+                case 'dashlanecsv':
+                    importDashlaneCsv(file, success, error);
+                    break;
+                case 'stickypasswordxml':
+                    importStickyPasswordXml(file, success, error);
+                    break;
+                case 'msecurecsv':
+                    importmSecureCsv(file, success, error);
+                    break;
+                case 'truekeyjson':
+                    importTrueKeyJson(file, success, error);
+                    break;
+                case 'clipperzhtml':
+                    importClipperzHtml(file, success, error);
+                    break;
+                case 'avirajson':
+                    importAviraJson(file, success, error);
+                    break;
+                case 'roboformhtml':
+                    importRoboFormHtml(file, success, error);
+                    break;
+                case 'saferpasscsv':
+                    importSaferPassCsv(file, success, error);
+                    break;
+                default:
+                    error();
+                    break;
+            }
+        };
+
         var _passwordFieldNames = [
             'password', 'pass word', 'passphrase', 'pass phrase',
             'pass', 'code', 'code word', 'codeword',
@@ -62,82 +141,6 @@
 
             return false;
         }
-
-        _service.import = function (source, file, success, error) {
-            if (!file) {
-                error();
-                return;
-            }
-
-            switch (source) {
-                case 'local':
-                    importLocal(file, success, error);
-                    break;
-                case 'lastpass':
-                    importLastPass(file, success, error);
-                    break;
-                case 'safeincloudcsv':
-                    importSafeInCloudCsv(file, success, error);
-                    break;
-                case 'safeincloudxml':
-                    importSafeInCloudXml(file, success, error);
-                    break;
-                case 'keypassxml':
-                    importKeyPassXml(file, success, error);
-                    break;
-                case 'padlockcsv':
-                    importPadlockCsv(file, success, error);
-                    break;
-                case '1password1pif':
-                    import1Password1Pif(file, success, error);
-                    break;
-                case 'chromecsv':
-                    importChromeCsv(file, success, error);
-                    break;
-                case 'firefoxpasswordexportercsvxml':
-                    importFirefoxPasswordExporterCsvXml(file, success, error);
-                    break;
-                case 'upmcsv':
-                    importUpmCsv(file, success, error);
-                    break;
-                case 'keepercsv':
-                    importKeeperCsv(file, success, error);
-                    break;
-                case 'passworddragonxml':
-                    importPasswordDragonXml(file, success, error);
-                    break;
-                case 'enpasscsv':
-                    importEnpassCsv(file, success, error);
-                    break;
-                case 'pwsafexml':
-                    importPasswordSafeXml(file, success, error);
-                    break;
-                case 'dashlanecsv':
-                    importDashlaneCsv(file, success, error);
-                    break;
-                case 'stickypasswordxml':
-                    importStickyPasswordXml(file, success, error);
-                    break;
-                case 'msecurecsv':
-                    importmSecureCsv(file, success, error);
-                    break;
-                case 'truekeyjson':
-                    importTrueKeyJson(file, success, error);
-                    break;
-                case 'clipperzhtml':
-                    importClipperzHtml(file, success, error);
-                    break;
-                case 'avirajson':
-                    importAviraJson(file, success, error);
-                    break;
-                case 'roboformhtml':
-                    importRoboFormHtml(file, success, error);
-                    break;
-                default:
-                    error();
-                    break;
-            }
-        };
 
         function trimUri(uri) {
             if (uri.length > 1000) {
@@ -530,7 +533,7 @@
             });
         }
 
-        function importKeyPassXml(file, success, error) {
+        function importKeePassXml(file, success, error) {
             var folders = [],
                 sites = [],
                 siteRelationships = [];
@@ -1838,6 +1841,39 @@
             reader.onerror = function (evt) {
                 error();
             };
+        }
+
+        function importSaferPassCsv(file, success, error) {
+            function urlDomain(data) {
+                var a = document.createElement('a');
+                a.href = data;
+                return a.hostname.startsWith('www.') ? a.hostname.replace('www.', '') : a.hostname;
+            }
+
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    angular.forEach(results.data, function (value, key) {
+                        sites.push({
+                            favorite: false,
+                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                            username: value.username && value.username !== '' ? value.username : null,
+                            password: value.password && value.password !== '' ? value.password : null,
+                            notes: value.notes && value.notes !== '' ? value.notes : null,
+                            name: value.url && value.url !== '' ? urlDomain(value.url) : '--',
+                        });
+                    });
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
         }
 
         return _service;
