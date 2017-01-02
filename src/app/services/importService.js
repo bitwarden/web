@@ -26,11 +26,17 @@
                 case 'keepassxml':
                     importKeePassXml(file, success, error);
                     break;
+                case 'keepassxcsv':
+                    importKeePassXCsv(file, success, error);
+                    break;
                 case 'padlockcsv':
                     importPadlockCsv(file, success, error);
                     break;
-                case '1password1pif':
-                    import1Password1Pif(file, success, error);
+                case '1password41pif':
+                    import1Password41Pif(file, success, error);
+                    break;
+                case '1password6csv':
+                    import1Password6Csv(file, success, error);
                     break;
                 case 'chromecsv':
                     importChromeCsv(file, success, error);
@@ -76,6 +82,15 @@
                     break;
                 case 'saferpasscsv':
                     importSaferPassCsv(file, success, error);
+                    break;
+                case 'ascendocsv':
+                    importAscendoCsv(file, success, error);
+                    break;
+                case 'passwordbossjson':
+                    importPasswordBossJson(file, success, error);
+                    break;
+                case 'zohovaultcsv':
+                    importZohoVaultCsv(file, success, error);
                     break;
                 default:
                     error();
@@ -140,6 +155,15 @@
             }
 
             return false;
+        }
+
+        function fixUri(uri) {
+            uri = uri.toLowerCase().trim();
+            if (!uri.startsWith('http') && uri.indexOf('.') >= 0) {
+                uri = 'http://' + uri;
+            }
+
+            return trimUri(uri);
         }
 
         function trimUri(uri) {
@@ -648,13 +672,100 @@
             }
         }
 
-        function import1Password1Pif(file, success, error) {
+        function importKeePassXCsv(file, success, error) {
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        folderRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        var groupName = value.Group && value.Group !== '' ?
+                            value.Group.split('/').join(' > ') : null;
+
+                        var folderIndex = folders.length,
+                            siteIndex = sites.length,
+                            hasFolder = groupName !== null,
+                            addFolder = hasFolder,
+                            i = 0;
+
+                        if (hasFolder) {
+                            for (i = 0; i < folders.length; i++) {
+                                if (folders[i].name === groupName) {
+                                    addFolder = false;
+                                    folderIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var site = {
+                            favorite: false,
+                            uri: value.URL && value.URL !== '' ? fixUri(value.URL) : null,
+                            username: value.Username && value.Username !== '' ? value.Username : null,
+                            password: value.Password && value.Password !== '' ? value.Password : null,
+                            notes: value.Notes && value.Notes !== '' ? value.Notes : null,
+                            name: value.Title && value.Title !== '' ? value.Title : '--',
+                        };
+
+                        sites.push(site);
+
+                        if (addFolder) {
+                            folders.push({
+                                name: groupName
+                            });
+                        }
+
+                        if (hasFolder) {
+                            var relationship = {
+                                key: siteIndex,
+                                value: folderIndex
+                            };
+                            folderRelationships.push(relationship);
+                        }
+                    });
+
+                    success(folders, sites, folderRelationships);
+                }
+            });
+        }
+
+        function import1Password41Pif(file, success, error) {
             var folders = [],
                 sites = [],
-                siteRelationships = [];
+                siteRelationships = [],
+                i = 0;
 
-            var i = 0,
-                j = 0;
+            function parseFields(fields, site, designationKey, valueKey, nameKey) {
+                for (var j = 0; j < fields.length; j++) {
+                    var field = fields[j];
+                    if (!field[valueKey] || field[valueKey] === '') {
+                        continue;
+                    }
+
+                    if (!site.username && field[designationKey] && field[designationKey] === 'username') {
+                        site.username = field[valueKey];
+                    }
+                    else if (!site.password && field[designationKey] && field[designationKey] === 'password') {
+                        site.password = field[valueKey];
+                    }
+                    else if (field[nameKey] && field[valueKey]) {
+                        if (site.notes === null) {
+                            site.notes = '';
+                        }
+                        else {
+                            site.notes += '\n';
+                        }
+
+                        site.notes += (field[nameKey] + ': ' +
+                            field[valueKey].split('\\r\\n').join('\n').split('\\n').join('\n'));
+                    }
+                }
+            }
 
             var reader = new FileReader();
             reader.readAsText(file, 'utf-8');
@@ -669,13 +780,9 @@
                     }
 
                     var item = JSON.parse(line);
-                    if (item.typeName !== 'webforms.WebForm') {
-                        continue;
-                    }
-
                     var site = {
                         favorite: item.openContents && item.openContents.faveIndex ? true : false,
-                        uri: item.location && item.location !== '' ? trimUri(item.location) : null,
+                        uri: item.location && item.location !== '' ? fixUri(item.location) : null,
                         username: null,
                         password: null,
                         notes: null,
@@ -684,27 +791,18 @@
 
                     if (item.secureContents) {
                         if (item.secureContents.notesPlain && item.secureContents.notesPlain !== '') {
-                            site.notes = item.secureContents.notesPlain;
+                            site.notes = item.secureContents.notesPlain
+                                .split('\\r\\n').join('\n').split('\\n').join('\n');
                         }
 
                         if (item.secureContents.fields) {
-                            for (j = 0; j < item.secureContents.fields.length; j++) {
-                                var field = item.secureContents.fields[j];
-                                if (field.designation === 'username') {
-                                    site.username = field.value;
-                                }
-                                else if (field.designation === 'password') {
-                                    site.password = field.value;
-                                }
-                                else {
-                                    if (site.notes === null) {
-                                        site.notes = '';
-                                    }
-                                    else {
-                                        site.notes += '\n';
-                                    }
+                            parseFields(item.secureContents.fields, site, 'designation', 'value', 'name');
+                        }
 
-                                    site.notes += (field.name + ': ' + field.value + '\n');
+                        if (item.secureContents.sections) {
+                            for (var j = 0; j < item.secureContents.sections.length; j++) {
+                                if (item.secureContents.sections[j].fields) {
+                                    parseFields(item.secureContents.sections[j].fields, site, 'n', 'v', 't');
                                 }
                             }
                         }
@@ -719,6 +817,77 @@
             reader.onerror = function (evt) {
                 error();
             };
+        }
+
+        function import1Password6Csv(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [];
+
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                header: true,
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    for (var i = 0; i < results.data.length; i++) {
+                        var value = results.data[i];
+                        var site = {
+                            favorite: false,
+                            uri: null,
+                            username: null,
+                            password: null,
+                            notes: value.notesPlain && value.notesPlain !== '' ? value.notesPlain : '',
+                            name: value.title && value.title !== '' ? value.title : null
+                        };
+
+                        for (var property in value) {
+                            if (value.hasOwnProperty(property)) {
+                                if (value[property] === null || value[property] === '') {
+                                    continue;
+                                }
+
+                                if (!site.password && property === 'password') {
+                                    site.password = value[property];
+                                }
+                                else if (!site.username && property === 'username') {
+                                    site.username = value[property];
+                                }
+                                else if (!site.uri && property === 'urls') {
+                                    var urls = value[property].split(/(?:\r\n|\r|\n)/);
+                                    site.uri = fixUri(urls[0]);
+
+                                    for (var j = 1; j < urls.length; j++) {
+                                        if (notes !== '') {
+                                            notes += '\n';
+                                        }
+
+                                        notes += ('url ' + (j + 1) + ': ' + urls[j]);
+                                    }
+                                }
+                                else if (property !== 'ainfo' && property !== 'autosubmit' && property !== 'notesPlain' &&
+                                    property !== 'ps' && property !== 'scope' && property !== 'tags' && property !== 'title' &&
+                                    property !== 'uuid' && !property.startsWith('section:')) {
+
+                                    if (notes !== '') {
+                                        notes += '\n';
+                                    }
+
+                                    notes += (property + ': ' + value[property]);
+                                }
+                            }
+                        }
+
+                        if (site.notes === '') {
+                            site.notes = null;
+                        }
+
+                        sites.push(site);
+                    }
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
         }
 
         function importChromeCsv(file, success, error) {
@@ -1254,10 +1423,10 @@
                         };
 
                         if (row.length === 2) {
-                            site.uri = trimUri(row[1]);
+                            site.uri = fixUri(row[1]);
                         }
                         else if (row.length === 3) {
-                            site.uri = trimUri(row[1]);
+                            site.uri = fixUri(row[1]);
                             site.username = row[2];
                         }
                         else if (row.length === 4) {
@@ -1271,7 +1440,7 @@
                             }
                         }
                         else if (row.length === 5) {
-                            site.uri = trimUri(row[1]);
+                            site.uri = fixUri(row[1]);
                             site.username = row[2];
                             site.password = row[3];
                             site.notes = row[4];
@@ -1286,7 +1455,7 @@
                                 site.notes = row[3] + '\n' + row[5];
                             }
 
-                            site.uri = trimUri(row[1]);
+                            site.uri = fixUri(row[1]);
                             site.password = row[4];
                         }
                         else if (row.length === 7) {
@@ -1299,7 +1468,7 @@
                                 site.notes = row[3] + '\n' + row[4] + '\n' + row[6];
                             }
 
-                            site.uri = trimUri(row[1]);
+                            site.uri = fixUri(row[1]);
                             site.password = row[5];
                         }
                         else {
@@ -1311,10 +1480,6 @@
                                     break;
                                 }
                             }
-                        }
-
-                        if (site.uri && site.uri.indexOf('.') >= 0) {
-                            site.uri = 'http://' + site.uri.toLowerCase().trim();
                         }
 
                         if (skip) {
@@ -1727,7 +1892,7 @@
                             var account = fileJson.accounts[i];
                             var site = {
                                 favorite: account.is_favorite && account.is_favorite === true,
-                                uri: account.domain && account.domain !== '' ? trimUri(account.domain) : null,
+                                uri: account.domain && account.domain !== '' ? fixUri(account.domain) : null,
                                 username: account.username && account.username !== '' ? account.username : null,
                                 password: account.password && account.password !== '' ? account.password : null,
                                 notes: null,
@@ -1745,10 +1910,6 @@
 
                             if (!site.name || site.name === '') {
                                 site.name = '--';
-                            }
-
-                            if (site.uri && !site.uri.startsWith('http')) {
-                                site.uri = 'http://' + site.uri;
                             }
 
                             sites.push(site);
@@ -1788,10 +1949,7 @@
 
                         var url = outterTable.find('.subcaption').text();
                         if (url && url !== '') {
-                            if (!url.startsWith('http')) {
-                                url = 'http://' + url;
-                            }
-                            site.uri = trimUri(url.toLowerCase());
+                            site.uri = fixUri(url);
                         }
 
                         var fields = [];
@@ -1872,6 +2030,248 @@
                     });
 
                     success(folders, sites, siteRelationships);
+                }
+            });
+        }
+
+        function importAscendoCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        siteRelationships = [];
+
+                    for (var j = 0; j < results.data.length; j++) {
+                        var row = results.data[j];
+                        if (row.length < 2) {
+                            continue;
+                        }
+
+                        var note = row[row.length - 1];
+                        var site = {
+                            name: row[0],
+                            favorite: false,
+                            uri: null,
+                            password: null,
+                            username: null,
+                            notes: note && note !== '' ? note : null
+                        };
+
+                        if (row.length > 2 && (row.length % 2) === 0) {
+                            for (var i = 0; i < row.length - 2; i += 2) {
+                                var value = row[i + 2];
+                                var field = row[i + 1];
+                                if (!field || fields === '' || !value || value === '') {
+                                    continue;
+                                }
+
+                                var fieldLower = field.toLowerCase();
+
+                                if (!site.uri && isField(field, _uriFieldNames)) {
+                                    site.uri = fixUri(value);
+                                }
+                                else if (!site.username && isField(field, _usernameFieldNames)) {
+                                    site.username = value;
+                                }
+                                else if (!site.password && isField(field, _passwordFieldNames)) {
+                                    site.password = value;
+                                }
+                                else {
+                                    if (!site.notes) {
+                                        site.notes = '';
+                                    }
+                                    else {
+                                        site.notes += '\n';
+                                    }
+
+                                    // other custom fields
+                                    site.notes += (field + ': ' + value);
+                                }
+                            }
+                        }
+
+                        sites.push(site);
+                    }
+
+                    success(folders, sites, siteRelationships);
+                }
+            });
+        }
+
+        function importPasswordBossJson(file, success, error) {
+            var folders = [],
+                sites = [],
+                siteRelationships = [],
+                i = 0;
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'utf-8');
+            reader.onload = function (evt) {
+                var fileContent = evt.target.result;
+                var fileJson = JSON.parse(fileContent);
+                if (fileJson && fileJson.length) {
+                    for (i = 0; i < fileJson.length; i++) {
+                        var item = fileJson[i];
+
+                        var site = {
+                            favorite: false,
+                            uri: item.login_url && item.login_url !== '' ? fixUri(item.login_url) : null,
+                            username: null,
+                            password: null,
+                            notes: '',
+                            name: item.name && item.name !== '' ? item.name : '--',
+                        };
+
+                        if (!item.identifiers) {
+                            continue;
+                        }
+
+                        if (item.identifiers.notes && item.identifiers.notes !== '') {
+                            site.notes = item.identifiers.notes.split('\\r\\n').join('\n').split('\\n').join('\n');
+                        }
+
+                        for (var property in item.identifiers) {
+                            if (doc.hasOwnProperty(property)) {
+                                var value = item.identifiers[property];
+                                if (property !== 'notes' || value === '' || value === null) {
+                                    continue;
+                                }
+
+                                if (property === 'username') {
+                                    site.username = value;
+                                }
+                                else if (property === 'password') {
+                                    site.password = value;
+                                }
+                                else if (property !== 'notes') {
+                                    if (note.notes !== '') {
+                                        note.notes += '\n';
+                                    }
+
+                                    note.notes += (property + ': ' + value);
+                                }
+                            }
+                        }
+
+                        if (site.notes === '') {
+                            site.notes = null;
+                        }
+
+                        sites.push(site);
+                    }
+                }
+
+                success(folders, sites, siteRelationships);
+            };
+
+            reader.onerror = function (evt) {
+                error();
+            };
+        }
+
+        function importZohoVaultCsv(file, success, error) {
+            function parseData(data, site) {
+                if (!data || data === '') {
+                    return;
+                }
+
+                var dataLines = data.split(/(?:\r\n|\r|\n)/);
+                for (var i = 0; i < dataLines.length; i++) {
+                    var line = dataLines[i];
+                    var delimPosition = myString.indexOf(':');
+                    if (delimPosition < 0) {
+                        continue;
+                    }
+
+                    var field = line.substring(0, delimPosition);
+                    var value = line.substring(delimPosition);
+                    if (!field || field === '' || !value || value === '' || field === 'SecretType') {
+                        continue;
+                    }
+
+                    var fieldLower = field.toLowerCase();
+                    if (field === 'user name') {
+                        site.username = value;
+                    }
+                    else if (field === 'password') {
+                        site.password = value;
+                    }
+                    else {
+                        if (site.note === '') {
+                            site.note += '\n';
+                        }
+
+                        site.note += (field + ': ' + value);
+                    }
+                }
+            }
+
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        sites = [],
+                        folderRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        var chamber = value['ChamberName'];
+
+                        var folderIndex = folders.length,
+                            siteIndex = sites.length,
+                            hasFolder = chamber && chamber !== '',
+                            addFolder = hasFolder,
+                            i = 0;
+
+                        if (hasFolder) {
+                            for (i = 0; i < folders.length; i++) {
+                                if (folders[i].name === chamber) {
+                                    addFolder = false;
+                                    folderIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var site = {
+                            favorite: value['Favorite'],
+                            uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
+                            username: null,
+                            password: null,
+                            notes: value['Notes'] && value['Notes'] !== '' ? value['Notes'] : '',
+                            name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--'
+                        };
+
+                        parseData(value['SecretData']);
+                        parseData(value['CustomData']);
+
+                        if (site.notes === '') {
+                            site.notes = null;
+                        }
+
+                        sites.push(site);
+
+                        if (addFolder) {
+                            folders.push({
+                                name: chamber
+                            });
+                        }
+
+                        if (hasFolder) {
+                            var relationship = {
+                                key: siteIndex,
+                                value: folderIndex
+                            };
+                            folderRelationships.push(relationship);
+                        }
+                    });
+
+                    success(folders, sites, folderRelationships);
                 }
             });
         }
