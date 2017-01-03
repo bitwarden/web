@@ -684,6 +684,9 @@
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
+                        value.Group = value.Group.startsWith('Root/') ?
+                            value.Group.replace('Root/', '') : value.Group;
+
                         var groupName = value.Group && value.Group !== '' ?
                             value.Group.split('/').join(' > ') : null;
 
@@ -712,7 +715,9 @@
                             name: value.Title && value.Title !== '' ? value.Title : '--',
                         };
 
-                        sites.push(site);
+                        if (value.Title) {
+                            sites.push(site);
+                        }
 
                         if (addFolder) {
                             folders.push({
@@ -832,13 +837,17 @@
 
                     for (var i = 0; i < results.data.length; i++) {
                         var value = results.data[i];
+                        if (!value.title) {
+                            continue;
+                        }
+
                         var site = {
                             favorite: false,
                             uri: null,
                             username: null,
                             password: null,
                             notes: value.notesPlain && value.notesPlain !== '' ? value.notesPlain : '',
-                            name: value.title && value.title !== '' ? value.title : null
+                            name: value.title && value.title !== '' ? value.title : '--'
                         };
 
                         for (var property in value) {
@@ -858,22 +867,22 @@
                                     site.uri = fixUri(urls[0]);
 
                                     for (var j = 1; j < urls.length; j++) {
-                                        if (notes !== '') {
-                                            notes += '\n';
+                                        if (site.notes !== '') {
+                                            site.notes += '\n';
                                         }
 
-                                        notes += ('url ' + (j + 1) + ': ' + urls[j]);
+                                        site.notes += ('url ' + (j + 1) + ': ' + urls[j]);
                                     }
                                 }
                                 else if (property !== 'ainfo' && property !== 'autosubmit' && property !== 'notesPlain' &&
                                     property !== 'ps' && property !== 'scope' && property !== 'tags' && property !== 'title' &&
                                     property !== 'uuid' && !property.startsWith('section:')) {
 
-                                    if (notes !== '') {
-                                        notes += '\n';
+                                    if (site.notes !== '') {
+                                        site.notes += '\n';
                                     }
 
-                                    notes += (property + ': ' + value[property]);
+                                    site.notes += (property + ': ' + value[property]);
                                 }
                             }
                         }
@@ -2064,7 +2073,7 @@
                             for (var i = 0; i < row.length - 2; i += 2) {
                                 var value = row[i + 2];
                                 var field = row[i + 1];
-                                if (!field || fields === '' || !value || value === '') {
+                                if (!field || field === '' || !value || value === '') {
                                     continue;
                                 }
 
@@ -2134,9 +2143,9 @@
                         }
 
                         for (var property in item.identifiers) {
-                            if (doc.hasOwnProperty(property)) {
+                            if (item.identifiers.hasOwnProperty(property)) {
                                 var value = item.identifiers[property];
-                                if (property !== 'notes' || value === '' || value === null) {
+                                if (property === 'notes' || value === '' || value === null) {
                                     continue;
                                 }
 
@@ -2146,12 +2155,12 @@
                                 else if (property === 'password') {
                                     site.password = value;
                                 }
-                                else if (property !== 'notes') {
-                                    if (note.notes !== '') {
-                                        note.notes += '\n';
+                                else {
+                                    if (site.notes !== '') {
+                                        site.notes += '\n';
                                     }
 
-                                    note.notes += (property + ': ' + value);
+                                    site.notes += (property + ': ' + value);
                                 }
                             }
                         }
@@ -2181,30 +2190,30 @@
                 var dataLines = data.split(/(?:\r\n|\r|\n)/);
                 for (var i = 0; i < dataLines.length; i++) {
                     var line = dataLines[i];
-                    var delimPosition = myString.indexOf(':');
+                    var delimPosition = line.indexOf(':');
                     if (delimPosition < 0) {
                         continue;
                     }
 
                     var field = line.substring(0, delimPosition);
-                    var value = line.substring(delimPosition);
+                    var value = line.length > delimPosition ? line.substring(delimPosition + 1) : null;
                     if (!field || field === '' || !value || value === '' || field === 'SecretType') {
                         continue;
                     }
 
                     var fieldLower = field.toLowerCase();
-                    if (field === 'user name') {
+                    if (fieldLower === 'user name') {
                         site.username = value;
                     }
-                    else if (field === 'password') {
+                    else if (fieldLower === 'password') {
                         site.password = value;
                     }
                     else {
-                        if (site.note === '') {
-                            site.note += '\n';
+                        if (site.notes !== '') {
+                            site.notes += '\n';
                         }
 
-                        site.note += (field + ': ' + value);
+                        site.notes += (field + ': ' + value);
                     }
                 }
             }
@@ -2239,7 +2248,7 @@
                         }
 
                         var site = {
-                            favorite: value['Favorite'],
+                            favorite: value['Favorite'] && value['Favorite'] === '1' ? true : false,
                             uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
                             username: null,
                             password: null,
@@ -2247,14 +2256,16 @@
                             name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--'
                         };
 
-                        parseData(value['SecretData']);
-                        parseData(value['CustomData']);
+                        parseData(value['SecretData'], site);
+                        parseData(value['CustomData'], site);
 
                         if (site.notes === '') {
                             site.notes = null;
                         }
 
-                        sites.push(site);
+                        if (value['Secret Name']) {
+                            sites.push(site);
+                        }
 
                         if (addFolder) {
                             folders.push({
