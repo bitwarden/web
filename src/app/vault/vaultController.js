@@ -2,35 +2,35 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr, cipherService) {
-        $scope.sites = [];
+        $scope.logins = [];
         $scope.folders = [];
 
-        $scope.loadingSites = true;
-        apiService.sites.list({}, function (sites) {
-            $scope.loadingSites = false;
+        $scope.loadingLogins = true;
+        apiService.logins.list({}, function (logins) {
+            $scope.loadingLogins = false;
 
-            var decSites = [];
-            for (var i = 0; i < sites.Data.length; i++) {
-                var decSite = {
-                    id: sites.Data[i].Id,
-                    folderId: sites.Data[i].FolderId,
-                    favorite: sites.Data[i].Favorite
+            var decLogins = [];
+            for (var i = 0; i < logins.Data.length; i++) {
+                var decLogin = {
+                    id: logins.Data[i].Id,
+                    folderId: logins.Data[i].FolderId,
+                    favorite: logins.Data[i].Favorite
                 };
 
-                try { decSite.name = cryptoService.decrypt(sites.Data[i].Name); }
-                catch (err) { decSite.name = '[error: cannot decrypt]'; }
+                try { decLogin.name = cryptoService.decrypt(logins.Data[i].Name); }
+                catch (err) { decLogin.name = '[error: cannot decrypt]'; }
 
-                if (sites.Data[i].Username) {
-                    try { decSite.username = cryptoService.decrypt(sites.Data[i].Username); }
-                    catch (err) { decSite.username = '[error: cannot decrypt]'; }
+                if (logins.Data[i].Username) {
+                    try { decLogin.username = cryptoService.decrypt(logins.Data[i].Username); }
+                    catch (err) { decLogin.username = '[error: cannot decrypt]'; }
                 }
 
-                decSites.push(decSite);
+                decLogins.push(decLogin);
             }
 
-            $scope.sites = decSites;
+            $scope.logins = decLogins;
         }, function () {
-            $scope.loadingSites = false;
+            $scope.loadingLogins = false;
         });
 
         $scope.loadingFolders = true;
@@ -66,69 +66,69 @@
             return item.name.toLowerCase();
         };
 
-        $scope.editSite = function (site) {
+        $scope.editLogin = function (login) {
             var editModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultEditSite.html',
-                controller: 'vaultEditSiteController',
+                templateUrl: 'app/vault/views/vaultEditLogin.html',
+                controller: 'vaultEditLoginController',
                 resolve: {
-                    siteId: function () { return site.id; },
+                    loginId: function () { return login.id; },
                     folders: function () { return $scope.folders; }
                 }
             });
 
             editModel.result.then(function (returnVal) {
                 if (returnVal.action === 'edit') {
-                    var siteToUpdate = $filter('filter')($scope.sites, { id: returnVal.data.id }, true);
+                    var loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
 
-                    if (siteToUpdate && siteToUpdate.length > 0) {
-                        siteToUpdate[0].folderId = returnVal.data.folderId;
-                        siteToUpdate[0].name = returnVal.data.name;
-                        siteToUpdate[0].username = returnVal.data.username;
-                        siteToUpdate[0].favorite = returnVal.data.favorite;
+                    if (loginToUpdate && loginToUpdate.length > 0) {
+                        loginToUpdate[0].folderId = returnVal.data.folderId;
+                        loginToUpdate[0].name = returnVal.data.name;
+                        loginToUpdate[0].username = returnVal.data.username;
+                        loginToUpdate[0].favorite = returnVal.data.favorite;
                     }
                 }
                 else if (returnVal.action === 'delete') {
-                    var siteToDelete = $filter('filter')($scope.sites, { id: returnVal.data }, true);
-                    if (siteToDelete && siteToDelete.length > 0) {
-                        var index = $scope.sites.indexOf(siteToDelete[0]);
+                    var loginToDelete = $filter('filter')($scope.logins, { id: returnVal.data }, true);
+                    if (loginToDelete && loginToDelete.length > 0) {
+                        var index = $scope.logins.indexOf(loginToDelete[0]);
                         if (index > -1) {
-                            $scope.sites.splice(index, 1);
+                            $scope.logins.splice(index, 1);
                         }
                     }
                 }
             });
         };
 
-        $scope.$on('vaultAddSite', function (event, args) {
-            $scope.addSite();
+        $scope.$on('vaultAddLogin', function (event, args) {
+            $scope.addLogin();
         });
 
-        $scope.addSite = function (folder) {
+        $scope.addLogin = function (folder) {
             var addModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultAddSite.html',
-                controller: 'vaultAddSiteController',
+                templateUrl: 'app/vault/views/vaultAddLogin.html',
+                controller: 'vaultAddLoginController',
                 resolve: {
                     folders: function () { return $scope.folders; },
                     selectedFolder: function () { return folder; }
                 }
             });
 
-            addModel.result.then(function (addedSite) {
-                $scope.sites.push(addedSite);
+            addModel.result.then(function (addedLogin) {
+                $scope.logins.push(addedLogin);
             });
         };
 
-        $scope.deleteSite = function (site) {
-            if (!confirm('Are you sure you want to delete this site (' + site.name + ')?')) {
+        $scope.deleteLogin = function (login) {
+            if (!confirm('Are you sure you want to delete this login (' + login.name + ')?')) {
                 return;
             }
 
-            apiService.sites.del({ id: site.id }, function () {
-                var index = $scope.sites.indexOf(site);
+            apiService.logins.del({ id: login.id }, function () {
+                var index = $scope.logins.indexOf(login);
                 if (index > -1) {
-                    $scope.sites.splice(index, 1);
+                    $scope.logins.splice(index, 1);
                 }
             });
         };
@@ -187,7 +187,7 @@
                 return false;
             }
 
-            var sites = $filter('filter')($scope.sites, { folderId: folder.id });
-            return sites.length === 0;
+            var logins = $filter('filter')($scope.logins, { folderId: folder.id });
+            return logins.length === 0;
         };
     });

@@ -190,12 +190,12 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
+                        logins = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         var folderIndex = folders.length,
-                            siteIndex = sites.length,
+                            loginIndex = logins.length,
                             hasFolder = value.folder && value.folder !== '',
                             addFolder = hasFolder;
 
@@ -209,7 +209,7 @@
                             }
                         }
 
-                        sites.push({
+                        logins.push({
                             favorite: value.favorite !== null ? value.favorite : false,
                             uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
                             username: value.username && value.username !== '' ? value.username : null,
@@ -226,14 +226,14 @@
 
                         if (hasFolder) {
                             var relationship = {
-                                key: siteIndex,
+                                key: loginIndex,
                                 value: folderIndex
                             };
                             folderRelationships.push(relationship);
                         }
                     });
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
             });
         }
@@ -293,12 +293,12 @@
 
             function parseData(data) {
                 var folders = [],
-                    sites = [],
-                    siteRelationships = [];
+                    logins = [],
+                    loginRelationships = [];
 
                 angular.forEach(data, function (value, key) {
                     var folderIndex = folders.length,
-                        siteIndex = sites.length,
+                        loginIndex = logins.length,
                         hasFolder = value.grouping && value.grouping !== '' && value.grouping !== '(none)',
                         addFolder = hasFolder;
 
@@ -312,7 +312,7 @@
                         }
                     }
 
-                    sites.push({
+                    logins.push({
                         favorite: value.fav === '1',
                         uri: value.url && value.url !== '' ? trimUri(value.url) : null,
                         username: value.username && value.username !== '' ? value.username : null,
@@ -329,14 +329,14 @@
 
                     if (hasFolder) {
                         var relationship = {
-                            key: siteIndex,
+                            key: loginIndex,
                             value: folderIndex
                         };
-                        siteRelationships.push(relationship);
+                        loginRelationships.push(relationship);
                     }
                 });
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             }
         }
 
@@ -348,11 +348,11 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+                        logins = [],
+                        loginRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
-                        sites.push({
+                        logins.push({
                             favorite: false,
                             uri: value.URL && value.URL !== '' ? trimUri(value.URL) : null,
                             username: value.Login && value.Login !== '' ? value.Login : null,
@@ -362,15 +362,15 @@
                         });
                     });
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
 
         function importSafeInCloudXml(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [],
+                logins = [],
+                loginRelationships = [],
                 foldersIndex = [];
 
             var i = 0,
@@ -403,7 +403,7 @@
                                 continue;
                             }
 
-                            var site = {
+                            var login = {
                                 favorite: false,
                                 uri: null,
                                 username: null,
@@ -421,29 +421,29 @@
 
                                 if (text && text !== '') {
                                     if (type === 'login') {
-                                        site.username = text;
+                                        login.username = text;
                                     }
                                     else if (type === 'password') {
-                                        site.password = text;
+                                        login.password = text;
                                     }
                                     else if (type === 'notes') {
-                                        site.notes = text;
+                                        login.notes = text;
                                     }
-                                    else if (type === 'website') {
-                                        site.uri = trimUri(text);
+                                    else if (type === 'weblogin') {
+                                        login.uri = trimUri(text);
                                     }
                                 }
                             }
 
-                            sites.push(site);
+                            logins.push(login);
 
                             labels = card.find('> label_id');
                             if (labels.length) {
                                 var labelId = $(labels[0]).text();
                                 var folderIndex = foldersIndex[labelId];
                                 if (labelId !== null && labelId !== '' && folderIndex !== null) {
-                                    siteRelationships.push({
-                                        key: sites.length - 1,
+                                    loginRelationships.push({
+                                        key: logins.length - 1,
                                         value: folderIndex
                                     });
                                 }
@@ -451,7 +451,7 @@
                         }
                     }
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
                 else {
                     error();
@@ -470,7 +470,7 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
+                        logins = [],
                         folderRelationships = [];
 
                     var customFieldHeaders = [];
@@ -492,7 +492,7 @@
                         }
 
                         var folderIndex = folders.length,
-                            siteIndex = sites.length,
+                            loginIndex = logins.length,
                             hasFolder = value[1] && value[1] !== '',
                             addFolder = hasFolder;
 
@@ -506,7 +506,7 @@
                             }
                         }
 
-                        var site = {
+                        var login = {
                             favorite: false,
                             uri: null,
                             username: value[2] && value[2] !== '' ? value[2] : null,
@@ -524,19 +524,19 @@
 
                                 var cfHeader = customFieldHeaders[j - 4];
                                 if (cfHeader.toLowerCase() === 'url' || cfHeader.toLowerCase() === 'uri') {
-                                    site.uri = trimUri(cf);
+                                    login.uri = trimUri(cf);
                                 }
                                 else {
-                                    if (site.notes === null) {
-                                        site.notes = '';
+                                    if (login.notes === null) {
+                                        login.notes = '';
                                     }
 
-                                    site.notes += cfHeader + ': ' + cf + '\n';
+                                    login.notes += cfHeader + ': ' + cf + '\n';
                                 }
                             }
                         }
 
-                        sites.push(site);
+                        logins.push(login);
 
                         if (addFolder) {
                             folders.push({
@@ -546,21 +546,21 @@
 
                         if (hasFolder) {
                             folderRelationships.push({
-                                key: siteIndex,
+                                key: loginIndex,
                                 value: folderIndex
                             });
                         }
                     }
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
             });
         }
 
         function importKeePassXml(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [];
+                logins = [],
+                loginRelationships = [];
 
             var reader = new FileReader();
             reader.readAsText(file, 'utf-8');
@@ -573,7 +573,7 @@
                     var group = root.find('> Group');
                     if (group.length) {
                         traverse($(group[0]), true, '');
-                        success(folders, sites, siteRelationships);
+                        success(folders, logins, loginRelationships);
                     }
                 }
                 else {
@@ -604,8 +604,8 @@
                 if (entries.length) {
                     for (var i = 0; i < entries.length; i++) {
                         var entry = $(entries[i]);
-                        var siteIndex = sites.length;
-                        var site = {
+                        var loginIndex = logins.length;
+                        var login = {
                             favorite: false,
                             uri: null,
                             username: null,
@@ -626,37 +626,37 @@
 
                             switch (key) {
                                 case 'URL':
-                                    site.uri = trimUri(value);
+                                    login.uri = trimUri(value);
                                     break;
                                 case 'UserName':
-                                    site.username = value;
+                                    login.username = value;
                                     break;
                                 case 'Password':
-                                    site.password = value;
+                                    login.password = value;
                                     break;
                                 case 'Title':
-                                    site.name = value;
+                                    login.name = value;
                                     break;
                                 case 'Notes':
-                                    site.notes = site.notes === null ? value + '\n' : site.notes + value + '\n';
+                                    login.notes = login.notes === null ? value + '\n' : login.notes + value + '\n';
                                     break;
                                 default:
                                     // other custom fields
-                                    site.notes = site.notes === null ? key + ': ' + value + '\n'
-                                        : site.notes + key + ': ' + value + '\n';
+                                    login.notes = login.notes === null ? key + ': ' + value + '\n'
+                                        : login.notes + key + ': ' + value + '\n';
                                     break;
                             }
                         }
 
-                        if (site.name === null) {
-                            site.name = '--';
+                        if (login.name === null) {
+                            login.name = '--';
                         }
 
-                        sites.push(site);
+                        logins.push(login);
 
                         if (!isRootNode) {
-                            siteRelationships.push({
-                                key: siteIndex,
+                            loginRelationships.push({
+                                key: loginIndex,
                                 value: folderIndex
                             });
                         }
@@ -680,7 +680,7 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
+                        logins = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
@@ -691,7 +691,7 @@
                             value.Group.split('/').join(' > ') : null;
 
                         var folderIndex = folders.length,
-                            siteIndex = sites.length,
+                            loginIndex = logins.length,
                             hasFolder = groupName !== null,
                             addFolder = hasFolder,
                             i = 0;
@@ -706,7 +706,7 @@
                             }
                         }
 
-                        var site = {
+                        var login = {
                             favorite: false,
                             uri: value.URL && value.URL !== '' ? fixUri(value.URL) : null,
                             username: value.Username && value.Username !== '' ? value.Username : null,
@@ -716,7 +716,7 @@
                         };
 
                         if (value.Title) {
-                            sites.push(site);
+                            logins.push(login);
                         }
 
                         if (addFolder) {
@@ -727,46 +727,46 @@
 
                         if (hasFolder) {
                             var relationship = {
-                                key: siteIndex,
+                                key: loginIndex,
                                 value: folderIndex
                             };
                             folderRelationships.push(relationship);
                         }
                     });
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
             });
         }
 
         function import1Password41Pif(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [],
+                logins = [],
+                loginRelationships = [],
                 i = 0;
 
-            function parseFields(fields, site, designationKey, valueKey, nameKey) {
+            function parseFields(fields, login, designationKey, valueKey, nameKey) {
                 for (var j = 0; j < fields.length; j++) {
                     var field = fields[j];
                     if (!field[valueKey] || field[valueKey] === '') {
                         continue;
                     }
 
-                    if (!site.username && field[designationKey] && field[designationKey] === 'username') {
-                        site.username = field[valueKey];
+                    if (!login.username && field[designationKey] && field[designationKey] === 'username') {
+                        login.username = field[valueKey];
                     }
-                    else if (!site.password && field[designationKey] && field[designationKey] === 'password') {
-                        site.password = field[valueKey];
+                    else if (!login.password && field[designationKey] && field[designationKey] === 'password') {
+                        login.password = field[valueKey];
                     }
                     else if (field[nameKey] && field[valueKey]) {
-                        if (site.notes === null) {
-                            site.notes = '';
+                        if (login.notes === null) {
+                            login.notes = '';
                         }
                         else {
-                            site.notes += '\n';
+                            login.notes += '\n';
                         }
 
-                        site.notes += (field[nameKey] + ': ' +
+                        login.notes += (field[nameKey] + ': ' +
                             field[valueKey].split('\\r\\n').join('\n').split('\\n').join('\n'));
                     }
                 }
@@ -785,7 +785,7 @@
                     }
 
                     var item = JSON.parse(line);
-                    var site = {
+                    var login = {
                         favorite: item.openContents && item.openContents.faveIndex ? true : false,
                         uri: item.location && item.location !== '' ? fixUri(item.location) : null,
                         username: null,
@@ -796,27 +796,27 @@
 
                     if (item.secureContents) {
                         if (item.secureContents.notesPlain && item.secureContents.notesPlain !== '') {
-                            site.notes = item.secureContents.notesPlain
+                            login.notes = item.secureContents.notesPlain
                                 .split('\\r\\n').join('\n').split('\\n').join('\n');
                         }
 
                         if (item.secureContents.fields) {
-                            parseFields(item.secureContents.fields, site, 'designation', 'value', 'name');
+                            parseFields(item.secureContents.fields, login, 'designation', 'value', 'name');
                         }
 
                         if (item.secureContents.sections) {
                             for (var j = 0; j < item.secureContents.sections.length; j++) {
                                 if (item.secureContents.sections[j].fields) {
-                                    parseFields(item.secureContents.sections[j].fields, site, 'n', 'v', 't');
+                                    parseFields(item.secureContents.sections[j].fields, login, 'n', 'v', 't');
                                 }
                             }
                         }
                     }
 
-                    sites.push(site);
+                    logins.push(login);
                 }
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             };
 
             reader.onerror = function (evt) {
@@ -826,8 +826,8 @@
 
         function import1Password6Csv(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [];
+                logins = [],
+                loginRelationships = [];
 
             Papa.parse(file, {
                 encoding: 'UTF-8',
@@ -841,7 +841,7 @@
                             continue;
                         }
 
-                        var site = {
+                        var login = {
                             favorite: false,
                             uri: null,
                             username: null,
@@ -856,45 +856,45 @@
                                     continue;
                                 }
 
-                                if (!site.password && property === 'password') {
-                                    site.password = value[property];
+                                if (!login.password && property === 'password') {
+                                    login.password = value[property];
                                 }
-                                else if (!site.username && property === 'username') {
-                                    site.username = value[property];
+                                else if (!login.username && property === 'username') {
+                                    login.username = value[property];
                                 }
-                                else if (!site.uri && property === 'urls') {
+                                else if (!login.uri && property === 'urls') {
                                     var urls = value[property].split(/(?:\r\n|\r|\n)/);
-                                    site.uri = fixUri(urls[0]);
+                                    login.uri = fixUri(urls[0]);
 
                                     for (var j = 1; j < urls.length; j++) {
-                                        if (site.notes !== '') {
-                                            site.notes += '\n';
+                                        if (login.notes !== '') {
+                                            login.notes += '\n';
                                         }
 
-                                        site.notes += ('url ' + (j + 1) + ': ' + urls[j]);
+                                        login.notes += ('url ' + (j + 1) + ': ' + urls[j]);
                                     }
                                 }
                                 else if (property !== 'ainfo' && property !== 'autosubmit' && property !== 'notesPlain' &&
                                     property !== 'ps' && property !== 'scope' && property !== 'tags' && property !== 'title' &&
                                     property !== 'uuid' && !property.startsWith('section:')) {
 
-                                    if (site.notes !== '') {
-                                        site.notes += '\n';
+                                    if (login.notes !== '') {
+                                        login.notes += '\n';
                                     }
 
-                                    site.notes += (property + ': ' + value[property]);
+                                    login.notes += (property + ': ' + value[property]);
                                 }
                             }
                         }
 
-                        if (site.notes === '') {
-                            site.notes = null;
+                        if (login.notes === '') {
+                            login.notes = null;
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
@@ -907,11 +907,11 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+                        logins = [],
+                        loginRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
-                        sites.push({
+                        logins.push({
                             favorite: false,
                             uri: value.url && value.url !== '' ? trimUri(value.url) : null,
                             username: value.username && value.username !== '' ? value.username : null,
@@ -921,15 +921,15 @@
                         });
                     });
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
 
         function importFirefoxPasswordExporterCsvXml(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [];
+                logins = [],
+                loginRelationships = [];
 
             function getNameFromHost(host) {
                 var name = '--';
@@ -967,7 +967,7 @@
                             user = entry.attr('user'),
                             password = entry.attr('password');
 
-                        sites.push({
+                        logins.push({
                             favorite: false,
                             uri: host && host !== '' ? trimUri(host) : null,
                             username: user && user !== '' ? user : null,
@@ -977,7 +977,7 @@
                         });
                     }
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 };
 
                 reader.onerror = function (evt) {
@@ -999,7 +999,7 @@
                 //        parseCsvErrors(results);
 
                 //        angular.forEach(results.data, function (value, key) {
-                //            sites.push({
+                //            logins.push({
                 //                favorite: false,
                 //                uri: value.hostname && value.hostname !== '' ? trimUri(value.hostname) : null,
                 //                username: value.username && value.username !== '' ? value.username : null,
@@ -1009,7 +1009,7 @@
                 //            });
                 //        });
 
-                //        success(folders, sites, siteRelationships);
+                //        success(folders, logins, loginRelationships);
                 //    }
                 //});
             }
@@ -1022,12 +1022,12 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+                        logins = [],
+                        loginRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (value.length === 5) {
-                            sites.push({
+                            logins.push({
                                 favorite: false,
                                 uri: value[3] && value[3] !== '' ? trimUri(value[3]) : null,
                                 username: value[1] && value[1] !== '' ? value[1] : null,
@@ -1038,7 +1038,7 @@
                         }
                     });
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
@@ -1050,13 +1050,13 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
+                        logins = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (value.length >= 6) {
                             var folderIndex = folders.length,
-                                siteIndex = sites.length,
+                                loginIndex = logins.length,
                                 hasFolder = value[0] && value[0] !== '',
                                 addFolder = hasFolder,
                                 i = 0;
@@ -1071,7 +1071,7 @@
                                 }
                             }
 
-                            var site = {
+                            var login = {
                                 favorite: false,
                                 uri: value[4] && value[4] !== '' ? trimUri(value[4]) : null,
                                 username: value[2] && value[2] !== '' ? value[2] : null,
@@ -1083,21 +1083,21 @@
                             if (value.length > 6) {
                                 // we have some custom fields. add them to notes.
 
-                                if (site.notes === null) {
-                                    site.notes = '';
+                                if (login.notes === null) {
+                                    login.notes = '';
                                 }
                                 else {
-                                    site.notes += '\n';
+                                    login.notes += '\n';
                                 }
 
                                 for (i = 6; i < value.length; i = i + 2) {
                                     var cfName = value[i];
                                     var cfValue = value[i + 1];
-                                    site.notes += (cfName + ': ' + cfValue + '\n');
+                                    login.notes += (cfName + ': ' + cfValue + '\n');
                                 }
                             }
 
-                            sites.push(site);
+                            logins.push(login);
 
                             if (addFolder) {
                                 folders.push({
@@ -1107,7 +1107,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: siteIndex,
+                                    key: loginIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1115,14 +1115,14 @@
                         }
                     });
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
             });
         }
 
         function importPasswordDragonXml(file, success, error) {
             var folders = [],
-                sites = [],
+                logins = [],
                 folderRelationships = [],
                 foldersIndex = [],
                 j = 0;
@@ -1155,7 +1155,7 @@
                                 categoryText = category ? category.text() : null;
 
                             var folderIndex = folders.length,
-                                siteIndex = sites.length,
+                                loginIndex = logins.length,
                                 hasFolder = categoryText && categoryText !== '' && categoryText !== 'Unfiled',
                                 addFolder = hasFolder;
 
@@ -1169,7 +1169,7 @@
                                 }
                             }
 
-                            var site = {
+                            var login = {
                                 favorite: false,
                                 uri: url && url.text() !== '' ? trimUri(url.text()) : null,
                                 username: userId && userId.text() !== '' ? userId.text() : null,
@@ -1198,18 +1198,18 @@
                                         continue;
                                     }
 
-                                    if (site.notes === null) {
-                                        site.notes = '';
+                                    if (login.notes === null) {
+                                        login.notes = '';
                                     }
                                     else {
-                                        site.notes += '\n';
+                                        login.notes += '\n';
                                     }
 
-                                    site.notes += (attrName + ': ' + attrValue);
+                                    login.notes += (attrName + ': ' + attrValue);
                                 }
                             }
 
-                            sites.push(site);
+                            logins.push(login);
 
                             if (addFolder) {
                                 folders.push({
@@ -1219,7 +1219,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: siteIndex,
+                                    key: loginIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1227,7 +1227,7 @@
                         }
                     }
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
                 else {
                     error();
@@ -1246,8 +1246,8 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+                        logins = [],
+                        loginRelationships = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var row = results.data[j];
@@ -1259,7 +1259,7 @@
                         }
 
                         var note = row[row.length - 1];
-                        var site = {
+                        var login = {
                             name: row[0],
                             favorite: false,
                             uri: null,
@@ -1278,34 +1278,34 @@
                                 var field = row[i + 1];
                                 var fieldLower = field.toLowerCase();
 
-                                if (fieldLower === 'url' && !site.uri) {
-                                    site.uri = trimUri(value);
+                                if (fieldLower === 'url' && !login.uri) {
+                                    login.uri = trimUri(value);
                                 }
-                                else if ((fieldLower === 'username' || fieldLower === 'email') && !site.username) {
-                                    site.username = value;
+                                else if ((fieldLower === 'username' || fieldLower === 'email') && !login.username) {
+                                    login.username = value;
                                 }
-                                else if (fieldLower === 'password' && !site.password) {
-                                    site.password = value;
+                                else if (fieldLower === 'password' && !login.password) {
+                                    login.password = value;
                                 }
                                 else {
                                     // other custom fields
-                                    site.notes = site.notes === null ? field + ': ' + value
-                                        : site.notes + '\n' + field + ': ' + value;
+                                    login.notes = login.notes === null ? field + ': ' + value
+                                        : login.notes + '\n' + field + ': ' + value;
                                 }
                             }
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
 
         function importPasswordSafeXml(file, success, error) {
             var folders = [],
-                sites = [],
+                logins = [],
                 folderRelationships = [],
                 foldersIndex = [],
                 j = 0;
@@ -1344,7 +1344,7 @@
                                 groupText = group ? group.text().split('.').join(' > ') : null;
 
                             var folderIndex = folders.length,
-                                siteIndex = sites.length,
+                                loginIndex = logins.length,
                                 hasFolder = groupText && groupText !== '',
                                 addFolder = hasFolder;
 
@@ -1358,7 +1358,7 @@
                                 }
                             }
 
-                            var site = {
+                            var login = {
                                 favorite: false,
                                 uri: url && url.text() !== '' ? trimUri(url.text()) : null,
                                 username: username && username.text() !== '' ? username.text() : null,
@@ -1367,15 +1367,15 @@
                                 name: title && title.text() !== '' ? title.text() : '--',
                             };
 
-                            if (!site.username && emailText && emailText !== '') {
-                                site.username = emailText;
+                            if (!login.username && emailText && emailText !== '') {
+                                login.username = emailText;
                             }
                             else if (emailText && emailText !== '') {
-                                site.notes = site.notes === null ? 'Email: ' + emailText
-                                    : site.notes + '\n' + 'Email: ' + emailText;
+                                login.notes = login.notes === null ? 'Email: ' + emailText
+                                    : login.notes + '\n' + 'Email: ' + emailText;
                             }
 
-                            sites.push(site);
+                            logins.push(login);
 
                             if (addFolder) {
                                 folders.push({
@@ -1385,7 +1385,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: siteIndex,
+                                    key: loginIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1393,7 +1393,7 @@
                         }
                     }
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
                 else {
                     error();
@@ -1412,8 +1412,8 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+                        logins = [],
+                        loginRelationships = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var skip = false;
@@ -1422,7 +1422,7 @@
                             continue;
                         }
 
-                        var site = {
+                        var login = {
                             name: row[0] && row[0] !== '' ? row[0] : '--',
                             favorite: false,
                             uri: null,
@@ -1432,58 +1432,58 @@
                         };
 
                         if (row.length === 2) {
-                            site.uri = fixUri(row[1]);
+                            login.uri = fixUri(row[1]);
                         }
                         else if (row.length === 3) {
-                            site.uri = fixUri(row[1]);
-                            site.username = row[2];
+                            login.uri = fixUri(row[1]);
+                            login.username = row[2];
                         }
                         else if (row.length === 4) {
                             if (row[2] === '' && row[3] === '') {
-                                site.username = row[1];
-                                site.notes = row[2] + '\n' + row[3];
+                                login.username = row[1];
+                                login.notes = row[2] + '\n' + row[3];
                             }
                             else {
-                                site.username = row[2];
-                                site.notes = row[1] + '\n' + row[3];
+                                login.username = row[2];
+                                login.notes = row[1] + '\n' + row[3];
                             }
                         }
                         else if (row.length === 5) {
-                            site.uri = fixUri(row[1]);
-                            site.username = row[2];
-                            site.password = row[3];
-                            site.notes = row[4];
+                            login.uri = fixUri(row[1]);
+                            login.username = row[2];
+                            login.password = row[3];
+                            login.notes = row[4];
                         }
                         else if (row.length === 6) {
                             if (row[2] === '') {
-                                site.username = row[3];
-                                site.notes = row[5];
+                                login.username = row[3];
+                                login.notes = row[5];
                             }
                             else {
-                                site.username = row[2];
-                                site.notes = row[3] + '\n' + row[5];
+                                login.username = row[2];
+                                login.notes = row[3] + '\n' + row[5];
                             }
 
-                            site.uri = fixUri(row[1]);
-                            site.password = row[4];
+                            login.uri = fixUri(row[1]);
+                            login.password = row[4];
                         }
                         else if (row.length === 7) {
                             if (row[2] === '') {
-                                site.username = row[3];
-                                site.notes = row[4] + '\n' + row[6];
+                                login.username = row[3];
+                                login.notes = row[4] + '\n' + row[6];
                             }
                             else {
-                                site.username = row[2];
-                                site.notes = row[3] + '\n' + row[4] + '\n' + row[6];
+                                login.username = row[2];
+                                login.notes = row[3] + '\n' + row[4] + '\n' + row[6];
                             }
 
-                            site.uri = fixUri(row[1]);
-                            site.password = row[5];
+                            login.uri = fixUri(row[1]);
+                            login.password = row[5];
                         }
                         else {
-                            site.notes = '';
+                            login.notes = '';
                             for (var i = 1; i < row.length; i++) {
-                                site.notes = site.notes + row[i] + '\n';
+                                login.notes = login.notes + row[i] + '\n';
                                 if (row[i] === 'NO_TYPE') {
                                     skip = true;
                                     break;
@@ -1495,30 +1495,30 @@
                             continue;
                         }
 
-                        if (site.username === '') {
-                            site.username = null;
+                        if (login.username === '') {
+                            login.username = null;
                         }
-                        if (site.password === '') {
-                            site.password = null;
+                        if (login.password === '') {
+                            login.password = null;
                         }
-                        if (site.notes === '') {
-                            site.notes = null;
+                        if (login.notes === '') {
+                            login.notes = null;
                         }
-                        if (site.uri === '') {
-                            site.uri = null;
+                        if (login.uri === '') {
+                            login.uri = null;
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
 
         function importStickyPasswordXml(file, success, error) {
             var folders = [],
-                sites = [],
+                logins = [],
                 folderRelationships = [],
                 foldersIndex = [],
                 j = 0;
@@ -1544,14 +1544,14 @@
 
                 var database = xml.find('root > Database');
                 if (database.length) {
-                    var logins = database.find('> Logins > Login');
-                    if (logins.length) {
-                        for (var i = 0; i < logins.length; i++) {
-                            var login = $(logins[i]);
+                    var loginNodes = database.find('> Logins > Login');
+                    if (loginNodes.length) {
+                        for (var i = 0; i < loginNodes.length; i++) {
+                            var loginNode = $(loginNodes[i]);
 
-                            var usernameText = login.attr('Name'),
-                                passwordText = login.attr('Password'),
-                                accountId = login.attr('ID'),
+                            var usernameText = loginNode.attr('Name'),
+                                passwordText = loginNode.attr('Password'),
+                                accountId = loginNode.attr('ID'),
                                 titleText = null,
                                 linkText = null,
                                 notesText = null,
@@ -1580,7 +1580,7 @@
                             }
 
                             var folderIndex = folders.length,
-                                siteIndex = sites.length,
+                                loginIndex = logins.length,
                                 hasFolder = groupText && groupText !== '',
                                 addFolder = hasFolder;
 
@@ -1594,7 +1594,7 @@
                                 }
                             }
 
-                            var site = {
+                            var login = {
                                 favorite: false,
                                 uri: linkText && linkText !== '' ? trimUri(linkText) : null,
                                 username: usernameText && usernameText !== '' ? usernameText : null,
@@ -1603,7 +1603,7 @@
                                 name: titleText && titleText !== '' ? titleText : '--',
                             };
 
-                            sites.push(site);
+                            logins.push(login);
 
                             if (addFolder) {
                                 folders.push({
@@ -1613,7 +1613,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: siteIndex,
+                                    key: loginIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1621,7 +1621,7 @@
                         }
                     }
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
                 else {
                     error();
@@ -1640,13 +1640,13 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
+                        logins = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (value.length >= 3) {
                             var folderIndex = folders.length,
-                                siteIndex = sites.length,
+                                loginIndex = logins.length,
                                 hasFolder = value[0] && value[0] !== '' && value[0] !== 'Unassigned',
                                 addFolder = hasFolder,
                                 i = 0;
@@ -1661,7 +1661,7 @@
                                 }
                             }
 
-                            var site = {
+                            var login = {
                                 favorite: false,
                                 uri: null,
                                 username: null,
@@ -1671,32 +1671,32 @@
                             };
 
                             if (value[1] === 'Web Logins') {
-                                site.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
-                                site.username = value[5] && value[5] !== '' ? value[5] : null;
-                                site.password = value[6] && value[6] !== '' ? value[6] : null;
-                                site.notes = value[3] && value[3] !== '' ? value[3].split('\\n').join('\n') : null;
+                                login.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
+                                login.username = value[5] && value[5] !== '' ? value[5] : null;
+                                login.password = value[6] && value[6] !== '' ? value[6] : null;
+                                login.notes = value[3] && value[3] !== '' ? value[3].split('\\n').join('\n') : null;
                             }
                             else if (value.length > 3) {
                                 for (var j = 3; j < value.length; j++) {
                                     if (value[j] && value[j] !== '') {
-                                        if (site.notes !== '') {
-                                            site.notes = site.notes + '\n';
+                                        if (login.notes !== '') {
+                                            login.notes = login.notes + '\n';
                                         }
 
-                                        site.notes = site.notes + value[j];
+                                        login.notes = login.notes + value[j];
                                     }
                                 }
                             }
 
                             if (value[1] && value[1] !== '' && value[1] !== 'Web Logins') {
-                                site.name = value[1] + ': ' + site.name;
+                                login.name = value[1] + ': ' + login.name;
                             }
 
-                            if (site.notes === '') {
-                                site.notes = null;
+                            if (login.notes === '') {
+                                login.notes = null;
                             }
 
-                            sites.push(site);
+                            logins.push(login);
 
                             if (addFolder) {
                                 folders.push({
@@ -1706,7 +1706,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: siteIndex,
+                                    key: loginIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1714,15 +1714,15 @@
                         }
                     });
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
             });
         }
 
         function importTrueKeyJson(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [],
+                logins = [],
+                loginRelationships = [],
                 i = 0;
 
             var reader = new FileReader();
@@ -1734,7 +1734,7 @@
                     if (fileJson.logins) {
                         for (i = 0; i < fileJson.logins.length; i++) {
                             var login = fileJson.logins[i];
-                            sites.push({
+                            logins.push({
                                 favorite: login.favorite && login.favorite === true,
                                 uri: login.url && login.url !== '' ? trimUri(login.url) : null,
                                 username: login.login && login.login !== '' ? login.login : null,
@@ -1786,12 +1786,12 @@
                                 note.notes = note.notes.split('\\n').join('\n');
                             }
 
-                            sites.push(note);
+                            logins.push(note);
                         }
                     }
                 }
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             };
 
             reader.onerror = function (evt) {
@@ -1801,8 +1801,8 @@
 
         function importClipperzHtml(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [];
+                logins = [],
+                loginRelationships = [];
 
             var reader = new FileReader();
             reader.readAsText(file, 'utf-8');
@@ -1816,7 +1816,7 @@
                     for (var i = 0; i < entries.length; i++) {
                         var entry = entries[i];
 
-                        var site = {
+                        var login = {
                             favorite: false,
                             uri: null,
                             username: null,
@@ -1826,7 +1826,7 @@
                         };
 
                         if (entry.data && entry.data.notes && entry.data.notes !== '') {
-                            site.notes = entry.data.notes.split('\\n').join('\n');
+                            login.notes = entry.data.notes.split('\\n').join('\n');
                         }
 
                         if (entry.currentVersion && entry.currentVersion.fields) {
@@ -1837,30 +1837,30 @@
 
                                     switch (actionType) {
                                         case 'password':
-                                            site.password = field.value;
+                                            login.password = field.value;
                                             break;
                                         case 'email':
                                         case 'username':
                                         case 'user':
                                         case 'name':
-                                            site.username = field.value;
+                                            login.username = field.value;
                                             break;
                                         case 'url':
-                                            site.uri = trimUri(field.value);
+                                            login.uri = trimUri(field.value);
                                             break;
                                         case 'none':
                                         default:
-                                            if (!site.username && isField(field.label, _usernameFieldNames)) {
-                                                site.username = field.value;
+                                            if (!login.username && isField(field.label, _usernameFieldNames)) {
+                                                login.username = field.value;
                                             }
-                                            else if (!site.password && isField(field.label, _passwordFieldNames)) {
-                                                site.password = field.value;
+                                            else if (!login.password && isField(field.label, _passwordFieldNames)) {
+                                                login.password = field.value;
                                             }
                                             else {
-                                                if (site.notes && site.notes !== '') {
-                                                    site.notes = site.notes + '\n';
+                                                if (login.notes && login.notes !== '') {
+                                                    login.notes = login.notes + '\n';
                                                 }
-                                                site.notes = site.notes + field.label + ': ' + field.value;
+                                                login.notes = login.notes + field.label + ': ' + field.value;
                                             }
                                             break;
                                     }
@@ -1868,15 +1868,15 @@
                             }
                         }
 
-                        if (site.notes === '') {
-                            site.notes = null;
+                        if (login.notes === '') {
+                            login.notes = null;
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
                 }
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             };
 
             reader.onerror = function (evt) {
@@ -1886,8 +1886,8 @@
 
         function importAviraJson(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [],
+                logins = [],
+                loginRelationships = [],
                 i = 0;
 
             var reader = new FileReader();
@@ -1899,7 +1899,7 @@
                     if (fileJson.accounts) {
                         for (i = 0; i < fileJson.accounts.length; i++) {
                             var account = fileJson.accounts[i];
-                            var site = {
+                            var login = {
                                 favorite: account.is_favorite && account.is_favorite === true,
                                 uri: account.domain && account.domain !== '' ? fixUri(account.domain) : null,
                                 username: account.username && account.username !== '' ? account.username : null,
@@ -1909,24 +1909,24 @@
                             };
 
                             if (account.email && account.email !== '') {
-                                if (!site.username || site.username === '') {
-                                    site.username = account.email;
+                                if (!login.username || login.username === '') {
+                                    login.username = account.email;
                                 }
                                 else {
-                                    site.notes = account.email;
+                                    login.notes = account.email;
                                 }
                             }
 
-                            if (!site.name || site.name === '') {
-                                site.name = '--';
+                            if (!login.name || login.name === '') {
+                                login.name = '--';
                             }
 
-                            sites.push(site);
+                            logins.push(login);
                         }
                     }
                 }
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             };
 
             reader.onerror = function (evt) {
@@ -1936,8 +1936,8 @@
 
         function importRoboFormHtml(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [];
+                logins = [],
+                loginRelationships = [];
 
             var reader = new FileReader();
             reader.readAsText(file, 'utf-8');
@@ -1947,7 +1947,7 @@
                 if (outterTables.length) {
                     for (var i = 0; i < outterTables.length; i++) {
                         var outterTable = $(outterTables[i]);
-                        var site = {
+                        var login = {
                             favorite: false,
                             uri: null,
                             username: null,
@@ -1958,7 +1958,7 @@
 
                         var url = outterTable.find('.subcaption').text();
                         if (url && url !== '') {
-                            site.uri = fixUri(url);
+                            login.uri = fixUri(url);
                         }
 
                         var fields = [];
@@ -1975,34 +1975,34 @@
                                 var field = fields[j];
                                 var fieldValue = fields[j + 1];
 
-                                if (!site.password && isField(field.replace(':', ''), _passwordFieldNames)) {
-                                    site.password = fieldValue;
+                                if (!login.password && isField(field.replace(':', ''), _passwordFieldNames)) {
+                                    login.password = fieldValue;
                                 }
-                                else if (!site.username && isField(field.replace(':', ''), _usernameFieldNames)) {
-                                    site.username = fieldValue;
+                                else if (!login.username && isField(field.replace(':', ''), _usernameFieldNames)) {
+                                    login.username = fieldValue;
                                 }
                                 else {
-                                    if (site.notes !== '') {
-                                        site.notes = site.notes + '\n';
+                                    if (login.notes !== '') {
+                                        login.notes = login.notes + '\n';
                                     }
 
-                                    site.notes = site.notes + field + ' ' + fieldValue;
+                                    login.notes = login.notes + field + ' ' + fieldValue;
                                 }
                             }
 
-                        if (!site.notes || site.notes === '') {
-                            site.notes = null;
+                        if (!login.notes || login.notes === '') {
+                            login.notes = null;
                         }
 
-                        if (!site.name || site.name === '') {
-                            site.name = '--';
+                        if (!login.name || login.name === '') {
+                            login.name = '--';
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
                 }
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             };
 
             reader.onerror = function (evt) {
@@ -2018,8 +2018,8 @@
             }
 
             var folders = [],
-                sites = [],
-                siteRelationships = [];
+                logins = [],
+                loginRelationships = [];
 
             Papa.parse(file, {
                 header: true,
@@ -2028,7 +2028,7 @@
                     parseCsvErrors(results);
 
                     angular.forEach(results.data, function (value, key) {
-                        sites.push({
+                        logins.push({
                             favorite: false,
                             uri: value.url && value.url !== '' ? trimUri(value.url) : null,
                             username: value.username && value.username !== '' ? value.username : null,
@@ -2038,7 +2038,7 @@
                         });
                     });
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
@@ -2050,8 +2050,8 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
-                        siteRelationships = [];
+                        logins = [],
+                        loginRelationships = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var row = results.data[j];
@@ -2060,7 +2060,7 @@
                         }
 
                         var note = row[row.length - 1];
-                        var site = {
+                        var login = {
                             name: row[0],
                             favorite: false,
                             uri: null,
@@ -2079,41 +2079,41 @@
 
                                 var fieldLower = field.toLowerCase();
 
-                                if (!site.uri && isField(field, _uriFieldNames)) {
-                                    site.uri = fixUri(value);
+                                if (!login.uri && isField(field, _uriFieldNames)) {
+                                    login.uri = fixUri(value);
                                 }
-                                else if (!site.username && isField(field, _usernameFieldNames)) {
-                                    site.username = value;
+                                else if (!login.username && isField(field, _usernameFieldNames)) {
+                                    login.username = value;
                                 }
-                                else if (!site.password && isField(field, _passwordFieldNames)) {
-                                    site.password = value;
+                                else if (!login.password && isField(field, _passwordFieldNames)) {
+                                    login.password = value;
                                 }
                                 else {
-                                    if (!site.notes) {
-                                        site.notes = '';
+                                    if (!login.notes) {
+                                        login.notes = '';
                                     }
                                     else {
-                                        site.notes += '\n';
+                                        login.notes += '\n';
                                     }
 
                                     // other custom fields
-                                    site.notes += (field + ': ' + value);
+                                    login.notes += (field + ': ' + value);
                                 }
                             }
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
 
-                    success(folders, sites, siteRelationships);
+                    success(folders, logins, loginRelationships);
                 }
             });
         }
 
         function importPasswordBossJson(file, success, error) {
             var folders = [],
-                sites = [],
-                siteRelationships = [],
+                logins = [],
+                loginRelationships = [],
                 i = 0;
 
             var reader = new FileReader();
@@ -2125,7 +2125,7 @@
                     for (i = 0; i < fileJson.length; i++) {
                         var item = fileJson[i];
 
-                        var site = {
+                        var login = {
                             favorite: false,
                             uri: item.login_url && item.login_url !== '' ? fixUri(item.login_url) : null,
                             username: null,
@@ -2139,7 +2139,7 @@
                         }
 
                         if (item.identifiers.notes && item.identifiers.notes !== '') {
-                            site.notes = item.identifiers.notes.split('\\r\\n').join('\n').split('\\n').join('\n');
+                            login.notes = item.identifiers.notes.split('\\r\\n').join('\n').split('\\n').join('\n');
                         }
 
                         for (var property in item.identifiers) {
@@ -2150,30 +2150,30 @@
                                 }
 
                                 if (property === 'username') {
-                                    site.username = value;
+                                    login.username = value;
                                 }
                                 else if (property === 'password') {
-                                    site.password = value;
+                                    login.password = value;
                                 }
                                 else {
-                                    if (site.notes !== '') {
-                                        site.notes += '\n';
+                                    if (login.notes !== '') {
+                                        login.notes += '\n';
                                     }
 
-                                    site.notes += (property + ': ' + value);
+                                    login.notes += (property + ': ' + value);
                                 }
                             }
                         }
 
-                        if (site.notes === '') {
-                            site.notes = null;
+                        if (login.notes === '') {
+                            login.notes = null;
                         }
 
-                        sites.push(site);
+                        logins.push(login);
                     }
                 }
 
-                success(folders, sites, siteRelationships);
+                success(folders, logins, loginRelationships);
             };
 
             reader.onerror = function (evt) {
@@ -2182,7 +2182,7 @@
         }
 
         function importZohoVaultCsv(file, success, error) {
-            function parseData(data, site) {
+            function parseData(data, login) {
                 if (!data || data === '') {
                     return;
                 }
@@ -2203,17 +2203,17 @@
 
                     var fieldLower = field.toLowerCase();
                     if (fieldLower === 'user name') {
-                        site.username = value;
+                        login.username = value;
                     }
                     else if (fieldLower === 'password') {
-                        site.password = value;
+                        login.password = value;
                     }
                     else {
-                        if (site.notes !== '') {
-                            site.notes += '\n';
+                        if (login.notes !== '') {
+                            login.notes += '\n';
                         }
 
-                        site.notes += (field + ': ' + value);
+                        login.notes += (field + ': ' + value);
                     }
                 }
             }
@@ -2225,14 +2225,14 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        sites = [],
+                        logins = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         var chamber = value['ChamberName'];
 
                         var folderIndex = folders.length,
-                            siteIndex = sites.length,
+                            loginIndex = logins.length,
                             hasFolder = chamber && chamber !== '',
                             addFolder = hasFolder,
                             i = 0;
@@ -2247,7 +2247,7 @@
                             }
                         }
 
-                        var site = {
+                        var login = {
                             favorite: value['Favorite'] && value['Favorite'] === '1' ? true : false,
                             uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
                             username: null,
@@ -2256,15 +2256,15 @@
                             name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--'
                         };
 
-                        parseData(value['SecretData'], site);
-                        parseData(value['CustomData'], site);
+                        parseData(value['SecretData'], login);
+                        parseData(value['CustomData'], login);
 
-                        if (site.notes === '') {
-                            site.notes = null;
+                        if (login.notes === '') {
+                            login.notes = null;
                         }
 
                         if (value['Secret Name']) {
-                            sites.push(site);
+                            logins.push(login);
                         }
 
                         if (addFolder) {
@@ -2275,14 +2275,14 @@
 
                         if (hasFolder) {
                             var relationship = {
-                                key: siteIndex,
+                                key: loginIndex,
                                 value: folderIndex
                             };
                             folderRelationships.push(relationship);
                         }
                     });
 
-                    success(folders, sites, folderRelationships);
+                    success(folders, logins, folderRelationships);
                 }
             });
         }

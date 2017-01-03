@@ -1,7 +1,7 @@
 ﻿<section class="content-header">
     <h1>
         My Vault
-        <small>{{folders.length > 0 ? folders.length - 1 : 0}} folders, {{sites.length}} sites</small>
+        <small>{{folders.length > 0 ? folders.length - 1 : 0}} folders, {{logins.length}} logins</small>
     </h1>
 </section>
 <section class="content">
@@ -10,9 +10,9 @@
     </div>
     <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}} <small>{{folderSites.length}} sites</small></h3>
+            <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}} <small>{{folderLogins.length}} logins</small></h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" ng-click="addSite(folder)" uib-tooltip="Add Site">
+                <button type="button" class="btn btn-box-tool" ng-click="addLogin(folder)" uib-tooltip="Add Login">
                     <i class="fa fa-plus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" ng-click="deleteFolder(folder)" ng-show="canDeleteFolder(folder)" uib-tooltip="Delete">
@@ -26,31 +26,31 @@
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': folderSites.length}">
-            <div ng-show="loadingSites && !folderSites.length">
-                <p>Loading sites...</p>
+        <div class="box-body" ng-class="{'no-padding': folderLogins.length}">
+            <div ng-show="loadingLogins && !folderLogins.length">
+                <p>Loading logins...</p>
             </div>
-            <div ng-show="!loadingSites && !folderSites.length">
-                <p>No sites in this folder.</p>
-                <button type="button" ng-click="addSite(folder)" class="btn btn-default btn-flat">Add a Site</button>
+            <div ng-show="!loadingLogins && !folderLogins.length">
+                <p>No logins in this folder.</p>
+                <button type="button" ng-click="addLogin(folder)" class="btn btn-default btn-flat">Add a Login</button>
             </div>
-            <div class="table-responsive" ng-show="folderSites.length">
+            <div class="table-responsive" ng-show="folderLogins.length">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th style="width: 75px; min-width: 75px;"></th>
-                            <th>Site</th>
+                            <th>Name</th>
                             <th style="width: 300px;">Username</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="site in folderSites = (sites | filter: { folderId: folder.id } | filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
+                        <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } | filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
                             <td>
-                                <button type="button" ng-click="deleteSite(site)" class="btn btn-link btn-table" uib-tooltip="Delete"><i class="fa fa-lg fa-trash"></i></button>
-                                <button type="button" ng-click="editSite(site)" class="btn btn-link btn-table" uib-tooltip="View/Edit"><i class="fa fa-lg fa-pencil"></i></button>
+                                <button type="button" ng-click="deleteLogin(login)" class="btn btn-link btn-table" uib-tooltip="Delete"><i class="fa fa-lg fa-trash"></i></button>
+                                <button type="button" ng-click="editLogin(login)" class="btn btn-link btn-table" uib-tooltip="View/Edit"><i class="fa fa-lg fa-pencil"></i></button>
                             </td>
-                            <td>{{site.name}} <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="site.favorite"></i></td>
-                            <td>{{site.username}}</td>
+                            <td>{{login.name}} <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i></td>
+                            <td>{{login.username}}</td>
                         </tr>
                     </tbody>
                 </table>

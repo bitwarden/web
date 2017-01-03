@@ -1,27 +1,27 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultAddSiteController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, folders, selectedFolder, $analytics) {
-        $analytics.eventTrack('vaultAddSiteController', { category: 'Modal' });
+    .controller('vaultAddLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, folders, selectedFolder, $analytics) {
+        $analytics.eventTrack('vaultAddLoginController', { category: 'Modal' });
         $scope.folders = folders;
-        $scope.site = {
+        $scope.login = {
             folderId: selectedFolder ? selectedFolder.id : null
         };
 
         $scope.savePromise = null;
         $scope.save = function (model) {
-            var site = cipherService.encryptSite(model);
-            $scope.savePromise = apiService.sites.post(site, function (siteResponse) {
-                $analytics.eventTrack('Created Site');
-                var decSite = cipherService.decryptSite(siteResponse);
-                $uibModalInstance.close(decSite);
+            var login = cipherService.encryptLogin(model);
+            $scope.savePromise = apiService.logins.post(login, function (loginResponse) {
+                $analytics.eventTrack('Created Login');
+                var decLogin = cipherService.decryptLogin(loginResponse);
+                $uibModalInstance.close(decLogin);
             }).$promise;
         };
 
         $scope.generatePassword = function () {
-            if (!$scope.site.password || confirm('Are you sure you want to overwrite the current password?')) {
+            if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Add');
-                $scope.site.password = passwordService.generatePassword({ length: 10, special: true });
+                $scope.login.password = passwordService.generatePassword({ length: 10, special: true });
             }
         };
 

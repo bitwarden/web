@@ -27,10 +27,10 @@
             var profile = authService.getUserProfile();
             var newKey = cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
 
-            var reencryptedSites = [];
-            var sitesPromise = apiService.sites.list({ dirty: false }, function (encryptedSites) {
-                var unencryptedSites = cipherService.decryptSites(encryptedSites.Data);
-                reencryptedSites = cipherService.encryptSites(unencryptedSites, newKey);
+            var reencryptedLogins = [];
+            var loginsPromise = apiService.logins.list({ dirty: false }, function (encryptedLogins) {
+                var unencryptedLogins = cipherService.decryptLogins(encryptedLogins.Data);
+                reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, newKey);
             }).$promise;
 
             var reencryptedFolders = [];
@@ -39,11 +39,11 @@
                 reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, newKey);
             }).$promise;
 
-            $q.all([sitesPromise, foldersPromise]).then(function () {
+            $q.all([loginsPromise, foldersPromise]).then(function () {
                 var request = {
                     masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
                     newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
-                    ciphers: reencryptedSites.concat(reencryptedFolders)
+                    ciphers: reencryptedLogins.concat(reencryptedFolders)
                 };
 
                 $scope.savePromise = apiService.accounts.putPassword(request, function () {

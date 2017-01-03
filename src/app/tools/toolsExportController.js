@@ -5,25 +5,25 @@
         $analytics.eventTrack('toolsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
-            apiService.sites.list({ expand: ['folder'] }, function (sites) {
+            apiService.logins.list({ expand: ['folder'] }, function (logins) {
                 try {
-                    var decSites = cipherService.decryptSites(sites.Data);
+                    var decLogins = cipherService.decryptLogins(logins.Data);
 
-                    var exportSites = [];
-                    for (var i = 0; i < decSites.length; i++) {
-                        var site = {
-                            name: decSites[i].name,
-                            uri: decSites[i].uri,
-                            username: decSites[i].username,
-                            password: decSites[i].password,
-                            notes: decSites[i].notes,
-                            folder: decSites[i].folder ? decSites[i].folder.name : null
+                    var exportLogins = [];
+                    for (var i = 0; i < decLogins.length; i++) {
+                        var login = {
+                            name: decLogins[i].name,
+                            uri: decLogins[i].uri,
+                            username: decLogins[i].username,
+                            password: decLogins[i].password,
+                            notes: decLogins[i].notes,
+                            folder: decLogins[i].folder ? decLogins[i].folder.name : null
                         };
 
-                        exportSites.push(site);
+                        exportLogins.push(login);
                     }
 
-                    var csvString = Papa.unparse(exportSites);
+                    var csvString = Papa.unparse(exportLogins);
                     var csvBlob = new Blob([csvString]);
                     if (window.navigator.msSaveOrOpenBlob) { // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
                         window.navigator.msSaveBlob(csvBlob, makeFileName());

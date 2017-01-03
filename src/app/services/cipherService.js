@@ -4,39 +4,39 @@ angular
     .factory('cipherService', function (cryptoService, apiService) {
         var _service = {};
 
-        _service.decryptSites = function (encryptedSites) {
-            if (!encryptedSites) throw "encryptedSites is undefined or null";
+        _service.decryptLogins = function (encryptedLogins) {
+            if (!encryptedLogins) throw "encryptedLogins is undefined or null";
 
-            var unencryptedSites = [];
-            for (var i = 0; i < encryptedSites.length; i++) {
-                unencryptedSites.push(_service.decryptSite(encryptedSites[i]));
+            var encryptedLogins = [];
+            for (var i = 0; i < encryptedLogins.length; i++) {
+                encryptedLogins.push(_service.decryptLogin(encryptedLogins[i]));
             }
 
-            return unencryptedSites;
+            return encryptedLogins;
         };
 
-        _service.decryptSite = function (encryptedSite) {
-            if (!encryptedSite) throw "encryptedSite is undefined or null";
+        _service.decryptLogin = function (encryptedLogin) {
+            if (!encryptedLogin) throw "encryptedLogin is undefined or null";
 
-            var site = {
-                id: encryptedSite.Id,
+            var login = {
+                id: encryptedLogin.Id,
                 'type': 1,
-                folderId: encryptedSite.FolderId,
-                favorite: encryptedSite.Favorite,
-                name: cryptoService.decrypt(encryptedSite.Name),
-                uri: encryptedSite.Uri && encryptedSite.Uri !== '' ? cryptoService.decrypt(encryptedSite.Uri) : null,
-                username: encryptedSite.Username && encryptedSite.Username !== '' ? cryptoService.decrypt(encryptedSite.Username) : null,
-                password: encryptedSite.Password && encryptedSite.Password !== '' ? cryptoService.decrypt(encryptedSite.Password) : null,
-                notes: encryptedSite.Notes && encryptedSite.Notes !== '' ? cryptoService.decrypt(encryptedSite.Notes) : null
+                folderId: encryptedLogin.FolderId,
+                favorite: encryptedLogin.Favorite,
+                name: cryptoService.decrypt(encryptedLogin.Name),
+                uri: encryptedLogin.Uri && encryptedLogin.Uri !== '' ? cryptoService.decrypt(encryptedLogin.Uri) : null,
+                username: encryptedLogin.Username && encryptedLogin.Username !== '' ? cryptoService.decrypt(encryptedLogin.Username) : null,
+                password: encryptedLogin.Password && encryptedLogin.Password !== '' ? cryptoService.decrypt(encryptedLogin.Password) : null,
+                notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes) : null
             };
 
-            if (encryptedSite.Folder) {
-                site.folder = {
-                    name: cryptoService.decrypt(encryptedSite.Folder.Name)
+            if (encryptedLogin.Folder) {
+                login.folder = {
+                    name: cryptoService.decrypt(encryptedLogin.Folder.Name)
                 };
             }
 
-            return site;
+            return login;
         };
 
         _service.decryptFolders = function (encryptedFolders) {
@@ -60,30 +60,30 @@ angular
             };
         };
 
-        _service.encryptSites = function (unencryptedSites, key) {
-            if (!unencryptedSites) throw "unencryptedSites is undefined or null";
+        _service.encryptLogins = function (unencryptedLogins, key) {
+            if (!unencryptedLogins) throw "unencryptedLogins is undefined or null";
 
-            var encryptedSites = [];
-            for (var i = 0; i < unencryptedSites.length; i++) {
-                encryptedSites.push(_service.encryptSite(unencryptedSites[i], key));
+            var encryptedLogins = [];
+            for (var i = 0; i < unencryptedLogins.length; i++) {
+                encryptedLogins.push(_service.encryptLogin(unencryptedLogins[i], key));
             }
 
-            return encryptedSites;
+            return encryptedLogins;
         };
 
-        _service.encryptSite = function (unencryptedSite, key) {
-            if (!unencryptedSite) throw "unencryptedSite is undefined or null";
+        _service.encryptLogin = function (unencryptedLogin, key) {
+            if (!unencryptedLogin) throw "unencryptedLogin is undefined or null";
 
             return {
-                id: unencryptedSite.id,
+                id: unencryptedLogin.id,
                 'type': 1,
-                folderId: unencryptedSite.folderId === '' ? null : unencryptedSite.folderId,
-                favorite: unencryptedSite.favorite !== null ? unencryptedSite.favorite : false,
-                uri: !unencryptedSite.uri || unencryptedSite.uri === '' ? null : cryptoService.encrypt(unencryptedSite.uri, key),
-                name: cryptoService.encrypt(unencryptedSite.name, key),
-                username: !unencryptedSite.username || unencryptedSite.username === '' ? null : cryptoService.encrypt(unencryptedSite.username, key),
-                password: !unencryptedSite.password || unencryptedSite.password === '' ? null : cryptoService.encrypt(unencryptedSite.password, key),
-                notes: !unencryptedSite.notes || unencryptedSite.notes === '' ? null : cryptoService.encrypt(unencryptedSite.notes, key)
+                folderId: unencryptedLogin.folderId === '' ? null : unencryptedLogin.folderId,
+                favorite: unencryptedLogin.favorite !== null ? unencryptedLogin.favorite : false,
+                uri: !unencryptedLogin.uri || unencryptedLogin.uri === '' ? null : cryptoService.encrypt(unencryptedLogin.uri, key),
+                name: cryptoService.encrypt(unencryptedLogin.name, key),
+                username: !unencryptedLogin.username || unencryptedLogin.username === '' ? null : cryptoService.encrypt(unencryptedLogin.username, key),
+                password: !unencryptedLogin.password || unencryptedLogin.password === '' ? null : cryptoService.encrypt(unencryptedLogin.password, key),
+                notes: !unencryptedLogin.notes || unencryptedLogin.notes === '' ? null : cryptoService.encrypt(unencryptedLogin.notes, key)
             };
         };
 

@@ -1,28 +1,25 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="editSiteModelLabel"><i class="fa fa-globe"></i> Site Information <small>{{site.name}}</small></h4>
+    <h4 class="modal-title" id="addLoginModelLabel"><i class="fa fa-globe"></i> Add New Login</h4>
 </div>
-<form name="editSiteForm" ng-submit="editSiteForm.$valid && save(site)" api-form="savePromise">
+<form name="addLoginForm" ng-submit="addLoginForm.$valid && save(login)" api-form="savePromise">
     <div class="modal-body">
-        <div class="callout callout-danger validation-errors" ng-show="editSiteForm.$errors">
+        <div class="callout callout-danger validation-errors" ng-show="addLoginForm.$errors">
             <h4>Errors have occured</h4>
             <ul>
-                <li ng-repeat="e in editSiteForm.$errors">{{e}}</li>
+                <li ng-repeat="e in addLoginForm.$errors">{{e}}</li>
             </ul>
         </div>
         <div class="form-group" show-errors>
             <label for="uri">URI</label>
             <div class="input-group">
-                <input type="text" id="uri" name="Uri" ng-model="site.uri" class="form-control" placeholder="http://..." api-field />
-                <span class="input-group-btn">
-                    <button tabindex="-1" class="btn btn-default btn-flat" type="button" uib-tooltip="Copy URI" tooltip-placement="left" ngclipboard
+                <input type="text" id="uri" ng-model="login.uri" name="Uri" class="form-control" placeholder="http://..." api-field />
+                <span class="input-group-btn" uib-tooltip="Copy URI" tooltip-placement="left">
+                    <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
                             ngclipboard-error="clipboardError(e)"
                             data-clipboard-target="#uri">
                         <i class="fa fa-clipboard"></i>
                     </button>
-                    <a href="{{site.uri}}" target="_blank" class="btn btn-default btn-flat" uib-tooltip="Go To Site" tooltip-placement="left">
-                        <i class="fa fa-share"></i>
-                    </a>
                 </span>
             </div>
         </div>
@@ -30,13 +27,13 @@
             <div class="col-md-6">
                 <div class="form-group" show-errors>
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="Name" ng-model="site.name" class="form-control" required api-field />
+                    <input type="text" id="name" name="Name" ng-model="login.name" class="form-control" required api-field />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group" show-errors>
                     <label for="folder">Folder</label>
-                    <select id="folder" name="FolderId" ng-model="site.folderId" class="form-control" api-field>
+                    <select id="folder" name="FolderId" ng-model="login.folderId" class="form-control" api-field>
                         <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">{{folder.name}}</option>
                     </select>
                 </div>
@@ -47,7 +44,7 @@
                 <div class="form-group" show-errors>
                     <label for="username">Username</label>
                     <div class="input-group">
-                        <input type="text" id="username" name="Username" ng-model="site.username" class="form-control" api-field />
+                        <input type="text" id="username" name="Username" ng-model="login.username" class="form-control" api-field />
                         <span class="input-group-btn" uib-tooltip="Copy Username" tooltip-placement="left">
                             <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
                                     ngclipboard-error="clipboardError(e)"
@@ -66,8 +63,8 @@
                     </div>
                     <label for="password">Password</label>
                     <div class="input-group">
-                        <input type="text" id="password-text" value="{{site.password}}" style="margin-left: -9999px;" />
-                        <input type="password" id="password" name="Password" ng-model="site.password" class="form-control" api-field />
+                        <input tabindex="-1" type="text" id="password-text" value="{{login.password}}" style="margin-left: -9999px;" />
+                        <input type="password" id="password" name="Password" ng-model="login.password" class="form-control" api-field />
                         <span class="input-group-btn" uib-tooltip="Copy Password" tooltip-placement="left">
                             <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
                                     ngclipboard-success="clipboardSuccess(e)"
@@ -78,27 +75,24 @@
                         </span>
                     </div>
                 </div>
-                <div style="margin: -10px 0 15px 0;" password-meter="site.password" password-meter-username="site.username" outer-class="xs"></div>
+                <div style="margin: -10px 0 15px 0;" password-meter="login.password" password-meter-username="login.username" outer-class="xs"></div>
             </div>
         </div>
         <div class="form-group" show-errors>
             <label for="notes">Notes</label>
-            <textarea id="notes" name="Notes" class="form-control" ng-model="site.notes" api-field></textarea>
+            <textarea id="notes" name="Notes" class="form-control" ng-model="login.notes" api-field></textarea>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="site.favorite" name="Favorite" />
+                <input type="checkbox" ng-model="login.favorite" name="Favorite" />
                 Favorite
             </label>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="editSiteForm.$loading">
-            <i class="fa fa-refresh fa-spin loading-icon" ng-show="editSiteForm.$loading"></i>Save
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="addLoginForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="addLoginForm.$loading"></i>Submit
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
-        <button type="button" class="btn btn-link pull-right" ng-click="delete()" uib-tooltip="Delete">
-            <i class="fa fa-trash fa-lg"></i>
-        </button>
     </div>
 </form>

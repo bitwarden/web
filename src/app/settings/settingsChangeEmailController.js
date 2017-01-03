@@ -27,10 +27,10 @@
         $scope.confirm = function (model) {
             $scope.processing = true;
 
-            var reencryptedSites = [];
-            var sitesPromise = apiService.sites.list({ dirty: false }, function (encryptedSites) {
-                var unencryptedSites = cipherService.decryptSites(encryptedSites.Data);
-                reencryptedSites = cipherService.encryptSites(unencryptedSites, _newKey);
+            var reencryptedLogins = [];
+            var loginsPromise = apiService.logins.list({ dirty: false }, function (encryptedLogins) {
+                var unencryptedLogins = cipherService.decryptLogins(encryptedLogins.Data);
+                reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, _newKey);
             }).$promise;
 
             var reencryptedFolders = [];
@@ -39,13 +39,13 @@
                 reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, _newKey);
             }).$promise;
 
-            $q.all([sitesPromise, foldersPromise]).then(function () {
+            $q.all([loginsPromise, foldersPromise]).then(function () {
                 var request = {
                     token: model.token,
                     newEmail: model.newEmail.toLowerCase(),
                     masterPasswordHash: _masterPasswordHash,
                     newMasterPasswordHash: _newMasterPasswordHash,
-                    ciphers: reencryptedSites.concat(reencryptedFolders)
+                    ciphers: reencryptedLogins.concat(reencryptedFolders)
                 };
 
                 $scope.confirmPromise = apiService.accounts.email(request, function () {

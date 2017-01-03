@@ -40,8 +40,8 @@ angular
             $state.go('backend.vault');
         };
 
-        $scope.addSite = function () {
-            $scope.$broadcast('vaultAddSite');
+        $scope.addLogin = function () {
+            $scope.$broadcast('vaultAddLogin');
         };
 
         $scope.addFolder = function () {

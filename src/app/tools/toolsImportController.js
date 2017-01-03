@@ -11,15 +11,15 @@
             importService.import(model.source, file, importSuccess, importError);
         };
 
-        function importSuccess(folders, sites, folderRelationships) {
-            if (!folders.length && !sites.length) {
+        function importSuccess(folders, logins, folderRelationships) {
+            if (!folders.length && !logins.length) {
                 importError('Nothing was imported.');
                 return;
             }
-            else if (sites.length) {
-                var halfway = Math.floor(sites.length / 2);
-                var last = sites.length - 1;
-                if (siteIsBadData(sites[0]) && siteIsBadData(sites[halfway]) && siteIsBadData(sites[last])) {
+            else if (logins.length) {
+                var halfway = Math.floor(logins.length / 2);
+                var last = logins.length - 1;
+                if (loginIsBadData(logins[0]) && loginIsBadData(logins[halfway]) && loginIsBadData(logins[last])) {
                     importError('CSV data is not formatted correctly. Please check your import file and try again.');
                     return;
                 }
@@ -27,7 +27,7 @@
 
             apiService.ciphers.import({
                 folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
-                sites: cipherService.encryptSites(sites, cryptoService.getKey()),
+                logins: cipherService.encryptLogins(logins, cryptoService.getKey()),
                 folderRelationships: folderRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
@@ -38,8 +38,8 @@
             }, importError);
         }
 
-        function siteIsBadData(site) {
-            return (site.name === null || site.name === '--') && (site.password === null || site.password === '');
+        function loginIsBadData(login) {
+            return (login.name === null || login.name === '--') && (login.password === null || login.password === '');
         }
 
         function importError(error) {

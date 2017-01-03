@@ -1,31 +1,31 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultEditSiteController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, siteId, folders, $analytics) {
-        $analytics.eventTrack('vaultEditSiteController', { category: 'Modal' });
+    .controller('vaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, loginId, folders, $analytics) {
+        $analytics.eventTrack('vaultEditLoginController', { category: 'Modal' });
         $scope.folders = folders;
-        $scope.site = {};
+        $scope.login = {};
 
-        apiService.sites.get({ id: siteId }, function (site) {
-            $scope.site = cipherService.decryptSite(site);
+        apiService.logins.get({ id: loginId }, function (login) {
+            $scope.login = cipherService.decryptLogin(login);
         });
 
         $scope.save = function (model) {
-            var site = cipherService.encryptSite(model);
-            $scope.savePromise = apiService.sites.put({ id: siteId }, site, function (siteResponse) {
-                $analytics.eventTrack('Edited Site');
-                var decSite = cipherService.decryptSite(siteResponse);
+            var login = cipherService.encryptLogin(model);
+            $scope.savePromise = apiService.logins.put({ id: loginId }, login, function (loginResponse) {
+                $analytics.eventTrack('Edited Login');
+                var decLogin = cipherService.decryptLogin(loginResponse);
                 $uibModalInstance.close({
                     action: 'edit',
-                    data: decSite
+                    data: decLogin
                 });
             }).$promise;
         };
 
         $scope.generatePassword = function () {
-            if (!$scope.site.password || confirm('Are you sure you want to overwrite the current password?')) {
+            if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Edit');
-                $scope.site.password = passwordService.generatePassword({ length: 10, special: true });
+                $scope.login.password = passwordService.generatePassword({ length: 10, special: true });
             }
         };
 
@@ -53,14 +53,14 @@
         }
 
         $scope.delete = function () {
-            if (!confirm('Are you sure you want to delete this site (' + $scope.site.name + ')?')) {
+            if (!confirm('Are you sure you want to delete this login (' + $scope.login.name + ')?')) {
                 return;
             }
 
-            apiService.sites.del({ id: $scope.site.id }, function () {
+            apiService.logins.del({ id: $scope.login.id }, function () {
                 $uibModalInstance.close({
                     action: 'delete',
-                    data: $scope.site.id
+                    data: $scope.login.id
                 });
             });
         };
