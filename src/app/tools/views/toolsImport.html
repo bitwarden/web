@@ -6,35 +6,13 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="source">Source</label>
-            <select id="source" name="source" class="form-control" ng-model="model.source">
-                <option value="local">bitwarden (csv)</option>
-                <option value="lastpass">LastPass (csv)</option>
-                <option value="chromecsv">Chrome (csv)</option>
-                <option value="firefoxpasswordexportercsvxml">Firefox Password Exporter (xml)</option>
-                <option value="keepassxml">KeePass (xml)</option>
-                <option value="keepassxcsv">KeePassX (csv)</option>
-                <option value="dashlanecsv">Dashlane (csv)</option>
-                <option value="1password41pif">1Password 4 (1pif)</option>
-                <option value="1password6csv">1Password 6 (csv)</option>
-                <option value="roboformhtml">RoboForm (html)</option>
-                <option value="keepercsv">Keeper (csv)</option>
-                <option value="enpasscsv">Enpass (csv)</option>
-                <option value="safeincloudxml">SafeInCloud (xml)</option>
-                <option value="safeincloudcsv">SafeInCloud (csv)</option>
-                <option value="pwsafexml">Password Safe (xml)</option>
-                <option value="stickypasswordxml">Sticky Password (xml)</option>
-                <option value="msecurecsv">mSecure (csv)</option>
-                <option value="truekeyjson">True Key (json)</option>
-                <option value="passwordbossjson">Password Boss (json)</option>
-                <option value="zohovaultcsv">Zoho Vault (csv)</option>
-                <option value="passworddragonxml">Password Dragon (xml)</option>
-                <option value="padlockcsv">Padlock (csv)</option>
-                <option value="clipperzhtml">Clipperz (html)</option>
-                <option value="avirajson">Avira (json)</option>
-                <option value="saferpasscsv">SaferPass (csv)</option>
-                <option value="upmcsv">Universal Password Manager (csv)</option>
-                <option value="ascendocsv">Ascendo DataVault (csv)</option>
+            <select id="source" name="source" class="form-control" ng-model="model.source" ng-change="setSource()">
+                <option ng-repeat="option in options" value="{{option.id}}">{{option.name}}</option>
             </select>
+        </div>
+        <div class="callout callout-default">
+            <h4><i class="fa fa-info-circle"></i> {{source.name}} Instructions</h4>
+            <div ng-bind-html="source.instructions"></div>
         </div>
         <div class="form-group">
             <label for="file">File</label>

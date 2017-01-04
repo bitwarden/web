@@ -112,6 +112,23 @@ form .btn .loading-icon {
     text-align: left;
 }
 
+/* Callouts */
+
+.callout.callout-default {
+    &:extend(.bg-gray-light);
+    border-color: darken(@gray, 10%);
+
+    a {
+        color: @link-color;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: @link-hover-color;
+    }
+}
+
 /* Toastr */
 
 #toast-container {

@@ -6,8 +6,7 @@
             $uibModal.open({
                 animation: true,
                 templateUrl: 'app/tools/views/toolsImport.html',
-                controller: 'toolsImportController',
-                size: 'sm'
+                controller: 'toolsImportController'
             });
         };
 

@@ -11,20 +11,17 @@
             }
 
             switch (source) {
-                case 'local':
-                    importLocal(file, success, error);
+                case 'bitwardencsv':
+                    importBitwardenCsv(file, success, error);
                     break;
                 case 'lastpass':
                     importLastPass(file, success, error);
                     break;
-                case 'safeincloudcsv':
-                    importSafeInCloudCsv(file, success, error);
-                    break;
                 case 'safeincloudxml':
                     importSafeInCloudXml(file, success, error);
                     break;
-                case 'keepassxml':
-                    importKeePassXml(file, success, error);
+                case 'keepass2xml':
+                    importKeePass2Xml(file, success, error);
                     break;
                 case 'keepassxcsv':
                     importKeePassXCsv(file, success, error);
@@ -182,7 +179,7 @@
             }
         }
 
-        function importLocal(file, success, error) {
+        function importBitwardenCsv(file, success, error) {
             Papa.parse(file, {
                 header: true,
                 encoding: 'UTF-8',
@@ -338,33 +335,6 @@
 
                 success(folders, logins, loginRelationships);
             }
-        }
-
-        function importSafeInCloudCsv(file, success, error) {
-            Papa.parse(file, {
-                header: true,
-                encoding: 'UTF-8',
-                complete: function (results) {
-                    parseCsvErrors(results);
-
-                    var folders = [],
-                        logins = [],
-                        loginRelationships = [];
-
-                    angular.forEach(results.data, function (value, key) {
-                        logins.push({
-                            favorite: false,
-                            uri: value.URL && value.URL !== '' ? trimUri(value.URL) : null,
-                            username: value.Login && value.Login !== '' ? value.Login : null,
-                            password: value.Password && value.Password !== '' ? value.Password : null,
-                            notes: value.Notes && value.Notes !== '' ? value.Notes : null,
-                            name: value.Title && value.Title !== '' ? value.Title : '--',
-                        });
-                    });
-
-                    success(folders, logins, loginRelationships);
-                }
-            });
         }
 
         function importSafeInCloudXml(file, success, error) {
@@ -557,7 +527,7 @@
             });
         }
 
-        function importKeePassXml(file, success, error) {
+        function importKeePass2Xml(file, success, error) {
             var folders = [],
                 logins = [],
                 loginRelationships = [];
