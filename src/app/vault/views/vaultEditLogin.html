@@ -10,6 +10,22 @@
                 <li ng-repeat="e in editLoginForm.$errors">{{e}}</li>
             </ul>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="name">Name</label> <span>*</span>
+                    <input type="text" id="name" name="Name" ng-model="login.name" class="form-control" required api-field />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="folder">Folder</label>
+                    <select id="folder" name="FolderId" ng-model="login.folderId" class="form-control" api-field>
+                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">{{folder.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="form-group" show-errors>
             <label for="uri">URI</label>
             <div class="input-group">
@@ -24,22 +40,6 @@
                         <i class="fa fa-share"></i>
                     </a>
                 </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group" show-errors>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="Name" ng-model="login.name" class="form-control" required api-field />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group" show-errors>
-                    <label for="folder">Folder</label>
-                    <select id="folder" name="FolderId" ng-model="login.folderId" class="form-control" api-field>
-                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">{{folder.name}}</option>
-                    </select>
-                </div>
             </div>
         </div>
         <div class="row">
