@@ -16,6 +16,7 @@ application to target the production API. Open `package.json` and set `productio
 
 Then run the following commands:
 
+- `npm install`
 - `gulp build`
 - `gulp serve`
 
