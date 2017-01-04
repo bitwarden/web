@@ -8,7 +8,7 @@
     <div ng-show="loadingFolders && !folders.length">
         <p>Loading...</p>
     </div>
-    <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length">
+    <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length && (!main.searchVaultText || folderLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}} <small>{{folderLogins.length}} logins</small></h3>
             <div class="box-tools pull-right">
