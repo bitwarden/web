@@ -17,7 +17,9 @@ angular
         });
 
         $uibTooltipProvider.options({
-            popupDelay: 600
+            popupDelay: 600,
+            appendToBody: true
+
         });
 
         if ($httpProvider.defaults.headers.post) {
