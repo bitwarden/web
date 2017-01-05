@@ -115,6 +115,71 @@
                 name: 'True Key (json)',
                 instructions: $sce.trustAsHtml('Using the True Key desktop application, click the gear icon (top right) and ' +
                     'then navigate to "App Settings". Click the "Export" button and save the JSON file.')
+            },
+            {
+                id: 'passwordbossjson',
+                name: 'Password Boss (json)',
+                instructions: $sce.trustAsHtml('Using the Password Boss desktop application, navigate to "File" > ' +
+                    '"Export data" > "Password Boss JSON - not encrypted" and save the JSON file.')
+            },
+            {
+                id: 'zohovaultcsv',
+                name: 'Zoho Vault (csv)',
+                instructions: $sce.trustAsHtml('Log into the Zoho web vault (vault.zoho.com). Navigate to "Tools" > ' +
+                    '"Export Secrets". Select "All Secrets" and click the "Zoho Vault Format CSV" button. Highlight ' +
+                    'and copy the data from the textarea. Open a text editor like Notepad and paste the data. Save the ' +
+                    'data from the text editor as <code>zoho_export.csv</code>.')
+            },
+            {
+                id: 'passworddragonxml',
+                name: 'Password Dragon (xml)',
+                instructions: $sce.trustAsHtml('Using the Password Dragon desktop application, navigate to "File" > ' +
+                    '"Export" > "To XML". In the dialog that pops up select "All Rows" and check all fields. Click ' +
+                    'the "Export" button and save the XML file.')
+            },
+            {
+                id: 'padlockcsv',
+                name: 'Padlock (csv)',
+                instructions: $sce.trustAsHtml('Using the Padlock desktop application, click the hamburger icon ' +
+                    'in the top left corner and navigate to "Settings". Click the "Export Data" option. Ensure that ' +
+                    'the "CSV" option is selected from the dropdown. Highlight and copy the data from the textarea. ' +
+                    'Open a text editor like Notepad and paste the data. Save the data from the text editor as ' +
+                    '<code>padlock_export.csv</code>.')
+            },
+            {
+                id: 'clipperzhtml',
+                name: 'Clipperz (html)',
+                instructions: $sce.trustAsHtml('Log into the Clipperz web application (clipperz.is/app). Click the ' +
+                    'hamburger menu icon in the top right to expand the navigation bar. Navigate to "Data" > ' +
+                    '"Export". Click the "download HTML+JSON" button to save the HTML file.')
+            },
+            {
+                id: 'avirajson',
+                name: 'Avira (json)',
+                instructions: $sce.trustAsHtml('Using the Avira browser extension, click your username in the top ' +
+                    'right corner and navigate to "Settings". Locate the "Export Data" section and click "Export". ' +
+                    'In the dialog that pops up, click the "Export Password Manager Data" button to save the ' +
+                    'TXT/JSON file.')
+            },
+            {
+                id: 'saferpasscsv',
+                name: 'SaferPass (csv)',
+                instructions: $sce.trustAsHtml('Using the SaferPass browser extension, click the hamburger icon ' +
+                    'in the top left corner and navigate to "Settings". Click the "Export accounts" button to ' +
+                    'save the CSV file.')
+            },
+            {
+                id: 'upmcsv',
+                name: 'Universal Password Manager (csv)',
+                instructions: $sce.trustAsHtml('Using the Universal Password Manager desktop application, navigate ' +
+                    'to "Database" > "Export" and save the CSV file.')
+            },
+            {
+                id: 'ascendocsv',
+                name: 'Ascendo DataVault (csv)',
+                instructions: $sce.trustAsHtml('Using the Ascendo DataVault desktop application, navigate ' +
+                    'to "Tools" > "Export". In the dialog that pops up, select the "All Items (DVX, CSV)" ' +
+                    'option. Click the "Ok" button to save the CSV file.')
             }
         ];
 
