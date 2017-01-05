@@ -7,12 +7,12 @@ angular
         _service.decryptLogins = function (encryptedLogins) {
             if (!encryptedLogins) throw "encryptedLogins is undefined or null";
 
-            var encryptedLogins = [];
+            var unencryptedLogins = [];
             for (var i = 0; i < encryptedLogins.length; i++) {
-                encryptedLogins.push(_service.decryptLogin(encryptedLogins[i]));
+                unencryptedLogins.push(_service.decryptLogin(encryptedLogins[i]));
             }
 
-            return encryptedLogins;
+            return unencryptedLogins;
         };
 
         _service.decryptLogin = function (encryptedLogin) {
