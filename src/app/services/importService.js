@@ -1818,7 +1818,6 @@
                                         case 'url':
                                             login.uri = trimUri(field.value);
                                             break;
-                                        case 'none':
                                         default:
                                             if (!login.username && isField(field.label, _usernameFieldNames)) {
                                                 login.username = field.value;
@@ -2199,7 +2198,7 @@
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
-                        var chamber = value['ChamberName'];
+                        var chamber = value.ChamberName;
 
                         var folderIndex = folders.length,
                             loginIndex = logins.length,
@@ -2218,16 +2217,16 @@
                         }
 
                         var login = {
-                            favorite: value['Favorite'] && value['Favorite'] === '1' ? true : false,
+                            favorite: value.Favorite && value.Favorite === '1' ? true : false,
                             uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
                             username: null,
                             password: null,
-                            notes: value['Notes'] && value['Notes'] !== '' ? value['Notes'] : '',
+                            notes: value.Notes && value.Notes !== '' ? value.Notes : '',
                             name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--'
                         };
 
-                        parseData(value['SecretData'], login);
-                        parseData(value['CustomData'], login);
+                        parseData(value.SecretData, login);
+                        parseData(value.CustomData, login);
 
                         if (login.notes === '') {
                             login.notes = null;
