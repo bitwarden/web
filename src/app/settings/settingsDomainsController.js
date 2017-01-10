@@ -15,25 +15,12 @@
             }
 
             if (response.GlobalEquivalentDomains) {
-                for (var globalDomain in response.GlobalEquivalentDomains) {
-                    if (response.GlobalEquivalentDomains.hasOwnProperty(globalDomain)) {
-                        var domain = {
-                            values: response.GlobalEquivalentDomains[globalDomain],
-                            excluded: false,
-                            key: globalDomain
-                        };
-
-                        if (response.ExcludedGlobalEquivalentDomains) {
-                            for (i = 0; i < response.ExcludedGlobalEquivalentDomains.length; i++) {
-                                if (response.ExcludedGlobalEquivalentDomains[i] === globalDomain) {
-                                    domain.excluded = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        $scope.globalEquivalentDomains.push(domain);
-                    }
+                for (i = 0; i < response.GlobalEquivalentDomains.length; i++) {
+                    $scope.globalEquivalentDomains.push({
+                        domains: response.GlobalEquivalentDomains[i].Domains.join(', '),
+                        excluded: response.GlobalEquivalentDomains[i].Excluded,
+                        key: response.GlobalEquivalentDomains[i].Type
+                    });
                 }
             }
         });
@@ -44,7 +31,7 @@
 
         $scope.customize = function (globalDomain) {
             globalDomain.excluded = true;
-            $scope.equivalentDomains.push(globalDomain.values.join(', '));
+            $scope.equivalentDomains.push(globalDomain.domains);
         }
 
         $scope.delete = function (i) {
