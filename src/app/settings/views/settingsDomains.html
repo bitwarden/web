@@ -1,0 +1,83 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title"><i class="fa fa-globe"></i> Domain Rules</h4>
+</div>
+<form name="domainsForm" ng-submit="domainsForm.$valid && submit()" api-form="submitPromise">
+    <div class="modal-body">
+        <p>
+            If you have the same login across multiple different website domains, you can mark the website as "equivalent".
+            "Global" domains are ones created for you by bitwarden.
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="2">Global Equivalent Domains</th>
+                    </tr>
+                </thead>
+                <tbody ng-if="globalEquivalentDomains.length">
+                    <tr ng-repeat="globalDomain in globalEquivalentDomains">
+                        <td style="width: 80px; min-width: 80px;">
+                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Exclude"
+                                    ng-if="!globalDomain.excluded" ng-click="toggleExclude(globalDomain)">
+                                <i class="fa fa-lg fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Include"
+                                    ng-if="globalDomain.excluded" ng-click="toggleExclude(globalDomain)">
+                                <i class="fa fa-lg fa-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Customize"
+                                    ng-click="customize(globalDomain)">
+                                <i class="fa fa-lg fa-cut"></i>
+                            </button>
+                        </td>
+                        <td ng-class="{strike: globalDomain.excluded}">{{globalDomain.values.join(', ')}}</td>
+                    </tr>
+                </tbody>
+                <tbody ng-if="!globalEquivalentDomains.length">
+                    <tr>
+                        <td>No domains to list.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            Custom Equivalent Domains
+                            <a href="#">
+                                <i class="fa fa-plus"></i> Add New
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-if="equivalentDomains.length">
+                    <tr ng-repeat="customDomain in equivalentDomains track by $index">
+                        <td style="width: 75px; min-width: 75px;">
+                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Edit">
+                                <i class="fa fa-lg fa-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Delete" ng-click="delete($index)">
+                                <i class="fa fa-lg fa-trash"></i>
+                            </button>
+                        </td>
+                        <td>{{customDomain}}</td>
+                    </tr>
+                </tbody>
+                <tbody ng-if="!equivalentDomains.length">
+                    <tr>
+                        <td>No domains to list.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="domainsForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="domainsForm.$loading"></i>Save
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>

@@ -60,6 +60,10 @@ angular
             $scope.$broadcast('settingsSessions');
         };
 
+        $scope.domains = function () {
+            $scope.$broadcast('settingsDomains');
+        };
+
         $scope.delete = function () {
             $scope.$broadcast('settingsDelete');
         };

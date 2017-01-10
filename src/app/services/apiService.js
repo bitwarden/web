@@ -36,6 +36,8 @@
             putPassword: { url: _apiUri + '/accounts/password', method: 'POST', params: {} },
             getProfile: { url: _apiUri + '/accounts/profile', method: 'GET', params: {} },
             putProfile: { url: _apiUri + '/accounts/profile', method: 'POST', params: {} },
+            getDomains: { url: _apiUri + '/accounts/domains', method: 'GET', params: {} },
+            putDomains: { url: _apiUri + '/accounts/domains', method: 'POST', params: {} },
             getTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'GET', params: {} },
             putTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'POST', params: {} },
             postTwoFactorRecover: { url: _apiUri + '/accounts/two-factor-recover', method: 'POST', params: {} },

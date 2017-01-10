@@ -70,6 +70,18 @@
             $scope.sessions();
         });
 
+        $scope.domains = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsDomains.html',
+                controller: 'settingsDomainsController'
+            });
+        };
+
+        $scope.$on('settingsDomains', function (event, args) {
+            $scope.domains();
+        });
+
         $scope.delete = function () {
             $uibModal.open({
                 animation: true,
