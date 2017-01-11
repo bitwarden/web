@@ -1,13 +1,13 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsDomainsController', function ($scope, $state, apiService, $uibModalInstance, toastr, $analytics) {
+    .controller('settingsDomainsController', function ($scope, $state, apiService, $uibModalInstance, toastr, $analytics, $uibModal) {
         $analytics.eventTrack('settingsDomainsController', { category: 'Modal' });
 
         $scope.globalEquivalentDomains = [];
         $scope.equivalentDomains = [];
 
-        apiService.accounts.getDomains({}, function (response) {
+        apiService.settings.getDomains({}, function (response) {
             if (response.EquivalentDomains) {
                 for (var i = 0; i < response.EquivalentDomains.length; i++) {
                     $scope.equivalentDomains.push(response.EquivalentDomains[i].join(', '));
@@ -38,7 +38,29 @@
             $scope.equivalentDomains.splice(i, 1);
         }
 
-        $scope.submit = function () {
+        $scope.addEdit = function (i) {
+            var addEditModal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsAddEditEquivalentDomain.html',
+                controller: 'settingsAddEditEquivalentDomainController',
+                size: 'sm',
+                resolve: {
+                    domainIndex: function () { return i; },
+                    domains: function () { return i !== null ? $scope.equivalentDomains[i] : null; }
+                }
+            });
+
+            addEditModal.result.then(function (returnObj) {
+                if (returnObj.index !== null) {
+                    $scope.equivalentDomains[returnObj.index] = returnObj.domains;
+                }
+                else {
+                    $scope.equivalentDomains.push(returnObj.domains);
+                }
+            });
+        }
+
+        $scope.save = function () {
             var request = {
                 ExcludedGlobalEquivalentDomains: [],
                 EquivalentDomains: []
@@ -51,7 +73,7 @@
             }
 
             for (i = 0; i < $scope.equivalentDomains.length; i++) {
-                request.EquivalentDomains.push($scope.equivalentDomains[i].split(' ').join('').split(', '));
+                request.EquivalentDomains.push($scope.equivalentDomains[i].split(' ').join('').split(','));
             }
 
             if (!request.EquivalentDomains.length) {
@@ -62,7 +84,7 @@
                 request.ExcludedGlobalEquivalentDomains = null;
             }
 
-            $scope.submitPromise = apiService.accounts.putDomains(request, function (domains) {
+            $scope.submitPromise = apiService.settings.putDomains(request, function (domains) {
                 $scope.close();
                 toastr.success('Domains have been updated.', 'Success!');
             }).$promise;

@@ -2,7 +2,7 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title"><i class="fa fa-globe"></i> Domain Rules</h4>
 </div>
-<form name="domainsForm" ng-submit="domainsForm.$valid && submit()" api-form="submitPromise">
+<form name="domainsForm" ng-submit="domainsForm.$valid && save()" api-form="submitPromise">
     <div class="modal-body">
         <p>
             If you have the same login across multiple different website domains, you can mark the website as "equivalent".
@@ -47,7 +47,7 @@
                     <tr>
                         <th colspan="2">
                             Custom Equivalent Domains
-                            <a href="#">
+                            <a href="javascript:void(0)" ng-click="addEdit(null)">
                                 <i class="fa fa-plus"></i> Add New
                             </a>
                         </th>
@@ -55,8 +55,8 @@
                 </thead>
                 <tbody ng-if="equivalentDomains.length">
                     <tr ng-repeat="customDomain in equivalentDomains track by $index">
-                        <td style="width: 75px; min-width: 75px;">
-                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Edit">
+                        <td style="width: 80px; min-width: 80px;">
+                            <button type="button" class="btn btn-link btn-table" uib-tooltip="Edit" ng-click="addEdit($index)">
                                 <i class="fa fa-lg fa-pencil"></i>
                             </button>
                             <button type="button" class="btn btn-link btn-table" uib-tooltip="Delete" ng-click="delete($index)">

@@ -47,6 +47,11 @@
             postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} }
         });
 
+        _service.settings = $resource(_apiUri + '/settings', {}, {
+            getDomains: { url: _apiUri + '/settings/domains', method: 'GET', params: {} },
+            putDomains: { url: _apiUri + '/settings/domains', method: 'POST', params: {} },
+        });
+
         _service.auth = $resource(_apiUri + '/auth', {}, {
             token: { url: _apiUri + '/auth/token', method: 'POST', params: {} },
             tokenTwoFactor: { url: _apiUri + '/auth/token/two-factor', method: 'POST', params: {} }
