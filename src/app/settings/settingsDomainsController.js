@@ -51,6 +51,10 @@
             });
 
             addEditModal.result.then(function (returnObj) {
+                if (returnObj.domains) {
+                    returnObj.domains = returnObj.domains.split(' ').join('').split(',').join(', ');
+                }
+
                 if (returnObj.index !== null) {
                     $scope.equivalentDomains[returnObj.index] = returnObj.domains;
                 }
