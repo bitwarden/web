@@ -29,11 +29,11 @@
                 case 'padlockcsv':
                     importPadlockCsv(file, success, error);
                     break;
-                case '1password41pif':
-                    import1Password41Pif(file, success, error);
+                case '1password1pif':
+                    import1Password1Pif(file, success, error);
                     break;
-                case '1password6csv':
-                    import1Password6Csv(file, success, error);
+                case '1password6wincsv':
+                    import1Password6WinCsv(file, success, error);
                     break;
                 case 'chromecsv':
                     importChromeCsv(file, success, error);
@@ -709,7 +709,7 @@
             });
         }
 
-        function import1Password41Pif(file, success, error) {
+        function import1Password1Pif(file, success, error) {
             var folders = [],
                 logins = [],
                 loginRelationships = [],
@@ -794,7 +794,7 @@
             };
         }
 
-        function import1Password6Csv(file, success, error) {
+        function import1Password6WinCsv(file, success, error) {
             var folders = [],
                 logins = [],
                 loginRelationships = [];

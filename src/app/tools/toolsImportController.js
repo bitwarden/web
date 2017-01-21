@@ -56,15 +56,15 @@
                     '"Unsecured archive (readable) in CSV format" and save the CSV file.')
             },
             {
-                id: '1password41pif',
-                name: '1Password 4 (1pif)',
+                id: '1password1pif',
+                name: '1Password (1pif)',
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
                     '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-1password/">' +
                     'https://help.bitwarden.com/getting-started/import-from-1password/</a>')
             },
             {
-                id: '1password6csv',
-                name: '1Password 6 (csv)',
+                id: '1password6wincsv',
+                name: '1Password 6 Windows (csv)',
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
                     '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-1password/">' +
                     'https://help.bitwarden.com/getting-started/import-from-1password/</a>')
