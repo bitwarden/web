@@ -15,11 +15,11 @@
             }
 
             if (response.GlobalEquivalentDomains) {
-                for (i = 0; i < response.GlobalEquivalentDomains.length; i++) {
+                for (var j = 0; j < response.GlobalEquivalentDomains.length; j++) {
                     $scope.globalEquivalentDomains.push({
-                        domains: response.GlobalEquivalentDomains[i].Domains.join(', '),
-                        excluded: response.GlobalEquivalentDomains[i].Excluded,
-                        key: response.GlobalEquivalentDomains[i].Type
+                        domains: response.GlobalEquivalentDomains[j].Domains.join(', '),
+                        excluded: response.GlobalEquivalentDomains[j].Excluded,
+                        key: response.GlobalEquivalentDomains[j].Type
                     });
                 }
             }
@@ -27,16 +27,16 @@
 
         $scope.toggleExclude = function (globalDomain) {
             globalDomain.excluded = !globalDomain.excluded;
-        }
+        };
 
         $scope.customize = function (globalDomain) {
             globalDomain.excluded = true;
             $scope.equivalentDomains.push(globalDomain.domains);
-        }
+        };
 
         $scope.delete = function (i) {
             $scope.equivalentDomains.splice(i, 1);
-        }
+        };
 
         $scope.addEdit = function (i) {
             var addEditModal = $uibModal.open({
@@ -62,7 +62,7 @@
                     $scope.equivalentDomains.push(returnObj.domains);
                 }
             });
-        }
+        };
 
         $scope.save = function () {
             var request = {
