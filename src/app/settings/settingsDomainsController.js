@@ -8,8 +8,9 @@
         $scope.equivalentDomains = [];
 
         apiService.settings.getDomains({}, function (response) {
+            var i;
             if (response.EquivalentDomains) {
-                for (var i = 0; i < response.EquivalentDomains.length; i++) {
+                for (i = 0; i < response.EquivalentDomains.length; i++) {
                     $scope.equivalentDomains.push(response.EquivalentDomains[i].join(', '));
                 }
             }
@@ -27,16 +28,16 @@
 
         $scope.toggleExclude = function (globalDomain) {
             globalDomain.excluded = !globalDomain.excluded;
-        }
+        };
 
         $scope.customize = function (globalDomain) {
             globalDomain.excluded = true;
             $scope.equivalentDomains.push(globalDomain.domains);
-        }
+        };
 
         $scope.delete = function (i) {
             $scope.equivalentDomains.splice(i, 1);
-        }
+        };
 
         $scope.addEdit = function (i) {
             var addEditModal = $uibModal.open({
@@ -62,7 +63,7 @@
                     $scope.equivalentDomains.push(returnObj.domains);
                 }
             });
-        }
+        };
 
         $scope.save = function () {
             var request = {
