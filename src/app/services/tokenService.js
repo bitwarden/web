@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('tokenService', function ($sessionStorage) {
+    .factory('tokenService', function ($sessionStorage, jwtHelper) {
         var _service = {},
             _token = null,
             _refreshToken = null;
@@ -40,6 +40,23 @@ angular
         _service.clearRefreshToken = function () {
             _refreshToken = null;
             delete $sessionStorage.refreshToken;
+        };
+
+        _service.tokenSecondsRemaining = function (token, offsetSeconds) {
+            var d = jwtHelper.getTokenExpirationDate(token);
+            offsetSeconds = offsetSeconds || 0;
+            if (d === null) {
+                return 0;
+            }
+
+            var msRemaining = d.valueOf() - (new Date().valueOf() + (offsetSeconds * 1000));
+            return Math.round(msRemaining / 1000);
+        };
+
+        _service.tokenNeedsRefresh = function (token, minutes) {
+            minutes = minutes || 5; // default 5 minutes
+            var sRemaining = _service.tokenSecondsRemaining(token);
+            return sRemaining < (60 * minutes);
         };
 
         return _service;

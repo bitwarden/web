@@ -2,38 +2,44 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, $uibTooltipProvider, toastrConfig) {
-        var refreshingToken = null;
         jwtInterceptorProvider.urlParam = 'access_token2';
-        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService, apiService, jwtHelper) {
+        var refreshPromise;
+        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService, apiService, jwtHelper, $q) {
             if (config.url.indexOf(appSettings.apiUri) !== 0) {
                 return;
             }
 
+            if (refreshPromise) {
+                return refreshPromise;
+            }
+
             var token = tokenService.getToken();
-            var refreshToken = tokenService.getRefreshToken();
             if (!token) {
                 return;
             }
 
-            if (!jwtHelper.isTokenExpired(tokenService.getToken())) {
+            if (!tokenService.tokenNeedsRefresh(token)) {
                 return token;
             }
 
-            if (refreshingToken === null) {
-                refreshingToken = apiService.identity.token({
-                    grant_type: 'refresh_token',
-                    client_id: 'web',
-                    refresh_token: refreshToken
-                }, function (response) {
-                    tokenService.setToken(response.access_token);
-                    tokenService.setRefreshToken(response.refresh_token);
-                    refreshingToken = null;
-                }, function () {
-                    refreshingToken = null;
-                });
+            var refreshToken = tokenService.getRefreshToken();
+            if (!refreshToken) {
+                return;
             }
 
-            return refreshingToken;
+            var deferred = $q.defer();
+            apiService.identity.token({
+                grant_type: 'refresh_token',
+                client_id: 'web',
+                refresh_token: refreshToken
+            }, function (response) {
+                tokenService.setToken(response.access_token);
+                tokenService.setRefreshToken(response.refresh_token);
+                refreshPromise = null;
+                deferred.resolve(response.access_token);
+            });
+            refreshPromise = deferred.promise;
+            return refreshPromise;
         };
 
         angular.extend(toastrConfig, {

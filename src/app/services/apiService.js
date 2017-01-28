@@ -63,6 +63,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
                 transformRequest: transformUrlEncoded,
+                skipAuthorization: true,
                 params: {}
             }
         });
