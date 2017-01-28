@@ -134,6 +134,12 @@
                     'data from the text editor as <code>zoho_export.csv</code>.')
             },
             {
+                id: 'splashidcsv',
+                name: 'SplashID (csv)',
+                instructions: $sce.trustAsHtml('Using the SplashID Safe desktop application, click on the SplashID ' +
+                    'blue lock logo in the top right corner. Navigate to "Export" > "Export as CSV" and save the CSV file.')
+            },
+            {
                 id: 'passworddragonxml',
                 name: 'Password Dragon (xml)',
                 instructions: $sce.trustAsHtml('Using the Password Dragon desktop application, navigate to "File" > ' +

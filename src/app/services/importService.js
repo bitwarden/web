@@ -89,6 +89,9 @@
                 case 'zohovaultcsv':
                     importZohoVaultCsv(file, success, error);
                     break;
+                case 'splashidcsv':
+                    importSplashIdCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -2250,6 +2253,111 @@
                             folderRelationships.push(relationship);
                         }
                     });
+
+                    success(folders, logins, folderRelationships);
+                }
+            });
+        }
+
+        function importSplashIdCsv(file, success, error) {
+            Papa.parse(file, {
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        logins = [],
+                        folderRelationships = [];
+
+                    function parseFieldsToNotes(startIndex, row, login) {
+                        // last 3 rows do not get parsed
+                        for (var k = startIndex; k < row.length - 3; k++) {
+                            if (!row[k] || row[k] === '') {
+                                continue;
+                            }
+
+                            if (!login.notes) {
+                                login.notes = '';
+                            }
+                            else if (login.notes !== '') {
+                                login.notes += '\n';
+                            }
+
+                            login.notes += row[k];
+                        }
+                    }
+
+                    // skip 1st row since its not data
+                    for (var i = 1; i < results.data.length; i++) {
+                        if (results.data[i].length < 3) {
+                            continue;
+                        }
+
+                        var value = results.data[i],
+                            category = value[results.data.length - 1],
+                            notes = value[results.data.length - 2],
+                            type = value[0];
+
+                        var folderIndex = folders.length,
+                            loginIndex = logins.length,
+                            hasFolder = category && category !== '' && category !== 'Unfiled',
+                            addFolder = hasFolder,
+                            j = 0;
+
+                        if (hasFolder) {
+                            for (j = 0; j < folders.length; j++) {
+                                if (folders[j].name === category) {
+                                    addFolder = false;
+                                    folderIndex = j;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var login = {
+                            favorite: false,
+                            uri: null,
+                            username: null,
+                            password: null,
+                            notes: notes,
+                            name: value[1] && value[1] !== '' ? value[1] : '--'
+                        };
+
+                        if (type === 'Web Logins' || type === 'Servers' || type === 'Email Accounts') {
+                            login.uri = value[4] && value[4] !== '' ? fixUri(value[4]) : null;
+                            login.username = value[2] && value[2] !== '' ? value[2] : null;
+                            login.password = value[3] && value[3] !== '' ? value[3] : null;
+                            parseFieldsToNotes(5, value, login);
+                        }
+                        else if (value.length > 2) {
+                            parseFieldsToNotes(2, value, login);
+                        }
+
+                        if (login.name && login.name !== '--' && type !== 'Web Logins' && type !== 'Servers'
+                            && type !== 'Email Accounts') {
+                            login.name = type + ': ' + login.name;
+                        }
+
+                        if (login.notes === '') {
+                            login.notes = null;
+                        }
+
+                        logins.push(login);
+
+                        if (addFolder) {
+                            folders.push({
+                                name: category
+                            });
+                        }
+
+                        if (hasFolder) {
+                            var relationship = {
+                                key: loginIndex,
+                                value: folderIndex
+                            };
+                            folderRelationships.push(relationship);
+                        }
+                    }
 
                     success(folders, logins, folderRelationships);
                 }
