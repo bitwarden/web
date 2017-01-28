@@ -47,7 +47,7 @@ angular
 
         $scope.twoFactor = function (model) {
             // Only supporting Authenticator (0) provider for now
-            $scope.twoFactorPromise = authService.logIn(email, masterPassword, model.code, 'Authenticator');
+            $scope.twoFactorPromise = authService.logIn(email, masterPassword, model.code, 0);
 
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');
