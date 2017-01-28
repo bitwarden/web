@@ -740,7 +740,7 @@
                         }
 
                         login.notes += (field[nameKey] + ': ' +
-                            field[valueKey].split('\\r\\n').join('\n').split('\\n').join('\n'));
+                            field[valueKey].toString().split('\\r\\n').join('\n').split('\\n').join('\n'));
                     }
                 }
             }
