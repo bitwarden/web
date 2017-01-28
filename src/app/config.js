@@ -2,11 +2,38 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, $uibTooltipProvider, toastrConfig) {
-        jwtInterceptorProvider.urlParam = 'access_token';
-        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService) {
-            if (config.url.indexOf(appSettings.apiUri) === 0) {
-                return tokenService.getToken();
+        var refreshingToken = null;
+        jwtInterceptorProvider.urlParam = 'access_token2';
+        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService, apiService, jwtHelper) {
+            if (config.url.indexOf(appSettings.apiUri) !== 0) {
+                return;
             }
+
+            var token = tokenService.getToken();
+            var refreshToken = tokenService.getRefreshToken();
+            if (!token) {
+                return;
+            }
+
+            if (!jwtHelper.isTokenExpired(tokenService.getToken())) {
+                return token;
+            }
+
+            if (refreshingToken === null) {
+                refreshingToken = apiService.identity.token({
+                    grant_type: 'refresh_token',
+                    client_id: 'web',
+                    refresh_token: refreshToken
+                }, function (response) {
+                    tokenService.setToken(response.access_token);
+                    tokenService.setRefreshToken(response.refresh_token);
+                    refreshingToken = null;
+                }, function () {
+                    refreshingToken = null;
+                });
+            }
+
+            return refreshingToken;
         };
 
         angular.extend(toastrConfig, {
@@ -129,7 +156,7 @@ angular
     .run(function ($rootScope, authService, jwtHelper, tokenService, $state) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (!toState.data || !toState.data.authorize) {
-                if (authService.isAuthenticated() && !jwtHelper.isTokenExpired(tokenService.getToken())) {
+                if (authService.isAuthenticated()) {
                     event.preventDefault();
                     $state.go('backend.vault');
                 }
@@ -137,7 +164,7 @@ angular
                 return;
             }
 
-            if (!authService.isAuthenticated() || jwtHelper.isTokenExpired(tokenService.getToken())) {
+            if (!authService.isAuthenticated()) {
                 event.preventDefault();
                 authService.logOut();
                 $state.go('frontend.login.info');

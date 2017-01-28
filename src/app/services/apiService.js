@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.services')
 
-    .factory('apiService', function ($resource, tokenService, appSettings) {
+    .factory('apiService', function ($resource, tokenService, appSettings, $httpParamSerializer) {
         var _service = {},
             _apiUri = appSettings.apiUri;
 
@@ -56,6 +56,20 @@
             token: { url: _apiUri + '/auth/token', method: 'POST', params: {} },
             tokenTwoFactor: { url: _apiUri + '/auth/token/two-factor', method: 'POST', params: {} }
         });
+
+        _service.identity = $resource(_apiUri + '/connect', {}, {
+            token: {
+                url: _apiUri + '/connect/token',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
+                transformRequest: transformUrlEncoded,
+                params: {}
+            }
+        });
+
+        function transformUrlEncoded(data) {
+            return $httpParamSerializer(data);
+        }
 
         return _service;
     });

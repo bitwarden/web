@@ -14,6 +14,10 @@
                 return;
             }
 
+            if (data && data.ErrorModel) {
+                data = data.ErrorModel;
+            }
+
             if (!data.ValidationErrors) {
                 if (data.Message) {
                     form.$errors.push(data.Message);

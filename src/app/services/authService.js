@@ -5,51 +5,42 @@ angular
         var _service = {},
             _userProfile = null;
 
-        _service.logIn = function (email, masterPassword) {
+        _service.logIn = function (email, masterPassword, token, provider) {
             email = email.toLowerCase();
             var key = cryptoService.makeKey(masterPassword, email);
 
             var request = {
-                email: email,
-                masterPasswordHash: cryptoService.hashPassword(masterPassword, key)
+                username: email,
+                password: cryptoService.hashPassword(masterPassword, key),
+                grant_type: 'password',
+                scope: 'api offline_access',
+                client_id: 'web'
             };
 
+            if (token && typeof (provider) !== 'undefined' && provider !== null) {
+                request.twoFactorToken = token.replace(' ', '');
+                request.twoFactorProvider = provider;
+            }
+
+            // TODO: device information one day?
+
             var deferred = $q.defer();
-            apiService.auth.token(request, function (response) {
-                if (!response || !response.Token) {
+            apiService.identity.token(request, function (response) {
+                if (!response || !response.access_token) {
                     return;
                 }
 
-                tokenService.setToken(response.Token);
+                tokenService.setToken(response.access_token);
+                tokenService.setRefreshToken(response.refresh_token);
                 cryptoService.setKey(key);
-                _service.setUserProfile(response.Profile);
-
-                deferred.resolve(response);
+                deferred.resolve();
             }, function (error) {
-                deferred.reject(error);
-            });
-
-            return deferred.promise;
-        };
-
-        _service.logInTwoFactor = function (code, provider) {
-            var request = {
-                code: code.replace(' ', ''),
-                provider: provider
-            };
-
-            var deferred = $q.defer();
-            apiService.auth.tokenTwoFactor(request, function (response) {
-                if (!response || !response.Token) {
-                    return;
+                if (error.status === 400 && error.data.TwoFactorProviders && error.data.TwoFactorProviders.length) {
+                    deferred.resolve(error.data.TwoFactorProviders);
                 }
-
-                tokenService.setToken(response.Token);
-                _service.setUserProfile(response.Profile);
-
-                deferred.resolve(response);
-            }, function (error) {
-                deferred.reject(error);
+                else {
+                    deferred.reject(error);
+                }
             });
 
             return deferred.promise;
@@ -57,6 +48,7 @@ angular
 
         _service.logOut = function () {
             tokenService.clearToken();
+            tokenService.clearRefreshToken();
             cryptoService.clearKey();
             _userProfile = null;
         };
@@ -69,27 +61,20 @@ angular
             return _userProfile;
         };
 
-        _service.setUserProfile = function (profile) {
+        _service.setUserProfile = function () {
             var token = tokenService.getToken();
             if (!token) {
                 return;
             }
 
             var decodedToken = jwtHelper.decodeToken(token);
-            var twoFactor = decodedToken.authmethod === "TwoFactor";
 
             _userProfile = {
-                id: decodedToken.nameid,
-                email: decodedToken.email,
-                twoFactor: twoFactor
+                id: decodedToken.name,
+                email: decodedToken.email
             };
 
-            if (!twoFactor && profile) {
-                loadProfile(profile);
-            }
-            else if (!twoFactor && !profile) {
-                apiService.accounts.getProfile({}, loadProfile);
-            }
+            apiService.accounts.getProfile({}, loadProfile);
         };
 
         function loadProfile(profile) {
@@ -101,11 +86,7 @@ angular
         }
 
         _service.isAuthenticated = function () {
-            return _service.getUserProfile() !== null && !_service.getUserProfile().twoFactor;
-        };
-
-        _service.isTwoFactorAuthenticated = function () {
-            return _service.getUserProfile() !== null && _service.getUserProfile().twoFactor;
+            return tokenService.getToken() !== null;
         };
 
         return _service;
