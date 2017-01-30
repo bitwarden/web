@@ -52,11 +52,6 @@
             putDomains: { url: _apiUri + '/settings/domains', method: 'POST', params: {} },
         });
 
-        _service.auth = $resource(_apiUri + '/auth', {}, {
-            token: { url: _apiUri + '/auth/token', method: 'POST', params: {} },
-            tokenTwoFactor: { url: _apiUri + '/auth/token/two-factor', method: 'POST', params: {} }
-        });
-
         _service.identity = $resource(_apiUri + '/connect', {}, {
             token: {
                 url: _apiUri + '/connect/token',
