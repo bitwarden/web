@@ -2333,8 +2333,8 @@
                             parseFieldsToNotes(2, value, login);
                         }
 
-                        if (login.name && login.name !== '--' && type !== 'Web Logins' && type !== 'Servers'
-                            && type !== 'Email Accounts') {
+                        if (login.name && login.name !== '--' && type !== 'Web Logins' && type !== 'Servers' &&
+                            type !== 'Email Accounts') {
                             login.name = type + ': ' + login.name;
                         }
 
