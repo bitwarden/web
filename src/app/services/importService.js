@@ -65,8 +65,8 @@
                 case 'msecurecsv':
                     importmSecureCsv(file, success, error);
                     break;
-                case 'truekeyjson':
-                    importTrueKeyJson(file, success, error);
+                case 'truekeycsv':
+                    importTrueKeyCsv(file, success, error);
                     break;
                 case 'clipperzhtml':
                     importClipperzHtml(file, success, error);
@@ -1692,84 +1692,71 @@
             });
         }
 
-        function importTrueKeyJson(file, success, error) {
+        function importTrueKeyCsv(file, success, error) {
             var folders = [],
                 logins = [],
                 loginRelationships = [],
-                i = 0;
+                propsToIgnore = [
+                    'kind',
+                    'autologin',
+                    'favorite',
+                    'hexcolor',
+                    'protectedwithpassword',
+                    'subdomainonly',
+                    'type',
+                    'tk_export_version',
+                    'note',
+                    'title',
+                    'document_content'
+                ];
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var fileContent = evt.target.result;
-                var fileJson = JSON.parse(fileContent);
-                if (fileJson) {
-                    if (fileJson.logins) {
-                        for (i = 0; i < fileJson.logins.length; i++) {
-                            var login = fileJson.logins[i];
-                            logins.push({
-                                favorite: login.favorite && login.favorite === true,
-                                uri: login.url && login.url !== '' ? trimUri(login.url) : null,
-                                username: login.login && login.login !== '' ? login.login : null,
-                                password: login.password && login.password !== '' ? login.password : null,
-                                notes: null,
-                                name: login.name && login.name !== '' ? login.name : '--',
-                            });
-                        }
-                    }
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
 
-                    if (fileJson.documents) {
-                        for (i = 0; i < fileJson.documents.length; i++) {
-                            var doc = fileJson.documents[i];
-                            var note = {
-                                favorite: false,
-                                uri: null,
-                                username: null,
-                                password: null,
-                                notes: '',
-                                name: doc.title && doc.title !== '' ? doc.title : '--',
-                            };
+                    angular.forEach(results.data, function (value, key) {
+                        var login = {
+                            favorite: value.favorite && value.favorite.toLowerCase() === 'true' ? true : false,
+                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                            username: value.login && value.login !== '' ? value.login : null,
+                            password: value.password && value.password !== '' ? value.password : null,
+                            notes: value.memo && value.memo !== '' ? value.memo : null,
+                            name: value.name && value.name !== '' ? value.name : '--'
+                        };
 
-                            if (doc.kind === 'note') {
-                                if (!doc.document_content || doc.document_content === '') {
-                                    continue;
-                                }
-                                note.notes = doc.document_content;
+                        if (value.kind !== 'login') {
+                            login.name = value.title && value.title !== '' ? value.title : '--';
+                            login.notes = value.note && value.note !== '' ? value.note : null;
+
+                            if (!login.notes) {
+                                login.notes = value.document_content && value.document_content !== '' ?
+                                    value.document_content : null;
                             }
-                            else {
-                                for (var property in doc) {
-                                    if (doc.hasOwnProperty(property)) {
-                                        if (property === 'title' || property === 'hexColor' || property === 'kind' ||
-                                            doc[property] === '' || doc[property] === null) {
-                                            continue;
-                                        }
 
-                                        if (note.notes !== '') {
-                                            note.notes = note.notes + '\n';
-                                        }
-                                        note.notes = note.notes + property + ': ' + doc[property];
+                            for (var property in value) {
+                                if (value.hasOwnProperty(property) && propsToIgnore.indexOf(property.toLowerCase()) < 0 &&
+                                    value[property] && value[property] !== '') {
+                                    if (!login.notes) {
+                                        login.notes = '';
                                     }
+                                    else {
+                                        login.notes += '\n';
+                                    }
+
+                                    // other custom fields
+                                    login.notes += (property + ': ' + value[property]);
                                 }
                             }
-
-                            if (!note.notes || note.notes === '') {
-                                continue;
-                            }
-                            else {
-                                note.notes = note.notes.split('\\n').join('\n');
-                            }
-
-                            logins.push(note);
                         }
-                    }
+
+                        logins.push(login);
+                    });
+
+                    success(folders, logins, loginRelationships);
                 }
-
-                success(folders, logins, loginRelationships);
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            });
         }
 
         function importClipperzHtml(file, success, error) {

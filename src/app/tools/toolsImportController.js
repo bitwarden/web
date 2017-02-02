@@ -114,10 +114,10 @@
                     '"Export" > "CSV File..." and save the CSV file.')
             },
             {
-                id: 'truekeyjson',
-                name: 'True Key (json)',
+                id: 'truekeycsv',
+                name: 'True Key (csv)',
                 instructions: $sce.trustAsHtml('Using the True Key desktop application, click the gear icon (top right) and ' +
-                    'then navigate to "App Settings". Click the "Export" button and save the JSON file.')
+                    'then navigate to "App Settings". Click the "Export" button, enter your password and save the CSV file.')
             },
             {
                 id: 'passwordbossjson',
