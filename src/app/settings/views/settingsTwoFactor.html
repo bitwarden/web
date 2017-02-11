@@ -58,17 +58,16 @@
         </div>
         <div ng-show="enabled()">
             <hr />
-            <h4>Recovery Code</h4>
-            <p>
-                The recovery code allows you to access your account in the event that you lose your authenticator app.
-                bitwarden support won't be able to assist you if you lose access to your account. We recommend you write down or
-                print the recovery code below and keep it in a safe place.
-            </p>
-            <ul class="list-unstyled">
-                <li>
-                    <strong>Recovery Code:</strong> <code>{{twoFactorModel.recovery}}</code>
-                </li>
-            </ul>
+            <div class="callout callout-danger">
+                <h4><i class="fa fa-warning"></i> Recovery Code <i class="fa fa-warning"></i></h4>
+                <p>
+                    The recovery code allows you to access your account in the event that you lose your authenticator app.
+                    bitwarden support won't be able to assist you if you lose access to your account. We recommend you write down or
+                    print the recovery code below and keep it in a safe place.
+                </p>
+                <p><strong>Recovery Code:</strong> <code>{{twoFactorModel.recovery}}</code></p>
+                <button class="btn btn-default" ng-click="print(twoFactorModel.recovery)"><i class="fa fa-print"></i> Print</button>
+            </div>
         </div>
         <div class="callout callout-danger validation-errors" ng-show="updateTwoStepForm.$errors">
             <h4>Errors have occured</h4>
@@ -77,7 +76,7 @@
             </ul>
         </div>
         <hr ng-show="enabled()" />
-        <h4 style="margin-top: 30px;"><span ng-show="!enabled()">3. </span>Enter the resulting verification code from the app</h4>
+        <h4 style="margin-top: 30px;"><span ng-show="enabled()">What to disable? </span><span ng-show="!enabled()">3. </span>Enter the resulting verification code from the app</h4>
         <div class="form-group" show-errors>
             <label for="token" class="sr-only">Verification Code</label>
             <input type="text" id="token" name="Token" placeholder="Verification Code" ng-model="updateModel.token" class="form-control" required api-field />

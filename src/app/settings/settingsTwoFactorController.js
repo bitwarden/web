@@ -74,6 +74,14 @@
             }).$promise;
         };
 
+        $scope.print = function (printContent) {
+            var w = window.open();
+            w.document.write('<div style="font-size: 18px; text-align: center;"><p>bitwarden two-step login recovery code:</p>' +
+                '<pre>' + printContent + '</pre>');
+            w.print();
+            w.close();
+        }
+
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
         };

@@ -76,7 +76,7 @@ angular
                 }
             })
             .state('backend.vault', {
-                url: '^/',
+                url: '^/vault',
                 templateUrl: 'app/vault/views/vault.html',
                 controller: 'vaultController',
                 data: { pageTitle: 'My Vault' }
@@ -110,14 +110,14 @@ angular
                 }
             })
             .state('frontend.login.info', {
-                url: '^/login',
+                url: '^/',
                 templateUrl: 'app/accounts/views/accountsLoginInfo.html',
                 data: {
                     pageTitle: 'Log In'
                 }
             })
             .state('frontend.login.twoFactor', {
-                url: '^/login/two-factor',
+                url: '^/two-factor',
                 templateUrl: 'app/accounts/views/accountsLoginTwoFactor.html',
                 data: {
                     pageTitle: 'Log In (Two Factor)',
