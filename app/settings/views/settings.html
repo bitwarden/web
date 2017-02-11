@@ -9,19 +9,19 @@
         <div class="box-header with-border">
             <h3 class="box-title">General</h3>
         </div>
-        <form role="form" name="profileForm" ng-submit="profileForm.$valid && save(model)" api-form="savePromise">
+        <form role="form" name="generalForm" ng-submit="generalForm.$valid && generalSave()" api-form="generalPromise">
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-9">
-                        <div class="callout callout-danger validation-errors" ng-show="profileForm.$errors">
+                        <div class="callout callout-danger validation-errors" ng-show="generalForm.$errors">
                             <h4>Errors have occured</h4>
                             <ul>
-                                <li ng-repeat="e in profileForm.$errors">{{e}}</li>
+                                <li ng-repeat="e in generalForm.$errors">{{e}}</li>
                             </ul>
                         </div>
                         <div class="form-group" show-errors>
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
+                            <input type="text" id="name" name="Name" ng-model="model.profile.name" class="form-control"
                                    required api-field />
                         </div>
                         <div class="form-group">
@@ -29,13 +29,8 @@
                             <input type="text" id="email" ng-model="model.email" class="form-control" readonly />
                         </div>
                         <div class="form-group" show-errors>
-                            <label for="hint">Master Password Hint</label>
-                            <input type="text" id="hint" name="MasterPasswordHint" ng-model="model.masterPasswordHint"
-                                   class="form-control" api-field />
-                        </div>
-                        <div class="form-group" show-errors>
                             <label for="culture">Language/Culture</label>
-                            <select id="culture" name="Culture" ng-model="model.culture" class="form-control" api-field>
+                            <select id="culture" name="Culture" ng-model="model.profile.culture" class="form-control" api-field>
                                 <option value="en-US">English (US)</option>
                             </select>
                         </div>
@@ -51,10 +46,83 @@
                 </div>
             </div>
             <div class="box-footer">
-                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="profileForm.$loading">
-                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="profileForm.$loading"></i>Save
+                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="generalForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="generalForm.$loading"></i>Save
+                </button>
+                <button type="button" class="btn btn-default btn-flat" ng-click="changeEmail()">
+                    Change Email
                 </button>
             </div>
         </form>
+    </div>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Master Password</h3>
+        </div>
+        <form role="form" name="masterPasswordForm" ng-submit="masterPasswordForm.$valid && passwordHintSave()"
+              api-form="passwordHintPromise">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="callout callout-danger validation-errors" ng-show="masterPasswordForm.$errors">
+                            <h4>Errors have occured</h4>
+                            <ul>
+                                <li ng-repeat="e in masterPasswordForm.$errors">{{e}}</li>
+                            </ul>
+                        </div>
+                        <div class="form-group" show-errors>
+                            <label for="hint">Master Password Hint</label>
+                            <input type="text" id="hint" name="MasterPasswordHint" ng-model="model.profile.masterPasswordHint"
+                                   class="form-control" api-field />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="masterPasswordForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="masterPasswordForm.$loading"></i>Save
+                </button>
+                <button type="button" class="btn btn-default btn-flat" ng-click="changePassword()">
+                    Change Master Password
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Two-step Log In</h3>
+        </div>
+        <div class="box-body">
+            <p>
+                Current Status:
+                <span class="label bg-green" ng-show="model.twoFactorEnabled">ENABLED</span>
+                <span class="label bg-gray" ng-show="!model.twoFactorEnabled">DISABLED</span>
+            </p>
+            <p>
+                Two-step login helps keep your account more secure by requiring a code provided by an app on your mobile device
+                while logging in (in addition to your master password).
+            </p>
+        </div>
+        <div class="box-footer">
+            <button type="button" class="btn btn-default btn-flat" ng-click="twoFactor()">
+                Manage Two-step Log In
+            </button>
+        </div>
+    </div>
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Danger Zone</h3>
+        </div>
+        <div class="box-body">
+            Careful, these actions are not reversible!
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-default btn-flat" ng-click="sessions()">
+                Deauthorize Sessions
+            </button>
+            <button type="submit" class="btn btn-default btn-flat" ng-click="delete()">
+                Delete Account
+            </button>
+        </div>
     </div>
 </section>

@@ -56,37 +56,13 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview" ng-class="{active: $state.includes('backend.settings')}">
+                <li class="treeview"
+                    ng-class="{active: $state.includes('backend.settings') || $state.includes('backend.settingsDomains')}">
                     <a ui-sref="backend.settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="javascript:void(0)" ng-click="changePassword()">
-                                <i class="fa fa-circle-o"></i> Change Password
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ng-click="changeEmail()">
-                                <i class="fa fa-circle-o"></i> Change Email
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ng-click="sessions()">
-                                <i class="fa fa-circle-o"></i> Deauthorize Sessions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ng-click="twoFactor()">
-                                <i class="fa fa-circle-o"></i> Two-step Login
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ng-click="domains()">
+                            <a ui-sref="backend.settingsDomains">
                                 <i class="fa fa-circle-o"></i> Domain Rules
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ng-click="delete()">
-                                <i class="fa fa-circle-o"></i> Delete Account
                             </a>
                         </li>
                     </ul>
