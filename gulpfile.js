@@ -17,7 +17,8 @@ var gulp = require('gulp'),
     settings = require('./settings.json'),
     project = require('./package.json'),
     jshint = require('gulp-jshint'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    webpack = require('webpack-stream');
 
 var paths = {};
 paths.dist = './dist/';
@@ -42,7 +43,7 @@ gulp.task('lint', function () {
 gulp.task('build', function (cb) {
     return runSequence(
         'clean',
-        ['lib', 'less', 'settings', 'lint'],
+        ['lib', 'webpack', 'less', 'settings', 'lint'],
         cb);
 });
 
@@ -143,10 +144,6 @@ gulp.task('lib', ['clean:lib'], function () {
             dest: paths.libDir + 'angular-messages'
         },
         {
-            src: [paths.npmDir + 'sjcl/core/cbc.js', paths.npmDir + 'sjcl/core/bitArray.js', paths.npmDir + 'sjcl/sjcl.js'],
-            dest: paths.libDir + 'sjcl'
-        },
-        {
             src: paths.npmDir + 'ngstorage/*.js',
             dest: paths.libDir + 'ngstorage'
         },
@@ -176,6 +173,33 @@ gulp.task('lib', ['clean:lib'], function () {
     });
 
     return merge(tasks);
+});
+
+gulp.task('webpack', ['webpack:forge']);
+
+gulp.task('webpack:forge', function () {
+    var forgeDir = paths.npmDir + '/node-forge/lib/';
+
+    return gulp.src([
+        forgeDir + 'pbkdf2.js',
+        forgeDir + 'aes.js',
+        forgeDir + 'hmac.js',
+        forgeDir + 'sha256.js',
+        forgeDir + 'random.js',
+        forgeDir + 'forge.js'
+    ]).pipe(webpack({
+        output: {
+            filename: 'forge.js',
+            library: 'forge',
+            libraryTarget: 'umd'
+        },
+        node: {
+            Buffer: false,
+            process: false,
+            crypto: false,
+            setImmediate: false
+        }
+    })).pipe(gulp.dest(paths.libDir + 'forge'));
 });
 
 gulp.task('settings', function () {
@@ -290,8 +314,6 @@ gulp.task('dist:js:app', function () {
 gulp.task('dist:js:lib', function () {
     return gulp
         .src([
-            paths.libDir + 'sjcl/sjcl.js',
-            paths.libDir + 'sjcl/*.js',
             paths.libDir + 'angulartics/angulartics.js',
             paths.libDir + '**/*.js',
             '!' + paths.libDir + '**/*.min.js',

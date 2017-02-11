@@ -4,15 +4,11 @@ angular
     .factory('cryptoService', function ($sessionStorage) {
         var _service = {},
             _key,
-            _b64Key,
-            _aes,
-            _aesWithMac;
-
-        sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity."]();
+            _b64Key;
 
         _service.setKey = function (key) {
             _key = key;
-            $sessionStorage.key = sjcl.codec.base64.fromBits(key);
+            $sessionStorage.key = forge.util.encode64(key);
         };
 
         _service.getKey = function (b64) {
@@ -24,11 +20,11 @@ angular
             }
 
             if ($sessionStorage.key) {
-                _key = sjcl.codec.base64.toBits($sessionStorage.key);
+                _key = forge.util.decode64($sessionStorage.key);
             }
 
             if (b64 && b64 === true) {
-                _b64Key = sjcl.codec.base64.fromBits(_key);
+                _b64Key = forge.util.encode64(_key);
                 return _b64Key;
             }
 
@@ -37,24 +33,29 @@ angular
 
         _service.getEncKey = function (key) {
             key = key || _service.getKey();
-            return key.slice(0, 4);
+
+            var buffer = forge.util.createBuffer(key);
+            return buffer.getBytes(16);
         };
 
         _service.getMacKey = function (key) {
             key = key || _service.getKey();
-            return key.slice(4);
+
+            var buffer = forge.util.createBuffer(key);
+            buffer.getBytes(16); // skip first half
+            return buffer.getBytes(16);
         };
 
         _service.clearKey = function () {
-            _key = _b64Key = _aes = _aesWithMac = null;
+            _key = _b64Key = null;
             delete $sessionStorage.key;
         };
 
         _service.makeKey = function (password, salt, b64) {
-            var key = sjcl.misc.pbkdf2(password, salt, 5000, 256, null);
+            var key = forge.pbkdf2(password, salt, 5000, 256 / 8, 'sha256');
 
             if (b64 && b64 === true) {
-                return sjcl.codec.base64.fromBits(key);
+                return forge.util.encode64(key);
             }
 
             return key;
@@ -69,24 +70,8 @@ angular
                 throw 'Invalid parameters.';
             }
 
-            var hashBits = sjcl.misc.pbkdf2(key, password, 1, 256, null);
-            return sjcl.codec.base64.fromBits(hashBits);
-        };
-
-        _service.getAes = function () {
-            if (!_aes && _service.getKey()) {
-                _aes = new sjcl.cipher.aes(_service.getKey());
-            }
-
-            return _aes;
-        };
-
-        _service.getAesWithMac = function () {
-            if (!_aesWithMac && _service.getKey()) {
-                _aesWithMac = new sjcl.cipher.aes(_service.getEncKey());
-            }
-
-            return _aesWithMac;
+            var hashBits = forge.pbkdf2(key, password, 1, 256 / 8, 'sha256');
+            return forge.util.encode64(hashBits);
         };
 
         _service.encrypt = function (plaintextValue, key) {
@@ -103,22 +88,21 @@ angular
                 encKey = key || _service.getKey();
             }
 
-            var response = {};
-            var params = {
-                mode: 'cbc',
-                iv: sjcl.random.randomWords(4, 10)
-            };
+            var buffer = forge.util.createBuffer(plaintextValue, 'utf8');
+            var ivBytes = forge.random.getBytesSync(16);
+            var cipher = forge.cipher.createCipher('AES-CBC', encKey);
+            cipher.start({ iv: ivBytes });
+            cipher.update(buffer);
+            cipher.finish();
 
-            var ctJson = sjcl.encrypt(encKey, plaintextValue, params, response);
-
-            var ct = ctJson.match(/"ct":"([^"]*)"/)[1];
-            var iv = sjcl.codec.base64.fromBits(response.iv);
-
+            var iv = forge.util.encode64(ivBytes);
+            var ctBytes = cipher.output.getBytes();
+            var ct = forge.util.encode64(ctBytes);
             var cipherString = iv + '|' + ct;
 
             // TODO: Turn on whenever ready to support encrypt-then-mac
             if (false) {
-                var mac = computeMac(ct, response.iv);
+                var mac = computeMac(ctBytes, ivBytes);
                 cipherString = cipherString + '|' + mac;
             }
 
@@ -126,7 +110,7 @@ angular
         };
 
         _service.decrypt = function (encValue) {
-            if (!_service.getAes() || !_service.getAesWithMac()) {
+            if (!_service.getKey()) {
                 throw 'AES encryption unavailable.';
             }
 
@@ -135,35 +119,33 @@ angular
                 return '';
             }
 
-            var ivBits = sjcl.codec.base64.toBits(encPieces[0]);
-            var ctBits = sjcl.codec.base64.toBits(encPieces[1]);
+            var ivBytes = forge.util.decode64(encPieces[0]);
+            var ctBytes = forge.util.decode64(encPieces[1]);
 
             var computedMac = null;
             if (encPieces.length === 3) {
-                computedMac = computeMac(ctBits, ivBits);
+                computedMac = computeMac(ctBytes, ivBytes);
                 if (computedMac !== encPieces[2]) {
                     console.error('MAC failed.');
                     return '';
                 }
             }
 
-            var decBits = sjcl.mode.cbc.decrypt(computedMac ? _service.getAesWithMac() : _service.getAes(), ctBits, ivBits, null);
-            return sjcl.codec.utf8String.fromBits(decBits);
+            var ctBuffer = forge.util.createBuffer(ctBytes);
+            var decipher = forge.cipher.createDecipher('AES-CBC', computedMac ? _service.getEncKey() : _service.getKey());
+            decipher.start({ iv: ivBytes });
+            decipher.update(ctBuffer);
+            decipher.finish();
+
+            return decipher.output.toString('utf8');
         };
 
-        function computeMac(ct, iv) {
-            if (typeof ct === 'string') {
-                ct = sjcl.codec.base64.toBits(ct);
-            }
-            if (typeof iv === 'string') {
-                iv = sjcl.codec.base64.toBits(iv);
-            }
-
-            var macKey = _service.getMacKey();
-            var hmac = new sjcl.misc.hmac(macKey, sjcl.hash.sha256);
-            var bits = iv.concat(ct);
-            var mac = hmac.encrypt(bits);
-            return sjcl.codec.base64.fromBits(mac);
+        function computeMac(ct, iv, macKey) {
+            var hmac = forge.hmac.create();
+            hmac.start('sha256', macKey || _service.getMacKey());
+            hmac.update(iv + ct);
+            var mac = hmac.digest();
+            return forge.util.encode64(mac.getBytes());
         }
 
         return _service;
