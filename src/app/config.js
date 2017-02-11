@@ -87,6 +87,12 @@ angular
                 controller: 'settingsController',
                 data: { pageTitle: 'Settings' }
             })
+            .state('backend.settingsDomains', {
+                url: '^/settings/domains',
+                templateUrl: 'app/settings/views/settingsDomains.html',
+                controller: 'settingsDomainsController',
+                data: { pageTitle: 'Domain Settings' }
+            })
             .state('backend.tools', {
                 url: '^/tools',
                 templateUrl: 'app/tools/views/tools.html',

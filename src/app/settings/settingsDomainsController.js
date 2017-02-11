@@ -1,9 +1,7 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsDomainsController', function ($scope, $state, apiService, $uibModalInstance, toastr, $analytics, $uibModal) {
-        $analytics.eventTrack('settingsDomainsController', { category: 'Modal' });
-
+    .controller('settingsDomainsController', function ($scope, $state, apiService, toastr, $analytics, $uibModal) {
         $scope.globalEquivalentDomains = [];
         $scope.equivalentDomains = [];
 
@@ -44,7 +42,6 @@
                 animation: true,
                 templateUrl: 'app/settings/views/settingsAddEditEquivalentDomain.html',
                 controller: 'settingsAddEditEquivalentDomainController',
-                size: 'sm',
                 resolve: {
                     domainIndex: function () { return i; },
                     domains: function () { return i !== null ? $scope.equivalentDomains[i] : null; }
@@ -65,7 +62,15 @@
             });
         };
 
-        $scope.save = function () {
+        $scope.saveGlobal = function () {
+            $scope.globalPromise = save();
+        };
+
+        $scope.saveCustom = function () {
+            $scope.customPromise = save();
+        };
+
+        var save = function () {
             var request = {
                 ExcludedGlobalEquivalentDomains: [],
                 EquivalentDomains: []
@@ -89,13 +94,8 @@
                 request.ExcludedGlobalEquivalentDomains = null;
             }
 
-            $scope.submitPromise = apiService.settings.putDomains(request, function (domains) {
-                $scope.close();
+            return apiService.settings.putDomains(request, function (domains) {
                 toastr.success('Domains have been updated.', 'Success!');
             }).$promise;
-        };
-
-        $scope.close = function () {
-            $uibModalInstance.dismiss('cancel');
         };
     });

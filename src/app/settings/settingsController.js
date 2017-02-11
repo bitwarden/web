@@ -67,14 +67,6 @@
             });
         };
 
-        $scope.domains = function () {
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'app/settings/views/settingsDomains.html',
-                controller: 'settingsDomainsController'
-            });
-        };
-
         $scope.delete = function () {
             $uibModal.open({
                 animation: true,

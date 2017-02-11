@@ -48,10 +48,6 @@ angular
             $scope.$broadcast('vaultAddFolder');
         };
 
-        $scope.domains = function () {
-            $scope.$broadcast('settingsDomains');
-        };
-
         $scope.import = function () {
             $scope.$broadcast('toolsImport');
         };
