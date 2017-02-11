@@ -59,7 +59,7 @@
             });
 
             twoFactorModal.result.then(function (enabled) {
-                if (enabled == null) {
+                if (enabled === null) {
                     return;
                 }
 

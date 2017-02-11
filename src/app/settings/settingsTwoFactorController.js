@@ -80,7 +80,7 @@
                 '<pre>' + printContent + '</pre>');
             w.print();
             w.close();
-        }
+        };
 
         $scope.close = function () {
             $uibModalInstance.close(!_profile.extended ? null : _profile.extended.twoFactorEnabled);
