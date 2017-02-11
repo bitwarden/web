@@ -52,10 +52,18 @@
         };
 
         $scope.twoFactor = function () {
-            $uibModal.open({
+            var twoFactorModal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsTwoFactor.html',
                 controller: 'settingsTwoFactorController'
+            });
+
+            twoFactorModal.result.then(function (enabled) {
+                if (enabled == null) {
+                    return;
+                }
+
+                $scope.model.twoFactorEnabled = enabled;
             });
         };
 

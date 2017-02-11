@@ -64,7 +64,9 @@
                     print the recovery code below and keep it in a safe place.
                 </p>
                 <p><strong>Recovery Code:</strong> <code>{{twoFactorModel.recovery}}</code></p>
-                <button class="btn btn-default" ng-click="print(twoFactorModel.recovery)"><i class="fa fa-print"></i> Print</button>
+                <button type="button" class="btn btn-default" ng-click="print(twoFactorModel.recovery)">
+                    <i class="fa fa-print"></i> Print
+                </button>
             </div>
         </div>
         <div class="callout callout-danger validation-errors" ng-show="updateTwoStepForm.$errors">
@@ -74,7 +76,7 @@
             </ul>
         </div>
         <hr ng-show="enabled()" />
-        <h4 style="margin-top: 30px;"><span ng-show="enabled()">What to disable? </span><span ng-show="!enabled()">3. </span>Enter the resulting verification code from the app</h4>
+        <h4 style="margin-top: 30px;"><span ng-show="enabled()">Want to disable? </span><span ng-show="!enabled()">3. </span>Enter the resulting verification code from the app</h4>
         <div class="form-group" show-errors>
             <label for="token" class="sr-only">Verification Code</label>
             <input type="text" id="token" name="Token" placeholder="Verification Code" ng-model="updateModel.token" class="form-control" required api-field />

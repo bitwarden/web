@@ -83,6 +83,6 @@
         }
 
         $scope.close = function () {
-            $uibModalInstance.dismiss('cancel');
+            $uibModalInstance.close(!_profile.extended ? null : _profile.extended.twoFactorEnabled);
         };
     });
