@@ -48,28 +48,8 @@ angular
             $scope.$broadcast('vaultAddFolder');
         };
 
-        $scope.changeEmail = function () {
-            $scope.$broadcast('settingsChangeEmail');
-        };
-
-        $scope.changePassword = function () {
-            $scope.$broadcast('settingsChangePassword');
-        };
-
-        $scope.sessions = function () {
-            $scope.$broadcast('settingsSessions');
-        };
-
         $scope.domains = function () {
             $scope.$broadcast('settingsDomains');
-        };
-
-        $scope.delete = function () {
-            $scope.$broadcast('settingsDelete');
-        };
-
-        $scope.twoFactor = function () {
-            $scope.$broadcast('settingsTwoFactor');
         };
 
         $scope.import = function () {

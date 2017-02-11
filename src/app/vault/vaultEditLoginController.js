@@ -25,7 +25,7 @@
         $scope.generatePassword = function () {
             if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Edit');
-                $scope.login.password = passwordService.generatePassword({ length: 10, special: true });
+                $scope.login.password = passwordService.generatePassword({ length: 12, special: true });
             }
         };
 

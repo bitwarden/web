@@ -2,20 +2,33 @@
     .module('bit.settings')
 
     .controller('settingsController', function ($scope, $uibModal, apiService, toastr, authService) {
-        $scope.model = {};
+        $scope.model = {
+            profile: {},
+            twoFactorEnabled: false,
+            email: null
+        };
 
         apiService.accounts.getProfile({}, function (user) {
             $scope.model = {
-                name: user.Name,
+                profile: {
+                    name: user.Name,
+                    masterPasswordHint: user.MasterPasswordHint,
+                    culture: user.Culture
+                },
                 email: user.Email,
-                masterPasswordHint: user.MasterPasswordHint,
-                culture: user.Culture,
                 twoFactorEnabled: user.TwoFactorEnabled
             };
         });
 
-        $scope.save = function (model) {
-            $scope.savePromise = apiService.accounts.putProfile({}, model, function (profile) {
+        $scope.generalSave = function () {
+            $scope.generalPromise = apiService.accounts.putProfile({}, $scope.model.profile, function (profile) {
+                authService.setUserProfile(profile);
+                toastr.success('Account has been updated.', 'Success!');
+            }).$promise;
+        };
+
+        $scope.passwordHintSave = function () {
+            $scope.passwordHintPromise = apiService.accounts.putProfile({}, $scope.model.profile, function (profile) {
                 authService.setUserProfile(profile);
                 toastr.success('Account has been updated.', 'Success!');
             }).$promise;
@@ -29,10 +42,6 @@
             });
         };
 
-        $scope.$on('settingsChangePassword', function (event, args) {
-            $scope.changePassword();
-        });
-
         $scope.changeEmail = function () {
             $uibModal.open({
                 animation: true,
@@ -42,10 +51,6 @@
             });
         };
 
-        $scope.$on('settingsChangeEmail', function (event, args) {
-            $scope.changeEmail();
-        });
-
         $scope.twoFactor = function () {
             $uibModal.open({
                 animation: true,
@@ -53,10 +58,6 @@
                 controller: 'settingsTwoFactorController'
             });
         };
-
-        $scope.$on('settingsTwoFactor', function (event, args) {
-            $scope.twoFactor();
-        });
 
         $scope.sessions = function () {
             $uibModal.open({
@@ -66,10 +67,6 @@
             });
         };
 
-        $scope.$on('settingsSessions', function (event, args) {
-            $scope.sessions();
-        });
-
         $scope.domains = function () {
             $uibModal.open({
                 animation: true,
@@ -77,10 +74,6 @@
                 controller: 'settingsDomainsController'
             });
         };
-
-        $scope.$on('settingsDomains', function (event, args) {
-            $scope.domains();
-        });
 
         $scope.delete = function () {
             $uibModal.open({
@@ -90,8 +83,4 @@
                 size: 'sm'
             });
         };
-
-        $scope.$on('settingsDelete', function (event, args) {
-            $scope.delete();
-        });
     });
