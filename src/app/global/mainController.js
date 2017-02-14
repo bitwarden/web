@@ -47,16 +47,4 @@ angular
         $scope.addFolder = function () {
             $scope.$broadcast('vaultAddFolder');
         };
-
-        $scope.import = function () {
-            $scope.$broadcast('toolsImport');
-        };
-
-        $scope.export = function () {
-            $scope.$broadcast('toolsExport');
-        };
-
-        $scope.audits = function () {
-            $scope.$broadcast('toolsAudits');
-        };
     });

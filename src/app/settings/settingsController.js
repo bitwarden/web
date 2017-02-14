@@ -46,8 +46,7 @@
             $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsChangeEmail.html',
-                controller: 'settingsChangeEmailController',
-                size: 'sm'
+                controller: 'settingsChangeEmailController'
             });
         };
 
@@ -79,8 +78,7 @@
             $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsDelete.html',
-                controller: 'settingsDeleteController',
-                size: 'sm'
+                controller: 'settingsDeleteController'
             });
         };
     });

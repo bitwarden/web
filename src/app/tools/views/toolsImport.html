@@ -5,7 +5,7 @@
 <form name="importForm" ng-submit="importForm.$valid && import(model)" ng-show="!processing">
     <div class="modal-body">
         <div class="form-group">
-            <label for="source">Source</label>
+            <label for="source">1. Select the source of this import file</label>
             <select id="source" name="source" class="form-control" ng-model="model.source" ng-change="setSource()">
                 <option ng-repeat="option in options" value="{{option.id}}">{{option.name}}</option>
             </select>
@@ -15,7 +15,7 @@
             <div ng-bind-html="source.instructions"></div>
         </div>
         <div class="form-group">
-            <label for="file">File</label>
+            <label for="file">2. Select the import file</label>
             <input type="file" id="file" name="file" required />
         </div>
     </div>
