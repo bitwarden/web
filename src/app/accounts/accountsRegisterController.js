@@ -28,16 +28,27 @@ angular
 
             var email = $scope.model.email.toLowerCase();
             var key = cryptoService.makeKey($scope.model.masterPassword, email);
-            var request = {
-                name: $scope.model.name,
-                email: email,
-                masterPasswordHash: cryptoService.hashPassword($scope.model.masterPassword, key),
-                masterPasswordHint: $scope.model.masterPasswordHint
-            };
+            cryptoService.makeKeyPair(key, function (publicKey, privateKeyEnc, errors) {
+                if (errors) {
+                    validationService.addError(form, null, 'Problem generating keys.', true);
+                    return;
+                }
 
-            $scope.registerPromise = apiService.accounts.register(request, function () {
-                $scope.success = true;
-                $analytics.eventTrack('Registered');
-            }).$promise;
+                var request = {
+                    name: $scope.model.name,
+                    email: email,
+                    masterPasswordHash: cryptoService.hashPassword($scope.model.masterPassword, key),
+                    masterPasswordHint: $scope.model.masterPasswordHint,
+                    keys: {
+                        publicKey: publicKey,
+                        encryptedPrivateKey: privateKeyEnc
+                    }
+                };
+
+                $scope.registerPromise = apiService.accounts.register(request, function () {
+                    $scope.success = true;
+                    $analytics.eventTrack('Registered');
+                }).$promise;
+            });
         };
     });

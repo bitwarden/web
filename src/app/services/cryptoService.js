@@ -90,7 +90,7 @@ angular
             return key;
         };
 
-        _service.makeKeyPair = function (callback) {
+        _service.makeKeyPair = function (key, callback) {
             forge.pki.rsa.generateKeyPair({ bits: 2048, workers: 2 }, function (error, keypair) {
                 if (error) {
                     callback(null, null, error);
@@ -99,11 +99,12 @@ angular
 
                 var privateKey = forge.pki.privateKeyToAsn1(keypair.privateKey);
                 var privateKeyBytes = forge.asn1.toDer(privateKey).getBytes();
+                var privateKeyEnc = _service.encrypt(privateKeyBytes, key, 'raw');
 
                 var publicKey = forge.pki.publicKeyToAsn1(keypair.publicKey);
                 var publicKeyBytes = forge.asn1.toDer(publicKey).getBytes();
 
-                callback(privateKeyBytes, publicKeyBytes, null);
+                callback(forge.util.encode64(publicKeyBytes), privateKeyEnc, null);
             });
         };
 
