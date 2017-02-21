@@ -4,11 +4,17 @@ angular
     .factory('cryptoService', function ($sessionStorage) {
         var _service = {},
             _key,
-            _b64Key;
+            _b64Key,
+            _privateKey;
 
         _service.setKey = function (key) {
             _key = key;
             $sessionStorage.key = forge.util.encode64(key);
+        };
+
+        _service.setPrivateKey = function (privateKey) {
+            _privateKey = privateKey;
+            $sessionStorage.privateKey = forge.util.encode64(privateKey);
         };
 
         _service.getKey = function (b64) {
@@ -46,9 +52,31 @@ angular
             return buffer.getBytes(16);
         };
 
+        _service.getPrivateKey = function () {
+            if (_privateKey) {
+                return _privateKey;
+            }
+
+            if ($sessionStorage.privateKey) {
+                _privateKey = forge.util.decode64($sessionStorage.privateKey);
+            }
+
+            return _privateKey;
+        };
+
         _service.clearKey = function () {
             _key = _b64Key = null;
             delete $sessionStorage.key;
+        };
+
+        _service.clearPrivateKey = function () {
+            _privateKey = null;
+            delete $sessionStorage.privateKey;
+        };
+
+        _service.clearKeys = function () {
+            _service.clearKey();
+            _service.clearPrivateKey();
         };
 
         _service.makeKey = function (password, salt, b64) {
@@ -60,6 +88,23 @@ angular
             }
 
             return key;
+        };
+
+        _service.makeKeyPair = function (callback) {
+            forge.pki.rsa.generateKeyPair({ bits: 2048, workers: 2 }, function (error, keypair) {
+                if (error) {
+                    callback(null, null, error);
+                    return;
+                }
+
+                var privateKey = forge.pki.privateKeyToAsn1(keypair.privateKey);
+                var privateKeyBytes = forge.asn1.toDer(privateKey).getBytes();
+
+                var publicKey = forge.pki.publicKeyToAsn1(keypair.publicKey);
+                var publicKeyBytes = forge.asn1.toDer(publicKey).getBytes();
+
+                callback(privateKeyBytes, publicKeyBytes, null);
+            });
         };
 
         _service.hashPassword = function (password, key) {
@@ -75,7 +120,7 @@ angular
             return forge.util.encode64(hashBits);
         };
 
-        _service.encrypt = function (plaintextValue, key) {
+        _service.encrypt = function (plainValue, key, encoding) {
             if (!_service.getKey() && !key) {
                 throw 'Encryption key unavailable.';
             }
@@ -89,7 +134,8 @@ angular
                 encKey = key || _service.getKey();
             }
 
-            var buffer = forge.util.createBuffer(plaintextValue, 'utf8');
+            encoding = encoding || 'utf8';
+            var buffer = forge.util.createBuffer(plainValue, encoding);
             var ivBytes = forge.random.getBytesSync(16);
             var cipher = forge.cipher.createCipher('AES-CBC', encKey);
             cipher.start({ iv: ivBytes });
@@ -110,7 +156,7 @@ angular
             return cipherString;
         };
 
-        _service.decrypt = function (encValue) {
+        _service.decrypt = function (encValue, outputEncoding) {
             if (!_service.getKey()) {
                 throw 'AES encryption unavailable.';
             }
@@ -138,7 +184,13 @@ angular
             decipher.update(ctBuffer);
             decipher.finish();
 
-            return decipher.output.toString('utf8');
+            outputEncoding = outputEncoding || 'utf8';
+            if (outputEncoding === 'utf8') {
+                return decipher.output.toString('utf8');
+            }
+            else {
+                return decipher.output.getBytes();
+            }
         };
 
         function computeMac(ct, iv, macKey) {
