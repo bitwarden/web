@@ -57,7 +57,8 @@
                     </ul>
                 </li>
                 <li class="treeview"
-                    ng-class="{active: $state.includes('backend.sharedLogins') || $state.includes('backend.sharedFolders') || $state.includes('backend.sharedMe')}">
+                    ng-class="{active: $state.includes('backend.sharedLogins') || $state.includes('backend.sharedLoginsMe') ||
+                        $state.includes('backend.sharedFolders') || $state.includes('backend.sharedFoldersMe')}">
                     <a ui-sref="backend.sharedFolders"><i class="fa fa-users"></i> <span>Sharing Center</span></a>
                     <ul class="treeview-menu">
                         <li>
@@ -68,11 +69,6 @@
                         <li>
                             <a ui-sref="backend.sharedLogins">
                                 <i class="fa fa-circle-o"></i> Shared Logins
-                            </a>
-                        </li>
-                        <li>
-                            <a ui-sref="backend.sharedMe">
-                                <i class="fa fa-circle-o"></i> Shared with Me
                             </a>
                         </li>
                     </ul>

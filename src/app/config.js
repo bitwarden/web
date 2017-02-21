@@ -105,17 +105,23 @@ angular
                 controller: 'sharedLoginsController',
                 data: { pageTitle: 'Shared Logins' }
             })
+            .state('backend.sharedLoginsMe', {
+                url: '^/shared/logins/me',
+                templateUrl: 'app/shared/views/sharedLoginsMe.html',
+                controller: 'sharedLoginsMeController',
+                data: { pageTitle: 'Logins Shared with Me' }
+            })
             .state('backend.sharedFolders', {
                 url: '^/shared/folders',
                 templateUrl: 'app/shared/views/sharedFolders.html',
                 controller: 'sharedFoldersController',
                 data: { pageTitle: 'Shared Folders' }
             })
-            .state('backend.sharedMe', {
-                url: '^/shared/me',
-                templateUrl: 'app/shared/views/sharedMe.html',
-                controller: 'sharedMeController',
-                data: { pageTitle: 'Shared with Me' }
+            .state('backend.sharedFoldersMe', {
+                url: '^/shared/folders/me',
+                templateUrl: 'app/shared/views/sharedFoldersMe.html',
+                controller: 'sharedFoldersMeController',
+                data: { pageTitle: 'Folders Shared with Me' }
             })
 
         // Frontend
