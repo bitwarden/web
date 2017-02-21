@@ -12,9 +12,15 @@ angular
             $sessionStorage.key = forge.util.encode64(key);
         };
 
-        _service.setPrivateKey = function (privateKey) {
-            _privateKey = privateKey;
-            $sessionStorage.privateKey = forge.util.encode64(privateKey);
+        _service.setPrivateKey = function (privateKeyCt, key) {
+            try {
+                var privateKey = _service.decrypt(privateKeyCt, key, 'raw');
+                _privateKey = privateKey;
+                $sessionStorage.privateKey = forge.util.encode64(privateKey);
+            }
+            catch (e) {
+                console.log('Cannot set private key. Decryption failed.');
+            }
         };
 
         _service.getKey = function (b64) {
@@ -121,7 +127,7 @@ angular
             return forge.util.encode64(hashBits);
         };
 
-        _service.encrypt = function (plainValue, key, encoding) {
+        _service.encrypt = function (plainValue, key, plainValueEncoding) {
             if (!_service.getKey() && !key) {
                 throw 'Encryption key unavailable.';
             }
@@ -135,8 +141,8 @@ angular
                 encKey = key || _service.getKey();
             }
 
-            encoding = encoding || 'utf8';
-            var buffer = forge.util.createBuffer(plainValue, encoding);
+            plainValueEncoding = plainValueEncoding || 'utf8';
+            var buffer = forge.util.createBuffer(plainValue, plainValueEncoding);
             var ivBytes = forge.random.getBytesSync(16);
             var cipher = forge.cipher.createCipher('AES-CBC', encKey);
             cipher.start({ iv: ivBytes });
@@ -157,9 +163,9 @@ angular
             return cipherString;
         };
 
-        _service.decrypt = function (encValue, outputEncoding) {
-            if (!_service.getKey()) {
-                throw 'AES encryption unavailable.';
+        _service.decrypt = function (encValue, key, outputEncoding) {
+            if (!_service.getKey() && !key) {
+                throw 'Encryption key unavailable.';
             }
 
             var encPieces = encValue.split('|');
@@ -179,8 +185,16 @@ angular
                 }
             }
 
+            var encKey;
+            if (computedMac) {
+                encKey = _service.getEncKey(key);
+            }
+            else {
+                encKey = key || _service.getKey();
+            }
+
             var ctBuffer = forge.util.createBuffer(ctBytes);
-            var decipher = forge.cipher.createDecipher('AES-CBC', computedMac ? _service.getEncKey() : _service.getKey());
+            var decipher = forge.cipher.createDecipher('AES-CBC', encKey);
             decipher.start({ iv: ivBytes });
             decipher.update(ctBuffer);
             decipher.finish();

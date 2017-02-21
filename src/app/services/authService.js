@@ -33,6 +33,9 @@ angular
                 tokenService.setToken(response.access_token);
                 tokenService.setRefreshToken(response.refresh_token);
                 cryptoService.setKey(key);
+                if (response.EncryptedPrivateKey) {
+                    cryptoService.setPrivateKey(response.EncryptedPrivateKey, key);
+                }
                 deferred.resolve();
             }, function (error) {
                 if (error.status === 400 && error.data.TwoFactorProviders && error.data.TwoFactorProviders.length) {
