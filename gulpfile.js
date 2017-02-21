@@ -183,6 +183,7 @@ gulp.task('webpack:forge', function () {
     return gulp.src([
         forgeDir + 'pbkdf2.js',
         forgeDir + 'aes.js',
+        forgeDir + 'rsa.js',
         forgeDir + 'hmac.js',
         forgeDir + 'sha256.js',
         forgeDir + 'random.js',
@@ -350,7 +351,7 @@ gulp.task('deploy', ['dist'], function () {
 
 gulp.task('serve', function () {
     connect.server({
-        port: 4001,
+        port: 4011,
         root: ['src']
     });
 });
