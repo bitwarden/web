@@ -99,6 +99,24 @@ angular
                 controller: 'toolsController',
                 data: { pageTitle: 'Tools' }
             })
+            .state('backend.sharedLogins', {
+                url: '^/shared/logins',
+                templateUrl: 'app/shared/views/sharedLogins.html',
+                controller: 'sharedLoginsController',
+                data: { pageTitle: 'Shared Logins' }
+            })
+            .state('backend.sharedFolders', {
+                url: '^/shared/folders',
+                templateUrl: 'app/shared/views/sharedFolders.html',
+                controller: 'sharedFoldersController',
+                data: { pageTitle: 'Shared Folders' }
+            })
+            .state('backend.sharedMe', {
+                url: '^/shared/me',
+                templateUrl: 'app/shared/views/sharedMe.html',
+                controller: 'sharedMeController',
+                data: { pageTitle: 'Shared with Me' }
+            })
 
         // Frontend
             .state('frontend', {
