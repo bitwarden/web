@@ -52,7 +52,7 @@ angular
         _service.logOut = function () {
             tokenService.clearToken();
             tokenService.clearRefreshToken();
-            cryptoService.clearKey();
+            cryptoService.clearKeys();
             _userProfile = null;
         };
 

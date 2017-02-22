@@ -5,7 +5,7 @@
     </h1>
 </section>
 <section class="content">
-    <div ng-show="loadingFolders && !folders.length">
+    <div ng-show="loading && !folders.length">
         <p>Loading...</p>
     </div>
     <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length && (!main.searchVaultText || folderLogins.length)">
@@ -27,10 +27,7 @@
             </div>
         </div>
         <div class="box-body" ng-class="{'no-padding': folderLogins.length}">
-            <div ng-show="loadingLogins && !folderLogins.length">
-                <p>Loading logins...</p>
-            </div>
-            <div ng-show="!loadingLogins && !folderLogins.length">
+            <div ng-show="!folderLogins.length">
                 <p>No logins in this folder.</p>
                 <button type="button" ng-click="addLogin(folder)" class="btn btn-default btn-flat">Add a Login</button>
             </div>

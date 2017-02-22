@@ -5,57 +5,48 @@
         $scope.logins = [];
         $scope.folders = [];
 
-        $scope.loadingLogins = true;
-        apiService.logins.list({}, function (logins) {
-            $scope.loadingLogins = false;
+        $scope.loading = true;
+        apiService.ciphers.list({}, function (ciphers) {
+            $scope.loading = false;
 
             var decLogins = [];
-            for (var i = 0; i < logins.Data.length; i++) {
-                var decLogin = {
-                    id: logins.Data[i].Id,
-                    folderId: logins.Data[i].FolderId,
-                    favorite: logins.Data[i].Favorite
-                };
-
-                try { decLogin.name = cryptoService.decrypt(logins.Data[i].Name); }
-                catch (err) { decLogin.name = '[error: cannot decrypt]'; }
-
-                if (logins.Data[i].Username) {
-                    try { decLogin.username = cryptoService.decrypt(logins.Data[i].Username); }
-                    catch (err) { decLogin.username = '[error: cannot decrypt]'; }
-                }
-
-                decLogins.push(decLogin);
-            }
-
-            $scope.logins = decLogins;
-        }, function () {
-            $scope.loadingLogins = false;
-        });
-
-        $scope.loadingFolders = true;
-        apiService.folders.list({}, function (folders) {
-            $scope.loadingFolders = false;
-
             var decFolders = [{
                 id: null,
                 name: '(none)'
             }];
 
-            for (var i = 0; i < folders.Data.length; i++) {
-                var decFolder = {
-                    id: folders.Data[i].Id
-                };
+            for (var i = 0; i < ciphers.Data.length; i++) {
+                if (ciphers.Data[i].Type === 0) {
+                    var decFolder = {
+                        id: ciphers.Data[i].Id
+                    };
 
-                try { decFolder.name = cryptoService.decrypt(folders.Data[i].Name); }
-                catch (err) { decFolder.name = '[error: cannot decrypt]'; }
+                    try { decFolder.name = cryptoService.decrypt(ciphers.Data[i].Data.Name); }
+                    catch (err) { decFolder.name = '[error: cannot decrypt]'; }
 
-                decFolders.push(decFolder);
+                    decFolders.push(decFolder);
+                }
+                else {
+                    var decLogin = {
+                        id: ciphers.Data[i].Id,
+                        folderId: ciphers.Data[i].FolderId,
+                        favorite: ciphers.Data[i].Favorite
+                    };
+
+                    try { decLogin.name = cryptoService.decrypt(ciphers.Data[i].Data.Name); }
+                    catch (err) { decLogin.name = '[error: cannot decrypt]'; }
+
+                    if (ciphers.Data[i].Data.Username) {
+                        try { decLogin.username = cryptoService.decrypt(ciphers.Data[i].Data.Username); }
+                        catch (err) { decLogin.username = '[error: cannot decrypt]'; }
+                    }
+
+                    decLogins.push(decLogin);
+                }
             }
 
             $scope.folders = decFolders;
-        }, function () {
-            $scope.loadingFolders = false;
+            $scope.logins = decLogins;
         });
 
         $scope.folderSort = function (item) {
