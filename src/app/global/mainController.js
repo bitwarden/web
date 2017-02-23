@@ -20,6 +20,8 @@ angular
                 if ($.AdminLTE.pushMenu) {
                     $.AdminLTE.pushMenu.expandOnHover();
                 }
+
+                $(document).off('click', '.sidebar li a');
             }
         });
 

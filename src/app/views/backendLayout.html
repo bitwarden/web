@@ -42,55 +42,56 @@
             <ul class="sidebar-menu">
                 <li class="header">WEB VAULT</li>
                 <li class="treeview" ng-class="{active: $state.includes('backend.vault')}">
-                    <a ui-sref="backend.vault"><i class="fa fa-lock"></i> <span>My Vault</span></a>
-                    <ul class="treeview-menu menu-open">
+                    <a ui-sref="backend.vault"><i class="fa fa-lock fa-fw"></i> <span>My Vault</span></a>
+                    <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.vault')}">
                         <li>
                             <a href="javascript:void(0)" ng-click="addLogin()">
-                                <i class="fa fa-plus"></i> New Login
+                                <i class="fa fa-plus-circle fa-fw"></i> New Login
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0)" ng-click="addFolder()">
-                                <i class="fa fa-folder"></i> New Folder
+                                <i class="fa fa-folder fa-fw"></i> New Folder
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="treeview"
-                    ng-class="{active: $state.includes('backend.sharedLogins') || $state.includes('backend.sharedLoginsMe') ||
-                        $state.includes('backend.sharedFolders') || $state.includes('backend.sharedFoldersMe')}">
-                    <a ui-sref="backend.sharedFolders"><i class="fa fa-users"></i> <span>Sharing Center</span></a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a ui-sref="backend.sharedFolders">
-                                <i class="fa fa-circle-o"></i> Shared Folders
+                    ng-class="{active: $state.is('backend.shared') || $state.is('backend.sharedMe')}">
+                    <a ui-sref="backend.shared"><i class="fa fa-users fa-fw"></i> <span>Sharing Center</span></a>
+                    <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.shared') 
+                        || $state.is('backend.sharedMe')}">
+                        <li ng-class="{active: $state.is('backend.shared')}">
+                            <a ui-sref="backend.shared">
+                                <i class="fa fa-fw fa-circle-o"></i> My Shares
                             </a>
                         </li>
-                        <li>
-                            <a ui-sref="backend.sharedLogins">
-                                <i class="fa fa-circle-o"></i> Shared Logins
+                        <li ng-class="{active: $state.is('backend.sharedMe')}">
+                            <a ui-sref="backend.sharedMe">
+                                <i class="fa fa-fw fa-circle-o"></i> Shared with Me
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="treeview" ng-class="{active: $state.is('backend.tools')}">
+                    <a ui-sref="backend.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>
+                </li>
                 <li class="treeview"
-                    ng-class="{active: $state.includes('backend.settings') || $state.includes('backend.settingsDomains')}">
-                    <a ui-sref="backend.settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
-                    <ul class="treeview-menu">
-                        <li>
+                    ng-class="{active: $state.is('backend.settings') || $state.is('backend.settingsDomains')}">
+                    <a ui-sref="backend.settings"><i class="fa fa-cogs fa-fw"></i> <span>Settings</span></a>
+                    <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.settings') 
+                        || $state.is('backend.settingsDomains')}">
+                        <li ng-class="{active: $state.is('backend.settingsDomains')}">
                             <a ui-sref="backend.settingsDomains">
-                                <i class="fa fa-circle-o"></i> Domain Rules
+                                <i class="fa fa-fw fa-circle-o"></i> Domain Rules
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="treeview" ng-class="{active: $state.includes('backend.tools')}">
-                    <a ui-sref="backend.tools"><i class="fa fa-wrench"></i> <span>Tools</span></a>
                 </li>
                 <li>
                     <a href="https://help.bitwarden.com/" target="_blank"
                        analytics-on="click" analytics-event="Clicked Get Help">
-                        <i class="fa fa-info-circle"></i> <span>Get Help</span>
+                        <i class="fa fa-info-circle fa-fw"></i> <span>Get Help</span>
                     </a>
                 </li>
                 <li class="header">
@@ -100,13 +101,13 @@
                 <li>
                     <a href="https://itunes.apple.com/us/app/bitwarden-free-password-manager/id1137397744?mt=8"
                        target="_blank" analytics-on="click" analytics-event="Clicked iOS">
-                        <i class="fa fa-apple"></i> <span>iOS</span>
+                        <i class="fa fa-apple fa-fw"></i> <span>iOS</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://play.google.com/store/apps/details?id=com.x8bit.bitwarden"
                        target="_blank" analytics-on="click" analytics-event="Clicked Android">
-                        <i class="fa fa-android"></i> <span>Android</span>
+                        <i class="fa fa-android fa-fw"></i> <span>Android</span>
                     </a>
                 </li>
                 <li class="header">
@@ -116,27 +117,27 @@
                 <li>
                     <a href="https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb"
                        target="_blank" analytics-on="click" analytics-event="Clicked Chrome">
-                        <i class="fa fa-chrome"></i> <span>Chrome</span>
+                        <i class="fa fa-chrome fa-fw"></i> <span>Chrome</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void(0)"
                        target="_blank" analytics-on="click" analytics-event="Clicked Firefox">
                         <small class="label pull-right bg-gray">coming very soon</small>
-                        <i class="fa fa-firefox"></i> <span>Firefox</span>
+                        <i class="fa fa-firefox fa-fw"></i> <span>Firefox</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://addons.opera.com/extensions/details/bitwarden-free-password-manager/"
                        target="_blank" analytics-on="click" analytics-event="Clicked Opera">
-                        <i class="fa fa-opera"></i> <span>Opera</span>
+                        <i class="fa fa-opera fa-fw"></i> <span>Opera</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void(0)"
                        target="_blank" analytics-on="click" analytics-event="Clicked Edge">
                         <small class="label pull-right bg-gray">coming soon</small>
-                        <i class="fa fa-edge"></i> <span>Edge</span>
+                        <i class="fa fa-edge fa-fw"></i> <span>Edge</span>
                     </a>
                 </li>
             </ul>

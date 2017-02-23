@@ -11,16 +11,18 @@
     <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length && (!main.searchVaultText || folderLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}} <small>{{folderLogins.length}} logins</small></h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" ng-click="addLogin(folder)" uib-tooltip="Add Login">
-                    <i class="fa fa-plus"></i>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" uib-tooltip="Share" ng-show="folder.id">
+                    <i class="fa fa-user-plus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" ng-click="deleteFolder(folder)" ng-show="canDeleteFolder(folder)" uib-tooltip="Delete">
-                    <i class="fa fa-trash"></i>
+                <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-bars"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" ng-click="editFolder(folder)" ng-show="folder.id" uib-tooltip="Edit">
-                    <i class="fa fa-pencil"></i>
-                </button>
+                <ul class="dropdown-menu" role="menu" style="right: 0; left: auto;">
+                    <li><a href="#" ng-click="addLogin(folder)">Add Login</a></li>
+                    <li ng-show="folder.id"><a href="#" ng-click="editFolder(folder)">Edit Folder</a></li>
+                    <li ng-show="canDeleteFolder(folder)"><a href="#" ng-click="deleteFolder(folder)">Delete Folder</a></li>
+                </ul>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
                     <i class="fa fa-minus"></i>
                 </button>
