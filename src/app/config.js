@@ -177,7 +177,7 @@ angular
                 }
             });
     })
-    .run(function ($rootScope, authService, jwtHelper, tokenService, $state) {
+    .run(function ($rootScope, authService, $state) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (!toState.data || !toState.data.authorize) {
                 if (authService.isAuthenticated()) {
