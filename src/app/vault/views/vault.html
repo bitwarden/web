@@ -8,9 +8,13 @@
     <div ng-show="loading && !folders.length">
         <p>Loading...</p>
     </div>
-    <div class="box" ng-repeat="folder in folders | orderBy: folderSort" ng-show="folders.length && (!main.searchVaultText || folderLogins.length)">
+    <div class="box" ng-repeat="folder in folders | orderBy: folderSort"
+         ng-show="folders.length && (!main.searchVaultText || folderLogins.length)">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-folder-open"></i> {{folder.name}} <small>{{folderLogins.length}} logins</small></h3>
+            <h3 class="box-title">
+                <i class="fa fa-folder-open"></i>
+                {{folder.name}} <small>{{folderLogins.length}} logins</small>
+            </h3>
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" uib-tooltip="Share" ng-show="folder.id">
                     <i class="fa fa-user-plus"></i>
@@ -21,9 +25,15 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href="#" ng-click="addLogin(folder)">Add Login</a></li>
-                        <li ng-show="folder.id"><a href="#" ng-click="editFolder(folder)">Edit Folder</a></li>
-                        <li ng-show="canDeleteFolder(folder)"><a href="#" ng-click="deleteFolder(folder)">Delete Folder</a></li>
+                        <li>
+                            <a href="#" ng-click="addLogin(folder)">Add Login</a>
+                        </li>
+                        <li ng-show="folder.id">
+                            <a href="#" ng-click="editFolder(folder)">Edit Folder</a>
+                        </li>
+                        <li ng-show="canDeleteFolder(folder)">
+                            <a href="#" ng-click="deleteFolder(folder)">Delete Folder</a>
+                        </li>
                     </ul>
                 </div>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
@@ -46,12 +56,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } | filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
+                        <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } |
+                            filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])"
+                            ng-click="editLogin(login)">
                             <td>
-                                <button type="button" ng-click="deleteLogin(login)" class="btn btn-link btn-table" uib-tooltip="Delete"><i class="fa fa-lg fa-trash"></i></button>
-                                <button type="button" ng-click="editLogin(login)" class="btn btn-link btn-table" uib-tooltip="View/Edit"><i class="fa fa-lg fa-pencil"></i></button>
+                                <button type="button" ng-click="deleteLogin(login)" class="btn btn-link btn-table"
+                                        uib-tooltip="Delete">
+                                    <i class="fa fa-lg fa-trash"></i>
+                                </button>
+                                <button type="button" ng-click="editLogin(login)" class="btn btn-link btn-table"
+                                        uib-tooltip="View/Edit">
+                                    <i class="fa fa-lg fa-pencil"></i>
+                                </button>
                             </td>
-                            <td>{{login.name}} <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i></td>
+                            <td>
+                                {{login.name}}
+                                <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i>
+                            </td>
                             <td>{{login.username}}</td>
                         </tr>
                     </tbody>
