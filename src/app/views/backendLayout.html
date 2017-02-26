@@ -58,8 +58,11 @@
                 </li>
                 <li class="treeview"
                     ng-class="{active: $state.is('backend.shared') || $state.is('backend.sharedMe')}">
-                    <a ui-sref="backend.shared"><i class="fa fa-users fa-fw"></i> <span>Sharing Center</span></a>
-                    <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.shared') 
+                    <a ui-sref="backend.shared">
+                        <small class="label pull-right bg-yellow">beta</small>
+                        <i class="fa fa-users fa-fw"></i> <span>Sharing Center</span>
+                    </a>
+                    <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.shared')
                         || $state.is('backend.sharedMe')}">
                         <li ng-class="{active: $state.is('backend.shared')}">
                             <a ui-sref="backend.shared">
@@ -79,7 +82,7 @@
                 <li class="treeview"
                     ng-class="{active: $state.is('backend.settings') || $state.is('backend.settingsDomains')}">
                     <a ui-sref="backend.settings"><i class="fa fa-cogs fa-fw"></i> <span>Settings</span></a>
-                    <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.settings') 
+                    <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.settings')
                         || $state.is('backend.settingsDomains')}">
                         <li ng-class="{active: $state.is('backend.settingsDomains')}">
                             <a ui-sref="backend.settingsDomains">
