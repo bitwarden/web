@@ -181,4 +181,29 @@
             var logins = $filter('filter')($scope.logins, { folderId: folder.id });
             return logins.length === 0;
         };
+
+        $scope.shareLogin = function (login) {
+            share(login.id, login.name, false);
+        };
+
+        $scope.shareFolder = function (folder) {
+            share(folder.id, folder.name, true);
+        };
+
+        function share(id, name, isFolder) {
+            var shareModel = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultShare.html',
+                controller: 'vaultShareController',
+                resolve: {
+                    id: function () { return id; },
+                    name: function () { return name; },
+                    isFolder: function () { return isFolder; }
+                }
+            });
+
+            shareModel.result.then(function (result) {
+
+            });
+        }
     });

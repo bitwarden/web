@@ -16,7 +16,8 @@
                 {{folder.name}} <small>{{folderLogins.length}} logins</small>
             </h3>
             <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" uib-tooltip="Share" ng-show="folder.id">
+                <button type="button" ng-click="shareFolder(folder)" class="btn btn-box-tool" uib-tooltip="Share"
+                        ng-show="folder.id">
                     <i class="fa fa-user-plus"></i>
                 </button>
                 <div class="btn-group">
