@@ -195,6 +195,7 @@
                 animation: true,
                 templateUrl: 'app/vault/views/vaultShare.html',
                 controller: 'vaultShareController',
+                size: 'lg',
                 resolve: {
                     id: function () { return id; },
                     name: function () { return name; },

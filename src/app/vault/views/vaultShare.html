@@ -7,7 +7,7 @@
         <small>{{cipher.name}}</small>
     </h4>
 </div>
-<form name="shareForm" ng-submit="shareForm.$valid && save(folder)" api-form="savePromise">
+<form name="shareForm" ng-submit="shareForm.$valid && share()" api-form="savePromise">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="shareForm.$errors">
             <h4>Errors have occured</h4>
@@ -15,7 +15,30 @@
                 <li ng-repeat="e in shareForm.$errors">{{e}}</li>
             </ul>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="email">Recipient Email address</label> <span>*</span>
+                    <input type="email" id="email" name="Email" ng-model="cipher.email" class="form-control"
+                           placeholder="bob@example.com" required api-field />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="cipher.readonly" name="Edit" />
+                        Recipient can edit?
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="cipher.reshare" name="Reshare" />
+                        Recipient can re-share with others?
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
 
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="shareForm.$loading">

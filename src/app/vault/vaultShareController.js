@@ -10,8 +10,8 @@
             isFolder: isFolder
         };
 
-        $scope.savePromise = null;
-        $scope.save = function (model) {
+        $scope.sharePromise = null;
+        $scope.share = function () {
             $uibModalInstance.close({});
         };
 
