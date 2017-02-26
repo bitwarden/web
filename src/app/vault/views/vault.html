@@ -15,14 +15,17 @@
                 <button type="button" class="btn btn-box-tool" uib-tooltip="Share" ng-show="folder.id">
                     <i class="fa fa-user-plus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <ul class="dropdown-menu" role="menu" style="right: 0; left: auto;">
-                    <li><a href="#" ng-click="addLogin(folder)">Add Login</a></li>
-                    <li ng-show="folder.id"><a href="#" ng-click="editFolder(folder)">Edit Folder</a></li>
-                    <li ng-show="canDeleteFolder(folder)"><a href="#" ng-click="deleteFolder(folder)">Delete Folder</a></li>
-                </ul>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                            uib-tooltip="Options">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href="#" ng-click="addLogin(folder)">Add Login</a></li>
+                        <li ng-show="folder.id"><a href="#" ng-click="editFolder(folder)">Edit Folder</a></li>
+                        <li ng-show="canDeleteFolder(folder)"><a href="#" ng-click="deleteFolder(folder)">Delete Folder</a></li>
+                    </ul>
+                </div>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
                     <i class="fa fa-minus"></i>
                 </button>
