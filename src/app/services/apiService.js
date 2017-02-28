@@ -29,6 +29,13 @@
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
+        _service.shares = $resource(_apiUri + '/shares/:id', {}, {
+            get: { method: 'GET', params: { id: '@id' } },
+            listCipher: { url: _apiUri + '/shares/:cipherId', method: 'GET', params: { cipherId: '@cipherId' } },
+            post: { method: 'POST', params: {} },
+            del: { url: _apiUri + '/shares/:id/delete', method: 'POST', params: { id: '@id' } }
+        });
+
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
             register: { url: _apiUri + '/accounts/register', method: 'POST', params: {} },
             emailToken: { url: _apiUri + '/accounts/email-token', method: 'POST', params: {} },

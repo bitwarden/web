@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr, cipherService) {
+    .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
+        cipherService) {
         $scope.logins = [];
         $scope.folders = [];
 
@@ -17,30 +18,11 @@
 
             for (var i = 0; i < ciphers.Data.length; i++) {
                 if (ciphers.Data[i].Type === 0) {
-                    var decFolder = {
-                        id: ciphers.Data[i].Id
-                    };
-
-                    try { decFolder.name = cryptoService.decrypt(ciphers.Data[i].Data.Name); }
-                    catch (err) { decFolder.name = '[error: cannot decrypt]'; }
-
+                    var decFolder = cipherService.decryptFolderPreview(ciphers.Data[i]);
                     decFolders.push(decFolder);
                 }
                 else {
-                    var decLogin = {
-                        id: ciphers.Data[i].Id,
-                        folderId: ciphers.Data[i].FolderId,
-                        favorite: ciphers.Data[i].Favorite
-                    };
-
-                    try { decLogin.name = cryptoService.decrypt(ciphers.Data[i].Data.Name); }
-                    catch (err) { decLogin.name = '[error: cannot decrypt]'; }
-
-                    if (ciphers.Data[i].Data.Username) {
-                        try { decLogin.username = cryptoService.decrypt(ciphers.Data[i].Data.Username); }
-                        catch (err) { decLogin.username = '[error: cannot decrypt]'; }
-                    }
-
+                    var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
                     decLogins.push(decLogin);
                 }
             }
@@ -183,28 +165,18 @@
         };
 
         $scope.shareLogin = function (login) {
-            share(login.id, login.name, false);
-        };
-
-        $scope.shareFolder = function (folder) {
-            share(folder.id, folder.name, true);
-        };
-
-        function share(id, name, isFolder) {
             var shareModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultShare.html',
-                controller: 'vaultShareController',
+                templateUrl: 'app/vault/views/vaultShareLogin.html',
+                controller: 'vaultShareLoginController',
                 size: 'lg',
                 resolve: {
-                    id: function () { return id; },
-                    name: function () { return name; },
-                    isFolder: function () { return isFolder; }
+                    id: function () { return login.id; }
                 }
             });
 
             shareModel.result.then(function (result) {
 
             });
-        }
+        };
     });

@@ -5,7 +5,8 @@ angular
         var _service = {},
             _key,
             _b64Key,
-            _privateKey;
+            _privateKey,
+            _publicKey;
 
         _service.setKey = function (key) {
             _key = key;
@@ -64,10 +65,25 @@ angular
             }
 
             if ($sessionStorage.privateKey) {
-                _privateKey = forge.util.decode64($sessionStorage.privateKey);
+                var privateKeyBytes = forge.util.decode64($sessionStorage.privateKey);
+                _privateKey = forge.pki.privateKeyFromAsn1(forge.asn1.fromDer(privateKeyBytes));
             }
 
             return _privateKey;
+        };
+
+        _service.getPublicKey = function () {
+            if (_publicKey) {
+                return _publicKey;
+            }
+
+            var privateKey = _service.getPrivateKey();
+            if (!privateKey) {
+                return null;
+            }
+
+            _publicKey = forge.pki.setRsaPublicKey(privateKey.n, privateKey.e);
+            return _publicKey;
         };
 
         _service.clearKey = function () {
@@ -75,14 +91,15 @@ angular
             delete $sessionStorage.key;
         };
 
-        _service.clearPrivateKey = function () {
+        _service.clearKeyPair = function () {
             _privateKey = null;
+            _publicKey = null;
             delete $sessionStorage.privateKey;
         };
 
         _service.clearKeys = function () {
             _service.clearKey();
-            _service.clearPrivateKey();
+            _service.clearKeyPair();
         };
 
         _service.makeKey = function (password, salt, b64) {
@@ -112,6 +129,10 @@ angular
 
                 callback(forge.util.encode64(publicKeyBytes), privateKeyEnc, null);
             });
+        };
+
+        _service.makeShareKey = function () {
+            return forge.random.getBytesSync(32);
         };
 
         _service.hashPassword = function (password, key) {
@@ -163,6 +184,18 @@ angular
             return cipherString;
         };
 
+        _service.rsaEncrypt = function (plainValue, publicKey) {
+            publicKey = publicKey || _service.getPublicKey();
+            if (!publicKey) {
+                throw 'Public key unavailable.';
+            }
+
+            var encryptedBytes = publicKey.encrypt(plainValue, 'RSA-OAEP', {
+                md: forge.md.sha256.create()
+            });
+            return forge.util.encode64(encryptedBytes);
+        }
+
         _service.decrypt = function (encValue, key, outputEncoding) {
             if (!_service.getKey() && !key) {
                 throw 'Encryption key unavailable.';
@@ -207,6 +240,20 @@ angular
                 return decipher.output.getBytes();
             }
         };
+
+        _service.rsaDecrypt = function (encValue, privateKey) {
+            privateKey = privateKey || _service.getPrivateKey();
+            if (!privateKey) {
+                throw 'Private key unavailable.';
+            }
+
+            var ctBytes = forge.util.decode64(encValue);
+            var decBytes = privateKey.decrypt(ctBytes, 'RSA-OAEP', {
+                md: forge.md.sha256.create()
+            });
+
+            return decBytes;
+        }
 
         function computeMac(ct, iv, macKey) {
             var hmac = forge.hmac.create();
