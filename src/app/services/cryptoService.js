@@ -194,7 +194,7 @@ angular
                 md: forge.md.sha256.create()
             });
             return forge.util.encode64(encryptedBytes);
-        }
+        };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
             if (!_service.getKey() && !key) {
@@ -253,7 +253,7 @@ angular
             });
 
             return decBytes;
-        }
+        };
 
         function computeMac(ct, iv, macKey) {
             var hmac = forge.hmac.create();
