@@ -163,20 +163,4 @@
             var logins = $filter('filter')($scope.logins, { folderId: folder.id });
             return logins.length === 0;
         };
-
-        $scope.shareLogin = function (login) {
-            var shareModel = $uibModal.open({
-                animation: true,
-                templateUrl: 'app/vault/views/vaultShareLogin.html',
-                controller: 'vaultShareLoginController',
-                size: 'lg',
-                resolve: {
-                    id: function () { return login.id; }
-                }
-            });
-
-            shareModel.result.then(function (result) {
-
-            });
-        };
     });
