@@ -39,7 +39,7 @@ angular
         });
 
         $scope.searchVault = function () {
-            $state.go('backend.vault');
+            $state.go('backend.user.vault');
         };
 
         $scope.addLogin = function () {

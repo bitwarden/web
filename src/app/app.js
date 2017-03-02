@@ -17,5 +17,6 @@
         'bit.vault',
         'bit.shared',
         'bit.settings',
-        'bit.tools'
+        'bit.tools',
+        'bit.organization'
     ]);

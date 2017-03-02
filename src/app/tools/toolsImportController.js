@@ -228,7 +228,7 @@
                 folderRelationships: folderRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
-                $state.go('backend.vault').then(function () {
+                $state.go('backend.user.vault').then(function () {
                     $analytics.eventTrack('Imported Data', { label: $scope.model.source });
                     toastr.success('Data has been successfully imported into your vault.', 'Import Success');
                 });

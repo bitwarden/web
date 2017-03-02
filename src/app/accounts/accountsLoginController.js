@@ -40,7 +40,7 @@ angular
                 }
                 else {
                     $analytics.eventTrack('Logged In');
-                    $state.go('backend.vault');
+                    $state.go('backend.user.vault');
                 }
             });
         };
@@ -51,7 +51,7 @@ angular
 
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');
-                $state.go('backend.vault');
+                $state.go('backend.user.vault');
             });
         };
     });

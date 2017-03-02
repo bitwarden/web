@@ -75,41 +75,55 @@ angular
                     authorize: true
                 }
             })
-            .state('backend.vault', {
+            .state('backend.user', {
+                templateUrl: 'app/views/userLayout.html',
+                abstract: true
+            })
+            .state('backend.user.vault', {
                 url: '^/vault',
                 templateUrl: 'app/vault/views/vault.html',
                 controller: 'vaultController',
                 data: { pageTitle: 'My Vault' }
             })
-            .state('backend.settings', {
+            .state('backend.user.settings', {
                 url: '^/settings',
                 templateUrl: 'app/settings/views/settings.html',
                 controller: 'settingsController',
                 data: { pageTitle: 'Settings' }
             })
-            .state('backend.settingsDomains', {
+            .state('backend.user.settingsDomains', {
                 url: '^/settings/domains',
                 templateUrl: 'app/settings/views/settingsDomains.html',
                 controller: 'settingsDomainsController',
                 data: { pageTitle: 'Domain Settings' }
             })
-            .state('backend.tools', {
+            .state('backend.user.tools', {
                 url: '^/tools',
                 templateUrl: 'app/tools/views/tools.html',
                 controller: 'toolsController',
                 data: { pageTitle: 'Tools' }
             })
-            .state('backend.shared', {
+            .state('backend.user.shared', {
                 url: '^/shared',
                 templateUrl: 'app/shared/views/shared.html',
                 controller: 'sharedController',
                 data: { pageTitle: 'Shared' }
             })
-            .state('backend.sharedMe', {
+            .state('backend.user.sharedMe', {
                 url: '^/shared/me',
                 templateUrl: 'app/shared/views/sharedMe.html',
                 controller: 'sharedMeController',
                 data: { pageTitle: 'Shared with Me' }
+            })
+            .state('backend.org', {
+                templateUrl: 'app/views/organizationLayout.html',
+                abstract: true
+            })
+            .state('backend.org.dashboard', {
+                url: '^/organization',
+                templateUrl: 'app/organization/views/dashboard.html',
+                controller: 'organizationDashboardController',
+                data: { pageTitle: 'Org Dash' }
             })
 
         // Frontend
@@ -182,7 +196,7 @@ angular
             if (!toState.data || !toState.data.authorize) {
                 if (authService.isAuthenticated()) {
                     event.preventDefault();
-                    $state.go('backend.vault');
+                    $state.go('backend.user.vault');
                 }
 
                 return;

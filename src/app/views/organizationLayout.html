@@ -1,0 +1,40 @@
+<header class="main-header" ng-controller="topNavController as topNav">
+    <a ui-sref="backend.user.vault" class="logo">
+        <span class="logo-mini"><i class="fa fa-shield"></i></span>
+        <span class="logo-lg"><i class="fa fa-shield"></i> <b>bit</b>warden</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="frontend.logout">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<aside class="main-sidebar" ng-controller="sideNavController as sideNav">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="//www.gravatar.com/avatar/{{ main.userProfile.email | gravatar }}.jpg?s=45&d=mm"
+                     class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{main.userProfile.extended && main.userProfile.extended.name ? main.userProfile.extended.name : main.userProfile.email}}</p>
+                <a ui-sref="frontend.logout">Log Out</a>
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="header">ORG</li>
+        </ul>
+    </section>
+</aside>
+
+<div class="content-wrapper" ui-view>
+</div>
