@@ -18,6 +18,18 @@
                 email: user.Email,
                 twoFactorEnabled: user.TwoFactorEnabled
             };
+
+            if (user.Organizations) {
+                var orgs = [];
+                for (var i = 0; i < user.Organizations.length; i++) {
+                    orgs.push({
+                        id: user.Organizations[i].Id,
+                        name: user.Organizations[i].Name
+                    });
+                }
+
+                $scope.model.organizations = orgs;
+            }
         });
 
         $scope.generalSave = function () {
@@ -47,6 +59,14 @@
                 animation: true,
                 templateUrl: 'app/settings/views/settingsChangeEmail.html',
                 controller: 'settingsChangeEmailController'
+            });
+        };
+
+        $scope.createOrganization = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsCreateOrganization.html',
+                controller: 'settingsCreateOrganizationController'
             });
         };
 

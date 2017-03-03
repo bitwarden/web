@@ -113,25 +113,31 @@
         <div class="box-header with-border">
             <h3 class="box-title">Organizations</h3>
         </div>
-        <div class="box-body no-padding">
-            <div class="table-responsive">
+        <div class="box-body" ng-class="{'no-padding': model.organizations && model.organizations.length}">
+            <div ng-show="!model.organizations || !model.organizations.length">
+                No organizations yet for your account.
+            </div>
+            <div class="table-responsive" ng-show="model.organizations && model.organizations.length">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th style="width: 75px; min-width: 75px;"></th>
                             <th>Name</th>
-                            <th style="width: 200px;">Plan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr ng-repeat="org in model.organizations | orderBy: ['name']">
                             <td></td>
-                            <td>sdfsdf</td>
-                            <td>dfd</td>
+                            <td>{{org.Name}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="box-footer" ng-show="!model.organizations || !model.organizations.length">
+            <button type="button" ng-click="createOrganization()" class="btn btn-default btn-flat">
+                Create an Organization
+            </button>
         </div>
     </div>
     <div class="box box-danger">

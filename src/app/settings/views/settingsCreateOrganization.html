@@ -1,0 +1,26 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title"><i class="fa fa-sitemap"></i> Create Organization</h4>
+</div>
+<form name="createOrgForm" ng-submit="createOrgForm.$valid && submit(model)" api-form="submitPromise">
+    <div class="modal-body">
+        <p>Create an organization.</p>
+        <div class="callout callout-danger validation-errors" ng-show="createOrgForm.$errors">
+            <h4>Errors have occured</h4>
+            <ul>
+                <li ng-repeat="e in createOrgForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="name">Organization Name</label>
+            <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
+                   required api-field />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="createOrgForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="createOrgForm.$loading"></i>Submit
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
