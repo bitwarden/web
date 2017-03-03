@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsController', function ($scope, $uibModal, apiService, toastr, authService) {
+    .controller('settingsController', function ($scope, $state, $uibModal, apiService, toastr, authService) {
         $scope.model = {
             profile: {},
             twoFactorEnabled: false,
@@ -68,6 +68,10 @@
                 templateUrl: 'app/settings/views/settingsCreateOrganization.html',
                 controller: 'settingsCreateOrganizationController'
             });
+        };
+
+        $scope.viewOrganization = function (id) {
+            $state.go('backend.org.dashboard');
         };
 
         $scope.twoFactor = function () {

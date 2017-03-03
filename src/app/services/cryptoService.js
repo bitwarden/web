@@ -132,7 +132,7 @@ angular
         };
 
         _service.makeShareKey = function () {
-            return forge.random.getBytesSync(32);
+            return _service.rsaEncrypt(forge.random.getBytesSync(32));
         };
 
         _service.hashPassword = function (password, key) {

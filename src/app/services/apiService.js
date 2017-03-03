@@ -29,11 +29,12 @@
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
-        _service.shares = $resource(_apiUri + '/shares/:id', {}, {
+        _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
-            listCipher: { url: _apiUri + '/shares/:cipherId', method: 'GET', params: { cipherId: '@cipherId' } },
+            list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
-            del: { url: _apiUri + '/shares/:id/delete', method: 'POST', params: { id: '@id' } }
+            put: { method: 'POST', params: { id: '@id' } },
+            del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
