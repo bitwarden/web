@@ -27,7 +27,7 @@
             </div>
             <div class="pull-left info">
                 <p>{{orgProfile.name}}</p>
-                <a ui-sref="frontend.logout">Log Out</a>
+                <a ui-sref="backend.user.vault"><i class="fa fa-arrow-left"></i> Return to my vault</a>
             </div>
         </div>
         <ul class="sidebar-menu">
@@ -40,6 +40,21 @@
             <li ng-class="{active: $state.is('backend.org.people')}">
                 <a ui-sref="backend.org.people({orgId: params.orgId})">
                     <i class="fa fa-users fa-fw"></i> <span>People</span>
+                </a>
+            </li>
+            <li ng-class="{active: $state.is('backend.org.subvaults')}">
+                <a ui-sref="backend.org.subvaults({orgId: params.orgId})">
+                    <i class="fa fa-share-alt fa-fw"></i> <span>Subvaults</span>
+                </a>
+            </li>
+            <li ng-class="{active: $state.is('backend.org.billing')}">
+                <a ui-sref="backend.org.billing({orgId: params.orgId})">
+                    <i class="fa fa-credit-card fa-fw"></i> <span>Billing</span>
+                </a>
+            </li>
+            <li ng-class="{active: $state.is('backend.org.settings')}">
+                <a ui-sref="backend.org.settings({orgId: params.orgId})">
+                    <i class="fa fa-gears fa-fw"></i> <span>Settings</span>
                 </a>
             </li>
         </ul>
