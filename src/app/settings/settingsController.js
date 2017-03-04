@@ -71,7 +71,7 @@
         };
 
         $scope.viewOrganization = function (id) {
-            $state.go('backend.org.dashboard', { id: id });
+            $state.go('backend.org.dashboard', { orgId: id });
         };
 
         $scope.twoFactor = function () {

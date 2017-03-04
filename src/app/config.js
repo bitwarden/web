@@ -121,10 +121,16 @@ angular
                 abstract: true
             })
             .state('backend.org.dashboard', {
-                url: '^/organization/:id',
-                templateUrl: 'app/organization/views/dashboard.html',
+                url: '^/organization/:orgId',
+                templateUrl: 'app/organization/views/organizationDashboard.html',
                 controller: 'organizationDashboardController',
-                data: { pageTitle: 'Org Dash' }
+                data: { pageTitle: 'Organization Dashboard' }
+            })
+            .state('backend.org.people', {
+                url: '/organization/:orgId/people',
+                templateUrl: 'app/organization/views/organizationPeople.html',
+                controller: 'organizationPeopleController',
+                data: { pageTitle: 'Organization People' }
             })
 
         // Frontend

@@ -86,6 +86,18 @@ angular
                 twoFactorEnabled: profile.TwoFactorEnabled,
                 culture: profile.Culture
             };
+
+            if (profile.Organizations) {
+                var orgs = [];
+                for (var i = 0; i < profile.Organizations.length; i++) {
+                    orgs.push({
+                        id: profile.Organizations[i].Id,
+                        name: profile.Organizations[i].Name
+                    });
+                }
+
+                _userProfile.organizations = orgs;
+            }
         }
 
         _service.isAuthenticated = function () {

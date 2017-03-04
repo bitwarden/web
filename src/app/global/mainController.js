@@ -4,7 +4,6 @@ angular
     .controller('mainController', function ($scope, $state, authService, appSettings, toastr) {
         var vm = this;
         vm.bodyClass = '';
-        vm.userProfile = null;
         vm.searchVaultText = null;
         vm.version = appSettings.version;
 
@@ -27,7 +26,6 @@ angular
 
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             vm.searchVaultText = null;
-            vm.userProfile = authService.getUserProfile();
 
             if (toState.data.bodyClass) {
                 vm.bodyClass = toState.data.bodyClass;
