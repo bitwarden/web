@@ -1,7 +1,8 @@
 angular
     .module('bit')
 
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, $uibTooltipProvider, toastrConfig) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, $uibTooltipProvider,
+        toastrConfig) {
         jwtInterceptorProvider.urlParam = 'access_token2';
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService, apiService, jwtHelper, $q) {
@@ -120,7 +121,7 @@ angular
                 abstract: true
             })
             .state('backend.org.dashboard', {
-                url: '^/organization',
+                url: '^/organization/:id',
                 templateUrl: 'app/organization/views/dashboard.html',
                 controller: 'organizationDashboardController',
                 data: { pageTitle: 'Org Dash' }
