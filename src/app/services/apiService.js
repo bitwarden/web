@@ -38,6 +38,15 @@
             del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
+        _service.organizationUsers = $resource(_apiUri + '/organizations/:orgId/users/:id', {}, {
+            get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
+            list: { method: 'GET', params: { orgId: '@orgId' } },
+            invite: { url: _apiUri + '/organizations/:orgId/users/invite', method: 'POST', params: { orgId: '@orgId' } },
+            accept: { url: _apiUri + '/organizations/:orgId/users/:id/accept', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            confirm: { url: _apiUri + '/organizations/:orgId/users/:id/confirm', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            del: { url: _apiUri + '/organizations/:orgId/users/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+        });
+
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
             register: { url: _apiUri + '/accounts/register', method: 'POST', params: {} },
             emailToken: { url: _apiUri + '/accounts/email-token', method: 'POST', params: {} },
@@ -59,6 +68,10 @@
         _service.settings = $resource(_apiUri + '/settings', {}, {
             getDomains: { url: _apiUri + '/settings/domains', method: 'GET', params: {} },
             putDomains: { url: _apiUri + '/settings/domains', method: 'POST', params: {} },
+        });
+
+        _service.users = $resource(_apiUri + '/users/:id', {}, {
+            getPublicKey: { url: _apiUri + '/users/:id/public-key', method: 'GET', params: { id: '@id' } }
         });
 
         _service.identity = $resource(_apiUri + '/connect', {}, {

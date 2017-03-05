@@ -190,6 +190,11 @@ angular
                 throw 'Public key unavailable.';
             }
 
+            if (typeof publicKey === 'string') {
+                var publicKeyBytes = forge.util.decode64(publicKey);
+                publicKey = forge.pki.publicKeyFromAsn1(forge.asn1.fromDer(publicKeyBytes));
+            }
+
             var encryptedBytes = publicKey.encrypt(plainValue, 'RSA-OAEP', {
                 md: forge.md.sha256.create()
             });
