@@ -113,29 +113,14 @@
         <div class="box-header with-border">
             <h3 class="box-title">Organizations</h3>
         </div>
-        <div class="box-body" ng-class="{'no-padding': model.organizations && model.organizations.length}">
-            <div ng-show="!model.organizations || !model.organizations.length">
-                No organizations yet for your account.
-            </div>
-            <div class="table-responsive" ng-show="model.organizations && model.organizations.length">
-                <table class="table table-striped table-hover table-selectable">
-                    <tbody>
-                        <tr ng-repeat="org in model.organizations | orderBy: ['name']">
-                            <td class="actions" style="width: 40px; min-width: 40px;">
-                                <button type="button" ng-click="viewOrganization(org.id)" class="btn btn-link btn-table"
-                                        uib-tooltip="View/Manage">
-                                    <i class="fa fa-lg fa-share"></i>
-                                </button>
-                            </td>
-                            <td ng-click="viewOrganization(org.id)">
-                                <span ng-click="$event.stopPropagation()">
-                                    {{org.name}}
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="box-body" ng-if="!model.organizations || !model.organizations.length">
+            No organizations yet for your account.
+        </div>
+        <div class="list-group" ng-if="model.organizations && model.organizations.length">
+            <a ng-repeat="org in model.organizations | orderBy: ['name']"
+               href="javascript:void(0)" ng-click="viewOrganization(org.id)" class="list-group-item">
+                <i class="fa fa-sitemap fa-fw"></i> {{org.name}}
+            </a>
         </div>
         <div class="box-footer">
             <button type="button" ng-click="createOrganization()" class="btn btn-default btn-flat">

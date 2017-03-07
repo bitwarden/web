@@ -148,6 +148,28 @@ form .btn .loading-icon {
     }
 }
 
+/* Boxes */
+
+.box > .list-group {
+    margin-bottom: 0;
+}
+
+.box > .list-group .list-group-item {
+    border-width: 1px 0;
+    border-radius: 0;
+    border-color: @box-border-color;
+}
+
+.box > .list-group:last-child .list-group-item:last-child {
+    border-bottom: 0;
+    border-bottom-right-radius: @box-border-radius;
+    border-bottom-left-radius: @box-border-radius;
+}
+
+.list-group + .box-footer, .box-header + .list-group .list-group-item:first-child {
+    border-top-width: 0;
+}
+
 /* Toastr */
 
 #toast-container {
