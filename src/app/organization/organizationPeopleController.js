@@ -3,7 +3,9 @@
 
     .controller('organizationPeopleController', function ($scope, $state, $uibModal, cryptoService, apiService, toastr) {
         $scope.users = [];
-        loadList();
+        $scope.$on('$viewContentLoaded', function () {
+            loadList();
+        });
 
         $scope.confirm = function (user) {
             apiService.users.getPublicKey({ id: user.userId }, function (userKey) {

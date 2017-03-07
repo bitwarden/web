@@ -8,28 +8,30 @@
             email: null
         };
 
-        apiService.accounts.getProfile({}, function (user) {
-            $scope.model = {
-                profile: {
-                    name: user.Name,
-                    masterPasswordHint: user.MasterPasswordHint,
-                    culture: user.Culture
-                },
-                email: user.Email,
-                twoFactorEnabled: user.TwoFactorEnabled
-            };
+        $scope.$on('$viewContentLoaded', function () {
+            apiService.accounts.getProfile({}, function (user) {
+                $scope.model = {
+                    profile: {
+                        name: user.Name,
+                        masterPasswordHint: user.MasterPasswordHint,
+                        culture: user.Culture
+                    },
+                    email: user.Email,
+                    twoFactorEnabled: user.TwoFactorEnabled
+                };
 
-            if (user.Organizations) {
-                var orgs = [];
-                for (var i = 0; i < user.Organizations.length; i++) {
-                    orgs.push({
-                        id: user.Organizations[i].Id,
-                        name: user.Organizations[i].Name
-                    });
+                if (user.Organizations) {
+                    var orgs = [];
+                    for (var i = 0; i < user.Organizations.length; i++) {
+                        orgs.push({
+                            id: user.Organizations[i].Id,
+                            name: user.Organizations[i].Name
+                        });
+                    }
+
+                    $scope.model.organizations = orgs;
                 }
-
-                $scope.model.organizations = orgs;
-            }
+            });
         });
 
         $scope.generalSave = function () {

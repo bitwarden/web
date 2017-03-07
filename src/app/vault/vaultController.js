@@ -7,28 +7,30 @@
         $scope.folders = [];
 
         $scope.loading = true;
-        apiService.ciphers.list({}, function (ciphers) {
-            $scope.loading = false;
+        $scope.$on('$viewContentLoaded', function () {
+            apiService.ciphers.list({}, function (ciphers) {
+                $scope.loading = false;
 
-            var decLogins = [];
-            var decFolders = [{
-                id: null,
-                name: '(none)'
-            }];
+                var decLogins = [];
+                var decFolders = [{
+                    id: null,
+                    name: '(none)'
+                }];
 
-            for (var i = 0; i < ciphers.Data.length; i++) {
-                if (ciphers.Data[i].Type === 0) {
-                    var decFolder = cipherService.decryptFolderPreview(ciphers.Data[i]);
-                    decFolders.push(decFolder);
+                for (var i = 0; i < ciphers.Data.length; i++) {
+                    if (ciphers.Data[i].Type === 0) {
+                        var decFolder = cipherService.decryptFolderPreview(ciphers.Data[i]);
+                        decFolders.push(decFolder);
+                    }
+                    else {
+                        var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
+                        decLogins.push(decLogin);
+                    }
                 }
-                else {
-                    var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
-                    decLogins.push(decLogin);
-                }
-            }
 
-            $scope.folders = decFolders;
-            $scope.logins = decLogins;
+                $scope.folders = decFolders;
+                $scope.logins = decLogins;
+            });
         });
 
         $scope.folderSort = function (item) {
