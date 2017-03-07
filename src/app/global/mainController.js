@@ -6,6 +6,7 @@ angular
         vm.bodyClass = '';
         vm.searchVaultText = null;
         vm.version = appSettings.version;
+        vm.userProfile = authService.getUserProfile();
 
         $scope.currentYear = new Date().getFullYear();
 

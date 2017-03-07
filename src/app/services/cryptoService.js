@@ -6,7 +6,8 @@ angular
             _key,
             _b64Key,
             _privateKey,
-            _publicKey;
+            _publicKey,
+            _orgKeys;
 
         _service.setKey = function (key) {
             _key = key;
@@ -22,6 +23,28 @@ angular
             catch (e) {
                 console.log('Cannot set private key. Decryption failed.');
             }
+        };
+
+        _service.setOrgKeys = function (orgKeysCt, privateKey) {
+            if (!orgKeysCt.length) {
+                return;
+            }
+
+            var orgKeysb64 = {},
+                _orgKeys = {};
+            for (var i = 0; i < orgKeysCt.length; i++) {
+                try {
+                    var orgKey = _service.rsaDecrypt(orgKeysCt[i].key, privateKey);
+                    _orgKeys[orgKeysCt[i].id] = orgKey;
+                    orgKeysb64[orgKeysCt[i].id] = forge.util.encode64(orgKey);
+                }
+                catch (e) {
+                    console.log('Cannot set org key ' + i + '. Decryption failed.');
+                }
+            }
+
+
+            $sessionStorage.orgKeys = orgKeysb64;
         };
 
         _service.getKey = function (b64) {
@@ -86,6 +109,33 @@ angular
             return _publicKey;
         };
 
+        _service.getOrgKeys = function () {
+            if (_orgKeys) {
+                return _orgKeys;
+            }
+
+            if ($sessionStorage.orgKeys) {
+                _orgKeys = {};
+                for (var orgId in $sessionStorage.orgKeys) {
+                    if ($sessionStorage.orgKeys.hasOwnProperty(orgId)) {
+                        var orgKeyBytes = forge.util.decode64($sessionStorage.orgKeys[orgId]);
+                        _orgKeys[orgId] = orgKeyBytes;
+                    }
+                }
+            }
+
+            return _orgKeys;
+        };
+
+        _service.getOrgKey = function (orgId) {
+            var orgKeys = _service.getOrgKeys();
+            if (!orgKeys || !(orgId in orgKeys)) {
+                return null;
+            }
+
+            return orgKeys[orgId];
+        }
+
         _service.clearKey = function () {
             _key = _b64Key = null;
             delete $sessionStorage.key;
@@ -97,9 +147,15 @@ angular
             delete $sessionStorage.privateKey;
         };
 
+        _service.clearOrgKeys = function () {
+            _orgKeys = {};
+            delete $sessionStorage.orgKeys;
+        };
+
         _service.clearKeys = function () {
             _service.clearKey();
             _service.clearKeyPair();
+            _service.clearOrgKeys();
         };
 
         _service.makeKey = function (password, salt, b64) {

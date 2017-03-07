@@ -7,7 +7,13 @@
 
         $scope.confirm = function (user) {
             apiService.users.getPublicKey({ id: user.userId }, function (userKey) {
-                var key = cryptoService.rsaEncrypt('org key', userKey.PublicKey);
+                var orgKey = cryptoService.getOrgKey($state.params.orgId);
+                if (!orgKey) {
+                    toastr.error('Unable to confirm user.', 'Error');
+                    return;
+                }
+
+                var key = cryptoService.rsaEncrypt(orgKey, userKey.PublicKey);
                 apiService.organizationUsers.confirm({ orgId: $state.params.orgId, id: user.id }, { key: key }, function () {
                     user.status = 2;
                     toastr.success(user.email + ' has been confirmed.', 'User Confirmed');

@@ -92,11 +92,14 @@ angular
                 for (var i = 0; i < profile.Organizations.length; i++) {
                     orgs.push({
                         id: profile.Organizations[i].Id,
-                        name: profile.Organizations[i].Name
+                        name: profile.Organizations[i].Name,
+                        key: profile.Organizations[i].Key,
+                        status: profile.Organizations[i].Status
                     });
                 }
 
                 _userProfile.organizations = orgs;
+                cryptoService.setOrgKeys(orgs);
             }
         }
 
