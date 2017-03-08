@@ -29,6 +29,15 @@
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
+        _service.subvaults = $resource(_apiUri + '/subvaults/:id', {}, {
+            get: { method: 'GET', params: { id: '@id' } },
+            list: { method: 'GET', params: {} },
+            listOrganization: { url: _apiUri + '/subvaults/organization/:orgId', method: 'GET', params: { orgId: '@orgId' } },
+            post: { method: 'POST', params: {} },
+            put: { method: 'POST', params: { id: '@id' } },
+            del: { url: _apiUri + '/subvaults/:id/delete', method: 'POST', params: { id: '@id' } }
+        });
+
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
             getExtended: { url: _apiUri + '/organizations/:id/extended', method: 'GET', params: { id: '@id' } },
