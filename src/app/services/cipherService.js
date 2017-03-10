@@ -61,21 +61,6 @@ angular
                 username: decryptProperty(encryptedCipher.Data.Username, key, true)
             };
 
-            try {
-                login.name = cryptoService.decrypt(encryptedCipher.Data.Name, key);
-            }
-            catch (err) {
-                login.name = '[error: cannot decrypt]';
-            }
-
-            try {
-                login.username = encryptedCipher.Data.Username && encryptedCipher.Data.Username !== '' ?
-                        cryptoService.decrypt(encryptedCipher.Data.Username, key) : null;
-            }
-            catch (err) {
-                login.username = '[error: cannot decrypt]';
-            }
-
             return login;
         };
 
@@ -106,6 +91,31 @@ angular
             return {
                 id: encryptedFolder.Id,
                 name: decryptProperty(encryptedFolder.Data.Name, null, false)
+            };
+        };
+
+        _service.decryptSubvaults = function (encryptedSubvaults, orgId, catchError) {
+            if (!encryptedSubvaults) throw "encryptedSubvaults is undefined or null";
+
+            var unencryptedSubvaults = [];
+            for (var i = 0; i < encryptedSubvaults.length; i++) {
+                unencryptedSubvaults.push(_service.decryptSubvault(encryptedSubvaults[i], orgId, catchError));
+            }
+
+            return unencryptedSubvaults;
+        };
+
+        _service.decryptSubvault = function (encryptedSubvault, orgId, catchError) {
+            if (!encryptedSubvault) throw "encryptedSubvault is undefined or null";
+
+            catchError = catchError === true ? true : false;
+            orgId = orgId || encryptedSubvault.OrganizationId;
+            var key = cryptoService.getOrgKey(orgId);
+
+            return {
+                id: encryptedSubvault.Id,
+                name: catchError ? decryptProperty(encryptedSubvault.Name, key, false) :
+                    cryptoService.decrypt(encryptedSubvault.Name, key)
             };
         };
 
@@ -169,6 +179,26 @@ angular
                 id: unencryptedFolder.id,
                 'type': 0,
                 name: cryptoService.encrypt(unencryptedFolder.name, key)
+            };
+        };
+
+        _service.encryptSubvaults = function (unencryptedSubvaults, orgId) {
+            if (!unencryptedSubvaults) throw "unencryptedSubvaults is undefined or null";
+
+            var encryptedSubvaults = [];
+            for (var i = 0; i < unencryptedSubvaults.length; i++) {
+                encryptedSubvaults.push(_service.encryptSubvault(unencryptedSubvaults[i], orgId));
+            }
+
+            return encryptedSubvaults;
+        };
+
+        _service.encryptSubvault = function (unencryptedSubvault, orgId) {
+            if (!unencryptedSubvault) throw "unencryptedSubvault is undefined or null";
+
+            return {
+                id: unencryptedSubvault.id,
+                name: cryptoService.encrypt(unencryptedSubvault.name, cryptoService.getOrgKey(orgId))
             };
         };
 

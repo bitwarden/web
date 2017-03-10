@@ -29,15 +29,6 @@
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
-        _service.subvaults = $resource(_apiUri + '/subvaults/:id', {}, {
-            get: { method: 'GET', params: { id: '@id' } },
-            list: { method: 'GET', params: {} },
-            listOrganization: { url: _apiUri + '/subvaults/organization/:orgId', method: 'GET', params: { orgId: '@orgId' } },
-            post: { method: 'POST', params: {} },
-            put: { method: 'POST', params: { id: '@id' } },
-            del: { url: _apiUri + '/subvaults/:id/delete', method: 'POST', params: { id: '@id' } }
-        });
-
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
             getExtended: { url: _apiUri + '/organizations/:id/extended', method: 'GET', params: { id: '@id' } },
@@ -54,6 +45,15 @@
             accept: { url: _apiUri + '/organizations/:orgId/users/:id/accept', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             confirm: { url: _apiUri + '/organizations/:orgId/users/:id/confirm', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             del: { url: _apiUri + '/organizations/:orgId/users/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+        });
+
+        _service.subvaults = $resource(_apiUri + '/organizations/:orgId/subvaults/:id', {}, {
+            get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
+            listMe: { url: _apiUri + '/subvaults', method: 'GET', params: {} },
+            listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
+            post: { method: 'POST', params: { orgId: '@orgId' } },
+            put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            del: { url: _apiUri + '/organizations/:orgId/subvaults/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
