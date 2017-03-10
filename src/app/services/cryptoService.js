@@ -16,9 +16,9 @@ angular
 
         _service.setPrivateKey = function (privateKeyCt, key) {
             try {
-                var privateKey = _service.decrypt(privateKeyCt, key, 'raw');
-                _privateKey = privateKey;
-                $sessionStorage.privateKey = forge.util.encode64(privateKey);
+                var privateKeyBytes = _service.decrypt(privateKeyCt, key, 'raw');
+                $sessionStorage.privateKey = forge.util.encode64(privateKeyBytes);
+                _privateKey = forge.pki.privateKeyFromAsn1(forge.asn1.fromDer(privateKeyBytes));;
             }
             catch (e) {
                 console.log('Cannot set private key. Decryption failed.');
