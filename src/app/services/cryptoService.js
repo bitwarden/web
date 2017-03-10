@@ -115,12 +115,19 @@ angular
             }
 
             if ($sessionStorage.orgKeys) {
-                _orgKeys = {};
+                var orgKeys = {},
+                    setKey = false;
+
                 for (var orgId in $sessionStorage.orgKeys) {
                     if ($sessionStorage.orgKeys.hasOwnProperty(orgId)) {
                         var orgKeyBytes = forge.util.decode64($sessionStorage.orgKeys[orgId]);
-                        _orgKeys[orgId] = orgKeyBytes;
+                        orgKeys[orgId] = orgKeyBytes;
+                        setKey = true;
                     }
+                }
+
+                if (setKey) {
+                    _orgKeys = orgKeys;
                 }
             }
 

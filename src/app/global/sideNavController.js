@@ -7,7 +7,7 @@ angular
 
         if ($state.includes('backend.org')) {
             var userProfile = authService.getUserProfile();
-            if (!userProfile.organizations.length) {
+            if (!userProfile.organizations || !userProfile.organizations.length) {
                 return;
             }
 
