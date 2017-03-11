@@ -183,14 +183,15 @@ angular
                     return;
                 }
 
-                var privateKey = forge.pki.privateKeyToAsn1(keypair.privateKey);
-                var privateKeyBytes = forge.asn1.toDer(privateKey).getBytes();
-                var privateKeyEnc = _service.encrypt(privateKeyBytes, key, 'raw');
+                var privateKeyAsn1 = forge.pki.privateKeyToAsn1(keypair.privateKey);
+                var privateKeyPkcs8 = forge.pki.wrapRsaPrivateKey(privateKeyAsn1);
+                var privateKeyBytes = forge.asn1.toDer(privateKeyPkcs8).getBytes();
+                var privateKeyEncBytes = _service.encrypt(privateKeyBytes, key, 'raw');
 
-                var publicKey = forge.pki.publicKeyToAsn1(keypair.publicKey);
-                var publicKeyBytes = forge.asn1.toDer(publicKey).getBytes();
+                var publicKeyAsn1 = forge.pki.publicKeyToAsn1(keypair.publicKey);
+                var publicKeyBytes = forge.asn1.toDer(publicKeyAsn1).getBytes();
 
-                callback(forge.util.encode64(publicKeyBytes), privateKeyEnc, null);
+                callback(forge.util.encode64(publicKeyBytes), privateKeyEncBytes, null);
             });
         };
 
