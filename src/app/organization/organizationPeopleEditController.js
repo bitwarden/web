@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationPeopleInviteController', function ($scope, $state, $uibModalInstance, apiService, cipherService) {
+    .controller('organizationPeopleEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService, id) {
         $scope.loading = true;
         $scope.selectedSubvaults = [];
         $scope.selectedSubvaultsReadOnly = [];
@@ -11,12 +11,26 @@
                 $scope.subvaults = cipherService.decryptSubvaults(list.Data, $state.params.orgId, true);
                 $scope.loading = false;
             });
+
+            apiService.organizationUsers.get({ orgId: $state.params.orgId, id: id }, function (user) {
+                if (user && user.Subvaults) {
+                    var subvaults = [];
+                    var subvaultsReadOnly = [];
+                    for (var i = 0; i < user.Subvaults.Data.length; i++) {
+                        subvaults.push(user.Subvaults.Data[i].SubvaultId);
+                        if (user.Subvaults.Data[i].ReadOnly) {
+                            subvaultsReadOnly.push(user.Subvaults.Data[i].SubvaultId);
+                        }
+                    }
+                }
+                $scope.selectedSubvaults = subvaults;
+                $scope.selectedSubvaultsReadOnly = subvaultsReadOnly;
+            });
         });
 
         $scope.toggleSubvaultSelectionAll = function ($event) {
             var subvaultIds = [];
-            if ($event.target.checked)
-            {
+            if ($event.target.checked) {
                 for (var i = 0; i < $scope.subvaults.length; i++) {
                     subvaultIds.push($scope.subvaults[i].id);
                 }
@@ -57,13 +71,13 @@
             var subvaults = [];
             for (var i = 0; i < $scope.selectedSubvaults.length; i++) {
                 subvaults.push({
+                    id: null,
                     subvaultId: $scope.selectedSubvaults[i],
                     readOnly: $scope.selectedSubvaultsReadOnly.indexOf($scope.selectedSubvaults[i]) > -1
                 });
             }
 
-            apiService.organizationUsers.invite({ orgId: $state.params.orgId }, {
-                email: model.email,
+            apiService.organizationUsers.put({ orgId: $state.params.orgId, id: 0 }, {
                 subvaults: subvaults
             }, function () {
                 $uibModalInstance.close();

@@ -39,6 +39,21 @@
             });
         };
 
+        $scope.edit = function (id) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationPeopleEdit.html',
+                controller: 'organizationPeopleEditController',
+                resolve: {
+                    id: function () { return id; }
+                }
+            });
+
+            modal.result.then(function () {
+                loadList();
+            });
+        };
+
         function loadList() {
             apiService.organizationUsers.list({ orgId: $state.params.orgId }, function (list) {
                 var users = [];
