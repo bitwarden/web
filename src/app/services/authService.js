@@ -80,6 +80,26 @@ angular
             apiService.accounts.getProfile({}, loadProfile);
         };
 
+        _service.addProfileOrganization = function (org) {
+            var profile = _service.getUserProfile();
+            if (profile) {
+                if (!profile.Organizations) {
+                    profile.Organizations = [];
+                }
+
+                var org = {
+                    id: org.Id,
+                    name: org.Name,
+                    key: org.Key,
+                    status: org.Status
+                };
+                profile.organizations.push(org);
+
+                _userProfile = profile;
+                cryptoService.addOrgKey(org);
+            }
+        };
+
         function loadProfile(profile) {
             _userProfile.extended = {
                 name: profile.Name,

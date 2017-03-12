@@ -43,6 +43,28 @@ angular
                 }
             }
 
+            $sessionStorage.orgKeys = orgKeysb64;
+        };
+
+        _service.addOrgKey = function (orgKeyCt, privateKey) {
+            _orgKeys = _service.getOrgKeys();
+            if (!_orgKeys) {
+                _orgKeys = {};
+            }
+
+            var orgKeysb64 = $sessionStorage.orgKeys;
+            if (!orgKeysb64) {
+                orgKeysb64 = {};
+            }
+
+            try {
+                var orgKey = _service.rsaDecrypt(orgKeyCt.key, privateKey);
+                _orgKeys[orgKeyCt.id] = orgKey;
+                orgKeysb64[orgKeyCt.id] = forge.util.encode64(orgKey);
+            }
+            catch (e) {
+                console.log('Cannot set org key. Decryption failed.');
+            }
 
             $sessionStorage.orgKeys = orgKeysb64;
         };
