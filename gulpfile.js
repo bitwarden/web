@@ -351,7 +351,7 @@ gulp.task('deploy', ['dist'], function () {
 
 gulp.task('serve', function () {
     connect.server({
-        port: 4011,
+        port: 4001,
         root: ['src']
     });
 });
