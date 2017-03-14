@@ -57,8 +57,8 @@ angular
                 id: encryptedCipher.Id,
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
-                name: decryptProperty(encryptedCipher.Data.Name, key, false),
-                username: decryptProperty(encryptedCipher.Data.Username, key, true)
+                name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
+                username: _service.decryptProperty(encryptedCipher.Data.Username, key, true)
             };
 
             return login;
@@ -90,7 +90,7 @@ angular
 
             return {
                 id: encryptedFolder.Id,
-                name: decryptProperty(encryptedFolder.Data.Name, null, false)
+                name: _service.decryptProperty(encryptedFolder.Data.Name, null, false)
             };
         };
 
@@ -114,12 +114,12 @@ angular
 
             return {
                 id: encryptedSubvault.Id,
-                name: catchError ? decryptProperty(encryptedSubvault.Name, key, false) :
+                name: catchError ? _service.decryptProperty(encryptedSubvault.Name, key, false) :
                     cryptoService.decrypt(encryptedSubvault.Name, key)
             };
         };
 
-        function decryptProperty(property, key, checkEmpty) {
+        _service.decryptProperty = function(property, key, checkEmpty) {
             if (checkEmpty && (!property || property === '')) {
                 return null;
             }

@@ -17,7 +17,7 @@
                     <tr>
                         <th style="width: 40px;">
                             <input type="checkbox"
-                                   ng-checked="selectedSubvaults.length === subvaults.length"
+                                   ng-checked="allSelected()"
                                    ng-click="toggleSubvaultSelectionAll($event)">
                         </th>
                         <th>Name</th>
@@ -30,7 +30,7 @@
                             <input type="checkbox"
                                    name="selectedSubvaults[]"
                                    value="{{subvault.id}}"
-                                   ng-checked="selectedSubvaults.indexOf(subvault.id) > -1"
+                                   ng-checked="subvaultSelected(subvault)"
                                    ng-click="toggleSubvaultSelection(subvault.id)">
                         </td>
                         <td valign="middle">
@@ -40,8 +40,8 @@
                             <input type="checkbox"
                                    name="selectedSubvaultsReadonly[]"
                                    value="{{subvault.id}}"
-                                   ng-disabled="selectedSubvaults.indexOf(subvault.id) === -1"
-                                   ng-checked="selectedSubvaultsReadOnly.indexOf(subvault.id) > -1"
+                                   ng-disabled="!subvaultSelected(subvault)"
+                                   ng-checked="subvaultSelected(subvault) && selectedSubvaults[subvault.id].readOnly"
                                    ng-click="toggleSubvaultReadOnlySelection(subvault.id)">
                         </td>
                     </tr>

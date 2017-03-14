@@ -3,8 +3,8 @@
 
     .controller('organizationPeopleEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService, id) {
         $scope.loading = true;
-        $scope.selectedSubvaults = [];
-        $scope.selectedSubvaultsReadOnly = [];
+        $scope.subvaults = [];
+        $scope.selectedSubvaults = {};
 
         $uibModalInstance.opened.then(function () {
             apiService.subvaults.listOrganization({ orgId: $state.params.orgId }, function (list) {
@@ -14,70 +14,68 @@
 
             apiService.organizationUsers.get({ orgId: $state.params.orgId, id: id }, function (user) {
                 if (user && user.Subvaults) {
-                    var subvaults = [];
-                    var subvaultsReadOnly = [];
+                    var subvaults = {};
                     for (var i = 0; i < user.Subvaults.Data.length; i++) {
-                        subvaults.push(user.Subvaults.Data[i].SubvaultId);
-                        if (user.Subvaults.Data[i].ReadOnly) {
-                            subvaultsReadOnly.push(user.Subvaults.Data[i].SubvaultId);
-                        }
+                        subvaults[user.Subvaults.Data[i].SubvaultId] = {
+                            subvaultId: user.Subvaults.Data[i].SubvaultId,
+                            readOnly: user.Subvaults.Data[i].ReadOnly
+                        };
                     }
                 }
                 $scope.selectedSubvaults = subvaults;
-                $scope.selectedSubvaultsReadOnly = subvaultsReadOnly;
             });
         });
 
         $scope.toggleSubvaultSelectionAll = function ($event) {
-            var subvaultIds = [];
+            var subvaults = {};
             if ($event.target.checked) {
                 for (var i = 0; i < $scope.subvaults.length; i++) {
-                    subvaultIds.push($scope.subvaults[i].id);
+                    subvaults[$scope.subvaults[i].id] = {
+                        subvaultId: $scope.subvaults[i].id,
+                        readOnly: ($scope.subvaults[i].id in $scope.selectedSubvaults) ?
+                            $scope.selectedSubvaults[$scope.subvaults[i].id].readOnly : false
+                    };
                 }
             }
-            else {
-                $scope.selectedSubvaultsReadOnly = [];
-            }
 
-            $scope.selectedSubvaults = subvaultIds;
+            $scope.selectedSubvaults = subvaults;
         };
 
         $scope.toggleSubvaultSelection = function (id) {
-            var i = $scope.selectedSubvaults.indexOf(id);
-            if (i > -1) {
-                $scope.selectedSubvaults.splice(i, 1);
-
-                var j = $scope.selectedSubvaultsReadOnly.indexOf(id);
-                if (j > -1) {
-                    $scope.selectedSubvaultsReadOnly.splice(j, 1);
-                }
+            if (id in $scope.selectedSubvaults) {
+                delete $scope.selectedSubvaults[id];
             }
             else {
-                $scope.selectedSubvaults.push(id);
+                $scope.selectedSubvaults[id] = {
+                    subvaultId: id,
+                    readOnly: false
+                };
             }
         };
 
         $scope.toggleSubvaultReadOnlySelection = function (id) {
-            var i = $scope.selectedSubvaultsReadOnly.indexOf(id);
-            if (i > -1) {
-                $scope.selectedSubvaultsReadOnly.splice(i, 1);
+            if (id in $scope.selectedSubvaults) {
+                $scope.selectedSubvaults[id].readOnly = !!!$scope.selectedSubvaults[id].readOnly;
             }
-            else {
-                $scope.selectedSubvaultsReadOnly.push(id);
-            }
+        };
+
+        $scope.subvaultSelected = function (subvault) {
+            return subvault.id in $scope.selectedSubvaults;
+        };
+
+        $scope.allSelected = function () {
+            return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
         };
 
         $scope.submit = function (model) {
             var subvaults = [];
-            for (var i = 0; i < $scope.selectedSubvaults.length; i++) {
-                subvaults.push({
-                    id: null,
-                    subvaultId: $scope.selectedSubvaults[i],
-                    readOnly: $scope.selectedSubvaultsReadOnly.indexOf($scope.selectedSubvaults[i]) > -1
-                });
+            for (var subvaultId in $scope.selectedSubvaults) {
+                if ($scope.selectedSubvaults.hasOwnProperty(subvaultId)) {
+                    subvaults.push($scope.selectedSubvaults[subvaultId]);
+                }
             }
 
-            apiService.organizationUsers.put({ orgId: $state.params.orgId, id: 0 }, {
+            apiService.organizationUsers.put({ orgId: $state.params.orgId, id: id }, {
                 subvaults: subvaults
             }, function () {
                 $uibModalInstance.close();

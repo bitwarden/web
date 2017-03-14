@@ -31,19 +31,26 @@ angular
             }
 
             var orgKeysb64 = {},
-                _orgKeys = {};
+                _orgKeys = {},
+                setKey = false;
             for (var i = 0; i < orgKeysCt.length; i++) {
                 try {
                     var orgKey = _service.rsaDecrypt(orgKeysCt[i].key, privateKey);
                     _orgKeys[orgKeysCt[i].id] = orgKey;
                     orgKeysb64[orgKeysCt[i].id] = forge.util.encode64(orgKey);
+                    setKey = true;
                 }
                 catch (e) {
                     console.log('Cannot set org key ' + i + '. Decryption failed.');
                 }
             }
 
-            $sessionStorage.orgKeys = orgKeysb64;
+            if (setKey) {
+                $sessionStorage.orgKeys = orgKeysb64;
+            }
+            else {
+                _orgKeys = null;
+            }
         };
 
         _service.addOrgKey = function (orgKeyCt, privateKey) {
@@ -63,6 +70,7 @@ angular
                 orgKeysb64[orgKeyCt.id] = forge.util.encode64(orgKey);
             }
             catch (e) {
+                _orgKeys = null;
                 console.log('Cannot set org key. Decryption failed.');
             }
 
@@ -177,7 +185,7 @@ angular
         };
 
         _service.clearOrgKeys = function () {
-            _orgKeys = {};
+            _orgKeys = null;
             delete $sessionStorage.orgKeys;
         };
 
