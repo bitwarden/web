@@ -64,6 +64,7 @@
 
             apiService.organizationUsers.invite({ orgId: $state.params.orgId }, {
                 email: model.email,
+                type: model.type,
                 subvaults: subvaults
             }, function () {
                 $uibModalInstance.close();

@@ -1,9 +1,30 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title"><i class="fa fa-user"></i> Edit User</h4>
+    <h4 class="modal-title"><i class="fa fa-user"></i> Edit User <small>{{email}}</small></h4>
 </div>
 <form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
     <div class="modal-body">
+        <h4>User Type</h4>
+        <div class="form-group">
+            <div class="radio">
+                <label>
+                    <input type="radio" id="user-type" ng-model="type" name="Type" value="3" ng-checked="type === 2">
+                    <strong>User</strong> - A regular user with access to your organization's subvaults.
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="type" name="Type" value="1" ng-checked="type === 1">
+                    <strong>Admin</strong> - Admins can manage subvaults and users for your organization.
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="type" name="Type" value="0" ng-checked="type === 0">
+                    <strong>Owner</strong> - The highest access user that can manage all aspects of your organization.
+                </label>
+            </div>
+        </div>
         <h4>Subvault Access</h4>
         <div ng-show="loading && !subvaults.length">
             Loading...
@@ -26,7 +47,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="subvault in subvaults | orderBy: ['name']">
-                        <td style="width: 40px;" valign="middle">
+                        <td style="valign="middle">
                             <input type="checkbox"
                                    name="selectedSubvaults[]"
                                    value="{{subvault.id}}"
@@ -36,7 +57,7 @@
                         <td valign="middle">
                             {{subvault.name}}
                         </td>
-                        <td style="width: 100px; text-align: center;" valign="middle">
+                        <td style="text-align: center;" valign="middle">
                             <input type="checkbox"
                                    name="selectedSubvaultsReadonly[]"
                                    value="{{subvault.id}}"

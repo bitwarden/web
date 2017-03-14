@@ -22,6 +22,8 @@
                         };
                     }
                 }
+                $scope.email = user.Email;
+                $scope.type = user.Type;
                 $scope.selectedSubvaults = subvaults;
             });
         });
@@ -76,6 +78,7 @@
             }
 
             apiService.organizationUsers.put({ orgId: $state.params.orgId, id: id }, {
+                type: $scope.type,
                 subvaults: subvaults
             }, function () {
                 $uibModalInstance.close();
