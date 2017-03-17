@@ -104,17 +104,11 @@ angular
                 controller: 'toolsController',
                 data: { pageTitle: 'Tools' }
             })
-            .state('backend.user.shared', {
-                url: '^/shared',
-                templateUrl: 'app/shared/views/shared.html',
-                controller: 'sharedController',
-                data: { pageTitle: 'Shared' }
-            })
-            .state('backend.user.sharedMe', {
-                url: '^/shared/me',
-                templateUrl: 'app/shared/views/sharedMe.html',
-                controller: 'sharedMeController',
-                data: { pageTitle: 'Shared with Me' }
+            .state('backend.user.sharing', {
+                url: '^/sharing',
+                templateUrl: 'app/sharing/views/sharing.html',
+                controller: 'sharingController',
+                data: { pageTitle: 'Sharing Center' }
             })
             .state('backend.org', {
                 templateUrl: 'app/views/organizationLayout.html',

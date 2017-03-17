@@ -55,25 +55,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="treeview"
-                ng-class="{active: $state.is('backend.user.shared') || $state.is('backend.user.sharedMe')}">
-                <a ui-sref="backend.user.shared">
-                    <small class="label pull-right bg-yellow">beta</small>
-                    <i class="fa fa-share-alt fa-fw"></i> <span>Sharing Center</span>
-                </a>
-                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.shared')
-                        || $state.is('backend.user.sharedMe')}">
-                    <li ng-class="{active: $state.is('backend.user.shared')}">
-                        <a ui-sref="backend.user.shared">
-                            <i class="fa fa-fw fa-circle-o"></i> My Shares
-                        </a>
-                    </li>
-                    <li ng-class="{active: $state.is('backend.user.sharedMe')}">
-                        <a ui-sref="backend.user.sharedMe">
-                            <i class="fa fa-fw fa-circle-o"></i> Shared with Me
-                        </a>
-                    </li>
-                </ul>
+            <li class="treeview" ng-class="{active: $state.is('backend.user.sharing')}">
+                <a ui-sref="backend.user.sharing"><i class="fa fa-share-alt fa-fw"></i> <span>Sharing Center</span></a>
             </li>
             <li class="treeview" ng-class="{active: $state.is('backend.user.tools')}">
                 <a ui-sref="backend.user.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>

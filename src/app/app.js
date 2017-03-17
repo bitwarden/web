@@ -15,7 +15,7 @@
         'bit.global',
         'bit.accounts',
         'bit.vault',
-        'bit.shared',
+        'bit.sharing',
         'bit.settings',
         'bit.tools',
         'bit.organization'
