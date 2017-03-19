@@ -2,34 +2,41 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService) {
+        cipherService, $q) {
         $scope.logins = [];
         $scope.folders = [];
-
         $scope.loading = true;
-        $scope.$on('$viewContentLoaded', function () {
-            apiService.ciphers.list({}, function (ciphers) {
-                $scope.loading = false;
 
-                var decLogins = [];
+        $scope.$on('$viewContentLoaded', function () {
+            var folderPromise = apiService.folders.list({}, function (folders) {
                 var decFolders = [{
                     id: null,
                     name: '(none)'
                 }];
 
+                for (var i = 0; i < folders.Data.length; i++) {
+                    var decFolder = cipherService.decryptFolderPreview(folders.Data[i]);
+                    decFolders.push(decFolder);
+                }
+
+                $scope.folders = decFolders;
+            }).$promise;
+
+            var cipherPromise = apiService.ciphers.list({}, function (ciphers) {
+                var decLogins = [];
+
                 for (var i = 0; i < ciphers.Data.length; i++) {
-                    if (ciphers.Data[i].Type === 0) {
-                        var decFolder = cipherService.decryptFolderPreview(ciphers.Data[i]);
-                        decFolders.push(decFolder);
-                    }
-                    else {
+                    if (ciphers.Data[i].Type === 1) {
                         var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
                         decLogins.push(decLogin);
                     }
                 }
 
-                $scope.folders = decFolders;
                 $scope.logins = decLogins;
+            }).$promise;
+
+            $q.all([folderPromise, cipherPromise]).then(function () {
+                $scope.loading = false;
             });
         });
 

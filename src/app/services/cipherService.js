@@ -90,7 +90,7 @@ angular
 
             return {
                 id: encryptedFolder.Id,
-                name: _service.decryptProperty(encryptedFolder.Data.Name, null, false)
+                name: _service.decryptProperty(encryptedFolder.Name, null, false)
             };
         };
 
