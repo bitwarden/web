@@ -11,7 +11,7 @@
             var folderPromise = apiService.folders.list({}, function (folders) {
                 var decFolders = [{
                     id: null,
-                    name: '(none)'
+                    name: 'No Folder'
                 }];
 
                 for (var i = 0; i < folders.Data.length; i++) {
@@ -171,5 +171,21 @@
 
             var logins = $filter('filter')($scope.logins, { folderId: folder.id });
             return logins.length === 0;
+        };
+
+        $scope.share = function (login) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultShare.html',
+                controller: 'vaultShareController',
+                size: 'sm',
+                resolve: {
+                    loginId: function () { return login.id; }
+                }
+            });
+
+            modal.result.then(function () {
+                
+            });
         };
     });

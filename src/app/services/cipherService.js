@@ -19,12 +19,13 @@ angular
             if (!encryptedLogin) throw "encryptedLogin is undefined or null";
 
             var key = null;
-            if (encryptedLogin.Key) {
-                key = cryptoService.rsaDecrypt(encryptedLogin.Key);
+            if (encryptedLogin.OrganizationId) {
+                key = cryptoService.getOrgKey(encryptedLogin.OrganizationId);
             }
 
             var login = {
                 id: encryptedLogin.Id,
+                organizationId: encryptedLogin.OrganizationId,
                 'type': 1,
                 folderId: encryptedLogin.FolderId,
                 favorite: encryptedLogin.Favorite,
@@ -32,8 +33,7 @@ angular
                 uri: encryptedLogin.Uri && encryptedLogin.Uri !== '' ? cryptoService.decrypt(encryptedLogin.Uri, key) : null,
                 username: encryptedLogin.Username && encryptedLogin.Username !== '' ? cryptoService.decrypt(encryptedLogin.Username, key) : null,
                 password: encryptedLogin.Password && encryptedLogin.Password !== '' ? cryptoService.decrypt(encryptedLogin.Password, key) : null,
-                notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null,
-                key: encryptedLogin.Key
+                notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null
             };
 
             if (encryptedLogin.Folder) {
@@ -49,12 +49,13 @@ angular
             if (!encryptedCipher) throw "encryptedCipher is undefined or null";
 
             var key = null;
-            if (encryptedCipher.Key) {
-                key = cryptoService.rsaDecrypt(encryptedCipher.Key);
+            if (encryptedCipher.OrganizationId) {
+                key = cryptoService.getOrgKey(encryptedCipher.OrganizationId);
             }
 
             var login = {
                 id: encryptedCipher.Id,
+                organizationId: encryptedCipher.OrganizationId,
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
@@ -119,7 +120,7 @@ angular
             };
         };
 
-        _service.decryptProperty = function(property, key, checkEmpty) {
+        _service.decryptProperty = function (property, key, checkEmpty) {
             if (checkEmpty && (!property || property === '')) {
                 return null;
             }
@@ -148,9 +149,14 @@ angular
         _service.encryptLogin = function (unencryptedLogin, key) {
             if (!unencryptedLogin) throw "unencryptedLogin is undefined or null";
 
+            if (unencryptedLogin.organizationId) {
+                key = key || cryptoService.getOrgKey(unencryptedLogin.organizationId);
+            }
+
             return {
                 id: unencryptedLogin.id,
                 'type': 1,
+                organizationId: unencryptedLogin.organizationId || null,
                 folderId: unencryptedLogin.folderId === '' ? null : unencryptedLogin.folderId,
                 favorite: unencryptedLogin.favorite !== null ? unencryptedLogin.favorite : false,
                 uri: !unencryptedLogin.uri || unencryptedLogin.uri === '' ? null : cryptoService.encrypt(unencryptedLogin.uri, key),
