@@ -14,11 +14,11 @@
             }
 
             if (response.GlobalEquivalentDomains) {
-                for (i = 0; i < response.GlobalEquivalentDomains.length; i++) {
+                for (var j = 0; j < response.GlobalEquivalentDomains.length; j++) {
                     $scope.globalEquivalentDomains.push({
-                        domains: response.GlobalEquivalentDomains[i].Domains.join(', '),
-                        excluded: response.GlobalEquivalentDomains[i].Excluded,
-                        key: response.GlobalEquivalentDomains[i].Type
+                        domains: response.GlobalEquivalentDomains[j].Domains.join(', '),
+                        excluded: response.GlobalEquivalentDomains[j].Excluded,
+                        key: response.GlobalEquivalentDomains[j].Type
                     });
                 }
             }
