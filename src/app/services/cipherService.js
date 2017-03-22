@@ -133,7 +133,7 @@ angular
             }
 
             return property;
-        }
+        };
 
         _service.encryptLogins = function (unencryptedLogins, key) {
             if (!unencryptedLogins) throw "unencryptedLogins is undefined or null";

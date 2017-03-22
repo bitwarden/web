@@ -13,8 +13,8 @@
             });
 
             apiService.organizationUsers.get({ orgId: $state.params.orgId, id: id }, function (user) {
+                var subvaults = {};
                 if (user && user.Subvaults) {
-                    var subvaults = {};
                     for (var i = 0; i < user.Subvaults.Data.length; i++) {
                         subvaults[user.Subvaults.Data[i].SubvaultId] = {
                             subvaultId: user.Subvaults.Data[i].SubvaultId,

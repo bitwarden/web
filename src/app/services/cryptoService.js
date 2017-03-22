@@ -18,7 +18,7 @@ angular
             try {
                 var privateKeyBytes = _service.decrypt(privateKeyCt, key, 'raw');
                 $sessionStorage.privateKey = forge.util.encode64(privateKeyBytes);
-                _privateKey = forge.pki.privateKeyFromAsn1(forge.asn1.fromDer(privateKeyBytes));;
+                _privateKey = forge.pki.privateKeyFromAsn1(forge.asn1.fromDer(privateKeyBytes));
             }
             catch (e) {
                 console.log('Cannot set private key. Decryption failed.');
@@ -171,7 +171,7 @@ angular
             }
 
             return orgKeys[orgId];
-        }
+        };
 
         _service.clearKey = function () {
             _key = _b64Key = null;

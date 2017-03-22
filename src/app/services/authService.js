@@ -87,16 +87,16 @@ angular
                     profile.Organizations = [];
                 }
 
-                var org = {
+                var o = {
                     id: org.Id,
                     name: org.Name,
                     key: org.Key,
                     status: org.Status
                 };
-                profile.organizations.push(org);
+                profile.organizations.push(o);
 
                 _userProfile = profile;
-                cryptoService.addOrgKey(org);
+                cryptoService.addOrgKey(o);
             }
         };
 
