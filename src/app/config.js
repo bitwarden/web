@@ -1,12 +1,17 @@
 angular
     .module('bit')
 
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, $uibTooltipProvider,
-        toastrConfig) {
-        jwtInterceptorProvider.urlParam = 'access_token2';
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
+        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider) {
+        $qProvider.errorOnUnhandledRejections(false);
+        $locationProvider.hashPrefix('');
+        jwtOptionsProvider.config({
+            urlParam: 'access_token2',
+            whiteListedDomains: ['api.bitwarden.com', 'localhost']
+        });
         var refreshPromise;
-        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (config, appSettings, tokenService, apiService, jwtHelper, $q) {
-            if (config.url.indexOf(appSettings.apiUri) !== 0) {
+        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, apiService, jwtHelper, $q) {
+            if (options.url.indexOf(appSettings.apiUri) !== 0) {
                 return;
             }
 
@@ -68,7 +73,7 @@ angular
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-        // Backend
+            // Backend
             .state('backend', {
                 templateUrl: 'app/views/backendLayout.html',
                 abstract: true,
@@ -133,7 +138,7 @@ angular
                 data: { pageTitle: 'Subvaults' }
             })
 
-        // Frontend
+            // Frontend
             .state('frontend', {
                 templateUrl: 'app/views/frontendLayout.html',
                 abstract: true,

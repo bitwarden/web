@@ -108,8 +108,8 @@ gulp.task('lib', ['clean:lib'], function () {
             dest: paths.libDir + 'angular'
         },
         {
-            src: paths.npmDir + 'angular-bootstrap-npm/dist/*tpls*.js',
-            dest: paths.libDir + 'angular-bootstrap'
+            src: paths.npmDir + 'angular-ui-bootstrap/dist/*tpls*.js',
+            dest: paths.libDir + 'angular-ui-bootstrap'
         },
         {
             src: paths.npmDir + 'angular-bootstrap-show-errors/src/*.js',

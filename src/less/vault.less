@@ -187,8 +187,7 @@ form .btn .loading-icon {
         }
     }
 
-    > .toast {
-        background-image: none !important;
+    .toast {
         .border-radius(0);
         .boxShadow(0 0 8px rgba(0, 0, 0, 0.5));
 
@@ -197,6 +196,7 @@ form .btn .loading-icon {
         }
 
         &.toast-danger, &.toast-error {
+            background-image: none !important;
             &:extend(.bg-red);
 
             &:before {
@@ -205,6 +205,7 @@ form .btn .loading-icon {
         }
 
         &.toast-warning {
+            background-image: none !important;
             &:extend(.bg-yellow);
 
             &:before {
@@ -213,6 +214,7 @@ form .btn .loading-icon {
         }
 
         &.toast-info {
+            background-image: none !important;
             &:extend(.bg-aqua);
 
             &:before {
@@ -221,6 +223,7 @@ form .btn .loading-icon {
         }
 
         &.toast-success {
+            background-image: none !important;
             &:extend(.bg-green);
 
             &:before {
