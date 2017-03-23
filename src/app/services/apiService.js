@@ -43,6 +43,7 @@
             get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             list: { method: 'GET', params: { orgId: '@orgId' } },
             invite: { url: _apiUri + '/organizations/:orgId/users/invite', method: 'POST', params: { orgId: '@orgId' } },
+            reinvite: { url: _apiUri + '/organizations/:orgId/users/:id/reinvite', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             accept: { url: _apiUri + '/organizations/:orgId/users/:id/accept', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             confirm: { url: _apiUri + '/organizations/:orgId/users/:id/confirm', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },

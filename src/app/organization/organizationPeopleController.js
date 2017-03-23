@@ -7,6 +7,30 @@
             loadList();
         });
 
+        $scope.reinvite = function (user) {
+            apiService.organizationUsers.reinvite({ orgId: $state.params.orgId, id: user.id }, null, function () {
+                toastr.success(user.email + ' has been invited again.', 'User Invited');
+            }, function () {
+                toastr.error('Unable to invite user.', 'Error');
+            });
+        };
+
+        $scope.delete = function (user) {
+            if (!confirm('Are you sure you want to remove this user (' + user.email + ')?')) {
+                return;
+            }
+
+            apiService.organizationUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
+                toastr.success(user.email + ' has been removed.', 'User Removed');
+                var index = $scope.users.indexOf(user);
+                if (index > -1) {
+                    $scope.users.splice(index, 1);
+                }
+            }, function () {
+                toastr.error('Unable to remove user.', 'Error');
+            });
+        };
+
         $scope.confirm = function (user) {
             apiService.users.getPublicKey({ id: user.userId }, function (userKey) {
                 var orgKey = cryptoService.getOrgKey($state.params.orgId);
