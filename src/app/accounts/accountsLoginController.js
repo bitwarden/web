@@ -3,6 +3,7 @@ angular
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
         $state, appSettings, $analytics) {
+        var returnState = $state.params.returnState;
         var rememberedEmail = $cookies.get(appSettings.rememberedEmailCookieName);
         if (rememberedEmail) {
             $scope.model = {
@@ -36,11 +37,11 @@ angular
                     masterPassword = model.masterPassword;
 
                     $analytics.eventTrack('Logged In To Two-step');
-                    $state.go('frontend.login.twoFactor');
+                    $state.go('frontend.login.twoFactor', { returnState: returnState });
                 }
                 else {
                     $analytics.eventTrack('Logged In');
-                    $state.go('backend.user.vault');
+                    loggedInGo();
                 }
             });
         };
@@ -51,7 +52,16 @@ angular
 
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');
-                $state.go('backend.user.vault');
+                loggedInGo();
             });
         };
+
+        function loggedInGo() {
+            if (returnState) {
+                $state.go(returnState.name, returnState.params);
+            }
+            else {
+                $state.go('backend.user.vault');
+            }
+        }
     });

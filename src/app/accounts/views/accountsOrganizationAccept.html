@@ -1,0 +1,29 @@
+<div class="login-box">
+    <div class="login-logo">
+        <i class="fa fa-shield"></i> <b>bit</b>warden
+    </div>
+    <div class="login-box-body">
+        <div ng-show="loading">
+            Loading...
+        </div>
+        <div ng-show="accepting">
+            Accepting invitation...
+        </div>
+        <div ng-show="!loading && !accepting">
+            <p class="login-box-msg">Join Organization</p>
+            <p>
+                You've been invited to join the ____ organization. To accept the invitation, you need to log in or
+                create a new bitwarden account.
+            </p>
+            <hr />
+            <div class="row">
+                <div class="col-sm-6">
+                    <p><a ui-sref="frontend.login.info({returnState: state})" class="btn btn-primary btn-block btn-flat">Log In</a></p>
+                </div>
+                <div class="col-sm-6">
+                    <p><a ui-sref="frontend.register({returnState: state})" class="btn btn-primary btn-block btn-flat">Create Account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

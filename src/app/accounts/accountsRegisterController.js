@@ -1,9 +1,11 @@
 angular
     .module('bit.accounts')
 
-    .controller('accountsRegisterController', function ($scope, $location, apiService, cryptoService, validationService, $analytics) {
+    .controller('accountsRegisterController', function ($scope, $location, apiService, cryptoService, validationService,
+        $analytics, $state) {
         var params = $location.search();
 
+        $scope.returnState = $state.params.returnState;
         $scope.success = false;
         $scope.model = {
             email: params.email

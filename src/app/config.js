@@ -149,6 +149,9 @@ angular
             .state('frontend.login', {
                 templateUrl: 'app/accounts/views/accountsLogin.html',
                 controller: 'accountsLoginController',
+                params: {
+                    returnState: null
+                },
                 data: {
                     bodyClass: 'login-page'
                 }
@@ -197,21 +200,38 @@ angular
                 url: '^/register',
                 templateUrl: 'app/accounts/views/accountsRegister.html',
                 controller: 'accountsRegisterController',
+                params: {
+                    returnState: null
+                },
                 data: {
                     pageTitle: 'Register',
                     bodyClass: 'register-page'
+                }
+            })
+            .state('frontend.organizationAccept', {
+                url: '^/accept-organization?organizationId&organizationUserId&token',
+                templateUrl: 'app/accounts/views/accountsOrganizationAccept.html',
+                controller: 'accountsOrganizationAcceptController',
+                data: {
+                    pageTitle: 'Accept Organization Invite',
+                    bodyClass: 'login-page',
+                    skipAuthorize: true
                 }
             });
     })
     .run(function ($rootScope, authService, $state) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (!toState.data || !toState.data.authorize) {
-                if (authService.isAuthenticated()) {
-                    event.preventDefault();
-                    $state.go('backend.user.vault');
+                if (toState.data && toState.data.skipAuthorize) {
+                    return;
                 }
 
-                return;
+                if (!authService.isAuthenticated()) {
+                    return;
+                }
+
+                event.preventDefault();
+                $state.go('backend.user.vault');
             }
 
             if (!authService.isAuthenticated()) {

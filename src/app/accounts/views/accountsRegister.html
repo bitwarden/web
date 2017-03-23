@@ -9,7 +9,7 @@
                 <h4>Account Created!</h4>
                 <p>You may now log in to your new account.</p>
             </div>
-            <a ui-sref="frontend.login.info">Ready to log in?</a>
+            <a ui-sref="frontend.login.info({returnState: returnState})">Ready to log in?</a>
         </div>
         <form name="registerForm" ng-submit="registerForm.$valid && register(registerForm)" ng-show="!success"
               api-form="registerPromise">
@@ -60,7 +60,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-7">
-                    <a ui-sref="frontend.login.info">Already have an account?</a>
+                    <a ui-sref="frontend.login.info({returnState: returnState})">Already have an account?</a>
                 </div>
                 <div class="col-xs-5">
                     <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="registerForm.$loading">
