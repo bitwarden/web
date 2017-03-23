@@ -26,6 +26,7 @@ angular
             var login = {
                 id: encryptedLogin.Id,
                 organizationId: encryptedLogin.OrganizationId,
+                subvaultIds: encryptedLogin.SubvaultIds || [],
                 'type': 1,
                 folderId: encryptedLogin.FolderId,
                 favorite: encryptedLogin.Favorite,
@@ -56,6 +57,7 @@ angular
             var login = {
                 id: encryptedCipher.Id,
                 organizationId: encryptedCipher.OrganizationId,
+                subvaultIds: encryptedCipher.SubvaultIds || [],
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
