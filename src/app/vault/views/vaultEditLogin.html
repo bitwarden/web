@@ -1,6 +1,8 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="editLoginModelLabel"><i class="fa fa-globe"></i> Login Information <small>{{login.name}}</small></h4>
+    <h4 class="modal-title" id="editLoginModelLabel">
+        <i class="fa fa-globe"></i> Login Information <small>{{login.name}}</small>
+    </h4>
 </div>
 <form name="editLoginForm" ng-submit="editLoginForm.$valid && save(login)" api-form="savePromise">
     <div class="modal-body">
@@ -14,14 +16,17 @@
             <div class="col-md-6">
                 <div class="form-group" show-errors>
                     <label for="name">Name</label> <span>*</span>
-                    <input type="text" id="name" name="Name" ng-model="login.name" class="form-control" required api-field />
+                    <input type="text" id="name" name="Name" ng-model="login.name" class="form-control"
+                           ng-readonly="readOnly" required api-field />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group" show-errors>
                     <label for="folder">Folder</label>
                     <select id="folder" name="FolderId" ng-model="login.folderId" class="form-control" api-field>
-                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">{{folder.name}}</option>
+                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">
+                            {{folder.name}}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -29,14 +34,16 @@
         <div class="form-group" show-errors>
             <label for="uri">URI</label>
             <div class="input-group">
-                <input type="text" id="uri" name="Uri" ng-model="login.uri" class="form-control" placeholder="http://..." api-field />
+                <input type="text" id="uri" name="Uri" ng-model="login.uri" class="form-control" placeholder="http://..."
+                       ng-readonly="readOnly" api-field />
                 <span class="input-group-btn">
-                    <button tabindex="-1" class="btn btn-default btn-flat" type="button" uib-tooltip="Copy URI" tooltip-placement="left" ngclipboard
-                            ngclipboard-error="clipboardError(e)"
+                    <button class="btn btn-default btn-flat" type="button" uib-tooltip="Copy URI"
+                            tooltip-placement="left" ngclipboard ngclipboard-error="clipboardError(e)"
                             data-clipboard-target="#uri">
                         <i class="fa fa-clipboard"></i>
                     </button>
-                    <a href="{{login.uri}}" target="_blank" class="btn btn-default btn-flat" uib-tooltip="Go To Login" tooltip-placement="left">
+                    <a href="{{login.uri}}" target="_blank" class="btn btn-default btn-flat" uib-tooltip="Go To Login"
+                       tooltip-placement="left">
                         <i class="fa fa-share"></i>
                     </a>
                 </span>
@@ -47,9 +54,10 @@
                 <div class="form-group" show-errors>
                     <label for="username">Username</label>
                     <div class="input-group">
-                        <input type="text" id="username" name="Username" ng-model="login.username" class="form-control" api-field />
+                        <input type="text" id="username" name="Username" ng-model="login.username" class="form-control"
+                               ng-readonly="readOnly" api-field />
                         <span class="input-group-btn" uib-tooltip="Copy Username" tooltip-placement="left">
-                            <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
+                            <button class="btn btn-default btn-flat" type="button" ngclipboard
                                     ngclipboard-error="clipboardError(e)"
                                     data-clipboard-target="#username">
                                 <i class="fa fa-clipboard"></i>
@@ -61,29 +69,32 @@
             <div class="col-md-6">
                 <div class="form-group" show-errors>
                     <div class="pull-right password-options">
-                        <i class="fa fa-lg fa-refresh" uib-tooltip="Generate Password" tooltip-placement="left" ng-click="generatePassword()"></i>
-                        <i class="fa fa-lg fa-eye" uib-tooltip="Toggle Password" tooltip-placement="left" password-viewer="#password"></i>
+                        <i class="fa fa-lg fa-refresh" uib-tooltip="Generate Password" tooltip-placement="left"
+                           ng-click="generatePassword()" ng-show="!readOnly"></i>
+                        <i class="fa fa-lg fa-eye" uib-tooltip="Toggle Password" tooltip-placement="left"
+                           password-viewer="#password"></i>
                     </div>
                     <label for="password">Password</label>
                     <div class="input-group">
-                        <input type="text" id="password-text" value="{{login.password}}" style="margin-left: -9999px;" />
-                        <input type="password" id="password" name="Password" ng-model="login.password" class="form-control" api-field />
+                        <input type="password" id="password" name="Password" ng-model="login.password" class="form-control"
+                               ng-readonly="readOnly" api-field />
                         <span class="input-group-btn" uib-tooltip="Copy Password" tooltip-placement="left">
-                            <button tabindex="-1" class="btn btn-default btn-flat" type="button" ngclipboard
-                                    ngclipboard-success="clipboardSuccess(e)"
-                                    ngclipboard-error="clipboardError(e, true)"
-                                    data-clipboard-target="#password-text">
+                            <button class="btn btn-default btn-flat" type="button" ngclipboard
+                                    ngclipboard-success="clipboardSuccess(e)" ngclipboard-error="clipboardError(e, true)"
+                                    data-clipboard-text="{{login.password}}">
                                 <i class="fa fa-clipboard"></i>
                             </button>
                         </span>
                     </div>
                 </div>
-                <div style="margin: -10px 0 15px 0;" password-meter="login.password" password-meter-username="login.username" outer-class="xs"></div>
+                <div style="margin: -10px 0 15px 0;" password-meter="login.password" password-meter-username="login.username"
+                     outer-class="xs"></div>
             </div>
         </div>
         <div class="form-group" show-errors>
             <label for="notes">Notes</label>
-            <textarea id="notes" name="Notes" class="form-control" ng-model="login.notes" api-field></textarea>
+            <textarea id="notes" name="Notes" class="form-control" ng-model="login.notes"
+                      ng-readonly="readOnly" api-field></textarea>
         </div>
         <div class="checkbox">
             <label>
@@ -97,7 +108,7 @@
             <i class="fa fa-refresh fa-spin loading-icon" ng-show="editLoginForm.$loading"></i>Save
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
-        <button type="button" class="btn btn-link pull-right" ng-click="delete()" uib-tooltip="Delete">
+        <button type="button" class="btn btn-link pull-right" ng-click="delete()" uib-tooltip="Delete" ng-disabled="readOnly">
             <i class="fa fa-trash fa-lg"></i>
         </button>
     </div>

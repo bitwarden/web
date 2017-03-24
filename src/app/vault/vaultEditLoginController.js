@@ -1,25 +1,46 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService, passwordService, loginId, folders, $analytics) {
+    .controller('vaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
+        passwordService, loginId, folders, $analytics) {
         $analytics.eventTrack('vaultEditLoginController', { category: 'Modal' });
         $scope.folders = folders;
         $scope.login = {};
+        $scope.readOnly = false;
 
         apiService.logins.get({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
+            $scope.readOnly = !login.Edit;
         });
 
         $scope.save = function (model) {
-            var login = cipherService.encryptLogin(model);
-            $scope.savePromise = apiService.logins.put({ id: loginId }, login, function (loginResponse) {
-                $analytics.eventTrack('Edited Login');
-                var decLogin = cipherService.decryptLogin(loginResponse);
-                $uibModalInstance.close({
-                    action: 'edit',
-                    data: decLogin
-                });
-            }).$promise;
+            if ($scope.readOnly) {
+                $scope.savePromise = apiService.ciphers.putPartial({ id: loginId }, {
+                    folderId: model.folderId,
+                    favorite: model.favorite
+                }, function (response) {
+                    $analytics.eventTrack('Partially Edited Login');
+                    $uibModalInstance.close({
+                        action: 'partialEdit',
+                        data: {
+                            id: loginId,
+                            favorite: model.favorite,
+                            folderId: model.folderId && model.folderId !== '' ? model.folderId : null
+                        }
+                    });
+                }).$promise;
+            }
+            else {
+                var login = cipherService.encryptLogin(model);
+                $scope.savePromise = apiService.logins.put({ id: loginId }, login, function (loginResponse) {
+                    $analytics.eventTrack('Edited Login');
+                    var decLogin = cipherService.decryptLogin(loginResponse);
+                    $uibModalInstance.close({
+                        action: 'edit',
+                        data: decLogin
+                    });
+                }).$promise;
+            }
         };
 
         $scope.generatePassword = function () {

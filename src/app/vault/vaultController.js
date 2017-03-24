@@ -62,11 +62,17 @@
             editModel.result.then(function (returnVal) {
                 if (returnVal.action === 'edit') {
                     var loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
-
                     if (loginToUpdate && loginToUpdate.length > 0) {
                         loginToUpdate[0].folderId = returnVal.data.folderId;
                         loginToUpdate[0].name = returnVal.data.name;
                         loginToUpdate[0].username = returnVal.data.username;
+                        loginToUpdate[0].favorite = returnVal.data.favorite;
+                    }
+                }
+                else if (returnVal.action === 'partialEdit') {
+                    var loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    if (loginToUpdate && loginToUpdate.length > 0) {
+                        loginToUpdate[0].folderId = returnVal.data.folderId;
                         loginToUpdate[0].favorite = returnVal.data.favorite;
                     }
                 }
@@ -184,7 +190,7 @@
             });
 
             modal.result.then(function () {
-                
+
             });
         };
     });
