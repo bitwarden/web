@@ -91,6 +91,12 @@ angular
                 controller: 'vaultController',
                 data: { pageTitle: 'My Vault' }
             })
+            .state('backend.user.subvaults', {
+                url: '^/subvaults',
+                templateUrl: 'app/vault/views/vaultSubvaults.html',
+                controller: 'vaultSubvaultsController',
+                data: { pageTitle: 'Subvaults' }
+            })
             .state('backend.user.settings', {
                 url: '^/settings',
                 templateUrl: 'app/settings/views/settings.html',
@@ -108,12 +114,6 @@ angular
                 templateUrl: 'app/tools/views/tools.html',
                 controller: 'toolsController',
                 data: { pageTitle: 'Tools' }
-            })
-            .state('backend.user.sharing', {
-                url: '^/sharing',
-                templateUrl: 'app/sharing/views/sharing.html',
-                controller: 'sharingController',
-                data: { pageTitle: 'Sharing Center' }
             })
             .state('backend.org', {
                 templateUrl: 'app/views/organizationLayout.html',

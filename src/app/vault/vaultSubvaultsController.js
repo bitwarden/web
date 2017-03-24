@@ -1,7 +1,7 @@
 ﻿angular
-    .module('bit.sharing')
+    .module('bit.vault')
 
-    .controller('sharingController', function ($scope, apiService, cipherService, $analytics, $q) {
+    .controller('vaultSubvaultsController', function ($scope, apiService, cipherService, $analytics, $q) {
         $scope.logins = [];
         $scope.subvaults = [];
         $scope.loading = true;

@@ -83,14 +83,42 @@
                 var users = [];
 
                 for (var i = 0; i < list.Data.length; i++) {
-                    users.push({
+                    var user = {
                         id: list.Data[i].Id,
                         userId: list.Data[i].UserId,
                         name: list.Data[i].Name,
                         email: list.Data[i].Email,
                         status: list.Data[i].Status,
                         type: list.Data[i].Type
-                    });
+                    };
+
+                    switch (user.type) {
+                        case 0:
+                            user.typeName = 'Owner';
+                            break;
+                        case 1:
+                            user.typeName = 'Admin';
+                            break;
+                        case 2:
+                        default:
+                            user.typeName = 'User';
+                            break;
+                    }
+
+                    switch (user.status) {
+                        case 0:
+                            user.statusName = 'Invited';
+                            break;
+                        case 1:
+                            user.statusName = 'Accepted';
+                            break;
+                        case 2:
+                        default:
+                            user.statusName = 'Confirmed';
+                            break;
+                    }
+
+                    users.push(user);
                 }
 
                 $scope.users = users;

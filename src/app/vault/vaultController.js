@@ -178,7 +178,6 @@
                 animation: true,
                 templateUrl: 'app/vault/views/vaultShare.html',
                 controller: 'vaultShareController',
-                size: 'sm',
                 resolve: {
                     loginId: function () { return login.id; }
                 }
