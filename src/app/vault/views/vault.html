@@ -8,7 +8,7 @@
     <div ng-show="loading && !folders.length">
         <p>Loading...</p>
     </div>
-    <div class="box box-primary" style="margin-bottom: 40px;">
+    <div class="box box-primary" style="margin-bottom: 40px;" ng-show="!main.searchVaultText || favoriteLogins.length">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-star"></i>
@@ -126,7 +126,8 @@
                                     <i class="fa fa-lg fa-trash"></i>
                                 </button>
                                 <button type="button" ng-click="share(login)" class="btn btn-link btn-table"
-                                        uib-tooltip="Share">
+                                        uib-tooltip="{{login.organizationId ? 'Already shared.' : 'Share'}}"
+                                        ng-disabled="login.organizationId !== null">
                                     <i class="fa fa-lg fa-share-alt"></i>
                                 </button>
                             </td>
