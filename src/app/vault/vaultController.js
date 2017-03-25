@@ -92,14 +92,15 @@
             $scope.addLogin();
         });
 
-        $scope.addLogin = function (folder) {
+        $scope.addLogin = function (folder, favorite) {
             var addModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultAddLogin.html',
                 controller: 'vaultAddLoginController',
                 resolve: {
                     folders: function () { return $scope.folders; },
-                    selectedFolder: function () { return folder; }
+                    selectedFolder: function () { return folder; },
+                    checkedFavorite: function () { return favorite; }
                 }
             });
 
