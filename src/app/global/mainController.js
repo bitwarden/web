@@ -10,7 +10,9 @@ angular
         $scope.currentYear = new Date().getFullYear();
 
         $scope.$on('$viewContentLoaded', function () {
-            vm.userProfile = authService.getUserProfile();
+            authService.getUserProfile().then(function (profile) {
+                vm.userProfile = profile;
+            });
 
             if ($.AdminLTE) {
                 if ($.AdminLTE.layout) {

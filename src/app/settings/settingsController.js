@@ -36,15 +36,17 @@
 
         $scope.generalSave = function () {
             $scope.generalPromise = apiService.accounts.putProfile({}, $scope.model.profile, function (profile) {
-                authService.setUserProfile(profile);
-                toastr.success('Account has been updated.', 'Success!');
+                authService.setUserProfile(profile).then(function (updatedProfile) {
+                    toastr.success('Account has been updated.', 'Success!');
+                });
             }).$promise;
         };
 
         $scope.passwordHintSave = function () {
             $scope.passwordHintPromise = apiService.accounts.putProfile({}, $scope.model.profile, function (profile) {
-                authService.setUserProfile(profile);
-                toastr.success('Account has been updated.', 'Success!');
+                authService.setUserProfile(profile).then(function (updatedProfile) {
+                    toastr.success('Account has been updated.', 'Success!');
+                });
             }).$promise;
         };
 

@@ -24,40 +24,42 @@
 
             $scope.processing = true;
 
-            var profile = authService.getUserProfile();
-            var newKey = cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
-
-            var reencryptedLogins = [];
-            var loginsPromise = apiService.logins.list({ dirty: false }, function (encryptedLogins) {
-                var unencryptedLogins = cipherService.decryptLogins(encryptedLogins.Data);
-                reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, newKey);
-            }).$promise;
-
-            var reencryptedFolders = [];
-            var foldersPromise = apiService.folders.list({ dirty: false }, function (encryptedFolders) {
-                var unencryptedFolders = cipherService.decryptFolders(encryptedFolders.Data);
-                reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, newKey);
-            }).$promise;
-
-            $q.all([loginsPromise, foldersPromise]).then(function () {
-                var request = {
-                    masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
-                    newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
-                    ciphers: reencryptedLogins.concat(reencryptedFolders)
-                };
-
-                $scope.savePromise = apiService.accounts.putPassword(request, function () {
-                    $uibModalInstance.dismiss('cancel');
-                    authService.logOut();
-                    $analytics.eventTrack('Changed Password');
-                    $state.go('frontend.login.info').then(function () {
-                        toastr.success('Please log back in.', 'Master Password Changed');
-                    });
-                }, function () {
-                    // TODO: recovery mode
-                    $uibModalInstance.dismiss('cancel');
-                    toastr.error('Something went wrong.', 'Oh No!');
+            authService.getUserProfile().then(function (profile) {
+                return cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
+            }).then(function (newKey) {
+                var reencryptedLogins = [];
+                var loginsPromise = apiService.logins.list({ dirty: false }, function (encryptedLogins) {
+                    var unencryptedLogins = cipherService.decryptLogins(encryptedLogins.Data);
+                    reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, newKey);
                 }).$promise;
+
+                var reencryptedFolders = [];
+                var foldersPromise = apiService.folders.list({ dirty: false }, function (encryptedFolders) {
+                    var unencryptedFolders = cipherService.decryptFolders(encryptedFolders.Data);
+                    reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, newKey);
+                }).$promise;
+
+                $q.all([loginsPromise, foldersPromise]).then(function () {
+                    var request = {
+                        masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
+                        newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
+                        ciphers: reencryptedLogins.concat(reencryptedFolders)
+                    };
+
+                    $scope.savePromise = apiService.accounts.putPassword(request, function () {
+                        $uibModalInstance.dismiss('cancel');
+                        authService.logOut();
+                        $analytics.eventTrack('Changed Password');
+                        $state.go('frontend.login.info').then(function () {
+                            toastr.success('Please log back in.', 'Master Password Changed');
+                        });
+                    }, function () {
+                        // TODO: recovery mode
+                        $uibModalInstance.dismiss('cancel');
+                        toastr.error('Something went wrong.', 'Oh No!');
+                    }).$promise;
+                });
+
             });
         };
 

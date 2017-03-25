@@ -58,16 +58,21 @@ angular
 
         _service.getUserProfile = function () {
             if (!_userProfile) {
-                _service.setUserProfile();
+                return _service.setUserProfile();
             }
 
-            return _userProfile;
+            var deferred = $q.defer();
+            deferred.resolve(_userProfile);
+            return deferred.promise;
         };
 
         _service.setUserProfile = function () {
+            var deferred = $q.defer();
+
             var token = tokenService.getToken();
             if (!token) {
-                return;
+                deferred.reject();
+                return deferred.promise;
             }
 
             var decodedToken = jwtHelper.decodeToken(token);
@@ -77,51 +82,55 @@ angular
                 email: decodedToken.email
             };
 
-            apiService.accounts.getProfile({}, loadProfile);
+            apiService.accounts.getProfile({}, function (profile) {
+                _userProfile.extended = {
+                    name: profile.Name,
+                    twoFactorEnabled: profile.TwoFactorEnabled,
+                    culture: profile.Culture
+                };
+
+                if (profile.Organizations) {
+                    var orgs = [];
+                    for (var i = 0; i < profile.Organizations.length; i++) {
+                        orgs.push({
+                            id: profile.Organizations[i].Id,
+                            name: profile.Organizations[i].Name,
+                            key: profile.Organizations[i].Key,
+                            status: profile.Organizations[i].Status
+                        });
+                    }
+
+                    _userProfile.organizations = orgs;
+                    cryptoService.setOrgKeys(orgs);
+                    deferred.resolve(_userProfile);
+                }
+            }, function () {
+                deferred.reject();
+            });
+
+            return deferred.promise;
         };
 
         _service.addProfileOrganization = function (org) {
-            var profile = _service.getUserProfile();
-            if (profile) {
-                if (!profile.Organizations) {
-                    profile.Organizations = [];
+            return _service.getUserProfile().then(function (profile) {
+                if (profile) {
+                    if (!profile.Organizations) {
+                        profile.Organizations = [];
+                    }
+
+                    var o = {
+                        id: org.Id,
+                        name: org.Name,
+                        key: org.Key,
+                        status: org.Status
+                    };
+                    profile.organizations.push(o);
+
+                    _userProfile = profile;
+                    cryptoService.addOrgKey(o);
                 }
-
-                var o = {
-                    id: org.Id,
-                    name: org.Name,
-                    key: org.Key,
-                    status: org.Status
-                };
-                profile.organizations.push(o);
-
-                _userProfile = profile;
-                cryptoService.addOrgKey(o);
-            }
+            });
         };
-
-        function loadProfile(profile) {
-            _userProfile.extended = {
-                name: profile.Name,
-                twoFactorEnabled: profile.TwoFactorEnabled,
-                culture: profile.Culture
-            };
-
-            if (profile.Organizations) {
-                var orgs = [];
-                for (var i = 0; i < profile.Organizations.length; i++) {
-                    orgs.push({
-                        id: profile.Organizations[i].Id,
-                        name: profile.Organizations[i].Name,
-                        key: profile.Organizations[i].Key,
-                        status: profile.Organizations[i].Status
-                    });
-                }
-
-                _userProfile.organizations = orgs;
-                cryptoService.setOrgKeys(orgs);
-            }
-        }
 
         _service.isAuthenticated = function () {
             return tokenService.getToken() !== null;

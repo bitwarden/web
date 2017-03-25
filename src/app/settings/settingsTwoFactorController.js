@@ -4,13 +4,16 @@
     .controller('settingsTwoFactorController', function ($scope, apiService, $uibModalInstance, cryptoService, authService, $q, toastr, $analytics) {
         $analytics.eventTrack('settingsTwoFactorController', { category: 'Modal' });
         var _issuer = 'bitwarden',
-            _profile = authService.getUserProfile(),
+            _profile = null,
             _masterPasswordHash;
 
-        $scope.account = _profile.email;
-        $scope.enabled = function () {
-            return _profile.extended && _profile.extended.twoFactorEnabled;
-        };
+        authService.getUserProfile().then(function (profile) {
+            _profile = profile;
+            $scope.account = _profile.email;
+            $scope.enabled = function () {
+                return _profile.extended && _profile.extended.twoFactorEnabled;
+            };
+        });
 
         $scope.auth = function (model) {
             _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);

@@ -12,33 +12,34 @@
             $scope.login = cipherService.decryptLogin(login);
         });
 
-        var profile = authService.getUserProfile();
-        if (profile && profile.organizations) {
-            var orgs = [];
-            for (var i = 0; i < profile.organizations.length; i++) {
-                orgs.push({
-                    id: profile.organizations[i].id,
-                    name: profile.organizations[i].name
+        authService.getUserProfile().then(function (profile) {
+            if (profile && profile.organizations) {
+                var orgs = [];
+                for (var i = 0; i < profile.organizations.length; i++) {
+                    orgs.push({
+                        id: profile.organizations[i].id,
+                        name: profile.organizations[i].name
+                    });
+
+                    if (i === 0) {
+                        $scope.model.organizationId = profile.organizations[i].id;
+                    }
+                }
+
+                $scope.organizations = orgs;
+
+                apiService.subvaults.listMe(function (response) {
+                    var subvaults = [];
+                    for (var i = 0; i < response.Data.length; i++) {
+                        var decSubvault = cipherService.decryptSubvault(response.Data[i]);
+                        decSubvault.organizationId = response.Data[i].OrganizationId;
+                        subvaults.push(decSubvault);
+                    }
+
+                    $scope.subvaults = subvaults;
                 });
-
-                if (i === 0) {
-                    $scope.model.organizationId = profile.organizations[i].id;
-                }
             }
-
-            $scope.organizations = orgs;
-
-            apiService.subvaults.listMe(function (response) {
-                var subvaults = [];
-                for (var i = 0; i < response.Data.length; i++) {
-                    var decSubvault = cipherService.decryptSubvault(response.Data[i]);
-                    decSubvault.organizationId = response.Data[i].OrganizationId;
-                    subvaults.push(decSubvault);
-                }
-
-                $scope.subvaults = subvaults;
-            });
-        }
+        });
 
         $scope.submitPromise = null;
         $scope.submit = function (model) {
