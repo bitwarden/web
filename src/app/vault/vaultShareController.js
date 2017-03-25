@@ -7,12 +7,22 @@
         $scope.login = {};
         $scope.subvaults = [];
         $scope.organizations = [];
+        $scope.readOnly = false;
 
-        apiService.logins.get({ id: loginId }, function (login) {
-            $scope.login = cipherService.decryptLogin(login);
-        });
+        apiService.logins.get({ id: loginId }).$promise.then(function (login) {
+            $scope.readOnly = !login.Edit;
+            if (login.Edit) {
+                $scope.login = cipherService.decryptLogin(login);
+            }
 
-        authService.getUserProfile().then(function (profile) {
+            return login.Edit;
+        }).then(function (canEdit) {
+            if (!canEdit) {
+                return;
+            }
+
+            return authService.getUserProfile();
+        }).then(function (profile) {
             if (profile && profile.organizations) {
                 var orgs = [];
                 for (var i = 0; i < profile.organizations.length; i++) {
