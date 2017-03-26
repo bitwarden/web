@@ -99,7 +99,8 @@ angular
                             id: profile.Organizations[i].Id,
                             name: profile.Organizations[i].Name,
                             key: profile.Organizations[i].Key,
-                            status: profile.Organizations[i].Status
+                            status: profile.Organizations[i].Status,
+                            type: profile.Organizations[i].Type
                         });
                     }
 
@@ -125,12 +126,13 @@ angular
                         id: org.Id,
                         name: org.Name,
                         key: org.Key,
-                        status: org.Status
+                        status: 2, // 2 = Confirmed
+                        type: 0 // 0 = Owner
                     };
                     profile.organizations.push(o);
 
                     _userProfile = profile;
-                    cryptoService.addOrgKey(o);
+                    cryptoService.addOrgKey(o.id, o.key);
                 }
             });
         };

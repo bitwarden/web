@@ -23,9 +23,16 @@
                 if (user.Organizations) {
                     var orgs = [];
                     for (var i = 0; i < user.Organizations.length; i++) {
+                        // Only confirmed
+                        if (user.Organizations[i].Status !== 2) {
+                            continue;
+                        }
+
                         orgs.push({
                             id: user.Organizations[i].Id,
-                            name: user.Organizations[i].Name
+                            name: user.Organizations[i].Name,
+                            status: user.Organizations[i].Status,
+                            type: user.Organizations[i].Type
                         });
                     }
 
