@@ -69,27 +69,30 @@ angular
             return deferred.promise;
         };
 
+        var _setDeferred = null;
         _service.setUserProfile = function () {
-            var deferred = $q.defer();
+            if (_setDeferred && _setDeferred.promise.$$state.status === 0) {
+                return _setDeferred.promise;
+            }
+
+            _setDeferred = $q.defer();
 
             var token = tokenService.getToken();
             if (!token) {
-                deferred.reject();
-                return deferred.promise;
+                _setDeferred.reject();
+                return _setDeferred.promise;
             }
 
             var decodedToken = jwtHelper.decodeToken(token);
-
-            _userProfile = {
-                id: decodedToken.name,
-                email: decodedToken.email
-            };
-
             apiService.accounts.getProfile({}, function (profile) {
-                _userProfile.extended = {
-                    name: profile.Name,
-                    twoFactorEnabled: profile.TwoFactorEnabled,
-                    culture: profile.Culture
+                _userProfile = {
+                    id: decodedToken.name,
+                    email: decodedToken.email,
+                    extended: {
+                        name: profile.Name,
+                        twoFactorEnabled: profile.TwoFactorEnabled,
+                        culture: profile.Culture
+                    }
                 };
 
                 if (profile.Organizations) {
@@ -106,13 +109,13 @@ angular
 
                     _userProfile.organizations = orgs;
                     cryptoService.setOrgKeys(orgs);
-                    deferred.resolve(_userProfile);
+                    _setDeferred.resolve(_userProfile);
                 }
             }, function () {
-                deferred.reject();
+                _setDeferred.reject();
             });
 
-            return deferred.promise;
+            return _setDeferred.promise;
         };
 
         _service.addProfileOrganization = function (org) {

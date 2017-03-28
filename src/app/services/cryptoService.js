@@ -26,7 +26,7 @@ angular
         };
 
         _service.setOrgKeys = function (orgKeysCt, privateKey) {
-            if (!orgKeysCt.length) {
+            if (!orgKeysCt || Object.keys(orgKeysCt).length === 0) {
                 return;
             }
 
