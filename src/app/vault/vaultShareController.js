@@ -24,15 +24,20 @@
             return authService.getUserProfile();
         }).then(function (profile) {
             if (profile && profile.organizations) {
-                var orgs = [];
-                for (var i = 0; i < profile.organizations.length; i++) {
-                    orgs.push({
-                        id: profile.organizations[i].id,
-                        name: profile.organizations[i].name
-                    });
+                var orgs = [],
+                    setFirstOrg = false;
 
-                    if (i === 0) {
-                        $scope.model.organizationId = profile.organizations[i].id;
+                for (var i in profile.organizations) {
+                    if (profile.organizations.hasOwnProperty(i)) {
+                        orgs.push({
+                            id: profile.organizations[i].id,
+                            name: profile.organizations[i].name
+                        });
+
+                        if (!setFirstOrg) {
+                            setFirstOrg = true;
+                            $scope.model.organizationId = profile.organizations[i].id;
+                        }
                     }
                 }
 

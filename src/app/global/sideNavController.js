@@ -7,16 +7,11 @@ angular
 
         if ($state.includes('backend.org')) {
             authService.getUserProfile().then(function (userProfile) {
-                if (!userProfile.organizations || !userProfile.organizations.length) {
+                if (!userProfile.organizations || !($state.params.orgId in userProfile.organizations)) {
                     return;
                 }
 
-                for (var i = 0; i < userProfile.organizations.length; i++) {
-                    if (userProfile.organizations[i].id === $state.params.orgId) {
-                        $scope.orgProfile = userProfile.organizations[i];
-                        break;
-                    }
-                }
+                $scope.orgProfile = userProfile.organizations[$state.params.orgId];
             });
         }
     });

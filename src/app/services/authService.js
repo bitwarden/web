@@ -93,15 +93,15 @@ angular
                 };
 
                 if (profile.Organizations) {
-                    var orgs = [];
+                    var orgs = {};
                     for (var i = 0; i < profile.Organizations.length; i++) {
-                        orgs.push({
+                        orgs[profile.Organizations[i].Id] = {
                             id: profile.Organizations[i].Id,
                             name: profile.Organizations[i].Name,
                             key: profile.Organizations[i].Key,
                             status: profile.Organizations[i].Status,
                             type: profile.Organizations[i].Type
-                        });
+                        };
                     }
 
                     _userProfile.organizations = orgs;
@@ -118,8 +118,8 @@ angular
         _service.addProfileOrganization = function (org) {
             return _service.getUserProfile().then(function (profile) {
                 if (profile) {
-                    if (!profile.Organizations) {
-                        profile.Organizations = [];
+                    if (!profile.organizations) {
+                        profile.organizations = {};
                     }
 
                     var o = {
@@ -129,7 +129,7 @@ angular
                         status: 2, // 2 = Confirmed
                         type: 0 // 0 = Owner
                     };
-                    profile.organizations.push(o);
+                    profile.organizations[o.id] = o;
 
                     _userProfile = profile;
                     cryptoService.addOrgKey(o.id, o.key);

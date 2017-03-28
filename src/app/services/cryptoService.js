@@ -33,15 +33,18 @@ angular
             var orgKeysb64 = {},
                 _orgKeys = {},
                 setKey = false;
-            for (var i = 0; i < orgKeysCt.length; i++) {
-                try {
-                    var orgKey = _service.rsaDecrypt(orgKeysCt[i].key, privateKey);
-                    _orgKeys[orgKeysCt[i].id] = orgKey;
-                    orgKeysb64[orgKeysCt[i].id] = forge.util.encode64(orgKey);
-                    setKey = true;
-                }
-                catch (e) {
-                    console.log('Cannot set org key ' + i + '. Decryption failed.');
+
+            for (var orgId in orgKeysCt) {
+                if (orgKeysCt.hasOwnProperty(orgId)) {
+                    try {
+                        var orgKey = _service.rsaDecrypt(orgKeysCt[orgId].key, privateKey);
+                        _orgKeys[orgId] = orgKey;
+                        orgKeysb64[orgId] = forge.util.encode64(orgKey);
+                        setKey = true;
+                    }
+                    catch (e) {
+                        console.log('Cannot set org key ' + i + '. Decryption failed.');
+                    }
                 }
             }
 

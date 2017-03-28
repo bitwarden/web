@@ -232,12 +232,26 @@ angular
 
                 event.preventDefault();
                 $state.go('backend.user.vault');
+                return;
             }
 
             if (!authService.isAuthenticated()) {
                 event.preventDefault();
                 authService.logOut();
                 $state.go('frontend.login.info');
+                return;
+            }
+
+            // user is guaranteed to be authenticated becuase of previous check
+            if (toState.name.indexOf('backend.org.') > -1 && toParams.orgId) {
+                authService.getUserProfile().then(function (profile) {
+                    var orgs = profile.organizations;
+                    if (!orgs || !(toParams.orgId in orgs) || orgs[toParams.orgId].status !== 2 ||
+                        orgs[toParams.orgId].type === 2) {
+                        event.preventDefault();
+                        $state.go('backend.user.vault');
+                    }
+                });
             }
         });
     });
