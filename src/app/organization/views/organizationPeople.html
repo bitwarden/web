@@ -68,8 +68,8 @@
                             <td style="width: 100px;">
                                 {{user.typeName}}
                             </td>
-                            <td style="width: 100px;">
-                                {{user.statusName}}
+                            <td style="width: 120px;">
+                                <span class="label" ng-class="{{user.statusClass}}">{{user.statusName}}</span>
                             </td>
                         </tr>
                     </tbody>

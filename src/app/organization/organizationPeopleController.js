@@ -100,22 +100,25 @@
                             user.typeName = 'Admin';
                             break;
                         case 2:
+                        /* falls through */
                         default:
                             user.typeName = 'User';
-                            break;
                     }
 
                     switch (user.status) {
                         case 0:
                             user.statusName = 'Invited';
+                            user.statusClass = { 'label-default': true };
                             break;
                         case 1:
                             user.statusName = 'Accepted';
+                            user.statusClass = { 'label-warning': true };
                             break;
                         case 2:
+                        /* falls through */
                         default:
                             user.statusName = 'Confirmed';
-                            break;
+                            user.statusClass = { 'label-success': true };
                     }
 
                     users.push(user);
