@@ -5,6 +5,9 @@
         $scope.loading = true;
         $scope.subvaults = [];
         $scope.selectedSubvaults = {};
+        $scope.model = {
+            type: 'User'
+        };
 
         $uibModalInstance.opened.then(function () {
             apiService.subvaults.listOrganization({ orgId: $state.params.orgId }, function (list) {
