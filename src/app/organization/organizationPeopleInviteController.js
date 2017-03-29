@@ -54,6 +54,7 @@
             return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
         };
 
+        $scope.submitPromise = null;
         $scope.submit = function (model) {
             var subvaults = [];
             for (var subvaultId in $scope.selectedSubvaults) {
@@ -62,13 +63,13 @@
                 }
             }
 
-            apiService.organizationUsers.invite({ orgId: $state.params.orgId }, {
+            $scope.submitPromise = apiService.organizationUsers.invite({ orgId: $state.params.orgId }, {
                 email: model.email,
                 type: model.type,
                 subvaults: subvaults
             }, function () {
                 $uibModalInstance.close();
-            });
+            }).$promise;
         };
 
         $scope.close = function () {
