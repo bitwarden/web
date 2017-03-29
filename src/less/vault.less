@@ -122,6 +122,39 @@ form .btn .loading-icon {
     }
 }
 
+/* Forms */
+
+.form-control {
+    border-radius: 0 !important;
+}
+
+.has-feedback {
+    &.form-group-sm {
+        input {
+            padding-right: (@input-height-small * 1.25);
+        }
+    }
+}
+
+.has-feedback.has-feedback-left {
+    input {
+        padding-left: (@input-height-base * 1.25);
+        padding-right: 0;
+    }
+
+    &.form-group-sm {
+        input {
+            padding-left: (@input-height-small * 1.25);
+            padding-right: 0;
+        }
+    }
+
+    .form-control-feedback {
+        right: initial;
+        left: 0;
+    }
+}
+
 /* Modals */
 
 .modal-footer {
@@ -181,6 +214,12 @@ form .btn .loading-icon {
 
 .list-group + .box-footer, .box-header + .list-group .list-group-item:first-child {
     border-top-width: 0;
+}
+
+.box-header .box-filters {
+    position: absolute;
+    left: 10px;
+    top: 5px;
 }
 
 /* Toastr */
