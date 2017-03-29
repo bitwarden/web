@@ -79,49 +79,17 @@
                     <i class="fa fa-info-circle fa-fw"></i> <span>Get Help</span>
                 </a>
             </li>
-            <li class="header">
-                <small class="label pull-right bg-green">FREE</small>
-                MOBILE APPS
-            </li>
             <li>
-                <a href="https://itunes.apple.com/app/bitwarden-free-password-manager/id1137397744?mt=8"
-                   target="_blank" analytics-on="click" analytics-event="Clicked iOS">
-                    <i class="fa fa-apple fa-fw"></i> <span>iOS</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://play.google.com/store/apps/details?id=com.x8bit.bitwarden"
-                   target="_blank" analytics-on="click" analytics-event="Clicked Android">
-                    <i class="fa fa-android fa-fw"></i> <span>Android</span>
+                <a href="#">
+                    <i class="fa fa-certificate fa-fw"></i> <span>Download Apps</span>
                 </a>
             </li>
             <li class="header">
-                <small class="label pull-right bg-green">FREE</small>
-                BROWSER EXTENSIONS
+                ORGANIZATIONS
             </li>
-            <li>
-                <a href="https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb"
-                   target="_blank" analytics-on="click" analytics-event="Clicked Chrome">
-                    <i class="fa fa-chrome fa-fw"></i> <span>Chrome</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://addons.mozilla.org/firefox/addon/bitwarden-password-manager/"
-                   target="_blank" analytics-on="click" analytics-event="Clicked Firefox">
-                    <i class="fa fa-firefox fa-fw"></i> <span>Firefox</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://addons.opera.com/extensions/details/bitwarden-free-password-manager/"
-                   target="_blank" analytics-on="click" analytics-event="Clicked Opera">
-                    <i class="fa fa-opera fa-fw"></i> <span>Opera</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)"
-                   target="_blank" analytics-on="click" analytics-event="Clicked Edge">
-                    <small class="label pull-right bg-gray">coming soon</small>
-                    <i class="fa fa-edge fa-fw"></i> <span>Edge</span>
+            <li ng-repeat="org in orgs | orderBy: ['name']">
+                <a href="javascript:void(0)" ng-click="viewOrganization(org.id)">
+                    <i class="fa fa-circle-o fa-fw"></i> <span>{{org.name}}</span>
                 </a>
             </li>
         </ul>
