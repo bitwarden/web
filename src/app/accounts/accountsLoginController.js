@@ -5,10 +5,10 @@ angular
         $state, appSettings, $analytics) {
         var returnState = $state.params.returnState;
         var rememberedEmail = $cookies.get(appSettings.rememberedEmailCookieName);
-        if (rememberedEmail) {
+        if (rememberedEmail || $state.params.email) {
             $scope.model = {
-                email: rememberedEmail,
-                rememberEmail: true
+                email: $state.params.email ? $state.params.email : rememberedEmail,
+                rememberEmail: rememberedEmail !== null
             };
         }
 

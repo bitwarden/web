@@ -4,12 +4,14 @@ angular
     .controller('accountsRegisterController', function ($scope, $location, apiService, cryptoService, validationService,
         $analytics, $state) {
         var params = $location.search();
+        var stateParams = $state.params;
 
         $scope.returnState = $state.params.returnState;
         $scope.success = false;
         $scope.model = {
-            email: params.email
+            email: params.email ? params.email : stateParams.email
         };
+        $scope.readOnlyEmail = stateParams.email !== null;
 
         $scope.registerPromise = null;
         $scope.register = function (form) {

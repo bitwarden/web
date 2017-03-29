@@ -150,7 +150,8 @@ angular
                 templateUrl: 'app/accounts/views/accountsLogin.html',
                 controller: 'accountsLoginController',
                 params: {
-                    returnState: null
+                    returnState: null,
+                    email: null
                 },
                 data: {
                     bodyClass: 'login-page'
@@ -201,7 +202,8 @@ angular
                 templateUrl: 'app/accounts/views/accountsRegister.html',
                 controller: 'accountsRegisterController',
                 params: {
-                    returnState: null
+                    returnState: null,
+                    email: null
                 },
                 data: {
                     pageTitle: 'Register',
@@ -209,7 +211,7 @@ angular
                 }
             })
             .state('frontend.organizationAccept', {
-                url: '^/accept-organization?organizationId&organizationUserId&token',
+                url: '^/accept-organization?organizationId&organizationUserId&token&email',
                 templateUrl: 'app/accounts/views/accountsOrganizationAccept.html',
                 controller: 'accountsOrganizationAcceptController',
                 data: {

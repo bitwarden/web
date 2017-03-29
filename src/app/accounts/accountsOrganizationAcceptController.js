@@ -7,7 +7,7 @@ angular
             params: $state.params
         };
 
-        if (!$state.params.organizationId || !$state.params.organizationUserId || !$state.params.token) {
+        if (!$state.params.organizationId || !$state.params.organizationUserId || !$state.params.token || !$state.params.email) {
             $state.go('frontend.login.info').then(function () {
                 toastr.error('Invalid parameters.');
             });

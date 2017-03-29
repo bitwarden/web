@@ -19,35 +19,45 @@
                 Loading...
             </div>
             <div class="table-responsive" ng-show="users.length">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="user in users | orderBy: ['name', 'email']">
-                            <td style="width: 70px;" valign="middle">
+                            <td style="width: 70px;">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0)" ng-click="confirm(user)">Confirm</a>
+                                        <li ng-show="user.status === 1">
+                                            <a href="javascript:void(0)" ng-click="confirm(user)">
+                                                <i class="fa fa-fw fa-check"></i> Confirm
+                                            </a>
                                         </li>
-                                        <li><a href="javascript:void(0)" ng-click="reinvite(user)">Re-send Invitation</a></li>
-                                        <li><a href="javascript:void(0)" ng-click="delete(user)" class="text-danger">Remove</a></li>
+                                        <li ng-show="user.status === 0">
+                                            <a href="javascript:void(0)" ng-click="reinvite(user)">
+                                                <i class="fa fa-fw fa-envelope-o"></i> Re-send Invitation
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="delete(user)" class="text-red">
+                                                <i class="fa fa-fw fa-remove"></i> Remove
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
-                            <td style="width: 45px;" valign="middle">
+                            <td style="width: 45px;">
                                 <img src="//www.gravatar.com/avatar/{{user.email | gravatar}}.jpg?s=45&d=mm"
                                      class="img-circle" alt="User Image">
                             </td>
-                            <td valign="middle">
+                            <td>
                                 <a href="javascript:void(0)" ng-click="edit(user.id)">{{user.email}}</a>
                                 <div ng-if="user.name"><small class="text-muted">{{user.name}}</small></div>
                             </td>
-                            <td style="width: 100px;" valign="middle">
+                            <td style="width: 100px;">
                                 {{user.typeName}}
                             </td>
-                            <td style="width: 100px;" valign="middle">
+                            <td style="width: 100px;">
                                 {{user.statusName}}
                             </td>
                         </tr>
