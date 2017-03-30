@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSubvaultsController', function ($scope, $state, apiService, $uibModal, cipherService) {
+    .controller('organizationSubvaultsController', function ($scope, $state, apiService, $uibModal, cipherService, $filter) {
         $scope.subvaults = [];
         $scope.loading = true;
         $scope.$on('$viewContentLoaded', function () {
@@ -17,6 +17,24 @@
 
             modal.result.then(function (subvault) {
                 $scope.subvaults.push(subvault);
+            });
+        };
+
+        $scope.edit = function (subvault) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationSubvaultsEdit.html',
+                controller: 'organizationSubvaultsEditController',
+                resolve: {
+                    id: function () { return subvault.id; }
+                }
+            });
+
+            modal.result.then(function (editedSubvault) {
+                var existingSubvaults = $filter('filter')($scope.subvaults, { id: editedSubvault.id }, true);
+                if (existingSubvaults && existingSubvaults.length > 0) {
+                    existingSubvaults[0].name = editedSubvault.name;
+                }
             });
         };
 
