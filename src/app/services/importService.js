@@ -182,6 +182,28 @@
             }
         }
 
+        function getFileContents(file, contentsCallback, errorCallback) {
+            if (typeof file === 'string') {
+                contentsCallback(file);
+            }
+            else {
+                var reader = new FileReader();
+                reader.readAsText(file, 'utf-8');
+                reader.onload = function (evt) {
+                    contentsCallback(evt.target.result);
+                };
+                reader.onerror = function (evt) {
+                    errorCallback();
+                };
+            }
+        }
+
+        function getXmlFileContents(file, xmlCallback, errorCallback) {
+            getFileContents(file, function (fileContents) {
+                xmlCallback($.parseXML(fileContents));
+            }, errorCallback);
+        }
+
         function importBitwardenCsv(file, success, error) {
             Papa.parse(file, {
                 header: true,
@@ -239,7 +261,7 @@
         }
 
         function importLastPass(file, success, error) {
-            if (file.type === 'text/html') {
+            if (typeof file !== 'string' && file.type && file.type === 'text/html') {
                 var reader = new FileReader();
                 reader.readAsText(file, 'utf-8');
                 reader.onload = function (evt) {
@@ -344,16 +366,14 @@
             var folders = [],
                 logins = [],
                 loginRelationships = [],
-                foldersIndex = [];
-
-            var i = 0,
+                foldersIndex = [],
+                i = 0,
                 j = 0;
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var xmlDoc = $.parseXML(evt.target.result),
-                    xml = $(xmlDoc);
+            getXmlFileContents(file, parse, error);
+
+            function parse(xmlDoc) {
+                var xml = $(xmlDoc);
 
                 var db = xml.find('database');
                 if (db.length) {
@@ -429,11 +449,7 @@
                 else {
                     error();
                 }
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importPadlockCsv(file, success, error) {
@@ -535,11 +551,10 @@
                 logins = [],
                 loginRelationships = [];
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var xmlDoc = $.parseXML(evt.target.result),
-                    xml = $(xmlDoc);
+            getXmlFileContents(file, parse, error);
+
+            function parse(xmlDoc) {
+                var xml = $(xmlDoc);
 
                 var root = xml.find('Root');
                 if (root.length) {
@@ -552,11 +567,7 @@
                 else {
                     error();
                 }
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
 
             function traverse(node, isRootNode, groupNamePrefix) {
                 var nodeEntries = [];
@@ -745,10 +756,9 @@
                 }
             }
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var fileContent = evt.target.result;
+            getXmlFileContents(file, parse, error);
+
+            function parse(fileContent) {
                 var fileLines = fileContent.split(/(?:\r\n|\r|\n)/);
 
                 for (i = 0; i < fileLines.length; i++) {
@@ -790,11 +800,7 @@
                 }
 
                 success(folders, logins, loginRelationships);
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function import1Password6WinCsv(file, success, error) {
@@ -922,40 +928,35 @@
                 return name;
             }
 
-            if (file.type === 'text/xml') {
-                var reader = new FileReader();
-                reader.readAsText(file, 'utf-8');
-                reader.onload = function (evt) {
-                    var xmlDoc = $.parseXML(evt.target.result),
-                        xml = $(xmlDoc);
+            function parseXml(xmlDoc) {
+                var xml = $(xmlDoc);
 
-                    var entries = xml.find('entry');
-                    for (var i = 0; i < entries.length; i++) {
-                        var entry = $(entries[i]);
-                        if (!entry) {
-                            continue;
-                        }
-
-                        var host = entry.attr('host'),
-                            user = entry.attr('user'),
-                            password = entry.attr('password');
-
-                        logins.push({
-                            favorite: false,
-                            uri: host && host !== '' ? trimUri(host) : null,
-                            username: user && user !== '' ? user : null,
-                            password: password && password !== '' ? password : null,
-                            notes: null,
-                            name: getNameFromHost(host),
-                        });
+                var entries = xml.find('entry');
+                for (var i = 0; i < entries.length; i++) {
+                    var entry = $(entries[i]);
+                    if (!entry) {
+                        continue;
                     }
 
-                    success(folders, logins, loginRelationships);
-                };
+                    var host = entry.attr('host'),
+                        user = entry.attr('user'),
+                        password = entry.attr('password');
 
-                reader.onerror = function (evt) {
-                    error();
-                };
+                    logins.push({
+                        favorite: false,
+                        uri: host && host !== '' ? trimUri(host) : null,
+                        username: user && user !== '' ? user : null,
+                        password: password && password !== '' ? password : null,
+                        notes: null,
+                        name: getNameFromHost(host),
+                    });
+                }
+
+                success(folders, logins, loginRelationships);
+            }
+
+            if (file.type && file.type === 'text/xml') {
+                getXmlFileContents(file, parseXml, error);
             }
             else {
                 // currently bugged due to the comment
@@ -1100,11 +1101,10 @@
                 foldersIndex = [],
                 j = 0;
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var xmlDoc = $.parseXML(evt.target.result),
-                    xml = $(xmlDoc);
+            getXmlFileContents(file, parseXml, error);
+
+            function parseXml(xmlDoc) {
+                var xml = $(xmlDoc);
 
                 var pwManager = xml.find('PasswordManager');
                 if (pwManager.length) {
@@ -1205,11 +1205,7 @@
                 else {
                     error();
                 }
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importEnpassCsv(file, success, error) {
@@ -1283,11 +1279,10 @@
                 foldersIndex = [],
                 j = 0;
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var xmlDoc = $.parseXML(evt.target.result),
-                    xml = $(xmlDoc);
+            getXmlFileContents(file, parseXml, error);
+
+            function parseXml(xmlDoc) {
+                var xml = $(xmlDoc);
 
                 var pwsafe = xml.find('passwordsafe');
                 if (pwsafe.length) {
@@ -1371,11 +1366,7 @@
                 else {
                     error();
                 }
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importDashlaneCsv(file, success, error) {
@@ -1509,11 +1500,10 @@
                 return groupText;
             }
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var xmlDoc = $.parseXML(evt.target.result),
-                    xml = $(xmlDoc);
+            getXmlFileContents(file, parseXml, error);
+
+            function parseXml(xmlDoc) {
+                var xml = $(xmlDoc);
 
                 var database = xml.find('root > Database');
                 if (database.length) {
@@ -1599,11 +1589,7 @@
                 else {
                     error();
                 }
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importmSecureCsv(file, success, error) {
@@ -1764,10 +1750,10 @@
                 logins = [],
                 loginRelationships = [];
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var doc = $(evt.target.result);
+            getFileContents(file, parse, error);
+
+            function parse(fileContents) {
+                var doc = $(fileContents);
                 var textarea = doc.find('textarea');
                 var json = textarea && textarea.length ? textarea.val() : null;
                 var entries = json ? JSON.parse(json) : null;
@@ -1836,11 +1822,7 @@
                 }
 
                 success(folders, logins, loginRelationships);
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importAviraJson(file, success, error) {
@@ -1849,10 +1831,9 @@
                 loginRelationships = [],
                 i = 0;
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var fileContent = evt.target.result;
+            getFileContents(file, parseJson, error);
+
+            function parseJson(fileContent) {
                 var fileJson = JSON.parse(fileContent);
                 if (fileJson) {
                     if (fileJson.accounts) {
@@ -1886,11 +1867,7 @@
                 }
 
                 success(folders, logins, loginRelationships);
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importRoboFormHtml(file, success, error) {
@@ -1898,10 +1875,10 @@
                 logins = [],
                 loginRelationships = [];
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var doc = $(evt.target.result.split('&shy;').join('').split('<WBR>').join(''));
+            getFileContents(file, parse, error);
+
+            function parse(fileContents) {
+                var doc = $(fileContents.split('&shy;').join('').split('<WBR>').join(''));
                 var outterTables = doc.find('table.nobr');
                 if (outterTables.length) {
                     for (var i = 0; i < outterTables.length; i++) {
@@ -1962,11 +1939,7 @@
                 }
 
                 success(folders, logins, loginRelationships);
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importSaferPassCsv(file, success, error) {
@@ -2075,10 +2048,9 @@
                 loginRelationships = [],
                 i = 0;
 
-            var reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = function (evt) {
-                var fileContent = evt.target.result;
+            getFileContents(file, parseJson, error);
+
+            function parseJson(fileContent) {
                 var fileJson = JSON.parse(fileContent);
                 if (fileJson && fileJson.length) {
                     for (i = 0; i < fileJson.length; i++) {
@@ -2133,11 +2105,7 @@
                 }
 
                 success(folders, logins, loginRelationships);
-            };
-
-            reader.onerror = function (evt) {
-                error();
-            };
+            }
         }
 
         function importZohoVaultCsv(file, success, error) {

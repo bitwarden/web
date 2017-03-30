@@ -1,9 +1,10 @@
 ﻿angular
     .module('bit.tools')
 
-    .controller('toolsImportController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, toastr, importService, $analytics, $sce) {
+    .controller('toolsImportController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService,
+        toastr, importService, $analytics, $sce, validationService) {
         $analytics.eventTrack('toolsImportController', { category: 'Modal' });
-        $scope.model = { source: 'bitwardencsv' };
+        $scope.model = { source: '' };
         $scope.source = {};
 
         $scope.options = [
@@ -202,10 +203,20 @@
         };
         $scope.setSource();
 
-        $scope.import = function (model) {
-            $scope.processing = true;
+        $scope.import = function (model, form) {
+            if (!model.source || model.source === '') {
+                validationService.addError(form, 'source', 'Select the format of the import file.', true);
+                return;
+            }
+
             var file = document.getElementById('file').files[0];
-            importService.import(model.source, file, importSuccess, importError);
+            if (!file && (!model.fileContents || model.fileContents === '')) {
+                validationService.addError(form, 'file', 'Select the import file or copy/paste the import file contents.', true);
+                return;
+            }
+
+            $scope.processing = true;
+            importService.import(model.source, file || model.fileContents, importSuccess, importError);
         };
 
         function importSuccess(folders, logins, folderRelationships) {
