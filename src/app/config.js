@@ -211,7 +211,7 @@ angular
                 }
             })
             .state('frontend.organizationAccept', {
-                url: '^/accept-organization?organizationId&organizationUserId&token&email',
+                url: '^/accept-organization?organizationId&organizationUserId&token&email&organizationName',
                 templateUrl: 'app/accounts/views/accountsOrganizationAccept.html',
                 controller: 'accountsOrganizationAcceptController',
                 data: {
