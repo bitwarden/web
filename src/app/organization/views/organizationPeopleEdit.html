@@ -4,6 +4,12 @@
 </div>
 <form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
     <div class="modal-body">
+        <div class="callout callout-danger validation-errors" ng-show="form.$errors">
+            <h4>Errors have occured</h4>
+            <ul>
+                <li ng-repeat="e in form.$errors">{{e}}</li>
+            </ul>
+        </div>
         <h4>User Type</h4>
         <div class="form-group">
             <div class="radio">
