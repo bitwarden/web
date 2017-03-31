@@ -38,37 +38,33 @@
                 <button type="button" ng-click="addLogin(null, true)" class="btn btn-default btn-flat">Add a Login</button>
             </div>
             <div class="table-responsive" ng-show="favoriteLogins.length">
-                <table class="table table-striped table-hover table-selectable">
-                    <thead>
-                        <tr>
-                            <th style="width: 75px; min-width: 75px;"></th>
-                            <th>Name</th>
-                            <th style="width: 300px;">Username</th>
-                        </tr>
-                    </thead>
+                <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="login in favoriteLogins = (logins | filter: { favorite: true } |
                             filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
-                            <td class="actions">
-                                <button type="button" ng-click="deleteLogin(login)" class="btn btn-link btn-table"
-                                        uib-tooltip="Delete">
-                                    <i class="fa fa-lg fa-trash"></i>
-                                </button>
-                                <div class="tooltip-wrapper"
-                                     uib-tooltip="{{login.organizationId ? 'Already shared.' : 'Share'}}">
-                                    <button type="button" ng-click="share(login)" class="btn btn-link btn-table"
-                                            ng-disabled="login.organizationId !== null">
-                                        <i class="fa fa-lg fa-share-alt"></i>
+                            <td style="width: 70px;">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-show="!login.organizationId">
+                                            <a href="javascript:void(0)" ng-click="share(login)">
+                                                <i class="fa fa-fw fa-share-alt"></i> Share
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                                <i class="fa fa-fw fa-trash"></i> Delete
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
-                            <td ng-click="editLogin(login)">
-                                <span ng-click="$event.stopPropagation()">
-                                    <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                </span>
-                            </td>
-                            <td ng-click="editLogin(login)">
-                                <span ng-click="$event.stopPropagation()">{{login.username}}</span>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <i class="fa fa-user text-muted" uib-tooltip="Shared" ng-show="login.organizationId"></i>
+                                <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>
                     </tbody>
@@ -112,38 +108,34 @@
                 <button type="button" ng-click="addLogin(folder)" class="btn btn-default btn-flat">Add a Login</button>
             </div>
             <div class="table-responsive" ng-show="folderLogins.length">
-                <table class="table table-striped table-hover table-selectable">
-                    <thead>
-                        <tr>
-                            <th style="width: 75px; min-width: 75px;"></th>
-                            <th>Name</th>
-                            <th style="width: 300px;">Username</th>
-                        </tr>
-                    </thead>
+                <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } |
                             filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
-                            <td class="actions">
-                                <button type="button" ng-click="deleteLogin(login)" class="btn btn-link btn-table"
-                                        uib-tooltip="Delete">
-                                    <i class="fa fa-lg fa-trash"></i>
-                                </button>
-                                <div class="tooltip-wrapper"
-                                     uib-tooltip="{{login.organizationId ? 'Already shared.' : 'Share'}}">
-                                    <button type="button" ng-click="share(login)" class="btn btn-link btn-table"
-                                            ng-disabled="login.organizationId !== null">
-                                        <i class="fa fa-lg fa-share-alt"></i>
+                            <td style="width: 70px;">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-show="!login.organizationId">
+                                            <a href="javascript:void(0)" ng-click="share(login)">
+                                                <i class="fa fa-fw fa-share-alt"></i> Share
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                                <i class="fa fa-fw fa-trash"></i> Delete
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
-                            <td ng-click="editLogin(login)">
-                                <span ng-click="$event.stopPropagation()">
-                                    <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                    <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i>
-                                </span>
-                            </td>
-                            <td ng-click="editLogin(login)">
-                                <span ng-click="$event.stopPropagation()">{{login.username}}</span>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i>
+                                <i class="fa fa-user text-muted" uib-tooltip="Shared" ng-show="login.organizationId"></i>
+                                <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>
                     </tbody>
