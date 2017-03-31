@@ -35,7 +35,15 @@
     </div>
     <hr />
     <ul>
-        <li><a ui-sref="frontend.register">Create a new account</a></li>
-        <li><a ui-sref="frontend.passwordHint">Get master password hint</a></li>
+        <li>
+            <a ui-sref="frontend.register({returnState: state.params.returnState, email: state.params.email})">
+                Create a new account
+            </a>
+        </li>
+        <li>
+            <a ui-sref="frontend.passwordHint">
+                Get master password hint
+            </a>
+        </li>
     </ul>
 </form>

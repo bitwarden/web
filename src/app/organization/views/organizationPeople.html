@@ -32,7 +32,7 @@
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="user in filteredUsers = (users | filter: (filterSearch || '') |
-                            orderBy: ['name', 'email'])">
+                            orderBy: ['type', 'name', 'email'])">
                             <td style="width: 70px;">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -66,10 +66,12 @@
                                 <div ng-if="user.name"><small class="text-muted">{{user.name}}</small></div>
                             </td>
                             <td style="width: 100px;">
-                                {{user.typeName}}
+                                {{user.type | enumName: 'OrgUserType'}}
                             </td>
                             <td style="width: 120px;">
-                                <span class="label" ng-class="{{user.statusClass}}">{{user.statusName}}</span>
+                                <span class="label {{user.status | enumLabelClass: 'OrgUserStatus'}}">
+                                    {{user.status | enumName: 'OrgUserStatus'}}
+                                </span>
                             </td>
                         </tr>
                     </tbody>

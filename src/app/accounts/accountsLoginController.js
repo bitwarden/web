@@ -3,6 +3,7 @@ angular
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
         $state, appSettings, $analytics) {
+        $scope.state = $state;
         var returnState = $state.params.returnState;
         var rememberedEmail = $cookies.get(appSettings.rememberedEmailCookieName);
         if (rememberedEmail || $state.params.email) {

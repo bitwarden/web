@@ -92,35 +92,6 @@
                         type: list.Data[i].Type
                     };
 
-                    switch (user.type) {
-                        case 0:
-                            user.typeName = 'Owner';
-                            break;
-                        case 1:
-                            user.typeName = 'Admin';
-                            break;
-                        case 2:
-                        /* falls through */
-                        default:
-                            user.typeName = 'User';
-                    }
-
-                    switch (user.status) {
-                        case 0:
-                            user.statusName = 'Invited';
-                            user.statusClass = { 'label-default': true };
-                            break;
-                        case 1:
-                            user.statusName = 'Accepted';
-                            user.statusClass = { 'label-warning': true };
-                            break;
-                        case 2:
-                        /* falls through */
-                        default:
-                            user.statusName = 'Confirmed';
-                            user.statusClass = { 'label-success': true };
-                    }
-
                     users.push(user);
                 }
 

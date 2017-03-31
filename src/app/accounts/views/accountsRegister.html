@@ -9,7 +9,7 @@
                 <h4>Account Created!</h4>
                 <p>You may now log in to your new account.</p>
             </div>
-            <a ui-sref="frontend.login.info({returnState: returnState})">Ready to log in?</a>
+            <a ui-sref="frontend.login.info({returnState: returnState, email: model.email})">Ready to log in?</a>
         </div>
         <form name="registerForm" ng-submit="registerForm.$valid && register(registerForm)" ng-show="!success"
               api-form="registerPromise">
