@@ -16,14 +16,16 @@
                 Favorites <small>{{favoriteLogins.length}} logins</small>
             </h3>
             <div class="box-tools">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" uib-tooltip="Options">
+                <div class="btn-group" uib-dropdown>
+                    <button type="button" class="btn btn-box-tool" uib-tooltip="Options" uib-dropdown-toggle>
                         <i class="fa fa-gear"></i>
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
                         <li>
-                            <a href="#" ng-click="addLogin(null, true)">Add Login</a>
+                            <a href="#" ng-click="addLogin(null, true)">
+                                <i class="fa fa-fw fa-plus-circle"></i> Add Login
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -43,11 +45,11 @@
                         <tr ng-repeat="login in favoriteLogins = (logins | filter: { favorite: true } |
                             filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
                             <td style="width: 70px;">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                    <button type="button" class="btn btn-default" uib-dropdown-toggle>
                                         <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" uib-dropdown-menu>
                                         <li ng-show="!login.organizationId">
                                             <a href="javascript:void(0)" ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
@@ -80,20 +82,26 @@
                 {{folder.name}} <small>{{folderLogins.length}} logins</small>
             </h3>
             <div class="box-tools">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" uib-tooltip="Options">
+                <div class="btn-group" uib-dropdown>
+                    <button type="button" class="btn btn-box-tool" uib-dropdown-toggle uib-tooltip="Options">
                         <i class="fa fa-gear"></i>
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
                         <li>
-                            <a href="#" ng-click="addLogin(folder)">Add Login</a>
+                            <a href="#" ng-click="addLogin(folder)">
+                                <i class="fa fa-fw fa-plus-circle"></i> Add Login
+                            </a>
                         </li>
                         <li ng-show="folder.id">
-                            <a href="#" ng-click="editFolder(folder)">Edit Folder</a>
+                            <a href="#" ng-click="editFolder(folder)">
+                                <i class="fa fa-fw fa-pencil"></i> Edit Folder
+                            </a>
                         </li>
                         <li ng-show="canDeleteFolder(folder)">
-                            <a href="#" ng-click="deleteFolder(folder)">Delete Folder</a>
+                            <a href="#" ng-click="deleteFolder(folder)" class="text-red">
+                                <i class="fa fa-fw fa-trash"></i> Delete Folder
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -113,11 +121,11 @@
                         <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } |
                             filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
                             <td style="width: 70px;">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                    <button type="button" class="btn btn-default" uib-dropdown-toggle>
                                         <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" uib-dropdown-menu>
                                         <li ng-show="!login.organizationId">
                                             <a href="javascript:void(0)" ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
