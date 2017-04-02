@@ -30,6 +30,7 @@ angular
                 return;
             }
 
+            _service.clearOrgKeys();
             var orgKeysb64 = {},
                 _orgKeys = {},
                 setKey = false;
