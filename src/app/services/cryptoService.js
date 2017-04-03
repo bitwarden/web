@@ -57,7 +57,7 @@ angular
             }
         };
 
-        _service.addOrgKey = function (orgId, orgKey, privateKey) {
+        _service.addOrgKey = function (orgId, encOrgKey, privateKey) {
             _orgKeys = _service.getOrgKeys();
             if (!_orgKeys) {
                 _orgKeys = {};
@@ -69,9 +69,9 @@ angular
             }
 
             try {
-                var orgKey = _service.rsaDecrypt(orgKey, privateKey);
-                _orgKeys[orgId] = orgKey;
-                orgKeysb64[orgId] = forge.util.encode64(orgKey);
+                var decOrgKey = _service.rsaDecrypt(encOrgKey, privateKey);
+                _orgKeys[orgId] = decOrgKey;
+                orgKeysb64[orgId] = forge.util.encode64(decOrgKey);
             }
             catch (e) {
                 _orgKeys = null;

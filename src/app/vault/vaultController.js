@@ -60,8 +60,9 @@
             });
 
             editModel.result.then(function (returnVal) {
+                var loginToUpdate;
                 if (returnVal.action === 'edit') {
-                    var loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
                     if (loginToUpdate && loginToUpdate.length > 0) {
                         loginToUpdate[0].folderId = returnVal.data.folderId;
                         loginToUpdate[0].name = returnVal.data.name;
@@ -70,7 +71,7 @@
                     }
                 }
                 else if (returnVal.action === 'partialEdit') {
-                    var loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
                     if (loginToUpdate && loginToUpdate.length > 0) {
                         loginToUpdate[0].folderId = returnVal.data.folderId;
                         loginToUpdate[0].favorite = returnVal.data.favorite;
