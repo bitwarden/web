@@ -11,7 +11,7 @@
     <div ng-show="!loading && !subvaults.length">
         <p>No subvaults.</p>
     </div>
-    <div class="box" ng-repeat="subvault in subvaults | orderBy: ['name']"
+    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults | orderBy: ['name']"
          ng-show="subvaults.length && (!main.searchVaultText || subvaultLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -19,8 +19,9 @@
                 {{subvault.name}} <small>{{subvaultLogins.length}} logins</small>
             </h3>
             <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
-                    <i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
+                        ng-click="collapseExpand(subvault)">
+                    <i class="fa" ng-class="{'fa-minus': !subvault.collapsed, 'fa-plus': subvault.collapsed}"></i>
                 </button>
             </div>
         </div>

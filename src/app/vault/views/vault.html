@@ -8,7 +8,7 @@
     <div ng-show="loading && !folders.length">
         <p>Loading...</p>
     </div>
-    <div class="box box-primary" style="margin-bottom: 40px;"
+    <div class="box box-primary" ng-class="{'collapsed-box': favoriteCollapsed}" style="margin-bottom: 40px;"
          ng-show="!loading && (!main.searchVaultText || favoriteLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -29,8 +29,9 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
-                    <i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
+                        ng-click="collapseExpand(null, true)">
+                    <i class="fa" ng-class="{'fa-minus': !favoriteCollapsed, 'fa-plus': favoriteCollapsed}"></i>
                 </button>
             </div>
         </div>
@@ -74,7 +75,7 @@
             </div>
         </div>
     </div>
-    <div class="box" ng-repeat="folder in folders | orderBy: folderSort"
+    <div class="box" ng-class="{'collapsed-box': folder.collapsed}" ng-repeat="folder in folders | orderBy: folderSort"
          ng-show="folders.length && (!main.searchVaultText || folderLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -105,8 +106,9 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
-                    <i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
+                        ng-click="collapseExpand(folder)">
+                    <i class="fa" ng-class="{'fa-minus': !folder.collapsed, 'fa-plus': folder.collapsed}"></i>
                 </button>
             </div>
         </div>

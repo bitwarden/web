@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultSubvaultsController', function ($scope, apiService, cipherService, $analytics, $q) {
+    .controller('vaultSubvaultsController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage) {
         $scope.logins = [];
         $scope.subvaults = [];
         $scope.loading = true;
@@ -12,6 +12,8 @@
 
                 for (var i = 0; i < subvaults.Data.length; i++) {
                     var decSubvault = cipherService.decryptSubvault(subvaults.Data[i], null, true);
+                    decSubvault.collapsed = $localStorage.collapsedSubvaults &&
+                        decSubvault.id in $localStorage.collapsedSubvaults;
                     decSubvaults.push(decSubvault);
                 }
 
@@ -40,5 +42,18 @@
             return function (cipher) {
                 return cipher.subvaultIds.indexOf(subvault.id) > -1;
             };
+        };
+
+        $scope.collapseExpand = function (subvault) {
+            if (!$localStorage.collapsedSubvaults) {
+                $localStorage.collapsedSubvaults = {};
+            }
+
+            if (subvault.id in $localStorage.collapsedFolders) {
+                delete $localStorage.collapsedSubvaults[subvault.id];
+            }
+            else {
+                $localStorage.collapsedSubvaults[subvault.id] = true;
+            }
         };
     });

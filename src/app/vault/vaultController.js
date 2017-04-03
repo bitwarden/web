@@ -2,20 +2,23 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q) {
+        cipherService, $q, $localStorage) {
         $scope.logins = [];
         $scope.folders = [];
         $scope.loading = true;
+        $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
 
         $scope.$on('$viewContentLoaded', function () {
             var folderPromise = apiService.folders.list({}, function (folders) {
                 var decFolders = [{
                     id: null,
-                    name: 'No Folder'
+                    name: 'No Folder',
+                    collapsed: $localStorage.collapsedFolders && 'none' in $localStorage.collapsedFolders
                 }];
 
                 for (var i = 0; i < folders.Data.length; i++) {
                     var decFolder = cipherService.decryptFolderPreview(folders.Data[i]);
+                    decFolder.collapsed = $localStorage.collapsedFolders && decFolder.id in $localStorage.collapsedFolders;
                     decFolders.push(decFolder);
                 }
 
@@ -46,6 +49,20 @@
             }
 
             return item.name.toLowerCase();
+        };
+
+        $scope.collapseExpand = function (folder, favorite) {
+            if (!$localStorage.collapsedFolders) {
+                $localStorage.collapsedFolders = {};
+            }
+
+            var id = favorite ? 'favorite' : (folder.id || 'none');
+            if (id in $localStorage.collapsedFolders) {
+                delete $localStorage.collapsedFolders[id];
+            }
+            else {
+                $localStorage.collapsedFolders[id] = true;
+            }
         };
 
         $scope.editLogin = function (login) {
