@@ -61,6 +61,11 @@
             del: { url: _apiUri + '/organizations/:orgId/subvaults/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
+        _service.subvaultUsers = $resource(_apiUri + '/organizations/:orgId/subvaultUsers/:id', {}, {
+            listSubvault: { url: _apiUri + '/organizations/:orgId/subvaultUsers/:subvaultId', method: 'GET', params: { subvaultId: '@subvaultId', orgId: '@orgId' } },
+            del: { url: _apiUri + '/organizations/:orgId/subvaultUsers/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+        });
+
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
             register: { url: _apiUri + '/accounts/register', method: 'POST', params: {} },
             emailToken: { url: _apiUri + '/accounts/email-token', method: 'POST', params: {} },

@@ -39,6 +39,22 @@
             });
         };
 
+        $scope.users = function (subvault) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationSubvaultsUsers.html',
+                controller: 'organizationSubvaultsUsersController',
+                size: 'lg',
+                resolve: {
+                    subvault: function () { return subvault; }
+                }
+            });
+
+            modal.result.then(function () {
+                // nothing to do
+            });
+        };
+
         $scope.delete = function (subvault) {
             if (!confirm('Are you sure you want to delete this subvault (' + subvault.name + ')?')) {
                 return;
@@ -54,10 +70,6 @@
             }, function () {
                 toastr.error(subvault.name + ' was not able to be deleted.', 'Error');
             });
-        };
-
-        $scope.users = function (subvault) {
-            
         };
 
         function loadList() {
