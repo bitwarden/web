@@ -20,7 +20,7 @@
                 $scope.subvaults = decSubvaults;
             }).$promise;
 
-            var cipherPromise = apiService.ciphers.listSubvaults({}, function (ciphers) {
+            var cipherPromise = apiService.ciphers.listDetails({}, function (ciphers) {
                 var decLogins = [];
 
                 for (var i = 0; i < ciphers.Data.length; i++) {

@@ -56,6 +56,11 @@
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
+                                        <li ng-show="login.organizationId">
+                                            <a href="javascript:void(0)" ng-click="subvaults(login)">
+                                                <i class="fa fa-fw fa-share-alt"></i> Subvaults
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
@@ -131,6 +136,11 @@
                                         <li ng-show="!login.organizationId">
                                             <a href="javascript:void(0)" ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
+                                            </a>
+                                        </li>
+                                        <li ng-show="login.organizationId">
+                                            <a href="javascript:void(0)" ng-click="subvaults(login)">
+                                                <i class="fa fa-fw fa-share-alt"></i> Subvaults
                                             </a>
                                         </li>
                                         <li>

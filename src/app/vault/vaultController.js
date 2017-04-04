@@ -212,4 +212,19 @@
 
             });
         };
+
+        $scope.subvaults = function (login) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultLoginSubvaults.html',
+                controller: 'vaultLoginSubvaultsController',
+                resolve: {
+                    loginId: function () { return login.id; }
+                }
+            });
+
+            modal.result.then(function () {
+
+            });
+        };
     });
