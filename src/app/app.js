@@ -8,6 +8,8 @@
         'toastr',
         'angulartics',
         'angulartics.google.analytics',
+        'angular-stripe',
+        'credit-cards',
 
         'bit.directives',
         'bit.filters',

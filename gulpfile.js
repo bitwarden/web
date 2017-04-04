@@ -18,7 +18,10 @@ var gulp = require('gulp'),
     project = require('./package.json'),
     jshint = require('gulp-jshint'),
     _ = require('lodash'),
-    webpack = require('webpack-stream');
+    webpack = require('webpack-stream'),
+    browserify = require('browserify'),
+    derequire = require('gulp-derequire'),
+    source = require('vinyl-source-stream');
 
 var paths = {};
 paths.dist = './dist/';
@@ -43,7 +46,7 @@ gulp.task('lint', function () {
 gulp.task('build', function (cb) {
     return runSequence(
         'clean',
-        ['lib', 'webpack', 'less', 'settings', 'lint'],
+        ['browserify', 'lib', 'webpack', 'less', 'settings', 'lint'],
         cb);
 });
 
@@ -232,6 +235,35 @@ gulp.task('watch', function () {
     gulp.watch('./settings*.json', ['settings']);
 });
 
+gulp.task('browserify', ['browserify:stripe', 'browserify:cc']);
+
+gulp.task('browserify:stripe', function () {
+    return browserify(paths.npmDir + 'angular-stripe/src/index.js',
+        {
+            entry: '.',
+            standalone: 'angularStripe',
+            global: true
+        })
+        .transform('exposify', { expose: { angular: 'angular' } })
+        .bundle()
+        .pipe(source('angular-stripe.js'))
+        .pipe(derequire())
+        .pipe(gulp.dest(paths.libDir + 'angular-stripe'));
+});
+
+gulp.task('browserify:cc', function () {
+    return browserify(paths.npmDir + 'angular-credit-cards/src/index.js',
+        {
+            entry: '.',
+            standalone: 'angularCreditCards'
+        })
+        .transform('exposify', { expose: { angular: 'angular' } })
+        .bundle()
+        .pipe(source('angular-credit-cards.js'))
+        .pipe(derequire())
+        .pipe(gulp.dest(paths.libDir + 'angular-credit-cards'));
+});
+
 gulp.task('dist:clean', function (cb) {
     return rimraf(paths.dist, cb);
 });
@@ -332,7 +364,7 @@ gulp.task('dist:preprocess', function () {
         .src([
             paths.dist + '/**/*.html'
         ], { base: '.' })
-        .pipe(preprocess({ context: { cacheTag: randomString }}))
+        .pipe(preprocess({ context: { cacheTag: randomString } }))
         .pipe(gulp.dest('.'));
 });
 

@@ -325,3 +325,37 @@ h1, h2, h3, h4, h5, h6 {
 .tooltip-wrapper {
     display: inline-block;
 }
+
+.cc {
+    display: inline-block;
+    background: url('../images/cards.png') no-repeat;
+    overflow: hidden;
+    text-indent: -9999px;
+    text-align: left;
+    width: 73px;
+    height: 44px;
+
+    &.amex {
+        background-position: 0 0;
+    }
+
+    &.diners {
+        background-position: -73px 0;
+    }
+
+    &.discover {
+        background-position: 0 -44px;
+    }
+
+    &.jcb {
+        background-position: -73px -44px;
+    }
+
+    &.mastercard, &.maestro {
+        background-position: 0 -88px;
+    }
+
+    &.visa {
+        background-position: -73px -88px;
+    }
+}
