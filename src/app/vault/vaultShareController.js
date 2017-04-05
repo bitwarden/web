@@ -6,7 +6,9 @@
         $scope.model = {};
         $scope.login = {};
         $scope.subvaults = [];
+        $scope.selectedSubvaults = {};
         $scope.organizations = [];
+        $scope.loadingSubvaults = true;
         $scope.readOnly = false;
 
         apiService.logins.get({ id: loginId }).$promise.then(function (login) {
@@ -52,20 +54,55 @@
                     }
 
                     $scope.subvaults = subvaults;
+                    $scope.loadingSubvaults = false;
                 });
             }
         });
+
+        $scope.toggleSubvaultSelectionAll = function ($event) {
+            var subvaults = {};
+            if ($event.target.checked) {
+                for (var i = 0; i < $scope.subvaults.length; i++) {
+                    subvaults[$scope.subvaults[i].id] = true;
+                }
+            }
+
+            $scope.selectedSubvaults = subvaults;
+        };
+
+        $scope.toggleSubvaultSelection = function (id) {
+            if (id in $scope.selectedSubvaults) {
+                delete $scope.selectedSubvaults[id];
+            }
+            else {
+                $scope.selectedSubvaults[id] = true;
+            }
+        };
+
+        $scope.subvaultSelected = function (subvault) {
+            return subvault.id in $scope.selectedSubvaults;
+        };
+
+        $scope.allSelected = function () {
+            return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
+        };
 
         $scope.submitPromise = null;
         $scope.submit = function (model) {
             $scope.login.organizationId = model.organizationId;
 
             var request = {
-                subvaultIds: model.subvaultIds,
+                subvaultIds: [],
                 cipher: cipherService.encryptLogin($scope.login)
             };
 
-            $scope.savePromise = apiService.ciphers.move({ id: loginId }, request, function (response) {
+            for (var id in $scope.selectedSubvaults) {
+                if ($scope.selectedSubvaults.hasOwnProperty(id)) {
+                    request.subvaultIds.push(id);
+                }
+            }
+
+            $scope.submitPromise = apiService.ciphers.move({ id: loginId }, request, function (response) {
                 $analytics.eventTrack('Shared Login');
                 $uibModalInstance.close();
             }).$promise;

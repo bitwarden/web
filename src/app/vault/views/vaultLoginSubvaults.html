@@ -4,6 +4,7 @@
 </div>
 <form name="form" ng-submit="form.$valid && submit(model)" api-form="submitPromise">
     <div class="modal-body">
+        <p>This login is shared with the following subvaults.</p>
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occured</h4>
             <ul>
@@ -25,7 +26,7 @@
                                    ng-checked="allSelected()"
                                    ng-click="toggleSubvaultSelectionAll($event)">
                         </th>
-                        <th>Name</th>
+                        <th>Subvault</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +38,7 @@
                                    ng-checked="subvaultSelected(subvault)"
                                    ng-click="toggleSubvaultSelection(subvault.id)">
                         </td>
-                        <td valign="middle">
+                        <td valign="middle" ng-click="toggleSubvaultSelection(subvault.id)">
                             {{subvault.name}}
                         </td>
                     </tr>

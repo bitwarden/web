@@ -4,6 +4,7 @@
 </div>
 <form name="form" ng-submit="form.$valid && submit(model)" api-form="submitPromise">
     <div class="modal-body">
+        <p>Choose an organization that you wish to share this login with.</p>
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occured</h4>
             <ul>
@@ -16,12 +17,37 @@
                 <option ng-repeat="org in organizations | orderBy: ['name']" value="{{org.id}}">{{org.name}}</option>
             </select>
         </div>
-        <div class="form-group" show-errors>
-            <label for="subvaults">Subvault</label> <span>*</span>
-            <select id="subvaults" name="SubvaultIds" ng-model="model.subvaultIds" class="form-control" multiple api-field>
-                <option ng-repeat="subvault in subvaults | filter: { organizationId: model.organizationId } | 
-                        orderBy: ['name']" value="{{subvault.id}}">{{subvault.name}}</option>
-            </select>
+
+        <div ng-show="!loadingSubvaults && !subvaults.length">
+            <p>No subvaults.</p>
+        </div>
+        <div class="table-responsive" ng-show="subvaults.length" style="margin: 0;">
+            <table class="table table-striped table-hover" style="margin: 0;">
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">
+                            <input type="checkbox"
+                                   ng-checked="allSelected()"
+                                   ng-click="toggleSubvaultSelectionAll($event)">
+                        </th>
+                        <th>Subvault</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="subvault in subvaults | filter: { organizationId: model.organizationId } | orderBy: ['name']">
+                        <td valign="middle">
+                            <input type="checkbox"
+                                   name="selectedSubvaults[]"
+                                   value="{{subvault.id}}"
+                                   ng-checked="subvaultSelected(subvault)"
+                                   ng-click="toggleSubvaultSelection(subvault.id)">
+                        </td>
+                        <td valign="middle" ng-click="toggleSubvaultSelection(subvault.id)">
+                            {{subvault.name}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="modal-footer">
