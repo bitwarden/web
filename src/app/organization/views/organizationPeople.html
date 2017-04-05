@@ -58,8 +58,7 @@
                                 </div>
                             </td>
                             <td style="width: 45px;">
-                                <img src="//www.gravatar.com/avatar/{{user.email | gravatar}}.jpg?s=45&d=mm"
-                                     class="img-circle" alt="User Image">
+                                <ng-letter-avatar data="{{user.name || user.email}}" shape="round"></ng-letter-avatar>
                             </td>
                             <td>
                                 <a href="javascript:void(0)" ng-click="edit(user.id)">{{user.email}}</a>

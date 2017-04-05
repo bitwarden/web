@@ -36,12 +36,7 @@
                         </div>
                     </div>
                     <div class="col-sm-3 settings-photo">
-                        <a href="http://www.gravatar.com/" target="_blank">
-                            <img src="//www.gravatar.com/avatar/{{ model.email | gravatar }}.jpg?s=150&d=mm"
-                                 class="img-rounded img-responsive" alt="User Image">
-                        </a>
-                        <a href="http://www.gravatar.com/" target="_blank" class="btn btn-link"
-                           analytics-on="click" analytics-event="Clicked Update Photo">Update Photo</a>
+                        <ng-letter-avatar data="{{model.profile.name || model.email}}"></ng-letter-avatar>
                     </div>
                 </div>
             </div>

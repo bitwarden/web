@@ -2,7 +2,7 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
-        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider) {
+        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider, defaultSettings) {
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
@@ -49,6 +49,14 @@ angular
             return refreshPromise;
         };
 
+        angular.extend(defaultSettings, {
+            fontFamily: 'Open Sans',
+            height: 45,
+            width: 45,
+            charCount: 2,
+            dynamic: 'true'
+        });
+
         stripeProvider.setPublishableKey('pk_test_KPoCfZXu7mznb9uSCPZ2JpTD');
 
         angular.extend(toastrConfig, {
@@ -61,7 +69,6 @@ angular
         $uibTooltipProvider.options({
             popupDelay: 600,
             appendToBody: true
-
         });
 
         if ($httpProvider.defaults.headers.post) {

@@ -127,10 +127,6 @@ gulp.task('lib', ['clean:lib'], function () {
             dest: paths.libDir + 'angular-jwt'
         },
         {
-            src: paths.npmDir + 'angular-md5/angular-md5*.js',
-            dest: paths.libDir + 'angular-md5'
-        },
-        {
             src: paths.npmDir + 'angular-resource/*resource*.js',
             dest: paths.libDir + 'angular-resource'
         },
@@ -168,6 +164,10 @@ gulp.task('lib', ['clean:lib'], function () {
                 paths.npmDir + 'angulartics/src/angulartics.js'
             ],
             dest: paths.libDir + 'angulartics'
+        },
+        {
+            src: paths.npmDir + 'ngletteravatar/ngletteravatar.js',
+            dest: paths.libDir + 'ngletteravatar'
         }
     ];
 

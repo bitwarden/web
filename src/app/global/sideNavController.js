@@ -5,8 +5,12 @@ angular
         $scope.$state = $state;
         $scope.params = $state.params;
         $scope.orgs = [];
+        $scope.name = '';
 
         authService.getUserProfile().then(function (userProfile) {
+            $scope.name = userProfile.extended && userProfile.extended.name ?
+                userProfile.extended.name : userProfile.email;
+
             if (!userProfile.organizations) {
                 return;
             }
