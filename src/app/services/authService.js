@@ -118,7 +118,7 @@ angular
             return _setDeferred.promise;
         };
 
-        _service.addProfileOrganization = function (org) {
+        _service.addProfileOrganizationOwner = function (org, key) {
             return _service.getUserProfile().then(function (profile) {
                 if (profile) {
                     if (!profile.organizations) {
@@ -128,7 +128,7 @@ angular
                     var o = {
                         id: org.Id,
                         name: org.Name,
-                        key: org.Key,
+                        key: key,
                         status: 2, // 2 = Confirmed
                         type: 0 // 0 = Owner
                     };

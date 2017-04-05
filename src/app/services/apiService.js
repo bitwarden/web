@@ -35,7 +35,6 @@
 
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
-            getExtended: { url: _apiUri + '/organizations/:id/extended', method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },

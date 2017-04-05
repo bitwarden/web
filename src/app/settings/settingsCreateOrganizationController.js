@@ -34,11 +34,13 @@
         };
 
         $scope.submit = function (model) {
+            var shareKey = cryptoService.makeShareKey();
+
             $scope.submitPromise = stripe.card.createToken(model.card).then(function (response) {
                 var request = {
                     name: model.name,
                     planType: model.plan,
-                    key: cryptoService.makeShareKey(),
+                    key: shareKey,
                     cardToken: response.id,
                     additionalUsers: model.additionalUsers,
                     billingEmail: model.billingEmail,
@@ -52,7 +54,7 @@
 
                 $uibModalInstance.dismiss('cancel');
                 $analytics.eventTrack('Created Organization');
-                authService.addProfileOrganization(result);
+                authService.addProfileOrganizationOwner(result, shareKey);
                 $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
                     toastr.success('Your new organization is ready to go!', 'Organization Created');
                 });
