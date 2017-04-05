@@ -9,6 +9,7 @@
         $scope.loadingLogin = true;
         $scope.loadingSubvaults = true;
         $scope.selectedSubvaults = {};
+        $scope.subvaults = [];
 
         $uibModalInstance.opened.then(function () {
             apiService.ciphers.getFullDetails({ id: loginId }).$promise.then(function (cipher) {
@@ -82,12 +83,12 @@
             return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
         };
 
-        $scope.save = function (model) {
+        $scope.submit = function (model) {
             var request = {
                 subvaultIds: model.subvaultIds
             };
 
-            $scope.savePromise = apiService.ciphers.putSubvaults({ id: loginId }, request, function (response) {
+            $scope.submitPromise = apiService.ciphers.putSubvaults({ id: loginId }, request, function (response) {
                 $analytics.eventTrack('Edited Login Subvaults');
                 $uibModalInstance.close({
                     action: 'subvaultsEdit'

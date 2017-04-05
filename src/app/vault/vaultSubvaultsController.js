@@ -1,9 +1,11 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultSubvaultsController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage) {
+    .controller('vaultSubvaultsController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
+        $uibModal, $filter) {
         $scope.logins = [];
         $scope.subvaults = [];
+        $scope.folders = [];
         $scope.loading = true;
 
         $scope.$on('$viewContentLoaded', function () {
@@ -56,4 +58,71 @@
                 $localStorage.collapsedSubvaults[subvault.id] = true;
             }
         };
+
+        $scope.editLogin = function (login) {
+            var editModel = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultEditLogin.html',
+                controller: 'vaultEditLoginController',
+                resolve: {
+                    loginId: function () { return login.id; },
+                    folders: getFoldersPromise()
+                }
+            });
+
+            editModel.result.then(function (returnVal) {
+                var loginToUpdate;
+                if (returnVal.action === 'edit') {
+                    loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    if (loginToUpdate && loginToUpdate.length > 0) {
+                        loginToUpdate[0].folderId = returnVal.data.folderId;
+                        loginToUpdate[0].name = returnVal.data.name;
+                        loginToUpdate[0].username = returnVal.data.username;
+                        loginToUpdate[0].favorite = returnVal.data.favorite;
+                    }
+                }
+                else if (returnVal.action === 'partialEdit') {
+                    loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    if (loginToUpdate && loginToUpdate.length > 0) {
+                        loginToUpdate[0].folderId = returnVal.data.folderId;
+                        loginToUpdate[0].favorite = returnVal.data.favorite;
+                    }
+                }
+                else if (returnVal.action === 'delete') {
+                    var loginToDelete = $filter('filter')($scope.logins, { id: returnVal.data }, true);
+                    if (loginToDelete && loginToDelete.length > 0) {
+                        var index = $scope.logins.indexOf(loginToDelete[0]);
+                        if (index > -1) {
+                            $scope.logins.splice(index, 1);
+                        }
+                    }
+                }
+            });
+        };
+
+        function getFoldersPromise() {
+            var deferred = $q.defer();
+
+            if (!$scope.folders || !$scope.folders.length) {
+                apiService.folders.list({}).$promise.then(function (folders) {
+                    var decFolders = [{
+                        id: null,
+                        name: 'No Folder'
+                    }];
+
+                    for (var i = 0; i < folders.Data.length; i++) {
+                        var decFolder = cipherService.decryptFolderPreview(folders.Data[i]);
+                        decFolders.push(decFolder);
+                    }
+
+                    $scope.folders = decFolders;
+                    deferred.resolve($scope.folders);
+                });
+            }
+            else {
+                deferred.resolve($scope.folders);
+            }
+
+            return deferred.promise;
+        }
     });

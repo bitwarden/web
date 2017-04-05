@@ -72,7 +72,7 @@
                 controller: 'vaultEditLoginController',
                 resolve: {
                     loginId: function () { return login.id; },
-                    folders: function () { return $scope.folders; }
+                    folders: getFoldersPromise()
                 }
             });
 
@@ -116,7 +116,7 @@
                 templateUrl: 'app/vault/views/vaultAddLogin.html',
                 controller: 'vaultAddLoginController',
                 resolve: {
-                    folders: function () { return $scope.folders; },
+                    folders: getFoldersPromise(),
                     selectedFolder: function () { return folder; },
                     checkedFavorite: function () { return favorite; }
                 }
@@ -227,4 +227,10 @@
 
             });
         };
+
+        function getFoldersPromise() {
+            var deferred = $q.defer();
+            deferred.resolve($scope.folders);
+            return deferred.promise;
+        }
     });
