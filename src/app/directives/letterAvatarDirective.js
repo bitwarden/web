@@ -88,7 +88,9 @@ angular
                     'Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif',
                     round: attrs.round || 'true',
                     dynamic: attrs.dynamic || 'true',
-                    class: attrs.avclass || ''
+                    class: attrs.avclass || '',
+                    border: attrs.avborder || 'false',
+                    borderStyle: attrs.borderStyle || '3px solid white'
                 };
 
                 if (params.dynamic === 'true') {
@@ -125,6 +127,10 @@ angular
 
                     if (params.round === 'true') {
                         img.css('border-radius', '50%');
+                    }
+
+                    if (params.border === 'true') {
+                        img.css('border', params.borderStyle);
                     }
 
                     if (params.class) {
