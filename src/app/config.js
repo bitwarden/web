@@ -145,6 +145,12 @@ angular
                 controller: 'organizationSettingsController',
                 data: { pageTitle: 'Organization Settings' }
             })
+            .state('backend.org.billing', {
+                url: '/organization/:orgId/billing',
+                templateUrl: 'app/organization/views/organizationBilling.html',
+                controller: 'organizationBillingController',
+                data: { pageTitle: 'Organization Billing' }
+            })
 
             // Frontend
             .state('frontend', {
