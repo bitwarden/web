@@ -1,4 +1,4 @@
-﻿<div class="modal-header">
+<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title"><i class="fa fa-share-alt"></i> Share Login <small>{{login.name}}</small></h4>
 </div>
@@ -17,11 +17,13 @@
                 <option ng-repeat="org in organizations | orderBy: ['name']" value="{{org.id}}">{{org.name}}</option>
             </select>
         </div>
-
-        <div ng-show="!loadingSubvaults && !subvaults.length">
-            <p>No subvaults.</p>
+        <div ng-show="loadingSubvaults && !orgSubvaults.length">
+            <p>Loading...</p>
         </div>
-        <div class="table-responsive" ng-show="subvaults.length" style="margin: 0;">
+        <div ng-show="!loadingSubvaults && !orgSubvaults.length">
+            <p>No subvaults with write access.</p>
+        </div>
+        <div class="table-responsive" ng-show="orgSubvaults.length" style="margin: 0;">
             <table class="table table-striped table-hover" style="margin: 0;">
                 <thead>
                     <tr>
@@ -34,7 +36,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="subvault in subvaults | filter: { organizationId: model.organizationId } | orderBy: ['name']">
+                    <tr ng-repeat="subvault in orgSubvaults =
+                        (subvaults | filter: { organizationId: model.organizationId } | orderBy: ['name'])">
                         <td valign="middle">
                             <input type="checkbox"
                                    name="selectedSubvaults[]"
