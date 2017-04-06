@@ -80,15 +80,15 @@ angular
                     data: attrs.data,
                     textColor: attrs.textcolor || '#ffffff',
                     bgColor: attrs.bgcolor,
-                    height: attrs.height || 45,
-                    width: attrs.width || 45,
-                    fontsize: attrs.fontsize || 20,
+                    height: attrs.avheight || 45,
+                    width: attrs.avwidth || 45,
+                    fontSize: attrs.fontsize || 20,
                     fontWeight: attrs.fontweight || 300,
                     fontFamily: attrs.fontfamily || 'Open Sans, HelveticaNeue-Light, Helvetica Neue Light, ' +
                     'Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif',
                     round: attrs.round || 'true',
                     dynamic: attrs.dynamic || 'true',
-                    class: attrs.class || ''
+                    class: attrs.avclass || ''
                 };
 
                 if (params.dynamic === 'true') {
@@ -112,7 +112,7 @@ angular
                         c = upperData.substr(0, params.charCount);
                     }
 
-                    var cobj = getCharText(c, params.textColor, params.fontFamily, params.fontWeight, params.fontsize);
+                    var cobj = getCharText(c, params.textColor, params.fontFamily, params.fontWeight, params.fontSize);
                     var color = params.bgColor ? params.bgColor : stringToColor(upperData);
                     var svg = getSvg(params.width, params.height, color);
                     svg.append(cobj);

@@ -22,7 +22,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <letter-avatar data="{{name}}"></letter-avatar>
+                <letter-avatar data="{{name}}" avclass="img-responsive"></letter-avatar>
             </div>
             <div class="pull-left info">
                 <p>{{name}}</p>
@@ -86,12 +86,17 @@
             <li class="header">
                 ORGANIZATIONS
             </li>
-            <li ng-repeat="org in orgs | orderBy: ['name']">
-                <a href="javascript:void(0)" ng-click="viewOrganization(org.id)">
-                    <i class="fa fa-circle-o fa-fw"></i> <span>{{org.name}}</span>
-                </a>
-            </li>
         </ul>
+        <div class="subsection">
+            <ul class="list-inline">
+                <li ng-repeat="org in orgs | orderBy: ['name']">
+                    <a href="javascript:void(0)" ng-click="viewOrganization(org.id)">
+                        <letter-avatar data="{{org.name}}" avclass="img-responsive img-rounded" round="false"
+                                       avheight="40" avwidth="40"></letter-avatar>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </section>
 </aside>
 
