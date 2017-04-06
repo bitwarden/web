@@ -140,6 +140,17 @@ angular
             });
         };
 
+        _service.updateProfileOrganization = function (org) {
+            return _service.getUserProfile().then(function (profile) {
+                if (profile) {
+                    if (profile.organizations && org.Id in profile.organizations) {
+                        profile.organizations[org.Id].name = org.Name;
+                        _userProfile = profile;
+                    }
+                }
+            });
+        };
+
         _service.isAuthenticated = function () {
             return tokenService.getToken() !== null;
         };

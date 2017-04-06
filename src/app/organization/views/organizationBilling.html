@@ -7,10 +7,110 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-server"></i> My Org</h3>
+            <h3 class="box-title">Plan</h3>
         </div>
         <div class="box-body">
-            Some data
+            <div class="row">
+                <div class="col-sm-6">
+                    <dl>
+                        <dt>Name</dt>
+                        <dd>{{plan.name}}</dd>
+                        <dt>Maximum Users</dt>
+                        <dd>{{plan.maxUsers}}</dd>
+                    </dl>
+                </div>
+                <div class="col-sm-6">
+                    <dl>
+                        <dt>Status</dt>
+                        <dd style="text-transform: capitalize;">{{subscription.status}}</dd>
+                        <dt>Next Bill Date</dt>
+                        <dd>{{subscription.nextBillDate | jsonDate}}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>Details</strong>
+                    <div ng-show="loading">
+                        Loading...
+                    </div>
+                    <div class="table-responsive" style="margin: 0;" ng-show="!loading">
+                        <table class="table" style="margin: 0;">
+                            <tbody>
+                                <tr ng-repeat="item in subscription.items">
+                                    <td>
+                                        {{item.name}} {{item.qty > 1 ? '&times;' + item.qty : ''}}
+                                        @ {{item.amount | currency:'$'}} /{{item.interval}}
+                                    </td>
+                                    <td class="text-right">{{(item.qty * item.amount) | currency:'$'}} /{{item.interval}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="button" class="btn btn-default btn-flat" ng-click="changePlan()">
+                Change Plan
+            </button>
+            <button type="button" class="btn btn-default btn-flat" ng-click="cancel()">
+                Cancel Plan
+            </button>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Payment Method</h3>
+        </div>
+        <div class="box-body">
+            <div ng-show="loading">
+                Loading...
+            </div>
+            <div ng-show="!loading && !paymentMethod">
+                <i class="fa fa-credit-card"></i> No payment method on file.
+            </div>
+            <div ng-show="!loading && paymentMethod">
+
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="button" class="btn btn-default btn-flat" ng-click="changePayment()">
+                {{ paymentMethod ? 'Change Payment Method' : 'Add Payment Method' }}
+            </button>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Charges</h3>
+        </div>
+        <div class="box-body">
+            <div ng-show="loading">
+                Loading...
+            </div>
+            <div ng-show="!loading && !charges.length">
+                No charges.
+            </div>
+            <div class="table-responsive" ng-show="charges.length">
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="charge in charges">
+                            <td style="width: 200px">
+                                {{charge.date | jsonDate}}
+                            </td>
+                            <td>
+                                {{charge.paymentSource}}
+                            </td>
+                            <td style="width: 150px; text-transform: capitalize;">
+                                {{charge.status}}
+                            </td>
+                            <td class="text-right" style="width: 150px;">
+                                {{charge.amount | currency:'$'}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
