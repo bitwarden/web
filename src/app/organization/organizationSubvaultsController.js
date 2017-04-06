@@ -45,6 +45,7 @@
                 templateUrl: 'app/organization/views/organizationSubvaultsUsers.html',
                 controller: 'organizationSubvaultsUsersController',
                 size: 'lg',
+                windowClass: 'organizationSubvaultsUsersModal',
                 resolve: {
                     subvault: function () { return subvault; }
                 }

@@ -39,6 +39,11 @@
                                         <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" uib-dropdown-menu>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="edit(user.id)">
+                                                <i class="fa fa-fw fa-pencil"></i> Edit
+                                            </a>
+                                        </li>
                                         <li ng-show="user.status === 1">
                                             <a href="javascript:void(0)" ng-click="confirm(user)">
                                                 <i class="fa fa-fw fa-check"></i> Confirm
