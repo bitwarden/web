@@ -125,19 +125,25 @@ angular
                 url: '^/organization/:orgId',
                 templateUrl: 'app/organization/views/organizationDashboard.html',
                 controller: 'organizationDashboardController',
-                data: { pageTitle: 'Dashboard' }
+                data: { pageTitle: 'Organization Dashboard' }
             })
             .state('backend.org.people', {
                 url: '/organization/:orgId/people',
                 templateUrl: 'app/organization/views/organizationPeople.html',
                 controller: 'organizationPeopleController',
-                data: { pageTitle: 'People' }
+                data: { pageTitle: 'Organization People' }
             })
             .state('backend.org.subvaults', {
                 url: '/organization/:orgId/subvaults',
                 templateUrl: 'app/organization/views/organizationSubvaults.html',
                 controller: 'organizationSubvaultsController',
-                data: { pageTitle: 'Subvaults' }
+                data: { pageTitle: 'Organization Subvaults' }
+            })
+            .state('backend.org.settings', {
+                url: '/organization/:orgId/settings',
+                templateUrl: 'app/organization/views/organizationSettings.html',
+                controller: 'organizationSettingsController',
+                data: { pageTitle: 'Organization Settings' }
             })
 
             // Frontend
