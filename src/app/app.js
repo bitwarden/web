@@ -9,7 +9,6 @@
         'angulartics.google.analytics',
         'angular-stripe',
         'credit-cards',
-        'ngLetterAvatar',
 
         'bit.directives',
         'bit.filters',

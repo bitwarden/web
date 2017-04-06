@@ -2,7 +2,7 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
-        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider, defaultSettings) {
+        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider) {
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
@@ -48,14 +48,6 @@ angular
             refreshPromise = deferred.promise;
             return refreshPromise;
         };
-
-        angular.extend(defaultSettings, {
-            fontFamily: 'Open Sans',
-            height: 45,
-            width: 45,
-            charCount: 2,
-            dynamic: 'true'
-        });
 
         stripeProvider.setPublishableKey('pk_test_KPoCfZXu7mznb9uSCPZ2JpTD');
 

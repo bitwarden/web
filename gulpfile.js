@@ -164,10 +164,6 @@ gulp.task('lib', ['clean:lib'], function () {
                 paths.npmDir + 'angulartics/src/angulartics.js'
             ],
             dest: paths.libDir + 'angulartics'
-        },
-        {
-            src: paths.npmDir + 'ngletteravatar/ngletteravatar.js',
-            dest: paths.libDir + 'ngletteravatar'
         }
     ];
 
