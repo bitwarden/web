@@ -1,4 +1,4 @@
-﻿<section class="content-header">
+﻿`<section class="content-header">
     <h1>Create Organization</h1>
 </section>
 <section class="content">
@@ -36,7 +36,8 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" ng-model="model.ownedBusiness"> This account is owned by a business.
+                        <input type="checkbox" ng-model="model.ownedBusiness" ng-click="changedBusiness()">
+                        This account is owned by a business.
                     </label>
                 </div>
                 <div class="row" ng-show="model.ownedBusiness">

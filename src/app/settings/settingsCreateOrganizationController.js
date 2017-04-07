@@ -48,6 +48,12 @@
             }
         };
 
+        $scope.changedBusiness = function () {
+            if ($scope.model.ownedBusiness) {
+                $scope.model.plan = 'teams'
+            }
+        };
+
         $scope.submit = function (model) {
             var shareKey = cryptoService.makeShareKey();
 
