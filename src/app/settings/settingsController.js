@@ -73,14 +73,6 @@
             });
         };
 
-        $scope.createOrganization = function () {
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'app/settings/views/settingsCreateOrganization.html',
-                controller: 'settingsCreateOrganizationController'
-            });
-        };
-
         $scope.viewOrganization = function (id) {
             $state.go('backend.org.dashboard', { orgId: id });
         };

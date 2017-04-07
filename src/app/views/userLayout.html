@@ -61,10 +61,16 @@
                 <a ui-sref="backend.user.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>
             </li>
             <li class="treeview"
-                ng-class="{active: $state.is('backend.user.settings') || $state.is('backend.user.settingsDomains')}">
+                ng-class="{active: $state.is('backend.user.settings') || $state.is('backend.user.settingsDomains') ||
+                $state.is('backend.user.settingsCreateOrg')}">
                 <a ui-sref="backend.user.settings"><i class="fa fa-cogs fa-fw"></i> <span>Settings</span></a>
-                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.settings')
-                        || $state.is('backend.user.settingsDomains')}">
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.settings') ||
+                        $state.is('backend.user.settingsDomains') || $state.is('backend.user.settingsCreateOrg')}">
+                    <li ng-class="{active: $state.is('backend.user.settingsCreateOrg')}">
+                        <a ui-sref="backend.user.settingsCreateOrg">
+                            <i class="fa fa-plus-circle fa-fw"></i> New Organization
+                        </a>
+                    </li>
                     <li ng-class="{active: $state.is('backend.user.settingsDomains')}">
                         <a ui-sref="backend.user.settingsDomains">
                             <i class="fa fa-fw fa-circle-o"></i> Domain Rules

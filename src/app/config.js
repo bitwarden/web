@@ -111,6 +111,12 @@ angular
                 controller: 'settingsDomainsController',
                 data: { pageTitle: 'Domain Settings' }
             })
+            .state('backend.user.settingsCreateOrg', {
+                url: '^/settings/create-organization',
+                templateUrl: 'app/settings/views/settingsCreateOrganization.html',
+                controller: 'settingsCreateOrganizationController',
+                data: { pageTitle: 'Create Organization' }
+            })
             .state('backend.user.tools', {
                 url: '^/tools',
                 templateUrl: 'app/tools/views/tools.html',

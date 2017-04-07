@@ -1,10 +1,8 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, $uibModalInstance, cryptoService,
+    .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, cryptoService,
         toastr, $analytics, authService, stripe) {
-        $analytics.eventTrack('settingsCreateOrganizationController', { category: 'Modal' });
-
         $scope.plans = {
             free: {
                 basePrice: 0
@@ -30,7 +28,24 @@
         $scope.model = {
             plan: 'personal',
             additionalUsers: 0,
-            interval: 'annually'
+            interval: 'year'
+        };
+
+        $scope.totalPrice = function () {
+            if ($scope.model.interval === 'month') {
+                return ($scope.model.additionalUsers || 0) * $scope.plans[$scope.model.plan].monthlyUserPrice +
+                    $scope.plans[$scope.model.plan].monthlyBasePrice;
+            }
+            else {
+                return ($scope.model.additionalUsers || 0) * $scope.plans[$scope.model.plan].annualUserPrice +
+                    $scope.plans[$scope.model.plan].annualBasePrice;
+            }
+        };
+
+        $scope.changedPlan = function () {
+            if ($scope.model.plan !== 'teams') {
+                $scope.model.interval = 'year';
+            }
         };
 
         $scope.submit = function (model) {
@@ -45,23 +60,18 @@
                     additionalUsers: model.additionalUsers,
                     billingEmail: model.billingEmail,
                     businessName: model.ownedBusiness ? model.businessName : null,
-                    monthly: model.interval === 'monthly'
+                    monthly: model.interval === 'month'
                 };
 
                 return apiService.organizations.post(request).$promise;
             }).then(function (result) {
                 $scope.model.card = null;
 
-                $uibModalInstance.dismiss('cancel');
                 $analytics.eventTrack('Created Organization');
                 authService.addProfileOrganizationOwner(result, shareKey);
                 $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
                     toastr.success('Your new organization is ready to go!', 'Organization Created');
                 });
             });
-        };
-
-        $scope.close = function () {
-            $uibModalInstance.dismiss('cancel');
         };
     });
