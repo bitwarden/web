@@ -286,7 +286,8 @@ angular
                 cipherString = cipherString + '|' + mac;
             }
 
-            return encType + '.' + cipherString;
+            // TODO: Turn on whenever ready to support encryption type headers
+            return /*encType + '.' +*/ cipherString;
         };
 
         _service.rsaEncrypt = function (plainValue, publicKey) {
