@@ -242,6 +242,10 @@ angular
             });
     })
     .run(function ($rootScope, authService, $state) {
+        $rootScope.$on('$stateChangeSuccess', function () {
+            $('html, body').animate({ scrollTop: 0 }, 200);
+        });
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (!toState.data || !toState.data.authorize) {
                 if (toState.data && toState.data.skipAuthorize) {
