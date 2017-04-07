@@ -60,6 +60,8 @@
                         <input type="radio" ng-model="model.plan" name="PlanType" value="free">
                         Free
                         <span>For personal users to share with 1 other user.</span>
+                        <span>- Limit 2 users (including you)</span>
+                        <span>- Limit 2 subvaults</span>
                     </label>
                 </div>
                 <div class="radio radio-block" ng-show="!model.ownedBusiness" ng-click="changedPlan()">
@@ -67,6 +69,10 @@
                         <input type="radio" ng-model="model.plan" name="PlanType" value="personal">
                         Personal
                         <span>For personal users such as families &amp; friends.</span>
+                        <span>- Add and share with unlimited users</span>
+                        <span>- Create unlimited subvaults</span>
+                        <span>- Priority customer support</span>
+                        <span style="margin-bottom: 5px;">- 7 day free trial, cancel anytime</span>
                         <span>
                             {{plans.personal.basePrice | currency:'$'}} /month for {{plans.personal.baseUsers}} users,
                             additional users {{plans.personal.userPrice | currency:'$'}} /month
@@ -78,6 +84,10 @@
                         <input type="radio" ng-model="model.plan" name="PlanType" value="teams">
                         Teams
                         <span>For businesses and other team organizations.</span>
+                        <span>- Add and share with unlimited users</span>
+                        <span>- Create unlimited subvaults</span>
+                        <span>- Priority customer support</span>
+                        <span style="margin-bottom: 5px;">- 7 day free trial, cancel anytime</span>
                         <span>
                             {{plans.teams.basePrice | currency:'$'}} /month for {{plans.teams.baseUsers}} users,
                             additional users {{plans.teams.userPrice | currency:'$'}} /month
@@ -119,7 +129,7 @@
                 <div class="radio radio-block">
                     <label>
                         <input type="radio" ng-model="model.interval" name="BillingInterval" value="year">
-                        Bill me annually
+                        Annually
                         <span>
                             Base price:
                             {{plans[model.plan].basePrice | currency:"$":2}} &times;12 mo. =
@@ -135,7 +145,7 @@
                 <div class="radio radio-block" ng-if="model.plan !== 'personal'">
                     <label>
                         <input type="radio" ng-model="model.interval" name="BillingInterval" value="month">
-                        Bill me monthly
+                        Monthly
                         <span>
                             Base price:
                             {{plans[model.plan].monthlyBasePrice | currency:"$":2}} /month

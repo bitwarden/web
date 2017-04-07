@@ -51,7 +51,7 @@
                 $localStorage.collapsedSubvaults = {};
             }
 
-            if (subvault.id in $localStorage.collapsedFolders) {
+            if (subvault.id in $localStorage.collapsedSubvaults) {
                 delete $localStorage.collapsedSubvaults[subvault.id];
             }
             else {
