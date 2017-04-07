@@ -7,7 +7,13 @@ angular
             _b64Key,
             _privateKey,
             _publicKey,
-            _orgKeys;
+            _orgKeys,
+            _encType = {
+                AesCbc256_B64: 0,
+                AesCbc128_HmacSha256_B64: 1,
+                AesCbc256_HmacSha256_B64: 2,
+                RsaOaep_Sha256_B64: 3
+            };
 
         _service.setKey = function (key) {
             _key = key;
@@ -252,12 +258,14 @@ angular
             }
 
             // TODO: Turn on whenever ready to support encrypt-then-mac
-            var encKey = null;
+            var encKey, encType;
             if (false) {
                 encKey = _service.getEncKey(key);
+                encType = _encType.AesCbc128_HmacSha256_B64;
             }
             else {
                 encKey = key || _service.getKey();
+                encType = _encType.AesCbc256_B64;
             }
 
             plainValueEncoding = plainValueEncoding || 'utf8';
@@ -273,13 +281,12 @@ angular
             var ct = forge.util.encode64(ctBytes);
             var cipherString = iv + '|' + ct;
 
-            // TODO: Turn on whenever ready to support encrypt-then-mac
-            if (false) {
+            if (encType === _encType.AesCbc128_HmacSha256_B64 || encType === _encType.AesCbc256_HmacSha256_B64) {
                 var mac = computeMac(ctBytes, ivBytes);
                 cipherString = cipherString + '|' + mac;
             }
 
-            return cipherString;
+            return encType + '.' + cipherString;
         };
 
         _service.rsaEncrypt = function (plainValue, publicKey) {
@@ -296,37 +303,69 @@ angular
             var encryptedBytes = publicKey.encrypt(plainValue, 'RSA-OAEP', {
                 md: forge.md.sha256.create()
             });
-            return forge.util.encode64(encryptedBytes);
+            return _encType.RsaOaep_Sha256_B64 + '.' + forge.util.encode64(encryptedBytes);
         };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
-            if (!_service.getKey() && !key) {
-                throw 'Encryption key unavailable.';
+            var headerPieces = encValue.split('.'),
+                encType,
+                encPieces,
+                encKey,
+                doMacCheck = false;
+
+            if (headerPieces.length === 2) {
+                try {
+                    encType = parseInt(headerPieces[0]);
+                    encPieces = headerPieces[1].split('|');
+                }
+                catch (e) {
+                    return null;
+                }
+            }
+            else {
+                encType = _encType.AesCbc256_B64;
+                encPieces = encValue.split('|');
             }
 
-            var encPieces = encValue.split('|');
-            if (encPieces.length !== 2 && encPieces.length !== 3) {
-                return '';
+            switch (encType) {
+                case _encType.AesCbc128_HmacSha256_B64:
+                    if (encPieces.length !== 3) {
+                        return null;
+                    }
+                    doMacCheck = true;
+                    encKey = _service.getEncKey(key);
+                    break;
+                case _encType.AesCbc256_HmacSha256_B64:
+                    if (encPieces.length !== 3) {
+                        return null;
+                    }
+                    doMacCheck = true;
+                    encKey = _service.getEncKey(key);
+                    break;
+                case _encType.AesCbc256_B64:
+                    if (encPieces.length !== 2) {
+                        return null;
+                    }
+                    doMacCheck = false;
+                    encKey = key || _service.getKey();
+                    break;
+                default:
+                    return null;
+            }
+
+            if (!encKey) {
+                throw 'Encryption key unavailable.';
             }
 
             var ivBytes = forge.util.decode64(encPieces[0]);
             var ctBytes = forge.util.decode64(encPieces[1]);
 
-            var computedMac = null;
-            if (encPieces.length === 3) {
-                computedMac = computeMac(ctBytes, ivBytes);
+            if (doMacCheck) {
+                var computedMac = computeMac(ctBytes, ivBytes);
                 if (computedMac !== encPieces[2]) {
                     console.error('MAC failed.');
-                    return '';
+                    return null;
                 }
-            }
-
-            var encKey;
-            if (computedMac) {
-                encKey = _service.getEncKey(key);
-            }
-            else {
-                encKey = key || _service.getKey();
             }
 
             var ctBuffer = forge.util.createBuffer(ctBytes);
@@ -350,7 +389,29 @@ angular
                 throw 'Private key unavailable.';
             }
 
-            var ctBytes = forge.util.decode64(encValue);
+            var headerPieces = encValue.split('.'),
+                encType,
+                encPiece;
+
+            if (headerPieces.length === 1) {
+                encType = _encType.RsaOaep_Sha256_B64;
+                encPiece = headerPieces[0];
+            }
+            else if (headerPieces.length === 2) {
+                try {
+                    encType = parseInt(headerPieces[0]);
+                    encPiece = headerPieces[1];
+                }
+                catch (e) {
+                    return null;
+                }
+            }
+
+            if (encType !== _encType.RsaOaep_Sha256_B64) {
+                return null;
+            }
+
+            var ctBytes = forge.util.decode64(encPiece);
             var decBytes = privateKey.decrypt(ctBytes, 'RSA-OAEP', {
                 md: forge.md.sha256.create()
             });
