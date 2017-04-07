@@ -10,7 +10,7 @@
             personal: {
                 basePrice: 1,
                 annualBasePrice: 12,
-                baseUsers: 3,
+                baseUsers: 5,
                 userPrice: 1,
                 annualUserPrice: 12
             },
@@ -26,9 +26,10 @@
         };
 
         $scope.model = {
-            plan: 'personal',
+            plan: 'free',
             additionalUsers: 0,
-            interval: 'year'
+            interval: 'year',
+            ownedBusiness: false
         };
 
         $scope.totalPrice = function () {

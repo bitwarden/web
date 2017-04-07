@@ -63,6 +63,9 @@
                         <span>For personal users to share with 1 other user.</span>
                         <span>- Limit 2 users (including you)</span>
                         <span>- Limit 2 subvaults</span>
+                        <span class="bottom-line">
+                            Free forever
+                        </span>
                     </label>
                 </div>
                 <div class="radio radio-block" ng-if="!model.ownedBusiness" ng-click="changedPlan()">
@@ -73,8 +76,8 @@
                         <span>- Add and share with unlimited users</span>
                         <span>- Create unlimited subvaults</span>
                         <span>- Priority customer support</span>
-                        <span style="margin-bottom: 5px;">- 7 day free trial, cancel anytime</span>
-                        <span>
+                        <span>- 7 day free trial, cancel anytime</span>
+                        <span class="bottom-line">
                             {{plans.personal.basePrice | currency:'$'}} /month for {{plans.personal.baseUsers}} users,
                             additional users {{plans.personal.userPrice | currency:'$'}} /month
                         </span>
@@ -88,8 +91,8 @@
                         <span>- Add and share with unlimited users</span>
                         <span>- Create unlimited subvaults</span>
                         <span>- Priority customer support</span>
-                        <span style="margin-bottom: 5px;">- 7 day free trial, cancel anytime</span>
-                        <span>
+                        <span>- 7 day free trial, cancel anytime</span>
+                        <span class="bottom-line">
                             {{plans.teams.basePrice | currency:'$'}} /month for {{plans.teams.baseUsers}} users,
                             additional users {{plans.teams.userPrice | currency:'$'}} /month
                         </span>
