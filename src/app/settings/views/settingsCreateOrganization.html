@@ -10,90 +10,127 @@
                 <li ng-repeat="e in createOrgForm.$errors">{{e}}</li>
             </ul>
         </div>
-        <div class="form-group" show-errors>
-            <label for="name">Organization Name</label>
-            <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
-                   required api-field />
-        </div>
-        <div class="form-group" show-errors>
-            <label for="billingEmail">Billing Email</label>
-            <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail" class="form-control"
-                   required api-field />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="name">Organization Name</label>
+                    <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
+                           required api-field />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="billingEmail">Billing Email</label>
+                    <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail" class="form-control"
+                           required api-field />
+                </div>
+            </div>
         </div>
         <div class="checkbox">
             <label>
                 <input type="checkbox" ng-model="model.ownedBusiness"> This account is owned by a business.
             </label>
         </div>
-        <div class="form-group" ng-show="model.ownedBusiness" show-errors>
-            <label for="businessName">Business Name</label>
-            <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName" class="form-control"
-                   api-field />
+        <div class="row" ng-show="model.ownedBusiness">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="businessName">Business Name</label>
+                    <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName" class="form-control"
+                           api-field />
+                </div>
+            </div>
         </div>
         <hr />
         <h4>Choose Your Plan</h4>
         <div class="form-group">
             <div class="radio" ng-show="!model.ownedBusiness">
-                <label>
+                <label class="label-block">
                     <input type="radio" ng-model="model.plan" name="PlanType" value="free">
                     Free
+                    <span>Share with 1 other user.</span>
                 </label>
-                <p class="help-block">Share with 1 other user.</p>
             </div>
             <div class="radio" ng-show="!model.ownedBusiness">
-                <label>
+                <label class="label-block">
                     <input type="radio" ng-model="model.plan" name="PlanType" value="personal">
-                    Personal - ${{plans.personal.basePrice}} /month for {{plans.personal.baseUsers}} users,
-                    additional users ${{plans.personal.userPrice}} /month
+                    Personal
+                    <span>For personal users such as families &amp; friends.</span>
+                    <span>
+                        {{plans.personal.basePrice | currency:'$'}} /month for {{plans.personal.baseUsers}} users,
+                        additional users {{plans.personal.userPrice | currency:'$'}} /month
+                    </span>
                 </label>
-                <p class="help-block">For personal users such as families &amp; friends.</p>
             </div>
             <div class="radio">
-                <label>
+                <label class="label-block">
                     <input type="radio" ng-model="model.plan" name="PlanType" value="teams">
-                    Teams - ${{plans.teams.basePrice}} /month for {{plans.teams.baseUsers}} users,
-                    additional users ${{plans.teams.userPrice}} /month
+                    Teams
+                    <span>For businesses and other large teams.</span>
+                    <span>
+                        {{plans.teams.basePrice | currency:'$'}} /month for {{plans.teams.baseUsers}} users,
+                        additional users {{plans.teams.userPrice | currency:'$'}} /month
+                    </span>
                 </label>
-                <p class="help-block">For businesses and other large teams.</p>
             </div>
         </div>
         <div ng-show="model.plan !== 'free'">
             <hr />
             <h4>Additional Users</h4>
             <p>
-                Your plan comes with {{plans[model.plan].baseUsers}} users. You can add additional users to your plan
-                for ${{plans[model.plan].userPrice}} /month.
+                Your plan comes with <b>{{plans[model.plan].baseUsers}}</b> users. You can add additional users
+                for {{plans[model.plan].userPrice | currency:'$'}} /month.
             </p>
-            <div class="form-group" show-errors>
-                <label for="additionalUsers">Additional Users</label>
-                <input type="number" id="additionalUsers" name="AdditionalUsers" ng-model="model.additionalUsers" min="0"
-                       class="form-control" api-field />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" show-errors style="margin: 0;">
+                        <label for="additionalUsers" class="sr-only">Additional Users</label>
+                        <input type="number" id="additionalUsers" name="AdditionalUsers" ng-model="model.additionalUsers" min="0"
+                               class="form-control" api-field />
+                    </div>
+                </div>
             </div>
         </div>
         <div ng-show="model.plan !== 'free'">
             <hr />
             <h4>Billing Totals</h4>
             <div class="radio">
-                <label>
+                <label class="label-block">
                     <input type="radio" ng-model="model.interval" name="BillingInterval" value="annually">
                     Bill me annually
+                    <span>
+                        Base price:
+                        {{plans[model.plan].basePrice | currency:"$":2}} &times;12 mo. =
+                        {{plans[model.plan].annualBasePrice | currency:"$":2}} /year
+                    </span>
+                    <span>
+                        Additional users:
+                        {{model.additionalUsers || 0}} &times;{{plans[model.plan].userPrice | currency:"$":2}}
+                        &times;12 mo. = {{(model.additionalUsers * plans[model.plan].annualUserPrice) | currency:"$":2}} /year
+                    </span>
+                    <span>
+                        <b>Total:</b>
+                        {{((model.additionalUsers || 0) * plans[model.plan].annualUserPrice + plans[model.plan].annualBasePrice) | currency:"USD $":2}} /year
+                    </span>
                 </label>
-                <p class="help-block">
-                    Base price: {{plans[model.plan].basePrice | currency:"$":2}} &times;12 mo. = {{plans[model.plan].annualBasePrice | currency:"$":2}} /year<br />
-                    Additional users: {{model.additionalUsers || 0}} &times;{{plans[model.plan].userPrice | currency:"$":2}} &times;12 mo. = {{(model.additionalUsers * plans[model.plan].annualUserPrice) | currency:"$":2}} /year<br />
-                    <b>Total:</b> {{((model.additionalUsers || 0) * plans[model.plan].annualUserPrice + plans[model.plan].annualBasePrice) | currency:"USD $":2}} /year
-                </p>
             </div>
             <div class="radio" ng-show="model.plan !== 'personal'">
-                <label>
+                <label class="label-block">
                     <input type="radio" ng-model="model.interval" name="BillingInterval" value="monthly">
                     Bill me monthly
+                    <span>
+                        Base price:
+                        {{plans[model.plan].monthlyBasePrice | currency:"$":2}} /month
+                    </span>
+                    <span>
+                        Additional users:
+                        {{model.additionalUsers || 0}} &times;{{plans[model.plan].monthlyUserPrice | currency:"$":2}} =
+                        {{(model.additionalUsers * plans[model.plan].monthlyUserPrice) | currency:"$":2}} /month
+                    </span>
+                    <span>
+                        <b>Total:</b>
+                        {{((model.additionalUsers || 0) * plans[model.plan].monthlyUserPrice + plans[model.plan].monthlyBasePrice) | currency:"USD $":2}} /month
+                    </span>
                 </label>
-                <p class="help-block">
-                    Base price: {{plans[model.plan].monthlyBasePrice | currency:"$":2}} /month<br />
-                    Additional users: {{model.additionalUsers || 0}} &times;{{plans[model.plan].monthlyUserPrice | currency:"$":2}} = {{(model.additionalUsers * plans[model.plan].monthlyUserPrice) | currency:"$":2}} /month<br />
-                    <b>Total:</b> {{((model.additionalUsers || 0) * plans[model.plan].monthlyUserPrice + plans[model.plan].monthlyBasePrice) | currency:"USD $":2}} /month
-                </p>
             </div>
         </div>
         <div ng-show="model.plan !== 'free'">
