@@ -57,27 +57,41 @@
         $scope.submit = function (model) {
             var shareKey = cryptoService.makeShareKey();
 
-            $scope.submitPromise = stripe.card.createToken(model.card).then(function (response) {
-                var request = {
+            if (model.plan === 'free') {
+                var freeRequest = {
                     name: model.name,
                     planType: model.plan,
                     key: shareKey,
-                    cardToken: response.id,
-                    additionalUsers: model.additionalUsers,
-                    billingEmail: model.billingEmail,
-                    businessName: model.ownedBusiness ? model.businessName : null,
-                    monthly: model.interval === 'month'
+                    billingEmail: model.billingEmail
                 };
 
-                return apiService.organizations.post(request).$promise;
-            }).then(function (result) {
-                $scope.model.card = null;
+                $scope.submitPromise = apiService.organizations.post(freeRequest).$promise.then(finalizeCreate);
+            }
+            else {
+                $scope.submitPromise = stripe.card.createToken(model.card).then(function (response) {
+                    var paidRequest = {
+                        name: model.name,
+                        planType: model.plan,
+                        key: shareKey,
+                        cardToken: response.id,
+                        additionalUsers: model.additionalUsers,
+                        billingEmail: model.billingEmail,
+                        businessName: model.ownedBusiness ? model.businessName : null,
+                        monthly: model.interval === 'month'
+                    };
 
-                $analytics.eventTrack('Created Organization');
-                authService.addProfileOrganizationOwner(result, shareKey);
-                $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
-                    toastr.success('Your new organization is ready to go!', 'Organization Created');
-                });
-            });
+                    return apiService.organizations.post(paidRequest).$promise;
+                }).then(finalizeCreate);
+            }
         };
+
+        function finalizeCreate(result) {
+            $scope.model.card = null;
+
+            $analytics.eventTrack('Created Organization');
+            authService.addProfileOrganizationOwner(result, shareKey);
+            $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
+                toastr.success('Your new organization is ready to go!', 'Organization Created');
+            });
+        }
     });

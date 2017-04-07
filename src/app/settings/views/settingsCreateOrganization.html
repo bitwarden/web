@@ -29,8 +29,8 @@
                     <div class="col-md-6">
                         <div class="form-group" show-errors>
                             <label for="billingEmail">Billing Email</label>
-                            <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail" class="form-control"
-                                   required api-field />
+                            <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail"
+                                   class="form-control" required api-field />
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
                     <div class="col-md-6">
                         <div class="form-group" show-errors>
                             <label for="businessName">Business Name</label>
-                            <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName" class="form-control"
-                                   api-field />
+                            <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName"
+                                   class="form-control" api-field />
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 <h3 class="box-title">Choose Your Plan</h3>
             </div>
             <div class="box-body">
-                <div class="radio radio-block" ng-show="!model.ownedBusiness" ng-click="changedPlan()">
+                <div class="radio radio-block" ng-if="!model.ownedBusiness" ng-click="changedPlan()">
                     <label>
                         <input type="radio" ng-model="model.plan" name="PlanType" value="free">
                         Free
@@ -65,7 +65,7 @@
                         <span>- Limit 2 subvaults</span>
                     </label>
                 </div>
-                <div class="radio radio-block" ng-show="!model.ownedBusiness" ng-click="changedPlan()">
+                <div class="radio radio-block" ng-if="!model.ownedBusiness" ng-click="changedPlan()">
                     <label>
                         <input type="radio" ng-model="model.plan" name="PlanType" value="personal">
                         Personal
@@ -102,7 +102,7 @@
                 </button>
             </div>
         </div>
-        <div class="box box-default" ng-show="model.plan !== 'free'">
+        <div class="box box-default" ng-if="model.plan !== 'free'">
             <div class="box-header with-border">
                 <h3 class="box-title">Additional Users</h3>
             </div>
@@ -115,14 +115,14 @@
                     <div class="col-md-4">
                         <div class="form-group" show-errors style="margin: 0;">
                             <label for="additionalUsers" class="sr-only">Additional Users</label>
-                            <input type="number" id="additionalUsers" name="AdditionalUsers" ng-model="model.additionalUsers" min="0"
-                                   class="form-control" placeholder="# of users" api-field />
+                            <input type="number" id="additionalUsers" name="AdditionalUsers" ng-model="model.additionalUsers"
+                                   min="0" class="form-control" placeholder="# of users" api-field />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="box box-default" ng-show="model.plan !== 'free'">
+        <div class="box box-default" ng-if="model.plan !== 'free'">
             <div class="box-header with-border">
                 <h3 class="box-title">Billing Summary</h3>
             </div>
@@ -164,7 +164,7 @@
                 {{totalPrice() | currency:"USD $":2}} /{{model.interval}}
             </div>
         </div>
-        <div class="box box-default" ng-show="model.plan !== 'free'">
+        <div class="box box-default" ng-if="model.plan !== 'free'">
             <div class="box-header with-border">
                 <h3 class="box-title">Payment Information</h3>
             </div>
