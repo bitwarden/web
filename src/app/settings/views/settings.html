@@ -116,9 +116,9 @@
         <div class="list-group" ng-if="model.organizations && model.organizations.length">
             <a ng-repeat="org in model.organizations | orderBy: ['name']"
                href="javascript:void(0)" ng-click="org.type !== 2 && viewOrganization(org.id)" class="list-group-item">
-                <i class="fa fa-sitemap"></i>
+                <letter-avatar data="{{org.name}}" round="false" avwidth="25" avheight="25"
+                               avclass="img-rounded" fontsize="14"></letter-avatar>
                 {{org.name}}
-                <i class="fa fa-certificate" ng-show="org.type !== 2"></i>
             </a>
         </div>
         <div class="box-footer">
