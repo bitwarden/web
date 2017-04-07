@@ -83,15 +83,15 @@
                     return apiService.organizations.post(paidRequest).$promise;
                 }).then(finalizeCreate);
             }
+
+            function finalizeCreate(result) {
+                $scope.model.card = null;
+
+                $analytics.eventTrack('Created Organization');
+                authService.addProfileOrganizationOwner(result, shareKey);
+                $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
+                    toastr.success('Your new organization is ready to go!', 'Organization Created');
+                });
+            }
         };
-
-        function finalizeCreate(result) {
-            $scope.model.card = null;
-
-            $analytics.eventTrack('Created Organization');
-            authService.addProfileOrganizationOwner(result, shareKey);
-            $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
-                toastr.success('Your new organization is ready to go!', 'Organization Created');
-            });
-        }
     });
