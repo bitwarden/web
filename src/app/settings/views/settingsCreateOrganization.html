@@ -73,7 +73,7 @@
                         <input type="radio" ng-model="model.plan" name="PlanType" value="personal">
                         Personal
                         <span>For personal users such as families &amp; friends.</span>
-                        <span>- Add and share with unlimited users</span>
+                        <span>- Add and share with up to 10 users (5 included with base price)</span>
                         <span>- Create unlimited subvaults</span>
                         <span>- Priority customer support</span>
                         <span>- 7 day free trial, cancel anytime</span>
@@ -99,19 +99,22 @@
                     </label>
                 </div>
             </div>
-            <div class="box-footer" ng-show="model.plan === 'free'">
+            <div class="box-footer" ng-show="plans[model.plan].noPayment">
                 <button type="submit" class="btn btn-primary btn-flat" ng-disabled="createOrgForm.$loading">
                     <i class="fa fa-refresh fa-spin loading-icon" ng-show="createOrgForm.$loading"></i>Submit
                 </button>
             </div>
         </div>
-        <div class="box box-default" ng-if="model.plan !== 'free'">
+        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalUsers">
             <div class="box-header with-border">
                 <h3 class="box-title">Additional Users</h3>
             </div>
             <div class="box-body">
                 <p>
                     Your plan comes with <b>{{plans[model.plan].baseUsers}}</b> users. You can add additional users
+                    <span ng-if="plans[model.plan].maxAdditionalUsers">
+                        (up to {{plans[model.plan].maxAdditionalUsers}} more)
+                    </span>
                     for {{plans[model.plan].userPrice | currency:'$'}} per user /month.
                 </p>
                 <div class="row">
@@ -119,13 +122,14 @@
                         <div class="form-group" show-errors style="margin: 0;">
                             <label for="additionalUsers" class="sr-only">Additional Users</label>
                             <input type="number" id="additionalUsers" name="AdditionalUsers" ng-model="model.additionalUsers"
-                                   min="0" class="form-control" placeholder="# of users" api-field />
+                                   min="0" ng- class="form-control" placeholder="# of users" api-field
+                                   ng-attr-max="{{plans[model.plan].maxAdditionalUsers || 1000000}}" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="box box-default" ng-if="model.plan !== 'free'">
+        <div class="box box-default" ng-if="!plans[model.plan].noPayment">
             <div class="box-header with-border">
                 <h3 class="box-title">Billing Summary</h3>
             </div>
@@ -167,7 +171,7 @@
                 {{totalPrice() | currency:"USD $":2}} /{{model.interval}}
             </div>
         </div>
-        <div class="box box-default" ng-if="model.plan !== 'free'">
+        <div class="box box-default" ng-if="!plans[model.plan].noPayment">
             <div class="box-header with-border">
                 <h3 class="box-title">Payment Information</h3>
             </div>
@@ -232,7 +236,8 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="cvc">CVC <i class="fa fa-question-circle"></i></label>
-                            <input type="text" id="cvc" ng-model="model.card.cvc" class="form-control" cc-type="number.$ccType" cc-cvc required />
+                            <input type="text" id="cvc" ng-model="model.card.cvc" class="form-control"
+                                   cc-type="number.$ccType" cc-cvc required />
                         </div>
                     </div>
                 </div>
@@ -497,8 +502,10 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="address_zip" ng-bind="model.card.address_country === 'US' ? 'Zip Code' : 'Postal Code'"></label>
-                            <input type="text" id="address_zip" ng-model="model.card.address_zip" class="form-control" required />
+                            <label for="address_zip"
+                                   ng-bind="model.card.address_country === 'US' ? 'Zip Code' : 'Postal Code'"></label>
+                            <input type="text" id="address_zip" ng-model="model.card.address_zip"
+                                   class="form-control" required />
                         </div>
                     </div>
                 </div>

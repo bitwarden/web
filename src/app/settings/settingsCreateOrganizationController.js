@@ -5,14 +5,17 @@
         toastr, $analytics, authService, stripe) {
         $scope.plans = {
             free: {
-                basePrice: 0
+                basePrice: 0,
+                noAdditionalUsers: true,
+                noPayment: true
             },
             personal: {
                 basePrice: 1,
                 annualBasePrice: 12,
                 baseUsers: 5,
                 userPrice: 1,
-                annualUserPrice: 12
+                annualUserPrice: 12,
+                maxAdditionalUsers: 5
             },
             teams: {
                 basePrice: 5,
