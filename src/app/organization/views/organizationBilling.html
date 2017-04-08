@@ -14,17 +14,17 @@
                 <div class="col-sm-6">
                     <dl>
                         <dt>Name</dt>
-                        <dd>{{plan.name}}</dd>
+                        <dd>{{plan.name || '-'}}</dd>
                         <dt>Maximum Users</dt>
-                        <dd>{{plan.maxUsers}}</dd>
+                        <dd>{{plan.maxUsers || '-'}}</dd>
                     </dl>
                 </div>
                 <div class="col-sm-6">
                     <dl>
                         <dt>Status</dt>
-                        <dd style="text-transform: capitalize;">{{subscription.status}}</dd>
+                        <dd style="text-transform: capitalize;">{{subscription.status || '-'}}</dd>
                         <dt>Next Bill Date</dt>
-                        <dd>{{subscription.nextBillDate | jsonDate}}</dd>
+                        <dd>{{subscription.nextBillDate ? (subscription.nextBillDate | date: format: mediumDate) : '-'}}</dd>
                     </dl>
                 </div>
             </div>
@@ -67,16 +67,18 @@
             <div ng-show="loading">
                 Loading...
             </div>
-            <div ng-show="!loading && !paymentMethod">
+            <div ng-show="!loading && !paymentSource">
                 <i class="fa fa-credit-card"></i> No payment method on file.
             </div>
-            <div ng-show="!loading && paymentMethod">
-
+            <div ng-show="!loading && paymentSource">
+                <i class="fa" ng-class="{'fa-credit-card': paymentSource.type === 0,
+                   'fa-university': paymentSource.type === 1}"></i>
+                {{paymentSource.description}}
             </div>
         </div>
         <div class="box-footer">
             <button type="button" class="btn btn-default btn-flat" ng-click="changePayment()">
-                {{ paymentMethod ? 'Change Payment Method' : 'Add Payment Method' }}
+                {{ paymentSource ? 'Change Payment Method' : 'Add Payment Method' }}
             </button>
         </div>
     </div>
@@ -96,7 +98,7 @@
                     <tbody>
                         <tr ng-repeat="charge in charges">
                             <td style="width: 200px">
-                                {{charge.date | jsonDate}}
+                                {{charge.date | date: format: mediumDate}}
                             </td>
                             <td>
                                 {{charge.paymentSource}}

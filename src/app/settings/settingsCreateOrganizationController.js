@@ -77,7 +77,7 @@
                         name: model.name,
                         planType: model.plan,
                         key: shareKey,
-                        cardToken: response.id,
+                        paymentToken: response.id,
                         additionalUsers: model.additionalUsers,
                         billingEmail: model.billingEmail,
                         businessName: model.ownedBusiness ? model.businessName : null,

@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationBillingController', function ($scope, apiService, $state) {
+    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal) {
         $scope.charges = [];
         $scope.paymentSource = null;
         $scope.plan = null;
@@ -63,7 +63,15 @@
         });
 
         $scope.changePayment = function () {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationBillingChangePayment.html',
+                controller: 'organizationBillingChangePaymentController'
+            });
 
+            modal.result.then(function () {
+                // TODO: reload
+            });
         };
 
         $scope.cancel = function () {

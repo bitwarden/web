@@ -39,6 +39,7 @@
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },
+            putPayment: { url: _apiUri + '/organizations/:id/payment', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
