@@ -23,12 +23,12 @@
                     <dl>
                         <dt>Status</dt>
                         <dd style="text-transform: capitalize;">{{subscription.status || '-'}}</dd>
-                        <dt>Next Bill Date</dt>
-                        <dd>{{subscription.nextBillDate ? (subscription.nextBillDate | date: format: mediumDate) : '-'}}</dd>
+                        <dt>Next Charge</dt>
+                        <dd>{{nextBillDate ? ((nextBillDate | date: format: mediumDate) + ', ' + (nextBillAmount | currency:'$')) : '-'}}</dd>
                     </dl>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="!noSubscription">
                 <div class="col-md-6">
                     <strong>Details</strong>
                     <div ng-show="loading">
@@ -54,8 +54,29 @@
             <button type="button" class="btn btn-default btn-flat" ng-click="changePlan()">
                 Change Plan
             </button>
-            <button type="button" class="btn btn-default btn-flat" ng-click="cancel()">
+            <button type="button" class="btn btn-default btn-flat" ng-click="cancel()" ng-if="!noSubscription">
                 Cancel Plan
+            </button>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">User Seats</h3>
+        </div>
+        <div class="box-body">
+            <div ng-show="loading">
+                Loading...
+            </div>
+            <div ng-show="!loading">
+                You plan currently has a total of <b>{{plan.seats}}</b> seats.
+            </div>
+        </div>
+        <div class="box-footer" ng-if="!noSubscription">
+            <button type="button" class="btn btn-default btn-flat" ng-click="addSeats()">
+                Add Seats
+            </button>
+            <button type="button" class="btn btn-default btn-flat" ng-click="removeSeats()">
+                Remove Seats
             </button>
         </div>
     </div>

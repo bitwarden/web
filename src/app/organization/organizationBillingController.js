@@ -9,8 +9,34 @@
         $scope.loading = true;
 
         $scope.$on('$viewContentLoaded', function () {
+            load();
+        });
+
+        $scope.changePayment = function () {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationBillingChangePayment.html',
+                controller: 'organizationBillingChangePaymentController',
+                resolve: {
+                    existingPaymentMethod: function () {
+                        return $scope.paymentSource ? $scope.paymentSource.description : null;
+                    }
+                }
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
+        $scope.cancel = function () {
+
+        };
+
+        function load() {
             apiService.organizations.getBilling({ id: $state.params.orgId }, function (org) {
                 $scope.loading = false;
+                $scope.noSubscription = org.PlanType === 0;
 
                 $scope.plan = {
                     name: org.Plan,
@@ -18,14 +44,24 @@
                     seats: org.Seats
                 };
 
-                $scope.subscription = {
-                    trialEndDate: org.Subscription.TrialEndDate,
-                    nextBillDate: org.Subscription.NextBillDate,
-                    cancelNext: org.Subscription.CancelAtNextBillDate,
-                    status: org.Subscription.Status
-                };
+                $scope.subscription = null;
+                if (org.Subscription) {
+                    $scope.subscription = {
+                        trialEndDate: org.Subscription.TrialEndDate,
+                        cancelNext: org.Subscription.CancelAtNextBillDate,
+                        status: org.Subscription.Status
+                    };
+                }
 
-                if (org.Subscription.Items) {
+                $scope.nextBill = null;
+                if (org.UpcomingInvoice) {
+                    $scope.nextBill = {
+                        date: org.UpcomingInvoice.Date,
+                        amount: org.UpcomingInvoice.Amount
+                    };
+                }
+
+                if (org.Subscription && org.Subscription.Items) {
                     $scope.subscription.items = [];
                     for (var i = 0; i < org.Subscription.Items.length; i++) {
                         $scope.subscription.items.push({
@@ -37,6 +73,7 @@
                     }
                 }
 
+                $scope.paymentSource = null;
                 if (org.PaymentSource) {
                     $scope.paymentSource = {
                         type: org.PaymentSource.Type,
@@ -60,21 +97,5 @@
                 }
                 $scope.charges = charges;
             });
-        });
-
-        $scope.changePayment = function () {
-            var modal = $uibModal.open({
-                animation: true,
-                templateUrl: 'app/organization/views/organizationBillingChangePayment.html',
-                controller: 'organizationBillingChangePaymentController'
-            });
-
-            modal.result.then(function () {
-                // TODO: reload
-            });
-        };
-
-        $scope.cancel = function () {
-
-        };
+        }
     });

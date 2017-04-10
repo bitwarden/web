@@ -2,7 +2,9 @@
     .module('bit.organization')
 
     .controller('organizationBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService, stripe,
-        $analytics) {
+        $analytics, toastr, existingPaymentMethod) {
+        $scope.existingPaymentMethod = existingPaymentMethod;
+
         $scope.submit = function () {
             $scope.submitPromise = stripe.card.createToken($scope.card).then(function (response) {
                 var request = {
@@ -12,7 +14,15 @@
                 return apiService.organizations.putPayment({ id: $state.params.orgId }, request).$promise;
             }).then(function (response) {
                 $scope.card = null;
-                $analytics.eventTrack('Changed Payment Method');
+                if (existingPaymentMethod) {
+                    $analytics.eventTrack('Changed Payment Method');
+                    toastr.success('You have changed your payment method.');
+                }
+                else {
+                    $analytics.eventTrack('Added Payment Method');
+                    toastr.success('You have added a payment method.');
+                }
+
                 $uibModalInstance.close();
             });
         };
