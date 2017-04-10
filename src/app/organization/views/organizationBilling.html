@@ -24,7 +24,7 @@
                         <dt>Status</dt>
                         <dd style="text-transform: capitalize;">{{subscription.status || '-'}}</dd>
                         <dt>Next Charge</dt>
-                        <dd>{{nextBillDate ? ((nextBillDate | date: format: mediumDate) + ', ' + (nextBillAmount | currency:'$')) : '-'}}</dd>
+                        <dd>{{nextBill ? ((nextBill.date | date: format: mediumDate) + ', ' + (nextBill.amount | currency:'$')) : '-'}}</dd>
                     </dl>
                 </div>
             </div>
