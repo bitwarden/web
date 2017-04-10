@@ -15,7 +15,7 @@
                 $scope.plan = {
                     name: org.Plan,
                     type: org.PlanType,
-                    maxUsers: org.MaxUsers
+                    seats: org.Seats
                 };
 
                 $scope.subscription = {

@@ -78,8 +78,8 @@
                         <span>- Priority customer support</span>
                         <span>- 7 day free trial, cancel anytime</span>
                         <span class="bottom-line">
-                            {{plans.personal.basePrice | currency:'$'}} /month for {{plans.personal.baseUsers}} users,
-                            additional users {{plans.personal.userPrice | currency:'$'}} /month
+                            {{plans.personal.basePrice | currency:'$'}} /month for {{plans.personal.baseSeats}} users,
+                            additional users {{plans.personal.seatPrice | currency:'$'}} /month
                         </span>
                     </label>
                 </div>
@@ -93,8 +93,8 @@
                         <span>- Priority customer support</span>
                         <span>- 7 day free trial, cancel anytime</span>
                         <span class="bottom-line">
-                            {{plans.teams.basePrice | currency:'$'}} /month for {{plans.teams.baseUsers}} users,
-                            additional users {{plans.teams.userPrice | currency:'$'}} /month
+                            {{plans.teams.basePrice | currency:'$'}} /month for {{plans.teams.baseSeats}} users,
+                            additional users {{plans.teams.seatPrice | currency:'$'}} /month
                         </span>
                     </label>
                 </div>
@@ -105,25 +105,25 @@
                 </button>
             </div>
         </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalUsers">
+        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalSeats">
             <div class="box-header with-border">
-                <h3 class="box-title">Additional Users</h3>
+                <h3 class="box-title">Additional Users (Seats)</h3>
             </div>
             <div class="box-body">
                 <p>
-                    Your plan comes with <b>{{plans[model.plan].baseUsers}}</b> users. You can add additional users
-                    <span ng-if="plans[model.plan].maxAdditionalUsers">
-                        (up to {{plans[model.plan].maxAdditionalUsers}} more)
+                    Your plan comes with <b>{{plans[model.plan].baseSeats}}</b> users (seats). You can add additional users
+                    <span ng-if="plans[model.plan].maxAdditionalSeats">
+                        (up to {{plans[model.plan].maxAdditionalSeats}} more)
                     </span>
-                    for {{plans[model.plan].userPrice | currency:'$'}} per user /month.
+                    for {{plans[model.plan].seatPrice | currency:'$'}} per user /month.
                 </p>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group" show-errors style="margin: 0;">
-                            <label for="additionalUsers" class="sr-only">Additional Users</label>
-                            <input type="number" id="additionalUsers" name="AdditionalUsers" ng-model="model.additionalUsers"
+                            <label for="additionalSeats" class="sr-only">Additional Users</label>
+                            <input type="number" id="additionalSeats" name="AdditionalSeats" ng-model="model.additionalSeats"
                                    min="0" ng- class="form-control" placeholder="# of users" api-field
-                                   ng-attr-max="{{plans[model.plan].maxAdditionalUsers || 1000000}}" />
+                                   ng-attr-max="{{plans[model.plan].maxAdditionalSeats || 1000000}}" />
                         </div>
                     </div>
                 </div>
@@ -145,8 +145,8 @@
                         </span>
                         <span>
                             Additional users:
-                            {{model.additionalUsers || 0}} &times;{{plans[model.plan].userPrice | currency:"$":2}}
-                            &times;12 mo. = {{(model.additionalUsers * plans[model.plan].annualUserPrice) | currency:"$":2}} /year
+                            {{model.additionalSeats || 0}} &times;{{plans[model.plan].seatPrice | currency:"$":2}}
+                            &times;12 mo. = {{(model.additionalSeats * plans[model.plan].annualSeatPrice) | currency:"$":2}} /year
                         </span>
                     </label>
                 </div>
@@ -160,8 +160,8 @@
                         </span>
                         <span>
                             Additional users:
-                            {{model.additionalUsers || 0}} &times;{{plans[model.plan].monthlyUserPrice | currency:"$":2}} =
-                            {{(model.additionalUsers * plans[model.plan].monthlyUserPrice) | currency:"$":2}} /month
+                            {{model.additionalSeats || 0}} &times;{{plans[model.plan].monthlySeatPrice | currency:"$":2}} =
+                            {{(model.additionalSeats * plans[model.plan].monthlySeatPrice) | currency:"$":2}} /month
                         </span>
                     </label>
                 </div>

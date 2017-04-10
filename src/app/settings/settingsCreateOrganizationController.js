@@ -6,48 +6,51 @@
         $scope.plans = {
             free: {
                 basePrice: 0,
-                noAdditionalUsers: true,
+                noAdditionalSeats: true,
                 noPayment: true
             },
             personal: {
                 basePrice: 1,
                 annualBasePrice: 12,
-                baseUsers: 5,
-                userPrice: 1,
-                annualUserPrice: 12,
-                maxAdditionalUsers: 5
+                baseSeats: 5,
+                seatPrice: 1,
+                annualSeatPrice: 12,
+                maxAdditionalSeats: 5,
+                annualPlanType: 'personalAnnually'
             },
             teams: {
                 basePrice: 5,
                 annualBasePrice: 60,
                 monthlyBasePrice: 8,
-                baseUsers: 5,
-                userPrice: 2,
-                annualUserPrice: 24,
-                monthlyUserPrice: 2.5
+                baseSeats: 5,
+                seatPrice: 2,
+                annualSeatPrice: 24,
+                monthlySeatPrice: 2.5,
+                monthPlanType: 'teamsMonthly',
+                annualPlanType: 'teamsAnnually'
             }
         };
 
         $scope.model = {
             plan: 'free',
-            additionalUsers: 0,
+            additionalSeats: 0,
             interval: 'year',
             ownedBusiness: false
         };
 
         $scope.totalPrice = function () {
             if ($scope.model.interval === 'month') {
-                return ($scope.model.additionalUsers || 0) * $scope.plans[$scope.model.plan].monthlyUserPrice +
+                return ($scope.model.additionalSeats || 0) * $scope.plans[$scope.model.plan].monthlySeatPrice +
                     $scope.plans[$scope.model.plan].monthlyBasePrice;
             }
             else {
-                return ($scope.model.additionalUsers || 0) * $scope.plans[$scope.model.plan].annualUserPrice +
+                return ($scope.model.additionalSeats || 0) * $scope.plans[$scope.model.plan].annualSeatPrice +
                     $scope.plans[$scope.model.plan].annualBasePrice;
             }
         };
 
         $scope.changedPlan = function () {
-            if ($scope.model.plan !== 'teams') {
+            if ($scope.plans[$scope.model.plan].hasOwnProperty('monthPlanType')) {
                 $scope.model.interval = 'year';
             }
         };
@@ -75,13 +78,13 @@
                 $scope.submitPromise = stripe.card.createToken(model.card).then(function (response) {
                     var paidRequest = {
                         name: model.name,
-                        planType: model.plan,
+                        planType: model.interval === 'month' ? $scope.plans[model.plan].monthPlanType :
+                            $scope.plans[model.plan].annualPlanType,
                         key: shareKey,
                         paymentToken: response.id,
-                        additionalUsers: model.additionalUsers,
+                        additionalSeats: model.additionalSeats,
                         billingEmail: model.billingEmail,
-                        businessName: model.ownedBusiness ? model.businessName : null,
-                        monthly: model.interval === 'month'
+                        businessName: model.ownedBusiness ? model.businessName : null
                     };
 
                     return apiService.organizations.post(paidRequest).$promise;
