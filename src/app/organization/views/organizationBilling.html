@@ -10,11 +10,19 @@
             <h3 class="box-title">Plan</h3>
         </div>
         <div class="box-body">
-            <div class="alert alert-warning" ng-if="subscription && subscription.cancelled">
+            <div class="callout callout-warning" ng-if="subscription && subscription.cancelled">
+                <h4><i class="fa fa-warning"></i> Cancelled</h4>
                 The subscription to this organization has been canceled.
             </div>
-            <div class="alert alert-warning" ng-if="subscription && subscription.markedForCancel">
-                The subscription to this organization has been marked for cancellation at the end of the current billing period.
+            <div class="callout callout-warning" ng-if="subscription && subscription.markedForCancel">
+                <h4><i class="fa fa-warning"></i> Pending Cancellation</h4>
+                <p>
+                    The subscription to this organization has been marked for cancellation at the end of the
+                    current billing period.
+                </p>
+                <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()">
+                    Reinstate Plan
+                </button>
             </div>
             <div class="row">
                 <div class="col-sm-6">
@@ -64,9 +72,9 @@
                     ng-if="!noSubscription && !subscription.cancelled && !subscription.markedForCancel">
                 Cancel Plan
             </button>
-            <button type="button" class="btn btn-default btn-flat" ng-click="uncancel()"
+            <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()"
                     ng-if="!noSubscription && subscription.markedForCancel">
-                Uncancel Plan
+                Reinstate Plan
             </button>
         </div>
     </div>

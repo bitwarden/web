@@ -59,12 +59,12 @@
                 });
         };
 
-        $scope.uncancel = function () {
-            if (!confirm('Are you sure you want to remove the cancellation request?')) {
+        $scope.reinstate = function () {
+            if (!confirm('Are you sure you want to remove the cancellation request and reinstate this organization?')) {
                 return;
             }
 
-            apiService.organizations.putUncancel({ id: $state.params.orgId }, {})
+            apiService.organizations.putReinstate({ id: $state.params.orgId }, {})
                 .$promise.then(function (response) {
                     toastr.success('Organization cancellation request has been removed.');
                     load();
