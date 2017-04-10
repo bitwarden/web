@@ -40,6 +40,9 @@
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },
             putPayment: { url: _apiUri + '/organizations/:id/payment', method: 'POST', params: { id: '@id' } },
+            putSeat: { url: _apiUri + '/organizations/:id/seat', method: 'POST', params: { id: '@id' } },
+            putUpgrade: { url: _apiUri + '/organizations/:id/upgrade', method: 'POST', params: { id: '@id' } },
+            putCancel: { url: _apiUri + '/organizations/:id/cancel', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 

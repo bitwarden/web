@@ -29,6 +29,23 @@
             });
         };
 
+        $scope.adjustSeats = function (add) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationBillingAdjustSeats.html',
+                controller: 'organizationBillingAdjustSeatsController',
+                resolve: {
+                    add: function () {
+                        return add;
+                    }
+                }
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
         $scope.cancel = function () {
 
         };
