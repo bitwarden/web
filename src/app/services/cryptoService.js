@@ -1,19 +1,13 @@
 angular
     .module('bit.services')
 
-    .factory('cryptoService', function ($sessionStorage) {
+    .factory('cryptoService', function ($sessionStorage, constants) {
         var _service = {},
             _key,
             _b64Key,
             _privateKey,
             _publicKey,
-            _orgKeys,
-            _encType = {
-                AesCbc256_B64: 0,
-                AesCbc128_HmacSha256_B64: 1,
-                AesCbc256_HmacSha256_B64: 2,
-                RsaOaep_Sha256_B64: 3
-            };
+            _orgKeys;
 
         _service.setKey = function (key) {
             _key = key;
@@ -261,11 +255,11 @@ angular
             var encKey, encType;
             if (false) {
                 encKey = _service.getEncKey(key);
-                encType = _encType.AesCbc128_HmacSha256_B64;
+                encType = constants.encType.AesCbc128_HmacSha256_B64;
             }
             else {
                 encKey = key || _service.getKey();
-                encType = _encType.AesCbc256_B64;
+                encType = constants.encType.AesCbc256_B64;
             }
 
             plainValueEncoding = plainValueEncoding || 'utf8';
@@ -281,7 +275,8 @@ angular
             var ct = forge.util.encode64(ctBytes);
             var cipherString = iv + '|' + ct;
 
-            if (encType === _encType.AesCbc128_HmacSha256_B64 || encType === _encType.AesCbc256_HmacSha256_B64) {
+            if (encType === constants.encType.AesCbc128_HmacSha256_B64 ||
+                encType === constants.encType.AesCbc256_HmacSha256_B64) {
                 var mac = computeMac(ctBytes, ivBytes);
                 cipherString = cipherString + '|' + mac;
             }
@@ -304,7 +299,7 @@ angular
             var encryptedBytes = publicKey.encrypt(plainValue, 'RSA-OAEP', {
                 md: forge.md.sha256.create()
             });
-            return _encType.RsaOaep_Sha256_B64 + '.' + forge.util.encode64(encryptedBytes);
+            return constants.encType.RsaOaep_Sha256_B64 + '.' + forge.util.encode64(encryptedBytes);
         };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
@@ -324,26 +319,26 @@ angular
                 }
             }
             else {
-                encType = _encType.AesCbc256_B64;
+                encType = constants.encType.AesCbc256_B64;
                 encPieces = encValue.split('|');
             }
 
             switch (encType) {
-                case _encType.AesCbc128_HmacSha256_B64:
+                case constants.encType.AesCbc128_HmacSha256_B64:
                     if (encPieces.length !== 3) {
                         return null;
                     }
                     doMacCheck = true;
                     encKey = _service.getEncKey(key);
                     break;
-                case _encType.AesCbc256_HmacSha256_B64:
+                case constants.encType.AesCbc256_HmacSha256_B64:
                     if (encPieces.length !== 3) {
                         return null;
                     }
                     doMacCheck = true;
                     encKey = _service.getEncKey(key);
                     break;
-                case _encType.AesCbc256_B64:
+                case constants.encType.AesCbc256_B64:
                     if (encPieces.length !== 2) {
                         return null;
                     }
@@ -395,7 +390,7 @@ angular
                 encPiece;
 
             if (headerPieces.length === 1) {
-                encType = _encType.RsaOaep_Sha256_B64;
+                encType = constants.encType.RsaOaep_Sha256_B64;
                 encPiece = headerPieces[0];
             }
             else if (headerPieces.length === 2) {
@@ -408,7 +403,7 @@ angular
                 }
             }
 
-            if (encType !== _encType.RsaOaep_Sha256_B64) {
+            if (encType !== constants.encType.RsaOaep_Sha256_B64) {
                 return null;
             }
 

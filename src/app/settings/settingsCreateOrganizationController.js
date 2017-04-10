@@ -2,34 +2,8 @@
     .module('bit.settings')
 
     .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, cryptoService,
-        toastr, $analytics, authService, stripe) {
-        $scope.plans = {
-            free: {
-                basePrice: 0,
-                noAdditionalSeats: true,
-                noPayment: true
-            },
-            personal: {
-                basePrice: 1,
-                annualBasePrice: 12,
-                baseSeats: 5,
-                seatPrice: 1,
-                annualSeatPrice: 12,
-                maxAdditionalSeats: 5,
-                annualPlanType: 'personalAnnually'
-            },
-            teams: {
-                basePrice: 5,
-                annualBasePrice: 60,
-                monthlyBasePrice: 8,
-                baseSeats: 5,
-                seatPrice: 2,
-                annualSeatPrice: 24,
-                monthlySeatPrice: 2.5,
-                monthPlanType: 'teamsMonthly',
-                annualPlanType: 'teamsAnnually'
-            }
-        };
+        toastr, $analytics, authService, stripe, constants) {
+        $scope.plans = constants.plans;
 
         $scope.model = {
             plan: 'free',
@@ -57,7 +31,7 @@
 
         $scope.changedBusiness = function () {
             if ($scope.model.ownedBusiness) {
-                $scope.model.plan = 'teams'
+                $scope.model.plan = 'teams';
             }
         };
 

@@ -2,10 +2,10 @@ angular
     .module('bit.accounts')
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
-        $state, appSettings, $analytics) {
+        $state, constants, $analytics) {
         $scope.state = $state;
         var returnState = $state.params.returnState;
-        var rememberedEmail = $cookies.get(appSettings.rememberedEmailCookieName);
+        var rememberedEmail = $cookies.get(constants.rememberedEmailCookieName);
         if (rememberedEmail || $state.params.email) {
             $scope.model = {
                 email: $state.params.email ? $state.params.email : rememberedEmail,
@@ -25,12 +25,12 @@ angular
                     cookieExpiration.setFullYear(cookieExpiration.getFullYear() + 10);
 
                     $cookies.put(
-                        appSettings.rememberedEmailCookieName,
+                        constants.rememberedEmailCookieName,
                         model.email,
                         { expires: cookieExpiration });
                 }
                 else {
-                    $cookies.remove(appSettings.rememberedEmailCookieName);
+                    $cookies.remove(constants.rememberedEmailCookieName);
                 }
 
                 if (twoFactorProviders && twoFactorProviders.length > 0) {

@@ -76,6 +76,8 @@
                 $scope.loading = false;
                 $scope.noSubscription = org.PlanType === 0;
 
+                var i = 0;
+
                 $scope.plan = {
                     name: org.Plan,
                     type: org.PlanType,
@@ -103,7 +105,7 @@
 
                 if (org.Subscription && org.Subscription.Items) {
                     $scope.subscription.items = [];
-                    for (var i = 0; i < org.Subscription.Items.length; i++) {
+                    for (i = 0; i < org.Subscription.Items.length; i++) {
                         $scope.subscription.items.push({
                             amount: org.Subscription.Items[i].Amount,
                             name: org.Subscription.Items[i].Name,
@@ -123,7 +125,7 @@
                 }
 
                 var charges = [];
-                for (var i = 0; i < org.Charges.length; i++) {
+                for (i = 0; i < org.Charges.length; i++) {
                     charges.push({
                         date: org.Charges[i].CreatedDate,
                         paymentSource: org.Charges[i].PaymentSource ? org.Charges[i].PaymentSource.Description : '-',
