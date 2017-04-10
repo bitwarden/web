@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal) {
+    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal, toastr) {
         $scope.charges = [];
         $scope.paymentSource = null;
         $scope.plan = null;
@@ -47,7 +47,28 @@
         };
 
         $scope.cancel = function () {
+            if (!confirm('Are you sure you want to cancel? All users will lose access to the organization ' +
+                'at the end of this billing cycle.')) {
+                return;
+            }
 
+            apiService.organizations.putCancel({ id: $state.params.orgId }, {})
+                .$promise.then(function (response) {
+                    toastr.success('Organization subscription has been canceled.');
+                    load();
+                });
+        };
+
+        $scope.uncancel = function () {
+            if (!confirm('Are you sure you want to remove the cancellation request?')) {
+                return;
+            }
+
+            apiService.organizations.putUncancel({ id: $state.params.orgId }, {})
+                .$promise.then(function (response) {
+                    toastr.success('Organization cancellation request has been removed.');
+                    load();
+                });
         };
 
         function load() {
@@ -65,14 +86,16 @@
                 if (org.Subscription) {
                     $scope.subscription = {
                         trialEndDate: org.Subscription.TrialEndDate,
-                        cancelNext: org.Subscription.CancelAtNextBillDate,
-                        status: org.Subscription.Status
+                        cancelledDate: org.Subscription.CancelledDate,
+                        status: org.Subscription.Status,
+                        cancelled: org.Subscription.Status === 'cancelled',
+                        markedForCancel: org.Subscription.Status === 'active' && org.Subscription.CancelledDate
                     };
                 }
 
-                $scope.nextBill = null;
+                $scope.nextInvoice = null;
                 if (org.UpcomingInvoice) {
-                    $scope.nextBill = {
+                    $scope.nextInvoice = {
                         date: org.UpcomingInvoice.Date,
                         amount: org.UpcomingInvoice.Amount
                     };
@@ -109,7 +132,8 @@
                         failureMessage: org.Charges[i].FailureMessage,
                         refunded: org.Charges[i].Refunded,
                         partiallyRefunded: org.Charges[i].PartiallyRefunded,
-                        refundedAmount: org.Charges[i].RefundedAmount
+                        refundedAmount: org.Charges[i].RefundedAmount,
+                        invoiceId: org.Charges[i].InvoiceId
                     });
                 }
                 $scope.charges = charges;
