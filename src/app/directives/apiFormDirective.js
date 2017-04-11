@@ -30,6 +30,7 @@ angular
                 form.$loading = false;
                 validationService.addErrors(form, reason);
                 scope.$broadcast('show-errors-check-validity');
+                $('html, body').animate({ scrollTop: 0 }, 200);
             });
         }
     });
