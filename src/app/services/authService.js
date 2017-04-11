@@ -140,6 +140,19 @@ angular
             });
         };
 
+        _service.removeProfileOrganization = function (orgId) {
+            return _service.getUserProfile().then(function (profile) {
+                if (profile) {
+                    if (profile.organizations && profile.organizations.hasOwnProperty(orgId)) {
+                        delete profile.organizations[orgId];
+                        _userProfile = profile;
+                    }
+
+                    cryptoService.clearOrgKey(orgId);
+                }
+            });
+        };
+
         _service.updateProfileOrganization = function (org) {
             return _service.getUserProfile().then(function (profile) {
                 if (profile) {

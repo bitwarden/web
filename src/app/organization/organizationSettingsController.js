@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSettingsController', function ($scope, $state, apiService, toastr, authService) {
+    .controller('organizationSettingsController', function ($scope, $state, apiService, toastr, authService, $uibModal) {
         $scope.model = {};
         $scope.$on('$viewContentLoaded', function () {
             apiService.organizations.get({ id: $state.params.orgId }, function (org) {
@@ -19,5 +19,13 @@
                     toastr.success('Organization has been updated.', 'Success!');
                 });
             }).$promise;
+        };
+
+        $scope.delete = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationDelete.html',
+                controller: 'organizationDeleteController'
+            });
         };
     });

@@ -193,6 +193,16 @@ angular
             delete $sessionStorage.orgKeys;
         };
 
+        _service.clearOrgKey = function (orgId) {
+            if (_orgKeys.hasOwnProperty(orgId)) {
+                delete _orgKeys[orgId];
+            }
+
+            if ($sessionStorage.orgKeys.hasOwnProperty(orgId)) {
+                delete $sessionStorage.orgKeys[orgId];
+            }
+        };
+
         _service.clearKeys = function () {
             _service.clearKey();
             _service.clearKeyPair();
