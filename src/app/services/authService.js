@@ -103,7 +103,8 @@ angular
                             name: profile.Organizations[i].Name,
                             key: profile.Organizations[i].Key,
                             status: profile.Organizations[i].Status,
-                            type: profile.Organizations[i].Type
+                            type: profile.Organizations[i].Type,
+                            enabled: profile.Organizations[i].Enabled
                         };
                     }
 
@@ -130,7 +131,8 @@ angular
                         name: org.Name,
                         key: key,
                         status: 2, // 2 = Confirmed
-                        type: 0 // 0 = Owner
+                        type: 0, // 0 = Owner
+                        enabled: true
                     };
                     profile.organizations[o.id] = o;
 

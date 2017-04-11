@@ -115,10 +115,11 @@
         </div>
         <div class="list-group" ng-if="model.organizations && model.organizations.length">
             <a ng-repeat="org in model.organizations | orderBy: ['name']"
-               href="javascript:void(0)" ng-click="org.type !== 2 && viewOrganization(org.id)" class="list-group-item">
+               href="javascript:void(0)" ng-click="viewOrganization(org)" class="list-group-item">
                 <letter-avatar data="{{org.name}}" round="false" avwidth="25" avheight="25"
                                avclass="img-rounded" fontsize="10"></letter-avatar>
                 {{org.name}}
+                <span class="label bg-gray" ng-if="!org.enabled">DISABLED</span>
             </a>
         </div>
         <div class="box-footer">

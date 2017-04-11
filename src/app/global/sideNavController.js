@@ -1,7 +1,7 @@
 angular
     .module('bit.global')
 
-    .controller('sideNavController', function ($scope, $state, authService) {
+    .controller('sideNavController', function ($scope, $state, authService, toastr) {
         $scope.$state = $state;
         $scope.params = $state.params;
         $scope.orgs = [];
@@ -21,7 +21,8 @@ angular
             else {
                 var orgs = [];
                 for (var orgId in userProfile.organizations) {
-                    if (userProfile.organizations.hasOwnProperty(orgId)) {
+                    if (userProfile.organizations.hasOwnProperty(orgId) &&
+                        (userProfile.organizations[orgId].enabled || userProfile.organizations[orgId].type < 2)) { // 2 = User
                         orgs.push(userProfile.organizations[orgId]);
                     }
                 }
@@ -29,7 +30,12 @@ angular
             }
         });
 
-        $scope.viewOrganization = function (id) {
-            $state.go('backend.org.dashboard', { orgId: id });
+        $scope.viewOrganization = function (org) {
+            if (org.type === 2) { // 2 = User
+                toastr.error('You cannot manage this organization.');
+                return;
+            }
+
+            $state.go('backend.org.dashboard', { orgId: org.id });
         };
     });

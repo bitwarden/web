@@ -5,25 +5,25 @@
     </h1>
 </section>
 <section class="content">
+    <div class="callout callout-warning" ng-if="subscription && subscription.cancelled">
+        <h4><i class="fa fa-warning"></i> Cancelled</h4>
+        The subscription to this organization has been canceled.
+    </div>
+    <div class="callout callout-warning" ng-if="subscription && subscription.markedForCancel">
+        <h4><i class="fa fa-warning"></i> Pending Cancellation</h4>
+        <p>
+            The subscription to this organization has been marked for cancellation at the end of the
+            current billing period.
+        </p>
+        <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()">
+            Reinstate Plan
+        </button>
+    </div>
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Plan</h3>
         </div>
         <div class="box-body">
-            <div class="callout callout-warning" ng-if="subscription && subscription.cancelled">
-                <h4><i class="fa fa-warning"></i> Cancelled</h4>
-                The subscription to this organization has been canceled.
-            </div>
-            <div class="callout callout-warning" ng-if="subscription && subscription.markedForCancel">
-                <h4><i class="fa fa-warning"></i> Pending Cancellation</h4>
-                <p>
-                    The subscription to this organization has been marked for cancellation at the end of the
-                    current billing period.
-                </p>
-                <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()">
-                    Reinstate Plan
-                </button>
-            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <dl>

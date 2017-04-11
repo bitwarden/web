@@ -32,7 +32,8 @@
                             id: user.Organizations[i].Id,
                             name: user.Organizations[i].Name,
                             status: user.Organizations[i].Status,
-                            type: user.Organizations[i].Type
+                            type: user.Organizations[i].Type,
+                            enabled: user.Organizations[i].Enabled
                         });
                     }
 
@@ -73,8 +74,13 @@
             });
         };
 
-        $scope.viewOrganization = function (id) {
-            $state.go('backend.org.dashboard', { orgId: id });
+        $scope.viewOrganization = function (org) {
+            if (org.type === 2) { // 2 = User
+                toastr.error('You cannot manage this organization.');
+                return;
+            }
+
+            $state.go('backend.org.dashboard', { orgId: org.id });
         };
 
         $scope.twoFactor = function () {
