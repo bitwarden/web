@@ -7,6 +7,20 @@
 </div>
 <form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
     <div class="modal-body">
+        <div class="callout callout-default" ng-show="add">
+            <h4><i class="fa fa-dollar"></i> Note About Charges</h4>
+            <p>
+                Adding seats to your plan will result in adjustments to your billing totals and immediately charge your
+                payment method on file. The first charge will be prorated for the remainder of the current billing cycle.
+            </p>
+        </div>
+        <div class="callout callout-default" ng-show="!add">
+            <h4><i class="fa fa-dollar"></i> Note About Charges</h4>
+            <p>
+                Removing seats will result in adjustments to your billing totals that will be prorated as credits
+                to your next billing charge.
+            </p>
+        </div>
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occured</h4>
             <ul>

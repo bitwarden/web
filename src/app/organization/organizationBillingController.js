@@ -29,6 +29,23 @@
             });
         };
 
+        $scope.changePlan = function () {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationBillingChangePlan.html',
+                controller: 'organizationBillingChangePlanController',
+                resolve: {
+                    plan: function () {
+                        return $scope.plan;
+                    }
+                }
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
         $scope.adjustSeats = function (add) {
             var modal = $uibModal.open({
                 animation: true,
