@@ -14,6 +14,14 @@
             <label for="email">Name</label>
             <input type="text" id="name" name="Name" ng-model="subvault.name" class="form-control" required api-field />
         </div>
+        <div class="callout callout-default">
+            <h4><i class="fa fa-info-circle"></i> Note</h4>
+            <p>
+                Select "Users" from the listing options to manage existing users for this subvault. Associate new users by
+                managing the user's subvault access on the "People" page.
+            </p>
+            <p>You can associate logins to this subvault by sharing from "My vault".</p>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading">

@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultShareController', function ($scope, apiService, $uibModalInstance, authService, cipherService, loginId, $analytics) {
+    .controller('vaultShareController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
+        loginId, $analytics, $state) {
         $analytics.eventTrack('vaultShareController', { category: 'Modal' });
         $scope.model = {};
         $scope.login = {};
@@ -30,7 +31,7 @@
                     setFirstOrg = false;
 
                 for (var i in profile.organizations) {
-                    if (profile.organizations.hasOwnProperty(i)) {
+                    if (profile.organizations.hasOwnProperty(i) && profile.organizations[i].enabled) {
                         orgs.push({
                             id: profile.organizations[i].id,
                             name: profile.organizations[i].name
@@ -110,5 +111,11 @@
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
+        };
+
+        $scope.createOrg = function () {
+            $state.go('backend.user.settingsCreateOrg').then(function () {
+                $uibModalInstance.dismiss('cancel');
+            });
         };
     });
