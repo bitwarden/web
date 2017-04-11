@@ -70,7 +70,15 @@
 
                 $analytics.eventTrack('Created Organization');
                 authService.addProfileOrganizationOwner(result, shareKey);
-                $state.go('backend.org.dashboard', { orgId: result.Id }).then(function () {
+                authService.refreshAccessToken().then(function () {
+                    goToOrg(result.Id);
+                }, function () {
+                    goToOrg(result.Id);
+                });
+            }
+
+            function goToOrg(id) {
+                $state.go('backend.org.dashboard', { orgId: id }).then(function () {
                     toastr.success('Your new organization is ready to go!', 'Organization Created');
                 });
             }

@@ -10,7 +10,7 @@ angular
             whiteListedDomains: ['api.bitwarden.com', 'localhost']
         });
         var refreshPromise;
-        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, apiService,
+        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, authService,
             jwtHelper, $q) {
             if (options.url.indexOf(appSettings.apiUri) !== 0) {
                 return;
@@ -24,28 +24,15 @@ angular
             if (!token) {
                 return;
             }
-
+            
             if (!tokenService.tokenNeedsRefresh(token)) {
                 return token;
             }
 
-            var refreshToken = tokenService.getRefreshToken();
-            if (!refreshToken) {
-                return;
-            }
-
-            var deferred = $q.defer();
-            apiService.identity.token({
-                grant_type: 'refresh_token',
-                client_id: 'web',
-                refresh_token: refreshToken
-            }, function (response) {
-                tokenService.setToken(response.access_token);
-                tokenService.setRefreshToken(response.refresh_token);
+            refreshPromise = authService.refreshAccessToken().then(function (newToken) {
                 refreshPromise = null;
-                deferred.resolve(response.access_token);
+                return newToken || token;
             });
-            refreshPromise = deferred.promise;
             return refreshPromise;
         };
 

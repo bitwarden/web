@@ -168,5 +168,22 @@ angular
             return tokenService.getToken() !== null;
         };
 
+        _service.refreshAccessToken = function () {
+            var refreshToken = tokenService.getRefreshToken();
+            if (!refreshToken) {
+                return null;
+            }
+
+            return apiService.identity.token({
+                grant_type: 'refresh_token',
+                client_id: 'web',
+                refresh_token: refreshToken
+            }).$promise.then(function (response) {
+                tokenService.setToken(response.access_token);
+                tokenService.setRefreshToken(response.refresh_token);
+                return response.access_token;
+            });
+        }
+
         return _service;
     });
