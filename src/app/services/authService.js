@@ -185,7 +185,7 @@ angular
                 tokenService.setRefreshToken(response.refresh_token);
                 return response.access_token;
             });
-        }
+        };
 
         return _service;
     });
