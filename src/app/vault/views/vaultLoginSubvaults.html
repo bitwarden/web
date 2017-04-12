@@ -4,7 +4,7 @@
 </div>
 <form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
     <div class="modal-body">
-        <p>This login is shared with the following subvaults.</p>
+        <p>Edit the subvaults that this subvault is being shared with.</p>
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occured</h4>
             <ul>
@@ -14,7 +14,7 @@
         <div ng-show="loadingSubvaults && !subvaults.length">
             Loading...
         </div>
-        <div ng-show="!loadingSubvaults && !subvaults.length">
+        <div ng-show="!loadingSubvaults && !subvaults.length" class="callout callout-default">
             <p>No subvaults to manage.</p>
         </div>
         <div class="table-responsive" ng-show="subvaults.length" style="margin: 0;">
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading" ng-show="subvaults.length">
             <i class="fa fa-refresh fa-spin loading-icon" ng-show="form.$loading"></i>Save
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
