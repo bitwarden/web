@@ -232,7 +232,7 @@
                         }
 
                         logins.push({
-                            favorite: value.favorite && value.favorite !== '' && value.favorite !== '0',
+                            favorite: value.favorite && value.favorite !== '' && value.favorite !== '0' ? true : false,
                             uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password && value.password !== '' ? value.password : null,
