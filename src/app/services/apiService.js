@@ -44,6 +44,7 @@
             putUpgrade: { url: _apiUri + '/organizations/:id/upgrade', method: 'POST', params: { id: '@id' } },
             putCancel: { url: _apiUri + '/organizations/:id/cancel', method: 'POST', params: { id: '@id' } },
             putReinstate: { url: _apiUri + '/organizations/:id/reinstate', method: 'POST', params: { id: '@id' } },
+            postLeave: { url: _apiUri + '/organizations/:id/leave', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 

@@ -76,11 +76,33 @@
 
         $scope.viewOrganization = function (org) {
             if (org.type === 2) { // 2 = User
+                scrollToTop();
                 toastr.error('You cannot manage this organization.');
                 return;
             }
 
             $state.go('backend.org.dashboard', { orgId: org.id });
+        };
+
+        $scope.leaveOrganization = function (org) {
+            if (!confirm('Are you sure you want to leave this organization (' + org.name + ')?')) {
+                return;
+            }
+
+            apiService.organizations.postLeave({ id: org.id }, {}, function (response) {
+                authService.refreshAccessToken().then(function () {
+                    var index = $scope.model.organizations.indexOf(org);
+                    if (index > -1) {
+                        $scope.model.organizations.splice(index, 1);
+                    }
+
+                    toastr.success('You have left the organization.');
+                    scrollToTop();
+                });
+            }, function (error) {
+                toastr.error('Unable to leave this organization.');
+                scrollToTop();
+            });
         };
 
         $scope.twoFactor = function () {
@@ -114,4 +136,8 @@
                 controller: 'settingsDeleteController'
             });
         };
+
+        function scrollToTop() {
+            $('html, body').animate({ scrollTop: 0 }, 200);
+        }
     });

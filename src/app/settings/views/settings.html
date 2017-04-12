@@ -114,13 +114,26 @@
             No organizations yet for your account.
         </div>
         <div class="list-group" ng-if="model.organizations && model.organizations.length">
-            <a ng-repeat="org in model.organizations | orderBy: ['name']"
-               href="javascript:void(0)" ng-click="viewOrganization(org)" class="list-group-item">
-                <letter-avatar data="{{org.name}}" round="false" avwidth="25" avheight="25"
-                               avclass="img-rounded" fontsize="10"></letter-avatar>
-                {{org.name}}
-                <span class="label bg-gray" ng-if="!org.enabled">DISABLED</span>
-            </a>
+            <div class="list-group-item" ng-repeat="org in model.organizations | orderBy: ['name']">
+                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                    <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                        <i class="fa fa-cog"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li>
+                            <a href="javascript:void(0)" ng-click="leaveOrganization(org)" class="text-red">
+                                <i class="fa fa-fw fa-remove"></i> Leave
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="javascript:void(0)" ng-click="viewOrganization(org)">
+                    <letter-avatar data="{{org.name}}" round="false" avwidth="25" avheight="25"
+                                   avclass="img-rounded" fontsize="10"></letter-avatar>
+                    {{org.name}}
+                    <span class="label bg-gray" ng-if="!org.enabled">DISABLED</span>
+                </a>
+            </div>
         </div>
         <div class="box-footer">
             <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-flat">
