@@ -5,19 +5,40 @@
         $analytics.eventTrack('toolsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
-            apiService.logins.list({ expand: ['folder'] }, function (logins) {
-                try {
-                    var decLogins = cipherService.decryptLogins(logins.Data);
+            var decLogins = [],
+                decFolders = [];
 
+            var folderPromise = apiService.folders.list({}, function (folders) {
+                decFolders = cipherService.decryptFolders(folders.Data);
+            }).$promise;
+
+            var loginsPromise = apiService.logins.list({}, function (logins) {
+                decLogins = cipherService.decryptLogins(logins.Data);
+            }).$promise;
+
+            $q.all([folderPromise, loginsPromise]).then(function () {
+                if (!decLogins.length) {
+                    toastr.error('Nothing to export.', 'Error!');
+                    $scope.close();
+                    return;
+                }
+
+                var foldersDict = {};
+                for (var i = 0; i < decFolders.length; i++) {
+                    foldersDict[decFolders[i].id] = decFolders[i];
+                }
+
+                try {
                     var exportLogins = [];
-                    for (var i = 0; i < decLogins.length; i++) {
+                    for (i = 0; i < decLogins.length; i++) {
                         var login = {
                             name: decLogins[i].name,
                             uri: decLogins[i].uri,
                             username: decLogins[i].username,
                             password: decLogins[i].password,
                             notes: decLogins[i].notes,
-                            folder: decLogins[i].folder ? decLogins[i].folder.name : null,
+                            folder: decLogins[i].folderId && (decLogins[i].folderId in foldersDict) ?
+                                foldersDict[decLogins[i].folderId].name : null,
                             favorite: decLogins[i].favorite ? 1 : null
                         };
 

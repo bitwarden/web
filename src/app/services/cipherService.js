@@ -37,12 +37,6 @@ angular
                 notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null
             };
 
-            if (encryptedLogin.Folder) {
-                login.folder = {
-                    name: cryptoService.decrypt(encryptedLogin.Folder.Name)
-                };
-            }
-
             return login;
         };
 
