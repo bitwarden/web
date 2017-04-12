@@ -32,9 +32,10 @@
                     return cipher;
                 }
 
-                return;
+                return null;
             }).then(function (cipher) {
-                if (!cipher.Edit) {
+                if (!cipher) {
+                    $scope.loadingSubvaults = false;
                     return;
                 }
 
