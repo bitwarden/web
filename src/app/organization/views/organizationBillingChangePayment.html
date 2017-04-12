@@ -15,10 +15,10 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group" show-errors>
                     <label for="card_number">Card Number</label>
-                    <input type="text" id="card_number" name="card_number" ng-model="card.number" class="form-control"
-                           cc-number cc-eager-type required />
+                    <input type="text" id="card_number" name="card_number" ng-model="model.card.number"
+                           class="form-control" cc-number required api-field />
                 </div>
             </div>
         </div>
@@ -32,9 +32,10 @@
         </ul>
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group">
+                <div class="form-group" show-errors>
                     <label for="exp_month">Expiration Month</label>
-                    <select id="exp_month" class="form-control" ng-model="card.exp_month" required cc-exp-month>
+                    <select id="exp_month" class="form-control" ng-model="model.card.exp_month" required cc-exp-month
+                            name="exp_month" api-field>
                         <option value="">-- Select --</option>
                         <option value="01">01 - January</option>
                         <option value="02">02 - February</option>
@@ -52,9 +53,10 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
+                <div class="form-group" show-errors>
                     <label for="exp_year">Expiration Year</label>
-                    <select id="exp_year" class="form-control" ng-model="card.exp_year" required cc-exp-year>
+                    <select id="exp_year" class="form-control" ng-model="model.card.exp_year" required cc-exp-year
+                            name="exp_year" api-field>
                         <option value="">-- Select --</option>
                         <option value="17">2017</option>
                         <option value="18">2018</option>
@@ -68,18 +70,19 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
+                <div class="form-group" show-errors>
                     <label for="cvc">CVC <i class="fa fa-question-circle"></i></label>
-                    <input type="text" id="cvc" ng-model="card.cvc" class="form-control"
-                           cc-type="number.$ccType" cc-cvc required />
+                    <input type="text" id="cvc" ng-model="model.card.cvc" class="form-control" name="cvc"
+                           cc-type="number.$ccType" cc-cvc required api-field />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <div class="form-group">
+                <div class="form-group" show-errors>
                     <label for="address_country">Country</label>
-                    <select id="address_country" class="form-control" ng-model="card.address_country" required>
+                    <select id="address_country" class="form-control" ng-model="model.card.address_country"
+                            required name="address_country" api-field>
                         <option value="">-- Select --</option>
                         <option value="US">United States</option>
                         <option value="CN">China</option>
@@ -335,11 +338,11 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="form-group">
+                <div class="form-group" show-errors>
                     <label for="address_zip"
-                           ng-bind="card.address_country === 'US' ? 'Zip Code' : 'Postal Code'"></label>
-                    <input type="text" id="address_zip" ng-model="card.address_zip"
-                           class="form-control" required />
+                           ng-bind="model.card.address_country === 'US' ? 'Zip Code' : 'Postal Code'"></label>
+                    <input type="text" id="address_zip" ng-model="model.card.address_zip"
+                           class="form-control" required name="address_zip" api-field />
                 </div>
             </div>
         </div>
