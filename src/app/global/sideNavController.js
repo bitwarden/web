@@ -38,4 +38,8 @@ angular
 
             $state.go('backend.org.dashboard', { orgId: org.id });
         };
+
+        $scope.isOrgOwner = function (org) {
+            return org.type === 0;
+        };
     });

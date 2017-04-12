@@ -46,12 +46,12 @@
                     <i class="fa fa-share-alt fa-fw"></i> <span>Subvaults</span>
                 </a>
             </li>
-            <li ng-class="{active: $state.is('backend.org.billing')}">
+            <li ng-class="{active: $state.is('backend.org.billing')}" ng-if="isOrgOwner(orgProfile)">
                 <a ui-sref="backend.org.billing({orgId: params.orgId})">
                     <i class="fa fa-credit-card fa-fw"></i> <span>Billing</span>
                 </a>
             </li>
-            <li ng-class="{active: $state.is('backend.org.settings')}">
+            <li ng-class="{active: $state.is('backend.org.settings')}" ng-if="isOrgOwner(orgProfile)">
                 <a ui-sref="backend.org.settings({orgId: params.orgId})">
                     <i class="fa fa-gears fa-fw"></i> <span>Settings</span>
                 </a>
