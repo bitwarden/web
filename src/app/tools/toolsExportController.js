@@ -17,7 +17,8 @@
                             username: decLogins[i].username,
                             password: decLogins[i].password,
                             notes: decLogins[i].notes,
-                            folder: decLogins[i].folder ? decLogins[i].folder.name : null
+                            folder: decLogins[i].folder ? decLogins[i].folder.name : null,
+                            favorite: decLogins[i].favorite ? 1 : null
                         };
 
                         exportLogins.push(login);
