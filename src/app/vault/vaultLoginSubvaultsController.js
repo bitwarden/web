@@ -84,17 +84,25 @@
             return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
         };
 
-        $scope.submit = function (model) {
+        $scope.submit = function () {
             var request = {
-                subvaultIds: model.subvaultIds
+                subvaultIds: []
             };
 
-            $scope.submitPromise = apiService.ciphers.putSubvaults({ id: loginId }, request, function (response) {
-                $analytics.eventTrack('Edited Login Subvaults');
-                $uibModalInstance.close({
-                    action: 'subvaultsEdit'
+            for (var id in $scope.selectedSubvaults) {
+                if ($scope.selectedSubvaults.hasOwnProperty(id)) {
+                    request.subvaultIds.push(id);
+                }
+            }
+
+            $scope.submitPromise = apiService.ciphers.putSubvaults({ id: loginId }, request)
+                .$promise.then(function (response) {
+                    $analytics.eventTrack('Edited Login Subvaults');
+                    $uibModalInstance.close({
+                        action: 'subvaultsEdit',
+                        subvaultIds: request.subvaultIds
+                    });
                 });
-            }).$promise;
         };
 
         $scope.close = function () {

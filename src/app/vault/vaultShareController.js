@@ -103,7 +103,7 @@
                 }
             }
 
-            $scope.submitPromise = apiService.ciphers.move({ id: loginId }, request, function (response) {
+            $scope.submitPromise = apiService.ciphers.putShare({ id: loginId }, request, function (response) {
                 $analytics.eventTrack('Shared Login');
                 $uibModalInstance.close();
             }).$promise;

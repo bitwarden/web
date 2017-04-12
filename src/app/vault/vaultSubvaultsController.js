@@ -100,6 +100,23 @@
             });
         };
 
+        $scope.editSubvaults = function (login) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultLoginSubvaults.html',
+                controller: 'vaultLoginSubvaultsController',
+                resolve: {
+                    loginId: function () { return login.id; }
+                }
+            });
+
+            modal.result.then(function (response) {
+                if (response.subvaultIds) {
+                    login.subvaultIds = response.subvaultIds;
+                }
+            });
+        };
+
         function getFoldersPromise() {
             var deferred = $q.defer();
 
