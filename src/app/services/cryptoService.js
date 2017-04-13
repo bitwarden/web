@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('cryptoService', function ($sessionStorage, constants) {
+    .factory('cryptoService', function ($sessionStorage, constants, $q) {
         var _service = {},
             _key,
             _b64Key,
@@ -220,23 +220,30 @@ angular
             return key;
         };
 
-        _service.makeKeyPair = function (key, callback) {
+        _service.makeKeyPair = function (key) {
+            var deferred = $q.defer();
+
             forge.pki.rsa.generateKeyPair({ bits: 2048, workers: 2 }, function (error, keypair) {
                 if (error) {
-                    callback(null, null, error);
+                    deferred.reject(error);
                     return;
                 }
 
                 var privateKeyAsn1 = forge.pki.privateKeyToAsn1(keypair.privateKey);
                 var privateKeyPkcs8 = forge.pki.wrapRsaPrivateKey(privateKeyAsn1);
                 var privateKeyBytes = forge.asn1.toDer(privateKeyPkcs8).getBytes();
-                var privateKeyEncBytes = _service.encrypt(privateKeyBytes, key, 'raw');
+                var privateKeyEncCt = _service.encrypt(privateKeyBytes, key, 'raw');
 
                 var publicKeyAsn1 = forge.pki.publicKeyToAsn1(keypair.publicKey);
                 var publicKeyBytes = forge.asn1.toDer(publicKeyAsn1).getBytes();
 
-                callback(forge.util.encode64(publicKeyBytes), privateKeyEncBytes, null);
+                deferred.resolve({
+                    publicKey: forge.util.encode64(publicKeyBytes),
+                    privateKeyEnc: privateKeyEncCt
+                });
             });
+
+            return deferred.promise;
         };
 
         _service.makeShareKey = function () {

@@ -25,7 +25,8 @@ angular
             // TODO: device information one day?
 
             var deferred = $q.defer();
-            apiService.identity.token(request, function (response) {
+
+            apiService.identity.token(request).$promise.then(function (response) {
                 if (!response || !response.access_token) {
                     return;
                 }
@@ -33,14 +34,31 @@ angular
                 tokenService.setToken(response.access_token);
                 tokenService.setRefreshToken(response.refresh_token);
                 cryptoService.setKey(key);
+
                 if (response.PrivateKey) {
                     cryptoService.setPrivateKey(response.PrivateKey, key);
+                    return true;
+                }
+                else {
+                    return cryptoService.makeKeyPair(key);
+                }
+            }).then(function (keyResults) {
+                if (keyResults === true) {
+                    return;
                 }
 
-                _service.setUserProfile().then(function () {
-                    deferred.resolve();
-                });
+                cryptoService.setPrivateKey(keyResults.privateKeyEnc, key);
+                return apiService.accounts.putKeys({
+                    publicKey: keyResults.publicKey,
+                    encryptedPrivateKey: keyResults.privateKeyEnc
+                }).$promise;
+            }).then(function () {
+                return _service.setUserProfile();
+            }).then(function () {
+                deferred.resolve();
             }, function (error) {
+                _service.logOut();
+
                 if (error.status === 400 && error.data.TwoFactorProviders && error.data.TwoFactorProviders.length) {
                     deferred.resolve(error.data.TwoFactorProviders);
                 }

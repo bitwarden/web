@@ -32,27 +32,30 @@ angular
 
             var email = $scope.model.email.toLowerCase();
             var key = cryptoService.makeKey($scope.model.masterPassword, email);
-            cryptoService.makeKeyPair(key, function (publicKey, privateKeyEnc, errors) {
-                if (errors) {
-                    validationService.addError(form, null, 'Problem generating keys.', true);
-                    return;
-                }
 
+            $scope.registerPromise = cryptoService.makeKeyPair(key).then(function (result) {
                 var request = {
                     name: $scope.model.name,
                     email: email,
                     masterPasswordHash: cryptoService.hashPassword($scope.model.masterPassword, key),
                     masterPasswordHint: $scope.model.masterPasswordHint,
                     keys: {
-                        publicKey: publicKey,
-                        encryptedPrivateKey: privateKeyEnc
+                        publicKey: result.publicKey,
+                        encryptedPrivateKey: result.privateKeyEnc
                     }
                 };
 
-                $scope.registerPromise = apiService.accounts.register(request, function () {
-                    $scope.success = true;
-                    $analytics.eventTrack('Registered');
-                }).$promise;
+                return apiService.accounts.register(request);
+            }, function (errors) {
+                validationService.addError(form, null, 'Problem generating keys.', true);
+                return false;
+            }).then(function (result) {
+                if (result === false) {
+                    return;
+                }
+
+                $scope.success = true;
+                $analytics.eventTrack('Registered');
             });
         };
     });
