@@ -78,15 +78,15 @@
                     </li>
                 </ul>
             </li>
+            <li ng-class="{active: $state.is('backend.user.apps')}">
+                <a ui-sref="backend.user.apps">
+                    <i class="fa fa-cubes fa-fw"></i> <span>Get the Apps</span>
+                </a>
+            </li>
             <li>
                 <a href="https://help.bitwarden.com/" target="_blank"
                    analytics-on="click" analytics-event="Clicked Get Help">
                     <i class="fa fa-info-circle fa-fw"></i> <span>Get Help</span>
-                </a>
-            </li>
-            <li ng-class="{active: $state.is('backend.user.apps')}">
-                <a ui-sref="backend.user.apps">
-                    <i class="fa fa-cubes fa-fw"></i> <span>Get the Apps</span>
                 </a>
             </li>
             <li class="header">
