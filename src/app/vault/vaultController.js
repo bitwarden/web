@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q, $localStorage) {
+        cipherService, $q, $localStorage, $timeout) {
         $scope.logins = [];
         $scope.folders = [];
         $scope.loading = true;
@@ -22,7 +22,7 @@
                     decFolders.push(decFolder);
                 }
 
-                $scope.folders = decFolders;
+                $scope.folders = $filter('orderBy')(decFolders, folderSort);
             }).$promise;
 
             var cipherPromise = apiService.ciphers.list({}, function (ciphers) {
@@ -35,15 +35,52 @@
                     }
                 }
 
-                $scope.logins = decLogins;
+                $q.when(folderPromise).then(function () {
+                    angular.forEach($scope.folders, function (folderValue, folderIndex) {
+                        angular.forEach(decLogins, function (loginValue) {
+                            if (loginValue.favorite) {
+                                loginValue.sort = -1;
+                            }
+                            else if (loginValue.folderId == folderValue.id) {
+                                loginValue.sort = folderIndex;
+                            }
+                        });
+                    });
+
+                    decLogins = $filter('orderBy')(decLogins, ['sort', 'name', 'username']);
+
+                    var chunks = chunk(decLogins, 100);
+                    $scope.logins = chunks[0];
+                    var delay = 100;
+                    angular.forEach(chunks, function (value, index) {
+                        delay += 100;
+
+                        // skip the first chuck
+                        if (index > 0) {
+                            $timeout(function () {
+                                Array.prototype.push.apply($scope.logins, value);
+                            }, delay);
+                        }
+                    });
+                });
             }).$promise;
 
-            $q.all([folderPromise, cipherPromise]).then(function () {
+            $q.when(cipherPromise).then(function () {
                 $scope.loading = false;
             });
         });
 
-        $scope.folderSort = function (item) {
+        function chunk(arr, len) {
+            var chunks = [],
+                i = 0,
+                n = arr.length;
+            while (i < n) {
+                chunks.push(arr.slice(i, i += len));
+            }
+            return chunks;
+        }
+
+        function folderSort(item) {
             if (!item.id) {
                 return '';
             }
