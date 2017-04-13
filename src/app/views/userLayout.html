@@ -55,7 +55,11 @@
                 </ul>
             </li>
             <li class="treeview" ng-class="{active: $state.is('backend.user.subvaults')}">
-                <a ui-sref="backend.user.subvaults"><i class="fa fa-share-alt fa-fw"></i> <span>Subvaults</span></a>
+                <a ui-sref="backend.user.subvaults">
+
+                    <small class="label pull-right bg-orange">NEW</small>
+                    <i class="fa fa-share-alt fa-fw"></i> <span>Subvaults</span>
+                </a>
             </li>
             <li class="treeview" ng-class="{active: $state.is('backend.user.tools')}">
                 <a ui-sref="backend.user.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>
@@ -80,6 +84,7 @@
             </li>
             <li ng-class="{active: $state.is('backend.user.apps')}">
                 <a ui-sref="backend.user.apps">
+                    <small class="label pull-right bg-green">FREE</small>
                     <i class="fa fa-cubes fa-fw"></i> <span>Get the Apps</span>
                 </a>
             </li>
