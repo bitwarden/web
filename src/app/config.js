@@ -110,6 +110,12 @@ angular
                 controller: 'toolsController',
                 data: { pageTitle: 'Tools' }
             })
+            .state('backend.user.apps', {
+                url: '^/apps',
+                templateUrl: 'app/views/apps.html',
+                controller: 'appsController',
+                data: { pageTitle: 'Get the Apps' }
+            })
             .state('backend.org', {
                 templateUrl: 'app/views/organizationLayout.html',
                 abstract: true
