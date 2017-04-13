@@ -125,10 +125,10 @@ angular
                 property = cryptoService.decrypt(property, key);
             }
             catch (err) {
-                property = '[error: cannot decrypt]';
+                property = null;
             }
 
-            return property;
+            return property || '[error: cannot decrypt]';
         };
 
         _service.encryptLogins = function (unencryptedLogins, key) {
