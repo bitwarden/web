@@ -244,7 +244,7 @@ form .btn .loading-icon {
 /* Callouts */
 
 .callout.callout-default {
-    &:extend(.bg-gray-light);
+    background-color: #fff;
     border-color: darken(@gray, 10%);
 
     a {
@@ -255,6 +255,14 @@ form .btn .loading-icon {
     a:active,
     a:focus {
         color: @link-hover-color;
+    }
+}
+
+.modal .callout.callout-default, .box .callout.callout-default {
+    &:extend(.bg-gray-light);
+
+    .btn-default:not(:hover) {
+        background-color: #ffffff;
     }
 }
 
@@ -292,6 +300,10 @@ form .btn .loading-icon {
     position: absolute;
     left: 10px;
     top: 5px;
+}
+
+.box-body p:last-child {
+    margin-bottom: 0;
 }
 
 /* Toastr */
