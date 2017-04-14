@@ -16,7 +16,6 @@
                 Favorites <small>{{favoriteLogins.length}} logins</small>
             </h3>
             <div class="box-tools">
-                <!--
                 <div class="btn-group" uib-dropdown>
                     <button type="button" class="btn btn-box-tool" uib-tooltip="Options" uib-dropdown-toggle>
                         <i class="fa fa-gear"></i>
@@ -30,7 +29,6 @@
                         </li>
                     </ul>
                 </div>
-                -->
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
                         ng-click="collapseExpand(null, true)">
                     <i class="fa" ng-class="{'fa-minus': !favoriteCollapsed, 'fa-plus': favoriteCollapsed}"></i>
@@ -47,7 +45,6 @@
                     <tbody>
                         <tr ng-repeat="login in favoriteLogins = (logins | filter: { favorite: true } |
                             filter: (main.searchVaultText || '')) track by login.id">
-                            <!--
                             <td style="width: 70px;">
                                 <div class="btn-group" uib-dropdown dropdown-append-to-body>
                                     <button type="button" class="btn btn-default" uib-dropdown-toggle>
@@ -77,7 +74,6 @@
                                     </ul>
                                 </div>
                             </td>
-                            -->
                             <td>
                                 <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
                                 <i class="fa fa-share-alt text-muted" uib-tooltip="Shared" ng-show="login.organizationId"></i>
@@ -136,7 +132,6 @@
                     <tbody>
                         <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } |
                             filter: (main.searchVaultText || '')) track by login.id">
-                            <!--
                             <td style="width: 70px;">
                                 <div class="btn-group" uib-dropdown dropdown-append-to-body>
                                     <button type="button" class="btn btn-default" uib-dropdown-toggle>
@@ -166,7 +161,6 @@
                                     </ul>
                                 </div>
                             </td>
-                            -->
                             <td>
                                 <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
                                 <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i>

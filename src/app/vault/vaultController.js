@@ -73,11 +73,11 @@
 
             $rootScope.vaultLogins = $filter('orderBy')(decLogins, ['sort', 'name', 'username']);
 
-            var chunks = chunk($rootScope.vaultLogins, 100);
+            var chunks = chunk($rootScope.vaultLogins, 300);
             $scope.logins = chunks[0];
-            var delay = 100;
+            var delay = 200;
             angular.forEach(chunks, function (value, index) {
-                delay += 100;
+                delay += 200;
 
                 // skip the first chuck
                 if (index > 0) {
