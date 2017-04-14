@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('authService', function (cryptoService, apiService, tokenService, $q, jwtHelper) {
+    .factory('authService', function (cryptoService, apiService, tokenService, $q, jwtHelper, $rootScope) {
         var _service = {},
             _userProfile = null;
 
@@ -74,6 +74,7 @@ angular
             tokenService.clearToken();
             tokenService.clearRefreshToken();
             cryptoService.clearKeys();
+            $rootScope.vaultFolders = $rootScope.vaultLogins = null;
             _userProfile = null;
         };
 
