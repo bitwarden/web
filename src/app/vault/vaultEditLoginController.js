@@ -2,9 +2,9 @@
     .module('bit.vault')
 
     .controller('vaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, loginId, folders, $analytics) {
+        passwordService, loginId, $analytics, $rootScope) {
         $analytics.eventTrack('vaultEditLoginController', { category: 'Modal' });
-        $scope.folders = folders;
+        $scope.folders = $rootScope.vaultFolders;
         $scope.login = {};
         $scope.readOnly = false;
 

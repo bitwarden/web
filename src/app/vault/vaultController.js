@@ -2,27 +2,34 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q, $localStorage, $timeout) {
-        $scope.logins = [];
-        $scope.folders = [];
+        cipherService, $q, $localStorage, $timeout, $rootScope) {
         $scope.loading = true;
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
 
         $scope.$on('$viewContentLoaded', function () {
+            if ($rootScope.vaultFolders && $rootScope.vaultLogins) {
+                $scope.loading = false;
+                loadFolderData($rootScope.vaultFolders);
+                loadLoginData($rootScope.vaultLogins);
+                return;
+            }
+
+            loadDataFromServer();
+        });
+
+        function loadDataFromServer() {
             var folderPromise = apiService.folders.list({}, function (folders) {
                 var decFolders = [{
                     id: null,
-                    name: 'No Folder',
-                    collapsed: $localStorage.collapsedFolders && 'none' in $localStorage.collapsedFolders
+                    name: 'No Folder'
                 }];
 
                 for (var i = 0; i < folders.Data.length; i++) {
                     var decFolder = cipherService.decryptFolderPreview(folders.Data[i]);
-                    decFolder.collapsed = $localStorage.collapsedFolders && decFolder.id in $localStorage.collapsedFolders;
                     decFolders.push(decFolder);
                 }
 
-                $scope.folders = $filter('orderBy')(decFolders, folderSort);
+                loadFolderData(decFolders);
             }).$promise;
 
             var cipherPromise = apiService.ciphers.list({}, function (ciphers) {
@@ -36,39 +43,54 @@
                 }
 
                 $q.when(folderPromise).then(function () {
-                    angular.forEach($scope.folders, function (folderValue, folderIndex) {
-                        angular.forEach(decLogins, function (loginValue) {
-                            if (loginValue.favorite) {
-                                loginValue.sort = -1;
-                            }
-                            else if (loginValue.folderId == folderValue.id) {
-                                loginValue.sort = folderIndex;
-                            }
-                        });
-                    });
-
-                    decLogins = $filter('orderBy')(decLogins, ['sort', 'name', 'username']);
-
-                    var chunks = chunk(decLogins, 100);
-                    $scope.logins = chunks[0];
-                    var delay = 100;
-                    angular.forEach(chunks, function (value, index) {
-                        delay += 100;
-
-                        // skip the first chuck
-                        if (index > 0) {
-                            $timeout(function () {
-                                Array.prototype.push.apply($scope.logins, value);
-                            }, delay);
-                        }
-                    });
+                    loadLoginData(decLogins);
                 });
             }).$promise;
 
-            $q.when(cipherPromise).then(function () {
+            $q.all([cipherPromise, folderPromise]).then(function () {
                 $scope.loading = false;
             });
-        });
+        }
+
+        function loadFolderData(decFolders) {
+            $rootScope.vaultFolders = $filter('orderBy')(decFolders, folderSort);
+        }
+
+        function loadLoginData(decLogins) {
+            angular.forEach($rootScope.vaultFolders, function (folderValue, folderIndex) {
+                folderValue.collapsed = $localStorage.collapsedFolders &&
+                    (folderValue.id || 'none') in $localStorage.collapsedFolders;
+
+                angular.forEach(decLogins, function (loginValue) {
+                    if (loginValue.favorite) {
+                        loginValue.sort = -1;
+                    }
+                    else if (loginValue.folderId == folderValue.id) {
+                        loginValue.sort = folderIndex;
+                    }
+                });
+            });
+
+            $rootScope.vaultLogins = $filter('orderBy')(decLogins, ['sort', 'name', 'username']);
+
+            var chunks = chunk($rootScope.vaultLogins, 100);
+            $scope.logins = chunks[0];
+            var delay = 100;
+            angular.forEach(chunks, function (value, index) {
+                delay += 100;
+
+                // skip the first chuck
+                if (index > 0) {
+                    $timeout(function () {
+                        Array.prototype.push.apply($scope.logins, value);
+                    }, delay);
+                }
+            });
+        }
+
+        function sortScopedLoginData() {
+            $rootScope.vaultLogins = $scope.logins = $filter('orderBy')($rootScope.vaultLogins, ['name', 'username']);
+        }
 
         function chunk(arr, len) {
             var chunks = [],
@@ -108,35 +130,36 @@
                 templateUrl: 'app/vault/views/vaultEditLogin.html',
                 controller: 'vaultEditLoginController',
                 resolve: {
-                    loginId: function () { return login.id; },
-                    folders: getFoldersPromise()
+                    loginId: function () { return login.id; }
                 }
             });
 
             editModel.result.then(function (returnVal) {
                 var loginToUpdate;
                 if (returnVal.action === 'edit') {
-                    loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    loginToUpdate = $filter('filter')($rootScope.vaultLogins, { id: returnVal.data.id }, true);
                     if (loginToUpdate && loginToUpdate.length > 0) {
                         loginToUpdate[0].folderId = returnVal.data.folderId;
                         loginToUpdate[0].name = returnVal.data.name;
                         loginToUpdate[0].username = returnVal.data.username;
                         loginToUpdate[0].favorite = returnVal.data.favorite;
+
+                        sortScopedLoginData();
                     }
                 }
                 else if (returnVal.action === 'partialEdit') {
-                    loginToUpdate = $filter('filter')($scope.logins, { id: returnVal.data.id }, true);
+                    loginToUpdate = $filter('filter')($rootScope.vaultLogins, { id: returnVal.data.id }, true);
                     if (loginToUpdate && loginToUpdate.length > 0) {
                         loginToUpdate[0].folderId = returnVal.data.folderId;
                         loginToUpdate[0].favorite = returnVal.data.favorite;
                     }
                 }
                 else if (returnVal.action === 'delete') {
-                    var loginToDelete = $filter('filter')($scope.logins, { id: returnVal.data }, true);
+                    var loginToDelete = $filter('filter')($rootScope.vaultLogins, { id: returnVal.data }, true);
                     if (loginToDelete && loginToDelete.length > 0) {
-                        var index = $scope.logins.indexOf(loginToDelete[0]);
+                        var index = $rootScope.vaultLogins.indexOf(loginToDelete[0]);
                         if (index > -1) {
-                            $scope.logins.splice(index, 1);
+                            $rootScope.vaultLogins.splice(index, 1);
                         }
                     }
                 }
@@ -153,14 +176,14 @@
                 templateUrl: 'app/vault/views/vaultAddLogin.html',
                 controller: 'vaultAddLoginController',
                 resolve: {
-                    folders: getFoldersPromise(),
                     selectedFolder: function () { return folder; },
                     checkedFavorite: function () { return favorite; }
                 }
             });
 
             addModel.result.then(function (addedLogin) {
-                $scope.logins.push(addedLogin);
+                $rootScope.vaultLogins.push(addedLogin);
+                sortScopedLoginData();
             });
         };
 
@@ -170,9 +193,9 @@
             }
 
             apiService.logins.del({ id: login.id }, function () {
-                var index = $scope.logins.indexOf(login);
+                var index = $rootScope.vaultLogins.indexOf(login);
                 if (index > -1) {
-                    $scope.logins.splice(index, 1);
+                    $rootScope.vaultLogins.splice(index, 1);
                 }
             });
         };
@@ -189,7 +212,7 @@
             });
 
             editModel.result.then(function (editedFolder) {
-                var folder = $filter('filter')($scope.folders, { id: editedFolder.id }, true);
+                var folder = $filter('filter')($rootScope.vaultFolders, { id: editedFolder.id }, true);
                 if (folder && folder.length > 0) {
                     folder[0].name = editedFolder.name;
                 }
@@ -209,7 +232,8 @@
             });
 
             addModel.result.then(function (addedFolder) {
-                $scope.folders.push(addedFolder);
+                $rootScope.vaultFolders.push(addedFolder);
+                loadFolderData($rootScope.vaultFolders);
             });
         };
 
@@ -219,20 +243,20 @@
             }
 
             apiService.folders.del({ id: folder.id }, function () {
-                var index = $scope.folders.indexOf(folder);
+                var index = $rootScope.vaultFolders.indexOf(folder);
                 if (index > -1) {
-                    $scope.folders.splice(index, 1);
+                    $rootScope.vaultFolders.splice(index, 1);
                 }
             });
         };
 
         $scope.canDeleteFolder = function (folder) {
-            if (!folder || !folder.id) {
+            if (!folder || !folder.id || !$rootScope.vaultLogins) {
                 return false;
             }
 
-            var logins = $filter('filter')($scope.logins, { folderId: folder.id });
-            return logins.length === 0;
+            var logins = $filter('filter')($rootScope.vaultLogins, { folderId: folder.id });
+            return logins && logins.length === 0;
         };
 
         $scope.share = function (login) {
@@ -264,10 +288,4 @@
 
             });
         };
-
-        function getFoldersPromise() {
-            var deferred = $q.defer();
-            deferred.resolve($scope.folders);
-            return deferred.promise;
-        }
     });

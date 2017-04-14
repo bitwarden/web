@@ -2,9 +2,9 @@
     .module('bit.vault')
 
     .controller('vaultAddLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, folders, selectedFolder, $analytics, checkedFavorite) {
+        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope) {
         $analytics.eventTrack('vaultAddLoginController', { category: 'Modal' });
-        $scope.folders = folders;
+        $scope.folders = $rootScope.vaultFolders;
         $scope.login = {
             folderId: selectedFolder ? selectedFolder.id : null,
             favorite: checkedFavorite === true
