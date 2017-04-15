@@ -269,8 +269,8 @@
                 }
             });
 
-            modal.result.then(function () {
-
+            modal.result.then(function (orgId) {
+                login.organizationId = orgId;
             });
         };
 
