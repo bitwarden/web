@@ -54,7 +54,8 @@ angular
 
         // Append dropdown menus to body
         var bodyScrollbarWidth,
-            bodyDropdownMenu;
+            bodyDropdownMenu,
+            bodyDropdownMenuParent;
         var dropdownHelpers = {
             scrollbarWidth: function () {
                 if (!bodyScrollbarWidth) {
@@ -76,7 +77,7 @@ angular
         };
 
         $(window).on('show.bs.dropdown', function (e) {
-            var target = $(e.target);
+            var target = bodyDropdownMenuParent = $(e.target);
             if (!target.hasClass('dropdown-to-body')) {
                 return true;
             }
@@ -110,12 +111,24 @@ angular
         });
 
         $(window).on('hide.bs.dropdown', function (e) {
-            var target = $(e.target);
-            if (!target.hasClass('dropdown-to-body')) {
+            if (!bodyDropdownMenu) {
                 return true;
             }
 
-            target.append(bodyDropdownMenu.detach());
+            $(e.target).append(bodyDropdownMenu.detach());
             bodyDropdownMenu.hide();
+            bodyDropdownMenu = null;
+            bodyDropdownMenuParent = null;
+        });
+
+        $scope.$on('removeBodyDropdownMenu', function (event, args) {
+            if (!bodyDropdownMenu && !bodyDropdownMenuParent) {
+                return true;
+            }
+
+            bodyDropdownMenuParent.append(bodyDropdownMenu.detach());
+            bodyDropdownMenu.hide();
+            bodyDropdownMenu = null;
+            bodyDropdownMenuParent = null;
         });
     });
