@@ -14,7 +14,7 @@
                     <button type="button" class="btn btn-box-tool" ng-click="addEdit(null)">
                         <i class="fa fa-plus-circle"></i> Add New
                     </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
@@ -25,10 +25,10 @@
                         <tbody ng-if="equivalentDomains.length">
                             <tr ng-repeat="customDomain in equivalentDomains track by $index">
                                 <td style="width: 80px; min-width: 80px;">
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Edit" ng-click="addEdit($index)">
+                                    <button type="button" class="btn btn-link btn-table" title="Edit" ng-click="addEdit($index)">
                                         <i class="fa fa-lg fa-pencil"></i>
                                     </button>
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Delete" ng-click="delete($index)">
+                                    <button type="button" class="btn btn-link btn-table" title="Delete" ng-click="delete($index)">
                                         <i class="fa fa-lg fa-trash"></i>
                                     </button>
                                 </td>
@@ -56,7 +56,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Global Equivalent Domains</h3>
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
@@ -67,15 +67,15 @@
                         <tbody ng-if="globalEquivalentDomains.length">
                             <tr ng-repeat="globalDomain in globalEquivalentDomains">
                                 <td style="width: 80px; min-width: 80px;">
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Exclude"
+                                    <button type="button" class="btn btn-link btn-table" title="Exclude"
                                             ng-if="!globalDomain.excluded" ng-click="toggleExclude(globalDomain)">
                                         <i class="fa fa-lg fa-ban"></i>
                                     </button>
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Include"
+                                    <button type="button" class="btn btn-link btn-table" title="Include"
                                             ng-if="globalDomain.excluded" ng-click="toggleExclude(globalDomain)">
                                         <i class="fa fa-lg fa-plus"></i>
                                     </button>
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Customize"
+                                    <button type="button" class="btn btn-link btn-table" title="Customize"
                                             ng-click="customize(globalDomain)">
                                         <i class="fa fa-lg fa-cut"></i>
                                     </button>

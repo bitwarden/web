@@ -35,7 +35,7 @@
                         <div ng-if="user.name"><small class="text-muted">{{user.name}}</small></div>
                     </td>
                     <td style="width: 40px;" align="center">
-                        <i class="fa fa-pencil-square-o" ng-show="!user.readOnly" uib-tooltip="Can Edit"></i>
+                        <i class="fa fa-pencil-square-o" ng-show="!user.readOnly" title="Can Edit"></i>
                     </td>
                     <td style="width: 100px;">
                         {{user.type | enumName: 'OrgUserType'}}

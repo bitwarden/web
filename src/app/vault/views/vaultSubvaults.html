@@ -29,7 +29,7 @@
                 {{subvault.name}} <small>{{subvaultLogins.length}} logins</small>
             </h3>
             <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
                         ng-click="collapseExpand(subvault)">
                     <i class="fa" ng-class="{'fa-minus': !subvault.collapsed, 'fa-plus': subvault.collapsed}"></i>
                 </button>
@@ -74,7 +74,7 @@
                             </td>
                             <td>
                                 <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i>
+                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>

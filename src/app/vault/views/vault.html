@@ -28,7 +28,7 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
                         ng-click="collapseExpand(null, true)">
                     <i class="fa" ng-class="{'fa-minus': !favoriteCollapsed, 'fa-plus': favoriteCollapsed}"></i>
                 </button>
@@ -75,7 +75,7 @@
                             </td>
                             <td>
                                 <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-share-alt text-muted" uib-tooltip="Shared" ng-show="login.organizationId"></i>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>
@@ -114,7 +114,7 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" uib-tooltip="Collapse/Expand"
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
                         ng-click="collapseExpand(folder)">
                     <i class="fa" ng-class="{'fa-minus': !folder.collapsed, 'fa-plus': folder.collapsed}"></i>
                 </button>
@@ -161,8 +161,8 @@
                             </td>
                             <td>
                                 <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-star text-muted" uib-tooltip="Favorite" ng-show="login.favorite"></i>
-                                <i class="fa fa-share-alt text-muted" uib-tooltip="Shared" ng-show="login.organizationId"></i>
+                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>
