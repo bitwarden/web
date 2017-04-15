@@ -1,7 +1,7 @@
 angular
     .module('bit.global')
 
-    .controller('mainController', function ($scope, $state, authService, appSettings, toastr) {
+    .controller('mainController', function ($scope, $state, authService, appSettings, toastr, $window, $document) {
         var vm = this;
         vm.bodyClass = '';
         vm.searchVaultText = null;
@@ -53,83 +53,52 @@ angular
         };
 
         // Append dropdown menus to body
-        var bodyScrollbarWidth;
-        var bodyDropdownMenu;
+        var bodyScrollbarWidth,
+            bodyDropdownMenu;
         var dropdownHelpers = {
-            scrollParent: function (elem, includeHidden, includeSelf) {
-                var overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/;
-                var documentEl = $(document).documentElement;
-                var elemStyle = window.getComputedStyle(elem);
-
-                if (includeSelf && overflowRegex.test(elemStyle.overflow + elemStyle.overflowY + elemStyle.overflowX)) {
-                    return elem;
-                }
-
-                var excludeStatic = elemStyle.position === 'absolute';
-                var scrollParent = elem.parentElement || documentEl;
-
-                if (scrollParent === documentEl || elemStyle.position === 'fixed') {
-                    return documentEl;
-                }
-
-                while (scrollParent.parentElement && scrollParent !== documentEl) {
-                    var spStyle = window.getComputedStyle(scrollParent);
-                    if (excludeStatic && spStyle.position !== 'static') {
-                        excludeStatic = false;
-                    }
-
-                    if (!excludeStatic && overflowRegex.test(spStyle.overflow + spStyle.overflowY + spStyle.overflowX)) {
-                        break;
-                    }
-                    scrollParent = scrollParent.parentElement;
-                }
-
-                return scrollParent;
-            },
             scrollbarWidth: function () {
                 if (!bodyScrollbarWidth) {
                     var bodyElem = $('body');
                     bodyElem.addClass('bit-position-body-scrollbar-measure');
-                    bodyScrollbarWidth = window.innerWidth - bodyElem[0].clientWidth;
+                    bodyScrollbarWidth = $window.innerWidth - bodyElem[0].clientWidth;
                     bodyScrollbarWidth = isFinite(bodyScrollbarWidth) ? bodyScrollbarWidth : 0;
                     bodyElem.removeClass('bit-position-body-scrollbar-measure');
                 }
 
                 return bodyScrollbarWidth;
             },
-            scrollbarPadding: function (elem) {
-                elem = elem[0];
-                var scrollParent = dropdownHelpers.scrollParent(elem, false, true);
-                var scrollbarWidth = dropdownHelpers.scrollbarWidth();
-
+            scrollbarInfo: function () {
                 return {
-                    scrollbarWidth: scrollbarWidth,
-                    widthOverflow: scrollParent.scrollWidth > scrollParent.clientWidth,
-                    heightOverflow: scrollParent.scrollHeight > scrollParent.clientHeight
+                    width: dropdownHelpers.scrollbarWidth(),
+                    visible: $document.height() > $($window).height()
                 };
             }
         };
 
-        $('.dropdown-menu-body').on('show.bs.dropdown', function (e) {
-            bodyScrollbarWidth = $(e.target).find('.dropdown-menu');
-            var body = $('body');
-            body.append(bodyScrollbarWidth.detach());
+        $(window).on('show.bs.dropdown', function (e) {
+            var target = $(e.target);
+            if (!target.hasClass('dropdown-to-body')) {
+                return true;
+            }
 
-            var eOffset = $(e.target).offset();
+            bodyDropdownMenu = target.find('.dropdown-menu');
+            var body = $('body');
+            body.append(bodyDropdownMenu.detach());
+
+            var eOffset = target.offset();
             var css = {
                 display: 'block',
-                top: eOffset.top + $(e.target).outerHeight()
+                top: eOffset.top + target.outerHeight()
             };
 
-            if (bodyScrollbarWidth.hasClass('dropdown-menu-right')) {
-                var scrollbarPadding = dropdownHelpers.scrollbarPadding(body);
+            if (bodyDropdownMenu.hasClass('dropdown-menu-right')) {
+                var scrollbarInfo = dropdownHelpers.scrollbarInfo();
                 var scrollbarWidth = 0;
-                if (scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
-                    scrollbarWidth = scrollbarPadding.scrollbarWidth;
+                if (scrollbarInfo.visible && scrollbarInfo.width) {
+                    scrollbarWidth = scrollbarInfo.width;
                 }
 
-                css.right = window.innerWidth - scrollbarWidth -
-                    (eOffset.left + $(e.target).prop('offsetWidth')) + 'px';
+                css.right = $window.innerWidth - scrollbarWidth - (eOffset.left + target.prop('offsetWidth')) + 'px';
                 css.left = 'auto';
             }
             else {
@@ -137,11 +106,16 @@ angular
                 css.right = 'auto';
             }
 
-            bodyScrollbarWidth.css(css);
+            bodyDropdownMenu.css(css);
         });
 
-        $('.dropdown-menu-body').on('hide.bs.dropdown', function (e) {
-            $(e.target).append(bodyScrollbarWidth.detach());
-            bodyScrollbarWidth.hide();
+        $(window).on('hide.bs.dropdown', function (e) {
+            var target = $(e.target);
+            if (!target.hasClass('dropdown-to-body')) {
+                return true;
+            }
+
+            target.append(bodyDropdownMenu.detach());
+            bodyDropdownMenu.hide();
         });
     });

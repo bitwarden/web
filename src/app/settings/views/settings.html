@@ -115,11 +115,11 @@
         </div>
         <div class="list-group" ng-if="model.organizations && model.organizations.length">
             <div class="list-group-item" ng-repeat="org in model.organizations | orderBy: ['name']">
-                <div class="btn-group">
+                <div class="btn-group dropdown-to-body">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-cog"></i> <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-body">
+                    <ul class="dropdown-menu">
                         <li>
                             <a href="javascript:void(0)" ng-click="leaveOrganization(org)" class="text-red">
                                 <i class="fa fa-fw fa-remove"></i> Leave

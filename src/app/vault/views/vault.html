@@ -20,7 +20,7 @@
                     <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-cog"></i> <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right dropdown-menu-body">
+                    <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <a href="#" ng-click="addLogin(null, true)">
                                 <i class="fa fa-fw fa-plus-circle"></i> Add Login
@@ -45,11 +45,11 @@
                         <tr ng-repeat="login in favoriteLogins = (logins | filter: { favorite: true } |
                             filter: (main.searchVaultText || '')) track by login.id">
                             <td style="width: 70px;">
-                                <div class="btn-group">
+                                <div class="btn-group dropdown-to-body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-body">
+                                    <ul class="dropdown-menu">
                                         <li>
                                             <a href="javascript:void(0)" ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
@@ -96,7 +96,7 @@
                     <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-cog"></i> <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right dropdown-menu-body">
+                    <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <a href="#" ng-click="addLogin(folder)">
                                 <i class="fa fa-fw fa-plus-circle"></i> Add Login
@@ -131,11 +131,11 @@
                         <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } |
                             filter: (main.searchVaultText || '')) track by login.id">
                             <td style="width: 70px;">
-                                <div class="btn-group">
+                                <div class="btn-group dropdown-to-body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-cog"></i> <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-body">
+                                    <ul class="dropdown-menu">
                                         <li>
                                             <a href="javascript:void(0)" ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
