@@ -77,7 +77,6 @@ angular
 
             return {
                 id: encryptedFolder.Id,
-                'type': 0,
                 name: cryptoService.decrypt(encryptedFolder.Name)
             };
         };
@@ -179,7 +178,6 @@ angular
 
             return {
                 id: unencryptedFolder.id,
-                'type': 0,
                 name: cryptoService.encrypt(unencryptedFolder.name, key)
             };
         };

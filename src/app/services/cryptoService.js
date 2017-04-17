@@ -116,14 +116,26 @@ angular
             return buffer.getBytes(16);
         };
 
-        _service.getPrivateKey = function () {
+        _service.getPrivateKey = function (outputEncoding) {
+            outputEncoding = outputEncoding || 'native';
+
             if (_privateKey) {
+                if (outputEncoding === 'raw') {
+                    var privateKeyAsn1 = forge.pki.privateKeyToAsn1(_privateKey);
+                    var privateKeyPkcs8 = forge.pki.wrapRsaPrivateKey(privateKeyAsn1);
+                    return forge.asn1.toDer(privateKeyPkcs8).getBytes();
+                }
+
                 return _privateKey;
             }
 
             if ($sessionStorage.privateKey) {
                 var privateKeyBytes = forge.util.decode64($sessionStorage.privateKey);
                 _privateKey = forge.pki.privateKeyFromAsn1(forge.asn1.fromDer(privateKeyBytes));
+
+                if (outputEncoding === 'raw') {
+                    return privateKeyBytes;
+                }
             }
 
             return _privateKey;

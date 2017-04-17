@@ -39,11 +39,21 @@
                     reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, newKey);
                 }).$promise;
 
+                var privateKey = cryptoService.getPrivateKey('raw'),
+                    reencryptedPrivateKey = null;
+                if (privateKey) {
+                    reencryptedPrivateKey = cryptoService.encrypt(privateKey, newKey, 'raw');
+                }
+
                 $q.all([loginsPromise, foldersPromise]).then(function () {
                     var request = {
                         masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
                         newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
-                        ciphers: reencryptedLogins.concat(reencryptedFolders)
+                        data: {
+                            ciphers: reencryptedLogins,
+                            folders: reencryptedFolders,
+                            privateKey: reencryptedPrivateKey
+                        }
                     };
 
                     $scope.savePromise = apiService.accounts.putPassword(request, function () {
