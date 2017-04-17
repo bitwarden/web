@@ -28,13 +28,22 @@
             $scope.processing = true;
 
             var reencryptedLogins = [];
-            var loginsPromise = apiService.logins.list({ dirty: false }, function (encryptedLogins) {
-                var unencryptedLogins = cipherService.decryptLogins(encryptedLogins.Data);
+            var loginsPromise = apiService.logins.list({}, function (encryptedLogins) {
+                var filteredEncryptedLogins = [];
+                for (var i = 0; i < encryptedLogins.Data.length; i++) {
+                    if (encryptedLogins.Data[i].OrganizationId) {
+                        continue;
+                    }
+
+                    filteredEncryptedLogins.push(encryptedLogins.Data[i]);
+                }
+
+                var unencryptedLogins = cipherService.decryptLogins(filteredEncryptedLogins);
                 reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, _newKey);
             }).$promise;
 
             var reencryptedFolders = [];
-            var foldersPromise = apiService.folders.list({ dirty: false }, function (encryptedFolders) {
+            var foldersPromise = apiService.folders.list({}, function (encryptedFolders) {
                 var unencryptedFolders = cipherService.decryptFolders(encryptedFolders.Data);
                 reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, _newKey);
             }).$promise;
@@ -66,7 +75,6 @@
                         toastr.success('Please log back in.', 'Email Changed');
                     });
                 }, function () {
-                    // TODO: recovery mode
                     $uibModalInstance.dismiss('cancel');
                     toastr.error('Something went wrong.', 'Oh No!');
                 }).$promise;
