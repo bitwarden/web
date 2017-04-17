@@ -5,12 +5,12 @@
         var _service = {},
             _apiUri = appSettings.apiUri;
 
-        _service.logins = $resource(_apiUri + '/sites/:id', {}, {
+        _service.logins = $resource(_apiUri + '/logins/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },
-            del: { url: _apiUri + '/sites/:id/delete', method: 'POST', params: { id: '@id' } }
+            del: { url: _apiUri + '/logins/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
         _service.folders = $resource(_apiUri + '/folders/:id', {}, {
