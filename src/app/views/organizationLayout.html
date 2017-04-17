@@ -46,6 +46,11 @@
                     <i class="fa fa-share-alt fa-fw"></i> <span>Subvaults</span>
                 </a>
             </li>
+            <li ng-class="{active: $state.is('backend.org.vault')}">
+                <a ui-sref="backend.org.vault({orgId: params.orgId})">
+                    <i class="fa fa-lock fa-fw"></i> <span>Vault</span>
+                </a>
+            </li>
             <li ng-class="{active: $state.is('backend.org.billing')}" ng-if="isOrgOwner(orgProfile)">
                 <a ui-sref="backend.org.billing({orgId: params.orgId})">
                     <i class="fa fa-credit-card fa-fw"></i> <span>Billing</span>

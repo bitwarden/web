@@ -150,6 +150,12 @@ angular
                 controller: 'organizationBillingController',
                 data: { pageTitle: 'Organization Billing' }
             })
+            .state('backend.org.vault', {
+                url: '/organization/:orgId/vault',
+                templateUrl: 'app/organization/views/organizationVault.html',
+                controller: 'organizationVaultController',
+                data: { pageTitle: 'Organization Vault' }
+            })
 
             // Frontend
             .state('frontend', {

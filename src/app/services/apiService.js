@@ -26,6 +26,7 @@
             getFullDetails: { url: _apiUri + '/ciphers/:id/full-details', method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             listDetails: { url: _apiUri + '/ciphers/details', method: 'GET', params: {} },
+            listOrganizationDetails: { url: _apiUri + '/ciphers/organization-details', method: 'GET', params: {} },
             'import': { url: _apiUri + '/ciphers/import', method: 'POST', params: {} },
             favorite: { url: _apiUri + '/ciphers/:id/favorite', method: 'POST', params: { id: '@id' } },
             putPartial: { url: _apiUri + '/ciphers/:id/partial', method: 'POST', params: { id: '@id' } },
