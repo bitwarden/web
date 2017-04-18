@@ -216,7 +216,7 @@ function config() {
                     version: project.version,
                     environment: project.env
                 }
-            }, require('./settings.' + project.env + '.json') || {})
+            }, require('./settings' + (project.env !== 'Development' ? ('.' + project.env) : '') + '.json') || {})
         }));
 }
 
