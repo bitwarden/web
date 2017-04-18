@@ -135,33 +135,20 @@
             });
 
             editModel.result.then(function (returnVal) {
-                var loginToUpdate;
                 if (returnVal.action === 'edit') {
-                    loginToUpdate = $filter('filter')($rootScope.vaultLogins, { id: returnVal.data.id }, true);
-                    if (loginToUpdate && loginToUpdate.length > 0) {
-                        loginToUpdate[0].folderId = returnVal.data.folderId;
-                        loginToUpdate[0].name = returnVal.data.name;
-                        loginToUpdate[0].username = returnVal.data.username;
-                        loginToUpdate[0].favorite = returnVal.data.favorite;
+                    login.folderId = returnVal.data.folderId;
+                    login.name = returnVal.data.name;
+                    login.username = returnVal.data.username;
+                    login.favorite = returnVal.data.favorite;
 
-                        sortScopedLoginData();
-                    }
+                    sortScopedLoginData();
                 }
                 else if (returnVal.action === 'partialEdit') {
-                    loginToUpdate = $filter('filter')($rootScope.vaultLogins, { id: returnVal.data.id }, true);
-                    if (loginToUpdate && loginToUpdate.length > 0) {
-                        loginToUpdate[0].folderId = returnVal.data.folderId;
-                        loginToUpdate[0].favorite = returnVal.data.favorite;
-                    }
+                    login.folderId = returnVal.data.folderId;
+                    login.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'delete') {
-                    var loginToDelete = $filter('filter')($rootScope.vaultLogins, { id: returnVal.data }, true);
-                    if (loginToDelete && loginToDelete.length > 0) {
-                        var index = $rootScope.vaultLogins.indexOf(loginToDelete[0]);
-                        if (index > -1) {
-                            $rootScope.vaultLogins.splice(index, 1);
-                        }
-                    }
+                    removeLoginFromScopes(login);
                 }
             });
         };
@@ -193,10 +180,7 @@
             }
 
             apiService.logins.del({ id: login.id }, function () {
-                var index = $rootScope.vaultLogins.indexOf(login);
-                if (index > -1) {
-                    $rootScope.vaultLogins.splice(index, 1);
-                }
+                removeLoginFromScopes(login);
             });
         };
 
@@ -212,10 +196,7 @@
             });
 
             editModel.result.then(function (editedFolder) {
-                var folder = $filter('filter')($rootScope.vaultFolders, { id: editedFolder.id }, true);
-                if (folder && folder.length > 0) {
-                    folder[0].name = editedFolder.name;
-                }
+                folder.name = editedFolder.name;
             });
         };
 
@@ -284,8 +265,22 @@
                 }
             });
 
-            modal.result.then(function () {
-
+            modal.result.then(function (response) {
+                if (response.subvaultIds && !response.subvaultIds.length) {
+                    removeLoginFromScopes(login);
+                }
             });
         };
+
+        function removeLoginFromScopes(login) {
+            var index = $rootScope.vaultLogins.indexOf(login);
+            if (index > -1) {
+                $rootScope.vaultLogins.splice(index, 1);
+            }
+
+            index = $scope.logins.indexOf(login);
+            if (index > -1) {
+                $scope.logins.splice(index, 1);
+            }
+        }
     });
