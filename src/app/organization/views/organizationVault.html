@@ -2,7 +2,9 @@
     <h1>
         Org<span class="hidden-xs">anization</span> Vault
         <small>
-            <span ng-pluralize count="subvaults.length" when="{'1': '{} subvault', 'other': '{} subvaults'}"></span>,
+            <span ng-pluralize
+                  count="subvaults.length > 0 ? subvaults.length - 1 : 0"
+                  when="{'1': '{} subvault', 'other': '{} subvaults'}"></span>,
             <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
         </small>
     </h1>
