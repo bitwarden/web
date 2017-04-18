@@ -24,7 +24,7 @@ angular
             if (!token) {
                 return;
             }
-            
+
             if (!tokenService.tokenNeedsRefresh(token)) {
                 return token;
             }
@@ -269,6 +269,9 @@ angular
 
             // user is guaranteed to be authenticated becuase of previous check
             if (toState.name.indexOf('backend.org.') > -1 && toParams.orgId) {
+                // clear vault rootScope when visiting org admin section
+                $rootScope.vaultLogins = $rootScope.vaultFolders = null;
+
                 authService.getUserProfile().then(function (profile) {
                     var orgs = profile.organizations;
                     if (!orgs || !(toParams.orgId in orgs) || orgs[toParams.orgId].status !== 2 ||
