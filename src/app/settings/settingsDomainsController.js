@@ -35,7 +35,7 @@
 
         $scope.delete = function (i) {
             $scope.equivalentDomains.splice(i, 1);
-            $scope.$emit('removeBodyDropdownMenu');
+            $scope.$emit('removeAppendedDropdownMenu');
         };
 
         $scope.addEdit = function (i) {

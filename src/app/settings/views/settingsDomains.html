@@ -22,7 +22,7 @@
                         <tbody ng-if="equivalentDomains.length">
                             <tr ng-repeat="customDomain in equivalentDomains track by $index">
                                 <td style="width: 70px;">
-                                    <div class="btn-group dropdown-to-body">
+                                    <div class="btn-group" data-append-to="body">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                             <i class="fa fa-cog"></i> <span class="caret"></span>
                                         </button>
@@ -70,7 +70,7 @@
                         <tbody ng-if="globalEquivalentDomains.length">
                             <tr ng-repeat="globalDomain in globalEquivalentDomains">
                                 <td style="width: 70px;">
-                                    <div class="btn-group dropdown-to-body">
+                                    <div class="btn-group" data-append-to="body">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                             <i class="fa fa-cog"></i> <span class="caret"></span>
                                         </button>

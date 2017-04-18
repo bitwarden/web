@@ -52,10 +52,11 @@ angular
             $scope.$broadcast('vaultAddFolder');
         };
 
-        // Append dropdown menus to body
+        // Append dropdown menu somewhere else
         var bodyScrollbarWidth,
-            bodyDropdownMenu,
-            bodyDropdownMenuParent;
+            appendedDropdownMenu,
+            appendedDropdownMenuParent;
+
         var dropdownHelpers = {
             scrollbarWidth: function () {
                 if (!bodyScrollbarWidth) {
@@ -77,58 +78,60 @@ angular
         };
 
         $(window).on('show.bs.dropdown', function (e) {
-            var target = bodyDropdownMenuParent = $(e.target);
-            if (!target.hasClass('dropdown-to-body')) {
+            var target = appendedDropdownMenuParent = $(e.target);
+
+            var appendTo = target.data('appendTo');
+            if (!appendTo) {
                 return true;
             }
 
-            bodyDropdownMenu = target.find('.dropdown-menu');
-            var body = $('body');
-            body.append(bodyDropdownMenu.detach());
+            appendedDropdownMenu = target.find('.dropdown-menu');
+            var appendToEl = $(appendTo);
+            appendToEl.append(appendedDropdownMenu.detach());
 
-            var eOffset = target.offset();
+            var offset = target.offset();
             var css = {
                 display: 'block',
-                top: eOffset.top + target.outerHeight()
+                top: offset.top + target.outerHeight()
             };
 
-            if (bodyDropdownMenu.hasClass('dropdown-menu-right')) {
+            if (appendedDropdownMenu.hasClass('dropdown-menu-right')) {
                 var scrollbarInfo = dropdownHelpers.scrollbarInfo();
                 var scrollbarWidth = 0;
                 if (scrollbarInfo.visible && scrollbarInfo.width) {
                     scrollbarWidth = scrollbarInfo.width;
                 }
 
-                css.right = $window.innerWidth - scrollbarWidth - (eOffset.left + target.prop('offsetWidth')) + 'px';
+                css.right = $window.innerWidth - scrollbarWidth - (offset.left + target.prop('offsetWidth')) + 'px';
                 css.left = 'auto';
             }
             else {
-                css.left = eOffset.left + 'px';
+                css.left = offset.left + 'px';
                 css.right = 'auto';
             }
 
-            bodyDropdownMenu.css(css);
+            appendedDropdownMenu.css(css);
         });
 
         $(window).on('hide.bs.dropdown', function (e) {
-            if (!bodyDropdownMenu) {
+            if (!appendedDropdownMenu) {
                 return true;
             }
 
-            $(e.target).append(bodyDropdownMenu.detach());
-            bodyDropdownMenu.hide();
-            bodyDropdownMenu = null;
-            bodyDropdownMenuParent = null;
+            $(e.target).append(appendedDropdownMenu.detach());
+            appendedDropdownMenu.hide();
+            appendedDropdownMenu = null;
+            appendedDropdownMenuParent = null;
         });
 
-        $scope.$on('removeBodyDropdownMenu', function (event, args) {
-            if (!bodyDropdownMenu && !bodyDropdownMenuParent) {
+        $scope.$on('removeAppendedDropdownMenu', function (event, args) {
+            if (!appendedDropdownMenu && !appendedDropdownMenuParent) {
                 return true;
             }
 
-            bodyDropdownMenuParent.append(bodyDropdownMenu.detach());
-            bodyDropdownMenu.hide();
-            bodyDropdownMenu = null;
-            bodyDropdownMenuParent = null;
+            appendedDropdownMenuParent.append(appendedDropdownMenu.detach());
+            appendedDropdownMenu.hide();
+            appendedDropdownMenu = null;
+            appendedDropdownMenuParent = null;
         });
     });
