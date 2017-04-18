@@ -5,7 +5,6 @@
         $uibModal, $filter, $rootScope) {
         $scope.logins = [];
         $scope.subvaults = [];
-        $scope.folders = [];
         $scope.loading = true;
 
         $scope.$on('$viewContentLoaded', function () {
@@ -70,21 +69,25 @@
             });
 
             editModel.result.then(function (returnVal) {
+                var rootLogin = findRootLogin(login) || {};
+
                 if (returnVal.action === 'edit') {
-                    login.folderId = returnVal.data.folderId;
-                    login.name = returnVal.data.name;
-                    login.username = returnVal.data.username;
-                    login.favorite = returnVal.data.favorite;
+                    login.folderId = rootLogin.folderId = returnVal.data.folderId;
+                    login.name = rootLogin.name = returnVal.data.name;
+                    login.username = rootLogin.username = returnVal.data.username;
+                    login.favorite = rootLogin.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'partialEdit') {
-                    login.folderId = returnVal.data.folderId;
-                    login.favorite = returnVal.data.favorite;
+                    login.folderId = rootLogin.folderId = returnVal.data.folderId;
+                    login.favorite = rootLogin.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'delete') {
                     var index = $scope.logins.indexOf(login);
                     if (index > -1) {
                         $scope.logins.splice(index, 1);
                     }
+
+                    removeRootLogin(rootLogin);
                 }
             });
         };
@@ -102,7 +105,31 @@
             modal.result.then(function (response) {
                 if (response.subvaultIds) {
                     login.subvaultIds = response.subvaultIds;
+
+                    if (!response.subvaultIds.length) {
+                        removeRootLogin(findRootLogin(login));
+                    }
                 }
             });
         };
+
+        function findRootLogin(login) {
+            if ($rootScope.vaultLogins) {
+                var rootLogins = $filter('filter')($rootScope.vaultLogins, { id: login.id });
+                if (rootLogins && rootLogins.length) {
+                    return rootLogins[0];
+                }
+            }
+
+            return null;
+        }
+
+        function removeRootLogin(rootLogin) {
+            if (rootLogin && rootLogin.id) {
+                var index = $rootScope.vaultLogins.indexOf(rootLogin);
+                if (index > -1) {
+                    $rootScope.vaultLogins.splice(index, 1);
+                }
+            }
+        }
     });

@@ -9,7 +9,8 @@
 </section>
 <section class="content">
     <p ng-show="loading && !subvaults.length">Loading...</p>
-    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults | orderBy: subvaultSort"
+    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults | 
+         orderBy: subvaultSort track by subvault.id"
          ng-show="subvaults.length">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -32,7 +33,7 @@
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="login in subvaultLogins = (logins | filter: filterBySubvault(subvault) |
-                            orderBy: ['name', 'username'])">
+                            orderBy: ['name', 'username']) track by login.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
