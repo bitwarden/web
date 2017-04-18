@@ -1,19 +1,21 @@
 ﻿<section class="content-header">
     <h1>
         Org<span class="hidden-xs">anization</span> Vault
-        <small>{{subvaults.length}} subvaults, {{logins.length}} logins</small>
+        <small>
+            <span ng-pluralize count="subvaults.length" when="{'1': '{} subvault', 'other': '{} subvaults'}"></span>,
+            <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
+        </small>
     </h1>
 </section>
 <section class="content">
-    <div ng-show="loading && !subvaults.length">
-        <p>Loading...</p>
-    </div>
-    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults | orderBy: ['name']"
-         ng-show="subvaults.length && (!main.searchVaultText || subvaultLogins.length)">
+    <p ng-show="loading && !subvaults.length">Loading...</p>
+    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults | orderBy: subvaultSort"
+         ng-show="subvaults.length">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa fa-share-alt-square"></i>
-                {{subvault.name}} <small>{{subvaultLogins.length}} logins</small>
+                <i class="fa" ng-class="{'fa-share-alt-square': subvault.id, 'fa-sitemap': !subvault.id}"></i>
+                {{subvault.name}}
+                <small ng-pluralize count="subvaultLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
             </h3>
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
@@ -30,7 +32,7 @@
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="login in subvaultLogins = (logins | filter: filterBySubvault(subvault) |
-                            filter: (main.searchVaultText || '') | orderBy: ['name', 'username'])">
+                            orderBy: ['name', 'username'])">
                             <td style="width: 70px;">
                                 <div class="btn-group dropdown-to-body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -43,52 +45,9 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red"
+                                               ng-if="subvault.id">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
-                                                <i class="fa fa-fw fa-trash"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="javascript:void(0)" ng-click="editSubvaults(login)">{{login.name}}</a>
-                                <div class="text-sm text-muted">{{login.username}}</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="box" ng-show="!loading">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                <i class="fa fa-sitemap"></i>
-                Orphaned <small>{{orphanedLogins.length}} logins</small>
-            </h3>
-        </div>
-        <div class="box-body" ng-class="{'no-padding': orphanedLogins.length}">
-            <div ng-show="!orphanedLogins.length">
-                <p>No orphaned logins.</p>
-            </div>
-            <div class="table-responsive" ng-show="orphanedLogins.length">
-                <table class="table table-striped table-hover table-vmiddle">
-                    <tbody>
-                        <tr ng-repeat="login in orphanedLogins = (logins | filter: filterByOrphaned() | orderBy: ['name', 'username'])">
-                            <td style="width: 70px;">
-                                <div class="btn-group dropdown-to-body">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-cog"></i> <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0)" ng-click="editSubvaults(login)">
-                                                <i class="fa fa-fw fa-share-alt"></i> Subvaults
                                             </a>
                                         </li>
                                         <li>

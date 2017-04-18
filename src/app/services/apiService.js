@@ -32,6 +32,7 @@
             putPartial: { url: _apiUri + '/ciphers/:id/partial', method: 'POST', params: { id: '@id' } },
             putShare: { url: _apiUri + '/ciphers/:id/share', method: 'POST', params: { id: '@id' } },
             putSubvaults: { url: _apiUri + '/ciphers/:id/subvaults', method: 'POST', params: { id: '@id' } },
+            putSubvaultsAdmin: { url: _apiUri + '/ciphers/:id/subvaults-admin', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
