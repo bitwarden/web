@@ -44,13 +44,29 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
-.sidebar .subsection {
-    padding: 10px;
+.sidebar {
+    color: #bbbbbb;
+
+    a.btn {
+        color: @btn-default-color;
+    }
+
+    .subsection {
+        padding: 10px;
+        text-align: center;
+    }
 }
 
-.sidebar-collapse .sidebar .list-inline li {
-    padding-right: 0;
+.sidebar-collapse {
+    .sidebar .list-inline li {
+        padding-right: 0;
+    }
+
+    .hidden-collapsed {
+        display: none;
+    }
 }
+
 
 form div.validation-errors ul {
     margin-bottom: 0;

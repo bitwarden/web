@@ -99,8 +99,14 @@
             </li>
         </ul>
         <div class="subsection">
-            <ul class="list-inline">
-                <li ng-repeat="org in orgs | orderBy: ['name']">
+            <div ng-if="!orgs.length" class="hidden-collapsed">
+                <p>You do not belong to any organizations.</p>
+                <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-flat btn-block">
+                    Create an Organization
+                </a>
+            </div>
+            <ul class="list-inline" ng-if="orgs.length">
+                <li ng-repeat="org in orgs | orderBy: ['name'] track by org.id">
                     <a href="javascript:void(0)" ng-click="viewOrganization(org)">
                         <letter-avatar data="{{org.name}}" avclass="img-responsive img-rounded" round="false"
                                        avheight="40" avwidth="40" bgcolor="#1a2226"></letter-avatar>
