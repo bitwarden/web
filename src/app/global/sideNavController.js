@@ -40,6 +40,6 @@ angular
         };
 
         $scope.isOrgOwner = function (org) {
-            return org.type === 0;
+            return org && org.type === 0;
         };
     });
