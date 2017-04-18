@@ -214,9 +214,9 @@ function config() {
             constants: _.merge({}, {
                 appSettings: {
                     version: project.version,
-                    environment: project.production ? 'Production' : 'Development'
+                    environment: project.env
                 }
-            }, require('./settings' + (project.production ? '.Production' : '') + '.json') || {})
+            }, require('./settings.' + project.env + '.json') || {})
         }));
 }
 
@@ -375,6 +375,15 @@ gulp.task('dist', ['build'], function (cb) {
 gulp.task('deploy', ['dist'], function () {
     return gulp.src(paths.dist + '**/*')
         .pipe(ghPages({ cacheDir: paths.dist + '.publish' }));
+});
+
+gulp.task('deploy-preview', ['dist'], function () {
+    return gulp.src(paths.dist + '**/*')
+        .pipe(ghPages({
+            cacheDir: paths.dist + '.publish',
+            remoteUrl: 'git@github.com:bitwarden/web-preview.git',
+            origin: 'preview'
+        }));
 });
 
 gulp.task('serve', function () {
