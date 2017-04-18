@@ -11,7 +11,7 @@
 </section>
 <section class="content">
     <p ng-show="loading && !subvaults.length">Loading...</p>
-    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults | 
+    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults |
          orderBy: subvaultSort track by subvault.id"
          ng-show="subvaults.length">
         <div class="box-header with-border">
@@ -28,9 +28,8 @@
             </div>
         </div>
         <div class="box-body" ng-class="{'no-padding': subvaultLogins.length}">
-            <div ng-show="!subvaultLogins.length">
-                <p>No logins in this subvault.</p>
-            </div>
+            <div ng-show="!subvaultLogins.length && subvault.id">No logins in this subvault.</div>
+            <div ng-show="!subvaultLogins.length && !subvault.id">No unassigned logins.</div>
             <div class="table-responsive" ng-show="subvaultLogins.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>

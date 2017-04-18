@@ -25,14 +25,11 @@
             <div ng-show="!filteredUsers.length && !filterSearch">
                 Loading...
             </div>
-            <div ng-show="!filteredUsers.length && filterSearch">
-                No people to list.
-            </div>
             <div class="table-responsive" ng-show="filteredUsers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="user in filteredUsers = (users | filter: (filterSearch || '') |
-                            orderBy: ['type', 'name', 'email'])">
+                            orderBy: ['type', 'name', 'email']) track by user.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

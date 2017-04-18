@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="subvault in subvaults | orderBy: ['name']">
+                    <tr ng-repeat="subvault in subvaults | orderBy: ['name'] track by subvault.id">
                         <td valign="middle">
                             <input type="checkbox"
                                    name="selectedSubvaults[]"

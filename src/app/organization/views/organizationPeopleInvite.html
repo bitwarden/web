@@ -44,7 +44,7 @@
             Loading...
         </div>
         <div ng-show="!loading && !subvaults.length">
-            <p>No subvaults.</p>
+            <p>No subvaults for your organization.</p>
         </div>
         <div class="table-responsive" ng-show="subvaults.length" style="margin: 0;">
             <table class="table table-striped table-hover" style="margin: 0;">
@@ -60,7 +60,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="subvault in subvaults | orderBy: ['name']">
+                    <tr ng-repeat="subvault in subvaults | orderBy: ['name'] track by subvault.id">
                         <td style="width: 40px;" valign="middle">
                             <input type="checkbox"
                                    name="selectedSubvaults[]"
