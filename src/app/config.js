@@ -10,8 +10,7 @@ angular
             whiteListedDomains: ['api.bitwarden.com', 'localhost']
         });
         var refreshPromise;
-        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, authService,
-            jwtHelper, $q) {
+        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, authService) {
             if (options.url.indexOf(appSettings.apiUri) !== 0) {
                 return;
             }
