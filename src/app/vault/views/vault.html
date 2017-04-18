@@ -1,7 +1,12 @@
 ﻿<section class="content-header">
     <h1>
         My Vault
-        <small>{{vaultFolders.length > 0 ? vaultFolders.length - 1 : 0}} folders, {{logins.length}} logins</small>
+        <small>
+            <span ng-pluralize
+                  count="vaultFolders.length > 0 ? vaultFolders.length - 1 : 0"
+                  when="{'1': '{} folder', 'other': '{} folders'}"></span>,
+            <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
+        </small>
     </h1>
 </section>
 <section class="content">
@@ -13,7 +18,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-star"></i>
-                Favorites <small>{{favoriteLogins.length}} logins</small>
+                Favorites
+                <small ng-pluralize count="favoriteLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
             </h3>
             <div class="box-tools">
                 <div class="btn-group">
@@ -89,7 +95,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa" ng-class="{'fa-folder-open': folder.id !== null, 'fa-folder-open-o': folder.id === null}"></i>
-                {{folder.name}} <small>{{folderLogins.length}} logins</small>
+                {{folder.name}}
+                <small ng-pluralize count="folderLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
             </h3>
             <div class="box-tools">
                 <div class="btn-group">

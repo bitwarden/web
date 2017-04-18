@@ -4,6 +4,7 @@
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
         cipherService, $q, $localStorage, $timeout, $rootScope) {
         $scope.loading = true;
+        $scope.logins = [];
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
 
         $scope.$on('$viewContentLoaded', function () {

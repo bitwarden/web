@@ -1,7 +1,10 @@
 ﻿<section class="content-header">
     <h1>
         Subvaults
-        <small>{{subvaults.length}} subvaults, {{logins.length}} logins</small>
+        <small>
+            <span ng-pluralize count="subvaults.length" when="{'1': '{} subvault', 'other': '{} subvaults'}"></span>,
+            <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
+        </small>
     </h1>
 </section>
 <section class="content">
@@ -27,7 +30,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-share-alt-square"></i>
-                {{subvault.name}} <small>{{subvaultLogins.length}} logins</small>
+                {{subvault.name}}
+                <small ng-pluralize count="subvaultLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
             </h3>
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
