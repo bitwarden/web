@@ -45,7 +45,7 @@ angular
                     }
                 };
 
-                return apiService.accounts.register(request);
+                return apiService.accounts.register(request).$promise;
             }, function (errors) {
                 validationService.addError(form, null, 'Problem generating keys.', true);
                 return false;
