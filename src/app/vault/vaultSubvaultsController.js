@@ -113,6 +113,31 @@
             });
         };
 
+        $scope.removeLogin = function (login, subvault) {
+            if (!confirm('Are you sure you want to remove this login (' + login.name + ') from the ' +
+                'subvault (' + subvault.name + ') ?')) {
+                return;
+            }
+
+            var request = {
+                subvaultIds: []
+            };
+
+            for (var i = 0; i < login.subvaultIds.length; i++) {
+                if (login.subvaultIds[i] !== subvault.id) {
+                    request.subvaultIds.push(login.subvaultIds[i]);
+                }
+            }
+
+            apiService.ciphers.putSubvaults({ id: login.id }, request).$promise.then(function (response) {
+                $analytics.eventTrack('Removed From Subvault');
+                login.subvaultIds = request.subvaultIds;
+                if (!login.subvaultIds.length) {
+                    removeRootLogin(findRootLogin(login));
+                }
+            });
+        };
+
         function findRootLogin(login) {
             if ($rootScope.vaultLogins) {
                 var rootLogins = $filter('filter')($rootScope.vaultLogins, { id: login.id });
