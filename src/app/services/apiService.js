@@ -24,7 +24,7 @@
         _service.ciphers = $resource(_apiUri + '/ciphers/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
             getFullDetails: { url: _apiUri + '/ciphers/:id/full-details', method: 'GET', params: { id: '@id' } },
-            list: { method: 'GET', params: {} },
+            list: { method: 'GET', params: { includeFolders: false } },
             listDetails: { url: _apiUri + '/ciphers/details', method: 'GET', params: {} },
             listOrganizationDetails: { url: _apiUri + '/ciphers/organization-details', method: 'GET', params: {} },
             'import': { url: _apiUri + '/ciphers/import', method: 'POST', params: {} },
