@@ -37,9 +37,10 @@ angular
             for (var orgId in orgKeysCt) {
                 if (orgKeysCt.hasOwnProperty(orgId)) {
                     try {
-                        var orgKey = new CryptoKey(_service.rsaDecrypt(orgKeysCt[orgId].key, privateKey));
-                        _orgKeys[orgId] = orgKey;
-                        orgKeysb64[orgId] = orgKey.keyB64;
+                        var decBytes = _service.rsaDecrypt(orgKeysCt[orgId].key, privateKey);
+                        var decKey = new CryptoKey(decBytes);
+                        _orgKeys[orgId] = decKey;
+                        orgKeysb64[orgId] = decKey.keyB64;
                         setKey = true;
                     }
                     catch (e) {
@@ -68,9 +69,10 @@ angular
             }
 
             try {
-                var decOrgKey = new CryptoKey(_service.rsaDecrypt(encOrgKey, privateKey));
-                _orgKeys[orgId] = decOrgKey;
-                orgKeysb64[orgId] = decOrgKey.keyB64;
+                var decBytes = _service.rsaDecrypt(encOrgKey, privateKey);
+                var decKey = new CryptoKey(decBytes);
+                _orgKeys[orgId] = decKey;
+                orgKeysb64[orgId] = decKey.keyB64;
             }
             catch (e) {
                 _orgKeys = null;
@@ -82,7 +84,7 @@ angular
 
         _service.getKey = function () {
             if (!_key && $sessionStorage.key) {
-                _key = new CryptoKey($sessionStorage.key, null, true);
+                _key = new CryptoKey($sessionStorage.key, true);
             }
 
             if (!_key) {
@@ -142,7 +144,7 @@ angular
 
                 for (var orgId in $sessionStorage.orgKeys) {
                     if ($sessionStorage.orgKeys.hasOwnProperty(orgId)) {
-                        orgKeys[orgId] = new CryptoKey($sessionStorage.orgKeys[orgId], null, true);
+                        orgKeys[orgId] = new CryptoKey($sessionStorage.orgKeys[orgId], true);
                         setKey = true;
                     }
                 }
@@ -410,7 +412,7 @@ angular
             return forge.util.encode64(mac.getBytes());
         }
 
-        function CryptoKey(keyBytes, encType, b64KeyBytes) {
+        function CryptoKey(keyBytes, b64KeyBytes, encType) {
             if (b64KeyBytes) {
                 keyBytes = forge.util.decode64(keyBytes);
             }
@@ -423,12 +425,13 @@ angular
             if (!buffer || buffer.length() === 0) {
                 throw 'Couldn\'t make buffer';
             }
+            var bufferLength = buffer.length();
 
             if (encType === null || encType === undefined) {
-                if (buffer.length() === 32) {
+                if (bufferLength === 32) {
                     encType = constants.encType.AesCbc256_B64;
                 }
-                else if (buffer.length() === 64) {
+                else if (bufferLength === 64) {
                     encType = constants.encType.AesCbc256_HmacSha256_B64;
                 }
                 else {
@@ -440,20 +443,20 @@ angular
             this.keyB64 = forge.util.encode64(keyBytes);
             this.encType = encType;
 
-            if (encType === constants.encType.AesCbc256_B64 && buffer.length() === 32) {
+            if (encType === constants.encType.AesCbc256_B64 && bufferLength === 32) {
                 this.encKey = keyBytes;
                 this.macKey = null;
             }
-            else if (encType === constants.encType.AesCbc128_HmacSha256_B64 && buffer.length() === 32) {
+            else if (encType === constants.encType.AesCbc128_HmacSha256_B64 && bufferLength === 32) {
                 this.encKey = buffer.getBytes(16); // first half
                 this.macKey = buffer.getBytes(16); // second half
             }
-            else if (encType === constants.encType.AesCbc256_HmacSha256_B64 && buffer.length() === 64) {
+            else if (encType === constants.encType.AesCbc256_HmacSha256_B64 && bufferLength === 64) {
                 this.encKey = buffer.getBytes(32); // first half
                 this.macKey = buffer.getBytes(32); // second half
             }
             else {
-                throw 'Unsupported key.';
+                throw 'Unsupported encType/key length.';
             }
         }
 
