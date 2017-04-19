@@ -7,6 +7,16 @@ angular.module('bit')
             AesCbc256_HmacSha256_B64: 2,
             RsaOaep_Sha256_B64: 3
         },
+        orgUserType: {
+            owner: 0,
+            admin: 1,
+            user: 2
+        },
+        orgUserStatus: {
+            invited: 0,
+            accepted: 1,
+            confirmed: 2
+        },
         plans: {
             free: {
                 basePrice: 0,
