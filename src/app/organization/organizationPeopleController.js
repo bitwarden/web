@@ -39,7 +39,7 @@
                     return;
                 }
 
-                var key = cryptoService.rsaEncrypt(orgKey, userKey.PublicKey);
+                var key = cryptoService.rsaEncrypt(orgKey.key, userKey.PublicKey);
                 apiService.organizationUsers.confirm({ orgId: $state.params.orgId, id: user.id }, { key: key }, function () {
                     user.status = 2;
                     toastr.success(user.email + ' has been confirmed.', 'User Confirmed');
