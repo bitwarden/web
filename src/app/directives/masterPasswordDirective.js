@@ -13,8 +13,8 @@ angular
                             return undefined;
                         }
 
-                        var key = cryptoService.makeKey(value, profile.email, true);
-                        var valid = key === cryptoService.getKey(true);
+                        var key = cryptoService.makeKey(value, profile.email);
+                        var valid = key.keyB64 === cryptoService.getKey().keyB64;
                         ngModel.$setValidity('masterPassword', valid);
                         return valid ? value : undefined;
                     });
@@ -25,8 +25,8 @@ angular
                             return undefined;
                         }
 
-                        var key = cryptoService.makeKey(value, profile.email, true);
-                        var valid = key === cryptoService.getKey(true);
+                        var key = cryptoService.makeKey(value, profile.email);
+                        var valid = key.keyB64 === cryptoService.getKey().keyB64;
 
                         ngModel.$setValidity('masterPassword', valid);
                         return value;

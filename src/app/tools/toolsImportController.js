@@ -234,8 +234,8 @@
             }
 
             apiService.ciphers.import({
-                folders: cipherService.encryptFolders(folders, cryptoService.getKey()),
-                logins: cipherService.encryptLogins(logins, cryptoService.getKey()),
+                folders: cipherService.encryptFolders(folders),
+                logins: cipherService.encryptLogins(logins),
                 folderRelationships: folderRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');

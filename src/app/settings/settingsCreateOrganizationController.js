@@ -36,13 +36,13 @@
         };
 
         $scope.submit = function (model) {
-            var shareKey = cryptoService.makeShareKey();
+            var shareKeyCt = cryptoService.makeShareKeyCt();
 
             if (model.plan === 'free') {
                 var freeRequest = {
                     name: model.name,
                     planType: model.plan,
-                    key: shareKey,
+                    key: shareKeyCt,
                     billingEmail: model.billingEmail
                 };
 
@@ -54,7 +54,7 @@
                         name: model.name,
                         planType: model.interval === 'month' ? $scope.plans[model.plan].monthPlanType :
                             $scope.plans[model.plan].annualPlanType,
-                        key: shareKey,
+                        key: shareKeyCt,
                         paymentToken: response.id,
                         additionalSeats: model.additionalSeats,
                         billingEmail: model.billingEmail,
@@ -69,7 +69,7 @@
                 $scope.model.card = null;
 
                 $analytics.eventTrack('Created Organization');
-                authService.addProfileOrganizationOwner(result, shareKey);
+                authService.addProfileOrganizationOwner(result, shareKeyCt);
                 authService.refreshAccessToken().then(function () {
                     goToOrg(result.Id);
                 }, function () {

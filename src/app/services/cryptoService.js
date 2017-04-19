@@ -4,14 +4,13 @@ angular
     .factory('cryptoService', function ($sessionStorage, constants, $q) {
         var _service = {},
             _key,
-            _b64Key,
+            _orgKeys,
             _privateKey,
-            _publicKey,
-            _orgKeys;
+            _publicKey;
 
         _service.setKey = function (key) {
             _key = key;
-            $sessionStorage.key = forge.util.encode64(key);
+            $sessionStorage.key = _key.keyB64;
         };
 
         _service.setPrivateKey = function (privateKeyCt, key) {
@@ -38,9 +37,9 @@ angular
             for (var orgId in orgKeysCt) {
                 if (orgKeysCt.hasOwnProperty(orgId)) {
                     try {
-                        var orgKey = _service.rsaDecrypt(orgKeysCt[orgId].key, privateKey);
+                        var orgKey = new CryptoKey(_service.rsaDecrypt(orgKeysCt[orgId].key, privateKey));
                         _orgKeys[orgId] = orgKey;
-                        orgKeysb64[orgId] = forge.util.encode64(orgKey);
+                        orgKeysb64[orgId] = orgKey.keyB64;
                         setKey = true;
                     }
                     catch (e) {
@@ -69,9 +68,9 @@ angular
             }
 
             try {
-                var decOrgKey = _service.rsaDecrypt(encOrgKey, privateKey);
+                var decOrgKey = new CryptoKey(_service.rsaDecrypt(encOrgKey, privateKey));
                 _orgKeys[orgId] = decOrgKey;
-                orgKeysb64[orgId] = forge.util.encode64(decOrgKey);
+                orgKeysb64[orgId] = decOrgKey.keyB64;
             }
             catch (e) {
                 _orgKeys = null;
@@ -81,39 +80,16 @@ angular
             $sessionStorage.orgKeys = orgKeysb64;
         };
 
-        _service.getKey = function (b64) {
-            if (b64 && b64 === true && _b64Key) {
-                return _b64Key;
-            }
-            else if (!b64 && _key) {
-                return _key;
+        _service.getKey = function () {
+            if (!_key && $sessionStorage.key) {
+                _key = new CryptoKey($sessionStorage.key, null, true);
             }
 
-            if ($sessionStorage.key) {
-                _key = forge.util.decode64($sessionStorage.key);
-            }
-
-            if (b64 && b64 === true) {
-                _b64Key = forge.util.encode64(_key);
-                return _b64Key;
+            if (!_key) {
+                throw 'key unavailable';
             }
 
             return _key;
-        };
-
-        _service.getEncKey = function (key) {
-            key = key || _service.getKey();
-
-            var buffer = forge.util.createBuffer(key);
-            return buffer.getBytes(16);
-        };
-
-        _service.getMacKey = function (key) {
-            key = key || _service.getKey();
-
-            var buffer = forge.util.createBuffer(key);
-            buffer.getBytes(16); // skip first half
-            return buffer.getBytes(16);
         };
 
         _service.getPrivateKey = function (outputEncoding) {
@@ -166,8 +142,7 @@ angular
 
                 for (var orgId in $sessionStorage.orgKeys) {
                     if ($sessionStorage.orgKeys.hasOwnProperty(orgId)) {
-                        var orgKeyBytes = forge.util.decode64($sessionStorage.orgKeys[orgId]);
-                        orgKeys[orgId] = orgKeyBytes;
+                        orgKeys[orgId] = new CryptoKey($sessionStorage.orgKeys[orgId], null, true);
                         setKey = true;
                     }
                 }
@@ -190,7 +165,7 @@ angular
         };
 
         _service.clearKey = function () {
-            _key = _b64Key = null;
+            _key = null;
             delete $sessionStorage.key;
         };
 
@@ -221,15 +196,10 @@ angular
             _service.clearOrgKeys();
         };
 
-        _service.makeKey = function (password, salt, b64) {
-            var key = forge.pbkdf2(forge.util.encodeUtf8(password), forge.util.encodeUtf8(salt),
+        _service.makeKey = function (password, salt) {
+            var keyBytes = forge.pbkdf2(forge.util.encodeUtf8(password), forge.util.encodeUtf8(salt),
                 5000, 256 / 8, 'sha256');
-
-            if (b64 && b64 === true) {
-                return forge.util.encode64(key);
-            }
-
-            return key;
+            return new CryptoKey(keyBytes);
         };
 
         _service.makeKeyPair = function (key) {
@@ -258,8 +228,8 @@ angular
             return deferred.promise;
         };
 
-        _service.makeShareKey = function () {
-            return _service.rsaEncrypt(forge.random.getBytesSync(32));
+        _service.makeShareKeyCt = function () {
+            return _service.rsaEncrypt(forge.random.getBytesSync(512 / 8));
         };
 
         _service.hashPassword = function (password, key) {
@@ -271,30 +241,21 @@ angular
                 throw 'Invalid parameters.';
             }
 
-            var hashBits = forge.pbkdf2(key, forge.util.encodeUtf8(password), 1, 256 / 8, 'sha256');
+            var hashBits = forge.pbkdf2(key.key, forge.util.encodeUtf8(password), 1, 256 / 8, 'sha256');
             return forge.util.encode64(hashBits);
         };
 
         _service.encrypt = function (plainValue, key, plainValueEncoding) {
-            if (!_service.getKey() && !key) {
-                throw 'Encryption key unavailable.';
-            }
+            key = key || _service.getKey();
 
-            // TODO: Turn on whenever ready to support encrypt-then-mac
-            var encKey, encType;
-            if (false) {
-                encKey = _service.getEncKey(key);
-                encType = constants.encType.AesCbc128_HmacSha256_B64;
-            }
-            else {
-                encKey = key || _service.getKey();
-                encType = constants.encType.AesCbc256_B64;
+            if (!key) {
+                throw 'Encryption key unavailable.';
             }
 
             plainValueEncoding = plainValueEncoding || 'utf8';
             var buffer = forge.util.createBuffer(plainValue, plainValueEncoding);
             var ivBytes = forge.random.getBytesSync(16);
-            var cipher = forge.cipher.createCipher('AES-CBC', encKey);
+            var cipher = forge.cipher.createCipher('AES-CBC', key.encKey);
             cipher.start({ iv: ivBytes });
             cipher.update(buffer);
             cipher.finish();
@@ -304,14 +265,16 @@ angular
             var ct = forge.util.encode64(ctBytes);
             var cipherString = iv + '|' + ct;
 
-            if (encType === constants.encType.AesCbc128_HmacSha256_B64 ||
-                encType === constants.encType.AesCbc256_HmacSha256_B64) {
-                var mac = computeMac(ctBytes, ivBytes);
+            if (key.macKey) {
+                var mac = computeMac(ctBytes, ivBytes, key.macKey);
                 cipherString = cipherString + '|' + mac;
             }
 
-            // TODO: Turn on whenever ready to support encryption type headers
-            return /*encType + '.' +*/ cipherString;
+            if (key.encType === constants.encType.AesCbc256_B64) {
+                return cipherString;
+            }
+
+            return key.encType + '.' + cipherString;
         };
 
         _service.rsaEncrypt = function (plainValue, publicKey) {
@@ -328,15 +291,16 @@ angular
             var encryptedBytes = publicKey.encrypt(plainValue, 'RSA-OAEP', {
                 md: forge.md.sha256.create()
             });
+
             return constants.encType.RsaOaep_Sha256_B64 + '.' + forge.util.encode64(encryptedBytes);
         };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
+            key = key || _service.getKey();
+
             var headerPieces = encValue.split('.'),
                 encType,
-                encPieces,
-                encKey,
-                doMacCheck = false;
+                encPieces;
 
             if (headerPieces.length === 2) {
                 try {
@@ -352,41 +316,35 @@ angular
                 encPieces = encValue.split('|');
             }
 
+            if (encType !== key.encType) {
+                throw 'encType unavailable.';
+            }
+
             switch (encType) {
                 case constants.encType.AesCbc128_HmacSha256_B64:
                     if (encPieces.length !== 3) {
                         return null;
                     }
-                    doMacCheck = true;
-                    encKey = _service.getEncKey(key);
                     break;
                 case constants.encType.AesCbc256_HmacSha256_B64:
                     if (encPieces.length !== 3) {
                         return null;
                     }
-                    doMacCheck = true;
-                    encKey = _service.getEncKey(key);
                     break;
                 case constants.encType.AesCbc256_B64:
                     if (encPieces.length !== 2) {
                         return null;
                     }
-                    doMacCheck = false;
-                    encKey = key || _service.getKey();
                     break;
                 default:
                     return null;
             }
 
-            if (!encKey) {
-                throw 'Encryption key unavailable.';
-            }
-
             var ivBytes = forge.util.decode64(encPieces[0]);
             var ctBytes = forge.util.decode64(encPieces[1]);
 
-            if (doMacCheck) {
-                var computedMac = computeMac(ctBytes, ivBytes);
+            if (key.macKey) {
+                var computedMac = computeMac(ctBytes, ivBytes, key.macKey);
                 if (computedMac !== encPieces[2]) {
                     console.error('MAC failed.');
                     return null;
@@ -394,7 +352,7 @@ angular
             }
 
             var ctBuffer = forge.util.createBuffer(ctBytes);
-            var decipher = forge.cipher.createDecipher('AES-CBC', encKey);
+            var decipher = forge.cipher.createDecipher('AES-CBC', key.encKey);
             decipher.start({ iv: ivBytes });
             decipher.update(ctBuffer);
             decipher.finish();
@@ -446,11 +404,58 @@ angular
 
         function computeMac(ct, iv, macKey) {
             var hmac = forge.hmac.create();
-            hmac.start('sha256', macKey || _service.getMacKey());
+            hmac.start('sha256', macKey);
             hmac.update(iv + ct);
             var mac = hmac.digest();
             return forge.util.encode64(mac.getBytes());
         }
+
+        function CryptoKey(keyBytes, encType, b64KeyBytes) {
+            if (b64KeyBytes) {
+                keyBytes = forge.util.decode64(keyBytes);
+            }
+
+            if (!keyBytes) {
+                throw 'Must provide keyBytes';
+            }
+
+            var buffer = forge.util.createBuffer(keyBytes);
+            if (!buffer || buffer.length() === 0) {
+                throw 'Couldn\'t make buffer';
+            }
+
+            if (encType === null || encType === undefined) {
+                if (buffer.length() === 32) {
+                    encType = constants.encType.AesCbc256_B64;
+                }
+                else if (buffer.length() === 64) {
+                    encType = constants.encType.AesCbc256_HmacSha256_B64;
+                }
+                else {
+                    throw 'Unable to determine encType.';
+                }
+            }
+
+            this.key = keyBytes;
+            this.keyB64 = forge.util.encode64(keyBytes);
+            this.encType = encType;
+
+            if (encType === constants.encType.AesCbc256_B64 && buffer.length() === 32) {
+                this.encKey = keyBytes;
+                this.macKey = null;
+            }
+            else if (encType === constants.encType.AesCbc128_HmacSha256_B64 && buffer.length() === 32) {
+                this.encKey = buffer.getBytes(16); // first half
+                this.macKey = buffer.getBytes(16); // second half
+            }
+            else if (encType === constants.encType.AesCbc256_HmacSha256_B64 && buffer.length() === 64) {
+                this.encKey = buffer.getBytes(32); // first half
+                this.macKey = buffer.getBytes(32); // second half
+            }
+            else {
+                throw 'Unsupported key.';
+            }
+        };
 
         return _service;
     });
