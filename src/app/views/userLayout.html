@@ -109,7 +109,8 @@
                 <li ng-repeat="org in orgs | orderBy: ['name'] track by org.id">
                     <a href="javascript:void(0)" ng-click="viewOrganization(org)">
                         <letter-avatar data="{{org.name}}" avclass="img-responsive img-rounded" round="false"
-                                       avheight="40" avwidth="40" bgcolor="#1a2226"></letter-avatar>
+                                       avheight="40" avwidth="40" bgcolor="#2c3b41" avborder="true"
+                                       borderstyle="3px solid #1a2226"></letter-avatar>
                     </a>
                 </li>
             </ul>

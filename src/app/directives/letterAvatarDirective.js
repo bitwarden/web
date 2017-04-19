@@ -91,7 +91,7 @@ angular
                     dynamic: attrs.dynamic || 'true',
                     class: attrs.avclass || '',
                     border: attrs.avborder || 'false',
-                    borderStyle: attrs.borderStyle || '3px solid white'
+                    borderStyle: attrs.borderstyle || '3px solid white'
                 };
 
                 if (params.dynamic === 'true') {
