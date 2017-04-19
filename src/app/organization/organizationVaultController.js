@@ -116,4 +116,17 @@
                 login.subvaultIds = request.subvaultIds;
             });
         };
+
+        $scope.deleteLogin = function (login) {
+            if (!confirm('Are you sure you want to delete this login (' + login.name + ')?')) {
+                return;
+            }
+
+            apiService.ciphers.delAdmin({ id: login.id }, function () {
+                var index = $scope.logins.indexOf(login);
+                if (index > -1) {
+                    $scope.logins.splice(index, 1);
+                }
+            });
+        };
     });

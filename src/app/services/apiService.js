@@ -33,7 +33,8 @@
             putShare: { url: _apiUri + '/ciphers/:id/share', method: 'POST', params: { id: '@id' } },
             putSubvaults: { url: _apiUri + '/ciphers/:id/subvaults', method: 'POST', params: { id: '@id' } },
             putSubvaultsAdmin: { url: _apiUri + '/ciphers/:id/subvaults-admin', method: 'POST', params: { id: '@id' } },
-            del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } }
+            del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } },
+            delAdmin: { url: _apiUri + '/ciphers/:id/delete-admin', method: 'POST', params: { id: '@id' } }
         });
 
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
