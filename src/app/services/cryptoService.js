@@ -4,6 +4,7 @@ angular
     .factory('cryptoService', function ($sessionStorage, constants, $q) {
         var _service = {},
             _key,
+            _legacyEtmKey,
             _orgKeys,
             _privateKey,
             _publicKey;
@@ -168,6 +169,7 @@ angular
 
         _service.clearKey = function () {
             _key = null;
+            _legacyEtmKey = null;
             delete $sessionStorage.key;
         };
 
@@ -314,8 +316,15 @@ angular
                 }
             }
             else {
-                encType = constants.encType.AesCbc256_B64;
                 encPieces = encValue.split('|');
+                encType = encPieces.length === 3 ? constants.encType.AesCbc128_HmacSha256_B64 :
+                    constants.encType.AesCbc256_B64;
+            }
+
+            if (encType === constants.encType.AesCbc128_HmacSha256_B64 && key.encType === constants.encType.AesCbc256_B64) {
+                // Old encrypt-then-mac scheme, swap out the key
+                _legacyEtmKey = _legacyEtmKey || new CryptoKey(key.key, false, constants.encType.AesCbc128_HmacSha256_B64);
+                key = _legacyEtmKey;
             }
 
             if (encType !== key.encType) {
