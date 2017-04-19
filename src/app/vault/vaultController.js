@@ -109,7 +109,7 @@
             }
 
             return item.name.toLowerCase();
-        };
+        }
 
         $scope.collapseExpand = function (folder, favorite) {
             if (!$localStorage.collapsedFolders) {

@@ -78,6 +78,7 @@ angular
         };
 
         $(window).on('show.bs.dropdown', function (e) {
+            /*jshint -W120 */
             var target = appendedDropdownMenuParent = $(e.target);
 
             var appendTo = target.data('appendTo');

@@ -455,7 +455,7 @@ angular
             else {
                 throw 'Unsupported key.';
             }
-        };
+        }
 
         return _service;
     });
