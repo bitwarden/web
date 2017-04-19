@@ -75,18 +75,20 @@
             $rootScope.vaultLogins = $scope.logins = $filter('orderBy')(decLogins, ['sort', 'name', 'username']);
 
             var chunks = chunk($rootScope.vaultLogins, 400);
-            $scope.logins = chunks[0];
-            var delay = 200;
-            angular.forEach(chunks, function (value, index) {
-                delay += 200;
+            if (chunks.length > 0) {
+                $scope.logins = chunks[0];
+                var delay = 200;
+                angular.forEach(chunks, function (value, index) {
+                    delay += 200;
 
-                // skip the first chuck
-                if (index > 0) {
-                    $timeout(function () {
-                        Array.prototype.push.apply($scope.logins, value);
-                    }, delay);
-                }
-            });
+                    // skip the first chuck
+                    if (index > 0) {
+                        $timeout(function () {
+                            Array.prototype.push.apply($scope.logins, value);
+                        }, delay);
+                    }
+                });
+            }
         }
 
         function sortScopedLoginData() {
