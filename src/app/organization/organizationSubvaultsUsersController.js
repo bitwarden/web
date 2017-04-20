@@ -8,8 +8,6 @@
         $scope.users = [];
 
         $uibModalInstance.opened.then(function () {
-            $scope.modalWindow = angular.element(document).find('.organizationSubvaultsUsersModal');
-
             $scope.loading = false;
             apiService.subvaultUsers.listSubvault(
                 {

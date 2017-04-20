@@ -45,7 +45,21 @@
                 templateUrl: 'app/organization/views/organizationSubvaultsUsers.html',
                 controller: 'organizationSubvaultsUsersController',
                 size: 'lg',
-                windowClass: 'organizationSubvaultsUsersModal',
+                resolve: {
+                    subvault: function () { return subvault; }
+                }
+            });
+
+            modal.result.then(function () {
+                // nothing to do
+            });
+        };
+
+        $scope.groups = function (subvault) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationSubvaultsGroups.html',
+                controller: 'organizationSubvaultsGroupsController',
                 resolve: {
                     subvault: function () { return subvault; }
                 }
