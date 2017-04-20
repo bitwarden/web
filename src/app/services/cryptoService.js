@@ -354,7 +354,7 @@ angular
             var ivBytes = forge.util.decode64(encPieces[0]);
             var ctBytes = forge.util.decode64(encPieces[1]);
 
-            if (key.macKey) {
+            if (key.macKey && encPieces.length > 2) {
                 var computedMac = computeMac(ctBytes, ivBytes, key.macKey);
                 if (computedMac !== encPieces[2]) {
                     console.error('MAC failed.');
