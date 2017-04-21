@@ -77,7 +77,10 @@ angular
                 url: '^/vault',
                 templateUrl: 'app/vault/views/vault.html',
                 controller: 'vaultController',
-                data: { pageTitle: 'My Vault' }
+                data: { pageTitle: 'My Vault' },
+                params: {
+                    refreshFromServer: false
+                }
             })
             .state('backend.user.subvaults', {
                 url: '^/subvaults',

@@ -2,10 +2,14 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q, $localStorage, $timeout, $rootScope) {
+        cipherService, $q, $localStorage, $timeout, $rootScope, $state) {
         $scope.loading = true;
         $scope.logins = [];
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
+
+        if ($state.params.refreshFromServer) {
+            $rootScope.vaultFolders = $rootScope.vaultLogins = null;
+        }
 
         $scope.$on('$viewContentLoaded', function () {
             if ($rootScope.vaultFolders && $rootScope.vaultLogins) {
