@@ -24,6 +24,7 @@
                 }
                 $scope.email = user.Email;
                 $scope.type = user.Type;
+                $scope.accessAllSubvaults = user.AccessAllSubvaults;
                 $scope.selectedSubvaults = subvaults;
             });
         });
@@ -72,15 +73,18 @@
         $scope.submitPromise = null;
         $scope.submit = function (model) {
             var subvaults = [];
-            for (var subvaultId in $scope.selectedSubvaults) {
-                if ($scope.selectedSubvaults.hasOwnProperty(subvaultId)) {
-                    subvaults.push($scope.selectedSubvaults[subvaultId]);
+            if (!$scope.accessAllSubvaults) {
+                for (var subvaultId in $scope.selectedSubvaults) {
+                    if ($scope.selectedSubvaults.hasOwnProperty(subvaultId)) {
+                        subvaults.push($scope.selectedSubvaults[subvaultId]);
+                    }
                 }
             }
 
             $scope.submitPromise = apiService.organizationUsers.put({ orgId: $state.params.orgId, id: id }, {
                 type: $scope.type,
-                subvaults: subvaults
+                subvaults: subvaults,
+                accessAllSubvaults: $scope.accessAllSubvaults
             }, function () {
                 $uibModalInstance.close();
             }).$promise;

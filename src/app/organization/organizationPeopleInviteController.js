@@ -60,16 +60,20 @@
         $scope.submitPromise = null;
         $scope.submit = function (model) {
             var subvaults = [];
-            for (var subvaultId in $scope.selectedSubvaults) {
-                if ($scope.selectedSubvaults.hasOwnProperty(subvaultId)) {
-                    subvaults.push($scope.selectedSubvaults[subvaultId]);
+
+            if (!model.accessAllSubvaults) {
+                for (var subvaultId in $scope.selectedSubvaults) {
+                    if ($scope.selectedSubvaults.hasOwnProperty(subvaultId)) {
+                        subvaults.push($scope.selectedSubvaults[subvaultId]);
+                    }
                 }
             }
 
             $scope.submitPromise = apiService.organizationUsers.invite({ orgId: $state.params.orgId }, {
                 email: model.email,
                 type: model.type,
-                subvaults: subvaults
+                subvaults: subvaults,
+                accessAllSubvaults: model.accessAllSubvaults
             }, function () {
                 $uibModalInstance.close();
             }).$promise;
