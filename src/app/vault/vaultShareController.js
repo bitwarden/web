@@ -9,6 +9,7 @@
         $scope.subvaults = [];
         $scope.selectedSubvaults = {};
         $scope.organizations = [];
+        var organizationSubvaultCounts = {};
         $scope.loadingSubvaults = true;
         $scope.readOnly = false;
 
@@ -37,6 +38,8 @@
                             name: profile.organizations[i].name
                         });
 
+                        organizationSubvaultCounts[profile.organizations[i].id] = 0;
+
                         if (!setFirstOrg) {
                             setFirstOrg = true;
                             $scope.model.organizationId = profile.organizations[i].id;
@@ -52,6 +55,7 @@
                         var decSubvault = cipherService.decryptSubvault(response.Data[i]);
                         decSubvault.organizationId = response.Data[i].OrganizationId;
                         subvaults.push(decSubvault);
+                        organizationSubvaultCounts[decSubvault.organizationId]++;
                     }
 
                     $scope.subvaults = subvaults;
@@ -64,7 +68,9 @@
             var subvaults = {};
             if ($event.target.checked) {
                 for (var i = 0; i < $scope.subvaults.length; i++) {
-                    subvaults[$scope.subvaults[i].id] = true;
+                    if ($scope.model.organizationId && $scope.subvaults[i].organizationId === $scope.model.organizationId) {
+                        subvaults[$scope.subvaults[i].id] = true;
+                    }
                 }
             }
 
@@ -85,7 +91,15 @@
         };
 
         $scope.allSelected = function () {
-            return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
+            if (!$scope.model.organizationId) {
+                return false;
+            }
+
+            return Object.keys($scope.selectedSubvaults).length === organizationSubvaultCounts[$scope.model.organizationId];
+        };
+
+        $scope.orgChanged = function () {
+            $scope.selectedSubvaults = {};
         };
 
         $scope.submitPromise = null;

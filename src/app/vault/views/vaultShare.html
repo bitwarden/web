@@ -21,7 +21,8 @@
         <div ng-show="organizations.length">
             <div class="form-group">
                 <label for="organization">Organization</label> <span>*</span>
-                <select id="organization" name="Organization" ng-model="model.organizationId" class="form-control">
+                <select id="organization" name="Organization" ng-model="model.organizationId" class="form-control"
+                        ng-change="orgChanged()">
                     <option ng-repeat="org in organizations | orderBy: ['name']" value="{{org.id}}">{{org.name}}</option>
                 </select>
             </div>
