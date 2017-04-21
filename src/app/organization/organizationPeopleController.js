@@ -89,7 +89,8 @@
                         name: list.Data[i].Name,
                         email: list.Data[i].Email,
                         status: list.Data[i].Status,
-                        type: list.Data[i].Type
+                        type: list.Data[i].Type,
+                        accessAllSubvaults: list.Data[i].AccessAllSubvaults
                     };
 
                     users.push(user);

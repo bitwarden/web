@@ -25,7 +25,8 @@
                                 email: userList.Data[i].Email,
                                 type: userList.Data[i].Type,
                                 status: userList.Data[i].Status,
-                                readOnly: userList.Data[i].ReadOnly
+                                readOnly: userList.Data[i].ReadOnly,
+                                accessAllSubvaults: userList.Data[i].AccessAllSubvaults
                             });
                         }
                         $scope.users = users;

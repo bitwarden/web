@@ -64,6 +64,8 @@
                             </td>
                             <td>
                                 <a href="javascript:void(0)" ng-click="edit(user.id)">{{user.email}}</a>
+                                <i class="fa fa-share-alt text-muted" ng-show="user.accessAllSubvaults"
+                                   title="Can Access All Subvaults"></i>
                                 <div ng-if="user.name"><small class="text-muted">{{user.name}}</small></div>
                             </td>
                             <td style="width: 100px;">
