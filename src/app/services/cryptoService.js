@@ -293,10 +293,10 @@ angular
             }
 
             var encryptedBytes = publicKey.encrypt(plainValue, 'RSA-OAEP', {
-                md: forge.md.sha256.create()
+                md: forge.md.sha1.create()
             });
 
-            return constants.encType.RsaOaep_Sha256_B64 + '.' + forge.util.encode64(encryptedBytes);
+            return constants.encType.Rsa2048_OaepSha1_B64 + '.' + forge.util.encode64(encryptedBytes);
         };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
@@ -388,7 +388,7 @@ angular
                 encPiece;
 
             if (headerPieces.length === 1) {
-                encType = constants.encType.RsaOaep_Sha256_B64;
+                encType = constants.encType.Rsa2048_OaepSha256_B64;
                 encPiece = headerPieces[0];
             }
             else if (headerPieces.length === 2) {
@@ -401,13 +401,21 @@ angular
                 }
             }
 
-            if (encType !== constants.encType.RsaOaep_Sha256_B64) {
-                return null;
+            var ctBytes = forge.util.decode64(encPiece);
+            var md;
+
+            if (encType === constants.encType.Rsa2048_OaepSha256_B64) {
+                md = forge.md.sha256.create();
+            }
+            else if (encType === constants.encType.Rsa2048_OaepSha1_B64) {
+                md = forge.md.sha1.create();
+            }
+            else {
+                throw 'encType unavailable.';
             }
 
-            var ctBytes = forge.util.decode64(encPiece);
             var decBytes = privateKey.decrypt(ctBytes, 'RSA-OAEP', {
-                md: forge.md.sha256.create()
+                md: md
             });
 
             return decBytes;
