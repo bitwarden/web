@@ -7,7 +7,7 @@ angular
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
             urlParam: 'access_token2',
-            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost']
+            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.8']
         });
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, authService) {
