@@ -39,7 +39,7 @@ angular
                 if (orgKeysCt.hasOwnProperty(orgId)) {
                     try {
                         var decBytes = _service.rsaDecrypt(orgKeysCt[orgId].key, privateKey);
-                        var decKey = new CryptoKey(decBytes);
+                        var decKey = new SymmetricCryptoKey(decBytes);
                         _orgKeys[orgId] = decKey;
                         orgKeysb64[orgId] = decKey.keyB64;
                         setKey = true;
@@ -71,7 +71,7 @@ angular
 
             try {
                 var decBytes = _service.rsaDecrypt(encOrgKey, privateKey);
-                var decKey = new CryptoKey(decBytes);
+                var decKey = new SymmetricCryptoKey(decBytes);
                 _orgKeys[orgId] = decKey;
                 orgKeysb64[orgId] = decKey.keyB64;
             }
@@ -85,7 +85,7 @@ angular
 
         _service.getKey = function () {
             if (!_key && $sessionStorage.key) {
-                _key = new CryptoKey($sessionStorage.key, true);
+                _key = new SymmetricCryptoKey($sessionStorage.key, true);
             }
 
             if (!_key) {
@@ -145,7 +145,7 @@ angular
 
                 for (var orgId in $sessionStorage.orgKeys) {
                     if ($sessionStorage.orgKeys.hasOwnProperty(orgId)) {
-                        orgKeys[orgId] = new CryptoKey($sessionStorage.orgKeys[orgId], true);
+                        orgKeys[orgId] = new SymmetricCryptoKey($sessionStorage.orgKeys[orgId], true);
                         setKey = true;
                     }
                 }
@@ -203,7 +203,7 @@ angular
         _service.makeKey = function (password, salt) {
             var keyBytes = forge.pbkdf2(forge.util.encodeUtf8(password), forge.util.encodeUtf8(salt),
                 5000, 256 / 8, 'sha256');
-            return new CryptoKey(keyBytes);
+            return new SymmetricCryptoKey(keyBytes);
         };
 
         _service.makeKeyPair = function (key) {
@@ -323,7 +323,8 @@ angular
 
             if (encType === constants.encType.AesCbc128_HmacSha256_B64 && key.encType === constants.encType.AesCbc256_B64) {
                 // Old encrypt-then-mac scheme, swap out the key
-                _legacyEtmKey = _legacyEtmKey || new CryptoKey(key.key, false, constants.encType.AesCbc128_HmacSha256_B64);
+                _legacyEtmKey = _legacyEtmKey ||
+                    new SymmetricCryptoKey(key.key, false, constants.encType.AesCbc128_HmacSha256_B64);
                 key = _legacyEtmKey;
             }
 
@@ -429,7 +430,7 @@ angular
             return forge.util.encode64(mac.getBytes());
         }
 
-        function CryptoKey(keyBytes, b64KeyBytes, encType) {
+        function SymmetricCryptoKey(keyBytes, b64KeyBytes, encType) {
             if (b64KeyBytes) {
                 keyBytes = forge.util.decode64(keyBytes);
             }
