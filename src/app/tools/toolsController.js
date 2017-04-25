@@ -17,12 +17,4 @@
                 controller: 'toolsExportController'
             });
         };
-
-        $scope.audits = function () {
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'app/tools/views/toolsAudits.html',
-                controller: 'toolsAuditsController'
-            });
-        };
     });

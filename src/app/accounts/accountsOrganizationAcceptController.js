@@ -28,7 +28,7 @@ angular
                     }, function () {
                         $state.go('backend.user.vault', null, { location: 'replace' }).then(function () {
                             toastr.success('You can access this organization once an administrator confirms your membership.' +
-                                ' We\'ll send an email when that happens.', 'Invite Accepted');
+                                ' We\'ll send an email when that happens.', 'Invite Accepted', { timeOut: 10000 });
                         });
                     }, function () {
                         $state.go('backend.user.vault', null, { location: 'replace' }).then(function () {
