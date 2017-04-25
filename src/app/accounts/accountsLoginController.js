@@ -4,7 +4,18 @@ angular
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
         $state, constants, $analytics) {
         $scope.state = $state;
-        var returnState = $state.params.returnState;
+
+        var returnState;
+        if (!$state.params.returnState && $state.params.org) {
+            returnState = {
+                name: 'backend.user.settingsCreateOrg',
+                params: { plan: $state.params.org }
+            };
+        }
+        else {
+            returnState = $state.params.returnState;
+        }
+
         var rememberedEmail = $cookies.get(constants.rememberedEmailCookieName);
         if (rememberedEmail || $state.params.email) {
             $scope.model = {

@@ -6,7 +6,16 @@ angular
         var params = $location.search();
         var stateParams = $state.params;
 
-        $scope.returnState = $state.params.returnState;
+        if (!stateParams.returnState && stateParams.org) {
+            $scope.returnState = {
+                name: 'backend.user.settingsCreateOrg',
+                params: { plan: $state.params.org }
+            };
+        }
+        else {
+            $scope.returnState = stateParams.returnState;
+        }
+
         $scope.success = false;
         $scope.model = {
             email: params.email ? params.email : stateParams.email

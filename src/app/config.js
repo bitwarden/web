@@ -185,7 +185,7 @@ angular
                 }
             })
             .state('frontend.login.info', {
-                url: '^/',
+                url: '^/?org',
                 templateUrl: 'app/accounts/views/accountsLoginInfo.html',
                 data: {
                     pageTitle: 'Log In'
@@ -225,7 +225,7 @@ angular
                 }
             })
             .state('frontend.register', {
-                url: '^/register',
+                url: '^/register?org',
                 templateUrl: 'app/accounts/views/accountsRegister.html',
                 controller: 'accountsRegisterController',
                 params: {
