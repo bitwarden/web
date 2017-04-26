@@ -3,6 +3,7 @@
 
     .controller('organizationSubvaultsEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
         $analytics, id) {
+        $analytics.eventTrack('organizationSubvaultsEditController', { category: 'Modal' });
         $scope.subvault = {};
 
         $uibModalInstance.opened.then(function () {

@@ -7,8 +7,6 @@
                 if (!userProfile.organizations) {
                     return;
                 }
-
-
                 $scope.orgProfile = userProfile.organizations[$state.params.orgId];
             });
         });

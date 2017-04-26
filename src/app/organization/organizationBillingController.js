@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal, toastr) {
+    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal, toastr, $analytics) {
         $scope.charges = [];
         $scope.paymentSource = null;
         $scope.plan = null;
@@ -71,6 +71,7 @@
 
             apiService.organizations.putCancel({ id: $state.params.orgId }, {})
                 .$promise.then(function (response) {
+                    $analytics.eventTrack('Canceled Plan');
                     toastr.success('Organization subscription has been canceled.');
                     load();
                 });
@@ -83,6 +84,7 @@
 
             apiService.organizations.putReinstate({ id: $state.params.orgId }, {})
                 .$promise.then(function (response) {
+                    $analytics.eventTrack('Reinstated Plan');
                     toastr.success('Organization cancellation request has been removed.');
                     load();
                 });

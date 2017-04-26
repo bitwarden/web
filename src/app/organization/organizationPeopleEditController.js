@@ -1,7 +1,10 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationPeopleEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService, id) {
+    .controller('organizationPeopleEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService, id,
+        $analytics) {
+        $analytics.eventTrack('organizationPeopleEditController', { category: 'Modal' });
+
         $scope.loading = true;
         $scope.subvaults = [];
         $scope.selectedSubvaults = {};
@@ -86,6 +89,7 @@
                 subvaults: subvaults,
                 accessAllSubvaults: $scope.accessAllSubvaults
             }, function () {
+                $analytics.eventTrack('Edited User');
                 $uibModalInstance.close();
             }).$promise;
         };

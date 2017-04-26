@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationSubvaultsController', function ($scope, $state, apiService, $uibModal, cipherService, $filter,
-        toastr) {
+        toastr, $analytics) {
         $scope.subvaults = [];
         $scope.loading = true;
         $scope.$on('$viewContentLoaded', function () {
@@ -81,6 +81,7 @@
                     $scope.subvaults.splice(index, 1);
                 }
 
+                $analytics.eventTrack('Deleted Subvault');
                 toastr.success(subvault.name + ' has been deleted.', 'Subvault Deleted');
             }, function () {
                 toastr.error(subvault.name + ' was not able to be deleted.', 'Error');

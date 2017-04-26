@@ -112,7 +112,7 @@
             }
 
             apiService.ciphers.putSubvaults({ id: login.id }, request).$promise.then(function (response) {
-                $analytics.eventTrack('Removed From Subvault');
+                $analytics.eventTrack('Removed Login From Subvault');
                 login.subvaultIds = request.subvaultIds;
             });
         };
@@ -123,6 +123,7 @@
             }
 
             apiService.ciphers.delAdmin({ id: login.id }, function () {
+                $analytics.eventTrack('Deleted Login');
                 var index = $scope.logins.indexOf(login);
                 if (index > -1) {
                     $scope.logins.splice(index, 1);

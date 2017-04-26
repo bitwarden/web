@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSettingsController', function ($scope, $state, apiService, toastr, authService, $uibModal) {
+    .controller('organizationSettingsController', function ($scope, $state, apiService, toastr, authService, $uibModal,
+        $analytics) {
         $scope.model = {};
         $scope.$on('$viewContentLoaded', function () {
             apiService.organizations.get({ id: $state.params.orgId }, function (org) {
@@ -16,6 +17,7 @@
         $scope.generalSave = function () {
             $scope.generalPromise = apiService.organizations.put({ id: $state.params.orgId }, $scope.model, function (org) {
                 authService.updateProfileOrganization(org).then(function (updatedOrg) {
+                    $analytics.eventTrack('Updated Organization Settings');
                     toastr.success('Organization has been updated.', 'Success!');
                 });
             }).$promise;

@@ -3,6 +3,7 @@
 
     .controller('organizationSubvaultsUsersController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
         $analytics, subvault, toastr) {
+        $analytics.eventTrack('organizationSubvaultsUsersController', { category: 'Modal' });
         $scope.loading = true;
         $scope.subvault = subvault;
         $scope.users = [];
@@ -42,6 +43,7 @@
 
             apiService.subvaultUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
                 toastr.success(user.email + ' has been removed.', 'User Removed');
+                $analytics.eventTrack('Removed User From Subvault');
                 var index = $scope.users.indexOf(user);
                 if (index > -1) {
                     $scope.users.splice(index, 1);

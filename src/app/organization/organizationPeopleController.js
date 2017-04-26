@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationPeopleController', function ($scope, $state, $uibModal, cryptoService, apiService, toastr) {
+    .controller('organizationPeopleController', function ($scope, $state, $uibModal, cryptoService, apiService,
+        toastr, $analytics) {
         $scope.users = [];
         $scope.$on('$viewContentLoaded', function () {
             loadList();
@@ -9,6 +10,7 @@
 
         $scope.reinvite = function (user) {
             apiService.organizationUsers.reinvite({ orgId: $state.params.orgId, id: user.id }, null, function () {
+                $analytics.eventTrack('Reinvited User');
                 toastr.success(user.email + ' has been invited again.', 'User Invited');
             }, function () {
                 toastr.error('Unable to invite user.', 'Error');
@@ -21,6 +23,7 @@
             }
 
             apiService.organizationUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
+                $analytics.eventTrack('Deleted User');
                 toastr.success(user.email + ' has been removed.', 'User Removed');
                 var index = $scope.users.indexOf(user);
                 if (index > -1) {
@@ -42,6 +45,7 @@
                 var key = cryptoService.rsaEncrypt(orgKey.key, userKey.PublicKey);
                 apiService.organizationUsers.confirm({ orgId: $state.params.orgId, id: user.id }, { key: key }, function () {
                     user.status = 2;
+                    $analytics.eventTrack('Confirmed User');
                     toastr.success(user.email + ' has been confirmed.', 'User Confirmed');
                 }, function () {
                     toastr.error('Unable to confirm user.', 'Error');

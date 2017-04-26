@@ -3,6 +3,7 @@
 
     .controller('organizationBillingAdjustSeatsController', function ($scope, $state, $uibModalInstance, apiService,
         $analytics, toastr, add) {
+        $analytics.eventTrack('organizationBillingAdjustSeatsController', { category: 'Modal' });
         $scope.add = add;
         $scope.seatAdjustment = 0;
 

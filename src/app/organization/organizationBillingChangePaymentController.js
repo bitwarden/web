@@ -3,6 +3,7 @@
 
     .controller('organizationBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService, stripe,
         $analytics, toastr, existingPaymentMethod) {
+        $analytics.eventTrack('organizationBillingChangePaymentController', { category: 'Modal' });
         $scope.existingPaymentMethod = existingPaymentMethod;
 
         $scope.submit = function () {
