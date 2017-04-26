@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q, $localStorage, $timeout, $rootScope, $state) {
+        cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics) {
         $scope.loading = true;
         $scope.logins = [];
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
@@ -187,6 +187,7 @@
             }
 
             apiService.logins.del({ id: login.id }, function () {
+                $analytics.eventTrack('Deleted Login');
                 removeLoginFromScopes(login);
             });
         };
@@ -231,6 +232,7 @@
             }
 
             apiService.folders.del({ id: folder.id }, function () {
+                $analytics.eventTrack('Deleted Folder');
                 var index = $rootScope.vaultFolders.indexOf(folder);
                 if (index > -1) {
                     $rootScope.vaultFolders.splice(index, 1);

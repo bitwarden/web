@@ -1,7 +1,7 @@
 angular
     .module('bit.global')
 
-    .controller('sideNavController', function ($scope, $state, authService, toastr) {
+    .controller('sideNavController', function ($scope, $state, authService, toastr, $analytics) {
         $scope.$state = $state;
         $scope.params = $state.params;
         $scope.orgs = [];
@@ -36,6 +36,7 @@ angular
                 return;
             }
 
+            $analytics.eventTrack('View Organization From Side Nav');
             $state.go('backend.org.dashboard', { orgId: org.id });
         };
 

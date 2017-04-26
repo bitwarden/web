@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.tools')
 
-    .controller('toolsExportController', function ($scope, apiService, authService, $uibModalInstance, cryptoService, cipherService, $q, toastr, $analytics) {
+    .controller('toolsExportController', function ($scope, apiService, authService, $uibModalInstance, cryptoService,
+        cipherService, $q, toastr, $analytics) {
         $analytics.eventTrack('toolsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
@@ -47,7 +48,9 @@
 
                     var csvString = Papa.unparse(exportLogins);
                     var csvBlob = new Blob([csvString]);
-                    if (window.navigator.msSaveOrOpenBlob) { // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+
+                    // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+                    if (window.navigator.msSaveOrOpenBlob) {
                         window.navigator.msSaveBlob(csvBlob, makeFileName());
                     }
                     else {
@@ -55,7 +58,9 @@
                         a.href = window.URL.createObjectURL(csvBlob, { type: 'text/plain' });
                         a.download = makeFileName();
                         document.body.appendChild(a);
-                        a.click(); // IE: "Access is denied". ref: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+                        // IE: "Access is denied". 
+                        // ref: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+                        a.click();
                         document.body.removeChild(a);
                     }
 

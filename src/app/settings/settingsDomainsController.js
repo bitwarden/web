@@ -96,6 +96,7 @@
             }
 
             return apiService.settings.putDomains(request, function (domains) {
+                $analytics.eventTrack('Saved Equivalent Domains');
                 toastr.success('Domains have been updated.', 'Success!');
             }).$promise;
         };

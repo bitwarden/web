@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsTwoFactorController', function ($scope, apiService, $uibModalInstance, cryptoService, authService, $q, toastr, $analytics) {
+    .controller('settingsTwoFactorController', function ($scope, apiService, $uibModalInstance, cryptoService, authService,
+        $q, toastr, $analytics) {
         $analytics.eventTrack('settingsTwoFactorController', { category: 'Modal' });
         var _issuer = 'bitwarden',
             _profile = null,
@@ -41,9 +42,9 @@
                 key: formatString(key),
                 recovery: formatString(response.TwoFactorRecoveryCode),
                 qr: 'https://chart.googleapis.com/chart?chs=120x120&chld=L|0&cht=qr&chl=otpauth://totp/' +
-                    _issuer + ':' + encodeURIComponent(_profile.email) +
-                    '%3Fsecret=' + encodeURIComponent(key) +
-                    '%26issuer=' + _issuer
+                _issuer + ':' + encodeURIComponent(_profile.email) +
+                '%3Fsecret=' + encodeURIComponent(key) +
+                '%26issuer=' + _issuer
             };
         }
 
@@ -78,6 +79,7 @@
         };
 
         $scope.print = function (printContent) {
+            $analytics.eventTrack('Print Recovery Code');
             var w = window.open();
             w.document.write('<div style="font-size: 18px; text-align: center;"><p>bitwarden two-step login recovery code:</p>' +
                 '<pre>' + printContent + '</pre>');

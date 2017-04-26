@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsDeleteController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, authService, toastr, $analytics) {
+    .controller('settingsDeleteController', function ($scope, $state, apiService, $uibModalInstance, cryptoService,
+        authService, toastr, $analytics) {
         $analytics.eventTrack('settingsDeleteController', { category: 'Modal' });
         $scope.submit = function (model) {
             var request = {

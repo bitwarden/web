@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsChangeEmailController', function ($scope, $state, apiService, $uibModalInstance, cryptoService, cipherService, authService, $q, toastr, $analytics) {
+    .controller('settingsChangeEmailController', function ($scope, $state, apiService, $uibModalInstance, cryptoService,
+        cipherService, authService, $q, toastr, $analytics) {
         $analytics.eventTrack('settingsChangeEmailController', { category: 'Modal' });
         var _masterPasswordHash,
             _newMasterPasswordHash,

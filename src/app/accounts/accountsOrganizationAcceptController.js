@@ -1,7 +1,7 @@
 angular
     .module('bit.accounts')
 
-    .controller('accountsOrganizationAcceptController', function ($scope, $state, apiService, authService, toastr) {
+    .controller('accountsOrganizationAcceptController', function ($scope, $state, apiService, authService, toastr, $analytics) {
         $scope.state = {
             name: $state.current.name,
             params: $state.params
@@ -26,11 +26,13 @@ angular
                     {
                         token: $state.params.token
                     }, function () {
+                        $analytics.eventTrack('Accepted Invitation');
                         $state.go('backend.user.vault', null, { location: 'replace' }).then(function () {
                             toastr.success('You can access this organization once an administrator confirms your membership.' +
                                 ' We\'ll send an email when that happens.', 'Invite Accepted', { timeOut: 10000 });
                         });
                     }, function () {
+                        $analytics.eventTrack('Failed To Accept Invitation');
                         $state.go('backend.user.vault', null, { location: 'replace' }).then(function () {
                             toastr.error('Unable to accept invitation.', 'Error');
                         });

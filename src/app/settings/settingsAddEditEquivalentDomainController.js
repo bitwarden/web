@@ -1,7 +1,8 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('settingsAddEditEquivalentDomainController', function ($scope, $uibModalInstance, $analytics, domainIndex, domains) {
+    .controller('settingsAddEditEquivalentDomainController', function ($scope, $uibModalInstance, $analytics,
+        domainIndex, domains) {
         $analytics.eventTrack('settingsAddEditEquivalentDomainController', { category: 'Modal' });
 
         $scope.domains = domains;

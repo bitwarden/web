@@ -1,7 +1,7 @@
 angular
     .module('bit.accounts')
 
-    .controller('accountsRecoverController', function ($scope, apiService, cryptoService) {
+    .controller('accountsRecoverController', function ($scope, apiService, cryptoService, $analytics) {
         $scope.success = false;
 
         $scope.submit = function (model) {
@@ -15,6 +15,7 @@ angular
             };
 
             $scope.submitPromise = apiService.accounts.postTwoFactorRecover(request, function () {
+                $analytics.eventTrack('Recovered 2FA');
                 $scope.success = true;
             }).$promise;
         };
