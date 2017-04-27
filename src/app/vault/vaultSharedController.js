@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultCollectionsController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
+    .controller('vaultSharedController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
         $uibModal, $filter, $rootScope) {
         $scope.logins = [];
         $scope.collections = [];
@@ -31,6 +31,14 @@
                     }
                 }
 
+                if (decLogins.length) {
+                    $scope.collections.push({
+                        id: null,
+                        name: 'Unassigned',
+                        collapsed: $localStorage.collapsedCollections && 'unassigned' in $localStorage.collapsedCollections
+                    });
+                }
+
                 $scope.logins = decLogins;
             }).$promise;
 
@@ -41,8 +49,20 @@
 
         $scope.filterByCollection = function (collection) {
             return function (cipher) {
+                if (!cipher.collectionIds || !cipher.collectionIds.length) {
+                    return collection.id === null;
+                }
+
                 return cipher.collectionIds.indexOf(collection.id) > -1;
             };
+        };
+
+        $scope.collectionSort = function (item) {
+            if (!item.id) {
+                return '';
+            }
+
+            return item.name.toLowerCase();
         };
 
         $scope.collapseExpand = function (collection) {
@@ -50,11 +70,13 @@
                 $localStorage.collapsedCollections = {};
             }
 
-            if (collection.id in $localStorage.collapsedCollections) {
-                delete $localStorage.collapsedCollections[collection.id];
+            var id = collection.id || 'unassigned';
+
+            if (id in $localStorage.collapsedCollections) {
+                delete $localStorage.collapsedCollections[id];
             }
             else {
-                $localStorage.collapsedCollections[collection.id] = true;
+                $localStorage.collapsedCollections[id] = true;
             }
         };
 

@@ -16,7 +16,7 @@
          ng-show="collections.length && (!main.searchVaultText || collectionLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa" ng-class="{'fa-share-alt-square': collection.id, 'fa-sitemap': !collection.id}"></i>
+                <i class="fa" ng-class="{'fa-cubes': collection.id, 'fa-sitemap': !collection.id}"></i>
                 {{collection.name}}
                 <small ng-pluralize count="collectionLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
             </h3>
@@ -48,7 +48,7 @@
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)" ng-click="editCollections(login)">
-                                                <i class="fa fa-fw fa-share-alt"></i> Collections
+                                                <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
                                         <li>

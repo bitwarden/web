@@ -252,8 +252,8 @@
         $scope.share = function (login) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultShare.html',
-                controller: 'vaultShareController',
+                templateUrl: 'app/vault/views/vaultShareLogin.html',
+                controller: 'vaultShareLoginController',
                 resolve: {
                     loginId: function () { return login.id; }
                 }

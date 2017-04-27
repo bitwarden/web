@@ -1,9 +1,9 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultShareController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
+    .controller('vaultShareLoginController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
         loginId, $analytics, $state) {
-        $analytics.eventTrack('vaultShareController', { category: 'Modal' });
+        $analytics.eventTrack('vaultShareLoginController', { category: 'Modal' });
         $scope.model = {};
         $scope.login = {};
         $scope.collections = [];
@@ -11,6 +11,7 @@
         $scope.organizations = [];
         var organizationCollectionCounts = {};
         $scope.loadingCollections = true;
+        $scope.loading = true;
         $scope.readOnly = false;
 
         apiService.logins.get({ id: loginId }).$promise.then(function (login) {
@@ -21,6 +22,7 @@
 
             return login.Edit;
         }).then(function (canEdit) {
+            $scope.loading = false;
             if (!canEdit) {
                 return;
             }

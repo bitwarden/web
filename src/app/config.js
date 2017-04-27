@@ -82,11 +82,11 @@ angular
                     refreshFromServer: false
                 }
             })
-            .state('backend.user.collections', {
-                url: '^/collections',
-                templateUrl: 'app/vault/views/vaultCollections.html',
-                controller: 'vaultCollectionsController',
-                data: { pageTitle: 'Collections' }
+            .state('backend.user.shared', {
+                url: '^/shared',
+                templateUrl: 'app/vault/views/vaultShared.html',
+                controller: 'vaultSharedController',
+                data: { pageTitle: 'Shared' }
             })
             .state('backend.user.settings', {
                 url: '^/settings',

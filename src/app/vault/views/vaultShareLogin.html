@@ -11,14 +11,15 @@
                 <li ng-repeat="e in form.$errors">{{e}}</li>
             </ul>
         </div>
-        <div ng-show="!organizations.length" class="callout callout-default">
+        <p ng-show="loading">Loading...</p>
+        <div ng-show="!loading && !organizations.length" class="callout callout-default">
             <h4><i class="fa fa-info-circle"></i> No Organizations</h4>
             <p>You do not belong to any organizations. Organizations allow you to share logins with other bitwarden users.</p>
             <a ng-click="createOrg()" class="btn btn-default btn-flat">
                 Create an Organization
             </a>
         </div>
-        <div ng-show="organizations.length">
+        <div ng-show="!loading && organizations.length">
             <div class="form-group">
                 <label for="organization">Organization</label> <span>*</span>
                 <select id="organization" name="Organization" ng-model="model.organizationId" class="form-control"
