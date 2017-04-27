@@ -127,10 +127,8 @@
             modal.result.then(function (response) {
                 if (response.collectionIds) {
                     login.collectionIds = response.collectionIds;
-
-                    if (!response.collectionIds.length) {
-                        removeRootLogin(findRootLogin(login));
-                    }
+                    // TODO: if there are no collectionIds now, it is possible that the user no longer has access to this login
+                    // which means it should be removed by calling removeRootLogin(findRootLogin(login))
                 }
             });
         };
@@ -154,9 +152,8 @@
             apiService.ciphers.putCollections({ id: login.id }, request).$promise.then(function (response) {
                 $analytics.eventTrack('Removed From Collection');
                 login.collectionIds = request.collectionIds;
-                if (!login.collectionIds.length) {
-                    removeRootLogin(findRootLogin(login));
-                }
+                // TODO: if there are no collectionIds now, it is possible that the user no longer has access to this login
+                // which means it should be removed by calling removeRootLogin(findRootLogin(login))
             });
         };
 
