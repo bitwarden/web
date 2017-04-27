@@ -77,6 +77,49 @@
             }
         };
 
+        $scope.editLogin = function (login) {
+            var editModel = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultEditLogin.html',
+                controller: 'organizationVaultEditLoginController',
+                resolve: {
+                    loginId: function () { return login.id; }
+                }
+            });
+
+            editModel.result.then(function (returnVal) {
+                if (returnVal.action === 'edit') {
+                    login.name = returnVal.data.name;
+                    login.username = returnVal.data.username;
+                }
+                else if (returnVal.action === 'delete') {
+                    var index = $scope.logins.indexOf(login);
+                    if (index > -1) {
+                        $scope.logins.splice(index, 1);
+                    }
+                }
+            });
+        };
+
+        $scope.$on('organizationVaultAddLogin', function (event, args) {
+            $scope.addLogin();
+        });
+
+        $scope.addLogin = function () {
+            var addModel = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultAddLogin.html',
+                controller: 'organizationVaultAddLoginController',
+                resolve: {
+                    orgId: function () { return $state.params.orgId; }
+                }
+            });
+
+            addModel.result.then(function (addedLogin) {
+                $scope.logins.push(addedLogin);
+            });
+        };
+
         $scope.editCollections = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,

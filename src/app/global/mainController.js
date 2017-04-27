@@ -44,12 +44,20 @@ angular
             $state.go('backend.user.vault');
         };
 
+        $scope.searchOrganizationVault = function () {
+            $state.go('backend.org.vault', { orgId: $state.params.orgId  });
+        };
+
         $scope.addLogin = function () {
             $scope.$broadcast('vaultAddLogin');
         };
 
         $scope.addFolder = function () {
             $scope.$broadcast('vaultAddFolder');
+        };
+
+        $scope.addOrganizationLogin = function () {
+            $scope.$broadcast('organizationVaultAddLogin');
         };
 
         // Append dropdown menu somewhere else

@@ -79,6 +79,7 @@
             }
 
             apiService.logins.del({ id: $scope.login.id }, function () {
+                $analytics.eventTrack('Deleted Login From Edit');
                 $uibModalInstance.close({
                     action: 'delete',
                     data: $scope.login.id

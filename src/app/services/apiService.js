@@ -7,9 +7,12 @@
 
         _service.logins = $resource(_apiUri + '/logins/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
+            getAdmin: { url: _apiUri + '/logins/:id/admin', method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
+            postAdmin: { url: _apiUri + '/logins/admin', method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },
+            putAdmin: { url: _apiUri + '/logins/:id/admin', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/logins/:id/delete', method: 'POST', params: { id: '@id' } }
         });
 
