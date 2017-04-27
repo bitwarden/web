@@ -27,7 +27,7 @@
                 }
                 $scope.email = user.Email;
                 $scope.type = user.Type;
-                $scope.accessAllCollections = user.AccessAllCollections;
+                $scope.accessAll = user.AccessAll;
                 $scope.selectedCollections = collections;
             });
         });
@@ -76,7 +76,7 @@
         $scope.submitPromise = null;
         $scope.submit = function (model) {
             var collections = [];
-            if (!$scope.accessAllCollections) {
+            if (!$scope.accessAll) {
                 for (var collectionId in $scope.selectedCollections) {
                     if ($scope.selectedCollections.hasOwnProperty(collectionId)) {
                         collections.push($scope.selectedCollections[collectionId]);
@@ -87,7 +87,7 @@
             $scope.submitPromise = apiService.organizationUsers.put({ orgId: $state.params.orgId, id: id }, {
                 type: $scope.type,
                 collections: collections,
-                accessAllCollections: $scope.accessAllCollections
+                accessAll: $scope.accessAll
             }, function () {
                 $analytics.eventTrack('Edited User');
                 $uibModalInstance.close();

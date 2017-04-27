@@ -94,7 +94,7 @@
                         email: list.Data[i].Email,
                         status: list.Data[i].Status,
                         type: list.Data[i].Type,
-                        accessAllCollections: list.Data[i].AccessAllCollections
+                        accessAll: list.Data[i].AccessAll
                     };
 
                     users.push(user);

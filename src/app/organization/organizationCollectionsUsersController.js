@@ -27,7 +27,7 @@
                                 type: userList.Data[i].Type,
                                 status: userList.Data[i].Status,
                                 readOnly: userList.Data[i].ReadOnly,
-                                accessAllCollections: userList.Data[i].AccessAllCollections
+                                accessAll: userList.Data[i].AccessAll
                             });
                         }
                         $scope.users = users;

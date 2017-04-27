@@ -39,22 +39,22 @@
                 </label>
             </div>
         </div>
-        <h4>Collection Access</h4>
+        <h4>Access</h4>
         <div class="radio">
             <label>
-                <input type="radio" ng-model="model.accessAllCollections" name="AccessAllCollections"
-                       ng-value="true" ng-checked="model.accessAllCollections">
-                This user can access and modify items in <u>all</u> collections.
+                <input type="radio" ng-model="model.accessAll" name="AccessAll"
+                       ng-value="true" ng-checked="model.accessAll">
+                This user can access and modify <u>all items</u>.
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" ng-model="model.accessAllCollections" name="AccessAllCollections"
-                       ng-value="false" ng-checked="!model.accessAllCollections">
+                <input type="radio" ng-model="model.accessAll" name="AccessAll"
+                       ng-value="false" ng-checked="!model.accessAll">
                 This user can access only the selected collections.
             </label>
         </div>
-        <div ng-show="!model.accessAllCollections">
+        <div ng-show="!model.accessAll">
             <div ng-show="loading && !collections.length">
                 Loading collections...
             </div>

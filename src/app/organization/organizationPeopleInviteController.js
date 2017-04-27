@@ -64,7 +64,7 @@
         $scope.submit = function (model) {
             var collections = [];
 
-            if (!model.accessAllCollections) {
+            if (!model.accessAll) {
                 for (var collectionId in $scope.selectedCollections) {
                     if ($scope.selectedCollections.hasOwnProperty(collectionId)) {
                         collections.push($scope.selectedCollections[collectionId]);
@@ -76,7 +76,7 @@
                 email: model.email,
                 type: model.type,
                 collections: collections,
-                accessAllCollections: model.accessAllCollections
+                accessAll: model.accessAll
             }, function () {
                 $analytics.eventTrack('Invited User');
                 $uibModalInstance.close();
