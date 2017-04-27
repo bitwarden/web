@@ -167,8 +167,12 @@
                 </div>
             </div>
             <div class="box-footer">
-                <b>Total:</b>
-                {{totalPrice() | currency:"USD $":2}} /{{model.interval}}
+                <p>
+                    <b>Total:</b>
+                    {{totalPrice() | currency:"USD $":2}} /{{model.interval}}
+                </p>
+                Note: Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended.
+                You may cancel at any time.
             </div>
         </div>
         <div class="box box-default" ng-if="!plans[model.plan].noPayment">
