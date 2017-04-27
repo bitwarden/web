@@ -270,7 +270,7 @@ angular
             var cipherString = iv + '|' + ct;
 
             if (key.macKey) {
-                var mac = computeMac(ctBytes, ivBytes, key.macKey);
+                var mac = computeMac(ctBytes, ivBytes, key.macKey, true);
                 cipherString = cipherString + '|' + mac;
             }
 
@@ -356,8 +356,9 @@ angular
             var ctBytes = forge.util.decode64(encPieces[1]);
 
             if (key.macKey && encPieces.length > 2) {
-                var computedMac = computeMac(ctBytes, ivBytes, key.macKey);
-                if (computedMac !== encPieces[2]) {
+                var macBytes = forge.util.decode64(encPieces[2]);
+                var computedMacBytes = computeMac(ctBytes, ivBytes, key.macKey, false);
+                if (!bytesAreEqual(macBytes, computedMacBytes)) {
                     console.error('MAC failed.');
                     return null;
                 }
@@ -422,12 +423,26 @@ angular
             return decBytes;
         };
 
-        function computeMac(ct, iv, macKey) {
+        function computeMac(ct, iv, macKey, b64Output) {
             var hmac = forge.hmac.create();
             hmac.start('sha256', macKey);
             hmac.update(iv + ct);
             var mac = hmac.digest();
-            return forge.util.encode64(mac.getBytes());
+            return b64Output ? forge.util.encode64(mac.getBytes()) : mac.getBytes();
+        }
+
+        // Constant time comparison. This removes the early-out optimizations of normal equality checks.
+        function bytesAreEqual(a, b) {
+            if (a.length !== b.length) {
+                return false;
+            }
+
+            var result = 0;
+            for (var i = 0; i < a.length; i++) {
+                result |= a[i] ^ b[i];
+            }
+
+            return result === 0;
         }
 
         function SymmetricCryptoKey(keyBytes, b64KeyBytes, encType) {
