@@ -358,7 +358,7 @@ angular
             if (key.macKey && encPieces.length > 2) {
                 var macBytes = forge.util.decode64(encPieces[2]);
                 var computedMacBytes = computeMac(ctBytes, ivBytes, key.macKey, false);
-                if (!bytesAreEqual(macBytes, computedMacBytes)) {
+                if (!macsEqual(key.macKey, macBytes, computedMacBytes)) {
                     console.error('MAC failed.');
                     return null;
                 }
@@ -431,18 +431,20 @@ angular
             return b64Output ? forge.util.encode64(mac.getBytes()) : mac.getBytes();
         }
 
-        // Constant time comparison. This removes the early-out optimizations of normal equality checks.
-        function bytesAreEqual(a, b) {
-            if (a.length !== b.length) {
-                return false;
-            }
+        // Safely compare two MACs in a way that protects against timing attacks.
+        // ref: https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2011/february/double-hmac-verification/
+        function macsEqual(macKey, mac1, mac2) {
+            var hmac = forge.hmac.create();
 
-            var result = 0;
-            for (var i = 0; i < a.length; i++) {
-                result |= a[i] ^ b[i];
-            }
+            hmac.start('sha256', macKey);
+            hmac.update(mac1);
+            mac1 = hmac.digest().getBytes();
 
-            return result === 0;
+            hmac.start(null, null);
+            hmac.update(mac2);
+            mac2 = hmac.digest().getBytes();
+
+            return mac1 === mac2;
         }
 
         function SymmetricCryptoKey(keyBytes, b64KeyBytes, encType) {
