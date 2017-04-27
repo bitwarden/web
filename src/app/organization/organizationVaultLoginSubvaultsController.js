@@ -1,78 +1,78 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationVaultLoginSubvaultsController', function ($scope, apiService, $uibModalInstance, cipherService,
-        cipher, $analytics, subvaults) {
-        $analytics.eventTrack('organizationVaultLoginSubvaultsController', { category: 'Modal' });
+    .controller('organizationVaultLoginCollectionsController', function ($scope, apiService, $uibModalInstance, cipherService,
+        cipher, $analytics, collections) {
+        $analytics.eventTrack('organizationVaultLoginCollectionsController', { category: 'Modal' });
         $scope.cipher = {};
-        $scope.subvaults = [];
-        $scope.selectedSubvaults = {};
+        $scope.collections = [];
+        $scope.selectedCollections = {};
 
         $uibModalInstance.opened.then(function () {
-            var subvaultUsed = [];
-            for (var i = 0; i < subvaults.length; i++) {
-                if (subvaults[i].id) {
-                    subvaultUsed.push(subvaults[i]);
+            var collectionUsed = [];
+            for (var i = 0; i < collections.length; i++) {
+                if (collections[i].id) {
+                    collectionUsed.push(collections[i]);
                 }
             }
-            $scope.subvaults = subvaultUsed;
+            $scope.collections = collectionUsed;
 
             $scope.cipher = cipher;
 
-            var selectedSubvaults = {};
-            if ($scope.cipher.subvaultIds) {
-                for (i = 0; i < $scope.cipher.subvaultIds.length; i++) {
-                    selectedSubvaults[$scope.cipher.subvaultIds[i]] = true;
+            var selectedCollections = {};
+            if ($scope.cipher.collectionIds) {
+                for (i = 0; i < $scope.cipher.collectionIds.length; i++) {
+                    selectedCollections[$scope.cipher.collectionIds[i]] = true;
                 }
             }
-            $scope.selectedSubvaults = selectedSubvaults;
+            $scope.selectedCollections = selectedCollections;
         });
 
-        $scope.toggleSubvaultSelectionAll = function ($event) {
-            var subvaults = {};
+        $scope.toggleCollectionSelectionAll = function ($event) {
+            var collections = {};
             if ($event.target.checked) {
-                for (var i = 0; i < $scope.subvaults.length; i++) {
-                    subvaults[$scope.subvaults[i].id] = true;
+                for (var i = 0; i < $scope.collections.length; i++) {
+                    collections[$scope.collections[i].id] = true;
                 }
             }
 
-            $scope.selectedSubvaults = subvaults;
+            $scope.selectedCollections = collections;
         };
 
-        $scope.toggleSubvaultSelection = function (id) {
-            if (id in $scope.selectedSubvaults) {
-                delete $scope.selectedSubvaults[id];
+        $scope.toggleCollectionSelection = function (id) {
+            if (id in $scope.selectedCollections) {
+                delete $scope.selectedCollections[id];
             }
             else {
-                $scope.selectedSubvaults[id] = true;
+                $scope.selectedCollections[id] = true;
             }
         };
 
-        $scope.subvaultSelected = function (subvault) {
-            return subvault.id in $scope.selectedSubvaults;
+        $scope.collectionSelected = function (collection) {
+            return collection.id in $scope.selectedCollections;
         };
 
         $scope.allSelected = function () {
-            return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
+            return Object.keys($scope.selectedCollections).length === $scope.collections.length;
         };
 
         $scope.submit = function () {
             var request = {
-                subvaultIds: []
+                collectionIds: []
             };
 
-            for (var id in $scope.selectedSubvaults) {
-                if ($scope.selectedSubvaults.hasOwnProperty(id)) {
-                    request.subvaultIds.push(id);
+            for (var id in $scope.selectedCollections) {
+                if ($scope.selectedCollections.hasOwnProperty(id)) {
+                    request.collectionIds.push(id);
                 }
             }
 
-            $scope.submitPromise = apiService.ciphers.putSubvaultsAdmin({ id: cipher.id }, request)
+            $scope.submitPromise = apiService.ciphers.putCollectionsAdmin({ id: cipher.id }, request)
                 .$promise.then(function (response) {
-                    $analytics.eventTrack('Edited Login Subvaults');
+                    $analytics.eventTrack('Edited Login Collections');
                     $uibModalInstance.close({
-                        action: 'subvaultsEdit',
-                        subvaultIds: request.subvaultIds
+                        action: 'collectionsEdit',
+                        collectionIds: request.collectionIds
                     });
                 });
         };

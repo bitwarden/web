@@ -1,23 +1,23 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSubvaultsEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
+    .controller('organizationCollectionsEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
         $analytics, id) {
-        $analytics.eventTrack('organizationSubvaultsEditController', { category: 'Modal' });
-        $scope.subvault = {};
+        $analytics.eventTrack('organizationCollectionsEditController', { category: 'Modal' });
+        $scope.collection = {};
 
         $uibModalInstance.opened.then(function () {
-            apiService.subvaults.get({ orgId: $state.params.orgId, id: id }, function (subvault) {
-                $scope.subvault = cipherService.decryptSubvault(subvault);
+            apiService.collections.get({ orgId: $state.params.orgId, id: id }, function (collection) {
+                $scope.collection = cipherService.decryptCollection(collection);
             });
         });
 
         $scope.submit = function (model) {
-            var subvault = cipherService.encryptSubvault(model, $state.params.orgId);
-            $scope.submitPromise = apiService.subvaults.put({ orgId: $state.params.orgId }, subvault, function (response) {
-                $analytics.eventTrack('Edited Subvault');
-                var decSubvault = cipherService.decryptSubvault(response, $state.params.orgId, true);
-                $uibModalInstance.close(decSubvault);
+            var collection = cipherService.encryptCollection(model, $state.params.orgId);
+            $scope.submitPromise = apiService.collections.put({ orgId: $state.params.orgId }, collection, function (response) {
+                $analytics.eventTrack('Edited Collection');
+                var decCollection = cipherService.decryptCollection(response, $state.params.orgId, true);
+                $uibModalInstance.close(decCollection);
             }).$promise;
         };
 

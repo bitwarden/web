@@ -264,18 +264,18 @@
             });
         };
 
-        $scope.subvaults = function (login) {
+        $scope.collections = function (login) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultLoginSubvaults.html',
-                controller: 'vaultLoginSubvaultsController',
+                templateUrl: 'app/vault/views/vaultLoginCollections.html',
+                controller: 'vaultLoginCollectionsController',
                 resolve: {
                     loginId: function () { return login.id; }
                 }
             });
 
             modal.result.then(function (response) {
-                if (response.subvaultIds && !response.subvaultIds.length) {
+                if (response.collectionIds && !response.collectionIds.length) {
                     removeLoginFromScopes(login);
                 }
             });

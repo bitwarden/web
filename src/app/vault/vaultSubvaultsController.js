@@ -1,24 +1,24 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultSubvaultsController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
+    .controller('vaultCollectionsController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
         $uibModal, $filter, $rootScope) {
         $scope.logins = [];
-        $scope.subvaults = [];
+        $scope.collections = [];
         $scope.loading = true;
 
         $scope.$on('$viewContentLoaded', function () {
-            var subvaultPromise = apiService.subvaults.listMe({}, function (subvaults) {
-                var decSubvaults = [];
+            var collectionPromise = apiService.collections.listMe({}, function (collections) {
+                var decCollections = [];
 
-                for (var i = 0; i < subvaults.Data.length; i++) {
-                    var decSubvault = cipherService.decryptSubvault(subvaults.Data[i], null, true);
-                    decSubvault.collapsed = $localStorage.collapsedSubvaults &&
-                        decSubvault.id in $localStorage.collapsedSubvaults;
-                    decSubvaults.push(decSubvault);
+                for (var i = 0; i < collections.Data.length; i++) {
+                    var decCollection = cipherService.decryptCollection(collections.Data[i], null, true);
+                    decCollection.collapsed = $localStorage.collapsedCollections &&
+                        decCollection.id in $localStorage.collapsedCollections;
+                    decCollections.push(decCollection);
                 }
 
-                $scope.subvaults = decSubvaults;
+                $scope.collections = decCollections;
             }).$promise;
 
             var cipherPromise = apiService.ciphers.listDetails({}, function (ciphers) {
@@ -34,27 +34,27 @@
                 $scope.logins = decLogins;
             }).$promise;
 
-            $q.all([subvaultPromise, cipherPromise]).then(function () {
+            $q.all([collectionPromise, cipherPromise]).then(function () {
                 $scope.loading = false;
             });
         });
 
-        $scope.filterBySubvault = function (subvault) {
+        $scope.filterByCollection = function (collection) {
             return function (cipher) {
-                return cipher.subvaultIds.indexOf(subvault.id) > -1;
+                return cipher.collectionIds.indexOf(collection.id) > -1;
             };
         };
 
-        $scope.collapseExpand = function (subvault) {
-            if (!$localStorage.collapsedSubvaults) {
-                $localStorage.collapsedSubvaults = {};
+        $scope.collapseExpand = function (collection) {
+            if (!$localStorage.collapsedCollections) {
+                $localStorage.collapsedCollections = {};
             }
 
-            if (subvault.id in $localStorage.collapsedSubvaults) {
-                delete $localStorage.collapsedSubvaults[subvault.id];
+            if (collection.id in $localStorage.collapsedCollections) {
+                delete $localStorage.collapsedCollections[collection.id];
             }
             else {
-                $localStorage.collapsedSubvaults[subvault.id] = true;
+                $localStorage.collapsedCollections[collection.id] = true;
             }
         };
 
@@ -92,47 +92,47 @@
             });
         };
 
-        $scope.editSubvaults = function (login) {
+        $scope.editCollections = function (login) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultLoginSubvaults.html',
-                controller: 'vaultLoginSubvaultsController',
+                templateUrl: 'app/vault/views/vaultLoginCollections.html',
+                controller: 'vaultLoginCollectionsController',
                 resolve: {
                     loginId: function () { return login.id; }
                 }
             });
 
             modal.result.then(function (response) {
-                if (response.subvaultIds) {
-                    login.subvaultIds = response.subvaultIds;
+                if (response.collectionIds) {
+                    login.collectionIds = response.collectionIds;
 
-                    if (!response.subvaultIds.length) {
+                    if (!response.collectionIds.length) {
                         removeRootLogin(findRootLogin(login));
                     }
                 }
             });
         };
 
-        $scope.removeLogin = function (login, subvault) {
+        $scope.removeLogin = function (login, collection) {
             if (!confirm('Are you sure you want to remove this login (' + login.name + ') from the ' +
-                'subvault (' + subvault.name + ') ?')) {
+                'collection (' + collection.name + ') ?')) {
                 return;
             }
 
             var request = {
-                subvaultIds: []
+                collectionIds: []
             };
 
-            for (var i = 0; i < login.subvaultIds.length; i++) {
-                if (login.subvaultIds[i] !== subvault.id) {
-                    request.subvaultIds.push(login.subvaultIds[i]);
+            for (var i = 0; i < login.collectionIds.length; i++) {
+                if (login.collectionIds[i] !== collection.id) {
+                    request.collectionIds.push(login.collectionIds[i]);
                 }
             }
 
-            apiService.ciphers.putSubvaults({ id: login.id }, request).$promise.then(function (response) {
-                $analytics.eventTrack('Removed From Subvault');
-                login.subvaultIds = request.subvaultIds;
-                if (!login.subvaultIds.length) {
+            apiService.ciphers.putCollections({ id: login.id }, request).$promise.then(function (response) {
+                $analytics.eventTrack('Removed From Collection');
+                login.collectionIds = request.collectionIds;
+                if (!login.collectionIds.length) {
                     removeRootLogin(findRootLogin(login));
                 }
             });

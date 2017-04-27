@@ -1,9 +1,9 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSubvaultsGroupsController', function ($scope, $state, $uibModalInstance, subvault, $analytics) {
-        $analytics.eventTrack('organizationSubvaultsGroupsController', { category: 'Modal' });
-        $scope.subvault = subvault;
+    .controller('organizationCollectionsGroupsController', function ($scope, $state, $uibModalInstance, collection, $analytics) {
+        $analytics.eventTrack('organizationCollectionsGroupsController', { category: 'Modal' });
+        $scope.collection = collection;
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');

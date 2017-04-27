@@ -26,7 +26,7 @@ angular
             var login = {
                 id: encryptedLogin.Id,
                 organizationId: encryptedLogin.OrganizationId,
-                subvaultIds: encryptedLogin.SubvaultIds || [],
+                collectionIds: encryptedLogin.CollectionIds || [],
                 'type': 1,
                 folderId: encryptedLogin.FolderId,
                 favorite: encryptedLogin.Favorite,
@@ -51,7 +51,7 @@ angular
             var login = {
                 id: encryptedCipher.Id,
                 organizationId: encryptedCipher.OrganizationId,
-                subvaultIds: encryptedCipher.SubvaultIds || [],
+                collectionIds: encryptedCipher.CollectionIds || [],
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
@@ -90,28 +90,28 @@ angular
             };
         };
 
-        _service.decryptSubvaults = function (encryptedSubvaults, orgId, catchError) {
-            if (!encryptedSubvaults) throw "encryptedSubvaults is undefined or null";
+        _service.decryptCollections = function (encryptedCollections, orgId, catchError) {
+            if (!encryptedCollections) throw "encryptedCollections is undefined or null";
 
-            var unencryptedSubvaults = [];
-            for (var i = 0; i < encryptedSubvaults.length; i++) {
-                unencryptedSubvaults.push(_service.decryptSubvault(encryptedSubvaults[i], orgId, catchError));
+            var unencryptedCollections = [];
+            for (var i = 0; i < encryptedCollections.length; i++) {
+                unencryptedCollections.push(_service.decryptCollection(encryptedCollections[i], orgId, catchError));
             }
 
-            return unencryptedSubvaults;
+            return unencryptedCollections;
         };
 
-        _service.decryptSubvault = function (encryptedSubvault, orgId, catchError) {
-            if (!encryptedSubvault) throw "encryptedSubvault is undefined or null";
+        _service.decryptCollection = function (encryptedCollection, orgId, catchError) {
+            if (!encryptedCollection) throw "encryptedCollection is undefined or null";
 
             catchError = catchError === true ? true : false;
-            orgId = orgId || encryptedSubvault.OrganizationId;
+            orgId = orgId || encryptedCollection.OrganizationId;
             var key = cryptoService.getOrgKey(orgId);
 
             return {
-                id: encryptedSubvault.Id,
-                name: catchError ? _service.decryptProperty(encryptedSubvault.Name, key, false) :
-                    cryptoService.decrypt(encryptedSubvault.Name, key)
+                id: encryptedCollection.Id,
+                name: catchError ? _service.decryptProperty(encryptedCollection.Name, key, false) :
+                    cryptoService.decrypt(encryptedCollection.Name, key)
             };
         };
 
@@ -182,23 +182,23 @@ angular
             };
         };
 
-        _service.encryptSubvaults = function (unencryptedSubvaults, orgId) {
-            if (!unencryptedSubvaults) throw "unencryptedSubvaults is undefined or null";
+        _service.encryptCollections = function (unencryptedCollections, orgId) {
+            if (!unencryptedCollections) throw "unencryptedCollections is undefined or null";
 
-            var encryptedSubvaults = [];
-            for (var i = 0; i < unencryptedSubvaults.length; i++) {
-                encryptedSubvaults.push(_service.encryptSubvault(unencryptedSubvaults[i], orgId));
+            var encryptedCollections = [];
+            for (var i = 0; i < unencryptedCollections.length; i++) {
+                encryptedCollections.push(_service.encryptCollection(unencryptedCollections[i], orgId));
             }
 
-            return encryptedSubvaults;
+            return encryptedCollections;
         };
 
-        _service.encryptSubvault = function (unencryptedSubvault, orgId) {
-            if (!unencryptedSubvault) throw "unencryptedSubvault is undefined or null";
+        _service.encryptCollection = function (unencryptedCollection, orgId) {
+            if (!unencryptedCollection) throw "unencryptedCollection is undefined or null";
 
             return {
-                id: unencryptedSubvault.id,
-                name: cryptoService.encrypt(unencryptedSubvault.name, cryptoService.getOrgKey(orgId))
+                id: unencryptedCollection.id,
+                name: cryptoService.encrypt(unencryptedCollection.name, cryptoService.getOrgKey(orgId))
             };
         };
 

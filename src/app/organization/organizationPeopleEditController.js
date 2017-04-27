@@ -6,88 +6,88 @@
         $analytics.eventTrack('organizationPeopleEditController', { category: 'Modal' });
 
         $scope.loading = true;
-        $scope.subvaults = [];
-        $scope.selectedSubvaults = {};
+        $scope.collections = [];
+        $scope.selectedCollections = {};
 
         $uibModalInstance.opened.then(function () {
-            apiService.subvaults.listOrganization({ orgId: $state.params.orgId }, function (list) {
-                $scope.subvaults = cipherService.decryptSubvaults(list.Data, $state.params.orgId, true);
+            apiService.collections.listOrganization({ orgId: $state.params.orgId }, function (list) {
+                $scope.collections = cipherService.decryptCollections(list.Data, $state.params.orgId, true);
                 $scope.loading = false;
             });
 
             apiService.organizationUsers.get({ orgId: $state.params.orgId, id: id }, function (user) {
-                var subvaults = {};
-                if (user && user.Subvaults) {
-                    for (var i = 0; i < user.Subvaults.Data.length; i++) {
-                        subvaults[user.Subvaults.Data[i].SubvaultId] = {
-                            subvaultId: user.Subvaults.Data[i].SubvaultId,
-                            readOnly: user.Subvaults.Data[i].ReadOnly
+                var collections = {};
+                if (user && user.Collections) {
+                    for (var i = 0; i < user.Collections.Data.length; i++) {
+                        collections[user.Collections.Data[i].CollectionId] = {
+                            collectionId: user.Collections.Data[i].CollectionId,
+                            readOnly: user.Collections.Data[i].ReadOnly
                         };
                     }
                 }
                 $scope.email = user.Email;
                 $scope.type = user.Type;
-                $scope.accessAllSubvaults = user.AccessAllSubvaults;
-                $scope.selectedSubvaults = subvaults;
+                $scope.accessAllCollections = user.AccessAllCollections;
+                $scope.selectedCollections = collections;
             });
         });
 
-        $scope.toggleSubvaultSelectionAll = function ($event) {
-            var subvaults = {};
+        $scope.toggleCollectionSelectionAll = function ($event) {
+            var collections = {};
             if ($event.target.checked) {
-                for (var i = 0; i < $scope.subvaults.length; i++) {
-                    subvaults[$scope.subvaults[i].id] = {
-                        subvaultId: $scope.subvaults[i].id,
-                        readOnly: ($scope.subvaults[i].id in $scope.selectedSubvaults) ?
-                            $scope.selectedSubvaults[$scope.subvaults[i].id].readOnly : false
+                for (var i = 0; i < $scope.collections.length; i++) {
+                    collections[$scope.collections[i].id] = {
+                        collectionId: $scope.collections[i].id,
+                        readOnly: ($scope.collections[i].id in $scope.selectedCollections) ?
+                            $scope.selectedCollections[$scope.collections[i].id].readOnly : false
                     };
                 }
             }
 
-            $scope.selectedSubvaults = subvaults;
+            $scope.selectedCollections = collections;
         };
 
-        $scope.toggleSubvaultSelection = function (id) {
-            if (id in $scope.selectedSubvaults) {
-                delete $scope.selectedSubvaults[id];
+        $scope.toggleCollectionSelection = function (id) {
+            if (id in $scope.selectedCollections) {
+                delete $scope.selectedCollections[id];
             }
             else {
-                $scope.selectedSubvaults[id] = {
-                    subvaultId: id,
+                $scope.selectedCollections[id] = {
+                    collectionId: id,
                     readOnly: false
                 };
             }
         };
 
-        $scope.toggleSubvaultReadOnlySelection = function (id) {
-            if (id in $scope.selectedSubvaults) {
-                $scope.selectedSubvaults[id].readOnly = !!!$scope.selectedSubvaults[id].readOnly;
+        $scope.toggleCollectionReadOnlySelection = function (id) {
+            if (id in $scope.selectedCollections) {
+                $scope.selectedCollections[id].readOnly = !!!$scope.selectedCollections[id].readOnly;
             }
         };
 
-        $scope.subvaultSelected = function (subvault) {
-            return subvault.id in $scope.selectedSubvaults;
+        $scope.collectionSelected = function (collection) {
+            return collection.id in $scope.selectedCollections;
         };
 
         $scope.allSelected = function () {
-            return Object.keys($scope.selectedSubvaults).length === $scope.subvaults.length;
+            return Object.keys($scope.selectedCollections).length === $scope.collections.length;
         };
 
         $scope.submitPromise = null;
         $scope.submit = function (model) {
-            var subvaults = [];
-            if (!$scope.accessAllSubvaults) {
-                for (var subvaultId in $scope.selectedSubvaults) {
-                    if ($scope.selectedSubvaults.hasOwnProperty(subvaultId)) {
-                        subvaults.push($scope.selectedSubvaults[subvaultId]);
+            var collections = [];
+            if (!$scope.accessAllCollections) {
+                for (var collectionId in $scope.selectedCollections) {
+                    if ($scope.selectedCollections.hasOwnProperty(collectionId)) {
+                        collections.push($scope.selectedCollections[collectionId]);
                     }
                 }
             }
 
             $scope.submitPromise = apiService.organizationUsers.put({ orgId: $state.params.orgId, id: id }, {
                 type: $scope.type,
-                subvaults: subvaults,
-                accessAllSubvaults: $scope.accessAllSubvaults
+                collections: collections,
+                accessAllCollections: $scope.accessAllCollections
             }, function () {
                 $analytics.eventTrack('Edited User');
                 $uibModalInstance.close();

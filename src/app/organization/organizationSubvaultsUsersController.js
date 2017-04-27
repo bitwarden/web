@@ -1,19 +1,19 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSubvaultsUsersController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
-        $analytics, subvault, toastr) {
-        $analytics.eventTrack('organizationSubvaultsUsersController', { category: 'Modal' });
+    .controller('organizationCollectionsUsersController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
+        $analytics, collection, toastr) {
+        $analytics.eventTrack('organizationCollectionsUsersController', { category: 'Modal' });
         $scope.loading = true;
-        $scope.subvault = subvault;
+        $scope.collection = collection;
         $scope.users = [];
 
         $uibModalInstance.opened.then(function () {
             $scope.loading = false;
-            apiService.subvaultUsers.listSubvault(
+            apiService.collectionUsers.listCollection(
                 {
                     orgId: $state.params.orgId,
-                    subvaultId: subvault.id
+                    collectionId: collection.id
                 },
                 function (userList) {
                     if (userList && userList.Data.length) {
@@ -27,7 +27,7 @@
                                 type: userList.Data[i].Type,
                                 status: userList.Data[i].Status,
                                 readOnly: userList.Data[i].ReadOnly,
-                                accessAllSubvaults: userList.Data[i].AccessAllSubvaults
+                                accessAllCollections: userList.Data[i].AccessAllCollections
                             });
                         }
                         $scope.users = users;
@@ -37,13 +37,13 @@
 
         $scope.remove = function (user) {
             if (!confirm('Are you sure you want to remove this user (' + user.email + ') from this ' +
-                'subvault (' + subvault.name + ')?')) {
+                'collection (' + collection.name + ')?')) {
                 return;
             }
 
-            apiService.subvaultUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
+            apiService.collectionUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
                 toastr.success(user.email + ' has been removed.', 'User Removed');
-                $analytics.eventTrack('Removed User From Subvault');
+                $analytics.eventTrack('Removed User From Collection');
                 var index = $scope.users.indexOf(user);
                 if (index > -1) {
                     $scope.users.splice(index, 1);

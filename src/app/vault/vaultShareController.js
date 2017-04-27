@@ -6,11 +6,11 @@
         $analytics.eventTrack('vaultShareController', { category: 'Modal' });
         $scope.model = {};
         $scope.login = {};
-        $scope.subvaults = [];
-        $scope.selectedSubvaults = {};
+        $scope.collections = [];
+        $scope.selectedCollections = {};
         $scope.organizations = [];
-        var organizationSubvaultCounts = {};
-        $scope.loadingSubvaults = true;
+        var organizationCollectionCounts = {};
+        $scope.loadingCollections = true;
         $scope.readOnly = false;
 
         apiService.logins.get({ id: loginId }).$promise.then(function (login) {
@@ -38,7 +38,7 @@
                             name: profile.organizations[i].name
                         });
 
-                        organizationSubvaultCounts[profile.organizations[i].id] = 0;
+                        organizationCollectionCounts[profile.organizations[i].id] = 0;
 
                         if (!setFirstOrg) {
                             setFirstOrg = true;
@@ -49,45 +49,45 @@
 
                 $scope.organizations = orgs;
 
-                apiService.subvaults.listMe(function (response) {
-                    var subvaults = [];
+                apiService.collections.listMe(function (response) {
+                    var collections = [];
                     for (var i = 0; i < response.Data.length; i++) {
-                        var decSubvault = cipherService.decryptSubvault(response.Data[i]);
-                        decSubvault.organizationId = response.Data[i].OrganizationId;
-                        subvaults.push(decSubvault);
-                        organizationSubvaultCounts[decSubvault.organizationId]++;
+                        var decCollection = cipherService.decryptCollection(response.Data[i]);
+                        decCollection.organizationId = response.Data[i].OrganizationId;
+                        collections.push(decCollection);
+                        organizationCollectionCounts[decCollection.organizationId]++;
                     }
 
-                    $scope.subvaults = subvaults;
-                    $scope.loadingSubvaults = false;
+                    $scope.collections = collections;
+                    $scope.loadingCollections = false;
                 });
             }
         });
 
-        $scope.toggleSubvaultSelectionAll = function ($event) {
-            var subvaults = {};
+        $scope.toggleCollectionSelectionAll = function ($event) {
+            var collections = {};
             if ($event.target.checked) {
-                for (var i = 0; i < $scope.subvaults.length; i++) {
-                    if ($scope.model.organizationId && $scope.subvaults[i].organizationId === $scope.model.organizationId) {
-                        subvaults[$scope.subvaults[i].id] = true;
+                for (var i = 0; i < $scope.collections.length; i++) {
+                    if ($scope.model.organizationId && $scope.collections[i].organizationId === $scope.model.organizationId) {
+                        collections[$scope.collections[i].id] = true;
                     }
                 }
             }
 
-            $scope.selectedSubvaults = subvaults;
+            $scope.selectedCollections = collections;
         };
 
-        $scope.toggleSubvaultSelection = function (id) {
-            if (id in $scope.selectedSubvaults) {
-                delete $scope.selectedSubvaults[id];
+        $scope.toggleCollectionSelection = function (id) {
+            if (id in $scope.selectedCollections) {
+                delete $scope.selectedCollections[id];
             }
             else {
-                $scope.selectedSubvaults[id] = true;
+                $scope.selectedCollections[id] = true;
             }
         };
 
-        $scope.subvaultSelected = function (subvault) {
-            return subvault.id in $scope.selectedSubvaults;
+        $scope.collectionSelected = function (collection) {
+            return collection.id in $scope.selectedCollections;
         };
 
         $scope.allSelected = function () {
@@ -95,11 +95,11 @@
                 return false;
             }
 
-            return Object.keys($scope.selectedSubvaults).length === organizationSubvaultCounts[$scope.model.organizationId];
+            return Object.keys($scope.selectedCollections).length === organizationCollectionCounts[$scope.model.organizationId];
         };
 
         $scope.orgChanged = function () {
-            $scope.selectedSubvaults = {};
+            $scope.selectedCollections = {};
         };
 
         $scope.submitPromise = null;
@@ -107,13 +107,13 @@
             $scope.login.organizationId = model.organizationId;
 
             var request = {
-                subvaultIds: [],
+                collectionIds: [],
                 cipher: cipherService.encryptLogin($scope.login)
             };
 
-            for (var id in $scope.selectedSubvaults) {
-                if ($scope.selectedSubvaults.hasOwnProperty(id)) {
-                    request.subvaultIds.push(id);
+            for (var id in $scope.selectedCollections) {
+                if ($scope.selectedCollections.hasOwnProperty(id)) {
+                    request.collectionIds.push(id);
                 }
             }
 

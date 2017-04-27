@@ -15,13 +15,13 @@
             <div class="radio">
                 <label>
                     <input type="radio" id="user-type" ng-model="type" name="Type" value="2" ng-checked="type === 2">
-                    <strong>User</strong> - A regular user with access to your organization's subvaults.
+                    <strong>User</strong> - A regular user with access to your organization's collections.
                 </label>
             </div>
             <div class="radio">
                 <label>
                     <input type="radio" ng-model="type" name="Type" value="1" ng-checked="type === 1">
-                    <strong>Admin</strong> - Admins can manage subvaults and users for your organization.
+                    <strong>Admin</strong> - Admins can manage collections and users for your organization.
                 </label>
             </div>
             <div class="radio">
@@ -31,60 +31,60 @@
                 </label>
             </div>
         </div>
-        <h4>Subvault Access</h4>
+        <h4>Collection Access</h4>
         <div class="radio">
             <label>
-                <input type="radio" ng-model="accessAllSubvaults" name="AccessAllSubvaults"
-                       ng-value="true" ng-checked="accessAllSubvaults">
-                This user can access and modify items in <u>all</u> subvaults.
+                <input type="radio" ng-model="accessAllCollections" name="AccessAllCollections"
+                       ng-value="true" ng-checked="accessAllCollections">
+                This user can access and modify items in <u>all</u> collections.
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" ng-model="accessAllSubvaults" name="AccessAllSubvaults"
-                       ng-value="false" ng-checked="!accessAllSubvaults">
-                This user can access only the selected subvaults.
+                <input type="radio" ng-model="accessAllCollections" name="AccessAllCollections"
+                       ng-value="false" ng-checked="!accessAllCollections">
+                This user can access only the selected collections.
             </label>
         </div>
-        <div ng-show="!accessAllSubvaults">
-            <div ng-show="loading && !subvaults.length">
-                Loading subvaults...
+        <div ng-show="!accessAllCollections">
+            <div ng-show="loading && !collections.length">
+                Loading collections...
             </div>
-            <div ng-show="!loading && !subvaults.length">
-                <p>No subvaults for your organization.</p>
+            <div ng-show="!loading && !collections.length">
+                <p>No collections for your organization.</p>
             </div>
-            <div class="table-responsive" ng-show="subvaults.length" style="margin: 0;">
+            <div class="table-responsive" ng-show="collections.length" style="margin: 0;">
                 <table class="table table-striped table-hover" style="margin: 0;">
                     <thead>
                         <tr>
                             <th style="width: 40px;">
                                 <input type="checkbox"
                                        ng-checked="allSelected()"
-                                       ng-click="toggleSubvaultSelectionAll($event)">
+                                       ng-click="toggleCollectionSelectionAll($event)">
                             </th>
                             <th>Name</th>
                             <th style="width: 100px; text-align: center;">Read Only</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="subvault in subvaults | orderBy: ['name']">
+                        <tr ng-repeat="collection in collections | orderBy: ['name']">
                             <td valign="middle">
                                 <input type="checkbox"
-                                       name="selectedSubvaults[]"
-                                       value="{{subvault.id}}"
-                                       ng-checked="subvaultSelected(subvault)"
-                                       ng-click="toggleSubvaultSelection(subvault.id)">
+                                       name="selectedCollections[]"
+                                       value="{{collection.id}}"
+                                       ng-checked="collectionSelected(collection)"
+                                       ng-click="toggleCollectionSelection(collection.id)">
                             </td>
                             <td valign="middle">
-                                {{subvault.name}}
+                                {{collection.name}}
                             </td>
                             <td style="text-align: center;" valign="middle">
                                 <input type="checkbox"
-                                       name="selectedSubvaultsReadonly[]"
-                                       value="{{subvault.id}}"
-                                       ng-disabled="!subvaultSelected(subvault)"
-                                       ng-checked="subvaultSelected(subvault) && selectedSubvaults[subvault.id].readOnly"
-                                       ng-click="toggleSubvaultReadOnlySelection(subvault.id)">
+                                       name="selectedCollectionsReadonly[]"
+                                       value="{{collection.id}}"
+                                       ng-disabled="!collectionSelected(collection)"
+                                       ng-checked="collectionSelected(collection) && selectedCollections[collection.id].readOnly"
+                                       ng-click="toggleCollectionReadOnlySelection(collection.id)">
                             </td>
                         </tr>
                     </tbody>

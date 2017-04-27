@@ -1,9 +1,9 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationSubvaultsController', function ($scope, $state, apiService, $uibModal, cipherService, $filter,
+    .controller('organizationCollectionsController', function ($scope, $state, apiService, $uibModal, cipherService, $filter,
         toastr, $analytics) {
-        $scope.subvaults = [];
+        $scope.collections = [];
         $scope.loading = true;
         $scope.$on('$viewContentLoaded', function () {
             loadList();
@@ -12,41 +12,41 @@
         $scope.add = function () {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/organizationSubvaultsAdd.html',
-                controller: 'organizationSubvaultsAddController'
+                templateUrl: 'app/organization/views/organizationCollectionsAdd.html',
+                controller: 'organizationCollectionsAddController'
             });
 
-            modal.result.then(function (subvault) {
-                $scope.subvaults.push(subvault);
+            modal.result.then(function (collection) {
+                $scope.collections.push(collection);
             });
         };
 
-        $scope.edit = function (subvault) {
+        $scope.edit = function (collection) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/organizationSubvaultsEdit.html',
-                controller: 'organizationSubvaultsEditController',
+                templateUrl: 'app/organization/views/organizationCollectionsEdit.html',
+                controller: 'organizationCollectionsEditController',
                 resolve: {
-                    id: function () { return subvault.id; }
+                    id: function () { return collection.id; }
                 }
             });
 
-            modal.result.then(function (editedSubvault) {
-                var existingSubvaults = $filter('filter')($scope.subvaults, { id: editedSubvault.id }, true);
-                if (existingSubvaults && existingSubvaults.length > 0) {
-                    existingSubvaults[0].name = editedSubvault.name;
+            modal.result.then(function (editedCollection) {
+                var existingCollections = $filter('filter')($scope.collections, { id: editedCollection.id }, true);
+                if (existingCollections && existingCollections.length > 0) {
+                    existingCollections[0].name = editedCollection.name;
                 }
             });
         };
 
-        $scope.users = function (subvault) {
+        $scope.users = function (collection) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/organizationSubvaultsUsers.html',
-                controller: 'organizationSubvaultsUsersController',
+                templateUrl: 'app/organization/views/organizationCollectionsUsers.html',
+                controller: 'organizationCollectionsUsersController',
                 size: 'lg',
                 resolve: {
-                    subvault: function () { return subvault; }
+                    collection: function () { return collection; }
                 }
             });
 
@@ -55,13 +55,13 @@
             });
         };
 
-        $scope.groups = function (subvault) {
+        $scope.groups = function (collection) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/organizationSubvaultsGroups.html',
-                controller: 'organizationSubvaultsGroupsController',
+                templateUrl: 'app/organization/views/organizationCollectionsGroups.html',
+                controller: 'organizationCollectionsGroupsController',
                 resolve: {
-                    subvault: function () { return subvault; }
+                    collection: function () { return collection; }
                 }
             });
 
@@ -70,27 +70,27 @@
             });
         };
 
-        $scope.delete = function (subvault) {
-            if (!confirm('Are you sure you want to delete this subvault (' + subvault.name + ')?')) {
+        $scope.delete = function (collection) {
+            if (!confirm('Are you sure you want to delete this collection (' + collection.name + ')?')) {
                 return;
             }
 
-            apiService.subvaults.del({ orgId: $state.params.orgId, id: subvault.id }, function () {
-                var index = $scope.subvaults.indexOf(subvault);
+            apiService.collections.del({ orgId: $state.params.orgId, id: collection.id }, function () {
+                var index = $scope.collections.indexOf(collection);
                 if (index > -1) {
-                    $scope.subvaults.splice(index, 1);
+                    $scope.collections.splice(index, 1);
                 }
 
-                $analytics.eventTrack('Deleted Subvault');
-                toastr.success(subvault.name + ' has been deleted.', 'Subvault Deleted');
+                $analytics.eventTrack('Deleted Collection');
+                toastr.success(collection.name + ' has been deleted.', 'Collection Deleted');
             }, function () {
-                toastr.error(subvault.name + ' was not able to be deleted.', 'Error');
+                toastr.error(collection.name + ' was not able to be deleted.', 'Error');
             });
         };
 
         function loadList() {
-            apiService.subvaults.listOrganization({ orgId: $state.params.orgId }, function (list) {
-                $scope.subvaults = cipherService.decryptSubvaults(list.Data, $state.params.orgId, true);
+            apiService.collections.listOrganization({ orgId: $state.params.orgId }, function (list) {
+                $scope.collections = cipherService.decryptCollections(list.Data, $state.params.orgId, true);
                 $scope.loading = false;
             });
         }

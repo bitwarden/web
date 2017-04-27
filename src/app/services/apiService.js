@@ -31,8 +31,8 @@
             favorite: { url: _apiUri + '/ciphers/:id/favorite', method: 'POST', params: { id: '@id' } },
             putPartial: { url: _apiUri + '/ciphers/:id/partial', method: 'POST', params: { id: '@id' } },
             putShare: { url: _apiUri + '/ciphers/:id/share', method: 'POST', params: { id: '@id' } },
-            putSubvaults: { url: _apiUri + '/ciphers/:id/subvaults', method: 'POST', params: { id: '@id' } },
-            putSubvaultsAdmin: { url: _apiUri + '/ciphers/:id/subvaults-admin', method: 'POST', params: { id: '@id' } },
+            putCollections: { url: _apiUri + '/ciphers/:id/collections', method: 'POST', params: { id: '@id' } },
+            putCollectionsAdmin: { url: _apiUri + '/ciphers/:id/collections-admin', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } },
             delAdmin: { url: _apiUri + '/ciphers/:id/delete-admin', method: 'POST', params: { id: '@id' } }
         });
@@ -63,18 +63,18 @@
             del: { url: _apiUri + '/organizations/:orgId/users/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
-        _service.subvaults = $resource(_apiUri + '/organizations/:orgId/subvaults/:id', {}, {
+        _service.collections = $resource(_apiUri + '/organizations/:orgId/collections/:id', {}, {
             get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
-            listMe: { url: _apiUri + '/subvaults', method: 'GET', params: {} },
+            listMe: { url: _apiUri + '/collections', method: 'GET', params: {} },
             listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
             post: { method: 'POST', params: { orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
-            del: { url: _apiUri + '/organizations/:orgId/subvaults/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+            del: { url: _apiUri + '/organizations/:orgId/collections/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
-        _service.subvaultUsers = $resource(_apiUri + '/organizations/:orgId/subvaultUsers/:id', {}, {
-            listSubvault: { url: _apiUri + '/organizations/:orgId/subvaultUsers/:subvaultId', method: 'GET', params: { subvaultId: '@subvaultId', orgId: '@orgId' } },
-            del: { url: _apiUri + '/organizations/:orgId/subvaultUsers/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+        _service.collectionUsers = $resource(_apiUri + '/organizations/:orgId/collectionUsers/:id', {}, {
+            listCollection: { url: _apiUri + '/organizations/:orgId/collectionUsers/:collectionId', method: 'GET', params: { collectionId: '@collectionId', orgId: '@orgId' } },
+            del: { url: _apiUri + '/organizations/:orgId/collectionUsers/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
         _service.accounts = $resource(_apiUri + '/accounts', {}, {

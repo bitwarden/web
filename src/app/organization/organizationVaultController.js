@@ -4,25 +4,25 @@
     .controller('organizationVaultController', function ($scope, apiService, cipherService, $analytics, $q, $state,
         $localStorage, $uibModal, $filter) {
         $scope.logins = [];
-        $scope.subvaults = [];
+        $scope.collections = [];
         $scope.loading = true;
 
         $scope.$on('$viewContentLoaded', function () {
-            var subvaultPromise = apiService.subvaults.listOrganization({ orgId: $state.params.orgId }, function (subvaults) {
-                var decSubvaults = [{
+            var collectionPromise = apiService.collections.listOrganization({ orgId: $state.params.orgId }, function (collections) {
+                var decCollections = [{
                     id: null,
                     name: 'Unassigned',
-                    collapsed: $localStorage.collapsedOrgSubvaults && 'unassigned' in $localStorage.collapsedOrgSubvaults
+                    collapsed: $localStorage.collapsedOrgCollections && 'unassigned' in $localStorage.collapsedOrgCollections
                 }];
 
-                for (var i = 0; i < subvaults.Data.length; i++) {
-                    var decSubvault = cipherService.decryptSubvault(subvaults.Data[i], null, true);
-                    decSubvault.collapsed = $localStorage.collapsedOrgSubvaults &&
-                        decSubvault.id in $localStorage.collapsedOrgSubvaults;
-                    decSubvaults.push(decSubvault);
+                for (var i = 0; i < collections.Data.length; i++) {
+                    var decCollection = cipherService.decryptCollection(collections.Data[i], null, true);
+                    decCollection.collapsed = $localStorage.collapsedOrgCollections &&
+                        decCollection.id in $localStorage.collapsedOrgCollections;
+                    decCollections.push(decCollection);
                 }
 
-                $scope.subvaults = decSubvaults;
+                $scope.collections = decCollections;
             }).$promise;
 
             var cipherPromise = apiService.ciphers.listOrganizationDetails({ organizationId: $state.params.orgId },
@@ -39,22 +39,22 @@
                     $scope.logins = decLogins;
                 }).$promise;
 
-            $q.all([subvaultPromise, cipherPromise]).then(function () {
+            $q.all([collectionPromise, cipherPromise]).then(function () {
                 $scope.loading = false;
             });
         });
 
-        $scope.filterBySubvault = function (subvault) {
+        $scope.filterByCollection = function (collection) {
             return function (cipher) {
-                if (!cipher.subvaultIds || !cipher.subvaultIds.length) {
-                    return subvault.id === null;
+                if (!cipher.collectionIds || !cipher.collectionIds.length) {
+                    return collection.id === null;
                 }
 
-                return cipher.subvaultIds.indexOf(subvault.id) > -1;
+                return cipher.collectionIds.indexOf(collection.id) > -1;
             };
         };
 
-        $scope.subvaultSort = function (item) {
+        $scope.collectionSort = function (item) {
             if (!item.id) {
                 return '';
             }
@@ -62,58 +62,58 @@
             return item.name.toLowerCase();
         };
 
-        $scope.collapseExpand = function (subvault) {
-            if (!$localStorage.collapsedOrgSubvaults) {
-                $localStorage.collapsedOrgSubvaults = {};
+        $scope.collapseExpand = function (collection) {
+            if (!$localStorage.collapsedOrgCollections) {
+                $localStorage.collapsedOrgCollections = {};
             }
 
-            var id = subvault.id || 'unassigned';
+            var id = collection.id || 'unassigned';
 
-            if (id in $localStorage.collapsedOrgSubvaults) {
-                delete $localStorage.collapsedOrgSubvaults[id];
+            if (id in $localStorage.collapsedOrgCollections) {
+                delete $localStorage.collapsedOrgCollections[id];
             }
             else {
-                $localStorage.collapsedOrgSubvaults[id] = true;
+                $localStorage.collapsedOrgCollections[id] = true;
             }
         };
 
-        $scope.editSubvaults = function (cipher) {
+        $scope.editCollections = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/organizationVaultLoginSubvaults.html',
-                controller: 'organizationVaultLoginSubvaultsController',
+                templateUrl: 'app/organization/views/organizationVaultLoginCollections.html',
+                controller: 'organizationVaultLoginCollectionsController',
                 resolve: {
                     cipher: function () { return cipher; },
-                    subvaults: function () { return $scope.subvaults; }
+                    collections: function () { return $scope.collections; }
                 }
             });
 
             modal.result.then(function (response) {
-                if (response.subvaultIds) {
-                    cipher.subvaultIds = response.subvaultIds;
+                if (response.collectionIds) {
+                    cipher.collectionIds = response.collectionIds;
                 }
             });
         };
 
-        $scope.removeLogin = function (login, subvault) {
+        $scope.removeLogin = function (login, collection) {
             if (!confirm('Are you sure you want to remove this login (' + login.name + ') from the ' +
-                'subvault (' + subvault.name + ') ?')) {
+                'collection (' + collection.name + ') ?')) {
                 return;
             }
 
             var request = {
-                subvaultIds: []
+                collectionIds: []
             };
 
-            for (var i = 0; i < login.subvaultIds.length; i++) {
-                if (login.subvaultIds[i] !== subvault.id) {
-                    request.subvaultIds.push(login.subvaultIds[i]);
+            for (var i = 0; i < login.collectionIds.length; i++) {
+                if (login.collectionIds[i] !== collection.id) {
+                    request.collectionIds.push(login.collectionIds[i]);
                 }
             }
 
-            apiService.ciphers.putSubvaults({ id: login.id }, request).$promise.then(function (response) {
-                $analytics.eventTrack('Removed Login From Subvault');
-                login.subvaultIds = request.subvaultIds;
+            apiService.ciphers.putCollections({ id: login.id }, request).$promise.then(function (response) {
+                $analytics.eventTrack('Removed Login From Collection');
+                login.collectionIds = request.collectionIds;
             });
         };
 

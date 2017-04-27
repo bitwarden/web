@@ -1,6 +1,6 @@
 ﻿<section class="content-header">
     <h1>
-        Subvaults
+        Collections
         <small>share with your organization</small>
     </h1>
 </section>
@@ -10,33 +10,33 @@
             &nbsp;
             <div class="box-filters hidden-xs">
                 <div class="form-group form-group-sm has-feedback has-feedback-left">
-                    <input type="text" id="search" class="form-control" placeholder="Search subvaults..."
+                    <input type="text" id="search" class="form-control" placeholder="Search collections..."
                            style="width: 200px;" ng-model="filterSearch">
                     <span class="fa fa-search form-control-feedback text-muted" aria-hidden="true"></span>
                 </div>
             </div>
             <div class="box-tools">
                 <button type="button" class="btn btn-primary btn-sm btn-flat" ng-click="add()">
-                    <i class="fa fa-fw fa-plus-circle"></i> New Subvault
+                    <i class="fa fa-fw fa-plus-circle"></i> New Collection
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': filteredSubvaults.length}">
-            <div ng-show="loading && !subvaults.length">
+        <div class="box-body" ng-class="{'no-padding': filteredCollections.length}">
+            <div ng-show="loading && !collections.length">
                 Loading...
             </div>
-            <div ng-show="!filteredSubvaults.length && filterSearch">
-                No subvaults to list.
+            <div ng-show="!filteredCollections.length && filterSearch">
+                No collections to list.
             </div>
-            <div ng-show="!loading && !subvaults.length">
-                <p>There are no subvaults yet for your organization.</p>
-                <button type="button" ng-click="add()" class="btn btn-default btn-flat">Add a Subvault</button>
+            <div ng-show="!loading && !collections.length">
+                <p>There are no collections yet for your organization.</p>
+                <button type="button" ng-click="add()" class="btn btn-default btn-flat">Add a Collection</button>
             </div>
-            <div class="table-responsive" ng-show="subvaults.length">
+            <div class="table-responsive" ng-show="collections.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="subvault in filteredSubvaults = (subvaults | filter: (filterSearch || '') |
-                            orderBy: ['name']) track by subvault.id">
+                        <tr ng-repeat="collection in filteredCollections = (collections | filter: (filterSearch || '') |
+                            orderBy: ['name']) track by collection.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -44,17 +44,17 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="users(subvault)">
+                                            <a href="javascript:void(0)" ng-click="users(collection)">
                                                 <i class="fa fa-fw fa-users"></i> Users
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="groups(subvault)">
+                                            <a href="javascript:void(0)" ng-click="groups(collection)">
                                                 <i class="fa fa-fw fa-sitemap"></i> Groups
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="delete(subvault)" class="text-red">
+                                            <a href="javascript:void(0)" ng-click="delete(collection)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
@@ -62,8 +62,8 @@
                                 </div>
                             </td>
                             <td valign="middle">
-                                <a href="javascript:void(0)" ng-click="edit(subvault)">
-                                    {{subvault.name}}
+                                <a href="javascript:void(0)" ng-click="edit(collection)">
+                                    {{collection.name}}
                                 </a>
                             </td>
                         </tr>

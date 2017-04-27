@@ -82,11 +82,11 @@ angular
                     refreshFromServer: false
                 }
             })
-            .state('backend.user.subvaults', {
-                url: '^/subvaults',
-                templateUrl: 'app/vault/views/vaultSubvaults.html',
-                controller: 'vaultSubvaultsController',
-                data: { pageTitle: 'Subvaults' }
+            .state('backend.user.collections', {
+                url: '^/collections',
+                templateUrl: 'app/vault/views/vaultCollections.html',
+                controller: 'vaultCollectionsController',
+                data: { pageTitle: 'Collections' }
             })
             .state('backend.user.settings', {
                 url: '^/settings',
@@ -134,11 +134,11 @@ angular
                 controller: 'organizationPeopleController',
                 data: { pageTitle: 'Organization People' }
             })
-            .state('backend.org.subvaults', {
-                url: '/organization/:orgId/subvaults',
-                templateUrl: 'app/organization/views/organizationSubvaults.html',
-                controller: 'organizationSubvaultsController',
-                data: { pageTitle: 'Organization Subvaults' }
+            .state('backend.org.collections', {
+                url: '/organization/:orgId/collections',
+                templateUrl: 'app/organization/views/organizationCollections.html',
+                controller: 'organizationCollectionsController',
+                data: { pageTitle: 'Organization Collections' }
             })
             .state('backend.org.settings', {
                 url: '/organization/:orgId/settings',

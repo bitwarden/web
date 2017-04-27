@@ -1,57 +1,57 @@
 ﻿<section class="content-header">
     <h1>
-        Subvaults
+        Collections
         <small>
-            <span ng-pluralize count="subvaults.length" when="{'1': '{} subvault', 'other': '{} subvaults'}"></span>,
+            <span ng-pluralize count="collections.length" when="{'1': '{} collection', 'other': '{} collections'}"></span>,
             <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
         </small>
     </h1>
 </section>
 <section class="content">
-    <div ng-show="loading && !subvaults.length">
+    <div ng-show="loading && !collections.length">
         <p>Loading...</p>
     </div>
-    <div class="callout callout-default" style="background: #fff;" ng-show="!loading && !subvaults.length">
-        <h4><i class="fa fa-info-circle"></i> No Subvaults</h4>
+    <div class="callout callout-default" style="background: #fff;" ng-show="!loading && !collections.length">
+        <h4><i class="fa fa-info-circle"></i> No Collections</h4>
         <p>
-            You do not have any subvaults being shared with you.
+            You do not have any collections being shared with you.
         </p>
         <p>
-            Subvaults allow you to share logins with other bitwarden users. To start using subvaults create an organization or
+            Collections allow you to share logins with other bitwarden users. To start using collections create an organization or
             ask an existing organization to invite you.
         </p>
         <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-flat">
             Create an Organization
         </a>
     </div>
-    <div class="box" ng-class="{'collapsed-box': subvault.collapsed}" ng-repeat="subvault in subvaults |
-         orderBy: ['name'] track by subvault.id"
-         ng-show="subvaults.length">
+    <div class="box" ng-class="{'collapsed-box': collection.collapsed}" ng-repeat="collection in collections |
+         orderBy: ['name'] track by collection.id"
+         ng-show="collections.length">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-share-alt-square"></i>
-                {{subvault.name}}
-                <small ng-pluralize count="subvaultLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
+                {{collection.name}}
+                <small ng-pluralize count="collectionLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
             </h3>
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
-                        ng-click="collapseExpand(subvault)">
-                    <i class="fa" ng-class="{'fa-minus': !subvault.collapsed, 'fa-plus': subvault.collapsed}"></i>
+                        ng-click="collapseExpand(collection)">
+                    <i class="fa" ng-class="{'fa-minus': !collection.collapsed, 'fa-plus': collection.collapsed}"></i>
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': subvaultLogins.length}">
-            <div ng-show="!subvaultLogins.length">
-                <p>No logins in this subvault.</p>
+        <div class="box-body" ng-class="{'no-padding': collectionLogins.length}">
+            <div ng-show="!collectionLogins.length">
+                <p>No logins in this collection.</p>
                 <p>
-                    Share a login to this subvault by selecting <i class="fa fa-share-alt"></i> <b>Share</b> or
-                    <i class="fa fa-share-alt"></i> <b>Subvaults</b> from the login's options (<i class="fa fa-cog"></i>) menu.
+                    Share a login to this collection by selecting <i class="fa fa-share-alt"></i> <b>Share</b> or
+                    <i class="fa fa-share-alt"></i> <b>Collections</b> from the login's options (<i class="fa fa-cog"></i>) menu.
                 </p>
             </div>
-            <div class="table-responsive" ng-show="subvaultLogins.length">
+            <div class="table-responsive" ng-show="collectionLogins.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="login in subvaultLogins = (logins | filter: filterBySubvault(subvault) |
+                        <tr ng-repeat="login in collectionLogins = (logins | filter: filterByCollection(collection) |
                             orderBy: ['name', 'username']) track by login.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
@@ -65,12 +65,12 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editSubvaults(login)">
-                                                <i class="fa fa-fw fa-share-alt"></i> Subvaults
+                                            <a href="javascript:void(0)" ng-click="editCollections(login)">
+                                                <i class="fa fa-fw fa-share-alt"></i> Collections
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="removeLogin(login, subvault)" class="text-red">
+                                            <a href="javascript:void(0)" ng-click="removeLogin(login, collection)" class="text-red">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
                                             </a>
                                         </li>
