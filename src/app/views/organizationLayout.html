@@ -60,11 +60,25 @@
                 <a ui-sref="backend.org.collections({orgId: params.orgId})">
                     <i class="fa fa-cubes fa-fw"></i> <span>Collections</span>
                 </a>
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.collections')}">
+                    <li>
+                        <a href="javascript:void(0)" ng-click="addOrganizationCollection()">
+                            <i class="fa fa-plus-circle fa-fw"></i> New Collection
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li ng-class="{active: $state.is('backend.org.people')}">
                 <a ui-sref="backend.org.people({orgId: params.orgId})">
                     <i class="fa fa-users fa-fw"></i> <span>People</span>
                 </a>
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.people')}">
+                    <li>
+                        <a href="javascript:void(0)" ng-click="inviteOrganizationUser()">
+                            <i class="fa fa-plus-circle fa-fw"></i> Invite a User
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li ng-class="{active: $state.is('backend.org.groups')}">
                 <a ui-sref="backend.org.groups({orgId: params.orgId})">

@@ -9,6 +9,10 @@
             loadList();
         });
 
+        $scope.$on('organizationCollectionsAdd', function (event, args) {
+            $scope.add();
+        });
+
         $scope.add = function () {
             var modal = $uibModal.open({
                 animation: true,

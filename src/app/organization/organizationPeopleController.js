@@ -55,6 +55,10 @@
             });
         };
 
+        $scope.$on('organizationPeopleInvite', function (event, args) {
+            $scope.invite();
+        });
+
         $scope.invite = function () {
             var modal = $uibModal.open({
                 animation: true,

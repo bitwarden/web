@@ -40,14 +40,6 @@ angular
             }
         });
 
-        $scope.searchVault = function () {
-            $state.go('backend.user.vault');
-        };
-
-        $scope.searchOrganizationVault = function () {
-            $state.go('backend.org.vault', { orgId: $state.params.orgId  });
-        };
-
         $scope.addLogin = function () {
             $scope.$broadcast('vaultAddLogin');
         };
@@ -58,6 +50,14 @@ angular
 
         $scope.addOrganizationLogin = function () {
             $scope.$broadcast('organizationVaultAddLogin');
+        };
+
+        $scope.addOrganizationCollection = function () {
+            $scope.$broadcast('organizationCollectionsAdd');
+        };
+
+        $scope.inviteOrganizationUser = function () {
+            $scope.$broadcast('organizationPeopleInvite');
         };
 
         // Append dropdown menu somewhere else
