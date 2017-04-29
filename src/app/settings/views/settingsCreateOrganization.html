@@ -167,11 +167,11 @@
                 </div>
             </div>
             <div class="box-footer">
-                <p>
+                <h4>
                     <b>Total:</b>
                     {{totalPrice() | currency:"USD $":2}} /{{model.interval}}
-                </p>
-                Note: Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended.
+                </h4>
+                Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended.
                 You may cancel at any time.
             </div>
         </div>
@@ -236,12 +236,20 @@
                                 <option value="22">2022</option>
                                 <option value="23">2023</option>
                                 <option value="24">2024</option>
+                                <option value="25">2025</option>
+                                <option value="26">2026</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group" show-errors>
-                            <label for="cvc">CVC <i class="fa fa-question-circle"></i></label>
+                            <label for="cvc">
+                                CVC
+                                <a href="https://www.cvvnumber.com/cvv.html" target="_blank" title="What is this?"
+                                   rel="noopener noreferrer">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                            </label>
                             <input type="text" id="cvc" ng-model="model.card.cvc" class="form-control" name="cvc"
                                    cc-type="number.$ccType" cc-cvc required api-field />
                         </div>
