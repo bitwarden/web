@@ -13,6 +13,10 @@
         </div>
         <form name="registerForm" ng-submit="registerForm.$valid && register(registerForm)" ng-show="!success"
               api-form="registerPromise">
+            <div class="callout callout-default" ng-show="createOrg">
+                <h4>Create Organization, Step 1</h4>
+                <p>Before creating your organization, you first need to create a free personal account.</p>
+            </div>
             <div class="callout callout-danger validation-errors" ng-show="registerForm.$errors">
                 <h4>Errors have occured</h4>
                 <ul>

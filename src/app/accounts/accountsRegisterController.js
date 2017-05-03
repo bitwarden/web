@@ -5,6 +5,7 @@ angular
         $analytics, $state) {
         var params = $location.search();
         var stateParams = $state.params;
+        $scope.createOrg = stateParams.org;
 
         if (!stateParams.returnState && stateParams.org) {
             $scope.returnState = {
