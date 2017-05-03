@@ -36,12 +36,9 @@
                         </div>
                     </div>
                     <div class="col-sm-3 settings-photo">
-                        <a href="http://www.gravatar.com/" target="_blank">
-                            <img src="//www.gravatar.com/avatar/{{ main.userProfile.email | gravatar }}.jpg?s=150&d=mm"
-                                 class="img-rounded img-responsive" alt="User Image">
-                        </a>
-                        <a href="http://www.gravatar.com/" target="_blank" class="btn btn-link"
-                           analytics-on="click" analytics-event="Clicked Update Photo">Update Photo</a>
+                        <letter-avatar data="{{model.profile.name || model.email}}" round="false"
+                                       avclass="img-responsive img-rounded" avwidth="200" avheight="200"
+                                       fontsize="90"></letter-avatar>
                     </div>
                 </div>
             </div>
@@ -107,6 +104,41 @@
             <button type="button" class="btn btn-default btn-flat" ng-click="twoFactor()">
                 Manage Two-step Log In
             </button>
+        </div>
+    </div>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Organizations</h3>
+        </div>
+        <div class="box-body" ng-if="!model.organizations || !model.organizations.length">
+            No organizations yet for your account.
+        </div>
+        <div class="list-group" ng-if="model.organizations && model.organizations.length">
+            <div class="list-group-item" ng-repeat="org in model.organizations | orderBy: ['name']">
+                <div class="btn-group" data-append-to="body">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:void(0)" ng-click="leaveOrganization(org)" class="text-red">
+                                <i class="fa fa-fw fa-sign-out"></i> Leave
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="javascript:void(0)" ng-click="viewOrganization(org)">
+                    <letter-avatar data="{{org.name}}" round="false" avwidth="25" avheight="25"
+                                   avclass="img-rounded" fontsize="10"></letter-avatar>
+                    {{org.name}}
+                    <span class="label bg-gray" ng-if="!org.enabled">DISABLED</span>
+                </a>
+            </div>
+        </div>
+        <div class="box-footer">
+            <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-flat">
+                Create an Organization
+            </a>
         </div>
     </div>
     <div class="box box-danger">

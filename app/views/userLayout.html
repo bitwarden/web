@@ -1,0 +1,122 @@
+<header class="main-header" ng-controller="topNavController as topNav">
+    <a ui-sref="backend.user.vault" class="logo">
+        <span class="logo-mini"><i class="fa fa-shield"></i></span>
+        <span class="logo-lg"><i class="fa fa-shield"></i> <b>bit</b>warden</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="frontend.logout">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<aside class="main-sidebar" ng-controller="sideNavController as sideNav">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <letter-avatar data="{{name}}" avclass="img-responsive"></letter-avatar>
+            </div>
+            <div class="pull-left info">
+                <p>{{name}}</p>
+                <a ui-sref="frontend.logout">Log Out</a>
+            </div>
+        </div>
+        <form class="sidebar-form">
+            <label for="search" class="sr-only">Search</label>
+            <div class="form-group has-feedback">
+                <input type="text" id="search" class="form-control" placeholder="Search my vault..."
+                       ng-focus="searchVault()" ng-model="main.searchVaultText" />
+                <span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+            </div>
+        </form>
+        <ul class="sidebar-menu">
+            <li class="header">WEB VAULT</li>
+            <li class="treeview" ng-class="{active: $state.includes('backend.user.vault')}">
+                <a ui-sref="backend.user.vault"><i class="fa fa-lock fa-fw"></i> <span>My Vault</span></a>
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.user.vault')}">
+                    <li>
+                        <a href="javascript:void(0)" ng-click="addLogin()">
+                            <i class="fa fa-plus-circle fa-fw"></i> New Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" ng-click="addFolder()">
+                            <i class="fa fa-folder fa-fw"></i> New Folder
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview" ng-class="{active: $state.is('backend.user.shared')}">
+                <a ui-sref="backend.user.shared">
+
+                    <small class="label pull-right bg-orange">NEW</small>
+                    <i class="fa fa-share-alt fa-fw"></i> <span>Shared</span>
+                </a>
+            </li>
+            <li class="treeview" ng-class="{active: $state.is('backend.user.tools')}">
+                <a ui-sref="backend.user.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>
+            </li>
+            <li class="treeview"
+                ng-class="{active: $state.is('backend.user.settings') || $state.is('backend.user.settingsDomains') ||
+                $state.is('backend.user.settingsCreateOrg')}">
+                <a ui-sref="backend.user.settings"><i class="fa fa-cogs fa-fw"></i> <span>Settings</span></a>
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.settings') ||
+                        $state.is('backend.user.settingsDomains') || $state.is('backend.user.settingsCreateOrg')}">
+                    <li ng-class="{active: $state.is('backend.user.settingsCreateOrg')}">
+                        <a ui-sref="backend.user.settingsCreateOrg">
+                            <i class="fa fa-plus-circle fa-fw"></i> New Organization
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.is('backend.user.settingsDomains')}">
+                        <a ui-sref="backend.user.settingsDomains">
+                            <i class="fa fa-fw fa-circle-o"></i> Domain Rules
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.is('backend.user.apps')}">
+                <a ui-sref="backend.user.apps">
+                    <small class="label pull-right bg-green">FREE</small>
+                    <i class="fa fa-download fa-fw"></i> <span>Get the Apps</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://help.bitwarden.com/" target="_blank"
+                   analytics-on="click" analytics-event="Clicked Get Help">
+                    <i class="fa fa-info-circle fa-fw"></i> <span>Get Help</span>
+                </a>
+            </li>
+            <li class="header">
+                ORGANIZATIONS
+            </li>
+        </ul>
+        <div class="subsection">
+            <div ng-if="!orgs.length" class="hidden-collapsed">
+                <p>You do not belong to any organizations.</p>
+                <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-flat btn-block">
+                    Create an Organization
+                </a>
+            </div>
+            <ul class="list-inline" ng-if="orgs.length">
+                <li ng-repeat="org in orgs | orderBy: ['name'] track by org.id">
+                    <a href="javascript:void(0)" ng-click="viewOrganization(org)">
+                        <letter-avatar data="{{org.name}}" avclass="img-responsive img-rounded" round="false"
+                                       avheight="40" avwidth="40" bgcolor="#2c3b41" avborder="true"
+                                       borderstyle="3px solid #1a2226"></letter-avatar>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+</aside>
+
+<div class="content-wrapper" ui-view>
+</div>

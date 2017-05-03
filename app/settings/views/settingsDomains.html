@@ -9,25 +9,36 @@
     <form name="customForm" ng-submit="customForm.$valid && saveCustom()" api-form="customPromise">
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Custom Equivalent Domains</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" ng-click="addEdit(null)">
-                        <i class="fa fa-plus"></i> Add New
+                <h3 class="box-title">Custom <span class="hidden-xs">Equivalent Domains</span></h3>
+                <div class="box-tools">
+                    <button type="button" class="btn btn-primary btn-sm btn-flat" ng-click="addEdit(null)">
+                        <i class="fa fa-fw fa-plus-circle"></i> New Domain
                     </button>
                 </div>
             </div>
             <div class="box-body no-padding">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-vmiddle">
                         <tbody ng-if="equivalentDomains.length">
                             <tr ng-repeat="customDomain in equivalentDomains track by $index">
-                                <td style="width: 80px; min-width: 80px;">
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Edit" ng-click="addEdit($index)">
-                                        <i class="fa fa-lg fa-pencil"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Delete" ng-click="delete($index)">
-                                        <i class="fa fa-lg fa-trash"></i>
-                                    </button>
+                                <td style="width: 70px;">
+                                    <div class="btn-group" data-append-to="body">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-cog"></i> <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:void(0)" ng-click="addEdit($index)">
+                                                    <i class="fa fa-fw fa-pencil"></i> Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" ng-click="delete($index)" class="text-red">
+                                                    <i class="fa fa-fw fa-trash"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                                 <td>{{customDomain}}</td>
                             </tr>
@@ -51,28 +62,40 @@
     <form name="globalForm" ng-submit="globalForm.$valid && saveGlobal()" api-form="globalPromise">
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Global Equivalent Domains</h3>
+                <h3 class="box-title">Global <span class="hidden-xs">Equivalent Domains</span></h3>
             </div>
             <div class="box-body no-padding">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-vmiddle">
                         <tbody ng-if="globalEquivalentDomains.length">
                             <tr ng-repeat="globalDomain in globalEquivalentDomains">
-                                <td style="width: 80px; min-width: 80px;">
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Exclude"
-                                            ng-if="!globalDomain.excluded" ng-click="toggleExclude(globalDomain)">
-                                        <i class="fa fa-lg fa-ban"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Include"
-                                            ng-if="globalDomain.excluded" ng-click="toggleExclude(globalDomain)">
-                                        <i class="fa fa-lg fa-plus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-table" uib-tooltip="Customize"
-                                            ng-click="customize(globalDomain)">
-                                        <i class="fa fa-lg fa-cut"></i>
-                                    </button>
+                                <td style="width: 70px;">
+                                    <div class="btn-group" data-append-to="body">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-cog"></i> <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:void(0)" ng-if="!globalDomain.excluded" 
+                                                   ng-click="toggleExclude(globalDomain)">
+                                                    <i class="fa fa-fw fa-remove"></i> Exclude
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" ng-if="globalDomain.excluded"
+                                                   ng-click="toggleExclude(globalDomain)">
+                                                    <i class="fa fa-fw fa-plus"></i> Include
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" ng-click="customize(globalDomain)">
+                                                    <i class="fa fa-fw fa-cut"></i> Customize
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
-                                <td ng-class="{strike: globalDomain.excluded}">{{globalDomain.domains}}</td>
+                                <td ng-class="{strike: globalDomain.excluded}">{{::globalDomain.domains}}</td>
                             </tr>
                         </tbody>
                         <tbody ng-if="!globalEquivalentDomains.length">

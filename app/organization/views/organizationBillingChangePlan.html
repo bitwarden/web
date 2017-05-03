@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title"><i class="fa fa-file-text-o"></i> Change Plan</h4>
+</div>
+<form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
+    <div class="modal-body">
+        Coming soon. In the meantime, please <a href="https://bitwarden.com/contact/" target="_blank">contact us</a>
+        if you would like to change your plan.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>

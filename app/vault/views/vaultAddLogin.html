@@ -17,7 +17,7 @@
                     <input type="text" id="name" name="Name" ng-model="login.name" class="form-control" required api-field />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" ng-if="!hideFolders">
                 <div class="form-group" show-errors>
                     <label for="folder">Folder</label>
                     <select id="folder" name="FolderId" ng-model="login.folderId" class="form-control" api-field>
@@ -82,7 +82,7 @@
             <label for="notes">Notes</label>
             <textarea id="notes" name="Notes" class="form-control" ng-model="login.notes" api-field></textarea>
         </div>
-        <div class="checkbox">
+        <div class="checkbox" ng-if="!hideFavorite">
             <label>
                 <input type="checkbox" ng-model="login.favorite" name="Favorite" />
                 Favorite

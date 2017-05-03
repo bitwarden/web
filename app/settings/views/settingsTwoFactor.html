@@ -2,9 +2,13 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="twoFactorModelLabel"><i class="fa fa-key"></i> Two-step Log In</h4>
 </div>
-<form name="authTwoStepForm" ng-submit="authTwoStepForm.$valid && auth(authModel)" api-form="authPromise" ng-if="!twoFactorModel">
+<form name="authTwoStepForm" ng-submit="authTwoStepForm.$valid && auth(authModel)" api-form="authPromise"
+      ng-if="!twoFactorModel">
     <div class="modal-body">
-        <p ng-show="enabled()">Two-step log in is already enabled on your account. To access your two-step settings enter your master password below.</p>
+        <p ng-show="enabled()">
+            Two-step log in is already enabled on your account. To access your two-step
+            settings enter your master password below.
+        </p>
         <p ng-show="!enabled()">To get started with two-step log in enter your master password below.</p>
         <div class="callout callout-danger validation-errors" ng-show="authTwoStepForm.$errors">
             <h4>Errors have occured</h4>
@@ -14,7 +18,8 @@
         </div>
         <div class="form-group" show-errors>
             <label for="masterPassword">Master Password</label>
-            <input type="password" id="masterPassword" name="MasterPasswordHash" ng-model="authModel.masterPassword" class="form-control" required api-field />
+            <input type="password" id="masterPassword" name="MasterPasswordHash" ng-model="authModel.masterPassword"
+                   class="form-control" required api-field />
         </div>
     </div>
     <div class="modal-footer">
@@ -24,10 +29,17 @@
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
     </div>
 </form>
-<form name="updateTwoStepForm" ng-submit="updateTwoStepForm.$valid && update(updateModel)" api-form="updatePromise" ng-if="twoFactorModel">
+<form name="updateTwoStepForm" ng-submit="updateTwoStepForm.$valid && update(updateModel)" api-form="updatePromise"
+      ng-if="twoFactorModel">
     <div class="modal-body">
         <div ng-show="enabled()">
-            <p>Two-step log in is <strong class="text-green">enabled</strong> on your account. Below is the code required by your verification app.</p>
+            <div class="callout callout-success">
+                <h4><i class="fa fa-check-circle"></i> Enabled</h4>
+                <p>
+                    Two-step log in is enabled on your account. Incase you need to add it to another device, below is the QR
+                    code (or key) required by your verification app.
+                </p>
+            </div>
             <p>Need a two-step verification app? Download one of the following:</p>
         </div>
         <div ng-show="!enabled()">
@@ -35,10 +47,29 @@
             <h4>1. Download a two-step verification app</h4>
         </div>
         <ul class="fa-ul">
-            <li><i class="fa-li fa fa-apple"></i> iOS devices: <a href="https://itunes.apple.com/us/app/authy/id494168017?mt=8" target="_blank">Authy for iOS</a></li>
-            <li><i class="fa-li fa fa-android"></i> Android devices: <a href="https://play.google.com/store/apps/details?id=com.authy.authy" target="_blank">Authy for Android</a></li>
-            <li><i class="fa-li fa fa-windows"></i> Windows devices: <a href="https://www.microsoft.com/en-us/store/apps/authenticator/9wzdncrfj3rj" target="_blank">Microsoft Authenticator </a></li>
+            <li>
+                <i class="fa-li fa fa-apple fa-lg"></i>
+                iOS devices:
+                <a href="https://itunes.apple.com/us/app/authy/id494168017?mt=8" target="_blank">
+                    Authy for iOS
+                </a>
+            </li>
+            <li>
+                <i class="fa-li fa fa-android fa-lg"></i>
+                Android devices:
+                <a href="https://play.google.com/store/apps/details?id=com.authy.authy" target="_blank">
+                    Authy for Android
+                </a>
+            </li>
+            <li>
+                <i class="fa-li fa fa-windows fa-lg"></i>
+                Windows devices:
+                <a href="https://www.microsoft.com/en-us/store/apps/authenticator/9wzdncrfj3rj" target="_blank">
+                    Microsoft Authenticator
+                </a>
+            </li>
         </ul>
+        <p>These apps are recommended, however, other authenticator apps will also work.</p>
         <hr ng-show="enabled()" />
         <h4 ng-show="!enabled()" style="margin-top: 30px;">2. Scan this QR code with your verification app</h4>
         <div class="row">
@@ -46,7 +77,10 @@
                 <p><img ng-src="{{twoFactorModel.qr}}" alt="QR" class="img-thumbnail" /></p>
             </div>
             <div class="col-md-8">
-                <p><strong>Can't scan the code?</strong> You can add the code to your application manually using the following details:</p>
+                <p>
+                    <strong>Can't scan the code?</strong> You can add the code to your application manually using the
+                    following details:
+                </p>
                 <ul class="list-unstyled">
                     <li><strong>Key:</strong> <code>{{twoFactorModel.key}}</code></li>
                     <li><strong>Account:</strong> {{account}}</li>
@@ -56,12 +90,12 @@
         </div>
         <div ng-show="enabled()">
             <hr />
-            <div class="callout callout-danger">
+            <div class="callout callout-warning">
                 <h4><i class="fa fa-warning"></i> Recovery Code <i class="fa fa-warning"></i></h4>
                 <p>
                     The recovery code allows you to access your account in the event that you lose your authenticator app.
-                    bitwarden support won't be able to assist you if you lose access to your account. We recommend you write down or
-                    print the recovery code below and keep it in a safe place.
+                    bitwarden support won't be able to assist you if you lose access to your account. We recommend
+                    you write down or print the recovery code below and keep it in a safe place.
                 </p>
                 <p><strong>Recovery Code:</strong> <code>{{twoFactorModel.recovery}}</code></p>
                 <button type="button" class="btn btn-default" ng-click="print(twoFactorModel.recovery)">
@@ -69,19 +103,26 @@
                 </button>
             </div>
         </div>
+        <hr ng-show="enabled()" />
         <div class="callout callout-danger validation-errors" ng-show="updateTwoStepForm.$errors">
             <h4>Errors have occured</h4>
             <ul>
                 <li ng-repeat="e in updateTwoStepForm.$errors">{{e}}</li>
             </ul>
         </div>
-        <hr ng-show="enabled()" />
-        <h4 style="margin-top: 30px;"><span ng-show="enabled()">Want to disable? </span><span ng-show="!enabled()">3. </span>Enter the resulting verification code from the app</h4>
+        <h4 style="margin-top: 30px;">
+            <span ng-show="enabled()">Want to disable? </span><span ng-show="!enabled()">3. </span>
+            Enter the resulting verification code from the app
+        </h4>
         <div class="form-group" show-errors>
             <label for="token" class="sr-only">Verification Code</label>
-            <input type="text" id="token" name="Token" placeholder="Verification Code" ng-model="updateModel.token" class="form-control" required api-field />
+            <input type="text" id="token" name="Token" placeholder="Verification Code" ng-model="updateModel.token"
+                   class="form-control" required api-field />
         </div>
-        <p ng-show="!enabled()">NOTE: After enabling two-step log in, you will be required to enter the current code generated by your verification app each time you log in.</p>
+        <p ng-show="!enabled()">
+            NOTE: After enabling two-step log in, you will be required to enter the current code
+            generated by your verification app each time you log in.
+        </p>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="updateTwoStepForm.$loading">

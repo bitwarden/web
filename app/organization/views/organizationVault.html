@@ -1,0 +1,78 @@
+<section class="content-header">
+    <h1>
+        Org<span class="hidden-xs">anization</span> Vault
+        <small>
+            <span ng-pluralize
+                  count="collections.length > 0 ? collections.length - 1 : 0"
+                  when="{'1': '{} collection', 'other': '{} collections'}"></span>,
+            <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
+        </small>
+    </h1>
+</section>
+<section class="content">
+    <p ng-show="loading && !collections.length">Loading...</p>
+    <div class="box" ng-class="{'collapsed-box': collection.collapsed}" ng-repeat="collection in collections |
+         orderBy: collectionSort track by collection.id"
+         ng-show="collections.length && (!main.searchVaultText || collectionLogins.length)">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="fa" ng-class="{'fa-cubes': collection.id, 'fa-sitemap': !collection.id}"></i>
+                {{collection.name}}
+                <small ng-pluralize count="collectionLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
+            </h3>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
+                        ng-click="collapseExpand(collection)">
+                    <i class="fa" ng-class="{'fa-minus': !collection.collapsed, 'fa-plus': collection.collapsed}"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body" ng-class="{'no-padding': collectionLogins.length}">
+            <div ng-show="!collectionLogins.length && collection.id">No logins in this collection.</div>
+            <div ng-show="!collectionLogins.length && !collection.id">No unassigned logins.</div>
+            <div class="table-responsive" ng-show="collectionLogins.length">
+                <table class="table table-striped table-hover table-vmiddle">
+                    <tbody>
+                        <tr ng-repeat="login in collectionLogins = (logins | filter: filterByCollection(collection) |
+                            filter: (main.searchVaultText || '') | orderBy: ['name', 'username']) track by login.id">
+                            <td style="width: 70px;">
+                                <div class="btn-group" data-append-to="body">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-cog"></i> <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                                <i class="fa fa-fw fa-pencil"></i> Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="editCollections(login)">
+                                                <i class="fa fa-fw fa-cubes"></i> Collections
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="removeLogin(login, collection)" class="text-red"
+                                               ng-if="collection.id">
+                                                <i class="fa fa-fw fa-remove"></i> Remove
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                                <i class="fa fa-fw fa-trash"></i> Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <div class="text-sm text-muted">{{login.username}}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
