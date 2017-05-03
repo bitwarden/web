@@ -309,6 +309,9 @@
                     complete: function (results) {
                         parseCsvErrors(results);
                         parseData(results.data);
+                    },
+                    beforeFirstChunk: function (chunk) {
+                        return chunk.replace(/^\s+/, '');
                     }
                 });
             }
