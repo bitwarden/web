@@ -35,7 +35,7 @@ angular
             return refreshPromise;
         };
 
-        stripeProvider.setPublishableKey('pk_test_KPoCfZXu7mznb9uSCPZ2JpTD');
+        stripeProvider.setPublishableKey('pk_live_bpN0P37nMxrMQkcaHXtAybJk');
 
         angular.extend(toastrConfig, {
             closeButton: true,
