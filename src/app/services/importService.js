@@ -404,7 +404,7 @@
                                 uri: null,
                                 username: null,
                                 password: null,
-                                notes: null,
+                                notes: '',
                                 name: card.attr('title'),
                             };
 
@@ -414,6 +414,7 @@
 
                                 var text = field.text();
                                 var type = field.attr('type');
+                                var name = field.attr('name');
 
                                 if (text && text !== '') {
                                     if (type === 'login') {
@@ -423,12 +424,24 @@
                                         login.password = text;
                                     }
                                     else if (type === 'notes') {
-                                        login.notes = text;
+                                        login.notes += (text + '\n');
                                     }
-                                    else if (type === 'weblogin') {
+                                    else if (type === 'weblogin' || type === 'website') {
                                         login.uri = trimUri(text);
                                     }
+                                    else {
+                                        login.notes += (name + ': ' + text + '\n');
+                                    }
                                 }
+                            }
+
+                            var notes = card.find('> notes');
+                            for (j = 0; j < notes.length; j++) {
+                                login.notes += ($(notes[j]).text() + '\n');
+                            }
+
+                            if (login.notes === '') {
+                                login.notes = null;
                             }
 
                             logins.push(login);
@@ -759,7 +772,7 @@
                 }
             }
 
-            getXmlFileContents(file, parse, error);
+            getFileContents(file, parse, error);
 
             function parse(fileContent) {
                 var fileLines = fileContent.split(/(?:\r\n|\r|\n)/);
