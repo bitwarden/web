@@ -3,7 +3,8 @@
 
     .factory('apiService', function ($resource, tokenService, appSettings, $httpParamSerializer) {
         var _service = {},
-            _apiUri = appSettings.apiUri;
+            _apiUri = appSettings.apiUri,
+            _identityUri = appSettings.identityUri;
 
         _service.logins = $resource(_apiUri + '/logins/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
@@ -108,9 +109,9 @@
             getPublicKey: { url: _apiUri + '/users/:id/public-key', method: 'GET', params: { id: '@id' } }
         });
 
-        _service.identity = $resource(_apiUri + '/connect', {}, {
+        _service.identity = $resource(_identityUri + '/connect', {}, {
             token: {
-                url: _apiUri + '/connect/token',
+                url: _identityUri + '/connect/token',
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
                 transformRequest: transformUrlEncoded,

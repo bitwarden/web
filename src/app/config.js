@@ -6,7 +6,7 @@ angular
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
-            urlParam: 'access_token2',
+            urlParam: 'access_token3',
             whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.8']
         });
         var refreshPromise;
