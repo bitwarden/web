@@ -98,6 +98,21 @@
                         </span>
                     </label>
                 </div>
+                <div class="radio radio-block" ng-click="changedPlan()">
+                    <label>
+                        <input type="radio" ng-model="model.plan" name="PlanType" value="enterprise">
+                        Enterprise
+                        <span>For businesses and other large organizations.</span>
+                        <span>- Add and share with unlimited users</span>
+                        <span>- Create unlimited collections</span>
+                        <span>- User groups with optional directory sync</span>
+                        <span>- Priority customer support</span>
+                        <span>- 7 day free trial, cancel anytime</span>
+                        <span class="bottom-line">
+                            {{plans.enterprise.seatPrice | currency:'$'}} per user /month
+                        </span>
+                    </label>
+                </div>
             </div>
             <div class="box-footer" ng-show="plans[model.plan].noPayment">
                 <button type="submit" class="btn btn-primary btn-flat" ng-disabled="createOrgForm.$loading">
@@ -105,7 +120,7 @@
                 </button>
             </div>
         </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalSeats">
+        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalSeats && plans[model.plan].baseSeats">
             <div class="box-header with-border">
                 <h3 class="box-title">Additional Users (Seats)</h3>
             </div>
@@ -129,6 +144,27 @@
                 </div>
             </div>
         </div>
+        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalSeats && !plans[model.plan].baseSeats">
+            <div class="box-header with-border">
+                <h3 class="box-title">Users (Seats)</h3>
+            </div>
+            <div class="box-body">
+                <p>
+                    How many user seats do you need?
+                    You can also add additional seats later if needed.
+                </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" show-errors style="margin: 0;">
+                            <label for="additionalSeats" class="sr-only">Users</label>
+                            <input type="number" id="additionalSeats" name="AdditionalSeats" ng-model="model.additionalSeats"
+                                   min="1" class="form-control" placeholder="# of users" api-field
+                                   ng-attr-max="{{plans[model.plan].maxAdditionalSeats || 1000000}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="box box-default" ng-if="!plans[model.plan].noPayment">
             <div class="box-header with-border">
                 <h3 class="box-title">Billing Summary</h3>
@@ -138,15 +174,17 @@
                     <label>
                         <input type="radio" ng-model="model.interval" name="BillingInterval" value="year">
                         Annually
-                        <span>
+                        <span ng-if="plans[model.plan].annualBasePrice">
                             Base price:
                             {{plans[model.plan].basePrice | currency:"$":2}} &times;12 mo. =
                             {{plans[model.plan].annualBasePrice | currency:"$":2}} /year
                         </span>
                         <span>
-                            Additional users:
+                            <span ng-if="plans[model.plan].baseSeats">Additional users:</span>
+                            <span ng-if="!plans[model.plan].baseSeats">Users:</span>
                             {{model.additionalSeats || 0}} &times;{{plans[model.plan].seatPrice | currency:"$":2}}
-                            &times;12 mo. = {{(model.additionalSeats * plans[model.plan].annualSeatPrice) | currency:"$":2}} /year
+                            &times;12 mo. =
+                            {{((model.additionalSeats || 0) * plans[model.plan].annualSeatPrice) | currency:"$":2}} /year
                         </span>
                     </label>
                 </div>
@@ -154,14 +192,16 @@
                     <label>
                         <input type="radio" ng-model="model.interval" name="BillingInterval" value="month">
                         Monthly
-                        <span>
+                        <span ng-if="plans[model.plan].monthlyBasePrice">
                             Base price:
                             {{plans[model.plan].monthlyBasePrice | currency:"$":2}} /month
                         </span>
                         <span>
-                            Additional users:
-                            {{model.additionalSeats || 0}} &times;{{plans[model.plan].monthlySeatPrice | currency:"$":2}} =
-                            {{(model.additionalSeats * plans[model.plan].monthlySeatPrice) | currency:"$":2}} /month
+                            <span ng-if="plans[model.plan].baseSeats">Additional users:</span>
+                            <span ng-if="!plans[model.plan].baseSeats">Users:</span>
+                            {{model.additionalSeats || 0}}
+                            &times;{{plans[model.plan].monthlySeatPrice | currency:"$":2}} =
+                            {{((model.additionalSeats || 0) * plans[model.plan].monthlySeatPrice) | currency:"$":2}} /month
                         </span>
                     </label>
                 </div>

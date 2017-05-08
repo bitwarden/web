@@ -14,18 +14,26 @@
 
         $scope.totalPrice = function () {
             if ($scope.model.interval === 'month') {
-                return ($scope.model.additionalSeats || 0) * $scope.plans[$scope.model.plan].monthlySeatPrice +
-                    $scope.plans[$scope.model.plan].monthlyBasePrice;
+                return ($scope.model.additionalSeats || 0) * ($scope.plans[$scope.model.plan].monthlySeatPrice || 0) +
+                    ($scope.plans[$scope.model.plan].monthlyBasePrice || 0);
             }
             else {
-                return ($scope.model.additionalSeats || 0) * $scope.plans[$scope.model.plan].annualSeatPrice +
-                    $scope.plans[$scope.model.plan].annualBasePrice;
+                return ($scope.model.additionalSeats || 0) * ($scope.plans[$scope.model.plan].annualSeatPrice || 0) +
+                    ($scope.plans[$scope.model.plan].annualBasePrice || 0);
             }
         };
 
         $scope.changedPlan = function () {
             if ($scope.plans[$scope.model.plan].hasOwnProperty('monthPlanType')) {
                 $scope.model.interval = 'year';
+            }
+
+            if ($scope.plans[$scope.model.plan].noAdditionalSeats) {
+                $scope.model.additionalSeats = 0;
+            }
+            else if (!$scope.model.additionalSeats && !$scope.plans[$scope.model.plan].baseSeats &&
+                !$scope.plans[$scope.model.plan].noAdditionalSeats) {
+                $scope.model.additionalSeats = 1;
             }
         };
 

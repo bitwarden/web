@@ -46,6 +46,14 @@ angular.module('bit')
                 monthPlanType: 'teamsMonthly',
                 annualPlanType: 'teamsAnnually',
                 upgradeSortOrder: 2
+            },
+            enterprise: {
+                seatPrice: 3,
+                annualSeatPrice: 36,
+                monthlySeatPrice: 4,
+                monthPlanType: 'enterpriseMonthly',
+                annualPlanType: 'enterpriseAnnually',
+                upgradeSortOrder: 3
             }
         }
     });
