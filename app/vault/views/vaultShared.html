@@ -62,12 +62,12 @@
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
-                                        <li>
+                                        <li ng-show="login.edit">
                                             <a href="javascript:void(0)" ng-click="editCollections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
-                                        <li>
+                                        <li ng-show="login.edit">
                                             <a href="javascript:void(0)" ng-click="removeLogin(login, collection)"
                                                ng-if="collection.id" class="text-red">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
