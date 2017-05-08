@@ -2,7 +2,7 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
-        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider) {
+        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider, appSettings) {
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
@@ -10,7 +10,7 @@ angular
             whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.8']
         });
         var refreshPromise;
-        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, appSettings, tokenService, authService) {
+        jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
             if (options.url.indexOf(appSettings.apiUri) !== 0) {
                 return;
             }
@@ -35,7 +35,7 @@ angular
             return refreshPromise;
         };
 
-        stripeProvider.setPublishableKey('pk_live_bpN0P37nMxrMQkcaHXtAybJk');
+        stripeProvider.setPublishableKey(appSettings.stripeKey);
 
         angular.extend(toastrConfig, {
             closeButton: true,
