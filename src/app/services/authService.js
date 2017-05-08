@@ -123,7 +123,10 @@ angular
                             key: profile.Organizations[i].Key,
                             status: profile.Organizations[i].Status,
                             type: profile.Organizations[i].Type,
-                            enabled: profile.Organizations[i].Enabled
+                            enabled: profile.Organizations[i].Enabled,
+                            maxCollections: profile.Organizations[i].MaxCollections,
+                            seats: profile.Organizations[i].Seats,
+                            useGroups: profile.Organizations[i].UseGroups
                         };
                     }
 
@@ -151,7 +154,10 @@ angular
                         key: keyCt,
                         status: 2, // 2 = Confirmed
                         type: 0, // 0 = Owner
-                        enabled: true
+                        enabled: true,
+                        maxCollections: org.MaxCollections,
+                        seats: org.Seats,
+                        useGroups: org.UseGroups
                     };
                     profile.organizations[o.id] = o;
 
