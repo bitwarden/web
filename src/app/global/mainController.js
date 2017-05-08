@@ -60,6 +60,10 @@ angular
             $scope.$broadcast('organizationPeopleInvite');
         };
 
+        $scope.addOrganizationGroup = function () {
+            $scope.$broadcast('organizationGroupsAdd');
+        };
+
         // Append dropdown menu somewhere else
         var bodyScrollbarWidth,
             appendedDropdownMenu,

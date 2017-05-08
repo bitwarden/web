@@ -81,6 +81,14 @@
             del: { url: _apiUri + '/organizations/:orgId/collectionUsers/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
+        _service.groups = $resource(_apiUri + '/organizations/:orgId/groups/:id', {}, {
+            get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
+            listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
+            post: { method: 'POST', params: { orgId: '@orgId' } },
+            put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            del: { url: _apiUri + '/organizations/:orgId/groups/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+        });
+
         _service.accounts = $resource(_apiUri + '/accounts', {}, {
             register: { url: _apiUri + '/accounts/register', method: 'POST', params: {} },
             emailToken: { url: _apiUri + '/accounts/email-token', method: 'POST', params: {} },
