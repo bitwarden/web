@@ -30,6 +30,7 @@ angular
                 'type': 1,
                 folderId: encryptedLogin.FolderId,
                 favorite: encryptedLogin.Favorite,
+                edit: encryptedLogin.Edit,
                 name: cryptoService.decrypt(encryptedLogin.Name, key),
                 uri: encryptedLogin.Uri && encryptedLogin.Uri !== '' ? cryptoService.decrypt(encryptedLogin.Uri, key) : null,
                 username: encryptedLogin.Username && encryptedLogin.Username !== '' ? cryptoService.decrypt(encryptedLogin.Username, key) : null,
@@ -54,6 +55,7 @@ angular
                 collectionIds: encryptedCipher.CollectionIds || [],
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
+                edit: encryptedCipher.Edit,
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
                 username: _service.decryptProperty(encryptedCipher.Data.Username, key, true)
             };

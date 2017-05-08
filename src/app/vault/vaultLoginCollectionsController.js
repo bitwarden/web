@@ -12,7 +12,7 @@
         $scope.collections = [];
 
         $uibModalInstance.opened.then(function () {
-            apiService.ciphers.getFullDetails({ id: loginId }).$promise.then(function (cipher) {
+            apiService.ciphers.getDetails({ id: loginId }).$promise.then(function (cipher) {
                 $scope.loadingLogin = false;
 
                 $scope.readOnly = !cipher.Edit;
@@ -42,7 +42,10 @@
                 apiService.collections.listMe(function (response) {
                     var collections = [];
                     for (var i = 0; i < response.Data.length; i++) {
-                        if (response.Data[i].OrganizationId !== cipher.OrganizationId) {
+                        if (response.Data[i].OrganizationId !== cipher.OrganizationId || response.Data[i].ReadOnly) {
+                            if (response.Data[i].Id in $scope.selectedCollections) {
+                                delete $scope.selectedCollections[response.Data[i].Id];
+                            }
                             continue;
                         }
 

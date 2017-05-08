@@ -66,12 +66,12 @@
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
-                                        <li ng-show="login.organizationId">
+                                        <li ng-show="login.organizationId && login.edit">
                                             <a href="javascript:void(0)" ng-click="collections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
-                                        <li>
+                                        <li ng-show="login.edit">
                                             <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
@@ -153,12 +153,12 @@
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
-                                        <li ng-show="login.organizationId">
+                                        <li ng-show="login.organizationId && login.edit">
                                             <a href="javascript:void(0)" ng-click="collections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
-                                        <li>
+                                        <li ng-show="login.edit">
                                             <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>

@@ -19,8 +19,8 @@
                 var collections = {};
                 if (user && user.Collections) {
                     for (var i = 0; i < user.Collections.Data.length; i++) {
-                        collections[user.Collections.Data[i].CollectionId] = {
-                            collectionId: user.Collections.Data[i].CollectionId,
+                        collections[user.Collections.Data[i].Id] = {
+                            collectionId: user.Collections.Data[i].Id,
                             readOnly: user.Collections.Data[i].ReadOnly
                         };
                     }
