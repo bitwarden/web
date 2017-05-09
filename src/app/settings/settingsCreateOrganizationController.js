@@ -74,8 +74,6 @@
             }
 
             function finalizeCreate(result) {
-                $scope.model.card = null;
-
                 $analytics.eventTrack('Created Organization');
                 authService.addProfileOrganizationOwner(result, shareKeyCt);
                 authService.refreshAccessToken().then(function () {
