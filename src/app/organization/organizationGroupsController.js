@@ -47,10 +47,6 @@
             
         };
 
-        $scope.collections = function (collection) {
-            
-        };
-
         $scope.delete = function (group) {
             if (!confirm('Are you sure you want to delete this group (' + group.name + ')?')) {
                 return;
