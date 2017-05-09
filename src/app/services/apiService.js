@@ -83,6 +83,7 @@
 
         _service.groups = $resource(_apiUri + '/organizations/:orgId/groups/:id', {}, {
             get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
+            getDetails: { url: _apiUri + '/organizations/:orgId/groups/:id/details', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
             post: { method: 'POST', params: { orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
