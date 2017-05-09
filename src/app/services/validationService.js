@@ -6,7 +6,7 @@
 
         _service.addErrors = function (form, reason) {
             var data = reason.data;
-            var defaultErrorMessage = 'An unexpected error has occured.';
+            var defaultErrorMessage = 'An unexpected error has occurred.';
             form.$errors = [];
 
             if (!data || !angular.isObject(data)) {

@@ -5,7 +5,7 @@
 <form name="importForm" ng-submit="importForm.$valid && import(model, importForm)" ng-show="!processing">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="importForm.$errors">
-            <h4>Errors have occured</h4>
+            <h4>Errors have occurred</h4>
             <ul>
                 <li ng-repeat="e in importForm.$errors">{{e}}</li>
             </ul>

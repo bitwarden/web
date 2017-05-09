@@ -1,7 +1,7 @@
 <p class="login-box-msg">Log in to access your vault.</p>
 <form name="loginForm" ng-submit="loginForm.$valid && login(model)" api-form="loginPromise">
     <div class="callout callout-danger validation-errors" ng-show="loginForm.$errors">
-        <h4>Errors have occured</h4>
+        <h4>Errors have occurred</h4>
         <ul>
             <li ng-repeat="e in loginForm.$errors">{{e}}</li>
         </ul>
