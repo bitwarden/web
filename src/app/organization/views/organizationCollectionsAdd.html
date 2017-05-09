@@ -24,6 +24,43 @@
             <label for="email">Name</label>
             <input type="text" id="name" name="Name" ng-model="model.name" class="form-control" required api-field />
         </div>
+        <div ng-if="useGroups">
+            <h4>Group Access</h4>
+            <div ng-show="loading && !groups.length">
+                Loading groups...
+            </div>
+            <div ng-show="!loading && !groups.length">
+                <p>No groups for your organization.</p>
+            </div>
+            <div class="table-responsive" ng-show="groups.length" style="margin: 0;">
+                <table class="table table-striped table-hover" style="margin: 0;">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;">
+                                <input type="checkbox"
+                                       ng-checked="allSelected()"
+                                       ng-click="toggleGroupSelectionAll($event)">
+                            </th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="group in groups | orderBy: ['name']">
+                            <td valign="middle">
+                                <input type="checkbox"
+                                       name="selectedGroups[]"
+                                       value="{{group.id}}"
+                                       ng-checked="groupSelected(group)"
+                                       ng-click="toggleGroupSelection(group.id)">
+                            </td>
+                            <td valign="middle">
+                                {{group.name}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading">
