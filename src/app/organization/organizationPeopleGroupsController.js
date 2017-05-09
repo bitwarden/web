@@ -32,8 +32,6 @@
             }
             $scope.selectedGroups = selectedGroups;
             $scope.loading = false;
-        }, function (error) {
-
         });
 
         $scope.toggleGroupSelectionAll = function ($event) {

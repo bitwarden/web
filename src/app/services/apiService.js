@@ -91,7 +91,8 @@
             listUsers: { url: _apiUri + '/organizations/:orgId/groups/:id/users', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             post: { method: 'POST', params: { orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
-            del: { url: _apiUri + '/organizations/:orgId/groups/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+            del: { url: _apiUri + '/organizations/:orgId/groups/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            delUser: { url: _apiUri + '/organizations/:orgId/groups/:id/delete-user/:orgUserId', method: 'POST', params: { id: '@id', orgId: '@orgId', orgUserId: '@orgUserId' } }
         });
 
         _service.accounts = $resource(_apiUri + '/accounts', {}, {

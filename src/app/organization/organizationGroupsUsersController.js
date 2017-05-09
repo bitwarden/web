@@ -38,16 +38,17 @@
                 return;
             }
 
-            //apiService.collectionUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
-            //    toastr.success(user.email + ' has been removed.', 'User Removed');
-            //    $analytics.eventTrack('Removed User From Collection');
-            //    var index = $scope.users.indexOf(user);
-            //    if (index > -1) {
-            //        $scope.users.splice(index, 1);
-            //    }
-            //}, function () {
-            //    toastr.error('Unable to remove user.', 'Error');
-            //});
+            apiService.groups.delUser({ orgId: $state.params.orgId, id: group.id, orgUserId: user.organizationUserId }, null,
+                function () {
+                    toastr.success(user.email + ' has been removed.', 'User Removed');
+                    $analytics.eventTrack('Removed User From Group');
+                    var index = $scope.users.indexOf(user);
+                    if (index > -1) {
+                        $scope.users.splice(index, 1);
+                    }
+                }, function () {
+                    toastr.error('Unable to remove user.', 'Error');
+                });
         };
 
         $scope.close = function () {
