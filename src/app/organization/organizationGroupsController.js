@@ -44,7 +44,19 @@
         };
 
         $scope.users = function (group) {
-            
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationGroupsUsers.html',
+                controller: 'organizationGroupsUsersController',
+                size: 'lg',
+                resolve: {
+                    group: function () { return group; }
+                }
+            });
+
+            modal.result.then(function () {
+                // nothing to do
+            });
         };
 
         $scope.delete = function (group) {

@@ -86,6 +86,21 @@
             });
         };
 
+        $scope.groups = function (user) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationPeopleGroups.html',
+                controller: 'organizationPeopleGroupsController',
+                resolve: {
+                    orgUser: function () { return user; }
+                }
+            });
+
+            modal.result.then(function () {
+                
+            });
+        };
+
         function loadList() {
             apiService.organizationUsers.list({ orgId: $state.params.orgId }, function (list) {
                 var users = [];

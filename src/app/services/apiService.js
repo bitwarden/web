@@ -59,11 +59,13 @@
         _service.organizationUsers = $resource(_apiUri + '/organizations/:orgId/users/:id', {}, {
             get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             list: { method: 'GET', params: { orgId: '@orgId' } },
+            listGroups: { url: _apiUri + '/organizations/:orgId/users/:id/groups', method: 'GET', params: { id: '@id', orgId: '@orgId' }, isArray: true },
             invite: { url: _apiUri + '/organizations/:orgId/users/invite', method: 'POST', params: { orgId: '@orgId' } },
             reinvite: { url: _apiUri + '/organizations/:orgId/users/:id/reinvite', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             accept: { url: _apiUri + '/organizations/:orgId/users/:id/accept', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             confirm: { url: _apiUri + '/organizations/:orgId/users/:id/confirm', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            putGroups: { url: _apiUri + '/organizations/:orgId/users/:id/groups', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             del: { url: _apiUri + '/organizations/:orgId/users/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
         });
 
@@ -86,6 +88,7 @@
             get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             getDetails: { url: _apiUri + '/organizations/:orgId/groups/:id/details', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
+            listUsers: { url: _apiUri + '/organizations/:orgId/groups/:id/users', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             post: { method: 'POST', params: { orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
             del: { url: _apiUri + '/organizations/:orgId/groups/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
