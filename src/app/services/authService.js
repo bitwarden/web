@@ -209,7 +209,7 @@ angular
                 tokenService.setToken(response.access_token);
                 tokenService.setRefreshToken(response.refresh_token);
                 return response.access_token;
-            });
+            }, function (response) { });
         };
 
         return _service;
