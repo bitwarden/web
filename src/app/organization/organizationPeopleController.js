@@ -1,11 +1,20 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationPeopleController', function ($scope, $state, $uibModal, cryptoService, apiService,
+    .controller('organizationPeopleController', function ($scope, $state, $uibModal, cryptoService, apiService, authService,
         toastr, $analytics) {
         $scope.users = [];
+        $scope.useGroups = false;
+
         $scope.$on('$viewContentLoaded', function () {
             loadList();
+
+            authService.getUserProfile().then(function (profile) {
+                if (profile.organizations) {
+                    var org = profile.organizations[$state.params.orgId];
+                    $scope.useGroups = !!org.useGroups;
+                }
+            });
         });
 
         $scope.reinvite = function (user) {
@@ -97,7 +106,7 @@
             });
 
             modal.result.then(function () {
-                
+
             });
         };
 
