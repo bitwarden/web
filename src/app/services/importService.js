@@ -1437,15 +1437,16 @@
                         else if (row.length === 6) {
                             if (row[2] === '') {
                                 login.username = row[3];
+                                login.password = row[4];
                                 login.notes = row[5];
                             }
                             else {
                                 login.username = row[2];
-                                login.notes = row[3] + '\n' + row[5];
+                                login.password = row[3];
+                                login.notes = row[4] + '\n' + row[5];
                             }
 
                             login.uri = fixUri(row[1]);
-                            login.password = row[4];
                         }
                         else if (row.length === 7) {
                             if (row[2] === '') {
