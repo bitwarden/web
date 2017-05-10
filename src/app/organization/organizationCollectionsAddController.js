@@ -75,9 +75,9 @@
             if ($scope.useGroups) {
                 collection.groupIds = [];
 
-                for (var id in $scope.selectedGroups) {
-                    if ($scope.selectedGroups.hasOwnProperty(id)) {
-                        collection.groupIds.push(id);
+                for (var groupId in $scope.selectedGroups) {
+                    if ($scope.selectedGroups.hasOwnProperty(groupId)) {
+                        collection.groupIds.push(groupId);
                     }
                 }
             }

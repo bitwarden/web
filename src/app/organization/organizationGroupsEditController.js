@@ -67,14 +67,17 @@
 
             if (!group.accessAll) {
                 group.collectionIds = [];
-                for (var id in $scope.selectedCollections) {
-                    if ($scope.selectedCollections.hasOwnProperty(id)) {
-                        group.collectionIds.push(id);
+                for (var collId in $scope.selectedCollections) {
+                    if ($scope.selectedCollections.hasOwnProperty(collId)) {
+                        group.collectionIds.push(collId);
                     }
                 }
             }
 
-            $scope.submitPromise = apiService.groups.put({ orgId: $state.params.orgId }, group, function (response) {
+            $scope.submitPromise = apiService.groups.put({
+                orgId: $state.params.orgId,
+                id: id
+            }, group, function (response) {
                 $analytics.eventTrack('Edited Group');
                 $uibModalInstance.close({
                     id: response.Id,

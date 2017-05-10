@@ -88,14 +88,17 @@
             if ($scope.useGroups) {
                 collection.groupIds = [];
 
-                for (var id in $scope.selectedGroups) {
-                    if ($scope.selectedGroups.hasOwnProperty(id)) {
-                        collection.groupIds.push(id);
+                for (var groupId in $scope.selectedGroups) {
+                    if ($scope.selectedGroups.hasOwnProperty(groupId)) {
+                        collection.groupIds.push(groupId);
                     }
                 }
             }
 
-            $scope.submitPromise = apiService.collections.put({ orgId: $state.params.orgId }, collection, function (response) {
+            $scope.submitPromise = apiService.collections.put({
+                orgId: $state.params.orgId,
+                id: id
+            }, collection, function (response) {
                 $analytics.eventTrack('Edited Collection');
                 var decCollection = cipherService.decryptCollection(response, $state.params.orgId, true);
                 $uibModalInstance.close(decCollection);

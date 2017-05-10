@@ -84,14 +84,18 @@
                 }
             }
 
-            $scope.submitPromise = apiService.organizationUsers.put({ orgId: $state.params.orgId, id: id }, {
-                type: $scope.type,
-                collections: collections,
-                accessAll: $scope.accessAll
-            }, function () {
-                $analytics.eventTrack('Edited User');
-                $uibModalInstance.close();
-            }).$promise;
+            $scope.submitPromise = apiService.organizationUsers.put(
+                {
+                    orgId: $state.params.orgId,
+                    id: id
+                }, {
+                    type: $scope.type,
+                    collections: collections,
+                    accessAll: $scope.accessAll
+                }, function () {
+                    $analytics.eventTrack('Edited User');
+                    $uibModalInstance.close();
+                }).$promise;
         };
 
         $scope.close = function () {
