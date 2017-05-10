@@ -13,7 +13,8 @@
         }).then(function (group) {
             $scope.group = {
                 id: id,
-                name: group.Name
+                name: group.Name,
+                accessAll: group.AccessAll
             };
 
             var collections = {};
@@ -59,11 +60,17 @@
         };
 
         $scope.submit = function () {
-            var group = $scope.group;
-            group.collectionIds = [];
-            for (var id in $scope.selectedCollections) {
-                if ($scope.selectedCollections.hasOwnProperty(id)) {
-                    group.collectionIds.push(id);
+            var group = {
+                name: $scope.group.name,
+                accessAll: !!$scope.group.accessAll
+            };
+
+            if (!group.accessAll) {
+                group.collectionIds = [];
+                for (var id in $scope.selectedCollections) {
+                    if ($scope.selectedCollections.hasOwnProperty(id)) {
+                        group.collectionIds.push(id);
+                    }
                 }
             }
 

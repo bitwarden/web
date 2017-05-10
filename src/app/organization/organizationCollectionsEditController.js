@@ -45,7 +45,8 @@
             for (var i = 0; i < groups.Data.length; i++) {
                 groupsArr.push({
                     id: groups.Data[i].Id,
-                    name: groups.Data[i].Name
+                    name: groups.Data[i].Name,
+                    accessAll: groups.Data[i].AccessAll
                 });
             }
 
@@ -74,7 +75,7 @@
         };
 
         $scope.groupSelected = function (group) {
-            return group.id in $scope.selectedGroups;
+            return group.id in $scope.selectedGroups || group.accessAll;
         };
 
         $scope.allSelected = function () {

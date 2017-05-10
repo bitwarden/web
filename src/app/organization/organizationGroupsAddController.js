@@ -46,12 +46,15 @@
         $scope.submit = function (model) {
             var group = {
                 name: model.name,
-                collectionIds: []
+                accessAll: !!model.accessAll
             };
 
-            for (var id in $scope.selectedCollections) {
-                if ($scope.selectedCollections.hasOwnProperty(id)) {
-                    group.collectionIds.push(id);
+            if (!group.accessAll) {
+                group.collectionIds = [];
+                for (var id in $scope.selectedCollections) {
+                    if ($scope.selectedCollections.hasOwnProperty(id)) {
+                        group.collectionIds.push(id);
+                    }
                 }
             }
 
