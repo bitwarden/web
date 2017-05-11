@@ -10,18 +10,17 @@
 
         $uibModalInstance.opened.then(function () {
             $scope.loading = false;
-            apiService.collectionUsers.listCollection(
+            apiService.collections.listUsers(
                 {
                     orgId: $state.params.orgId,
-                    collectionId: collection.id
+                    id: collection.id
                 },
                 function (userList) {
                     if (userList && userList.Data.length) {
                         var users = [];
                         for (var i = 0; i < userList.Data.length; i++) {
                             users.push({
-                                id: userList.Data[i].Id,
-                                userId: userList.Data[i].UserId,
+                                organizationUserId: userList.Data[i].OrganizationUserId,
                                 name: userList.Data[i].Name,
                                 email: userList.Data[i].Email,
                                 type: userList.Data[i].Type,
@@ -41,16 +40,21 @@
                 return;
             }
 
-            apiService.collectionUsers.del({ orgId: $state.params.orgId, id: user.id }, null, function () {
-                toastr.success(user.email + ' has been removed.', 'User Removed');
-                $analytics.eventTrack('Removed User From Collection');
-                var index = $scope.users.indexOf(user);
-                if (index > -1) {
-                    $scope.users.splice(index, 1);
-                }
-            }, function () {
-                toastr.error('Unable to remove user.', 'Error');
-            });
+            apiService.collections.delUser(
+                {
+                    orgId: $state.params.orgId,
+                    id: collection.id,
+                    orgUserId: user.organizationUserId
+                }, null, function () {
+                    toastr.success(user.email + ' has been removed.', 'User Removed');
+                    $analytics.eventTrack('Removed User From Collection');
+                    var index = $scope.users.indexOf(user);
+                    if (index > -1) {
+                        $scope.users.splice(index, 1);
+                    }
+                }, function () {
+                    toastr.error('Unable to remove user.', 'Error');
+                });
         };
 
         $scope.close = function () {

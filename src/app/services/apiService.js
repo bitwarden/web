@@ -74,14 +74,11 @@
             getDetails: { url: _apiUri + '/organizations/:orgId/collections/:id/details', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             listMe: { url: _apiUri + '/collections', method: 'GET', params: {} },
             listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
+            listUsers: { url: _apiUri + '/organizations/:orgId/collections/:id/users', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             post: { method: 'POST', params: { orgId: '@orgId' } },
             put: { method: 'POST', params: { id: '@id', orgId: '@orgId' } },
-            del: { url: _apiUri + '/organizations/:orgId/collections/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
-        });
-
-        _service.collectionUsers = $resource(_apiUri + '/organizations/:orgId/collectionUsers/:id', {}, {
-            listCollection: { url: _apiUri + '/organizations/:orgId/collectionUsers/:collectionId', method: 'GET', params: { collectionId: '@collectionId', orgId: '@orgId' } },
-            del: { url: _apiUri + '/organizations/:orgId/collectionUsers/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } }
+            del: { url: _apiUri + '/organizations/:orgId/collections/:id/delete', method: 'POST', params: { id: '@id', orgId: '@orgId' } },
+            delUser: { url: _apiUri + '/organizations/:orgId/collections/:id/delete-user/:orgUserId', method: 'POST', params: { id: '@id', orgId: '@orgId', orgUserId: '@orgUserId' } }
         });
 
         _service.groups = $resource(_apiUri + '/organizations/:orgId/groups/:id', {}, {
