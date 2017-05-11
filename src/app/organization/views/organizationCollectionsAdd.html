@@ -42,6 +42,7 @@
                                        ng-click="toggleGroupSelectionAll($event)">
                             </th>
                             <th>Name</th>
+                            <th style="width: 100px; text-align: center;">Read Only</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,6 +59,14 @@
                                 {{group.name}}
                                 <i class="fa fa-unlock text-muted fa-fw" ng-show="group.accessAll"
                                    title="This group can access all items"></i>
+                            </td>
+                            <td style="width: 100px; text-align: center;" valign="middle">
+                                <input type="checkbox"
+                                       name="selectedGroupsReadonly[]"
+                                       value="{{group.id}}"
+                                       ng-disabled="!groupSelected(group) || group.accessAll"
+                                       ng-checked="groupSelected(group) && selectedGroups[group.id].readOnly"
+                                       ng-click="toggleGroupReadOnlySelection(group)">
                             </td>
                         </tr>
                     </tbody>

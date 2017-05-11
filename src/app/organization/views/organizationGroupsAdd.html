@@ -53,6 +53,7 @@
                                        ng-click="toggleCollectionSelectionAll($event)">
                             </th>
                             <th>Name</th>
+                            <th style="width: 100px; text-align: center;">Read Only</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,6 +67,14 @@
                             </td>
                             <td valign="middle">
                                 {{collection.name}}
+                            </td>
+                            <td style="width: 100px; text-align: center;" valign="middle">
+                                <input type="checkbox"
+                                       name="selectedCollectionsReadonly[]"
+                                       value="{{collection.id}}"
+                                       ng-disabled="!collectionSelected(collection)"
+                                       ng-checked="collectionSelected(collection) && selectedCollections[collection.id].readOnly"
+                                       ng-click="toggleCollectionReadOnlySelection(collection.id)">
                             </td>
                         </tr>
                     </tbody>

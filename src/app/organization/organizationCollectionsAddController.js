@@ -4,6 +4,7 @@
     .controller('organizationCollectionsAddController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
         $analytics, authService) {
         $analytics.eventTrack('organizationCollectionsAddController', { category: 'Modal' });
+        var groupsLength = 0;
         $scope.groups = [];
         $scope.selectedGroups = {};
         $scope.loading = true;
@@ -35,6 +36,10 @@
                     name: groups.Data[i].Name,
                     accessAll: groups.Data[i].AccessAll
                 });
+
+                if (!groups.Data[i].AccessAll) {
+                    groupsLength++;
+                }
             }
 
             $scope.groups = groupsArr;
@@ -45,7 +50,11 @@
             var groups = {};
             if ($event.target.checked) {
                 for (var i = 0; i < $scope.groups.length; i++) {
-                    groups[$scope.groups[i].id] = true;
+                    groups[$scope.groups[i].id] = {
+                        id: $scope.groups[i].id,
+                        readOnly: ($scope.groups[i].id in $scope.selectedGroups) ?
+                            $scope.selectedGroups[$scope.groups[i].id].readOnly : false
+                    };
                 }
             }
 
@@ -57,7 +66,16 @@
                 delete $scope.selectedGroups[id];
             }
             else {
-                $scope.selectedGroups[id] = true;
+                $scope.selectedGroups[id] = {
+                    id: id,
+                    readOnly: false
+                };
+            }
+        };
+
+        $scope.toggleGroupReadOnlySelection = function (group) {
+            if (group.id in $scope.selectedGroups) {
+                $scope.selectedGroups[group.id].readOnly = !group.accessAll && !!!$scope.selectedGroups[group.id].readOnly;
             }
         };
 
@@ -66,18 +84,25 @@
         };
 
         $scope.allSelected = function () {
-            return Object.keys($scope.selectedGroups).length === $scope.groups.length;
+            return Object.keys($scope.selectedGroups).length >= groupsLength;
         };
 
         $scope.submit = function (model) {
             var collection = cipherService.encryptCollection(model, $state.params.orgId);
 
             if ($scope.useGroups) {
-                collection.groupIds = [];
+                collection.groups = [];
 
                 for (var groupId in $scope.selectedGroups) {
                     if ($scope.selectedGroups.hasOwnProperty(groupId)) {
-                        collection.groupIds.push(groupId);
+                        for (var i = 0; i < $scope.groups.length; i++) {
+                            if ($scope.groups[i].id === $scope.selectedGroups[groupId].id) {
+                                if (!$scope.groups[i].accessAll) {
+                                    collection.groups.push($scope.selectedGroups[groupId]);
+                                }
+                                break;
+                            }
+                        }
                     }
                 }
             }

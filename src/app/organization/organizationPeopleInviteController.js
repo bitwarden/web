@@ -24,7 +24,7 @@
             if ($event.target.checked) {
                 for (var i = 0; i < $scope.collections.length; i++) {
                     collections[$scope.collections[i].id] = {
-                        collectionId: $scope.collections[i].id,
+                        id: $scope.collections[i].id,
                         readOnly: ($scope.collections[i].id in $scope.selectedCollections) ?
                             $scope.selectedCollections[$scope.collections[i].id].readOnly : false
                     };
@@ -40,7 +40,7 @@
             }
             else {
                 $scope.selectedCollections[id] = {
-                    collectionId: id,
+                    id: id,
                     readOnly: false
                 };
             }
