@@ -80,13 +80,13 @@
             });
         };
 
-        $scope.edit = function (id) {
+        $scope.edit = function (orgUser) {
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/organization/views/organizationPeopleEdit.html',
                 controller: 'organizationPeopleEditController',
                 resolve: {
-                    id: function () { return id; }
+                    orgUser: function () { return orgUser; }
                 }
             });
 

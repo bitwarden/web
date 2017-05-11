@@ -1,8 +1,8 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationPeopleEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService, id,
-        $analytics) {
+    .controller('organizationPeopleEditController', function ($scope, $state, $uibModalInstance, apiService, cipherService,
+        orgUser, $analytics) {
         $analytics.eventTrack('organizationPeopleEditController', { category: 'Modal' });
 
         $scope.loading = true;
@@ -15,17 +15,17 @@
                 $scope.loading = false;
             });
 
-            apiService.organizationUsers.get({ orgId: $state.params.orgId, id: id }, function (user) {
+            apiService.organizationUsers.get({ orgId: $state.params.orgId, id: orgUser.id }, function (user) {
                 var collections = {};
                 if (user && user.Collections) {
-                    for (var i = 0; i < user.Collections.Data.length; i++) {
-                        collections[user.Collections.Data[i].Id] = {
-                            collectionId: user.Collections.Data[i].Id,
-                            readOnly: user.Collections.Data[i].ReadOnly
+                    for (var i = 0; i < user.Collections.length; i++) {
+                        collections[user.Collections[i].Id] = {
+                            collectionId: user.Collections[i].Id,
+                            readOnly: user.Collections[i].ReadOnly
                         };
                     }
                 }
-                $scope.email = user.Email;
+                $scope.email = orgUser.email;
                 $scope.type = user.Type;
                 $scope.accessAll = user.AccessAll;
                 $scope.selectedCollections = collections;
@@ -87,7 +87,7 @@
             $scope.submitPromise = apiService.organizationUsers.put(
                 {
                     orgId: $state.params.orgId,
-                    id: id
+                    id: orgUser.id
                 }, {
                     type: $scope.type,
                     collections: collections,
