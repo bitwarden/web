@@ -18,8 +18,12 @@
             </ul>
         </div>
         <div class="form-group" show-errors>
-            <label for="email">Name</label>
+            <label for="name">Name</label>
             <input type="text" id="name" name="Name" ng-model="group.name" class="form-control" required api-field />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="externalId">External Id</label>
+            <input type="text" id="externalId" name="ExternalId" ng-model="group.externalId" class="form-control" api-field />
         </div>
         <h4>Access</h4>
         <div class="radio">

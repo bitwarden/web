@@ -14,6 +14,7 @@
             $scope.group = {
                 id: id,
                 name: group.Name,
+                externalId: group.ExternalId,
                 accessAll: group.AccessAll
             };
 
@@ -78,7 +79,8 @@
         $scope.submit = function () {
             var group = {
                 name: $scope.group.name,
-                accessAll: !!$scope.group.accessAll
+                accessAll: !!$scope.group.accessAll,
+                externalId: $scope.group.externalId
             };
 
             if (!group.accessAll) {

@@ -59,7 +59,8 @@
         $scope.submit = function (model) {
             var group = {
                 name: model.name,
-                accessAll: !!model.accessAll
+                accessAll: !!model.accessAll,
+                externalId: model.externalId
             };
 
             if (!group.accessAll) {
