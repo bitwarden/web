@@ -209,7 +209,11 @@ angular
         _service.makeKeyPair = function (key) {
             var deferred = $q.defer();
 
-            forge.pki.rsa.generateKeyPair({ bits: 2048, workers: 2 }, function (error, keypair) {
+            forge.pki.rsa.generateKeyPair({
+                bits: 2048,
+                workers: 2,
+                workerScript: '/lib/forge/prime.worker.min.js'
+            }, function (error, keypair) {
                 if (error) {
                     deferred.reject(error);
                     return;

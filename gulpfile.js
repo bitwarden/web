@@ -159,6 +159,10 @@ gulp.task('lib', ['clean:lib'], function () {
             dest: paths.libDir + 'clipboard'
         },
         {
+            src: paths.npmDir + 'node-forge/dist/prime.worker.*',
+            dest: paths.libDir + 'forge'
+        },
+        {
             src: [
                 paths.npmDir + 'angulartics-google-analytics/lib/angulartics*.js',
                 paths.npmDir + 'angulartics/src/angulartics.js'
@@ -292,6 +296,10 @@ gulp.task('dist:move', function () {
         {
             src: paths.npmDir + 'angular/angular.min.js',
             dest: paths.dist + 'lib/angular'
+        },
+        {
+            src: paths.npmDir + 'node-forge/dist/prime.worker.*',
+            dest: paths.dist + 'lib/forge'
         },
         {
             src: [
