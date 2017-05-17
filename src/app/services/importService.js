@@ -92,6 +92,9 @@
                 case 'splashidcsv':
                     importSplashIdCsv(file, success, error);
                     break;
+                case 'meldiumcsv':
+                    importMeldiumCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -2332,6 +2335,36 @@
                     }
 
                     success(folders, logins, folderRelationships);
+                }
+            });
+        }
+
+        function importMeldiumCsv(file, success, error) {
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        logins = [],
+                        loginRelationships = [];
+
+                    for (var j = 0; j < results.data.length; j++) {
+                        var row = results.data[j];
+                        var login = {
+                            name: row.DisplayName && row.DisplayName !== '' ? row.DisplayName : '--',
+                            favorite: false,
+                            uri: row.Url && row.Url !== '' ? fixUri(row.Url) : null,
+                            password: row.Password && row.Password !== '' ? row.Password : null,
+                            username: row.UserName && row.UserName !== '' ? row.UserName : null,
+                            notes: row.Notes && row.Notes !== '' ? row.Notes : null
+                        };
+
+                        logins.push(login);
+                    }
+
+                    success(folders, logins, loginRelationships);
                 }
             });
         }

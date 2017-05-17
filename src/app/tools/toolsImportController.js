@@ -190,6 +190,12 @@
                 instructions: $sce.trustAsHtml('Using the Ascendo DataVault desktop application, navigate ' +
                     'to "Tools" > "Export". In the dialog that pops up, select the "All Items (DVX, CSV)" ' +
                     'option. Click the "Ok" button to save the CSV file.')
+            },
+            {
+                id: 'meldiumcsv',
+                name: 'Meldium (csv)',
+                instructions: $sce.trustAsHtml('Using the Meldium web vault, navigate to "Settings". ' +
+                    'Locate the "Export data" function and click "Show me my data" to save the CSV file.')
             }
         ];
 
