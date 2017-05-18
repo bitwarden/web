@@ -72,8 +72,10 @@
                 }
             }
 
+            var splitEmails = model.emails.trim().split(/\s*,\s*/);
+
             $scope.submitPromise = apiService.organizationUsers.invite({ orgId: $state.params.orgId }, {
-                email: model.email,
+                emails: splitEmails,
                 type: model.type,
                 collections: collections,
                 accessAll: model.accessAll
