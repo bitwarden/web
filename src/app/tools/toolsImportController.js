@@ -11,12 +11,16 @@
             {
                 id: 'bitwardencsv',
                 name: 'bitwarden (csv)',
+                featured: true,
+                sort: 1,
                 instructions: $sce.trustAsHtml('Export using the web vault (vault.bitwarden.com). ' +
                     'Log into the web vault and navigate to "Tools" > "Export".')
             },
             {
                 id: 'lastpass',
                 name: 'LastPass (csv)',
+                featured: true,
+                sort: 2,
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
                     '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-lastpass/">' +
                     'https://help.bitwarden.com/getting-started/import-from-lastpass/</a>')
@@ -24,6 +28,8 @@
             {
                 id: 'chromecsv',
                 name: 'Chrome (csv)',
+                featured: true,
+                sort: 3,
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
                     '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-chrome/">' +
                     'https://help.bitwarden.com/getting-started/import-from-chrome/</a>')
@@ -31,6 +37,8 @@
             {
                 id: 'firefoxpasswordexportercsvxml',
                 name: 'Firefox Password Exporter (xml)',
+                featured: true,
+                sort: 4,
                 instructions: $sce.trustAsHtml('Use the ' +
                     '<a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/password-exporter/">' +
                     'Password Exporter</a> addon for FireFox to export your passwords to a XML file. After installing ' +
@@ -41,6 +49,8 @@
             {
                 id: 'keepass2xml',
                 name: 'KeePass 2 (xml)',
+                featured: true,
+                sort: 5,
                 instructions: $sce.trustAsHtml('Using the KeePass 2 desktop application, navigate to "File" > "Export" and ' +
                     'select the KeePass XML (2.x) option.')
             },
@@ -53,12 +63,16 @@
             {
                 id: 'dashlanecsv',
                 name: 'Dashlane (csv)',
+                featured: true,
+                sort: 7,
                 instructions: $sce.trustAsHtml('Using the Dashlane desktop application, navigate to "File" > "Export" > ' +
                     '"Unsecured archive (readable) in CSV format" and save the CSV file.')
             },
             {
                 id: '1password1pif',
                 name: '1Password (1pif)',
+                featured: true,
+                sort: 6,
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
                     '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-1password/">' +
                     'https://help.bitwarden.com/getting-started/import-from-1password/</a>')
@@ -202,6 +216,22 @@
                 name: 'PassKeep (csv)',
                 instructions: $sce.trustAsHtml('Using the PassKeep mobile app, navigate to "Backup/Restore". ' +
                     'Locate the "CSV Backup/Restore" section and click "Backup to CSV" to save the CSV file.')
+            },
+            {
+                id: 'operacsv',
+                name: 'Opera (csv)',
+                instructions: $sce.trustAsHtml('The process for importing from Opera is exactly the same as ' +
+                    'importing from Google Chrome. See detailed instructions on our help site at ' +
+                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-chrome/">' +
+                    'https://help.bitwarden.com/getting-started/import-from-chrome/</a>')
+            },
+            {
+                id: 'vivaldicsv',
+                name: 'Vivaldi (csv)',
+                instructions: $sce.trustAsHtml('The process for importing from Vivaldi is exactly the same as ' +
+                    'importing from Google Chrome. See detailed instructions on our help site at ' +
+                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-chrome/">' +
+                    'https://help.bitwarden.com/getting-started/import-from-chrome/</a>')
             }
         ];
 

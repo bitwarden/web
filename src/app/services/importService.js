@@ -36,6 +36,8 @@
                     import1Password6WinCsv(file, success, error);
                     break;
                 case 'chromecsv':
+                case 'vivaldicsv':
+                case 'operacsv':
                     importChromeCsv(file, success, error);
                     break;
                 case 'firefoxpasswordexportercsvxml':

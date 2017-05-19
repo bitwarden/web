@@ -14,7 +14,11 @@
             <label for="source">1. Select the format of the import file</label>
             <select id="source" name="source" class="form-control" ng-model="model.source" ng-change="setSource()" required>
                 <option value="">-- Select --</option>
-                <option ng-repeat="option in options" value="{{option.id}}">{{option.name}}</option>
+                <option ng-repeat="option in options | filter: { featured: true } | orderBy: ['sort', 'name']"
+                        value="{{option.id}}">{{option.name}}</option>
+                <option value="-" disabled></option>
+                <option ng-repeat="option in options | filter: { featured: '!true' } | orderBy: ['sort', 'name']" 
+                        value="{{option.id}}">{{option.name}}</option>
             </select>
         </div>
         <div class="callout callout-default" ng-show="model.source">
