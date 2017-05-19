@@ -4,6 +4,8 @@
 
 The bitwarden Web project is an AngularJS application that powers the web vault (https://vault.bitwarden.com/).
 
+<img src="https://i.imgur.com/rxrykeX.png" alt="" width="791" height="739" />
+
 # Build/Run
 
 **Requirements**
@@ -26,4 +28,4 @@ You can now access the web vault at `http://localhost:4001`.
 
 Code contributions are welcome! Please commit any pull requests against the `master` branch.
 
-Security audits and feedback are welcome. Please open an issue or email us privately if the report is sensitive in nature.
+Security audits and feedback are welcome. Please open an issue or email us privately if the report is sensitive in nature. You can read our security policy in the [`SECURITY.md`](SECURITY.md) file.
