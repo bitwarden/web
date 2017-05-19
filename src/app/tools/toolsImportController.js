@@ -196,6 +196,12 @@
                 name: 'Meldium (csv)',
                 instructions: $sce.trustAsHtml('Using the Meldium web vault, navigate to "Settings". ' +
                     'Locate the "Export data" function and click "Show me my data" to save the CSV file.')
+            },
+            {
+                id: 'passkeepcsv',
+                name: 'PassKeep (csv)',
+                instructions: $sce.trustAsHtml('Using the PassKeep mobile app, navigate to "Backup/Restore". ' +
+                    'Locate the "CSV Backup/Restore" section and click "Backup to CSV" to save the CSV file.')
             }
         ];
 

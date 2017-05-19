@@ -95,6 +95,9 @@
                 case 'meldiumcsv':
                     importMeldiumCsv(file, success, error);
                     break;
+                case 'passkeepcsv':
+                    importPassKeepCsv(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -2365,6 +2368,85 @@
                     }
 
                     success(folders, logins, loginRelationships);
+                }
+            });
+        }
+
+        function importPassKeepCsv(file, success, error) {
+            function getValue(key, obj) {
+                var val = obj[key] || obj[(' ' + key)];
+                if (val && val !== '') {
+                    return val;
+                }
+
+                return null;
+            }
+
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var folders = [],
+                        logins = [],
+                        folderRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        var folderIndex = folders.length,
+                            loginIndex = logins.length,
+                            hasFolder = !!getValue('category', value),
+                            addFolder = hasFolder,
+                            i = 0;
+
+                        if (hasFolder) {
+                            for (i = 0; i < folders.length; i++) {
+                                if (folders[i].name === getValue('category', value)) {
+                                    addFolder = false;
+                                    folderIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var login = {
+                            favorite: false,
+                            uri: !!getValue('site', value) ? fixUri(getValue('site', value)) : null,
+                            username: !!getValue('username', value) ? getValue('username', value) : null,
+                            password: !!getValue('password', value) ? getValue('password', value) : null,
+                            notes: !!getValue('description', value) ? getValue('description', value) : null,
+                            name: !!getValue('title', value) ? getValue('title', value) : '--'
+                        };
+
+                        if (!!getValue('password2', value)) {
+                            if (!login.notes) {
+                                login.notes = '';
+                            }
+                            else {
+                                login.notes += '\n';
+                            }
+
+                            login.notes += ('Password 2: ' + getValue('password2', value));
+                        }
+
+                        logins.push(login);
+
+                        if (addFolder) {
+                            folders.push({
+                                name: getValue('category', value)
+                            });
+                        }
+
+                        if (hasFolder) {
+                            var relationship = {
+                                key: loginIndex,
+                                value: folderIndex
+                            };
+                            folderRelationships.push(relationship);
+                        }
+                    });
+
+                    success(folders, logins, folderRelationships);
                 }
             });
         }
