@@ -74,8 +74,8 @@
             var collections = {};
             if ($event.target.checked) {
                 for (var i = 0; i < $scope.collections.length; i++) {
-                    if ($scope.model.organizationId && $scope.collections[i].organizationId === $scope.model.organizationId
-                        && !$scope.collections[i].readOnly) {
+                    if ($scope.model.organizationId && $scope.collections[i].organizationId === $scope.model.organizationId &&
+                        !$scope.collections[i].readOnly) {
                         collections[$scope.collections[i].id] = true;
                     }
                 }
