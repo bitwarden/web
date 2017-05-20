@@ -9,14 +9,15 @@
             a bitwarden account already, they will be prompted to create a new account.
         </p>
         <div class="callout callout-danger validation-errors" ng-show="inviteForm.$errors">
-            <h4>Errors have occured</h4>
+            <h4>Errors have occurred</h4>
             <ul>
                 <li ng-repeat="e in inviteForm.$errors">{{e}}</li>
             </ul>
         </div>
         <div class="form-group" show-errors>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="Email" ng-model="model.email" class="form-control" required api-field />
+            <label for="emails">Email</label>
+            <input type="text" id="emails" name="Emails" ng-model="model.emails" class="form-control" required api-field />
+            <p class="help-block">You can invite up to 20 users at a time by comma separating a list of email addresses.</p>
         </div>
         <h4>User Type</h4>
         <div class="form-group">

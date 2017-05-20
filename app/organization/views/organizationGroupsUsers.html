@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title"><i class="fa fa-users"></i> User Access <small>{{collection.name}}</small></h4>
+    <h4 class="modal-title"><i class="fa fa-users"></i> User Access <small>{{group.name}}</small></h4>
 </div>
 <div class="modal-body">
     <div ng-show="loading && !users.length">
@@ -8,8 +8,8 @@
     </div>
     <div ng-show="!loading && !users.length">
         <p>
-            No users for this collection. You can associate a new user to this collection by
-            selecting a specific user on the "People" page.
+            No users for this group. You can associate a new user to this group by
+            selecting a specific user's "Groups" on the "People" page.
         </p>
     </div>
     <div class="table-responsive" ng-show="users.length" style="margin: 0;">
@@ -22,14 +22,9 @@
                                 <i class="fa fa-cog"></i> <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li ng-show="!user.accessAll">
+                                <li ng-show="user.organizationUserId">
                                     <a href="javascript:void(0)" ng-click="remove(user)" class="text-red">
                                         <i class="fa fa-fw fa-remove"></i> Remove
-                                    </a>
-                                </li>
-                                <li ng-show="user.accessAll">
-                                    <a href="javascript:void(0)">
-                                        No options...
                                     </a>
                                 </li>
                             </ul>
@@ -41,10 +36,6 @@
                     <td>
                         {{user.email}}
                         <div ng-if="user.name"><small class="text-muted">{{user.name}}</small></div>
-                    </td>
-                    <td style="width: 60px;" class="text-right">
-                        <i class="fa fa-unlock" ng-show="user.accessAll" title="Can Access All Items"></i>
-                        <i class="fa fa-pencil-square-o" ng-show="!user.readOnly" title="Can Edit"></i>
                     </td>
                     <td style="width: 100px;">
                         {{user.type | enumName: 'OrgUserType'}}

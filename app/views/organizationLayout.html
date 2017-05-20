@@ -80,10 +80,17 @@
                     </li>
                 </ul>
             </li>
-            <li ng-class="{active: $state.is('backend.org.groups')}">
+            <li ng-class="{active: $state.is('backend.org.groups')}" ng-if="orgProfile.useGroups">
                 <a ui-sref="backend.org.groups({orgId: params.orgId})">
                     <i class="fa fa-sitemap fa-fw"></i> <span>Groups</span>
                 </a>
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.groups')}">
+                    <li>
+                        <a href="javascript:void(0)" ng-click="addOrganizationGroup()">
+                            <i class="fa fa-plus-circle fa-fw"></i> New Group
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li ng-class="{active: $state.is('backend.org.billing')}" ng-if="isOrgOwner(orgProfile)">
                 <a ui-sref="backend.org.billing({orgId: params.orgId})">
