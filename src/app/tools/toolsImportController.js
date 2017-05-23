@@ -22,8 +22,8 @@
                 featured: true,
                 sort: 2,
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
-                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-lastpass/">' +
-                    'https://help.bitwarden.com/getting-started/import-from-lastpass/</a>')
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-lastpass/">' +
+                    'https://help.bitwarden.com/article/import-from-lastpass/</a>')
             },
             {
                 id: 'chromecsv',
@@ -31,8 +31,8 @@
                 featured: true,
                 sort: 3,
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
-                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-chrome/">' +
-                    'https://help.bitwarden.com/getting-started/import-from-chrome/</a>')
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-chrome/">' +
+                    'https://help.bitwarden.com/article/import-from-chrome/</a>')
             },
             {
                 id: 'firefoxpasswordexportercsvxml',
@@ -74,15 +74,15 @@
                 featured: true,
                 sort: 6,
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
-                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-1password/">' +
-                    'https://help.bitwarden.com/getting-started/import-from-1password/</a>')
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-1password/">' +
+                    'https://help.bitwarden.com/article/import-from-1password/</a>')
             },
             {
                 id: '1password6wincsv',
                 name: '1Password 6 Windows (csv)',
                 instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
-                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-1password/">' +
-                    'https://help.bitwarden.com/getting-started/import-from-1password/</a>')
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-1password/">' +
+                    'https://help.bitwarden.com/article/import-from-1password/</a>')
             },
             {
                 id: 'roboformhtml',
@@ -222,16 +222,16 @@
                 name: 'Opera (csv)',
                 instructions: $sce.trustAsHtml('The process for importing from Opera is exactly the same as ' +
                     'importing from Google Chrome. See detailed instructions on our help site at ' +
-                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-chrome/">' +
-                    'https://help.bitwarden.com/getting-started/import-from-chrome/</a>')
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-chrome/">' +
+                    'https://help.bitwarden.com/article/import-from-chrome/</a>')
             },
             {
                 id: 'vivaldicsv',
                 name: 'Vivaldi (csv)',
                 instructions: $sce.trustAsHtml('The process for importing from Vivaldi is exactly the same as ' +
                     'importing from Google Chrome. See detailed instructions on our help site at ' +
-                    '<a target="_blank" href="https://help.bitwarden.com/getting-started/import-from-chrome/">' +
-                    'https://help.bitwarden.com/getting-started/import-from-chrome/</a>')
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-chrome/">' +
+                    'https://help.bitwarden.com/article/import-from-chrome/</a>')
             }
         ];
 
