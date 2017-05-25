@@ -131,6 +131,10 @@
             }
         });
 
+        _service.hibp = $resource('https://haveibeenpwned.com/api/v2/breachedaccount/:email', {}, {
+            get: { method: 'GET', params: { email: '@email' }, isArray: true},
+        });
+
         function transformUrlEncoded(data) {
             return $httpParamSerializer(data);
         }

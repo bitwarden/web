@@ -131,6 +131,10 @@ gulp.task('lib', ['clean:lib'], function () {
             dest: paths.libDir + 'angular-resource'
         },
         {
+            src: paths.npmDir + 'angular-sanitize/*sanitize*.js',
+            dest: paths.libDir + 'angular-sanitize'
+        },
+        {
             src: [paths.npmDir + 'angular-toastr/dist/**/*.css', paths.npmDir + 'angular-toastr/dist/**/*.js'],
             dest: paths.libDir + 'angular-toastr'
         },

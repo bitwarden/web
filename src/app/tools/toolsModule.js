@@ -1,2 +1,2 @@
 ﻿angular
-    .module('bit.tools', ['ui.bootstrap', 'toastr']);
+    .module('bit.tools', ['ui.bootstrap', 'toastr', 'ngSanitize']);
