@@ -61,8 +61,17 @@
                     <i class="fa fa-share-alt fa-fw"></i> <span>Shared</span>
                 </a>
             </li>
-            <li class="treeview" ng-class="{active: $state.is('backend.user.tools')}">
+            <li class="treeview" ng-class="{active: $state.is('backend.user.tools') || 
+                $state.is('backend.user.reportsBreach')}">
                 <a ui-sref="backend.user.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.tools') || 
+                    $state.is('backend.user.reportsBreach')}">
+                    <li ng-class="{active: $state.is('backend.user.reportsBreach')}">
+                        <a ui-sref="backend.user.reportsBreach">
+                            <i class="fa fa-circle-o fa-fw"></i> Data Breach Report
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="treeview"
                 ng-class="{active: $state.is('backend.user.settings') || $state.is('backend.user.settingsDomains') ||
