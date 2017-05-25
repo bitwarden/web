@@ -19,5 +19,6 @@
         'bit.vault',
         'bit.settings',
         'bit.tools',
-        'bit.organization'
+        'bit.organization',
+        'bit.reports'
     ]);

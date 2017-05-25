@@ -112,10 +112,10 @@ angular
                 controller: 'toolsController',
                 data: { pageTitle: 'Tools' }
             })
-            .state('backend.user.toolsReportBreach', {
+            .state('backend.user.reportsBreach', {
                 url: '^/reports/breach',
-                templateUrl: 'app/tools/views/toolsReportBreach.html',
-                controller: 'toolsReportBreachController',
+                templateUrl: 'app/reports/views/reportsBreach.html',
+                controller: 'reportsBreachController',
                 data: { pageTitle: 'Data Breach Report' }
             })
             .state('backend.user.apps', {

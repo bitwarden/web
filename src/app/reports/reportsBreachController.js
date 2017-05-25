@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.tools')
 
-    .controller('toolsReportBreachController', function ($scope, apiService, toastr, authService) {
+    .controller('reportsBreachController', function ($scope, apiService, toastr, authService) {
         $scope.loading = true;
         $scope.error = false;
         $scope.breachAccounts = [];
