@@ -4,6 +4,7 @@
     .controller('settingsChangePasswordController', function ($scope, $state, apiService, $uibModalInstance,
         cryptoService, authService, cipherService, validationService, $q, toastr, $analytics) {
         $analytics.eventTrack('settingsChangePasswordController', { category: 'Modal' });
+
         $scope.save = function (model, form) {
             var error = false;
 
@@ -24,62 +25,94 @@
 
             $scope.processing = true;
 
-            authService.getUserProfile().then(function (profile) {
-                return cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
-            }).then(function (newKey) {
-                var reencryptedLogins = [];
-                var loginsPromise = apiService.logins.list({}, function (encryptedLogins) {
-                    var filteredEncryptedLogins = [];
-                    for (var i = 0; i < encryptedLogins.Data.length; i++) {
-                        if (encryptedLogins.Data[i].OrganizationId) {
-                            continue;
-                        }
+            var encKey = cryptoService.getEncKey();
+            if (encKey) {
+                $scope.savePromise = changePassword(model);
+            }
+            else {
+                // User is not using an enc key, let's make them one
+                $scope.savePromise = updateKey(model);
+            }
+        };
 
-                        filteredEncryptedLogins.push(encryptedLogins.Data[i]);
+        function updateKey(model) {
+            var madeEncKey = cryptoService.makeEncKey(null);
+            encKey = madeEncKey.encKey;
+            var encKeyEnc = madeEncKey.encKeyEnc;
+
+            var reencryptedLogins = [];
+            var loginsPromise = apiService.logins.list({}, function (encryptedLogins) {
+                var filteredEncryptedLogins = [];
+                for (var i = 0; i < encryptedLogins.Data.length; i++) {
+                    if (encryptedLogins.Data[i].OrganizationId) {
+                        continue;
                     }
 
-                    var unencryptedLogins = cipherService.decryptLogins(filteredEncryptedLogins);
-                    reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, newKey);
-                }).$promise;
-
-                var reencryptedFolders = [];
-                var foldersPromise = apiService.folders.list({}, function (encryptedFolders) {
-                    var unencryptedFolders = cipherService.decryptFolders(encryptedFolders.Data);
-                    reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, newKey);
-                }).$promise;
-
-                var privateKey = cryptoService.getPrivateKey('raw'),
-                    reencryptedPrivateKey = null;
-                if (privateKey) {
-                    reencryptedPrivateKey = cryptoService.encrypt(privateKey, newKey, 'raw');
+                    filteredEncryptedLogins.push(encryptedLogins.Data[i]);
                 }
 
-                $q.all([loginsPromise, foldersPromise]).then(function () {
-                    var request = {
-                        masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
-                        newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
-                        data: {
-                            ciphers: reencryptedLogins,
-                            folders: reencryptedFolders,
-                            privateKey: reencryptedPrivateKey
-                        }
-                    };
+                var unencryptedLogins = cipherService.decryptLogins(filteredEncryptedLogins);
+                reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, encKey);
+            }).$promise;
 
-                    $scope.savePromise = apiService.accounts.putPassword(request, function () {
-                        $uibModalInstance.dismiss('cancel');
-                        authService.logOut();
-                        $analytics.eventTrack('Changed Password');
-                        $state.go('frontend.login.info').then(function () {
-                            toastr.success('Please log back in.', 'Master Password Changed');
-                        });
-                    }, function () {
-                        $uibModalInstance.dismiss('cancel');
-                        toastr.error('Something went wrong.', 'Oh No!');
-                    }).$promise;
-                });
+            var reencryptedFolders = [];
+            var foldersPromise = apiService.folders.list({}, function (encryptedFolders) {
+                var unencryptedFolders = cipherService.decryptFolders(encryptedFolders.Data);
+                reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, encKey);
+            }).$promise;
 
+            var privateKey = cryptoService.getPrivateKey('raw'),
+                reencryptedPrivateKey = null;
+            if (privateKey) {
+                reencryptedPrivateKey = cryptoService.encrypt(privateKey, encKey, 'raw');
+            }
+
+            return $q.all([loginsPromise, foldersPromise]).then(function () {
+                var request = {
+                    masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
+                    ciphers: reencryptedLogins,
+                    folders: reencryptedFolders,
+                    privateKey: reencryptedPrivateKey,
+                    key: encKeyEnc
+                };
+
+                return apiService.accounts.putKey(request).$promise;
+            }, error).then(function () {
+                cryptoService.setEncKey(encKey, null, true);
+                return changePassword(model);
+            }, function () {
+                cryptoService.clearEncKey();
+                error();
             });
-        };
+        }
+
+        function changePassword(model) {
+            return authService.getUserProfile().then(function (profile) {
+                var newKey = cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
+                var encKey = cryptoService.getEncKey();
+                var newEncKey = cryptoService.encrypt(encKey.key, newKey, 'raw');
+
+                var request = {
+                    masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
+                    newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
+                    key: newEncKey
+                };
+
+                return apiService.accounts.putPassword(request).$promise;
+            }, error).then(function () {
+                $uibModalInstance.dismiss('cancel');
+                authService.logOut();
+                $analytics.eventTrack('Changed Password');
+                $state.go('frontend.login.info').then(function () {
+                    toastr.success('Please log back in.', 'Master Password Changed');
+                });
+            }, error);
+        }
+
+        function error() {
+            $uibModalInstance.dismiss('cancel');
+            toastr.error('Something went wrong.', 'Oh No!');
+        }
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');

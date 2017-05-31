@@ -15,9 +15,15 @@ angular
             $sessionStorage.key = _key.keyB64;
         };
 
-        _service.setEncKey = function (encKeyCt, key) {
+        _service.setEncKey = function (encKey, key, alreadyDecrypted) {
+            if (alreadyDecrypted) {
+                _encKey = encKey;
+                $sessionStorage.encKey = _encKey.keyB64;
+                return;
+            }
+
             try {
-                var encKeyBytes = _service.decrypt(encKeyCt, key, 'raw');
+                var encKeyBytes = _service.decrypt(encKey, key, 'raw');
                 $sessionStorage.encKey = forge.util.encode64(encKeyBytes);
                 _encKey = new SymmetricCryptoKey(encKeyBytes);
             }
@@ -110,10 +116,6 @@ angular
         _service.getEncKey = function () {
             if (!_encKey && $sessionStorage.encKey) {
                 _encKey = new SymmetricCryptoKey($sessionStorage.encKey, true);
-            }
-
-            if (!_encKey) {
-                throw 'enc key unavailable';
             }
 
             return _encKey;
@@ -237,10 +239,6 @@ angular
         };
 
         _service.makeEncKey = function (key) {
-            if (!key) {
-                throw 'Invalid parameters.';
-            }
-
             var encKey = forge.random.getBytesSync(512 / 8);
             var encKeyEnc = _service.encrypt(encKey, key, 'raw');
             return {
