@@ -40,18 +40,18 @@ angular
                 }
 
                 if (response.PrivateKey) {
-                    cryptoService.setPrivateKey(response.PrivateKey, key);
+                    cryptoService.setPrivateKey(response.PrivateKey);
                     return true;
                 }
                 else {
-                    return cryptoService.makeKeyPair(key);
+                    return cryptoService.makeKeyPair();
                 }
             }).then(function (keyResults) {
                 if (keyResults === true) {
                     return;
                 }
 
-                cryptoService.setPrivateKey(keyResults.privateKeyEnc, key);
+                cryptoService.setPrivateKey(keyResults.privateKeyEnc);
                 return apiService.accounts.putKeys({
                     publicKey: keyResults.publicKey,
                     encryptedPrivateKey: keyResults.privateKeyEnc

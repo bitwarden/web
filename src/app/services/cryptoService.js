@@ -57,7 +57,7 @@ angular
                         setKey = true;
                     }
                     catch (e) {
-                        console.log('Cannot set org key ' + i + '. Decryption failed.');
+                        console.log('Cannot set org key for ' + orgId + '. Decryption failed.');
                     }
                 }
             }
@@ -234,6 +234,19 @@ angular
             var keyBytes = forge.pbkdf2(forge.util.encodeUtf8(password), forge.util.encodeUtf8(salt),
                 5000, 256 / 8, 'sha256');
             return new SymmetricCryptoKey(keyBytes);
+        };
+
+        _service.makeEncKey = function (key) {
+            if (!key) {
+                throw 'Invalid parameters.';
+            }
+
+            var encKey = forge.random.getBytesSync(512 / 8);
+            var encKeyEnc = _service.encrypt(encKey, key, 'raw');
+            return {
+                encKey: new SymmetricCryptoKey(encKey),
+                encKeyEnc: encKeyEnc
+            };
         };
 
         _service.makeKeyPair = function (key) {
