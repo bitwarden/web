@@ -35,6 +35,10 @@ angular
                 tokenService.setRefreshToken(response.refresh_token);
                 cryptoService.setKey(key);
 
+                if (response.Key) {
+                    cryptoService.setEncKey(response.Key, key);
+                }
+
                 if (response.PrivateKey) {
                     cryptoService.setPrivateKey(response.PrivateKey, key);
                     return true;

@@ -4,6 +4,7 @@ angular
     .factory('cryptoService', function ($sessionStorage, constants, $q) {
         var _service = {},
             _key,
+            _encKey,
             _legacyEtmKey,
             _orgKeys,
             _privateKey,
@@ -12,6 +13,17 @@ angular
         _service.setKey = function (key) {
             _key = key;
             $sessionStorage.key = _key.keyB64;
+        };
+
+        _service.setEncKey = function (encKeyCt, key) {
+            try {
+                var encKeyBytes = _service.decrypt(encKeyCt, key, 'raw');
+                $sessionStorage.encKey = forge.util.encode64(encKeyBytes);
+                _encKey = new SymmetricCryptoKey(encKeyBytes);
+            }
+            catch (e) {
+                console.log('Cannot set enc key. Decryption failed.');
+            }
         };
 
         _service.setPrivateKey = function (privateKeyCt, key) {
@@ -95,6 +107,18 @@ angular
             return _key;
         };
 
+        _service.getEncKey = function () {
+            if (!_encKey && $sessionStorage.encKey) {
+                _encKey = new SymmetricCryptoKey($sessionStorage.encKey, true);
+            }
+
+            if (!_encKey) {
+                throw 'enc key unavailable';
+            }
+
+            return _encKey;
+        };
+
         _service.getPrivateKey = function (outputEncoding) {
             outputEncoding = outputEncoding || 'native';
 
@@ -173,6 +197,11 @@ angular
             delete $sessionStorage.key;
         };
 
+        _service.clearEncKey = function () {
+            _encKey = null;
+            delete $sessionStorage.encKey;
+        };
+
         _service.clearKeyPair = function () {
             _privateKey = null;
             _publicKey = null;
@@ -196,6 +225,7 @@ angular
 
         _service.clearKeys = function () {
             _service.clearKey();
+            _service.clearEncKey();
             _service.clearKeyPair();
             _service.clearOrgKeys();
         };
@@ -254,7 +284,7 @@ angular
         };
 
         _service.encrypt = function (plainValue, key, plainValueEncoding) {
-            key = key || _service.getKey();
+            key = key || _service.getEncKey() || _service.getKey();
 
             if (!key) {
                 throw 'Encryption key unavailable.';
@@ -304,7 +334,7 @@ angular
         };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
-            key = key || _service.getKey();
+            key = key || _service.getEncKey() || _service.getKey();
 
             var headerPieces = encValue.split('.'),
                 encType,
