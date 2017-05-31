@@ -321,10 +321,6 @@ angular
                 cipherString = cipherString + '|' + mac;
             }
 
-            if (key.encType === constants.encType.AesCbc256_B64) {
-                return cipherString;
-            }
-
             return key.encType + '.' + cipherString;
         };
 
