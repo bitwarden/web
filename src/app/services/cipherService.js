@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('cipherService', function (cryptoService, apiService) {
+    .factory('cipherService', function (cryptoService, apiService, $q) {
         var _service = {};
 
         _service.decryptLogins = function (encryptedLogins) {
@@ -202,6 +202,57 @@ angular
                 id: unencryptedCollection.id,
                 name: cryptoService.encrypt(unencryptedCollection.name, cryptoService.getOrgKey(orgId))
             };
+        };
+
+        _service.updateKey = function (masterPassword, success, error) {
+            var madeEncKey = cryptoService.makeEncKey(null);
+            encKey = madeEncKey.encKey;
+            var encKeyEnc = madeEncKey.encKeyEnc;
+
+            var reencryptedLogins = [];
+            var loginsPromise = apiService.logins.list({}, function (encryptedLogins) {
+                var filteredEncryptedLogins = [];
+                for (var i = 0; i < encryptedLogins.Data.length; i++) {
+                    if (encryptedLogins.Data[i].OrganizationId) {
+                        continue;
+                    }
+
+                    filteredEncryptedLogins.push(encryptedLogins.Data[i]);
+                }
+
+                var unencryptedLogins = _service.decryptLogins(filteredEncryptedLogins);
+                reencryptedLogins = _service.encryptLogins(unencryptedLogins, encKey);
+            }).$promise;
+
+            var reencryptedFolders = [];
+            var foldersPromise = apiService.folders.list({}, function (encryptedFolders) {
+                var unencryptedFolders = _service.decryptFolders(encryptedFolders.Data);
+                reencryptedFolders = _service.encryptFolders(unencryptedFolders, encKey);
+            }).$promise;
+
+            var privateKey = cryptoService.getPrivateKey('raw'),
+                reencryptedPrivateKey = null;
+            if (privateKey) {
+                reencryptedPrivateKey = cryptoService.encrypt(privateKey, encKey, 'raw');
+            }
+
+            return $q.all([loginsPromise, foldersPromise]).then(function () {
+                var request = {
+                    masterPasswordHash: cryptoService.hashPassword(masterPassword),
+                    ciphers: reencryptedLogins,
+                    folders: reencryptedFolders,
+                    privateKey: reencryptedPrivateKey,
+                    key: encKeyEnc
+                };
+
+                return apiService.accounts.putKey(request).$promise;
+            }, error).then(function () {
+                cryptoService.setEncKey(encKey, null, true);
+                return success();
+            }, function () {
+                cryptoService.clearEncKey();
+                error();
+            });
         };
 
         return _service;
