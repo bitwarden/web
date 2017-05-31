@@ -64,7 +64,7 @@
 
         function processError() {
             $uibModalInstance.dismiss('cancel');
-            toastr.error('Something went wrong.', 'Oh No!');
+            toastr.error('Something went wrong. Try again.', 'Oh No!');
         }
 
         $scope.close = function () {
