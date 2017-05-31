@@ -204,7 +204,7 @@ angular
             };
         };
 
-        _service.updateKey = function (masterPassword, success, error) {
+        _service.updateKey = function (masterPasswordHash, success, error) {
             var madeEncKey = cryptoService.makeEncKey(null);
             encKey = madeEncKey.encKey;
             var encKeyEnc = madeEncKey.encKeyEnc;
@@ -238,7 +238,7 @@ angular
 
             return $q.all([loginsPromise, foldersPromise]).then(function () {
                 var request = {
-                    masterPasswordHash: cryptoService.hashPassword(masterPassword),
+                    masterPasswordHash: masterPasswordHash,
                     ciphers: reencryptedLogins,
                     folders: reencryptedFolders,
                     privateKey: reencryptedPrivateKey,

@@ -4,83 +4,68 @@
     .controller('settingsChangeEmailController', function ($scope, $state, apiService, $uibModalInstance, cryptoService,
         cipherService, authService, $q, toastr, $analytics) {
         $analytics.eventTrack('settingsChangeEmailController', { category: 'Modal' });
+
         var _masterPasswordHash,
-            _newMasterPasswordHash,
-            _newKey;
+            _masterPassword,
+            _newEmail;
 
         $scope.token = function (model) {
-            _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
-            var newEmail = model.newEmail.toLowerCase();
+            _masterPassword = model.masterPassword;
+            _masterPasswordHash = cryptoService.hashPassword(_masterPassword);
+            _newEmail = model.newEmail.toLowerCase();
 
+            var encKey = cryptoService.getEncKey();
+            if (encKey) {
+                $scope.tokenPromise = requestToken(model);
+            }
+            else {
+                // User is not using an enc key, let's make them one
+                $scope.tokenPromise = cipherService.updateKey(_masterPasswordHash, function () {
+                    return requestToken(model);
+                }, processError);
+            }
+        };
+
+        function requestToken(model) {
             var request = {
-                newEmail: newEmail,
+                newEmail: _newEmail,
                 masterPasswordHash: _masterPasswordHash
             };
 
-            $scope.tokenPromise = apiService.accounts.emailToken(request, function () {
-                _newKey = cryptoService.makeKey(model.masterPassword, newEmail);
-                _newMasterPasswordHash = cryptoService.hashPassword(model.masterPassword, _newKey);
-
+            return apiService.accounts.emailToken(request, function () {
                 $scope.tokenSent = true;
             }).$promise;
-        };
+        }
 
         $scope.confirm = function (model) {
             $scope.processing = true;
 
-            var reencryptedLogins = [];
-            var loginsPromise = apiService.logins.list({}, function (encryptedLogins) {
-                var filteredEncryptedLogins = [];
-                for (var i = 0; i < encryptedLogins.Data.length; i++) {
-                    if (encryptedLogins.Data[i].OrganizationId) {
-                        continue;
-                    }
+            var newKey = cryptoService.makeKey(_masterPassword, _newEmail);
+            var encKey = cryptoService.getEncKey();
+            var newEncKey = cryptoService.encrypt(encKey.key, newKey, 'raw');
 
-                    filteredEncryptedLogins.push(encryptedLogins.Data[i]);
-                }
+            var request = {
+                token: model.token,
+                newEmail: _newEmail,
+                masterPasswordHash: _masterPasswordHash,
+                newMasterPasswordHash: cryptoService.hashPassword(_masterPassword, newKey),
+                key: newEncKey
+            };
 
-                var unencryptedLogins = cipherService.decryptLogins(filteredEncryptedLogins);
-                reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, _newKey);
-            }).$promise;
-
-            var reencryptedFolders = [];
-            var foldersPromise = apiService.folders.list({}, function (encryptedFolders) {
-                var unencryptedFolders = cipherService.decryptFolders(encryptedFolders.Data);
-                reencryptedFolders = cipherService.encryptFolders(unencryptedFolders, _newKey);
-            }).$promise;
-
-            var privateKey = cryptoService.getPrivateKey('raw'),
-                reencryptedPrivateKey = null;
-            if (privateKey) {
-                reencryptedPrivateKey = cryptoService.encrypt(privateKey, _newKey, 'raw');
-            }
-
-            $q.all([loginsPromise, foldersPromise]).then(function () {
-                var request = {
-                    token: model.token,
-                    newEmail: model.newEmail.toLowerCase(),
-                    masterPasswordHash: _masterPasswordHash,
-                    newMasterPasswordHash: _newMasterPasswordHash,
-                    data: {
-                        ciphers: reencryptedLogins,
-                        folders: reencryptedFolders,
-                        privateKey: reencryptedPrivateKey
-                    }
-                };
-
-                $scope.confirmPromise = apiService.accounts.email(request, function () {
-                    $uibModalInstance.dismiss('cancel');
-                    $analytics.eventTrack('Changed Email');
-                    authService.logOut();
-                    $state.go('frontend.login.info').then(function () {
-                        toastr.success('Please log back in.', 'Email Changed');
-                    });
-                }, function () {
-                    $uibModalInstance.dismiss('cancel');
-                    toastr.error('Something went wrong.', 'Oh No!');
-                }).$promise;
-            });
+            $scope.confirmPromise = apiService.accounts.email(request).$promise.then(function () {
+                $uibModalInstance.dismiss('cancel');
+                authService.logOut();
+                $analytics.eventTrack('Changed Email');
+                return $state.go('frontend.login.info');
+            }, processError).then(function () {
+                toastr.success('Please log back in.', 'Email Changed');
+            }, processError);
         };
+
+        function processError() {
+            $uibModalInstance.dismiss('cancel');
+            toastr.error('Something went wrong.', 'Oh No!');
+        }
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');

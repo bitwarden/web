@@ -31,7 +31,8 @@
             }
             else {
                 // User is not using an enc key, let's make them one
-                $scope.savePromise = cipherService.updateKey(model.masterPassword, function () {
+                var mpHash = cryptoService.hashPassword(model.masterPassword);
+                $scope.savePromise = cipherService.updateKey(mpHash, function () {
                     return changePassword(model);
                 }, processError);
             }
@@ -54,9 +55,9 @@
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
                 $analytics.eventTrack('Changed Password');
-                $state.go('frontend.login.info').then(function () {
-                    toastr.success('Please log back in.', 'Master Password Changed');
-                });
+                return $state.go('frontend.login.info');
+            }, processError).then(function () {
+                toastr.success('Please log back in.', 'Master Password Changed');
             }, processError);
         }
 
