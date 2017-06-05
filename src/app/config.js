@@ -7,7 +7,7 @@ angular
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
             urlParam: 'access_token3',
-            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.8']
+            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.6']
         });
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
@@ -77,7 +77,10 @@ angular
                 url: '^/vault',
                 templateUrl: 'app/vault/views/vault.html',
                 controller: 'vaultController',
-                data: { pageTitle: 'My Vault' },
+                data: {
+                    pageTitle: 'My Vault',
+                    controlSidebar: true
+                },
                 params: {
                     refreshFromServer: false
                 }

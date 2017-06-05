@@ -4,6 +4,7 @@ angular
     .controller('mainController', function ($scope, $state, authService, appSettings, toastr, $window, $document) {
         var vm = this;
         vm.bodyClass = '';
+        vm.usingControlSidebar = vm.openControlSidebar = false;
         vm.searchVaultText = null;
         vm.version = appSettings.version;
 
@@ -24,7 +25,17 @@ angular
                     $.AdminLTE.pushMenu.expandOnHover();
                 }
 
-                $(document).off('click', '.sidebar li a');
+                $document.off('click', '.sidebar li a');
+
+                $('#control-sidebar').on('click', function (e) {
+                    e.preventDefault();
+                    var bod = $('body');
+                    if (!bod.hasClass('control-sidebar-open')) {
+                        bod.addClass('control-sidebar-open');
+                    } else {
+                        bod.removeClass('control-sidebar-open');
+                    }
+                });
             }
         });
 
@@ -38,6 +49,9 @@ angular
             else {
                 vm.bodyClass = '';
             }
+
+            vm.usingControlSidebar = !!toState.data.controlSidebar;
+            vm.openControlSidebar = vm.usingControlSidebar && $document.width() > 768;
         });
 
         $scope.addLogin = function () {

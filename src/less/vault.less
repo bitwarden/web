@@ -4,6 +4,7 @@
 
 @boxed-layout-bg-image-path: "../images/boxed-bg.png";
 @yellow: #bf7e16;
+@footer-height: 51px;
 
 body {
     background-color: @gray;
@@ -71,6 +72,65 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
+.control-sidebar {
+    height: ~"calc(100% - @{footer-height})";
+    position: absolute;
+
+    @media (max-width: @screen-sm) {
+        padding-top: @navbar-height;
+    }
+
+    @media (max-width: @screen-xs-max) {
+        padding-top: @navbar-height + 50px;
+    }
+}
+
+.control-sidebar-heading {
+    padding: 0;
+    margin: 10px 0 10px 0;
+}
+
+.control-sidebar-menu {
+    li a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    li.active a {
+        background-color: @component-active-bg;
+    }
+}
+
+.control-sidebar-open {
+    @media (min-width: @screen-sm) {
+        .main-footer {
+            margin-right: 0;
+        }
+    }
+}
+
+.control-sidebar-show {
+    display: none !important;
+}
+
+.using-control-sidebar {
+    .control-sidebar-show {
+        display: block !important;
+    }
+
+    .control-sidebar-hidden {
+        display: none !important;
+    }
+}
+
+.control-sidebar-bg {
+    height: 100%;
+    position: absolute;
+}
+
+.main-footer {
+    height: @footer-height;
+}
 
 form div.validation-errors ul {
     margin-bottom: 0;

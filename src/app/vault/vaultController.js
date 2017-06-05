@@ -6,6 +6,7 @@
         $scope.loading = true;
         $scope.logins = [];
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
+        $scope.folderIdFilter = undefined;
 
         if ($state.params.refreshFromServer) {
             $rootScope.vaultFolders = $rootScope.vaultLogins = null;
@@ -280,6 +281,18 @@
                 }
             });
         };
+
+        $scope.filterFolder = function (folder) {
+            $scope.folderIdFilter = folder.id;
+        };
+
+        $scope.clearFilters = function () {
+            $scope.folderIdFilter = undefined;
+        };
+
+        $scope.folderFilter = function (folder) {
+            return $scope.folderIdFilter === undefined || folder.id === $scope.folderIdFilter;
+        }
 
         function removeLoginFromScopes(login) {
             var index = $rootScope.vaultLogins.indexOf(login);

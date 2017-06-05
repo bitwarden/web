@@ -14,7 +14,7 @@
         <p>Loading...</p>
     </div>
     <div class="box box-primary" ng-class="{'collapsed-box': favoriteCollapsed}" style="margin-bottom: 40px;"
-         ng-show="vaultFolders.length && (!main.searchVaultText || favoriteLogins.length)">
+         ng-show="vaultFolders.length && folderIdFilter === undefined && (!main.searchVaultText || favoriteLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-star"></i>
@@ -90,7 +90,8 @@
             </div>
         </div>
     </div>
-    <div class="box" ng-class="{'collapsed-box': folder.collapsed}" ng-repeat="folder in vaultFolders track by folder.id"
+    <div class="box" ng-class="{'collapsed-box': folder.collapsed}"
+         ng-repeat="folder in filteredVaultFolders = (vaultFolders | filter: folderFilter) track by folder.id"
          ng-show="vaultFolders.length && (!main.searchVaultText || folderLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -179,3 +180,29 @@
         </div>
     </div>
 </section>
+<aside class="control-sidebar control-sidebar-light">
+    <div class="tab-content">
+        <ul class="control-sidebar-menu">
+            <li>
+                <a href="javascript:void(0)" ng-click="clearFilters()">
+                    Clear All Filters
+                </a>
+            </li>
+        </ul>
+        <h3 class="control-sidebar-heading">
+            <i class="fa fa-folder-open"></i> Folders
+        </h3>
+        <ul class="control-sidebar-menu">
+            <li ng-repeat="folder in vaultFolders track by folder.id">
+                <a href="javascript:void(0)" ng-click="filterFolder(folder)">
+                    <i class="fa fa-check" ng-if="folder.id === folderIdFilter"></i>
+                    {{folder.name}}
+                </a>
+            </li>
+        </ul>
+        <h3 class="control-sidebar-heading">
+            <i class="fa fa-tags"></i> Tags
+        </h3>
+        <p>Coming soon...</p>
+    </div>
+</aside>
