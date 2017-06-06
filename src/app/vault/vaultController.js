@@ -284,13 +284,22 @@
 
         $scope.filterFolder = function (folder) {
             $scope.folderIdFilter = folder.id;
-            $timeout(function () {
-                $.AdminLTE.layout.fix();
-            }, 0);
+
+            if ($.AdminLTE && $.AdminLTE.layout) {
+                $timeout(function () {
+                    $.AdminLTE.layout.fix();
+                }, 0);
+            }
         };
 
         $scope.clearFilters = function () {
             $scope.folderIdFilter = undefined;
+
+            if ($.AdminLTE && $.AdminLTE.layout) {
+                $timeout(function () {
+                    $.AdminLTE.layout.fix();
+                }, 0);
+            }
         };
 
         $scope.folderFilter = function (folder) {

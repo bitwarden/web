@@ -46,7 +46,7 @@ gulp.task('lint', function () {
 gulp.task('build', function (cb) {
     return runSequence(
         'clean',
-        ['browserify', 'lib', 'webpack', 'less', 'settings', 'lint'],
+        ['browserify', 'lib', 'webpack', 'less', 'settings', 'lint', 'min:js'],
         cb);
 });
 
@@ -304,6 +304,10 @@ gulp.task('dist:move', function () {
         {
             src: paths.npmDir + 'node-forge/dist/prime.worker.*',
             dest: paths.dist + 'lib/forge'
+        },
+        {
+            src: paths.webroot + 'js/bw.min.js',
+            dest: paths.dist + 'js'
         },
         {
             src: [

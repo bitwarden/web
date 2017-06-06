@@ -26,16 +26,6 @@ angular
                 }
 
                 $document.off('click', '.sidebar li a');
-
-                $('#control-sidebar').on('click', function (e) {
-                    e.preventDefault();
-                    var bod = $('body');
-                    if (!bod.hasClass('control-sidebar-open')) {
-                        bod.addClass('control-sidebar-open');
-                    } else {
-                        bod.removeClass('control-sidebar-open');
-                    }
-                });
             }
         });
 
