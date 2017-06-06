@@ -5,6 +5,8 @@
 @boxed-layout-bg-image-path: "../images/boxed-bg.png";
 @yellow: #bf7e16;
 @footer-height: 51px;
+@header-height: 50px;
+@header-height-xs: 50px * 2;
 
 body {
     background-color: @gray;
@@ -73,7 +75,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .control-sidebar {
-    height: ~"calc(100% - @{footer-height})";
+    min-height: ~"calc(100% - @{footer-height})";
     position: absolute;
 
     @media (max-width: @screen-sm) {
@@ -124,8 +126,12 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .control-sidebar-bg {
-    height: 100%;
+    min-height: 100%;
     position: absolute;
+}
+
+.layout-boxed .wrapper {
+    overflow: hidden;
 }
 
 .main-footer {
