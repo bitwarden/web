@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a ui-sref="frontend.logout">Log Out</a></li>
                 <li class="control-sidebar-show">
-                    <a href="#" ng-click="toggleControlSidebar()"><i class="fa fa-bars"></i></a>
+                    <a href="#" stop-click ng-click="toggleControlSidebar()"><i class="fa fa-bars"></i></a>
                 </li>
             </ul>
         </div>
@@ -46,12 +46,12 @@
                 <a ui-sref="backend.user.vault"><i class="fa fa-lock fa-fw"></i> <span>My Vault</span></a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.user.vault')}">
                     <li>
-                        <a href="javascript:void(0)" ng-click="addLogin()">
+                        <a href="#" stop-click ng-click="addLogin()">
                             <i class="fa fa-plus-circle fa-fw"></i> New Login
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" ng-click="addFolder()">
+                        <a href="#" stop-click ng-click="addFolder()">
                             <i class="fa fa-folder fa-fw"></i> New Folder
                         </a>
                     </li>
@@ -119,7 +119,7 @@
             </div>
             <ul class="list-inline" ng-if="orgs.length">
                 <li ng-repeat="org in orgs | orderBy: ['name'] track by org.id">
-                    <a href="javascript:void(0)" ng-click="viewOrganization(org)">
+                    <a href="#" stop-click ng-click="viewOrganization(org)">
                         <letter-avatar data="{{org.name}}" avclass="img-responsive img-rounded" round="false"
                                        avheight="40" avwidth="40" bgcolor="#2c3b41" avborder="true"
                                        borderstyle="3px solid #1a2226"></letter-avatar>

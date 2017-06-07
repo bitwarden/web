@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a ui-sref="frontend.logout">Log Out</a></li>
                 <li class="control-sidebar-show">
-                    <a href="#" ng-click="toggleControlSidebar()"><i class="fa fa-bars"></i></a>
+                    <a href="#" stop-click ng-click="toggleControlSidebar()"><i class="fa fa-bars"></i></a>
                 </li>
             </ul>
         </div>
@@ -53,7 +53,7 @@
                 </a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.vault')}">
                     <li>
-                        <a href="javascript:void(0)" ng-click="addOrganizationLogin()">
+                        <a href="#" stop-click ng-click="addOrganizationLogin()">
                             <i class="fa fa-plus-circle fa-fw"></i> New Login
                         </a>
                     </li>
@@ -65,7 +65,7 @@
                 </a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.collections')}">
                     <li>
-                        <a href="javascript:void(0)" ng-click="addOrganizationCollection()">
+                        <a href="#" stop-click ng-click="addOrganizationCollection()">
                             <i class="fa fa-plus-circle fa-fw"></i> New Collection
                         </a>
                     </li>
@@ -77,7 +77,7 @@
                 </a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.people')}">
                     <li>
-                        <a href="javascript:void(0)" ng-click="inviteOrganizationUser()">
+                        <a href="#" stop-click ng-click="inviteOrganizationUser()">
                             <i class="fa fa-plus-circle fa-fw"></i> Invite a User
                         </a>
                     </li>
@@ -89,7 +89,7 @@
                 </a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.includes('backend.org.groups')}">
                     <li>
-                        <a href="javascript:void(0)" ng-click="addOrganizationGroup()">
+                        <a href="#" stop-click ng-click="addOrganizationGroup()">
                             <i class="fa fa-plus-circle fa-fw"></i> New Group
                         </a>
                     </li>

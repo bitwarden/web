@@ -28,7 +28,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="javascript:void(0)" ng-click="addLogin(null, true)">
+                            <a href="#" stop-click ng-click="addLogin(null, true)">
                                 <i class="fa fa-fw fa-plus-circle"></i> Add Login
                             </a>
                         </li>
@@ -57,22 +57,22 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li ng-show="!login.organizationId">
-                                            <a href="javascript:void(0)" ng-click="share(login)">
+                                            <a href="#" stop-click ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
                                         <li ng-show="login.organizationId && login.edit">
-                                            <a href="javascript:void(0)" ng-click="collections(login)">
+                                            <a href="#" stop-click ng-click="collections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
                                         <li ng-show="login.edit">
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
@@ -80,7 +80,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
                                 <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
@@ -106,17 +106,17 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="javascript:void(0)" ng-click="addLogin(folder)">
+                            <a href="#" stop-click ng-click="addLogin(folder)">
                                 <i class="fa fa-fw fa-plus-circle"></i> Add Login
                             </a>
                         </li>
                         <li ng-show="folder.id">
-                            <a href="javascript:void(0)" ng-click="editFolder(folder)">
+                            <a href="#" stop-click ng-click="editFolder(folder)">
                                 <i class="fa fa-fw fa-pencil"></i> Edit Folder
                             </a>
                         </li>
                         <li ng-show="canDeleteFolder(folder)">
-                            <a href="javascript:void(0)" ng-click="deleteFolder(folder)" class="text-red">
+                            <a href="#" stop-click ng-click="deleteFolder(folder)" class="text-red">
                                 <i class="fa fa-fw fa-trash"></i> Delete Folder
                             </a>
                         </li>
@@ -145,22 +145,22 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li ng-show="!login.organizationId">
-                                            <a href="javascript:void(0)" ng-click="share(login)">
+                                            <a href="#" stop-click ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
                                         <li ng-show="login.organizationId && login.edit">
-                                            <a href="javascript:void(0)" ng-click="collections(login)">
+                                            <a href="#" stop-click ng-click="collections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
                                         <li ng-show="login.edit">
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
@@ -168,7 +168,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
                                 <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
                                 <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
                                 <div class="text-sm text-muted">{{login.username}}</div>
@@ -184,7 +184,7 @@
     <div class="tab-content">
         <ul class="control-sidebar-menu">
             <li>
-                <a href="javascript:void(0)" ng-click="clearFilters()">
+                <a href="#" stop-click ng-click="clearFilters()">
                     Clear All Filters
                 </a>
             </li>
@@ -194,7 +194,7 @@
         </h3>
         <ul class="control-sidebar-menu">
             <li ng-repeat="folder in vaultFolders track by folder.id">
-                <a href="javascript:void(0)" ng-click="filterFolder(folder)">
+                <a href="#" stop-click ng-click="filterFolder(folder)">
                     <i class="fa fa-check" ng-if="folder.id === folderIdFilter"></i>
                     {{folder.name}}
                 </a>

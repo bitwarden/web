@@ -42,23 +42,23 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editCollections(login)">
+                                            <a href="#" stop-click ng-click="editCollections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="removeLogin(login, collection)" class="text-red"
+                                            <a href="#" stop-click ng-click="removeLogin(login, collection)" class="text-red"
                                                ng-if="collection.id">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
@@ -66,7 +66,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>
