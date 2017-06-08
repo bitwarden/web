@@ -304,7 +304,7 @@
 
         $scope.folderFilter = function (folder) {
             return $scope.folderIdFilter === undefined || folder.id === $scope.folderIdFilter;
-        }
+        };
 
         function removeLoginFromScopes(login) {
             var index = $rootScope.vaultLogins.indexOf(login);

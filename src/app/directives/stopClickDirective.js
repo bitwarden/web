@@ -7,5 +7,5 @@ angular
             $(element).click(function (event) {
                 event.preventDefault();
             });
-        }
+        };
     });
