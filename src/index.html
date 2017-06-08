@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="bit">
+<html ng-app="bit" ng-csp>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Security-Policy" content="
@@ -27,6 +27,9 @@
             'self'
             https://maxcdn.bootstrapcdn.com
             https://fonts.gstatic.com;
+          child-src
+            'self'
+            https://js.stripe.com;
           frame-src
             'self'
             https://js.stripe.com;
