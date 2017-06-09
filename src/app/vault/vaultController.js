@@ -312,8 +312,17 @@
             return $scope.folderIdFilter === undefined || folder.id === $scope.folderIdFilter;
         };
 
+        $scope.unselectAll = function () {
+            selectAll(false);
+        };
+
+        $scope.selectFolder = function (folder, $event) {
+            var checkbox = $($event.currentTarget).closest('.box').find('input[name="loginSelection"]');
+            checkbox.prop('checked', true);
+        };
+
         $scope.select = function ($event) {
-            var checkbox = $($event.currentTarget).parent().find('input[name="loginSelection"]');
+            var checkbox = $($event.currentTarget).closest('tr').find('input[name="loginSelection"]');
             checkbox.prop('checked', !checkbox.prop('checked'));
         };
 
@@ -327,8 +336,8 @@
             }).get().filter(distinct);
         }
 
-        function clearLoginSelections() {
-            $('input[name="loginSelection"]').prop('checked', false);
+        function selectAll(select) {
+            $('input[name="loginSelection"]').prop('checked', select);
         }
 
         $scope.bulkMove = function () {
@@ -356,8 +365,9 @@
                     }
                 }
 
-                clearLoginSelections();
+                selectAll(false);
                 sortScopedLoginData();
+                toastr.success('Items have been moved!');
             });
         };
 
@@ -383,9 +393,11 @@
                     }
                 }
 
-                clearLoginSelections();
+                selectAll(false);
                 $scope.bulkActionLoading = false;
+                toastr.success('Items have been deleted!');
             }, function () {
+                toastr.error('An error occurred.');
                 $scope.bulkActionLoading = false;
             });
         };

@@ -16,6 +16,12 @@
                     <i class="fa fa-fw fa-trash"></i> Delete Selected
                 </a>
             </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="#" stop-click ng-click="unselectAll()">
+                    <i class="fa fa-fw fa-minus-square-o"></i> Unselect All
+                </a>
+            </li>
         </ul>
     </div>
     <h1>
@@ -144,6 +150,11 @@
                                 <i class="fa fa-fw fa-pencil"></i> Edit Folder
                             </a>
                         </li>
+                        <li>
+                            <a href="#" stop-click ng-click="selectFolder(folder, $event)">
+                                <i class="fa fa-fw fa-check-square-o"></i> Select All
+                            </a>
+                        </li>
                         <li ng-show="canDeleteFolder(folder)">
                             <a href="#" stop-click ng-click="deleteFolder(folder)" class="text-red">
                                 <i class="fa fa-fw fa-trash"></i> Delete Folder
@@ -202,8 +213,8 @@
                                     </ul>
                                 </div>
                             </td>
-                            <td class="action-select">
-                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
+                            <td class="action-select" ng-click="select($event)">
+                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" stop-prop />
                             </td>
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
@@ -231,7 +242,10 @@
         <h3 class="control-sidebar-heading">
             <i class="fa fa-folder fa-fw"></i> Folders
         </h3>
-        <ul class="control-sidebar-menu">
+        <div ng-show="loading && !vaultFolders.length">
+            <p>Loading...</p>
+        </div>
+        <ul class="control-sidebar-menu" ng-show="!loading && vaultFolders.length">
             <li ng-repeat="folder in vaultFolders track by folder.id">
                 <a href="#" stop-click ng-click="filterFolder(folder)">
                     <i class="fa fa-check" ng-if="folder.id === folderIdFilter"></i>
