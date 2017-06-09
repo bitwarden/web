@@ -1,4 +1,23 @@
 ﻿<section class="content-header">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"
+                ng-disabled="bulkActionLoading">
+            <i class="fa fa-refresh fa-spin" ng-show="bulkActionLoading"></i>
+            Bulk Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" stop-click ng-click="bulkMove()">
+                    <i class="fa fa-fw fa-share"></i> Move Selected
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="bulkDelete()">
+                    <i class="fa fa-fw fa-trash"></i> Delete Selected
+                </a>
+            </li>
+        </ul>
+    </div>
     <h1>
         My Vault
         <small>
@@ -84,6 +103,9 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </td>
+                            <td class="action-select">
+                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
                             </td>
                             <td>
                                 <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
@@ -178,6 +200,9 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </td>
+                            <td class="action-select">
+                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
                             </td>
                             <td>
                                 <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>

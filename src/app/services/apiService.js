@@ -38,7 +38,9 @@
             putCollections: { url: _apiUri + '/ciphers/:id/collections', method: 'POST', params: { id: '@id' } },
             putCollectionsAdmin: { url: _apiUri + '/ciphers/:id/collections-admin', method: 'POST', params: { id: '@id' } },
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } },
-            delAdmin: { url: _apiUri + '/ciphers/:id/delete-admin', method: 'POST', params: { id: '@id' } }
+            delAdmin: { url: _apiUri + '/ciphers/:id/delete-admin', method: 'POST', params: { id: '@id' } },
+            delMany: { url: _apiUri + '/ciphers/delete', method: 'POST' },
+            moveMany: { url: _apiUri + '/ciphers/move', method: 'POST' }
         });
 
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {

@@ -312,6 +312,59 @@
             return $scope.folderIdFilter === undefined || folder.id === $scope.folderIdFilter;
         };
 
+        function distinct(value, index, self) {
+            return self.indexOf(value) === index;
+        }
+
+        function getSelectedLogins() {
+            return $('input[name="loginSelection"]:checked').map(function () {
+                return $(this).val();
+            }).get().filter(distinct);
+        }
+
+        function clearLoginSelections() {
+            $('input[name="loginSelection"]').attr('checked', false);
+        }
+
+        $scope.bulkMove = function () {
+            var ids = getSelectedLogins();
+            if (ids.length === 0) {
+                alert('You have not selected anything.');
+                return;
+            }
+
+            // TODO
+        };
+
+        $scope.bulkDelete = function () {
+            var ids = getSelectedLogins();
+            if (ids.length === 0) {
+                alert('You have not selected anything.');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to delete the selected logins (total: ' + ids.length + ')?')) {
+                return;
+            }
+
+            $scope.bulkActionLoading = true;
+            apiService.ciphers.delMany({ ids: ids }, function () {
+                $analytics.eventTrack('Bulk Deleted Logins');
+
+                for (var i = 0; i < ids.length; i++) {
+                    var login = $filter('filter')($rootScope.vaultLogins, { id: ids[i] });
+                    if (login.length && login[0].edit) {
+                        removeLoginFromScopes(login[0]);
+                    }
+                }
+
+                clearLoginSelections();
+                $scope.bulkActionLoading = false;
+            }, function () {
+                $scope.bulkActionLoading = false;
+            });
+        };
+
         function removeLoginFromScopes(login) {
             var index = $rootScope.vaultLogins.indexOf(login);
             if (index > -1) {
