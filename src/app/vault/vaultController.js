@@ -338,7 +338,26 @@
                 return;
             }
 
-            // TODO
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultMoveLogins.html',
+                controller: 'vaultMoveLoginsController',
+                resolve: {
+                    ids: function () { return ids; }
+                }
+            });
+
+            modal.result.then(function (folderId) {
+                for (var i = 0; i < ids.length; i++) {
+                    var login = $filter('filter')($rootScope.vaultLogins, { id: ids[i] });
+                    if (login.length) {
+                        login[0].folderId = folderId;
+                    }
+                }
+
+                clearLoginSelections();
+                sortScopedLoginData();
+            });
         };
 
         $scope.bulkDelete = function () {
