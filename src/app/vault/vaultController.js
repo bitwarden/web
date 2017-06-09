@@ -342,6 +342,7 @@
                 animation: true,
                 templateUrl: 'app/vault/views/vaultMoveLogins.html',
                 controller: 'vaultMoveLoginsController',
+                size: 'sm',
                 resolve: {
                     ids: function () { return ids; }
                 }
