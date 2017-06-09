@@ -67,6 +67,12 @@
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
+                                        <li ng-show="login.password">
+                                            <a href="#" stop-click ngclipboard ngclipboard-error="clipboardError(e)"
+                                               data-clipboard-text="{{login.password}}">
+                                                <i class="fa fa-fw fa-clipboard"></i> Copy Password
+                                            </a>
+                                        </li>
                                         <li ng-show="login.edit">
                                             <a href="#" stop-click ng-click="removeLogin(login, collection)"
                                                ng-if="collection.id" class="text-red">

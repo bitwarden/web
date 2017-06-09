@@ -57,7 +57,8 @@ angular
                 favorite: encryptedCipher.Favorite,
                 edit: encryptedCipher.Edit,
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
-                username: _service.decryptProperty(encryptedCipher.Data.Username, key, true)
+                username: _service.decryptProperty(encryptedCipher.Data.Username, key, true),
+                password: _service.decryptProperty(encryptedCipher.Data.Password, key, true)
             };
 
             return login;

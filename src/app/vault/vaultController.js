@@ -118,6 +118,11 @@
             return item.name.toLowerCase();
         }
 
+        $scope.clipboardError = function (e) {
+            alert('Your web browser does not support easy clipboard copying. ' +
+                'Edit the login and copy it manually instead.');
+        };
+
         $scope.collapseExpand = function (folder, favorite) {
             if (!$localStorage.collapsedFolders) {
                 $localStorage.collapsedFolders = {};
@@ -147,6 +152,7 @@
                     login.folderId = returnVal.data.folderId;
                     login.name = returnVal.data.name;
                     login.username = returnVal.data.username;
+                    login.password = returnVal.data.password;
                     login.favorite = returnVal.data.favorite;
 
                     sortScopedLoginData();

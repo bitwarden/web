@@ -47,6 +47,11 @@
             });
         });
 
+        $scope.clipboardError = function (e) {
+            alert('Your web browser does not support easy clipboard copying. ' +
+                'Edit the login and copy it manually instead.');
+        };
+
         $scope.filterByCollection = function (collection) {
             return function (cipher) {
                 if (!cipher.collectionIds || !cipher.collectionIds.length) {
@@ -97,6 +102,7 @@
                     login.folderId = rootLogin.folderId = returnVal.data.folderId;
                     login.name = rootLogin.name = returnVal.data.name;
                     login.username = rootLogin.username = returnVal.data.username;
+                    login.password = rootLogin.username = returnVal.data.password;
                     login.favorite = rootLogin.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'partialEdit') {
