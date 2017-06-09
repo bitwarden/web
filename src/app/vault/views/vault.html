@@ -107,10 +107,11 @@
                             <td class="action-select">
                                 <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
                             </td>
-                            <td>
-                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
-                                <div class="text-sm text-muted">{{login.username}}</div>
+                            <td ng-click="select($event)">
+                                <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"
+                                   stop-prop></i><br />
+                                <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
                             </td>
                         </tr>
                     </tbody>
@@ -204,11 +205,12 @@
                             <td class="action-select">
                                 <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
                             </td>
-                            <td>
-                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
-                                <div class="text-sm text-muted">{{login.username}}</div>
+                            <td ng-click="select($event)">
+                                <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
+                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite" stop-prop></i>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId" stop-prop></i>
+                                <br />
+                                <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
                             </td>
                         </tr>
                     </tbody>

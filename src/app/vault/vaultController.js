@@ -312,6 +312,11 @@
             return $scope.folderIdFilter === undefined || folder.id === $scope.folderIdFilter;
         };
 
+        $scope.select = function ($event) {
+            var checkbox = $($event.currentTarget).parent().find('input[name="loginSelection"]');
+            checkbox.prop('checked', !checkbox.prop('checked'));
+        };
+
         function distinct(value, index, self) {
             return self.indexOf(value) === index;
         }
@@ -323,7 +328,7 @@
         }
 
         function clearLoginSelections() {
-            $('input[name="loginSelection"]').attr('checked', false);
+            $('input[name="loginSelection"]').prop('checked', false);
         }
 
         $scope.bulkMove = function () {
