@@ -1,4 +1,29 @@
 <section class="content-header">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"
+                ng-disabled="bulkActionLoading">
+            <i class="fa fa-refresh fa-spin" ng-show="bulkActionLoading"></i>
+            Bulk Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" stop-click ng-click="bulkMove()">
+                    <i class="fa fa-fw fa-share"></i> Move Selected
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="bulkDelete()">
+                    <i class="fa fa-fw fa-trash"></i> Delete Selected
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="#" stop-click ng-click="unselectAll()">
+                    <i class="fa fa-fw fa-minus-square-o"></i> Unselect All
+                </a>
+            </li>
+        </ul>
+    </div>
     <h1>
         My Vault
         <small>
@@ -14,7 +39,7 @@
         <p>Loading...</p>
     </div>
     <div class="box box-primary" ng-class="{'collapsed-box': favoriteCollapsed}" style="margin-bottom: 40px;"
-         ng-show="vaultFolders.length && (!main.searchVaultText || favoriteLogins.length)">
+         ng-show="vaultFolders.length && folderIdFilter === undefined && (!main.searchVaultText || favoriteLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-star"></i>
@@ -28,7 +53,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="javascript:void(0)" ng-click="addLogin(null, true)">
+                            <a href="#" stop-click ng-click="addLogin(null, true)">
                                 <i class="fa fa-fw fa-plus-circle"></i> Add Login
                             </a>
                         </li>
@@ -57,32 +82,42 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li ng-show="!login.organizationId">
-                                            <a href="javascript:void(0)" ng-click="share(login)">
+                                            <a href="#" stop-click ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
                                         <li ng-show="login.organizationId && login.edit">
-                                            <a href="javascript:void(0)" ng-click="collections(login)">
+                                            <a href="#" stop-click ng-click="collections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
+                                        <li ng-show="login.password">
+                                            <a href="#" stop-click ngclipboard ngclipboard-error="clipboardError(e)"
+                                               data-clipboard-text="{{login.password}}">
+                                                <i class="fa fa-fw fa-clipboard"></i> Copy Password
+                                            </a>
+                                        </li>
                                         <li ng-show="login.edit">
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </td>
-                            <td>
-                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
-                                <div class="text-sm text-muted">{{login.username}}</div>
+                            <td class="action-select">
+                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
+                            </td>
+                            <td ng-click="select($event)">
+                                <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"
+                                   stop-prop></i><br />
+                                <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
                             </td>
                         </tr>
                     </tbody>
@@ -90,7 +125,8 @@
             </div>
         </div>
     </div>
-    <div class="box" ng-class="{'collapsed-box': folder.collapsed}" ng-repeat="folder in vaultFolders track by folder.id"
+    <div class="box" ng-class="{'collapsed-box': folder.collapsed}"
+         ng-repeat="folder in filteredVaultFolders = (vaultFolders | filter: folderFilter) track by folder.id"
          ng-show="vaultFolders.length && (!main.searchVaultText || folderLogins.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -105,17 +141,22 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="javascript:void(0)" ng-click="addLogin(folder)">
+                            <a href="#" stop-click ng-click="addLogin(folder)">
                                 <i class="fa fa-fw fa-plus-circle"></i> Add Login
                             </a>
                         </li>
                         <li ng-show="folder.id">
-                            <a href="javascript:void(0)" ng-click="editFolder(folder)">
+                            <a href="#" stop-click ng-click="editFolder(folder)">
                                 <i class="fa fa-fw fa-pencil"></i> Edit Folder
                             </a>
                         </li>
+                        <li>
+                            <a href="#" stop-click ng-click="selectFolder(folder, $event)">
+                                <i class="fa fa-fw fa-check-square-o"></i> Select All
+                            </a>
+                        </li>
                         <li ng-show="canDeleteFolder(folder)">
-                            <a href="javascript:void(0)" ng-click="deleteFolder(folder)" class="text-red">
+                            <a href="#" stop-click ng-click="deleteFolder(folder)" class="text-red">
                                 <i class="fa fa-fw fa-trash"></i> Delete Folder
                             </a>
                         </li>
@@ -144,33 +185,43 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li ng-show="!login.organizationId">
-                                            <a href="javascript:void(0)" ng-click="share(login)">
+                                            <a href="#" stop-click ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
                                         <li ng-show="login.organizationId && login.edit">
-                                            <a href="javascript:void(0)" ng-click="collections(login)">
+                                            <a href="#" stop-click ng-click="collections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
+                                        <li ng-show="login.password">
+                                            <a href="#" stop-click ngclipboard ngclipboard-error="clipboardError(e)"
+                                               data-clipboard-text="{{login.password}}">
+                                                <i class="fa fa-fw fa-clipboard"></i> Copy Password
+                                            </a>
+                                        </li>
                                         <li ng-show="login.edit">
-                                            <a href="javascript:void(0)" ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </td>
-                            <td>
-                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
-                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"></i>
-                                <div class="text-sm text-muted">{{login.username}}</div>
+                            <td class="action-select" ng-click="select($event)">
+                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" stop-prop />
+                            </td>
+                            <td ng-click="select($event)">
+                                <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
+                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite" stop-prop></i>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId" stop-prop></i>
+                                <br />
+                                <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
                             </td>
                         </tr>
                     </tbody>
@@ -179,3 +230,28 @@
         </div>
     </div>
 </section>
+<aside class="control-sidebar control-sidebar-light">
+    <div class="tab-content">
+        <ul class="control-sidebar-menu">
+            <li>
+                <a href="#" stop-click ng-click="clearFilters()">
+                    Clear All Filters
+                </a>
+            </li>
+        </ul>
+        <h3 class="control-sidebar-heading">
+            <i class="fa fa-folder fa-fw"></i> Folders
+        </h3>
+        <div ng-show="loading && !vaultFolders.length">
+            <p>Loading...</p>
+        </div>
+        <ul class="control-sidebar-menu" ng-show="!loading && vaultFolders.length">
+            <li ng-repeat="folder in vaultFolders track by folder.id">
+                <a href="#" stop-click ng-click="filterFolder(folder)">
+                    <i class="fa fa-check" ng-if="folder.id === folderIdFilter"></i>
+                    {{folder.name}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>

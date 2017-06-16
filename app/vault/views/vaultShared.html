@@ -58,17 +58,23 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editLogin(login)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li ng-show="login.edit">
-                                            <a href="javascript:void(0)" ng-click="editCollections(login)">
+                                            <a href="#" stop-click ng-click="editCollections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
+                                        <li ng-show="login.password">
+                                            <a href="#" stop-click ngclipboard ngclipboard-error="clipboardError(e)"
+                                               data-clipboard-text="{{login.password}}">
+                                                <i class="fa fa-fw fa-clipboard"></i> Copy Password
+                                            </a>
+                                        </li>
                                         <li ng-show="login.edit">
-                                            <a href="javascript:void(0)" ng-click="removeLogin(login, collection)"
+                                            <a href="#" stop-click ng-click="removeLogin(login, collection)"
                                                ng-if="collection.id" class="text-red">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
                                             </a>
@@ -77,7 +83,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" ng-click="editLogin(login)">{{login.name}}</a>
+                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
                                 <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>

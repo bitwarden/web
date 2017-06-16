@@ -37,27 +37,27 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="edit(user)">
+                                            <a href="#" stop-click ng-click="edit(user)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="groups(user)" ng-if="useGroups">
+                                            <a href="#" stop-click ng-click="groups(user)" ng-if="useGroups">
                                                 <i class="fa fa-fw fa-sitemap"></i> Groups
                                             </a>
                                         </li>
                                         <li ng-show="user.status === 1">
-                                            <a href="javascript:void(0)" ng-click="confirm(user)">
+                                            <a href="#" stop-click ng-click="confirm(user)">
                                                 <i class="fa fa-fw fa-check"></i> Confirm
                                             </a>
                                         </li>
                                         <li ng-show="user.status === 0">
-                                            <a href="javascript:void(0)" ng-click="reinvite(user)">
+                                            <a href="#" stop-click ng-click="reinvite(user)">
                                                 <i class="fa fa-fw fa-envelope-o"></i> Re-send Invitation
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" ng-click="delete(user)" class="text-red">
+                                            <a href="#" stop-click ng-click="delete(user)" class="text-red">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
                                             </a>
                                         </li>
@@ -68,7 +68,7 @@
                                 <letter-avatar data="{{user.name || user.email}}"></letter-avatar>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" ng-click="edit(user)">{{user.email}}</a>
+                                <a href="#" stop-click ng-click="edit(user)">{{user.email}}</a>
                                 <i class="fa fa-unlock text-muted" ng-show="user.accessAll"
                                    title="Can Access All Items"></i>
                                 <div ng-if="user.name"><small class="text-muted">{{user.name}}</small></div>

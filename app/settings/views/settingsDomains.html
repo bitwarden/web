@@ -28,12 +28,12 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="javascript:void(0)" ng-click="addEdit($index)">
+                                                <a href="#" stop-click ng-click="addEdit($index)">
                                                     <i class="fa fa-fw fa-pencil"></i> Edit
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)" ng-click="delete($index)" class="text-red">
+                                                <a href="#" stop-click ng-click="delete($index)" class="text-red">
                                                     <i class="fa fa-fw fa-trash"></i> Delete
                                                 </a>
                                             </li>
@@ -76,19 +76,19 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="javascript:void(0)" ng-if="!globalDomain.excluded" 
+                                                <a href="#" stop-click ng-if="!globalDomain.excluded" 
                                                    ng-click="toggleExclude(globalDomain)">
                                                     <i class="fa fa-fw fa-remove"></i> Exclude
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)" ng-if="globalDomain.excluded"
+                                                <a href="#" stop-click ng-if="globalDomain.excluded"
                                                    ng-click="toggleExclude(globalDomain)">
                                                     <i class="fa fa-fw fa-plus"></i> Include
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)" ng-click="customize(globalDomain)">
+                                                <a href="#" stop-click ng-click="customize(globalDomain)">
                                                     <i class="fa fa-fw fa-cut"></i> Customize
                                                 </a>
                                             </li>
