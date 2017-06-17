@@ -65,7 +65,12 @@ gulp.task('clean:lib', function (cb) {
 gulp.task('clean', ['clean:js', 'clean:css', 'clean:lib', 'dist:clean']);
 
 gulp.task('min:js', ['clean:js'], function () {
-    return gulp.src([paths.js, '!' + paths.minJs], { base: '.' })
+    return gulp.src(
+        [
+            paths.js,
+            '!' + paths.minJs,
+            '!' + paths.webroot + 'js/fallback*.js'
+        ], { base: '.' })
         .pipe(concat(paths.concatJsDest))
         .pipe(uglify())
         .pipe(gulp.dest('.'));
@@ -356,6 +361,19 @@ gulp.task('dist:js:app', function () {
         .pipe(gulp.dest('.'));
 });
 
+gulp.task('dist:js:fallback', function () {
+    var mainStream = gulp
+        .src([
+            paths.webroot + 'js/fallback*.js'
+        ]);
+
+    merge(mainStream, config())
+        .pipe(preprocess({ context: { cacheTag: randomString } }))
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(paths.dist + 'js'));
+});
+
 gulp.task('dist:js:lib', function () {
     return gulp
         .src([
@@ -383,7 +401,7 @@ gulp.task('dist:preprocess', function () {
 gulp.task('dist', ['build'], function (cb) {
     return runSequence(
         'dist:clean',
-        ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib'],
+        ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib', 'dist:js:fallback'],
         'dist:preprocess',
         cb);
 });
