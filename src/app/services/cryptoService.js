@@ -349,7 +349,7 @@ angular
 
         _service.rsaEncryptMe = function (plainValue) {
             return _service.rsaEncrypt(plainValue, _service.getPublicKey(), _service.getEncKey());
-        }
+        };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
             key = key || _service.getEncKey() || _service.getKey();
