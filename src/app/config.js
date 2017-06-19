@@ -103,6 +103,12 @@ angular
                 controller: 'settingsDomainsController',
                 data: { pageTitle: 'Domain Settings' }
             })
+            .state('backend.user.settingsTwoStep', {
+                url: '^/settings/two-step',
+                templateUrl: 'app/settings/views/settingsTwoStep.html',
+                controller: 'settingsTwoStepController',
+                data: { pageTitle: 'Two-step Login' }
+            })
             .state('backend.user.settingsCreateOrg', {
                 url: '^/settings/create-organization',
                 templateUrl: 'app/settings/views/settingsCreateOrganization.html',

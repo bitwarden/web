@@ -114,6 +114,11 @@
             postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} }
         });
 
+        _service.twoFactor = $resource(_apiUri + '/two-factor', {}, {
+            get: { method: 'GET', params: { provider: '@provider' } },
+            list: { method: 'GET', params: {} }
+        });
+
         _service.settings = $resource(_apiUri + '/settings', {}, {
             getDomains: { url: _apiUri + '/settings/domains', method: 'GET', params: {} },
             putDomains: { url: _apiUri + '/settings/domains', method: 'POST', params: {} },
@@ -135,7 +140,7 @@
         });
 
         _service.hibp = $resource('https://haveibeenpwned.com/api/v2/breachedaccount/:email', {}, {
-            get: { method: 'GET', params: { email: '@email' }, isArray: true},
+            get: { method: 'GET', params: { email: '@email' }, isArray: true },
         });
 
         function transformUrlEncoded(data) {

@@ -20,6 +20,13 @@ angular.module('bit')
             accepted: 1,
             confirmed: 2
         },
+        twoFactorProvider: {
+            authenticator: 0,
+            email: 1,
+            duo: 2,
+            yubikey: 3,
+            u2f: 4
+        },
         plans: {
             free: {
                 basePrice: 0,

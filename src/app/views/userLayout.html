@@ -78,13 +78,18 @@
             </li>
             <li class="treeview"
                 ng-class="{active: $state.is('backend.user.settings') || $state.is('backend.user.settingsDomains') ||
-                $state.is('backend.user.settingsCreateOrg')}">
+                $state.is('backend.user.settingsCreateOrg') || $state.is('backend.user.settingsTwoStep')}">
                 <a ui-sref="backend.user.settings"><i class="fa fa-cogs fa-fw"></i> <span>Settings</span></a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.settings') ||
                         $state.is('backend.user.settingsDomains') || $state.is('backend.user.settingsCreateOrg')}">
                     <li ng-class="{active: $state.is('backend.user.settingsCreateOrg')}">
                         <a ui-sref="backend.user.settingsCreateOrg">
                             <i class="fa fa-plus-circle fa-fw"></i> New Organization
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.is('backend.user.settingsTwoStep')}">
+                        <a ui-sref="backend.user.settingsTwoStep">
+                            <i class="fa fa-fw fa-circle-o"></i> Two-step Login
                         </a>
                     </li>
                     <li ng-class="{active: $state.is('backend.user.settingsDomains')}">
