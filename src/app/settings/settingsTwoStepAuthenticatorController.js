@@ -6,7 +6,8 @@
         $analytics.eventTrack('settingsTwoStepAuthenticatorController', { category: 'Modal' });
         var _issuer = 'bitwarden',
             _profile = null,
-            _masterPasswordHash;
+            _masterPasswordHash
+            _key = null;
 
         $scope.auth = function (model) {
             _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
@@ -34,12 +35,13 @@
 
         function processResponse(response) {
             $scope.enabled = response.Enabled;
+            _key = response.Key;
 
             $scope.model = {
-                key: formatString(response.Key),
+                key: formatString(_key),
                 qr: 'https://chart.googleapis.com/chart?chs=120x120&chld=L|0&cht=qr&chl=otpauth://totp/' +
                 _issuer + ':' + encodeURIComponent(_profile.email) +
-                '%3Fsecret=' + encodeURIComponent(response.Key) +
+                '%3Fsecret=' + encodeURIComponent(_key) +
                 '%26issuer=' + _issuer
             };
             $scope.updateModel = {
@@ -74,6 +76,7 @@
         function update(model) {
             $scope.submitPromise = apiService.twoFactor.putAuthenticator({}, {
                 token: model.token.replace(' ', ''),
+                key: _key,
                 masterPasswordHash: _masterPasswordHash
             }, function (response) {
                 $analytics.eventTrack('Enabled Two-step Authenticator');
