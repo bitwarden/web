@@ -115,9 +115,11 @@
             list: { method: 'GET', params: {} },
             getEmail: { url: _apiUri + '/two-factor/get-email', method: 'POST', params: {} },
             getAuthenticator: { url: _apiUri + '/two-factor/get-authenticator', method: 'POST', params: {} },
+            getYubi: { url: _apiUri + '/two-factor/get-yubikey', method: 'POST', params: {} },
             sendEmail: { url: _apiUri + '/two-factor/send-email', method: 'POST', params: {} },
             putEmail: { url: _apiUri + '/two-factor/email', method: 'POST', params: {} },
             putAuthenticator: { url: _apiUri + '/two-factor/authenticator', method: 'POST', params: {} },
+            putYubi: { url: _apiUri + '/two-factor/yubikey', method: 'POST', params: {} },
             disable: { url: _apiUri + '/two-factor/disable', method: 'POST', params: {} },
             recover: { url: _apiUri + '/two-factor/recover', method: 'POST', params: {} },
         });

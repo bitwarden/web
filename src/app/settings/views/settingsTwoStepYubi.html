@@ -1,0 +1,121 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">
+        <i class="fa fa-key"></i> Two-step Login <small>yubikey</small>
+    </h4>
+</div>
+<form name="authTwoStepForm" ng-submit="authTwoStepForm.$valid && auth(authModel)" api-form="authPromise"
+      ng-if="!authed">
+    <div class="modal-body">
+        <p>Enter your master password to modify two-step login settings.</p>
+        <div class="callout callout-danger validation-errors" ng-show="authTwoStepForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in authTwoStepForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="masterPassword">Master Password</label>
+            <input type="password" id="masterPassword" name="MasterPasswordHash" ng-model="authModel.masterPassword"
+                   class="form-control" required api-field />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="authTwoStepForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="authTwoStepForm.$loading"></i>Continue
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
+<form name="submitTwoStepForm" ng-submit="submitTwoStepForm.$valid && submit(updateModel)" api-form="submitPromise"
+      ng-if="authed">
+    <div class="modal-body">
+        <div ng-if="enabled">
+            <div class="callout callout-success">
+                <h4><i class="fa fa-check-circle"></i> Enabled</h4>
+                <p>Two-step log via YubiKey is enabled on your account.</p>
+            </div>
+        </div>
+        <div class="callout callout-danger validation-errors" ng-show="submitTwoStepForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in submitTwoStepForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <p>To add a new YubiKey to your account:</p>
+        <ol>
+            <li>Plug the YubiKey into your USB port.</li>
+            <li>Select in the first empty <b>Key</b> field below.</li>
+            <li>Touch the YubiKey's button.</li>
+            <li>Finally, save the form.</li>
+        </ol>
+        <hr />
+        <div class="form-group" show-errors>
+            <label for="key1">Key #1</label>
+            <span ng-if="updateModel.key1.existingKey">
+                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key1)">[remove]</a>
+            </span>
+            <div ng-if="updateModel.key1.existingKey" class="monospaced">
+                {{updateModel.key1.existingKey}}
+            </div>
+            <input type="password" id="key1" name="Key1" ng-model="updateModel.key1.key" class="form-control" api-field
+                   ng-show="!updateModel.key1.existingKey" />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="key2">Key #2</label>
+            <span ng-if="updateModel.key2.existingKey">
+                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key2)">[remove]</a>
+            </span>
+            <div ng-if="updateModel.key2.existingKey" class="monospaced">
+                {{updateModel.key2.existingKey}}
+            </div>
+            <input type="password" id="key2" name="Key2" ng-model="updateModel.key2.key" class="form-control" api-field
+                   ng-show="!updateModel.key2.existingKey" />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="key3">Key #3</label>
+            <span ng-if="updateModel.key3.existingKey">
+                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key3)">[remove]</a>
+            </span>
+            <div ng-if="updateModel.key3.existingKey" class="monospaced">
+                {{updateModel.key3.existingKey}}
+            </div>
+            <input type="password" id="key3" name="Key3" ng-model="updateModel.key3.key" class="form-control" api-field
+                   ng-show="!updateModel.key3.existingKey" />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="key4">Key #4</label>
+            <span ng-if="updateModel.key4.existingKey">
+                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key4)">[remove]</a>
+            </span>
+            <div ng-if="updateModel.key4.existingKey" class="monospaced">
+                {{updateModel.key4.existingKey}}
+            </div>
+            <input type="password" id="key4" name="Key4" ng-model="updateModel.key4.key" class="form-control" api-field
+                   ng-show="!updateModel.key4.existingKey" />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="key5">Key #5</label>
+            <span ng-if="updateModel.key5.existingKey">
+                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key5)">[remove]</a>
+            </span>
+            <div ng-if="updateModel.key5.existingKey" class="monospaced">
+                {{updateModel.key5.existingKey}}
+            </div>
+            <input type="password" id="key5" name="Key5" ng-model="updateModel.key5.key" class="form-control" api-field
+                   ng-show="!updateModel.key5.existingKey" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="submitTwoStepForm.$loading || disableLoading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="submitTwoStepForm.$loading"></i>
+            Save
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="disable()" ng-disabled="disableLoading"
+                ng-if="enabled">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="disableLoading"></i>
+            Disable All Keys
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>

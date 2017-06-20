@@ -83,5 +83,19 @@
 
                 });
             }
+            else if (provider.type === constants.twoFactorProvider.yubikey) {
+                var yubiModal = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/settings/views/settingsTwoStepYubi.html',
+                    controller: 'settingsTwoStepYubiController',
+                    resolve: {
+                        enabled: function () { return provider.enabled; }
+                    }
+                });
+
+                yubiModal.result.then(function () {
+
+                });
+            }
         };
     });
