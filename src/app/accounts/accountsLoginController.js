@@ -2,7 +2,7 @@ angular
     .module('bit.accounts')
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
-        $state, constants, $analytics) {
+        $state, constants, $analytics, $uibModal, $timeout) {
         $scope.state = $state;
 
         var returnState;
@@ -24,8 +24,11 @@ angular
             };
         }
 
-        var email,
-            masterPassword;
+        var _email,
+            _masterPassword;
+
+        $scope.twoFactorProviders = null;
+        $scope.twoFactorProvider = null;
 
         $scope.login = function (model) {
             $scope.loginPromise = authService.logIn(model.email, model.masterPassword);
@@ -44,12 +47,18 @@ angular
                     $cookies.remove(constants.rememberedEmailCookieName);
                 }
 
-                if (twoFactorProviders && twoFactorProviders.length > 0) {
-                    email = model.email;
-                    masterPassword = model.masterPassword;
+                if (twoFactorProviders && Object.keys(twoFactorProviders).length > 0) {
+                    _email = model.email;
+                    _masterPassword = model.masterPassword;
+                    $scope.twoFactorProviders = twoFactorProviders;
+                    $scope.twoFactorProvider = parseInt(Object.keys(twoFactorProviders)[0]);
 
                     $analytics.eventTrack('Logged In To Two-step');
-                    $state.go('frontend.login.twoFactor', { returnState: returnState });
+                    $state.go('frontend.login.twoFactor', { returnState: returnState }).then(function () {
+                        $timeout(function () {
+                            $("#code").focus();
+                        });
+                    });
                 }
                 else {
                     $analytics.eventTrack('Logged In');
@@ -58,13 +67,30 @@ angular
             });
         };
 
-        $scope.twoFactor = function (model) {
-            // Only supporting Authenticator (0) provider for now
-            $scope.twoFactorPromise = authService.logIn(email, masterPassword, model.code, 0);
+        $scope.twoFactor = function (token) {
+            $scope.twoFactorPromise = authService.logIn(_email, _masterPassword, token, $scope.twoFactorProvider);
 
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');
                 loggedInGo();
+            });
+        };
+
+        $scope.anotherMethod = function () {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/accounts/views/accountsTwoFactorMethods.html',
+                controller: 'accountsTwoFactorMethodsController',
+                resolve: {
+                    providers: function () { return $scope.twoFactorProviders; }
+                }
+            });
+
+            modal.result.then(function (provider) {
+                $scope.twoFactorProvider = provider;
+                $timeout(function () {
+                    $("#code").focus();
+                });
             });
         };
 

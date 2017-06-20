@@ -1,25 +1,59 @@
-<p class="login-box-msg">Enter your two-step verification code.</p>
-<form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(model)" api-form="twoFactorPromise">
-    <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
-        <h4>Errors have occurred</h4>
-        <ul>
-            <li ng-repeat="e in twoFactorForm.$errors">{{e}}</li>
-        </ul>
-    </div>
-    <div class="form-group has-feedback" show-errors>
-        <label for="code" class="sr-only">Code</label>
-        <input type="text" id="code" name="Code" class="form-control" placeholder="Verification code" ng-model="model.code"
-               required api-field />
-        <span class="fa fa-lock form-control-feedback"></span>
-    </div>
-    <div class="row">
-        <div class="col-xs-7">
-            <a ui-sref="frontend.recover">Lost authenticator app?</a>
+<div ng-if="twoFactorProvider === 0 || twoFactorProvider === 1">
+    <p class="login-box-msg" ng-if="twoFactorProvider === 0">
+        Enter the 6 digit verification code from your authenticator app.
+    </p>
+    <p class="login-box-msg" ng-if="twoFactorProvider === 1">
+        Enter the 6 digit verification code that was emailed to you.
+    </p>
+    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise">
+        <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in twoFactorForm.$errors">{{e}}</li>
+            </ul>
         </div>
-        <div class="col-xs-5">
-            <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="twoFactorForm.$loading">
-                <i class="fa fa-refresh fa-spin loading-icon" ng-show="twoFactorForm.$loading"></i>Log In
-            </button>
+        <div class="form-group has-feedback" show-errors>
+            <label for="code" class="sr-only">Code</label>
+            <input type="text" id="code" name="Code" class="form-control" placeholder="Verification code"
+                   ng-model="token" required api-field />
+            <span class="fa fa-lock form-control-feedback"></span>
         </div>
-    </div>
-</form>
+        <div class="row">
+            <div class="col-xs-7">
+                <a stop-click href="#" ng-click="anotherMethod()">Use another method?</a>
+            </div>
+            <div class="col-xs-5">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="twoFactorForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="twoFactorForm.$loading"></i>Log In
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div ng-if="twoFactorProvider === 3">
+    <p class="login-box-msg">
+        Insert your YubiKey into a USB slot and touch its gold button.
+    </p>
+    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise">
+        <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in twoFactorForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="code" class="sr-only">Token</label>
+            <input type="password" id="code" name="Token" class="form-control" ng-model="token" required api-field />
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <a stop-click href="#" ng-click="anotherMethod()">Use another method?</a>
+            </div>
+            <div class="col-xs-5">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="twoFactorForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="twoFactorForm.$loading"></i>Log In
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

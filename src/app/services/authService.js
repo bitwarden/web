@@ -63,8 +63,9 @@ angular
             }, function (error) {
                 _service.logOut();
 
-                if (error.status === 400 && error.data.TwoFactorProviders && error.data.TwoFactorProviders.length) {
-                    deferred.resolve(error.data.TwoFactorProviders);
+                if (error.status === 400 && error.data.TwoFactorProviders2 &&
+                    Object.keys(error.data.TwoFactorProviders2).length) {
+                    deferred.resolve(error.data.TwoFactorProviders2);
                 }
                 else {
                     deferred.reject(error);
