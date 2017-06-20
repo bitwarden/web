@@ -69,5 +69,19 @@
                     
                 });
             }
+            else if(provider.type === constants.twoFactorProvider.email) {
+                var emailModal = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/settings/views/settingsTwoStepEmail.html',
+                    controller: 'settingsTwoStepEmailController',
+                    resolve: {
+                        enabled: function () { return provider.enabled; }
+                    }
+                });
+
+                emailModal.result.then(function () {
+
+                });
+            }
         };
     });
