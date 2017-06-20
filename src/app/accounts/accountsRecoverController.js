@@ -14,7 +14,7 @@ angular
                 recoveryCode: model.code.replace(/\s/g, '').toLowerCase()
             };
 
-            $scope.submitPromise = apiService.accounts.postTwoFactorRecover(request, function () {
+            $scope.submitPromise = apiService.twoFactor.recover(request, function () {
                 $analytics.eventTrack('Recovered 2FA');
                 $scope.success = true;
             }).$promise;

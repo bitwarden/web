@@ -105,22 +105,6 @@
             });
         };
 
-        $scope.twoFactor = function () {
-            var twoFactorModal = $uibModal.open({
-                animation: true,
-                templateUrl: 'app/settings/views/settingsTwoFactor.html',
-                controller: 'settingsTwoFactorController'
-            });
-
-            twoFactorModal.result.then(function (enabled) {
-                if (enabled === null) {
-                    return;
-                }
-
-                $scope.model.twoFactorEnabled = enabled;
-            });
-        };
-
         $scope.sessions = function () {
             $uibModal.open({
                 animation: true,

@@ -2,7 +2,7 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepController', function ($scope, apiService, authService, toastr, $analytics, constants,
-        $filter) {
+        $filter, $uibModal) {
         $scope.providers = [
             {
                 type: constants.twoFactorProvider.authenticator,
@@ -53,4 +53,21 @@
         authService.getUserProfile().then(function (profile) {
             _profile = profile;
         });
+
+        $scope.edit = function (provider) {
+            if (provider.type === constants.twoFactorProvider.authenticator) {
+                var authenticatorModal = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/settings/views/settingsTwoStepAuthenticator.html',
+                    controller: 'settingsTwoStepAuthenticatorController',
+                    resolve: {
+                        enabled: function () { return provider.enabled; }
+                    }
+                });
+
+                authenticatorModal.result.then(function () {
+                    
+                });
+            }
+        };
     });

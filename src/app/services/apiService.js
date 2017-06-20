@@ -103,9 +103,6 @@
             putProfile: { url: _apiUri + '/accounts/profile', method: 'POST', params: {} },
             getDomains: { url: _apiUri + '/accounts/domains', method: 'GET', params: {} },
             putDomains: { url: _apiUri + '/accounts/domains', method: 'POST', params: {} },
-            getTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'GET', params: {} },
-            putTwoFactor: { url: _apiUri + '/accounts/two-factor', method: 'POST', params: {} },
-            postTwoFactorRecover: { url: _apiUri + '/accounts/two-factor-recover', method: 'POST', params: {} },
             postPasswordHint: { url: _apiUri + '/accounts/password-hint', method: 'POST', params: {} },
             putSecurityStamp: { url: _apiUri + '/accounts/security-stamp', method: 'POST', params: {} },
             putKeys: { url: _apiUri + '/accounts/keys', method: 'POST', params: {} },
@@ -115,8 +112,13 @@
         });
 
         _service.twoFactor = $resource(_apiUri + '/two-factor', {}, {
-            get: { method: 'GET', params: { provider: '@provider' } },
-            list: { method: 'GET', params: {} }
+            list: { method: 'GET', params: {} },
+            getEmail: { url: _apiUri + '/two-factor/get-email', method: 'POST', params: {} },
+            getAuthenticator: { url: _apiUri + '/two-factor/get-authenticator', method: 'POST', params: {} },
+            putEmail: { url: _apiUri + '/two-factor/email', method: 'POST', params: {} },
+            putAuthenticator: { url: _apiUri + '/two-factor/authenticator', method: 'POST', params: {} },
+            disable: { url: _apiUri + '/two-factor/disable', method: 'POST', params: {} },
+            recover: { url: _apiUri + '/two-factor/recover', method: 'POST', params: {} },
         });
 
         _service.settings = $resource(_apiUri + '/settings', {}, {
