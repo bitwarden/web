@@ -65,8 +65,8 @@
                     }
                 });
 
-                authenticatorModal.result.then(function () {
-                    
+                authenticatorModal.result.then(function (enabled) {
+                    provider.enabled = enabled;
                 });
             }
             else if(provider.type === constants.twoFactorProvider.email) {
@@ -79,8 +79,8 @@
                     }
                 });
 
-                emailModal.result.then(function () {
-
+                emailModal.result.then(function (enabled) {
+                    provider.enabled = enabled;
                 });
             }
             else if (provider.type === constants.twoFactorProvider.yubikey) {
@@ -93,8 +93,22 @@
                     }
                 });
 
-                yubiModal.result.then(function () {
+                yubiModal.result.then(function (enabled) {
+                    provider.enabled = enabled;
+                });
+            }
+            else if (provider.type === constants.twoFactorProvider.duo) {
+                var yubiModal = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/settings/views/settingsTwoStepDuo.html',
+                    controller: 'settingsTwoStepDuoController',
+                    resolve: {
+                        enabled: function () { return provider.enabled; }
+                    }
+                });
 
+                yubiModal.result.then(function (enabled) {
+                    provider.enabled = enabled;
                 });
             }
         };

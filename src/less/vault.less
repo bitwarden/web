@@ -560,3 +560,24 @@ h1, h2, h3, h4, h5, h6 {
         background-position: -73px -88px;
     }
 }
+
+#duoFrameWrapper {
+    margin: 0 -36px 10px -36px;
+    background: ~"url('../images/loading.svg') 0 0 no-repeat";
+
+    @media (min-width: 360px) {
+        margin: 0 -10px 10px -10px;
+    }
+
+    @media (min-width: @screen-sm) {
+        margin: 0 0 10px;
+    }
+
+    iframe {
+        width: 100%;
+        min-width: 304px;
+        max-width: 620px;
+        height: 500px;
+        border: none;
+    }
+}

@@ -56,6 +56,7 @@
                 $scope.disableLoading = false;
                 $analytics.eventTrack('Disabled Two-step YubiKey');
                 toastr.success('YubiKey has been disabled.');
+                $scope.enabled = response.Enabled;
                 $scope.close();
             }, function (response) {
                 toastr.error('Failed to disable.');
@@ -102,6 +103,6 @@
         }
 
         $scope.close = function () {
-            $uibModalInstance.close();
+            $uibModalInstance.close($scope.enabled);
         };
     });

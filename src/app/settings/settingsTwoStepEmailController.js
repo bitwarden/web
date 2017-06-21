@@ -74,6 +74,7 @@
             }, function (response) {
                 $analytics.eventTrack('Disabled Two-step Email');
                 toastr.success('Email has been disabled.');
+                $scope.enabled = response.Enabled;
                 $scope.close();
             }).$promise;
         }
@@ -92,6 +93,6 @@
         }
 
         $scope.close = function () {
-            $uibModalInstance.close();
+            $uibModalInstance.close($scope.enabled);
         };
     });

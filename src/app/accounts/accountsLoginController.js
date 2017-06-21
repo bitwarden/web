@@ -57,6 +57,7 @@ angular
                     $state.go('frontend.login.twoFactor', { returnState: returnState }).then(function () {
                         $timeout(function () {
                             $("#code").focus();
+                            init();
                         });
                     });
                 }
@@ -90,6 +91,7 @@ angular
                 $scope.twoFactorProvider = provider;
                 $timeout(function () {
                     $("#code").focus();
+                    init();
                 });
             });
         };
@@ -100,6 +102,21 @@ angular
             }
             else {
                 $state.go('backend.user.vault');
+            }
+        }
+
+        function init() {
+            if ($scope.twoFactorProvider === constants.twoFactorProvider.duo) {
+                var params = $scope.twoFactorProviders[constants.twoFactorProvider.duo];
+
+                Duo.init({
+                    host: params.Host,
+                    sig_request: params.Signature,
+                    submit_callback: function (theForm) {
+                        var response = $(theForm).find('input[name="sig_response"]').val();
+                        $scope.twoFactor(response);
+                    }
+                });
             }
         }
     });

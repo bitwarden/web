@@ -7,7 +7,7 @@
         var _issuer = 'bitwarden',
             _profile = null,
             _masterPasswordHash
-            _key = null;
+        _key = null;
 
         $scope.auth = function (model) {
             _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
@@ -69,6 +69,7 @@
             }, function (response) {
                 $analytics.eventTrack('Disabled Two-step Authenticator');
                 toastr.success('Authenticator app has been disabled.');
+                $scope.enabled = response.Enabled;
                 $scope.close();
             }).$promise;
         }
@@ -86,6 +87,6 @@
         }
 
         $scope.close = function () {
-            $uibModalInstance.close();
+            $uibModalInstance.close($scope.enabled);
         };
     });

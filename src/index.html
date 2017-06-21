@@ -29,10 +29,12 @@
             https://fonts.gstatic.com;
           child-src
             'self'
-            https://js.stripe.com;
+            https://js.stripe.com
+            https://*.duosecurity.com;
           frame-src
             'self'
-            https://js.stripe.com;
+            https://js.stripe.com
+            https://*.duosecurity.com;
           connect-src
             *;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -85,6 +87,7 @@
     <script src="lib/forge/forge.js"></script>
     <script src="lib/papaparse/papaparse.js"></script>
     <script src="lib/clipboard/clipboard.js"></script>
+    <script src="lib/duo/index.js"></script>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-cookies/angular-cookies.js"></script>
@@ -190,6 +193,7 @@
     <script src="app/settings/settingsChangePasswordController.js"></script>
     <script src="app/settings/settingsChangeEmailController.js"></script>
     <script src="app/settings/settingsTwoStepAuthenticatorController.js"></script>
+    <script src="app/settings/settingsTwoStepDuoController.js"></script>
     <script src="app/settings/settingsTwoStepEmailController.js"></script>
     <script src="app/settings/settingsTwoStepYubiController.js"></script>
     <script src="app/settings/settingsSessionsController.js"></script>

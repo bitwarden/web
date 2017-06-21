@@ -177,6 +177,10 @@ gulp.task('lib', ['clean:lib'], function () {
                 paths.npmDir + 'angulartics/src/angulartics.js'
             ],
             dest: paths.libDir + 'angulartics'
+        },
+        {
+            src: paths.npmDir + 'duo_web_sdk/index.js',
+            dest: paths.libDir + 'duo'
         }
     ];
 
