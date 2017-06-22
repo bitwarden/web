@@ -111,5 +111,19 @@
                     provider.enabled = enabled;
                 });
             }
+            else if (provider.type === constants.twoFactorProvider.u2f) {
+                var u2fModal = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/settings/views/settingsTwoStepU2f.html',
+                    controller: 'settingsTwoStepU2fController',
+                    resolve: {
+                        enabled: function () { return provider.enabled; }
+                    }
+                });
+
+                u2fModal.result.then(function (enabled) {
+                    provider.enabled = enabled;
+                });
+            }
         };
     });

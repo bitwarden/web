@@ -1,0 +1,76 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">
+        <i class="fa fa-key"></i> Two-step Login <small>fido u2f</small>
+    </h4>
+</div>
+<form name="authTwoStepForm" ng-submit="authTwoStepForm.$valid && auth(authModel)" api-form="authPromise"
+      ng-if="!authed">
+    <div class="modal-body">
+        <p>Enter your master password to modify two-step login settings.</p>
+        <div class="callout callout-danger validation-errors" ng-show="authTwoStepForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in authTwoStepForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <div class="form-group" show-errors>
+            <label for="masterPassword">Master Password</label>
+            <input type="password" id="masterPassword" name="MasterPasswordHash" ng-model="authModel.masterPassword"
+                   class="form-control" required api-field />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="authTwoStepForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="authTwoStepForm.$loading"></i>Continue
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
+<form name="submitTwoStepForm" ng-submit="submitTwoStepForm.$valid && submit()" api-form="submitPromise"
+      ng-if="authed">
+    <div class="modal-body">
+        <div ng-if="enabled">
+            <div class="callout callout-success">
+                <h4><i class="fa fa-check-circle"></i> Enabled</h4>
+                <p>Two-step log via FIDO U2F is enabled on your account.</p>
+            </div>
+        </div>
+        <div ng-if="!enabled">
+            <div class="callout callout-danger validation-errors" ng-show="submitTwoStepForm.$errors">
+                <h4>Errors have occurred</h4>
+                <ul>
+                    <li ng-repeat="e in submitTwoStepForm.$errors">{{e}}</li>
+                </ul>
+            </div>
+            <p>Setting up two-step login with a FIDO U2F security key is easy, just follow these steps:</p>
+            <h4>1. Plug your security key into your USB port</h4>
+            <h4 style="margin-top: 30px;">2. Touch the button on the security key</h4>
+            <p>
+                <button type="button" ng-click="readDevice()" class="btn btn-default btn-flat">
+                    <i class="fa fa-spin fa-refresh fa-fw" ng-show="deviceListening"></i>
+                    <i class="fa fa-wifi fa-fw" ng-show="!deviceListening"></i>
+                    Read Security Key
+                </button>
+            </p>
+            <div ng-show="deviceListening">
+                Waiting for you to touch the button on your security key...
+            </div>
+            <div class="text-green" ng-show="deviceResponse">
+                <i class="fa fa-check"></i>
+                Got it! Click the "Enable" button below to enable this security key for two-step login.
+            </div>
+            <div class="text-red" ng-show="deviceError">
+                There was a problem reading the security key. Try again.
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat"
+                ng-disabled="(!enabled && !deviceResponse) || submitTwoStepForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="submitTwoStepForm.$loading"></i>
+            {{enabled ? 'Disable' : 'Enable'}}
+        </button>
+        <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
+    </div>
+</form>
