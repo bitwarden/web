@@ -28,6 +28,45 @@ angular.module('bit')
             u2f: 4,
             remember: 5
         },
+        twoFactorProviderInfo: [
+            {
+                type: 0,
+                name: 'Authenticator App',
+                description: 'Use an authenticator app (such as Authy or Google Authenticator) to generate time-based ' +
+                'verification codes.',
+                enabled: false,
+                free: true,
+                image: 'authapp.png'
+            },
+            {
+                type: 3,
+                name: 'YubiKey OTP Security Key',
+                description: 'Use a YubiKey to access your account. Works with YubiKey 4, 4 Nano, 4C, and NEO devices.',
+                enabled: false,
+                image: 'yubico.png'
+            },
+            {
+                type: 2,
+                name: 'Duo',
+                description: 'Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.',
+                enabled: false,
+                image: 'duo.png'
+            },
+            {
+                type: 4,
+                name: 'FIDO U2F Security Key',
+                description: 'Use any FIDO U2F enabled security key to access your account.',
+                enabled: false,
+                image: 'fido.png'
+            },
+            {
+                type: 1,
+                name: 'Email',
+                description: 'Verification codes will be emailed to you.',
+                enabled: false,
+                image: 'gmail.png'
+            }
+        ],
         plans: {
             free: {
                 basePrice: 0,

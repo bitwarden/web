@@ -7,41 +7,34 @@
         $scope.providers = [];
 
         if (providers.hasOwnProperty(constants.twoFactorProvider.authenticator)) {
-            $scope.providers.push({
-                id: constants.twoFactorProvider.authenticator,
-                name: 'Authenticator App'
-            });
+            add(constants.twoFactorProvider.authenticator);
         }
         if (providers.hasOwnProperty(constants.twoFactorProvider.yubikey)) {
-            $scope.providers.push({
-                id: constants.twoFactorProvider.yubikey,
-                name: 'YubiKey'
-            });
+            add(constants.twoFactorProvider.yubikey);
         }
         if (providers.hasOwnProperty(constants.twoFactorProvider.email)) {
-            $scope.providers.push({
-                id: constants.twoFactorProvider.email,
-                name: 'Email'
-            });
+            add(constants.twoFactorProvider.email);
         }
         if (providers.hasOwnProperty(constants.twoFactorProvider.duo)) {
-            $scope.providers.push({
-                id: constants.twoFactorProvider.duo,
-                name: 'Duo'
-            });
+            add(constants.twoFactorProvider.duo);
         }
         if (providers.hasOwnProperty(constants.twoFactorProvider.u2f)) {
-            $scope.providers.push({
-                id: constants.twoFactorProvider.u2f,
-                name: 'FIDO U2F Security Key'
-            });
+            add(constants.twoFactorProvider.u2f);
         }
 
         $scope.choose = function (provider) {
-            $uibModalInstance.close(provider.id);
+            $uibModalInstance.close(provider.type);
         };
 
         $scope.close = function () {
             $uibModalInstance.dismiss('close');
         };
+
+        function add(type) {
+            for (var i = 0; i < constants.twoFactorProviderInfo.length; i++) {
+                if (constants.twoFactorProviderInfo[i].type === type) {
+                    $scope.providers.push(constants.twoFactorProviderInfo[i]);
+                }
+            }
+        }
     });

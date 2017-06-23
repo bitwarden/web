@@ -1,41 +1,9 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsTwoStepController', function ($scope, apiService, authService, toastr, $analytics, constants,
+    .controller('settingsTwoStepController', function ($scope, apiService, toastr, $analytics, constants,
         $filter, $uibModal) {
-        $scope.providers = [
-            {
-                type: constants.twoFactorProvider.authenticator,
-                name: 'Authenticator App',
-                description: 'Use auth app.',
-                enabled: false,
-                free: true
-            },
-            {
-                type: constants.twoFactorProvider.yubikey,
-                name: 'YubiKey OTP',
-                description: '',
-                enabled: false
-            },
-            {
-                type: constants.twoFactorProvider.duo,
-                name: 'Duo',
-                description: '',
-                enabled: false
-            },
-            {
-                type: constants.twoFactorProvider.u2f,
-                name: 'FIDO U2F Security Key',
-                description: '',
-                enabled: false
-            },
-            {
-                type: constants.twoFactorProvider.email,
-                name: 'Email',
-                description: '',
-                enabled: false
-            }
-        ];
+        $scope.providers = constants.twoFactorProviderInfo;
 
         apiService.twoFactor.list({}, function (response) {
             for (var i = 0; i < response.Data.length; i++) {
@@ -50,80 +18,37 @@
             }
         });
 
-        authService.getUserProfile().then(function (profile) {
-            _profile = profile;
-        });
-
         $scope.edit = function (provider) {
             if (provider.type === constants.twoFactorProvider.authenticator) {
-                var authenticatorModal = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/settings/views/settingsTwoStepAuthenticator.html',
-                    controller: 'settingsTwoStepAuthenticatorController',
-                    resolve: {
-                        enabled: function () { return provider.enabled; }
-                    }
-                });
-
-                authenticatorModal.result.then(function (enabled) {
-                    provider.enabled = enabled;
-                });
+                typeName = 'Authenticator';
             }
-            else if(provider.type === constants.twoFactorProvider.email) {
-                var emailModal = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/settings/views/settingsTwoStepEmail.html',
-                    controller: 'settingsTwoStepEmailController',
-                    resolve: {
-                        enabled: function () { return provider.enabled; }
-                    }
-                });
-
-                emailModal.result.then(function (enabled) {
-                    provider.enabled = enabled;
-                });
+            else if (provider.type === constants.twoFactorProvider.email) {
+                typeName = 'Email';
             }
             else if (provider.type === constants.twoFactorProvider.yubikey) {
-                var yubiModal = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/settings/views/settingsTwoStepYubi.html',
-                    controller: 'settingsTwoStepYubiController',
-                    resolve: {
-                        enabled: function () { return provider.enabled; }
-                    }
-                });
-
-                yubiModal.result.then(function (enabled) {
-                    provider.enabled = enabled;
-                });
+                typeName = 'Yubi';
             }
             else if (provider.type === constants.twoFactorProvider.duo) {
-                var yubiModal = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/settings/views/settingsTwoStepDuo.html',
-                    controller: 'settingsTwoStepDuoController',
-                    resolve: {
-                        enabled: function () { return provider.enabled; }
-                    }
-                });
-
-                yubiModal.result.then(function (enabled) {
-                    provider.enabled = enabled;
-                });
+                typeName = 'Duo';
             }
             else if (provider.type === constants.twoFactorProvider.u2f) {
-                var u2fModal = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/settings/views/settingsTwoStepU2f.html',
-                    controller: 'settingsTwoStepU2fController',
-                    resolve: {
-                        enabled: function () { return provider.enabled; }
-                    }
-                });
-
-                u2fModal.result.then(function (enabled) {
-                    provider.enabled = enabled;
-                });
+                typeName = 'U2f';
             }
+            else {
+                return;
+            }
+
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsTwoStep' + typeName + '.html',
+                controller: 'settingsTwoStep' + typeName + 'Controller',
+                resolve: {
+                    enabled: function () { return provider.enabled; }
+                }
+            });
+
+            modal.result.then(function (enabled) {
+                provider.enabled = enabled;
+            });
         };
     });

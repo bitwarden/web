@@ -1,8 +1,9 @@
-<div ng-if="twoFactorProvider === 0 || twoFactorProvider === 1">
-    <p class="login-box-msg" ng-if="twoFactorProvider === 0">
+<div ng-if="twoFactorProvider === twoFactorProviderConstants.authenticator ||
+     twoFactorProvider === twoFactorProviderConstants.email">
+    <p class="login-box-msg" ng-if="twoFactorProvider === twoFactorProviderConstants.authenticator">
         Enter the 6 digit verification code from your authenticator app.
     </p>
-    <p class="login-box-msg" ng-if="twoFactorProvider === 1">
+    <p class="login-box-msg" ng-if="twoFactorProvider === twoFactorProviderConstants.email">
         Enter the 6 digit verification code that was emailed to you.
     </p>
     <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise">
@@ -30,7 +31,8 @@
         </div>
     </form>
 </div>
-<div ng-if="twoFactorProvider === 3">
+
+<div ng-if="twoFactorProvider === twoFactorProviderConstants.yubikey">
     <p class="login-box-msg">
         Insert your YubiKey into a USB slot and touch its gold button.
     </p>
@@ -58,7 +60,7 @@
     </form>
 </div>
 
-<div ng-if="twoFactorProvider === 2">
+<div ng-if="twoFactorProvider === twoFactorProviderConstants.duo">
     <p class="login-box-msg">
         Complete logging in with Duo.
     </p>
@@ -85,7 +87,7 @@
     </form>
 </div>
 
-<div ng-if="twoFactorProvider === 4">
+<div ng-if="twoFactorProvider === twoFactorProviderConstants.u2f">
     <p class="login-box-msg">
         Complete logging in with U2F.
     </p>

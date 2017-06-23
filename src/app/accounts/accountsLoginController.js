@@ -4,6 +4,7 @@ angular
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
         $state, constants, $analytics, $uibModal, $timeout, $window) {
         $scope.state = $state;
+        $scope.twoFactorProviderConstants = constants.twoFactorProvider;
 
         var returnState;
         if (!$state.params.returnState && $state.params.org) {
