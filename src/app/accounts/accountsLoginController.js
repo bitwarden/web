@@ -2,9 +2,10 @@ angular
     .module('bit.accounts')
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
-        $state, constants, $analytics, $uibModal, $timeout, $window) {
+        $state, constants, $analytics, $uibModal, $timeout, $window, $filter) {
         $scope.state = $state;
         $scope.twoFactorProviderConstants = constants.twoFactorProvider;
+        $scope.rememberTwoFactor = { checked: false };
 
         var returnState;
         if (!$state.params.returnState && $state.params.org) {
@@ -52,7 +53,7 @@ angular
                     _email = model.email;
                     _masterPassword = model.masterPassword;
                     $scope.twoFactorProviders = twoFactorProviders;
-                    $scope.twoFactorProvider = parseInt(Object.keys(twoFactorProviders)[0]);
+                    $scope.twoFactorProvider = getDefaultProvider(twoFactorProviders);
 
                     $analytics.eventTrack('Logged In To Two-step');
                     $state.go('frontend.login.twoFactor', { returnState: returnState }).then(function () {
@@ -66,11 +67,27 @@ angular
                     $analytics.eventTrack('Logged In');
                     loggedInGo();
                 }
+
+                model.masterPassword = '';
             });
         };
 
+        function getDefaultProvider(twoFactorProviders) {
+            var keys = Object.keys(twoFactorProviders);
+            var providerType = null;
+            var providerPriority = -1;
+            for (var i = 0; i < keys.length; i++) {
+                var provider = $filter('filter')(constants.twoFactorProviderInfo, { type: keys[i], active: true });
+                if (provider.length && provider[0].priority > providerPriority) {
+                    providerType = provider[0].type;
+                }
+            }
+            return parseInt(providerType);
+        }
+
         $scope.twoFactor = function (token) {
-            $scope.twoFactorPromise = authService.logIn(_email, _masterPassword, token, $scope.twoFactorProvider, true);
+            $scope.twoFactorPromise = authService.logIn(_email, _masterPassword, token, $scope.twoFactorProvider,
+                $scope.rememberTwoFactor.checked || false);
 
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');
@@ -110,7 +127,7 @@ angular
             if ($scope.twoFactorProvider === constants.twoFactorProvider.duo) {
                 var params = $scope.twoFactorProviders[constants.twoFactorProvider.duo];
 
-                Duo.init({
+                $window.Duo.init({
                     host: params.Host,
                     sig_request: params.Signature,
                     submit_callback: function (theForm) {
@@ -122,18 +139,36 @@ angular
             else if ($scope.twoFactorProvider === constants.twoFactorProvider.u2f) {
                 var params = $scope.twoFactorProviders[constants.twoFactorProvider.u2f];
                 var challenges = JSON.parse(params.Challenges);
-                if (challenges.length < 1) {
+
+                initU2f(challenges);
+            }
+        }
+
+        function initU2f(challenges) {
+            if (challenges.length < 1 || $scope.twoFactorProvider !== constants.twoFactorProvider.u2f) {
+                return;
+            }
+
+            console.log('listening for u2f key...');
+
+            $window.u2f.sign(challenges[0].appId, challenges[0].challenge, [{
+                version: challenges[0].version,
+                keyHandle: challenges[0].keyHandle
+            }], function (data) {
+                if ($scope.twoFactorProvider !== constants.twoFactorProvider.u2f) {
                     return;
                 }
 
-                $window.u2f.sign(challenges[0].appId, challenges[0].challenge, [{
-                    version: challenges[0].version,
-                    keyHandle: challenges[0].keyHandle
-                }], function (data) {
-                    console.log('call back data:');
-                    console.log(data);
-                    $scope.twoFactor(JSON.stringify(data));
-                });
-            }
+                if (data.errorCode) {
+                    console.log(data.errorCode);
+
+                    if (data.errorCode === 5) {
+                        initU2f(challenges);
+                    }
+
+                    return;
+                }
+                $scope.twoFactor(JSON.stringify(data));
+            }, 5);
         }
     });

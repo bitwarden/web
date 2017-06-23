@@ -21,11 +21,11 @@ angular.module('bit')
             confirmed: 2
         },
         twoFactorProvider: {
+            u2f: 4,
+            yubikey: 3,
+            duo: 2,
             authenticator: 0,
             email: 1,
-            duo: 2,
-            yubikey: 3,
-            u2f: 4,
             remember: 5
         },
         twoFactorProviderInfo: [
@@ -35,36 +35,51 @@ angular.module('bit')
                 description: 'Use an authenticator app (such as Authy or Google Authenticator) to generate time-based ' +
                 'verification codes.',
                 enabled: false,
+                active: true,
                 free: true,
-                image: 'authapp.png'
+                image: 'authapp.png',
+                displayOrder: 0,
+                priority: 3
             },
             {
                 type: 3,
                 name: 'YubiKey OTP Security Key',
                 description: 'Use a YubiKey to access your account. Works with YubiKey 4, 4 Nano, 4C, and NEO devices.',
                 enabled: false,
-                image: 'yubico.png'
+                active: true,
+                image: 'yubico.png',
+                displayOrder: 1,
+                priority: 1
             },
             {
                 type: 2,
                 name: 'Duo',
                 description: 'Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.',
                 enabled: false,
-                image: 'duo.png'
+                active: true,
+                image: 'duo.png',
+                displayOrder: 2,
+                priority: 2
             },
             {
                 type: 4,
                 name: 'FIDO U2F Security Key',
                 description: 'Use any FIDO U2F enabled security key to access your account.',
                 enabled: false,
-                image: 'fido.png'
+                active: true,
+                image: 'fido.png',
+                displayOrder: 3,
+                priority: 0
             },
             {
                 type: 1,
                 name: 'Email',
                 description: 'Verification codes will be emailed to you.',
                 enabled: false,
-                image: 'gmail.png'
+                active: true,
+                image: 'gmail.png',
+                displayOrder: 4,
+                priority: 4
             }
         ],
         plans: {

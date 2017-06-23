@@ -3,7 +3,7 @@
     <h4 class="modal-title"><i class="fa fa-key"></i> Two-step Providers</h4>
 </div>
 <div class="modal-body">
-    <div class="list-group" ng-repeat="provider in providers">
+    <div class="list-group" ng-repeat="provider in providers | orderBy: 'displayOrder'">
         <a href="#" stop-click class="list-group-item" ng-click="choose(provider)">
             <img alt="{{::provider.name}}" ng-src="{{'images/two-factor/' + provider.image}}" class="pull-right hidden-xs" />
             <h4 class="list-group-item-heading">{{::provider.name}}</h4>

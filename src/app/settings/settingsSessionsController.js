@@ -2,21 +2,25 @@
     .module('bit.settings')
 
     .controller('settingsSessionsController', function ($scope, $state, apiService, $uibModalInstance, cryptoService,
-        authService, toastr, $analytics) {
+        authService, tokenService, toastr, $analytics) {
         $analytics.eventTrack('settingsSessionsController', { category: 'Modal' });
         $scope.submit = function (model) {
             var request = {
                 masterPasswordHash: cryptoService.hashPassword(model.masterPassword)
             };
 
-            $scope.submitPromise = apiService.accounts.putSecurityStamp(request, function () {
-                $uibModalInstance.dismiss('cancel');
-                authService.logOut();
-                $analytics.eventTrack('Deauthorized Sessions');
-                $state.go('frontend.login.info').then(function () {
-                    toastr.success('Please log back in.', 'All Sessions Deauthorized');
+            $scope.submitPromise =
+                authService.getUserProfile().then(function (profile) {
+                    apiService.accounts.putSecurityStamp(request, function () {
+                        $uibModalInstance.dismiss('cancel');
+                        authService.logOut();
+                        tokenService.clearTwoFactorToken(profile.email);
+                        $analytics.eventTrack('Deauthorized Sessions');
+                        $state.go('frontend.login.info').then(function () {
+                            toastr.success('Please log back in.', 'All Sessions Deauthorized');
+                        });
+                    }).$promise;
                 });
-            }).$promise;
         };
 
         $scope.close = function () {

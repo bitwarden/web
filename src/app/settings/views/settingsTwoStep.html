@@ -18,7 +18,7 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="provider in providers">
+                        <tr ng-repeat="provider in providers | orderBy: 'displayOrder'">
                             <td style="width: 120px; height: 75px;" align="center">
                                 <img alt="{{::provider.name}}" ng-src="{{'images/two-factor/' + provider.image}}" />
                             </td>
