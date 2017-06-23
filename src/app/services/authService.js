@@ -1,11 +1,11 @@
 angular
     .module('bit.services')
 
-    .factory('authService', function (cryptoService, apiService, tokenService, $q, jwtHelper, $rootScope) {
+    .factory('authService', function (cryptoService, apiService, tokenService, $q, jwtHelper, $rootScope, constants) {
         var _service = {},
             _userProfile = null;
 
-        _service.logIn = function (email, masterPassword, token, provider) {
+        _service.logIn = function (email, masterPassword, token, provider, remember) {
             email = email.toLowerCase();
             var key = cryptoService.makeKey(masterPassword, email);
 
@@ -18,8 +18,16 @@ angular
             };
 
             if (token && typeof (provider) !== 'undefined' && provider !== null) {
+                remember = remember || remember !== false;
+
                 request.twoFactorToken = token.replace(' ', '');
                 request.twoFactorProvider = provider;
+                request.twoFactorRemember = remember ? '1' : '0';
+            }
+            else if (tokenService.getTwoFactorToken(email)) {
+                request.twoFactorToken = tokenService.getTwoFactorToken(email);
+                request.twoFactorProvider = constants.twoFactorProvider.remember;
+                request.twoFactorRemember = '0';
             }
 
             // TODO: device information one day?
@@ -34,6 +42,10 @@ angular
                 tokenService.setToken(response.access_token);
                 tokenService.setRefreshToken(response.refresh_token);
                 cryptoService.setKey(key);
+
+                if (response.TwoFactorToken) {
+                    tokenService.setTwoFactorToken(response.TwoFactorToken, email);
+                }
 
                 if (response.Key) {
                     cryptoService.setEncKey(response.Key, key);
@@ -65,6 +77,7 @@ angular
 
                 if (error.status === 400 && error.data.TwoFactorProviders2 &&
                     Object.keys(error.data.TwoFactorProviders2).length) {
+                    tokenService.clearTwoFactorToken(email);
                     deferred.resolve(error.data.TwoFactorProviders2);
                 }
                 else {
@@ -76,8 +89,7 @@ angular
         };
 
         _service.logOut = function () {
-            tokenService.clearToken();
-            tokenService.clearRefreshToken();
+            tokenService.clearTokens();
             cryptoService.clearKeys();
             $rootScope.vaultFolders = $rootScope.vaultLogins = null;
             _userProfile = null;

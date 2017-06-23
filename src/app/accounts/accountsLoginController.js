@@ -69,7 +69,7 @@ angular
         };
 
         $scope.twoFactor = function (token) {
-            $scope.twoFactorPromise = authService.logIn(_email, _masterPassword, token, $scope.twoFactorProvider);
+            $scope.twoFactorPromise = authService.logIn(_email, _masterPassword, token, $scope.twoFactorProvider, true);
 
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');

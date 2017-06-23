@@ -25,7 +25,8 @@ angular.module('bit')
             email: 1,
             duo: 2,
             yubikey: 3,
-            u2f: 4
+            u2f: 4,
+            remember: 5
         },
         plans: {
             free: {

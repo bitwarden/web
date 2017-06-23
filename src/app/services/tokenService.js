@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('tokenService', function ($sessionStorage, jwtHelper) {
+    .factory('tokenService', function ($sessionStorage, $localStorage, jwtHelper) {
         var _service = {},
             _token = null,
             _refreshToken = null;
@@ -40,6 +40,33 @@ angular
         _service.clearRefreshToken = function () {
             _refreshToken = null;
             delete $sessionStorage.refreshToken;
+        };
+
+        _service.setTwoFactorToken = function (token, email) {
+            if (!$localStorage.twoFactor) {
+                $localStorage.twoFactor = {};
+            }
+            $localStorage.twoFactor[email] = token;
+        };
+
+        _service.getTwoFactorToken = function (email) {
+            return $localStorage.twoFactor ? $localStorage.twoFactor[email] : null;
+        };
+
+        _service.clearTwoFactorToken = function (email) {
+            if (email) {
+                if ($localStorage.twoFactor && $localStorage.twoFactor[email]) {
+                    delete $localStorage.twoFactor[email];
+                }
+            }
+            else {
+                delete $localStorage.twoFactor;
+            }
+        };
+
+        _service.clearTokens = function () {
+            _service.clearToken();
+            _service.clearRefreshToken();
         };
 
         _service.tokenSecondsRemaining = function (token, offsetSeconds) {
