@@ -84,3 +84,28 @@
         </div>
     </form>
 </div>
+
+<div ng-if="twoFactorProvider === 4">
+    <p class="login-box-msg">
+        Complete logging in with U2F.
+    </p>
+    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise">
+        <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in twoFactorForm.$errors">{{e}}</li>
+            </ul>
+        </div>
+        <p>Press the button on your security key to continue.</p>
+        <div class="row">
+            <div class="col-xs-7">
+                <a stop-click href="#" ng-click="anotherMethod()">Use another method?</a>
+            </div>
+            <div class="col-xs-5">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="twoFactorForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="twoFactorForm.$loading"></i>Log In
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

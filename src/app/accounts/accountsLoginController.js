@@ -2,7 +2,7 @@ angular
     .module('bit.accounts')
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
-        $state, constants, $analytics, $uibModal, $timeout) {
+        $state, constants, $analytics, $uibModal, $timeout, $window) {
         $scope.state = $state;
 
         var returnState;
@@ -116,6 +116,22 @@ angular
                         var response = $(theForm).find('input[name="sig_response"]').val();
                         $scope.twoFactor(response);
                     }
+                });
+            }
+            else if ($scope.twoFactorProvider === constants.twoFactorProvider.u2f) {
+                var params = $scope.twoFactorProviders[constants.twoFactorProvider.u2f];
+                var challenges = JSON.parse(params.Challenges);
+                if (challenges.length < 1) {
+                    return;
+                }
+
+                $window.u2f.sign(challenges[0].appId, challenges[0].challenge, [{
+                    version: challenges[0].version,
+                    keyHandle: challenges[0].keyHandle
+                }], function (data) {
+                    console.log('call back data:');
+                    console.log(data);
+                    $scope.twoFactor(JSON.stringify(data));
                 });
             }
         }
