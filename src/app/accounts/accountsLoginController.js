@@ -124,7 +124,7 @@ angular
                 masterPasswordHash: hash
             }, function () {
                 if (doToast) {
-                    toastr.success('Verification email sent.');
+                    toastr.success('Verification email sent to ' + $scope.twoFactorEmail + '.');
                 }
             }, function () {
                 toastr.error('Could not send verification email.');
@@ -160,6 +160,8 @@ angular
                 initU2f(challenges);
             }
             else if ($scope.twoFactorProvider === constants.twoFactorProvider.email) {
+                var params = $scope.twoFactorProviders[constants.twoFactorProvider.email];
+                $scope.twoFactorEmail = params.Email;
                 if (Object.keys($scope.twoFactorProviders).length > 1) {
                     $scope.sendEmail(false);
                 }

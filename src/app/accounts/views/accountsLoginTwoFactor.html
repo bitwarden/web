@@ -5,7 +5,7 @@
     </p>
     <div ng-if="twoFactorProvider === twoFactorProviderConstants.email" class="text-center">
         <p class="login-box-msg">
-            Enter the 6 digit verification code that was just now emailed to you.
+            Enter the 6 digit verification code that was emailed to <b>{{twoFactorEmail}}</b>.
         </p>
         <p>
             Didn't get the email?
