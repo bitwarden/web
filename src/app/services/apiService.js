@@ -119,6 +119,7 @@
             getAuthenticator: { url: _apiUri + '/two-factor/get-authenticator', method: 'POST', params: {} },
             getYubi: { url: _apiUri + '/two-factor/get-yubikey', method: 'POST', params: {} },
             sendEmail: { url: _apiUri + '/two-factor/send-email', method: 'POST', params: {} },
+            sendEmailLogin: { url: _apiUri + '/two-factor/send-email-login', method: 'POST', params: {} },
             putEmail: { url: _apiUri + '/two-factor/email', method: 'POST', params: {} },
             putU2f: { url: _apiUri + '/two-factor/u2f', method: 'POST', params: {} },
             putAuthenticator: { url: _apiUri + '/two-factor/authenticator', method: 'POST', params: {} },

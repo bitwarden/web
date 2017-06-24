@@ -4,7 +4,7 @@
         Enter the 6 digit verification code from your authenticator app.
     </p>
     <p class="login-box-msg" ng-if="twoFactorProvider === twoFactorProviderConstants.email">
-        Enter the 6 digit verification code that was emailed to you.
+        Enter the 6 digit verification code that was just now emailed to you.
     </p>
     <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise">
         <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
@@ -19,6 +19,12 @@
                    ng-model="token" required api-field />
             <span class="fa fa-lock form-control-feedback"></span>
         </div>
+        <p>
+            Didn't get the email?
+            <a href="#" stop-click ng-click="sendEmail(true)" ng-if="twoFactorProvider === twoFactorProviderConstants.email">
+                Send it again
+            </a>
+        </p>
         <div class="row">
             <div class="col-xs-7">
                 <div class="checkbox">

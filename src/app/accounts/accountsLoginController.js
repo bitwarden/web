@@ -2,7 +2,7 @@ angular
     .module('bit.accounts')
 
     .controller('accountsLoginController', function ($scope, $rootScope, $cookies, apiService, cryptoService, authService,
-        $state, constants, $analytics, $uibModal, $timeout, $window, $filter) {
+        $state, constants, $analytics, $uibModal, $timeout, $window, $filter, toastr) {
         $scope.state = $state;
         $scope.twoFactorProviderConstants = constants.twoFactorProvider;
         $scope.rememberTwoFactor = { checked: false };
@@ -33,9 +33,7 @@ angular
         $scope.twoFactorProvider = null;
 
         $scope.login = function (model) {
-            $scope.loginPromise = authService.logIn(model.email, model.masterPassword);
-
-            $scope.loginPromise.then(function (twoFactorProviders) {
+            $scope.loginPromise = authService.logIn(model.email, model.masterPassword).then(function (twoFactorProviders) {
                 if (model.rememberEmail) {
                     var cookieExpiration = new Date();
                     cookieExpiration.setFullYear(cookieExpiration.getFullYear() + 10);
@@ -114,6 +112,25 @@ angular
             });
         };
 
+        $scope.sendEmail = function (doToast) {
+            if ($scope.twoFactorProvider !== constants.twoFactorProvider.email) {
+                return;
+            }
+
+            var key = cryptoService.makeKey(_masterPassword, _email);
+            var hash = cryptoService.hashPassword(_masterPassword, key);
+            apiService.twoFactor.sendEmailLogin({
+                email: _email,
+                masterPasswordHash: hash
+            }, function () {
+                if (doToast) {
+                    toastr.success('Verification email sent.');
+                }
+            }, function () {
+                toastr.error('Could not send verification email.');
+            });
+        };
+
         function loggedInGo() {
             if (returnState) {
                 $state.go(returnState.name, returnState.params);
@@ -141,6 +158,11 @@ angular
                 var challenges = JSON.parse(params.Challenges);
 
                 initU2f(challenges);
+            }
+            else if ($scope.twoFactorProvider === constants.twoFactorProvider.email) {
+                if (Object.keys($scope.twoFactorProviders).length > 1) {
+                    $scope.sendEmail(false);
+                }
             }
         }
 
