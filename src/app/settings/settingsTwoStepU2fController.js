@@ -5,6 +5,7 @@
         authService, toastr, $analytics, constants, $timeout, $window) {
         $analytics.eventTrack('settingsTwoStepU2fController', { category: 'Modal' });
         var _masterPasswordHash;
+        var closed = false;
 
         $scope.deviceResponse = null;
         $scope.deviceListening = false;
@@ -24,6 +25,12 @@
         };
 
         $scope.readDevice = function () {
+            if (closed) {
+                return;
+            }
+
+            console.log('listening for key...');
+
             $scope.deviceResponse = null;
             $scope.deviceError = false;
             $scope.deviceListening = true;
@@ -33,11 +40,11 @@
                 challenge: $scope.challenge.Challenge
             }], [], function (data) {
                 $scope.deviceListening = false;
-
-                console.log('call back data:');
-                console.log(data);
-
-                if (data.errorCode) {
+                if (data.errorCode === 5) {
+                    $scope.readDevice();
+                    return;
+                }
+                else if (data.errorCode) {
                     $scope.deviceError = true;
                     $scope.$apply();
                     console.log('error: ' + data.errorCode);
@@ -46,7 +53,7 @@
 
                 $scope.deviceResponse = JSON.stringify(data);
                 $scope.$apply();
-            });
+            }, 5);
         };
 
         $scope.submit = function () {
@@ -90,4 +97,8 @@
         $scope.close = function () {
             $uibModalInstance.close($scope.enabled);
         };
+
+        $scope.$on('modal.closing', function (event) {
+            closed = true;
+        });
     });

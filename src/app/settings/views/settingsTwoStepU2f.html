@@ -43,25 +43,28 @@
                     <li ng-repeat="e in submitTwoStepForm.$errors">{{e}}</li>
                 </ul>
             </div>
-            <p>Setting up two-step login with a FIDO U2F security key is easy, just follow these steps:</p>
-            <h4>1. Plug your security key into your USB port</h4>
-            <h4 style="margin-top: 30px;">2. Touch the button on the security key</h4>
-            <p>
-                <button type="button" ng-click="readDevice()" class="btn btn-default btn-flat">
-                    <i class="fa fa-spin fa-refresh fa-fw" ng-show="deviceListening"></i>
-                    <i class="fa fa-wifi fa-fw" ng-show="!deviceListening"></i>
-                    Read Security Key
-                </button>
-            </p>
-            <div ng-show="deviceListening">
-                Waiting for you to touch the button on your security key...
-            </div>
-            <div class="text-green" ng-show="deviceResponse">
-                <i class="fa fa-check"></i>
-                Got it! Click the "Enable" button below to enable this security key for two-step login.
-            </div>
-            <div class="text-red" ng-show="deviceError">
-                There was a problem reading the security key. Try again.
+            <p>To add a new FIDO U2F Security Key to your account:</p>
+            <ol>
+                <li>Plug the security key into your computer's USB port.</li>
+                <li>If the security key has a button, touch it.</li>
+            </ol>
+            <hr />
+            <div class="text-center">
+                <div ng-show="deviceListening">
+                    <p><i class="fa fa-spin fa-spinner fa-2x"></i></p>
+                    <p>Waiting for you to touch the button on your security key...</p>
+                </div>
+                <div class="text-green" ng-show="deviceResponse">
+                    <p><i class="fa fa-check-circle fa-2x"></i></p>
+                    <p>Success!</p>
+                    Click the "Enable" button below to enable this security key for two-step login.
+                </div>
+                <div class="text-red" ng-show="deviceError">
+                    <p><i class="fa fa-warning fa-2x"></i></p>
+                    <p>Error!</p>
+                    <p>There was a problem reading the security key.</p>
+                    <button type="button" class="btn btn-default btn-flat" ng-click="readDevice()">Try again</button>
+                </div>
             </div>
         </div>
     </div>
