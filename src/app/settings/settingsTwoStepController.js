@@ -51,4 +51,13 @@
                 provider.enabled = enabled;
             });
         };
+
+        $scope.viewRecover = function () {
+
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsTwoStepRecover.html',
+                controller: 'settingsTwoStepRecoverController'
+            });
+        }
     });

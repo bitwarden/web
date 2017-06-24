@@ -2,7 +2,7 @@ angular
     .module('bit.accounts')
 
     .controller('accountsRegisterController', function ($scope, $location, apiService, cryptoService, validationService,
-        $analytics, $state) {
+        $analytics, $state, $timeout) {
         var params = $location.search();
         var stateParams = $state.params;
         $scope.createOrg = stateParams.org;
@@ -22,6 +22,16 @@ angular
             email: params.email ? params.email : stateParams.email
         };
         $scope.readOnlyEmail = stateParams.email !== null;
+
+
+        $timeout(function () {
+            if ($scope.model.email) {
+                $("#name").focus();
+            }
+            else {
+                $("#email").focus();
+            }
+        });
 
         $scope.registerPromise = null;
         $scope.register = function (form) {

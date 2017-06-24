@@ -127,6 +127,7 @@
             putYubi: { url: _apiUri + '/two-factor/yubikey', method: 'POST', params: {} },
             disable: { url: _apiUri + '/two-factor/disable', method: 'POST', params: {} },
             recover: { url: _apiUri + '/two-factor/recover', method: 'POST', params: {} },
+            getRecover: { url: _apiUri + '/two-factor/get-recover', method: 'POST', params: {} }
         });
 
         _service.settings = $resource(_apiUri + '/settings', {}, {

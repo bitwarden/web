@@ -7,6 +7,10 @@ angular
         $scope.twoFactorProviderConstants = constants.twoFactorProvider;
         $scope.rememberTwoFactor = { checked: false };
 
+        if ($state.current.name.indexOf('twoFactor') > -1 && (!$scope.twoFactorProviders || !$scope.twoFactorProviders.length)) {
+            $state.go('frontend.login.info', { returnState: returnState });
+        }
+
         var returnState;
         if (!$state.params.returnState && $state.params.org) {
             returnState = {
@@ -24,6 +28,15 @@ angular
                 email: $state.params.email ? $state.params.email : rememberedEmail,
                 rememberEmail: rememberedEmail !== null
             };
+
+            $timeout(function () {
+                $("#masterPassword").focus();
+            });
+        }
+        else {
+            $timeout(function () {
+                $("#email").focus();
+            });
         }
 
         var _email,
@@ -90,6 +103,10 @@ angular
             $scope.twoFactorPromise.then(function () {
                 $analytics.eventTrack('Logged In From Two-step');
                 loggedInGo();
+            }, function () {
+                if ($scope.twoFactorProvider === constants.twoFactorProvider.u2f) {
+                    init();
+                }
             });
         };
 
