@@ -20,6 +20,28 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.login-box, .register-box {
+    width: 400px;
+    margin: 4% auto;
+
+    @media screen and (max-width: @screen-xs-max) {
+        width: ~"calc(100% - 20px)";
+        margin: 20px auto;
+    }
+
+    .login-box-msg, .register-box-msg {
+        padding: 0 0 20px 0;
+    }
+
+    .checkbox {
+        margin: 0;
+    }
+}
+
+.login-logo, .register-logo {
+    margin-bottom: 20px;
+}
+
 .box-body > .table-responsive {
     > .table {
         margin-bottom: 0;
