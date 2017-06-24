@@ -207,11 +207,10 @@ angular
                 }
             })
             .state('frontend.login.twoFactor', {
-                url: '^/two-factor',
+                url: '^/two-step',
                 templateUrl: 'app/accounts/views/accountsLoginTwoFactor.html',
                 data: {
-                    pageTitle: 'Log In (Two Factor)',
-                    authorizeTwoFactor: true
+                    pageTitle: 'Log In (Two-step)'
                 }
             })
             .state('frontend.logout', {
