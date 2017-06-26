@@ -39,7 +39,7 @@ angular.module('bit')
                 free: true,
                 image: 'authapp.png',
                 displayOrder: 0,
-                priority: 3
+                priority: 1
             },
             {
                 type: 3,
@@ -49,7 +49,7 @@ angular.module('bit')
                 active: true,
                 image: 'yubico.png',
                 displayOrder: 1,
-                priority: 1
+                priority: 3
             },
             {
                 type: 2,
@@ -69,7 +69,7 @@ angular.module('bit')
                 active: true,
                 image: 'fido.png',
                 displayOrder: 3,
-                priority: 0
+                priority: 4
             },
             {
                 type: 1,
@@ -79,7 +79,7 @@ angular.module('bit')
                 active: true,
                 image: 'gmail.png',
                 displayOrder: 4,
-                priority: 4
+                priority: 0
             }
         ],
         plans: {

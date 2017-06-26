@@ -91,6 +91,7 @@ angular
                 var provider = $filter('filter')(constants.twoFactorProviderInfo, { type: keys[i], active: true });
                 if (provider.length && provider[0].priority > providerPriority) {
                     providerType = provider[0].type;
+                    providerPriority = provider[0].priority;
                 }
             }
             return parseInt(providerType);

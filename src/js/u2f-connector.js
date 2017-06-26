@@ -6,8 +6,6 @@ var parentUrl = null,
     version = null;
 
 function init() {
-    info('initing');
-
     if (!u2f.isSupported) {
         error('U2F is not supported in this browser.');
         return;
