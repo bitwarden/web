@@ -69,7 +69,8 @@ gulp.task('min:js', ['clean:js'], function () {
         [
             paths.js,
             '!' + paths.minJs,
-            '!' + paths.webroot + 'js/fallback*.js'
+            '!' + paths.webroot + 'js/fallback*.js',
+            '!' + paths.webroot + 'js/u2f-connector.js'
         ], { base: '.' })
         .pipe(concat(paths.concatJsDest))
         .pipe(uglify())
@@ -323,6 +324,7 @@ gulp.task('dist:move', function () {
                 paths.webroot + '**/app/**/*.html',
                 paths.webroot + '**/images/**/*',
                 paths.webroot + 'index.html',
+                paths.webroot + 'u2f-connector.html',
                 paths.webroot + 'favicon.ico'
             ],
             dest: paths.dist
@@ -378,6 +380,18 @@ gulp.task('dist:js:fallback', function () {
         .pipe(gulp.dest(paths.dist + 'js'));
 });
 
+gulp.task('dist:js:u2f', function () {
+    var mainStream = gulp
+        .src([
+            paths.webroot + 'js/u2f*.js'
+        ]);
+
+    merge(mainStream, config())
+        .pipe(concat(paths.dist + '/js/u2f.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('.'));
+});
+
 gulp.task('dist:js:lib', function () {
     return gulp
         .src([
@@ -405,7 +419,7 @@ gulp.task('dist:preprocess', function () {
 gulp.task('dist', ['build'], function (cb) {
     return runSequence(
         'dist:clean',
-        ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib', 'dist:js:fallback'],
+        ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib', 'dist:js:fallback', 'dist:js:u2f'],
         'dist:preprocess',
         cb);
 });
