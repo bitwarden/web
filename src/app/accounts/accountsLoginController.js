@@ -90,10 +90,19 @@ angular
             for (var i = 0; i < keys.length; i++) {
                 var provider = $filter('filter')(constants.twoFactorProviderInfo, { type: keys[i], active: true });
                 if (provider.length && provider[0].priority > providerPriority) {
+                    if (provider[0].type === constants.twoFactorProvider.u2f && !u2f.isSupported) {
+                        continue;
+                    }
+
                     providerType = provider[0].type;
                     providerPriority = provider[0].priority;
                 }
             }
+
+            if (providerType === null) {
+                return null;
+            }
+
             return parseInt(providerType);
         }
 

@@ -18,7 +18,7 @@
         if (providers.hasOwnProperty(constants.twoFactorProvider.duo)) {
             add(constants.twoFactorProvider.duo);
         }
-        if (providers.hasOwnProperty(constants.twoFactorProvider.u2f)) {
+        if (providers.hasOwnProperty(constants.twoFactorProvider.u2f) && u2f.isSupported) {
             add(constants.twoFactorProvider.u2f);
         }
 

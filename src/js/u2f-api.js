@@ -22,7 +22,7 @@ var u2f = u2f || {};
  * Modification:
  * Check if browser supports U2F API before this wrapper was added.
  */
-u2f.isSupported = ((typeof u2f !== 'undefined') && u2f.register) || (chrome && chrome.runtime);
+u2f.isSupported = !!(((typeof u2f !== 'undefined') && u2f.register) || (chrome && chrome.runtime));
 
 /**
  * FIDO U2F Javascript API Version
