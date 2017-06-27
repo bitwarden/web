@@ -48,7 +48,10 @@
             });
 
             modal.result.then(function (enabled) {
-                provider.enabled = enabled;
+                if (enabled || enabled === false) {
+                    // do not adjust when undefined or null
+                    provider.enabled = enabled;
+                }
             });
         };
 
