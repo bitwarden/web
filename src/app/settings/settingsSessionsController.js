@@ -11,7 +11,7 @@
 
             $scope.submitPromise =
                 authService.getUserProfile().then(function (profile) {
-                    apiService.accounts.putSecurityStamp(request, function () {
+                    return apiService.accounts.putSecurityStamp(request, function () {
                         $uibModalInstance.dismiss('cancel');
                         authService.logOut();
                         tokenService.clearTwoFactorToken(profile.email);

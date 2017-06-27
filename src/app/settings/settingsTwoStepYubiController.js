@@ -62,7 +62,7 @@
                 toastr.error('Failed to disable.');
                 $scope.disableLoading = false;
             }).$promise;
-        }
+        };
 
         function processResult(response) {
             $scope.enabled = response.Enabled;

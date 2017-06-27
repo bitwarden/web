@@ -98,8 +98,8 @@ angular
         }
 
         $scope.twoFactor = function (token) {
-            if ($scope.twoFactorProvider === constants.twoFactorProvider.email
-                || $scope.twoFactorProvider === constants.twoFactorProvider.authenticator) {
+            if ($scope.twoFactorProvider === constants.twoFactorProvider.email ||
+                $scope.twoFactorProvider === constants.twoFactorProvider.authenticator) {
                 token = token.replace(' ', '');
             }
 
@@ -164,8 +164,9 @@ angular
         }
 
         function init() {
+            var params;
             if ($scope.twoFactorProvider === constants.twoFactorProvider.duo) {
-                var params = $scope.twoFactorProviders[constants.twoFactorProvider.duo];
+                params = $scope.twoFactorProviders[constants.twoFactorProvider.duo];
 
                 $window.Duo.init({
                     host: params.Host,
@@ -177,13 +178,13 @@ angular
                 });
             }
             else if ($scope.twoFactorProvider === constants.twoFactorProvider.u2f) {
-                var params = $scope.twoFactorProviders[constants.twoFactorProvider.u2f];
+                params = $scope.twoFactorProviders[constants.twoFactorProvider.u2f];
                 var challenges = JSON.parse(params.Challenges);
 
                 initU2f(challenges);
             }
             else if ($scope.twoFactorProvider === constants.twoFactorProvider.email) {
-                var params = $scope.twoFactorProviders[constants.twoFactorProvider.email];
+                params = $scope.twoFactorProviders[constants.twoFactorProvider.email];
                 $scope.twoFactorEmail = params.Email;
                 if (Object.keys($scope.twoFactorProviders).length > 1) {
                     $scope.sendEmail(false);

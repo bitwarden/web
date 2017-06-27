@@ -6,8 +6,8 @@
         $analytics.eventTrack('settingsTwoStepAuthenticatorController', { category: 'Modal' });
         var _issuer = 'bitwarden',
             _profile = null,
-            _masterPasswordHash
-        _key = null;
+            _masterPasswordHash,
+            _key = null;
 
         $scope.auth = function (model) {
             _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
