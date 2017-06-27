@@ -53,7 +53,7 @@
 
                 $scope.deviceResponse = JSON.stringify(data);
                 $scope.$apply();
-            }, 5);
+            }, 10);
         };
 
         $scope.submit = function () {

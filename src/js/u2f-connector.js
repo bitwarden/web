@@ -81,7 +81,7 @@ function initU2f(obj) {
         }
 
         success(data);
-    }, 5);
+    }, 10);
 }
 
 function onMessage() {

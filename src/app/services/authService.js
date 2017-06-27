@@ -20,7 +20,7 @@ angular
             if (token && typeof (provider) !== 'undefined' && provider !== null) {
                 remember = remember || remember !== false;
 
-                request.twoFactorToken = token.replace(' ', '');
+                request.twoFactorToken = token;
                 request.twoFactorProvider = provider;
                 request.twoFactorRemember = remember ? '1' : '0';
             }

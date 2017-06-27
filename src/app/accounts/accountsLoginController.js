@@ -98,6 +98,11 @@ angular
         }
 
         $scope.twoFactor = function (token) {
+            if ($scope.twoFactorProvider === constants.twoFactorProvider.email
+                || $scope.twoFactorProvider === constants.twoFactorProvider.authenticator) {
+                token = token.replace(' ', '');
+            }
+
             $scope.twoFactorPromise = authService.logIn(_email, _masterPassword, token, $scope.twoFactorProvider,
                 $scope.rememberTwoFactor.checked || false);
 
@@ -211,6 +216,6 @@ angular
                     return;
                 }
                 $scope.twoFactor(JSON.stringify(data));
-            }, 5);
+            }, 10);
         }
     });
