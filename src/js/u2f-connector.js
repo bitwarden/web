@@ -3,9 +3,20 @@
 });
 
 var parentUrl = null,
-    version = null;
+    parentOrigin = null,
+    version = null,
+    stop = false,
+    sentSuccess = false;
 
 function init() {
+    start();
+    onMessage();
+    info('ready');
+}
+
+function start() {
+    sentSuccess = false;
+
     if (!u2f.isSupported) {
         error('U2F is not supported in this browser.');
         return;
@@ -21,6 +32,11 @@ function init() {
     if (!parentUrl) {
         error('No parent.');
         return;
+    }
+    else {
+        var link = document.createElement('a');
+        link.href = parentUrl;
+        parentOrigin = link.origin;
     }
 
     var versionQs = getQsParam('v');
@@ -44,11 +60,15 @@ function init() {
         return;
     }
 
+    stop = false
     initU2f(json);
-    info('ready');
 }
 
 function initU2f(obj) {
+    if (stop) {
+        return;
+    }
+
     u2f.sign(obj.appId, obj.challenge, obj.keys, function (data) {
         if (data.errorCode) {
             if (data.errorCode === 5) {
@@ -64,13 +84,33 @@ function initU2f(obj) {
     }, 5);
 }
 
+function onMessage() {
+    window.addEventListener('message', function (event) {
+        if (!event.origin || event.origin === '' || event.origin !== parentOrigin) {
+            return;
+        }
+
+        if (event.data === 'stop') {
+            stop = true;
+        }
+        else if (event.data === 'start' && stop) {
+            start();
+        }
+    }, false);
+}
+
 function error(message) {
     parent.postMessage('error|' + message, parentUrl);
 }
 
 function success(data) {
+    if (sentSuccess) {
+        return;
+    }
+
     var dataString = JSON.stringify(data);
     parent.postMessage('success|' + dataString, parentUrl);
+    sentSuccess = true;
 }
 
 function info(message) {
