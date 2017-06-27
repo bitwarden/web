@@ -25,7 +25,7 @@
         };
 
         $scope.readDevice = function () {
-            if (closed) {
+            if (closed || $scope.enabled) {
                 return;
             }
 
