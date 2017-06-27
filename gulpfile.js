@@ -326,7 +326,7 @@ gulp.task('dist:move', function () {
                 paths.webroot + 'index.html',
                 paths.webroot + 'u2f-connector.html',
                 paths.webroot + 'favicon.ico',
-                paths.webroot + 'app-id.fidou2f'
+                paths.webroot + 'app-id.json'
             ],
             dest: paths.dist
         }
@@ -444,7 +444,7 @@ gulp.task('serve', function () {
         root: ['src'],
         middleware: function (connect, opt) {
             return [function (req, res, next) {
-                if (req.originalUrl.indexOf('app-id.fidou2f') > -1) {
+                if (req.originalUrl.indexOf('app-id.json') > -1) {
                     res.setHeader('Content-Type', 'application/fido.trusted-apps+json');
                 }
                 next();
