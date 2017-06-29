@@ -325,6 +325,7 @@ gulp.task('dist:move', function () {
                 paths.webroot + '**/images/**/*',
                 paths.webroot + 'index.html',
                 paths.webroot + 'u2f-connector.html',
+                paths.webroot + 'duo-connector.html',
                 paths.webroot + 'favicon.ico',
                 paths.webroot + 'app-id.json'
             ],
