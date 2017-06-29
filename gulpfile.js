@@ -442,6 +442,7 @@ gulp.task('serve', function () {
     connect.server({
         port: 4001,
         root: ['src'],
+        //https: true,
         middleware: function (connect, opt) {
             return [function (req, res, next) {
                 if (req.originalUrl.indexOf('app-id.json') > -1) {

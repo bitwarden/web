@@ -33,8 +33,7 @@
                 key1: model.key1.key,
                 key2: model.key2.key,
                 key3: model.key3.key,
-                key4: model.key4.key,
-                key5: model.key5.key,
+                nfc: model.nfc,
                 masterPasswordHash: _masterPasswordHash
             }, function (response) {
                 $analytics.eventTrack('Saved Two-step YubiKey');
@@ -79,14 +78,7 @@
                     key: response.Key3,
                     existingKey: padRight(response.Key3, '*', 44)
                 },
-                key4: {
-                    key: response.Key4,
-                    existingKey: padRight(response.Key4, '*', 44)
-                },
-                key5: {
-                    key: response.Key5,
-                    existingKey: padRight(response.Key5, '*', 44)
-                }
+                nfc: response.Nfc === true || !response.Enabled
             };
         }
 

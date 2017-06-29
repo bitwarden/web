@@ -69,7 +69,7 @@
         </ol>
         <hr />
         <div class="form-group" show-errors>
-            <label for="key1">Key #1</label>
+            <label for="key1">YubiKey #1</label>
             <span ng-if="updateModel.key1.existingKey">
                 <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key1)">[remove]</a>
             </span>
@@ -80,7 +80,7 @@
                    ng-show="!updateModel.key1.existingKey" />
         </div>
         <div class="form-group" show-errors>
-            <label for="key2">Key #2</label>
+            <label for="key2">YubiKey #2</label>
             <span ng-if="updateModel.key2.existingKey">
                 <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key2)">[remove]</a>
             </span>
@@ -91,7 +91,7 @@
                    ng-show="!updateModel.key2.existingKey" />
         </div>
         <div class="form-group" show-errors>
-            <label for="key3">Key #3</label>
+            <label for="key3">YubiKey #3</label>
             <span ng-if="updateModel.key3.existingKey">
                 <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key3)">[remove]</a>
             </span>
@@ -101,28 +101,16 @@
             <input type="password" id="key3" name="Key3" ng-model="updateModel.key3.key" class="form-control" api-field
                    ng-show="!updateModel.key3.existingKey" />
         </div>
-        <div class="form-group" show-errors>
-            <label for="key4">Key #4</label>
-            <span ng-if="updateModel.key4.existingKey">
-                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key4)">[remove]</a>
-            </span>
-            <div ng-if="updateModel.key4.existingKey" class="monospaced">
-                {{updateModel.key4.existingKey}}
-            </div>
-            <input type="password" id="key4" name="Key4" ng-model="updateModel.key4.key" class="form-control" api-field
-                   ng-show="!updateModel.key4.existingKey" />
+        <strong>NFC Support</strong>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="Nfc" id="nfc" ng-model="updateModel.nfc" /> One of my keys supports NFC.
+            </label>
         </div>
-        <div class="form-group" show-errors>
-            <label for="key5">Key #5</label>
-            <span ng-if="updateModel.key5.existingKey">
-                <a href="#" class="btn btn-link btn-xs" stop-click ng-click="remove(updateModel.key5)">[remove]</a>
-            </span>
-            <div ng-if="updateModel.key5.existingKey" class="monospaced">
-                {{updateModel.key5.existingKey}}
-            </div>
-            <input type="password" id="key5" name="Key5" ng-model="updateModel.key5.key" class="form-control" api-field
-                   ng-show="!updateModel.key5.existingKey" />
-        </div>
+        <p class="help-block">
+            If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC
+            availability is detected.
+        </p>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="submitTwoStepForm.$loading || disableLoading">
