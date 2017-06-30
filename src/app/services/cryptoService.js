@@ -295,6 +295,41 @@ angular
         };
 
         _service.encrypt = function (plainValue, key, plainValueEncoding) {
+            var encValue = aesEncrypt(plainValue, key, plainValueEncoding);
+
+            var iv = forge.util.encode64(encValue.iv);
+            var ct = forge.util.encode64(encValue.ct);
+            var cipherString = iv + '|' + ct;
+
+            if (encValue.mac) {
+                var mac = forge.util.encode64(encValue.mac)
+                cipherString = cipherString + '|' + mac;
+            }
+
+            return encValue.key.encType + '.' + cipherString;
+        };
+
+        _service.encryptToBytes = function (plainValue, key) {
+            return aesEncryptWC(plainValue, key).then(function (encValue) {
+                var macLen = 0;
+                if (encValue.mac) {
+                    macLen = encValue.mac.length
+                }
+
+                var encBytes = new Uint8Array(1 + encValue.iv.length + macLen + encValue.ct.length);
+
+                encBytes.set([encValue.key.encType]);
+                encBytes.set(encValue.iv, 1);
+                if (encValue.mac) {
+                    encBytes.set(encValue.mac, 1 + encValue.iv.length);
+                }
+                encBytes.set(encValue.ct, 1 + encValue.iv.length + macLen);
+
+                return encBytes.buffer;
+            });
+        };
+
+        function aesEncrypt(plainValue, key, plainValueEncoding) {
             key = key || _service.getEncKey() || _service.getKey();
 
             if (!key) {
@@ -309,18 +344,55 @@ angular
             cipher.update(buffer);
             cipher.finish();
 
-            var iv = forge.util.encode64(ivBytes);
             var ctBytes = cipher.output.getBytes();
-            var ct = forge.util.encode64(ctBytes);
-            var cipherString = iv + '|' + ct;
 
+            var macBytes = null;
             if (key.macKey) {
-                var mac = computeMac(ivBytes + ctBytes, key.macKey, true);
-                cipherString = cipherString + '|' + mac;
+                macBytes = computeMac(ivBytes + ctBytes, key.macKey, false);
             }
 
-            return key.encType + '.' + cipherString;
-        };
+            return {
+                iv: ivBytes,
+                ct: ctBytes,
+                mac: macBytes,
+                key: key,
+                plainValueEncoding: plainValueEncoding
+            };
+        }
+
+        function aesEncryptWC(plainValue, key) {
+            key = key || _service.getEncKey() || _service.getKey();
+
+            if (!key) {
+                throw 'Encryption key unavailable.';
+            }
+
+            var obj = {
+                iv: new Uint8Array(16),
+                ct: null,
+                mac: null,
+                key: key
+            };
+
+            var keyBuf = key.getBuffers();
+            window.crypto.getRandomValues(obj.iv);
+
+            return window.crypto.subtle.importKey('raw', keyBuf.encKey, { name: 'AES-CBC' }, false, ['encrypt'])
+                .then(function (encKey) {
+                    return window.crypto.subtle.encrypt({ name: 'AES-CBC', iv: obj.iv }, encKey, plainValue);
+                }).then(function (encValue) {
+                    obj.ct = new Uint8Array(encValue);
+                    if (!keyBuf.macKey) {
+                        return null;
+                    }
+                    return computeMacWC(encValue, keyBuf.macKey);
+                }).then(function (mac) {
+                    if (mac) {
+                        obj.mac = new Uint8Array(mac);
+                    }
+                    return obj;
+                });
+        }
 
         _service.rsaEncrypt = function (plainValue, publicKey, key) {
             publicKey = publicKey || _service.getPublicKey();
@@ -513,6 +585,13 @@ angular
             return b64Output ? forge.util.encode64(mac.getBytes()) : mac.getBytes();
         }
 
+        function computeMacWC(data, macKey) {
+            return window.crypto.subtle.importKey('raw', macKey, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
+                .then(function (key) {
+                    return window.crypto.subtle.sign({ name: 'HMAC' }, key, data);
+                });
+        }
+
         // Safely compare two MACs in a way that protects against timing attacks (Double HMAC Verification).
         // ref: https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2011/february/double-hmac-verification/
         function macsEqual(macKey, mac1, mac2) {
@@ -575,6 +654,34 @@ angular
             else {
                 throw 'Unsupported encType/key length.';
             }
+        }
+
+        SymmetricCryptoKey.prototype.getBuffers = function () {
+            var key = b64ToArray(this.keyB64);
+
+            var keys = {
+                key: key.buffer
+            };
+
+            if (this.macKey) {
+                keys.encKey = key.slice(0, key.length / 2).buffer;
+                keys.macKey = key.slice(key.length / 2).buffer;
+            }
+            else {
+                keys.encKey = key.buffer;
+                keys.macKey = null;
+            }
+
+            return keys;
+        };
+
+        function b64ToArray(b64Str) {
+            var binaryString = window.atob(b64Str);
+            var arr = new Uint8Array(binaryString.length);
+            for (var i = 0; i < binaryString.length; i++) {
+                arr[i] = binaryString.charCodeAt(i);
+            }
+            return arr;
         }
 
         return _service;

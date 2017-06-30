@@ -199,6 +199,21 @@
             });
         };
 
+        $scope.attachments = function (login) {
+            var addModel = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/vault/views/vaultAttachments.html',
+                controller: 'vaultAttachmentsController',
+                resolve: {
+                    loginId: function () { return login.id; }
+                }
+            });
+
+            addModel.result.then(function (data) {
+                
+            });
+        };
+
         $scope.editFolder = function (folder) {
             var editModel = $uibModal.open({
                 animation: true,

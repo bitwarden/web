@@ -35,8 +35,18 @@ angular
                 uri: encryptedLogin.Uri && encryptedLogin.Uri !== '' ? cryptoService.decrypt(encryptedLogin.Uri, key) : null,
                 username: encryptedLogin.Username && encryptedLogin.Username !== '' ? cryptoService.decrypt(encryptedLogin.Username, key) : null,
                 password: encryptedLogin.Password && encryptedLogin.Password !== '' ? cryptoService.decrypt(encryptedLogin.Password, key) : null,
-                notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null
+                notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null,
+                attachments: null
             };
+
+            if (!encryptedLogin.Attachments) {
+                return login;
+            }
+
+            login.attachments = [];
+            for (var i = 0; i < encryptedLogin.Attachments.length; i++) {
+                login.attachments.push(_service.decryptAttachment(key, encryptedLogin.Attachments[i]));
+            }
 
             return login;
         };
@@ -58,10 +68,21 @@ angular
                 edit: encryptedCipher.Edit,
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
                 username: _service.decryptProperty(encryptedCipher.Data.Username, key, true),
-                password: _service.decryptProperty(encryptedCipher.Data.Password, key, true)
+                password: _service.decryptProperty(encryptedCipher.Data.Password, key, true),
+                hasAttachments: !!encryptedCipher.Attachments
             };
 
             return login;
+        };
+
+        _service.decryptAttachment = function (key, encryptedAttachment) {
+            if (!encryptedAttachment) throw "encryptedAttachment is undefined or null";
+
+            return {
+                id: encryptedAttachment.Id,
+                fileName: cryptoService.decrypt(encryptedAttachment.FileName, key),
+                size: encryptedAttachment.SizeName
+            };
         };
 
         _service.decryptFolders = function (encryptedFolders) {

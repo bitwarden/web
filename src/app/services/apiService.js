@@ -40,7 +40,13 @@
             del: { url: _apiUri + '/ciphers/:id/delete', method: 'POST', params: { id: '@id' } },
             delAdmin: { url: _apiUri + '/ciphers/:id/delete-admin', method: 'POST', params: { id: '@id' } },
             delMany: { url: _apiUri + '/ciphers/delete', method: 'POST' },
-            moveMany: { url: _apiUri + '/ciphers/move', method: 'POST' }
+            moveMany: { url: _apiUri + '/ciphers/move', method: 'POST' },
+            postAttachment: {
+                url: _apiUri + '/ciphers/:id/attachment',
+                method: 'POST',
+                headers: { 'Content-Type': undefined },
+                params: { id: '@id' }
+            }
         });
 
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
