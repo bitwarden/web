@@ -80,6 +80,7 @@ angular
 
             return {
                 id: encryptedAttachment.Id,
+                url: encryptedAttachment.Url,
                 fileName: cryptoService.decrypt(encryptedAttachment.FileName, key),
                 size: encryptedAttachment.SizeName
             };

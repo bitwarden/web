@@ -24,12 +24,21 @@
             }
 
             var file = files[0];
+            if (file.size > 104857600) { // 100 MB
+                validationService.addError(form, 'file', 'Maximum file size is 100 MB.', true);
+                return;
+            }
+
             var reader = new FileReader();
             reader.readAsArrayBuffer(file);
             reader.onload = function (evt) {
-                var key = null;
+                form.$loading = true;
+                $scope.$apply();
+
+                var key = getKeyForLogin();
+
                 var encFilename = cryptoService.encrypt(file.name, key);
-                cryptoService.encryptToBytes(evt.target.result, key).then(function (encData) {
+                $scope.savePromise = cryptoService.encryptToBytes(evt.target.result, key).then(function (encData) {
                     var fd = new FormData();
                     var blob = new Blob([encData], { type: 'application/octet-stream' });
                     fd.append('data', blob, encFilename);
@@ -45,6 +54,53 @@
             reader.onerror = function (evt) {
                 validationService.addError(form, 'file', 'Error reading file.', true);
             };
+        }
+
+        $scope.download = function (attachment) {
+            attachment.loading = true;
+            var key = getKeyForLogin();
+
+            var req = new XMLHttpRequest();
+            req.open('GET', attachment.url, true);
+            req.responseType = 'arraybuffer';
+            req.onload = function (evt) {
+                if (!req.response) {
+                    attachment.loading = false;
+                    $scope.$apply();
+
+                    // error
+                    return;
+                }
+
+                cryptoService.decryptFromBytes(req.response, key).then(function (decBuf) {
+                    var blob = new Blob([decBuf]);
+
+                    // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+                    if (window.navigator.msSaveOrOpenBlob) {
+                        window.navigator.msSaveBlob(blob, attachment.fileName);
+                    }
+                    else {
+                        var a = window.document.createElement('a');
+                        a.href = window.URL.createObjectURL(blob);
+                        a.download = attachment.fileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    }
+
+                    attachment.loading = false;
+                    $scope.$apply();
+                });
+            };
+            req.send(null);
+        };
+
+        function getKeyForLogin() {
+            if ($scope.login.organizationId) {
+                return cryptoService.getOrgKey($scope.login.organizationId);
+            }
+
+            return null;
         }
 
         $scope.close = function () {

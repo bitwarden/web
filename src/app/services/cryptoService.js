@@ -385,7 +385,11 @@ angular
                     if (!keyBuf.macKey) {
                         return null;
                     }
-                    return computeMacWC(encValue, keyBuf.macKey);
+
+                    var data = new Uint8Array(obj.iv.length + obj.ct.length);
+                    data.set(obj.iv, 0);
+                    data.set(obj.ct, obj.iv.length);
+                    return computeMacWC(data.buffer, keyBuf.macKey);
                 }).then(function (mac) {
                     if (mac) {
                         obj.mac = new Uint8Array(mac);
@@ -458,10 +462,6 @@ angular
 
             switch (encType) {
                 case constants.encType.AesCbc128_HmacSha256_B64:
-                    if (encPieces.length !== 3) {
-                        return null;
-                    }
-                    break;
                 case constants.encType.AesCbc256_HmacSha256_B64:
                     if (encPieces.length !== 3) {
                         return null;
@@ -502,6 +502,84 @@ angular
                 return decipher.output.getBytes();
             }
         };
+
+        _service.decryptFromBytes = function (encBuf, key) {
+            if (!encBuf) {
+                throw 'no encBuf.';
+            }
+
+            var encBytes = new Uint8Array(encBuf),
+                encType = encBytes[0],
+                ctBytes = null,
+                ivBytes = null,
+                macBytes = null;
+
+            switch (encType) {
+                case constants.encType.AesCbc128_HmacSha256_B64:
+                case constants.encType.AesCbc256_HmacSha256_B64:
+                    if (encBytes.length <= 49) { // 1 + 16 + 32 + ctLength
+                        return null;
+                    }
+
+                    ivBytes = encBytes.slice(1, 17);
+                    macBytes = encBytes.slice(17, 49);
+                    ctBytes = encBytes.slice(49);
+                    break;
+                case constants.encType.AesCbc256_B64:
+                    if (encBytes.length <= 17) { // 1 + 16 + ctLength
+                        return null;
+                    }
+
+                    ivBytes = encBytes.slice(1, 17);
+                    ctBytes = encBytes.slice(17);
+                    break;
+                default:
+                    return null;
+            }
+
+            return aesDecryptWC(
+                encType,
+                ctBytes.buffer,
+                ivBytes.buffer,
+                macBytes ? macBytes.buffer : null,
+                key);
+        };
+
+        function aesDecryptWC(encType, ctBuf, ivBuf, macBuf, key) {
+            key = key || _service.getEncKey() || _service.getKey();
+            if (!key) {
+                throw 'Encryption key unavailable.';
+            }
+
+            var keyBuf = key.getBuffers(),
+                encKey = null;
+
+            return window.crypto.subtle.importKey('raw', keyBuf.encKey, { name: 'AES-CBC' }, false, ['decrypt'])
+                .then(function (theEncKey) {
+                    encKey = theEncKey;
+
+                    if (!key.macKey || !macBuf) {
+                        return null;
+                    }
+
+                    var data = new Uint8Array(ivBuf.byteLength + ctBuf.byteLength);
+                    data.set(new Uint8Array(ivBuf), 0);
+                    data.set(new Uint8Array(ctBuf), ivBuf.byteLength);
+                    return computeMacWC(data.buffer, keyBuf.macKey);
+                }).then(function (computedMacBuf) {
+                    if (computedMacBuf === null) {
+                        return null;
+                    }
+                    return macsEqualWC(keyBuf.macKey, macBuf, computedMacBuf);
+                }).then(function (macsMatch) {
+                    if (macsMatch === false) {
+                        console.error('MAC failed.');
+                        return null;
+                    }
+                    return window.crypto.subtle.decrypt({ name: 'AES-CBC', iv: ivBuf }, encKey, ctBuf);
+                });
+
+        }
 
         _service.rsaDecrypt = function (encValue, privateKey, key) {
             privateKey = privateKey || _service.getPrivateKey();
@@ -585,10 +663,10 @@ angular
             return b64Output ? forge.util.encode64(mac.getBytes()) : mac.getBytes();
         }
 
-        function computeMacWC(data, macKey) {
-            return window.crypto.subtle.importKey('raw', macKey, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
+        function computeMacWC(dataBuf, macKeyBuf) {
+            return window.crypto.subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
                 .then(function (key) {
-                    return window.crypto.subtle.sign({ name: 'HMAC' }, key, data);
+                    return window.crypto.subtle.sign({ name: 'HMAC' }, key, dataBuf);
                 });
         }
 
@@ -606,6 +684,35 @@ angular
             mac2 = hmac.digest().getBytes();
 
             return mac1 === mac2;
+        }
+
+        function macsEqualWC(macKeyBuf, mac1Buf, mac2Buf) {
+            var mac1,
+                macKey;
+
+            return window.crypto.subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
+                .then(function (key) {
+                    macKey = key;
+                    return window.crypto.subtle.sign({ name: 'HMAC' }, macKey, mac1Buf);
+                }).then(function (mac) {
+                    mac1 = mac;
+                    return window.crypto.subtle.sign({ name: 'HMAC' }, macKey, mac2Buf);
+                }).then(function (mac2) {
+                    if (mac1.byteLength !== mac2.byteLength) {
+                        return false;
+                    }
+
+                    var arr1 = new Uint8Array(mac1);
+                    var arr2 = new Uint8Array(mac2);
+
+                    for (var i = 0; i < arr2.length; i++) {
+                        if (arr1[i] !== arr2[i]) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
         }
 
         function SymmetricCryptoKey(keyBytes, b64KeyBytes, encType) {
@@ -657,6 +764,10 @@ angular
         }
 
         SymmetricCryptoKey.prototype.getBuffers = function () {
+            if (this.keyBuf) {
+                return this.keyBuf;
+            }
+
             var key = b64ToArray(this.keyB64);
 
             var keys = {
@@ -672,7 +783,8 @@ angular
                 keys.macKey = null;
             }
 
-            return keys;
+            this.keyBuf = keys;
+            return this.keyBuf;
         };
 
         function b64ToArray(b64Str) {
