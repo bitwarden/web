@@ -119,11 +119,12 @@ angular
                 return _setDeferred.promise;
             }
 
-            var decodedToken = jwtHelper.decodeToken(token);
             apiService.accounts.getProfile({}, function (profile) {
                 _userProfile = {
-                    id: decodedToken.name,
-                    email: decodedToken.email,
+                    id: profile.Id,
+                    email: profile.Email,
+                    emailVerified: profile.EmailVerified,
+                    premium: profile.Premium,
                     extended: {
                         name: profile.Name,
                         twoFactorEnabled: profile.TwoFactorEnabled,

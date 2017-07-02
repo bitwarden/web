@@ -1,7 +1,8 @@
 angular
     .module('bit.global')
 
-    .controller('mainController', function ($scope, $state, authService, appSettings, toastr, $window, $document) {
+    .controller('mainController', function ($scope, $state, authService, appSettings, toastr, $window, $document,
+        cryptoService, $uibModal) {
         var vm = this;
         vm.bodyClass = '';
         vm.usingControlSidebar = vm.openControlSidebar = false;
@@ -30,6 +31,7 @@ angular
         });
 
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            vm.usingEncKey = !!cryptoService.getEncKey();
             vm.searchVaultText = null;
 
             if (toState.data.bodyClass) {
@@ -66,6 +68,18 @@ angular
 
         $scope.addOrganizationGroup = function () {
             $scope.$broadcast('organizationGroupsAdd');
+        };
+
+        $scope.updateKey = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsUpdateKey.html',
+                controller: 'settingsUpdateKeyController'
+            });
+        };
+
+        $scope.verifyEmail = function () {
+            // TODO: send email api
         };
 
         // Append dropdown menu somewhere else

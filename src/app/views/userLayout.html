@@ -64,10 +64,10 @@
                     <i class="fa fa-share-alt fa-fw"></i> <span>Shared</span>
                 </a>
             </li>
-            <li class="treeview" ng-class="{active: $state.is('backend.user.tools') || 
+            <li class="treeview" ng-class="{active: $state.is('backend.user.tools') ||
                 $state.is('backend.user.reportsBreach')}">
                 <a ui-sref="backend.user.tools"><i class="fa fa-wrench fa-fw"></i> <span>Tools</span></a>
-                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.tools') || 
+                <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.tools') ||
                     $state.is('backend.user.reportsBreach')}">
                     <li ng-class="{active: $state.is('backend.user.reportsBreach')}">
                         <a ui-sref="backend.user.reportsBreach">
@@ -135,5 +135,17 @@
     </section>
 </aside>
 
-<div class="content-wrapper" ui-view>
+<div class="content-wrapper">
+    <div class="alert alert-warning alert-notification" ng-click="updateKey()" ng-if="!main.usingEncKey">
+        <h4><i class="fa fa-key fa-fw"></i> Update Your Encryption Key</h4>
+        You are currently using an outdated encryption scheme.
+        <a href="#" stop-click>Learn more and update now</a>.
+    </div>
+    <div class="alert alert-warning alert-notification" ng-click="verifyEmail()"
+         ng-if="main.usingEncKey && main.userProfile && !main.userProfile.emailVerified">
+        <h4><i class="fa fa-envelope fa-fw"></i> Verify Your Email</h4>
+        Verify your account's email address to unlock access to all features.
+        <a href="#" stop-click>Send verification email now</a>.
+    </div>
+    <div ui-view></div>
 </div>
