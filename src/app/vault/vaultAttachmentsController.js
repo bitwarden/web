@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        loginId, $analytics, validationService) {
+        loginId, $analytics, validationService, toastr) {
         $analytics.eventTrack('vaultAttachmentsController', { category: 'Modal' });
         $scope.login = {};
         $scope.readOnly = false;
@@ -45,6 +45,7 @@
                     return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
                 }).then(function (response) {
                     $analytics.eventTrack('Added Attachment');
+                    toastr.success('The attachment has been added.');
                     $uibModalInstance.close({
                         action: 'attach',
                         data: $scope.login

@@ -200,6 +200,11 @@
         };
 
         $scope.attachments = function (login) {
+            if (!cryptoService.getEncKey()) {
+                toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
+                return;
+            }
+
             var addModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultAttachments.html',
@@ -210,7 +215,7 @@
             });
 
             addModel.result.then(function (data) {
-                
+
             });
         };
 

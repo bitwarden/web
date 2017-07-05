@@ -1,7 +1,7 @@
 angular
     .module('bit.directives')
 
-    .directive('apiForm', function ($rootScope, validationService) {
+    .directive('apiForm', function ($rootScope, validationService, $timeout) {
         return {
             require: 'form',
             restrict: 'A',
@@ -25,12 +25,16 @@ angular
             form.$loading = true;
 
             promise.then(function success(response) {
-                form.$loading = false;
+                $timeout(function () {
+                    form.$loading = false;
+                });
             }, function failure(reason) {
-                form.$loading = false;
-                validationService.addErrors(form, reason);
-                scope.$broadcast('show-errors-check-validity');
-                $('html, body').animate({ scrollTop: 0 }, 200);
+                $timeout(function () {
+                    form.$loading = false;
+                    validationService.addErrors(form, reason);
+                    scope.$broadcast('show-errors-check-validity');
+                    $('html, body').animate({ scrollTop: 0 }, 200);
+                });
             });
         }
     });
