@@ -42,8 +42,4 @@ angular
                 $scope.loading = false;
             }
         });
-
-        $scope.submit = function (model) {
-
-        };
     });

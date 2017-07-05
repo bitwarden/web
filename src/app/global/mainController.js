@@ -2,7 +2,7 @@ angular
     .module('bit.global')
 
     .controller('mainController', function ($scope, $state, authService, appSettings, toastr, $window, $document,
-        cryptoService, $uibModal) {
+        cryptoService, $uibModal, apiService) {
         var vm = this;
         vm.bodyClass = '';
         vm.usingControlSidebar = vm.openControlSidebar = false;
@@ -79,7 +79,19 @@ angular
         };
 
         $scope.verifyEmail = function () {
-            // TODO: send email api
+            if ($scope.sendingVerify) {
+                return;
+            }
+
+            $scope.sendingVerify = true;
+            apiService.accounts.verifyEmail({}, null).$promise.then(function () {
+                toastr.success('Verification email sent.');
+                $scope.sendingVerify = false;
+                $scope.verifyEmailSent = true;
+            }).catch(function () {
+                toastr.success('Verification email failed.');
+                $scope.sendingVerify = false;
+            });
         };
 
         // Append dropdown menu somewhere else

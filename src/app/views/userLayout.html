@@ -144,8 +144,16 @@
     <div class="alert alert-warning alert-notification" ng-click="verifyEmail()"
          ng-if="main.usingEncKey && main.userProfile && !main.userProfile.emailVerified">
         <h4><i class="fa fa-envelope fa-fw"></i> Verify Your Email</h4>
-        Verify your account's email address to unlock access to all features.
-        <a href="#" stop-click>Send verification email now</a>.
+        <div ng-if="!verifyEmailSent">
+            Verify your account's email address to unlock access to all features.
+            <a href="#" stop-click>Send verification email now</a>.
+            <i class="fa fa-spin fa-refresh" ng-if="sendingVerify"></i>
+        </div>
+        <div ng-if="verifyEmailSent">
+            Check your email inbox for a verification link.
+            <a href="#" stop-click>Send verification email again</a>.
+            <i class="fa fa-spin fa-refresh" ng-if="sendingVerify"></i>
+        </div>
     </div>
     <div ui-view></div>
 </div>

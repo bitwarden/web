@@ -7,7 +7,7 @@ angular
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
             urlParam: 'access_token3',
-            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.6']
+            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.4']
         });
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
@@ -257,6 +257,16 @@ angular
                 controller: 'accountsOrganizationAcceptController',
                 data: {
                     pageTitle: 'Accept Organization Invite',
+                    bodyClass: 'login-page',
+                    skipAuthorize: true
+                }
+            })
+            .state('frontend.verifyEmail', {
+                url: '^/verify-email?userId&token',
+                templateUrl: 'app/accounts/views/accountsVerifyEmail.html',
+                controller: 'accountsVerifyEmailController',
+                data: {
+                    pageTitle: 'Verifying Email',
                     bodyClass: 'login-page',
                     skipAuthorize: true
                 }

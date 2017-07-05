@@ -104,6 +104,8 @@
             register: { url: _apiUri + '/accounts/register', method: 'POST', params: {} },
             emailToken: { url: _apiUri + '/accounts/email-token', method: 'POST', params: {} },
             email: { url: _apiUri + '/accounts/email', method: 'POST', params: {} },
+            verifyEmailToken: { url: _apiUri + '/accounts/verify-email-token', method: 'POST', params: {} },
+            verifyEmail: { url: _apiUri + '/accounts/verify-email', method: 'POST', params: {} },
             putPassword: { url: _apiUri + '/accounts/password', method: 'POST', params: {} },
             getProfile: { url: _apiUri + '/accounts/profile', method: 'GET', params: {} },
             putProfile: { url: _apiUri + '/accounts/profile', method: 'POST', params: {} },
