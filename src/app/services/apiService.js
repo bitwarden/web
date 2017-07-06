@@ -116,7 +116,11 @@
             putKeys: { url: _apiUri + '/accounts/keys', method: 'POST', params: {} },
             putKey: { url: _apiUri + '/accounts/key', method: 'POST', params: {} },
             'import': { url: _apiUri + '/accounts/import', method: 'POST', params: {} },
-            postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} }
+            postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} },
+            postPremium: { url: _apiUri + '/accounts/premium', method: 'POST', params: {} },
+            putCancelPremium: { url: _apiUri + '/accounts/cancel-premium', method: 'POST', params: {} },
+            putReinstatePremium: { url: _apiUri + '/accounts/reinstate-premium', method: 'POST', params: {} },
+            getBilling: { url: _apiUri + '/accounts/billing', method: 'GET', params: {} }
         });
 
         _service.twoFactor = $resource(_apiUri + '/two-factor', {}, {

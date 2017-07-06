@@ -115,6 +115,18 @@ angular
                 controller: 'settingsCreateOrganizationController',
                 data: { pageTitle: 'Create Organization' }
             })
+            .state('backend.user.settingsBilling', {
+                url: '^/settings/billing',
+                templateUrl: 'app/settings/views/settingsBilling.html',
+                controller: 'settingsBillingController',
+                data: { pageTitle: 'Billing' }
+            })
+            .state('backend.user.settingsPremium', {
+                url: '^/settings/premium',
+                templateUrl: 'app/settings/views/settingsPremium.html',
+                controller: 'settingsPremiumController',
+                data: { pageTitle: 'Go Premium' }
+            })
             .state('backend.user.tools', {
                 url: '^/tools',
                 templateUrl: 'app/tools/views/tools.html',

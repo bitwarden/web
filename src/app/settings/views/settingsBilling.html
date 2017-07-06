@@ -1,39 +1,14 @@
 ﻿<section class="content-header">
-    <h1>
-        Billing
-        <small>manage your payments</small>
-    </h1>
+    <h1>Billing <small>manage your membership</small></h1>
 </section>
 <section class="content">
-    <div class="callout callout-warning" ng-if="subscription && subscription.cancelled">
-        <h4><i class="fa fa-warning"></i> Cancelled</h4>
-        The subscription to this organization has been canceled.
-    </div>
-    <div class="callout callout-warning" ng-if="subscription && subscription.markedForCancel">
-        <h4><i class="fa fa-warning"></i> Pending Cancellation</h4>
-        <p>
-            The subscription to this organization has been marked for cancellation at the end of the
-            current billing period.
-        </p>
-        <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()">
-            Reinstate Plan
-        </button>
-    </div>
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Plan</h3>
+            <h3 class="box-title">Premium Membership</h3>
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-sm-6">
-                    <dl>
-                        <dt>Name</dt>
-                        <dd>{{plan.name || '-'}}</dd>
-                        <dt>Total Seats</dt>
-                        <dd>{{plan.seats || '-'}}</dd>
-                    </dl>
-                </div>
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <dl>
                         <dt>Status</dt>
                         <dd style="text-transform: capitalize;">{{(subscription && subscription.status) || '-'}}</dd>
@@ -41,8 +16,6 @@
                         <dd>{{nextInvoice ? ((nextInvoice.date | date: format: mediumDate) + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
                     </dl>
                 </div>
-            </div>
-            <div class="row" ng-if="!noSubscription">
                 <div class="col-md-6">
                     <strong>Details</strong>
                     <div ng-show="loading">
@@ -54,7 +27,7 @@
                                 <tr ng-repeat="item in subscription.items">
                                     <td>
                                         {{item.name}} {{item.qty > 1 ? '&times;' + item.qty : ''}}
-                                        @ {{item.amount | currency:'$'}} /{{item.interval}}
+                                        @ {{item.amount | currency:'$'}}
                                     </td>
                                     <td class="text-right">{{(item.qty * item.amount) | currency:'$'}} /{{item.interval}}</td>
                                 </tr>
@@ -65,37 +38,35 @@
             </div>
         </div>
         <div class="box-footer">
-            <button type="button" class="btn btn-default btn-flat" ng-click="changePlan()">
-                Change Plan
-            </button>
             <button type="button" class="btn btn-default btn-flat" ng-click="cancel()"
-                    ng-if="!noSubscription && !subscription.cancelled && !subscription.markedForCancel">
-                Cancel Plan
+                    ng-if="!subscription.cancelled && !subscription.markedForCancel">
+                Cancel
             </button>
             <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()"
-                    ng-if="!noSubscription && subscription.markedForCancel">
-                Reinstate Plan
+                    ng-if="subscription.markedForCancel">
+                Reinstate
             </button>
         </div>
     </div>
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">User Seats</h3>
+            <h3 class="box-title">Storage</h3>
         </div>
         <div class="box-body">
-            <div ng-show="loading">
-                Loading...
-            </div>
-            <div ng-show="!loading">
-                You plan currently has a total of <b>{{plan.seats}}</b> seats.
+            <p>You membership has a total of x GB of encrypted file storage. You are currently using y GB.</p>
+            <div class="progress" style="margin: 0;">
+                <div class="progress-bar progress-bar-info" role="progressbar"
+                     aria-valuenow="0.56" aria-valuemin="0" aria-valuemax="1" style="min-width: 2em; width: 56%;">
+                    56%
+                </div>
             </div>
         </div>
-        <div class="box-footer" ng-if="!noSubscription">
-            <button type="button" class="btn btn-default btn-flat" ng-click="adjustSeats(true)">
-                Add Seats
+        <div class="box-footer">
+            <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(true)">
+                Add Storage
             </button>
-            <button type="button" class="btn btn-default btn-flat" ng-click="adjustSeats(false)">
-                Remove Seats
+            <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(false)">
+                Remove Storage
             </button>
         </div>
     </div>

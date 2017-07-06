@@ -78,13 +78,24 @@
             </li>
             <li class="treeview"
                 ng-class="{active: $state.is('backend.user.settings') || $state.is('backend.user.settingsDomains') ||
-                $state.is('backend.user.settingsCreateOrg') || $state.is('backend.user.settingsTwoStep')}">
+                    $state.is('backend.user.settingsCreateOrg') || $state.is('backend.user.settingsTwoStep') ||
+                    $state.is('backend.user.settingsPremium') || $state.is('backend.user.settingsBilling')}">
                 <a ui-sref="backend.user.settings"><i class="fa fa-cogs fa-fw"></i> <span>Settings</span></a>
                 <ul class="treeview-menu" ng-class="{'menu-open': $state.is('backend.user.settings') ||
                         $state.is('backend.user.settingsDomains') || $state.is('backend.user.settingsCreateOrg')}">
+                    <li ng-class="{active: $state.is('backend.user.settingsPremium')}">
+                        <a ui-sref="backend.user.settingsPremium" ng-if="!main.userProfile || !main.userProfile.premium">
+                            <i class="fa fa-star fa-fw"></i> Go Premium!
+                        </a>
+                    </li>
                     <li ng-class="{active: $state.is('backend.user.settingsCreateOrg')}">
                         <a ui-sref="backend.user.settingsCreateOrg">
                             <i class="fa fa-plus-circle fa-fw"></i> New Organization
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.is('backend.user.settingsBilling')}">
+                        <a ui-sref="backend.user.settingsBilling" ng-if="main.userProfile && main.userProfile.premium">
+                            <i class="fa fa-circle-o fa-fw"></i> Billing
                         </a>
                     </li>
                     <li ng-class="{active: $state.is('backend.user.settingsTwoStep')}">
