@@ -77,6 +77,7 @@ angular.module('bit')
                 description: 'Verification codes will be emailed to you.',
                 enabled: false,
                 active: true,
+                free: true,
                 image: 'gmail.png',
                 displayOrder: 4,
                 priority: 0

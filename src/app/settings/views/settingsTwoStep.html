@@ -25,14 +25,17 @@
                     <tbody>
                         <tr ng-repeat="provider in providers | orderBy: 'displayOrder'">
                             <td style="width: 120px; height: 75px;" align="center">
-                                <img alt="{{::provider.name}}" ng-src="{{'images/two-factor/' + provider.image}}" />
+                                <a href="#" stop-click ng-click="edit(provider)">
+                                    <img alt="{{::provider.name}}" ng-src="{{'images/two-factor/' + provider.image}}" />
+                                </a>
                             </td>
                             <td>
                                 <a href="#" stop-click ng-click="edit(provider)">{{::provider.name}}</a>
+                                <span class="label label-info" ng-if="!premium && !provider.free">PREMIUM</span>
                                 <div class="text-muted text-sm">{{::provider.description}}</div>
                             </td>
                             <td style="width: 100px;" class="text-right">
-                                <span class="label"
+                                <span class="label label-full"
                                       ng-class="{ 'label-success': provider.enabled, 'label-default': !provider.enabled }">
                                     {{provider.enabled ? 'Enabled' : 'Disabled'}}
                                 </span>

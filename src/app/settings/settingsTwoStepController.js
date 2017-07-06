@@ -2,23 +2,40 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepController', function ($scope, apiService, toastr, $analytics, constants,
-        $filter, $uibModal) {
+        $filter, $uibModal, authService) {
         $scope.providers = constants.twoFactorProviderInfo;
+        $scope.premium = true;
 
-        apiService.twoFactor.list({}, function (response) {
-            for (var i = 0; i < response.Data.length; i++) {
-                if (!response.Data[i].Enabled) {
-                    continue;
-                }
+        authService.getUserProfile().then(function (profile) {
+            $scope.premium = profile.premium;
+            return apiService.twoFactor.list({}).$promise;
+        }).then(function (response) {
+            if (response.Data) {
+                for (var i = 0; i < response.Data.length; i++) {
+                    if (!response.Data[i].Enabled) {
+                        continue;
+                    }
 
-                var provider = $filter('filter')($scope.providers, { type: response.Data[i].Type });
-                if (provider.length) {
-                    provider[0].enabled = true;
+                    var provider = $filter('filter')($scope.providers, { type: response.Data[i].Type });
+                    if (provider.length) {
+                        provider[0].enabled = true;
+                    }
                 }
             }
+
+            return;
         });
 
         $scope.edit = function (provider) {
+            if (!$scope.premium && !provider.free) {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/views/premiumRequired.html',
+                    controller: 'premiumRequiredController'
+                });
+                return;
+            }
+
             if (provider.type === constants.twoFactorProvider.authenticator) {
                 typeName = 'Authenticator';
             }

@@ -200,22 +200,35 @@
         };
 
         $scope.attachments = function (login) {
-            if (!cryptoService.getEncKey()) {
-                toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
-                return;
-            }
-
-            var addModel = $uibModal.open({
-                animation: true,
-                templateUrl: 'app/vault/views/vaultAttachments.html',
-                controller: 'vaultAttachmentsController',
-                resolve: {
-                    loginId: function () { return login.id; }
+            authService.getUserProfile().then(function (profile) {
+                return profile.premium;
+            }).then(function (isPremium) {
+                if (!isPremium) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/views/premiumRequired.html',
+                        controller: 'premiumRequiredController'
+                    });
+                    return;
                 }
-            });
 
-            addModel.result.then(function (data) {
+                if (!cryptoService.getEncKey()) {
+                    toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
+                    return;
+                }
 
+                var addModel = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/vault/views/vaultAttachments.html',
+                    controller: 'vaultAttachmentsController',
+                    resolve: {
+                        loginId: function () { return login.id; }
+                    }
+                });
+
+                addModel.result.then(function (data) {
+
+                });
             });
         };
 
