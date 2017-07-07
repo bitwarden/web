@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationVaultController', function ($scope, apiService, cipherService, $analytics, $q, $state,
-        $localStorage, $uibModal, $filter) {
+        $localStorage, $uibModal, $filter, authService) {
         $scope.logins = [];
         $scope.collections = [];
         $scope.loading = true;
@@ -136,6 +136,37 @@
                 if (response.collectionIds) {
                     cipher.collectionIds = response.collectionIds;
                 }
+            });
+        };
+
+        $scope.attachments = function (login) {
+            authService.getUserProfile().then(function (profile) {
+                return !!profile.organizations[login.organizationId].maxStorageGb;
+            }).then(function (useStorage) {
+                if (!useStorage) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/views/paidOrgRequired.html',
+                        controller: 'paidOrgRequiredController',
+                        resolve: {
+                            orgId: function () { return login.organizationId; }
+                        }
+                    });
+                    return;
+                }
+
+                var attachmentModel = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/vault/views/vaultAttachments.html',
+                    controller: 'organizationVaultAttachmentsController',
+                    resolve: {
+                        loginId: function () { return login.id; }
+                    }
+                });
+
+                attachmentModel.result.then(function (hasAttachments) {
+                    login.hasAttachments = hasAttachments;
+                });
             });
         };
 

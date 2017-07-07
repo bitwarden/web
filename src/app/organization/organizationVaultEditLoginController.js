@@ -1,5 +1,5 @@
 ﻿angular
-    .module('bit.vault')
+    .module('bit.organization')
 
     .controller('organizationVaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService,
         cipherService, passwordService, loginId, $analytics, orgId, $uibModal) {

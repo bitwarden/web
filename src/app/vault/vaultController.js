@@ -201,9 +201,24 @@
 
         $scope.attachments = function (login) {
             authService.getUserProfile().then(function (profile) {
-                return profile.premium;
-            }).then(function (isPremium) {
-                if (!isPremium) {
+                return {
+                    isPremium: profile.premium,
+                    orgUseStorage: login.organizationId && !!profile.organizations[login.organizationId].maxStorageGb
+                };
+            }).then(function (perms) {
+                if (login.organizationId && !perms.orgUseStorage) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/views/paidOrgRequired.html',
+                        controller: 'paidOrgRequiredController',
+                        resolve: {
+                            orgId: function () { return login.organizationId; }
+                        }
+                    });
+                    return;
+                }
+
+                if (!login.organizationId && !perms.isPremium) {
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'app/views/premiumRequired.html',
@@ -212,7 +227,7 @@
                     return;
                 }
 
-                if (!cryptoService.getEncKey()) {
+                if (!login.organizationId && !cryptoService.getEncKey()) {
                     toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
                     return;
                 }

@@ -1,7 +1,7 @@
 angular
     .module('bit.global')
 
-    .controller('sideNavController', function ($scope, $state, authService, toastr, $analytics) {
+    .controller('sideNavController', function ($scope, $state, authService, toastr, $analytics, constants) {
         $scope.$state = $state;
         $scope.params = $state.params;
         $scope.orgs = [];
@@ -31,7 +31,7 @@ angular
         });
 
         $scope.viewOrganization = function (org) {
-            if (org.type === 2) { // 2 = User
+            if (org.type === constants.orgUserType.user) {
                 toastr.error('You cannot manage this organization.');
                 return;
             }
@@ -49,6 +49,6 @@ angular
         };
 
         $scope.isOrgOwner = function (org) {
-            return org && org.type === 0;
+            return org && org.type === constants.orgUserType.owner;
         };
     });

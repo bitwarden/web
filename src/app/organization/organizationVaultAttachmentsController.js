@@ -1,17 +1,15 @@
 ﻿angular
-    .module('bit.vault')
+    .module('bit.organization')
 
-    .controller('vaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        loginId, $analytics, validationService, toastr) {
-        $analytics.eventTrack('vaultAttachmentsController', { category: 'Modal' });
+    .controller('organizationVaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService,
+        cipherService, loginId, $analytics, validationService, toastr) {
+        $analytics.eventTrack('organizationVaultAttachmentsController', { category: 'Modal' });
         $scope.login = {};
-        $scope.readOnly = true;
         $scope.loading = true;
         var closing = false;
 
-        apiService.logins.get({ id: loginId }, function (login) {
+        apiService.logins.getAdmin({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
-            $scope.readOnly = !login.Edit;
             $scope.loading = false;
         }, function () {
             $scope.loading = false;
@@ -36,8 +34,7 @@
                 form.$loading = true;
                 $scope.$apply();
 
-                var key = getKeyForLogin();
-
+                var key = cryptoService.getOrgKey($scope.login.organizationId);
                 var encFilename = cryptoService.encrypt(file.name, key);
                 $scope.savePromise = cryptoService.encryptToBytes(evt.target.result, key).then(function (encData) {
                     var fd = new FormData();
@@ -45,7 +42,7 @@
                     fd.append('data', blob, encFilename);
                     return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
                 }).then(function (response) {
-                    $analytics.eventTrack('Added Attachment');
+                    $analytics.eventTrack('Added Organization Attachment');
                     toastr.success('The attachment has been added.');
                     closing = true;
                     $uibModalInstance.close(true);
@@ -58,7 +55,6 @@
 
         $scope.download = function (attachment) {
             attachment.loading = true;
-            var key = getKeyForLogin();
 
             var req = new XMLHttpRequest();
             req.open('GET', attachment.url, true);
@@ -72,6 +68,7 @@
                     return;
                 }
 
+                var key = cryptoService.getOrgKey($scope.login.organizationId);
                 cryptoService.decryptFromBytes(req.response, key).then(function (decBuf) {
                     var blob = new Blob([decBuf]);
 
@@ -95,14 +92,6 @@
             req.send(null);
         };
 
-        function getKeyForLogin() {
-            if ($scope.login.organizationId) {
-                return cryptoService.getOrgKey($scope.login.organizationId);
-            }
-
-            return null;
-        }
-
         $scope.remove = function (attachment) {
             if (!confirm('Are you sure you want to delete this attachment (' + attachment.fileName + ')?')) {
                 return;
@@ -111,7 +100,7 @@
             attachment.loading = true;
             apiService.ciphers.delAttachment({ id: loginId, attachmentId: attachment.id }).$promise.then(function () {
                 attachment.loading = false;
-                $analytics.eventTrack('Deleted Attachment');
+                $analytics.eventTrack('Deleted Organization Attachment');
                 var index = $scope.login.attachments.indexOf(attachment);
                 if (index > -1) {
                     $scope.login.attachments.splice(index, 1);
