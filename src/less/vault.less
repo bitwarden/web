@@ -620,14 +620,29 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .label-full {
     font-size: 85%;
     font-weight: normal;
 }
 
-.totp {
-    margin-bottom: 10px;
+.totp-col {
+    margin: -10px 0 10px 0;
 
+    @media (min-width: @screen-md) {
+        padding-top: 26px;
+        margin: 0;
+    }
+
+    img {
+        margin-right: 10px;
+    }
+}
+
+.totp {
     .totp-code {
         font-family: @font-family-monospace;
         font-size: 1.2em;
@@ -678,6 +693,18 @@ h1, h2, h3, h4, h5, h6 {
 
         .totp-circle {
             stroke: @red;
+        }
+    }
+}
+
+.password-meter {
+    .progress {
+        margin-bottom: 10px;
+    }
+
+    @media (min-width: @screen-md) {
+        .progress {
+            margin-bottom: 0;
         }
     }
 }

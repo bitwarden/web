@@ -30,8 +30,11 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#" stop-click ng-click="edit(provider)">{{::provider.name}}</a>
-                                <span class="label label-info" ng-if="!premium && !provider.free">PREMIUM</span>
+                                <a href="#" stop-click ng-click="edit(provider)">
+                                    {{::provider.name}}
+                                    <span class="label label-info" ng-if="!premium && !provider.free"
+                                          style="margin-left: 5px;">PREMIUM</span>
+                                </a>
                                 <div class="text-muted text-sm">{{::provider.description}}</div>
                             </td>
                             <td style="width: 100px;" class="text-right">

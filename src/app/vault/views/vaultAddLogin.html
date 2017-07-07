@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div password-meter="login.password" password-meter-username="login.username"
-                     outer-class="xs" outer-style="margin: 0;"></div>
+                     outer-class="xs" class="password-meter"></div>
             </div>
         </div>
         <div class="row">
@@ -87,9 +87,12 @@
                            ng-readonly="readOnly" api-field />
                 </div>
             </div>
-            <div class="col-md-6">
-                <label class="invisible hidden-sm" for="verification-code">Verification Code</label>
+            <div class="col-md-6 totp-col">
                 <div totp="login.totp" id="verification-code" ng-if="premium"></div>
+                <div ng-if="!premium">
+                    <a href="#" stop-click ng-click="showPremium()"><img src="images/totp-countdown.png" alt="" /></a>
+                    <span class="label label-info clickable" ng-click="showPremium()">PREMIUM</span>
+                </div>
             </div>
         </div>
         <div class="form-group" show-errors>

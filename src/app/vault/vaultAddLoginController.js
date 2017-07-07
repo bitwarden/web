@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultAddLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope, authService) {
+        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope, authService, $uibModal) {
         $analytics.eventTrack('vaultAddLoginController', { category: 'Modal' });
         $scope.folders = $rootScope.vaultFolders;
         $scope.login = {
@@ -60,5 +60,13 @@
 
         $scope.close = function () {
             $uibModalInstance.dismiss('close');
+        };
+
+        $scope.showPremium = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/premiumRequired.html',
+                controller: 'premiumRequiredController'
+            });
         };
     });

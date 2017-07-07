@@ -1,7 +1,7 @@
 angular
     .module('bit.global')
 
-    .controller('premiumRequiredController', function ($scope, $state, $uibModalInstance, $analytics) {
+    .controller('premiumRequiredController', function ($scope, $state, $uibModalInstance, $analytics, $uibModalStack) {
         $analytics.eventTrack('premiumRequiredController', { category: 'Modal' });
 
         $scope.go = function () {
@@ -12,6 +12,6 @@ angular
         };
 
         $scope.close = function () {
-            $uibModalInstance.dismiss('close');
+            $uibModalStack.dismissAll();
         };
     });
