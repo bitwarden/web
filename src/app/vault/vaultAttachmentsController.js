@@ -7,6 +7,7 @@
         $scope.login = {};
         $scope.readOnly = false;
         $scope.loading = true;
+        var closing = false;
 
         apiService.logins.get({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
@@ -46,10 +47,8 @@
                 }).then(function (response) {
                     $analytics.eventTrack('Added Attachment');
                     toastr.success('The attachment has been added.');
-                    $uibModalInstance.close({
-                        action: 'attach',
-                        data: $scope.login
-                    });
+                    closing = true;
+                    $uibModalInstance.close(true);
                 });
             };
             reader.onerror = function (evt) {
@@ -104,7 +103,36 @@
             return null;
         }
 
+        $scope.remove = function (attachment) {
+            if (!confirm('Are you sure you want to delete this attachment (' + attachment.fileName + ')?')) {
+                return;
+            }
+
+            attachment.loading = true;
+            apiService.ciphers.delAttachment({ id: loginId, attachmentId: attachment.id }).$promise.then(function () {
+                attachment.loading = false;
+                $analytics.eventTrack('Deleted Attachment');
+                var index = $scope.login.attachments.indexOf(attachment);
+                if (index > -1) {
+                    $scope.login.attachments.splice(index, 1);
+                }
+            }, function () {
+                toastr.error('Cannot delete attachment.');
+                attachment.loading = false;
+            });
+        };
+
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
         };
+
+        $scope.$on('modal.closing', function (e, reason, closed) {
+            if (closing) {
+                return;
+            }
+
+            e.preventDefault();
+            closing = true;
+            $uibModalInstance.close(!!$scope.login.attachments && $scope.login.attachments.length > 0);
+        });
     });

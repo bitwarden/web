@@ -46,7 +46,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': undefined },
                 params: { id: '@id' }
-            }
+            },
+            delAttachment: { url: _apiUri + '/ciphers/:id/attachment/:attachmentId/delete', method: 'POST', params: { id: '@id', attachmentId: '@attachmentId' } }
         });
 
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {

@@ -70,7 +70,7 @@ angular
                 name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
                 username: _service.decryptProperty(encryptedCipher.Data.Username, key, true),
                 password: _service.decryptProperty(encryptedCipher.Data.Password, key, true),
-                hasAttachments: !!encryptedCipher.Attachments
+                hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0
             };
 
             return login;

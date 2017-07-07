@@ -217,7 +217,7 @@
                     return;
                 }
 
-                var addModel = $uibModal.open({
+                var attachmentModel = $uibModal.open({
                     animation: true,
                     templateUrl: 'app/vault/views/vaultAttachments.html',
                     controller: 'vaultAttachmentsController',
@@ -226,8 +226,8 @@
                     }
                 });
 
-                addModel.result.then(function (data) {
-
+                attachmentModel.result.then(function (hasAttachments) {
+                    login.hasAttachments = hasAttachments;
                 });
             });
         };
