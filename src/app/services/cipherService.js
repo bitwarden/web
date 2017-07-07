@@ -36,6 +36,7 @@ angular
                 username: encryptedLogin.Username && encryptedLogin.Username !== '' ? cryptoService.decrypt(encryptedLogin.Username, key) : null,
                 password: encryptedLogin.Password && encryptedLogin.Password !== '' ? cryptoService.decrypt(encryptedLogin.Password, key) : null,
                 notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null,
+                totp: encryptedLogin.Totp && encryptedLogin.Totp !== '' ? cryptoService.decrypt(encryptedLogin.Totp, key) : null,
                 attachments: null
             };
 
@@ -183,7 +184,8 @@ angular
                 name: cryptoService.encrypt(unencryptedLogin.name, key),
                 username: !unencryptedLogin.username || unencryptedLogin.username === '' ? null : cryptoService.encrypt(unencryptedLogin.username, key),
                 password: !unencryptedLogin.password || unencryptedLogin.password === '' ? null : cryptoService.encrypt(unencryptedLogin.password, key),
-                notes: !unencryptedLogin.notes || unencryptedLogin.notes === '' ? null : cryptoService.encrypt(unencryptedLogin.notes, key)
+                notes: !unencryptedLogin.notes || unencryptedLogin.notes === '' ? null : cryptoService.encrypt(unencryptedLogin.notes, key),
+                totp: !unencryptedLogin.totp || unencryptedLogin.totp === '' ? null : cryptoService.encrypt(unencryptedLogin.totp, key)
             };
         };
 

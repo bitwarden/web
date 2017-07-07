@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group" show-errors>
+                <div class="form-group" show-errors style="margin-bottom: 5px;">
                     <div class="pull-right password-options">
                         <i class="fa fa-lg fa-refresh" uib-tooltip="Generate Password" tooltip-placement="left"
                            ng-click="generatePassword()" ng-show="!readOnly"></i>
@@ -87,8 +87,20 @@
                         </span>
                     </div>
                 </div>
-                <div style="margin: -10px 0 15px 0;" password-meter="login.password" password-meter-username="login.username"
-                     outer-class="xs"></div>
+                <div password-meter="login.password" password-meter-username="login.username"
+                     outer-class="xs" outer-style="margin: 0;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" show-errors>
+                    <label for="totp">Authenticator Key (TOTP)</label>
+                    <input type="text" id="totp" name="Totp" ng-model="login.totp" class="form-control"
+                           ng-readonly="readOnly" api-field />
+                </div>
+            </div>
+            <div class="col-md-6">
+
             </div>
         </div>
         <div class="form-group" show-errors>

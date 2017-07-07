@@ -3,14 +3,15 @@ angular
 
     .directive('passwordMeter', function () {
         return {
-            template: '<div class="progress {{outerClass}}"><div class="progress-bar progress-bar-{{valueClass}}" ' +
+            template: '<div class="progress {{outerClass}}" style="{{outerStyle}}"><div class="progress-bar progress-bar-{{valueClass}}" ' +
                 'role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100" ' +
                 'ng-style="{width : ( value + \'%\' ) }"><span class="sr-only">{{value}}%</span></div></div>',
             restrict: 'A',
             scope: {
                 password: '=passwordMeter',
                 username: '=passwordMeterUsername',
-                outerClass: '@?'
+                outerClass: '@?',
+                outerStyle: '@?'
             },
             link: function (scope) {
                 var measureStrength = function (username, password) {
