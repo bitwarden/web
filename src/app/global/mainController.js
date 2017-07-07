@@ -135,7 +135,7 @@ angular
             var offset = target.offset();
             var css = {
                 display: 'block',
-                top: offset.top + target.outerHeight()
+                top: offset.top + target.outerHeight() - (appendTo !== 'body' ? $(window).scrollTop() : 0)
             };
 
             if (appendedDropdownMenu.hasClass('dropdown-menu-right')) {
