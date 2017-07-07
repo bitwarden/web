@@ -7,11 +7,11 @@ angular
         $scope.go = function () {
             $analytics.eventTrack('Get Paid Org');
             $state.go('backend.org.billing', { orgId: orgId }).then(function () {
-                $scope.close();
+                $uibModalStack.dismissAll();
             });
         };
 
         $scope.close = function () {
-            $uibModalStack.dismissAll();
+            $uibModalInstance.dismiss('close');
         };
     });

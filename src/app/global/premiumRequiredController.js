@@ -7,11 +7,11 @@ angular
         $scope.go = function () {
             $analytics.eventTrack('Get Premium');
             $state.go('backend.user.settingsPremium').then(function () {
-                $scope.close();
+                $uibModalStack.dismissAll();
             });
         };
 
         $scope.close = function () {
-            $uibModalStack.dismissAll();
+            $uibModalInstance.dismiss('close');
         };
     });

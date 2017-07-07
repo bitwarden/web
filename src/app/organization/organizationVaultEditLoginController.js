@@ -2,18 +2,14 @@
     .module('bit.vault')
 
     .controller('organizationVaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        cipherService, passwordService, loginId, $analytics, authService, orgId, $uibModal) {
+        cipherService, passwordService, loginId, $analytics, orgId, $uibModal) {
         $analytics.eventTrack('organizationVaultEditLoginController', { category: 'Modal' });
         $scope.login = {};
         $scope.hideFolders = $scope.hideFavorite = $scope.fromOrg = true;
 
-        authService.getUserProfile().then(function (userProfile) {
-            var orgProfile = userProfile.organizations[orgId];
-            $scope.useTotp = orgProfile.useTotp;
-        });
-
         apiService.logins.getAdmin({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
+            $scope.useTotp = $scope.login.organizationUseTotp;
         });
 
         $scope.save = function (model) {
