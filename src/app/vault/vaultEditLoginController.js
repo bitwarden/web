@@ -10,11 +10,11 @@
 
         authService.getUserProfile().then(function (profile) {
             $scope.useTotp = profile.premium;
-        });
-
-        apiService.logins.get({ id: loginId }, function (login) {
+            return apiService.logins.get({ id: loginId }).$promise;
+        }).then(function (login) {
             $scope.login = cipherService.decryptLogin(login);
             $scope.readOnly = !login.Edit;
+            $scope.useTotp = $scope.useTotp || $scope.login.organizationUseTotp;
         });
 
         $scope.save = function (model) {
