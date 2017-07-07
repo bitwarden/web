@@ -2,11 +2,15 @@
     .module('bit.vault')
 
     .controller('vaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, loginId, $analytics, $rootScope) {
+        passwordService, loginId, $analytics, $rootScope, authService) {
         $analytics.eventTrack('vaultEditLoginController', { category: 'Modal' });
         $scope.folders = $rootScope.vaultFolders;
         $scope.login = {};
         $scope.readOnly = false;
+
+        authService.getUserProfile().then(function (profile) {
+            $scope.premium = profile.premium;
+        });
 
         apiService.logins.get({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
