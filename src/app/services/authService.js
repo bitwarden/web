@@ -143,8 +143,10 @@ angular
                             type: profile.Organizations[i].Type,
                             enabled: profile.Organizations[i].Enabled,
                             maxCollections: profile.Organizations[i].MaxCollections,
+                            maxStorageGb: profile.Organizations[i].MaxStorageGb,
                             seats: profile.Organizations[i].Seats,
-                            useGroups: profile.Organizations[i].UseGroups
+                            useGroups: profile.Organizations[i].UseGroups,
+                            useTotp: profile.Organizations[i].UseTotp
                         };
                     }
 
@@ -174,8 +176,10 @@ angular
                         type: 0, // 0 = Owner
                         enabled: true,
                         maxCollections: org.MaxCollections,
+                        maxStorageGb: org.MaxStorageGb,
                         seats: org.Seats,
-                        useGroups: org.UseGroups
+                        useGroups: org.UseGroups,
+                        useTotp: org.UseTotp
                     };
                     profile.organizations[o.id] = o;
 

@@ -2,10 +2,15 @@
     .module('bit.vault')
 
     .controller('organizationVaultAddLoginController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        cipherService, passwordService, $analytics, orgId) {
+        cipherService, passwordService, $analytics, authService, orgId, $uibModal) {
         $analytics.eventTrack('organizationVaultAddLoginController', { category: 'Modal' });
         $scope.login = {};
-        $scope.hideFolders = $scope.hideFavorite = true;
+        $scope.hideFolders = $scope.hideFavorite = $scope.fromOrg = true;
+
+        authService.getUserProfile().then(function (userProfile) {
+            var orgProfile = userProfile.organizations[orgId];
+            $scope.useTotp = orgProfile.useTotp;
+        });
 
         $scope.savePromise = null;
         $scope.save = function (model) {
@@ -46,5 +51,16 @@
 
         $scope.close = function () {
             $uibModalInstance.dismiss('close');
+        };
+
+        $scope.showUpgrade = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/paidOrgRequired.html',
+                controller: 'paidOrgRequiredController',
+                resolve: {
+                    orgId: function () { return orgId; }
+                }
+            });
         };
     });

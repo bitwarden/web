@@ -11,7 +11,7 @@
         };
 
         authService.getUserProfile().then(function (profile) {
-            $scope.premium = profile.premium;
+            $scope.useTotp = profile.premium;
         });
 
         $scope.savePromise = null;
@@ -62,7 +62,7 @@
             $uibModalInstance.dismiss('close');
         };
 
-        $scope.showPremium = function () {
+        $scope.showUpgrade = function () {
             $uibModal.open({
                 animation: true,
                 templateUrl: 'app/views/premiumRequired.html',

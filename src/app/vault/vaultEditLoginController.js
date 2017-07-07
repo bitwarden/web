@@ -9,7 +9,7 @@
         $scope.readOnly = false;
 
         authService.getUserProfile().then(function (profile) {
-            $scope.premium = profile.premium;
+            $scope.useTotp = profile.premium;
         });
 
         apiService.logins.get({ id: loginId }, function (login) {
@@ -99,7 +99,7 @@
             $uibModalInstance.dismiss('cancel');
         };
 
-        $scope.showPremium = function () {
+        $scope.showUpgrade = function () {
             $uibModal.open({
                 animation: true,
                 templateUrl: 'app/views/premiumRequired.html',

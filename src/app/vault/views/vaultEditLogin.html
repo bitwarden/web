@@ -100,10 +100,10 @@
                 </div>
             </div>
             <div class="col-md-6 totp-col">
-                <div totp="login.totp" id="verification-code" ng-if="premium"></div>
-                <div ng-if="!premium">
-                    <a href="#" stop-click ng-click="showPremium()"><img src="images/totp-countdown.png" alt="" /></a>
-                    <span class="label label-info clickable" ng-click="showPremium()">PREMIUM</span>
+                <div totp="login.totp" id="verification-code" ng-if="useTotp"></div>
+                <div ng-if="!useTotp">
+                    <a href="#" stop-click ng-click="showUpgrade()"><img src="images/totp-countdown.png" alt="" /></a>
+                    <span class="label label-info clickable" ng-click="showUpgrade()">{{fromOrg ? 'UPGRADE' : 'PREMIUM'}}</span>
                 </div>
             </div>
         </div>

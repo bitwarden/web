@@ -83,7 +83,8 @@
                 templateUrl: 'app/vault/views/vaultEditLogin.html',
                 controller: 'organizationVaultEditLoginController',
                 resolve: {
-                    loginId: function () { return login.id; }
+                    loginId: function () { return login.id; },
+                    orgId: function () { return $state.params.orgId; }
                 }
             });
 
