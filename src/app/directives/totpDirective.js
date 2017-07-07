@@ -7,7 +7,7 @@ angular
             '<span class="totp-countdown"><span class="totp-sec">{{sec}}</span>' +
             '<svg><g><circle class="totp-circle inner" r="12.6" cy="16" cx="16" style="stroke-dashoffset: {{dash}}px;"></circle>' +
             '<circle class="totp-circle outer" r="14" cy="16" cx="16"></circle></g></svg></span>' +
-            '<span class="totp-code" id="totp-code">{{code}}</span>' +
+            '<span class="totp-code" id="totp-code">{{codeFormatted}}</span>' +
             '<a href="#" stop-click class="btn btn-link" ngclipboard ngclipboard-error="clipboardError(e)" ' +
             'data-clipboard-text="{{code}}" uib-tooltip="Copy Code" tooltip-placement="right">' +
             '<i class="fa fa-clipboard"></i></a>' +
@@ -115,7 +115,8 @@ angular
                     totp.getCode(scope.key).then(function (code) {
                         $timeout(function () {
                             if (code) {
-                                scope.code = code.substring(0, 3) + ' ' + code.substring(3);
+                                scope.codeFormatted = code.substring(0, 3) + ' ' + code.substring(3);
+                                scope.code = code;
                             }
                             else {
                                 scope.code = null;
