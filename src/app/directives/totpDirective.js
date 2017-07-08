@@ -76,7 +76,7 @@ angular
                     var sign = function (keyBytes, timeBytes) {
                         return window.crypto.subtle.importKey('raw', keyBytes,
                             { name: 'HMAC', hash: { name: 'SHA-1' } }, false, ['sign']).then(function (key) {
-                                return window.crypto.subtle.sign({ name: 'HMAC' }, key, timeBytes);
+                                return window.crypto.subtle.sign({ name: 'HMAC', hash: { name: 'SHA-1' } }, key, timeBytes);
                             }).then(function (signature) {
                                 return buff2hex(signature);
                             }).catch(function (err) {

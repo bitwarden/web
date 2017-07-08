@@ -182,6 +182,10 @@ gulp.task('lib', ['clean:lib'], function () {
         {
             src: paths.npmDir + 'duo_web_sdk/index.js',
             dest: paths.libDir + 'duo'
+        },
+        {
+            src: paths.npmDir + 'angular-promise-polyfill/index.js',
+            dest: paths.libDir + 'angular-promise-polyfill'
         }
     ];
 

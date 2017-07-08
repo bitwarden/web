@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationVaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        cipherService, loginId, $analytics, validationService, toastr) {
+        cipherService, loginId, $analytics, validationService, toastr, $timeout) {
         $analytics.eventTrack('organizationVaultAttachmentsController', { category: 'Modal' });
         $scope.login = {};
         $scope.loading = true;
@@ -31,8 +31,9 @@
             var reader = new FileReader();
             reader.readAsArrayBuffer(file);
             reader.onload = function (evt) {
-                form.$loading = true;
-                $scope.$apply();
+                $timeout(function () {
+                    form.$loading = true;
+                });
 
                 var key = cryptoService.getOrgKey($scope.login.organizationId);
                 var encFilename = cryptoService.encrypt(file.name, key);
@@ -61,8 +62,9 @@
             req.responseType = 'arraybuffer';
             req.onload = function (evt) {
                 if (!req.response) {
-                    attachment.loading = false;
-                    $scope.$apply();
+                    $timeout(function () {
+                        attachment.loading = false;
+                    });
 
                     // error
                     return;
@@ -85,8 +87,9 @@
                         document.body.removeChild(a);
                     }
 
-                    attachment.loading = false;
-                    $scope.$apply();
+                    $timeout(function () {
+                        attachment.loading = false;
+                    });
                 });
             };
             req.send(null);

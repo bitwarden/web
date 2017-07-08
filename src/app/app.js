@@ -9,6 +9,7 @@
         'angulartics.google.analytics',
         'angular-stripe',
         'credit-cards',
+        'angular-promise-polyfill',
 
         'bit.directives',
         'bit.filters',

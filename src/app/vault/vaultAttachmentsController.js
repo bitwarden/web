@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        loginId, $analytics, validationService, toastr) {
+        loginId, $analytics, validationService, toastr, $timeout) {
         $analytics.eventTrack('vaultAttachmentsController', { category: 'Modal' });
         $scope.login = {};
         $scope.readOnly = true;
@@ -33,8 +33,9 @@
             var reader = new FileReader();
             reader.readAsArrayBuffer(file);
             reader.onload = function (evt) {
-                form.$loading = true;
-                $scope.$apply();
+                $timeout(function () {
+                    form.$loading = true;
+                });
 
                 var key = getKeyForLogin();
 
@@ -65,8 +66,9 @@
             req.responseType = 'arraybuffer';
             req.onload = function (evt) {
                 if (!req.response) {
-                    attachment.loading = false;
-                    $scope.$apply();
+                    $timeout(function () {
+                        attachment.loading = false;
+                    });
 
                     // error
                     return;
@@ -87,9 +89,10 @@
                         a.click();
                         document.body.removeChild(a);
                     }
-
-                    attachment.loading = false;
-                    $scope.$apply();
+                    
+                    $timeout(function () {
+                        attachment.loading = false;
+                    });
                 });
             };
             req.send(null);

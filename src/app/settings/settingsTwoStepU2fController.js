@@ -45,14 +45,16 @@
                     return;
                 }
                 else if (data.errorCode) {
-                    $scope.deviceError = true;
-                    $scope.$apply();
+                    $timeout(function () {
+                        $scope.deviceError = true;
+                    });
                     console.log('error: ' + data.errorCode);
                     return;
                 }
 
-                $scope.deviceResponse = JSON.stringify(data);
-                $scope.$apply();
+                $timeout(function () {
+                    $scope.deviceResponse = JSON.stringify(data);
+                });
             }, 10);
         };
 

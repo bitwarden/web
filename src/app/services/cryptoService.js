@@ -521,17 +521,17 @@ angular
                         return null;
                     }
 
-                    ivBytes = encBytes.slice(1, 17);
-                    macBytes = encBytes.slice(17, 49);
-                    ctBytes = encBytes.slice(49);
+                    ivBytes = slice(encBytes, 1, 17);
+                    macBytes = slice(encBytes, 17, 49);
+                    ctBytes = slice(encBytes, 49);
                     break;
                 case constants.encType.AesCbc256_B64:
                     if (encBytes.length <= 17) { // 1 + 16 + ctLength
                         return null;
                     }
 
-                    ivBytes = encBytes.slice(1, 17);
-                    ctBytes = encBytes.slice(17);
+                    ivBytes = slice(encBytes, 1, 17);
+                    ctBytes = slice(encBytes, 17);
                     break;
                 default:
                     return null;
@@ -578,7 +578,6 @@ angular
                     }
                     return window.crypto.subtle.decrypt({ name: 'AES-CBC', iv: ivBuf }, encKey, ctBuf);
                 });
-
         }
 
         _service.rsaDecrypt = function (encValue, privateKey, key) {
@@ -666,7 +665,7 @@ angular
         function computeMacWC(dataBuf, macKeyBuf) {
             return window.crypto.subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
                 .then(function (key) {
-                    return window.crypto.subtle.sign({ name: 'HMAC' }, key, dataBuf);
+                    return window.crypto.subtle.sign({ name: 'HMAC', hash: { name: 'SHA-256' } }, key, dataBuf);
                 });
         }
 
@@ -693,10 +692,10 @@ angular
             return window.crypto.subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
                 .then(function (key) {
                     macKey = key;
-                    return window.crypto.subtle.sign({ name: 'HMAC' }, macKey, mac1Buf);
+                    return window.crypto.subtle.sign({ name: 'HMAC', hash: { name: 'SHA-256' } }, macKey, mac1Buf);
                 }).then(function (mac) {
                     mac1 = mac;
-                    return window.crypto.subtle.sign({ name: 'HMAC' }, macKey, mac2Buf);
+                    return window.crypto.subtle.sign({ name: 'HMAC', hash: { name: 'SHA-256' } }, macKey, mac2Buf);
                 }).then(function (mac2) {
                     if (mac1.byteLength !== mac2.byteLength) {
                         return false;
@@ -775,8 +774,8 @@ angular
             };
 
             if (this.macKey) {
-                keys.encKey = key.slice(0, key.length / 2).buffer;
-                keys.macKey = key.slice(key.length / 2).buffer;
+                keys.encKey = slice(key, 0, key.length / 2).buffer;
+                keys.macKey = slice(key, key.length / 2).buffer;
             }
             else {
                 keys.encKey = key.buffer;
@@ -794,6 +793,49 @@ angular
                 arr[i] = binaryString.charCodeAt(i);
             }
             return arr;
+        }
+
+        function slice(arr, begin, end) {
+            if (arr.slice) {
+                return arr.slice(begin, end);
+            }
+
+            // shim for IE
+            // ref: https://stackoverflow.com/a/21440217
+
+            arr = arr.buffer;
+            if (begin === void 0) {
+                begin = 0;
+            }
+
+            if (end === void 0) {
+                end = arr.byteLength;
+            }
+
+            begin = Math.floor(begin);
+            end = Math.floor(end);
+
+            if (begin < 0) {
+                begin += arr.byteLength;
+            }
+
+            if (end < 0) {
+                end += arr.byteLength;
+            }
+
+            begin = Math.min(Math.max(0, begin), arr.byteLength);
+            end = Math.min(Math.max(0, end), arr.byteLength);
+
+            if (end - begin <= 0) {
+                return new ArrayBuffer(0);
+            }
+
+            var result = new ArrayBuffer(end - begin);
+            var resultBytes = new Uint8Array(result);
+            var sourceBytes = new Uint8Array(arr, begin, end - begin);
+
+            resultBytes.set(sourceBytes);
+            return new Uint8Array(result);
         }
 
         return _service;
