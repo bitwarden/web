@@ -7,11 +7,11 @@
         $scope.code = null;
 
         $scope.auth = function (model) {
-            var masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
-
-            $scope.authPromise = apiService.twoFactor.getRecover({}, {
-                masterPasswordHash: masterPasswordHash
-            }).$promise.then(function (apiResponse) {
+            $scope.authPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
+                return apiService.twoFactor.getRecover({}, {
+                    masterPasswordHash: hash
+                }).$promise;
+            }).then(function (apiResponse) {
                 $scope.code = formatString(apiResponse.Code);
                 $scope.authed = true;
             });

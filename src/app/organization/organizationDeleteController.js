@@ -5,19 +5,18 @@
         authService, toastr, $analytics) {
         $analytics.eventTrack('organizationDeleteController', { category: 'Modal' });
         $scope.submit = function () {
-            var request = {
-                masterPasswordHash: cryptoService.hashPassword($scope.masterPassword)
-            };
-
-            $scope.submitPromise = apiService.organizations.del({ id: $state.params.orgId }, request, function () {
+            $scope.submitPromise = cryptoService.hashPassword($scope.masterPassword).then(function (hash) {
+                return apiService.organizations.del({ id: $state.params.orgId }, {
+                    masterPasswordHash: hash
+                }).$promise;
+            }).then(function () {
                 $uibModalInstance.dismiss('cancel');
                 authService.removeProfileOrganization($state.params.orgId);
                 $analytics.eventTrack('Deleted Organization');
-                $state.go('backend.user.vault').then(function () {
-                    toastr.success('This organization and all associated data has been deleted.',
-                        'Organization Deleted');
-                });
-            }).$promise;
+                return $state.go('backend.user.vault');
+            }).then(function () {
+                toastr.success('This organization and all associated data has been deleted.', 'Organization Deleted');
+            });
         };
 
         $scope.close = function () {

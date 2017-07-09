@@ -55,11 +55,14 @@ angular
 
         $httpProvider.defaults.headers.post['Content-Type'] = 'text/plain; charset=utf-8';
 
-        if (!$httpProvider.defaults.headers.get) {
-            $httpProvider.defaults.headers.get = {};
+        // stop IE from caching get requests
+        if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+            if (!$httpProvider.defaults.headers.get) {
+                $httpProvider.defaults.headers.get = {};
+            }
+            $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+            $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
         }
-        $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
-        $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 
         $httpProvider.interceptors.push('apiInterceptor');
         $httpProvider.interceptors.push('jwtInterceptor');

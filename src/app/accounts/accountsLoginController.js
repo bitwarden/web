@@ -149,12 +149,12 @@ angular
                 return;
             }
 
-            var key = cryptoService.makeKey(_masterPassword, _email);
-            var hash = cryptoService.hashPassword(_masterPassword, key);
-            apiService.twoFactor.sendEmailLogin({
-                email: _email,
-                masterPasswordHash: hash
-            }, function () {
+            return cryptoService.makeKeyAndHash(_email, _masterPassword).then(function (result) {
+                return apiService.twoFactor.sendEmailLogin({
+                    email: _email,
+                    masterPasswordHash: result.hash
+                }).$promise;
+            }).then(function () {
                 if (doToast) {
                     toastr.success('Verification email sent to ' + $scope.twoFactorEmail + '.');
                 }

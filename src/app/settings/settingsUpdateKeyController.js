@@ -14,8 +14,9 @@
             }
 
             $scope.processing = true;
-            var mpHash = cryptoService.hashPassword($scope.masterPassword);
-            $scope.savePromise = cipherService.updateKey(mpHash, function () {
+            $scope.savePromise = cryptoService.hashPassword($scope.masterPassword).then(function (hash) {
+                return cipherService.updateKey(hash);
+            }).then(function () {
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
                 $analytics.eventTrack('Key Updated');
@@ -23,13 +24,11 @@
             }).then(function () {
                 toastr.success('Please log back in. If you are using other bitwarden applications, ' +
                     'log out and back in to those as well.', 'Key Updated', { timeOut: 10000 });
-            }, processError);
+            }, function () {
+                $uibModalInstance.dismiss('cancel');
+                toastr.error('Something went wrong.', 'Oh No!');
+            });
         };
-
-        function processError() {
-            $uibModalInstance.dismiss('cancel');
-            toastr.error('Something went wrong.', 'Oh No!');
-        }
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');

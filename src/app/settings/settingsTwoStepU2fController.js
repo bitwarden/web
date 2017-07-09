@@ -12,11 +12,12 @@
         $scope.deviceError = false;
 
         $scope.auth = function (model) {
-            _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
-
-            $scope.authPromise = apiService.twoFactor.getU2f({}, {
-                masterPasswordHash: _masterPasswordHash
-            }).$promise.then(function (response) {
+            $scope.authPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
+                _masterPasswordHash = hash;
+                return apiService.twoFactor.getU2f({}, {
+                    masterPasswordHash: _masterPasswordHash
+                }).$promise;
+            }).then(function (response) {
                 $scope.enabled = response.Enabled;
                 $scope.challenge = response.Challenge;
                 $scope.authed = true;

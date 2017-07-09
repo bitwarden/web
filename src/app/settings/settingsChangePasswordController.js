@@ -31,39 +31,43 @@
             }
             else {
                 // User is not using an enc key, let's make them one
-                var mpHash = cryptoService.hashPassword(model.masterPassword);
-                $scope.savePromise = cipherService.updateKey(mpHash, function () {
+                $scope.savePromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
+                    return cipherService.updateKey(hash);
+                }, processError).then(function () {
                     return changePassword(model);
                 }, processError);
             }
         };
 
         function changePassword(model) {
+            var makeResult;
             return authService.getUserProfile().then(function (profile) {
-                var newKey = cryptoService.makeKey(model.newMasterPassword, profile.email.toLowerCase());
+                return cryptoService.makeKeyAndHash(profile.email, model.newMasterPassword);
+            }).then(function (result) {
+                makeResult = result;
+                return cryptoService.hashPassword(model.masterPassword);
+            }).then(function (hash) {
                 var encKey = cryptoService.getEncKey();
-                var newEncKey = cryptoService.encrypt(encKey.key, newKey, 'raw');
+                var newEncKey = cryptoService.encrypt(encKey.key, makeResult.key, 'raw');
 
                 var request = {
-                    masterPasswordHash: cryptoService.hashPassword(model.masterPassword),
-                    newMasterPasswordHash: cryptoService.hashPassword(model.newMasterPassword, newKey),
+                    masterPasswordHash: hash,
+                    newMasterPasswordHash: makeResult.hash,
                     key: newEncKey
                 };
 
                 return apiService.accounts.putPassword(request).$promise;
-            }, processError).then(function () {
+            }).then(function () {
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
                 $analytics.eventTrack('Changed Password');
                 return $state.go('frontend.login.info');
-            }, processError).then(function () {
+            }).then(function () {
                 toastr.success('Please log back in.', 'Master Password Changed');
-            }, processError);
-        }
-
-        function processError() {
-            $uibModalInstance.dismiss('cancel');
-            toastr.error('Something went wrong.', 'Oh No!');
+            }, function () {
+                $uibModalInstance.dismiss('cancel');
+                toastr.error('Something went wrong.', 'Oh No!');
+            });
         }
 
         $scope.close = function () {

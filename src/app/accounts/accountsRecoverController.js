@@ -6,17 +6,16 @@ angular
 
         $scope.submit = function (model) {
             var email = model.email.toLowerCase();
-            var key = cryptoService.makeKey(model.masterPassword, email);
 
-            var request = {
-                email: email,
-                masterPasswordHash: cryptoService.hashPassword(model.masterPassword, key),
-                recoveryCode: model.code.replace(/\s/g, '').toLowerCase()
-            };
-
-            $scope.submitPromise = apiService.twoFactor.recover(request, function () {
+            $scope.submitPromise = cryptoService.makeKeyAndHash(model.email, model.masterPassword).then(function (result) {
+                return apiService.twoFactor.recover({
+                    email: email,
+                    masterPasswordHash: result.hash,
+                    recoveryCode: model.code.replace(/\s/g, '').toLowerCase()
+                }).$promise;
+            }).then(function () {
                 $analytics.eventTrack('Recovered 2FA');
                 $scope.success = true;
-            }).$promise;
+            });
         };
     });

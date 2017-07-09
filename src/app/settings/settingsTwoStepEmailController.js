@@ -13,12 +13,13 @@
         };
 
         $scope.auth = function (model) {
-            _masterPasswordHash = cryptoService.hashPassword(model.masterPassword);
-
             var response = null;
-            $scope.authPromise = apiService.twoFactor.getEmail({}, {
-                masterPasswordHash: _masterPasswordHash
-            }).$promise.then(function (apiResponse) {
+            $scope.authPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
+                _masterPasswordHash = hash;
+                return apiService.twoFactor.getEmail({}, {
+                    masterPasswordHash: _masterPasswordHash
+                }).$promise;
+            }).then(function (apiResponse) {
                 response = apiResponse;
                 return authService.getUserProfile();
             }).then(function (profile) {

@@ -1,14 +1,16 @@
 angular
     .module('bit.services')
 
-    .factory('cryptoService', function ($sessionStorage, constants, $q) {
+    .factory('cryptoService', function ($sessionStorage, constants, $q, $window) {
         var _service = {},
             _key,
             _encKey,
             _legacyEtmKey,
             _orgKeys,
             _privateKey,
-            _publicKey;
+            _publicKey,
+            _crypto = $window.crypto,
+            _subtle = $window.crypto.subtle;
 
         _service.setKey = function (key) {
             _key = key;
@@ -233,9 +235,18 @@ angular
         };
 
         _service.makeKey = function (password, salt) {
-            var keyBytes = forge.pbkdf2(forge.util.encodeUtf8(password), forge.util.encodeUtf8(salt),
-                5000, 256 / 8, 'sha256');
-            return new SymmetricCryptoKey(keyBytes);
+            if (!$window.cryptoShimmed) {
+                return pbkdf2WC(password, salt, 5000, 256).then(function (keyBuf) {
+                    return new SymmetricCryptoKey(bufToB64(keyBuf), true);
+                });
+            }
+            else {
+                var deferred = $q.defer();
+                var keyBytes = forge.pbkdf2(forge.util.encodeUtf8(password), forge.util.encodeUtf8(salt),
+                    5000, 256 / 8, 'sha256');
+                deferred.resolve(new SymmetricCryptoKey(keyBytes));
+                return deferred.promise;
+            }
         };
 
         _service.makeEncKey = function (key) {
@@ -290,8 +301,46 @@ angular
                 throw 'Invalid parameters.';
             }
 
-            var hashBits = forge.pbkdf2(key.key, forge.util.encodeUtf8(password), 1, 256 / 8, 'sha256');
-            return forge.util.encode64(hashBits);
+            if (!$window.cryptoShimmed) {
+                var keyBuf = key.getBuffers();
+                return pbkdf2WC(new Uint8Array(keyBuf.key), password, 1, 256).then(function (hashBuf) {
+                    return bufToB64(hashBuf);
+                });
+            }
+            else {
+                var deferred = $q.defer();
+                var hashBits = forge.pbkdf2(key.key, forge.util.encodeUtf8(password), 1, 256 / 8, 'sha256');
+                deferred.resolve(forge.util.encode64(hashBits));
+                return deferred.promise;
+            }
+        };
+
+        function pbkdf2WC(password, salt, iterations, size) {
+            password = typeof (password) === 'string' ? utf8ToArray(password) : password;
+            salt = typeof (salt) === 'string' ? utf8ToArray(salt) : salt;
+
+            return _subtle.importKey('raw', password.buffer, { name: 'PBKDF2' }, false, ['deriveKey', 'deriveBits'])
+                .then(function (importedKey) {
+                    return _subtle.deriveKey(
+                        { name: 'PBKDF2', salt: salt.buffer, iterations: iterations, hash: { name: 'SHA-256' } },
+                        importedKey, { name: 'AES-CBC', length: size }, true, ['encrypt', 'decrypt']);
+                }).then(function (derivedKey) {
+                    return _subtle.exportKey('raw', derivedKey);
+                });
+        }
+
+        _service.makeKeyAndHash = function (email, password) {
+            email = email.toLowerCase();
+            var key;
+            return _service.makeKey(password, email).then(function (theKey) {
+                key = theKey;
+                return _service.hashPassword(password, theKey);
+            }).then(function (theHash) {
+                return {
+                    key: key,
+                    hash: theHash
+                };
+            });
         };
 
         _service.encrypt = function (plainValue, key, plainValueEncoding) {
@@ -375,11 +424,11 @@ angular
             };
 
             var keyBuf = key.getBuffers();
-            window.crypto.getRandomValues(obj.iv);
+            _crypto.getRandomValues(obj.iv);
 
-            return window.crypto.subtle.importKey('raw', keyBuf.encKey, { name: 'AES-CBC' }, false, ['encrypt'])
+            return _subtle.importKey('raw', keyBuf.encKey, { name: 'AES-CBC' }, false, ['encrypt'])
                 .then(function (encKey) {
-                    return window.crypto.subtle.encrypt({ name: 'AES-CBC', iv: obj.iv }, encKey, plainValue);
+                    return _subtle.encrypt({ name: 'AES-CBC', iv: obj.iv }, encKey, plainValue);
                 }).then(function (encValue) {
                     obj.ct = new Uint8Array(encValue);
                     if (!keyBuf.macKey) {
@@ -554,7 +603,7 @@ angular
             var keyBuf = key.getBuffers(),
                 encKey = null;
 
-            return window.crypto.subtle.importKey('raw', keyBuf.encKey, { name: 'AES-CBC' }, false, ['decrypt'])
+            return _subtle.importKey('raw', keyBuf.encKey, { name: 'AES-CBC' }, false, ['decrypt'])
                 .then(function (theEncKey) {
                     encKey = theEncKey;
 
@@ -576,7 +625,7 @@ angular
                         console.error('MAC failed.');
                         return null;
                     }
-                    return window.crypto.subtle.decrypt({ name: 'AES-CBC', iv: ivBuf }, encKey, ctBuf);
+                    return _subtle.decrypt({ name: 'AES-CBC', iv: ivBuf }, encKey, ctBuf);
                 });
         }
 
@@ -663,9 +712,9 @@ angular
         }
 
         function computeMacWC(dataBuf, macKeyBuf) {
-            return window.crypto.subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
+            return _subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
                 .then(function (key) {
-                    return window.crypto.subtle.sign({ name: 'HMAC', hash: { name: 'SHA-256' } }, key, dataBuf);
+                    return _subtle.sign({ name: 'HMAC', hash: { name: 'SHA-256' } }, key, dataBuf);
                 });
         }
 
@@ -787,10 +836,28 @@ angular
         };
 
         function b64ToArray(b64Str) {
-            var binaryString = window.atob(b64Str);
+            var binaryString = $window.atob(b64Str);
             var arr = new Uint8Array(binaryString.length);
             for (var i = 0; i < binaryString.length; i++) {
                 arr[i] = binaryString.charCodeAt(i);
+            }
+            return arr;
+        }
+
+        function bufToB64(buf) {
+            var binary = '';
+            var bytes = new Uint8Array(buf);
+            for (var i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return $window.btoa(binary);
+        }
+
+        function utf8ToArray(str) {
+            var utf8Str = unescape(encodeURIComponent(str));
+            var arr = new Uint8Array(utf8Str.length);
+            for (var i = 0; i < utf8Str.length; i++) {
+                arr[i] = utf8Str.charCodeAt(i);
             }
             return arr;
         }

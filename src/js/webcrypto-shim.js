@@ -25,6 +25,9 @@
         isWebkit = !_crypto.subtle && !!_crypto.webkitSubtle;
     if (!isIE && !isWebkit) return;
 
+    // Added
+    global.cryptoShimmed = true;
+
     function s2a(s) {
         return btoa(s).replace(/\=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
     }

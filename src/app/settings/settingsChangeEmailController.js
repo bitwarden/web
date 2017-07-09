@@ -11,22 +11,25 @@
 
         $scope.token = function (model) {
             _masterPassword = model.masterPassword;
-            _masterPasswordHash = cryptoService.hashPassword(_masterPassword);
             _newEmail = model.newEmail.toLowerCase();
 
-            var encKey = cryptoService.getEncKey();
-            if (encKey) {
-                $scope.tokenPromise = requestToken(model);
-            }
-            else {
-                // User is not using an enc key, let's make them one
-                $scope.tokenPromise = cipherService.updateKey(_masterPasswordHash, function () {
-                    return requestToken(model);
-                }, processError);
-            }
+            cryptoService.hashPassword(_masterPassword).then(function (hash) {
+                _masterPasswordHash = hash;
+
+                var encKey = cryptoService.getEncKey();
+                if (encKey) {
+                    $scope.tokenPromise = requestToken();
+                }
+                else {
+                    // User is not using an enc key, let's make them one
+                    $scope.tokenPromise = cipherService.updateKey(_masterPasswordHash, function () {
+                        return requestToken();
+                    }, processError);
+                }
+            });
         };
 
-        function requestToken(model) {
+        function requestToken() {
             var request = {
                 newEmail: _newEmail,
                 masterPasswordHash: _masterPasswordHash
@@ -40,32 +43,30 @@
         $scope.confirm = function (model) {
             $scope.processing = true;
 
-            var newKey = cryptoService.makeKey(_masterPassword, _newEmail);
-            var encKey = cryptoService.getEncKey();
-            var newEncKey = cryptoService.encrypt(encKey.key, newKey, 'raw');
+            $scope.confirmPromise = cryptoService.makeKeyAndHash(_newEmail, _masterPassword).then(function (result) {
+                var encKey = cryptoService.getEncKey();
+                var newEncKey = cryptoService.encrypt(encKey.key, result.key, 'raw');
+                var request = {
+                    token: model.token,
+                    newEmail: _newEmail,
+                    masterPasswordHash: _masterPasswordHash,
+                    newMasterPasswordHash: result.hash,
+                    key: newEncKey
+                };
 
-            var request = {
-                token: model.token,
-                newEmail: _newEmail,
-                masterPasswordHash: _masterPasswordHash,
-                newMasterPasswordHash: cryptoService.hashPassword(_masterPassword, newKey),
-                key: newEncKey
-            };
-
-            $scope.confirmPromise = apiService.accounts.email(request).$promise.then(function () {
+                return apiService.accounts.email(request).$promise;
+            }).then(function () {
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
                 $analytics.eventTrack('Changed Email');
                 return $state.go('frontend.login.info');
-            }, processError).then(function () {
+            }).then(function () {
                 toastr.success('Please log back in.', 'Email Changed');
-            }, processError);
+            }, function () {
+                $uibModalInstance.dismiss('cancel');
+                toastr.error('Something went wrong. Try again.', 'Oh No!');
+            });
         };
-
-        function processError() {
-            $uibModalInstance.dismiss('cancel');
-            toastr.error('Something went wrong. Try again.', 'Oh No!');
-        }
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');

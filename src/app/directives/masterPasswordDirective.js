@@ -13,10 +13,11 @@ angular
                             return undefined;
                         }
 
-                        var key = cryptoService.makeKey(value, profile.email);
-                        var valid = key.keyB64 === cryptoService.getKey().keyB64;
-                        ngModel.$setValidity('masterPassword', valid);
-                        return valid ? value : undefined;
+                        return cryptoService.makeKey(value, profile.email).then(function (result) {
+                            var valid = result.keyB64 === cryptoService.getKey().keyB64;
+                            ngModel.$setValidity('masterPassword', valid);
+                            return valid ? value : undefined;
+                        });
                     });
 
                     // For model -> DOM validation
@@ -25,11 +26,11 @@ angular
                             return undefined;
                         }
 
-                        var key = cryptoService.makeKey(value, profile.email);
-                        var valid = key.keyB64 === cryptoService.getKey().keyB64;
-
-                        ngModel.$setValidity('masterPassword', valid);
-                        return value;
+                        return cryptoService.makeKey(value, profile.email).then(function (result) {
+                            var valid = result.keyB64 === cryptoService.getKey().keyB64;
+                            ngModel.$setValidity('masterPassword', valid);
+                            return value;
+                        });
                     });
                 });
             }

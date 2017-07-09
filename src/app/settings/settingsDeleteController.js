@@ -5,18 +5,18 @@
         authService, toastr, $analytics) {
         $analytics.eventTrack('settingsDeleteController', { category: 'Modal' });
         $scope.submit = function (model) {
-            var request = {
-                masterPasswordHash: cryptoService.hashPassword(model.masterPassword)
-            };
-
-            $scope.submitPromise = apiService.accounts.postDelete(request, function () {
+            $scope.submitPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
+                return apiService.accounts.postDelete({
+                    masterPasswordHash: hash
+                }).$promise;
+            }).then(function () {
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
                 $analytics.eventTrack('Deleted Account');
-                $state.go('frontend.login.info').then(function () {
-                    toastr.success('Your account has been closed and all associated data has been deleted.', 'Account Deleted');
-                });
-            }).$promise;
+                return $state.go('frontend.login.info');
+            }).then(function () {
+                toastr.success('Your account has been closed and all associated data has been deleted.', 'Account Deleted');
+            });
         };
 
         $scope.close = function () {

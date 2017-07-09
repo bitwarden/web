@@ -7,48 +7,52 @@ angular
 
         _service.logIn = function (email, masterPassword, token, provider, remember) {
             email = email.toLowerCase();
-            var key = cryptoService.makeKey(masterPassword, email);
-
-            var request = {
-                username: email,
-                password: cryptoService.hashPassword(masterPassword, key),
-                grant_type: 'password',
-                scope: 'api offline_access',
-                client_id: 'web'
-            };
-
-            if (token && typeof (provider) !== 'undefined' && provider !== null) {
-                remember = remember || remember !== false;
-
-                request.twoFactorToken = token;
-                request.twoFactorProvider = provider;
-                request.twoFactorRemember = remember ? '1' : '0';
-            }
-            else if (tokenService.getTwoFactorToken(email)) {
-                request.twoFactorToken = tokenService.getTwoFactorToken(email);
-                request.twoFactorProvider = constants.twoFactorProvider.remember;
-                request.twoFactorRemember = '0';
-            }
-
-            // TODO: device information one day?
 
             var deferred = $q.defer();
 
-            apiService.identity.token(request).$promise.then(function (response) {
+            var makeResult;
+            cryptoService.makeKeyAndHash(email, masterPassword).then(function (result) {
+                makeResult = result;
+
+                var request = {
+                    username: email,
+                    password: result.hash,
+                    grant_type: 'password',
+                    scope: 'api offline_access',
+                    client_id: 'web'
+                };
+
+                // TODO: device information one day?
+
+                if (token && typeof (provider) !== 'undefined' && provider !== null) {
+                    remember = remember || remember !== false;
+
+                    request.twoFactorToken = token;
+                    request.twoFactorProvider = provider;
+                    request.twoFactorRemember = remember ? '1' : '0';
+                }
+                else if (tokenService.getTwoFactorToken(email)) {
+                    request.twoFactorToken = tokenService.getTwoFactorToken(email);
+                    request.twoFactorProvider = constants.twoFactorProvider.remember;
+                    request.twoFactorRemember = '0';
+                }
+
+                return apiService.identity.token(request).$promise;
+            }).then(function (response) {
                 if (!response || !response.access_token) {
                     return;
                 }
 
                 tokenService.setToken(response.access_token);
                 tokenService.setRefreshToken(response.refresh_token);
-                cryptoService.setKey(key);
+                cryptoService.setKey(makeResult.key);
 
                 if (response.TwoFactorToken) {
                     tokenService.setTwoFactorToken(response.TwoFactorToken, email);
                 }
 
                 if (response.Key) {
-                    cryptoService.setEncKey(response.Key, key);
+                    cryptoService.setEncKey(response.Key, makeResult.key);
                 }
 
                 if (response.PrivateKey) {

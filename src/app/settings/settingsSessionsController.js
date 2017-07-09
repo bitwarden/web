@@ -5,22 +5,25 @@
         authService, tokenService, toastr, $analytics) {
         $analytics.eventTrack('settingsSessionsController', { category: 'Modal' });
         $scope.submit = function (model) {
-            var request = {
-                masterPasswordHash: cryptoService.hashPassword(model.masterPassword)
-            };
+            var hash, profile;
 
-            $scope.submitPromise =
-                authService.getUserProfile().then(function (profile) {
-                    return apiService.accounts.putSecurityStamp(request, function () {
-                        $uibModalInstance.dismiss('cancel');
-                        authService.logOut();
-                        tokenService.clearTwoFactorToken(profile.email);
-                        $analytics.eventTrack('Deauthorized Sessions');
-                        $state.go('frontend.login.info').then(function () {
-                            toastr.success('Please log back in.', 'All Sessions Deauthorized');
-                        });
-                    }).$promise;
-                });
+            $scope.submitPromise = cryptoService.hashPassword(model.masterPassword).then(function (theHash) {
+                hash = theHash;
+                return authService.getUserProfile();
+            }).then(function (theProfile) {
+                profile = theProfile;
+                return apiService.accounts.putSecurityStamp({
+                    masterPasswordHash: hash
+                }).$promise;
+            }).then(function () {
+                $uibModalInstance.dismiss('cancel');
+                authService.logOut();
+                tokenService.clearTwoFactorToken(profile.email);
+                $analytics.eventTrack('Deauthorized Sessions');
+                return $state.go('frontend.login.info');
+            }).then(function () {
+                toastr.success('Please log back in.', 'All Sessions Deauthorized');
+            });
         };
 
         $scope.close = function () {
