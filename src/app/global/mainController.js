@@ -8,6 +8,7 @@ angular
         vm.usingControlSidebar = vm.openControlSidebar = false;
         vm.searchVaultText = null;
         vm.version = appSettings.version;
+        vm.outdatedBrowser = navigator.userAgent.indexOf('MSIE') !== -1;
 
         $scope.currentYear = new Date().getFullYear();
 
@@ -92,6 +93,10 @@ angular
                 toastr.success('Verification email failed.');
                 $scope.sendingVerify = false;
             });
+        };
+
+        $scope.updateBrowser = function () {
+            $window.open('https://browser-update.org/update.html', '_blank');
         };
 
         // Append dropdown menu somewhere else

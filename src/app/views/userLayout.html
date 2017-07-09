@@ -147,6 +147,11 @@
 </aside>
 
 <div class="content-wrapper">
+    <div class="alert alert-danger alert-notification" ng-if="main.outdatedBrowser" ng-click="updateBrowser()">
+        <h4><i class="fa fa-warning fa-fw"></i> Update Your Browser</h4>
+        You are using an unsupported web browser. The web vault may not function properly.
+        <u>Update your browser now</u>.
+    </div>
     <div class="alert alert-warning alert-notification" ng-click="updateKey()" ng-if="!main.usingEncKey">
         <h4><i class="fa fa-key fa-fw"></i> Update Your Encryption Key</h4>
         You are currently using an outdated encryption scheme.
