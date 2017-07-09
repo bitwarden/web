@@ -9,8 +9,8 @@ angular
             _orgKeys,
             _privateKey,
             _publicKey,
-            _crypto = $window.crypto,
-            _subtle = $window.crypto.subtle;
+            _crypto = typeof $window.crypto != 'undefined' ? $window.crypto : null,
+            _subtle = (!!_crypto && typeof $window.crypto.subtle != 'undefined') ? $window.crypto.subtle : null;
 
         _service.setKey = function (key) {
             _key = key;
