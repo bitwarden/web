@@ -24,78 +24,37 @@
                 return;
             }
 
-            var file = files[0];
-            if (file.size > 104857600) { // 100 MB
-                validationService.addError(form, 'file', 'Maximum file size is 100 MB.', true);
-                return;
-            }
-
-            var reader = new FileReader();
-            reader.readAsArrayBuffer(file);
-            reader.onload = function (evt) {
-                $timeout(function () {
-                    form.$loading = true;
-                });
-
-                var key = getKeyForLogin();
-
-                var encFilename = cryptoService.encrypt(file.name, key);
-                $scope.savePromise = cryptoService.encryptToBytes(evt.target.result, key).then(function (encData) {
-                    var fd = new FormData();
-                    var blob = new Blob([encData], { type: 'application/octet-stream' });
-                    fd.append('data', blob, encFilename);
-                    return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
-                }).then(function (response) {
-                    $analytics.eventTrack('Added Attachment');
-                    toastr.success('The attachment has been added.');
-                    closing = true;
-                    $uibModalInstance.close(true);
-                });
-            };
-            reader.onerror = function (evt) {
-                validationService.addError(form, 'file', 'Error reading file.', true);
-            };
+            $scope.savePromise = cipherService.encryptAttachmentFile(getKeyForLogin(), files[0]).then(function (encValue) {
+                var fd = new FormData();
+                var blob = new Blob([encValue.data], { type: 'application/octet-stream' });
+                fd.append('data', blob, encValue.fileName);
+                return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
+            }).then(function (response) {
+                $analytics.eventTrack('Added Attachment');
+                toastr.success('The attachment has been added.');
+                closing = true;
+                $uibModalInstance.close(true);
+            }, function (err) {
+                if (err) {
+                    validationService.addError(form, 'file', err, true);
+                }
+                else {
+                    validationService.addError(form, 'file', 'Something went wrong.', true);
+                }
+            });
         }
 
         $scope.download = function (attachment) {
             attachment.loading = true;
-            var key = getKeyForLogin();
-
-            var req = new XMLHttpRequest();
-            req.open('GET', attachment.url, true);
-            req.responseType = 'arraybuffer';
-            req.onload = function (evt) {
-                if (!req.response) {
-                    $timeout(function () {
-                        attachment.loading = false;
-                    });
-
-                    // error
-                    return;
-                }
-
-                cryptoService.decryptFromBytes(req.response, key).then(function (decBuf) {
-                    var blob = new Blob([decBuf]);
-
-                    // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
-                    if (window.navigator.msSaveOrOpenBlob) {
-                        window.navigator.msSaveBlob(blob, attachment.fileName);
-                    }
-                    else {
-                        var a = window.document.createElement('a');
-                        a.href = window.URL.createObjectURL(blob);
-                        a.download = attachment.fileName;
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                    }
-                    
-                    $timeout(function () {
-                        attachment.loading = false;
-                    });
+            cipherService.downloadAndDecryptAttachment(getKeyForLogin(), attachment, true).then(function (res) {
+                $timeout(function () {
+                    attachment.loading = false;
                 });
-            };
-            req.send(null);
+            }, function () {
+                $timeout(function () {
+                    attachment.loading = false;
+                });
+            });
         };
 
         function getKeyForLogin() {

@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('cipherService', function (cryptoService, apiService, $q) {
+    .factory('cipherService', function (cryptoService, apiService, $q, $window) {
         var _service = {};
 
         _service.decryptLogins = function (encryptedLogins) {
@@ -89,6 +89,43 @@ angular
             };
         };
 
+        _service.downloadAndDecryptAttachment = function (key, decryptedAttachment, openDownload) {
+            var deferred = $q.defer();
+            var req = new XMLHttpRequest();
+            req.open('GET', decryptedAttachment.url, true);
+            req.responseType = 'arraybuffer';
+            req.onload = function (evt) {
+                if (!req.response) {
+                    deferred.reject('No response');
+                    // error
+                    return;
+                }
+
+                cryptoService.decryptFromBytes(req.response, key).then(function (decBuf) {
+                    if (openDownload) {
+                        var blob = new Blob([decBuf]);
+
+                        // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+                        if ($window.navigator.msSaveOrOpenBlob) {
+                            $window.navigator.msSaveBlob(blob, decryptedAttachment.fileName);
+                        }
+                        else {
+                            var a = $window.document.createElement('a');
+                            a.href = $window.URL.createObjectURL(blob);
+                            a.download = decryptedAttachment.fileName;
+                            $window.document.body.appendChild(a);
+                            a.click();
+                            $window.document.body.removeChild(a);
+                        }
+                    }
+
+                    deferred.resolve(new Uint8Array(decBuf));
+                });
+            };
+            req.send(null);
+            return deferred.promise;
+        };
+
         _service.decryptFolders = function (encryptedFolders) {
             if (!encryptedFolders) throw "encryptedFolders is undefined or null";
 
@@ -169,14 +206,14 @@ angular
             return encryptedLogins;
         };
 
-        _service.encryptLogin = function (unencryptedLogin, key) {
+        _service.encryptLogin = function (unencryptedLogin, key, attachments) {
             if (!unencryptedLogin) throw "unencryptedLogin is undefined or null";
 
             if (unencryptedLogin.organizationId) {
                 key = key || cryptoService.getOrgKey(unencryptedLogin.organizationId);
             }
 
-            return {
+            var login = {
                 id: unencryptedLogin.id,
                 'type': 1,
                 organizationId: unencryptedLogin.organizationId || null,
@@ -189,6 +226,42 @@ angular
                 notes: !unencryptedLogin.notes || unencryptedLogin.notes === '' ? null : cryptoService.encrypt(unencryptedLogin.notes, key),
                 totp: !unencryptedLogin.totp || unencryptedLogin.totp === '' ? null : cryptoService.encrypt(unencryptedLogin.totp, key)
             };
+
+            if (unencryptedLogin.attachments && attachments) {
+                login.attachments = {};
+                for (var i = 0; i < unencryptedLogin.attachments.length; i++) {
+                    login.attachments[unencryptedLogin.attachments[i].id] =
+                        cryptoService.encrypt(unencryptedLogin.attachments[i].fileName, key);
+                }
+            }
+
+            return login;
+        };
+
+        _service.encryptAttachmentFile = function (key, unencryptedFile) {
+            var deferred = $q.defer();
+
+            if (unencryptedFile.size > 104857600) { // 100 MB
+                deferred.reject('Maximum file size is 100 MB.');
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(unencryptedFile);
+            reader.onload = function (evt) {
+                cryptoService.encryptToBytes(evt.target.result, key).then(function (encData) {
+                    deferred.resolve({
+                        fileName: cryptoService.encrypt(unencryptedFile.name, key),
+                        data: new Uint8Array(encData),
+                        size: unencryptedFile.size
+                    });
+                });
+            };
+            reader.onerror = function (evt) {
+                deferred.reject('Error reading file.');
+            };
+
+            return deferred.promise;
         };
 
         _service.encryptFolders = function (unencryptedFolders, key) {

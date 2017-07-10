@@ -47,6 +47,12 @@
                 headers: { 'Content-Type': undefined },
                 params: { id: '@id' }
             },
+            postShareAttachment: {
+                url: _apiUri + '/ciphers/:id/attachment/:attachmentId/share?organizationId=:orgId',
+                method: 'POST',
+                headers: { 'Content-Type': undefined },
+                params: { id: '@id', attachmentId: '@attachmentId', orgId: '@orgId' }
+            },
             delAttachment: { url: _apiUri + '/ciphers/:id/attachment/:attachmentId/delete', method: 'POST', params: { id: '@id', attachmentId: '@attachmentId' } }
         });
 

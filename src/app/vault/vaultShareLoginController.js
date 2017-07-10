@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultShareLoginController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
-        loginId, $analytics, $state) {
+        loginId, $analytics, $state, cryptoService, $q) {
         $analytics.eventTrack('vaultShareLoginController', { category: 'Modal' });
         $scope.model = {};
         $scope.login = {};
@@ -111,23 +111,50 @@
 
         $scope.submitPromise = null;
         $scope.submit = function (model) {
-            $scope.login.organizationId = model.organizationId;
+            var orgKey = cryptoService.getOrgKey(model.organizationId);
 
-            var request = {
-                collectionIds: [],
-                cipher: cipherService.encryptLogin($scope.login)
-            };
+            var attachmentSharePromises = [];
+            if ($scope.login.attachments) {
+                for (var i = 0; i < $scope.login.attachments.length; i++) {
+                    var attachment = $scope.login.attachments[i];
+                    var promise = cipherService.downloadAndDecryptAttachment(null, attachment, false)
+                        .then(function (decData) {
+                            return cryptoService.encryptToBytes(decData.buffer, orgKey);
+                        }).then(function (encData) {
+                            var fd = new FormData();
+                            var blob = new Blob([encData], { type: 'application/octet-stream' });
+                            var encFilename = cryptoService.encrypt(attachment.fileName, orgKey);
+                            fd.append('data', blob, encFilename);
 
-            for (var id in $scope.selectedCollections) {
-                if ($scope.selectedCollections.hasOwnProperty(id)) {
-                    request.collectionIds.push(id);
+                            return apiService.ciphers.postShareAttachment({
+                                id: loginId,
+                                attachmentId: attachment.id,
+                                orgId: model.organizationId
+                            }, fd).$promise;
+                        });
+                    attachmentSharePromises.push(promise);
                 }
             }
 
-            $scope.submitPromise = apiService.ciphers.putShare({ id: loginId }, request, function (response) {
+            $scope.submitPromise = $q.all(attachmentSharePromises).then(function () {
+                $scope.login.organizationId = model.organizationId;
+
+                var request = {
+                    collectionIds: [],
+                    cipher: cipherService.encryptLogin($scope.login, null, true)
+                };
+
+                for (var id in $scope.selectedCollections) {
+                    if ($scope.selectedCollections.hasOwnProperty(id)) {
+                        request.collectionIds.push(id);
+                    }
+                }
+
+                return apiService.ciphers.putShare({ id: loginId }, request).$promise;
+            }).then(function (response) {
                 $analytics.eventTrack('Shared Login');
                 $uibModalInstance.close(model.organizationId);
-            }).$promise;
+            });
         };
 
         $scope.close = function () {
