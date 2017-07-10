@@ -116,23 +116,24 @@
             var attachmentSharePromises = [];
             if ($scope.login.attachments) {
                 for (var i = 0; i < $scope.login.attachments.length; i++) {
-                    var attachment = $scope.login.attachments[i];
-                    var promise = cipherService.downloadAndDecryptAttachment(null, attachment, false)
-                        .then(function (decData) {
-                            return cryptoService.encryptToBytes(decData.buffer, orgKey);
-                        }).then(function (encData) {
-                            var fd = new FormData();
-                            var blob = new Blob([encData], { type: 'application/octet-stream' });
-                            var encFilename = cryptoService.encrypt(attachment.fileName, orgKey);
-                            fd.append('data', blob, encFilename);
+                    (function (attachment) {
+                        var promise = cipherService.downloadAndDecryptAttachment(null, attachment, false)
+                            .then(function (decData) {
+                                return cryptoService.encryptToBytes(decData.buffer, orgKey);
+                            }).then(function (encData) {
+                                var fd = new FormData();
+                                var blob = new Blob([encData], { type: 'application/octet-stream' });
+                                var encFilename = cryptoService.encrypt(attachment.fileName, orgKey);
+                                fd.append('data', blob, encFilename);
 
-                            return apiService.ciphers.postShareAttachment({
-                                id: loginId,
-                                attachmentId: attachment.id,
-                                orgId: model.organizationId
-                            }, fd).$promise;
-                        });
-                    attachmentSharePromises.push(promise);
+                                return apiService.ciphers.postShareAttachment({
+                                    id: loginId,
+                                    attachmentId: attachment.id,
+                                    orgId: model.organizationId
+                                }, fd).$promise;
+                            });
+                        attachmentSharePromises.push(promise);
+                    })($scope.login.attachments[i]);
                 }
             }
 
