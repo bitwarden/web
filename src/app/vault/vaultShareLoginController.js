@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultShareLoginController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
-        loginId, $analytics, $state, cryptoService, $q) {
+        loginId, $analytics, $state, cryptoService, $q, toastr) {
         $analytics.eventTrack('vaultShareLoginController', { category: 'Modal' });
         $scope.model = {};
         $scope.login = {};
@@ -113,6 +113,7 @@
         $scope.submit = function (model) {
             var orgKey = cryptoService.getOrgKey(model.organizationId);
 
+            var errorOnUpload = false;
             var attachmentSharePromises = [];
             if ($scope.login.attachments) {
                 for (var i = 0; i < $scope.login.attachments.length; i++) {
@@ -121,6 +122,10 @@
                             .then(function (decData) {
                                 return cryptoService.encryptToBytes(decData.buffer, orgKey);
                             }).then(function (encData) {
+                                if (errorOnUpload) {
+                                    return;
+                                }
+
                                 var fd = new FormData();
                                 var blob = new Blob([encData], { type: 'application/octet-stream' });
                                 var encFilename = cryptoService.encrypt(attachment.fileName, orgKey);
@@ -131,6 +136,8 @@
                                     attachmentId: attachment.id,
                                     orgId: model.organizationId
                                 }, fd).$promise;
+                            }, function (err) {
+                                errorOnUpload = true;
                             });
                         attachmentSharePromises.push(promise);
                     })($scope.login.attachments[i]);
@@ -138,6 +145,10 @@
             }
 
             $scope.submitPromise = $q.all(attachmentSharePromises).then(function () {
+                if (errorOnUpload) {
+                    return;
+                }
+
                 $scope.login.organizationId = model.organizationId;
 
                 var request = {
@@ -154,6 +165,7 @@
                 return apiService.ciphers.putShare({ id: loginId }, request).$promise;
             }).then(function (response) {
                 $analytics.eventTrack('Shared Login');
+                toastr.success('Login has been shared.');
                 $uibModalInstance.close(model.organizationId);
             });
         };
