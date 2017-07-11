@@ -128,7 +128,7 @@
                         currentName: org.StorageName || '0 GB'
                     };
 
-                    $scope.storage.percentage = +($scope.storage.currentGb / $scope.storage.maxGb).toFixed(2);
+                    $scope.storage.percentage = +(100 * ($scope.storage.currentGb / $scope.storage.maxGb)).toFixed(2);
                 }
 
                 $scope.subscription = null;
