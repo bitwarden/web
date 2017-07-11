@@ -1,9 +1,9 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService, stripe,
+    .controller('settingsBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService, stripe,
         $analytics, toastr, existingPaymentMethod) {
-        $analytics.eventTrack('organizationBillingChangePaymentController', { category: 'Modal' });
+        $analytics.eventTrack('settingsBillingChangePaymentController', { category: 'Modal' });
         $scope.existingPaymentMethod = existingPaymentMethod;
 
         $scope.submit = function () {
@@ -12,15 +12,15 @@
                     paymentToken: response.id
                 };
 
-                return apiService.organizations.putPayment({ id: $state.params.orgId }, request).$promise;
+                return apiService.accounts.putPayment(null, request).$promise;
             }).then(function (response) {
                 $scope.card = null;
                 if (existingPaymentMethod) {
-                    $analytics.eventTrack('Changed Organization Payment Method');
+                    $analytics.eventTrack('Changed Payment Method');
                     toastr.success('You have changed your payment method.');
                 }
                 else {
-                    $analytics.eventTrack('Added Organization Payment Method');
+                    $analytics.eventTrack('Added Payment Method');
                     toastr.success('You have added a payment method.');
                 }
 

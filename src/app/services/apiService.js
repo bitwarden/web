@@ -127,6 +127,7 @@
             postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} },
             postPremium: { url: _apiUri + '/accounts/premium', method: 'POST', params: {} },
             putStorage: { url: _apiUri + '/accounts/storage', method: 'POST', params: {} },
+            putPayment: { url: _apiUri + '/accounts/payment', method: 'POST', params: {} },
             putCancelPremium: { url: _apiUri + '/accounts/cancel-premium', method: 'POST', params: {} },
             putReinstatePremium: { url: _apiUri + '/accounts/reinstate-premium', method: 'POST', params: {} },
             getBilling: { url: _apiUri + '/accounts/billing', method: 'GET', params: {} }

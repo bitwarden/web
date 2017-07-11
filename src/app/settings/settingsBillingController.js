@@ -14,7 +14,7 @@
         $scope.changePayment = function () {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/settingsBillingChangePayment.html',
+                templateUrl: 'app/settings/views/settingsBillingChangePayment.html',
                 controller: 'settingsBillingChangePaymentController',
                 resolve: {
                     existingPaymentMethod: function () {
