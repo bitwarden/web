@@ -100,6 +100,9 @@
                 case 'passkeepcsv':
                     importPassKeepCsv(file, success, error);
                     break;
+                case 'gnomejson':
+                    importGnomeJson(file, success, error);
+                    break;
                 default:
                     error();
                     break;
@@ -2451,6 +2454,77 @@
                     success(folders, logins, folderRelationships);
                 }
             });
+        }
+
+        function importGnomeJson(file, success, error) {
+            var folders = [],
+                logins = [],
+                loginRelationships = [],
+                i = 0;
+
+            getFileContents(file, parseJson, error);
+
+            function parseJson(fileContent) {
+                var fileJson = JSON.parse(fileContent);
+                var folderIndex = 0;
+                var loginIndex = 0;
+
+                if (fileJson && Object.keys(fileJson).length) {
+                    for (var keyRing in fileJson) {
+                        if (fileJson.hasOwnProperty(keyRing) && fileJson[keyRing].length) {
+                            folderIndex = folders.length;
+                            folders.push({
+                                name: keyRing
+                            });
+
+                            for (i = 0; i < fileJson[keyRing].length; i++) {
+                                var item = fileJson[keyRing][i];
+                                if (!item.display_name || item.display_name.indexOf('http') !== 0) {
+                                    continue;
+                                }
+
+                                loginIndex = logins.length;
+
+                                var login = {
+                                    favorite: false,
+                                    uri: fixUri(item.display_name),
+                                    username: item.attributes.username_value && item.attributes.username_value !== '' ?
+                                        item.attributes.username_value : null,
+                                    password: item.secret && item.secret !== '' ? item.secret : null,
+                                    notes: '',
+                                    name: item.display_name.replace('http://', '').replace('https://', ''),
+                                };
+
+                                if (login.name > 30) {
+                                    login.name = login.name.substring(0, 30);
+                                }
+
+                                for (var attr in item.attributes) {
+                                    if (item.attributes.hasOwnProperty(attr) && attr !== 'username_value' &&
+                                        attr !== 'xdg:schema') {
+                                        if (login.notes !== '') {
+                                            login.notes += '\n'
+                                        }
+                                        login.notes += (attr + ': ' + item.attributes[attr]);
+                                    }
+                                }
+
+                                if (login.notes === '') {
+                                    login.notes = null;
+                                }
+
+                                logins.push(login);
+                                loginRelationships.push({
+                                    key: loginIndex,
+                                    value: folderIndex
+                                });
+                            }
+                        }
+                    }
+                }
+
+                success(folders, logins, loginRelationships);
+            }
         }
 
         return _service;

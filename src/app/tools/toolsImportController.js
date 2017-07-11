@@ -232,6 +232,16 @@
                     'importing from Google Chrome. See detailed instructions on our help site at ' +
                     '<a target="_blank" href="https://help.bitwarden.com/article/import-from-chrome/">' +
                     'https://help.bitwarden.com/article/import-from-chrome/</a>')
+            },
+            {
+                id: 'gnomejson',
+                name: 'GNOME Passwords and Keys/Seahorse (json)',
+                instructions: $sce.trustAsHtml('Make sure you have python-keyring and python-gnomekeyring installed. ' + 
+                    'Save the <a target="_blank" href="http://bit.ly/2sMldAI">GNOME Keyring Import/Export</a> ' +
+                    'python script by Luke Plant to your desktop as <code>pw_helper.py</code>. Open terminal and run ' +
+                    '<code>chmod +rx Desktop/pw_helper.py</code> and then ' +
+                    '<code>python Desktop/pw_helper.py export Desktop/my_passwords.json</code>. Then upload ' +
+                    'the resulting <code>my_passwords.json</code> file here to bitwarden.')
             }
         ];
 
