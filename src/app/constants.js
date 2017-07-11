@@ -120,5 +120,14 @@ angular.module('bit')
                 annualPlanType: 'enterpriseAnnually',
                 upgradeSortOrder: 3
             }
+        },
+        storageGb: {
+            price: 0.33,
+            monthlyPrice: 0.50,
+            yearlyPrice: 4
+        },
+        premium: {
+            price: 10,
+            yearlyPrice: 10
         }
     });

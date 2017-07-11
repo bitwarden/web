@@ -217,6 +217,15 @@ angular
             });
         };
 
+        _service.updateProfilePremium = function (isPremium) {
+            return _service.getUserProfile().then(function (profile) {
+                if (profile) {
+                    profile.premium = isPremium;
+                    _userProfile = profile;
+                }
+            });
+        };
+
         _service.isAuthenticated = function () {
             return tokenService.getToken() !== null;
         };

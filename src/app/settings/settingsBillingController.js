@@ -87,6 +87,17 @@
 
                 var i = 0;
 
+                $scope.storage = null;
+                if (billing && billing.MaxStorageGb) {
+                    $scope.storage = {
+                        currentGb: billing.StorageGb || 0,
+                        maxGb: billing.MaxStorageGb,
+                        currentName: billing.StorageName || '0 GB'
+                    };
+
+                    $scope.storage.percentage = +($scope.storage.currentGb / $scope.storage.maxGb).toFixed(2);
+                }
+
                 $scope.subscription = null;
                 if (billing && billing.Subscription) {
                     $scope.subscription = {

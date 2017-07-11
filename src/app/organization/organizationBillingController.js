@@ -103,6 +103,17 @@
                     seats: org.Seats
                 };
 
+                $scope.storage = null;
+                if ($scope && org.MaxStorageGb) {
+                    $scope.storage = {
+                        currentGb: org.StorageGb || 0,
+                        maxGb: org.MaxStorageGb,
+                        currentName: org.StorageName || '0 GB'
+                    };
+
+                    $scope.storage.percentage = +($scope.storage.currentGb / $scope.storage.maxGb).toFixed(2);
+                }
+
                 $scope.subscription = null;
                 if (org.Subscription) {
                     $scope.subscription = {

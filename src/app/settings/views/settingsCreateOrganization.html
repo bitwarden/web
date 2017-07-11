@@ -75,6 +75,7 @@
                         <span>For personal users such as families &amp; friends.</span>
                         <span>- Add and share with up to 10 users (5 included with base price)</span>
                         <span>- Create unlimited collections</span>
+                        <span>- 1 GB encrypted file storage</span>
                         <span>- Priority customer support</span>
                         <span>- 7 day free trial, cancel anytime</span>
                         <span class="bottom-line">
@@ -90,6 +91,7 @@
                         <span>For businesses and other team organizations.</span>
                         <span>- Add and share with unlimited users</span>
                         <span>- Create unlimited collections</span>
+                        <span>- 1 GB encrypted file storage</span>
                         <span>- Priority customer support</span>
                         <span>- 7 day free trial, cancel anytime</span>
                         <span class="bottom-line">
@@ -105,6 +107,7 @@
                         <span>For businesses and other large organizations.</span>
                         <span>- Add and share with unlimited users</span>
                         <span>- Create unlimited collections</span>
+                        <span>- 1 GB encrypted file storage</span>
                         <span>- Control user access with groups</span>
                         <span>- Sync your users and groups from a directory (AD, Azure AD, GSuite, LDAP)</span>
                         <span>- Priority customer support</span>
@@ -168,6 +171,27 @@
         </div>
         <div class="box box-default" ng-if="!plans[model.plan].noPayment">
             <div class="box-header with-border">
+                <h3 class="box-title">Additional Storage</h3>
+            </div>
+            <div class="box-body">
+                <div class="form-group" show-errors style="margin: 0;">
+                    <p>
+                        Your plan comes with 1 GB of encrypted file storage. You can add additional
+                        storage for {{storageGb.price | currency:"$":2}} per GB /month.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="additionalStorage" class="sr-only">Storage</label>
+                            <input type="number" id="additionalStorage" name="AdditionalStorageGb"
+                                   ng-model="model.additionalStorageGb" min="0" max="99" step="1" class="form-control"
+                                   placeholder="# of additional GB" api-field />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box box-default" ng-if="!plans[model.plan].noPayment">
+            <div class="box-header with-border">
                 <h3 class="box-title">Billing Summary</h3>
             </div>
             <div class="box-body">
@@ -187,6 +211,12 @@
                             &times;12 mo. =
                             {{((model.additionalSeats || 0) * plans[model.plan].annualSeatPrice) | currency:"$":2}} /year
                         </span>
+                        <span>
+                            Additional storage:
+                            {{model.additionalStorageGb || 0}} GB &times; {{storageGb.price | currency:"$":2}}
+                            &times;12 mo. =
+                            {{(model.additionalStorageGb || 0) * storageGb.yearlyPrice | currency:"$":2}} /year
+                        </span>
                     </label>
                 </div>
                 <div class="radio radio-block" ng-if="model.plan !== 'personal'">
@@ -203,6 +233,11 @@
                             {{model.additionalSeats || 0}}
                             &times;{{plans[model.plan].monthlySeatPrice | currency:"$":2}} =
                             {{((model.additionalSeats || 0) * plans[model.plan].monthlySeatPrice) | currency:"$":2}} /month
+                        </span>
+                        <span>
+                            Additional storage:
+                            {{model.additionalStorageGb || 0}} GB &times; {{storageGb.monthlyPrice | currency:"$":2}} =
+                            {{(model.additionalStorageGb || 0) * storageGb.monthlyPrice | currency:"$":2}} /month
                         </span>
                     </label>
                 </div>

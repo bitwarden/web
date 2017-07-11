@@ -99,6 +99,32 @@
             </button>
         </div>
     </div>
+    <div class="box box-default" ng-if="storage">
+        <div class="box-header with-border">
+            <h3 class="box-title">Storage</h3>
+        </div>
+        <div class="box-body">
+            <p>
+                You plan has a total of {{storage.maxGb}} GB of encrypted file storage.
+                You are currently using {{storage.currentName}}.
+            </p>
+            <div class="progress" style="margin: 0;">
+                <div class="progress-bar progress-bar-info" role="progressbar"
+                     aria-valuenow="{{storage.percentage}}" aria-valuemin="0" aria-valuemax="1"
+                     style="min-width: 50px; width: {{storage.percentage}}%;">
+                    {{storage.percentage}}%
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(true)">
+                Add Storage
+            </button>
+            <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(false)">
+                Remove Storage
+            </button>
+        </div>
+    </div>
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">Payment Method</h3>

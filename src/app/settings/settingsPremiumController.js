@@ -1,15 +1,16 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsPremiumController', function ($scope, $state, apiService, toastr, $analytics, authService, stripe) {
+    .controller('settingsPremiumController', function ($scope, $state, apiService, toastr, $analytics, authService, stripe,
+        constants) {
         authService.getUserProfile().then(function (profile) {
             if (profile.premium) {
                 return $state.go('backend.user.settingsBilling');
             }
         });
 
-        $scope.storageGbPrice = 4;
-        $scope.premiumPrice = 10;
+        $scope.storageGbPrice = constants.storageGb.yearlyPrice;
+        $scope.premiumPrice = constants.premium.price;
 
         $scope.model = {
             additionalStorageGb: null
@@ -28,6 +29,8 @@
 
                 return apiService.accounts.postPremium(request).$promise;
             }).then(function (result) {
+                return authService.updateProfilePremium(true);
+            }).then(function () {
                 $analytics.eventTrack('Signed Up Premium');
                 return authService.refreshAccessToken();
             }).then(function () {

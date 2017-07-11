@@ -4,21 +4,25 @@
     .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, cryptoService,
         toastr, $analytics, authService, stripe, constants) {
         $scope.plans = constants.plans;
+        $scope.storageGb = constants.storageGb;
 
         $scope.model = {
             plan: 'free',
             additionalSeats: 0,
             interval: 'year',
-            ownedBusiness: false
+            ownedBusiness: false,
+            additionalStorageGb: null
         };
 
         $scope.totalPrice = function () {
             if ($scope.model.interval === 'month') {
-                return ($scope.model.additionalSeats || 0) * ($scope.plans[$scope.model.plan].monthlySeatPrice || 0) +
+                return (($scope.model.additionalSeats || 0) * ($scope.plans[$scope.model.plan].monthlySeatPrice || 0)) +
+                    (($scope.model.additionalStorageGb || 0) * $scope.storageGb.monthlyPrice) +
                     ($scope.plans[$scope.model.plan].monthlyBasePrice || 0);
             }
             else {
-                return ($scope.model.additionalSeats || 0) * ($scope.plans[$scope.model.plan].annualSeatPrice || 0) +
+                return (($scope.model.additionalSeats || 0) * ($scope.plans[$scope.model.plan].annualSeatPrice || 0)) +
+                    (($scope.model.additionalStorageGb || 0) * $scope.storageGb.yearlyPrice) +
                     ($scope.plans[$scope.model.plan].annualBasePrice || 0);
             }
         };
@@ -65,6 +69,7 @@
                         key: shareKeyCt,
                         paymentToken: response.id,
                         additionalSeats: model.additionalSeats,
+                        additionalStorageGb: model.additionalStorageGb,
                         billingEmail: model.billingEmail,
                         businessName: model.ownedBusiness ? model.businessName : null
                     };

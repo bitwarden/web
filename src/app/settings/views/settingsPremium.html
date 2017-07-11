@@ -64,9 +64,9 @@
                 <h3 class="box-title">Billing Summary</h3>
             </div>
             <div class="box-body">
-                Premium Membership:
+                Premium membership:
                 {{premiumPrice | currency:"$"}}<br />
-                Additional Storage:
+                Additional storage:
                 {{model.additionalStorageGb || 0}} GB &times; {{storageGbPrice | currency:"$"}} =
                 {{(model.additionalStorageGb || 0) * storageGbPrice | currency:"$"}}
             </div>
