@@ -63,6 +63,23 @@
             });
         };
 
+        $scope.adjustStorage = function (add) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsBillingAdjustStorage.html',
+                controller: 'organizationBillingAdjustStorageController',
+                resolve: {
+                    add: function () {
+                        return add;
+                    }
+                }
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
         $scope.cancel = function () {
             if (!confirm('Are you sure you want to cancel? All users will lose access to the organization ' +
                 'at the end of this billing cycle.')) {

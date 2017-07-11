@@ -64,6 +64,7 @@
             put: { method: 'POST', params: { id: '@id' } },
             putPayment: { url: _apiUri + '/organizations/:id/payment', method: 'POST', params: { id: '@id' } },
             putSeat: { url: _apiUri + '/organizations/:id/seat', method: 'POST', params: { id: '@id' } },
+            putStorage: { url: _apiUri + '/organizations/:id/storage', method: 'POST', params: { id: '@id' } },
             putUpgrade: { url: _apiUri + '/organizations/:id/upgrade', method: 'POST', params: { id: '@id' } },
             putCancel: { url: _apiUri + '/organizations/:id/cancel', method: 'POST', params: { id: '@id' } },
             putReinstate: { url: _apiUri + '/organizations/:id/reinstate', method: 'POST', params: { id: '@id' } },
@@ -125,6 +126,7 @@
             'import': { url: _apiUri + '/accounts/import', method: 'POST', params: {} },
             postDelete: { url: _apiUri + '/accounts/delete', method: 'POST', params: {} },
             postPremium: { url: _apiUri + '/accounts/premium', method: 'POST', params: {} },
+            putStorage: { url: _apiUri + '/accounts/storage', method: 'POST', params: {} },
             putCancelPremium: { url: _apiUri + '/accounts/cancel-premium', method: 'POST', params: {} },
             putReinstatePremium: { url: _apiUri + '/accounts/reinstate-premium', method: 'POST', params: {} },
             getBilling: { url: _apiUri + '/accounts/billing', method: 'GET', params: {} }
