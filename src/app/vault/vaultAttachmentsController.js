@@ -31,7 +31,7 @@
                 return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
             }).then(function (response) {
                 $analytics.eventTrack('Added Attachment');
-                toastr.success('The attachment has been added.');
+                toastr.success('The attachment has been saved.');
                 closing = true;
                 $uibModalInstance.close(true);
             }, function (err) {

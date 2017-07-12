@@ -164,6 +164,12 @@ angular
                     }, 1000);
                 });
 
+                scope.$on("$destroy", function () {
+                    if (interval) {
+                        clearInterval(interval);
+                    }
+                });
+
                 scope.clipboardError = function (e) {
                     alert('Your web browser does not support easy clipboard copying.');
                 };
