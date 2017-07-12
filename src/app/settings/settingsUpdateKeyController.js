@@ -15,7 +15,11 @@
 
             $scope.processing = true;
             $scope.savePromise = cryptoService.hashPassword($scope.masterPassword).then(function (hash) {
-                return cipherService.updateKey(hash);
+                return cipherService.updateKey(hash, function () {
+                    return null;
+                }, function () {
+                    return null;
+                });
             }).then(function () {
                 $uibModalInstance.dismiss('cancel');
                 authService.logOut();
