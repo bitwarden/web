@@ -15,7 +15,7 @@ angular
             return unencryptedLogins;
         };
 
-        _service.decryptLogin = function (encryptedLogin) {
+        _service.decryptLogin = function (encryptedLogin, isCipher) {
             if (!encryptedLogin) throw "encryptedLogin is undefined or null";
 
             var key = null;
@@ -32,14 +32,18 @@ angular
                 favorite: encryptedLogin.Favorite,
                 edit: encryptedLogin.Edit,
                 organizationUseTotp: encryptedLogin.OrganizationUseTotp,
-                name: cryptoService.decrypt(encryptedLogin.Name, key),
-                uri: encryptedLogin.Uri && encryptedLogin.Uri !== '' ? cryptoService.decrypt(encryptedLogin.Uri, key) : null,
-                username: encryptedLogin.Username && encryptedLogin.Username !== '' ? cryptoService.decrypt(encryptedLogin.Username, key) : null,
-                password: encryptedLogin.Password && encryptedLogin.Password !== '' ? cryptoService.decrypt(encryptedLogin.Password, key) : null,
-                notes: encryptedLogin.Notes && encryptedLogin.Notes !== '' ? cryptoService.decrypt(encryptedLogin.Notes, key) : null,
-                totp: encryptedLogin.Totp && encryptedLogin.Totp !== '' ? cryptoService.decrypt(encryptedLogin.Totp, key) : null,
                 attachments: null
             };
+
+            var loginData = encryptedLogin.Data || encryptedLogin;
+            if (loginData) {
+                login.name = cryptoService.decrypt(loginData.Name, key);
+                login.uri = loginData.Uri && loginData.Uri !== '' ? cryptoService.decrypt(loginData.Uri, key) : null;
+                login.username = loginData.Username && loginData.Username !== '' ? cryptoService.decrypt(loginData.Username, key) : null;
+                login.password = loginData.Password && loginData.Password !== '' ? cryptoService.decrypt(loginData.Password, key) : null;
+                login.notes = loginData.Notes && loginData.Notes !== '' ? cryptoService.decrypt(loginData.Notes, key) : null;
+                login.totp = loginData.Totp && loginData.Totp !== '' ? cryptoService.decrypt(loginData.Totp, key) : null;
+            }
 
             if (!encryptedLogin.Attachments) {
                 return login;
@@ -69,11 +73,15 @@ angular
                 favorite: encryptedCipher.Favorite,
                 edit: encryptedCipher.Edit,
                 organizationUseTotp: encryptedCipher.OrganizationUseTotp,
-                name: _service.decryptProperty(encryptedCipher.Data.Name, key, false),
-                username: _service.decryptProperty(encryptedCipher.Data.Username, key, true),
-                password: _service.decryptProperty(encryptedCipher.Data.Password, key, true),
                 hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0
             };
+
+            var loginData = encryptedCipher.Data || encryptedCipher;
+            if (loginData) {
+                login.name = cryptoService.decrypt(loginData.Name, key);
+                login.username = loginData.Username && loginData.Username !== '' ? cryptoService.decrypt(loginData.Username, key) : null;
+                login.password = loginData.Password && loginData.Password !== '' ? cryptoService.decrypt(loginData.Password, key) : null;
+            }
 
             return login;
         };

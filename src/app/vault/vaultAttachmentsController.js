@@ -18,7 +18,8 @@
         });
 
         $scope.save = function (form) {
-            var files = document.getElementById('file').files;
+            var fileEl = document.getElementById('file');
+            var files = fileEl.files;
             if (!files || !files.length) {
                 validationService.addError(form, 'file', 'Select a file.', true);
                 return;
@@ -31,9 +32,13 @@
                 return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
             }).then(function (response) {
                 $analytics.eventTrack('Added Attachment');
-                toastr.success('The attachment has been saved.');
-                closing = true;
-                $uibModalInstance.close(true);
+                $scope.login = cipherService.decryptLogin(response);
+
+                // reset file input
+                // ref: https://stackoverflow.com/a/20552042
+                fileEl.type = '';
+                fileEl.type = 'file';
+                fileEl.value = '';
             }, function (err) {
                 if (err) {
                     validationService.addError(form, 'file', err, true);
