@@ -249,6 +249,7 @@
                             password: value.password && value.password !== '' ? value.password : null,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
+                            totp: value.totp && value.totp !== '' ? value.totp : null
                         });
 
                         if (addFolder) {

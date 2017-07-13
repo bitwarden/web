@@ -600,6 +600,10 @@ angular
                 throw 'Encryption key unavailable.';
             }
 
+            if (encType !== key.encType) {
+                throw 'encType unavailable.';
+            }
+
             var keyBuf = key.getBuffers(),
                 encKey = null;
 

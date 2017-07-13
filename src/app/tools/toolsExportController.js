@@ -40,7 +40,8 @@
                             notes: decLogins[i].notes,
                             folder: decLogins[i].folderId && (decLogins[i].folderId in foldersDict) ?
                                 foldersDict[decLogins[i].folderId].name : null,
-                            favorite: decLogins[i].favorite ? 1 : null
+                            favorite: decLogins[i].favorite ? 1 : null,
+                            totp: decLogins[i].totp
                         };
 
                         exportLogins.push(login);
