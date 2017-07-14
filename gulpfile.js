@@ -379,7 +379,7 @@ gulp.task('dist:js:fallback', function () {
             paths.webroot + 'js/fallback*.js'
         ]);
 
-    merge(mainStream, config())
+    merge(mainStream)
         .pipe(preprocess({ context: { cacheTag: randomString } }))
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
@@ -392,7 +392,7 @@ gulp.task('dist:js:u2f', function () {
             paths.webroot + 'js/u2f*.js'
         ]);
 
-    merge(mainStream, config())
+    merge(mainStream)
         .pipe(concat(paths.dist + '/js/u2f.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('.'));
