@@ -13,6 +13,12 @@ angular
                 params: { plan: $state.params.org }
             };
         }
+        else if (!stateParams.returnState && stateParams.premium) {
+            $scope.returnState = {
+                name: 'backend.user.settingsPremium',
+                params: { plan: $state.params.org }
+            };
+        }
         else {
             $scope.returnState = stateParams.returnState;
         }

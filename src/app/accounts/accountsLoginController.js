@@ -7,25 +7,28 @@ angular
         $scope.twoFactorProviderConstants = constants.twoFactorProvider;
         $scope.rememberTwoFactor = { checked: false };
 
-        if ($state.current.name.indexOf('twoFactor') > -1 && (!$scope.twoFactorProviders || !$scope.twoFactorProviders.length)) {
-            $state.go('frontend.login.info', { returnState: returnState });
-        }
-
-        var returnState;
-        if (!$state.params.returnState && $state.params.org) {
-            returnState = {
+        $scope.returnState = $state.params.returnState;
+        $scope.stateEmail = $state.params.email;
+        if (!$scope.returnState && $state.params.org) {
+            $scope.returnState = {
                 name: 'backend.user.settingsCreateOrg',
                 params: { plan: $state.params.org }
             };
         }
-        else {
-            returnState = $state.params.returnState;
+        else if (!$scope.returnState && $state.params.premium) {
+            $scope.returnState = {
+                name: 'backend.user.settingsPremium'
+            };
+        }
+
+        if ($state.current.name.indexOf('twoFactor') > -1 && (!$scope.twoFactorProviders || !$scope.twoFactorProviders.length)) {
+            $state.go('frontend.login.info', { returnState: $scope.returnState });
         }
 
         var rememberedEmail = $cookies.get(constants.rememberedEmailCookieName);
-        if (rememberedEmail || $state.params.email) {
+        if (rememberedEmail || $scope.stateEmail) {
             $scope.model = {
-                email: $state.params.email ? $state.params.email : rememberedEmail,
+                email: $scope.stateEmail || rememberedEmail,
                 rememberEmail: rememberedEmail !== null
             };
 
@@ -67,7 +70,7 @@ angular
                     $scope.twoFactorProvider = getDefaultProvider(twoFactorProviders);
 
                     $analytics.eventTrack('Logged In To Two-step');
-                    $state.go('frontend.login.twoFactor', { returnState: returnState }).then(function () {
+                    $state.go('frontend.login.twoFactor', { returnState: $scope.returnState }).then(function () {
                         $timeout(function () {
                             $("#code").focus();
                             init();
@@ -164,8 +167,8 @@ angular
         };
 
         function loggedInGo() {
-            if (returnState) {
-                $state.go(returnState.name, returnState.params);
+            if ($scope.returnState) {
+                $state.go($scope.returnState.name, $scope.returnState.params);
             }
             else {
                 $state.go('backend.user.vault');

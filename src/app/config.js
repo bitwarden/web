@@ -7,7 +7,7 @@ angular
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
             urlParam: 'access_token3',
-            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.4']
+            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.3']
         });
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
@@ -214,14 +214,16 @@ angular
                 controller: 'accountsLoginController',
                 params: {
                     returnState: null,
-                    email: null
+                    email: null,
+                    premium: null,
+                    org: null
                 },
                 data: {
                     bodyClass: 'login-page'
                 }
             })
             .state('frontend.login.info', {
-                url: '^/?org',
+                url: '^/?org&premium&email',
                 templateUrl: 'app/accounts/views/accountsLoginInfo.html',
                 data: {
                     pageTitle: 'Log In'
@@ -260,12 +262,14 @@ angular
                 }
             })
             .state('frontend.register', {
-                url: '^/register?org',
+                url: '^/register?org&premium',
                 templateUrl: 'app/accounts/views/accountsRegister.html',
                 controller: 'accountsRegisterController',
                 params: {
                     returnState: null,
-                    email: null
+                    email: null,
+                    org: null,
+                    premium: null
                 },
                 data: {
                     pageTitle: 'Register',
