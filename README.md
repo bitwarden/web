@@ -13,9 +13,6 @@ The bitwarden Web project is an AngularJS application that powers the web vault 
 - Node.js
 - Gulp
 
-Unless you are running the [Core](https://github.com/bitwarden/core) API locally, you'll probably need to switch the 
-application to target the production API. Open `package.json` and set `production` to `true`.
-
 By default the application points to the production API. If you want to change that to point to a local instance of
 the [Core](https://github.com/bitwarden/core) API, you can modify the `package.json` `env` property to `Development`
 and then set your local endpoints in `settings.json`.
