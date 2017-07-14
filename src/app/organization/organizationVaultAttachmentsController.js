@@ -41,7 +41,7 @@
                     validationService.addError(form, 'file', 'Something went wrong.', true);
                 }
             });
-        }
+        };
 
         $scope.download = function (attachment) {
             attachment.loading = true;

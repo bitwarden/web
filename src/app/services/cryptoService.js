@@ -351,7 +351,7 @@ angular
             var cipherString = iv + '|' + ct;
 
             if (encValue.mac) {
-                var mac = forge.util.encode64(encValue.mac)
+                var mac = forge.util.encode64(encValue.mac);
                 cipherString = cipherString + '|' + mac;
             }
 
@@ -362,7 +362,7 @@ angular
             return aesEncryptWC(plainValue, key).then(function (encValue) {
                 var macLen = 0;
                 if (encValue.mac) {
-                    macLen = encValue.mac.length
+                    macLen = encValue.mac.length;
                 }
 
                 var encBytes = new Uint8Array(1 + encValue.iv.length + macLen + encValue.ct.length);

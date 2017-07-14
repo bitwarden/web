@@ -43,7 +43,7 @@ angular
                             bytes[i / 2] = parseInt(s.substr(i, 2), 16);
                         }
                         return bytes;
-                    }
+                    };
 
                     var buff2hex = function (buff) {
                         var bytes = new Uint8Array(buff);
@@ -53,12 +53,13 @@ angular
                             hex.push((bytes[i] & 0xF).toString(16));
                         }
                         return hex.join('');
-                    }
+                    };
 
                     var b32tohex = function (s) {
                         s = s.toUpperCase();
                         var cleanedInput = '';
-                        for (var i = 0; i < s.length; i++) {
+                        var i;
+                        for (i = 0; i < s.length; i++) {
                             if (b32Chars.indexOf(s[i]) < 0) {
                                 continue;
                             }
@@ -69,14 +70,14 @@ angular
 
                         var bits = '';
                         var hex = '';
-                        for (var i = 0; i < s.length; i++) {
+                        for (i = 0; i < s.length; i++) {
                             var byteIndex = b32Chars.indexOf(s.charAt(i));
                             if (byteIndex < 0) {
                                 continue;
                             }
                             bits += leftpad(byteIndex.toString(2), 5, '0');
                         }
-                        for (var i = 0; i + 4 <= bits.length; i += 4) {
+                        for (i = 0; i + 4 <= bits.length; i += 4) {
                             var chunk = bits.substr(i, 4);
                             hex = hex + parseInt(chunk, 2).toString(16);
                         }
@@ -121,7 +122,7 @@ angular
                             return otp;
                         });
                     };
-                }
+                };
 
                 var totp = new Totp();
 
@@ -151,7 +152,7 @@ angular
                         scope.sec = sec;
                         scope.dash = (2.62 * mod).toFixed(2);
                         scope.low = sec <= 7;
-                        if (mod == 0) {
+                        if (mod === 0) {
                             updateCode(scope);
                         }
                     });

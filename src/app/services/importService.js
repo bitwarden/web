@@ -2504,7 +2504,7 @@
                                     if (item.attributes.hasOwnProperty(attr) && attr !== 'username_value' &&
                                         attr !== 'xdg:schema') {
                                         if (login.notes !== '') {
-                                            login.notes += '\n'
+                                            login.notes += '\n';
                                         }
                                         login.notes += (attr + ': ' + item.attributes[attr]);
                                     }

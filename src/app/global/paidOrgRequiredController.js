@@ -6,7 +6,7 @@ angular
         $analytics.eventTrack('paidOrgRequiredController', { category: 'Modal' });
 
         authService.getUserProfile().then(function (profile) {
-            $scope.admin = profile.organizations[orgId].type !== constants.orgUserType.user
+            $scope.admin = profile.organizations[orgId].type !== constants.orgUserType.user;
         });
 
         $scope.go = function () {
