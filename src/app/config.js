@@ -230,7 +230,7 @@ angular
                 }
             })
             .state('frontend.login.twoFactor', {
-                url: '^/two-step',
+                url: '^/two-step?org&premium&email',
                 templateUrl: 'app/accounts/views/accountsLoginTwoFactor.html',
                 data: {
                     pageTitle: 'Log In (Two-step)'
