@@ -25,7 +25,8 @@
             $analytics.eventTrack('Print Recovery Code');
             var w = window.open();
             w.document.write('<div style="font-size: 18px; text-align: center;"><p>bitwarden two-step login recovery code:</p>' +
-                '<pre>' + $scope.code + '</pre></div><p style="text-align: center;">' + new Date() + '</p>');
+                '<code style="font-family: Menlo, Monaco, Consolas, \'Courier New\', monospace;">' + $scope.code + '</code>' +
+                '</div><p style="text-align: center;">' + new Date() + '</p>');
             w.print();
             w.close();
         };
