@@ -2,12 +2,17 @@
     .module('bit.vault')
 
     .controller('vaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        loginId, $analytics, validationService, toastr, $timeout) {
+        loginId, $analytics, validationService, toastr, $timeout, authService, $uibModal) {
         $analytics.eventTrack('vaultAttachmentsController', { category: 'Modal' });
         $scope.login = {};
         $scope.readOnly = true;
         $scope.loading = true;
+        $scope.isPremium = true;
         var closing = false;
+
+        authService.getUserProfile().then(function (profile) {
+            $scope.isPremium = profile.premium;
+        });
 
         apiService.logins.get({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
@@ -51,6 +56,13 @@
 
         $scope.download = function (attachment) {
             attachment.loading = true;
+
+            if (!$scope.login.organizationId && !$scope.isPremium) {
+                attachment.loading = false;
+                alert('Premium membership is required to use this feature.');
+                return;
+            }
+
             cipherService.downloadAndDecryptAttachment(getKeyForLogin(), attachment, true).then(function (res) {
                 $timeout(function () {
                     attachment.loading = false;
@@ -102,4 +114,12 @@
             closing = true;
             $uibModalInstance.close(!!$scope.login.attachments && $scope.login.attachments.length > 0);
         });
+
+        $scope.showUpgrade = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/premiumRequired.html',
+                controller: 'premiumRequiredController'
+            });
+        };
     });

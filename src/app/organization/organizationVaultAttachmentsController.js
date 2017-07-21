@@ -6,6 +6,7 @@
         $analytics.eventTrack('organizationVaultAttachmentsController', { category: 'Modal' });
         $scope.login = {};
         $scope.loading = true;
+        $scope.isPremium = true;
         var closing = false;
 
         apiService.logins.getAdmin({ id: loginId }, function (login) {
