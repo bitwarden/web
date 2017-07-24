@@ -71,12 +71,11 @@ function initU2f(obj) {
 
     u2f.sign(obj.appId, obj.challenge, obj.keys, function (data) {
         if (data.errorCode) {
-            if (data.errorCode === 5) {
-                initU2f(obj);
-                return;
+            if (data.errorCode !== 5) {
+                error('U2F Error: ' + data.errorCode);
             }
 
-            error('U2F Error: ' + data.errorCode);
+            initU2f(obj);
             return;
         }
 

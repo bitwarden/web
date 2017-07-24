@@ -39,7 +39,8 @@ angular.module('bit')
                 free: true,
                 image: 'authapp.png',
                 displayOrder: 0,
-                priority: 1
+                priority: 1,
+                requiresUsb: false
             },
             {
                 type: 3,
@@ -49,7 +50,8 @@ angular.module('bit')
                 active: true,
                 image: 'yubico.png',
                 displayOrder: 1,
-                priority: 3
+                priority: 3,
+                requiresUsb: true
             },
             {
                 type: 2,
@@ -59,7 +61,8 @@ angular.module('bit')
                 active: true,
                 image: 'duo.png',
                 displayOrder: 2,
-                priority: 2
+                priority: 2,
+                requiresUsb: false
             },
             {
                 type: 4,
@@ -69,7 +72,8 @@ angular.module('bit')
                 active: true,
                 image: 'fido.png',
                 displayOrder: 3,
-                priority: 4
+                priority: 4,
+                requiresUsb: true
             },
             {
                 type: 1,
@@ -80,7 +84,8 @@ angular.module('bit')
                 free: true,
                 image: 'gmail.png',
                 displayOrder: 4,
-                priority: 0
+                priority: 0,
+                requiresUsb: false
             }
         ],
         plans: {
