@@ -11,6 +11,10 @@
         $scope.deviceListening = false;
         $scope.deviceError = false;
 
+        $timeout(function () {
+            $("#masterPassword").focus();
+        });
+
         $scope.auth = function (model) {
             $scope.authPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
                 _masterPasswordHash = hash;

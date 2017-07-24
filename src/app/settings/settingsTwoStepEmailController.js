@@ -2,7 +2,7 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepEmailController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        authService, toastr, $analytics, constants) {
+        authService, toastr, $analytics, constants, $timeout) {
         $analytics.eventTrack('settingsTwoStepEmailController', { category: 'Modal' });
         var _profile = null,
             _masterPasswordHash;
@@ -11,6 +11,10 @@
             token: null,
             email: null
         };
+
+        $timeout(function () {
+            $("#masterPassword").focus();
+        });
 
         $scope.auth = function (model) {
             var response = null;

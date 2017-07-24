@@ -2,7 +2,7 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepDuoController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        toastr, $analytics, constants) {
+        toastr, $analytics, constants, $timeout) {
         $analytics.eventTrack('settingsTwoStepDuoController', { category: 'Modal' });
         var _masterPasswordHash;
 
@@ -12,6 +12,10 @@
             ikey: null,
             skey: null
         };
+
+        $timeout(function () {
+            $("#masterPassword").focus();
+        });
 
         $scope.auth = function (model) {
             $scope.authPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {

@@ -2,10 +2,14 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepYubiController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        authService, toastr, $analytics, constants) {
+        authService, toastr, $analytics, constants, $timeout) {
         $analytics.eventTrack('settingsTwoStepYubiController', { category: 'Modal' });
         var _profile = null,
             _masterPasswordHash;
+
+        $timeout(function () {
+            $("#masterPassword").focus();
+        });
 
         $scope.auth = function (model) {
             var response = null;

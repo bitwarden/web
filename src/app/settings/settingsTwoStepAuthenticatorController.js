@@ -2,12 +2,16 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepAuthenticatorController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        authService, $q, toastr, $analytics, constants) {
+        authService, $q, toastr, $analytics, constants, $timeout) {
         $analytics.eventTrack('settingsTwoStepAuthenticatorController', { category: 'Modal' });
         var _issuer = 'bitwarden',
             _profile = null,
             _masterPasswordHash,
             _key = null;
+
+        $timeout(function () {
+            $("#masterPassword").focus();
+        });
 
         $scope.auth = function (model) {
             var response = null;

@@ -2,7 +2,7 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepRecoverController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        $analytics) {
+        $analytics, $timeout) {
         $analytics.eventTrack('settingsTwoStepRecoverController', { category: 'Modal' });
         $scope.code = null;
 
@@ -16,6 +16,10 @@
                 $scope.authed = true;
             });
         };
+
+        $timeout(function () {
+            $("#masterPassword").focus();
+        });
 
         $scope.print = function () {
             if (!$scope.code) {
