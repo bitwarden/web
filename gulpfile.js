@@ -320,6 +320,10 @@ gulp.task('dist:move', function () {
             dest: paths.dist + 'lib/forge'
         },
         {
+            src: paths.npmDir + 'duo_web_sdk/index.js',
+            dest: paths.dist + 'lib/duo'
+        },
+        {
             src: paths.webroot + 'js/bw.min.js',
             dest: paths.dist + 'js'
         },
