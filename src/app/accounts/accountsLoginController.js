@@ -6,6 +6,7 @@ angular
         $scope.state = $state;
         $scope.twoFactorProviderConstants = constants.twoFactorProvider;
         $scope.rememberTwoFactor = { checked: false };
+        var stopU2fCheck = true;
 
         $scope.returnState = $state.params.returnState;
         $scope.stateEmail = $state.params.email;
@@ -199,6 +200,10 @@ angular
             });
         };
 
+        $scope.$on('$destroy', function () {
+            stopU2fCheck = true;
+        });
+
         function loggedInGo() {
             if ($scope.returnState) {
                 $state.go($scope.returnState.name, $scope.returnState.params);
@@ -209,6 +214,7 @@ angular
         }
 
         function init() {
+            stopU2fCheck = true;
             var params;
             if ($scope.twoFactorProvider === constants.twoFactorProvider.duo) {
                 params = $scope.twoFactorProviders[constants.twoFactorProvider.duo];
@@ -223,6 +229,7 @@ angular
                 });
             }
             else if ($scope.twoFactorProvider === constants.twoFactorProvider.u2f) {
+                stopU2fCheck = false;
                 params = $scope.twoFactorProviders[constants.twoFactorProvider.u2f];
                 var challenges = JSON.parse(params.Challenges);
 
@@ -238,6 +245,10 @@ angular
         }
 
         function initU2f(challenges) {
+            if (stopU2fCheck) {
+                return;
+            }
+
             if (challenges.length < 1 || $scope.twoFactorProvider !== constants.twoFactorProvider.u2f) {
                 return;
             }

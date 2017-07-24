@@ -179,7 +179,7 @@ angular
                     }, 1000);
                 });
 
-                scope.$on("$destroy", function () {
+                scope.$on('$destroy', function () {
                     if (interval) {
                         clearInterval(interval);
                     }
