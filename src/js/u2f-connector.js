@@ -73,9 +73,14 @@ function initU2f(obj) {
         if (data.errorCode) {
             if (data.errorCode !== 5) {
                 error('U2F Error: ' + data.errorCode);
+                setTimeout(function () {
+                    initU2f(obj);
+                }, 1000)
+            }
+            else {
+                initU2f(obj);
             }
 
-            initU2f(obj);
             return;
         }
 

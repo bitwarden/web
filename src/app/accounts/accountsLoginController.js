@@ -254,7 +254,10 @@ angular
 
                 if (data.errorCode) {
                     console.log(data.errorCode);
-                    initU2f(challenges);
+
+                    $timeout(function () {
+                        initU2f(challenges);
+                    }, data.errorCode === 5 ? 0 : 1000);
 
                     return;
                 }
