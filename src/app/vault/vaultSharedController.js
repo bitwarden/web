@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultSharedController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
-        $uibModal, $filter, $rootScope) {
+        $uibModal, $filter, $rootScope, authService, cryptoService) {
         $scope.logins = [];
         $scope.collections = [];
         $scope.loading = true;
@@ -50,6 +50,54 @@
         $scope.clipboardError = function (e) {
             alert('Your web browser does not support easy clipboard copying. ' +
                 'Edit the login and copy it manually instead.');
+        };
+
+        $scope.attachments = function (login) {
+            authService.getUserProfile().then(function (profile) {
+                return {
+                    isPremium: profile.premium,
+                    orgUseStorage: login.organizationId && !!profile.organizations[login.organizationId].maxStorageGb
+                };
+            }).then(function (perms) {
+                if (login.organizationId && !perms.orgUseStorage) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/views/paidOrgRequired.html',
+                        controller: 'paidOrgRequiredController',
+                        resolve: {
+                            orgId: function () { return login.organizationId; }
+                        }
+                    });
+                    return;
+                }
+
+                if (!login.organizationId && !perms.isPremium) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/views/premiumRequired.html',
+                        controller: 'premiumRequiredController'
+                    });
+                    return;
+                }
+
+                if (!login.organizationId && !cryptoService.getEncKey()) {
+                    toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
+                    return;
+                }
+
+                var attachmentModel = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/vault/views/vaultAttachments.html',
+                    controller: 'vaultAttachmentsController',
+                    resolve: {
+                        loginId: function () { return login.id; }
+                    }
+                });
+
+                attachmentModel.result.then(function (hasAttachments) {
+                    login.hasAttachments = hasAttachments;
+                });
+            });
         };
 
         $scope.filterByCollection = function (collection) {
