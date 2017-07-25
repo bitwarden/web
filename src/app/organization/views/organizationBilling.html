@@ -6,7 +6,7 @@
 </section>
 <section class="content">
     <div class="callout callout-warning" ng-if="subscription && subscription.cancelled">
-        <h4><i class="fa fa-warning"></i> Cancelled</h4>
+        <h4><i class="fa fa-warning"></i> Canceled</h4>
         The subscription to this organization has been canceled.
     </div>
     <div class="callout callout-warning" ng-if="subscription && subscription.markedForCancel">
@@ -36,7 +36,10 @@
                 <div class="col-sm-6">
                     <dl>
                         <dt>Status</dt>
-                        <dd style="text-transform: capitalize;">{{(subscription && subscription.status) || '-'}}</dd>
+                        <dd>
+                            <span style="text-transform: capitalize;">{{(subscription && subscription.status) || '-'}}</span>
+                            <span ng-if="subscription.markedForCancel">- marked for cancellation</span>
+                        </dd>
                         <dt>Next Charge</dt>
                         <dd>{{nextInvoice ? ((nextInvoice.date | date: format: mediumDate) + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
                     </dl>

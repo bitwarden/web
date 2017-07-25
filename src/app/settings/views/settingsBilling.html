@@ -2,6 +2,20 @@
     <h1>Billing <small>manage your membership</small></h1>
 </section>
 <section class="content">
+    <div class="callout callout-warning" ng-if="subscription && subscription.cancelled">
+        <h4><i class="fa fa-warning"></i> Canceled</h4>
+        The premium membership subscription has been canceled.
+    </div>
+    <div class="callout callout-warning" ng-if="subscription && subscription.markedForCancel">
+        <h4><i class="fa fa-warning"></i> Pending Cancellation</h4>
+        <p>
+            The premium membership has been marked for cancellation at the end of the
+            current billing period.
+        </p>
+        <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()">
+            Reinstate
+        </button>
+    </div>
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">Premium Membership</h3>
@@ -11,7 +25,10 @@
                 <div class="col-md-5">
                     <dl>
                         <dt>Status</dt>
-                        <dd style="text-transform: capitalize;">{{(subscription && subscription.status) || '-'}}</dd>
+                        <dd>
+                            <span style="text-transform: capitalize;">{{(subscription && subscription.status) || '-'}}</span>
+                            <span ng-if="subscription.markedForCancel">- marked for cancellation</span>
+                        </dd>
                         <dt>Next Charge</dt>
                         <dd>{{nextInvoice ? ((nextInvoice.date | date: format: mediumDate) + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
                     </dl>
