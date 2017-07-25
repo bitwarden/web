@@ -102,10 +102,16 @@
         }
 
         $scope.close = function () {
+            closed = true;
             $uibModalInstance.close($scope.enabled);
         };
 
-        $scope.$on('modal.closing', function (event) {
-            closed = true;
+        $scope.$on('modal.closing', function (e, reason, isClosed) {
+            if (closed) {
+                return;
+            }
+
+            e.preventDefault();
+            $scope.close();
         });
     });

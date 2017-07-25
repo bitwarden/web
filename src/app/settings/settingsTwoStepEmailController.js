@@ -97,7 +97,18 @@
             }).$promise;
         }
 
+        var closing = false;
         $scope.close = function () {
+            closing = true;
             $uibModalInstance.close($scope.enabled);
         };
+
+        $scope.$on('modal.closing', function (e, reason, closed) {
+            if (closing) {
+                return;
+            }
+
+            e.preventDefault();
+            $scope.close();
+        });
     });
