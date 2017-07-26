@@ -138,7 +138,8 @@
                         cancelledDate: org.Subscription.CancelledDate,
                         status: org.Subscription.Status,
                         cancelled: org.Subscription.Status === 'cancelled',
-                        markedForCancel: org.Subscription.Status === 'active' && org.Subscription.CancelledDate
+                        markedForCancel: (org.Subscription.Status === 'active' || org.Subscription.Status === 'trialing') &&
+                            org.Subscription.CancelledDate
                     };
                 }
 

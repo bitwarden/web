@@ -24,7 +24,9 @@
                     // User is not using an enc key, let's make them one
                     $scope.tokenPromise = cipherService.updateKey(_masterPasswordHash, function () {
                         return requestToken();
-                    }, processError);
+                    }, function (err) {
+                        toastr.error('Something went wrong.', 'Oh No!');
+                    });
                 }
             });
         };

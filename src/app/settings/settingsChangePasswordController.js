@@ -33,9 +33,11 @@
                 // User is not using an enc key, let's make them one
                 $scope.savePromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
                     return cipherService.updateKey(hash);
-                }, processError).then(function () {
+                }).then(function () {
                     return changePassword(model);
-                }, processError);
+                }, function (err) {
+                    toastr.error('Something went wrong.', 'Oh No!');
+                });
             }
         };
 
