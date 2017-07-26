@@ -6,10 +6,14 @@
     <div class="modal-body">
         <p>Concerned your account is logged in on another device?</p>
         <p>Proceed below to deauthorize all computers or devices that you have previously used.</p>
-        <p>This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours.</p>
+        <p>
+            This security step is recommended if you previously used a public PC or accidentally saved your password
+            on a device that isn't yours. This step will also clear all previously remembered two-step login sessions.
+        </p>
         <div class="callout callout-warning">
             <h4><i class="fa fa-warning"></i> Warning</h4>
-            Proceeding will log you out of your current session as well, requiring you to log back in.
+            Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted
+            for two-step login again, if enabled.
         </div>
         <div class="callout callout-danger validation-errors" ng-show="logoutSessionsForm.$errors">
             <h4>Errors have occurred</h4>

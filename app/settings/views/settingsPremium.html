@@ -1,187 +1,62 @@
 <section class="content-header">
-    <h1>Create Organization</h1>
+    <h1>Premium<span class="hidden-xs"> Membership</span><small>get started today!</small></h1>
 </section>
 <section class="content">
-    <p>
-        Organizations allow you to share parts of your vault with others as well as manage related users
-        for a specific entity (such as a family, small team, or large company).
-    </p>
-    <form name="createOrgForm" ng-submit="createOrgForm.$valid && submit(model)" api-form="submitPromise">
-        <div class="callout callout-danger validation-errors" ng-show="createOrgForm.$errors">
+    <form name="form" ng-submit="form.$valid && submit(model)" api-form="submitPromise">
+        <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occurred</h4>
             <ul>
-                <li ng-repeat="e in createOrgForm.$errors">{{e}}</li>
+                <li ng-repeat="e in form.$errors">{{e}}</li>
             </ul>
         </div>
         <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">General Information</h3>
-            </div>
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group" show-errors>
-                            <label for="name">Organization Name</label>
-                            <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
-                                   required api-field />
-                        </div>
+                    <div class="col-sm-8">
+                        <p>Sign up for a premium membership and get:</p>
+                        <ul class="fa-ul">
+                            <li>
+                                <i class="fa-li fa fa-check text-green"></i>
+                                1 GB of encrypted file storage.
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-check text-green"></i>
+                                Additional two-step login options such as YubiKey, FIDO U2F, and Duo.
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-check text-green"></i>
+                                TOTP verification code (2FA) generator for logins in your vault.
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-check text-green"></i>
+                                Priority customer support.
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-check text-green"></i>
+                                All future premium features. More coming soon!
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group" show-errors>
-                            <label for="billingEmail">Billing Email</label>
-                            <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail"
-                                   class="form-control" required api-field />
-                        </div>
-                    </div>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="model.ownedBusiness" ng-click="changedBusiness()">
-                        This account is owned by a business.
-                    </label>
-                </div>
-                <div class="row" ng-show="model.ownedBusiness">
-                    <div class="col-md-6">
-                        <div class="form-group" show-errors>
-                            <label for="businessName">Business Name</label>
-                            <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName"
-                                   class="form-control" api-field />
-                        </div>
+                    <div class="col-sm-4">
+                        all for just<br />
+                        <span style="font-size: 30px;">{{premiumPrice | currency:"$":0}}</span> /year
                     </div>
                 </div>
             </div>
         </div>
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Choose Your Plan</h3>
-            </div>
-            <div class="box-body">
-                <div class="radio radio-block" ng-if="!model.ownedBusiness" ng-click="changedPlan()">
-                    <label>
-                        <input type="radio" ng-model="model.plan" name="PlanType" value="free">
-                        Free
-                        <span>For personal users to share with 1 other user.</span>
-                        <span>- Limit 2 users (including you)</span>
-                        <span>- Limit 2 collections</span>
-                        <span class="bottom-line">
-                            Free forever
-                        </span>
-                    </label>
-                </div>
-                <div class="radio radio-block" ng-if="!model.ownedBusiness" ng-click="changedPlan()">
-                    <label>
-                        <input type="radio" ng-model="model.plan" name="PlanType" value="personal">
-                        Personal
-                        <span>For personal users such as families &amp; friends.</span>
-                        <span>- Add and share with up to 10 users (5 included with base price)</span>
-                        <span>- Create unlimited collections</span>
-                        <span>- 1 GB encrypted file storage</span>
-                        <span>- Priority customer support</span>
-                        <span>- 7 day free trial, cancel anytime</span>
-                        <span class="bottom-line">
-                            {{plans.personal.basePrice | currency:'$'}} /month includes {{plans.personal.baseSeats}} users,
-                            additional users {{plans.personal.seatPrice | currency:'$'}} /month
-                        </span>
-                    </label>
-                </div>
-                <div class="radio radio-block" ng-click="changedPlan()">
-                    <label>
-                        <input type="radio" ng-model="model.plan" name="PlanType" value="teams">
-                        Teams
-                        <span>For businesses and other team organizations.</span>
-                        <span>- Add and share with unlimited users</span>
-                        <span>- Create unlimited collections</span>
-                        <span>- 1 GB encrypted file storage</span>
-                        <span>- Priority customer support</span>
-                        <span>- 7 day free trial, cancel anytime</span>
-                        <span class="bottom-line">
-                            {{plans.teams.basePrice | currency:'$'}} /month includes {{plans.teams.baseSeats}} users,
-                            additional users {{plans.teams.seatPrice | currency:'$'}} /month
-                        </span>
-                    </label>
-                </div>
-                <div class="radio radio-block" ng-click="changedPlan()">
-                    <label>
-                        <input type="radio" ng-model="model.plan" name="PlanType" value="enterprise">
-                        Enterprise
-                        <span>For businesses and other large organizations.</span>
-                        <span>- Add and share with unlimited users</span>
-                        <span>- Create unlimited collections</span>
-                        <span>- 1 GB encrypted file storage</span>
-                        <span>- Control user access with groups</span>
-                        <span>- Sync your users and groups from a directory (AD, Azure AD, GSuite, LDAP)</span>
-                        <span>- Priority customer support</span>
-                        <span>- 7 day free trial, cancel anytime</span>
-                        <span class="bottom-line">
-                            {{plans.enterprise.seatPrice | currency:'$'}} per user /month
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="box-footer" ng-show="plans[model.plan].noPayment">
-                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="createOrgForm.$loading">
-                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="createOrgForm.$loading"></i>Submit
-                </button>
-            </div>
-        </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalSeats && plans[model.plan].baseSeats">
-            <div class="box-header with-border">
-                <h3 class="box-title">Additional Users (Seats)</h3>
-            </div>
-            <div class="box-body">
-                <p>
-                    Your plan comes with <b>{{plans[model.plan].baseSeats}}</b> users (seats). You can add additional users
-                    <span ng-if="plans[model.plan].maxAdditionalSeats">
-                        (up to {{plans[model.plan].maxAdditionalSeats}} more)
-                    </span>
-                    for {{plans[model.plan].seatPrice | currency:'$'}} per user /month.
-                </p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group" show-errors style="margin: 0;">
-                            <label for="additionalSeats" class="sr-only">Additional Users</label>
-                            <input type="number" id="additionalSeats" name="AdditionalSeats" ng-model="model.additionalSeats"
-                                   min="0" class="form-control" placeholder="# of users" api-field
-                                   ng-attr-max="{{plans[model.plan].maxAdditionalSeats || 1000000}}" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noAdditionalSeats && !plans[model.plan].baseSeats">
-            <div class="box-header with-border">
-                <h3 class="box-title">Users (Seats)</h3>
-            </div>
-            <div class="box-body">
-                <p>
-                    How many user seats do you need?
-                    You can also add additional seats later if needed.
-                </p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group" show-errors style="margin: 0;">
-                            <label for="additionalSeats" class="sr-only">Users</label>
-                            <input type="number" id="additionalSeats" name="AdditionalSeats" ng-model="model.additionalSeats"
-                                   min="1" class="form-control" placeholder="# of users" api-field
-                                   ng-attr-max="{{plans[model.plan].maxAdditionalSeats || 1000000}}" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noPayment">
-            <div class="box-header with-border">
-                <h3 class="box-title">Additional Storage</h3>
+                <h3 class="box-title">Addons</h3>
             </div>
             <div class="box-body">
                 <div class="form-group" show-errors style="margin: 0;">
+                    <label for="additionalStorage">Storage</label>
                     <p>
                         Your plan comes with 1 GB of encrypted file storage. You can add additional
-                        storage for {{storageGb.price | currency:"$":2}} per GB /month.
+                        storage for {{storageGbPrice | currency:"$":0}} per GB /year.
                     </p>
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="additionalStorage" class="sr-only">Storage</label>
                             <input type="number" id="additionalStorage" name="AdditionalStorageGb"
                                    ng-model="model.additionalStorageGb" min="0" max="99" step="1" class="form-control"
                                    placeholder="# of additional GB" api-field />
@@ -190,68 +65,26 @@
                 </div>
             </div>
         </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noPayment">
+        <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">Billing Summary</h3>
             </div>
             <div class="box-body">
-                <div class="radio radio-block">
-                    <label>
-                        <input type="radio" ng-model="model.interval" name="BillingInterval" value="year">
-                        Annually
-                        <span ng-if="plans[model.plan].annualBasePrice">
-                            Base price:
-                            {{plans[model.plan].basePrice | currency:"$":2}} &times;12 mo. =
-                            {{plans[model.plan].annualBasePrice | currency:"$":2}} /year
-                        </span>
-                        <span>
-                            <span ng-if="plans[model.plan].baseSeats">Additional users:</span>
-                            <span ng-if="!plans[model.plan].baseSeats">Users:</span>
-                            {{model.additionalSeats || 0}} &times;{{plans[model.plan].seatPrice | currency:"$":2}}
-                            &times;12 mo. =
-                            {{((model.additionalSeats || 0) * plans[model.plan].annualSeatPrice) | currency:"$":2}} /year
-                        </span>
-                        <span>
-                            Additional storage:
-                            {{model.additionalStorageGb || 0}} GB &times; {{storageGb.price | currency:"$":2}}
-                            &times;12 mo. =
-                            {{(model.additionalStorageGb || 0) * storageGb.yearlyPrice | currency:"$":2}} /year
-                        </span>
-                    </label>
-                </div>
-                <div class="radio radio-block" ng-if="model.plan !== 'personal'">
-                    <label>
-                        <input type="radio" ng-model="model.interval" name="BillingInterval" value="month">
-                        Monthly
-                        <span ng-if="plans[model.plan].monthlyBasePrice">
-                            Base price:
-                            {{plans[model.plan].monthlyBasePrice | currency:"$":2}} /month
-                        </span>
-                        <span>
-                            <span ng-if="plans[model.plan].baseSeats">Additional users:</span>
-                            <span ng-if="!plans[model.plan].baseSeats">Users:</span>
-                            {{model.additionalSeats || 0}}
-                            &times;{{plans[model.plan].monthlySeatPrice | currency:"$":2}} =
-                            {{((model.additionalSeats || 0) * plans[model.plan].monthlySeatPrice) | currency:"$":2}} /month
-                        </span>
-                        <span>
-                            Additional storage:
-                            {{model.additionalStorageGb || 0}} GB &times; {{storageGb.monthlyPrice | currency:"$":2}} =
-                            {{(model.additionalStorageGb || 0) * storageGb.monthlyPrice | currency:"$":2}} /month
-                        </span>
-                    </label>
-                </div>
+                Premium membership:
+                {{premiumPrice | currency:"$"}}<br />
+                Additional storage:
+                {{model.additionalStorageGb || 0}} GB &times; {{storageGbPrice | currency:"$"}} =
+                {{(model.additionalStorageGb || 0) * storageGbPrice | currency:"$"}}
             </div>
             <div class="box-footer">
                 <h4>
                     <b>Total:</b>
-                    {{totalPrice() | currency:"USD $":2}} /{{model.interval}}
+                    {{totalPrice() | currency:"USD $"}} /year
                 </h4>
-                Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended.
-                You may cancel at any time.
+                Your card will be charged immediately and on a recurring basis each year. You may cancel at any time.
             </div>
         </div>
-        <div class="box box-default" ng-if="!plans[model.plan].noPayment">
+        <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">Payment Information</h3>
             </div>
@@ -602,8 +435,8 @@
                 </div>
             </div>
             <div class="box-footer">
-                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="createOrgForm.$loading">
-                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="createOrgForm.$loading"></i>Submit
+                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="form.$loading"></i>Submit
                 </button>
             </div>
         </div>

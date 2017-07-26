@@ -87,27 +87,6 @@
     </div>
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Two-step Log In</h3>
-        </div>
-        <div class="box-body">
-            <p>
-                Current Status:
-                <span class="label bg-green" ng-show="model.twoFactorEnabled">ENABLED</span>
-                <span class="label bg-gray" ng-show="!model.twoFactorEnabled">DISABLED</span>
-            </p>
-            <p>
-                Two-step login helps keep your account more secure by requiring a code provided by an app on your mobile device
-                while logging in (in addition to your master password).
-            </p>
-        </div>
-        <div class="box-footer">
-            <button type="button" class="btn btn-default btn-flat" ng-click="twoFactor()">
-                Manage Two-step Log In
-            </button>
-        </div>
-    </div>
-    <div class="box box-default">
-        <div class="box-header with-border">
             <h3 class="box-title">Organizations</h3>
         </div>
         <div class="box-body" ng-if="!model.organizations || !model.organizations.length">

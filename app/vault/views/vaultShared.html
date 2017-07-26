@@ -62,6 +62,11 @@
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" stop-click ng-click="attachments(login)">
+                                                <i class="fa fa-fw fa-paperclip"></i> Attachments
+                                            </a>
+                                        </li>
                                         <li ng-show="login.edit">
                                             <a href="#" stop-click ng-click="editCollections(login)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
@@ -85,6 +90,8 @@
                             <td>
                                 <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
                                 <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite"></i>
+                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="login.hasAttachments"
+                                   stop-prop></i><br />
                                 <div class="text-sm text-muted">{{login.username}}</div>
                             </td>
                         </tr>

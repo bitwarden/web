@@ -86,6 +86,11 @@
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" stop-click ng-click="attachments(login)">
+                                                <i class="fa fa-fw fa-paperclip"></i> Attachments
+                                            </a>
+                                        </li>
                                         <li ng-show="!login.organizationId">
                                             <a href="#" stop-click ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
@@ -115,7 +120,9 @@
                             </td>
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-if="login.organizationId"
+                                   stop-prop></i>
+                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="login.hasAttachments"
                                    stop-prop></i><br />
                                 <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
                             </td>
@@ -189,6 +196,11 @@
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" stop-click ng-click="attachments(login)">
+                                                <i class="fa fa-fw fa-paperclip"></i> Attachments
+                                            </a>
+                                        </li>
                                         <li ng-show="!login.organizationId">
                                             <a href="#" stop-click ng-click="share(login)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
@@ -219,7 +231,10 @@
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
                                 <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite" stop-prop></i>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId" stop-prop></i>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"
+                                   stop-prop></i>
+                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="login.hasAttachments"
+                                   stop-prop></i>
                                 <br />
                                 <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
                             </td>

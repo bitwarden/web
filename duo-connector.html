@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Duo Two-step Login</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #efeff4 url('images/loading.svg') 0 0 no-repeat;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 400px;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="js/duo.js"></script>
+    <script>
+        !(function () {
+            var frameElement = document.createElement('iframe');
+            frameElement.setAttribute('id', 'duo_iframe');
+            setFrameHeight();
+            document.body.appendChild(frameElement);
+
+            var hostParam = getQsParam('host');
+            var requestParam = getQsParam('request');
+            Duo.init({
+                host: hostParam,
+                sig_request: requestParam,
+                submit_callback: function (form) {
+                    invokeCSCode(form.elements.sig_response.value);
+                }
+            });
+
+            window.onresize = setFrameHeight;
+            function setFrameHeight() {
+                frameElement.style.height = window.innerHeight + 'px';
+            }
+        })();
+
+        function getQsParam(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        function invokeCSCode(data) {
+            try {
+                invokeCSharpAction(data);
+            }
+            catch (err) {
+
+            }
+        }
+    </script>
+</body>
+</html>
