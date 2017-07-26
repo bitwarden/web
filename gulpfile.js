@@ -69,8 +69,9 @@ gulp.task('min:js', ['clean:js'], function () {
         [
             paths.js,
             '!' + paths.minJs,
-            '!' + paths.webroot + 'js/fallback*.js',
-            '!' + paths.webroot + 'js/u2f-connector.js'
+            '!' + paths.jsDir + 'fallback*.js',
+            '!' + paths.jsDir + 'u2f-connector.js',
+            '!' + paths.jsDir + 'duo.js'
         ], { base: '.' })
         .pipe(concat(paths.concatJsDest))
         .pipe(uglify())
@@ -179,8 +180,12 @@ gulp.task('lib', ['clean:lib'], function () {
             ],
             dest: paths.libDir + 'angulartics'
         },
+        //{
+        //    src: paths.npmDir + 'duo_web_sdk/index.js',
+        //    dest: paths.libDir + 'duo'
+        //},
         {
-            src: paths.npmDir + 'duo_web_sdk/index.js',
+            src: paths.jsDir + 'duo.js',
             dest: paths.libDir + 'duo'
         },
         {
@@ -319,12 +324,16 @@ gulp.task('dist:move', function () {
             src: paths.npmDir + 'node-forge/dist/prime.worker.*',
             dest: paths.dist + 'lib/forge'
         },
+        //{
+        //    src: paths.npmDir + 'duo_web_sdk/index.js',
+        //    dest: paths.dist + 'lib/duo'
+        //},
         {
-            src: paths.npmDir + 'duo_web_sdk/index.js',
-            dest: paths.dist + 'lib/duo'
+            src: paths.jsDir + 'duo.js',
+            dest: paths.dist + 'js'
         },
         {
-            src: paths.webroot + 'js/bw.min.js',
+            src: paths.jsDir + 'bw.min.js',
             dest: paths.dist + 'js'
         },
         {
@@ -380,7 +389,7 @@ gulp.task('dist:js:app', function () {
 gulp.task('dist:js:fallback', function () {
     var mainStream = gulp
         .src([
-            paths.webroot + 'js/fallback*.js'
+            paths.jsDir + 'fallback*.js'
         ]);
 
     merge(mainStream)
@@ -393,7 +402,7 @@ gulp.task('dist:js:fallback', function () {
 gulp.task('dist:js:u2f', function () {
     var mainStream = gulp
         .src([
-            paths.webroot + 'js/u2f*.js'
+            paths.jsDir + 'u2f*.js'
         ]);
 
     merge(mainStream)
