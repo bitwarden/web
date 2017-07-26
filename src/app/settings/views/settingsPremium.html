@@ -3,6 +3,12 @@
 </section>
 <section class="content">
     <form name="form" ng-submit="form.$valid && submit(model)" api-form="submitPromise">
+        <div class="callout callout-danger validation-errors" ng-show="form.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in form.$errors">{{e}}</li>
+            </ul>
+        </div>
         <div class="box box-default">
             <div class="box-body">
                 <div class="row">

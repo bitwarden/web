@@ -7,17 +7,17 @@
         for a specific entity (such as a family, small team, or large company).
     </p>
     <form name="createOrgForm" ng-submit="createOrgForm.$valid && submit(model)" api-form="submitPromise">
+        <div class="callout callout-danger validation-errors" ng-show="createOrgForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in createOrgForm.$errors">{{e}}</li>
+            </ul>
+        </div>
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">General Information</h3>
             </div>
             <div class="box-body">
-                <div class="callout callout-danger validation-errors" ng-show="createOrgForm.$errors">
-                    <h4>Errors have occurred</h4>
-                    <ul>
-                        <li ng-repeat="e in createOrgForm.$errors">{{e}}</li>
-                    </ul>
-                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group" show-errors>
