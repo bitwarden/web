@@ -8,15 +8,16 @@
         $scope.readOnly = true;
         $scope.loading = true;
         $scope.isPremium = true;
+        $scope.canUseAttachments = true;
         var closing = false;
 
         authService.getUserProfile().then(function (profile) {
             $scope.isPremium = profile.premium;
-        });
-
-        apiService.logins.get({ id: loginId }, function (login) {
+            return apiService.logins.get({ id: loginId }).$promise;
+        }).then(function (login) {
             $scope.login = cipherService.decryptLogin(login);
             $scope.readOnly = !login.Edit;
+            $scope.canUseAttachments = $scope.isPremium || $scope.login.organizationId;
             $scope.loading = false;
         }, function () {
             $scope.loading = false;
@@ -57,7 +58,7 @@
         $scope.download = function (attachment) {
             attachment.loading = true;
 
-            if (!$scope.login.organizationId && !$scope.isPremium) {
+            if (!$scope.canUseAttachments) {
                 attachment.loading = false;
                 alert('Premium membership is required to use this feature.');
                 return;

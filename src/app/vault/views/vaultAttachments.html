@@ -48,7 +48,7 @@
         <div ng-if="!readOnly">
             <hr />
             <h4>Add New Attachment</h4>
-            <div class="callout callout-warning" ng-if="!isPremium">
+            <div class="callout callout-warning" ng-if="!canUseAttachments">
                 <h4>Premium Membership Required</h4>
                 <p>Premium membership is required to use this feature.</p>
                 <button type="button" class="btn btn-default btn-flat" ng-click="showUpgrade()">Learn More</button>
@@ -59,7 +59,7 @@
                     <li ng-repeat="e in form.$errors">{{e}}</li>
                 </ul>
             </div>
-            <div class="form-group" show-error ng-if="isPremium">
+            <div class="form-group" show-error ng-if="canUseAttachments">
                 <label for="file" class="sr-only">File</label>
                 <input type="file" id="file" name="file" />
                 <p class="help-block">Maximum size per file is 100 MB.</p>
@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading" ng-if="!readOnly && isPremium">
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading" ng-if="!readOnly && canUseAttachments">
             <i class="fa fa-refresh fa-spin loading-icon" ng-show="form.$loading"></i>Save
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>

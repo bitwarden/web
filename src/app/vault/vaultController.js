@@ -206,25 +206,27 @@
                     orgUseStorage: login.organizationId && !!profile.organizations[login.organizationId].maxStorageGb
                 };
             }).then(function (perms) {
-                if (login.organizationId && !perms.orgUseStorage) {
-                    $uibModal.open({
-                        animation: true,
-                        templateUrl: 'app/views/paidOrgRequired.html',
-                        controller: 'paidOrgRequiredController',
-                        resolve: {
-                            orgId: function () { return login.organizationId; }
-                        }
-                    });
-                    return;
-                }
+                if (!login.hasAttachments) {
+                    if (login.organizationId && !perms.orgUseStorage) {
+                        $uibModal.open({
+                            animation: true,
+                            templateUrl: 'app/views/paidOrgRequired.html',
+                            controller: 'paidOrgRequiredController',
+                            resolve: {
+                                orgId: function () { return login.organizationId; }
+                            }
+                        });
+                        return;
+                    }
 
-                if (!login.organizationId && !perms.isPremium) {
-                    $uibModal.open({
-                        animation: true,
-                        templateUrl: 'app/views/premiumRequired.html',
-                        controller: 'premiumRequiredController'
-                    });
-                    return;
+                    if (!login.organizationId && !perms.isPremium) {
+                        $uibModal.open({
+                            animation: true,
+                            templateUrl: 'app/views/premiumRequired.html',
+                            controller: 'premiumRequiredController'
+                        });
+                        return;
+                    }
                 }
 
                 if (!login.organizationId && !cryptoService.getEncKey()) {
