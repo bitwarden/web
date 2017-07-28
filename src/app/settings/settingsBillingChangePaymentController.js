@@ -2,14 +2,51 @@
     .module('bit.organization')
 
     .controller('settingsBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService, stripe,
-        $analytics, toastr, existingPaymentMethod) {
+        $analytics, toastr, existingPaymentMethod, appSettings, $timeout) {
         $analytics.eventTrack('settingsBillingChangePaymentController', { category: 'Modal' });
         $scope.existingPaymentMethod = existingPaymentMethod;
+        $scope.paymentMethod = 'card';
+        $scope.dropinLoaded = false;
+        $scope.showPaymentOptions = true;
+        $scope.card = {};
+        var btInstance = null;
+
+        $scope.changePaymentMethod = function (val) {
+            $scope.paymentMethod = val;
+            if ($scope.paymentMethod !== 'paypal') {
+                return;
+            }
+
+            braintree.dropin.create({
+                authorization: appSettings.braintreeKey,
+                container: '#bt-dropin-container',
+                paymentOptionPriority: ['paypal'],
+                paypal: {
+                    flow: 'vault',
+                    buttonStyle: {
+                        label: 'pay',
+                        size: 'medium',
+                        shape: 'pill',
+                        color: 'blue'
+                    }
+                }
+            }, function (createErr, instance) {
+                if (createErr) {
+                    console.error(createErr);
+                    return;
+                }
+
+                btInstance = instance;
+                $timeout(function () {
+                    $scope.dropinLoaded = true;
+                });
+            });
+        };
 
         $scope.submit = function () {
-            $scope.submitPromise = stripe.card.createToken($scope.card).then(function (response) {
+            $scope.submitPromise = getPaymentToken($scope.card).then(function (token) {
                 var request = {
-                    paymentToken: response.id
+                    paymentToken: token
                 };
 
                 return apiService.accounts.putPayment(null, request).$promise;
@@ -31,4 +68,17 @@
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
         };
+
+        function getPaymentToken(card) {
+            if ($scope.paymentMethod === 'paypal') {
+                return btInstance.requestPaymentMethod().then(function (payload) {
+                    return payload.nonce;
+                });
+            }
+            else {
+                return stripe.card.createToken(card).then(function (response) {
+                    return response.id;
+                });
+            }
+        }
     });

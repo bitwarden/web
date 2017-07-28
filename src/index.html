@@ -7,18 +7,25 @@
             'self';
           script-src
             'self'
+            'sha256-ryoU+5+IUZTuUyTElqkrQGBJXr1brEv6r2CA62WUw8w='
             https://www.google-analytics.com
             https://js.stripe.com
+            https://js.braintreegateway.com
+            https://www.paypalobjects.com
             https://maxcdn.bootstrapcdn.com
             https://ajax.googleapis.com;
           style-src
             'self'
             'unsafe-inline'
             https://maxcdn.bootstrapcdn.com
+            https://assets.braintreegateway.com
+            https://*.paypal.com
             https://fonts.googleapis.com;
           img-src
             'self'
             data:
+            https://*.paypal.com
+            https://www.paypalobjects.com
             https://q.stripe.com
             https://haveibeenpwned.com
             https://chart.googleapis.com
@@ -30,10 +37,14 @@
           child-src
             'self'
             https://js.stripe.com
+            https://assets.braintreegateway.com
+            https://*.paypal.com
             https://*.duosecurity.com;
           frame-src
             'self'
             https://js.stripe.com
+            https://assets.braintreegateway.com
+            https://*.paypal.com
             https://*.duosecurity.com;
           connect-src
             *;">
@@ -43,6 +54,7 @@
     <title page-title>bitwarden.com Password Manager</title>
 
     <script src="https://js.stripe.com/v2/"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js"></script>
     <!-- @if true !>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">

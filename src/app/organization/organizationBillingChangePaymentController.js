@@ -5,6 +5,9 @@
         $analytics, toastr, existingPaymentMethod) {
         $analytics.eventTrack('organizationBillingChangePaymentController', { category: 'Modal' });
         $scope.existingPaymentMethod = existingPaymentMethod;
+        $scope.paymentMethod = 'card';
+        $scope.showPaymentOptions = false;
+        $scope.card = {};
 
         $scope.submit = function () {
             $scope.submitPromise = stripe.card.createToken($scope.card).then(function (response) {

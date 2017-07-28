@@ -137,9 +137,8 @@
                         trialEndDate: org.Subscription.TrialEndDate,
                         cancelledDate: org.Subscription.CancelledDate,
                         status: org.Subscription.Status,
-                        cancelled: org.Subscription.Status === 'cancelled',
-                        markedForCancel: (org.Subscription.Status === 'active' || org.Subscription.Status === 'trialing') &&
-                            org.Subscription.CancelledDate
+                        cancelled: org.Subscription.Cancelled,
+                        markedForCancel: !org.Subscription.Cancelled && org.Subscription.CancelAtEndDate
                     };
                 }
 

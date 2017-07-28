@@ -104,8 +104,8 @@
                         trialEndDate: billing.Subscription.TrialEndDate,
                         cancelledDate: billing.Subscription.CancelledDate,
                         status: billing.Subscription.Status,
-                        cancelled: billing.Subscription.Status === 'cancelled',
-                        markedForCancel: billing.Subscription.Status === 'active' && billing.Subscription.CancelledDate
+                        cancelled: billing.Subscription.Cancelled,
+                        markedForCancel: !billing.Subscription.Cancelled && billing.Subscription.CancelAtEndDate
                     };
                 }
 
