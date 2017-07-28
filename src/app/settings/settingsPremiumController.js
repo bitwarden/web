@@ -56,12 +56,18 @@
 
         $scope.submit = function (model) {
             $scope.submitPromise = getPaymentToken(model).then(function (token) {
+                if (!token) {
+                    throw 'No payment token.';
+                }
+
                 var request = {
                     paymentToken: token,
                     additionalStorageGb: model.additionalStorageGb
                 };
 
                 return apiService.accounts.postPremium(request).$promise;
+            }, function (err) {
+                throw err;
             }).then(function (result) {
                 return authService.updateProfilePremium(true);
             }).then(function () {
@@ -78,6 +84,8 @@
             if ($scope.paymentMethod === 'paypal') {
                 return btInstance.requestPaymentMethod().then(function (payload) {
                     return payload.nonce;
+                }).catch(function (err) {
+                    throw err.message;
                 });
             }
             else {

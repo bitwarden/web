@@ -31,7 +31,12 @@ angular
             }, function failure(reason) {
                 $timeout(function () {
                     form.$loading = false;
-                    validationService.addErrors(form, reason);
+                    if (typeof reason === 'string') {
+                        validationService.addError(form, null, reason, true);
+                    }
+                    else {
+                        validationService.addErrors(form, reason);
+                    }
                     scope.$broadcast('show-errors-check-validity');
                     $('html, body').animate({ scrollTop: 0 }, 200);
                 });
