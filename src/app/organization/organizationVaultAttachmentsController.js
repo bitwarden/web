@@ -7,6 +7,7 @@
         $scope.login = {};
         $scope.loading = true;
         $scope.isPremium = true;
+        $scope.canUseAttachments = true;
         var closing = false;
 
         apiService.logins.getAdmin({ id: loginId }, function (login) {
