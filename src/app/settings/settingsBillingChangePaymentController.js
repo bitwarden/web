@@ -86,6 +86,8 @@
             else {
                 return stripe.card.createToken(card).then(function (response) {
                     return response.id;
+                }).catch(function (err) {
+                    throw err.message;
                 });
             }
         }

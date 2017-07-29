@@ -16,6 +16,8 @@
                 };
 
                 return apiService.organizations.putPayment({ id: $state.params.orgId }, request).$promise;
+            }, function (err) {
+                throw err.message;
             }).then(function (response) {
                 $scope.card = null;
                 if (existingPaymentMethod) {

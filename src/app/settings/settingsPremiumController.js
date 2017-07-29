@@ -91,6 +91,8 @@
             else {
                 return stripe.card.createToken(model.card).then(function (response) {
                     return response.id;
+                }).catch(function (err) {
+                    throw err.message;
                 });
             }
         }

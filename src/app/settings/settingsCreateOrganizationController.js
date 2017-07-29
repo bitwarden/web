@@ -75,6 +75,8 @@
                     };
 
                     return apiService.organizations.post(paidRequest).$promise;
+                }, function (err) {
+                    throw err.message;
                 }).then(finalizeCreate);
             }
 
