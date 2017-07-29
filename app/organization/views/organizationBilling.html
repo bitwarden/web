@@ -141,7 +141,7 @@
             </div>
             <div ng-show="!loading && paymentSource">
                 <i class="fa" ng-class="{'fa-credit-card': paymentSource.type === 0,
-                   'fa-university': paymentSource.type === 1}"></i>
+                   'fa-university': paymentSource.type === 1, 'fa-paypal fa-fw text-blue': paymentSource.type === 2}"></i>
                 {{paymentSource.description}}
             </div>
         </div>

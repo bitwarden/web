@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer">
+        <div class="box-footer" ng-if="!subscription.cancelled || subscription.markedForCancel">
             <button type="button" class="btn btn-default btn-flat" ng-click="cancel()"
                     ng-if="!subscription.cancelled && !subscription.markedForCancel">
                 Cancel
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer">
+        <div class="box-footer" ng-if="!subscription.cancelled">
             <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(true)">
                 Add Storage
             </button>
@@ -104,7 +104,7 @@
             </div>
             <div ng-show="!loading && paymentSource">
                 <i class="fa" ng-class="{'fa-credit-card': paymentSource.type === 0,
-                   'fa-university': paymentSource.type === 1}"></i>
+                   'fa-university': paymentSource.type === 1, 'fa-paypal fa-fw text-blue': paymentSource.type === 2}"></i>
                 {{paymentSource.description}}
             </div>
         </div>
