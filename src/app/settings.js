@@ -1,2 +1,2 @@
 angular.module("bit")
-.constant("appSettings", {"apiUri":"https://api.bitwarden.com","identityUri":"https://identity.bitwarden.com","stripeKey":"pk_live_bpN0P37nMxrMQkcaHXtAybJk","braintreeKey":"TODO","version":"1.14.0","environment":"Production"});
+.constant("appSettings", {"apiUri":"https://api.bitwarden.com","identityUri":"https://identity.bitwarden.com","stripeKey":"pk_live_bpN0P37nMxrMQkcaHXtAybJk","braintreeKey":"TODO","version":"1.14.1","environment":"Production"});
