@@ -45,11 +45,17 @@
 
         $scope.submit = function () {
             $scope.submitPromise = getPaymentToken($scope.card).then(function (token) {
+                if (!token) {
+                    throw 'No payment token.';
+                }
+
                 var request = {
                     paymentToken: token
                 };
 
                 return apiService.accounts.putPayment(null, request).$promise;
+            }, function (err) {
+                throw err;
             }).then(function (response) {
                 $scope.card = null;
                 if (existingPaymentMethod) {
@@ -73,6 +79,8 @@
             if ($scope.paymentMethod === 'paypal') {
                 return btInstance.requestPaymentMethod().then(function (payload) {
                     return payload.nonce;
+                }).catch(function (err) {
+                    throw err.message;
                 });
             }
             else {
