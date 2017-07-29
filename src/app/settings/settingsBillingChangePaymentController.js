@@ -7,7 +7,7 @@
         $scope.existingPaymentMethod = existingPaymentMethod;
         $scope.paymentMethod = 'card';
         $scope.dropinLoaded = false;
-        $scope.showPaymentOptions = true;
+        $scope.showPaymentOptions = false;
         $scope.card = {};
         var btInstance = null;
 

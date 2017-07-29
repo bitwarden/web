@@ -89,15 +89,17 @@
                 <h3 class="box-title">Payment Information</h3>
             </div>
             <div class="box-body">
-                <label class="radio-inline radio-lg radio-boxed">
-                    <input type="radio" name="PaymentMethod" value="card" ng-model="paymentMethod"
-                           ng-change="changePaymentMethod()"><i class="fa fa-fw fa-credit-card"></i> Credit Card
-                </label>
-                <label class="radio-inline radio-lg radio-boxed">
-                    <input type="radio" name="PaymentMethod" value="paypal" ng-model="paymentMethod"
-                           ng-change="changePaymentMethod()"><i class="fa fa-fw fa-paypal"></i> PayPal
-                </label>
-                <hr />
+                <div ng-if="false">
+                    <label class="radio-inline radio-lg radio-boxed">
+                        <input type="radio" name="PaymentMethod" value="card" ng-model="paymentMethod"
+                               ng-change="changePaymentMethod()"><i class="fa fa-fw fa-credit-card"></i> Credit Card
+                    </label>
+                    <label class="radio-inline radio-lg radio-boxed">
+                        <input type="radio" name="PaymentMethod" value="paypal" ng-model="paymentMethod"
+                               ng-change="changePaymentMethod()"><i class="fa fa-fw fa-paypal"></i> PayPal
+                    </label>
+                    <hr />
+                </div>
                 <div ng-if="paymentMethod === 'paypal'">
                     <div id="bt-dropin-container"></div>
                 </div>
