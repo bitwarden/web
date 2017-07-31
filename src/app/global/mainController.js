@@ -8,7 +8,8 @@ angular
         vm.usingControlSidebar = vm.openControlSidebar = false;
         vm.searchVaultText = null;
         vm.version = appSettings.version;
-        vm.outdatedBrowser = navigator.userAgent.indexOf('MSIE') !== -1;
+        vm.outdatedBrowser = $window.navigator.userAgent.indexOf('MSIE') !== -1 ||
+            $window.navigator.userAgent.indexOf('SamsungBrowser') !== -1;
 
         $scope.currentYear = new Date().getFullYear();
 
