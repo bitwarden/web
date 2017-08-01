@@ -2,49 +2,39 @@
     .module('bit.settings')
 
     .controller('settingsChangeEmailController', function ($scope, $state, apiService, $uibModalInstance, cryptoService,
-        cipherService, authService, $q, toastr, $analytics) {
+        authService, toastr, $analytics, validationService) {
         $analytics.eventTrack('settingsChangeEmailController', { category: 'Modal' });
 
         var _masterPasswordHash,
             _masterPassword,
             _newEmail;
 
-        $scope.token = function (model) {
+        $scope.token = function (model, form) {
+            var encKey = cryptoService.getEncKey();
+            if (!encKey) {
+                validationService.addError(form, null,
+                    'You cannot change your email until you update your encryption key.', true);
+                return;
+            }
+
             _masterPassword = model.masterPassword;
             _newEmail = model.newEmail.toLowerCase();
 
-            cryptoService.hashPassword(_masterPassword).then(function (hash) {
+            $scope.tokenPromise = cryptoService.hashPassword(_masterPassword).then(function (hash) {
                 _masterPasswordHash = hash;
 
-                var encKey = cryptoService.getEncKey();
-                if (encKey) {
-                    $scope.tokenPromise = requestToken();
-                }
-                else {
-                    // User is not using an enc key, let's make them one
-                    $scope.tokenPromise = cipherService.updateKey(_masterPasswordHash, function () {
-                        return requestToken();
-                    }, function (err) {
-                        toastr.error('Something went wrong.', 'Oh No!');
-                    });
-                }
+                var request = {
+                    newEmail: _newEmail,
+                    masterPasswordHash: _masterPasswordHash
+                };
+
+                return apiService.accounts.emailToken(request, function () {
+                    $scope.tokenSent = true;
+                }).$promise;
             });
         };
 
-        function requestToken() {
-            var request = {
-                newEmail: _newEmail,
-                masterPasswordHash: _masterPasswordHash
-            };
-
-            return apiService.accounts.emailToken(request, function () {
-                $scope.tokenSent = true;
-            }).$promise;
-        }
-
         $scope.confirm = function (model) {
-            $scope.processing = true;
-
             $scope.confirmPromise = cryptoService.makeKeyAndHash(_newEmail, _masterPassword).then(function (result) {
                 var encKey = cryptoService.getEncKey();
                 var newEncKey = cryptoService.encrypt(encKey.key, result.key, 'raw');
@@ -64,9 +54,6 @@
                 return $state.go('frontend.login.info');
             }).then(function () {
                 toastr.success('Please log back in.', 'Email Changed');
-            }, function () {
-                $uibModalInstance.dismiss('cancel');
-                toastr.error('Something went wrong. Try again.', 'Oh No!');
             });
         };
 

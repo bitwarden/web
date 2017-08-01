@@ -2,7 +2,8 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="changeEmailModelLabel"><i class="fa fa-at"></i> Change Email</h4>
 </div>
-<form name="changeEmailForm" ng-submit="changeEmailForm.$valid && token(model)" api-form="tokenPromise" ng-show="!tokenSent && !processing">
+<form name="changeEmailForm" ng-submit="changeEmailForm.$valid && token(model, changeEmailForm)" api-form="tokenPromise"
+      ng-show="!tokenSent">
     <div class="modal-body">
         <p>Below you can change your account's email address.</p>
         <div class="callout callout-danger validation-errors" ng-show="changeEmailForm.$errors">
@@ -29,12 +30,18 @@
     </div>
 </form>
 <form name="changeEmailConfirmForm" ng-submit="changeEmailConfirmForm.$valid && confirm(model)" api-form="confirmPromise"
-      ng-show="tokenSent && !processing">
+      ng-show="tokenSent">
     <div class="modal-body">
         <p>We have emailed a verification code to <b>{{model.newEmail}}</b>. Please check your email for this code and enter it below to finalize your the email address change.</p>
         <div class="callout callout-warning">
             <h4><i class="fa fa-warning"></i> Warning</h4>
             Proceeding will log you out of your current session, requiring you to log back in.
+        </div>
+        <div class="callout callout-danger validation-errors" ng-show="changeEmailConfirmForm.$errors">
+            <h4>Errors have occurred</h4>
+            <ul>
+                <li ng-repeat="e in changeEmailConfirmForm.$errors">{{e}}</li>
+            </ul>
         </div>
         <div class="form-group" show-errors>
             <label for="token">Code</label>
@@ -42,13 +49,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-flat">
-            Change Email
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="changeEmailConfirmForm.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="changeEmailConfirmForm.$loading"></i>Change Email
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
     </div>
 </form>
-<div ng-show="processing" class="modal-body text-center">
-    <p><i class="fa fa-cog fa-spin fa-3x"></i></p>
-    <p>Please wait. We are now changing your email and reencrypting all of your data. Do not close this window. You will be automatically logged out when this process has finished.</p>
-</div>

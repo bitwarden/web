@@ -2,11 +2,18 @@
     .module('bit.settings')
 
     .controller('settingsChangePasswordController', function ($scope, $state, apiService, $uibModalInstance,
-        cryptoService, authService, cipherService, validationService, toastr, $analytics) {
+        cryptoService, authService, validationService, toastr, $analytics) {
         $analytics.eventTrack('settingsChangePasswordController', { category: 'Modal' });
 
         $scope.save = function (model, form) {
             var error = false;
+
+            var encKey = cryptoService.getEncKey();
+            if (!encKey) {
+                validationService.addError(form, null,
+                    'You cannot change your master password until you update your encryption key.', true);
+                error = true;
+            }
 
             if ($scope.model.newMasterPassword.length < 8) {
                 validationService.addError(form, 'NewMasterPasswordHash',
@@ -23,27 +30,8 @@
                 return;
             }
 
-            $scope.processing = true;
-
-            var encKey = cryptoService.getEncKey();
-            if (encKey) {
-                $scope.savePromise = changePassword(model);
-            }
-            else {
-                // User is not using an enc key, let's make them one
-                $scope.savePromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
-                    return cipherService.updateKey(hash);
-                }).then(function () {
-                    return changePassword(model);
-                }, function (err) {
-                    toastr.error('Something went wrong.', 'Oh No!');
-                });
-            }
-        };
-
-        function changePassword(model) {
             var makeResult;
-            return authService.getUserProfile().then(function (profile) {
+            $scope.savePromise = authService.getUserProfile().then(function (profile) {
                 return cryptoService.makeKeyAndHash(profile.email, model.newMasterPassword);
             }).then(function (result) {
                 makeResult = result;
@@ -66,11 +54,8 @@
                 return $state.go('frontend.login.info');
             }).then(function () {
                 toastr.success('Please log back in.', 'Master Password Changed');
-            }, function () {
-                $uibModalInstance.dismiss('cancel');
-                toastr.error('Something went wrong.', 'Oh No!');
             });
-        }
+        };
 
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
