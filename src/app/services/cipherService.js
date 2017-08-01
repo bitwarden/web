@@ -78,9 +78,9 @@ angular
 
             var loginData = encryptedCipher.Data || encryptedCipher;
             if (loginData) {
-                login.name = cryptoService.decrypt(loginData.Name, key);
-                login.username = loginData.Username && loginData.Username !== '' ? cryptoService.decrypt(loginData.Username, key) : null;
-                login.password = loginData.Password && loginData.Password !== '' ? cryptoService.decrypt(loginData.Password, key) : null;
+                login.name = _service.decryptProperty(loginData.Name, key, false);
+                login.username = _service.decryptProperty(loginData.Username, key, true);
+                login.password = _service.decryptProperty(loginData.Password, key, true)
             }
 
             return login;
