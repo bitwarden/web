@@ -2,7 +2,7 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title"><i class="fa fa-key"></i> Update Encryption Key</h4>
 </div>
-<form name="form" ng-submit="form.$valid && save(form)" api-form="savePromise" ng-show="!processing">
+<form name="form" ng-submit="form.$valid && save(form)" api-form="savePromise">
     <div class="modal-body">
         <p>
             This is <b>NOT</b> a security notification indicating that anything is wrong or has been compromised on your
@@ -39,16 +39,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-flat">
-            Update Key
+        <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading">
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="form.$loading"></i>Update Key
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
     </div>
 </form>
-<div ng-show="processing" class="modal-body text-center">
-    <p><i class="fa fa-cog fa-spin fa-3x"></i></p>
-    <p>
-        Please wait. We are now generating a new encryption key and reencrypting all of your data. Do not close this window.
-        You will be automatically logged out when this process has finished.
-    </p>
-</div>
