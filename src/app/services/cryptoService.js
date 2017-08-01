@@ -477,121 +477,140 @@ angular
         };
 
         _service.decrypt = function (encValue, key, outputEncoding) {
-            key = key || _service.getEncKey() || _service.getKey();
+            try {
+                key = key || _service.getEncKey() || _service.getKey();
 
-            var headerPieces = encValue.split('.'),
-                encType,
-                encPieces;
+                var headerPieces = encValue.split('.'),
+                    encType,
+                    encPieces;
 
-            if (headerPieces.length === 2) {
-                try {
-                    encType = parseInt(headerPieces[0]);
-                    encPieces = headerPieces[1].split('|');
-                }
-                catch (e) {
-                    return null;
-                }
-            }
-            else {
-                encPieces = encValue.split('|');
-                encType = encPieces.length === 3 ? constants.encType.AesCbc128_HmacSha256_B64 :
-                    constants.encType.AesCbc256_B64;
-            }
-
-            if (encType === constants.encType.AesCbc128_HmacSha256_B64 && key.encType === constants.encType.AesCbc256_B64) {
-                // Old encrypt-then-mac scheme, swap out the key
-                _legacyEtmKey = _legacyEtmKey ||
-                    new SymmetricCryptoKey(key.key, false, constants.encType.AesCbc128_HmacSha256_B64);
-                key = _legacyEtmKey;
-            }
-
-            if (encType !== key.encType) {
-                throw 'encType unavailable.';
-            }
-
-            switch (encType) {
-                case constants.encType.AesCbc128_HmacSha256_B64:
-                case constants.encType.AesCbc256_HmacSha256_B64:
-                    if (encPieces.length !== 3) {
+                if (headerPieces.length === 2) {
+                    try {
+                        encType = parseInt(headerPieces[0]);
+                        encPieces = headerPieces[1].split('|');
+                    }
+                    catch (e) {
+                        console.error('Cannot parse headerPieces.');
                         return null;
                     }
-                    break;
-                case constants.encType.AesCbc256_B64:
-                    if (encPieces.length !== 2) {
+                }
+                else {
+                    encPieces = encValue.split('|');
+                    encType = encPieces.length === 3 ? constants.encType.AesCbc128_HmacSha256_B64 :
+                        constants.encType.AesCbc256_B64;
+                }
+
+                if (encType === constants.encType.AesCbc128_HmacSha256_B64 && key.encType === constants.encType.AesCbc256_B64) {
+                    // Old encrypt-then-mac scheme, swap out the key
+                    _legacyEtmKey = _legacyEtmKey ||
+                        new SymmetricCryptoKey(key.key, false, constants.encType.AesCbc128_HmacSha256_B64);
+                    key = _legacyEtmKey;
+                }
+
+                if (encType !== key.encType) {
+                    throw 'encType unavailable.';
+                }
+
+                switch (encType) {
+                    case constants.encType.AesCbc128_HmacSha256_B64:
+                    case constants.encType.AesCbc256_HmacSha256_B64:
+                        if (encPieces.length !== 3) {
+                            console.error('Enc type (' + encType + ') not valid.');
+                            return null;
+                        }
+                        break;
+                    case constants.encType.AesCbc256_B64:
+                        if (encPieces.length !== 2) {
+                            console.error('Enc type (' + encType + ') not valid.');
+                            return null;
+                        }
+                        break;
+                    default:
+                        console.error('Enc type (' + encType + ') not supported.');
+                        return null;
+                }
+
+                var ivBytes = forge.util.decode64(encPieces[0]);
+                var ctBytes = forge.util.decode64(encPieces[1]);
+
+                if (key.macKey && encPieces.length > 2) {
+                    var macBytes = forge.util.decode64(encPieces[2]);
+                    var computedMacBytes = computeMac(ivBytes + ctBytes, key.macKey, false);
+                    if (!macsEqual(key.macKey, macBytes, computedMacBytes)) {
+                        console.error('MAC failed.');
                         return null;
                     }
-                    break;
-                default:
-                    return null;
-            }
+                }
 
-            var ivBytes = forge.util.decode64(encPieces[0]);
-            var ctBytes = forge.util.decode64(encPieces[1]);
+                var ctBuffer = forge.util.createBuffer(ctBytes);
+                var decipher = forge.cipher.createDecipher('AES-CBC', key.encKey);
+                decipher.start({ iv: ivBytes });
+                decipher.update(ctBuffer);
+                decipher.finish();
 
-            if (key.macKey && encPieces.length > 2) {
-                var macBytes = forge.util.decode64(encPieces[2]);
-                var computedMacBytes = computeMac(ivBytes + ctBytes, key.macKey, false);
-                if (!macsEqual(key.macKey, macBytes, computedMacBytes)) {
-                    console.error('MAC failed.');
-                    return null;
+                outputEncoding = outputEncoding || 'utf8';
+                if (outputEncoding === 'utf8') {
+                    return decipher.output.toString('utf8');
+                }
+                else {
+                    return decipher.output.getBytes();
                 }
             }
-
-            var ctBuffer = forge.util.createBuffer(ctBytes);
-            var decipher = forge.cipher.createDecipher('AES-CBC', key.encKey);
-            decipher.start({ iv: ivBytes });
-            decipher.update(ctBuffer);
-            decipher.finish();
-
-            outputEncoding = outputEncoding || 'utf8';
-            if (outputEncoding === 'utf8') {
-                return decipher.output.toString('utf8');
-            }
-            else {
-                return decipher.output.getBytes();
+            catch (e) {
+                console.error('Caught unhandled error in decrypt: ' + e);
+                throw e;
             }
         };
 
         _service.decryptFromBytes = function (encBuf, key) {
-            if (!encBuf) {
-                throw 'no encBuf.';
-            }
+            try {
+                if (!encBuf) {
+                    throw 'no encBuf.';
+                }
 
-            var encBytes = new Uint8Array(encBuf),
-                encType = encBytes[0],
-                ctBytes = null,
-                ivBytes = null,
-                macBytes = null;
+                var encBytes = new Uint8Array(encBuf),
+                    encType = encBytes[0],
+                    ctBytes = null,
+                    ivBytes = null,
+                    macBytes = null;
 
-            switch (encType) {
-                case constants.encType.AesCbc128_HmacSha256_B64:
-                case constants.encType.AesCbc256_HmacSha256_B64:
-                    if (encBytes.length <= 49) { // 1 + 16 + 32 + ctLength
+                switch (encType) {
+                    case constants.encType.AesCbc128_HmacSha256_B64:
+                    case constants.encType.AesCbc256_HmacSha256_B64:
+                        if (encBytes.length <= 49) { // 1 + 16 + 32 + ctLength
+                            console.error('Enc type (' + encType + ') not valid.');
+                            return null;
+                        }
+
+                        ivBytes = slice(encBytes, 1, 17);
+                        macBytes = slice(encBytes, 17, 49);
+                        ctBytes = slice(encBytes, 49);
+                        break;
+                    case constants.encType.AesCbc256_B64:
+                        if (encBytes.length <= 17) { // 1 + 16 + ctLength
+                            console.error('Enc type (' + encType + ') not valid.');
+                            return null;
+                        }
+
+                        ivBytes = slice(encBytes, 1, 17);
+                        ctBytes = slice(encBytes, 17);
+                        break;
+                    default:
+                        console.error('Enc type (' + encType + ') not supported.');
                         return null;
-                    }
+                }
 
-                    ivBytes = slice(encBytes, 1, 17);
-                    macBytes = slice(encBytes, 17, 49);
-                    ctBytes = slice(encBytes, 49);
-                    break;
-                case constants.encType.AesCbc256_B64:
-                    if (encBytes.length <= 17) { // 1 + 16 + ctLength
-                        return null;
-                    }
-
-                    ivBytes = slice(encBytes, 1, 17);
-                    ctBytes = slice(encBytes, 17);
-                    break;
-                default:
-                    return null;
+                return aesDecryptWC(
+                    encType,
+                    ctBytes.buffer,
+                    ivBytes.buffer,
+                    macBytes ? macBytes.buffer : null,
+                    key);
             }
-
-            return aesDecryptWC(
-                encType,
-                ctBytes.buffer,
-                ivBytes.buffer,
-                macBytes ? macBytes.buffer : null,
-                key);
+            catch (e) {
+                console.error('Caught unhandled error in decryptFromBytes: ' + e);
+                throw e;
+            }
         };
 
         function aesDecryptWC(encType, ctBuf, ivBuf, macBuf, key) {
