@@ -1,3 +1,3 @@
 #!/bin/sh
 
-http-server ./ -p 80 -d False --utc
+http-server ./ -p 80 -d false --utc
