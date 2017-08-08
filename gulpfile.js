@@ -71,7 +71,8 @@ gulp.task('min:js', ['clean:js'], function () {
             '!' + paths.minJs,
             '!' + paths.jsDir + 'fallback*.js',
             '!' + paths.jsDir + 'u2f-connector.js',
-            '!' + paths.jsDir + 'duo.js'
+            '!' + paths.jsDir + 'duo.js',
+            '!' + paths.jsDir + 'settings.js'
         ], { base: '.' })
         .pipe(concat(paths.concatJsDest))
         .pipe(uglify())
@@ -330,6 +331,10 @@ gulp.task('dist:move', function () {
         //},
         {
             src: paths.jsDir + 'duo.js',
+            dest: paths.dist + 'js'
+        },
+        {
+            src: paths.jsDir + 'settings.js',
             dest: paths.dist + 'js'
         },
         {

@@ -3,11 +3,13 @@ angular
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
         $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider, appSettings) {
+        angular.extend(appSettings, window.bitwardenAppSettings);
+
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
             urlParam: 'access_token3',
-            whiteListedDomains: ['api.bitwarden.com', 'preview-api.bitwarden.com', 'localhost', '192.168.1.3']
+            whiteListedDomains: appSettings.whitelistDomains
         });
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
