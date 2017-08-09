@@ -150,7 +150,7 @@
                     login.folderId = rootLogin.folderId = returnVal.data.folderId;
                     login.name = rootLogin.name = returnVal.data.name;
                     login.username = rootLogin.username = returnVal.data.username;
-                    login.password = rootLogin.username = returnVal.data.password;
+                    login.password = rootLogin.password = returnVal.data.password;
                     login.favorite = rootLogin.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'partialEdit') {
