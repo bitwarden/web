@@ -114,6 +114,8 @@
             email: { url: _apiUri + '/accounts/email', method: 'POST', params: {} },
             verifyEmailToken: { url: _apiUri + '/accounts/verify-email-token', method: 'POST', params: {} },
             verifyEmail: { url: _apiUri + '/accounts/verify-email', method: 'POST', params: {} },
+            postDeleteRecoverToken: { url: _apiUri + '/accounts/delete-recover-token', method: 'POST', params: {} },
+            postDeleteRecover: { url: _apiUri + '/accounts/delete-recover', method: 'POST', params: {} },
             putPassword: { url: _apiUri + '/accounts/password', method: 'POST', params: {} },
             getProfile: { url: _apiUri + '/accounts/profile', method: 'GET', params: {} },
             putProfile: { url: _apiUri + '/accounts/profile', method: 'POST', params: {} },

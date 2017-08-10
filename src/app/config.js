@@ -8,7 +8,7 @@ angular
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
-            urlParam: 'access_token3',
+            urlParam: 'access_token',
             whiteListedDomains: appSettings.whitelistDomains
         });
         var refreshPromise;
@@ -260,6 +260,24 @@ angular
                 controller: 'accountsRecoverController',
                 data: {
                     pageTitle: 'Recover Account',
+                    bodyClass: 'login-page'
+                }
+            })
+            .state('frontend.recover-delete', {
+                url: '^/recover-delete',
+                templateUrl: 'app/accounts/views/accountsRecoverDelete.html',
+                controller: 'accountsRecoverDeleteController',
+                data: {
+                    pageTitle: 'Delete Account',
+                    bodyClass: 'login-page'
+                }
+            })
+            .state('frontend.verify-recover-delete', {
+                url: '^/verify-recover-delete?userId&token&email',
+                templateUrl: 'app/accounts/views/accountsVerifyRecoverDelete.html',
+                controller: 'accountsVerifyRecoverDeleteController',
+                data: {
+                    pageTitle: 'Confirm Delete Account',
                     bodyClass: 'login-page'
                 }
             })
