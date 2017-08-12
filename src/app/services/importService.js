@@ -770,6 +770,9 @@
                     else if (!login.password && field[designationKey] && field[designationKey] === 'password') {
                         login.password = field[valueKey];
                     }
+                    else if (!login.totp && field[designationKey] && field[designationKey].startsWith("TOTP_")) {
+                        login.totp = field[valueKey];
+                    }
                     else if (field[nameKey] && field[valueKey]) {
                         if (login.notes === null) {
                             login.notes = '';
@@ -803,6 +806,7 @@
                         password: null,
                         notes: null,
                         name: item.title && item.title !== '' ? item.title : '--',
+                        totp: null
                     };
 
                     if (item.secureContents) {
