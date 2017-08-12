@@ -1262,7 +1262,8 @@
                             uri: null,
                             password: null,
                             username: null,
-                            notes: note && note !== '' ? note : null
+                            notes: note && note !== '' ? note : null,
+                            totp: null
                         };
 
                         if (row.length > 2 && (row.length % 2) === 0) {
@@ -1283,6 +1284,9 @@
                                 }
                                 else if (fieldLower === 'password' && !login.password) {
                                     login.password = value;
+                                }
+                                else if (fieldLower === 'totp' && !login.totp) {
+                                    login.totp = value;
                                 }
                                 else {
                                     // other custom fields
