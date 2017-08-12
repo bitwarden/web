@@ -773,7 +773,7 @@
                     else if (!login.totp && field[designationKey] && field[designationKey].startsWith("TOTP_")) {
                         login.totp = field[valueKey];
                     }
-                    else if (field[nameKey] && field[valueKey]) {
+                    else if (field[valueKey]) {
                         if (login.notes === null) {
                             login.notes = '';
                         }
@@ -781,7 +781,7 @@
                             login.notes += '\n';
                         }
 
-                        login.notes += (field[nameKey] + ': ' +
+                        login.notes += ((field[nameKey] || 'no_name') + ': ' +
                             field[valueKey].toString().split('\\r\\n').join('\n').split('\\n').join('\n'));
                     }
                 }
