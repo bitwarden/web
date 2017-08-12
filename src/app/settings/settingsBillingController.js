@@ -6,6 +6,7 @@
         $scope.paymentSource = null;
         $scope.subscription = null;
         $scope.loading = true;
+        var license = null;
 
         $scope.$on('$viewContentLoaded', function () {
             load();
@@ -72,6 +73,26 @@
                 });
         };
 
+        $scope.license = function () {
+            var licenseString = JSON.stringify(license, null, 2);
+            var licenseBlob = new Blob([licenseString]);
+
+            // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+            if (window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveBlob(licenseBlob, 'bitwarden_premium_license.json');
+            }
+            else {
+                var a = window.document.createElement('a');
+                a.href = window.URL.createObjectURL(licenseBlob, { type: 'text/plain' });
+                a.download = 'bitwarden_premium_license.json';
+                document.body.appendChild(a);
+                // IE: "Access is denied". 
+                // ref: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+                a.click();
+                document.body.removeChild(a);
+            }
+        };
+
         function load() {
             authService.getUserProfile().then(function (profile) {
                 $scope.premium = profile.premium;
@@ -86,6 +107,8 @@
                 }
 
                 var i = 0;
+
+                license = billing.License;
 
                 $scope.storage = null;
                 if (billing && billing.MaxStorageGb) {

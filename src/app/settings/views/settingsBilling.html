@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer" ng-if="!subscription.cancelled || subscription.markedForCancel">
+        <div class="box-footer" ng-if="!loading && subscription && (!subscription.cancelled || subscription.markedForCancel)">
             <button type="button" class="btn btn-default btn-flat" ng-click="cancel()"
                     ng-if="!subscription.cancelled && !subscription.markedForCancel">
                 Cancel
@@ -62,6 +62,10 @@
             <button type="button" class="btn btn-default btn-flat" ng-click="reinstate()"
                     ng-if="subscription.markedForCancel">
                 Reinstate
+            </button>
+            <button type="button" class="btn btn-default btn-flat" ng-click="license()"
+                    ng-if="!subscription.cancelled">
+                Download License
             </button>
         </div>
     </div>
@@ -82,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer" ng-if="!subscription.cancelled">
+        <div class="box-footer" ng-if="subscription && paymentSource && !subscription.cancelled">
             <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(true)">
                 Add Storage
             </button>

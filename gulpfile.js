@@ -241,6 +241,7 @@ function config() {
             createModule: false,
             constants: _.merge({}, {
                 appSettings: {
+                    selfHosted: false,
                     version: project.version,
                     environment: project.env
                 }

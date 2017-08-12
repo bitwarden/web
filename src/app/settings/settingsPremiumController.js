@@ -2,12 +2,14 @@
     .module('bit.settings')
 
     .controller('settingsPremiumController', function ($scope, $state, apiService, toastr, $analytics, authService, stripe,
-        constants, $timeout, appSettings) {
+        constants, $timeout, appSettings, validationService) {
         authService.getUserProfile().then(function (profile) {
             if (profile.premium) {
                 return $state.go('backend.user.settingsBilling');
             }
         });
+
+        $scope.selfHosted = appSettings.selfHosted;
 
         var btInstance = null;
         $scope.storageGbPrice = constants.storageGb.yearlyPrice;
@@ -54,23 +56,43 @@
             return $scope.premiumPrice + (($scope.model.additionalStorageGb || 0) * $scope.storageGbPrice);
         };
 
-        $scope.submit = function (model) {
-            $scope.submitPromise = getPaymentToken(model).then(function (token) {
-                if (!token) {
-                    throw 'No payment token.';
+        $scope.submit = function (model, form) {
+            if ($scope.selfHosted) {
+                var fileEl = document.getElementById('file');
+                var files = fileEl.files;
+                if (!files || !files.length) {
+                    validationService.addError(form, 'file', 'Select a license file.', true);
+                    return;
                 }
 
-                var request = {
-                    paymentToken: token,
-                    additionalStorageGb: model.additionalStorageGb
-                };
+                var fd = new FormData();
+                fd.append('license', files[0]);
 
-                return apiService.accounts.postPremium(request).$promise;
-            }, function (err) {
-                throw err;
-            }).then(function (result) {
-                return authService.updateProfilePremium(true);
-            }).then(function () {
+                $scope.submitPromise = apiService.accounts.postPremium(fd).$promise.then(function (result) {
+                    return finalizePremium();
+                });
+            }
+            else {
+                $scope.submitPromise = getPaymentToken(model).then(function (token) {
+                    if (!token) {
+                        throw 'No payment token.';
+                    }
+
+                    var fd = new FormData();
+                    fd.append('paymentToken', token);
+                    fd.append('additionalStorageGb', model.additionalStorageGb || 0);
+
+                    return apiService.accounts.postPremium(fd).$promise;
+                }, function (err) {
+                    throw err;
+                }).then(function (result) {
+                    return finalizePremium();
+                });
+            }
+        };
+
+        function finalizePremium() {
+            return authService.updateProfilePremium(true).then(function () {
                 $analytics.eventTrack('Signed Up Premium');
                 return authService.refreshAccessToken();
             }).then(function () {
@@ -78,7 +100,7 @@
             }).then(function () {
                 toastr.success('Premium upgrade complete.', 'Success');
             });
-        };
+        }
 
         function getPaymentToken(model) {
             if ($scope.paymentMethod === 'paypal') {
