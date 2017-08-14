@@ -140,6 +140,15 @@
                 <i class="fa fa-credit-card"></i> No payment method on file.
             </div>
             <div ng-show="!loading && paymentSource">
+                <div class="callout callout-warning" ng-if="paymentSource.type === 1 && paymentSource.needsVerification">
+                    <h4><i class="fa fa-warning"></i> You must verify your bank account</h4>
+                    <p>
+                        We have made two micro-deposits to your bank account (it may take 1-2 business days to show up).
+                        Enter these amounts to verify the bank account. Failure to verify the bank account will result in a
+                        missed payment and your organization being disabled.
+                    </p>
+                    <button class="btn btn-default btn-flat" ng-click="verifyBank()">Verify Now</button>
+                </div>
                 <i class="fa" ng-class="{'fa-credit-card': paymentSource.type === 0,
                    'fa-university': paymentSource.type === 1, 'fa-paypal fa-fw text-blue': paymentSource.type === 2}"></i>
                 {{paymentSource.description}}

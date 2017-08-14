@@ -6,11 +6,30 @@
         $analytics.eventTrack('organizationBillingChangePaymentController', { category: 'Modal' });
         $scope.existingPaymentMethod = existingPaymentMethod;
         $scope.paymentMethod = 'card';
-        $scope.showPaymentOptions = false;
+        $scope.showPaymentOptions = true;
+        $scope.hidePaypal = true;
         $scope.card = {};
+        $scope.bank = {};
+
+        $scope.changePaymentMethod = function (val) {
+            $scope.paymentMethod = val;
+        };
 
         $scope.submit = function () {
-            $scope.submitPromise = stripe.card.createToken($scope.card).then(function (response) {
+            var stripeReq = null;
+            if ($scope.paymentMethod === 'card') {
+                stripeReq = stripe.card.createToken($scope.card);
+            }
+            else if ($scope.paymentMethod === 'bank') {
+                $scope.bank.currency = 'USD';
+                $scope.bank.country = 'US';
+                stripeReq = stripe.bankAccount.createToken($scope.bank);
+            }
+            else {
+                return;
+            }
+
+            $scope.submitPromise = stripeReq.then(function (response) {
                 var request = {
                     paymentToken: response.id
                 };

@@ -21,7 +21,8 @@
             additionalStorageGb: null
         };
 
-        $scope.changePaymentMethod = function () {
+        $scope.changePaymentMethod = function (val) {
+            $scope.paymentMethod = val;
             if ($scope.paymentMethod !== 'paypal') {
                 return;
             }

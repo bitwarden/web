@@ -5,6 +5,7 @@
         toastr, $analytics, authService, stripe, constants) {
         $scope.plans = constants.plans;
         $scope.storageGb = constants.storageGb;
+        $scope.paymentMethod = 'card';
 
         $scope.model = {
             plan: 'free',
@@ -25,6 +26,10 @@
                     (($scope.model.additionalStorageGb || 0) * $scope.storageGb.yearlyPrice) +
                     ($scope.plans[$scope.model.plan].annualBasePrice || 0);
             }
+        };
+
+        $scope.changePaymentMethod = function (val) {
+            $scope.paymentMethod = val;
         };
 
         $scope.changedPlan = function () {
@@ -61,7 +66,20 @@
                 $scope.submitPromise = apiService.organizations.post(freeRequest).$promise.then(finalizeCreate);
             }
             else {
-                $scope.submitPromise = stripe.card.createToken(model.card).then(function (response) {
+                var stripeReq = null;
+                if ($scope.paymentMethod === 'card') {
+                    stripeReq = stripe.card.createToken(model.card);
+                }
+                else if ($scope.paymentMethod === 'bank') {
+                    model.bank.currency = 'USD';
+                    model.bank.country = 'US';
+                    stripeReq = stripe.bankAccount.createToken(model.bank);
+                }
+                else {
+                    return;
+                }
+
+                $scope.submitPromise = stripeReq.then(function (response) {
                     var paidRequest = {
                         name: model.name,
                         planType: model.interval === 'month' ? $scope.plans[model.plan].monthPlanType :

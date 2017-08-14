@@ -80,6 +80,18 @@
             });
         };
 
+        $scope.verifyBank = function () {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationBillingVerifyBank.html',
+                controller: 'organizationBillingVerifyBankController'
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
         $scope.cancel = function () {
             if (!confirm('Are you sure you want to cancel? All users will lose access to the organization ' +
                 'at the end of this billing cycle.')) {
@@ -167,7 +179,8 @@
                     $scope.paymentSource = {
                         type: org.PaymentSource.Type,
                         description: org.PaymentSource.Description,
-                        cardBrand: org.PaymentSource.CardBrand
+                        cardBrand: org.PaymentSource.CardBrand,
+                        needsVerification: org.PaymentSource.NeedsVerification
                     };
                 }
 

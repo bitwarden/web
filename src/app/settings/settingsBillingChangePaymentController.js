@@ -8,6 +8,7 @@
         $scope.paymentMethod = 'card';
         $scope.dropinLoaded = false;
         $scope.showPaymentOptions = false;
+        $scope.hideBank = true;
         $scope.card = {};
         var btInstance = null;
 
