@@ -137,6 +137,11 @@
                 url: _apiUri + '/accounts/premium',
                 method: 'POST',
                 headers: { 'Content-Type': undefined }
+            },
+            putLicense: {
+                url: _apiUri + '/accounts/license',
+                method: 'POST',
+                headers: { 'Content-Type': undefined }
             }
         });
 

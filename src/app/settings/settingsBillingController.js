@@ -1,18 +1,25 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsBillingController', function ($scope, apiService, authService, $state, $uibModal, toastr, $analytics) {
+    .controller('settingsBillingController', function ($scope, apiService, authService, $state, $uibModal, toastr, $analytics,
+        appSettings) {
+        $scope.selfHosted = appSettings.selfHosted;
         $scope.charges = [];
         $scope.paymentSource = null;
         $scope.subscription = null;
         $scope.loading = true;
         var license = null;
+        $scope.expiration = null;
 
         $scope.$on('$viewContentLoaded', function () {
             load();
         });
 
         $scope.changePayment = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsBillingChangePayment.html',
@@ -30,6 +37,10 @@
         };
 
         $scope.adjustStorage = function (add) {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsBillingAdjustStorage.html',
@@ -47,6 +58,10 @@
         };
 
         $scope.cancel = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             if (!confirm('Are you sure you want to cancel? You will lose access to all premium features at the end ' +
                 'of this billing cycle.')) {
                 return;
@@ -61,6 +76,10 @@
         };
 
         $scope.reinstate = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             if (!confirm('Are you sure you want to remove the cancellation request and reinstate your premium membership?')) {
                 return;
             }
@@ -73,7 +92,27 @@
                 });
         };
 
+        $scope.updateLicense = function () {
+            if (!$scope.selfHosted) {
+                return;
+            }
+
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsBillingUpdateLicense.html',
+                controller: 'settingsBillingUpdateLicenseController'
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
         $scope.license = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var licenseString = JSON.stringify(license, null, 2);
             var licenseBlob = new Blob([licenseString]);
 
@@ -107,7 +146,7 @@
                 }
 
                 var i = 0;
-
+                $scope.expiration = billing.Expiration;
                 license = billing.License;
 
                 $scope.storage = null;
