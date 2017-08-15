@@ -1,7 +1,7 @@
 ﻿<section class="content-header">
     <h1>
         Billing
-        <small>manage your payments</small>
+        <small>manage your billing &amp; licensing</small>
     </h1>
 </section>
 <section class="content">
@@ -26,14 +26,28 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-6">
-                    <dl>
+                    <dl ng-if="selfHosted">
+                        <dt>Name</dt>
+                        <dd>{{plan.name || '-'}}</dd>
+                        <dt>Expiration</dt>
+                        <dd ng-if="loading">
+                            Loading...
+                        </dd>
+                        <dd ng-if="!loading && expiration">
+                            {{expiration | date: 'medium'}}
+                        </dd>
+                        <dd ng-if="!loading && !expiration">
+                            Never expires
+                        </dd>
+                    </dl>
+                    <dl ng-if="!selfHosted">
                         <dt>Name</dt>
                         <dd>{{plan.name || '-'}}</dd>
                         <dt>Total Seats</dt>
                         <dd>{{plan.seats || '-'}}</dd>
                     </dl>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" ng-if="!selfHosted">
                     <dl>
                         <dt>Status</dt>
                         <dd>
@@ -41,11 +55,11 @@
                             <span ng-if="subscription.markedForCancel">- marked for cancellation</span>
                         </dd>
                         <dt>Next Charge</dt>
-                        <dd>{{nextInvoice ? ((nextInvoice.date | date: format: mediumDate) + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
+                        <dd>{{nextInvoice ? ((nextInvoice.date | date: 'mediumDate') + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
                     </dl>
                 </div>
             </div>
-            <div class="row" ng-if="!noSubscription">
+            <div class="row" ng-if="!selfHosted && !noSubscription">
                 <div class="col-md-6">
                     <strong>Details</strong>
                     <div ng-show="loading">
@@ -67,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer">
+        <div class="box-footer" ng-if="!selfHosted">
             <button type="button" class="btn btn-default btn-flat" ng-click="changePlan()">
                 Change Plan
             </button>
@@ -79,6 +93,18 @@
                     ng-if="!noSubscription && subscription.markedForCancel">
                 Reinstate Plan
             </button>
+            <button type="button" class="btn btn-default btn-flat" ng-click="license()"
+                    ng-if="!subscription.cancelled">
+                Download License
+            </button>
+        </div>
+        <div class="box-footer" ng-if="selfHosted">
+            <button type="button" class="btn btn-default btn-flat" ng-click="updateLicense()">
+                Update License
+            </button>
+            <a href="https://vault.bitwarden.com" class="btn btn-default btn-flat" target="_blank">
+                Manage Billing
+            </a>
         </div>
     </div>
     <div class="box box-default">
@@ -93,7 +119,7 @@
                 You plan currently has a total of <b>{{plan.seats}}</b> seats.
             </div>
         </div>
-        <div class="box-footer" ng-if="!noSubscription">
+        <div class="box-footer" ng-if="!selfHosted && !noSubscription">
             <button type="button" class="btn btn-default btn-flat" ng-click="adjustSeats(true)">
                 Add Seats
             </button>
@@ -102,7 +128,7 @@
             </button>
         </div>
     </div>
-    <div class="box box-default" ng-if="storage">
+    <div class="box box-default" ng-if="storage && !selfHosted">
         <div class="box-header with-border">
             <h3 class="box-title">Storage</h3>
         </div>
@@ -128,7 +154,7 @@
             </button>
         </div>
     </div>
-    <div class="box box-default">
+    <div class="box box-default" ng-if="!selfHosted">
         <div class="box-header with-border">
             <h3 class="box-title">Payment Method</h3>
         </div>
@@ -160,7 +186,7 @@
             </button>
         </div>
     </div>
-    <div class="box box-default">
+    <div class="box box-default" ng-if="!selfHosted">
         <div class="box-header with-border">
             <h3 class="box-title">Charges</h3>
         </div>
@@ -176,7 +202,7 @@
                     <tbody>
                         <tr ng-repeat="charge in charges">
                             <td style="width: 200px">
-                                {{charge.date | date: format: mediumDate}}
+                                {{charge.date | date: 'mediumDate'}}
                             </td>
                             <td style="min-width: 150px">
                                 {{charge.paymentSource}}

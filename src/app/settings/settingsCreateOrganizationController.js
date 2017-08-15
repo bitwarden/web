@@ -2,10 +2,11 @@
     .module('bit.settings')
 
     .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, cryptoService,
-        toastr, $analytics, authService, stripe, constants) {
+        toastr, $analytics, authService, stripe, constants, appSettings, validationService) {
         $scope.plans = constants.plans;
         $scope.storageGb = constants.storageGb;
         $scope.paymentMethod = 'card';
+        $scope.selfHosted = appSettings.selfHosted;
 
         $scope.model = {
             plan: 'free',
@@ -52,50 +53,68 @@
             }
         };
 
-        $scope.submit = function (model) {
-            var shareKeyCt = cryptoService.makeShareKeyCt();
-
-            if (model.plan === 'free') {
-                var freeRequest = {
-                    name: model.name,
-                    planType: model.plan,
-                    key: shareKeyCt,
-                    billingEmail: model.billingEmail
-                };
-
-                $scope.submitPromise = apiService.organizations.post(freeRequest).$promise.then(finalizeCreate);
-            }
-            else {
-                var stripeReq = null;
-                if ($scope.paymentMethod === 'card') {
-                    stripeReq = stripe.card.createToken(model.card);
-                }
-                else if ($scope.paymentMethod === 'bank') {
-                    model.bank.currency = 'USD';
-                    model.bank.country = 'US';
-                    stripeReq = stripe.bankAccount.createToken(model.bank);
-                }
-                else {
+        $scope.submit = function (model, form) {
+            if ($scope.selfHosted) {
+                var fileEl = document.getElementById('file');
+                var files = fileEl.files;
+                if (!files || !files.length) {
+                    validationService.addError(form, 'file', 'Select a license file.', true);
                     return;
                 }
 
-                $scope.submitPromise = stripeReq.then(function (response) {
-                    var paidRequest = {
+                var fd = new FormData();
+                fd.append('license', files[0]);
+                fd.append('key', shareKeyCt);
+
+                $scope.submitPromise = apiService.organizations.postLicense(fd).$promise.then(function (result) {
+                    return finalizeCreate();
+                });
+            }
+            else {
+                var shareKeyCt = cryptoService.makeShareKeyCt();
+
+                if (model.plan === 'free') {
+                    var freeRequest = {
                         name: model.name,
-                        planType: model.interval === 'month' ? $scope.plans[model.plan].monthPlanType :
-                            $scope.plans[model.plan].annualPlanType,
+                        planType: model.plan,
                         key: shareKeyCt,
-                        paymentToken: response.id,
-                        additionalSeats: model.additionalSeats,
-                        additionalStorageGb: model.additionalStorageGb,
-                        billingEmail: model.billingEmail,
-                        businessName: model.ownedBusiness ? model.businessName : null
+                        billingEmail: model.billingEmail
                     };
 
-                    return apiService.organizations.post(paidRequest).$promise;
-                }, function (err) {
-                    throw err.message;
-                }).then(finalizeCreate);
+                    $scope.submitPromise = apiService.organizations.post(freeRequest).$promise.then(finalizeCreate);
+                }
+                else {
+                    var stripeReq = null;
+                    if ($scope.paymentMethod === 'card') {
+                        stripeReq = stripe.card.createToken(model.card);
+                    }
+                    else if ($scope.paymentMethod === 'bank') {
+                        model.bank.currency = 'USD';
+                        model.bank.country = 'US';
+                        stripeReq = stripe.bankAccount.createToken(model.bank);
+                    }
+                    else {
+                        return;
+                    }
+
+                    $scope.submitPromise = stripeReq.then(function (response) {
+                        var paidRequest = {
+                            name: model.name,
+                            planType: model.interval === 'month' ? $scope.plans[model.plan].monthPlanType :
+                                $scope.plans[model.plan].annualPlanType,
+                            key: shareKeyCt,
+                            paymentToken: response.id,
+                            additionalSeats: model.additionalSeats,
+                            additionalStorageGb: model.additionalStorageGb,
+                            billingEmail: model.billingEmail,
+                            businessName: model.ownedBusiness ? model.businessName : null
+                        };
+
+                        return apiService.organizations.post(paidRequest).$promise;
+                    }, function (err) {
+                        throw err.message;
+                    }).then(finalizeCreate);
+                }
             }
 
             function finalizeCreate(result) {

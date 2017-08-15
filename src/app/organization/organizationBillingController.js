@@ -1,18 +1,26 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal, toastr, $analytics) {
+    .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal, toastr, $analytics,
+        appSettings) {
+        $scope.selfHosted = appSettings.selfHosted;
         $scope.charges = [];
         $scope.paymentSource = null;
         $scope.plan = null;
         $scope.subscription = null;
         $scope.loading = true;
+        var license = null;
+        $scope.expiration = null;
 
         $scope.$on('$viewContentLoaded', function () {
             load();
         });
 
         $scope.changePayment = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsBillingChangePayment.html',
@@ -30,6 +38,10 @@
         };
 
         $scope.changePlan = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/organization/views/organizationBillingChangePlan.html',
@@ -47,6 +59,10 @@
         };
 
         $scope.adjustSeats = function (add) {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/organization/views/organizationBillingAdjustSeats.html',
@@ -64,6 +80,10 @@
         };
 
         $scope.adjustStorage = function (add) {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/settings/views/settingsBillingAdjustStorage.html',
@@ -81,6 +101,10 @@
         };
 
         $scope.verifyBank = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/organization/views/organizationBillingVerifyBank.html',
@@ -93,6 +117,10 @@
         };
 
         $scope.cancel = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             if (!confirm('Are you sure you want to cancel? All users will lose access to the organization ' +
                 'at the end of this billing cycle.')) {
                 return;
@@ -107,6 +135,10 @@
         };
 
         $scope.reinstate = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             if (!confirm('Are you sure you want to remove the cancellation request and reinstate this organization?')) {
                 return;
             }
@@ -119,12 +151,54 @@
                 });
         };
 
+        $scope.updateLicense = function () {
+            if (!$scope.selfHosted) {
+                return;
+            }
+
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsBillingUpdateLicense.html',
+                controller: 'organizationBillingUpdateLicenseController'
+            });
+
+            modal.result.then(function () {
+                load();
+            });
+        };
+
+        $scope.license = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
+            var licenseString = JSON.stringify(license, null, 2);
+            var licenseBlob = new Blob([licenseString]);
+
+            // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+            if (window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveBlob(licenseBlob, 'bitwarden_organization_license.json');
+            }
+            else {
+                var a = window.document.createElement('a');
+                a.href = window.URL.createObjectURL(licenseBlob, { type: 'text/plain' });
+                a.download = 'bitwarden_premium_license.json';
+                document.body.appendChild(a);
+                // IE: "Access is denied". 
+                // ref: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+                a.click();
+                document.body.removeChild(a);
+            }
+        };
+
         function load() {
             apiService.organizations.getBilling({ id: $state.params.orgId }, function (org) {
                 $scope.loading = false;
                 $scope.noSubscription = org.PlanType === 0;
 
                 var i = 0;
+                $scope.expiration = org.Expiration;
+                license = org.License;
 
                 $scope.plan = {
                     name: org.Plan,

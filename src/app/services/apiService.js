@@ -70,7 +70,17 @@
             putReinstate: { url: _apiUri + '/organizations/:id/reinstate', method: 'POST', params: { id: '@id' } },
             postLeave: { url: _apiUri + '/organizations/:id/leave', method: 'POST', params: { id: '@id' } },
             postVerifyBank: { url: _apiUri + '/organizations/:id/verify-bank', method: 'POST', params: { id: '@id' } },
-            del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } }
+            del: { url: _apiUri + '/organizations/:id/delete', method: 'POST', params: { id: '@id' } },
+            postLicense: {
+                url: _apiUri + '/organizations/license',
+                method: 'POST',
+                headers: { 'Content-Type': undefined }
+            },
+            putLicense: {
+                url: _apiUri + '/organizations/:id/license',
+                method: 'POST',
+                headers: { 'Content-Type': undefined }
+            }
         });
 
         _service.organizationUsers = $resource(_apiUri + '/organizations/:orgId/users/:id', {}, {
