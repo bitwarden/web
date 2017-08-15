@@ -59,6 +59,7 @@
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
             getBilling: { url: _apiUri + '/organizations/:id/billing', method: 'GET', params: { id: '@id' } },
+            getLicense: { url: _apiUri + '/organizations/:id/license', method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             put: { method: 'POST', params: { id: '@id' } },

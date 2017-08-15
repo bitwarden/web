@@ -172,23 +172,40 @@
                 return;
             }
 
-            var licenseString = JSON.stringify(license, null, 2);
-            var licenseBlob = new Blob([licenseString]);
+            var installationId = prompt("Enter your installation id");
+            if (!installationId || installationId === '') {
+                return;
+            }
 
-            // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
-            if (window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveBlob(licenseBlob, 'bitwarden_organization_license.json');
-            }
-            else {
-                var a = window.document.createElement('a');
-                a.href = window.URL.createObjectURL(licenseBlob, { type: 'text/plain' });
-                a.download = 'bitwarden_premium_license.json';
-                document.body.appendChild(a);
-                // IE: "Access is denied". 
-                // ref: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
-                a.click();
-                document.body.removeChild(a);
-            }
+            apiService.organizations.getLicense({
+                id: $state.params.orgId,
+                installationId: installationId
+            }, function (license) {
+                var licenseString = JSON.stringify(license, null, 2);
+                var licenseBlob = new Blob([licenseString]);
+
+                // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveBlob(licenseBlob, 'bitwarden_organization_license.json');
+                }
+                else {
+                    var a = window.document.createElement('a');
+                    a.href = window.URL.createObjectURL(licenseBlob, { type: 'text/plain' });
+                    a.download = 'bitwarden_organization_license.json';
+                    document.body.appendChild(a);
+                    // IE: "Access is denied". 
+                    // ref: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            }, function (err) {
+                if (err.status === 400) {
+                    toastr.error("Invalid installation id.");
+                }
+                else {
+                    toastr.error("Unable to generate license.");
+                }
+            });
         };
 
         function load() {
