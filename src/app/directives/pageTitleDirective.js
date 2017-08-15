@@ -6,9 +6,9 @@ angular
             link: function (scope, element) {
                 var listener = function (event, toState, toParams, fromState, fromParams) {
                     // Default title
-                    var title = 'bitwarden Password Manager';
+                    var title = 'bitwarden Web Vault';
                     if (toState.data && toState.data.pageTitle) {
-                        title = toState.data.pageTitle + ' - bitwarden Password Manager';
+                        title = toState.data.pageTitle + ' - ' + title;
                     }
 
                     $timeout(function () {
