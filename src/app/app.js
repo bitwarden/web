@@ -6,9 +6,11 @@
         'ui.bootstrap.showErrors',
         'toastr',
         'angulartics',
+        // @if !selfHosted
         'angulartics.google.analytics',
         'angular-stripe',
         'credit-cards',
+        // @endif
         'angular-promise-polyfill',
 
         'bit.directives',

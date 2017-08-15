@@ -2,7 +2,11 @@
     .module('bit.settings')
 
     .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, cryptoService,
-        toastr, $analytics, authService, stripe, constants, appSettings, validationService) {
+        toastr, $analytics, authService, constants, appSettings, validationService
+        // @if !selfHosted
+        , stripe
+        // @endif
+    ) {
         $scope.plans = constants.plans;
         $scope.storageGb = constants.storageGb;
         $scope.paymentMethod = 'card';

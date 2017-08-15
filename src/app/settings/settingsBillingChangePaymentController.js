@@ -1,8 +1,12 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('settingsBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService, stripe,
-        $analytics, toastr, existingPaymentMethod, appSettings, $timeout) {
+    .controller('settingsBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService,
+        $analytics, toastr, existingPaymentMethod, appSettings, $timeout
+        // @if !selfHosted
+        , stripe
+        // @endif
+    ) {
         $analytics.eventTrack('settingsBillingChangePaymentController', { category: 'Modal' });
         $scope.existingPaymentMethod = existingPaymentMethod;
         $scope.paymentMethod = 'card';

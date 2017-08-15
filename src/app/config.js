@@ -2,7 +2,11 @@ angular
     .module('bit')
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
-        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, stripeProvider, appSettings) {
+        $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, appSettings
+        // @if !selfHosted
+        , stripeProvider
+        // @endif
+    ) {
         angular.extend(appSettings, window.bitwardenAppSettings);
 
         $qProvider.errorOnUnhandledRejections(false);
@@ -37,7 +41,9 @@ angular
             return refreshPromise;
         };
 
+        // @if !selfHosted
         stripeProvider.setPublishableKey(appSettings.stripeKey);
+        // @endif
 
         angular.extend(toastrConfig, {
             closeButton: true,

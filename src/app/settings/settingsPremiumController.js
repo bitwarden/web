@@ -1,8 +1,12 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsPremiumController', function ($scope, $state, apiService, toastr, $analytics, authService, stripe,
-        constants, $timeout, appSettings, validationService) {
+    .controller('settingsPremiumController', function ($scope, $state, apiService, toastr, $analytics, authService,
+        constants, $timeout, appSettings, validationService
+        // @if !selfHosted
+        , stripe
+        // @endif
+    ) {
         authService.getUserProfile().then(function (profile) {
             if (profile.premium) {
                 return $state.go('backend.user.settingsBilling');

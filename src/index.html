@@ -2,6 +2,7 @@
 <html ng-app="bit" ng-csp>
 <head>
     <meta charset="utf-8" />
+    <!-- @if !selfHosted -->
     <meta http-equiv="Content-Security-Policy" content="
           default-src
             'self';
@@ -48,20 +49,48 @@
             https://*.duosecurity.com;
           connect-src
             *;">
+    <!-- @endif -->
+    <!-- @if selfHosted !>
+    <meta http-equiv="Content-Security-Policy" content="
+          default-src
+            'self';
+          style-src
+            'self'
+            'unsafe-inline'
+            https://fonts.googleapis.com;
+          img-src
+            'self'
+            data:
+            https://haveibeenpwned.com
+            https://chart.googleapis.com;
+          font-src
+            'self'
+            https://fonts.gstatic.com;
+          child-src
+            'self'
+            https://*.duosecurity.com;
+          frame-src
+            'self'
+            https://*.duosecurity.com;
+          connect-src
+            *;">
+    <!-- @endif -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <base href="/" />
 
     <title page-title>bitwarden.com Password Manager</title>
 
-    <!-- @if !selfHosted !>
+    <!-- @if !selfHosted -->
     <script src="https://js.stripe.com/v2/"></script>
     <script src="https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js"></script>
     <!-- @endif -->
-    <!-- @if true !>
+    <!-- @if !selfHosted !>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- @endif -->
+    <!-- @if true !>
     <meta name="x-stylesheet-test" content="" class="fa invisible" />
     <script src="js/fallback-styles.min.js?v=<!-- @echo cacheTag !>"></script>
 
@@ -79,13 +108,15 @@
       'control-sidebar-open': main.usingControlSidebar && main.openControlSidebar}">
     <div ui-view></div>
 
-    <!-- @if true !>
+    <!-- @if !selfHosted !>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
             integrity="sha384-rY/jv8mMhqDabXSo+UCggqKtdmBfd3qC2/KvyTDNQ6PcUJXaxK1tMepoQda4g5vB" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"
             integrity="sha384-AH/e+s4V4kUifvnNED2x1XZqArO5qTFU4YKRzUXbz4IgPG1H0Xmz6fP1XUmO4vT/" crossorigin="anonymous"></script>
+    <!-- @endif -->
+    <!-- @if true !>
     <script src="js/fallback-scripts.min.js?v=<!-- @echo cacheTag !>"></script>
     <script src="js/settings.js?v=<!-- @echo cacheTag !>"></script>
 
