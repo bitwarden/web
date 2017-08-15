@@ -1,10 +1,9 @@
-FROM node
-
-RUN npm install http-server -g
+FROM bitwarden/server
 
 WORKDIR /app
-EXPOSE 80
 COPY ./dist .
+
+EXPOSE 80
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
