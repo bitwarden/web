@@ -74,6 +74,7 @@ gulp.task('min:js', ['clean:js'], function () {
             '!' + paths.jsDir + 'duo.js',
             '!' + paths.jsDir + 'settings.js'
         ], { base: '.' })
+        .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(concat(paths.concatJsDest))
         .pipe(uglify())
         .pipe(gulp.dest('.'));
@@ -369,7 +370,7 @@ gulp.task('dist:css', function () {
             paths.cssDir + '**/*.css',
             '!' + paths.cssDir + '**/*.min.css'
         ])
-        .pipe(preprocess({ context: { cacheTag: randomString } }))
+        .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(cssmin())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(paths.dist + 'css'));
@@ -385,7 +386,7 @@ gulp.task('dist:js:app', function () {
         ]);
 
     merge(mainStream, config())
-        .pipe(preprocess({ context: { cacheTag: randomString } }))
+        .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(concat(paths.dist + '/js/app.min.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
@@ -399,7 +400,7 @@ gulp.task('dist:js:fallback', function () {
         ]);
 
     merge(mainStream)
-        .pipe(preprocess({ context: { cacheTag: randomString } }))
+        .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(paths.dist + 'js'));
@@ -437,7 +438,7 @@ gulp.task('dist:preprocess', function () {
         .src([
             paths.dist + '/**/*.html'
         ], { base: '.' })
-        .pipe(preprocess({ context: { cacheTag: randomString } }))
+        .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(gulp.dest('.'));
 });
 
@@ -447,6 +448,12 @@ gulp.task('dist', ['build'], function (cb) {
         ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib', 'dist:js:fallback', 'dist:js:u2f'],
         'dist:preprocess',
         cb);
+});
+
+var selfHosted = false;
+gulp.task('dist:selfHosted', function (cb) {
+    selfHosted = true;
+    return runSequence('dist', cb);
 });
 
 gulp.task('deploy', ['dist'], function () {

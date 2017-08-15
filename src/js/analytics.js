@@ -1,4 +1,5 @@
-﻿(function (i, s, o, g, r, a, m) {
+﻿// @if !selfHosted
+(function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
         (i[r].q = i[r].q || []).push(arguments)
     }, i[r].l = 1 * new Date(); a = s.createElement(o),
@@ -6,3 +7,4 @@
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
 ga('create', 'UA-81915606-3', 'auto');
+// @endif

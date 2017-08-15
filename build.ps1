@@ -6,7 +6,7 @@ echo "`nBuilding app"
 echo "npm version $(npm --version)"
 echo "gulp version $(gulp --version)"
 npm install
-gulp dist
+gulp dist:selfHosted
 
 echo "`nBuilding docker image"
 docker --version

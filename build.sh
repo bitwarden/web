@@ -9,7 +9,7 @@ echo -e "\nBuilding app"
 echo -e "npm version $(npm --version)"
 echo -e "gulp version $(gulp --version)"
 npm install
-gulp dist
+gulp dist:selfHosted
 
 echo -e "\nBuilding docker image"
 docker --version

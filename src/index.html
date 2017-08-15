@@ -53,8 +53,10 @@
 
     <title page-title>bitwarden.com Password Manager</title>
 
+    <!-- @if !selfHosted !>
     <script src="https://js.stripe.com/v2/"></script>
     <script src="https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js"></script>
+    <!-- @endif -->
     <!-- @if true !>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
