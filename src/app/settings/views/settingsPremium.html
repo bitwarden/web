@@ -43,6 +43,11 @@
                     </div>
                 </div>
             </div>
+            <div class="box-footer" ng-if="selfHosted">
+                <a href="https://vault.bitwarden.com/#/?premium=purchase" class="btn btn-primary btn-flat" target="_blank">
+                    Purchase Premium
+                </a>
+            </div>
         </div>
         <div ng-if="selfHosted">
             <div class="box box-default">
@@ -50,7 +55,7 @@
                     <h3 class="box-title">License</h3>
                 </div>
                 <div class="box-body">
-                    <p>Unlock premium with your license.</p>
+                    <p>To upgrade your account to a premium membership you need to upload a valid license file.</p>
                     <div class="form-group" show-error>
                         <label for="file" class="sr-only">License</label>
                         <input type="file" id="file" name="file" accept=".json" />
