@@ -22,17 +22,17 @@
                         <div class="form-group" show-errors>
                             <label for="name">Organization Name</label>
                             <input type="text" id="name" name="Name" ng-model="model.name" class="form-control"
-                                   required api-field />
+                                   required api-field ng-readonly="selfHosted" />
                         </div>
                         <div class="form-group" show-errors>
                             <label for="name">Business Name</label>
                             <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName"
-                                   class="form-control" api-field />
+                                   class="form-control" api-field ng-readonly="selfHosted" />
                         </div>
                         <div class="form-group" show-errors>
                             <label for="name">Billing Email</label>
                             <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail"
-                                   class="form-control" required api-field />
+                                   class="form-control" required api-field ng-readonly="selfHosted" />
                         </div>
                     </div>
                     <div class="col-sm-3 settings-photo">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box-footer">
+            <div class="box-footer" ng-if="!selfHosted">
                 <button type="submit" class="btn btn-primary btn-flat" ng-disabled="generalForm.$loading">
                     <i class="fa fa-refresh fa-spin loading-icon" ng-show="generalForm.$loading"></i>Save
                 </button>

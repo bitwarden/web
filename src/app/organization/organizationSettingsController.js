@@ -2,7 +2,8 @@
     .module('bit.organization')
 
     .controller('organizationSettingsController', function ($scope, $state, apiService, toastr, authService, $uibModal,
-        $analytics) {
+        $analytics, appSettings) {
+        $scope.selfHosted = appSettings.selfHosted;
         $scope.model = {};
         $scope.$on('$viewContentLoaded', function () {
             apiService.organizations.get({ id: $state.params.orgId }, function (org) {
@@ -15,6 +16,10 @@
         });
 
         $scope.generalSave = function () {
+            if ($scope.selfHosted) {
+                return;
+            }
+
             $scope.generalPromise = apiService.organizations.put({ id: $state.params.orgId }, $scope.model, function (org) {
                 authService.updateProfileOrganization(org).then(function (updatedOrg) {
                     $analytics.eventTrack('Updated Organization Settings');
