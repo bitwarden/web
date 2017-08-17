@@ -70,9 +70,7 @@
                 fd.append('license', files[0]);
                 fd.append('key', shareKeyCt);
 
-                $scope.submitPromise = apiService.organizations.postLicense(fd).$promise.then(function (result) {
-                    return finalizeCreate();
-                });
+                $scope.submitPromise = apiService.organizations.postLicense(fd).$promise.then(finalizeCreate);
             }
             else {
                 var shareKeyCt = cryptoService.makeShareKeyCt();
