@@ -58,6 +58,8 @@
         };
 
         $scope.submit = function (model, form) {
+            var shareKeyCt = cryptoService.makeShareKeyCt();
+
             if ($scope.selfHosted) {
                 var fileEl = document.getElementById('file');
                 var files = fileEl.files;
@@ -73,8 +75,6 @@
                 $scope.submitPromise = apiService.organizations.postLicense(fd).$promise.then(finalizeCreate);
             }
             else {
-                var shareKeyCt = cryptoService.makeShareKeyCt();
-
                 if (model.plan === 'free') {
                     var freeRequest = {
                         name: model.name,
