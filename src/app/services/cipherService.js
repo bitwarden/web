@@ -80,7 +80,7 @@ angular
             if (loginData) {
                 login.name = _service.decryptProperty(loginData.Name, key, false);
                 login.username = _service.decryptProperty(loginData.Username, key, true);
-                login.password = _service.decryptProperty(loginData.Password, key, true)
+                login.password = _service.decryptProperty(loginData.Password, key, true);
             }
 
             return login;
