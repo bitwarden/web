@@ -54,10 +54,6 @@
                 apiService.collections.listMe({ writeOnly: true }, function (response) {
                     var collections = [];
                     for (var i = 0; i < response.Data.length; i++) {
-                        if (response.Data[i].ReadOnly) {
-                            continue;
-                        }
-
                         var decCollection = cipherService.decryptCollection(response.Data[i]);
                         decCollection.organizationId = response.Data[i].OrganizationId;
                         collections.push(decCollection);
@@ -74,8 +70,7 @@
             var collections = {};
             if ($event.target.checked) {
                 for (var i = 0; i < $scope.collections.length; i++) {
-                    if ($scope.model.organizationId && $scope.collections[i].organizationId === $scope.model.organizationId &&
-                        !$scope.collections[i].readOnly) {
+                    if ($scope.model.organizationId && $scope.collections[i].organizationId === $scope.model.organizationId) {
                         collections[$scope.collections[i].id] = true;
                     }
                 }

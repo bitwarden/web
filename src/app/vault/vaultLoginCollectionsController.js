@@ -24,28 +24,34 @@
                     var collections = {};
                     if (cipher.CollectionIds) {
                         for (var i = 0; i < cipher.CollectionIds.length; i++) {
-                            collections[cipher.CollectionIds[i]] = true;
+                            collections[cipher.CollectionIds[i]] = null;
                         }
                     }
-                    $scope.selectedCollections = collections;
 
-                    return cipher;
+                    return {
+                        cipher: cipher,
+                        cipherCollections: collections
+                    };
                 }
 
                 return null;
-            }).then(function (cipher) {
-                if (!cipher) {
+            }).then(function (cipherAndCols) {
+                if (!cipherAndCols) {
                     $scope.loadingCollections = false;
                     return;
                 }
 
                 apiService.collections.listMe({ writeOnly: true }, function (response) {
                     var collections = [];
+                    var selectedCollections = {};
+
                     for (var i = 0; i < response.Data.length; i++) {
-                        if (response.Data[i].OrganizationId !== cipher.OrganizationId || response.Data[i].ReadOnly) {
-                            if (response.Data[i].Id in $scope.selectedCollections) {
-                                delete $scope.selectedCollections[response.Data[i].Id];
-                            }
+                        // clean out selectCollections that aren't from this organization or read only
+                        if (response.Data[i].Id in cipherAndCols.cipherCollections &&
+                            response.Data[i].OrganizationId === cipherAndCols.cipher.OrganizationId) {
+                            selectedCollections[response.Data[i].Id] = true;
+                        }
+                        else {
                             continue;
                         }
 
@@ -55,6 +61,7 @@
 
                     $scope.loadingCollections = false;
                     $scope.collections = collections;
+                    $scope.selectedCollections = selectedCollections;
                 });
             });
         });
