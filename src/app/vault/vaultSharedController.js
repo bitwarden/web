@@ -8,7 +8,7 @@
         $scope.loading = true;
 
         $scope.$on('$viewContentLoaded', function () {
-            var collectionPromise = apiService.collections.listMe({}, function (collections) {
+            var collectionPromise = apiService.collections.listMe({ writeOnly: false }, function (collections) {
                 var decCollections = [];
 
                 for (var i = 0; i < collections.Data.length; i++) {

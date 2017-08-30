@@ -51,7 +51,7 @@
 
                 $scope.organizations = orgs;
 
-                apiService.collections.listMe(function (response) {
+                apiService.collections.listMe({ writeOnly: true }, function (response) {
                     var collections = [];
                     for (var i = 0; i < response.Data.length; i++) {
                         if (response.Data[i].ReadOnly) {

@@ -100,7 +100,7 @@
         _service.collections = $resource(_apiUri + '/organizations/:orgId/collections/:id', {}, {
             get: { method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             getDetails: { url: _apiUri + '/organizations/:orgId/collections/:id/details', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
-            listMe: { url: _apiUri + '/collections', method: 'GET', params: {} },
+            listMe: { url: _apiUri + '/collections?writeOnly=:writeOnly', method: 'GET', params: { writeOnly: '@writeOnly' } },
             listOrganization: { method: 'GET', params: { orgId: '@orgId' } },
             listUsers: { url: _apiUri + '/organizations/:orgId/collections/:id/users', method: 'GET', params: { id: '@id', orgId: '@orgId' } },
             post: { method: 'POST', params: { orgId: '@orgId' } },
