@@ -58,7 +58,8 @@
         };
 
         $scope.submit = function (model, form) {
-            var shareKeyCt = cryptoService.makeShareKeyCt();
+            var shareKey = cryptoService.makeShareKey();
+            var defaultCollectionCt = cryptoService.encrypt('Default Collection', shareKey.key);
 
             if ($scope.selfHosted) {
                 var fileEl = document.getElementById('file');
@@ -70,7 +71,8 @@
 
                 var fd = new FormData();
                 fd.append('license', files[0]);
-                fd.append('key', shareKeyCt);
+                fd.append('key', shareKey.ct);
+                fd.append('collectionName', defaultCollectionCt);
 
                 $scope.submitPromise = apiService.organizations.postLicense(fd).$promise.then(finalizeCreate);
             }
@@ -79,8 +81,9 @@
                     var freeRequest = {
                         name: model.name,
                         planType: model.plan,
-                        key: shareKeyCt,
-                        billingEmail: model.billingEmail
+                        key: shareKey.ct,
+                        billingEmail: model.billingEmail,
+                        collectionName: defaultCollectionCt
                     };
 
                     $scope.submitPromise = apiService.organizations.post(freeRequest).$promise.then(finalizeCreate);
@@ -104,12 +107,13 @@
                             name: model.name,
                             planType: model.interval === 'month' ? $scope.plans[model.plan].monthPlanType :
                                 $scope.plans[model.plan].annualPlanType,
-                            key: shareKeyCt,
+                            key: shareKey.ct,
                             paymentToken: response.id,
                             additionalSeats: model.additionalSeats,
                             additionalStorageGb: model.additionalStorageGb,
                             billingEmail: model.billingEmail,
-                            businessName: model.ownedBusiness ? model.businessName : null
+                            businessName: model.ownedBusiness ? model.businessName : null,
+                            collectionName: defaultCollectionCt
                         };
 
                         return apiService.organizations.post(paidRequest).$promise;
@@ -121,7 +125,7 @@
 
             function finalizeCreate(result) {
                 $analytics.eventTrack('Created Organization');
-                authService.addProfileOrganizationOwner(result, shareKeyCt);
+                authService.addProfileOrganizationOwner(result, shareKey.ct);
                 authService.refreshAccessToken().then(function () {
                     goToOrg(result.Id);
                 }, function () {

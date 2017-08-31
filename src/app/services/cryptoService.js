@@ -288,8 +288,12 @@ angular
             return deferred.promise;
         };
 
-        _service.makeShareKeyCt = function () {
-            return _service.rsaEncryptMe(forge.random.getBytesSync(512 / 8));
+        _service.makeShareKey = function () {
+            var key = forge.random.getBytesSync(512 / 8);
+            return {
+                key: new SymmetricCryptoKey(key),
+                ct: _service.rsaEncryptMe(key)
+            };
         };
 
         _service.hashPassword = function (password, key) {
