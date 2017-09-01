@@ -21,7 +21,19 @@
             <h3 class="box-title">Premium Membership</h3>
         </div>
         <div class="box-body">
-            <div class="row">
+            <dl ng-if="selfHosted">
+                <dt>Expiration</dt>
+                <dd ng-if="loading">
+                    Loading...
+                </dd>
+                <dd ng-if="!loading && expiration">
+                    {{expiration | date: 'medium'}}
+                </dd>
+                <dd ng-if="!loading && !expiration">
+                    Never expires
+                </dd>
+            </dl>
+            <div class="row" ng-if="!selfHosted">
                 <div class="col-md-5">
                     <dl>
                         <dt>Status</dt>
@@ -30,7 +42,7 @@
                             <span ng-if="subscription.markedForCancel">- marked for cancellation</span>
                         </dd>
                         <dt>Next Charge</dt>
-                        <dd>{{nextInvoice ? ((nextInvoice.date | date: format: mediumDate) + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
+                        <dd>{{nextInvoice ? ((nextInvoice.date | date: 'mediumDate') + ', ' + (nextInvoice.amount | currency:'$')) : '-'}}</dd>
                     </dl>
                 </div>
                 <div class="col-md-7">
@@ -54,7 +66,8 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer" ng-if="!subscription.cancelled || subscription.markedForCancel">
+        <div class="box-footer" ng-if="!selfHosted && !loading && subscription &&
+             (!subscription.cancelled || subscription.markedForCancel)">
             <button type="button" class="btn btn-default btn-flat" ng-click="cancel()"
                     ng-if="!subscription.cancelled && !subscription.markedForCancel">
                 Cancel
@@ -63,9 +76,21 @@
                     ng-if="subscription.markedForCancel">
                 Reinstate
             </button>
+            <button type="button" class="btn btn-default btn-flat" ng-click="license()"
+                    ng-if="!subscription.cancelled">
+                Download License
+            </button>
+        </div>
+        <div class="box-footer" ng-if="selfHosted">
+            <button type="button" class="btn btn-default btn-flat" ng-click="updateLicense()">
+                Update License
+            </button>
+            <a href="https://vault.bitwarden.com" class="btn btn-default btn-flat" target="_blank">
+                Manage Membership
+            </a>
         </div>
     </div>
-    <div class="box box-default" ng-if="storage">
+    <div class="box box-default" ng-if="storage && !selfHosted">
         <div class="box-header with-border">
             <h3 class="box-title">Storage</h3>
         </div>
@@ -82,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer" ng-if="!subscription.cancelled">
+        <div class="box-footer" ng-if="subscription && paymentSource && !subscription.cancelled">
             <button type="button" class="btn btn-default btn-flat" ng-click="adjustStorage(true)">
                 Add Storage
             </button>
@@ -91,7 +116,7 @@
             </button>
         </div>
     </div>
-    <div class="box box-default">
+    <div class="box box-default" ng-if="!selfHosted">
         <div class="box-header with-border">
             <h3 class="box-title">Payment Method</h3>
         </div>
@@ -114,7 +139,7 @@
             </button>
         </div>
     </div>
-    <div class="box box-default">
+    <div class="box box-default" ng-if="!selfHosted">
         <div class="box-header with-border">
             <h3 class="box-title">Charges</h3>
         </div>
@@ -130,7 +155,7 @@
                     <tbody>
                         <tr ng-repeat="charge in charges">
                             <td style="width: 200px">
-                                {{charge.date | date: format: mediumDate}}
+                                {{charge.date | date: 'mediumDate'}}
                             </td>
                             <td style="min-width: 150px">
                                 {{charge.paymentSource}}

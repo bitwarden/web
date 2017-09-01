@@ -14,18 +14,71 @@
             </ul>
         </div>
         <div ng-if="showPaymentOptions">
-            <label class="radio-inline radio-boxed">
+            <label class="radio-inline radio-boxed" ng-show="!hideCard">
                 <input type="radio" name="PaymentMethod" value="card" ng-model="paymentMethod"
                        ng-change="changePaymentMethod('card')"><i class="fa fa-fw fa-credit-card"></i> Credit Card
             </label>
-            <label class="radio-inline radio-boxed">
+            <label class="radio-inline radio-boxed" ng-show="!hidePaypal">
                 <input type="radio" name="PaymentMethod" value="paypal" ng-model="paymentMethod"
                        ng-change="changePaymentMethod('paypal')"><i class="fa fa-fw fa-paypal"></i> PayPal
+            </label>
+            <label class="radio-inline radio-boxed" ng-show="!hideBank">
+                <input type="radio" name="PaymentMethod" value="bank" ng-model="paymentMethod"
+                       ng-change="changePaymentMethod('bank')"><i class="fa fa-fw fa-bank"></i>
+                Bank<span class="hidden-xs"> Account (ACH)</span>
             </label>
             <hr />
         </div>
         <div ng-if="paymentMethod === 'paypal'">
             <div id="bt-dropin-container"></div>
+        </div>
+        <div ng-if="paymentMethod === 'bank'">
+            <div class="callout callout-warning">
+                <h4><i class="fa fa-warning"></i> You must verify your bank account</h4>
+                <p>
+                    Payment with a bank account is <u>only available to customers in the United States</u>.
+                    You will be required to verify your bank account. We will make two micro-deposits within the next
+                    1-2 business days. Enter these amounts in the organization's billing area to verify the bank account.
+                    Failure to verify the bank account will result in a missed payment and your organization being
+                    disabled.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="routing_number">Routing Number</label>
+                        <input type="text" id="routing_number" name="routing_number"
+                               ng-model="bank.routing_number" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account_number">Account Number</label>
+                        <input type="text" id="account_number" name="account_number"
+                               ng-model="bank.account_number" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account_holder_name">Account Holder Name</label>
+                        <input type="text" id="account_holder_name" name="account_holder_name"
+                               ng-model="bank.account_holder_name" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account_holder_type">Account Type</label>
+                        <select id="account_holder_type" class="form-control" name="account_holder_type"
+                                ng-model="bank.account_holder_type" required>
+                            <option value="">-- Select --</option>
+                            <option value="company">Company (Business)</option>
+                            <option value="individual">Individual (Personal)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
         <div ng-if="paymentMethod === 'card'">
             <div class="row">
