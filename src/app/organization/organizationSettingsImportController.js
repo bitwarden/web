@@ -17,6 +17,15 @@
                 instructions: $sce.trustAsHtml('Export using the web vault (vault.bitwarden.com). ' +
                     'Log into the web vault and navigate to your organization\'s admin area. Then to go ' +
                     '"Settings" > "Tools" > "Export".')
+            },
+            {
+                id: 'lastpass',
+                name: 'LastPass (csv)',
+                featured: true,
+                sort: 2,
+                instructions: $sce.trustAsHtml('See detailed instructions on our help site at ' +
+                    '<a target="_blank" href="https://help.bitwarden.com/article/import-from-lastpass/">' +
+                    'https://help.bitwarden.com/article/import-from-lastpass/</a>')
             }
         ];
 
@@ -66,7 +75,7 @@
                 collectionRelationships: collectionRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
-                $state.go('backend.user.vault', { refreshFromServer: true }).then(function () {
+                $state.go('backend.org.vault', { orgId: $state.params.orgId }).then(function () {
                     $analytics.eventTrack('Imported Org Data', { label: $scope.model.source });
                     toastr.success('Data has been successfully imported into your vault.', 'Import Success');
                 });

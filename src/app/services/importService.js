@@ -15,7 +15,7 @@
                     importBitwardenCsv(file, success, error);
                     break;
                 case 'lastpass':
-                    importLastPass(file, success, error);
+                    importLastPass(file, success, error, false);
                     break;
                 case 'safeincloudxml':
                     importSafeInCloudXml(file, success, error);
@@ -118,6 +118,9 @@
             switch (source) {
                 case 'bitwardencsv':
                     importBitwardenOrgCsv(file, success, error);
+                    break;
+                case 'lastpass':
+                    importLastPass(file, success, error, true);
                     break;
                 default:
                     error();
@@ -346,7 +349,7 @@
             });
         }
 
-        function importLastPass(file, success, error) {
+        function importLastPass(file, success, error, org) {
             if (typeof file !== 'string' && file.type && file.type === 'text/html') {
                 var reader = new FileReader();
                 reader.readAsText(file, 'utf-8');
@@ -424,7 +427,7 @@
                     }
 
                     logins.push({
-                        favorite: value.fav === '1',
+                        favorite: org ? false : value.fav === '1',
                         uri: value.url && value.url !== '' ? trimUri(value.url) : null,
                         username: value.username && value.username !== '' ? value.username : null,
                         password: value.password && value.password !== '' ? value.password : null,
