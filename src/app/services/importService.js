@@ -109,6 +109,22 @@
             }
         };
 
+        _service.importOrg = function (source, file, success, error) {
+            if (!file) {
+                error();
+                return;
+            }
+
+            switch (source) {
+                case 'bitwardencsv':
+                    importBitwardenOrgCsv(file, success, error);
+                    break;
+                default:
+                    error();
+                    break;
+            }
+        };
+
         var _passwordFieldNames = [
             'password', 'pass word', 'passphrase', 'pass phrase',
             'pass', 'code', 'code word', 'codeword',
@@ -268,6 +284,64 @@
                     });
 
                     success(folders, logins, folderRelationships);
+                }
+            });
+        }
+
+        function importBitwardenOrgCsv(file, success, error) {
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
+
+                    var collections = [],
+                        logins = [],
+                        collectionRelationships = [];
+
+                    angular.forEach(results.data, function (value, key) {
+                        var loginIndex = logins.length;
+
+                        if (value.collections && value.collections !== '') {
+                            var loginCollections = value.collections.split(',');
+
+                            for (var i = 0; i < loginCollections.length; i++) {
+                                var addCollection = true;
+                                var collectionIndex = collections.length;
+
+                                for (var j = 0; j < collections.length; j++) {
+                                    if (collections[j].name === loginCollections[i]) {
+                                        addCollection = false;
+                                        collectionIndex = j;
+                                        break;
+                                    }
+                                }
+
+                                if (addCollection) {
+                                    collections.push({
+                                        name: loginCollections[i]
+                                    });
+                                }
+
+                                collectionRelationships.push({
+                                    key: loginIndex,
+                                    value: collectionIndex
+                                });
+                            }
+                        }
+
+                        logins.push({
+                            favorite: false,
+                            uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
+                            username: value.username && value.username !== '' ? value.username : null,
+                            password: value.password && value.password !== '' ? value.password : null,
+                            notes: value.notes && value.notes !== '' ? value.notes : null,
+                            name: value.name && value.name !== '' ? value.name : '--',
+                            totp: value.totp && value.totp !== '' ? value.totp : null
+                        });
+                    });
+
+                    success(collections, logins, collectionRelationships);
                 }
             });
         }

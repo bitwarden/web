@@ -32,6 +32,7 @@
             listDetails: { url: _apiUri + '/ciphers/details', method: 'GET', params: {} },
             listOrganizationDetails: { url: _apiUri + '/ciphers/organization-details', method: 'GET', params: {} },
             'import': { url: _apiUri + '/ciphers/import', method: 'POST', params: {} },
+            importOrg: { url: _apiUri + '/ciphers/import-organization?organizationId=:orgId', method: 'POST', params: { orgId: '@orgId' } },
             favorite: { url: _apiUri + '/ciphers/:id/favorite', method: 'POST', params: { id: '@id' } },
             putPartial: { url: _apiUri + '/ciphers/:id/partial', method: 'POST', params: { id: '@id' } },
             putShare: { url: _apiUri + '/ciphers/:id/share', method: 'POST', params: { id: '@id' } },

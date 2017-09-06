@@ -28,6 +28,22 @@
             }).$promise;
         };
 
+        $scope.import = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/tools/views/toolsImport.html',
+                controller: 'organizationSettingsImportController'
+            });
+        };
+
+        $scope.export = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/tools/views/toolsExport.html',
+                controller: 'organizationSettingsExportController'
+            });
+        };
+
         $scope.delete = function () {
             $uibModal.open({
                 animation: true,

@@ -1,32 +1,39 @@
 ﻿angular
-    .module('bit.tools')
+    .module('bit.organization')
 
-    .controller('toolsExportController', function ($scope, apiService, $uibModalInstance, cipherService, $q,
-        toastr, $analytics) {
-        $analytics.eventTrack('toolsExportController', { category: 'Modal' });
+    .controller('organizationSettingsExportController', function ($scope, apiService, $uibModalInstance, cipherService,
+        $q, toastr, $analytics, $state) {
+        $analytics.eventTrack('organizationSettingsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
             var decLogins = [],
-                decFolders = [];
+                decCollections = [];
 
-            var folderPromise = apiService.folders.list({}, function (folders) {
-                decFolders = cipherService.decryptFolders(folders.Data);
-            }).$promise;
+            var collectionsPromise = apiService.collections.listOrganization({ orgId: $state.params.orgId },
+                function (collections) {
+                    decCollections = cipherService.decryptCollections(collections.Data, $state.params.orgId, true);
+                }).$promise;
 
-            var loginsPromise = apiService.logins.list({}, function (logins) {
-                decLogins = cipherService.decryptLogins(logins.Data);
-            }).$promise;
+            var loginsPromise = apiService.ciphers.listOrganizationDetails({ organizationId: $state.params.orgId },
+                function (ciphers) {
+                    for (var i = 0; i < ciphers.Data.length; i++) {
+                        if (ciphers.Data[i].Type === 1) {
+                            var decLogin = cipherService.decryptLogin(ciphers.Data[i]);
+                            decLogins.push(decLogin);
+                        }
+                    }
+                }).$promise;
 
-            $q.all([folderPromise, loginsPromise]).then(function () {
+            $q.all([collectionsPromise, loginsPromise]).then(function () {
                 if (!decLogins.length) {
                     toastr.error('Nothing to export.', 'Error!');
                     $scope.close();
                     return;
                 }
 
-                var foldersDict = {};
-                for (var i = 0; i < decFolders.length; i++) {
-                    foldersDict[decFolders[i].id] = decFolders[i];
+                var collectionsDict = {};
+                for (var i = 0; i < decCollections.length; i++) {
+                    collectionsDict[decCollections[i].id] = decCollections[i];
                 }
 
                 try {
@@ -38,11 +45,17 @@
                             username: decLogins[i].username,
                             password: decLogins[i].password,
                             notes: decLogins[i].notes,
-                            folder: decLogins[i].folderId && (decLogins[i].folderId in foldersDict) ?
-                                foldersDict[decLogins[i].folderId].name : null,
-                            favorite: decLogins[i].favorite ? 1 : null,
-                            totp: decLogins[i].totp
+                            totp: decLogins[i].totp,
+                            collections: []
                         };
+
+                        if (decLogins[i].collectionIds) {
+                            for (var j = 0; j < decLogins[i].collectionIds.length; j++) {
+                                if (collectionsDict.hasOwnProperty(decLogins[i].collectionIds[j])) {
+                                    login.collections.push(collectionsDict[decLogins[i].collectionIds[j]].name);
+                                }
+                            }
+                        }
 
                         exportLogins.push(login);
                     }
@@ -65,7 +78,7 @@
                         document.body.removeChild(a);
                     }
 
-                    $analytics.eventTrack('Exported Data');
+                    $analytics.eventTrack('Exported Organization Data');
                     toastr.success('Your data has been exported. Check your browser\'s downloads folder.', 'Success!');
                     $scope.close();
                 }
@@ -90,7 +103,7 @@
                 padNumber(now.getHours(), 2) + '' + padNumber(now.getMinutes(), 2) +
                 padNumber(now.getSeconds(), 2);
 
-            return 'bitwarden_export_' + dateString + '.csv';
+            return 'bitwarden_org_export_' + dateString + '.csv';
         }
 
         function padNumber(number, width, paddingCharacter) {

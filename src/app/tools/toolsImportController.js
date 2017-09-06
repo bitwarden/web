@@ -6,6 +6,7 @@
         $analytics.eventTrack('toolsImportController', { category: 'Modal' });
         $scope.model = { source: '' };
         $scope.source = {};
+        $scope.splitFeatured = true;
 
         $scope.options = [
             {
