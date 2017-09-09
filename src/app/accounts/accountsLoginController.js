@@ -117,18 +117,18 @@ angular
             }
 
             var keys = Object.keys(twoFactorProviders);
-            var cleanedProviders = [];
             for (var i = 0; i < keys.length; i++) {
                 var provider = $filter('filter')(constants.twoFactorProviderInfo, {
                     type: keys[i],
                     active: true,
                     requiresUsb: false
                 });
-                if (provider.length) {
-                    cleanedProviders.push(twoFactorProviders[keys[i]]);
+                if (!provider.length) {
+                    delete twoFactorProviders[keys[i]];
                 }
             }
-            return cleanedProviders;
+
+            return twoFactorProviders;
         }
 
         // ref: https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
