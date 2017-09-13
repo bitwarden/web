@@ -24,7 +24,8 @@
         <div class="form-group has-feedback" show-errors>
             <label for="code" class="sr-only">Code</label>
             <input type="text" id="code" name="Code" class="form-control" placeholder="Verification code"
-                   ng-model="token" required api-field />
+                   ng-model="token" required api-field autocomplete="off" autocorrect="off" autocapitalize="off"
+                   spellcheck="false" />
             <span class="fa fa-lock form-control-feedback"></span>
         </div>
         <div class="row">

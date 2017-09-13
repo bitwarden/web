@@ -16,7 +16,7 @@
                 <option value="">-- Select --</option>
                 <option ng-repeat="option in options | filter: { featured: true } | orderBy: ['sort', 'name']"
                         value="{{option.id}}">{{option.name}}</option>
-                <option value="-" disabled></option>
+                <option value="-" disabled ng-if="splitFeatured"></option>
                 <option ng-repeat="option in options | filter: { featured: '!true' } | orderBy: ['sort', 'name']" 
                         value="{{option.id}}">{{option.name}}</option>
             </select>
