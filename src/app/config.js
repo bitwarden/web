@@ -12,7 +12,8 @@ angular
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
         jwtOptionsProvider.config({
-            urlParam: 'access_token',
+            // Using Content-Language header since it is unused and is a CORS-safelisted header. This avoids pre-flights.
+            authHeader: 'Content-Language',
             whiteListedDomains: appSettings.whitelistDomains
         });
         var refreshPromise;
