@@ -7,8 +7,11 @@
         , stripe
         // @endif
     ) {
-        authService.getUserProfile().then(function (profile) {
-            if (profile.premium) {
+        var profile = null;
+
+        authService.getUserProfile().then(function (theProfile) {
+            profile = theProfile;
+            if (profile && profile.premium) {
                 return $state.go('backend.user.settingsBilling');
             }
         });
@@ -63,6 +66,11 @@
 
         $scope.submit = function (model, form) {
             if ($scope.selfHosted) {
+                if (profile && !profile.emailVerified) {
+                    validationService.addError(form, null, 'Your account\'s email address first must be verified.', true);
+                    return;
+                }
+
                 var fileEl = document.getElementById('file');
                 var files = fileEl.files;
                 if (!files || !files.length) {
