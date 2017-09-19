@@ -103,7 +103,7 @@
     <link rel="stylesheet" href="css/vault.css" />
     <!-- @endexclude -->
 </head>
-<body ng-controller="mainController as main" class="layout-boxed skin-blue sidebar-mini {{main.bodyClass}}"
+<body ng-controller="mainController as main" class="layout-boxed {{main.skinClass}} sidebar-mini {{main.bodyClass}}"
       ng-class="{'using-control-sidebar': main.usingControlSidebar,
       'control-sidebar-open': main.usingControlSidebar && main.openControlSidebar}">
     <div ui-view></div>

@@ -20,6 +20,39 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+body.skin-blue-light {
+    .main-header {
+        .logo {
+            .logo-variant(darken(@light-blue, 5%));
+        }
+    }
+
+    .sidebar-menu > li {
+        > a {
+            font-weight: normal;
+        }
+
+        &:hover > a, &.active > a {
+            border-left-color: @light-blue;
+            font-weight: normal;
+        }
+
+        &.header {
+            background: darken(@sidebar-light-hover-bg, 3%);
+        }
+
+        > .treeview-menu {
+            background: #ffffff;
+        }
+    }
+}
+
+body.skin-blue {
+    .content-wrapper, .main-footer {
+        border-left: 1px solid transparent;
+    }
+}
+
 .login-box, .register-box {
     width: 400px;
     margin: 4% auto;
@@ -215,9 +248,7 @@ form div.validation-errors ul {
         }
     }
 }
-
 /* Buttons */
-
 .btn-table {
     padding: 1px 5px;
     line-height: 1;
@@ -259,9 +290,7 @@ form .btn .loading-icon {
         display: none;
     }
 }
-
 /* Forms */
-
 .form-control {
     border-radius: 0 !important;
 }
@@ -351,15 +380,11 @@ form .btn .loading-icon {
         font-size: @font-size-large;
     }
 }
-
 /* Modals */
-
 .modal-footer {
     text-align: left;
 }
-
 /* Tables */
-
 .table-selectable {
     td:not(.actions) {
         cursor: pointer;
@@ -386,9 +411,7 @@ form .btn .loading-icon {
         display: none;
     }
 }
-
 /* Callouts */
-
 .callout.callout-default {
     background-color: #fff;
     border-color: darken(@gray, 10%);
@@ -420,9 +443,7 @@ form .btn .loading-icon {
         color: @btn-default-color;
     }
 }
-
 /* Alerts */
-
 .alert-notification {
     border-radius: 0;
     border-left: none;
@@ -430,9 +451,7 @@ form .btn .loading-icon {
     margin-bottom: 0;
     cursor: pointer;
 }
-
 /* Boxes */
-
 .box > .list-group {
     margin-bottom: 0;
 }
@@ -489,9 +508,7 @@ form .btn .loading-icon {
         }
     }
 }
-
 /* Toastr */
-
 #toast-container {
     position: absolute;
 
@@ -563,15 +580,11 @@ form .btn .loading-icon {
         }
     }
 }
-
 /* Typography */
-
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
-
 /* Misc */
-
 .strike {
     text-decoration: line-through;
     color: @text-muted;

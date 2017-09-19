@@ -4,6 +4,7 @@ angular
     .controller('mainController', function ($scope, $state, authService, appSettings, toastr, $window, $document,
         cryptoService, $uibModal, apiService) {
         var vm = this;
+        vm.skinClass = appSettings.selfHosted ? 'skin-blue-light' : 'skin-blue';
         vm.bodyClass = '';
         vm.usingControlSidebar = vm.openControlSidebar = false;
         vm.searchVaultText = null;
