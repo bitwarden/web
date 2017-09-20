@@ -1,11 +1,22 @@
 angular
     .module('bit.global')
 
-    .controller('sideNavController', function ($scope, $state, authService, toastr, $analytics, constants) {
+    .controller('sideNavController', function ($scope, $state, authService, toastr, $analytics, constants, appSettings) {
         $scope.$state = $state;
         $scope.params = $state.params;
         $scope.orgs = [];
         $scope.name = '';
+
+        if(appSettings.selfHosted) {
+            $scope.orgIconBgColor = '#ffffff';
+            $scope.orgIconBorder = '3px solid #a0a0a0';
+            $scope.orgIconTextColor = '#333333';
+        }
+        else {
+            $scope.orgIconBgColor = '#2c3b41';
+            $scope.orgIconBorder = '3px solid #1a2226';
+            $scope.orgIconTextColor = '#ffffff';
+        }
 
         authService.getUserProfile().then(function (userProfile) {
             $scope.name = userProfile.extended && userProfile.extended.name ?
