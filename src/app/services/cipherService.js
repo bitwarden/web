@@ -35,7 +35,7 @@ angular
                 attachments: null
             };
 
-            var loginData = encryptedLogin.Data || encryptedLogin;
+            var loginData = encryptedLogin.Data;
             if (loginData) {
                 login.name = cryptoService.decrypt(loginData.Name, key);
                 login.uri = loginData.Uri && loginData.Uri !== '' ? cryptoService.decrypt(loginData.Uri, key) : null;
@@ -76,7 +76,7 @@ angular
                 hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0
             };
 
-            var loginData = encryptedCipher.Data || encryptedCipher;
+            var loginData = encryptedCipher.Data;
             if (loginData) {
                 login.name = _service.decryptProperty(loginData.Name, key, false);
                 login.username = _service.decryptProperty(loginData.Username, key, true);

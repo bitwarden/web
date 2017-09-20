@@ -6,17 +6,6 @@
             _apiUri = appSettings.apiUri,
             _identityUri = appSettings.identityUri;
 
-        _service.logins = $resource(_apiUri + '/logins/:id', {}, {
-            get: { method: 'GET', params: { id: '@id' } },
-            getAdmin: { url: _apiUri + '/logins/:id/admin', method: 'GET', params: { id: '@id' } },
-            list: { method: 'GET', params: {} },
-            post: { method: 'POST', params: {} },
-            postAdmin: { url: _apiUri + '/logins/admin', method: 'POST', params: {} },
-            put: { method: 'POST', params: { id: '@id' } },
-            putAdmin: { url: _apiUri + '/logins/:id/admin', method: 'POST', params: { id: '@id' } },
-            del: { url: _apiUri + '/logins/:id/delete', method: 'POST', params: { id: '@id' } }
-        });
-
         _service.folders = $resource(_apiUri + '/folders/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
@@ -27,13 +16,17 @@
 
         _service.ciphers = $resource(_apiUri + '/ciphers/:id', {}, {
             get: { method: 'GET', params: { id: '@id' } },
+            getAdmin: { url: _apiUri + '/ciphers/:id/admin', method: 'GET', params: { id: '@id' } },
             getDetails: { url: _apiUri + '/ciphers/:id/details', method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
             listDetails: { url: _apiUri + '/ciphers/details', method: 'GET', params: {} },
             listOrganizationDetails: { url: _apiUri + '/ciphers/organization-details', method: 'GET', params: {} },
+            post: { method: 'POST', params: {} },
+            postAdmin: { url: _apiUri + '/ciphers/admin', method: 'POST', params: {} },
+            put: { method: 'POST', params: { id: '@id' } },
+            putAdmin: { url: _apiUri + '/ciphers/:id/admin', method: 'POST', params: { id: '@id' } },
             'import': { url: _apiUri + '/ciphers/import', method: 'POST', params: {} },
             importOrg: { url: _apiUri + '/ciphers/import-organization?organizationId=:orgId', method: 'POST', params: { orgId: '@orgId' } },
-            favorite: { url: _apiUri + '/ciphers/:id/favorite', method: 'POST', params: { id: '@id' } },
             putPartial: { url: _apiUri + '/ciphers/:id/partial', method: 'POST', params: { id: '@id' } },
             putShare: { url: _apiUri + '/ciphers/:id/share', method: 'POST', params: { id: '@id' } },
             putCollections: { url: _apiUri + '/ciphers/:id/collections', method: 'POST', params: { id: '@id' } },

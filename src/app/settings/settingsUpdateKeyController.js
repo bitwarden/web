@@ -32,7 +32,7 @@
             var madeEncKey = cryptoService.makeEncKey(null);
 
             var reencryptedLogins = [];
-            var loginsPromise = apiService.logins.list({}, function (encryptedLogins) {
+            var loginsPromise = apiService.ciphers.list({}, function (encryptedLogins) {
                 var filteredEncryptedLogins = [];
                 for (var i = 0; i < encryptedLogins.Data.length; i++) {
                     if (encryptedLogins.Data[i].OrganizationId) {

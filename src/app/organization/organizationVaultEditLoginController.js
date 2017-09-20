@@ -7,14 +7,14 @@
         $scope.login = {};
         $scope.hideFolders = $scope.hideFavorite = $scope.fromOrg = true;
 
-        apiService.logins.getAdmin({ id: loginId }, function (login) {
+        apiService.ciphers.getAdmin({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
             $scope.useTotp = $scope.login.organizationUseTotp;
         });
 
         $scope.save = function (model) {
             var login = cipherService.encryptLogin(model);
-            $scope.savePromise = apiService.logins.putAdmin({ id: loginId }, login, function (loginResponse) {
+            $scope.savePromise = apiService.ciphers.putAdmin({ id: loginId }, login, function (loginResponse) {
                 $analytics.eventTrack('Edited Organization Login');
                 var decLogin = cipherService.decryptLogin(loginResponse);
                 $uibModalInstance.close({

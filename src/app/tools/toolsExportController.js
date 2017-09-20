@@ -13,7 +13,7 @@
                 decFolders = cipherService.decryptFolders(folders.Data);
             }).$promise;
 
-            var loginsPromise = apiService.logins.list({}, function (logins) {
+            var loginsPromise = apiService.ciphers.list({}, function (logins) {
                 decLogins = cipherService.decryptLogins(logins.Data);
             }).$promise;
 

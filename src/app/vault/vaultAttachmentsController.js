@@ -13,10 +13,10 @@
 
         authService.getUserProfile().then(function (profile) {
             $scope.isPremium = profile.premium;
-            return apiService.logins.get({ id: loginId }).$promise;
-        }).then(function (login) {
-            $scope.login = cipherService.decryptLogin(login);
-            $scope.readOnly = !login.Edit;
+            return apiService.ciphers.get({ id: loginId }).$promise;
+        }).then(function (cipher) {
+            $scope.login = cipherService.decryptLogin(cipher);
+            $scope.readOnly = !$scope.login.edit;
             $scope.canUseAttachments = $scope.isPremium || $scope.login.organizationId;
             $scope.loading = false;
         }, function () {

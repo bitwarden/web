@@ -14,7 +14,7 @@
         $scope.loading = true;
         $scope.readOnly = false;
 
-        apiService.logins.get({ id: loginId }).$promise.then(function (login) {
+        apiService.ciphers.get({ id: loginId }).$promise.then(function (login) {
             $scope.readOnly = !login.Edit;
             if (login.Edit) {
                 $scope.login = cipherService.decryptLogin(login);

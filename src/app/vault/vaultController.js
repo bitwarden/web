@@ -193,7 +193,7 @@
                 return;
             }
 
-            apiService.logins.del({ id: login.id }, function () {
+            apiService.ciphers.del({ id: login.id }, function () {
                 $analytics.eventTrack('Deleted Login');
                 removeLoginFromScopes(login);
             });

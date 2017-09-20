@@ -10,10 +10,10 @@
 
         authService.getUserProfile().then(function (profile) {
             $scope.useTotp = profile.premium;
-            return apiService.logins.get({ id: loginId }).$promise;
+            return apiService.ciphers.get({ id: loginId }).$promise;
         }).then(function (login) {
             $scope.login = cipherService.decryptLogin(login);
-            $scope.readOnly = !login.Edit;
+            $scope.readOnly = !$scope.login.edit;
             $scope.useTotp = $scope.useTotp || $scope.login.organizationUseTotp;
         });
 
@@ -36,7 +36,7 @@
             }
             else {
                 var login = cipherService.encryptLogin(model);
-                $scope.savePromise = apiService.logins.put({ id: loginId }, login, function (loginResponse) {
+                $scope.savePromise = apiService.ciphers.put({ id: loginId }, login, function (loginResponse) {
                     $analytics.eventTrack('Edited Login');
                     var decLogin = cipherService.decryptLogin(loginResponse);
                     $uibModalInstance.close({
@@ -86,7 +86,7 @@
                 return;
             }
 
-            apiService.logins.del({ id: $scope.login.id }, function () {
+            apiService.ciphers.del({ id: $scope.login.id }, function () {
                 $analytics.eventTrack('Deleted Login From Edit');
                 $uibModalInstance.close({
                     action: 'delete',

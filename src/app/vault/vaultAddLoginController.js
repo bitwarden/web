@@ -17,7 +17,7 @@
         $scope.savePromise = null;
         $scope.save = function (model) {
             var login = cipherService.encryptLogin(model);
-            $scope.savePromise = apiService.logins.post(login, function (loginResponse) {
+            $scope.savePromise = apiService.ciphers.post(login, function (loginResponse) {
                 $analytics.eventTrack('Created Login');
                 var decLogin = cipherService.decryptLogin(loginResponse);
                 $uibModalInstance.close(decLogin);

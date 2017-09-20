@@ -10,7 +10,7 @@
         $scope.canUseAttachments = true;
         var closing = false;
 
-        apiService.logins.getAdmin({ id: loginId }, function (login) {
+        apiService.ciphers.getAdmin({ id: loginId }, function (login) {
             $scope.login = cipherService.decryptLogin(login);
             $scope.loading = false;
         }, function () {
