@@ -69,6 +69,10 @@
             }
         }
 
+        $scope.toggleFavorite = function () {
+            $scope.login.favorite = !$scope.login.favorite;
+        }
+
         $scope.clipboardSuccess = function (e) {
             e.clearSelection();
             selectPassword(e);
