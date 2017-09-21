@@ -227,12 +227,14 @@ angular
                 organizationId: unencryptedLogin.organizationId || null,
                 folderId: unencryptedLogin.folderId === '' ? null : unencryptedLogin.folderId,
                 favorite: unencryptedLogin.favorite !== null ? unencryptedLogin.favorite : false,
-                uri: !unencryptedLogin.uri || unencryptedLogin.uri === '' ? null : cryptoService.encrypt(unencryptedLogin.uri, key),
                 name: cryptoService.encrypt(unencryptedLogin.name, key),
-                username: !unencryptedLogin.username || unencryptedLogin.username === '' ? null : cryptoService.encrypt(unencryptedLogin.username, key),
-                password: !unencryptedLogin.password || unencryptedLogin.password === '' ? null : cryptoService.encrypt(unencryptedLogin.password, key),
                 notes: !unencryptedLogin.notes || unencryptedLogin.notes === '' ? null : cryptoService.encrypt(unencryptedLogin.notes, key),
-                totp: !unencryptedLogin.totp || unencryptedLogin.totp === '' ? null : cryptoService.encrypt(unencryptedLogin.totp, key)
+                login: {
+                    uri: !unencryptedLogin.uri || unencryptedLogin.uri === '' ? null : cryptoService.encrypt(unencryptedLogin.uri, key),
+                    username: !unencryptedLogin.username || unencryptedLogin.username === '' ? null : cryptoService.encrypt(unencryptedLogin.username, key),
+                    password: !unencryptedLogin.password || unencryptedLogin.password === '' ? null : cryptoService.encrypt(unencryptedLogin.password, key),
+                    totp: !unencryptedLogin.totp || unencryptedLogin.totp === '' ? null : cryptoService.encrypt(unencryptedLogin.totp, key)
+                }
             };
 
             if (unencryptedLogin.attachments && attachments) {
