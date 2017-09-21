@@ -112,6 +112,51 @@
             <textarea id="notes" name="Notes" class="form-control" ng-model="login.notes"
                       ng-readonly="readOnly" api-field></textarea>
         </div>
+        <h4>
+            <i class="fa fa-list-ul"></i> Custom Fields
+            <a class="btn btn-link" href="#" ng-click="addField()">
+                <i class="fa fa-lg fa-plus-circle"></i> Add
+            </a>
+        </h4>
+        <div class="row" ng-repeat="field in login.fields">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="field_name{{$index}}">Name</label>
+                    <input type="text" id="field_name{{$index}}" name="Field.Name{{$index}}" class="form-control" ng-model="field.name" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="field_type{{$index}}">Type</label>
+                    <select id="field_type{{$index}}" name="Field.Type{{$index}}" class="form-control" ng-model="field.type">
+                        <option value="0">Text</option>
+                        <option value="1">Hidden</option>
+                        <option value="2">Boolean</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <div class="pull-right password-options" ng-if="field.type === '1'">
+                        <i class="fa fa-lg fa-eye" uib-tooltip="Toggle Visibility" tooltip-placement="left"
+                           password-viewer="#field_value{{$index}}"></i>
+                    </div>
+                    <label for="field_value{{$index}}">Value</label>
+                    <input ng-attr-type="{{field.type === '0' ? 'text' : 'password'}}" id="field_value{{$index}}"
+                           name="Field.Value{{$index}}" class="form-control" ng-model="field.value" ng-if="field.type !== '2'" />
+                    <div ng-if="field.type === '2'">
+                        <input type="checkbox" id="field_value{{$index}}" name="Field.Value{{$index}}" ng-model="field.value"
+                               data-ng-true-value="'true'" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <a href="#" ng-click="removeField(field)">
+                    <i class="fa fa-remove fa-lg"></i>
+                    <span class="sr-only">Remove</span>
+                </a>
+            </div>
+        </div>
         <div class="checkbox" ng-if="!hideFavorite">
             <label>
                 <input type="checkbox" ng-model="login.favorite" name="Favorite" />

@@ -43,6 +43,7 @@ angular
                 login.password = loginData.Password && loginData.Password !== '' ? cryptoService.decrypt(loginData.Password, key) : null;
                 login.notes = loginData.Notes && loginData.Notes !== '' ? cryptoService.decrypt(loginData.Notes, key) : null;
                 login.totp = loginData.Totp && loginData.Totp !== '' ? cryptoService.decrypt(loginData.Totp, key) : null;
+                login.fields = _service.decryptFields(key, loginData.Fields);
             }
 
             if (!encryptedLogin.Attachments) {
@@ -132,6 +133,28 @@ angular
             };
             req.send(null);
             return deferred.promise;
+        };
+
+        _service.decryptFields = function (key, encryptedFields) {
+            var unencryptedFields = [];
+
+            if (encryptedFields) {
+                for (var i = 0; i < encryptedFields.length; i++) {
+                    unencryptedFields.push(_service.decryptField(key, encryptedFields[i]));
+                }
+            }
+
+            return unencryptedFields;
+        };
+
+        _service.decryptField = function (key, encryptedField) {
+            if (!encryptedField) throw "encryptedField is undefined or null";
+
+            return {
+                type: encryptedField.Type.toString(),
+                name: encryptedField.Name && encryptedField.Name !== '' ? cryptoService.decrypt(encryptedField.Name, key) : null,
+                value: encryptedField.Value && encryptedField.Value !== '' ? cryptoService.decrypt(encryptedField.Value, key) : null
+            };
         };
 
         _service.decryptFolders = function (encryptedFolders) {
@@ -234,7 +257,8 @@ angular
                     username: !unencryptedLogin.username || unencryptedLogin.username === '' ? null : cryptoService.encrypt(unencryptedLogin.username, key),
                     password: !unencryptedLogin.password || unencryptedLogin.password === '' ? null : cryptoService.encrypt(unencryptedLogin.password, key),
                     totp: !unencryptedLogin.totp || unencryptedLogin.totp === '' ? null : cryptoService.encrypt(unencryptedLogin.totp, key)
-                }
+                },
+                fields: _service.encryptFields(unencryptedLogin.fields, key)
             };
 
             if (unencryptedLogin.attachments && attachments) {
@@ -272,6 +296,33 @@ angular
             };
 
             return deferred.promise;
+        };
+
+        _service.encryptFields = function (unencryptedFields, key) {
+            if (!unencryptedFields || !unencryptedFields.length) {
+                return null;
+            }
+
+            var encFields = [];
+            for (var i = 0; i < unencryptedFields.length; i++) {
+                if (!unencryptedFields[i]) {
+                    continue;
+                }
+
+                encFields.push(_service.encryptField(unencryptedFields[i], key));
+            }
+
+            return encFields;
+        };
+
+        _service.encryptField = function (unencryptedField, key) {
+            if (!unencryptedField) throw "unencryptedField is undefined or null";
+
+            return {
+                type: parseInt(unencryptedField.type),
+                name: unencryptedField.name ? cryptoService.encrypt(unencryptedField.name, key) : null,
+                value: unencryptedField.value ? cryptoService.encrypt(unencryptedField.value.toString(), key) : null
+            };
         };
 
         _service.encryptFolders = function (unencryptedFolders, key) {
