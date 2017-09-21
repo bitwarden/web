@@ -55,8 +55,12 @@
         };
 
         $scope.addField = function () {
+            if (!$scope.login.fields) {
+                $scope.login.fields = [];
+            }
+
             $scope.login.fields.push({
-                type: 0,
+                type: '0',
                 name: null,
                 value: null
             });

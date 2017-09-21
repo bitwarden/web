@@ -31,6 +31,29 @@
             }
         };
 
+        $scope.addField = function () {
+            if (!$scope.login.fields) {
+                $scope.login.fields = [];
+            }
+
+            $scope.login.fields.push({
+                type: '0',
+                name: null,
+                value: null
+            });
+        }
+
+        $scope.removeField = function (field) {
+            var index = $scope.login.fields.indexOf(field);
+            if (index > -1) {
+                $scope.login.fields.splice(index, 1);
+            }
+        }
+
+        $scope.toggleFavorite = function () {
+            $scope.login.favorite = !$scope.login.favorite;
+        }
+
         $scope.clipboardSuccess = function (e) {
             e.clearSelection();
             selectPassword(e);

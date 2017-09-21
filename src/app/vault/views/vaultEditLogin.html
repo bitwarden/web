@@ -158,7 +158,7 @@
                 </div>
                 <div class="col-md-1">
                     <br class="hidden-xs" />
-                    <a href="#" ng-click="removeField(field)">
+                    <a href="#" ng-click="removeField(field)" stop-click>
                         <i class="fa fa-remove"></i>
                         <span class="visible-xs-inline">Remove Custom Field</span>
                     </a>
@@ -166,7 +166,7 @@
             </div>
             <hr class="visible-xs-block" />
         </div>
-        <a href="#" ng-click="addField()">
+        <a href="#" ng-click="addField()" stop-click>
             <i class="fa fa-plus-circle"></i> New Custom Field
         </a>
     </div>
@@ -175,12 +175,13 @@
             <i class="fa fa-refresh fa-spin loading-icon" ng-show="editLoginForm.$loading"></i>Save
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
-        <button type="button" class="btn btn-link pull-right" ng-click="delete()" uib-tooltip="Delete" ng-disabled="readOnly">
+        <button type="button" class="btn btn-link pull-right" ng-click="delete()" uib-tooltip="Delete"
+                tooltip-placement="left" ng-disabled="readOnly">
             <i class="fa fa-trash fa-lg"></i>
             <span class="sr-only">Delete</span>
         </button>
         <button type="button" ng-if="!hideFavorite" class="btn btn-link pull-right" ng-click="toggleFavorite()"
-                uib-tooltip="Toggle Favorite">
+                uib-tooltip="Toggle Favorite" tooltip-placement="left">
             <i class="fa fa-lg" ng-class="login.favorite ? 'fa-star' : 'fa-star-o'"></i>
             <span class="sr-only">Toggle Favorite</span>
         </button>
