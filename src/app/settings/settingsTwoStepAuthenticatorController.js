@@ -44,7 +44,7 @@
 
             $scope.model = {
                 key: formatString(_key),
-                qr: 'https://chart.googleapis.com/chart?chs=123x123&chld=L|0&cht=qr&chl=otpauth://totp/' +
+                qr: 'https://chart.googleapis.com/chart?chs=160x160&chld=L|0&cht=qr&chl=otpauth://totp/' +
                 _issuer + ':' + encodeURIComponent(_profile.email) +
                 '%3Fsecret=' + encodeURIComponent(_key) +
                 '%26issuer=' + _issuer
