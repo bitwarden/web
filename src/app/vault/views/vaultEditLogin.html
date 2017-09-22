@@ -13,14 +13,14 @@
             </ul>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="form-group" show-errors>
                     <label for="name">Name</label> <span>*</span>
                     <input type="text" id="name" name="Name" ng-model="login.name" class="form-control"
                            ng-readonly="readOnly" required api-field />
                 </div>
             </div>
-            <div class="col-md-6" ng-if="!hideFolders">
+            <div class="col-sm-6" ng-if="!hideFolders">
                 <div class="form-group" show-errors>
                     <label for="folder">Folder</label>
                     <select id="folder" name="FolderId" ng-model="login.folderId" class="form-control" api-field>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="form-group" show-errors>
                     <label for="username">Username</label>
                     <div class="input-group">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="form-group" show-errors style="margin-bottom: 5px;">
                     <div class="pull-right password-options">
                         <i class="fa fa-lg fa-refresh" uib-tooltip="Generate Password" tooltip-placement="left"
@@ -92,14 +92,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="form-group" show-errors>
                     <label for="totp">Authenticator Key (TOTP)</label>
                     <input type="text" id="totp" name="Totp" ng-model="login.totp" class="form-control"
                            ng-readonly="readOnly" api-field />
                 </div>
             </div>
-            <div class="col-md-6 totp-col">
+            <div class="col-sm-6 totp-col">
                 <div totp="login.totp" id="verification-code" ng-if="useTotp"></div>
                 <div ng-if="!useTotp">
                     <a href="#" stop-click ng-click="showUpgrade()"><img src="images/totp-countdown.png" alt="" /></a>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <br class="hidden-xs" />
                     <a href="#" ng-click="removeField(field)" stop-click ng-if="!readOnly">
                         <i class="fa fa-window-close-o fa-lg"></i>

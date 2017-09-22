@@ -386,10 +386,18 @@ form .btn .loading-icon {
         font-size: @font-size-large;
     }
 }
+
 /* Modals */
 .modal-footer {
     text-align: left;
 }
+
+@media (min-width: @screen-sm-min) {
+    .modal-dialog {
+        width: 700px;
+    }
+}
+
 /* Tables */
 .table-selectable {
     td:not(.actions) {
@@ -759,7 +767,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 10px;
     }
 
-    @media (min-width: @screen-md) {
+    @media (min-width: @screen-sm) {
         .progress {
             margin-bottom: 0;
         }
