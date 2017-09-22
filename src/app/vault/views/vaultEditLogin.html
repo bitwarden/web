@@ -112,20 +112,23 @@
             <textarea id="notes" name="Notes" class="form-control" ng-model="login.notes"
                       ng-readonly="readOnly" api-field></textarea>
         </div>
-        <hr />
-        <h4><i class="fa fa-list-ul"></i> Custom Fields</h4>
+        <div ng-if="!readOnly || (login.fields && login.fields.length)">
+            <hr />
+            <h4><i class="fa fa-list-ul"></i> Custom Fields</h4>
+        </div>
         <div ng-repeat="field in login.fields">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="field_name{{$index}}">Name</label>
-                        <input type="text" id="field_name{{$index}}" name="Field.Name{{$index}}" class="form-control" ng-model="field.name" />
+                        <input type="text" id="field_name{{$index}}" class="form-control" ng-model="field.name"
+                               ng-readonly="readOnly" />
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="field_type{{$index}}">Type</label>
-                        <select id="field_type{{$index}}" name="Field.Type{{$index}}" class="form-control" ng-model="field.type">
+                        <select id="field_type{{$index}}" class="form-control" ng-model="field.type" ng-disabled="readOnly">
                             <option value="0">Text</option>
                             <option value="1">Hidden</option>
                             <option value="2">Boolean</option>
@@ -141,7 +144,7 @@
                         <label for="field_value{{$index}}">Value</label>
                         <div class="input-group" ng-if="field.type !== '2'">
                             <input ng-attr-type="{{field.type === '0' ? 'text' : 'password'}}" id="field_value{{$index}}"
-                                   name="Field.Value{{$index}}" class="form-control" ng-model="field.value" />
+                                   class="form-control" ng-model="field.value" ng-readonly="readOnly" />
                             <span class="input-group-btn" uib-tooltip="Copy Value" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-success="clipboardSuccess(e)" ngclipboard-error="clipboardError(e, true)"
@@ -151,14 +154,14 @@
                             </span>
                         </div>
                         <div ng-if="field.type === '2'">
-                            <input type="checkbox" id="field_value{{$index}}" name="Field.Value{{$index}}" ng-model="field.value"
-                                   data-ng-true-value="'true'" />
+                            <input type="checkbox" id="field_value{{$index}}" ng-model="field.value"
+                                   data-ng-true-value="'true'" ng-disabled="readOnly" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <br class="hidden-xs" />
-                    <a href="#" ng-click="removeField(field)" stop-click>
+                    <a href="#" ng-click="removeField(field)" stop-click ng-if="!readOnly">
                         <i class="fa fa-remove"></i>
                         <span class="visible-xs-inline">Remove Custom Field</span>
                     </a>
@@ -166,7 +169,7 @@
             </div>
             <hr class="visible-xs-block" />
         </div>
-        <a href="#" ng-click="addField()" stop-click>
+        <a href="#" ng-click="addField()" stop-click ng-if="!readOnly">
             <i class="fa fa-plus-circle"></i> New Custom Field
         </a>
     </div>
