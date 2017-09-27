@@ -2,7 +2,7 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="addLoginModelLabel"><i class="fa fa-globe"></i> Add New Login</h4>
 </div>
-<form name="addLoginForm" ng-submit="addLoginForm.$valid && save(login)" api-form="savePromise">
+<form name="addLoginForm" ng-submit="addLoginForm.$valid && save(login)" api-form="savePromise" autocomplete="off">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="addLoginForm.$errors">
             <h4>Errors have occurred</h4>

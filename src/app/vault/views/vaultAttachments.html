@@ -4,7 +4,7 @@
         <i class="fa fa-paperclip"></i> Secure Attachments <small>{{login.name}}</small>
     </h4>
 </div>
-<form name="form" ng-submit="form.$valid && save(form)" api-form="savePromise">
+<form name="form" ng-submit="form.$valid && save(form)" api-form="savePromise" autocomplete="off">
     <div class="modal-body">
         <div ng-if="loading">
             Loading...

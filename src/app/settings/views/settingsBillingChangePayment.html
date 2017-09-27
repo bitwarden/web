@@ -5,7 +5,7 @@
         {{existingPaymentMethod ? 'Change Payment Method' : 'Add Payment Method'}}
     </h4>
 </div>
-<form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
+<form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise" autocomplete="off">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occurred</h4>

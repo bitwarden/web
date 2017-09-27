@@ -2,7 +2,7 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title"><i class="fa fa-globe"></i> {{index ? 'Edit Equivalent Domain' : 'Add Equivalent Domain'}}</h4>
 </div>
-<form name="domainAddEditForm" ng-submit="domainAddEditForm.$valid && submit(domainAddEditForm)">
+<form name="domainAddEditForm" ng-submit="domainAddEditForm.$valid && submit(domainAddEditForm)" autocomplete="off">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="domainAddEditForm.$errors">
             <h4>Errors have occurred</h4>

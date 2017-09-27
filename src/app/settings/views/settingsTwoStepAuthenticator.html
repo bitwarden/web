@@ -28,7 +28,7 @@
     </div>
 </form>
 <form name="submitTwoStepForm" ng-submit="submitTwoStepForm.$valid && submit(updateModel)" api-form="submitPromise"
-      ng-if="model">
+      ng-if="model" autocomplete="off">
     <div class="modal-body">
         <div ng-if="enabled">
             <div class="callout callout-success">

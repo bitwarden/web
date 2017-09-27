@@ -30,7 +30,7 @@
     </div>
 </form>
 <form name="changeEmailConfirmForm" ng-submit="changeEmailConfirmForm.$valid && confirm(model)" api-form="confirmPromise"
-      ng-show="tokenSent">
+      ng-show="tokenSent" autocomplete="off">
     <div class="modal-body">
         <p>We have emailed a verification code to <b>{{model.newEmail}}</b>. Please check your email for this code and enter it below to finalize your the email address change.</p>
         <div class="callout callout-warning">

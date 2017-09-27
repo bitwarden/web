@@ -4,7 +4,7 @@
         <i class="fa fa-globe"></i> Login Information <small>{{login.name}}</small>
     </h4>
 </div>
-<form name="editLoginForm" ng-submit="editLoginForm.$valid && save(login)" api-form="savePromise">
+<form name="editLoginForm" ng-submit="editLoginForm.$valid && save(login)" api-form="savePromise" autocomplete="off">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="editLoginForm.$errors">
             <h4>Errors have occurred</h4>

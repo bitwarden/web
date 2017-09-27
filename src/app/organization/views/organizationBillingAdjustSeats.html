@@ -5,7 +5,7 @@
         {{add ? 'Add Seats' : 'Remove Seats'}}
     </h4>
 </div>
-<form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise">
+<form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise" autocomplete="off">
     <div class="modal-body">
         <div class="callout callout-default" ng-show="add">
             <h4><i class="fa fa-dollar"></i> Note About Charges</h4>
