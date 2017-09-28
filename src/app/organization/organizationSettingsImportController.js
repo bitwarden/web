@@ -71,7 +71,7 @@
 
             apiService.ciphers.importOrg({ orgId: $state.params.orgId }, {
                 collections: cipherService.encryptCollections(collections, $state.params.orgId),
-                logins: cipherService.encryptLogins(logins, cryptoService.getOrgKey($state.params.orgId)),
+                ciphers: cipherService.encryptLogins(logins, cryptoService.getOrgKey($state.params.orgId)),
                 collectionRelationships: collectionRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
