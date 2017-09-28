@@ -28,7 +28,7 @@
     </div>
 </form>
 <form name="submitTwoStepForm" ng-submit="submitTwoStepForm.$valid && submit(updateModel)" api-form="submitPromise"
-      ng-if="model">
+      ng-if="model" autocomplete="off">
     <div class="modal-body">
         <div ng-if="enabled">
             <div class="callout callout-success">
@@ -74,10 +74,10 @@
         <hr ng-if="enabled" />
         <h4 ng-if="!enabled" style="margin-top: 30px;">2. Scan this QR code with your authenticator app</h4>
         <div class="row">
-            <div class="col-md-4 text-center">
+            <div class="col-sm-4 text-center">
                 <p><img ng-src="{{model.qr}}" alt="QR" /></p>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
                 <p>
                     <strong>Can't scan the code?</strong> You can add the code to your application manually using the
                     following details:

@@ -2,7 +2,7 @@
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title"><i class="fa fa-user"></i> Invite User</h4>
 </div>
-<form name="inviteForm" ng-submit="inviteForm.$valid && submit(model)" api-form="submitPromise">
+<form name="inviteForm" ng-submit="inviteForm.$valid && submit(model)" api-form="submitPromise" autocomplete="off">
     <div class="modal-body">
         <p>
             Invite a new user to your organization by entering their bitwarden account email address below. If they do not have

@@ -6,7 +6,7 @@
         If you have the same login across multiple different website domains, you can mark the website as "equivalent".
         "Global" domains are ones already created for you by bitwarden.
     </p>
-    <form name="customForm" ng-submit="customForm.$valid && saveCustom()" api-form="customPromise">
+    <form name="customForm" ng-submit="customForm.$valid && saveCustom()" api-form="customPromise" autocomplete="off">
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">Custom <span class="hidden-xs">Equivalent Domains</span></h3>
@@ -59,7 +59,7 @@
         </div>
     </form>
 
-    <form name="globalForm" ng-submit="globalForm.$valid && saveGlobal()" api-form="globalPromise">
+    <form name="globalForm" ng-submit="globalForm.$valid && saveGlobal()" api-form="globalPromise" autocomplete="off">
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">Global <span class="hidden-xs">Equivalent Domains</span></h3>

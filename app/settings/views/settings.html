@@ -9,7 +9,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">General</h3>
         </div>
-        <form role="form" name="generalForm" ng-submit="generalForm.$valid && generalSave()" api-form="generalPromise">
+        <form role="form" name="generalForm" ng-submit="generalForm.$valid && generalSave()" api-form="generalPromise"
+              autocomplete="off">
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-9">
@@ -57,7 +58,7 @@
             <h3 class="box-title">Master Password</h3>
         </div>
         <form role="form" name="masterPasswordForm" ng-submit="masterPasswordForm.$valid && passwordHintSave()"
-              api-form="passwordHintPromise">
+              api-form="passwordHintPromise" autocomplete="off">
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-9">
