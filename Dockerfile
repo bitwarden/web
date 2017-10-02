@@ -1,4 +1,4 @@
-FROM bitwarden/server
+FROM bitwarden/server:beta
 
 WORKDIR /app
 COPY ./dist .
