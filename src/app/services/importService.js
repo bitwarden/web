@@ -243,7 +243,8 @@
 
                     var folders = [],
                         logins = [],
-                        folderRelationships = [];
+                        folderRelationships = [],
+                        i = 0;
 
                     angular.forEach(results.data, function (value, key) {
                         var folderIndex = folders.length,
@@ -252,7 +253,7 @@
                             addFolder = hasFolder;
 
                         if (hasFolder) {
-                            for (var i = 0; i < folders.length; i++) {
+                            for (i = 0; i < folders.length; i++) {
                                 if (folders[i].name === value.folder) {
                                     addFolder = false;
                                     folderIndex = i;
@@ -261,7 +262,7 @@
                             }
                         }
 
-                        logins.push({
+                        var login = {
                             favorite: value.favorite && value.favorite !== '' && value.favorite !== '0' ? true : false,
                             uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
                             username: value.username && value.username !== '' ? value.username : null,
@@ -269,7 +270,39 @@
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
                             totp: value.totp && value.totp !== '' ? value.totp : null
-                        });
+                        };
+
+                        if (value.fields && value.fields !== '') {
+                            var fields = value.fields.split('\n');
+                            for (i = 0; i < fields.length; i++) {
+                                if (!fields[i] || fields[i] === '') {
+                                    continue;
+                                }
+
+                                var delimPosition = fields[i].lastIndexOf(': ');
+                                if (delimPosition === -1) {
+                                    continue;
+                                }
+
+                                if (!login.fields) {
+                                    login.fields = [];
+                                }
+
+                                var field = {
+                                    name: fields[i].substr(0, delimPosition),
+                                    value: null,
+                                    type: 0
+                                }
+
+                                if (fields[i].length > (delimPosition + 2)) {
+                                    field.value = fields[i].substr(delimPosition + 2);
+                                }
+
+                                login.fields.push(field);
+                            }
+                        }
+
+                        logins.push(login);
 
                         if (addFolder) {
                             folders.push({

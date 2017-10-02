@@ -41,8 +41,22 @@
                             folder: decLogins[i].folderId && (decLogins[i].folderId in foldersDict) ?
                                 foldersDict[decLogins[i].folderId].name : null,
                             favorite: decLogins[i].favorite ? 1 : null,
-                            totp: decLogins[i].totp
+                            totp: decLogins[i].totp,
+                            fields: null
                         };
+
+                        if (decLogins[i].fields) {
+                            for (var j = 0; j < decLogins[i].fields.length; j++) {
+                                if (!login.fields) {
+                                    login.fields = '';
+                                }
+                                else {
+                                    login.fields += '\n';
+                                }
+
+                                login.fields += (decLogins[i].fields[j].name + ': ' + decLogins[i].fields[j].value);
+                            }
+                        }
 
                         exportLogins.push(login);
                     }
