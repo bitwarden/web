@@ -46,11 +46,26 @@
                             password: decLogins[i].password,
                             notes: decLogins[i].notes,
                             totp: decLogins[i].totp,
-                            collections: []
+                            collections: [],
+                            fields: null
                         };
 
+                        var j;
+                        if (decLogins[i].fields) {
+                            for (j = 0; j < decLogins[i].fields.length; j++) {
+                                if (!login.fields) {
+                                    login.fields = '';
+                                }
+                                else {
+                                    login.fields += '\n';
+                                }
+                                
+                                login.fields += ((decLogins[i].fields[j].name || '') + ': ' + decLogins[i].fields[j].value);
+                            }
+                        }
+
                         if (decLogins[i].collectionIds) {
-                            for (var j = 0; j < decLogins[i].collectionIds.length; j++) {
+                            for (j = 0; j < decLogins[i].collectionIds.length; j++) {
                                 if (collectionsDict.hasOwnProperty(decLogins[i].collectionIds[j])) {
                                     login.collections.push(collectionsDict[decLogins[i].collectionIds[j]].name);
                                 }

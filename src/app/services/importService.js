@@ -292,7 +292,7 @@
                                     name: fields[i].substr(0, delimPosition),
                                     value: null,
                                     type: 0
-                                }
+                                };
 
                                 if (fields[i].length > (delimPosition + 2)) {
                                     field.value = fields[i].substr(delimPosition + 2);
@@ -333,7 +333,8 @@
 
                     var collections = [],
                         logins = [],
-                        collectionRelationships = [];
+                        collectionRelationships = [],
+                        i;
 
                     angular.forEach(results.data, function (value, key) {
                         var loginIndex = logins.length;
@@ -341,7 +342,7 @@
                         if (value.collections && value.collections !== '') {
                             var loginCollections = value.collections.split(',');
 
-                            for (var i = 0; i < loginCollections.length; i++) {
+                            for (i = 0; i < loginCollections.length; i++) {
                                 var addCollection = true;
                                 var collectionIndex = collections.length;
 
@@ -366,15 +367,47 @@
                             }
                         }
 
-                        logins.push({
+                        var login = {
                             favorite: false,
                             uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password && value.password !== '' ? value.password : null,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
-                            totp: value.totp && value.totp !== '' ? value.totp : null
-                        });
+                            totp: value.totp && value.totp !== '' ? value.totp : null,
+                        };
+
+                        if (value.fields && value.fields !== '') {
+                            var fields = value.fields.split('\n');
+                            for (i = 0; i < fields.length; i++) {
+                                if (!fields[i] || fields[i] === '') {
+                                    continue;
+                                }
+
+                                var delimPosition = fields[i].lastIndexOf(': ');
+                                if (delimPosition === -1) {
+                                    continue;
+                                }
+
+                                if (!login.fields) {
+                                    login.fields = [];
+                                }
+
+                                var field = {
+                                    name: fields[i].substr(0, delimPosition),
+                                    value: null,
+                                    type: 0
+                                };
+
+                                if (fields[i].length > (delimPosition + 2)) {
+                                    field.value = fields[i].substr(delimPosition + 2);
+                                }
+
+                                login.fields.push(field);
+                            }
+                        }
+
+                        logins.push(login);
                     });
 
                     success(collections, logins, collectionRelationships);

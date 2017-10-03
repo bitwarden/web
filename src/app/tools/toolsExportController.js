@@ -54,7 +54,7 @@
                                     login.fields += '\n';
                                 }
 
-                                login.fields += (decLogins[i].fields[j].name + ': ' + decLogins[i].fields[j].value);
+                                login.fields += ((decLogins[i].fields[j].name || '') + ': ' + decLogins[i].fields[j].value);
                             }
                         }
 
