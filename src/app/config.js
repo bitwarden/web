@@ -13,19 +13,20 @@ angular
         $locationProvider.hashPrefix('');
 
         var jwtConfig = {
-            // Using Content-Language header since it is unused and is a CORS-safelisted header. This avoids pre-flights.
-            authHeader: 'Content-Language',
             whiteListedDomains: appSettings.whitelistDomains
         };
 
-        // Safari doesn't work with unconventional "Content-Language" header for CORS.
-        // See notes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-        var userAgent = navigator.userAgent.toLowerCase();
-        if (userAgent.indexOf('safari') > -1 && userAgent.indexOf('chrome') === -1) {
-            jwtConfig = {
-                urlParam: 'access_token',
-                whiteListedDomains: appSettings.whitelistDomains
-            };
+        if (!appSettings.selfHosted) {
+            var userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf('safari') > -1 && userAgent.indexOf('chrome') === -1) {
+                // Safari doesn't work with unconventional "Content-Language" header for CORS.
+                // See notes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+                jwtConfig.urlParam = 'access_token';
+            }
+            else {
+                // Using Content-Language header since it is unused and is a CORS-safelisted header. This avoids pre-flights.
+                jwtConfig.authHeader = 'Content-Language';
+            }
         }
 
         jwtOptionsProvider.config(jwtConfig);
