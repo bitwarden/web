@@ -5,18 +5,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo ""
 
-if [ $# -gt 0 -a "$1" == "push" ]
+if [ $# -gt 1 -a "$1" == "push" ]
 then
-    echo "# Pushing Web"
+    TAG=$2
+    echo "# Pushing Web ($TAG)"
     echo ""
-    
-    if [ $# -gt 1 ]
-    then
-        TAG=$2
-        docker push bitwarden/web:$TAG
-    else
-        docker push bitwarden/web
-    fi
+    docker push bitwarden/web:$TAG
 elif [ $# -gt 1 -a "$1" == "tag" ]
 then
     TAG=$2
