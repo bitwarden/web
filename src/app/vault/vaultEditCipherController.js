@@ -1,33 +1,34 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, loginId, $analytics, $rootScope, authService, $uibModal) {
-        $analytics.eventTrack('vaultEditLoginController', { category: 'Modal' });
+    .controller('vaultEditCipherController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
+        passwordService, cipherId, $analytics, $rootScope, authService, $uibModal, constants) {
+        $analytics.eventTrack('vaultEditCipherController', { category: 'Modal' });
         $scope.folders = $rootScope.vaultFolders;
-        $scope.login = {};
+        $scope.cipher = {};
         $scope.readOnly = false;
+        $scope.constants = constants;
 
         authService.getUserProfile().then(function (profile) {
             $scope.useTotp = profile.premium;
-            return apiService.ciphers.get({ id: loginId }).$promise;
-        }).then(function (login) {
-            $scope.login = cipherService.decryptLogin(login);
-            $scope.readOnly = !$scope.login.edit;
-            $scope.useTotp = $scope.useTotp || $scope.login.organizationUseTotp;
+            return apiService.ciphers.get({ id: cipherId }).$promise;
+        }).then(function (cipher) {
+            $scope.cipher = cipherService.decryptCipher(cipher);
+            $scope.readOnly = !$scope.cipher.edit;
+            $scope.useTotp = $scope.useTotp || $scope.cipher.organizationUseTotp;
         });
 
         $scope.save = function (model) {
             if ($scope.readOnly) {
-                $scope.savePromise = apiService.ciphers.putPartial({ id: loginId }, {
+                $scope.savePromise = apiService.ciphers.putPartial({ id: cipherId }, {
                     folderId: model.folderId,
                     favorite: model.favorite
                 }, function (response) {
-                    $analytics.eventTrack('Partially Edited Login');
+                    $analytics.eventTrack('Partially Edited Cipher');
                     $uibModalInstance.close({
                         action: 'partialEdit',
                         data: {
-                            id: loginId,
+                            id: cipherId,
                             favorite: model.favorite,
                             folderId: model.folderId && model.folderId !== '' ? model.folderId : null
                         }
@@ -35,46 +36,46 @@
                 }).$promise;
             }
             else {
-                var login = cipherService.encryptLogin(model);
-                $scope.savePromise = apiService.ciphers.put({ id: loginId }, login, function (loginResponse) {
-                    $analytics.eventTrack('Edited Login');
-                    var decLogin = cipherService.decryptLogin(loginResponse);
+                var cipher = cipherService.encryptCipher(model, $scope.cipher.type);
+                $scope.savePromise = apiService.ciphers.put({ id: cipherId }, cipher, function (cipherResponse) {
+                    $analytics.eventTrack('Edited Cipher');
+                    var decCipher = cipherService.decryptCipher(cipherResponse);
                     $uibModalInstance.close({
                         action: 'edit',
-                        data: decLogin
+                        data: decCipher
                     });
                 }).$promise;
             }
         };
 
         $scope.generatePassword = function () {
-            if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
+            if (!$scope.cipher.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Edit');
-                $scope.login.password = passwordService.generatePassword({ length: 12, special: true });
+                $scope.cipher.login.password = passwordService.generatePassword({ length: 12, special: true });
             }
         };
 
         $scope.addField = function () {
-            if (!$scope.login.fields) {
-                $scope.login.fields = [];
+            if (!$scope.cipher.fields) {
+                $scope.cipher.fields = [];
             }
 
-            $scope.login.fields.push({
-                type: '0',
+            $scope.cipher.fields.push({
+                type: constants.fieldType.text,
                 name: null,
                 value: null
             });
         };
 
         $scope.removeField = function (field) {
-            var index = $scope.login.fields.indexOf(field);
+            var index = $scope.cipher.fields.indexOf(field);
             if (index > -1) {
-                $scope.login.fields.splice(index, 1);
+                $scope.cipher.fields.splice(index, 1);
             }
         };
 
         $scope.toggleFavorite = function () {
-            $scope.login.favorite = !$scope.login.favorite;
+            $scope.cipher.favorite = !$scope.cipher.favorite;
         };
 
         $scope.clipboardSuccess = function (e) {
@@ -105,15 +106,15 @@
         }
 
         $scope.delete = function () {
-            if (!confirm('Are you sure you want to delete this login (' + $scope.login.name + ')?')) {
+            if (!confirm('Are you sure you want to delete this item (' + $scope.cipher.name + ')?')) {
                 return;
             }
 
-            apiService.ciphers.del({ id: $scope.login.id }, function () {
-                $analytics.eventTrack('Deleted Login From Edit');
+            apiService.ciphers.del({ id: $scope.cipher.id }, function () {
+                $analytics.eventTrack('Deleted Cipher From Edit');
                 $uibModalInstance.close({
                     action: 'delete',
-                    data: $scope.login.id
+                    data: $scope.cipher.id
                 });
             });
         };

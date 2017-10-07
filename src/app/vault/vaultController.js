@@ -137,32 +137,32 @@
             }
         };
 
-        $scope.editLogin = function (login) {
+        $scope.editLogin = function (cipher) {
             var editModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultEditLogin.html',
-                controller: 'vaultEditLoginController',
+                templateUrl: 'app/vault/views/vaultEditCipher.html',
+                controller: 'vaultEditCipherController',
                 resolve: {
-                    loginId: function () { return login.id; }
+                    cipherId: function () { return cipher.id; }
                 }
             });
 
             editModel.result.then(function (returnVal) {
                 if (returnVal.action === 'edit') {
-                    login.folderId = returnVal.data.folderId;
-                    login.name = returnVal.data.name;
-                    login.username = returnVal.data.username;
-                    login.password = returnVal.data.password;
-                    login.favorite = returnVal.data.favorite;
+                    cipher.folderId = returnVal.data.folderId;
+                    cipher.name = returnVal.data.name;
+                    cipher.username = returnVal.data.login.username;
+                    cipher.password = returnVal.data.login.password;
+                    cipher.favorite = returnVal.data.favorite;
 
                     sortScopedLoginData();
                 }
                 else if (returnVal.action === 'partialEdit') {
-                    login.folderId = returnVal.data.folderId;
-                    login.favorite = returnVal.data.favorite;
+                    cipher.folderId = returnVal.data.folderId;
+                    cipher.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'delete') {
-                    removeLoginFromScopes(login);
+                    removeLoginFromScopes(cipher);
                 }
             });
         };

@@ -28,6 +28,17 @@ angular.module('bit')
             email: 1,
             remember: 5
         },
+        cipherType: {
+            login: 1,
+            secureNote: 2,
+            card: 3,
+            identity: 4
+        },
+        fieldType: {
+            text: 0,
+            hidden: 1,
+            boolean: 2
+        },
         twoFactorProviderInfo: [
             {
                 type: 0,
