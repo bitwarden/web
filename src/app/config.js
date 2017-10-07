@@ -368,7 +368,7 @@ angular
             // user is guaranteed to be authenticated becuase of previous check
             if (toState.name.indexOf('backend.org.') > -1 && toParams.orgId) {
                 // clear vault rootScope when visiting org admin section
-                $rootScope.vaultLogins = $rootScope.vaultFolders = null;
+                $rootScope.vaultCiphers = $rootScope.vaultFolders = null;
 
                 authService.getUserProfile().then(function (profile) {
                     var orgs = profile.organizations;

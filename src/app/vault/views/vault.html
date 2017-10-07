@@ -30,7 +30,7 @@
             <span ng-pluralize
                   count="vaultFolders.length > 0 ? vaultFolders.length - 1 : 0"
                   when="{'1': '{} folder', 'other': '{} folders'}"></span>,
-            <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
+            <span ng-pluralize count="ciphers.length" when="{'1': '{} item', 'other': '{} items'}"></span>
         </small>
     </h1>
 </section>
@@ -39,12 +39,12 @@
         <p>Loading...</p>
     </div>
     <div class="box box-primary" ng-class="{'collapsed-box': favoriteCollapsed}" style="margin-bottom: 40px;"
-         ng-show="vaultFolders.length && folderIdFilter === undefined && (!main.searchVaultText || favoriteLogins.length)">
+         ng-show="vaultFolders.length && folderIdFilter === undefined && (!main.searchVaultText || favoriteCiphers.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-star"></i>
                 Favorites
-                <small ng-pluralize count="favoriteLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
+                <small ng-pluralize count="favoriteCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
             </h3>
             <div class="box-tools">
                 <div class="btn-group">
@@ -53,8 +53,8 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="#" stop-click ng-click="addLogin(null, true)">
-                                <i class="fa fa-fw fa-plus-circle"></i> Add Login
+                            <a href="#" stop-click ng-click="addCipher(null, true)">
+                                <i class="fa fa-fw fa-plus-circle"></i> Add Item
                             </a>
                         </li>
                     </ul>
@@ -65,16 +65,16 @@
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': favoriteLogins.length}">
-            <div ng-show="!favoriteLogins.length">
-                <p>No favorite logins.</p>
-                <button type="button" ng-click="addLogin(null, true)" class="btn btn-default btn-flat">Add a Login</button>
+        <div class="box-body" ng-class="{'no-padding': favoriteCiphers.length}">
+            <div ng-show="!favoriteCiphers.length">
+                <p>No favorite items.</p>
+                <button type="button" ng-click="addCipher(null, true)" class="btn btn-default btn-flat">Add an Item</button>
             </div>
-            <div class="table-responsive" ng-show="favoriteLogins.length">
+            <div class="table-responsive" ng-show="favoriteCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="login in favoriteLogins = (logins | filter: { favorite: true } |
-                            filter: (main.searchVaultText || '')) track by login.id">
+                        <tr ng-repeat="cipher in favoriteCiphers = (ciphers | filter: { favorite: true } |
+                            filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -82,33 +82,33 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#" stop-click ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editCipher(cipher)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" stop-click ng-click="attachments(login)">
+                                            <a href="#" stop-click ng-click="attachments(cipher)">
                                                 <i class="fa fa-fw fa-paperclip"></i> Attachments
                                             </a>
                                         </li>
-                                        <li ng-show="!login.organizationId">
-                                            <a href="#" stop-click ng-click="share(login)">
+                                        <li ng-show="!cipher.organizationId">
+                                            <a href="#" stop-click ng-click="share(cipher)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
-                                        <li ng-show="login.organizationId && login.edit">
-                                            <a href="#" stop-click ng-click="collections(login)">
+                                        <li ng-show="cipher.organizationId && cipher.edit">
+                                            <a href="#" stop-click ng-click="collections(cipher)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
-                                        <li ng-show="login.password">
+                                        <li ng-show="cipher.meta.password">
                                             <a href="#" stop-click ngclipboard ngclipboard-error="clipboardError(e)"
-                                               data-clipboard-text="{{login.password}}">
+                                               data-clipboard-text="{{cipher.meta.password}}">
                                                 <i class="fa fa-fw fa-clipboard"></i> Copy Password
                                             </a>
                                         </li>
-                                        <li ng-show="login.edit">
-                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
+                                        <li ng-show="cipher.edit">
+                                            <a href="#" stop-click ng-click="deleteCipher(cipher)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
@@ -116,15 +116,15 @@
                                 </div>
                             </td>
                             <td class="action-select">
-                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" />
+                                <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" />
                             </td>
                             <td ng-click="select($event)">
-                                <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-if="login.organizationId"
+                                <a href="#" stop-click ng-click="editCipher(cipher)" stop-prop>{{cipher.name}}</a>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-if="cipher.organizationId"
                                    stop-prop></i>
-                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="login.hasAttachments"
+                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="cipher.hasAttachments"
                                    stop-prop></i><br />
-                                <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
+                                <span class="text-sm text-muted" stop-prop>{{cipher.subTitle}}</span>
                             </td>
                         </tr>
                     </tbody>
@@ -134,12 +134,12 @@
     </div>
     <div class="box" ng-class="{'collapsed-box': folder.collapsed}"
          ng-repeat="folder in filteredVaultFolders = (vaultFolders | filter: folderFilter) track by folder.id"
-         ng-show="vaultFolders.length && (!main.searchVaultText || folderLogins.length)">
+         ng-show="vaultFolders.length && (!main.searchVaultText || folderCiphers.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa" ng-class="{'fa-folder-open': folder.id !== null, 'fa-folder-open-o': folder.id === null}"></i>
                 {{folder.name}}
-                <small ng-pluralize count="folderLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
+                <small ng-pluralize count="folderCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
             </h3>
             <div class="box-tools">
                 <div class="btn-group">
@@ -148,8 +148,8 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="#" stop-click ng-click="addLogin(folder)">
-                                <i class="fa fa-fw fa-plus-circle"></i> Add Login
+                            <a href="#" stop-click ng-click="addCipher(folder)">
+                                <i class="fa fa-fw fa-plus-circle"></i> Add Item
                             </a>
                         </li>
                         <li ng-show="folder.id">
@@ -175,16 +175,16 @@
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': folderLogins.length}">
-            <div ng-show="!folderLogins.length">
-                <p>No logins in this folder.</p>
-                <button type="button" ng-click="addLogin(folder)" class="btn btn-default btn-flat">Add a Login</button>
+        <div class="box-body" ng-class="{'no-padding': folderCiphers.length}">
+            <div ng-show="!folderCiphers.length">
+                <p>No items in this folder.</p>
+                <button type="button" ng-click="addCipher(folder)" class="btn btn-default btn-flat">Add an Item</button>
             </div>
-            <div class="table-responsive" ng-show="folderLogins.length">
+            <div class="table-responsive" ng-show="folderCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="login in folderLogins = (logins | filter: { folderId: folder.id } |
-                            filter: (main.searchVaultText || '')) track by login.id">
+                        <tr ng-repeat="cipher in folderCiphers = (ciphers | filter: { folderId: folder.id } |
+                            filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -192,33 +192,33 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#" stop-click ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editCipher(cipher)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" stop-click ng-click="attachments(login)">
+                                            <a href="#" stop-click ng-click="attachments(cipher)">
                                                 <i class="fa fa-fw fa-paperclip"></i> Attachments
                                             </a>
                                         </li>
-                                        <li ng-show="!login.organizationId">
-                                            <a href="#" stop-click ng-click="share(login)">
+                                        <li ng-show="!cipher.organizationId">
+                                            <a href="#" stop-click ng-click="share(cipher)">
                                                 <i class="fa fa-fw fa-share-alt"></i> Share
                                             </a>
                                         </li>
-                                        <li ng-show="login.organizationId && login.edit">
-                                            <a href="#" stop-click ng-click="collections(login)">
+                                        <li ng-show="cipher.organizationId && cipher.edit">
+                                            <a href="#" stop-click ng-click="collections(cipher)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
-                                        <li ng-show="login.password">
+                                        <li ng-show="cipher.meta.password">
                                             <a href="#" stop-click ngclipboard ngclipboard-error="clipboardError(e)"
-                                               data-clipboard-text="{{login.password}}">
+                                               data-clipboard-text="{{cipher.meta.password}}">
                                                 <i class="fa fa-fw fa-clipboard"></i> Copy Password
                                             </a>
                                         </li>
-                                        <li ng-show="login.edit">
-                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
+                                        <li ng-show="cipher.edit">
+                                            <a href="#" stop-click ng-click="deleteCipher(cipher)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
@@ -226,17 +226,17 @@
                                 </div>
                             </td>
                             <td class="action-select" ng-click="select($event)">
-                                <input type="checkbox" value="{{::login.id}}" name="loginSelection" stop-prop />
+                                <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" stop-prop />
                             </td>
                             <td ng-click="select($event)">
-                                <a href="#" stop-click ng-click="editLogin(login)" stop-prop>{{login.name}}</a>
-                                <i class="fa fa-star text-muted" title="Favorite" ng-show="login.favorite" stop-prop></i>
-                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="login.organizationId"
+                                <a href="#" stop-click ng-click="editCipher(cipher)" stop-prop>{{cipher.name}}</a>
+                                <i class="fa fa-star text-muted" title="Favorite" ng-show="cipher.favorite" stop-prop></i>
+                                <i class="fa fa-share-alt text-muted" title="Shared" ng-show="cipher.organizationId"
                                    stop-prop></i>
-                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="login.hasAttachments"
+                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="cipher.hasAttachments"
                                    stop-prop></i>
                                 <br />
-                                <span class="text-sm text-muted" stop-prop>{{login.username}}</span>
+                                <span class="text-sm text-muted" stop-prop>{{cipher.subTitle}}</span>
                             </td>
                         </tr>
                     </tbody>

@@ -4,19 +4,19 @@
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
         cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics) {
         $scope.loading = true;
-        $scope.logins = [];
+        $scope.ciphers = [];
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
         $scope.folderIdFilter = undefined;
 
         if ($state.params.refreshFromServer) {
-            $rootScope.vaultFolders = $rootScope.vaultLogins = null;
+            $rootScope.vaultFolders = $rootScope.vaultCiphers = null;
         }
 
         $scope.$on('$viewContentLoaded', function () {
-            if ($rootScope.vaultFolders && $rootScope.vaultLogins) {
+            if ($rootScope.vaultFolders && $rootScope.vaultCiphers) {
                 $scope.loading = false;
                 loadFolderData($rootScope.vaultFolders);
-                loadLoginData($rootScope.vaultLogins);
+                loadCipherData($rootScope.vaultCiphers);
                 return;
             }
 
@@ -39,17 +39,17 @@
             }).$promise;
 
             var cipherPromise = apiService.ciphers.list({}, function (ciphers) {
-                var decLogins = [];
+                var decCiphers = [];
 
                 for (var i = 0; i < ciphers.Data.length; i++) {
                     if (ciphers.Data[i].Type === 1) {
-                        var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
-                        decLogins.push(decLogin);
+                        var decCipher = cipherService.decryptCipherPreview(ciphers.Data[i]);
+                        decCiphers.push(decCipher);
                     }
                 }
 
-                $q.when(folderPromise).then(function () {
-                    loadLoginData(decLogins);
+                folderPromise.then(function () {
+                    loadCipherData(decCiphers);
                 });
             }).$promise;
 
@@ -62,26 +62,26 @@
             $rootScope.vaultFolders = $filter('orderBy')(decFolders, folderSort);
         }
 
-        function loadLoginData(decLogins) {
+        function loadCipherData(decCiphers) {
             angular.forEach($rootScope.vaultFolders, function (folderValue, folderIndex) {
                 folderValue.collapsed = $localStorage.collapsedFolders &&
                     (folderValue.id || 'none') in $localStorage.collapsedFolders;
 
-                angular.forEach(decLogins, function (loginValue) {
-                    if (loginValue.favorite) {
-                        loginValue.sort = -1;
+                angular.forEach(decCiphers, function (cipherValue) {
+                    if (cipherValue.favorite) {
+                        cipherValue.sort = -1;
                     }
-                    else if (loginValue.folderId == folderValue.id) {
-                        loginValue.sort = folderIndex;
+                    else if (cipherValue.folderId == folderValue.id) {
+                        cipherValue.sort = folderIndex;
                     }
                 });
             });
 
-            $rootScope.vaultLogins = $scope.logins = $filter('orderBy')(decLogins, ['sort', 'name', 'username']);
+            $rootScope.vaultCiphers = $scope.ciphers = $filter('orderBy')(decCiphers, ['sort', 'name', 'subTitle']);
 
-            var chunks = chunk($rootScope.vaultLogins, 400);
+            var chunks = chunk($rootScope.vaultCiphers, 400);
             if (chunks.length > 0) {
-                $scope.logins = chunks[0];
+                $scope.ciphers = chunks[0];
                 var delay = 200;
                 angular.forEach(chunks, function (value, index) {
                     delay += 200;
@@ -89,15 +89,15 @@
                     // skip the first chuck
                     if (index > 0) {
                         $timeout(function () {
-                            Array.prototype.push.apply($scope.logins, value);
+                            Array.prototype.push.apply($scope.ciphers, value);
                         }, delay);
                     }
                 });
             }
         }
 
-        function sortScopedLoginData() {
-            $rootScope.vaultLogins = $scope.logins = $filter('orderBy')($rootScope.vaultLogins, ['name', 'username']);
+        function sortScopedCipherData() {
+            $rootScope.vaultCiphers = $scope.ciphers = $filter('orderBy')($rootScope.vaultCiphers, ['name', 'subTitle']);
         }
 
         function chunk(arr, len) {
@@ -120,7 +120,7 @@
 
         $scope.clipboardError = function (e) {
             alert('Your web browser does not support easy clipboard copying. ' +
-                'Edit the login and copy it manually instead.');
+                'Edit the item and copy it manually instead.');
         };
 
         $scope.collapseExpand = function (folder, favorite) {
@@ -137,7 +137,7 @@
             }
         };
 
-        $scope.editLogin = function (cipher) {
+        $scope.editCipher = function (cipher) {
             var editModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultEditCipher.html',
@@ -151,27 +151,28 @@
                 if (returnVal.action === 'edit') {
                     cipher.folderId = returnVal.data.folderId;
                     cipher.name = returnVal.data.name;
-                    cipher.username = returnVal.data.login.username;
-                    cipher.password = returnVal.data.login.password;
                     cipher.favorite = returnVal.data.favorite;
 
-                    sortScopedLoginData();
+                    cipher.subTitle = returnVal.data.login.username;
+                    cipher.meta.password = returnVal.data.login.password;
+
+                    sortScopedCipherData();
                 }
                 else if (returnVal.action === 'partialEdit') {
                     cipher.folderId = returnVal.data.folderId;
                     cipher.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'delete') {
-                    removeLoginFromScopes(cipher);
+                    removeCipherFromScopes(cipher);
                 }
             });
         };
 
         $scope.$on('vaultAddLogin', function (event, args) {
-            $scope.addLogin();
+            $scope.addCipher();
         });
 
-        $scope.addLogin = function (folder, favorite) {
+        $scope.addCipher = function (folder, favorite) {
             var addModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultAddLogin.html',
@@ -182,44 +183,44 @@
                 }
             });
 
-            addModel.result.then(function (addedLogin) {
-                $rootScope.vaultLogins.push(addedLogin);
-                sortScopedLoginData();
+            addModel.result.then(function (addedCipher) {
+                $rootScope.vaultCiphers.push(addedCipher);
+                sortScopedCipherData();
             });
         };
 
-        $scope.deleteLogin = function (login) {
-            if (!confirm('Are you sure you want to delete this login (' + login.name + ')?')) {
+        $scope.deleteCipher = function (cipher) {
+            if (!confirm('Are you sure you want to delete this item (' + cipher.name + ')?')) {
                 return;
             }
 
-            apiService.ciphers.del({ id: login.id }, function () {
-                $analytics.eventTrack('Deleted Login');
-                removeLoginFromScopes(login);
+            apiService.ciphers.del({ id: cipher.id }, function () {
+                $analytics.eventTrack('Deleted Item');
+                removeCipherFromScopes(cipher);
             });
         };
 
-        $scope.attachments = function (login) {
+        $scope.attachments = function (cipher) {
             authService.getUserProfile().then(function (profile) {
                 return {
                     isPremium: profile.premium,
-                    orgUseStorage: login.organizationId && !!profile.organizations[login.organizationId].maxStorageGb
+                    orgUseStorage: cipher.organizationId && !!profile.organizations[cipher.organizationId].maxStorageGb
                 };
             }).then(function (perms) {
-                if (!login.hasAttachments) {
-                    if (login.organizationId && !perms.orgUseStorage) {
+                if (!cipher.hasAttachments) {
+                    if (cipher.organizationId && !perms.orgUseStorage) {
                         $uibModal.open({
                             animation: true,
                             templateUrl: 'app/views/paidOrgRequired.html',
                             controller: 'paidOrgRequiredController',
                             resolve: {
-                                orgId: function () { return login.organizationId; }
+                                orgId: function () { return cipher.organizationId; }
                             }
                         });
                         return;
                     }
 
-                    if (!login.organizationId && !perms.isPremium) {
+                    if (!cipher.organizationId && !perms.isPremium) {
                         $uibModal.open({
                             animation: true,
                             templateUrl: 'app/views/premiumRequired.html',
@@ -229,7 +230,7 @@
                     }
                 }
 
-                if (!login.organizationId && !cryptoService.getEncKey()) {
+                if (!cipher.organizationId && !cryptoService.getEncKey()) {
                     toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
                     return;
                 }
@@ -239,12 +240,12 @@
                     templateUrl: 'app/vault/views/vaultAttachments.html',
                     controller: 'vaultAttachmentsController',
                     resolve: {
-                        loginId: function () { return login.id; }
+                        loginId: function () { return cipher.id; }
                     }
                 });
 
                 attachmentModel.result.then(function (hasAttachments) {
-                    login.hasAttachments = hasAttachments;
+                    cipher.hasAttachments = hasAttachments;
                 });
             });
         };
@@ -298,42 +299,42 @@
         };
 
         $scope.canDeleteFolder = function (folder) {
-            if (!folder || !folder.id || !$rootScope.vaultLogins) {
+            if (!folder || !folder.id || !$rootScope.vaultCiphers) {
                 return false;
             }
 
-            var logins = $filter('filter')($rootScope.vaultLogins, { folderId: folder.id });
-            return logins && logins.length === 0;
+            var ciphers = $filter('filter')($rootScope.vaultCiphers, { folderId: folder.id });
+            return ciphers && ciphers.length === 0;
         };
 
-        $scope.share = function (login) {
+        $scope.share = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultShareLogin.html',
                 controller: 'vaultShareLoginController',
                 resolve: {
-                    loginId: function () { return login.id; }
+                    loginId: function () { return cipher.id; }
                 }
             });
 
             modal.result.then(function (orgId) {
-                login.organizationId = orgId;
+                cipher.organizationId = orgId;
             });
         };
 
-        $scope.collections = function (login) {
+        $scope.collections = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultLoginCollections.html',
                 controller: 'vaultLoginCollectionsController',
                 resolve: {
-                    loginId: function () { return login.id; }
+                    loginId: function () { return cipher.id; }
                 }
             });
 
             modal.result.then(function (response) {
                 if (response.collectionIds && !response.collectionIds.length) {
-                    removeLoginFromScopes(login);
+                    removeCipherFromScopes(cipher);
                 }
             });
         };
@@ -367,12 +368,12 @@
         };
 
         $scope.selectFolder = function (folder, $event) {
-            var checkbox = $($event.currentTarget).closest('.box').find('input[name="loginSelection"]');
+            var checkbox = $($event.currentTarget).closest('.box').find('input[name="cipherSelection"]');
             checkbox.prop('checked', true);
         };
 
         $scope.select = function ($event) {
-            var checkbox = $($event.currentTarget).closest('tr').find('input[name="loginSelection"]');
+            var checkbox = $($event.currentTarget).closest('tr').find('input[name="cipherSelection"]');
             checkbox.prop('checked', !checkbox.prop('checked'));
         };
 
@@ -380,18 +381,18 @@
             return self.indexOf(value) === index;
         }
 
-        function getSelectedLogins() {
-            return $('input[name="loginSelection"]:checked').map(function () {
+        function getSelectedCiphers() {
+            return $('input[name="cipherSelection"]:checked').map(function () {
                 return $(this).val();
             }).get().filter(distinct);
         }
 
         function selectAll(select) {
-            $('input[name="loginSelection"]').prop('checked', select);
+            $('input[name="cipherSelection"]').prop('checked', select);
         }
 
         $scope.bulkMove = function () {
-            var ids = getSelectedLogins();
+            var ids = getSelectedCiphers();
             if (ids.length === 0) {
                 alert('You have not selected anything.');
                 return;
@@ -409,37 +410,37 @@
 
             modal.result.then(function (folderId) {
                 for (var i = 0; i < ids.length; i++) {
-                    var login = $filter('filter')($rootScope.vaultLogins, { id: ids[i] });
-                    if (login.length) {
-                        login[0].folderId = folderId;
+                    var cipher = $filter('filter')($rootScope.vaultCiphers, { id: ids[i] });
+                    if (cipher.length) {
+                        cipher[0].folderId = folderId;
                     }
                 }
 
                 selectAll(false);
-                sortScopedLoginData();
+                sortScopedCipherData();
                 toastr.success('Items have been moved!');
             });
         };
 
         $scope.bulkDelete = function () {
-            var ids = getSelectedLogins();
+            var ids = getSelectedCiphers();
             if (ids.length === 0) {
                 alert('You have not selected anything.');
                 return;
             }
 
-            if (!confirm('Are you sure you want to delete the selected logins (total: ' + ids.length + ')?')) {
+            if (!confirm('Are you sure you want to delete the selected items (total: ' + ids.length + ')?')) {
                 return;
             }
 
             $scope.bulkActionLoading = true;
             apiService.ciphers.delMany({ ids: ids }, function () {
-                $analytics.eventTrack('Bulk Deleted Logins');
+                $analytics.eventTrack('Bulk Deleted Items');
 
                 for (var i = 0; i < ids.length; i++) {
-                    var login = $filter('filter')($rootScope.vaultLogins, { id: ids[i] });
-                    if (login.length && login[0].edit) {
-                        removeLoginFromScopes(login[0]);
+                    var cipher = $filter('filter')($rootScope.vaultCiphers, { id: ids[i] });
+                    if (cipher.length && cipher[0].edit) {
+                        removeCipherFromScopes(cipher[0]);
                     }
                 }
 
@@ -452,15 +453,15 @@
             });
         };
 
-        function removeLoginFromScopes(login) {
-            var index = $rootScope.vaultLogins.indexOf(login);
+        function removeCipherFromScopes(cipher) {
+            var index = $rootScope.vaultCiphers.indexOf(cipher);
             if (index > -1) {
-                $rootScope.vaultLogins.splice(index, 1);
+                $rootScope.vaultCiphers.splice(index, 1);
             }
 
-            index = $scope.logins.indexOf(login);
+            index = $scope.ciphers.indexOf(cipher);
             if (index > -1) {
-                $scope.logins.splice(index, 1);
+                $scope.ciphers.splice(index, 1);
             }
         }
     });

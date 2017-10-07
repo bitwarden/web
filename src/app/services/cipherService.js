@@ -181,11 +181,13 @@ angular
                 id: encryptedCipher.Id,
                 organizationId: encryptedCipher.OrganizationId,
                 collectionIds: encryptedCipher.CollectionIds || [],
+                'type': encryptedCipher.Type,
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
                 edit: encryptedCipher.Edit,
                 organizationUseTotp: encryptedCipher.OrganizationUseTotp,
-                hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0
+                hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0,
+                meta: {}
             };
 
             var cipherData = encryptedCipher.Data;
@@ -196,13 +198,13 @@ angular
                 switch (cipher.type) {
                     case constants.cipherType.login:
                         cipher.subTitle = _service.decryptProperty(cipherData.Username, key, true);
-                        cipher.password = _service.decryptProperty(cipherData.Password, key, true);
+                        cipher.meta.password = _service.decryptProperty(cipherData.Password, key, true);
                         break;
                     case constants.cipherType.secureNote:
                         cipher.subTitle = 'secure note'; // TODO: what to do for this sub title?
                         break;
                     case constants.cipherType.card:
-                        cipher.number = _service.decryptProperty(cipherData.Number, key, true);
+                        cipher.meta.number = _service.decryptProperty(cipherData.Number, key, true);
                         var brand = _service.decryptProperty(cipherData.Brand, key, true);
                         cipher.subTitle = brand + ', *1234'; // TODO: last 4 of number
                         break;
@@ -215,7 +217,7 @@ angular
                 }
             }
 
-            return login;
+            return cipher;
         };
 
         _service.decryptAttachment = function (key, encryptedAttachment) {

@@ -212,8 +212,8 @@
         };
 
         function findRootLogin(login) {
-            if ($rootScope.vaultLogins) {
-                var rootLogins = $filter('filter')($rootScope.vaultLogins, { id: login.id });
+            if ($rootScope.vaultCiphers) {
+                var rootLogins = $filter('filter')($rootScope.vaultCiphers, { id: login.id });
                 if (rootLogins && rootLogins.length) {
                     return rootLogins[0];
                 }
@@ -224,9 +224,9 @@
 
         function removeRootLogin(rootLogin) {
             if (rootLogin && rootLogin.id) {
-                var index = $rootScope.vaultLogins.indexOf(rootLogin);
+                var index = $rootScope.vaultCiphers.indexOf(rootLogin);
                 if (index > -1) {
-                    $rootScope.vaultLogins.splice(index, 1);
+                    $rootScope.vaultCiphers.splice(index, 1);
                 }
             }
         }
