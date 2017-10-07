@@ -1,10 +1,8 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">
-        <i class="fa fa-globe"></i> Item Information <small>{{cipher.name}}</small>
-    </h4>
+    <h4 class="modal-title"><i class="fa fa-globe"></i> Add New Item</h4>
 </div>
-<form name="form" ng-submit="form.$valid && save(cipher)" api-form="savePromise" autocomplete="off">
+<form name="form" ng-submit="form.$valid && save()" api-form="savePromise" autocomplete="off">
     <div class="modal-body">
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occurred</h4>
@@ -14,19 +12,29 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="type">What type of item is this?</label>
+                    <select id="type" name="Type" ng-model="selectedType" class="form-control" ng-change="typeChanged()">
+                        <option value="{{constants.cipherType.login}}">Login</option>
+                        <option value="{{constants.cipherType.card}}">Card</option>
+                        <option value="{{constants.cipherType.identity}}">Identity</option>
+                        <option value="{{constants.cipherType.secureNote}}">Secure Note</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
                 <div class="form-group" show-errors>
                     <label for="name">Name</label> <span>*</span>
-                    <input type="text" id="name" name="Name" ng-model="cipher.name" class="form-control"
-                           ng-readonly="readOnly" required api-field />
+                    <input type="text" id="name" name="Name" ng-model="cipher.name" class="form-control" required api-field />
                 </div>
             </div>
             <div class="col-sm-6" ng-if="!hideFolders">
                 <div class="form-group" show-errors>
                     <label for="folder">Folder</label>
                     <select id="folder" name="FolderId" ng-model="cipher.folderId" class="form-control" api-field>
-                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">
-                            {{folder.name}}
-                        </option>
+                        <option ng-repeat="folder in folders | orderBy: folderSort" value="{{folder.id}}">{{folder.name}}</option>
                     </select>
                 </div>
             </div>
@@ -171,26 +179,22 @@
 
         <div class="form-group" show-errors>
             <label for="notes">Notes</label>
-            <textarea id="notes" name="Notes" class="form-control" ng-model="cipher.notes"
-                      ng-readonly="readOnly" api-field></textarea>
+            <textarea id="notes" name="Notes" class="form-control" ng-model="cipher.notes" api-field></textarea>
         </div>
-        <div ng-if="!readOnly || (cipher.fields && cipher.fields.length)">
-            <hr />
-            <h4><i class="fa fa-list-ul"></i> Custom Fields</h4>
-        </div>
+        <hr />
+        <h4><i class="fa fa-list-ul"></i> Custom Fields</h4>
         <div ng-repeat="field in cipher.fields">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="field_name{{$index}}">Name</label>
-                        <input type="text" id="field_name{{$index}}" class="form-control" ng-model="field.name"
-                               ng-readonly="readOnly" />
+                        <input type="text" id="field_name{{$index}}" name="Field.Name{{$index}}" class="form-control" ng-model="field.name" />
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="field_type{{$index}}">Type</label>
-                        <select id="field_type{{$index}}" class="form-control" ng-model="field.type" ng-disabled="readOnly">
+                        <select id="field_type{{$index}}" name="Field.Type{{$index}}" class="form-control" ng-model="field.type">
                             <option value="0">Text</option>
                             <option value="1">Hidden</option>
                             <option value="2">Boolean</option>
@@ -206,7 +210,7 @@
                         <label for="field_value{{$index}}">Value</label>
                         <div class="input-group" ng-if="field.type !== '2'">
                             <input ng-attr-type="{{field.type === '0' ? 'text' : 'password'}}" id="field_value{{$index}}"
-                                   class="form-control" ng-model="field.value" ng-readonly="readOnly" />
+                                   name="Field.Value{{$index}}" class="form-control" ng-model="field.value" />
                             <span class="input-group-btn" uib-tooltip="Copy Value" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-success="clipboardSuccess(e)" ngclipboard-error="clipboardError(e, true)"
@@ -216,14 +220,14 @@
                             </span>
                         </div>
                         <div ng-if="field.type === '2'">
-                            <input type="checkbox" id="field_value{{$index}}" ng-model="field.value"
-                                   data-ng-true-value="'true'" ng-disabled="readOnly" />
+                            <input type="checkbox" id="field_value{{$index}}" name="Field.Value{{$index}}" ng-model="field.value"
+                                   data-ng-true-value="'true'" />
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-1">
                     <br class="hidden-xs" />
-                    <a href="#" ng-click="removeField(field)" stop-click ng-if="!readOnly">
+                    <a href="#" ng-click="removeField(field)" stop-click>
                         <i class="fa fa-window-close-o fa-lg"></i>
                         <span class="visible-xs-inline">Remove Custom Field</span>
                     </a>
@@ -231,20 +235,15 @@
             </div>
             <hr class="visible-xs-block" />
         </div>
-        <a href="#" ng-click="addField()" stop-click ng-if="!readOnly">
+        <a href="#" ng-click="addField()" stop-click>
             <i class="fa fa-plus-circle"></i> New Custom Field
         </a>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$loading">
-            <i class="fa fa-refresh fa-spin loading-icon" ng-show="form.$loading"></i>Save
+            <i class="fa fa-refresh fa-spin loading-icon" ng-show="form.$loading"></i>Submit
         </button>
         <button type="button" class="btn btn-default btn-flat" ng-click="close()">Close</button>
-        <button type="button" class="btn btn-link pull-right" ng-click="delete()" uib-tooltip="Delete"
-                tooltip-placement="left" ng-disabled="readOnly">
-            <i class="fa fa-trash fa-lg"></i>
-            <span class="sr-only">Delete</span>
-        </button>
         <button type="button" ng-if="!hideFavorite" class="btn btn-link pull-right" ng-click="toggleFavorite()"
                 uib-tooltip="Toggle Favorite" tooltip-placement="left">
             <i class="fa fa-lg" ng-class="cipher.favorite ? 'fa-star' : 'fa-star-o'"></i>

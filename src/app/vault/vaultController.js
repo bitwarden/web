@@ -175,8 +175,8 @@
         $scope.addCipher = function (folder, favorite) {
             var addModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultAddLogin.html',
-                controller: 'vaultAddLoginController',
+                templateUrl: 'app/vault/views/vaultAddCipher.html',
+                controller: 'vaultAddCipherController',
                 resolve: {
                     selectedFolder: function () { return folder; },
                     checkedFavorite: function () { return favorite; }

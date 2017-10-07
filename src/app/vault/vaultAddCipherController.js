@@ -1,57 +1,70 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultAddLoginController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope, authService, $uibModal) {
-        $analytics.eventTrack('vaultAddLoginController', { category: 'Modal' });
+    .controller('vaultAddCipherController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
+        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope, authService, $uibModal, constants) {
+        $analytics.eventTrack('vaultAddCipherController', { category: 'Modal' });
         $scope.folders = $rootScope.vaultFolders;
-        $scope.login = {
+        $scope.constants = constants;
+        $scope.selectedType = constants.cipherType.login.toString();
+        $scope.cipher = {
             folderId: selectedFolder ? selectedFolder.id : null,
-            favorite: checkedFavorite === true
+            favorite: checkedFavorite === true,
+            type: constants.cipherType.login,
+            card: {
+                brand: 'visa'
+            },
+            secureNote: {
+                type: '0'
+            }
         };
 
         authService.getUserProfile().then(function (profile) {
             $scope.useTotp = profile.premium;
         });
 
+        $scope.typeChanged = function () {
+            $scope.cipher.type = parseInt($scope.selectedType);
+        };
+
         $scope.savePromise = null;
-        $scope.save = function (model) {
-            var login = cipherService.encryptLogin(model);
-            $scope.savePromise = apiService.ciphers.post(login, function (loginResponse) {
-                $analytics.eventTrack('Created Login');
-                var decLogin = cipherService.decryptLogin(loginResponse);
-                $uibModalInstance.close(decLogin);
+        $scope.save = function () {
+            var cipher = cipherService.encryptCipher($scope.cipher);
+            $scope.savePromise = apiService.ciphers.post(cipher, function (cipherResponse) {
+                $analytics.eventTrack('Created Cipher');
+                var decCipher = cipherService.decryptCipherPreview(cipherResponse);
+                $uibModalInstance.close(decCipher);
             }).$promise;
         };
 
         $scope.generatePassword = function () {
-            if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
+            if (!$scope.cipher.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Add');
-                $scope.login.password = passwordService.generatePassword({ length: 12, special: true });
+                $scope.cipher.login.password = passwordService.generatePassword({ length: 12, special: true });
             }
         };
 
         $scope.addField = function () {
-            if (!$scope.login.fields) {
-                $scope.login.fields = [];
+            if (!$scope.cipher.fields) {
+                $scope.cipher.fields = [];
             }
 
-            $scope.login.fields.push({
-                type: '0',
+            $scope.cipher.fields.push({
+                type: constants.fieldType.text.toString(),
                 name: null,
                 value: null
             });
         };
 
         $scope.removeField = function (field) {
-            var index = $scope.login.fields.indexOf(field);
+            var index = $scope.cipher.fields.indexOf(field);
             if (index > -1) {
-                $scope.login.fields.splice(index, 1);
+                $scope.cipher.fields.splice(index, 1);
             }
         };
 
         $scope.toggleFavorite = function () {
-            $scope.login.favorite = !$scope.login.favorite;
+            $scope.cipher.favorite = !$scope.cipher.favorite;
         };
 
         $scope.clipboardSuccess = function (e) {

@@ -414,7 +414,7 @@ angular
 
             var cipher = {
                 id: unencryptedCipher.id,
-                'type': type,
+                'type': type || unencryptedCipher.type,
                 organizationId: unencryptedCipher.organizationId || null,
                 folderId: unencryptedCipher.folderId === '' ? null : unencryptedCipher.folderId,
                 favorite: unencryptedCipher.favorite !== null ? unencryptedCipher.favorite : false,

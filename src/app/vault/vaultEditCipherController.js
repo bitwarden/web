@@ -61,7 +61,7 @@
             }
 
             $scope.cipher.fields.push({
-                type: constants.fieldType.text,
+                type: constants.fieldType.text.toString(),
                 name: null,
                 value: null
             });
