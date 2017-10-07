@@ -74,7 +74,7 @@ angular
 
             var key = null;
             if (encryptedCipher.OrganizationId) {
-                key = cryptoService.getOrgKey(encryptedLogin.OrganizationId);
+                key = cryptoService.getOrgKey(encryptedCipher.OrganizationId);
             }
 
             var cipher = {

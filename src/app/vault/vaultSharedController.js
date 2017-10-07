@@ -3,7 +3,7 @@
 
     .controller('vaultSharedController', function ($scope, apiService, cipherService, $analytics, $q, $localStorage,
         $uibModal, $filter, $rootScope, authService, cryptoService) {
-        $scope.logins = [];
+        $scope.ciphers = [];
         $scope.collections = [];
         $scope.loading = true;
 
@@ -22,16 +22,16 @@
             }).$promise;
 
             var cipherPromise = apiService.ciphers.listDetails({}, function (ciphers) {
-                var decLogins = [];
+                var decCiphers = [];
 
                 for (var i = 0; i < ciphers.Data.length; i++) {
                     if (ciphers.Data[i].Type === 1) {
-                        var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
-                        decLogins.push(decLogin);
+                        var decCipher = cipherService.decryptCipherPreview(ciphers.Data[i]);
+                        decCiphers.push(decCipher);
                     }
                 }
 
-                if (decLogins.length) {
+                if (decCiphers.length) {
                     $scope.collections.push({
                         id: null,
                         name: 'Unassigned',
@@ -39,7 +39,7 @@
                     });
                 }
 
-                $scope.logins = decLogins;
+                $scope.ciphers = decCiphers;
             }).$promise;
 
             $q.all([collectionPromise, cipherPromise]).then(function () {
@@ -49,29 +49,29 @@
 
         $scope.clipboardError = function (e) {
             alert('Your web browser does not support easy clipboard copying. ' +
-                'Edit the login and copy it manually instead.');
+                'Edit the item and copy it manually instead.');
         };
 
-        $scope.attachments = function (login) {
+        $scope.attachments = function (cipher) {
             authService.getUserProfile().then(function (profile) {
                 return {
                     isPremium: profile.premium,
-                    orgUseStorage: login.organizationId && !!profile.organizations[login.organizationId].maxStorageGb
+                    orgUseStorage: cipher.organizationId && !!profile.organizations[cipher.organizationId].maxStorageGb
                 };
             }).then(function (perms) {
-                if (login.organizationId && !perms.orgUseStorage) {
+                if (cipher.organizationId && !perms.orgUseStorage) {
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'app/views/paidOrgRequired.html',
                         controller: 'paidOrgRequiredController',
                         resolve: {
-                            orgId: function () { return login.organizationId; }
+                            orgId: function () { return cipher.organizationId; }
                         }
                     });
                     return;
                 }
 
-                if (!login.organizationId && !perms.isPremium) {
+                if (!cipher.organizationId && !perms.isPremium) {
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'app/views/premiumRequired.html',
@@ -80,7 +80,7 @@
                     return;
                 }
 
-                if (!login.organizationId && !cryptoService.getEncKey()) {
+                if (!cipher.organizationId && !cryptoService.getEncKey()) {
                     toastr.error('You cannot use this feature until you update your encryption key.', 'Feature Unavailable');
                     return;
                 }
@@ -90,12 +90,12 @@
                     templateUrl: 'app/vault/views/vaultAttachments.html',
                     controller: 'vaultAttachmentsController',
                     resolve: {
-                        loginId: function () { return login.id; }
+                        loginId: function () { return cipher.id; }
                     }
                 });
 
                 attachmentModel.result.then(function (hasAttachments) {
-                    login.hasAttachments = hasAttachments;
+                    cipher.hasAttachments = hasAttachments;
                 });
             });
         };
@@ -133,62 +133,62 @@
             }
         };
 
-        $scope.editLogin = function (login) {
+        $scope.editCipher = function (cipher) {
             var editModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultEditLogin.html',
-                controller: 'vaultEditLoginController',
+                templateUrl: 'app/vault/views/vaultEditCipher.html',
+                controller: 'vaultEditCipherController',
                 resolve: {
-                    loginId: function () { return login.id; }
+                    cipherId: function () { return cipher.id; }
                 }
             });
 
             editModel.result.then(function (returnVal) {
-                var rootLogin = findRootLogin(login) || {};
+                var rootCipher = findRootCipher(cipher) || { meta: {} };
 
                 if (returnVal.action === 'edit') {
-                    login.folderId = rootLogin.folderId = returnVal.data.folderId;
-                    login.name = rootLogin.name = returnVal.data.name;
-                    login.username = rootLogin.username = returnVal.data.username;
-                    login.password = rootLogin.password = returnVal.data.password;
-                    login.favorite = rootLogin.favorite = returnVal.data.favorite;
+                    cipher.folderId = rootCipher.folderId = returnVal.data.folderId;
+                    cipher.name = rootCipher.name = returnVal.data.name;
+                    cipher.subTitle = rootCipher.subTitle = returnVal.data.login.username;
+                    cipher.meta.password = rootCipher.meta.password = returnVal.data.login.password;
+                    cipher.favorite = rootCipher.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'partialEdit') {
-                    login.folderId = rootLogin.folderId = returnVal.data.folderId;
-                    login.favorite = rootLogin.favorite = returnVal.data.favorite;
+                    cipher.folderId = rootCipher.folderId = returnVal.data.folderId;
+                    cipher.favorite = rootCipher.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'delete') {
-                    var index = $scope.logins.indexOf(login);
+                    var index = $scope.ciphers.indexOf(cipher);
                     if (index > -1) {
-                        $scope.logins.splice(index, 1);
+                        $scope.ciphers.splice(index, 1);
                     }
 
-                    removeRootLogin(rootLogin);
+                    removeRootCipher(rootCipher);
                 }
             });
         };
 
-        $scope.editCollections = function (login) {
+        $scope.editCollections = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultLoginCollections.html',
                 controller: 'vaultLoginCollectionsController',
                 resolve: {
-                    loginId: function () { return login.id; }
+                    loginId: function () { return cipher.id; }
                 }
             });
 
             modal.result.then(function (response) {
                 if (response.collectionIds) {
-                    login.collectionIds = response.collectionIds;
-                    // TODO: if there are no collectionIds now, it is possible that the user no longer has access to this login
-                    // which means it should be removed by calling removeRootLogin(findRootLogin(login))
+                    cipher.collectionIds = response.collectionIds;
+                    // TODO: if there are no collectionIds now, it is possible that the user no longer has access to this cipher
+                    // which means it should be removed by calling removeRootCipher(findRootCipher(cipher))
                 }
             });
         };
 
-        $scope.removeLogin = function (login, collection) {
-            if (!confirm('Are you sure you want to remove this login (' + login.name + ') from the ' +
+        $scope.removeCipher = function (cipher, collection) {
+            if (!confirm('Are you sure you want to remove this item (' + cipher.name + ') from the ' +
                 'collection (' + collection.name + ') ?')) {
                 return;
             }
@@ -197,34 +197,34 @@
                 collectionIds: []
             };
 
-            for (var i = 0; i < login.collectionIds.length; i++) {
-                if (login.collectionIds[i] !== collection.id) {
-                    request.collectionIds.push(login.collectionIds[i]);
+            for (var i = 0; i < cipher.collectionIds.length; i++) {
+                if (cipher.collectionIds[i] !== collection.id) {
+                    request.collectionIds.push(cipher.collectionIds[i]);
                 }
             }
 
-            apiService.ciphers.putCollections({ id: login.id }, request).$promise.then(function (response) {
+            apiService.ciphers.putCollections({ id: cipher.id }, request).$promise.then(function (response) {
                 $analytics.eventTrack('Removed From Collection');
-                login.collectionIds = request.collectionIds;
-                // TODO: if there are no collectionIds now, it is possible that the user no longer has access to this login
-                // which means it should be removed by calling removeRootLogin(findRootLogin(login))
+                cipher.collectionIds = request.collectionIds;
+                // TODO: if there are no collectionIds now, it is possible that the user no longer has access to this cipher
+                // which means it should be removed by calling removeRootCipher(findRootCipher(cipher))
             });
         };
 
-        function findRootLogin(login) {
+        function findRootCipher(cipher) {
             if ($rootScope.vaultCiphers) {
-                var rootLogins = $filter('filter')($rootScope.vaultCiphers, { id: login.id });
-                if (rootLogins && rootLogins.length) {
-                    return rootLogins[0];
+                var rootCiphers = $filter('filter')($rootScope.vaultCiphers, { id: cipher.id });
+                if (rootCiphers && rootCiphers.length) {
+                    return rootCiphers[0];
                 }
             }
 
             return null;
         }
 
-        function removeRootLogin(rootLogin) {
-            if (rootLogin && rootLogin.id) {
-                var index = $rootScope.vaultCiphers.indexOf(rootLogin);
+        function removeRootCipher(rootCipher) {
+            if (rootCipher && rootCipher.id) {
+                var index = $rootScope.vaultCiphers.indexOf(rootCipher);
                 if (index > -1) {
                     $rootScope.vaultCiphers.splice(index, 1);
                 }
