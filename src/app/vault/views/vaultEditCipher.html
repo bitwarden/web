@@ -172,6 +172,7 @@
         <div class="form-group" show-errors>
             <label for="notes">Notes</label>
             <textarea id="notes" name="Notes" class="form-control" ng-model="cipher.notes"
+                      ng-class="{'big-textarea': cipher.type === constants.cipherType.secureNote}"
                       ng-readonly="readOnly" api-field></textarea>
         </div>
         <div ng-if="!readOnly || (cipher.fields && cipher.fields.length)">

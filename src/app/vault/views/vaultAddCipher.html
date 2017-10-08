@@ -179,7 +179,8 @@
 
         <div class="form-group" show-errors>
             <label for="notes">Notes</label>
-            <textarea id="notes" name="Notes" class="form-control" ng-model="cipher.notes" api-field></textarea>
+            <textarea id="notes" name="Notes" class="form-control" ng-model="cipher.notes" api-field
+                      ng-class="{'big-textarea': cipher.type === constants.cipherType.secureNote}"></textarea>
         </div>
         <hr />
         <h4><i class="fa fa-list-ul"></i> Custom Fields</h4>
