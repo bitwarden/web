@@ -2,11 +2,13 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics) {
+        cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics, constants) {
         $scope.loading = true;
         $scope.ciphers = [];
+        $scope.constants = constants;
         $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
         $scope.folderIdFilter = undefined;
+        $scope.typeFilter = undefined;
 
         if ($state.params.refreshFromServer) {
             $rootScope.vaultFolders = $rootScope.vaultCiphers = null;
@@ -347,8 +349,19 @@
             }
         };
 
+        $scope.filterType = function (type) {
+            $scope.typeFilter = type;
+
+            if ($.AdminLTE && $.AdminLTE.layout) {
+                $timeout(function () {
+                    $.AdminLTE.layout.fix();
+                }, 0);
+            }
+        };
+
         $scope.clearFilters = function () {
             $scope.folderIdFilter = undefined;
+            $scope.typeFilter = undefined;
 
             if ($.AdminLTE && $.AdminLTE.layout) {
                 $timeout(function () {
@@ -359,6 +372,10 @@
 
         $scope.folderFilter = function (folder) {
             return $scope.folderIdFilter === undefined || folder.id === $scope.folderIdFilter;
+        };
+
+        $scope.cipherFilter = function (cipher) {
+            return $scope.typeFilter === undefined || cipher.type === $scope.typeFilter;
         };
 
         $scope.unselectAll = function () {

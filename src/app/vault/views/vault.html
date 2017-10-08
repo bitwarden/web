@@ -183,8 +183,8 @@
             <div class="table-responsive" ng-show="folderCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="cipher in folderCiphers = (ciphers | filter: { folderId: folder.id } |
-                            filter: (main.searchVaultText || '')) track by cipher.id">
+                        <tr ng-repeat="cipher in folderCiphers = (ciphers | filter: { folderId: folder.id } | 
+                            filter: cipherFilter | filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -251,6 +251,35 @@
             <li>
                 <a href="#" stop-click ng-click="clearFilters()">
                     Clear All Filters
+                </a>
+            </li>
+        </ul>
+        <h3 class="control-sidebar-heading">
+            <i class="fa fa-tag fa-fw"></i> Types
+        </h3>
+        <ul class="control-sidebar-menu">
+            <li>
+                <a href="#" stop-click ng-click="filterType(constants.cipherType.login)">
+                    <i class="fa fa-check" ng-if="constants.cipherType.login === typeFilter"></i>
+                    Login
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="filterType(constants.cipherType.card)">
+                    <i class="fa fa-check" ng-if="constants.cipherType.card === typeFilter"></i>
+                    Card
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="filterType(constants.cipherType.identity)">
+                    <i class="fa fa-check" ng-if="constants.cipherType.identity === typeFilter"></i>
+                    Identity
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="filterType(constants.cipherType.secureNote)">
+                    <i class="fa fa-check" ng-if="constants.cipherType.secureNote === typeFilter"></i>
+                    Secure Note
                 </a>
             </li>
         </ul>
