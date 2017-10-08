@@ -25,10 +25,8 @@
                 var decCiphers = [];
 
                 for (var i = 0; i < ciphers.Data.length; i++) {
-                    if (ciphers.Data[i].Type === 1) {
-                        var decCipher = cipherService.decryptCipherPreview(ciphers.Data[i]);
-                        decCiphers.push(decCipher);
-                    }
+                    var decCipher = cipherService.decryptCipherPreview(ciphers.Data[i]);
+                    decCiphers.push(decCipher);
                 }
 
                 if (decCiphers.length) {
