@@ -1,7 +1,7 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">
-        <i class="fa fa-globe"></i> Item Information <small>{{cipher.name}}</small>
+        <i class="fa {{cipher.icon}}"></i> Item Information <small>{{cipher.name}}</small>
     </h4>
 </div>
 <form name="form" ng-submit="form.$valid && save(cipher)" api-form="savePromise" autocomplete="off">

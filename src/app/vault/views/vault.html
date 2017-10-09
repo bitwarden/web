@@ -115,8 +115,11 @@
                                     </ul>
                                 </div>
                             </td>
-                            <td class="action-select">
-                                <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" />
+                            <td class="action-select" ng-click="select($event)">
+                                <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" stop-prop />
+                            </td>
+                            <td class="vault-icon" ng-click="select($event)">
+                                <i class="fa fa-fw fa-lg {{::cipher.icon}}"></i>
                             </td>
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editCipher(cipher)" stop-prop>{{cipher.name}}</a>
@@ -227,6 +230,9 @@
                             </td>
                             <td class="action-select" ng-click="select($event)">
                                 <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" stop-prop />
+                            </td>
+                            <td class="vault-icon" ng-click="select($event)">
+                                <i class="fa fa-fw fa-lg {{::cipher.icon}}"></i>
                             </td>
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editCipher(cipher)" stop-prop>{{cipher.name}}</a>

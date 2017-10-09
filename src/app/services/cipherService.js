@@ -86,7 +86,8 @@ angular
                 favorite: encryptedCipher.Favorite,
                 edit: encryptedCipher.Edit,
                 organizationUseTotp: encryptedCipher.OrganizationUseTotp,
-                attachments: null
+                attachments: null,
+                icon: null
             };
 
             var cipherData = encryptedCipher.Data;
@@ -103,10 +104,12 @@ angular
                         dataObj.password = _service.decryptProperty(cipherData.Password, key, true, false);
                         dataObj.totp = _service.decryptProperty(cipherData.Totp, key, true, false);
                         cipher.login = dataObj;
+                        cipher.icon = 'fa-globe';
                         break;
                     case constants.cipherType.secureNote:
                         dataObj.type = cipherData.Type;
                         cipher.secureNote = dataObj;
+                        cipher.icon = 'fa-sticky-note-o';
                         break;
                     case constants.cipherType.card:
                         dataObj.cardholderName = _service.decryptProperty(cipherData.CardholderName, key, true, false);
@@ -116,6 +119,7 @@ angular
                         dataObj.expYear = _service.decryptProperty(cipherData.ExpYear, key, true, false);
                         dataObj.code = _service.decryptProperty(cipherData.Code, key, true, false);
                         cipher.card = dataObj;
+                        cipher.icon = 'fa-credit-card';
                         break;
                     case constants.cipherType.identity:
                         dataObj.title = _service.decryptProperty(cipherData.Title, key, true, false);
@@ -135,6 +139,7 @@ angular
                         dataObj.ssn = _service.decryptProperty(cipherData.SSN, key, true, false);
                         dataObj.username = _service.decryptProperty(cipherData.Username, key, true, false);
                         cipher.identity = dataObj;
+                        cipher.icon = 'fa-id-card-o';
                         break;
                     default:
                         break;
@@ -200,7 +205,8 @@ angular
                 edit: encryptedCipher.Edit,
                 organizationUseTotp: encryptedCipher.OrganizationUseTotp,
                 hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0,
-                meta: {}
+                meta: {},
+                icon: null
             };
 
             var cipherData = encryptedCipher.Data;
@@ -212,9 +218,11 @@ angular
                     case constants.cipherType.login:
                         cipher.subTitle = _service.decryptProperty(cipherData.Username, key, true, true);
                         cipher.meta.password = _service.decryptProperty(cipherData.Password, key, true, true);
+                        cipher.icon = 'fa-globe';
                         break;
                     case constants.cipherType.secureNote:
                         cipher.subTitle = null;
+                        cipher.icon = 'fa-sticky-note-o';
                         break;
                     case constants.cipherType.card:
                         cipher.subTitle = '';
@@ -229,6 +237,7 @@ angular
                             }
                             cipher.subTitle += ('*' + cipher.meta.number.substr(cipher.meta.number.length - 4));
                         }
+                        cipher.icon = 'fa-credit-card';
                         break;
                     case constants.cipherType.identity:
                         var firstName = _service.decryptProperty(cipherData.FirstName, key, true, true);
@@ -243,6 +252,7 @@ angular
                             }
                             cipher.subTitle += lastName;
                         }
+                        cipher.icon = 'fa-id-card-o';
                         break;
                     default:
                         break;
