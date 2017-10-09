@@ -11,9 +11,6 @@
             folderId: selectedFolder ? selectedFolder.id : null,
             favorite: checkedFavorite === true,
             type: constants.cipherType.login,
-            card: {
-                brand: 'visa'
-            },
             secureNote: {
                 type: '0'
             }

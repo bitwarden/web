@@ -92,16 +92,16 @@ angular
             var cipherData = encryptedCipher.Data;
             if (cipherData) {
                 cipher.name = cryptoService.decrypt(cipherData.Name, key);
-                cipher.notes = cipherData.Notes && cipherData.Notes !== '' ? cryptoService.decrypt(cipherData.Notes, key) : null;
+                cipher.notes = _service.decryptProperty(cipherData.Notes, key, true, false);
                 cipher.fields = _service.decryptFields(key, cipherData.Fields);
 
                 var dataObj = {};
                 switch (cipher.type) {
                     case constants.cipherType.login:
-                        dataObj.uri = cipherData.Uri && cipherData.Uri !== '' ? cryptoService.decrypt(cipherData.Uri, key) : null;
-                        dataObj.username = cipherData.Username && cipherData.Username !== '' ? cryptoService.decrypt(cipherData.Username, key) : null;
-                        dataObj.password = cipherData.Password && cipherData.Password !== '' ? cryptoService.decrypt(cipherData.Password, key) : null;
-                        dataObj.totp = cipherData.Totp && cipherData.Totp !== '' ? cryptoService.decrypt(cipherData.Totp, key) : null;
+                        dataObj.uri = _service.decryptProperty(cipherData.Uri, key, true, false);
+                        dataObj.username = _service.decryptProperty(cipherData.Username, key, true, false);
+                        dataObj.password = _service.decryptProperty(cipherData.Password, key, true, false);
+                        dataObj.totp = _service.decryptProperty(cipherData.Totp, key, true, false);
                         cipher.login = dataObj;
                         break;
                     case constants.cipherType.secureNote:
@@ -109,18 +109,31 @@ angular
                         cipher.secureNote = dataObj;
                         break;
                     case constants.cipherType.card:
-                        dataObj.cardholderName = cipherData.CardholderName && cipherData.CardholderName !== '' ? cryptoService.decrypt(cipherData.CardholderName, key) : null;
-                        dataObj.number = cipherData.Number && cipherData.Number !== '' ? cryptoService.decrypt(cipherData.Number, key) : null;
-                        dataObj.brand = cipherData.Brand && cipherData.Brand !== '' ? cryptoService.decrypt(cipherData.Brand, key) : null;
-                        dataObj.expMonth = cipherData.ExpMonth && cipherData.ExpMonth !== '' ? cryptoService.decrypt(cipherData.ExpMonth, key) : null;
-                        dataObj.expYear = cipherData.ExpYear && cipherData.ExpYear !== '' ? cryptoService.decrypt(cipherData.ExpYear, key) : null;
-                        dataObj.code = cipherData.Code && cipherData.Code !== '' ? cryptoService.decrypt(cipherData.Code, key) : null;
+                        dataObj.cardholderName = _service.decryptProperty(cipherData.CardholderName, key, true, false);
+                        dataObj.number = _service.decryptProperty(cipherData.Number, key, true, false);
+                        dataObj.brand = _service.decryptProperty(cipherData.Brand, key, true, false);
+                        dataObj.expMonth = _service.decryptProperty(cipherData.ExpMonth, key, true, false);
+                        dataObj.expYear = _service.decryptProperty(cipherData.ExpYear, key, true, false);
+                        dataObj.code = _service.decryptProperty(cipherData.Code, key, true, false);
                         cipher.card = dataObj;
                         break;
                     case constants.cipherType.identity:
-                        dataObj.firstName = cipherData.FirstName && cipherData.FirstName !== '' ? cryptoService.decrypt(cipherData.FirstName, key) : null;
-                        dataObj.middleName = cipherData.MiddleName && cipherData.MiddleName !== '' ? cryptoService.decrypt(cipherData.MiddleName, key) : null;
-                        dataObj.lastName = cipherData.LastName && cipherData.LastName !== '' ? cryptoService.decrypt(cipherData.LastName, key) : null;
+                        dataObj.title = _service.decryptProperty(cipherData.Title, key, true, false);
+                        dataObj.firstName = _service.decryptProperty(cipherData.FirstName, key, true, false);
+                        dataObj.middleName = _service.decryptProperty(cipherData.MiddleName, key, true, false);
+                        dataObj.lastName = _service.decryptProperty(cipherData.LastName, key, true, false);
+                        dataObj.address1 = _service.decryptProperty(cipherData.Address1, key, true, false);
+                        dataObj.address2 = _service.decryptProperty(cipherData.Address2, key, true, false);
+                        dataObj.address3 = _service.decryptProperty(cipherData.Address3, key, true, false);
+                        dataObj.city = _service.decryptProperty(cipherData.City, key, true, false);
+                        dataObj.state = _service.decryptProperty(cipherData.State, key, true, false);
+                        dataObj.postalCode = _service.decryptProperty(cipherData.PostalCode, key, true, false);
+                        dataObj.country = _service.decryptProperty(cipherData.Country, key, true, false);
+                        dataObj.company = _service.decryptProperty(cipherData.Company, key, true, false);
+                        dataObj.email = _service.decryptProperty(cipherData.Email, key, true, false);
+                        dataObj.phone = _service.decryptProperty(cipherData.Phone, key, true, false);
+                        dataObj.ssn = _service.decryptProperty(cipherData.SSN, key, true, false);
+                        dataObj.username = _service.decryptProperty(cipherData.Username, key, true, false);
                         cipher.identity = dataObj;
                         break;
                     default:
@@ -161,9 +174,9 @@ angular
 
             var loginData = encryptedCipher.Data;
             if (loginData) {
-                login.name = _service.decryptProperty(loginData.Name, key, false);
-                login.username = _service.decryptProperty(loginData.Username, key, true);
-                login.password = _service.decryptProperty(loginData.Password, key, true);
+                login.name = _service.decryptProperty(loginData.Name, key, false, true);
+                login.username = _service.decryptProperty(loginData.Username, key, true, true);
+                login.password = _service.decryptProperty(loginData.Password, key, true, true);
             }
 
             return login;
@@ -192,28 +205,51 @@ angular
 
             var cipherData = encryptedCipher.Data;
             if (cipherData) {
-                cipher.name = _service.decryptProperty(cipherData.Name, key, false);
+                cipher.name = _service.decryptProperty(cipherData.Name, key, false, true);
 
                 var dataObj = {};
                 switch (cipher.type) {
                     case constants.cipherType.login:
-                        cipher.subTitle = _service.decryptProperty(cipherData.Username, key, true);
-                        cipher.meta.password = _service.decryptProperty(cipherData.Password, key, true);
+                        cipher.subTitle = _service.decryptProperty(cipherData.Username, key, true, true);
+                        cipher.meta.password = _service.decryptProperty(cipherData.Password, key, true, true);
                         break;
                     case constants.cipherType.secureNote:
-                        cipher.subTitle = 'secure note'; // TODO: what to do for this sub title?
+                        cipher.subTitle = null;
                         break;
                     case constants.cipherType.card:
-                        cipher.meta.number = _service.decryptProperty(cipherData.Number, key, true);
-                        var brand = _service.decryptProperty(cipherData.Brand, key, true);
-                        cipher.subTitle = brand + ', *1234'; // TODO: last 4 of number
+                        cipher.subTitle = '';
+                        cipher.meta.number = _service.decryptProperty(cipherData.Number, key, true, true);
+                        var brand = _service.decryptProperty(cipherData.Brand, key, true, true);
+                        if (brand) {
+                            cipher.subTitle = brand;
+                        }
+                        if (cipher.meta.number && cipher.meta.number.length >= 4) {
+                            if (cipher.subTitle !== '') {
+                                cipher.subTitle += ', ';
+                            }
+                            cipher.subTitle += ('*' + cipher.meta.number.substr(cipher.meta.number.length - 4));
+                        }
                         break;
                     case constants.cipherType.identity:
-                        var firstName = _service.decryptProperty(cipherData.FirstName, key, true);
-                        cipher.subTitle = firstName;
+                        var firstName = _service.decryptProperty(cipherData.FirstName, key, true, true);
+                        var lastName = _service.decryptProperty(cipherData.LastName, key, true, true);
+                        cipher.subTitle = '';
+                        if (firstName) {
+                            cipher.subTitle = firstName;
+                        }
+                        if (lastName) {
+                            if (cipher.subTitle !== '') {
+                                cipher.subTitle += ' ';
+                            }
+                            cipher.subTitle += lastName;
+                        }
                         break;
                     default:
                         break;
+                }
+
+                if (cipher.subTitle === '') {
+                    cipher.subTitle = null;
                 }
             }
 
@@ -315,7 +351,7 @@ angular
 
             return {
                 id: encryptedFolder.Id,
-                name: _service.decryptProperty(encryptedFolder.Name, null, false)
+                name: _service.decryptProperty(encryptedFolder.Name, null, false, true)
             };
         };
 
@@ -339,12 +375,12 @@ angular
 
             return {
                 id: encryptedCollection.Id,
-                name: catchError ? _service.decryptProperty(encryptedCollection.Name, key, false) :
+                name: catchError ? _service.decryptProperty(encryptedCollection.Name, key, false, true) :
                     cryptoService.decrypt(encryptedCollection.Name, key)
             };
         };
 
-        _service.decryptProperty = function (property, key, checkEmpty) {
+        _service.decryptProperty = function (property, key, checkEmpty, showError) {
             if (checkEmpty && (!property || property === '')) {
                 return null;
             }
@@ -356,7 +392,7 @@ angular
                 property = null;
             }
 
-            return property || '[error: cannot decrypt]';
+            return property || (showError ? '[error: cannot decrypt]' : null);
         };
 
         _service.encryptLogins = function (unencryptedLogins, key) {
@@ -419,7 +455,7 @@ angular
                 folderId: unencryptedCipher.folderId === '' ? null : unencryptedCipher.folderId,
                 favorite: unencryptedCipher.favorite !== null ? unencryptedCipher.favorite : false,
                 name: cryptoService.encrypt(unencryptedCipher.name, key),
-                notes: !unencryptedCipher.notes || unencryptedCipher.notes === '' ? null : cryptoService.encrypt(unencryptedCipher.notes, key),
+                notes: encryptProperty(unencryptedCipher.notes, key),
                 fields: _service.encryptFields(unencryptedCipher.fields, key)
             };
 
@@ -427,10 +463,10 @@ angular
                 case constants.cipherType.login:
                     var loginData = unencryptedCipher.login;
                     cipher.login = {
-                        uri: !loginData.uri || loginData.uri === '' ? null : cryptoService.encrypt(loginData.uri, key),
-                        username: !loginData.username || loginData.username === '' ? null : cryptoService.encrypt(loginData.username, key),
-                        password: !loginData.password || loginData.password === '' ? null : cryptoService.encrypt(loginData.password, key),
-                        totp: !loginData.totp || loginData.totp === '' ? null : cryptoService.encrypt(loginData.totp, key)
+                        uri: encryptProperty(loginData.uri, key),
+                        username: encryptProperty(loginData.username, key),
+                        password: encryptProperty(loginData.password, key),
+                        totp: encryptProperty(loginData.totp, key)
                     };
                     break;
                 case constants.cipherType.secureNote:
@@ -441,20 +477,33 @@ angular
                 case constants.cipherType.card:
                     var cardData = unencryptedCipher.card;
                     cipher.card = {
-                        cardholderName: !cardData.cardholderName || cardData.cardholderName === '' ? null : cryptoService.encrypt(cardData.cardholderName, key),
-                        brand: !cardData.brand || cardData.brand === '' ? null : cryptoService.encrypt(cardData.brand, key),
-                        number: !cardData.number || cardData.number === '' ? null : cryptoService.encrypt(cardData.number, key),
-                        expMonth: !cardData.expMonth || cardData.expMonth === '' ? null : cryptoService.encrypt(cardData.expMonth, key),
-                        expYear: !cardData.expYear || cardData.expYear === '' ? null : cryptoService.encrypt(cardData.expYear, key),
-                        code: !cardData.code || cardData.code === '' ? null : cryptoService.encrypt(cardData.code, key),
+                        cardholderName: encryptProperty(cardData.cardholderName, key),
+                        brand: encryptProperty(cardData.brand, key),
+                        number: encryptProperty(cardData.number, key),
+                        expMonth: encryptProperty(cardData.expMonth, key),
+                        expYear: encryptProperty(cardData.expYear, key),
+                        code: encryptProperty(cardData.code, key)
                     };
                     break;
                 case constants.cipherType.identity:
                     var identityData = unencryptedCipher.identity;
                     cipher.identity = {
-                        firstName: !identityData.firstName || cardData.firstName === '' ? null : cryptoService.encrypt(cardData.firstName, key),
-                        middleName: !identityData.middleName || cardData.middleName === '' ? null : cryptoService.encrypt(cardData.middleName, key),
-                        lastName: !identityData.lastName || cardData.lastName === '' ? null : cryptoService.encrypt(cardData.lastName, key)
+                        title: encryptProperty(identityData.title, key),
+                        firstName: encryptProperty(identityData.firstName, key),
+                        middleName: encryptProperty(identityData.middleName, key),
+                        lastName: encryptProperty(identityData.lastName, key),
+                        address1: encryptProperty(identityData.address1, key),
+                        address2: encryptProperty(identityData.address2, key),
+                        address3: encryptProperty(identityData.address3, key),
+                        city: encryptProperty(identityData.city, key),
+                        state: encryptProperty(identityData.state, key),
+                        postalCode: encryptProperty(identityData.postalCode, key),
+                        country: encryptProperty(identityData.country, key),
+                        company: encryptProperty(identityData.company, key),
+                        email: encryptProperty(identityData.email, key),
+                        phone: encryptProperty(identityData.phone, key),
+                        ssn: encryptProperty(identityData.ssn, key),
+                        username: encryptProperty(identityData.username, key)
                     };
                     break;
                 default:
@@ -564,6 +613,10 @@ angular
                 name: cryptoService.encrypt(unencryptedCollection.name, cryptoService.getOrgKey(orgId))
             };
         };
+
+        function encryptProperty(property, key) {
+            return !property || property === '' ? null : cryptoService.encrypt(property, key);
+        }
 
         return _service;
     });
