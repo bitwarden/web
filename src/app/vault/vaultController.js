@@ -168,7 +168,7 @@
             });
         };
 
-        $scope.$on('vaultAddLogin', function (event, args) {
+        $scope.$on('vaultAddCipher', function (event, args) {
             $scope.addCipher();
         });
 

@@ -54,7 +54,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <a href="#" stop-click ng-click="addCipher(null, true)">
-                                <i class="fa fa-fw fa-plus-circle"></i> Add Item
+                                <i class="fa fa-fw fa-plus-circle"></i> New Item
                             </a>
                         </li>
                     </ul>
@@ -74,7 +74,7 @@
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="cipher in favoriteCiphers = (ciphers | filter: { favorite: true } |
-                            filter: (main.searchVaultText || '')) track by cipher.id">
+                            filter: cipherFilter | filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -149,7 +149,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <a href="#" stop-click ng-click="addCipher(folder)">
-                                <i class="fa fa-fw fa-plus-circle"></i> Add Item
+                                <i class="fa fa-fw fa-plus-circle"></i> New Item
                             </a>
                         </li>
                         <li ng-show="folder.id">

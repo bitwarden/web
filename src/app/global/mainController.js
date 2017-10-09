@@ -49,8 +49,8 @@ angular
             vm.openControlSidebar = vm.usingControlSidebar && $document.width() > 768;
         });
 
-        $scope.addLogin = function () {
-            $scope.$broadcast('vaultAddLogin');
+        $scope.addCipher = function () {
+            $scope.$broadcast('vaultAddCipher');
         };
 
         $scope.addFolder = function () {
