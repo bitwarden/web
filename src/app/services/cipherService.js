@@ -138,6 +138,8 @@ angular
                         dataObj.phone = _service.decryptProperty(cipherData.Phone, key, true, false);
                         dataObj.ssn = _service.decryptProperty(cipherData.SSN, key, true, false);
                         dataObj.username = _service.decryptProperty(cipherData.Username, key, true, false);
+                        dataObj.passportNumber = _service.decryptProperty(cipherData.PassportNumber, key, true, false);
+                        dataObj.licenseNumber = _service.decryptProperty(cipherData.LicenseNumber, key, true, false);
                         cipher.identity = dataObj;
                         cipher.icon = 'fa-id-card-o';
                         break;
@@ -513,7 +515,9 @@ angular
                         email: encryptProperty(identityData.email, key),
                         phone: encryptProperty(identityData.phone, key),
                         ssn: encryptProperty(identityData.ssn, key),
-                        username: encryptProperty(identityData.username, key)
+                        username: encryptProperty(identityData.username, key),
+                        passportNumber: encryptProperty(identityData.passportNumber, key),
+                        licenseNumber: encryptProperty(identityData.licenseNumber, key)
                     };
                     break;
                 default:

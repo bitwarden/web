@@ -269,21 +269,6 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group" show-errors>
-                        <label for="identityCompany">Company</label>
-                        <div class="input-group">
-                            <input type="text" id="identityCompany" name="Identity.Company"
-                                   ng-model="cipher.identity.company" class="form-control" ng-readonly="readOnly" api-field />
-                            <span class="input-group-btn" uib-tooltip="Copy Company" tooltip-placement="left">
-                                <button class="btn btn-default btn-flat" type="button" ngclipboard
-                                        ngclipboard-error="clipboardError(e)" data-clipboard-target="#identityCompany">
-                                    <i class="fa fa-clipboard"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group" show-errors>
                         <label for="identityUsername">Username</label>
                         <div class="input-group">
                             <input type="text" id="identityUsername" name="Identity.Username"
@@ -299,6 +284,23 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group" show-errors>
+                        <label for="identityCompany">Company</label>
+                        <div class="input-group">
+                            <input type="text" id="identityCompany" name="Identity.Company"
+                                   ng-model="cipher.identity.company" class="form-control" ng-readonly="readOnly" api-field />
+                            <span class="input-group-btn" uib-tooltip="Copy Company" tooltip-placement="left">
+                                <button class="btn btn-default btn-flat" type="button" ngclipboard
+                                        ngclipboard-error="clipboardError(e)" data-clipboard-target="#identityCompany">
+                                    <i class="fa fa-clipboard"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group" show-errors>
                         <label for="identitySSN">Social Security Number</label>
                         <div class="input-group">
                             <input type="text" id="identitySSN" name="Identity.SSN"
@@ -306,6 +308,38 @@
                             <span class="input-group-btn" uib-tooltip="Copy SSN" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-error="clipboardError(e)" data-clipboard-target="#identitySSN">
+                                    <i class="fa fa-clipboard"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group" show-errors>
+                        <label for="identityPassportNumber">Passport Number</label>
+                        <div class="input-group">
+                            <input type="text" id="identityPassportNumber" name="Identity.PassportNumber"
+                                   ng-model="cipher.identity.passportNumber" class="form-control" ng-readonly="readOnly"
+                                   api-field />
+                            <span class="input-group-btn" uib-tooltip="Copy Passport Number" tooltip-placement="left">
+                                <button class="btn btn-default btn-flat" type="button" ngclipboard
+                                        ngclipboard-error="clipboardError(e)" data-clipboard-target="#identityPassportNumber">
+                                    <i class="fa fa-clipboard"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group" show-errors>
+                        <label for="identityLicenseNumber">License Number</label>
+                        <div class="input-group">
+                            <input type="text" id="identityLicenseNumber" name="Identity.LicenseNumber"
+                                   ng-model="cipher.identity.licenseNumber" class="form-control" ng-readonly="readOnly"
+                                   api-field />
+                            <span class="input-group-btn" uib-tooltip="Copy License Number" tooltip-placement="left">
+                                <button class="btn btn-default btn-flat" type="button" ngclipboard
+                                        ngclipboard-error="clipboardError(e)" data-clipboard-target="#identityLicenseNumber">
                                     <i class="fa fa-clipboard"></i>
                                 </button>
                             </span>
