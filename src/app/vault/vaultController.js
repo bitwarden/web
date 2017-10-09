@@ -310,10 +310,10 @@
         $scope.share = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultShareLogin.html',
-                controller: 'vaultShareLoginController',
+                templateUrl: 'app/vault/views/vaultShareCipher.html',
+                controller: 'vaultShareCipherController',
                 resolve: {
-                    loginId: function () { return cipher.id; }
+                    cipherId: function () { return cipher.id; }
                 }
             });
 

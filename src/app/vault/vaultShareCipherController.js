@@ -1,11 +1,11 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultShareLoginController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
-        loginId, $analytics, $state, cryptoService, $q, toastr) {
-        $analytics.eventTrack('vaultShareLoginController', { category: 'Modal' });
+    .controller('vaultShareCipherController', function ($scope, apiService, $uibModalInstance, authService, cipherService,
+        cipherId, $analytics, $state, cryptoService, $q, toastr) {
+        $analytics.eventTrack('vaultShareCipherController', { category: 'Modal' });
         $scope.model = {};
-        $scope.login = {};
+        $scope.cipher = {};
         $scope.collections = [];
         $scope.selectedCollections = {};
         $scope.organizations = [];
@@ -14,13 +14,13 @@
         $scope.loading = true;
         $scope.readOnly = false;
 
-        apiService.ciphers.get({ id: loginId }).$promise.then(function (login) {
-            $scope.readOnly = !login.Edit;
-            if (login.Edit) {
-                $scope.login = cipherService.decryptLogin(login);
+        apiService.ciphers.get({ id: cipherId }).$promise.then(function (cipher) {
+            $scope.readOnly = !cipher.Edit;
+            if (cipher.Edit) {
+                $scope.cipher = cipherService.decryptCipher(cipher);
             }
 
-            return login.Edit;
+            return cipher.Edit;
         }).then(function (canEdit) {
             $scope.loading = false;
             if (!canEdit) {
@@ -110,8 +110,8 @@
 
             var errorOnUpload = false;
             var attachmentSharePromises = [];
-            if ($scope.login.attachments) {
-                for (var i = 0; i < $scope.login.attachments.length; i++) {
+            if ($scope.cipher.attachments) {
+                for (var i = 0; i < $scope.cipher.attachments.length; i++) {
                     (function (attachment) {
                         var promise = cipherService.downloadAndDecryptAttachment(null, attachment, false)
                             .then(function (decData) {
@@ -127,7 +127,7 @@
                                 fd.append('data', blob, encFilename);
 
                                 return apiService.ciphers.postShareAttachment({
-                                    id: loginId,
+                                    id: cipherId,
                                     attachmentId: attachment.id,
                                     orgId: model.organizationId
                                 }, fd).$promise;
@@ -135,7 +135,7 @@
                                 errorOnUpload = true;
                             });
                         attachmentSharePromises.push(promise);
-                    })($scope.login.attachments[i]);
+                    })($scope.cipher.attachments[i]);
                 }
             }
 
@@ -144,11 +144,11 @@
                     return;
                 }
 
-                $scope.login.organizationId = model.organizationId;
+                $scope.cipher.organizationId = model.organizationId;
 
                 var request = {
                     collectionIds: [],
-                    cipher: cipherService.encryptLogin($scope.login, null, true)
+                    cipher: cipherService.encryptCipher($scope.cipher, $scope.cipher.type, null, true)
                 };
 
                 for (var id in $scope.selectedCollections) {
@@ -157,10 +157,10 @@
                     }
                 }
 
-                return apiService.ciphers.putShare({ id: loginId }, request).$promise;
+                return apiService.ciphers.putShare({ id: cipherId }, request).$promise;
             }).then(function (response) {
-                $analytics.eventTrack('Shared Login');
-                toastr.success('Login has been shared.');
+                $analytics.eventTrack('Shared Cipher');
+                toastr.success('Item has been shared.');
                 $uibModalInstance.close(model.organizationId);
             });
         };
