@@ -57,8 +57,8 @@ angular
             $scope.$broadcast('vaultAddFolder');
         };
 
-        $scope.addOrganizationLogin = function () {
-            $scope.$broadcast('organizationVaultAddLogin');
+        $scope.addOrganizationCipher = function () {
+            $scope.$broadcast('organizationVaultAddCipher');
         };
 
         $scope.addOrganizationCollection = function () {

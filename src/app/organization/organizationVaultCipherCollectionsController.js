@@ -1,9 +1,9 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationVaultLoginCollectionsController', function ($scope, apiService, $uibModalInstance, cipherService,
+    .controller('organizationVaultCipherCollectionsController', function ($scope, apiService, $uibModalInstance, cipherService,
         cipher, $analytics, collections) {
-        $analytics.eventTrack('organizationVaultLoginCollectionsController', { category: 'Modal' });
+        $analytics.eventTrack('organizationVaultCipherCollectionsController', { category: 'Modal' });
         $scope.cipher = {};
         $scope.collections = [];
         $scope.selectedCollections = {};
@@ -69,7 +69,7 @@
 
             $scope.submitPromise = apiService.ciphers.putCollectionsAdmin({ id: cipher.id }, request)
                 .$promise.then(function (response) {
-                    $analytics.eventTrack('Edited Login Collections');
+                    $analytics.eventTrack('Edited Cipher Collections');
                     $uibModalInstance.close({
                         action: 'collectionsEdit',
                         collectionIds: request.collectionIds

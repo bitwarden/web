@@ -3,7 +3,7 @@
 
     .controller('organizationVaultController', function ($scope, apiService, cipherService, $analytics, $q, $state,
         $localStorage, $uibModal, $filter, authService) {
-        $scope.logins = [];
+        $scope.ciphers = [];
         $scope.collections = [];
         $scope.loading = true;
 
@@ -27,16 +27,14 @@
 
             var cipherPromise = apiService.ciphers.listOrganizationDetails({ organizationId: $state.params.orgId },
                 function (ciphers) {
-                    var decLogins = [];
+                    var decCiphers = [];
 
                     for (var i = 0; i < ciphers.Data.length; i++) {
-                        if (ciphers.Data[i].Type === 1) {
-                            var decLogin = cipherService.decryptLoginPreview(ciphers.Data[i]);
-                            decLogins.push(decLogin);
-                        }
+                        var decCipher = cipherService.decryptCipherPreview(ciphers.Data[i]);
+                        decCiphers.push(decCipher);
                     }
 
-                    $scope.logins = decLogins;
+                    $scope.ciphers = decCiphers;
                 }).$promise;
 
             $q.all([collectionPromise, cipherPromise]).then(function () {
@@ -77,55 +75,55 @@
             }
         };
 
-        $scope.editLogin = function (login) {
+        $scope.editCipher = function (cipher) {
             var editModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultEditLogin.html',
-                controller: 'organizationVaultEditLoginController',
+                templateUrl: 'app/vault/views/vaultEditCipher.html',
+                controller: 'organizationVaultEditCipherController',
                 resolve: {
-                    loginId: function () { return login.id; },
+                    cipherId: function () { return cipher.id; },
                     orgId: function () { return $state.params.orgId; }
                 }
             });
 
             editModel.result.then(function (returnVal) {
                 if (returnVal.action === 'edit') {
-                    login.name = returnVal.data.name;
-                    login.username = returnVal.data.username;
+                    cipher.name = returnVal.data.name;
+                    cipher.subTitle = returnVal.data.login.username;
                 }
                 else if (returnVal.action === 'delete') {
-                    var index = $scope.logins.indexOf(login);
+                    var index = $scope.ciphers.indexOf(cipher);
                     if (index > -1) {
-                        $scope.logins.splice(index, 1);
+                        $scope.ciphers.splice(index, 1);
                     }
                 }
             });
         };
 
-        $scope.$on('organizationVaultAddLogin', function (event, args) {
-            $scope.addLogin();
+        $scope.$on('organizationVaultAddCipher', function (event, args) {
+            $scope.addCipher();
         });
 
-        $scope.addLogin = function () {
+        $scope.addCipher = function () {
             var addModel = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultAddLogin.html',
-                controller: 'organizationVaultAddLoginController',
+                templateUrl: 'app/vault/views/vaultAddCipher.html',
+                controller: 'organizationVaultAddCipherController',
                 resolve: {
                     orgId: function () { return $state.params.orgId; }
                 }
             });
 
-            addModel.result.then(function (addedLogin) {
-                $scope.logins.push(addedLogin);
+            addModel.result.then(function (addedCipher) {
+                $scope.ciphers.push(addedCipher);
             });
         };
 
         $scope.editCollections = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/organization/views/organizationVaultLoginCollections.html',
-                controller: 'organizationVaultLoginCollectionsController',
+                templateUrl: 'app/organization/views/organizationVaultCipherCollections.html',
+                controller: 'organizationVaultCipherCollectionsController',
                 resolve: {
                     cipher: function () { return cipher; },
                     collections: function () { return $scope.collections; }
@@ -139,9 +137,9 @@
             });
         };
 
-        $scope.attachments = function (login) {
+        $scope.attachments = function (cipher) {
             authService.getUserProfile().then(function (profile) {
-                return !!profile.organizations[login.organizationId].maxStorageGb;
+                return !!profile.organizations[cipher.organizationId].maxStorageGb;
             }).then(function (useStorage) {
                 if (!useStorage) {
                     $uibModal.open({
@@ -149,7 +147,7 @@
                         templateUrl: 'app/views/paidOrgRequired.html',
                         controller: 'paidOrgRequiredController',
                         resolve: {
-                            orgId: function () { return login.organizationId; }
+                            orgId: function () { return cipher.organizationId; }
                         }
                     });
                     return;
@@ -160,18 +158,18 @@
                     templateUrl: 'app/vault/views/vaultAttachments.html',
                     controller: 'organizationVaultAttachmentsController',
                     resolve: {
-                        loginId: function () { return login.id; }
+                        cipherId: function () { return cipher.id; }
                     }
                 });
 
                 attachmentModel.result.then(function (hasAttachments) {
-                    login.hasAttachments = hasAttachments;
+                    cipher.hasAttachments = hasAttachments;
                 });
             });
         };
 
-        $scope.removeLogin = function (login, collection) {
-            if (!confirm('Are you sure you want to remove this login (' + login.name + ') from the ' +
+        $scope.removeCipher = function (cipher, collection) {
+            if (!confirm('Are you sure you want to remove this item (' + cipher.name + ') from the ' +
                 'collection (' + collection.name + ') ?')) {
                 return;
             }
@@ -180,28 +178,28 @@
                 collectionIds: []
             };
 
-            for (var i = 0; i < login.collectionIds.length; i++) {
-                if (login.collectionIds[i] !== collection.id) {
-                    request.collectionIds.push(login.collectionIds[i]);
+            for (var i = 0; i < cipher.collectionIds.length; i++) {
+                if (cipher.collectionIds[i] !== collection.id) {
+                    request.collectionIds.push(cipher.collectionIds[i]);
                 }
             }
 
-            apiService.ciphers.putCollections({ id: login.id }, request).$promise.then(function (response) {
-                $analytics.eventTrack('Removed Login From Collection');
-                login.collectionIds = request.collectionIds;
+            apiService.ciphers.putCollections({ id: cipher.id }, request).$promise.then(function (response) {
+                $analytics.eventTrack('Removed Cipher From Collection');
+                cipher.collectionIds = request.collectionIds;
             });
         };
 
-        $scope.deleteLogin = function (login) {
-            if (!confirm('Are you sure you want to delete this login (' + login.name + ')?')) {
+        $scope.deleteCipher = function (cipher) {
+            if (!confirm('Are you sure you want to delete this item (' + cipher.name + ')?')) {
                 return;
             }
 
-            apiService.ciphers.delAdmin({ id: login.id }, function () {
-                $analytics.eventTrack('Deleted Login');
-                var index = $scope.logins.indexOf(login);
+            apiService.ciphers.delAdmin({ id: cipher.id }, function () {
+                $analytics.eventTrack('Deleted Cipher');
+                var index = $scope.ciphers.indexOf(cipher);
                 if (index > -1) {
-                    $scope.logins.splice(index, 1);
+                    $scope.ciphers.splice(index, 1);
                 }
             });
         };

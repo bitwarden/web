@@ -1,52 +1,53 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationVaultEditLoginController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        cipherService, passwordService, loginId, $analytics, orgId, $uibModal) {
-        $analytics.eventTrack('organizationVaultEditLoginController', { category: 'Modal' });
-        $scope.login = {};
+    .controller('organizationVaultEditCipherController', function ($scope, apiService, $uibModalInstance, cryptoService,
+        cipherService, passwordService, cipherId, $analytics, orgId, $uibModal, constants) {
+        $analytics.eventTrack('organizationVaultEditCipherController', { category: 'Modal' });
+        $scope.cipher = {};
         $scope.hideFolders = $scope.hideFavorite = $scope.fromOrg = true;
+        $scope.constants = constants;
 
-        apiService.ciphers.getAdmin({ id: loginId }, function (login) {
-            $scope.login = cipherService.decryptLogin(login);
-            $scope.useTotp = $scope.login.organizationUseTotp;
+        apiService.ciphers.getAdmin({ id: cipherId }, function (cipher) {
+            $scope.cipher = cipherService.decryptCipher(cipher);
+            $scope.useTotp = $scope.cipher.organizationUseTotp;
         });
 
         $scope.save = function (model) {
-            var login = cipherService.encryptLogin(model);
-            $scope.savePromise = apiService.ciphers.putAdmin({ id: loginId }, login, function (loginResponse) {
-                $analytics.eventTrack('Edited Organization Login');
-                var decLogin = cipherService.decryptLogin(loginResponse);
+            var cipher = cipherService.encryptCipher(model, $scope.cipher.type);
+            $scope.savePromise = apiService.ciphers.putAdmin({ id: cipherId }, cipher, function (cipherResponse) {
+                $analytics.eventTrack('Edited Organization Cipher');
+                var decCipher = cipherService.decryptCipher(cipherResponse);
                 $uibModalInstance.close({
                     action: 'edit',
-                    data: decLogin
+                    data: decCipher
                 });
             }).$promise;
         };
 
         $scope.generatePassword = function () {
-            if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
+            if (!$scope.cipher.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Edit');
-                $scope.login.password = passwordService.generatePassword({ length: 12, special: true });
+                $scope.cipher.login.password = passwordService.generatePassword({ length: 12, special: true });
             }
         };
 
         $scope.addField = function () {
-            if (!$scope.login.fields) {
-                $scope.login.fields = [];
+            if (!$scope.cipher.login.fields) {
+                $scope.cipher.login.fields = [];
             }
 
-            $scope.login.fields.push({
-                type: '0',
+            $scope.cipher.fields.push({
+                type: constants.fieldType.text.toString(),
                 name: null,
                 value: null
             });
         };
 
         $scope.removeField = function (field) {
-            var index = $scope.login.fields.indexOf(field);
+            var index = $scope.cipher.fields.indexOf(field);
             if (index > -1) {
-                $scope.login.fields.splice(index, 1);
+                $scope.cipher.fields.splice(index, 1);
             }
         };
 
@@ -70,15 +71,15 @@
         }
 
         $scope.delete = function () {
-            if (!confirm('Are you sure you want to delete this login (' + $scope.login.name + ')?')) {
+            if (!confirm('Are you sure you want to delete this item (' + $scope.cipher.name + ')?')) {
                 return;
             }
 
-            apiService.ciphers.delAdmin({ id: $scope.login.id }, function () {
-                $analytics.eventTrack('Deleted Organization Login From Edit');
+            apiService.ciphers.delAdmin({ id: $scope.cipher.id }, function () {
+                $analytics.eventTrack('Deleted Organization Cipher From Edit');
                 $uibModalInstance.close({
                     action: 'delete',
-                    data: $scope.login.id
+                    data: $scope.cipher.id
                 });
             });
         };

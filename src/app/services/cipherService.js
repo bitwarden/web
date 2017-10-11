@@ -271,7 +271,8 @@ angular
 
         function setLoginIcon(cipher, uri, setImage) {
             if (uri) {
-                var hostnameUri = uri;
+                var hostnameUri = uri,
+                    isWebsite = false;
 
                 if (hostnameUri.indexOf('androidapp://') === 0) {
                     cipher.icon = 'fa-android';
@@ -282,9 +283,13 @@ angular
                 else if (hostnameUri.indexOf('://') === -1 && hostnameUri.indexOf('http://') !== 0 &&
                     hostnameUri.indexOf('https://') !== 0) {
                     hostnameUri = "http://" + hostnameUri;
+                    isWebsite = true;
+                }
+                else {
+                    isWebsite = hostnameUri.indexOf('http') === 0 && hostnameUri.indexOf('.') > 0;
                 }
 
-                if (setImage && !cipher.icon && hostnameUri.indexOf('.') > 0) {
+                if (setImage && isWebsite) {
                     try {
                         var url = new URL(hostnameUri);
                         cipher.meta.image = 'https://icons.bitwarden.com?url=' + url.hostname;

@@ -5,7 +5,7 @@
             <span ng-pluralize
                   count="collections.length > 0 ? collections.length - 1 : 0"
                   when="{'1': '{} collection', 'other': '{} collections'}"></span>,
-            <span ng-pluralize count="logins.length" when="{'1': '{} login', 'other': '{} logins'}"></span>
+            <span ng-pluralize count="ciphers.length" when="{'1': '{} item', 'other': '{} items'}"></span>
         </small>
     </h1>
 </section>
@@ -13,12 +13,12 @@
     <p ng-show="loading && !collections.length">Loading...</p>
     <div class="box" ng-class="{'collapsed-box': collection.collapsed}" ng-repeat="collection in collections |
          orderBy: collectionSort track by collection.id"
-         ng-show="collections.length && (!main.searchVaultText || collectionLogins.length)">
+         ng-show="collections.length && (!main.searchVaultText || collectionCiphers.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa" ng-class="{'fa-cubes': collection.id, 'fa-sitemap': !collection.id}"></i>
                 {{collection.name}}
-                <small ng-pluralize count="collectionLogins.length" when="{'1': '{} login', 'other': '{} logins'}"></small>
+                <small ng-pluralize count="collectionCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
             </h3>
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
@@ -27,14 +27,14 @@
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': collectionLogins.length}">
-            <div ng-show="!collectionLogins.length && collection.id">No logins in this collection.</div>
-            <div ng-show="!collectionLogins.length && !collection.id">No unassigned logins.</div>
-            <div class="table-responsive" ng-show="collectionLogins.length">
+        <div class="box-body" ng-class="{'no-padding': collectionCiphers.length}">
+            <div ng-show="!collectionCiphers.length && collection.id">No items in this collection.</div>
+            <div ng-show="!collectionCiphers.length && !collection.id">No unassigned items.</div>
+            <div class="table-responsive" ng-show="collectionCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="login in collectionLogins = (logins | filter: filterByCollection(collection) |
-                            filter: (main.searchVaultText || '') | orderBy: ['name', 'username']) track by login.id">
+                        <tr ng-repeat="cipher in collectionCiphers = (ciphers | filter: filterByCollection(collection) |
+                            filter: (main.searchVaultText || '') | orderBy: ['name', 'subTitle']) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -42,37 +42,42 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#" stop-click ng-click="editLogin(login)">
+                                            <a href="#" stop-click ng-click="editCipher(cipher)">
                                                 <i class="fa fa-fw fa-pencil"></i> Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" stop-click ng-click="attachments(login)">
+                                            <a href="#" stop-click ng-click="attachments(cipher)">
                                                 <i class="fa fa-fw fa-paperclip"></i> Attachments
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" stop-click ng-click="editCollections(login)">
+                                            <a href="#" stop-click ng-click="editCollections(cipher)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" stop-click ng-click="removeLogin(login, collection)" class="text-red"
+                                            <a href="#" stop-click ng-click="removeCipher(cipher, collection)" class="text-red"
                                                ng-if="collection.id">
                                                 <i class="fa fa-fw fa-remove"></i> Remove
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" stop-click ng-click="deleteLogin(login)" class="text-red">
+                                            <a href="#" stop-click ng-click="deleteCipher(cipher)" class="text-red">
                                                 <i class="fa fa-fw fa-trash"></i> Delete
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </td>
+                            <td class="vault-icon">
+                                <i class="fa fa-fw fa-lg {{::cipher.icon}}" ng-if="!cipher.meta.image"></i>
+                                <img alt="" ng-if="cipher.meta.image" ng-src="{{cipher.meta.image}}"
+                                     fallback-src="images/fa-globe.png" />
+                            </td>
                             <td>
-                                <a href="#" stop-click ng-click="editLogin(login)">{{login.name}}</a>
-                                <div class="text-sm text-muted">{{login.username}}</div>
+                                <a href="#" stop-click ng-click="editCipher(cipher)">{{cipher.name}}</a>
+                                <div class="text-sm text-muted">{{cipher.subTitle}}</div>
                             </td>
                         </tr>
                     </tbody>

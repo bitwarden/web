@@ -1,10 +1,17 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationVaultAddLoginController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        cipherService, passwordService, $analytics, authService, orgId, $uibModal) {
-        $analytics.eventTrack('organizationVaultAddLoginController', { category: 'Modal' });
-        $scope.login = {};
+    .controller('organizationVaultAddCipherController', function ($scope, apiService, $uibModalInstance, cryptoService,
+        cipherService, passwordService, $analytics, authService, orgId, $uibModal, constants) {
+        $analytics.eventTrack('organizationVaultAddCipherController', { category: 'Modal' });
+        $scope.constants = constants;
+        $scope.selectedType = constants.cipherType.login.toString();
+        $scope.cipher = {
+            type: constants.cipherType.login,
+            secureNote: {
+                type: '0'
+            }
+        };
         $scope.hideFolders = $scope.hideFavorite = $scope.fromOrg = true;
 
         authService.getUserProfile().then(function (userProfile) {
@@ -12,40 +19,44 @@
             $scope.useTotp = orgProfile.useTotp;
         });
 
+        $scope.typeChanged = function () {
+            $scope.cipher.type = parseInt($scope.selectedType);
+        };
+
         $scope.savePromise = null;
-        $scope.save = function (model) {
-            model.organizationId = orgId;
-            var login = cipherService.encryptLogin(model);
-            $scope.savePromise = apiService.ciphers.postAdmin(login, function (loginResponse) {
-                $analytics.eventTrack('Created Organization Login');
-                var decLogin = cipherService.decryptLogin(loginResponse);
-                $uibModalInstance.close(decLogin);
+        $scope.save = function () {
+            $scope.cipher.organizationId = orgId;
+            var cipher = cipherService.encryptCipher($scope.cipher);
+            $scope.savePromise = apiService.ciphers.postAdmin(cipher, function (cipherResponse) {
+                $analytics.eventTrack('Created Organization Cipher');
+                var decCipher = cipherService.decryptCipherPreview(cipherResponse);
+                $uibModalInstance.close(decCipher);
             }).$promise;
         };
 
         $scope.generatePassword = function () {
-            if (!$scope.login.password || confirm('Are you sure you want to overwrite the current password?')) {
+            if (!$scope.cipher.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Add');
-                $scope.login.password = passwordService.generatePassword({ length: 12, special: true });
+                $scope.cipher.login.password = passwordService.generatePassword({ length: 12, special: true });
             }
         };
 
         $scope.addField = function () {
-            if (!$scope.login.fields) {
-                $scope.login.fields = [];
+            if (!$scope.cipher.fields) {
+                $scope.cipher.fields = [];
             }
 
-            $scope.login.fields.push({
-                type: '0',
+            $scope.cipher.fields.push({
+                type: constants.fieldType.text.toString(),
                 name: null,
                 value: null
             });
         };
 
         $scope.removeField = function (field) {
-            var index = $scope.login.fields.indexOf(field);
+            var index = $scope.cipher.fields.indexOf(field);
             if (index > -1) {
-                $scope.login.fields.splice(index, 1);
+                $scope.cipher.fields.splice(index, 1);
             }
         };
 
