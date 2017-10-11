@@ -88,7 +88,7 @@
                     templateUrl: 'app/vault/views/vaultAttachments.html',
                     controller: 'vaultAttachmentsController',
                     resolve: {
-                        loginId: function () { return cipher.id; }
+                        cipherId: function () { return cipher.id; }
                     }
                 });
 
@@ -169,10 +169,10 @@
         $scope.editCollections = function (cipher) {
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultLoginCollections.html',
-                controller: 'vaultLoginCollectionsController',
+                templateUrl: 'app/vault/views/vaultCipherCollections.html',
+                controller: 'vaultCipherCollectionsController',
                 resolve: {
-                    loginId: function () { return cipher.id; }
+                    cipherId: function () { return cipher.id; }
                 }
             });
 

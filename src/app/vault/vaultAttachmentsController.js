@@ -2,9 +2,9 @@
     .module('bit.vault')
 
     .controller('vaultAttachmentsController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        loginId, $analytics, validationService, toastr, $timeout, authService, $uibModal) {
+        cipherId, $analytics, validationService, toastr, $timeout, authService, $uibModal) {
         $analytics.eventTrack('vaultAttachmentsController', { category: 'Modal' });
-        $scope.login = {};
+        $scope.cipher = {};
         $scope.readOnly = true;
         $scope.loading = true;
         $scope.isPremium = true;
@@ -13,11 +13,11 @@
 
         authService.getUserProfile().then(function (profile) {
             $scope.isPremium = profile.premium;
-            return apiService.ciphers.get({ id: loginId }).$promise;
+            return apiService.ciphers.get({ id: cipherId }).$promise;
         }).then(function (cipher) {
-            $scope.login = cipherService.decryptLogin(cipher);
-            $scope.readOnly = !$scope.login.edit;
-            $scope.canUseAttachments = $scope.isPremium || $scope.login.organizationId;
+            $scope.cipher = cipherService.decryptCipher(cipher);
+            $scope.readOnly = !$scope.cipher.edit;
+            $scope.canUseAttachments = $scope.isPremium || $scope.cipher.organizationId;
             $scope.loading = false;
         }, function () {
             $scope.loading = false;
@@ -31,14 +31,14 @@
                 return;
             }
 
-            $scope.savePromise = cipherService.encryptAttachmentFile(getKeyForLogin(), files[0]).then(function (encValue) {
+            $scope.savePromise = cipherService.encryptAttachmentFile(getKeyForCipher(), files[0]).then(function (encValue) {
                 var fd = new FormData();
                 var blob = new Blob([encValue.data], { type: 'application/octet-stream' });
                 fd.append('data', blob, encValue.fileName);
-                return apiService.ciphers.postAttachment({ id: loginId }, fd).$promise;
+                return apiService.ciphers.postAttachment({ id: cipherId }, fd).$promise;
             }).then(function (response) {
                 $analytics.eventTrack('Added Attachment');
-                $scope.login = cipherService.decryptLogin(response);
+                $scope.cipher = cipherService.decryptCipher(response);
 
                 // reset file input
                 // ref: https://stackoverflow.com/a/20552042
@@ -64,7 +64,7 @@
                 return;
             }
 
-            cipherService.downloadAndDecryptAttachment(getKeyForLogin(), attachment, true).then(function (res) {
+            cipherService.downloadAndDecryptAttachment(getKeyForCipher(), attachment, true).then(function (res) {
                 $timeout(function () {
                     attachment.loading = false;
                 });
@@ -75,9 +75,9 @@
             });
         };
 
-        function getKeyForLogin() {
-            if ($scope.login.organizationId) {
-                return cryptoService.getOrgKey($scope.login.organizationId);
+        function getKeyForCipher() {
+            if ($scope.cipher.organizationId) {
+                return cryptoService.getOrgKey($scope.cipher.organizationId);
             }
 
             return null;
@@ -89,12 +89,12 @@
             }
 
             attachment.loading = true;
-            apiService.ciphers.delAttachment({ id: loginId, attachmentId: attachment.id }).$promise.then(function () {
+            apiService.ciphers.delAttachment({ id: cipherId, attachmentId: attachment.id }).$promise.then(function () {
                 attachment.loading = false;
                 $analytics.eventTrack('Deleted Attachment');
-                var index = $scope.login.attachments.indexOf(attachment);
+                var index = $scope.cipher.attachments.indexOf(attachment);
                 if (index > -1) {
-                    $scope.login.attachments.splice(index, 1);
+                    $scope.cipher.attachments.splice(index, 1);
                 }
             }, function () {
                 toastr.error('Cannot delete attachment.');
@@ -113,7 +113,7 @@
 
             e.preventDefault();
             closing = true;
-            $uibModalInstance.close(!!$scope.login.attachments && $scope.login.attachments.length > 0);
+            $uibModalInstance.close(!!$scope.cipher.attachments && $scope.cipher.attachments.length > 0);
         });
 
         $scope.showUpgrade = function () {

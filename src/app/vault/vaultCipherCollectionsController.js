@@ -1,24 +1,24 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultLoginCollectionsController', function ($scope, apiService, $uibModalInstance, cipherService,
-        loginId, $analytics) {
-        $analytics.eventTrack('vaultLoginCollectionsController', { category: 'Modal' });
-        $scope.login = {};
+    .controller('vaultCipherCollectionsController', function ($scope, apiService, $uibModalInstance, cipherService,
+        cipherId, $analytics) {
+        $analytics.eventTrack('vaultCipherCollectionsController', { category: 'Modal' });
+        $scope.cipher = {};
         $scope.readOnly = false;
-        $scope.loadingLogin = true;
+        $scope.loadingCipher = true;
         $scope.loadingCollections = true;
         $scope.selectedCollections = {};
         $scope.collections = [];
 
         $uibModalInstance.opened.then(function () {
-            apiService.ciphers.getDetails({ id: loginId }).$promise.then(function (cipher) {
-                $scope.loadingLogin = false;
+            apiService.ciphers.getDetails({ id: cipherId }).$promise.then(function (cipher) {
+                $scope.loadingCipher = false;
 
                 $scope.readOnly = !cipher.Edit;
                 if (cipher.Edit && cipher.OrganizationId) {
                     if (cipher.Type === 1) {
-                        $scope.login = cipherService.decryptLoginPreview(cipher);
+                        $scope.cipher = cipherService.decryptCipherPreview(cipher);
                     }
 
                     var collections = {};
@@ -105,9 +105,9 @@
                 }
             }
 
-            $scope.submitPromise = apiService.ciphers.putCollections({ id: loginId }, request)
+            $scope.submitPromise = apiService.ciphers.putCollections({ id: cipherId }, request)
                 .$promise.then(function (response) {
-                    $analytics.eventTrack('Edited Login Collections');
+                    $analytics.eventTrack('Edited Cipher Collections');
                     $uibModalInstance.close({
                         action: 'collectionsEdit',
                         collectionIds: request.collectionIds
