@@ -221,35 +221,7 @@ angular
                         cipher.subTitle = _service.decryptProperty(cipherData.Username, key, true, true);
                         cipher.meta.password = _service.decryptProperty(cipherData.Password, key, true, true);
                         cipher.meta.uri = _service.decryptProperty(cipherData.Uri, key, true, true);
-
-                        if (cipher.meta.uri) {
-                            var hostnameUri = cipher.meta.uri;
-
-                            if (hostnameUri.indexOf('androidapp://') === 0) {
-                                cipher.icon = 'fa-android';
-                            }
-                            else if (hostnameUri.indexOf('iosapp://') === 0) {
-                                cipher.icon = 'fa-apple';
-                            }
-                            else if (hostnameUri.indexOf('://') === -1 && hostnameUri.indexOf('http://') !== 0 &&
-                                hostnameUri.indexOf('https://') !== 0) {
-                                hostnameUri = "http://" + hostnameUri;
-                            }
-
-                            if (!cipher.icon && hostnameUri.indexOf('.') > 0) {
-                                try {
-                                    var url = new URL(hostnameUri);
-                                    if (url && url.hostname) {
-                                        cipher.meta.image = 'https://icons.bitwarden.com?url=' + url.hostname;
-                                    }
-                                }
-                                catch (e) { }
-                            }
-                        }
-
-                        if (!cipher.icon) {
-                            cipher.icon = 'fa-globe';
-                        }
+                        setLoginIcon(cipher, cipher.meta.uri, true);
                         break;
                     case constants.cipherType.secureNote:
                         cipher.subTitle = null;
@@ -296,6 +268,35 @@ angular
 
             return cipher;
         };
+
+        function setLoginIcon(cipher, uri, setImage) {
+            if (uri) {
+                var hostnameUri = uri;
+
+                if (hostnameUri.indexOf('androidapp://') === 0) {
+                    cipher.icon = 'fa-android';
+                }
+                else if (hostnameUri.indexOf('iosapp://') === 0) {
+                    cipher.icon = 'fa-apple';
+                }
+                else if (hostnameUri.indexOf('://') === -1 && hostnameUri.indexOf('http://') !== 0 &&
+                    hostnameUri.indexOf('https://') !== 0) {
+                    hostnameUri = "http://" + hostnameUri;
+                }
+
+                if (setImage && !cipher.icon && hostnameUri.indexOf('.') > 0) {
+                    try {
+                        var url = new URL(hostnameUri);
+                        cipher.meta.image = 'https://icons.bitwarden.com?url=' + url.hostname;
+                    }
+                    catch (e) { }
+                }
+            }
+
+            if (!cipher.icon) {
+                cipher.icon = 'fa-globe';
+            }
+        }
 
         _service.decryptAttachment = function (key, encryptedAttachment) {
             if (!encryptedAttachment) throw "encryptedAttachment is undefined or null";
