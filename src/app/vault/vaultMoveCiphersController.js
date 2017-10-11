@@ -1,15 +1,15 @@
 ﻿angular
     .module('bit.vault')
 
-    .controller('vaultMoveLoginsController', function ($scope, apiService, $uibModalInstance, ids, $analytics,
+    .controller('vaultMoveCiphersController', function ($scope, apiService, $uibModalInstance, ids, $analytics,
         $rootScope) {
-        $analytics.eventTrack('vaultMoveLoginsController', { category: 'Modal' });
+        $analytics.eventTrack('vaultMoveCiphersController', { category: 'Modal' });
         $scope.folders = $rootScope.vaultFolders;
         $scope.count = ids.length;
 
         $scope.save = function () {
             $scope.savePromise = apiService.ciphers.moveMany({ ids: ids, folderId: $scope.folderId }, function () {
-                $analytics.eventTrack('Bulk Moved Logins');
+                $analytics.eventTrack('Bulk Moved Ciphers');
                 $uibModalInstance.close($scope.folderId || null);
             }).$promise;
         };

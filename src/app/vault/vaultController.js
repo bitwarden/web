@@ -415,8 +415,8 @@
 
             var modal = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/vault/views/vaultMoveLogins.html',
-                controller: 'vaultMoveLoginsController',
+                templateUrl: 'app/vault/views/vaultMoveCiphers.html',
+                controller: 'vaultMoveCiphersController',
                 size: 'sm',
                 resolve: {
                     ids: function () { return ids; }

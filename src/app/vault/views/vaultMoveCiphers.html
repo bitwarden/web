@@ -1,7 +1,7 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">
-        <i class="fa fa-share"></i> Move Logins
+        <i class="fa fa-share"></i> Move Items
     </h4>
 </div>
 <form name="form" ng-submit="form.$valid && save()" api-form="savePromise" autocomplete="off">
@@ -14,7 +14,7 @@
         </div>
         <p>
             Select a folder that you would like to move the <b>{{count}}</b> selected
-            <span ng-pluralize count="count" when="{'1': 'login', 'other': 'logins'}"></span> to.
+            <span ng-pluralize count="count" when="{'1': 'item', 'other': 'items'}"></span> to.
         </p>
         <div class="form-group" show-errors>
             <label for="folder">Folder</label>
