@@ -432,6 +432,7 @@ form .btn .loading-icon {
 .table td.action-select {
     text-align: center;
     width: 30px;
+    max-width: 30px;
 
     @media (max-width: @screen-sm-max) {
         display: none;
@@ -441,7 +442,13 @@ form .btn .loading-icon {
 .table td.vault-icon {
     text-align: center;
     width: 41px;
+    max-width: 41px;
     color: @text-muted;
+
+    img {
+        max-width: 24px;
+        height: auto;
+    }
 
     @media (max-width: @screen-sm-max) {
         display: none;

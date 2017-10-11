@@ -119,7 +119,9 @@
                                 <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" stop-prop />
                             </td>
                             <td class="vault-icon" ng-click="select($event)">
-                                <i class="fa fa-fw fa-lg {{::cipher.icon}}"></i>
+                                <i class="fa fa-fw fa-lg {{::cipher.icon}}" ng-if="!cipher.meta.image"></i>
+                                <img alt="" ng-if="cipher.meta.image" ng-src="{{cipher.meta.image}}"
+                                     fallback-src="images/fa-globe.png" />
                             </td>
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editCipher(cipher)" stop-prop>{{cipher.name}}</a>
@@ -186,7 +188,7 @@
             <div class="table-responsive" ng-show="folderCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="cipher in folderCiphers = (ciphers | filter: { folderId: folder.id } | 
+                        <tr ng-repeat="cipher in folderCiphers = (ciphers | filter: { folderId: folder.id } |
                             filter: cipherFilter | filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
@@ -232,7 +234,9 @@
                                 <input type="checkbox" value="{{::cipher.id}}" name="cipherSelection" stop-prop />
                             </td>
                             <td class="vault-icon" ng-click="select($event)">
-                                <i class="fa fa-fw fa-lg {{::cipher.icon}}"></i>
+                                <i class="fa fa-fw fa-lg {{::cipher.icon}}" ng-if="!cipher.meta.image"></i>
+                                <img alt="" ng-if="cipher.meta.image" ng-src="{{cipher.meta.image}}"
+                                     fallback-src="images/fa-globe.png" />
                             </td>
                             <td ng-click="select($event)">
                                 <a href="#" stop-click ng-click="editCipher(cipher)" stop-prop>{{cipher.name}}</a>

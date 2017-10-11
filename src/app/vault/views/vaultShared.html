@@ -87,6 +87,11 @@
                                     </ul>
                                 </div>
                             </td>
+                            <td class="vault-icon">
+                                <i class="fa fa-fw fa-lg {{::cipher.icon}}" ng-if="!cipher.meta.image"></i>
+                                <img alt="" ng-if="cipher.meta.image" ng-src="{{cipher.meta.image}}"
+                                     fallback-src="images/fa-globe.png" />
+                            </td>
                             <td>
                                 <a href="#" stop-click ng-click="editCipher(cipher)">{{cipher.name}}</a>
                                 <i class="fa fa-star text-muted" title="Favorite" ng-show="cipher.favorite"></i>
