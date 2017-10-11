@@ -77,6 +77,7 @@
             *;">
     <!-- @endif -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#3c8dbc">
     <base href="/" />
 
     <title page-title>bitwarden Web Vault</title>
@@ -103,6 +104,11 @@
 
     <link rel="stylesheet" href="css/vault.css" />
     <!-- @endexclude -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="images/icons/safari-pinned-tab.svg" color="#3c8dbc">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body ng-controller="mainController as main" class="layout-boxed {{main.skinClass}} sidebar-mini {{main.bodyClass}}"
       ng-class="{'using-control-sidebar': main.usingControlSidebar,
