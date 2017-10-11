@@ -4,66 +4,12 @@ angular
     .factory('cipherService', function (cryptoService, apiService, $q, $window, constants) {
         var _service = {};
 
-        _service.decryptLogins = function (encryptedLogins) {
-            if (!encryptedLogins) throw "encryptedLogins is undefined or null";
-
-            var unencryptedLogins = [];
-            for (var i = 0; i < encryptedLogins.length; i++) {
-                unencryptedLogins.push(_service.decryptLogin(encryptedLogins[i]));
-            }
-
-            return unencryptedLogins;
-        };
-
-        _service.decryptLogin = function (encryptedLogin) {
-            if (!encryptedLogin) throw "encryptedLogin is undefined or null";
-
-            var key = null;
-            if (encryptedLogin.OrganizationId) {
-                key = cryptoService.getOrgKey(encryptedLogin.OrganizationId);
-            }
-
-            var login = {
-                id: encryptedLogin.Id,
-                organizationId: encryptedLogin.OrganizationId,
-                collectionIds: encryptedLogin.CollectionIds || [],
-                'type': 1,
-                folderId: encryptedLogin.FolderId,
-                favorite: encryptedLogin.Favorite,
-                edit: encryptedLogin.Edit,
-                organizationUseTotp: encryptedLogin.OrganizationUseTotp,
-                attachments: null
-            };
-
-            var loginData = encryptedLogin.Data;
-            if (loginData) {
-                login.name = cryptoService.decrypt(loginData.Name, key);
-                login.uri = loginData.Uri && loginData.Uri !== '' ? cryptoService.decrypt(loginData.Uri, key) : null;
-                login.username = loginData.Username && loginData.Username !== '' ? cryptoService.decrypt(loginData.Username, key) : null;
-                login.password = loginData.Password && loginData.Password !== '' ? cryptoService.decrypt(loginData.Password, key) : null;
-                login.notes = loginData.Notes && loginData.Notes !== '' ? cryptoService.decrypt(loginData.Notes, key) : null;
-                login.totp = loginData.Totp && loginData.Totp !== '' ? cryptoService.decrypt(loginData.Totp, key) : null;
-                login.fields = _service.decryptFields(key, loginData.Fields);
-            }
-
-            if (!encryptedLogin.Attachments) {
-                return login;
-            }
-
-            login.attachments = [];
-            for (var i = 0; i < encryptedLogin.Attachments.length; i++) {
-                login.attachments.push(_service.decryptAttachment(key, encryptedLogin.Attachments[i]));
-            }
-
-            return login;
-        };
-
         _service.decryptCiphers = function (encryptedCiphers) {
             if (!encryptedCiphers) throw "encryptedCiphers is undefined or null";
 
             var unencryptedCiphers = [];
             for (var i = 0; i < encryptedCiphers.length; i++) {
-                unencryptedCiphers.push(_service.decryptLogin(encryptedCiphers[i]));
+                unencryptedCiphers.push(_service.decryptCipher(encryptedCiphers[i]));
             }
 
             return unencryptedCiphers;
@@ -158,35 +104,6 @@ angular
             }
 
             return cipher;
-        };
-
-        _service.decryptLoginPreview = function (encryptedCipher) {
-            if (!encryptedCipher) throw "encryptedCipher is undefined or null";
-
-            var key = null;
-            if (encryptedCipher.OrganizationId) {
-                key = cryptoService.getOrgKey(encryptedCipher.OrganizationId);
-            }
-
-            var login = {
-                id: encryptedCipher.Id,
-                organizationId: encryptedCipher.OrganizationId,
-                collectionIds: encryptedCipher.CollectionIds || [],
-                folderId: encryptedCipher.FolderId,
-                favorite: encryptedCipher.Favorite,
-                edit: encryptedCipher.Edit,
-                organizationUseTotp: encryptedCipher.OrganizationUseTotp,
-                hasAttachments: !!encryptedCipher.Attachments && encryptedCipher.Attachments.length > 0
-            };
-
-            var loginData = encryptedCipher.Data;
-            if (loginData) {
-                login.name = _service.decryptProperty(loginData.Name, key, false, true);
-                login.username = _service.decryptProperty(loginData.Username, key, true, true);
-                login.password = _service.decryptProperty(loginData.Password, key, true, true);
-            }
-
-            return login;
         };
 
         _service.decryptCipherPreview = function (encryptedCipher) {
@@ -442,50 +359,15 @@ angular
             return property || (showError ? '[error: cannot decrypt]' : null);
         };
 
-        _service.encryptLogins = function (unencryptedLogins, key) {
-            if (!unencryptedLogins) throw "unencryptedLogins is undefined or null";
+        _service.encryptCiphers = function (unencryptedCiphers, key) {
+            if (!unencryptedCiphers) throw "unencryptedCiphers is undefined or null";
 
-            var encryptedLogins = [];
-            for (var i = 0; i < unencryptedLogins.length; i++) {
-                encryptedLogins.push(_service.encryptLogin(unencryptedLogins[i], key));
+            var encryptedCiphers = [];
+            for (var i = 0; i < unencryptedCiphers.length; i++) {
+                encryptedCiphers.push(_service.encryptCipher(unencryptedCiphers[i], null, key));
             }
 
-            return encryptedLogins;
-        };
-
-        _service.encryptLogin = function (unencryptedLogin, key, attachments) {
-            if (!unencryptedLogin) throw "unencryptedLogin is undefined or null";
-
-            if (unencryptedLogin.organizationId) {
-                key = key || cryptoService.getOrgKey(unencryptedLogin.organizationId);
-            }
-
-            var login = {
-                id: unencryptedLogin.id,
-                'type': 1,
-                organizationId: unencryptedLogin.organizationId || null,
-                folderId: unencryptedLogin.folderId === '' ? null : unencryptedLogin.folderId,
-                favorite: unencryptedLogin.favorite !== null ? unencryptedLogin.favorite : false,
-                name: cryptoService.encrypt(unencryptedLogin.name, key),
-                notes: !unencryptedLogin.notes || unencryptedLogin.notes === '' ? null : cryptoService.encrypt(unencryptedLogin.notes, key),
-                login: {
-                    uri: !unencryptedLogin.uri || unencryptedLogin.uri === '' ? null : cryptoService.encrypt(unencryptedLogin.uri, key),
-                    username: !unencryptedLogin.username || unencryptedLogin.username === '' ? null : cryptoService.encrypt(unencryptedLogin.username, key),
-                    password: !unencryptedLogin.password || unencryptedLogin.password === '' ? null : cryptoService.encrypt(unencryptedLogin.password, key),
-                    totp: !unencryptedLogin.totp || unencryptedLogin.totp === '' ? null : cryptoService.encrypt(unencryptedLogin.totp, key)
-                },
-                fields: _service.encryptFields(unencryptedLogin.fields, key)
-            };
-
-            if (unencryptedLogin.attachments && attachments) {
-                login.attachments = {};
-                for (var i = 0; i < unencryptedLogin.attachments.length; i++) {
-                    login.attachments[unencryptedLogin.attachments[i].id] =
-                        cryptoService.encrypt(unencryptedLogin.attachments[i].fileName, key);
-                }
-            }
-
-            return login;
+            return encryptedCiphers;
         };
 
         _service.encryptCipher = function (unencryptedCipher, type, key, attachments) {

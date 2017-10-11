@@ -31,19 +31,19 @@
         function updateKey(masterPasswordHash) {
             var madeEncKey = cryptoService.makeEncKey(null);
 
-            var reencryptedLogins = [];
-            var loginsPromise = apiService.ciphers.list({}, function (encryptedLogins) {
-                var filteredEncryptedLogins = [];
-                for (var i = 0; i < encryptedLogins.Data.length; i++) {
-                    if (encryptedLogins.Data[i].OrganizationId) {
+            var reencryptedCiphers = [];
+            var ciphersPromise = apiService.ciphers.list({}, function (encryptedCiphers) {
+                var filteredEncryptedCiphers = [];
+                for (var i = 0; i < encryptedCiphers.Data.length; i++) {
+                    if (encryptedCiphers.Data[i].OrganizationId) {
                         continue;
                     }
 
-                    filteredEncryptedLogins.push(encryptedLogins.Data[i]);
+                    filteredEncryptedCiphers.push(encryptedCiphers.Data[i]);
                 }
 
-                var unencryptedLogins = cipherService.decryptLogins(filteredEncryptedLogins);
-                reencryptedLogins = cipherService.encryptLogins(unencryptedLogins, madeEncKey.encKey);
+                var unencryptedCiphers = cipherService.decryptCiphers(filteredEncryptedCiphers);
+                reencryptedCiphers = cipherService.encryptCiphers(unencryptedCiphers, madeEncKey.encKey);
             }).$promise;
 
             var reencryptedFolders = [];
@@ -58,10 +58,10 @@
                 reencryptedPrivateKey = cryptoService.encrypt(privateKey, madeEncKey.encKey, 'raw');
             }
 
-            return $q.all([loginsPromise, foldersPromise]).then(function () {
+            return $q.all([ciphersPromise, foldersPromise]).then(function () {
                 var request = {
                     masterPasswordHash: masterPasswordHash,
-                    ciphers: reencryptedLogins,
+                    ciphers: reencryptedCiphers,
                     folders: reencryptedFolders,
                     privateKey: reencryptedPrivateKey,
                     key: madeEncKey.encKeyEnc

@@ -2,11 +2,11 @@
     .module('bit.organization')
 
     .controller('organizationSettingsExportController', function ($scope, apiService, $uibModalInstance, cipherService,
-        $q, toastr, $analytics, $state) {
+        $q, toastr, $analytics, $state, constants) {
         $analytics.eventTrack('organizationSettingsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
-            var decLogins = [],
+            var decCiphers = [],
                 decCollections = [];
 
             var collectionsPromise = apiService.collections.listOrganization({ orgId: $state.params.orgId },
@@ -14,18 +14,18 @@
                     decCollections = cipherService.decryptCollections(collections.Data, $state.params.orgId, true);
                 }).$promise;
 
-            var loginsPromise = apiService.ciphers.listOrganizationDetails({ organizationId: $state.params.orgId },
+            var ciphersPromise = apiService.ciphers.listOrganizationDetails({ organizationId: $state.params.orgId },
                 function (ciphers) {
                     for (var i = 0; i < ciphers.Data.length; i++) {
                         if (ciphers.Data[i].Type === 1) {
-                            var decLogin = cipherService.decryptLogin(ciphers.Data[i]);
-                            decLogins.push(decLogin);
+                            var decCipher = cipherService.decryptCipher(ciphers.Data[i]);
+                            decCiphers.push(decCipher);
                         }
                     }
                 }).$promise;
 
-            $q.all([collectionsPromise, loginsPromise]).then(function () {
-                if (!decLogins.length) {
+            $q.all([collectionsPromise, ciphersPromise]).then(function () {
+                if (!decCiphers.length) {
                     toastr.error('Nothing to export.', 'Error!');
                     $scope.close();
                     return;
@@ -37,22 +37,27 @@
                 }
 
                 try {
-                    var exportLogins = [];
-                    for (i = 0; i < decLogins.length; i++) {
+                    var exportCiphers = [];
+                    for (i = 0; i < decCiphers.length; i++) {
+                        // only export logins for now
+                        if (decCiphers[i].type !== constants.cipherType.login) {
+                            continue;
+                        }
+
                         var login = {
-                            name: decLogins[i].name,
-                            uri: decLogins[i].uri,
-                            username: decLogins[i].username,
-                            password: decLogins[i].password,
-                            notes: decLogins[i].notes,
-                            totp: decLogins[i].totp,
+                            name: decCiphers[i].name,
+                            uri: decCiphers[i].login.uri,
+                            username: decCiphers[i].login.username,
+                            password: decCiphers[i].login.password,
+                            notes: decCiphers[i].notes,
+                            totp: decCiphers[i].login.totp,
                             collections: [],
                             fields: null
                         };
 
                         var j;
-                        if (decLogins[i].fields) {
-                            for (j = 0; j < decLogins[i].fields.length; j++) {
+                        if (decCiphers[i].fields) {
+                            for (j = 0; j < decCiphers[i].fields.length; j++) {
                                 if (!login.fields) {
                                     login.fields = '';
                                 }
@@ -60,22 +65,22 @@
                                     login.fields += '\n';
                                 }
                                 
-                                login.fields += ((decLogins[i].fields[j].name || '') + ': ' + decLogins[i].fields[j].value);
+                                login.fields += ((decCiphers[i].fields[j].name || '') + ': ' + decCiphers[i].fields[j].value);
                             }
                         }
 
-                        if (decLogins[i].collectionIds) {
-                            for (j = 0; j < decLogins[i].collectionIds.length; j++) {
-                                if (collectionsDict.hasOwnProperty(decLogins[i].collectionIds[j])) {
-                                    login.collections.push(collectionsDict[decLogins[i].collectionIds[j]].name);
+                        if (decCiphers[i].collectionIds) {
+                            for (j = 0; j < decCiphers[i].collectionIds.length; j++) {
+                                if (collectionsDict.hasOwnProperty(decCiphers[i].collectionIds[j])) {
+                                    login.collections.push(collectionsDict[decCiphers[i].collectionIds[j]].name);
                                 }
                             }
                         }
 
-                        exportLogins.push(login);
+                        exportCiphers.push(login);
                     }
 
-                    var csvString = Papa.unparse(exportLogins);
+                    var csvString = Papa.unparse(exportCiphers);
                     var csvBlob = new Blob([csvString]);
 
                     // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx

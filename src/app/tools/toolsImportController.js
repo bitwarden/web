@@ -237,7 +237,7 @@
             {
                 id: 'gnomejson',
                 name: 'GNOME Passwords and Keys/Seahorse (json)',
-                instructions: $sce.trustAsHtml('Make sure you have python-keyring and python-gnomekeyring installed. ' + 
+                instructions: $sce.trustAsHtml('Make sure you have python-keyring and python-gnomekeyring installed. ' +
                     'Save the <a target="_blank" href="http://bit.ly/2sMldAI">GNOME Keyring Import/Export</a> ' +
                     'python script by Luke Plant to your desktop as <code>pw_helper.py</code>. Open terminal and run ' +
                     '<code>chmod +rx Desktop/pw_helper.py</code> and then ' +
@@ -272,15 +272,15 @@
             importService.import(model.source, file || model.fileContents, importSuccess, importError);
         };
 
-        function importSuccess(folders, logins, folderRelationships) {
-            if (!folders.length && !logins.length) {
+        function importSuccess(folders, ciphers, folderRelationships) {
+            if (!folders.length && !ciphers.length) {
                 importError('Nothing was imported.');
                 return;
             }
-            else if (logins.length) {
-                var halfway = Math.floor(logins.length / 2);
-                var last = logins.length - 1;
-                if (loginIsBadData(logins[0]) && loginIsBadData(logins[halfway]) && loginIsBadData(logins[last])) {
+            else if (ciphers.length) {
+                var halfway = Math.floor(ciphers.length / 2);
+                var last = ciphers.length - 1;
+                if (cipherIsBadData(ciphers[0]) && cipherIsBadData(ciphers[halfway]) && cipherIsBadData(ciphers[last])) {
                     importError('CSV data is not formatted correctly. Please check your import file and try again.');
                     return;
                 }
@@ -288,7 +288,7 @@
 
             apiService.ciphers.import({
                 folders: cipherService.encryptFolders(folders),
-                ciphers: cipherService.encryptLogins(logins),
+                ciphers: cipherService.encryptCiphers(ciphers),
                 folderRelationships: folderRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
@@ -299,8 +299,9 @@
             }, importError);
         }
 
-        function loginIsBadData(login) {
-            return (login.name === null || login.name === '--') && (login.password === null || login.password === '');
+        function cipherIsBadData(cipher) {
+            return (cipher.name === null || cipher.name === '--') &&
+                (cipher.login && (cipher.login.password === null || cipher.login.password === ''));
         }
 
         function importError(error) {

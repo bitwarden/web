@@ -55,15 +55,15 @@
             importService.importOrg(model.source, file || model.fileContents, importSuccess, importError);
         };
 
-        function importSuccess(collections, logins, collectionRelationships) {
-            if (!collections.length && !logins.length) {
+        function importSuccess(collections, ciphers, collectionRelationships) {
+            if (!collections.length && !ciphers.length) {
                 importError('Nothing was imported.');
                 return;
             }
-            else if (logins.length) {
-                var halfway = Math.floor(logins.length / 2);
-                var last = logins.length - 1;
-                if (loginIsBadData(logins[0]) && loginIsBadData(logins[halfway]) && loginIsBadData(logins[last])) {
+            else if (ciphers.length) {
+                var halfway = Math.floor(ciphers.length / 2);
+                var last = ciphers.length - 1;
+                if (cipherIsBadData(ciphers[0]) && cipherIsBadData(ciphers[halfway]) && cipherIsBadData(ciphers[last])) {
                     importError('CSV data is not formatted correctly. Please check your import file and try again.');
                     return;
                 }
@@ -71,7 +71,7 @@
 
             apiService.ciphers.importOrg({ orgId: $state.params.orgId }, {
                 collections: cipherService.encryptCollections(collections, $state.params.orgId),
-                ciphers: cipherService.encryptLogins(logins, cryptoService.getOrgKey($state.params.orgId)),
+                ciphers: cipherService.encryptCiphers(ciphers, cryptoService.getOrgKey($state.params.orgId)),
                 collectionRelationships: collectionRelationships
             }, function () {
                 $uibModalInstance.dismiss('cancel');
@@ -82,8 +82,9 @@
             }, importError);
         }
 
-        function loginIsBadData(login) {
-            return (login.name === null || login.name === '--') && (login.password === null || login.password === '');
+        function cipherIsBadData(cipher) {
+            return (cipher.name === null || cipher.name === '--') &&
+                (cipher.login && (cipher.login.password === null || cipher.login.password === ''));
         }
 
         function importError(error) {

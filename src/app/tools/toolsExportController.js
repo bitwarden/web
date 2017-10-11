@@ -2,23 +2,23 @@
     .module('bit.tools')
 
     .controller('toolsExportController', function ($scope, apiService, $uibModalInstance, cipherService, $q,
-        toastr, $analytics) {
+        toastr, $analytics, constants) {
         $analytics.eventTrack('toolsExportController', { category: 'Modal' });
         $scope.export = function (model) {
             $scope.startedExport = true;
-            var decLogins = [],
+            var decCiphers = [],
                 decFolders = [];
 
             var folderPromise = apiService.folders.list({}, function (folders) {
                 decFolders = cipherService.decryptFolders(folders.Data);
             }).$promise;
 
-            var loginsPromise = apiService.ciphers.list({}, function (logins) {
-                decLogins = cipherService.decryptLogins(logins.Data);
+            var ciphersPromise = apiService.ciphers.list({}, function (ciphers) {
+                decCiphers = cipherService.decryptCiphers(ciphers.Data);
             }).$promise;
 
-            $q.all([folderPromise, loginsPromise]).then(function () {
-                if (!decLogins.length) {
+            $q.all([folderPromise, ciphersPromise]).then(function () {
+                if (!decCiphers.length) {
                     toastr.error('Nothing to export.', 'Error!');
                     $scope.close();
                     return;
@@ -30,23 +30,28 @@
                 }
 
                 try {
-                    var exportLogins = [];
-                    for (i = 0; i < decLogins.length; i++) {
+                    var exportCiphers = [];
+                    for (i = 0; i < decCiphers.length; i++) {
+                        // only export logins for now
+                        if (decCiphers[i].type !== constants.cipherType.login) {
+                            continue;
+                        }
+
                         var login = {
-                            name: decLogins[i].name,
-                            uri: decLogins[i].uri,
-                            username: decLogins[i].username,
-                            password: decLogins[i].password,
-                            notes: decLogins[i].notes,
-                            folder: decLogins[i].folderId && (decLogins[i].folderId in foldersDict) ?
-                                foldersDict[decLogins[i].folderId].name : null,
-                            favorite: decLogins[i].favorite ? 1 : null,
-                            totp: decLogins[i].totp,
+                            name: decCiphers[i].name,
+                            uri: decCiphers[i].login.uri,
+                            username: decCiphers[i].login.username,
+                            password: decCiphers[i].login.password,
+                            notes: decCiphers[i].notes,
+                            folder: decCiphers[i].folderId && (decCiphers[i].folderId in foldersDict) ?
+                                foldersDict[decCiphers[i].folderId].name : null,
+                            favorite: decCiphers[i].favorite ? 1 : null,
+                            totp: decCiphers[i].login.totp,
                             fields: null
                         };
 
-                        if (decLogins[i].fields) {
-                            for (var j = 0; j < decLogins[i].fields.length; j++) {
+                        if (decCiphers[i].fields) {
+                            for (var j = 0; j < decCiphers[i].fields.length; j++) {
                                 if (!login.fields) {
                                     login.fields = '';
                                 }
@@ -54,14 +59,14 @@
                                     login.fields += '\n';
                                 }
 
-                                login.fields += ((decLogins[i].fields[j].name || '') + ': ' + decLogins[i].fields[j].value);
+                                login.fields += ((decCiphers[i].fields[j].name || '') + ': ' + decCiphers[i].fields[j].value);
                             }
                         }
 
-                        exportLogins.push(login);
+                        exportCiphers.push(login);
                     }
 
-                    var csvString = Papa.unparse(exportLogins);
+                    var csvString = Papa.unparse(exportCiphers);
                     var csvBlob = new Blob([csvString]);
 
                     // IE hack. ref http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
