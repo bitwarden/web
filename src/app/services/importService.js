@@ -519,7 +519,11 @@
                         cipher.notes = value.extra && value.extra !== '' ? value.extra : null;
                     }
                     else if (cipher.type === contants.cipherType.secureNote) {
-                        if (value.extra.indexOf('NoteType:') === 0) {
+                        cipher.secureNote = {
+                            type: 0
+                        };
+
+                        if (value.extra.indexOf('NoteType:') !== 0) {
                             // must be a generic note
                             cipher.notes = value.extra && value.extra !== '' ? value.extra : null;
                         }
@@ -532,12 +536,14 @@
                                     if (typeParts[1] === 'Credit Card') {
                                         doFields = false;
                                         cipher.type = contants.cipherType.card;
+                                        cipher.secureNote = null;
                                         // TODO: handle card
                                         cipher.card = {};
                                     }
                                     else if (typeParts[1] === 'Address') {
                                         doFields = false;
                                         cipher.type = contants.cipherType.identity;
+                                        cipher.secureNote = null;
                                         // TODO: handle identity
                                         cipher.identity = {};
                                     }
