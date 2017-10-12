@@ -149,13 +149,10 @@
 
             editModel.result.then(function (returnVal) {
                 if (returnVal.action === 'edit') {
-                    cipher.folderId = returnVal.data.folderId;
-                    cipher.name = returnVal.data.name;
-                    cipher.favorite = returnVal.data.favorite;
-
-                    cipher.subTitle = returnVal.data.login.username;
-                    cipher.meta.password = returnVal.data.login.password;
-
+                    var index = $scope.ciphers.indexOf(cipher);
+                    if (index > -1) {
+                        $rootScope.vaultCiphers[index] = returnVal.data;
+                    }
                     sortScopedCipherData();
                 }
                 else if (returnVal.action === 'partialEdit') {

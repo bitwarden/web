@@ -88,8 +88,11 @@
 
             editModel.result.then(function (returnVal) {
                 if (returnVal.action === 'edit') {
-                    cipher.name = returnVal.data.name;
-                    cipher.subTitle = returnVal.data.login.username;
+                    var index = $scope.ciphers.indexOf(cipher);
+                    if (index > -1) {
+                        returnVal.data.collectionIds = $scope.ciphers[index].collectionIds;
+                        $scope.ciphers[index] = returnVal.data;
+                    }
                 }
                 else if (returnVal.action === 'delete') {
                     var index = $scope.ciphers.indexOf(cipher);

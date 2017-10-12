@@ -145,11 +145,18 @@
                 var rootCipher = findRootCipher(cipher) || { meta: {} };
 
                 if (returnVal.action === 'edit') {
-                    cipher.folderId = rootCipher.folderId = returnVal.data.folderId;
-                    cipher.name = rootCipher.name = returnVal.data.name;
-                    cipher.subTitle = rootCipher.subTitle = returnVal.data.login.username;
-                    cipher.meta.password = rootCipher.meta.password = returnVal.data.login.password;
-                    cipher.favorite = rootCipher.favorite = returnVal.data.favorite;
+                    var index = $scope.ciphers.indexOf(cipher);
+                    if (index > -1) {
+                        returnVal.data.collectionIds = $scope.ciphers[index].collectionIds;
+                        $scope.ciphers[index] = returnVal.data;
+
+                        if ($rootScope.vaultCiphers) {
+                            index = $rootScope.vaultCiphers.indexOf(rootCipher);
+                            if (index > -1) {
+                                $rootScope.vaultCiphers[index] = returnVal.data;
+                            }
+                        }
+                    }
                 }
                 else if (returnVal.action === 'partialEdit') {
                     cipher.folderId = rootCipher.folderId = returnVal.data.folderId;

@@ -39,7 +39,7 @@
                 var cipher = cipherService.encryptCipher(model, $scope.cipher.type);
                 $scope.savePromise = apiService.ciphers.put({ id: cipherId }, cipher, function (cipherResponse) {
                     $analytics.eventTrack('Edited Cipher');
-                    var decCipher = cipherService.decryptCipher(cipherResponse);
+                    var decCipher = cipherService.decryptCipherPreview(cipherResponse);
                     $uibModalInstance.close({
                         action: 'edit',
                         data: decCipher

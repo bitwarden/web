@@ -17,7 +17,7 @@
             var cipher = cipherService.encryptCipher(model, $scope.cipher.type);
             $scope.savePromise = apiService.ciphers.putAdmin({ id: cipherId }, cipher, function (cipherResponse) {
                 $analytics.eventTrack('Edited Organization Cipher');
-                var decCipher = cipherService.decryptCipher(cipherResponse);
+                var decCipher = cipherService.decryptCipherPreview(cipherResponse);
                 $uibModalInstance.close({
                     action: 'edit',
                     data: decCipher
