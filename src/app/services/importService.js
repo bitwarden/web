@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.services')
 
-    .factory('importService', function (contants) {
+    .factory('importService', function (constants) {
         var _service = {};
 
         _service.import = function (source, file, success, error) {
@@ -270,7 +270,7 @@
                             favorite: value.favorite && value.favorite !== '' && value.favorite !== '0' ? true : false,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
-                            type: contants.cipherType.login,
+                            type: constants.cipherType.login,
                             login: {
                                 totp: value.totp && value.totp !== '' ? value.totp : null,
                                 uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
@@ -280,7 +280,7 @@
                         };
 
                         if (value.fields && value.fields !== '') {
-                            var fields = value.fields.split('\n');
+                            var fields = value.fields.split(/(?:\r\n|\r|\n)/);
                             for (i = 0; i < fields.length; i++) {
                                 if (!fields[i] || fields[i] === '') {
                                     continue;
@@ -378,7 +378,7 @@
                             favorite: false,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
-                            type: contants.cipherType.login,
+                            type: constants.cipherType.login,
                             login: {
                                 totp: value.totp && value.totp !== '' ? value.totp : null,
                                 uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
@@ -388,7 +388,7 @@
                         };
 
                         if (value.fields && value.fields !== '') {
-                            var fields = value.fields.split('\n');
+                            var fields = value.fields.split(/(?:\r\n|\r|\n)/);
                             for (i = 0; i < fields.length; i++) {
                                 if (!fields[i] || fields[i] === '') {
                                     continue;
@@ -481,6 +481,44 @@
                 });
             }
 
+            function parseSecureNoteMapping(extraParts, map, skip) {
+                var obj = {
+                    dataObj: {},
+                    notes: null
+                };
+                for (var i = 0; i < extraParts.length; i++) {
+                    var fieldParts = extraParts[i].split(':');
+                    if (fieldParts.length < 1 || fieldParts[0] === 'NoteType' || skip.indexOf(fieldParts[0]) > -1 ||
+                        !fieldParts[1] || fieldParts[1] === '') {
+                        continue;
+                    }
+
+                    if (fieldParts[0] === 'Notes') {
+                        if (obj.notes) {
+                            obj.notes += ('\n' + fieldParts[1]);
+                        }
+                        else {
+                            obj.notes = fieldParts[1];
+                        }
+                    }
+                    else if (map.hasOwnProperty(fieldParts[0])) {
+                        obj.dataObj[map[fieldParts[0]]] = fieldParts[1];
+                    }
+                    else {
+                        if (obj.notes) {
+                            obj.notes += '\n';
+                        }
+                        else {
+                            obj.notes = '';
+                        }
+
+                        obj.notes += (fieldParts[0] + ': ' + fieldParts[1]);
+                    }
+                }
+
+                return obj;
+            }
+
             function parseData(data) {
                 var folders = [],
                     ciphers = [],
@@ -506,10 +544,10 @@
                     var cipher = {
                         favorite: org ? false : value.fav === '1',
                         name: value.name && value.name !== '' ? value.name : '--',
-                        type: value.url === 'http://sn' ? contants.cipherType.secureNote : contants.cipherType.login
+                        type: value.url === 'http://sn' ? constants.cipherType.secureNote : constants.cipherType.login
                     };
 
-                    if (cipher.type === contants.cipherType.login) {
+                    if (cipher.type === constants.cipherType.login) {
                         cipher.login = {
                             uri: value.url && value.url !== '' ? trimUri(value.url) : null,
                             username: value.username && value.username !== '' ? value.username : null,
@@ -518,58 +556,54 @@
 
                         cipher.notes = value.extra && value.extra !== '' ? value.extra : null;
                     }
-                    else if (cipher.type === contants.cipherType.secureNote) {
-                        cipher.secureNote = {
-                            type: 0
-                        };
+                    else if (cipher.type === constants.cipherType.secureNote) {
+                        var extraParts = value.extra.split(/(?:\r\n|\r|\n)/),
+                            processedNote = false;
+                        if (extraParts.length) {
+                            var typeParts = extraParts[0].split(':');
+                            if (typeParts.length > 1 && typeParts[0] === 'NoteType' &&
+                                (typeParts[1] === 'Credit Card' || typeParts[1] === 'Address')) {
+                                var mappedData = null;
+                                if (typeParts[1] === 'Credit Card') {
+                                    mappedData = parseSecureNoteMapping(extraParts, {
+                                        'Number': 'number',
+                                        'Name on Card': 'cardholderName',
+                                        'Security Code': 'code'
+                                    }, []);
+                                    cipher.type = constants.cipherType.card;
+                                    cipher.card = mappedData.dataObj;
+                                }
+                                else if (typeParts[1] === 'Address') {
+                                    mappedData = parseSecureNoteMapping(extraParts, {
+                                        'Title': 'title',
+                                        'First Name': 'firstName',
+                                        'Last Name': 'lastName',
+                                        'Middle Name': 'middleName',
+                                        'Company': 'company',
+                                        'Address 1': 'address1',
+                                        'Address 2': 'address2',
+                                        'Address 3': 'address3',
+                                        'City / Town': 'city',
+                                        'State': 'state',
+                                        'Zip / Postal Code': 'postalCode',
+                                        'Country': 'country',
+                                        'Email Address': 'email',
+                                        'Username': 'username'
+                                    }, []);
+                                    cipher.type = constants.cipherType.identity;
+                                    cipher.identity = mappedData.dataObj;
+                                }
 
-                        if (value.extra.indexOf('NoteType:') !== 0) {
-                            // must be a generic note
-                            cipher.notes = value.extra && value.extra !== '' ? value.extra : null;
+                                processedNote = true;
+                                cipher.notes = mappedData.notes;
+                            }
                         }
-                        else {
-                            var extraParts = value.extra.split(/(?:\r\n|\r|\n)/),
-                                doFields = true;
-                            if (extraParts.length) {
-                                var typeParts = extraParts[0].split(':');
-                                if (typeParts.length > 1 && typeParts[0] === 'NoteType') {
-                                    if (typeParts[1] === 'Credit Card') {
-                                        doFields = false;
-                                        cipher.type = contants.cipherType.card;
-                                        cipher.secureNote = null;
-                                        // TODO: handle card
-                                        cipher.card = {};
-                                    }
-                                    else if (typeParts[1] === 'Address') {
-                                        doFields = false;
-                                        cipher.type = contants.cipherType.identity;
-                                        cipher.secureNote = null;
-                                        // TODO: handle identity
-                                        cipher.identity = {};
-                                    }
-                                }
-                            }
 
-                            if (doFields) {
-                                for (i = 0; i < extraParts.length; i++) {
-                                    var fieldParts = extraParts[i].split(':');
-                                    if (!fieldParts.length) {
-                                        continue;
-                                    }
-
-                                    var field = {
-                                        name: fieldParts[0],
-                                        value: fieldParts.length > 1 ? fieldParts[1] : null,
-                                        type: constants.fieldType.text
-                                    };
-
-                                    if (!cipher.fields) {
-                                        cipher.fields = [];
-                                    }
-
-                                    cipher.fields.push(field);
-                                }
-                            }
+                        if (!processedNote) {
+                            cipher.secureNote = {
+                                type: 0
+                            };
+                            cipher.notes = value.extra && value.extra !== '' ? value.extra : null;
                         }
                     }
 
@@ -632,7 +666,7 @@
                                 favorite: false,
                                 notes: '',
                                 name: card.attr('title'),
-                                type: contants.cipherType.login,
+                                type: constants.cipherType.login,
                                 login: {}
                             };
 
@@ -741,7 +775,7 @@
 
                         var cipher = {
                             favorite: false,
-                            type: contants.cipherType.login,
+                            type: constants.cipherType.login,
                             notes: null,
                             name: value[0] && value[0] !== '' ? value[0] : '--',
                             login: {
@@ -840,7 +874,7 @@
                             favorite: false,
                             notes: null,
                             name: null,
-                            type: contants.cipherType.login,
+                            type: constants.cipherType.login,
                             login: {
                                 uri: null,
                                 username: null,
@@ -941,7 +975,7 @@
                         }
 
                         var cipher = {
-                            type: contants.cipherType.login,
+                            type: constants.cipherType.login,
                             favorite: false,
                             notes: value.Notes && value.Notes !== '' ? value.Notes : null,
                             name: value.Title && value.Title !== '' ? value.Title : '--',
@@ -1024,7 +1058,7 @@
 
                     var item = JSON.parse(line);
                     var cipher = {
-                        type: contants.cipherType.login,
+                        type: constants.cipherType.login,
                         favorite: item.openContents && item.openContents.faveIndex ? true : false,
                         notes: null,
                         name: item.title && item.title !== '' ? item.title : '--',
@@ -1079,7 +1113,7 @@
                         }
 
                         var cipher = {
-                            type: contants.cipherType.login,
+                            type: constants.cipherType.login,
                             favorite: false,
                             notes: value.notesPlain && value.notesPlain !== '' ? value.notesPlain : '',
                             name: value.title && value.title !== '' ? value.title : '--',
