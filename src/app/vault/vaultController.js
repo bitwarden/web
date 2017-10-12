@@ -384,7 +384,9 @@
 
         $scope.selectFolder = function (folder, $event) {
             var checkbox = $($event.currentTarget).closest('.box').find('input[name="cipherSelection"]');
-            checkbox.prop('checked', true);
+            var checked = checkbox.prop('checked');
+            checkbox.prop('checked', !checked);
+            $($event.currentTarget).find('span').text(checked ? ' Select All' : ' Deselect All');
         };
 
         $scope.select = function ($event) {
