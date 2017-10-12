@@ -25,7 +25,7 @@ var gulp = require('gulp'),
 
 var paths = {};
 paths.dist = './dist/';
-paths.webroot = './src/'
+paths.webroot = './src/';
 paths.js = paths.webroot + 'js/**/*.js';
 paths.minJs = paths.webroot + 'js/**/*.min.js';
 paths.concatJsDest = paths.webroot + 'js/bw.min.js';
@@ -304,7 +304,7 @@ gulp.task('dist:move', function () {
             src: [
                 paths.npmDir + 'bootstrap/dist/**/bootstrap.min.js',
                 paths.npmDir + 'bootstrap/dist/**/bootstrap.min.css',
-                paths.npmDir + 'bootstrap/dist/**/fonts/**/*',
+                paths.npmDir + 'bootstrap/dist/**/fonts/**/*'
             ],
             dest: paths.dist + 'lib/bootstrap'
         },
