@@ -209,7 +209,7 @@ angular
                 if (setImage && isWebsite) {
                     try {
                         var url = new URL(hostnameUri);
-                        cipher.meta.image = 'https://icons.bitwarden.com?url=' + url.hostname;
+                        cipher.meta.image = 'https://icons.bitwarden.com/' + url.hostname + '/icon.png';
                     }
                     catch (e) { }
                 }
