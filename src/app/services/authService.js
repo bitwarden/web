@@ -158,8 +158,8 @@ angular
                     cryptoService.setOrgKeys(orgs);
                     _setDeferred.resolve(_userProfile);
                 }
-            }, function () {
-                _setDeferred.reject();
+            }, function (error) {
+                _setDeferred.reject(error);
             });
 
             return _setDeferred.promise;
