@@ -267,46 +267,50 @@
         <h3 class="control-sidebar-heading">
             <i class="fa fa-tag fa-fw"></i> Types
         </h3>
-        <ul class="control-sidebar-menu">
-            <li>
-                <a href="#" stop-click ng-click="filterType(constants.cipherType.login)">
-                    <i class="fa fa-check fa-fw" ng-if="constants.cipherType.login === typeFilter"></i>
-                    <i class="fa fa-globe fa-fw" ng-if="constants.cipherType.login !== typeFilter"></i> Login
-                </a>
-            </li>
-            <li>
-                <a href="#" stop-click ng-click="filterType(constants.cipherType.card)">
-                    <i class="fa fa-check fa-fw" ng-if="constants.cipherType.card === typeFilter"></i>
-                    <i class="fa fa-credit-card fa-fw" ng-if="constants.cipherType.card !== typeFilter"></i> Card
-                </a>
-            </li>
-            <li>
-                <a href="#" stop-click ng-click="filterType(constants.cipherType.identity)">
-                    <i class="fa fa-check fa-fw" ng-if="constants.cipherType.identity === typeFilter"></i>
-                    <i class="fa fa-id-card-o fa-fw" ng-if="constants.cipherType.identity !== typeFilter"></i> Identity
-                </a>
-            </li>
-            <li>
-                <a href="#" stop-click ng-click="filterType(constants.cipherType.secureNote)">
-                    <i class="fa fa-check fa-fw" ng-if="constants.cipherType.secureNote === typeFilter"></i>
-                    <i class="fa fa-sticky-note-o fa-fw" ng-if="constants.cipherType.secureNote !== typeFilter"></i> Secure Note
-                </a>
-            </li>
-        </ul>
+        <div class="control-sidebar-section">
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="#" stop-click ng-click="filterType(constants.cipherType.login)">
+                        <i class="fa fa-check fa-fw" ng-if="constants.cipherType.login === typeFilter"></i>
+                        <i class="fa fa-globe fa-fw" ng-if="constants.cipherType.login !== typeFilter"></i> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="#" stop-click ng-click="filterType(constants.cipherType.card)">
+                        <i class="fa fa-check fa-fw" ng-if="constants.cipherType.card === typeFilter"></i>
+                        <i class="fa fa-credit-card fa-fw" ng-if="constants.cipherType.card !== typeFilter"></i> Card
+                    </a>
+                </li>
+                <li>
+                    <a href="#" stop-click ng-click="filterType(constants.cipherType.identity)">
+                        <i class="fa fa-check fa-fw" ng-if="constants.cipherType.identity === typeFilter"></i>
+                        <i class="fa fa-id-card-o fa-fw" ng-if="constants.cipherType.identity !== typeFilter"></i> Identity
+                    </a>
+                </li>
+                <li>
+                    <a href="#" stop-click ng-click="filterType(constants.cipherType.secureNote)">
+                        <i class="fa fa-check fa-fw" ng-if="constants.cipherType.secureNote === typeFilter"></i>
+                        <i class="fa fa-sticky-note-o fa-fw" ng-if="constants.cipherType.secureNote !== typeFilter"></i> Secure Note
+                    </a>
+                </li>
+            </ul>
+        </div>
         <h3 class="control-sidebar-heading">
             <i class="fa fa-folder fa-fw"></i> Folders
         </h3>
         <div ng-show="loading && !vaultFolders.length">
             <p>Loading...</p>
         </div>
-        <ul class="control-sidebar-menu" ng-show="!loading && vaultFolders.length">
-            <li ng-repeat="folder in vaultFolders track by folder.id">
-                <a href="#" stop-click ng-click="filterFolder(folder)">
-                    <i class="fa fa-check fa-fw" ng-if="folder.id === folderIdFilter"></i>
-                    <i class="fa fa-caret-right fa-fw" ng-if="folder.id !== folderIdFilter"></i>
-                    {{folder.name}}
-                </a>
-            </li>
-        </ul>
+        <div class="control-sidebar-section">
+            <ul class="control-sidebar-menu" ng-show="!loading && vaultFolders.length">
+                <li ng-repeat="folder in vaultFolders track by folder.id">
+                    <a href="#" stop-click ng-click="filterFolder(folder)">
+                        <i class="fa fa-check fa-fw" ng-if="folder.id === folderIdFilter"></i>
+                        <i class="fa fa-caret-right fa-fw" ng-if="folder.id !== folderIdFilter"></i>
+                        {{folder.name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </aside>
