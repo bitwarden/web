@@ -197,13 +197,12 @@ angular
                 else if (hostnameUri.indexOf('iosapp://') === 0) {
                     cipher.icon = 'fa-apple';
                 }
-                else if (hostnameUri.indexOf('://') === -1 && hostnameUri.indexOf('http://') !== 0 &&
-                    hostnameUri.indexOf('https://') !== 0) {
+                else if (hostnameUri.indexOf('://') === -1 && hostnameUri.indexOf('.') > -1) {
                     hostnameUri = "http://" + hostnameUri;
                     isWebsite = true;
                 }
                 else {
-                    isWebsite = hostnameUri.indexOf('http') === 0 && hostnameUri.indexOf('.') > 0;
+                    isWebsite = hostnameUri.indexOf('http') === 0 && hostnameUri.indexOf('.') > -1;
                 }
 
                 if (setImage && isWebsite) {
