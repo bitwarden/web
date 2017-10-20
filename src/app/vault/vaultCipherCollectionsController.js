@@ -11,6 +11,7 @@
         $scope.selectedCollections = {};
         $scope.collections = [];
 
+        var cipherAndCols = null;
         $uibModalInstance.opened.then(function () {
             apiService.ciphers.getDetails({ id: cipherId }).$promise.then(function (cipher) {
                 $scope.loadingCipher = false;
@@ -35,34 +36,40 @@
                 }
 
                 return null;
-            }).then(function (cipherAndCols) {
-                if (!cipherAndCols) {
+            }).then(function (result) {
+                if (!result) {
                     $scope.loadingCollections = false;
+                    return false;
+                }
+
+                cipherAndCols = result;
+                return apiService.collections.listMe({ writeOnly: true }).$promise;
+            }).then(function (response) {
+                if (response === false) {
                     return;
                 }
 
-                apiService.collections.listMe({ writeOnly: true }, function (response) {
-                    var collections = [];
-                    var selectedCollections = {};
+                var collections = [];
+                var selectedCollections = {};
+                var writeableCollections = response.Data;
 
-                    for (var i = 0; i < response.Data.length; i++) {
-                        // clean out selectCollections that aren't from this organization or read only
-                        if (response.Data[i].Id in cipherAndCols.cipherCollections &&
-                            response.Data[i].OrganizationId === cipherAndCols.cipher.OrganizationId) {
-                            selectedCollections[response.Data[i].Id] = true;
-                        }
-                        else {
-                            continue;
-                        }
-
-                        var decCollection = cipherService.decryptCollection(response.Data[i]);
-                        collections.push(decCollection);
+                for (var i = 0; i < writeableCollections.length; i++) {
+                    // clean out selectCollections that aren't from this organization
+                    if (writeableCollections[i].OrganizationId !== cipherAndCols.cipher.OrganizationId) {
+                        continue;
                     }
 
-                    $scope.loadingCollections = false;
-                    $scope.collections = collections;
-                    $scope.selectedCollections = selectedCollections;
-                });
+                    if (writeableCollections[i].Id in cipherAndCols.cipherCollections) {
+                        selectedCollections[writeableCollections[i].Id] = true;
+                    }
+
+                    var decCollection = cipherService.decryptCollection(writeableCollections[i]);
+                    collections.push(decCollection);
+                }
+
+                $scope.loadingCollections = false;
+                $scope.collections = collections;
+                $scope.selectedCollections = selectedCollections;
             });
         });
 
