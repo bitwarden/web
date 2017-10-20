@@ -49,7 +49,12 @@ angular
                 return token;
             }
 
-            refreshPromise = authService.refreshAccessToken().then(function (newToken) {
+            var p = authService.refreshAccessToken();
+            if (!p) {
+                return;
+            }
+
+            refreshPromise = p.then(function (newToken) {
                 refreshPromise = null;
                 return newToken || token;
             });
