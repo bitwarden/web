@@ -32,38 +32,57 @@
                 try {
                     var exportCiphers = [];
                     for (i = 0; i < decCiphers.length; i++) {
-                        // only export logins for now
-                        if (decCiphers[i].type !== constants.cipherType.login) {
+                        // only export logins and secure notes
+                        if (decCiphers[i].type !== constants.cipherType.login &&
+                            decCiphers[i].type !== constants.cipherType.secureNote) {
                             continue;
                         }
 
-                        var login = {
-                            name: decCiphers[i].name,
-                            uri: decCiphers[i].login.uri,
-                            username: decCiphers[i].login.username,
-                            password: decCiphers[i].login.password,
-                            notes: decCiphers[i].notes,
+                        var cipher = {
                             folder: decCiphers[i].folderId && (decCiphers[i].folderId in foldersDict) ?
                                 foldersDict[decCiphers[i].folderId].name : null,
                             favorite: decCiphers[i].favorite ? 1 : null,
-                            totp: decCiphers[i].login.totp,
-                            fields: null
+                            type: null,
+                            name: decCiphers[i].name,
+                            notes: decCiphers[i].notes,
+                            fields: null,
+                            // Login props
+                            login_uri: null,
+                            login_username: null,
+                            login_password: null,
+                            login_totp: null
                         };
 
                         if (decCiphers[i].fields) {
                             for (var j = 0; j < decCiphers[i].fields.length; j++) {
-                                if (!login.fields) {
-                                    login.fields = '';
+                                if (!cipher.fields) {
+                                    cipher.fields = '';
                                 }
                                 else {
-                                    login.fields += '\n';
+                                    cipher.fields += '\n';
                                 }
 
-                                login.fields += ((decCiphers[i].fields[j].name || '') + ': ' + decCiphers[i].fields[j].value);
+                                cipher.fields += ((decCiphers[i].fields[j].name || '') + ': ' + decCiphers[i].fields[j].value);
                             }
                         }
 
-                        exportCiphers.push(login);
+                        switch (decCiphers[i].type) {
+                            case constants.cipherType.login:
+                                cipher.type = 'login';
+                                cipher.login_uri = decCiphers[i].login.uri;
+                                cipher.login_username = decCiphers[i].login.username;
+                                cipher.login_password = decCiphers[i].login.password;
+                                cipher.login_totp = decCiphers[i].login.totp;
+                                break;
+                            case constants.cipherType.secureNote:
+                                cipher.type = 'note';
+                                break;
+                            default:
+                                continue;
+                                break;
+                        }
+
+                        exportCiphers.push(cipher);
                     }
 
                     var csvString = Papa.unparse(exportCiphers);

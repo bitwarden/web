@@ -167,7 +167,7 @@
             'url', 'hyper link', 'hyperlink', 'link',
             'host', 'hostname', 'host name', 'server', 'address',
             'hyper ref', 'href', 'web', 'website', 'web site', 'site',
-            'web-site',
+            'web-site', 'uri',
 
             // Non-English names
             'ort', 'adresse'
@@ -270,13 +270,7 @@
                             favorite: value.favorite && value.favorite !== '' && value.favorite !== '0' ? true : false,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
-                            type: constants.cipherType.login,
-                            login: {
-                                totp: value.totp && value.totp !== '' ? value.totp : null,
-                                uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
-                                username: value.username && value.username !== '' ? value.username : null,
-                                password: value.password && value.password !== '' ? value.password : null
-                            }
+                            type: constants.cipherType.login
                         };
 
                         if (value.fields && value.fields !== '') {
@@ -307,6 +301,31 @@
 
                                 cipher.fields.push(field);
                             }
+                        }
+
+                        switch (value.type) {
+                            case 'login': case null: case undefined:
+                                cipher.type = constants.cipherType.login;
+
+                                var totp = value.login_totp || value.totp
+                                var uri = value.login_uri || value.uri;
+                                var username = value.login_username || value.username;
+                                var password = value.login_password || value.password;
+                                cipher.login = {
+                                    totp: totp && totp !== '' ? totp : null,
+                                    uri: uri && uri !== '' ? trimUri(uri) : null,
+                                    username: username && username !== '' ? username : null,
+                                    password: password && password !== '' ? password : null
+                                };
+                                break;
+                            case 'note':
+                                cipher.type = constants.cipherType.secureNote;
+                                cipher.secureNote = {
+                                    type: 0 // generic note
+                                };
+                                break;
+                            default:
+                                break;
                         }
 
                         ciphers.push(cipher);
@@ -378,13 +397,7 @@
                             favorite: false,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.name && value.name !== '' ? value.name : '--',
-                            type: constants.cipherType.login,
-                            login: {
-                                totp: value.totp && value.totp !== '' ? value.totp : null,
-                                uri: value.uri && value.uri !== '' ? trimUri(value.uri) : null,
-                                username: value.username && value.username !== '' ? value.username : null,
-                                password: value.password && value.password !== '' ? value.password : null
-                            }
+                            type: constants.cipherType.login
                         };
 
                         if (value.fields && value.fields !== '') {
@@ -415,6 +428,31 @@
 
                                 cipher.fields.push(field);
                             }
+                        }
+
+                        switch (value.type) {
+                            case 'login': case null: case undefined:
+                                cipher.type = constants.cipherType.login;
+
+                                var totp = value.login_totp || value.totp
+                                var uri = value.login_uri || value.uri;
+                                var username = value.login_username || value.username;
+                                var password = value.login_password || value.password;
+                                cipher.login = {
+                                    totp: totp && totp !== '' ? totp : null,
+                                    uri: uri && uri !== '' ? trimUri(uri) : null,
+                                    username: username && username !== '' ? username : null,
+                                    password: password && password !== '' ? password : null
+                                };
+                                break;
+                            case 'note':
+                                cipher.type = constants.cipherType.secureNote;
+                                cipher.secureNote = {
+                                    type: 0 // generic note
+                                };
+                                break;
+                            default:
+                                break;
                         }
 
                         ciphers.push(cipher);
