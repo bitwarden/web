@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('cipherService', function (cryptoService, apiService, $q, $window, constants) {
+    .factory('cipherService', function (cryptoService, apiService, $q, $window, constants, appSettings) {
         var _service = {};
 
         _service.decryptCiphers = function (encryptedCiphers) {
@@ -187,7 +187,7 @@ angular
         };
 
         function setLoginIcon(cipher, uri, setImage) {
-            if (uri) {
+            if (!appSettings.selfHosted && uri) {
                 var hostnameUri = uri,
                     isWebsite = false;
 
