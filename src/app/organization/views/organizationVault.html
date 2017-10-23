@@ -77,6 +77,8 @@
                             </td>
                             <td>
                                 <a href="#" stop-click ng-click="editCipher(cipher)">{{cipher.name}}</a>
+                                <i class="fa fa-paperclip text-muted" title="Attachments" ng-if="cipher.hasAttachments"
+                                   stop-prop></i>
                                 <div class="text-sm text-muted">{{cipher.subTitle}}</div>
                             </td>
                         </tr>
