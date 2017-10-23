@@ -704,33 +704,50 @@
                                 favorite: false,
                                 notes: '',
                                 name: card.attr('title'),
-                                type: constants.cipherType.login,
-                                login: {}
+                                fields: null
                             };
 
-                            var fields = card.find('> field');
-                            for (j = 0; j < fields.length; j++) {
-                                var field = $(fields[j]);
+                            if (card.attr('type') === 'note') {
+                                cipher.type = constants.cipherType.secureNote;
+                                cipher.secureNote = {
+                                    type: 0 // generic note
+                                };
+                            }
+                            else {
+                                cipher.type = constants.cipherType.login;
+                                cipher.login = {};
 
-                                var text = field.text();
-                                var type = field.attr('type');
-                                var name = field.attr('name');
+                                var fields = card.find('> field');
+                                for (j = 0; j < fields.length; j++) {
+                                    var field = $(fields[j]);
 
-                                if (text && text !== '') {
-                                    if (type === 'login') {
-                                        cipher.login.username = text;
-                                    }
-                                    else if (type === 'password') {
-                                        cipher.login.password = text;
-                                    }
-                                    else if (type === 'notes') {
-                                        login.notes += (text + '\n');
-                                    }
-                                    else if (type === 'weblogin' || type === 'website') {
-                                        cipher.login.uri = trimUri(text);
-                                    }
-                                    else {
-                                        login.notes += (name + ': ' + text + '\n');
+                                    var text = field.text();
+                                    var type = field.attr('type');
+                                    var name = field.attr('name');
+
+                                    if (text && text !== '') {
+                                        if (type === 'login') {
+                                            cipher.login.username = text;
+                                        }
+                                        else if (type === 'password') {
+                                            cipher.login.password = text;
+                                        }
+                                        else if (type === 'notes') {
+                                            cipher.notes += (text + '\n');
+                                        }
+                                        else if (type === 'weblogin' || type === 'website') {
+                                            cipher.login.uri = trimUri(text);
+                                        }
+                                        else {
+                                            if (!cipher.fields) {
+                                                cipher.fields = [];
+                                            }
+                                            cipher.fields.push({
+                                                name: name,
+                                                value: text,
+                                                type: constants.fieldType.text
+                                            });
+                                        }
                                     }
                                 }
                             }
@@ -820,7 +837,8 @@
                                 uri: null,
                                 username: value[2] && value[2] !== '' ? value[2] : null,
                                 password: value[3] && value[3] !== '' ? value[3] : null
-                            }
+                            },
+                            fields: null
                         };
 
                         if (customFieldHeaders.length) {
@@ -835,11 +853,15 @@
                                     cipher.login.uri = trimUri(cf);
                                 }
                                 else {
-                                    if (cipher.notes === null) {
-                                        cipher.notes = '';
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
                                     }
 
-                                    cipher.notes += cfHeader + ': ' + cf + '\n';
+                                    cipher.fields.push({
+                                        name: cfHeader,
+                                        value: cf,
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
                         }
@@ -917,7 +939,8 @@
                                 uri: null,
                                 username: null,
                                 password: null
-                            }
+                            },
+                            fields: null
                         };
 
                         var entryStrings = entry.find('> String');
@@ -932,7 +955,7 @@
 
                             switch (key) {
                                 case 'URL':
-                                    cipher.login.uri = trimUri(value);
+                                    cipher.login.uri = fixUri(value);
                                     break;
                                 case 'UserName':
                                     cipher.login.username = value;
@@ -947,9 +970,16 @@
                                     cipher.notes = cipher.notes === null ? value + '\n' : cipher.notes + value + '\n';
                                     break;
                                 default:
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
+                                    }
+
                                     // other custom fields
-                                    cipher.notes = cipher.notes === null ? key + ': ' + value + '\n'
-                                        : cipher.notes + key + ': ' + value + '\n';
+                                    cipher.fields.push({
+                                        name: key,
+                                        value: value,
+                                        type: constants.fieldType.text
+                                    });
                                     break;
                             }
                         }
@@ -1060,25 +1090,44 @@
                         continue;
                     }
 
-                    if (!cipher.login.username && field[designationKey] && field[designationKey] === 'username') {
-                        cipher.login.username = field[valueKey];
+                    var fieldValue = field[valueKey].toString();
+
+                    if (cipher.type == constants.cipherType.login && !cipher.login.username &&
+                        field[designationKey] && field[designationKey] === 'username') {
+                        cipher.login.username = fieldValue;
                     }
-                    else if (!cipher.login.password && field[designationKey] && field[designationKey] === 'password') {
-                        cipher.login.password = field[valueKey];
+                    else if (cipher.type == constants.cipherType.login && !cipher.login.password &&
+                        field[designationKey] && field[designationKey] === 'password') {
+                        cipher.login.password = fieldValue;
                     }
-                    else if (!cipher.login.totp && field[designationKey] && field[designationKey].startsWith("TOTP_")) {
-                        cipher.login.totp = field[valueKey];
+                    else if (cipher.type == constants.cipherType.login && !cipher.login.totp &&
+                        field[designationKey] && field[designationKey].startsWith("TOTP_")) {
+                        cipher.login.totp = fieldValue;
                     }
-                    else if (field[valueKey]) {
-                        if (cipher.notes === null) {
-                            cipher.notes = '';
+                    else if (fieldValue) {
+                        var fieldName = (field[nameKey] || 'no_name');
+                        if (fieldValue.indexOf('\\n') > -1) {
+                            if (cipher.notes === null) {
+                                cipher.notes = '';
+                            }
+                            else {
+                                cipher.notes += '\n';
+                            }
+
+                            cipher.notes += (fieldName + ': ' +
+                                fieldValue.split('\\r\\n').join('\n').split('\\n').join('\n'));
                         }
                         else {
-                            cipher.notes += '\n';
-                        }
+                            if (!cipher.fields) {
+                                cipher.fields = [];
+                            }
 
-                        cipher.notes += ((field[nameKey] || 'no_name') + ': ' +
-                            field[valueKey].toString().split('\\r\\n').join('\n').split('\\n').join('\n'));
+                            cipher.fields.push({
+                                name: fieldName,
+                                value: fieldValue,
+                                type: constants.fieldType.text
+                            });
+                        }
                     }
                 }
             }
@@ -1100,13 +1149,24 @@
                         favorite: item.openContents && item.openContents.faveIndex ? true : false,
                         notes: null,
                         name: item.title && item.title !== '' ? item.title : '--',
-                        login: {
+                        fields: null
+                    };
+
+                    if (item.typeName === 'securenotes.SecureNote') {
+                        cipher.type = constants.cipherType.secureNote;
+                        cipher.secureNote = {
+                            type: 0 // generic note
+                        };
+                    }
+                    else {
+                        cipher.type = constants.cipherType.login;
+                        cipher.login = {
                             uri: item.location && item.location !== '' ? fixUri(item.location) : null,
                             username: null,
                             password: null,
                             totp: null
-                        }
-                    };
+                        };
+                    }
 
                     if (item.secureContents) {
                         if (item.secureContents.notesPlain && item.secureContents.notesPlain !== '') {
@@ -1219,29 +1279,30 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
-                        loginRelationships = [];
+                        ciphers = [];
 
                     angular.forEach(results.data, function (value, key) {
-                        logins.push({
+                        ciphers.push({
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
-                            username: value.username && value.username !== '' ? value.username : null,
-                            password: value.password && value.password !== '' ? value.password : null,
                             notes: null,
                             name: value.name && value.name !== '' ? value.name : '--',
+                            login: {
+                                uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                                username: value.username && value.username !== '' ? value.username : null,
+                                password: value.password && value.password !== '' ? value.password : null
+                            }
                         });
                     });
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
 
         function importFirefoxPasswordExporterCsvXml(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [];
+                ciphers = [];
 
             function getNameFromHost(host) {
                 var name = '--';
@@ -1275,50 +1336,28 @@
                         user = entry.attr('user'),
                         password = entry.attr('password');
 
-                    logins.push({
+                    ciphers.push({
+                        type: constants.cipherType.login,
                         favorite: false,
-                        uri: host && host !== '' ? trimUri(host) : null,
-                        username: user && user !== '' ? user : null,
-                        password: password && password !== '' ? password : null,
                         notes: null,
                         name: getNameFromHost(host),
+                        login: {
+                            uri: host && host !== '' ? trimUri(host) : null,
+                            username: user && user !== '' ? user : null,
+                            password: password && password !== '' ? password : null,
+                        }
                     });
                 }
 
-                success(folders, logins, loginRelationships);
+                success(folders, ciphers, []);
             }
 
             if (file.type && file.type === 'text/xml') {
                 getXmlFileContents(file, parseXml, error);
             }
             else {
-                // currently bugged due to the comment
-                // ref: https://github.com/mholt/PapaParse/issues/351
-
                 error('Only .xml exports are supported.');
                 return;
-
-                //Papa.parse(file, {
-                //    comments: '#',
-                //    header: true,
-                //    encoding: 'UTF-8',
-                //    complete: function (results) {
-                //        parseCsvErrors(results);
-
-                //        angular.forEach(results.data, function (value, key) {
-                //            logins.push({
-                //                favorite: false,
-                //                uri: value.hostname && value.hostname !== '' ? trimUri(value.hostname) : null,
-                //                username: value.username && value.username !== '' ? value.username : null,
-                //                password: value.password && value.password !== '' ? value.password : null,
-                //                notes: null,
-                //                name: getNameFromHost(value.hostname),
-                //            });
-                //        });
-
-                //        success(folders, logins, loginRelationships);
-                //    }
-                //});
             }
         }
 
@@ -1329,23 +1368,25 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
-                        loginRelationships = [];
+                        ciphers = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (value.length === 5) {
-                            logins.push({
+                            ciphers.push({
+                                type: constants.cipherType.login,
                                 favorite: false,
-                                uri: value[3] && value[3] !== '' ? trimUri(value[3]) : null,
-                                username: value[1] && value[1] !== '' ? value[1] : null,
-                                password: value[2] && value[2] !== '' ? value[2] : null,
                                 notes: value[4] && value[4] !== '' ? value[4] : null,
                                 name: value[0] && value[0] !== '' ? value[0] : '--',
+                                login: {
+                                    uri: value[3] && value[3] !== '' ? trimUri(value[3]) : null,
+                                    username: value[1] && value[1] !== '' ? value[1] : null,
+                                    password: value[2] && value[2] !== '' ? value[2] : null
+                                }
                             });
                         }
                     });
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
@@ -1357,13 +1398,13 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
+                        ciphers = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (value.length >= 6) {
                             var folderIndex = folders.length,
-                                loginIndex = logins.length,
+                                cipherIndex = ciphers.length,
                                 hasFolder = value[0] && value[0] !== '',
                                 addFolder = hasFolder,
                                 i = 0;
@@ -1378,33 +1419,33 @@
                                 }
                             }
 
-                            var login = {
+                            var cipher = {
+                                type: constants.cipherType.login,
                                 favorite: false,
-                                uri: value[4] && value[4] !== '' ? trimUri(value[4]) : null,
-                                username: value[2] && value[2] !== '' ? value[2] : null,
-                                password: value[3] && value[3] !== '' ? value[3] : null,
                                 notes: value[5] && value[5] !== '' ? value[5] : null,
                                 name: value[1] && value[1] !== '' ? value[1] : '--',
+                                login: {
+                                    uri: value[4] && value[4] !== '' ? trimUri(value[4]) : null,
+                                    username: value[2] && value[2] !== '' ? value[2] : null,
+                                    password: value[3] && value[3] !== '' ? value[3] : null
+                                },
+                                fields: null
                             };
 
                             if (value.length > 6) {
-                                // we have some custom fields. add them to notes.
-
-                                if (login.notes === null) {
-                                    login.notes = '';
-                                }
-                                else {
-                                    login.notes += '\n';
-                                }
+                                // we have some custom fields.
+                                cipher.fields = [];
 
                                 for (i = 6; i < value.length; i = i + 2) {
-                                    var cfName = value[i];
-                                    var cfValue = value[i + 1];
-                                    login.notes += (cfName + ': ' + cfValue + '\n');
+                                    cipher.fields.push({
+                                        name: value[i],
+                                        value: value[i + 1],
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
 
-                            logins.push(login);
+                            ciphers.push(cipher);
 
                             if (addFolder) {
                                 folders.push({
@@ -1414,7 +1455,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: loginIndex,
+                                    key: cipherIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1422,14 +1463,14 @@
                         }
                     });
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
             });
         }
 
         function importPasswordDragonXml(file, success, error) {
             var folders = [],
-                logins = [],
+                ciphers = [],
                 folderRelationships = [],
                 foldersIndex = [],
                 j = 0;
@@ -1461,7 +1502,7 @@
                                 categoryText = category ? category.text() : null;
 
                             var folderIndex = folders.length,
-                                loginIndex = logins.length,
+                                cipherIndex = ciphers.length,
                                 hasFolder = categoryText && categoryText !== '' && categoryText !== 'Unfiled',
                                 addFolder = hasFolder;
 
@@ -1475,13 +1516,17 @@
                                 }
                             }
 
-                            var login = {
+                            var cipher = {
+                                type: constants.cipherType.login,
                                 favorite: false,
-                                uri: url && url.text() !== '' ? trimUri(url.text()) : null,
-                                username: userId && userId.text() !== '' ? userId.text() : null,
-                                password: password && password.text() !== '' ? password.text() : null,
                                 notes: notes && notes.text() !== '' ? notes.text() : null,
                                 name: accountName && accountName.text() !== '' ? accountName.text() : '--',
+                                login: {
+                                    uri: url && url.text() !== '' ? trimUri(url.text()) : null,
+                                    username: userId && userId.text() !== '' ? userId.text() : null,
+                                    password: password && password.text() !== '' ? password.text() : null
+                                },
+                                fields: null
                             };
 
                             var attributesSelector = '';
@@ -1494,7 +1539,7 @@
 
                             var attributes = record.find(attributesSelector);
                             if (attributes.length) {
-                                // we have some attributes. add them to notes.
+                                // we have some attributes. add them as fields
                                 for (j = 0; j < attributes.length; j++) {
                                     var attr = $(attributes[j]),
                                         attrName = attr.prop('tagName'),
@@ -1504,18 +1549,19 @@
                                         continue;
                                     }
 
-                                    if (login.notes === null) {
-                                        login.notes = '';
-                                    }
-                                    else {
-                                        login.notes += '\n';
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
                                     }
 
-                                    login.notes += (attrName + ': ' + attrValue);
+                                    cipher.fields.push({
+                                        name: attrName,
+                                        value: attrValue,
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
 
-                            logins.push(login);
+                            ciphers.push(cipher);
 
                             if (addFolder) {
                                 folders.push({
@@ -1525,7 +1571,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: loginIndex,
+                                    key: cipherIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1533,7 +1579,7 @@
                         }
                     }
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
                 else {
                     error();
@@ -1548,8 +1594,7 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
-                        loginRelationships = [];
+                        ciphers = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var row = results.data[j];
@@ -1561,14 +1606,18 @@
                         }
 
                         var note = row[row.length - 1];
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             name: row[0],
                             favorite: false,
-                            uri: null,
-                            password: null,
-                            username: null,
                             notes: note && note !== '' ? note : null,
-                            totp: null
+                            fields: null,
+                            login: {
+                                uri: null,
+                                password: null,
+                                username: null,
+                                totp: null
+                            }
                         };
 
                         if (row.length > 2 && (row.length % 2) === 0) {
@@ -1581,37 +1630,44 @@
                                 var field = row[i + 1];
                                 var fieldLower = field.toLowerCase();
 
-                                if (fieldLower === 'url' && !login.uri) {
-                                    login.uri = trimUri(value);
+                                if (fieldLower === 'url' && !cipher.login.uri) {
+                                    cipher.login.uri = trimUri(value);
                                 }
-                                else if ((fieldLower === 'username' || fieldLower === 'email') && !login.username) {
-                                    login.username = value;
+                                else if ((fieldLower === 'username' || fieldLower === 'email') && !cipher.login.username) {
+                                    cipher.login.username = value;
                                 }
-                                else if (fieldLower === 'password' && !login.password) {
-                                    login.password = value;
+                                else if (fieldLower === 'password' && !cipher.login.password) {
+                                    cipher.login.password = value;
                                 }
-                                else if (fieldLower === 'totp' && !login.totp) {
-                                    login.totp = value;
+                                else if (fieldLower === 'totp' && !cipher.login.totp) {
+                                    cipher.login.totp = value;
                                 }
                                 else {
-                                    // other custom fields
-                                    login.notes = login.notes === null ? field + ': ' + value
-                                        : login.notes + '\n' + field + ': ' + value;
+                                    // other fields
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
+                                    }
+
+                                    cipher.fields.push({
+                                        name: field,
+                                        value: value,
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
 
         function importPasswordSafeXml(file, success, error) {
             var folders = [],
-                logins = [],
+                ciphers = [],
                 folderRelationships = [],
                 foldersIndex = [],
                 j = 0;
@@ -1649,7 +1705,7 @@
                                 groupText = group ? group.text().split('.').join(' > ') : null;
 
                             var folderIndex = folders.length,
-                                loginIndex = logins.length,
+                                cipherIndex = ciphers.length,
                                 hasFolder = groupText && groupText !== '',
                                 addFolder = hasFolder;
 
@@ -1663,24 +1719,27 @@
                                 }
                             }
 
-                            var login = {
+                            var cipher = {
+                                type: constants.cipherType.login,
                                 favorite: false,
-                                uri: url && url.text() !== '' ? trimUri(url.text()) : null,
-                                username: username && username.text() !== '' ? username.text() : null,
-                                password: password && password.text() !== '' ? password.text() : null,
                                 notes: notes && notesText !== '' ? notesText : null,
                                 name: title && title.text() !== '' ? title.text() : '--',
+                                login: {
+                                    uri: url && url.text() !== '' ? trimUri(url.text()) : null,
+                                    username: username && username.text() !== '' ? username.text() : null,
+                                    password: password && password.text() !== '' ? password.text() : null
+                                }
                             };
 
-                            if (!login.username && emailText && emailText !== '') {
-                                login.username = emailText;
+                            if (!cipher.login.username && emailText && emailText !== '') {
+                                cipher.login.username = emailText;
                             }
                             else if (emailText && emailText !== '') {
-                                login.notes = login.notes === null ? 'Email: ' + emailText
-                                    : login.notes + '\n' + 'Email: ' + emailText;
+                                cipher.notes = cipher.notes === null ? 'Email: ' + emailText
+                                    : cipher.notes + '\n' + 'Email: ' + emailText;
                             }
 
-                            logins.push(login);
+                            ciphers.push(cipher);
 
                             if (addFolder) {
                                 folders.push({
@@ -1690,7 +1749,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: loginIndex,
+                                    key: cipherIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1698,7 +1757,7 @@
                         }
                     }
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
                 else {
                     error();
@@ -1713,8 +1772,7 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
-                        loginRelationships = [];
+                        ciphers = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var skip = false;
@@ -1723,69 +1781,72 @@
                             continue;
                         }
 
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             name: row[0] && row[0] !== '' ? row[0] : '--',
                             favorite: false,
-                            uri: null,
-                            password: null,
-                            username: null,
-                            notes: null
+                            notes: null,
+                            login: {
+                                uri: null,
+                                password: null,
+                                username: null
+                            }
                         };
 
                         if (row.length === 2) {
-                            login.uri = fixUri(row[1]);
+                            cipher.login.uri = fixUri(row[1]);
                         }
                         else if (row.length === 3) {
-                            login.uri = fixUri(row[1]);
-                            login.username = row[2];
+                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.username = row[2];
                         }
                         else if (row.length === 4) {
                             if (row[2] === '' && row[3] === '') {
-                                login.username = row[1];
-                                login.notes = row[2] + '\n' + row[3];
+                                cipher.login.username = row[1];
+                                cipher.notes = row[2] + '\n' + row[3];
                             }
                             else {
-                                login.username = row[2];
-                                login.notes = row[1] + '\n' + row[3];
+                                cipher.login.username = row[2];
+                                cipher.notes = row[1] + '\n' + row[3];
                             }
                         }
                         else if (row.length === 5) {
-                            login.uri = fixUri(row[1]);
-                            login.username = row[2];
-                            login.password = row[3];
-                            login.notes = row[4];
+                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.username = row[2];
+                            cipher.login.password = row[3];
+                            cipher.notes = row[4];
                         }
                         else if (row.length === 6) {
                             if (row[2] === '') {
-                                login.username = row[3];
-                                login.password = row[4];
-                                login.notes = row[5];
+                                cipher.login.username = row[3];
+                                cipher.login.password = row[4];
+                                cipher.notes = row[5];
                             }
                             else {
-                                login.username = row[2];
-                                login.password = row[3];
-                                login.notes = row[4] + '\n' + row[5];
+                                cipher.login.username = row[2];
+                                cipher.login.password = row[3];
+                                cipher.notes = row[4] + '\n' + row[5];
                             }
 
-                            login.uri = fixUri(row[1]);
+                            cipher.login.uri = fixUri(row[1]);
                         }
                         else if (row.length === 7) {
                             if (row[2] === '') {
-                                login.username = row[3];
-                                login.notes = row[4] + '\n' + row[6];
+                                cipher.login.username = row[3];
+                                cipher.notes = row[4] + '\n' + row[6];
                             }
                             else {
-                                login.username = row[2];
-                                login.notes = row[3] + '\n' + row[4] + '\n' + row[6];
+                                cipher.login.username = row[2];
+                                cipher.notes = row[3] + '\n' + row[4] + '\n' + row[6];
                             }
 
-                            login.uri = fixUri(row[1]);
-                            login.password = row[5];
+                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.password = row[5];
                         }
                         else {
-                            login.notes = '';
+                            cipher.notes = '';
                             for (var i = 1; i < row.length; i++) {
-                                login.notes = login.notes + row[i] + '\n';
+                                cipher.notes = cipher.notes + row[i] + '\n';
                                 if (row[i] === 'NO_TYPE') {
                                     skip = true;
                                     break;
@@ -1797,30 +1858,30 @@
                             continue;
                         }
 
-                        if (login.username === '') {
-                            login.username = null;
+                        if (cipher.login.username === '') {
+                            cipher.login.username = null;
                         }
-                        if (login.password === '') {
-                            login.password = null;
+                        if (cipher.login.password === '') {
+                            cipher.login.password = null;
                         }
-                        if (login.notes === '') {
-                            login.notes = null;
+                        if (cipher.notes === '') {
+                            cipher.notes = null;
                         }
-                        if (login.uri === '') {
-                            login.uri = null;
+                        if (cipher.login.uri === '') {
+                            cipher.login.uri = null;
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
 
         function importStickyPasswordXml(file, success, error) {
             var folders = [],
-                logins = [],
+                ciphers = [],
                 folderRelationships = [],
                 foldersIndex = [],
                 j = 0;
@@ -1881,7 +1942,7 @@
                             }
 
                             var folderIndex = folders.length,
-                                loginIndex = logins.length,
+                                cipherIndex = ciphers.length,
                                 hasFolder = groupText && groupText !== '',
                                 addFolder = hasFolder;
 
@@ -1895,16 +1956,19 @@
                                 }
                             }
 
-                            var login = {
+                            var cipher = {
+                                type: constants.cipherType.login,
                                 favorite: false,
-                                uri: linkText && linkText !== '' ? trimUri(linkText) : null,
-                                username: usernameText && usernameText !== '' ? usernameText : null,
-                                password: passwordText && passwordText !== '' ? passwordText : null,
                                 notes: notesText && notesText !== '' ? notesText : null,
                                 name: titleText && titleText !== '' ? titleText : '--',
+                                login: {
+                                    uri: linkText && linkText !== '' ? trimUri(linkText) : null,
+                                    username: usernameText && usernameText !== '' ? usernameText : null,
+                                    password: passwordText && passwordText !== '' ? passwordText : null
+                                }
                             };
 
-                            logins.push(login);
+                            ciphers.push(cipher);
 
                             if (addFolder) {
                                 folders.push({
@@ -1914,7 +1978,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: loginIndex,
+                                    key: cipherIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -1922,7 +1986,7 @@
                         }
                     }
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
                 else {
                     error();
@@ -1937,13 +2001,13 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
+                        ciphers = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         if (value.length >= 3) {
                             var folderIndex = folders.length,
-                                loginIndex = logins.length,
+                                cipherIndex = ciphers.length,
                                 hasFolder = value[0] && value[0] !== '' && value[0] !== 'Unassigned',
                                 addFolder = hasFolder,
                                 i = 0;
@@ -1958,42 +2022,45 @@
                                 }
                             }
 
-                            var login = {
+                            var cipher = {
+                                type: constants.cipherType.login,
                                 favorite: false,
-                                uri: null,
-                                username: null,
-                                password: null,
                                 notes: '',
-                                name: value[2] && value[2] !== '' ? value[2] : null
+                                name: value[2] && value[2] !== '' ? value[2] : null,
+                                login: {
+                                    uri: null,
+                                    username: null,
+                                    password: null
+                                }
                             };
 
                             if (value[1] === 'Web Logins') {
-                                login.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
-                                login.username = value[5] && value[5] !== '' ? value[5] : null;
-                                login.password = value[6] && value[6] !== '' ? value[6] : null;
-                                login.notes = value[3] && value[3] !== '' ? value[3].split('\\n').join('\n') : null;
+                                cipher.login.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
+                                cipher.login.username = value[5] && value[5] !== '' ? value[5] : null;
+                                cipher.login.password = value[6] && value[6] !== '' ? value[6] : null;
+                                cipher.notes = value[3] && value[3] !== '' ? value[3].split('\\n').join('\n') : null;
                             }
                             else if (value.length > 3) {
                                 for (var j = 3; j < value.length; j++) {
                                     if (value[j] && value[j] !== '') {
-                                        if (login.notes !== '') {
-                                            login.notes = login.notes + '\n';
+                                        if (cipher.notes !== '') {
+                                            cipher.notes = cipher.notes + '\n';
                                         }
 
-                                        login.notes = login.notes + value[j];
+                                        cipher.notes = cipher.notes + value[j];
                                     }
                                 }
                             }
 
                             if (value[1] && value[1] !== '' && value[1] !== 'Web Logins') {
-                                login.name = value[1] + ': ' + login.name;
+                                cipher.name = value[1] + ': ' + cipher.name;
                             }
 
-                            if (login.notes === '') {
-                                login.notes = null;
+                            if (cipher.notes === '') {
+                                cipher.notes = null;
                             }
 
-                            logins.push(login);
+                            ciphers.push(cipher);
 
                             if (addFolder) {
                                 folders.push({
@@ -2003,7 +2070,7 @@
 
                             if (hasFolder) {
                                 var relationship = {
-                                    key: loginIndex,
+                                    key: cipherIndex,
                                     value: folderIndex
                                 };
                                 folderRelationships.push(relationship);
@@ -2011,15 +2078,14 @@
                         }
                     });
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
             });
         }
 
         function importTrueKeyCsv(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [],
+                ciphers = [],
                 propsToIgnore = [
                     'kind',
                     'autologin',
@@ -2041,52 +2107,56 @@
                     parseCsvErrors(results);
 
                     angular.forEach(results.data, function (value, key) {
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: value.favorite && value.favorite.toLowerCase() === 'true' ? true : false,
-                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
-                            username: value.login && value.login !== '' ? value.login : null,
-                            password: value.password && value.password !== '' ? value.password : null,
                             notes: value.memo && value.memo !== '' ? value.memo : null,
-                            name: value.name && value.name !== '' ? value.name : '--'
+                            name: value.name && value.name !== '' ? value.name : '--',
+                            login: {
+                                uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                                username: value.login && value.login !== '' ? value.login : null,
+                                password: value.password && value.password !== '' ? value.password : null
+                            },
+                            fields: null
                         };
 
                         if (value.kind !== 'login') {
-                            login.name = value.title && value.title !== '' ? value.title : '--';
-                            login.notes = value.note && value.note !== '' ? value.note : null;
+                            cipher.name = value.title && value.title !== '' ? value.title : '--';
+                            cipher.notes = value.note && value.note !== '' ? value.note : null;
 
-                            if (!login.notes) {
-                                login.notes = value.document_content && value.document_content !== '' ?
+                            if (!cipher.notes) {
+                                cipher.notes = value.document_content && value.document_content !== '' ?
                                     value.document_content : null;
                             }
 
                             for (var property in value) {
                                 if (value.hasOwnProperty(property) && propsToIgnore.indexOf(property.toLowerCase()) < 0 &&
                                     value[property] && value[property] !== '') {
-                                    if (!login.notes) {
-                                        login.notes = '';
-                                    }
-                                    else {
-                                        login.notes += '\n';
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
                                     }
 
                                     // other custom fields
-                                    login.notes += (property + ': ' + value[property]);
+                                    cipher.fields.push({
+                                        name: property,
+                                        value: value[property],
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     });
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
 
         function importClipperzHtml(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [];
+                ciphers = [];
 
             getFileContents(file, parse, error);
 
@@ -2100,17 +2170,21 @@
                     for (var i = 0; i < entries.length; i++) {
                         var entry = entries[i];
 
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: null,
-                            username: null,
-                            password: null,
                             notes: '',
                             name: entry.label && entry.label !== '' ? entry.label.split(' ')[0] : '--',
+                            login: {
+                                uri: null,
+                                username: null,
+                                password: null
+                            },
+                            fields: null
                         };
 
                         if (entry.data && entry.data.notes && entry.data.notes !== '') {
-                            login.notes = entry.data.notes.split('\\n').join('\n');
+                            cipher.notes = entry.data.notes.split('\\n').join('\n');
                         }
 
                         if (entry.currentVersion && entry.currentVersion.fields) {
@@ -2121,29 +2195,33 @@
 
                                     switch (actionType) {
                                         case 'password':
-                                            login.password = field.value;
+                                            cipher.login.password = field.value;
                                             break;
                                         case 'email':
                                         case 'username':
                                         case 'user':
                                         case 'name':
-                                            login.username = field.value;
+                                            cipher.login.username = field.value;
                                             break;
                                         case 'url':
-                                            login.uri = trimUri(field.value);
+                                            cipher.login.uri = trimUri(field.value);
                                             break;
                                         default:
-                                            if (!login.username && isField(field.label, _usernameFieldNames)) {
-                                                login.username = field.value;
+                                            if (!cipher.login.username && isField(field.label, _usernameFieldNames)) {
+                                                cipher.login.username = field.value;
                                             }
-                                            else if (!login.password && isField(field.label, _passwordFieldNames)) {
-                                                login.password = field.value;
+                                            else if (!cipher.login.password && isField(field.label, _passwordFieldNames)) {
+                                                cipher.login.password = field.value;
                                             }
                                             else {
-                                                if (login.notes && login.notes !== '') {
-                                                    login.notes = login.notes + '\n';
+                                                if (!cipher.fields) {
+                                                    cipher.fields = [];
                                                 }
-                                                login.notes = login.notes + field.label + ': ' + field.value;
+                                                cipher.fields.push({
+                                                    name: field.label,
+                                                    value: field.value,
+                                                    type: constants.fieldType.text
+                                                });
                                             }
                                             break;
                                     }
@@ -2151,22 +2229,21 @@
                             }
                         }
 
-                        if (login.notes === '') {
-                            login.notes = null;
+                        if (cipher.notes === '') {
+                            cipher.notes = null;
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
                 }
 
-                success(folders, logins, loginRelationships);
+                success(folders, ciphers, []);
             }
         }
 
         function importAviraJson(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [],
+                ciphers = [],
                 i = 0;
 
             getFileContents(file, parseJson, error);
@@ -2177,41 +2254,43 @@
                     if (fileJson.accounts) {
                         for (i = 0; i < fileJson.accounts.length; i++) {
                             var account = fileJson.accounts[i];
-                            var login = {
+                            var cipher = {
+                                type: constants.cipherType.login,
                                 favorite: account.is_favorite && account.is_favorite === true,
-                                uri: account.domain && account.domain !== '' ? fixUri(account.domain) : null,
-                                username: account.username && account.username !== '' ? account.username : null,
-                                password: account.password && account.password !== '' ? account.password : null,
                                 notes: null,
                                 name: account.label && account.label !== '' ? account.label : account.domain,
+                                login: {
+                                    uri: account.domain && account.domain !== '' ? fixUri(account.domain) : null,
+                                    username: account.username && account.username !== '' ? account.username : null,
+                                    password: account.password && account.password !== '' ? account.password : null
+                                }
                             };
 
                             if (account.email && account.email !== '') {
-                                if (!login.username || login.username === '') {
-                                    login.username = account.email;
+                                if (!cipher.login.username || cipher.login.username === '') {
+                                    cipher.login.username = account.email;
                                 }
                                 else {
-                                    login.notes = account.email;
+                                    cipher.notes = account.email;
                                 }
                             }
 
-                            if (!login.name || login.name === '') {
-                                login.name = '--';
+                            if (!cipher.name || cipher.name === '') {
+                                cipher.name = '--';
                             }
 
-                            logins.push(login);
+                            ciphers.push(cipher);
                         }
                     }
                 }
 
-                success(folders, logins, loginRelationships);
+                success(folders, ciphers, []);
             }
         }
 
         function importRoboFormHtml(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [];
+                ciphers = [];
 
             getFileContents(file, parse, error);
 
@@ -2221,18 +2300,22 @@
                 if (outterTables.length) {
                     for (var i = 0; i < outterTables.length; i++) {
                         var outterTable = $(outterTables[i]);
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: null,
-                            username: null,
-                            password: null,
                             notes: '',
-                            name: outterTable.find('span.caption').text()
+                            name: outterTable.find('span.caption').text(),
+                            login: {
+                                uri: null,
+                                username: null,
+                                password: null
+                            },
+                            fields: null
                         };
 
                         var url = outterTable.find('.subcaption').text();
                         if (url && url !== '') {
-                            login.uri = fixUri(url);
+                            cipher.login.uri = fixUri(url);
                         }
 
                         var fields = [];
@@ -2249,34 +2332,38 @@
                                 var field = fields[j];
                                 var fieldValue = fields[j + 1];
 
-                                if (!login.password && isField(field.replace(':', ''), _passwordFieldNames)) {
-                                    login.password = fieldValue;
+                                if (!cipher.login.password && isField(field.replace(':', ''), _passwordFieldNames)) {
+                                    cipher.login.password = fieldValue;
                                 }
-                                else if (!login.username && isField(field.replace(':', ''), _usernameFieldNames)) {
-                                    login.username = fieldValue;
+                                else if (!cipher.login.username && isField(field.replace(':', ''), _usernameFieldNames)) {
+                                    cipher.login.username = fieldValue;
                                 }
                                 else {
-                                    if (login.notes !== '') {
-                                        login.notes = login.notes + '\n';
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
                                     }
 
-                                    login.notes = login.notes + field + ' ' + fieldValue;
+                                    cipher.fields.push({
+                                        name: field,
+                                        value: fieldValue,
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
 
-                        if (!login.notes || login.notes === '') {
-                            login.notes = null;
+                        if (!cipher.notes || cipher.notes === '') {
+                            cipher.notes = null;
                         }
 
-                        if (!login.name || login.name === '') {
-                            login.name = '--';
+                        if (!cipher.name || cipher.name === '') {
+                            cipher.name = '--';
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
                 }
 
-                success(folders, logins, loginRelationships);
+                success(folders, ciphers, []);
             }
         }
 
@@ -2288,8 +2375,7 @@
             }
 
             var folders = [],
-                logins = [],
-                loginRelationships = [];
+                ciphers = [];
 
             Papa.parse(file, {
                 header: true,
@@ -2298,17 +2384,20 @@
                     parseCsvErrors(results);
 
                     angular.forEach(results.data, function (value, key) {
-                        logins.push({
+                        ciphers.push({
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
-                            username: value.username && value.username !== '' ? value.username : null,
-                            password: value.password && value.password !== '' ? value.password : null,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.url && value.url !== '' ? urlDomain(value.url) : '--',
+                            login: {
+                                uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                                username: value.username && value.username !== '' ? value.username : null,
+                                password: value.password && value.password !== '' ? value.password : null
+                            }
                         });
                     });
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
@@ -2320,8 +2409,7 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
-                        loginRelationships = [];
+                        ciphers = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var row = results.data[j];
@@ -2330,13 +2418,17 @@
                         }
 
                         var note = row[row.length - 1];
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             name: row[0],
                             favorite: false,
-                            uri: null,
-                            password: null,
-                            username: null,
-                            notes: note && note !== '' ? note : null
+                            notes: note && note !== '' ? note : null,
+                            login: {
+                                uri: null,
+                                password: null,
+                                username: null
+                            },
+                            fields: null
                         };
 
                         if (row.length > 2 && (row.length % 2) === 0) {
@@ -2349,41 +2441,41 @@
 
                                 var fieldLower = field.toLowerCase();
 
-                                if (!login.uri && isField(field, _uriFieldNames)) {
-                                    login.uri = fixUri(value);
+                                if (!cipher.login.uri && isField(field, _uriFieldNames)) {
+                                    cipher.login.uri = fixUri(value);
                                 }
-                                else if (!login.username && isField(field, _usernameFieldNames)) {
-                                    login.username = value;
+                                else if (!cipher.login.username && isField(field, _usernameFieldNames)) {
+                                    cipher.login.username = value;
                                 }
-                                else if (!login.password && isField(field, _passwordFieldNames)) {
-                                    login.password = value;
+                                else if (!cipher.login.password && isField(field, _passwordFieldNames)) {
+                                    cipher.login.password = value;
                                 }
                                 else {
-                                    if (!login.notes) {
-                                        login.notes = '';
-                                    }
-                                    else {
-                                        login.notes += '\n';
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
                                     }
 
                                     // other custom fields
-                                    login.notes += (field + ': ' + value);
+                                    cipher.fields.push({
+                                        name: field,
+                                        value: value,
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
 
         function importPasswordBossJson(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [],
+                ciphers = [],
                 i = 0;
 
             getFileContents(file, parseJson, error);
@@ -2394,13 +2486,17 @@
                     for (i = 0; i < fileJson.length; i++) {
                         var item = fileJson[i];
 
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: item.login_url && item.login_url !== '' ? fixUri(item.login_url) : null,
-                            username: null,
-                            password: null,
                             notes: '',
                             name: item.name && item.name !== '' ? item.name : '--',
+                            login: {
+                                uri: item.login_url && item.login_url !== '' ? fixUri(item.login_url) : null,
+                                username: null,
+                                password: null
+                            },
+                            fields: null
                         };
 
                         if (!item.identifiers) {
@@ -2408,7 +2504,7 @@
                         }
 
                         if (item.identifiers.notes && item.identifiers.notes !== '') {
-                            login.notes = item.identifiers.notes.split('\\r\\n').join('\n').split('\\n').join('\n');
+                            cipher.notes = item.identifiers.notes.split('\\r\\n').join('\n').split('\\n').join('\n');
                         }
 
                         for (var property in item.identifiers) {
@@ -2419,35 +2515,39 @@
                                 }
 
                                 if (property === 'username') {
-                                    login.username = value;
+                                    cipher.login.username = value;
                                 }
                                 else if (property === 'password') {
-                                    login.password = value;
+                                    cipher.login.password = value;
                                 }
                                 else {
-                                    if (login.notes !== '') {
-                                        login.notes += '\n';
+                                    if (!cipher.fields) {
+                                        cipher.fields = [];
                                     }
 
-                                    login.notes += (property + ': ' + value);
+                                    cipher.fields.push({
+                                        name: property,
+                                        value: value,
+                                        type: constants.fieldType.text
+                                    });
                                 }
                             }
                         }
 
-                        if (login.notes === '') {
-                            login.notes = null;
+                        if (cipher.notes === '') {
+                            cipher.notes = null;
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
                 }
 
-                success(folders, logins, loginRelationships);
+                success(folders, ciphers, []);
             }
         }
 
         function importZohoVaultCsv(file, success, error) {
-            function parseData(data, login) {
+            function parseData(data, cipher) {
                 if (!data || data === '') {
                     return;
                 }
@@ -2468,17 +2568,21 @@
 
                     var fieldLower = field.toLowerCase();
                     if (fieldLower === 'user name') {
-                        login.username = value;
+                        cipher.login.username = value;
                     }
                     else if (fieldLower === 'password') {
-                        login.password = value;
+                        cipher.login.password = value;
                     }
                     else {
-                        if (login.notes !== '') {
-                            login.notes += '\n';
+                        if (!cipher.fields) {
+                            cipher.fields = [];
                         }
 
-                        login.notes += (field + ': ' + value);
+                        cipher.fields.push({
+                            name: field,
+                            value: value,
+                            type: constants.fieldType.text
+                        });
                     }
                 }
             }
@@ -2490,14 +2594,14 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
+                        ciphers = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         var chamber = value.ChamberName;
 
                         var folderIndex = folders.length,
-                            loginIndex = logins.length,
+                            cipherIndex = ciphers.length,
                             hasFolder = chamber && chamber !== '',
                             addFolder = hasFolder,
                             i = 0;
@@ -2512,24 +2616,28 @@
                             }
                         }
 
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: value.Favorite && value.Favorite === '1' ? true : false,
-                            uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
-                            username: null,
-                            password: null,
                             notes: value.Notes && value.Notes !== '' ? value.Notes : '',
-                            name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--'
+                            name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--',
+                            login: {
+                                uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
+                                username: null,
+                                password: null
+                            },
+                            fields: null
                         };
 
-                        parseData(value.SecretData, login);
-                        parseData(value.CustomData, login);
+                        parseData(value.SecretData, cipher);
+                        parseData(value.CustomData, cipher);
 
-                        if (login.notes === '') {
-                            login.notes = null;
+                        if (cipher.notes === '') {
+                            cipher.notes = null;
                         }
 
                         if (value['Secret Name']) {
-                            logins.push(login);
+                            ciphers.push(cipher);
                         }
 
                         if (addFolder) {
@@ -2540,14 +2648,14 @@
 
                         if (hasFolder) {
                             var relationship = {
-                                key: loginIndex,
+                                key: cipherIndex,
                                 value: folderIndex
                             };
                             folderRelationships.push(relationship);
                         }
                     });
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
             });
         }
@@ -2559,24 +2667,24 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
+                        ciphers = [],
                         folderRelationships = [];
 
-                    function parseFieldsToNotes(startIndex, row, login) {
+                    function parseFieldsToNotes(startIndex, row, cipher) {
                         // last 3 rows do not get parsed
                         for (var k = startIndex; k < row.length - 3; k++) {
                             if (!row[k] || row[k] === '') {
                                 continue;
                             }
 
-                            if (!login.notes) {
-                                login.notes = '';
+                            if (!cipher.notes) {
+                                cipher.notes = '';
                             }
-                            else if (login.notes !== '') {
-                                login.notes += '\n';
+                            else if (cipher.notes !== '') {
+                                cipher.notes += '\n';
                             }
 
-                            login.notes += row[k];
+                            cipher.notes += row[k];
                         }
                     }
 
@@ -2592,7 +2700,7 @@
                             type = value[0];
 
                         var folderIndex = folders.length,
-                            loginIndex = logins.length,
+                            cipherIndex = ciphers.length,
                             hasFolder = category && category !== '' && category !== 'Unfiled',
                             addFolder = hasFolder,
                             j = 0;
@@ -2607,35 +2715,39 @@
                             }
                         }
 
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: null,
-                            username: null,
-                            password: null,
                             notes: notes,
-                            name: value[1] && value[1] !== '' ? value[1] : '--'
+                            name: value[1] && value[1] !== '' ? value[1] : '--',
+                            fields: null,
+                            login: {
+                                uri: null,
+                                username: null,
+                                password: null
+                            }
                         };
 
                         if (type === 'Web Logins' || type === 'Servers' || type === 'Email Accounts') {
-                            login.uri = value[4] && value[4] !== '' ? fixUri(value[4]) : null;
-                            login.username = value[2] && value[2] !== '' ? value[2] : null;
-                            login.password = value[3] && value[3] !== '' ? value[3] : null;
-                            parseFieldsToNotes(5, value, login);
+                            cipher.login.uri = value[4] && value[4] !== '' ? fixUri(value[4]) : null;
+                            cipher.login.username = value[2] && value[2] !== '' ? value[2] : null;
+                            cipher.login.password = value[3] && value[3] !== '' ? value[3] : null;
+                            parseFieldsToNotes(5, value, cipher);
                         }
                         else if (value.length > 2) {
-                            parseFieldsToNotes(2, value, login);
+                            parseFieldsToNotes(2, value, cipher);
                         }
 
-                        if (login.name && login.name !== '--' && type !== 'Web Logins' && type !== 'Servers' &&
+                        if (cipher.name && cipher.name !== '--' && type !== 'Web Logins' && type !== 'Servers' &&
                             type !== 'Email Accounts') {
-                            login.name = type + ': ' + login.name;
+                            cipher.name = type + ': ' + cipher.name;
                         }
 
-                        if (login.notes === '') {
-                            login.notes = null;
+                        if (cipher.notes === '') {
+                            cipher.notes = null;
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
 
                         if (addFolder) {
                             folders.push({
@@ -2645,14 +2757,14 @@
 
                         if (hasFolder) {
                             var relationship = {
-                                key: loginIndex,
+                                key: cipherIndex,
                                 value: folderIndex
                             };
                             folderRelationships.push(relationship);
                         }
                     }
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
             });
         }
@@ -2665,24 +2777,26 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
-                        loginRelationships = [];
+                        ciphers = [];
 
                     for (var j = 0; j < results.data.length; j++) {
                         var row = results.data[j];
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             name: row.DisplayName && row.DisplayName !== '' ? row.DisplayName : '--',
                             favorite: false,
-                            uri: row.Url && row.Url !== '' ? fixUri(row.Url) : null,
-                            password: row.Password && row.Password !== '' ? row.Password : null,
-                            username: row.UserName && row.UserName !== '' ? row.UserName : null,
-                            notes: row.Notes && row.Notes !== '' ? row.Notes : null
+                            notes: row.Notes && row.Notes !== '' ? row.Notes : null,
+                            login: {
+                                uri: row.Url && row.Url !== '' ? fixUri(row.Url) : null,
+                                password: row.Password && row.Password !== '' ? row.Password : null,
+                                username: row.UserName && row.UserName !== '' ? row.UserName : null
+                            }
                         };
 
-                        logins.push(login);
+                        ciphers.push(cipher);
                     }
 
-                    success(folders, logins, loginRelationships);
+                    success(folders, ciphers, []);
                 }
             });
         }
@@ -2704,12 +2818,12 @@
                     parseCsvErrors(results);
 
                     var folders = [],
-                        logins = [],
+                        ciphers = [],
                         folderRelationships = [];
 
                     angular.forEach(results.data, function (value, key) {
                         var folderIndex = folders.length,
-                            loginIndex = logins.length,
+                            cipherIndex = ciphers.length,
                             hasFolder = !!getValue('category', value),
                             addFolder = hasFolder,
                             i = 0;
@@ -2724,27 +2838,30 @@
                             }
                         }
 
-                        var login = {
+                        var cipher = {
+                            type: constants.cipherType.login,
                             favorite: false,
-                            uri: !!getValue('site', value) ? fixUri(getValue('site', value)) : null,
-                            username: !!getValue('username', value) ? getValue('username', value) : null,
-                            password: !!getValue('password', value) ? getValue('password', value) : null,
                             notes: !!getValue('description', value) ? getValue('description', value) : null,
-                            name: !!getValue('title', value) ? getValue('title', value) : '--'
+                            name: !!getValue('title', value) ? getValue('title', value) : '--',
+                            login: {
+                                uri: !!getValue('site', value) ? fixUri(getValue('site', value)) : null,
+                                username: !!getValue('username', value) ? getValue('username', value) : null,
+                                password: !!getValue('password', value) ? getValue('password', value) : null
+                            }
                         };
 
                         if (!!getValue('password2', value)) {
-                            if (!login.notes) {
-                                login.notes = '';
+                            if (!cipher.notes) {
+                                cipher.notes = '';
                             }
                             else {
-                                login.notes += '\n';
+                                cipher.notes += '\n';
                             }
 
-                            login.notes += ('Password 2: ' + getValue('password2', value));
+                            cipher.notes += ('Password 2: ' + getValue('password2', value));
                         }
 
-                        logins.push(login);
+                        ciphers.push(cipher);
 
                         if (addFolder) {
                             folders.push({
@@ -2754,22 +2871,22 @@
 
                         if (hasFolder) {
                             var relationship = {
-                                key: loginIndex,
+                                key: cipherIndex,
                                 value: folderIndex
                             };
                             folderRelationships.push(relationship);
                         }
                     });
 
-                    success(folders, logins, folderRelationships);
+                    success(folders, ciphers, folderRelationships);
                 }
             });
         }
 
         function importGnomeJson(file, success, error) {
             var folders = [],
-                logins = [],
-                loginRelationships = [],
+                ciphers = [],
+                folderRelationships = [],
                 i = 0;
 
             getFileContents(file, parseJson, error);
@@ -2777,7 +2894,7 @@
             function parseJson(fileContent) {
                 var fileJson = JSON.parse(fileContent);
                 var folderIndex = 0;
-                var loginIndex = 0;
+                var cipherIndex = 0;
 
                 if (fileJson && Object.keys(fileJson).length) {
                     for (var keyRing in fileJson) {
@@ -2793,39 +2910,42 @@
                                     continue;
                                 }
 
-                                loginIndex = logins.length;
+                                cipherIndex = ciphers.length;
 
-                                var login = {
+                                var cipher = {
+                                    type: constants.cipherType.login,
                                     favorite: false,
-                                    uri: fixUri(item.display_name),
-                                    username: item.attributes.username_value && item.attributes.username_value !== '' ?
-                                        item.attributes.username_value : null,
-                                    password: item.secret && item.secret !== '' ? item.secret : null,
                                     notes: '',
                                     name: item.display_name.replace('http://', '').replace('https://', ''),
+                                    login: {
+                                        uri: fixUri(item.display_name),
+                                        username: item.attributes.username_value && item.attributes.username_value !== '' ?
+                                            item.attributes.username_value : null,
+                                        password: item.secret && item.secret !== '' ? item.secret : null
+                                    }
                                 };
 
-                                if (login.name > 30) {
-                                    login.name = login.name.substring(0, 30);
+                                if (cipher.name > 30) {
+                                    cipher.name = cipher.name.substring(0, 30);
                                 }
 
                                 for (var attr in item.attributes) {
                                     if (item.attributes.hasOwnProperty(attr) && attr !== 'username_value' &&
                                         attr !== 'xdg:schema') {
-                                        if (login.notes !== '') {
-                                            login.notes += '\n';
+                                        if (cipher.notes !== '') {
+                                            cipher.notes += '\n';
                                         }
-                                        login.notes += (attr + ': ' + item.attributes[attr]);
+                                        cipher.notes += (attr + ': ' + item.attributes[attr]);
                                     }
                                 }
 
-                                if (login.notes === '') {
-                                    login.notes = null;
+                                if (cipher.notes === '') {
+                                    cipher.notes = null;
                                 }
 
-                                logins.push(login);
-                                loginRelationships.push({
-                                    key: loginIndex,
+                                ciphers.push(cipher);
+                                folderRelationships.push({
+                                    key: cipherIndex,
                                     value: folderIndex
                                 });
                             }
@@ -2833,7 +2953,7 @@
                     }
                 }
 
-                success(folders, logins, loginRelationships);
+                success(folders, ciphers, folderRelationships);
             }
         }
 
