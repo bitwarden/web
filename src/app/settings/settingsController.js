@@ -2,8 +2,7 @@
     .module('bit.settings')
 
     .controller('settingsController', function ($scope, $state, $uibModal, apiService, toastr, authService, $localStorage,
-        appSettings, $rootScope, cipherService) {
-        $scope.selfHosted = appSettings.selfHosted;
+        $rootScope, cipherService) {
         $scope.model = {
             profile: {},
             email: null,
@@ -61,10 +60,8 @@
         };
 
         $scope.optionsSave = function () {
-            if (!$scope.selfHosted) {
-                $localStorage.disableWebsiteIcons = cipherService.disableWebsiteIcons = $scope.model.disableWebsiteIcons;
-                $rootScope.vaultCiphers = null;
-            }
+            $localStorage.disableWebsiteIcons = cipherService.disableWebsiteIcons = $scope.model.disableWebsiteIcons;
+            $rootScope.vaultCiphers = null;
 
             toastr.success('Options have been updated.', 'Success!');
         };

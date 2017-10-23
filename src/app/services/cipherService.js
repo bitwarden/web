@@ -189,7 +189,7 @@ angular
         };
 
         function setLoginIcon(cipher, uri, setImage) {
-            if (!appSettings.selfHosted && !_service.disableWebsiteIcons && uri) {
+            if (!_service.disableWebsiteIcons && uri) {
                 var hostnameUri = uri,
                     isWebsite = false;
 
@@ -210,7 +210,7 @@ angular
                 if (setImage && isWebsite) {
                     try {
                         var url = new URL(hostnameUri);
-                        cipher.meta.image = 'https://icons.bitwarden.com/' + url.hostname + '/icon.png';
+                        cipher.meta.image = appSettings.iconsUri + '/' + url.hostname + '/icon.png';
                     }
                     catch (e) { }
                 }
