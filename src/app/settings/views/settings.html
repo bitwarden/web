@@ -86,6 +86,27 @@
             </div>
         </form>
     </div>
+    <div class="box box-default" ng-if="!selfHosted">
+        <div class="box-header with-border">
+            <h3 class="box-title">Options</h3>
+        </div>
+        <form role="form" name="optionsForm" ng-submit="optionsForm.$valid && optionsSave()" autocomplete="off">
+            <div class="box-body">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="model.disableWebsiteIcons">
+                        Disable Website Icons
+                    </label>
+                    <p class="help-block">Website Icons provide a recognizable image next to each login item in your vault.</p>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" ng-disabled="optionsForm.$loading">
+                    <i class="fa fa-refresh fa-spin loading-icon" ng-show="optionsForm.$loading"></i>Save
+                </button>
+            </div>
+        </form>
+    </div>
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">Organizations</h3>

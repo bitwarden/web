@@ -1,8 +1,10 @@
 angular
     .module('bit.services')
 
-    .factory('cipherService', function (cryptoService, apiService, $q, $window, constants, appSettings) {
-        var _service = {};
+    .factory('cipherService', function (cryptoService, apiService, $q, $window, constants, appSettings, $localStorage) {
+        var _service = {
+            disableWebsiteIcons: $localStorage.disableWebsiteIcons
+        };
 
         _service.decryptCiphers = function (encryptedCiphers) {
             if (!encryptedCiphers) throw "encryptedCiphers is undefined or null";
@@ -187,7 +189,7 @@ angular
         };
 
         function setLoginIcon(cipher, uri, setImage) {
-            if (!appSettings.selfHosted && uri) {
+            if (!appSettings.selfHosted && !_service.disableWebsiteIcons && uri) {
                 var hostnameUri = uri,
                     isWebsite = false;
 

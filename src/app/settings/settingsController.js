@@ -1,11 +1,13 @@
 ﻿angular
     .module('bit.settings')
 
-    .controller('settingsController', function ($scope, $state, $uibModal, apiService, toastr, authService) {
+    .controller('settingsController', function ($scope, $state, $uibModal, apiService, toastr, authService, $localStorage,
+        appSettings, $rootScope, cipherService) {
+        $scope.selfHosted = appSettings.selfHosted;
         $scope.model = {
             profile: {},
-            twoFactorEnabled: false,
-            email: null
+            email: null,
+            disableWebsiteIcons: false
         };
 
         $scope.$on('$viewContentLoaded', function () {
@@ -17,7 +19,7 @@
                         culture: user.Culture
                     },
                     email: user.Email,
-                    twoFactorEnabled: user.TwoFactorEnabled
+                    disableWebsiteIcons: $localStorage.disableWebsiteIcons
                 };
 
                 if (user.Organizations) {
@@ -56,6 +58,15 @@
                     toastr.success('Account has been updated.', 'Success!');
                 });
             }).$promise;
+        };
+
+        $scope.optionsSave = function () {
+            if (!$scope.selfHosted) {
+                $localStorage.disableWebsiteIcons = cipherService.disableWebsiteIcons = $scope.model.disableWebsiteIcons;
+                $rootScope.vaultCiphers = null;
+            }
+
+            toastr.success('Options have been updated.', 'Success!');
         };
 
         $scope.changePassword = function () {
