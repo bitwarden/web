@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationBillingController', function ($scope, apiService, $state, $uibModal, toastr, $analytics,
-        appSettings) {
+        appSettings, tokenService, $window) {
         $scope.selfHosted = appSettings.selfHosted;
         $scope.charges = [];
         $scope.paymentSource = null;
@@ -207,6 +207,15 @@
                 }
             });
         };
+
+        $scope.viewInvoice = function (charge) {
+            if ($scope.selfHosted) {
+                return;
+            }
+            var url = appSettings.apiUri + '/organizations/' + $state.params.orgId +
+                '/billing-invoice/' + charge.invoiceId + '?access_token=' + tokenService.getToken();
+            $window.open(url);
+        }
 
         function load() {
             apiService.organizations.getBilling({ id: $state.params.orgId }, function (org) {
