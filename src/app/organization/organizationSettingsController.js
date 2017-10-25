@@ -10,7 +10,12 @@
                 $scope.model = {
                     name: org.Name,
                     billingEmail: org.BillingEmail,
-                    businessName: org.BusinessName
+                    businessName: org.BusinessName,
+                    businessAddress1: org.BusinessAddress1,
+                    businessAddress2: org.BusinessAddress2,
+                    businessAddress3: org.BusinessAddress3,
+                    businessCountry: org.BusinessCountry,
+                    businessTaxNumber: org.BusinessTaxNumber
                 };
             });
         });

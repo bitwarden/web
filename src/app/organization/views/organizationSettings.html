@@ -26,14 +26,27 @@
                                    required api-field ng-readonly="selfHosted" />
                         </div>
                         <div class="form-group" show-errors>
+                            <label for="name">Billing Email</label>
+                            <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail"
+                                   class="form-control" required api-field ng-readonly="selfHosted" />
+                        </div>
+                        <div class="form-group" show-errors>
                             <label for="name">Business Name</label>
                             <input type="text" id="businessName" name="BusinessName" ng-model="model.businessName"
                                    class="form-control" api-field ng-readonly="selfHosted" />
                         </div>
-                        <div class="form-group" show-errors>
-                            <label for="name">Billing Email</label>
-                            <input type="email" id="billingEmail" name="BillingEmail" ng-model="model.billingEmail"
-                                   class="form-control" required api-field ng-readonly="selfHosted" />
+                        <div ng-if="!selfHosted">
+                            <hr />
+                            <strong>Tax Information</strong>
+                            <div>{{model.businessAddress1}}</div>
+                            <div>{{model.businessAddress2}}</div>
+                            <div>{{model.businessAddress3}}</div>
+                            <div>{{model.businessCountry}}</div>
+                            <div>{{model.businessTaxNumber}}</div>
+                            <p class="help-block">
+                                Please <a href="https://bitwarden.com/contact/" target="_blank">contact support</a>
+                                to provide (or update) tax information for your invoices.
+                            </p>
                         </div>
                     </div>
                     <div class="col-sm-3 settings-photo">

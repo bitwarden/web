@@ -113,6 +113,7 @@
                             additionalStorageGb: model.additionalStorageGb,
                             billingEmail: model.billingEmail,
                             businessName: model.ownedBusiness ? model.businessName : null,
+                            country: $scope.paymentMethod === 'card' ? model.card.address_country : null,
                             collectionName: defaultCollectionCt
                         };
 
