@@ -4,7 +4,9 @@
     .controller('settingsPremiumController', function ($scope, $state, apiService, toastr, $analytics, authService,
         constants, $timeout, appSettings, validationService
         // @if !selfHosted
+        /* jshint ignore:start */
         , stripe
+        /* jshint ignore:end */
         // @endif
     ) {
         var profile = null;

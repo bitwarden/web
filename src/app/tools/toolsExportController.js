@@ -79,7 +79,6 @@
                                 break;
                             default:
                                 continue;
-                                break;
                         }
 
                         exportCiphers.push(cipher);

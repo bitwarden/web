@@ -4,7 +4,9 @@ angular
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider,
         $uibTooltipProvider, toastrConfig, $locationProvider, $qProvider, appSettings
         // @if !selfHosted
+        /* jshint ignore:start */
         , stripeProvider
+        /* jshint ignore:end */
         // @endif
     ) {
         angular.extend(appSettings, window.bitwardenAppSettings);

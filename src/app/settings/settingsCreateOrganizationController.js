@@ -4,7 +4,9 @@
     .controller('settingsCreateOrganizationController', function ($scope, $state, apiService, cryptoService,
         toastr, $analytics, authService, constants, appSettings, validationService
         // @if !selfHosted
+        /* jshint ignore:start */
         , stripe
+        /* jshint ignore:end */
         // @endif
     ) {
         $scope.plans = constants.plans;

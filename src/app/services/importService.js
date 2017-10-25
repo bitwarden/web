@@ -307,7 +307,7 @@
                             case 'login': case null: case undefined:
                                 cipher.type = constants.cipherType.login;
 
-                                var totp = value.login_totp || value.totp
+                                var totp = value.login_totp || value.totp;
                                 var uri = value.login_uri || value.uri;
                                 var username = value.login_username || value.username;
                                 var password = value.login_password || value.password;
@@ -434,7 +434,7 @@
                             case 'login': case null: case undefined:
                                 cipher.type = constants.cipherType.login;
 
-                                var totp = value.login_totp || value.totp
+                                var totp = value.login_totp || value.totp;
                                 var uri = value.login_uri || value.uri;
                                 var username = value.login_username || value.username;
                                 var password = value.login_password || value.password;
@@ -2319,6 +2319,7 @@
                         }
 
                         var fields = [];
+                        /* jshint ignore:start */
                         $.each(outterTable.find('table td:not(.subcaption)'), function (indexInArray, valueOfElement) {
                             $(valueOfElement).find('br').replaceWith('\n');
                             var t = $(valueOfElement).text();
@@ -2326,6 +2327,7 @@
                                 fields.push(t.split('\\n').join('\n'));
                             }
                         });
+                        /* jshint ignore:end */
 
                         if (fields.length && (fields.length % 2 === 0))
                             for (var j = 0; j < fields.length; j += 2) {

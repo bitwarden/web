@@ -4,7 +4,9 @@
     .controller('organizationBillingChangePaymentController', function ($scope, $state, $uibModalInstance, apiService,
         $analytics, toastr, existingPaymentMethod
         // @if !selfHosted
+        /* jshint ignore:start */
         , stripe
+        /* jshint ignore:end */
         // @endif
     ) {
         $analytics.eventTrack('organizationBillingChangePaymentController', { category: 'Modal' });

@@ -112,6 +112,7 @@
             var attachmentSharePromises = [];
             if ($scope.cipher.attachments) {
                 for (var i = 0; i < $scope.cipher.attachments.length; i++) {
+                    /* jshint ignore:start */
                     (function (attachment) {
                         var promise = cipherService.downloadAndDecryptAttachment(null, attachment, false)
                             .then(function (decData) {
@@ -136,6 +137,7 @@
                             });
                         attachmentSharePromises.push(promise);
                     })($scope.cipher.attachments[i]);
+                    /* jshint ignore:end */
                 }
             }
 

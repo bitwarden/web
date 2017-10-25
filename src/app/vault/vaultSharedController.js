@@ -142,10 +142,11 @@
             });
 
             editModel.result.then(function (returnVal) {
-                var rootCipher = findRootCipher(cipher) || { meta: {} };
+                var rootCipher = findRootCipher(cipher) || { meta: {} },
+                    index;
 
                 if (returnVal.action === 'edit') {
-                    var index = $scope.ciphers.indexOf(cipher);
+                    index = $scope.ciphers.indexOf(cipher);
                     if (index > -1) {
                         returnVal.data.collectionIds = $scope.ciphers[index].collectionIds;
                         $scope.ciphers[index] = returnVal.data;
@@ -163,7 +164,7 @@
                     cipher.favorite = rootCipher.favorite = returnVal.data.favorite;
                 }
                 else if (returnVal.action === 'delete') {
-                    var index = $scope.ciphers.indexOf(cipher);
+                    index = $scope.ciphers.indexOf(cipher);
                     if (index > -1) {
                         $scope.ciphers.splice(index, 1);
                     }

@@ -215,7 +215,7 @@
             var url = appSettings.apiUri + '/organizations/' + $state.params.orgId +
                 '/billing-invoice/' + charge.invoiceId + '?access_token=' + tokenService.getToken();
             $window.open(url);
-        }
+        };
 
         function load() {
             apiService.organizations.getBilling({ id: $state.params.orgId }, function (org) {
