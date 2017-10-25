@@ -8,6 +8,9 @@
         $scope.selectedType = constants.cipherType.login.toString();
         $scope.cipher = {
             type: constants.cipherType.login,
+            login: {},
+            identity: {},
+            card: {},
             secureNote: {
                 type: '0'
             }
