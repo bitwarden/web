@@ -233,7 +233,9 @@ angular
         _service.refreshAccessToken = function () {
             var refreshToken = tokenService.getRefreshToken();
             if (!refreshToken) {
-                return null;
+                return $q(function (resolve, reject) {
+                    resolve(null);
+                });
             }
 
             return apiService.identity.token({
