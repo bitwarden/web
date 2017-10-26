@@ -102,7 +102,8 @@
                 id: 'enpasscsv',
                 name: 'Enpass (csv)',
                 instructions: $sce.trustAsHtml('Using the Enpass desktop application, navigate to "File" > "Export" > ' +
-                    '"As CSV". Select "Yes" to the warning alert and save the CSV file.')
+                    '"As CSV". Select "Yes" to the warning alert and save the CSV file. Note that the importer only fully ' +
+                    'supports files exported while Enpass is set to the English language, so adjust your settings accordingly.')
             },
             {
                 id: 'safeincloudxml',
