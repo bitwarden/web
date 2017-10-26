@@ -35,6 +35,7 @@
             delAdmin: { url: _apiUri + '/ciphers/:id/delete-admin', method: 'POST', params: { id: '@id' } },
             delMany: { url: _apiUri + '/ciphers/delete', method: 'POST' },
             moveMany: { url: _apiUri + '/ciphers/move', method: 'POST' },
+            purge: { url: _apiUri + '/ciphers/purge', method: 'POST' },
             postAttachment: {
                 url: _apiUri + '/ciphers/:id/attachment',
                 method: 'POST',

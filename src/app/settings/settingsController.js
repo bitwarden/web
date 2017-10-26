@@ -129,6 +129,14 @@
             });
         };
 
+        $scope.purge = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/settings/views/settingsPurge.html',
+                controller: 'settingsPurgeController'
+            });
+        };
+
         function scrollToTop() {
             $('html, body').animate({ scrollTop: 0 }, 200);
         }
