@@ -57,7 +57,7 @@
                         <label for="username">Username</label>
                         <div class="input-group">
                             <input type="text" id="username" name="Login.Username" ng-model="cipher.login.username"
-                                   class="form-control" ng-readonly="readOnly" api-field />
+                                   class="form-control monospaced" ng-readonly="readOnly" api-field />
                             <span class="input-group-btn" uib-tooltip="Copy Username" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-error="clipboardError(e)"
@@ -79,7 +79,7 @@
                         <label for="password">Password</label>
                         <div class="input-group">
                             <input type="password" id="password" name="Login.Password" ng-model="cipher.login.password"
-                                   class="form-control" ng-readonly="readOnly" api-field />
+                                   class="form-control monospaced" ng-readonly="readOnly" api-field />
                             <span class="input-group-btn" uib-tooltip="Copy Password" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-success="clipboardSuccess(e)" ngclipboard-error="clipboardError(e, true)"
@@ -97,8 +97,8 @@
                 <div class="col-sm-6">
                     <div class="form-group" show-errors>
                         <label for="totp">Authenticator Key (TOTP)</label>
-                        <input type="text" id="totp" name="Login.Totp" ng-model="cipher.login.totp" class="form-control"
-                               ng-readonly="readOnly" api-field />
+                        <input type="text" id="totp" name="Login.Totp" ng-model="cipher.login.totp"
+                               class="form-control monospaced" ng-readonly="readOnly" api-field />
                     </div>
                 </div>
                 <div class="col-sm-6 totp-col">
@@ -535,7 +535,8 @@
                         <label for="field_value{{$index}}">Value</label>
                         <div class="input-group" ng-if="field.type !== '2'">
                             <input ng-attr-type="{{field.type === '0' ? 'text' : 'password'}}" id="field_value{{$index}}"
-                                   class="form-control" ng-model="field.value" ng-readonly="readOnly" />
+                                   class="form-control" ng-class="{'monospaced': field.type !== '0'}" ng-model="field.value"
+                                   ng-readonly="readOnly" />
                             <span class="input-group-btn" uib-tooltip="Copy Value" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-success="clipboardSuccess(e)" ngclipboard-error="clipboardError(e, true)"
