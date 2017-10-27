@@ -1,10 +1,10 @@
 <div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title"><i class="fa fa-cubes"></i> Collections <small>{{login.name}}</small></h4>
+    <h4 class="modal-title"><i class="fa fa-cubes"></i> Collections <small>{{cipher.name}}</small></h4>
 </div>
 <form name="form" ng-submit="form.$valid && submit()" api-form="submitPromise" autocomplete="off">
     <div class="modal-body">
-        <p>Edit the collections that this login is being shared with.</p>
+        <p>Edit the collections that this item is being shared with.</p>
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occurred</h4>
             <ul>

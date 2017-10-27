@@ -201,6 +201,11 @@
                 <table class="table">
                     <tbody>
                         <tr ng-repeat="charge in charges">
+                            <td style="width: 30px">
+                                <a href="#" stop-click ng-click="viewInvoice(charge)" title="Invoice">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </a>
+                            </td>
                             <td style="width: 200px">
                                 {{charge.date | date: 'mediumDate'}}
                             </td>

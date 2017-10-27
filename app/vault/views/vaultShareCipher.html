@@ -1,10 +1,10 @@
 <div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title"><i class="fa fa-share-alt"></i> Share Login <small>{{login.name}}</small></h4>
+    <h4 class="modal-title"><i class="fa fa-share-alt"></i> Share Item <small>{{cipher.name}}</small></h4>
 </div>
 <form name="form" ng-submit="form.$valid && submit(model)" api-form="submitPromise" autocomplete="off">
     <div class="modal-body">
-        <p>Choose an organization that you wish to share this login with.</p>
+        <p>Choose an organization that you wish to share this item with.</p>
         <div class="callout callout-danger validation-errors" ng-show="form.$errors">
             <h4>Errors have occurred</h4>
             <ul>
@@ -14,7 +14,7 @@
         <p ng-show="loading">Loading...</p>
         <div ng-show="!loading && !organizations.length" class="callout callout-default">
             <h4><i class="fa fa-info-circle"></i> No Organizations</h4>
-            <p>You do not belong to any organizations. Organizations allow you to share logins with other bitwarden users.</p>
+            <p>You do not belong to any organizations. Organizations allow you to share items with other bitwarden users.</p>
             <a ng-click="createOrg()" class="btn btn-default btn-flat">
                 Create an Organization
             </a>

@@ -24,6 +24,7 @@
           img-src
             'self'
             data:
+            https://icons.bitwarden.com
             https://*.paypal.com
             https://www.paypalobjects.com
             https://q.stripe.com
@@ -49,6 +50,7 @@
           connect-src
             *;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#3c8dbc">
     <base href="/" />
 
     <title page-title>bitwarden Web Vault</title>
@@ -60,9 +62,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <meta name="x-stylesheet-test" content="" class="fa invisible" />
-    <script src="js/fallback-styles.min.js?v=erf2e0tqpvi"></script>
+    <script src="js/fallback-styles.min.js?v=rwbz9f6r"></script>
 
-    <link rel="stylesheet" href="css/vault.min.css?v=erf2e0tqpvi" />
+    <link rel="stylesheet" href="css/vault.min.css?v=rwbz9f6r" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="images/icons/safari-pinned-tab.svg" color="#3c8dbc">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body ng-controller="mainController as main" class="layout-boxed {{main.skinClass}} sidebar-mini {{main.bodyClass}}"
       ng-class="{'using-control-sidebar': main.usingControlSidebar,
@@ -75,11 +82,11 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"
             integrity="sha384-AH/e+s4V4kUifvnNED2x1XZqArO5qTFU4YKRzUXbz4IgPG1H0Xmz6fP1XUmO4vT/" crossorigin="anonymous"></script>
-    <script src="js/fallback-scripts.min.js?v=erf2e0tqpvi"></script>
-    <script src="js/settings.js?v=erf2e0tqpvi"></script>
+    <script src="js/fallback-scripts.min.js?v=rwbz9f6r"></script>
+    <script src="js/settings.js?v=rwbz9f6r"></script>
 
-    <script src="js/lib.min.js?v=erf2e0tqpvi"></script>
-    <script src="js/bw.min.js?v=erf2e0tqpvi"></script>
-    <script src="js/app.min.js?v=erf2e0tqpvi"></script>
+    <script src="js/lib.min.js?v=rwbz9f6r"></script>
+    <script src="js/bw.min.js?v=rwbz9f6r"></script>
+    <script src="js/app.min.js?v=rwbz9f6r"></script>
 </body>
 </html>
