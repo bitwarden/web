@@ -119,7 +119,7 @@
                 You plan currently has a total of <b>{{plan.seats}}</b> seats.
             </div>
         </div>
-        <div class="box-footer" ng-if="!selfHosted && !noSubscription">
+        <div class="box-footer" ng-if="!selfHosted && !noSubscription && canAdjustSeats">
             <button type="button" class="btn btn-default btn-flat" ng-click="adjustSeats(true)">
                 Add Seats
             </button>

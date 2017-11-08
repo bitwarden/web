@@ -59,7 +59,7 @@
         };
 
         $scope.adjustSeats = function (add) {
-            if ($scope.selfHosted) {
+            if ($scope.selfHosted || !$scope.canAdjustSeats) {
                 return;
             }
 
@@ -221,6 +221,7 @@
             apiService.organizations.getBilling({ id: $state.params.orgId }, function (org) {
                 $scope.loading = false;
                 $scope.noSubscription = org.PlanType === 0;
+                $scope.canAdjustSeats = org.PlanType > 1;
 
                 var i = 0;
                 $scope.expiration = org.Expiration;

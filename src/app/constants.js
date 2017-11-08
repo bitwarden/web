@@ -106,14 +106,12 @@ angular.module('bit')
                 noPayment: true,
                 upgradeSortOrder: -1
             },
-            personal: {
+            families: {
                 basePrice: 1,
                 annualBasePrice: 12,
                 baseSeats: 5,
-                seatPrice: 1,
-                annualSeatPrice: 12,
-                maxAdditionalSeats: 5,
-                annualPlanType: 'personalAnnually',
+                noAdditionalSeats: true,
+                annualPlanType: 'familiesAnnually',
                 upgradeSortOrder: 1
             },
             teams: {

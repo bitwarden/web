@@ -93,17 +93,17 @@
                     </div>
                     <div class="radio radio-block" ng-if="!model.ownedBusiness" ng-click="changedPlan()">
                         <label>
-                            <input type="radio" ng-model="model.plan" name="PlanType" value="personal">
-                            Personal
+                            <input type="radio" ng-model="model.plan" name="PlanType" value="families">
+                            Families
                             <span>For personal users such as families &amp; friends.</span>
-                            <span>- Add and share with up to 10 users (5 included with base price)</span>
+                            <span>- Add and share with up to 5 users</span>
                             <span>- Create unlimited collections</span>
                             <span>- 1 GB encrypted file storage</span>
+                            <span>- Self-hosting (optional)</span>
                             <span>- Priority customer support</span>
                             <span>- 7 day free trial, cancel anytime</span>
                             <span class="bottom-line">
-                                {{plans.personal.basePrice | currency:'$'}} /month includes {{plans.personal.baseSeats}} users,
-                                additional users {{plans.personal.seatPrice | currency:'$'}} /month
+                                {{plans.families.basePrice | currency:'$'}} /month includes {{plans.families.baseSeats}} users
                             </span>
                         </label>
                     </div>
@@ -243,7 +243,7 @@
                             </span>
                         </label>
                     </div>
-                    <div class="radio radio-block" ng-if="model.plan !== 'personal'">
+                    <div class="radio radio-block" ng-if="model.plan !== 'families'">
                         <label>
                             <input type="radio" ng-model="model.interval" name="BillingInterval" value="month">
                             Monthly
