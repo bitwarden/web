@@ -14,6 +14,6 @@
         });
 
         $scope.goBilling = function () {
-            $state.go('backend.org.billing', { orgId: $state.params.orgId })
+            $state.go('backend.org.billing', { orgId: $state.params.orgId });
         };
     });
