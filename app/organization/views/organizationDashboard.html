@@ -7,10 +7,12 @@
 <section class="content">
     <div class="callout callout-warning" ng-if="!orgProfile.enabled">
         <h4><i class="fa fa-warning"></i> Organization Disabled</h4>
-        <p>
-            This organization is currently disabled. Users will not see your shared logins or collections.
-            Contact us if you would like to reinstate this organization.
-        </p>
+        <p>This organization is currently disabled. Users will not see your shared logins or collections.</p>
+        <p ng-if="!selfHosted">Contact us if you would like to reinstate this organization.</p>
+        <p ng-if="selfHosted">Update your license to reinstate this organization.</p>
+        <a ng-if="selfHosted" class="btn btn-default btn-flat" href="#" stop-click ng-click="goBilling()">
+            Billing &amp; Licensing
+        </a>
         <a class="btn btn-default btn-flat" href="https://bitwarden.com/contact/" target="_blank">
             Contact Us
         </a>
