@@ -124,12 +124,6 @@ angular
                     refreshFromServer: false
                 }
             })
-            .state('backend.user.shared', {
-                url: '^/shared',
-                templateUrl: 'app/vault/views/vaultShared.html',
-                controller: 'vaultSharedController',
-                data: { pageTitle: 'Shared' }
-            })
             .state('backend.user.settings', {
                 url: '^/settings',
                 templateUrl: 'app/settings/views/settings.html',
@@ -375,7 +369,7 @@ angular
             // user is guaranteed to be authenticated becuase of previous check
             if (toState.name.indexOf('backend.org.') > -1 && toParams.orgId) {
                 // clear vault rootScope when visiting org admin section
-                $rootScope.vaultCiphers = $rootScope.vaultFolders = null;
+                $rootScope.vaultCiphers = $rootScope.vaultGroupings = null;
 
                 authService.getUserProfile().then(function (profile) {
                     var orgs = profile.organizations;

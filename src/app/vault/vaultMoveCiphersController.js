@@ -2,9 +2,9 @@
     .module('bit.vault')
 
     .controller('vaultMoveCiphersController', function ($scope, apiService, $uibModalInstance, ids, $analytics,
-        $rootScope) {
+        $rootScope, $filter) {
         $analytics.eventTrack('vaultMoveCiphersController', { category: 'Modal' });
-        $scope.folders = $rootScope.vaultFolders;
+        $scope.folders = $filter('filter')($rootScope.vaultGroupings, { folder: true });
         $scope.count = ids.length;
 
         $scope.save = function () {

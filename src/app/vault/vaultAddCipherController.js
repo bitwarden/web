@@ -2,9 +2,9 @@
     .module('bit.vault')
 
     .controller('vaultAddCipherController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
-        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope, authService, $uibModal, constants) {
+        passwordService, selectedFolder, $analytics, checkedFavorite, $rootScope, authService, $uibModal, constants, $filter) {
         $analytics.eventTrack('vaultAddCipherController', { category: 'Modal' });
-        $scope.folders = $rootScope.vaultFolders;
+        $scope.folders = $filter('filter')($rootScope.vaultGroupings, { folder: true });
         $scope.constants = constants;
         $scope.selectedType = constants.cipherType.login.toString();
         $scope.cipher = {

@@ -26,20 +26,19 @@
     </div>
     <h1>
         My Vault
-        <small>
-            <span ng-pluralize
-                  count="vaultFolders.length > 0 ? vaultFolders.length - 1 : 0"
-                  when="{'1': '{} folder', 'other': '{} folders'}"></span>,
+        <small class="visible-md-inline visible-lg-inline">
+            <span ng-pluralize count="folderCount" when="{'1': '{} folder', 'other': '{} folders'}"></span>,
+            <span ng-pluralize count="collectionCount" when="{'1': '{} collection', 'other': '{} collections'}"></span>, &amp;
             <span ng-pluralize count="ciphers.length" when="{'1': '{} item', 'other': '{} items'}"></span>
         </small>
     </h1>
 </section>
 <section class="content">
-    <div ng-show="loading && !vaultFolders.length">
+    <div ng-show="loading && !vaultGroupings.length">
         <p>Loading...</p>
     </div>
     <div class="box box-primary" ng-class="{'collapsed-box': favoriteCollapsed}" style="margin-bottom: 40px;"
-         ng-show="vaultFolders.length && folderIdFilter === undefined && (!main.searchVaultText || favoriteCiphers.length)">
+         ng-show="vaultGroupings.length && groupingIdFilter === undefined && (!main.searchVaultText || favoriteCiphers.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-star"></i>
@@ -74,7 +73,7 @@
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
                         <tr ng-repeat="cipher in favoriteCiphers = (ciphers | filter: { favorite: true } |
-                            filter: cipherFilter | filter: (main.searchVaultText || '')) track by cipher.id">
+                            filter: cipherFilter(null) | filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -97,7 +96,7 @@
                                             </a>
                                         </li>
                                         <li ng-show="cipher.organizationId && cipher.edit">
-                                            <a href="#" stop-click ng-click="collections(cipher)">
+                                            <a href="#" stop-click ng-click="editCollections(cipher)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
@@ -137,59 +136,69 @@
             </div>
         </div>
     </div>
-    <div class="box" ng-class="{'collapsed-box': folder.collapsed}"
-         ng-repeat="folder in filteredVaultFolders = (vaultFolders | filter: folderFilter) track by folder.id"
-         ng-show="vaultFolders.length && (!main.searchVaultText || folderCiphers.length)">
+    <div class="box" ng-class="{'collapsed-box': grouping.collapsed}"
+         ng-repeat="grouping in filteredVaultGroupings = (vaultGroupings | filter: groupingFilter) track by grouping.id"
+         ng-show="vaultGroupings.length && (!main.searchVaultText || groupingCiphers.length)"
+         ng-style="firstCollectionId && grouping.id === firstCollectionId && {'margin-top': '40px'}">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa" ng-class="{'fa-folder-open': folder.id !== null, 'fa-folder-open-o': folder.id === null}"></i>
-                {{folder.name}}
-                <small ng-pluralize count="folderCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
+                <i class="fa" ng-if="grouping.folder"
+                   ng-class="{'fa-folder-open': grouping.id !== null, 'fa-folder-open-o': grouping.id === null}"></i>
+                <i class="fa fa-cubes" ng-if="grouping.collection"></i>
+                {{grouping.name}}
+                <small ng-pluralize count="groupingCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
             </h3>
             <div class="box-tools">
                 <div class="btn-group">
                     <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-cog"></i> <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
+                    <ul class="dropdown-menu dropdown-menu-right" ng-if="grouping.folder">
                         <li>
-                            <a href="#" stop-click ng-click="addCipher(folder)">
+                            <a href="#" stop-click ng-click="addCipher(grouping)">
                                 <i class="fa fa-fw fa-plus-circle"></i> New Item
                             </a>
                         </li>
-                        <li ng-show="folder.id">
-                            <a href="#" stop-click ng-click="editFolder(folder)">
+                        <li ng-show="grouping.id">
+                            <a href="#" stop-click ng-click="editFolder(grouping)">
                                 <i class="fa fa-fw fa-pencil"></i> Edit Folder
                             </a>
                         </li>
+                        <li ng-show="canDeleteFolder(grouping)">
+                            <a href="#" stop-click ng-click="deleteFolder(grouping)" class="text-red">
+                                <i class="fa fa-fw fa-trash"></i> Delete Folder
+                            </a>
+                        </li>
                         <li>
-                            <a href="#" stop-click ng-click="selectFolder(folder, $event)">
+                            <a href="#" stop-click ng-click="selectFolder(grouping, $event)">
                                 <i class="fa fa-fw fa-check-square-o"></i> Select All
                             </a>
                         </li>
-                        <li ng-show="canDeleteFolder(folder)">
-                            <a href="#" stop-click ng-click="deleteFolder(folder)" class="text-red">
-                                <i class="fa fa-fw fa-trash"></i> Delete Folder
+                    </ul>
+                    <ul class="dropdown-menu dropdown-menu-right" ng-if="grouping.collection">
+                        <li>
+                            <a href="#" stop-click ng-click="selectFolder(grouping, $event)">
+                                <i class="fa fa-fw fa-check-square-o"></i> Select All
                             </a>
                         </li>
                     </ul>
                 </div>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" title="Collapse/Expand"
-                        ng-click="collapseExpand(folder)">
-                    <i class="fa" ng-class="{'fa-minus': !folder.collapsed, 'fa-plus': folder.collapsed}"></i>
+                        ng-click="collapseExpand(grouping)">
+                    <i class="fa" ng-class="{'fa-minus': !grouping.collapsed, 'fa-plus': grouping.collapsed}"></i>
                 </button>
             </div>
         </div>
-        <div class="box-body" ng-class="{'no-padding': folderCiphers.length}">
-            <div ng-show="!folderCiphers.length">
-                <p>No items in this folder.</p>
-                <button type="button" ng-click="addCipher(folder)" class="btn btn-default btn-flat">Add an Item</button>
+        <div class="box-body" ng-class="{'no-padding': groupingCiphers.length}">
+            <div ng-show="!groupingCiphers.length">
+                <p>No items in this collection/folder.</p>
+                <button type="button" ng-click="addCipher(grouping)" class="btn btn-default btn-flat">Add an Item</button>
             </div>
-            <div class="table-responsive" ng-show="folderCiphers.length">
+            <div class="table-responsive" ng-show="groupingCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">
                     <tbody>
-                        <tr ng-repeat="cipher in folderCiphers = (ciphers | filter: { folderId: folder.id } |
-                            filter: cipherFilter | filter: (main.searchVaultText || '')) track by cipher.id">
+                        <tr ng-repeat="cipher in groupingCiphers = (ciphers | filter: cipherFilter(grouping) |
+                            filter: (main.searchVaultText || '')) track by cipher.id">
                             <td style="width: 70px;">
                                 <div class="btn-group" data-append-to="body">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -212,7 +221,7 @@
                                             </a>
                                         </li>
                                         <li ng-show="cipher.organizationId && cipher.edit">
-                                            <a href="#" stop-click ng-click="collections(cipher)">
+                                            <a href="#" stop-click ng-click="editCollections(cipher)">
                                                 <i class="fa fa-fw fa-cubes"></i> Collections
                                             </a>
                                         </li>
@@ -298,16 +307,34 @@
         <h3 class="control-sidebar-heading">
             <i class="fa fa-folder fa-fw"></i> Folders
         </h3>
-        <div ng-show="loading && !vaultFolders.length">
+        <div ng-show="loading && !vaultGroupings.length">
             <p>Loading...</p>
         </div>
         <div class="control-sidebar-section">
-            <ul class="control-sidebar-menu" ng-show="!loading && vaultFolders.length">
-                <li ng-repeat="folder in vaultFolders track by folder.id">
-                    <a href="#" stop-click ng-click="filterFolder(folder)">
-                        <i class="fa fa-check fa-fw" ng-if="folder.id === folderIdFilter"></i>
-                        <i class="fa fa-caret-right fa-fw" ng-if="folder.id !== folderIdFilter"></i>
+            <ul class="control-sidebar-menu" ng-show="!loading && folders.length">
+                <li ng-repeat="folder in folders = (vaultGroupings | filter: {folder: true}) track by folder.id">
+                    <a href="#" stop-click ng-click="filterGrouping(folder)">
+                        <i class="fa fa-check fa-fw" ng-if="folder.id === groupingIdFilter"></i>
+                        <i class="fa fa-caret-right fa-fw" ng-if="folder.id !== groupingIdFilter"></i>
                         {{folder.name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <h3 class="control-sidebar-heading">
+            <i class="fa fa-cubes fa-fw"></i> Collections
+        </h3>
+        <div ng-show="loading && !vaultGroupings.length">
+            <p>Loading...</p>
+        </div>
+        <div class="control-sidebar-section">
+            <ul class="control-sidebar-menu" ng-show="!loading && collections.length">
+                <li ng-repeat="collection in collections =
+                    (vaultGroupings | filter: {collection: true}) track by collection.id">
+                    <a href="#" stop-click ng-click="filterGrouping(collection)">
+                        <i class="fa fa-check fa-fw" ng-if="collection.id === groupingIdFilter"></i>
+                        <i class="fa fa-caret-right fa-fw" ng-if="collection.id !== groupingIdFilter"></i>
+                        {{collection.name}}
                     </a>
                 </li>
             </ul>

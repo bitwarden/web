@@ -95,7 +95,7 @@ angular
         _service.logOut = function () {
             tokenService.clearTokens();
             cryptoService.clearKeys();
-            $rootScope.vaultFolders = $rootScope.vaultCiphers = null;
+            $rootScope.vaultGroupings = $rootScope.vaultCiphers = null;
             _userProfile = null;
         };
 
