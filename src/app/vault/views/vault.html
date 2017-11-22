@@ -327,6 +327,12 @@
         <div ng-show="loading && !vaultGroupings.length">
             <p>Loading...</p>
         </div>
+        <div ng-show="!loading && !collections.length">
+            <p>No collections are being shared with you. <i class="fa fa-frown-o"></i></p>
+            <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-lint">
+                Create an Organization
+            </a>
+        </div>
         <div class="control-sidebar-section">
             <ul class="control-sidebar-menu" ng-show="!loading && collections.length">
                 <li ng-repeat="collection in collections =
