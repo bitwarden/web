@@ -144,7 +144,7 @@
             <h3 class="box-title">
                 <i class="fa" ng-if="grouping.folder"
                    ng-class="{'fa-folder-open': grouping.id !== null, 'fa-folder-open-o': grouping.id === null}"></i>
-                <i class="fa fa-cubes" ng-if="grouping.collection"></i>
+                <i class="fa fa-cube" ng-if="grouping.collection"></i>
                 {{grouping.name}}
                 <small ng-pluralize count="groupingCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
             </h3>
