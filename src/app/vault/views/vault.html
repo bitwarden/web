@@ -191,8 +191,13 @@
         </div>
         <div class="box-body" ng-class="{'no-padding': groupingCiphers.length}">
             <div ng-show="!groupingCiphers.length">
-                <p>No items in this collection/folder.</p>
-                <button type="button" ng-click="addCipher(grouping)" class="btn btn-default btn-flat">Add an Item</button>
+                <div ng-if="grouping.folder">
+                    <p>No items in this folder.</p>
+                    <button type="button" ng-click="addCipher(grouping)" class="btn btn-default btn-flat">Add an Item</button>
+                </div>
+                <div ng-if="!grouping.folder">
+                    <p>No items in this collection.</p>
+                </div>
             </div>
             <div class="table-responsive" ng-show="groupingCiphers.length">
                 <table class="table table-striped table-hover table-vmiddle">

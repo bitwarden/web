@@ -193,13 +193,13 @@
             $scope.addCipher();
         });
 
-        $scope.addCipher = function (folder, favorite) {
+        $scope.addCipher = function (grouping, favorite) {
             var addModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultAddCipher.html',
                 controller: 'vaultAddCipherController',
                 resolve: {
-                    selectedFolder: function () { return folder; },
+                    selectedFolder: function () { return grouping.folder ? grouping : null; },
                     checkedFavorite: function () { return favorite; }
                 }
             });
