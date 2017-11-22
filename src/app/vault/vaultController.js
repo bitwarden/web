@@ -199,7 +199,7 @@
                 templateUrl: 'app/vault/views/vaultAddCipher.html',
                 controller: 'vaultAddCipherController',
                 resolve: {
-                    selectedFolder: function () { return grouping.folder ? grouping : null; },
+                    selectedFolder: function () { return grouping && grouping.folder ? grouping : null; },
                     checkedFavorite: function () { return favorite; }
                 }
             });
