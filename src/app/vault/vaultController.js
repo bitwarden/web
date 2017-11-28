@@ -2,7 +2,7 @@
     .module('bit.vault')
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
-        cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics, constants) {
+        cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics, constants, validationService) {
         $scope.loading = true;
         $scope.ciphers = [];
         $scope.folderCount = 0;
@@ -496,8 +496,9 @@
                 selectAll(false);
                 $scope.bulkActionLoading = false;
                 toastr.success('Items have been deleted!');
-            }, function () {
-                toastr.error('An error occurred.');
+            }, function (e) {
+                var errors = validationService.parseErrors(e);
+                toastr.error(errors.length ? errors[0] : 'An error occurred.');
                 $scope.bulkActionLoading = false;
             });
         };

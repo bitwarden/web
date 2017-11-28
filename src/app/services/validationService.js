@@ -62,5 +62,41 @@
             }
         };
 
+        _service.parseErrors = function (reason) {
+            var data = reason.data;
+            var defaultErrorMessage = 'An unexpected error has occurred.';
+            var errors = [];
+
+            if (!data || !angular.isObject(data)) {
+                errors.push(defaultErrorMessage);
+                return errors;
+            }
+
+            if (data && data.ErrorModel) {
+                data = data.ErrorModel;
+            }
+
+            if (!data.ValidationErrors) {
+                if (data.Message) {
+                    errors.push(data.Message);
+                }
+                else {
+                    errors.push(defaultErrorMessage);
+                }
+            }
+
+            for (var key in data.ValidationErrors) {
+                if (!data.ValidationErrors.hasOwnProperty(key)) {
+                    continue;
+                }
+
+                for (var i = 0; i < data.ValidationErrors[key].length; i++) {
+                    errors.push(data.ValidationErrors[key][i]);
+                }
+            }
+
+            return errors;
+        };
+
         return _service;
     });

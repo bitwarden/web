@@ -45,13 +45,9 @@
                 fileEl.type = '';
                 fileEl.type = 'file';
                 fileEl.value = '';
-            }, function (err) {
-                if (err) {
-                    validationService.addError(form, 'file', err, true);
-                }
-                else {
-                    validationService.addError(form, 'file', 'Something went wrong.', true);
-                }
+            }, function (e) {
+                var errors = validationService.parseErrors(e);
+                toastr.error(errors.length ? errors[0] : 'An error occurred.');
             });
         };
 
