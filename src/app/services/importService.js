@@ -738,6 +738,9 @@
                                         else if (type === 'weblogin' || type === 'website') {
                                             cipher.login.uri = trimUri(text);
                                         }
+                                        else if (text.length > 200) {
+                                            cipher.notes += (name + ': ' + text + '\n');
+                                        }
                                         else {
                                             if (!cipher.fields) {
                                                 cipher.fields = [];
@@ -970,16 +973,25 @@
                                     cipher.notes = cipher.notes === null ? value + '\n' : cipher.notes + value + '\n';
                                     break;
                                 default:
-                                    if (!cipher.fields) {
-                                        cipher.fields = [];
-                                    }
+                                    if (value.length > 200 || value.indexOf('\n') > -1) {
+                                        if (!cipher.notes) {
+                                            cipher.notes = '';
+                                        }
 
-                                    // other custom fields
-                                    cipher.fields.push({
-                                        name: key,
-                                        value: value,
-                                        type: constants.fieldType.text
-                                    });
+                                        cipher.notes += (key + ': ' + value + '\n');
+                                    }
+                                    else {
+                                        if (!cipher.fields) {
+                                            cipher.fields = [];
+                                        }
+
+                                        // other custom fields
+                                        cipher.fields.push({
+                                            name: key,
+                                            value: value,
+                                            type: constants.fieldType.text
+                                        });
+                                    }
                                     break;
                             }
                         }
@@ -1106,7 +1118,7 @@
                     }
                     else if (fieldValue) {
                         var fieldName = (field[nameKey] || 'no_name');
-                        if (fieldValue.indexOf('\\n') > -1) {
+                        if (fieldValue.indexOf('\\n') > -1 || fieldValue.length > 200) {
                             if (cipher.notes === null) {
                                 cipher.notes = '';
                             }
@@ -1434,14 +1446,25 @@
 
                             if (value.length > 6) {
                                 // we have some custom fields.
-                                cipher.fields = [];
-
                                 for (i = 6; i < value.length; i = i + 2) {
-                                    cipher.fields.push({
-                                        name: value[i],
-                                        value: value[i + 1],
-                                        type: constants.fieldType.text
-                                    });
+                                    if (value[i + 1].length > 200) {
+                                        if (!cipher.notes) {
+                                            cipher.notes = '';
+                                        }
+
+                                        cipher.notes += (value[i] + ': ' + value[i + 1] + '\n');
+                                    }
+                                    else {
+                                        if (!cipher.fields) {
+                                            cipher.fields = [];
+                                        }
+
+                                        cipher.fields.push({
+                                            name: value[i],
+                                            value: value[i + 1],
+                                            type: constants.fieldType.text
+                                        });
+                                    }
                                 }
                             }
 
@@ -1549,15 +1572,24 @@
                                         continue;
                                     }
 
-                                    if (!cipher.fields) {
-                                        cipher.fields = [];
-                                    }
+                                    if (attrValue.length > 200) {
+                                        if (!cipher.notes) {
+                                            cipher.notes = '';
+                                        }
 
-                                    cipher.fields.push({
-                                        name: attrName,
-                                        value: attrValue,
-                                        type: constants.fieldType.text
-                                    });
+                                        cipher.notes += (attrName + ': ' + attrValue + '\n');
+                                    }
+                                    else {
+                                        if (!cipher.fields) {
+                                            cipher.fields = [];
+                                        }
+
+                                        cipher.fields.push({
+                                            name: attrName,
+                                            value: attrValue,
+                                            type: constants.fieldType.text
+                                        });
+                                    }
                                 }
                             }
 
@@ -1641,6 +1673,13 @@
                                 }
                                 else if (fieldLower === 'totp' && !cipher.login.totp) {
                                     cipher.login.totp = value;
+                                }
+                                else if (value.length > 200) {
+                                    if (!cipher.notes) {
+                                        cipher.notes = '';
+                                    }
+
+                                    cipher.notes += (field + ': ' + value + '\n');
                                 }
                                 else {
                                     // other fields
@@ -2132,16 +2171,25 @@
                             for (var property in value) {
                                 if (value.hasOwnProperty(property) && propsToIgnore.indexOf(property.toLowerCase()) < 0 &&
                                     value[property] && value[property] !== '') {
-                                    if (!cipher.fields) {
-                                        cipher.fields = [];
-                                    }
+                                    if (value[property].length > 200) {
+                                        if (!cipher.notes) {
+                                            cipher.notes = '';
+                                        }
 
-                                    // other custom fields
-                                    cipher.fields.push({
-                                        name: property,
-                                        value: value[property],
-                                        type: constants.fieldType.text
-                                    });
+                                        cipher.notes += (property + ': ' + value[property] + '\n');
+                                    }
+                                    else {
+                                        if (!cipher.fields) {
+                                            cipher.fields = [];
+                                        }
+
+                                        // other custom fields
+                                        cipher.fields.push({
+                                            name: property,
+                                            value: value[property],
+                                            type: constants.fieldType.text
+                                        });
+                                    }
                                 }
                             }
                         }
@@ -2212,6 +2260,13 @@
                                             }
                                             else if (!cipher.login.password && isField(field.label, _passwordFieldNames)) {
                                                 cipher.login.password = field.value;
+                                            }
+                                            else if (field.value.length > 200) {
+                                                if (!cipher.notes) {
+                                                    cipher.notes = '';
+                                                }
+
+                                                cipher.notes += (field.label + ': ' + field.value + '\n');
                                             }
                                             else {
                                                 if (!cipher.fields) {
@@ -2340,6 +2395,13 @@
                                 else if (!cipher.login.username && isField(field.replace(':', ''), _usernameFieldNames)) {
                                     cipher.login.username = fieldValue;
                                 }
+                                else if (fieldValue.length > 200) {
+                                    if (!cipher.notes) {
+                                        cipher.notes = '';
+                                    }
+
+                                    cipher.notes += (field + ': ' + fieldValue + '\n');
+                                }
                                 else {
                                     if (!cipher.fields) {
                                         cipher.fields = [];
@@ -2452,6 +2514,13 @@
                                 else if (!cipher.login.password && isField(field, _passwordFieldNames)) {
                                     cipher.login.password = value;
                                 }
+                                else if (value.length > 200) {
+                                    if (!cipher.notes) {
+                                        cipher.notes = '';
+                                    }
+
+                                    cipher.notes += (field + ': ' + value + '\n');
+                                }
                                 else {
                                     if (!cipher.fields) {
                                         cipher.fields = [];
@@ -2522,6 +2591,13 @@
                                 else if (property === 'password') {
                                     cipher.login.password = value;
                                 }
+                                else if (value.length > 200) {
+                                    if (!cipher.notes) {
+                                        cipher.notes = '';
+                                    }
+
+                                    cipher.notes += (property + ': ' + value + '\n');
+                                }
                                 else {
                                     if (!cipher.fields) {
                                         cipher.fields = [];
@@ -2574,6 +2650,13 @@
                     }
                     else if (fieldLower === 'password') {
                         cipher.login.password = value;
+                    }
+                    else if (value.length > 200) {
+                        if (!cipher.notes) {
+                            cipher.notes = '';
+                        }
+
+                        cipher.notes += (field + ': ' + value + '\n');
                     }
                     else {
                         if (!cipher.fields) {
