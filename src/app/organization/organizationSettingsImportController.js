@@ -64,7 +64,7 @@
                 var halfway = Math.floor(ciphers.length / 2);
                 var last = ciphers.length - 1;
                 if (cipherIsBadData(ciphers[0]) && cipherIsBadData(ciphers[halfway]) && cipherIsBadData(ciphers[last])) {
-                    importError('CSV data is not formatted correctly. Please check your import file and try again.');
+                    importError('Data is not formatted correctly. Please check your import file and try again.');
                     return;
                 }
             }
