@@ -162,6 +162,10 @@
         };
 
         $scope.collapseAll = function () {
+            if (!$localStorage.collapsedFolders) {
+                $localStorage.collapsedFolders = {};
+            }
+
             $localStorage.collapsedFolders.none = true;
             $localStorage.collapsedFolders.favorite = true;
 
@@ -178,6 +182,10 @@
         };
 
         $scope.expandAll = function () {
+            if (!$localStorage.collapsedFolders) {
+                $localStorage.collapsedFolders = {};
+            }
+
             delete $localStorage.collapsedFolders.none;
             delete $localStorage.collapsedFolders.favorite;
 
