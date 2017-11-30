@@ -161,6 +161,39 @@
             }
         };
 
+        $scope.collapseAll = function () {
+            $localStorage.collapsedFolders.none = true;
+            $localStorage.collapsedFolders.favorite = true;
+
+            if (!$rootScope.vaultGroupings) {
+                return;
+            }
+
+            for (var i = 0; i < $rootScope.vaultGroupings.length; i++) {
+                $localStorage.collapsedFolders[$rootScope.vaultGroupings[i].id] = true;
+            }
+
+            $('.box').addClass('collapsed-box');
+            $('.box .box-header button i.fa-minus').removeClass('fa-minus').addClass('fa-plus');
+        };
+
+        $scope.expandAll = function () {
+            delete $localStorage.collapsedFolders.none;
+            delete $localStorage.collapsedFolders.favorite;
+
+            if (!$rootScope.vaultGroupings) {
+                return;
+            }
+
+            for (var i = 0; i < $rootScope.vaultGroupings.length; i++) {
+                delete $localStorage.collapsedFolders[$rootScope.vaultGroupings[i].id];
+            }
+
+            $('.box').removeClass('collapsed-box');
+            $('.box-body').show();
+            $('.box .box-header button i.fa-plus').removeClass('fa-plus').addClass('fa-minus');
+        };
+
         $scope.editCipher = function (cipher) {
             var editModel = $uibModal.open({
                 animation: true,
@@ -482,7 +515,7 @@
                 return;
             }
 
-            $scope.bulkActionLoading = true;
+            $scope.actionLoading = true;
             apiService.ciphers.delMany({ ids: ids }, function () {
                 $analytics.eventTrack('Bulk Deleted Items');
 
@@ -494,12 +527,12 @@
                 }
 
                 selectAll(false);
-                $scope.bulkActionLoading = false;
+                $scope.actionLoading = false;
                 toastr.success('Items have been deleted!');
             }, function (e) {
                 var errors = validationService.parseErrors(e);
                 toastr.error(errors.length ? errors[0] : 'An error occurred.');
-                $scope.bulkActionLoading = false;
+                $scope.actionLoading = false;
             });
         };
 
