@@ -1,9 +1,8 @@
 <section class="content-header">
     <div class="btn-group pull-right">
-        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"
-                ng-disabled="bulkActionLoading">
-            <i class="fa fa-refresh fa-spin" ng-show="bulkActionLoading"></i>
-            Bulk Actions <span class="caret"></span>
+        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" ng-disabled="actionLoading">
+            <i class="fa fa-refresh fa-spin" ng-show="actionLoading"></i>
+            Actions <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
             <li>
@@ -19,7 +18,17 @@
             <li role="separator" class="divider"></li>
             <li>
                 <a href="#" stop-click ng-click="unselectAll()">
-                    <i class="fa fa-fw fa-minus-square-o"></i> Unselect All
+                    <i class="fa fa-fw fa-minus-circle"></i> Unselect All
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="collapseAll()">
+                    <i class="fa fa-fw fa-minus-square-o"></i> Collapse All
+                </a>
+            </li>
+            <li>
+                <a href="#" stop-click ng-click="expandAll()">
+                    <i class="fa fa-fw fa-plus-square-o"></i> Expand All
                 </a>
             </li>
         </ul>
@@ -139,7 +148,8 @@
     <div class="box" ng-class="{'collapsed-box': grouping.collapsed}"
          ng-repeat="grouping in filteredVaultGroupings = (vaultGroupings | filter: groupingFilter) track by grouping.id"
          ng-show="vaultGroupings.length && (!main.searchVaultText || groupingCiphers.length)"
-         ng-style="firstCollectionId && grouping.id === firstCollectionId && {'margin-top': '40px'}">
+         ng-style="firstCollectionId && grouping.id === firstCollectionId &&
+            groupingIdFilter !== grouping.id && {'margin-top': '40px'}">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa" ng-if="grouping.folder"
