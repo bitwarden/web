@@ -16,7 +16,7 @@
          ng-show="collections.length && (!main.searchVaultText || collectionCiphers.length)">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa" ng-class="{'fa-cubes': collection.id, 'fa-sitemap': !collection.id}"></i>
+                <i class="fa" ng-class="{'fa-cube': collection.id, 'fa-sitemap': !collection.id}"></i>
                 {{collection.name}}
                 <small ng-pluralize count="collectionCiphers.length" when="{'1': '{} item', 'other': '{} items'}"></small>
             </h3>
