@@ -169,12 +169,10 @@
             $localStorage.collapsedFolders.none = true;
             $localStorage.collapsedFolders.favorite = true;
 
-            if (!$rootScope.vaultGroupings) {
-                return;
-            }
-
-            for (var i = 0; i < $rootScope.vaultGroupings.length; i++) {
-                $localStorage.collapsedFolders[$rootScope.vaultGroupings[i].id] = true;
+            if ($rootScope.vaultGroupings) {
+                for (var i = 0; i < $rootScope.vaultGroupings.length; i++) {
+                    $localStorage.collapsedFolders[$rootScope.vaultGroupings[i].id] = true;
+                }
             }
 
             $('.box').addClass('collapsed-box');
@@ -182,19 +180,8 @@
         };
 
         $scope.expandAll = function () {
-            if (!$localStorage.collapsedFolders) {
-                $localStorage.collapsedFolders = {};
-            }
-
-            delete $localStorage.collapsedFolders.none;
-            delete $localStorage.collapsedFolders.favorite;
-
-            if (!$rootScope.vaultGroupings) {
-                return;
-            }
-
-            for (var i = 0; i < $rootScope.vaultGroupings.length; i++) {
-                delete $localStorage.collapsedFolders[$rootScope.vaultGroupings[i].id];
+            if ($localStorage.collapsedFolders) {
+                delete $localStorage.collapsedFolders;
             }
 
             $('.box').removeClass('collapsed-box');
