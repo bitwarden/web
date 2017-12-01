@@ -236,6 +236,63 @@
             }, errorCallback);
         }
 
+        // ref https://stackoverflow.com/a/5911300
+        function getCardType(number) {
+            if (!number) {
+                return null;
+            }
+
+            // Visa
+            var re = new RegExp('^4');
+            if (number.match(re) != null) {
+                return 'Visa';
+            }
+
+            // Mastercard 
+            // Updated for Mastercard 2017 BINs expansion
+            if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number)) {
+                return 'Mastercard';
+            }
+
+            // AMEX
+            re = new RegExp('^3[47]');
+            if (number.match(re) != null) {
+                return 'Amex';
+            }
+
+            // Discover
+            re = new RegExp('^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)');
+            if (number.match(re) != null) {
+                return 'Discover';
+            }
+
+            // Diners
+            re = new RegExp('^36');
+            if (number.match(re) != null) {
+                return 'Diners Club';
+            }
+
+            // Diners - Carte Blanche
+            re = new RegExp('^30[0-5]');
+            if (number.match(re) != null) {
+                return 'Diners Club';
+            }
+
+            // JCB
+            re = new RegExp('^35(2[89]|[3-8][0-9])');
+            if (number.match(re) != null) {
+                return 'JCB';
+            }
+
+            // Visa Electron
+            re = new RegExp('^(4026|417500|4508|4844|491(3|7))');
+            if (number.match(re) != null) {
+                return 'Visa';
+            }
+
+            return null;
+        }
+
         // importers
 
         function importBitwardenCsv(file, success, error) {
@@ -557,6 +614,28 @@
                 return obj;
             }
 
+            function parseCard(value) {
+                var cardData = {
+                    cardholderName: value.ccname && value.ccname !== '' ? value.ccname : null,
+                    number: value.ccnum && value.ccnum !== '' ? value.ccnum : null,
+                    brand: value.ccnum && value.ccnum !== '' ? getCardType(value.ccnum) : null,
+                    code: value.cccsc && value.cccsc !== '' ? value.cccsc : null
+                };
+
+                if (value.ccexp && value.ccexp !== '' && value.ccexp.indexOf('-') > -1) {
+                    var ccexpParts = value.ccexp.split('-');
+                    if (ccexpParts.length > 1) {
+                        cardData.expYear = ccexpParts[0];
+                        cardData.expMonth = ccexpParts[1];
+                        if (cardData.expMonth.length === 2 && cardData.expMonth[0] === '0') {
+                            cardData.expMonth = cardData.expMonth[1];
+                        }
+                    }
+                }
+
+                return cardData;
+            }
+
             function parseData(data) {
                 var folders = [],
                     ciphers = [],
@@ -579,11 +658,29 @@
                         }
                     }
 
-                    var cipher = {
-                        favorite: org ? false : value.fav === '1',
-                        name: value.name && value.name !== '' ? value.name : '--',
-                        type: value.url === 'http://sn' ? constants.cipherType.secureNote : constants.cipherType.login
-                    };
+                    var cipher;
+                    if (value.hasOwnProperty('profilename') && value.hasOwnProperty('profilelanguage')) {
+                        // form fill
+                        cipher = {
+                            favorite: false,
+                            name: value.profilename && value.profilename !== '' ? value.profilename : '--',
+                            type: constants.cipherType.card
+                        };
+
+                        if (value.title !== '' || value.firstname !== '' || value.lastname !== '' ||
+                            value.address1 !== '' || value.phone !== '' || value.username !== '' ||
+                            value.email !== '') {
+                            cipher.type = constants.cipherType.identity;
+                        }
+                    }
+                    else {
+                        // site or secure note
+                        cipher = {
+                            favorite: org ? false : value.fav === '1',
+                            name: value.name && value.name !== '' ? value.name : '--',
+                            type: value.url === 'http://sn' ? constants.cipherType.secureNote : constants.cipherType.login
+                        };
+                    }
 
                     if (cipher.type === constants.cipherType.login) {
                         cipher.login = {
@@ -642,6 +739,43 @@
                                 type: 0
                             };
                             cipher.notes = value.extra && value.extra !== '' ? value.extra : null;
+                        }
+                    }
+                    else if (cipher.type === constants.cipherType.card) {
+                        cipher.card = parseCard(value);
+                    }
+                    else if (cipher.type === constants.cipherType.identity) {
+                        cipher.identity = {
+                            title: value.title && value.title !== '' ? value.title : null,
+                            firstName: value.firstname && value.firstname !== '' ? value.firstname : null,
+                            middleName: value.middlename && value.middlename !== '' ? value.middlename : null,
+                            lastName: value.lastname && value.lastname !== '' ? value.lastname : null,
+                            username: value.username && value.username !== '' ? value.username : null,
+                            company: value.company && value.company !== '' ? value.company : null,
+                            ssn: value.ssn && value.ssn !== '' ? value.ssn : null,
+                            address1: value.address1 && value.address1 !== '' ? value.address1 : null,
+                            address2: value.address2 && value.address2 !== '' ? value.address2 : null,
+                            address3: value.address3 && value.address3 !== '' ? value.address3 : null,
+                            city: value.city && value.city !== '' ? value.city : null,
+                            state: value.state && value.state !== '' ? value.state : null,
+                            postalCode: value.zip && value.zip !== '' ? value.zip : null,
+                            country: value.country && value.country !== '' ? value.country : null,
+                            email: value.email && value.email !== '' ? value.email : null,
+                            phone: value.phone && value.phone !== '' ? value.phone : null
+                        };
+
+                        if (cipher.identity.title) {
+                            cipher.identity.title = cipher.identity.title.charAt(0).toUpperCase() +
+                                cipher.identity.title.slice(1);
+                        }
+
+                        if (value.ccnum && value.ccnum !== '') {
+                            // there is a card on this identity too
+                            var cardCipher = JSON.parse(JSON.stringify(cipher)); // cloned
+                            cardCipher.identity = null;
+                            cardCipher.type = constants.cipherType.card;
+                            cardCipher.card = parseCard(value);
+                            ciphers.push(cardCipher);
                         }
                     }
 
