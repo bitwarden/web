@@ -743,6 +743,7 @@
                     }
                     else if (cipher.type === constants.cipherType.card) {
                         cipher.card = parseCard(value);
+                        cipher.notes = value.notes && value.notes !== '' ? value.notes : null;
                     }
                     else if (cipher.type === constants.cipherType.identity) {
                         cipher.identity = {
@@ -763,6 +764,8 @@
                             email: value.email && value.email !== '' ? value.email : null,
                             phone: value.phone && value.phone !== '' ? value.phone : null
                         };
+
+                        cipher.notes = value.notes && value.notes !== '' ? value.notes : null;
 
                         if (cipher.identity.title) {
                             cipher.identity.title = cipher.identity.title.charAt(0).toUpperCase() +
