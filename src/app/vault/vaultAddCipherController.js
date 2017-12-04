@@ -15,7 +15,7 @@
             identity: {},
             card: {},
             secureNote: {
-                type: '0'
+                type: 0
             }
         };
 
