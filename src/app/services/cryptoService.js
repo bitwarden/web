@@ -779,7 +779,7 @@ angular
 
                     var arr1 = new Uint8Array(mac1);
                     var arr2 = new Uint8Array(mac2);
-                    var macsEqualConstantTime = true
+                    var macsEqualConstantTime = true;
                     for (var i = 0; i < arr2.length; i++) {
                         if (arr1[i] !== arr2[i]) {
                             macsEqualConstantTime = false;
