@@ -1584,7 +1584,7 @@
                             if (value.length > 6) {
                                 // we have some custom fields.
                                 for (i = 6; i < value.length; i = i + 2) {
-                                    if (value[i + 1].length > 200) {
+                                    if (value[i + 1] && value[i + 1].length > 200) {
                                         if (!cipher.notes) {
                                             cipher.notes = '';
                                         }
