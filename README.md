@@ -1,4 +1,4 @@
-[![appveyor build](https://ci.appveyor.com/api/projects/status/github/bitwarden/web?branch=master&svg=true)](https://ci.appveyor.com/project/bitwarden/web) [![Join the chat at https://gitter.im/bitwarden/Lobby](https://badges.gitter.im/bitwarden/Lobby.svg)](https://gitter.im/bitwarden/Lobby)
+[![appveyor build](https://ci.appveyor.com/api/projects/status/github/bitwarden/web?branch=master&svg=true)](https://ci.appveyor.com/project/bitwarden/web) [![DockerHub](https://img.shields.io/docker/pulls/bitwarden/web.svg)](https://hub.docker.com/u/bitwarden/) [![Join the chat at https://gitter.im/bitwarden/Lobby](https://badges.gitter.im/bitwarden/Lobby.svg)](https://gitter.im/bitwarden/Lobby)
 
 # bitwarden Web
 
