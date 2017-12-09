@@ -328,6 +328,7 @@
             });
 
             addModel.result.then(function (addedFolder) {
+                addedFolder.folder = true;
                 $rootScope.vaultGroupings.push(addedFolder);
                 loadGroupingData($rootScope.vaultGroupings);
             });
