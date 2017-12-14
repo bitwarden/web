@@ -224,6 +224,12 @@ angular
                 controller: 'organizationGroupsController',
                 data: { pageTitle: 'Organization Groups' }
             })
+            .state('backend.org.events', {
+                url: '/organization/:orgId/events',
+                templateUrl: 'app/organization/views/organizationEvents.html',
+                controller: 'organizationEventsController',
+                data: { pageTitle: 'Organization Events' }
+            })
 
             // Frontend
             .state('frontend', {

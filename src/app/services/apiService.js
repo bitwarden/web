@@ -179,6 +179,11 @@
             getPublicKey: { url: _apiUri + '/users/:id/public-key', method: 'GET', params: { id: '@id' } }
         });
 
+        _service.events = $resource(_apiUri + '/events', {}, {
+            list: { method: 'GET', params: {} },
+            listOrganization: { url: _apiUri + '/organizations/:orgId/events', method: 'GET', params: { id: '@orgId' } }
+        });
+
         _service.identity = $resource(_identityUri + '/connect', {}, {
             token: {
                 url: _identityUri + '/connect/token',

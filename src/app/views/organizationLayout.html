@@ -95,6 +95,11 @@
                     </li>
                 </ul>
             </li>
+            <li ng-class="{active: $state.is('backend.org.events')}" ng-if="orgProfile.useGroups">
+                <a ui-sref="backend.org.events({orgId: params.orgId})">
+                    <i class="fa fa-sitemap fa-fw"></i> <span>Events</span>
+                </a>
+            </li>
             <li ng-class="{active: $state.is('backend.org.billing')}" ng-if="isOrgOwner(orgProfile)">
                 <a ui-sref="backend.org.billing({orgId: params.orgId})">
                     <i class="fa fa-credit-card fa-fw"></i> Billing &amp; Licensing
