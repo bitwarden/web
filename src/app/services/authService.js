@@ -150,6 +150,8 @@ angular
                             maxStorageGb: profile.Organizations[i].MaxStorageGb,
                             seats: profile.Organizations[i].Seats,
                             useGroups: profile.Organizations[i].UseGroups,
+                            useDirectory: profile.Organizations[i].UseDirectory,
+                            useEvents: profile.Organizations[i].UseEvents,
                             useTotp: profile.Organizations[i].UseTotp
                         };
                     }
@@ -183,6 +185,8 @@ angular
                         maxStorageGb: org.MaxStorageGb,
                         seats: org.Seats,
                         useGroups: org.UseGroups,
+                        useDirectory: org.UseDirectory,
+                        useEvents: org.UseEvents,
                         useTotp: org.UseTotp
                     };
                     profile.organizations[o.id] = o;
