@@ -41,7 +41,6 @@
                     decCollection.collection = true;
                     decGroupings.push(decCollection);
                 }
-                $scope.collectionCount = collections.Data.length;
             }).$promise;
 
             var folderPromise = apiService.folders.list({}, function (folders) {
@@ -50,7 +49,6 @@
                     decFolder.folder = true;
                     decGroupings.push(decFolder);
                 }
-                $scope.folderCount = folders.Data.length;
             }).$promise;
 
             var groupingPromise = $q.all([collectionPromise, folderPromise]).then(function () {
@@ -78,6 +76,8 @@
         function loadGroupingData(decGroupings) {
             $rootScope.vaultGroupings = $filter('orderBy')(decGroupings, ['folder', groupingSort]);
             var collections = $filter('filter')($rootScope.vaultGroupings, { collection: true });
+            $scope.collectionCount = collections.length;
+            $scope.folderCount = decGroupings.length - collections.length - 1;
             if (collections && collections.length) {
                 $scope.firstCollectionId = collections[0].id;
             }
@@ -344,6 +344,7 @@
                 var index = $rootScope.vaultGroupings.indexOf(folder);
                 if (index > -1) {
                     $rootScope.vaultGroupings.splice(index, 1);
+                    $scope.folderCount--;
                 }
             });
         };
