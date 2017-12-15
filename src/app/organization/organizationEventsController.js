@@ -6,6 +6,7 @@
         $scope.events = [];
         $scope.orgUsers = [];
         $scope.loading = true;
+        $scope.continuationToken = null;
 
         var d = new Date();
         $scope.filterEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59);
@@ -17,7 +18,11 @@
         });
 
         $scope.refresh = function () {
-            loadEvents();
+            loadEvents(true);
+        };
+
+        $scope.next = function () {
+            loadEvents(false);
         };
 
         var i = 0,
@@ -44,13 +49,11 @@
 
                 $scope.orgUsers = users;
 
-                return loadEvents();
+                return loadEvents(true);
             });
         }
 
-        function loadEvents() {
-            $scope.loading = true;
-
+        function loadEvents(clearExisting) {
             var start = null, end = null;
             try {
                 var format = 'yyyy-MM-ddTHH:mm';
@@ -59,16 +62,24 @@
             } catch (e) { }
 
             if (!start || !end || end < start) {
-                $scope.loading = false;
                 alert('Invalid date range.');
                 return;
             }
 
+            if (clearExisting) {
+                $scope.continuationToken = null;
+                $scope.events = [];
+            }
+
+            $scope.loading = true;
             return apiService.events.listOrganization({
                 orgId: $state.params.orgId,
                 start: start,
-                end: end
+                end: end,
+                continuationToken: $scope.continuationToken
             }).$promise.then(function (list) {
+                $scope.continuationToken = list.ContinuationToken;
+
                 var events = [];
                 for (i = 0; i < list.Data.length; i++) {
                     var userId = list.Data[i].ActingUserId || list.Data[i].UserId;
@@ -81,7 +92,12 @@
                         date: list.Data[i].Date
                     });
                 }
-                $scope.events = events;
+                if ($scope.events && $scope.events.length > 0) {
+                    $scope.events = $scope.events.concat(events);
+                }
+                else {
+                    $scope.events = events;
+                }
                 $scope.loading = false;
             });
         }
