@@ -8,8 +8,17 @@
     <div class="box">
         <div class="box-header with-border">
             &nbsp;
-            <div class="box-filters hidden-xs">
-                Filters
+            <div class="box-filters hidden-xs hidden-sm">
+                <input type="datetime-local" ng-model="filterStart" required
+                       class="form-control input-sm" style="width:initial;" />
+                -
+                <input type="datetime-local" ng-model="filterEnd" required
+                       class="form-control input-sm" style="width:initial;" />
+            </div>
+            <div class="box-tools">
+                <button type="button" class="btn btn-primary btn-sm btn-flat" ng-click="refresh()">
+                    <i class="fa fa-fw fa-refresh" ng-class="{'fa-spin': loading}"></i> Refresh
+                </button>
             </div>
         </div>
         <div class="box-body" ng-class="{'no-padding': filteredEvents.length}">
@@ -17,7 +26,7 @@
                 Loading...
             </div>
             <div ng-show="!loading && !events.length">
-                <p>There are no events yet for your organization.</p>
+                <p>There are no events to list.</p>
             </div>
             <div class="table-responsive" ng-show="events.length">
                 <table class="table table-striped table-hover">
@@ -25,7 +34,7 @@
                         <tr>
                             <th>Timestamp</th>
                             <th>User</th>
-                            <th>App</th>
+                            <th><span class="sr-only">App</span></th>
                             <th>Event</th>
                         </tr>
                     </thead>

@@ -6,9 +6,19 @@
         $scope.events = [];
         $scope.orgUsers = [];
         $scope.loading = true;
+
+        var d = new Date();
+        $scope.filterEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59);
+        d.setDate(d.getDate() - 30);
+        $scope.filterStart = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0);
+
         $scope.$on('$viewContentLoaded', function () {
             load();
         });
+
+        $scope.refresh = function () {
+            loadEvents();
+        };
 
         var i = 0,
             orgUsersUserIdDict = {},
@@ -33,8 +43,32 @@
                 }
 
                 $scope.orgUsers = users;
-                return apiService.events.listOrganization({ orgId: $state.params.orgId }).$promise;
-            }).then(function (list) {
+
+                return loadEvents();
+            });
+        }
+
+        function loadEvents() {
+            $scope.loading = true;
+
+            var start = null, end = null;
+            try {
+                var format = 'yyyy-MM-ddTHH:mm';
+                start = $filter('date')($scope.filterStart, format + 'Z', 'UTC');
+                end = $filter('date')($scope.filterEnd, format + ':59.999Z', 'UTC');
+            } catch (e) { }
+
+            if (!start || !end || end < start) {
+                $scope.loading = false;
+                alert('Invalid date range.');
+                return;
+            }
+
+            return apiService.events.listOrganization({
+                orgId: $state.params.orgId,
+                start: start,
+                end: end
+            }).$promise.then(function (list) {
                 var events = [];
                 for (i = 0; i < list.Data.length; i++) {
                     var userId = list.Data[i].ActingUserId || list.Data[i].UserId;
