@@ -14,27 +14,15 @@ angular
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
 
-        var jwtConfig = {
-            whiteListedDomains: appSettings.whitelistDomains
-        };
-
-        if (!appSettings.selfHosted) {
-            var userAgent = navigator.userAgent.toLowerCase();
-            if (userAgent.indexOf('safari') > -1 && userAgent.indexOf('chrome') === -1) {
-                // Safari doesn't work with unconventional "Content-Language" header for CORS.
-                // See notes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-                jwtConfig.urlParam = 'access_token';
-            }
-            else {
-                // Using Content-Language header since it is unused and is a CORS-safelisted header. This avoids pre-flights.
-                jwtConfig.authHeader = 'Content-Language';
-            }
+        if (appSettings.apiUri !== '/api' && appSettings.whitelistDomains && appSettings.whitelistDomains.length) {
+            jwtOptionsProvider.config({
+                whiteListedDomains: appSettings.whitelistDomains
+            });
         }
 
-        jwtOptionsProvider.config(jwtConfig);
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
-            if (options.url.indexOf(appSettings.apiUri) !== 0) {
+            if (options.url.indexOf(appSettings.apiUri + '/') === -1) {
                 return;
             }
 

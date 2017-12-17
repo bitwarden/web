@@ -465,7 +465,7 @@ gulp.task('deploy-preview', ['dist'], function () {
     return gulp.src(paths.dist + '**/*')
         .pipe(ghPages({
             cacheDir: paths.dist + '.publish',
-            remoteUrl: 'git@github.com:kspearrin/bitwarden-web-preview.git'
+            remoteUrl: 'git@github.com:bitwarden/web-preview.git'
         }));
 });
 
