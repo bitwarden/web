@@ -2,55 +2,6 @@
 <html ng-app="bit" ng-csp>
 <head>
     <meta charset="utf-8" />
-    <!-- @if !selfHosted -->
-    <meta http-equiv="Content-Security-Policy" content="
-          default-src
-            'self';
-          script-src
-            'self'
-            'sha256-ryoU+5+IUZTuUyTElqkrQGBJXr1brEv6r2CA62WUw8w='
-            https://www.google-analytics.com
-            https://js.stripe.com
-            https://js.braintreegateway.com
-            https://www.paypalobjects.com
-            https://maxcdn.bootstrapcdn.com
-            https://ajax.googleapis.com;
-          style-src
-            'self'
-            'unsafe-inline'
-            https://maxcdn.bootstrapcdn.com
-            https://assets.braintreegateway.com
-            https://*.paypal.com
-            https://fonts.googleapis.com;
-          img-src
-            'self'
-            data:
-            https://icons.bitwarden.com
-            https://*.paypal.com
-            https://www.paypalobjects.com
-            https://q.stripe.com
-            https://haveibeenpwned.com
-            https://chart.googleapis.com
-            https://www.google-analytics.com;
-          font-src
-            'self'
-            https://maxcdn.bootstrapcdn.com
-            https://fonts.gstatic.com;
-          child-src
-            'self'
-            https://js.stripe.com
-            https://assets.braintreegateway.com
-            https://*.paypal.com
-            https://*.duosecurity.com;
-          frame-src
-            'self'
-            https://js.stripe.com
-            https://assets.braintreegateway.com
-            https://*.paypal.com
-            https://*.duosecurity.com;
-          connect-src
-            *;">
-    <!-- @endif -->
     <!-- @if selfHosted !>
     <meta http-equiv="Content-Security-Policy" content="
           default-src
