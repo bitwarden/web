@@ -67,12 +67,6 @@ angular
             appendToBody: true
         });
 
-        if ($httpProvider.defaults.headers.post) {
-            $httpProvider.defaults.headers.post = {};
-        }
-
-        $httpProvider.defaults.headers.post['Content-Type'] = 'text/plain; charset=utf-8';
-
         // stop IE from caching get requests
         if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
             if (!$httpProvider.defaults.headers.get) {
