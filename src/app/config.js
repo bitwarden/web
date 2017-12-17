@@ -14,11 +14,11 @@ angular
         $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
 
-        if (appSettings.apiUri !== '/api' && appSettings.whitelistDomains && appSettings.whitelistDomains.length) {
-            jwtOptionsProvider.config({
-                whiteListedDomains: appSettings.whitelistDomains
-            });
-        }
+        // @if false
+        jwtOptionsProvider.config({
+            whiteListedDomains: ['localhost', 'api.bitwarden.com', 'vault.bitwarden.com']
+        });
+        // @endif
 
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
