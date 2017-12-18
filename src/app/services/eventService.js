@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('eventService', function (constants, $filter) {
+    .factory('eventService', function (constants, $filter, constants) {
         var _service = {};
 
         _service.getDefaultDateFilters = function () {
@@ -40,10 +40,13 @@ angular
             options = options || {
                 cipherInfo: true
             };
+
+            var appInfo = getAppInfo(ev);
+
             return {
                 message: getEventMessage(ev, options),
-                appIcon: 'fa-globe',
-                appName: 'Web'
+                appIcon: appInfo.icon,
+                appName: appInfo.name
             };
         };
 
@@ -139,6 +142,96 @@ angular
             }
 
             return msg === '' ? null : msg;
+        }
+
+        function getAppInfo(ev) {
+            var appInfo = {
+                icon: 'fa-globe',
+                name: 'Unknown'
+            };
+
+            switch (ev.DeviceType) {
+                case constants.deviceType.android:
+                    appInfo.icon = 'fa-android';
+                    appInfo.name = 'Mobile App - Android';
+                    break;
+                case constants.deviceType.ios:
+                    appInfo.icon = 'fa-apple';
+                    appInfo.name = 'Mobile App - iOS';
+                    break;
+                case constants.deviceType.uwp:
+                    appInfo.icon = 'fa-windows';
+                    appInfo.name = 'Mobile App - Windows';
+                    break;
+                case constants.deviceType.chromeExt:
+                    appInfo.icon = 'fa-chrome';
+                    appInfo.name = 'Extension - Chrome';
+                    break;
+                case constants.deviceType.firefoxExt:
+                    appInfo.icon = 'fa-firefox';
+                    appInfo.name = 'Extension - Firefox';
+                    break;
+                case constants.deviceType.operaExt:
+                    appInfo.icon = 'fa-opera';
+                    appInfo.name = 'Extension - Opera';
+                    break;
+                case constants.deviceType.edgeExt:
+                    appInfo.icon = 'fa-edge';
+                    appInfo.name = 'Extension - Edge';
+                    break;
+                case constants.deviceType.vivaldiExt:
+                    appInfo.icon = 'fa-puzzle-piece';
+                    appInfo.name = 'Extension - Vivaldi';
+                    break;
+                case constants.deviceType.windowsDesktop:
+                    appInfo.icon = 'fa-windows';
+                    appInfo.name = 'Desktop - Windows';
+                    break;
+                case constants.deviceType.macOsDesktop:
+                    appInfo.icon = 'fa-apple';
+                    appInfo.name = 'Desktop - macOS';
+                    break;
+                case constants.deviceType.linuxDesktop:
+                    appInfo.icon = 'fa-linux';
+                    appInfo.name = 'Desktop - Linux';
+                    break;
+                case constants.deviceType.chrome:
+                    appInfo.icon = 'fa-chrome';
+                    appInfo.name = 'Web Vault - Chrome';
+                    break;
+                case constants.deviceType.firefox:
+                    appInfo.icon = 'fa-firefox';
+                    appInfo.name = 'Web Vault - Firefox';
+                    break;
+                case constants.deviceType.opera:
+                    appInfo.icon = 'fa-opera';
+                    appInfo.name = 'Web Vault - Opera';
+                    break;
+                case constants.deviceType.safari:
+                    appInfo.icon = 'fa-safari';
+                    appInfo.name = 'Web Vault - Safari';
+                    break;
+                case constants.deviceType.vivaldi:
+                    appInfo.icon = 'fa-globe';
+                    appInfo.name = 'Web Vault - Vivaldi';
+                    break;
+                case constants.deviceType.edge:
+                    appInfo.icon = 'fa-edge';
+                    appInfo.name = 'Web Vault - Edge';
+                    break;
+                case constants.deviceType.ie:
+                    appInfo.icon = 'fa-internet-explorer';
+                    appInfo.name = 'Web Vault - IE';
+                    break;
+                case constants.deviceType.unknown:
+                    appInfo.icon = 'fa-globe';
+                    appInfo.name = 'Web Vault - Unknown';
+                    break;
+                default:
+                    break;
+            }
+
+            return appInfo;
         }
 
         return _service;

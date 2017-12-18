@@ -40,14 +40,25 @@ angular.module('bit')
             boolean: 2
         },
         deviceType: {
+            android: 0,
+            ios: 1,
+            chromeExt: 2,
+            firefoxExt: 3,
+            operaExt: 4,
+            edgeExt: 5,
+            windowsDesktop: 6,
+            macOsDesktop: 7,
+            linuxDesktop: 8,
             chrome: 9,
             firefox: 10,
             opera: 11,
             edge: 12,
             ie: 13,
             unknown: 14,
+            uwp: 16,
             safari: 17,
-            vivaldi: 18
+            vivaldi: 18,
+            vivaldiExt: 19
         },
         eventType: {
             User_LoggedIn: 1000,
