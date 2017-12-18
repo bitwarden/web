@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationVaultCipherEventsController', function ($scope, apiService, $uibModalInstance, cipherService,
+    .controller('organizationVaultCipherEventsController', function ($scope, apiService, $uibModalInstance,
         cipher, $analytics, eventService) {
         $analytics.eventTrack('organizationVaultCipherEventsController', { category: 'Modal' });
         $scope.cipher = cipher;
@@ -84,7 +84,8 @@
                         appName: eventInfo.appName,
                         userId: userId,
                         userName: userId ? (orgUsersUserIdDict[userId] || '-') : '-',
-                        date: list.Data[i].Date
+                        date: list.Data[i].Date,
+                        ip: list.Data[i].IpAddress
                     });
                 }
                 if ($scope.events && $scope.events.length > 0) {

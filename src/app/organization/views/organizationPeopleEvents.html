@@ -1,6 +1,6 @@
 ﻿<div class="modal-header">
     <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title"><i class="fa fa-file-text-o"></i> Event Logs <small>{{cipher.name}}</small></h4>
+    <h4 class="modal-title"><i class="fa fa-file-text-o"></i> User Event Logs <small>{{email}}</small></h4>
 </div>
 <div class="modal-body">
     <div class="hidden-xs">
@@ -25,7 +25,6 @@
             <thead>
                 <tr>
                     <th>Timestamp</th>
-                    <th>User</th>
                     <th><span class="sr-only">App</span></th>
                     <th>Event</th>
                 </tr>
@@ -34,9 +33,6 @@
                 <tr ng-repeat="event in filteredEvents = (events)">
                     <td style="width: 210px; min-width: 100px;">
                         {{event.date | date:'medium'}}
-                    </td>
-                    <td style="width: 150px; min-width: 100px;">
-                        {{event.userName}}
                     </td>
                     <td style="width: 20px;" class="text-center">
                         <i class="text-muted fa fa-lg {{event.appIcon}}" title="{{event.appName}}, {{event.ip}}"></i>

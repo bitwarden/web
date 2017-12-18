@@ -46,6 +46,12 @@
                                                 <i class="fa fa-fw fa-sitemap"></i> Groups
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" stop-click ng-click="events(user)"
+                                               ng-if="useEvents && user.status === 2">
+                                                <i class="fa fa-fw fa-file-text-o"></i> Event Logs
+                                            </a>
+                                        </li>
                                         <li ng-show="user.status === 1">
                                             <a href="#" stop-click ng-click="confirm(user)">
                                                 <i class="fa fa-fw fa-check"></i> Confirm

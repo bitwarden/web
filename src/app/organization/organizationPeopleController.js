@@ -5,6 +5,7 @@
         toastr, $analytics) {
         $scope.users = [];
         $scope.useGroups = false;
+        $scope.useEvents = false;
 
         $scope.$on('$viewContentLoaded', function () {
             loadList();
@@ -13,6 +14,7 @@
                 if (profile.organizations) {
                     var org = profile.organizations[$state.params.orgId];
                     $scope.useGroups = !!org.useGroups;
+                    $scope.useEvents = !!org.useEvents;
                 }
             });
         });
@@ -107,6 +109,18 @@
 
             modal.result.then(function () {
 
+            });
+        };
+
+        $scope.events = function (user) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationPeopleEvents.html',
+                controller: 'organizationPeopleEventsController',
+                resolve: {
+                    orgUser: function () { return user; },
+                    orgId: function () { return $state.params.orgId; }
+                }
             });
         };
 

@@ -6,8 +6,16 @@
         $scope.ciphers = [];
         $scope.collections = [];
         $scope.loading = true;
+        $scope.useEvents = false;
 
         $scope.$on('$viewContentLoaded', function () {
+            authService.getUserProfile().then(function (profile) {
+                if (profile.organizations) {
+                    var org = profile.organizations[$state.params.orgId];
+                    $scope.useEvents = !!org.useEvents;
+                }
+            });
+
             var collectionPromise = apiService.collections.listOrganization({ orgId: $state.params.orgId }, function (collections) {
                 var decCollections = [{
                     id: null,
