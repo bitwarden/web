@@ -1,9 +1,13 @@
 angular
     .module('bit')
 
-    .factory('apiInterceptor', function ($injector, $q, toastr) {
+    .factory('apiInterceptor', function ($injector, $q, toastr, appSettings, utilsService) {
         return {
             request: function (config) {
+                if (config.url.indexOf(appSettings.apiUri + '/') > -1) {
+                    config.headers['Device-Type'] = utilsService.getDeviceType();
+                }
+
                 return config;
             },
             response: function (response) {

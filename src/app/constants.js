@@ -39,6 +39,16 @@ angular.module('bit')
             hidden: 1,
             boolean: 2
         },
+        deviceType: {
+            chrome: 9,
+            firefox: 10,
+            opera: 11,
+            edge: 12,
+            ie: 13,
+            unknown: 14,
+            safari: 17,
+            vivaldi: 18
+        },
         eventType: {
             User_LoggedIn: 1000,
             User_ChangedPassword: 1001,

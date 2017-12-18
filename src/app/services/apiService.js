@@ -1,7 +1,7 @@
 ﻿angular
     .module('bit.services')
 
-    .factory('apiService', function ($resource, tokenService, appSettings, $httpParamSerializer) {
+    .factory('apiService', function ($resource, tokenService, appSettings, $httpParamSerializer, utilsService) {
         var _service = {},
             _apiUri = appSettings.apiUri,
             _identityUri = appSettings.identityUri;
@@ -190,7 +190,10 @@
             token: {
                 url: _identityUri + '/connect/token',
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+                    'Device-Type': utilsService.getDeviceType()
+                },
                 transformRequest: transformUrlEncoded,
                 skipAuthorization: true,
                 params: {}
