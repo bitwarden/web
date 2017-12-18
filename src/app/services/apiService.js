@@ -181,7 +181,9 @@
 
         _service.events = $resource(_apiUri + '/events', {}, {
             list: { method: 'GET', params: {} },
-            listOrganization: { url: _apiUri + '/organizations/:orgId/events', method: 'GET', params: { id: '@orgId' } }
+            listOrganization: { url: _apiUri + '/organizations/:orgId/events', method: 'GET', params: { id: '@orgId' } },
+            listCipher: { url: _apiUri + '/ciphers/:id/events', method: 'GET', params: { id: '@id' } },
+            listOrganizationUser: { url: _apiUri + '/organizations/:orgId/users/:id/events', method: 'GET', params: { orgId: '@orgId', id: '@id' } }
         });
 
         _service.identity = $resource(_identityUri + '/connect', {}, {

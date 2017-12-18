@@ -141,6 +141,17 @@
             });
         };
 
+        $scope.viewEvents = function (cipher) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/organization/views/organizationVaultCipherEvents.html',
+                controller: 'organizationVaultCipherEventsController',
+                resolve: {
+                    cipher: function () { return cipher; }
+                }
+            });
+        };
+
         $scope.attachments = function (cipher) {
             authService.getUserProfile().then(function (profile) {
                 return !!profile.organizations[cipher.organizationId].maxStorageGb;

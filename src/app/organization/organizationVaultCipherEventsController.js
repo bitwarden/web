@@ -1,10 +1,11 @@
 ﻿angular
     .module('bit.organization')
 
-    .controller('organizationEventsController', function ($scope, $state, apiService, $uibModal, $filter,
-        toastr, $analytics, constants, eventService) {
+    .controller('organizationVaultCipherEventsController', function ($scope, apiService, $uibModalInstance, cipherService,
+        cipher, $analytics, eventService) {
+        $analytics.eventTrack('organizationVaultCipherEventsController', { category: 'Modal' });
+        $scope.cipher = cipher;
         $scope.events = [];
-        $scope.orgUsers = [];
         $scope.loading = true;
         $scope.continuationToken = null;
 
@@ -12,7 +13,7 @@
         $scope.filterStart = defaultFilters.start;
         $scope.filterEnd = defaultFilters.end;
 
-        $scope.$on('$viewContentLoaded', function () {
+        $uibModalInstance.opened.then(function () {
             load();
         });
 
@@ -29,7 +30,7 @@
             orgUsersIdDict = {};
 
         function load() {
-            apiService.organizationUsers.list({ orgId: $state.params.orgId }).$promise.then(function (list) {
+            apiService.organizationUsers.list({ orgId: cipher.organizationId }).$promise.then(function (list) {
                 var users = [];
                 for (i = 0; i < list.Data.length; i++) {
                     var user = {
@@ -65,8 +66,8 @@
             }
 
             $scope.loading = true;
-            return apiService.events.listOrganization({
-                orgId: $state.params.orgId,
+            return apiService.events.listCipher({
+                id: cipher.id,
                 start: filterResult.start,
                 end: filterResult.end,
                 continuationToken: $scope.continuationToken
@@ -76,7 +77,7 @@
                 var events = [];
                 for (i = 0; i < list.Data.length; i++) {
                     var userId = list.Data[i].ActingUserId || list.Data[i].UserId;
-                    var eventInfo = eventService.getEventInfo(list.Data[i]);
+                    var eventInfo = eventService.getEventInfo(list.Data[i], { cipherInfo: false });
                     events.push({
                         message: eventInfo.message,
                         appIcon: eventInfo.appIcon,
@@ -95,4 +96,8 @@
                 $scope.loading = false;
             });
         }
+
+        $scope.close = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
     });
