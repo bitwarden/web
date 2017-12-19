@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationPeopleController', function ($scope, $state, $uibModal, cryptoService, apiService, authService,
-        toastr, $analytics) {
+        toastr, $analytics, $filter, $uibModalStack) {
         $scope.users = [];
         $scope.useGroups = false;
         $scope.useEvents = false;
@@ -143,6 +143,20 @@
                 }
 
                 $scope.users = users;
+
+                if ($state.params.search) {
+                    $uibModalStack.dismissAll();
+                    $scope.filterSearch = $state.params.search;
+                    $('#filterSearch').focus();
+                }
+
+                if ($state.params.viewEvents) {
+                    $uibModalStack.dismissAll();
+                    var user = $filter('filter')($scope.users, { id: $state.params.viewEvents });
+                    if (user && user.length) {
+                        $scope.events(user[0]);
+                    }
+                }
             });
         }
     });

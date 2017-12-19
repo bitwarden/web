@@ -25,8 +25,8 @@
             <thead>
                 <tr>
                     <th>Timestamp</th>
-                    <th>User</th>
                     <th><span class="sr-only">App</span></th>
+                    <th>User</th>
                     <th>Event</th>
                 </tr>
             </thead>
@@ -35,11 +35,11 @@
                     <td style="width: 210px; min-width: 100px;">
                         {{event.date | date:'medium'}}
                     </td>
-                    <td style="width: 150px; min-width: 100px;">
-                        {{event.userName}}
-                    </td>
                     <td style="width: 20px;" class="text-center">
                         <i class="text-muted fa fa-lg {{event.appIcon}}" title="{{event.appName}}, {{event.ip}}"></i>
+                    </td>
+                    <td style="width: 150px; min-width: 100px;">
+                        {{event.userName}}
                     </td>
                     <td>
                         {{event.message}}

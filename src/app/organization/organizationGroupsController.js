@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationGroupsController', function ($scope, $state, apiService, $uibModal, $filter,
-        toastr, $analytics) {
+        toastr, $analytics, $uibModalStack) {
         $scope.groups = [];
         $scope.loading = true;
         $scope.$on('$viewContentLoaded', function () {
@@ -88,6 +88,12 @@
                 }
                 $scope.groups = groups;
                 $scope.loading = false;
+
+                if ($state.params.search) {
+                    $uibModalStack.dismissAll();
+                    $scope.filterSearch = $state.params.search;
+                    $('#filterSearch').focus();
+                }
             });
         }
     });

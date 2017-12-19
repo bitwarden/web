@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationPeopleEventsController', function ($scope, apiService, $uibModalInstance,
-        orgUser, $analytics, eventService, orgId) {
+        orgUser, $analytics, eventService, orgId, $compile, $sce) {
         $analytics.eventTrack('organizationPeopleEventsController', { category: 'Modal' });
         $scope.email = orgUser.email;
         $scope.events = [];
@@ -50,8 +50,9 @@
                 var events = [];
                 for (var i = 0; i < list.Data.length; i++) {
                     var eventInfo = eventService.getEventInfo(list.Data[i]);
+                    var htmlMessage = $compile('<span>' + eventInfo.message + '</span>')($scope);
                     events.push({
-                        message: eventInfo.message,
+                        message: $sce.trustAsHtml(htmlMessage[0].outerHTML),
                         appIcon: eventInfo.appIcon,
                         appName: eventInfo.appName,
                         date: list.Data[i].Date,

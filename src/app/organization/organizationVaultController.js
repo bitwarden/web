@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationVaultController', function ($scope, apiService, cipherService, $analytics, $q, $state,
-        $localStorage, $uibModal, $filter, authService) {
+        $localStorage, $uibModal, $filter, authService, $filter, $uibModalStack) {
         $scope.ciphers = [];
         $scope.collections = [];
         $scope.loading = true;
@@ -47,6 +47,20 @@
 
             $q.all([collectionPromise, cipherPromise]).then(function () {
                 $scope.loading = false;
+
+                if ($state.params.search) {
+                    $uibModalStack.dismissAll();
+                    $scope.$emit('setSearchVaultText', $state.params.search);
+                    $('#search').focus();
+                }
+
+                if ($state.params.viewEvents) {
+                    $uibModalStack.dismissAll();
+                    var cipher = $filter('filter')($scope.ciphers, { id: $state.params.viewEvents });
+                    if (cipher && cipher.length) {
+                        $scope.viewEvents(cipher[0]);
+                    }
+                }
             });
         });
 

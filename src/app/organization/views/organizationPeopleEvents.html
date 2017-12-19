@@ -38,7 +38,7 @@
                         <i class="text-muted fa fa-lg {{event.appIcon}}" title="{{event.appName}}, {{event.ip}}"></i>
                     </td>
                     <td>
-                        {{event.message}}
+                        <div ng-bind-html="event.message"></div>
                     </td>
                 </tr>
             </tbody>

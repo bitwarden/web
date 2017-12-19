@@ -77,61 +77,64 @@ angular
                     break;
                 // Cipher
                 case constants.eventType.Cipher_Created:
-                    msg = options.cipherInfo ? 'Created item ' + ev.CipherId + '.' : 'Created.';
+                    msg = options.cipherInfo ? 'Created item ' + formatCipherId(ev) + '.' : 'Created.';
                     break;
                 case constants.eventType.Cipher_Updated:
-                    msg = options.cipherInfo ? 'Edited item ' + ev.CipherId + '.' : 'Edited.';
+                    msg = options.cipherInfo ? 'Edited item ' + formatCipherId(ev) + '.' : 'Edited.';
                     break;
                 case constants.eventType.Cipher_Deleted:
-                    msg = options.cipherInfo ? 'Deleted item ' + ev.CipherId + '.' : 'Deleted';
+                    msg = options.cipherInfo ? 'Deleted item ' + formatCipherId(ev) + '.' : 'Deleted';
                     break;
                 case constants.eventType.Cipher_AttachmentCreated:
-                    msg = options.cipherInfo ? 'Created attachment for item ' + ev.CipherId + '.' : 'Created attachment.';
+                    msg = options.cipherInfo ? 'Created attachment for item ' + formatCipherId(ev) + '.' :
+                        'Created attachment.';
                     break;
                 case constants.eventType.Cipher_AttachmentDeleted:
-                    msg = options.cipherInfo ? 'Deleted attachment for item ' + ev.CipherId + '.' : 'Deleted attachment.';
+                    msg = options.cipherInfo ? 'Deleted attachment for item ' + formatCipherId(ev) + '.' :
+                        'Deleted attachment.';
                     break;
                 case constants.eventType.Cipher_Shared:
-                    msg = options.cipherInfo ? 'Shared item ' + ev.CipherId + '.' : 'Shared.';
+                    msg = options.cipherInfo ? 'Shared item ' + formatCipherId(ev) + '.' : 'Shared.';
                     break;
                 case constants.eventType.Cipher_UpdatedCollections:
-                    msg = options.cipherInfo ? 'Update collections for item ' + ev.CipherId + '.' : 'Updated collections.';
+                    msg = options.cipherInfo ? 'Update collections for item ' + formatCipherId(ev) + '.' :
+                        'Updated collections.';
                     break;
                 // Collection
                 case constants.eventType.Collection_Created:
-                    msg = 'Created collection ' + ev.CollectionId + '.';
+                    msg = 'Created collection ' + formatCollectionId(ev) + '.';
                     break;
                 case constants.eventType.Collection_Updated:
-                    msg = 'Edited collection ' + ev.CollectionId + '.';
+                    msg = 'Edited collection ' + formatCollectionId(ev) + '.';
                     break;
                 case constants.eventType.Collection_Deleted:
-                    msg = 'Deleted collection ' + ev.CollectionId + '.';
+                    msg = 'Deleted collection ' + formatCollectionId(ev) + '.';
                     break;
                 // Group
                 case constants.eventType.Group_Created:
-                    msg = 'Created group ' + ev.GroupId + '.';
+                    msg = 'Created group ' + formatGroupId(ev) + '.';
                     break;
                 case constants.eventType.Group_Updated:
-                    msg = 'Edited group ' + ev.GroupId + '.';
+                    msg = 'Edited group ' + formatGroupId(ev) + '.';
                     break;
                 case constants.eventType.Group_Deleted:
-                    msg = 'Deleted group ' + ev.GroupId + '.';
+                    msg = 'Deleted group ' + formatGroupId(ev) + '.';
                     break;
                 // Org user
                 case constants.eventType.OrganizationUser_Invited:
-                    msg = 'Invited user ' + ev.OrganizationUserId + '.';
+                    msg = 'Invited user ' + formatOrgUserId(ev) + '.';
                     break;
                 case constants.eventType.OrganizationUser_Confirmed:
-                    msg = 'Confirmed user ' + ev.OrganizationUserId + '.';
+                    msg = 'Confirmed user ' + formatOrgUserId(ev) + '.';
                     break;
                 case constants.eventType.OrganizationUser_Updated:
-                    msg = 'Edited user ' + ev.OrganizationUserId + '.';
+                    msg = 'Edited user ' + formatOrgUserId(ev) + '.';
                     break;
                 case constants.eventType.OrganizationUser_Removed:
-                    msg = 'Removed user ' + ev.OrganizationUserId + '.';
+                    msg = 'Removed user ' + formatOrgUserId(ev) + '.';
                     break;
                 case constants.eventType.OrganizationUser_UpdatedGroups:
-                    msg = 'Edited groups for user ' + ev.OrganizationUserId + '.';
+                    msg = 'Edited groups for user ' + formatOrgUserId(ev) + '.';
                     break;
                 // Org
                 case constants.eventType.Organization_Updated:
@@ -196,19 +199,19 @@ angular
                     appInfo.name = 'Desktop - Linux';
                     break;
                 case constants.deviceType.chrome:
-                    appInfo.icon = 'fa-chrome';
+                    appInfo.icon = 'fa-globe';
                     appInfo.name = 'Web Vault - Chrome';
                     break;
                 case constants.deviceType.firefox:
-                    appInfo.icon = 'fa-firefox';
+                    appInfo.icon = 'fa-globe';
                     appInfo.name = 'Web Vault - Firefox';
                     break;
                 case constants.deviceType.opera:
-                    appInfo.icon = 'fa-opera';
+                    appInfo.icon = 'fa-globe';
                     appInfo.name = 'Web Vault - Opera';
                     break;
                 case constants.deviceType.safari:
-                    appInfo.icon = 'fa-safari';
+                    appInfo.icon = 'fa-globe';
                     appInfo.name = 'Web Vault - Safari';
                     break;
                 case constants.deviceType.vivaldi:
@@ -216,11 +219,11 @@ angular
                     appInfo.name = 'Web Vault - Vivaldi';
                     break;
                 case constants.deviceType.edge:
-                    appInfo.icon = 'fa-edge';
+                    appInfo.icon = 'fa-globe';
                     appInfo.name = 'Web Vault - Edge';
                     break;
                 case constants.deviceType.ie:
-                    appInfo.icon = 'fa-internet-explorer';
+                    appInfo.icon = 'fa-globe';
                     appInfo.name = 'Web Vault - IE';
                     break;
                 case constants.deviceType.unknown:
@@ -232,6 +235,34 @@ angular
             }
 
             return appInfo;
+        }
+
+        function formatCipherId(ev) {
+            var shortId = ev.CipherId.substring(0, 8);
+            if (!ev.OrganizationId) {
+                return '<code>' + shortId + '</code>';
+            }
+
+            return '<a title="View item ' + ev.CipherId + '" ui-sref="backend.org.vault({orgId:\'' + ev.OrganizationId + '\',search:\'' + shortId + '\',viewEvents:\'' + ev.CipherId + '\'})">' +
+                '<code>' + shortId + '</code></a>';
+        }
+
+        function formatGroupId(ev) {
+            var shortId = ev.GroupId.substring(0, 8);
+            return '<a title="View group ' + ev.GroupId + '" ui-sref="backend.org.groups({orgId:\'' + ev.OrganizationId + '\',search:\'' + shortId + '\'})">' +
+                '<code>' + shortId + '</code></a>';
+        }
+
+        function formatCollectionId(ev) {
+            var shortId = ev.CollectionId.substring(0, 8);
+            return '<a title="View collection ' + ev.CollectionId + '" ui-sref="backend.org.collections({orgId:\'' + ev.OrganizationId + '\',search:\'' + shortId + '\'})">' +
+                '<code>' + shortId + '</code></a>';
+        }
+
+        function formatOrgUserId(ev) {
+            var shortId = ev.OrganizationUserId.substring(0, 8);
+            return '<a title="View user ' + ev.OrganizationUserId + '" ui-sref="backend.org.people({orgId:\'' + ev.OrganizationId + '\',search:\'' + shortId + '\'})">' +
+                '<code>' + shortId + '</code></a>';
         }
 
         return _service;

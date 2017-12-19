@@ -171,13 +171,13 @@ angular
                 data: { pageTitle: 'Organization Dashboard' }
             })
             .state('backend.org.people', {
-                url: '/organization/:orgId/people',
+                url: '/organization/:orgId/people?viewEvents&search',
                 templateUrl: 'app/organization/views/organizationPeople.html',
                 controller: 'organizationPeopleController',
                 data: { pageTitle: 'Organization People' }
             })
             .state('backend.org.collections', {
-                url: '/organization/:orgId/collections',
+                url: '/organization/:orgId/collections?search',
                 templateUrl: 'app/organization/views/organizationCollections.html',
                 controller: 'organizationCollectionsController',
                 data: { pageTitle: 'Organization Collections' }
@@ -195,13 +195,13 @@ angular
                 data: { pageTitle: 'Organization Billing' }
             })
             .state('backend.org.vault', {
-                url: '/organization/:orgId/vault',
+                url: '/organization/:orgId/vault?viewEvents&search',
                 templateUrl: 'app/organization/views/organizationVault.html',
                 controller: 'organizationVaultController',
                 data: { pageTitle: 'Organization Vault' }
             })
             .state('backend.org.groups', {
-                url: '/organization/:orgId/groups',
+                url: '/organization/:orgId/groups?search',
                 templateUrl: 'app/organization/views/organizationGroups.html',
                 controller: 'organizationGroupsController',
                 data: { pageTitle: 'Organization Groups' }

@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationEventsController', function ($scope, $state, apiService, $uibModal, $filter,
-        toastr, $analytics, constants, eventService) {
+        toastr, $analytics, constants, eventService, $compile, $sce) {
         $scope.events = [];
         $scope.orgUsers = [];
         $scope.loading = true;
@@ -77,8 +77,9 @@
                 for (i = 0; i < list.Data.length; i++) {
                     var userId = list.Data[i].ActingUserId || list.Data[i].UserId;
                     var eventInfo = eventService.getEventInfo(list.Data[i]);
+                    var htmlMessage = $compile('<span>' + eventInfo.message + '</span>')($scope);
                     events.push({
-                        message: eventInfo.message,
+                        message: $sce.trustAsHtml(htmlMessage[0].outerHTML),
                         appIcon: eventInfo.appIcon,
                         appName: eventInfo.appName,
                         userId: userId,

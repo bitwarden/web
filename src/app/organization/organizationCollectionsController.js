@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationCollectionsController', function ($scope, $state, apiService, $uibModal, cipherService, $filter,
-        toastr, $analytics) {
+        toastr, $analytics, $uibModalStack) {
         $scope.collections = [];
         $scope.loading = true;
         $scope.$on('$viewContentLoaded', function () {
@@ -96,6 +96,12 @@
             apiService.collections.listOrganization({ orgId: $state.params.orgId }, function (list) {
                 $scope.collections = cipherService.decryptCollections(list.Data, $state.params.orgId, true);
                 $scope.loading = false;
+
+                if ($state.params.search) {
+                    $uibModalStack.dismissAll();
+                    $scope.filterSearch = $state.params.search;
+                    $('#filterSearch').focus();
+                }
             });
         }
     });
