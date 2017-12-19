@@ -18,6 +18,8 @@
         }
 
         $scope.$on('$viewContentLoaded', function () {
+            $("#search").focus();
+
             if ($rootScope.vaultGroupings && $rootScope.vaultCiphers) {
                 $scope.loading = false;
                 loadGroupingData($rootScope.vaultGroupings);

@@ -47,11 +47,11 @@
 
             $q.all([collectionPromise, cipherPromise]).then(function () {
                 $scope.loading = false;
+                $("#search").focus();
 
                 if ($state.params.search) {
                     $uibModalStack.dismissAll();
                     $scope.$emit('setSearchVaultText', $state.params.search);
-                    $('#search').focus();
                 }
 
                 if ($state.params.viewEvents) {
