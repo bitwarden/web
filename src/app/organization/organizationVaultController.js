@@ -2,7 +2,7 @@
     .module('bit.organization')
 
     .controller('organizationVaultController', function ($scope, apiService, cipherService, $analytics, $q, $state,
-        $localStorage, $uibModal, $filter, authService, $filter, $uibModalStack) {
+        $localStorage, $uibModal, $filter, authService, $uibModalStack) {
         $scope.ciphers = [];
         $scope.collections = [];
         $scope.loading = true;

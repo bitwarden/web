@@ -23,7 +23,7 @@ angular
                 _browserCache = constants.deviceType.firefox;
             }
             else if (/constructor/i.test(window.HTMLElement) ||
-                safariCheck(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))) {
+                safariCheck(!window.safari || (typeof safari !== 'undefined' && safari.pushNotification))) {
                 _browserCache = constants.deviceType.opera;
             }
             else if (!!document.documentMode) {

@@ -1,7 +1,7 @@
 angular
     .module('bit.services')
 
-    .factory('eventService', function (constants, $filter, constants) {
+    .factory('eventService', function (constants, $filter) {
         var _service = {};
 
         _service.getDefaultDateFilters = function () {

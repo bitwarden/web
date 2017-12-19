@@ -152,9 +152,9 @@
 
                 if ($state.params.viewEvents) {
                     $uibModalStack.dismissAll();
-                    var user = $filter('filter')($scope.users, { id: $state.params.viewEvents });
-                    if (user && user.length) {
-                        $scope.events(user[0]);
+                    var eventUser = $filter('filter')($scope.users, { id: $state.params.viewEvents });
+                    if (eventUser && eventUser.length) {
+                        $scope.events(eventUser[0]);
                     }
                 }
             });
