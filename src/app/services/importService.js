@@ -133,7 +133,7 @@
         var _passwordFieldNames = [
             'password', 'pass word', 'passphrase', 'pass phrase',
             'pass', 'code', 'code word', 'codeword',
-            'secret', 'secret word',
+            'secret', 'secret word', 'personpwd',
             'key', 'keyword', 'key word', 'keyphrase', 'key phrase',
             'form_pw', 'wppassword', 'pin', 'pwd', 'pw', 'pword', 'passwd',
             'p', 'serial', 'serial#', 'license key', 'reg #',
@@ -146,7 +146,7 @@
             'user', 'name', 'user name', 'username', 'login name',
             'email', 'e-mail', 'id', 'userid', 'user id',
             'login', 'form_loginname', 'wpname', 'mail',
-            'loginid', 'login id', 'log',
+            'loginid', 'login id', 'log', 'personlogin',
             'first name', 'last name', 'card#', 'account #',
             'member', 'member #',
 
