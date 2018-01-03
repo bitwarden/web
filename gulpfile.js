@@ -356,6 +356,7 @@ gulp.task('dist:move', function () {
                 paths.webroot + 'u2f-connector.html',
                 paths.webroot + 'duo-connector.html',
                 paths.webroot + 'favicon.ico',
+                paths.webroot + 'manifest.json',
                 paths.webroot + 'app-id.json'
             ],
             dest: paths.dist
