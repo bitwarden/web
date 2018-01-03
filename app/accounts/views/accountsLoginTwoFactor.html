@@ -49,7 +49,7 @@
     <p class="login-box-msg">
         Complete logging in with YubiKey.
     </p>
-    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise" 
+    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise"
           autocomplete="off">
         <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
             <h4>Errors have occurred</h4>
@@ -63,7 +63,8 @@
         </p>
         <div class="form-group" show-errors>
             <label for="code" class="sr-only">Token</label>
-            <input type="password" id="code" name="Token" class="form-control" ng-model="token" required api-field />
+            <input type="password" id="code" name="Token" class="form-control" ng-model="token"
+                   autocomplete="new-password" required api-field />
         </div>
         <div class="row">
             <div class="col-xs-7">
@@ -86,7 +87,7 @@
     <p class="login-box-msg">
         Complete logging in with Duo.
     </p>
-    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise" 
+    <form name="twoFactorForm" ng-submit="twoFactorForm.$valid && twoFactor(token)" api-form="twoFactorPromise"
           autocomplete="off">
         <div class="callout callout-danger validation-errors" ng-show="twoFactorForm.$errors">
             <h4>Errors have occurred</h4>
