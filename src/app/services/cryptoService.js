@@ -623,6 +623,10 @@ angular
                 throw 'Encryption key unavailable.';
             }
 
+            if (key.macKey && !macBuf) {
+                throw 'macBuf required for this type of key.';
+            }
+
             if (encType !== key.encType) {
                 throw 'encType unavailable.';
             }
