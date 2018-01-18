@@ -540,7 +540,7 @@ angular
                 if (key.macKey && encPieces.length > 2) {
                     var macBytes = forge.util.decode64(encPieces[2]);
                     var computedMacBytes = computeMac(ivBytes + ctBytes, key.macKey, false);
-                    if (!macsEqual(key.macKey, macBytes, computedMacBytes)) {
+                    if (!macsEqual(macBytes, computedMacBytes)) {
                         console.error('MAC failed.');
                         return null;
                     }
@@ -650,7 +650,7 @@ angular
                     if (computedMacBuf === null) {
                         return null;
                     }
-                    return macsEqualWC(keyBuf.macKey, macBuf, computedMacBuf);
+                    return macsEqualWC(macBuf, computedMacBuf);
                 }).then(function (macsMatch) {
                     if (macsMatch === false) {
                         console.error('MAC failed.');
@@ -708,7 +708,7 @@ angular
             if (key && key.macKey && encPieces.length > 1) {
                 var macBytes = forge.util.decode64(encPieces[1]);
                 var computedMacBytes = computeMac(ctBytes, key.macKey, false);
-                if (!macsEqual(key.macKey, macBytes, computedMacBytes)) {
+                if (!macsEqual(macBytes, computedMacBytes)) {
                     console.error('MAC failed.');
                     return null;
                 }
@@ -751,10 +751,11 @@ angular
 
         // Safely compare two MACs in a way that protects against timing attacks (Double HMAC Verification).
         // ref: https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2011/february/double-hmac-verification/
-        function macsEqual(macKey, mac1, mac2) {
+        // ref: https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy
+        function macsEqual(mac1, mac2) {
             var hmac = forge.hmac.create();
 
-            hmac.start('sha256', macKey);
+            hmac.start('sha256', getRandomBytes(32));
             hmac.update(mac1);
             mac1 = hmac.digest().getBytes();
 
@@ -765,11 +766,14 @@ angular
             return mac1 === mac2;
         }
 
-        function macsEqualWC(macKeyBuf, mac1Buf, mac2Buf) {
+        function macsEqualWC(mac1Buf, mac2Buf) {
             var mac1,
                 macKey;
 
-            return window.crypto.subtle.importKey('raw', macKeyBuf, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
+            var compareKey = new Uint8Array(32);
+            _crypto.getRandomValues(compareKey);
+
+            return window.crypto.subtle.importKey('raw', compareKey.buffer, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign'])
                 .then(function (key) {
                     macKey = key;
                     return window.crypto.subtle.sign({ name: 'HMAC', hash: { name: 'SHA-256' } }, macKey, mac1Buf);
@@ -934,6 +938,16 @@ angular
 
             resultBytes.set(sourceBytes);
             return new Uint8Array(result);
+        }
+
+        function getRandomBytes(byteLength) {
+            var bytes = new Uint32Array(byteLength / 4);
+            _crypto.getRandomValues(bytes);
+            var buffer = forge.util.createBuffer();
+            for (var i = 0; i < bytes.length; i++) {
+                buffer.putInt32(bytes[i]);
+            }
+            return buffer.getBytes();
         }
 
         return _service;
