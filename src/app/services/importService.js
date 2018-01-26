@@ -844,6 +844,10 @@
                                 fields: null
                             };
 
+                            if (!cipher.name || cipher.name === '') {
+                                cipher.name = '--';
+                            }
+
                             if (card.attr('type') === 'note') {
                                 cipher.type = constants.cipherType.secureNote;
                                 cipher.secureNote = {
