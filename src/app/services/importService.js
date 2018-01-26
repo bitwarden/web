@@ -360,7 +360,8 @@
                             }
                         }
 
-                        switch (value.type) {
+                        var valueType = value.type ? value.type.toLowerCase() : null;
+                        switch (valueType) {
                             case 'login': case null: case undefined:
                                 cipher.type = constants.cipherType.login;
 
@@ -487,7 +488,8 @@
                             }
                         }
 
-                        switch (value.type) {
+                        var valueType = value.type ? value.type.toLowerCase() : null;
+                        switch (valueType) {
                             case 'login': case null: case undefined:
                                 cipher.type = constants.cipherType.login;
 
