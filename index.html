@@ -2,6 +2,53 @@
 <html ng-app="bit" ng-csp>
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src
+          'self';
+        script-src
+          'self'
+          'sha256-ryoU+5+IUZTuUyTElqkrQGBJXr1brEv6r2CA62WUw8w='
+          https://www.google-analytics.com
+          https://js.stripe.com
+          https://js.braintreegateway.com
+          https://www.paypalobjects.com
+          https://maxcdn.bootstrapcdn.com
+          https://ajax.googleapis.com;
+        style-src
+          'self'
+          'unsafe-inline'
+          https://maxcdn.bootstrapcdn.com
+          https://assets.braintreegateway.com
+          https://*.paypal.com
+          https://fonts.googleapis.com;
+        img-src
+          'self'
+          data:
+          https://icons.bitwarden.com
+          https://*.paypal.com
+          https://www.paypalobjects.com
+          https://q.stripe.com
+          https://haveibeenpwned.com
+          https://chart.googleapis.com
+          https://www.google-analytics.com;
+        font-src
+          'self'
+          https://maxcdn.bootstrapcdn.com
+          https://fonts.gstatic.com;
+        child-src
+          'self'
+          https://js.stripe.com
+          https://assets.braintreegateway.com
+          https://*.paypal.com
+          https://*.duosecurity.com;
+        frame-src
+          'self'
+          https://js.stripe.com
+          https://assets.braintreegateway.com
+          https://*.paypal.com
+          https://*.duosecurity.com;
+        connect-src
+          *;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#3c8dbc">
     <base href="/" />
@@ -15,9 +62,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <meta name="x-stylesheet-test" content="" class="fa invisible" />
-    <script src="js/fallback-styles.min.js?v=dtwftlgqeufs04o0f6r"></script>
+    <script src="js/fallback-styles.min.js?v=a0gylewuuesrx9u8ilik9"></script>
 
-    <link rel="stylesheet" href="css/vault.min.css?v=dtwftlgqeufs04o0f6r" />
+    <link rel="stylesheet" href="css/vault.min.css?v=a0gylewuuesrx9u8ilik9" />
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
@@ -35,11 +82,11 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"
             integrity="sha384-AH/e+s4V4kUifvnNED2x1XZqArO5qTFU4YKRzUXbz4IgPG1H0Xmz6fP1XUmO4vT/" crossorigin="anonymous"></script>
-    <script src="js/fallback-scripts.min.js?v=dtwftlgqeufs04o0f6r"></script>
-    <script src="js/settings.js?v=dtwftlgqeufs04o0f6r"></script>
+    <script src="js/fallback-scripts.min.js?v=a0gylewuuesrx9u8ilik9"></script>
+    <script src="js/settings.js?v=a0gylewuuesrx9u8ilik9"></script>
 
-    <script src="js/lib.min.js?v=dtwftlgqeufs04o0f6r"></script>
-    <script src="js/bw.min.js?v=dtwftlgqeufs04o0f6r"></script>
-    <script src="js/app.min.js?v=dtwftlgqeufs04o0f6r"></script>
+    <script src="js/lib.min.js?v=a0gylewuuesrx9u8ilik9"></script>
+    <script src="js/bw.min.js?v=a0gylewuuesrx9u8ilik9"></script>
+    <script src="js/app.min.js?v=a0gylewuuesrx9u8ilik9"></script>
 </body>
 </html>
