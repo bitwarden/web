@@ -205,6 +205,8 @@
                 if (returnVal.action === 'edit') {
                     var index = $scope.ciphers.indexOf(cipher);
                     if (index > -1) {
+                        // restore collection ids since those cannot change on edit here.
+                        returnVal.data.collectionIds = $rootScope.vaultCiphers[index].collectionIds;
                         $rootScope.vaultCiphers[index] = returnVal.data;
                     }
                     sortScopedCipherData();
