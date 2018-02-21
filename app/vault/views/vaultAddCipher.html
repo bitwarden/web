@@ -87,7 +87,8 @@
                         <label for="password">Password</label>
                         <div class="input-group">
                             <input type="password" id="password" name="Login.Password" ng-model="cipher.login.password"
-                                   class="form-control monospaced" ng-readonly="readOnly" api-field />
+                                   class="form-control monospaced" ng-readonly="readOnly" api-field
+                                   autocomplete="new-password" />
                             <span class="input-group-btn" uib-tooltip="Copy Password" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
                                         ngclipboard-success="clipboardSuccess(e)" ngclipboard-error="clipboardError(e, true)"
