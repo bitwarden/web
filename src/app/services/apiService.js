@@ -42,13 +42,20 @@
                 headers: { 'Content-Type': undefined },
                 params: { id: '@id' }
             },
+            postAttachmentAdmin: {
+                url: _apiUri + '/ciphers/:id/attachment-admin',
+                method: 'POST',
+                headers: { 'Content-Type': undefined },
+                params: { id: '@id' }
+            },
             postShareAttachment: {
                 url: _apiUri + '/ciphers/:id/attachment/:attachmentId/share?organizationId=:orgId',
                 method: 'POST',
                 headers: { 'Content-Type': undefined },
                 params: { id: '@id', attachmentId: '@attachmentId', orgId: '@orgId' }
             },
-            delAttachment: { url: _apiUri + '/ciphers/:id/attachment/:attachmentId/delete', method: 'POST', params: { id: '@id', attachmentId: '@attachmentId' } }
+            delAttachment: { url: _apiUri + '/ciphers/:id/attachment/:attachmentId/delete', method: 'POST', params: { id: '@id', attachmentId: '@attachmentId' } },
+            delAttachmentAdmin: { url: _apiUri + '/ciphers/:id/attachment/:attachmentId/delete-admin', method: 'POST', params: { id: '@id', attachmentId: '@attachmentId' } }
         });
 
         _service.organizations = $resource(_apiUri + '/organizations/:id', {}, {

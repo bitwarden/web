@@ -29,7 +29,7 @@
                 var fd = new FormData();
                 var blob = new Blob([encValue.data], { type: 'application/octet-stream' });
                 fd.append('data', blob, encValue.fileName);
-                return apiService.ciphers.postAttachment({ id: cipherId }, fd).$promise;
+                return apiService.ciphers.postAttachmentAdmin({ id: cipherId }, fd).$promise;
             }).then(function (response) {
                 $analytics.eventTrack('Added Attachment');
                 toastr.success('The attachment has been added.');
@@ -61,7 +61,7 @@
             }
 
             attachment.loading = true;
-            apiService.ciphers.delAttachment({ id: cipherId, attachmentId: attachment.id }).$promise.then(function () {
+            apiService.ciphers.delAttachmentAdmin({ id: cipherId, attachmentId: attachment.id }).$promise.then(function () {
                 attachment.loading = false;
                 $analytics.eventTrack('Deleted Organization Attachment');
                 var index = $scope.cipher.attachments.indexOf(attachment);
