@@ -20,7 +20,7 @@ angular
 
         var refreshPromise;
         jwtInterceptorProvider.tokenGetter = /*@ngInject*/ function (options, tokenService, authService) {
-            if (options.url.indexOf(appSettings.apiUri + '/') === -1) {
+            if (options.url.indexOf(appSettings.apiUri + '/') !== 0) {
                 return;
             }
 

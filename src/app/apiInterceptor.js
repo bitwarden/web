@@ -4,7 +4,7 @@ angular
     .factory('apiInterceptor', function ($injector, $q, toastr, appSettings, utilsService) {
         return {
             request: function (config) {
-                if (config.url.indexOf(appSettings.apiUri + '/') > -1) {
+                if (config.url.indexOf(appSettings.apiUri + '/') === 0) {
                     config.headers['Device-Type'] = utilsService.getDeviceType();
                 }
 
