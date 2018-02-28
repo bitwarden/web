@@ -23,7 +23,7 @@
             }, function (e) {
                 throw e ? e : 'Error occurred.';
             }).then(function () {
-                toastr.success('Please log back in. If you are using other bitwarden applications, ' +
+                toastr.success('Please log back in. If you are using other Bitwarden applications, ' +
                     'log out and back in to those as well.', 'Key Updated', { timeOut: 10000 });
             });
         };

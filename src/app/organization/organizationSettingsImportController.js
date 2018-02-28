@@ -11,7 +11,7 @@
         $scope.options = [
             {
                 id: 'bitwardencsv',
-                name: 'bitwarden (csv)',
+                name: 'Bitwarden (csv)',
                 featured: true,
                 sort: 1,
                 instructions: $sce.trustAsHtml('Export using the web vault (vault.bitwarden.com). ' +

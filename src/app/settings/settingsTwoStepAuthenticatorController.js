@@ -4,7 +4,7 @@
     .controller('settingsTwoStepAuthenticatorController', function ($scope, apiService, $uibModalInstance, cryptoService,
         authService, $q, toastr, $analytics, constants, $timeout) {
         $analytics.eventTrack('settingsTwoStepAuthenticatorController', { category: 'Modal' });
-        var _issuer = 'bitwarden',
+        var _issuer = 'Bitwarden',
             _profile = null,
             _masterPasswordHash,
             _key = null;

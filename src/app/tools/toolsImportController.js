@@ -11,7 +11,7 @@
         $scope.options = [
             {
                 id: 'bitwardencsv',
-                name: 'bitwarden (csv)',
+                name: 'Bitwarden (csv)',
                 featured: true,
                 sort: 1,
                 instructions: $sce.trustAsHtml('Export using the web vault (vault.bitwarden.com). ' +
@@ -243,7 +243,7 @@
                     'python script by Luke Plant to your desktop as <code>pw_helper.py</code>. Open terminal and run ' +
                     '<code>chmod +rx Desktop/pw_helper.py</code> and then ' +
                     '<code>python Desktop/pw_helper.py export Desktop/my_passwords.json</code>. Then upload ' +
-                    'the resulting <code>my_passwords.json</code> file here to bitwarden.')
+                    'the resulting <code>my_passwords.json</code> file here to Bitwarden.')
             }
         ];
 
