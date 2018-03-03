@@ -26,8 +26,9 @@
                     return;
                 }
 
+                var i;
                 var collectionsDict = {};
-                for (var i = 0; i < decCollections.length; i++) {
+                for (i = 0; i < decCollections.length; i++) {
                     collectionsDict[decCollections[i].id] = decCollections[i];
                 }
 
@@ -78,10 +79,17 @@
                         switch (decCiphers[i].type) {
                             case constants.cipherType.login:
                                 cipher.type = 'login';
-                                cipher.login_uri = decCiphers[i].login.uri;
+                                cipher.login_uri = null;
                                 cipher.login_username = decCiphers[i].login.username;
                                 cipher.login_password = decCiphers[i].login.password;
                                 cipher.login_totp = decCiphers[i].login.totp;
+
+                                if (decCiphers[i].login.uris && decCiphers[i].login.uris.length) {
+                                    cipher.login_uri = [];
+                                    for (j = 0; j < decCiphers[i].login.uris.length; j++) {
+                                        cipher.login_uri.push(decCiphers[i].login.uris[j].uri);
+                                    }
+                                }
                                 break;
                             case constants.cipherType.secureNote:
                                 cipher.type = 'note';

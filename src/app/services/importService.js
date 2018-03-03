@@ -195,15 +195,48 @@
                 uri = 'http://' + uri;
             }
 
-            return trimUri(uri);
-        }
-
-        function trimUri(uri) {
             if (uri.length > 1000) {
                 return uri.substring(0, 1000);
             }
 
             return uri;
+        }
+
+        function makeUriArray(uri) {
+            if (!uri) {
+                return null;
+            }
+
+            if (typeof uri === 'string') {
+                return [{
+                    uri: fixUri(uri),
+                    match: null
+                }];
+            }
+
+            if (uri.length) {
+                var returnArr = [];
+                for (var i = 0; i < uri.length; i++) {
+                    returnArr.push({
+                        uri: fixUri(uri[i]),
+                        match: null
+                    });
+                }
+                return returnArr;
+            }
+
+            return null;
+        }
+
+        function parseSingleRowCsv(rowData) {
+            if (!rowData || rowData === '') {
+                return null;
+            }
+            var parsedRow = Papa.parse(rowData);
+            if (parsedRow && parsedRow.data && parsedRow.data.length && parsedRow.data[0].length) {
+                return parsedRow.data[0];
+            }
+            return null;
         }
 
         function parseCsvErrors(results) {
@@ -362,16 +395,18 @@
 
                         var valueType = value.type ? value.type.toLowerCase() : null;
                         switch (valueType) {
-                            case 'login': case null: case undefined:
+                            case 'login':
+                            case null:
+                            case undefined:
                                 cipher.type = constants.cipherType.login;
 
                                 var totp = value.login_totp || value.totp;
-                                var uri = value.login_uri || value.uri;
+                                var uris = parseSingleRowCsv(value.login_uri || value.uri);
                                 var username = value.login_username || value.username;
                                 var password = value.login_password || value.password;
                                 cipher.login = {
                                     totp: totp && totp !== '' ? totp : null,
-                                    uri: uri && uri !== '' ? trimUri(uri) : null,
+                                    uris: makeUriArray(uris),
                                     username: username && username !== '' ? username : null,
                                     password: password && password !== '' ? password : null
                                 };
@@ -490,16 +525,18 @@
 
                         var valueType = value.type ? value.type.toLowerCase() : null;
                         switch (valueType) {
-                            case 'login': case null: case undefined:
+                            case 'login':
+                            case null:
+                            case undefined:
                                 cipher.type = constants.cipherType.login;
 
                                 var totp = value.login_totp || value.totp;
-                                var uri = value.login_uri || value.uri;
+                                var uris = parseSingleRowCsv(value.login_uri || value.uri);
                                 var username = value.login_username || value.username;
                                 var password = value.login_password || value.password;
                                 cipher.login = {
                                     totp: totp && totp !== '' ? totp : null,
-                                    uri: uri && uri !== '' ? trimUri(uri) : null,
+                                    uris: makeUriArray(uris),
                                     username: username && username !== '' ? username : null,
                                     password: password && password !== '' ? password : null
                                 };
@@ -686,7 +723,7 @@
 
                     if (cipher.type === constants.cipherType.login) {
                         cipher.login = {
-                            uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                            uris: makeUriArray(value.url),
                             username: value.username && value.username !== '' ? value.username : null,
                             password: value.password && value.password !== '' ? value.password : null
                         };
@@ -879,7 +916,7 @@
                                             cipher.notes += (text + '\n');
                                         }
                                         else if (type === 'weblogin' || type === 'website') {
-                                            cipher.login.uri = trimUri(text);
+                                            cipher.login.uris = makeUriArray(text);
                                         }
                                         else if (text.length > 200) {
                                             cipher.notes += (name + ': ' + text + '\n');
@@ -980,7 +1017,7 @@
                             notes: null,
                             name: value[0] && value[0] !== '' ? value[0] : '--',
                             login: {
-                                uri: null,
+                                uris: null,
                                 username: value[2] && value[2] !== '' ? value[2] : null,
                                 password: value[3] && value[3] !== '' ? value[3] : null
                             },
@@ -996,7 +1033,7 @@
 
                                 var cfHeader = customFieldHeaders[j - 4];
                                 if (cfHeader.toLowerCase() === 'url' || cfHeader.toLowerCase() === 'uri') {
-                                    cipher.login.uri = trimUri(cf);
+                                    cipher.login.uris = makeUriArray(cf);
                                 }
                                 else {
                                     if (!cipher.fields) {
@@ -1082,7 +1119,7 @@
                             name: null,
                             type: constants.cipherType.login,
                             login: {
-                                uri: null,
+                                uris: null,
                                 username: null,
                                 password: null
                             },
@@ -1101,7 +1138,7 @@
 
                             switch (key) {
                                 case 'URL':
-                                    cipher.login.uri = fixUri(value);
+                                    cipher.login.uris = makeUriArray(value);
                                     break;
                                 case 'UserName':
                                     cipher.login.username = value;
@@ -1203,7 +1240,7 @@
                             notes: value.Notes && value.Notes !== '' ? value.Notes : null,
                             name: value.Title && value.Title !== '' ? value.Title : '--',
                             login: {
-                                uri: value.URL && value.URL !== '' ? fixUri(value.URL) : null,
+                                uris: makeUriArray(value.URL),
                                 username: value.Username && value.Username !== '' ? value.Username : null,
                                 password: value.Password && value.Password !== '' ? value.Password : null
                             }
@@ -1316,7 +1353,7 @@
                     else {
                         cipher.type = constants.cipherType.login;
                         cipher.login = {
-                            uri: item.location && item.location !== '' ? fixUri(item.location) : null,
+                            uris: makeUriArray(item.location),
                             username: null,
                             password: null,
                             totp: null
@@ -1371,7 +1408,7 @@
                             notes: value.notesPlain && value.notesPlain !== '' ? value.notesPlain : '',
                             name: value.title && value.title !== '' ? value.title : '--',
                             login: {
-                                uri: null,
+                                uris: null,
                                 username: null,
                                 password: null
                             }
@@ -1389,17 +1426,9 @@
                                 else if (!cipher.login.username && property === 'username') {
                                     cipher.login.username = value[property];
                                 }
-                                else if (!cipher.login.uri && property === 'urls') {
+                                else if (!cipher.login.uris && property === 'urls') {
                                     var urls = value[property].split(/(?:\r\n|\r|\n)/);
-                                    cipher.login.uri = fixUri(urls[0]);
-
-                                    for (var j = 1; j < urls.length; j++) {
-                                        if (cipher.notes !== '') {
-                                            cipher.notes += '\n';
-                                        }
-
-                                        cipher.notes += ('url ' + (j + 1) + ': ' + urls[j]);
-                                    }
+                                    cipher.login.uris = makeUriArray(urls);
                                 }
                                 else if (property !== 'ainfo' && property !== 'autosubmit' && property !== 'notesPlain' &&
                                     property !== 'ps' && property !== 'scope' && property !== 'tags' && property !== 'title' &&
@@ -1443,7 +1472,7 @@
                             notes: null,
                             name: value.name && value.name !== '' ? value.name : '--',
                             login: {
-                                uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                                uris: makeUriArray(value.url),
                                 username: value.username && value.username !== '' ? value.username : null,
                                 password: value.password && value.password !== '' ? value.password : null
                             }
@@ -1497,7 +1526,7 @@
                         notes: null,
                         name: getNameFromHost(host),
                         login: {
-                            uri: host && host !== '' ? trimUri(host) : null,
+                            uris: makeUriArray(host),
                             username: user && user !== '' ? user : null,
                             password: password && password !== '' ? password : null,
                         }
@@ -1533,7 +1562,7 @@
                                 notes: value[4] && value[4] !== '' ? value[4] : null,
                                 name: value[0] && value[0] !== '' ? value[0] : '--',
                                 login: {
-                                    uri: value[3] && value[3] !== '' ? trimUri(value[3]) : null,
+                                    uris: makeUriArray(value[3]),
                                     username: value[1] && value[1] !== '' ? value[1] : null,
                                     password: value[2] && value[2] !== '' ? value[2] : null
                                 }
@@ -1580,7 +1609,7 @@
                                 notes: value[5] && value[5] !== '' ? value[5] : null,
                                 name: value[1] && value[1] !== '' ? value[1] : '--',
                                 login: {
-                                    uri: value[4] && value[4] !== '' ? trimUri(value[4]) : null,
+                                    uris: makeUriArray(value[4]),
                                     username: value[2] && value[2] !== '' ? value[2] : null,
                                     password: value[3] && value[3] !== '' ? value[3] : null
                                 },
@@ -1688,7 +1717,7 @@
                                 notes: notes && notes.text() !== '' ? notes.text() : null,
                                 name: accountName && accountName.text() !== '' ? accountName.text() : '--',
                                 login: {
-                                    uri: url && url.text() !== '' ? trimUri(url.text()) : null,
+                                    uris: url ? makeUriArray(url.text()) : null,
                                     username: userId && userId.text() !== '' ? userId.text() : null,
                                     password: password && password.text() !== '' ? password.text() : null
                                 },
@@ -1788,7 +1817,7 @@
                             notes: note && note !== '' ? note : null,
                             fields: null,
                             login: {
-                                uri: null,
+                                uris: null,
                                 password: null,
                                 username: null,
                                 totp: null
@@ -1805,8 +1834,8 @@
                                 var field = row[i + 1];
                                 var fieldLower = field.toLowerCase();
 
-                                if (fieldLower === 'url' && !cipher.login.uri) {
-                                    cipher.login.uri = trimUri(value);
+                                if (fieldLower === 'url' && !cipher.login.uris) {
+                                    cipher.login.uris = makeUriArray(value);
                                 }
                                 else if ((fieldLower === 'username' || fieldLower === 'email') && !cipher.login.username) {
                                     cipher.login.username = value;
@@ -1907,7 +1936,7 @@
                                 notes: notes && notesText !== '' ? notesText : null,
                                 name: title && title.text() !== '' ? title.text() : '--',
                                 login: {
-                                    uri: url && url.text() !== '' ? trimUri(url.text()) : null,
+                                    uris: url ? makeUriArray(url.text()) : null,
                                     username: username && username.text() !== '' ? username.text() : null,
                                     password: password && password.text() !== '' ? password.text() : null
                                 }
@@ -1969,17 +1998,17 @@
                             favorite: false,
                             notes: null,
                             login: {
-                                uri: null,
+                                uris: null,
                                 password: null,
                                 username: null
                             }
                         };
 
                         if (row.length === 2) {
-                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.uris = makeUriArray(row[1]);
                         }
                         else if (row.length === 3) {
-                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.uris = makeUriArray(row[1]);
                             cipher.login.username = row[2];
                         }
                         else if (row.length === 4) {
@@ -1993,7 +2022,7 @@
                             }
                         }
                         else if (row.length === 5) {
-                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.uris = makeUriArray(row[1]);
                             cipher.login.username = row[2];
                             cipher.login.password = row[3];
                             cipher.notes = row[4];
@@ -2010,7 +2039,7 @@
                                 cipher.notes = row[4] + '\n' + row[5];
                             }
 
-                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.uris = makeUriArray(row[1]);
                         }
                         else if (row.length === 7) {
                             if (row[2] === '') {
@@ -2022,7 +2051,7 @@
                                 cipher.notes = row[3] + '\n' + row[4] + '\n' + row[6];
                             }
 
-                            cipher.login.uri = fixUri(row[1]);
+                            cipher.login.uris = makeUriArray(row[1]);
                             cipher.login.password = row[5];
                         }
                         else {
@@ -2048,9 +2077,6 @@
                         }
                         if (cipher.notes === '') {
                             cipher.notes = null;
-                        }
-                        if (cipher.login.uri === '') {
-                            cipher.login.uri = null;
                         }
 
                         ciphers.push(cipher);
@@ -2144,7 +2170,7 @@
                                 notes: notesText && notesText !== '' ? notesText : null,
                                 name: titleText && titleText !== '' ? titleText : '--',
                                 login: {
-                                    uri: linkText && linkText !== '' ? trimUri(linkText) : null,
+                                    uris: makeUriArray(linkText),
                                     username: usernameText && usernameText !== '' ? usernameText : null,
                                     password: passwordText && passwordText !== '' ? passwordText : null
                                 }
@@ -2210,14 +2236,14 @@
                                 notes: '',
                                 name: value[2] && value[2] !== '' ? value[2] : null,
                                 login: {
-                                    uri: null,
+                                    uris: null,
                                     username: null,
                                     password: null
                                 }
                             };
 
                             if (value[1] === 'Web Logins') {
-                                cipher.login.uri = value[4] && value[4] !== '' ? trimUri(value[4]) : null;
+                                cipher.login.uris = makeUriArray(value[4]);
                                 cipher.login.username = value[5] && value[5] !== '' ? value[5] : null;
                                 cipher.login.password = value[6] && value[6] !== '' ? value[6] : null;
                                 cipher.notes = value[3] && value[3] !== '' ? value[3].split('\\n').join('\n') : null;
@@ -2295,7 +2321,7 @@
                             notes: value.memo && value.memo !== '' ? value.memo : null,
                             name: value.name && value.name !== '' ? value.name : '--',
                             login: {
-                                uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                                uris: makeUriArray(value.url),
                                 username: value.login && value.login !== '' ? value.login : null,
                                 password: value.password && value.password !== '' ? value.password : null
                             },
@@ -2367,7 +2393,7 @@
                             notes: '',
                             name: entry.label && entry.label !== '' ? entry.label.split(' ')[0] : '--',
                             login: {
-                                uri: null,
+                                uris: null,
                                 username: null,
                                 password: null
                             },
@@ -2395,7 +2421,7 @@
                                             cipher.login.username = field.value;
                                             break;
                                         case 'url':
-                                            cipher.login.uri = trimUri(field.value);
+                                            cipher.login.uris = makeUriArray(field.value);
                                             break;
                                         default:
                                             if (!cipher.login.username && isField(field.label, _usernameFieldNames)) {
@@ -2458,7 +2484,7 @@
                                 notes: null,
                                 name: account.label && account.label !== '' ? account.label : account.domain,
                                 login: {
-                                    uri: account.domain && account.domain !== '' ? fixUri(account.domain) : null,
+                                    uris: makeUriArray(account.domain),
                                     username: account.username && account.username !== '' ? account.username : null,
                                     password: account.password && account.password !== '' ? account.password : null
                                 }
@@ -2504,7 +2530,7 @@
                             notes: '',
                             name: outterTable.find('span.caption').text(),
                             login: {
-                                uri: null,
+                                uris: null,
                                 username: null,
                                 password: null
                             },
@@ -2513,7 +2539,7 @@
 
                         var url = outterTable.find('.subcaption').text();
                         if (url && url !== '') {
-                            cipher.login.uri = fixUri(url);
+                            cipher.login.uris = makeUriArray(url);
                         }
 
                         var fields = [];
@@ -2597,7 +2623,7 @@
                             notes: value.notes && value.notes !== '' ? value.notes : null,
                             name: value.url && value.url !== '' ? urlDomain(value.url) : '--',
                             login: {
-                                uri: value.url && value.url !== '' ? trimUri(value.url) : null,
+                                uris: makeUriArray(value.url),
                                 username: value.username && value.username !== '' ? value.username : null,
                                 password: value.password && value.password !== '' ? value.password : null
                             }
@@ -2631,7 +2657,7 @@
                             favorite: false,
                             notes: note && note !== '' ? note : null,
                             login: {
-                                uri: null,
+                                uris: null,
                                 password: null,
                                 username: null
                             },
@@ -2648,8 +2674,8 @@
 
                                 var fieldLower = field.toLowerCase();
 
-                                if (!cipher.login.uri && isField(field, _uriFieldNames)) {
-                                    cipher.login.uri = fixUri(value);
+                                if (!cipher.login.uris && isField(field, _uriFieldNames)) {
+                                    cipher.login.uris = makeUriArray(value);
                                 }
                                 else if (!cipher.login.username && isField(field, _usernameFieldNames)) {
                                     cipher.login.username = value;
@@ -2706,7 +2732,7 @@
                             notes: '',
                             name: item.name && item.name !== '' ? item.name : '--',
                             login: {
-                                uri: item.login_url && item.login_url !== '' ? fixUri(item.login_url) : null,
+                                uris: makeUriArray(item.login_url),
                                 username: null,
                                 password: null
                             },
@@ -2850,7 +2876,7 @@
                             notes: value.Notes && value.Notes !== '' ? value.Notes : '',
                             name: value['Secret Name'] && value['Secret Name'] !== '' ? value['Secret Name'] : '--',
                             login: {
-                                uri: value['Secret URL'] && value['Secret URL'] !== '' ? fixUri(value['Secret URL']) : null,
+                                uris: makeUriArray(value['Secret URL']),
                                 username: null,
                                 password: null
                             },
@@ -2950,15 +2976,15 @@
                             name: value[1] && value[1] !== '' ? value[1] : '--',
                             fields: null,
                             login: {
-                                uri: null,
+                                uris: null,
                                 username: null,
                                 password: null
                             }
                         };
 
                         if (type === 'Web Logins' || type === 'Servers' || type === 'Email Accounts') {
-                            cipher.login.uri = value[4] && value[4] !== '' ? fixUri(value[4]) : null;
-                            cipher.login.username = value[2] && value[2] !== '' ? value[2] : null;
+                            cipher.login.uris = makeUriArray(value[4]),
+                                cipher.login.username = value[2] && value[2] !== '' ? value[2] : null;
                             cipher.login.password = value[3] && value[3] !== '' ? value[3] : null;
                             parseFieldsToNotes(5, value, cipher);
                         }
@@ -3015,7 +3041,7 @@
                             favorite: false,
                             notes: row.Notes && row.Notes !== '' ? row.Notes : null,
                             login: {
-                                uri: row.Url && row.Url !== '' ? fixUri(row.Url) : null,
+                                uris: makeUriArray(row.Url),
                                 password: row.Password && row.Password !== '' ? row.Password : null,
                                 username: row.UserName && row.UserName !== '' ? row.UserName : null
                             }
@@ -3072,7 +3098,7 @@
                             notes: !!getValue('description', value) ? getValue('description', value) : null,
                             name: !!getValue('title', value) ? getValue('title', value) : '--',
                             login: {
-                                uri: !!getValue('site', value) ? fixUri(getValue('site', value)) : null,
+                                uris: !!getValue('site', value) ? makeUriArray(getValue('site', value)) : null,
                                 username: !!getValue('username', value) ? getValue('username', value) : null,
                                 password: !!getValue('password', value) ? getValue('password', value) : null
                             }
@@ -3146,7 +3172,7 @@
                                     notes: '',
                                     name: item.display_name.replace('http://', '').replace('https://', ''),
                                     login: {
-                                        uri: fixUri(item.display_name),
+                                        uris: makeUriArray(item.display_name),
                                         username: item.attributes.username_value && item.attributes.username_value !== '' ?
                                             item.attributes.username_value : null,
                                         password: item.secret && item.secret !== '' ? item.secret : null
