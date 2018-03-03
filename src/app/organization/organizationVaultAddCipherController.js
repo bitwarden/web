@@ -8,7 +8,13 @@
         $scope.selectedType = constants.cipherType.login.toString();
         $scope.cipher = {
             type: constants.cipherType.login,
-            login: {},
+            login: {
+                uris: [{
+                    uri: null,
+                    match: null,
+                    matchValue: null
+                }]
+            },
             identity: {},
             card: {},
             secureNote: {
@@ -41,6 +47,42 @@
             if (!$scope.cipher.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Add');
                 $scope.cipher.login.password = passwordService.generatePassword({ length: 14, special: true });
+            }
+        };
+
+        $scope.addUri = function () {
+            if (!$scope.cipher.login) {
+                return;
+            }
+
+            if (!$scope.cipher.login.uris) {
+                $scope.cipher.login.uris = [];
+            }
+
+            $scope.cipher.login.uris.push({
+                uri: null,
+                match: null,
+                matchValue: null
+            });
+        };
+
+        $scope.removeUri = function (uri) {
+            if (!$scope.cipher.login || !$scope.cipher.login.uris) {
+                return;
+            }
+
+            var index = $scope.cipher.login.uris.indexOf(uri);
+            if (index > -1) {
+                $scope.cipher.login.uris.splice(index, 1);
+            }
+        };
+
+        $scope.uriMatchChanged = function (uri) {
+            if ((!uri.matchValue && uri.matchValue !== 0) || uri.matchValue === '') {
+                uri.match = null;
+            }
+            else {
+                uri.match = parseInt(uri.matchValue);
             }
         };
 

@@ -30,6 +30,9 @@ angular
                 organizationId: encryptedCipher.OrganizationId,
                 collectionIds: encryptedCipher.CollectionIds || [],
                 'type': encryptedCipher.Type,
+                name: cryptoService.decrypt(encryptedCipher.Name, key),
+                notes: _service.decryptProperty(encryptedCipher.Notes, key, true, false),
+                fields: _service.decryptFields(key, encryptedCipher.Fields),
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
                 edit: encryptedCipher.Edit,
@@ -38,62 +41,68 @@ angular
                 icon: null
             };
 
-            var cipherData = encryptedCipher.Data;
-            if (cipherData) {
-                cipher.name = cryptoService.decrypt(cipherData.Name, key);
-                cipher.notes = _service.decryptProperty(cipherData.Notes, key, true, false);
-                cipher.fields = _service.decryptFields(key, cipherData.Fields);
-
-                var dataObj = {};
-                switch (cipher.type) {
-                    case constants.cipherType.login:
-                        dataObj.uri = _service.decryptProperty(cipherData.Uri, key, true, false);
-                        dataObj.username = _service.decryptProperty(cipherData.Username, key, true, false);
-                        dataObj.password = _service.decryptProperty(cipherData.Password, key, true, false);
-                        dataObj.totp = _service.decryptProperty(cipherData.Totp, key, true, false);
-                        cipher.login = dataObj;
-                        cipher.icon = 'fa-globe';
-                        break;
-                    case constants.cipherType.secureNote:
-                        dataObj.type = cipherData.Type;
-                        cipher.secureNote = dataObj;
-                        cipher.icon = 'fa-sticky-note-o';
-                        break;
-                    case constants.cipherType.card:
-                        dataObj.cardholderName = _service.decryptProperty(cipherData.CardholderName, key, true, false);
-                        dataObj.number = _service.decryptProperty(cipherData.Number, key, true, false);
-                        dataObj.brand = _service.decryptProperty(cipherData.Brand, key, true, false);
-                        dataObj.expMonth = _service.decryptProperty(cipherData.ExpMonth, key, true, false);
-                        dataObj.expYear = _service.decryptProperty(cipherData.ExpYear, key, true, false);
-                        dataObj.code = _service.decryptProperty(cipherData.Code, key, true, false);
-                        cipher.card = dataObj;
-                        cipher.icon = 'fa-credit-card';
-                        break;
-                    case constants.cipherType.identity:
-                        dataObj.title = _service.decryptProperty(cipherData.Title, key, true, false);
-                        dataObj.firstName = _service.decryptProperty(cipherData.FirstName, key, true, false);
-                        dataObj.middleName = _service.decryptProperty(cipherData.MiddleName, key, true, false);
-                        dataObj.lastName = _service.decryptProperty(cipherData.LastName, key, true, false);
-                        dataObj.address1 = _service.decryptProperty(cipherData.Address1, key, true, false);
-                        dataObj.address2 = _service.decryptProperty(cipherData.Address2, key, true, false);
-                        dataObj.address3 = _service.decryptProperty(cipherData.Address3, key, true, false);
-                        dataObj.city = _service.decryptProperty(cipherData.City, key, true, false);
-                        dataObj.state = _service.decryptProperty(cipherData.State, key, true, false);
-                        dataObj.postalCode = _service.decryptProperty(cipherData.PostalCode, key, true, false);
-                        dataObj.country = _service.decryptProperty(cipherData.Country, key, true, false);
-                        dataObj.company = _service.decryptProperty(cipherData.Company, key, true, false);
-                        dataObj.email = _service.decryptProperty(cipherData.Email, key, true, false);
-                        dataObj.phone = _service.decryptProperty(cipherData.Phone, key, true, false);
-                        dataObj.ssn = _service.decryptProperty(cipherData.SSN, key, true, false);
-                        dataObj.username = _service.decryptProperty(cipherData.Username, key, true, false);
-                        dataObj.passportNumber = _service.decryptProperty(cipherData.PassportNumber, key, true, false);
-                        dataObj.licenseNumber = _service.decryptProperty(cipherData.LicenseNumber, key, true, false);
-                        cipher.identity = dataObj;
-                        cipher.icon = 'fa-id-card-o';
-                        break;
-                    default:
-                        break;
-                }
+            var i;
+            switch (cipher.type) {
+                case constants.cipherType.login:
+                    cipher.login = {
+                        username: _service.decryptProperty(encryptedCipher.Login.Username, key, true, false),
+                        password: _service.decryptProperty(encryptedCipher.Login.Password, key, true, false),
+                        totp: _service.decryptProperty(encryptedCipher.Login.Totp, key, true, false),
+                        uris: null
+                    };
+                    if (encryptedCipher.Login.Uris) {
+                        cipher.login.uris = [];
+                        for (i = 0; i < encryptedCipher.Login.Uris.length; i++) {
+                            cipher.login.uris.push({
+                                uri: _service.decryptProperty(encryptedCipher.Login.Uris[i].Uri, key, true, false),
+                                match: encryptedCipher.Login.Uris[i].Match
+                            });
+                        }
+                    }
+                    cipher.icon = 'fa-globe';
+                    break;
+                case constants.cipherType.secureNote:
+                    cipher.secureNote = {
+                        type: encryptedCipher.SecureNote.Type
+                    };
+                    cipher.icon = 'fa-sticky-note-o';
+                    break;
+                case constants.cipherType.card:
+                    cipher.card = {
+                        cardholderName: _service.decryptProperty(encryptedCipher.Card.CardholderName, key, true, false),
+                        number: _service.decryptProperty(encryptedCipher.Card.Number, key, true, false),
+                        brand: _service.decryptProperty(encryptedCipher.Card.Brand, key, true, false),
+                        expMonth: _service.decryptProperty(encryptedCipher.Card.ExpMonth, key, true, false),
+                        expYear: _service.decryptProperty(encryptedCipher.Card.ExpYear, key, true, false),
+                        code: _service.decryptProperty(encryptedCipher.Card.Code, key, true, false)
+                    };
+                    cipher.icon = 'fa-credit-card';
+                    break;
+                case constants.cipherType.identity:
+                    cipher.identity = {
+                        title: _service.decryptProperty(encryptedCipher.Identity.Title, key, true, false),
+                        firstName: _service.decryptProperty(encryptedCipher.Identity.FirstName, key, true, false),
+                        middleName: _service.decryptProperty(encryptedCipher.Identity.MiddleName, key, true, false),
+                        lastName: _service.decryptProperty(encryptedCipher.Identity.LastName, key, true, false),
+                        address1: _service.decryptProperty(encryptedCipher.Identity.Address1, key, true, false),
+                        address2: _service.decryptProperty(encryptedCipher.Identity.Address2, key, true, false),
+                        address3: _service.decryptProperty(encryptedCipher.Identity.Address3, key, true, false),
+                        city: _service.decryptProperty(encryptedCipher.Identity.City, key, true, false),
+                        state: _service.decryptProperty(encryptedCipher.Identity.State, key, true, false),
+                        postalCode: _service.decryptProperty(encryptedCipher.Identity.PostalCode, key, true, false),
+                        country: _service.decryptProperty(encryptedCipher.Identity.Country, key, true, false),
+                        company: _service.decryptProperty(encryptedCipher.Identity.Company, key, true, false),
+                        email: _service.decryptProperty(encryptedCipher.Identity.Email, key, true, false),
+                        phone: _service.decryptProperty(encryptedCipher.Identity.Phone, key, true, false),
+                        ssn: _service.decryptProperty(encryptedCipher.Identity.SSN, key, true, false),
+                        username: _service.decryptProperty(encryptedCipher.Identity.Username, key, true, false),
+                        passportNumber: _service.decryptProperty(encryptedCipher.Identity.PassportNumber, key, true, false),
+                        licenseNumber: _service.decryptProperty(encryptedCipher.Identity.LicenseNumber, key, true, false)
+                    };
+                    cipher.icon = 'fa-id-card-o';
+                    break;
+                default:
+                    break;
             }
 
             if (!encryptedCipher.Attachments) {
@@ -101,7 +110,7 @@ angular
             }
 
             cipher.attachments = [];
-            for (var i = 0; i < encryptedCipher.Attachments.length; i++) {
+            for (i = 0; i < encryptedCipher.Attachments.length; i++) {
                 cipher.attachments.push(_service.decryptAttachment(key, encryptedCipher.Attachments[i]));
             }
 
@@ -121,6 +130,7 @@ angular
                 organizationId: encryptedCipher.OrganizationId,
                 collectionIds: encryptedCipher.CollectionIds || [],
                 'type': encryptedCipher.Type,
+                name: _service.decryptProperty(encryptedCipher.Name, key, false, true),
                 folderId: encryptedCipher.FolderId,
                 favorite: encryptedCipher.Favorite,
                 edit: encryptedCipher.Edit,
@@ -130,59 +140,56 @@ angular
                 icon: null
             };
 
-            var cipherData = encryptedCipher.Data;
-            if (cipherData) {
-                cipher.name = _service.decryptProperty(cipherData.Name, key, false, true);
-
-                var dataObj = {};
-                switch (cipher.type) {
-                    case constants.cipherType.login:
-                        cipher.subTitle = _service.decryptProperty(cipherData.Username, key, true, true);
-                        cipher.meta.password = _service.decryptProperty(cipherData.Password, key, true, true);
-                        cipher.meta.uri = _service.decryptProperty(cipherData.Uri, key, true, true);
-                        setLoginIcon(cipher, cipher.meta.uri, true);
-                        break;
-                    case constants.cipherType.secureNote:
-                        cipher.subTitle = null;
-                        cipher.icon = 'fa-sticky-note-o';
-                        break;
-                    case constants.cipherType.card:
-                        cipher.subTitle = '';
-                        cipher.meta.number = _service.decryptProperty(cipherData.Number, key, true, true);
-                        var brand = _service.decryptProperty(cipherData.Brand, key, true, true);
-                        if (brand) {
-                            cipher.subTitle = brand;
-                        }
-                        if (cipher.meta.number && cipher.meta.number.length >= 4) {
-                            if (cipher.subTitle !== '') {
-                                cipher.subTitle += ', ';
-                            }
-                            cipher.subTitle += ('*' + cipher.meta.number.substr(cipher.meta.number.length - 4));
-                        }
-                        cipher.icon = 'fa-credit-card';
-                        break;
-                    case constants.cipherType.identity:
-                        var firstName = _service.decryptProperty(cipherData.FirstName, key, true, true);
-                        var lastName = _service.decryptProperty(cipherData.LastName, key, true, true);
-                        cipher.subTitle = '';
-                        if (firstName) {
-                            cipher.subTitle = firstName;
-                        }
-                        if (lastName) {
-                            if (cipher.subTitle !== '') {
-                                cipher.subTitle += ' ';
-                            }
-                            cipher.subTitle += lastName;
-                        }
-                        cipher.icon = 'fa-id-card-o';
-                        break;
-                    default:
-                        break;
-                }
-
-                if (cipher.subTitle === '') {
+            switch (cipher.type) {
+                case constants.cipherType.login:
+                    cipher.subTitle = _service.decryptProperty(encryptedCipher.Login.Username, key, true, true);
+                    cipher.meta.password = _service.decryptProperty(encryptedCipher.Login.Password, key, true, true);
+                    cipher.meta.uri = null;
+                    if (encryptedCipher.Login.Uris && encryptedCipher.Login.Uris.length) {
+                        cipher.meta.uri = _service.decryptProperty(encryptedCipher.Login.Uris[0].Uri, key, true, true);
+                    }
+                    setLoginIcon(cipher, cipher.meta.uri, true);
+                    break;
+                case constants.cipherType.secureNote:
                     cipher.subTitle = null;
-                }
+                    cipher.icon = 'fa-sticky-note-o';
+                    break;
+                case constants.cipherType.card:
+                    cipher.subTitle = '';
+                    cipher.meta.number = _service.decryptProperty(encryptedCipher.Card.Number, key, true, true);
+                    var brand = _service.decryptProperty(encryptedCipher.Card.Brand, key, true, true);
+                    if (brand) {
+                        cipher.subTitle = brand;
+                    }
+                    if (cipher.meta.number && cipher.meta.number.length >= 4) {
+                        if (cipher.subTitle !== '') {
+                            cipher.subTitle += ', ';
+                        }
+                        cipher.subTitle += ('*' + cipher.meta.number.substr(cipher.meta.number.length - 4));
+                    }
+                    cipher.icon = 'fa-credit-card';
+                    break;
+                case constants.cipherType.identity:
+                    var firstName = _service.decryptProperty(encryptedCipher.Identity.FirstName, key, true, true);
+                    var lastName = _service.decryptProperty(encryptedCipher.Identity.LastName, key, true, true);
+                    cipher.subTitle = '';
+                    if (firstName) {
+                        cipher.subTitle = firstName;
+                    }
+                    if (lastName) {
+                        if (cipher.subTitle !== '') {
+                            cipher.subTitle += ' ';
+                        }
+                        cipher.subTitle += lastName;
+                    }
+                    cipher.icon = 'fa-id-card-o';
+                    break;
+                default:
+                    break;
+            }
+
+            if (cipher.subTitle === '') {
+                cipher.subTitle = null;
             }
 
             return cipher;
@@ -389,15 +396,24 @@ angular
                 fields: _service.encryptFields(unencryptedCipher.fields, key)
             };
 
+            var i;
             switch (cipher.type) {
                 case constants.cipherType.login:
                     var loginData = unencryptedCipher.login;
                     cipher.login = {
-                        uri: encryptProperty(loginData.uri, key),
                         username: encryptProperty(loginData.username, key),
                         password: encryptProperty(loginData.password, key),
                         totp: encryptProperty(loginData.totp, key)
                     };
+                    if (loginData.uris && loginData.uris.length) {
+                        cipher.login.uris = [];
+                        for (i = 0; i < loginData.uris.length; i++) {
+                            cipher.login.uris.push({
+                                uri: encryptProperty(loginData.uris[i].uri, key),
+                                match: loginData.uris[i].match
+                            });
+                        }
+                    }
                     break;
                 case constants.cipherType.secureNote:
                     cipher.secureNote = {
@@ -444,7 +460,7 @@ angular
 
             if (unencryptedCipher.attachments && attachments) {
                 cipher.attachments = {};
-                for (var i = 0; i < unencryptedCipher.attachments.length; i++) {
+                for (i = 0; i < unencryptedCipher.attachments.length; i++) {
                     cipher.attachments[unencryptedCipher.attachments[i].id] =
                         cryptoService.encrypt(unencryptedCipher.attachments[i].fileName, key);
                 }

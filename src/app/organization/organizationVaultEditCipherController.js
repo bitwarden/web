@@ -11,6 +11,7 @@
         apiService.ciphers.getAdmin({ id: cipherId }, function (cipher) {
             $scope.cipher = cipherService.decryptCipher(cipher);
             $scope.useTotp = $scope.cipher.organizationUseTotp;
+            setUriMatchValues();
         });
 
         $scope.save = function (model) {
@@ -29,6 +30,42 @@
             if (!$scope.cipher.login.password || confirm('Are you sure you want to overwrite the current password?')) {
                 $analytics.eventTrack('Generated Password From Edit');
                 $scope.cipher.login.password = passwordService.generatePassword({ length: 14, special: true });
+            }
+        };
+
+        $scope.addUri = function () {
+            if (!$scope.cipher.login) {
+                return;
+            }
+
+            if (!$scope.cipher.login.uris) {
+                $scope.cipher.login.uris = [];
+            }
+
+            $scope.cipher.login.uris.push({
+                uri: null,
+                match: null,
+                matchValue: null
+            });
+        };
+
+        $scope.removeUri = function (uri) {
+            if (!$scope.cipher.login || !$scope.cipher.login.uris) {
+                return;
+            }
+
+            var index = $scope.cipher.login.uris.indexOf(uri);
+            if (index > -1) {
+                $scope.cipher.login.uris.splice(index, 1);
+            }
+        };
+
+        $scope.uriMatchChanged = function (uri) {
+            if ((!uri.matchValue && uri.matchValue !== 0) || uri.matchValue === '') {
+                uri.match = null;
+            }
+            else {
+                uri.match = parseInt(uri.matchValue);
             }
         };
 
@@ -98,4 +135,14 @@
                 }
             });
         };
+
+        function setUriMatchValues() {
+            if ($scope.cipher.login && $scope.cipher.login.uris) {
+                for (var i = 0; i < $scope.cipher.login.uris.length; i++) {
+                    $scope.cipher.login.uris[i].matchValue =
+                        $scope.cipher.login.uris[i].match || $scope.cipher.login.uris[i].match === 0 ?
+                            $scope.cipher.login.uris[i].match.toString() : '';
+                }
+            }
+        }
     });
