@@ -191,7 +191,7 @@
 
         function fixUri(uri) {
             uri = uri.toLowerCase().trim();
-            if (!uri.startsWith('http') && uri.indexOf('.') >= 0) {
+            if (uri.indexOf('://') === -1 && uri.indexOf('.') >= 0) {
                 uri = 'http://' + uri;
             }
 
