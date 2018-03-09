@@ -2983,8 +2983,8 @@
                         };
 
                         if (type === 'Web Logins' || type === 'Servers' || type === 'Email Accounts') {
-                            cipher.login.uris = makeUriArray(value[4]),
-                                cipher.login.username = value[2] && value[2] !== '' ? value[2] : null;
+                            cipher.login.uris = makeUriArray(value[4]);
+                            cipher.login.username = value[2] && value[2] !== '' ? value[2] : null;
                             cipher.login.password = value[3] && value[3] !== '' ? value[3] : null;
                             parseFieldsToNotes(5, value, cipher);
                         }

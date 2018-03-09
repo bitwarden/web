@@ -53,8 +53,9 @@
                             login_totp: null
                         };
 
+                        var j;
                         if (decCiphers[i].fields) {
-                            for (var j = 0; j < decCiphers[i].fields.length; j++) {
+                            for (j = 0; j < decCiphers[i].fields.length; j++) {
                                 if (!cipher.fields) {
                                     cipher.fields = '';
                                 }
