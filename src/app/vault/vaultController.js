@@ -22,7 +22,11 @@
         }
 
         $scope.$on('$viewContentLoaded', function () {
-            $("#search").focus();
+            $timeout(function () {
+                if ($('body').hasClass('control-sidebar-open')) {
+                    $("#search").focus();
+                }
+            }, 500);
 
             if (($rootScope.vaultFolders || $rootScope.vaultCollections) && $rootScope.vaultCiphers) {
                 $scope.loading = false;

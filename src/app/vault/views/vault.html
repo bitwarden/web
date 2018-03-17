@@ -222,7 +222,7 @@
         <div class="control-sidebar-section" ng-show="!loading && vaultCollections.length">
             <ul class="control-sidebar-menu">
                 <li ng-repeat="collection in vaultCollections | orderBy: [groupingSort] track by collection.id"
-                    ng-class="{active: selectedCollection && collection.id === selectedCollection}">
+                    ng-class="{active: selectedCollection && collection.id === selectedCollection.id}">
                     <a href="#" stop-click ng-click="filterCollection(collection)">
                         <i class="fa fa-caret-right fa-fw"></i>
                         {{collection.name}}

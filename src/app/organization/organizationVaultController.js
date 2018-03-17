@@ -51,7 +51,11 @@
 
             $q.all([collectionPromise, cipherPromise]).then(function () {
                 $scope.loading = false;
-                $("#search").focus();
+                $timeout(function () {
+                    if ($('body').hasClass('control-sidebar-open')) {
+                        $("#search").focus();
+                    }
+                }, 500);
 
                 if ($state.params.search) {
                     $uibModalStack.dismissAll();
