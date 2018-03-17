@@ -2,12 +2,12 @@
     .module('bit.organization')
 
     .controller('organizationVaultAddCipherController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        cipherService, passwordService, $analytics, authService, orgId, $uibModal, constants) {
+        cipherService, passwordService, $analytics, authService, orgId, $uibModal, constants, selectedType) {
         $analytics.eventTrack('organizationVaultAddCipherController', { category: 'Modal' });
         $scope.constants = constants;
-        $scope.selectedType = constants.cipherType.login.toString();
+        $scope.selectedType = selectedType ? selectedType.toString() : constants.cipherType.login.toString();
         $scope.cipher = {
-            type: constants.cipherType.login,
+            type: selectedType || constants.cipherType.login,
             login: {
                 uris: [{
                     uri: null,

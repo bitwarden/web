@@ -4,7 +4,7 @@
     .controller('vaultMoveCiphersController', function ($scope, apiService, $uibModalInstance, ids, $analytics,
         $rootScope, $filter) {
         $analytics.eventTrack('vaultMoveCiphersController', { category: 'Modal' });
-        $scope.folders = $filter('filter')($rootScope.vaultGroupings, { folder: true });
+        $scope.folders = $rootScope.vaultFolders;
         $scope.count = ids.length;
 
         $scope.save = function () {

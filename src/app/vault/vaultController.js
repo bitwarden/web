@@ -5,24 +5,27 @@
         cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics, constants, validationService) {
         $scope.loading = true;
         $scope.ciphers = [];
-        $scope.folderCount = 0;
-        $scope.collectionCount = 0;
-        $scope.firstCollectionId = null;
+        $scope.folders = [];
+        $scope.collections = [];
         $scope.constants = constants;
-        $scope.favoriteCollapsed = $localStorage.collapsedFolders && 'favorite' in $localStorage.collapsedFolders;
-        $scope.groupingIdFilter = undefined;
-        $scope.typeFilter = undefined;
+        $scope.filter = undefined;
+        $scope.selectedType = undefined;
+        $scope.selectedFolder = undefined;
+        $scope.selectedCollection = undefined;
+        $scope.selectedFavorites = false;
+        $scope.selectedAll = true;
+        $scope.selectedTitle = 'All';
+        $scope.selectedIcon = 'fa-th';
 
         if ($state.params.refreshFromServer) {
-            $rootScope.vaultGroupings = $rootScope.vaultCiphers = null;
+            $rootScope.vaultFolders = $rootScope.vaultCollections = $rootScope.vaultCiphers = null;
         }
 
         $scope.$on('$viewContentLoaded', function () {
             $("#search").focus();
 
-            if ($rootScope.vaultGroupings && $rootScope.vaultCiphers) {
+            if (($rootScope.vaultFolders || $rootScope.vaultCollections) && $rootScope.vaultCiphers) {
                 $scope.loading = false;
-                loadGroupingData($rootScope.vaultGroupings);
                 loadCipherData($rootScope.vaultCiphers);
                 return;
             }
@@ -31,30 +34,30 @@
         });
 
         function loadDataFromServer() {
-            var decGroupings = [{
+            var decFolders = [{
                 id: null,
-                name: 'No Folder',
-                folder: true
+                name: 'No Folder'
             }];
+
+            var decCollections = [];
 
             var collectionPromise = apiService.collections.listMe({ writeOnly: false }, function (collections) {
                 for (var i = 0; i < collections.Data.length; i++) {
                     var decCollection = cipherService.decryptCollection(collections.Data[i], null, true);
-                    decCollection.collection = true;
-                    decGroupings.push(decCollection);
+                    decCollections.push(decCollection);
                 }
             }).$promise;
 
             var folderPromise = apiService.folders.list({}, function (folders) {
                 for (var i = 0; i < folders.Data.length; i++) {
                     var decFolder = cipherService.decryptFolderPreview(folders.Data[i]);
-                    decFolder.folder = true;
-                    decGroupings.push(decFolder);
+                    decFolders.push(decFolder);
                 }
             }).$promise;
 
             var groupingPromise = $q.all([collectionPromise, folderPromise]).then(function () {
-                loadGroupingData(decGroupings);
+                $rootScope.vaultCollections = decCollections;
+                $rootScope.vaultFolders = decFolders;
             });
 
             var cipherPromise = apiService.ciphers.list({}, function (ciphers) {
@@ -75,34 +78,7 @@
             });
         }
 
-        function loadGroupingData(decGroupings) {
-            $rootScope.vaultGroupings = $filter('orderBy')(decGroupings, ['folder', groupingSort]);
-            var collections = $filter('filter')($rootScope.vaultGroupings, { collection: true });
-            $scope.collectionCount = collections.length;
-            $scope.folderCount = decGroupings.length - collections.length - 1;
-            if (collections && collections.length) {
-                $scope.firstCollectionId = collections[0].id;
-            }
-        }
-
         function loadCipherData(decCiphers) {
-            angular.forEach($rootScope.vaultGroupings, function (grouping, groupingIndex) {
-                grouping.collapsed = $localStorage.collapsedFolders &&
-                    (grouping.id || 'none') in $localStorage.collapsedFolders;
-
-                angular.forEach(decCiphers, function (cipherValue) {
-                    if (cipherValue.favorite) {
-                        cipherValue.sort = -1;
-                    }
-                    else if (grouping.folder && cipherValue.folderId == grouping.id) {
-                        cipherValue.sort = groupingIndex;
-                    }
-                    else if (grouping.collection && cipherValue.collectionIds.indexOf(grouping.id) > -1) {
-                        cipherValue.sort = groupingIndex;
-                    }
-                });
-            });
-
             $rootScope.vaultCiphers = $scope.ciphers = $filter('orderBy')(decCiphers, ['sort', 'name', 'subTitle']);
 
             var chunks = chunk($rootScope.vaultCiphers, 400);
@@ -136,59 +112,17 @@
             return chunks;
         }
 
-        function groupingSort(item) {
+        $scope.groupingSort = function (item) {
             if (!item.id) {
                 return '';
             }
 
             return item.name.toLowerCase();
-        }
+        };
 
         $scope.clipboardError = function (e) {
             alert('Your web browser does not support easy clipboard copying. ' +
                 'Edit the item and copy it manually instead.');
-        };
-
-        $scope.collapseExpand = function (grouping, favorite) {
-            if (!$localStorage.collapsedFolders) {
-                $localStorage.collapsedFolders = {};
-            }
-
-            var id = favorite ? 'favorite' : (grouping.id || 'none');
-            if (id in $localStorage.collapsedFolders) {
-                delete $localStorage.collapsedFolders[id];
-            }
-            else {
-                $localStorage.collapsedFolders[id] = true;
-            }
-        };
-
-        $scope.collapseAll = function () {
-            if (!$localStorage.collapsedFolders) {
-                $localStorage.collapsedFolders = {};
-            }
-
-            $localStorage.collapsedFolders.none = true;
-            $localStorage.collapsedFolders.favorite = true;
-
-            if ($rootScope.vaultGroupings) {
-                for (var i = 0; i < $rootScope.vaultGroupings.length; i++) {
-                    $localStorage.collapsedFolders[$rootScope.vaultGroupings[i].id] = true;
-                }
-            }
-
-            $('.box').addClass('collapsed-box');
-            $('.box .box-header button i.fa-minus').removeClass('fa-minus').addClass('fa-plus');
-        };
-
-        $scope.expandAll = function () {
-            if ($localStorage.collapsedFolders) {
-                delete $localStorage.collapsedFolders;
-            }
-
-            $('.box').removeClass('collapsed-box');
-            $('.box-body').show();
-            $('.box .box-header button i.fa-plus').removeClass('fa-plus').addClass('fa-minus');
         };
 
         $scope.editCipher = function (cipher) {
@@ -225,14 +159,15 @@
             $scope.addCipher();
         });
 
-        $scope.addCipher = function (grouping, favorite) {
+        $scope.addCipher = function () {
             var addModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultAddCipher.html',
                 controller: 'vaultAddCipherController',
                 resolve: {
-                    selectedFolder: function () { return grouping && grouping.folder ? grouping : null; },
-                    checkedFavorite: function () { return favorite; }
+                    selectedFolder: function () { return $scope.selectedFolder; },
+                    selectedType: function () { return $scope.selectedType; },
+                    checkedFavorite: function () { return $scope.selectedFavorites; }
                 }
             });
 
@@ -332,34 +267,24 @@
             });
 
             addModel.result.then(function (addedFolder) {
-                addedFolder.folder = true;
-                $rootScope.vaultGroupings.push(addedFolder);
-                loadGroupingData($rootScope.vaultGroupings);
+                $rootScope.vaultFolders.push(addedFolder);
             });
         };
 
         $scope.deleteFolder = function (folder) {
-            if (!confirm('Are you sure you want to delete this folder (' + folder.name + ')?')) {
+            if (!confirm('Are you sure you want to delete this folder (' + folder.name + ')? ' +
+                'Any items will be moved to "No Folder".')) {
                 return;
             }
 
             apiService.folders.del({ id: folder.id }, function () {
                 $analytics.eventTrack('Deleted Folder');
-                var index = $rootScope.vaultGroupings.indexOf(folder);
+                var index = $rootScope.vaultFolders.indexOf(folder);
                 if (index > -1) {
-                    $rootScope.vaultGroupings.splice(index, 1);
-                    $scope.folderCount--;
+                    $rootScope.vaultFolders.splice(index, 1);
+                    $scope.filterAll();
                 }
             });
-        };
-
-        $scope.canDeleteFolder = function (folder) {
-            if (!folder || !folder.id || !$rootScope.vaultCiphers) {
-                return false;
-            }
-
-            var ciphers = $filter('filter')($rootScope.vaultCiphers, { folderId: folder.id });
-            return ciphers && ciphers.length === 0;
         };
 
         $scope.share = function (cipher) {
@@ -397,52 +322,94 @@
             });
         };
 
-        $scope.filterGrouping = function (grouping) {
-            $scope.groupingIdFilter = grouping.id;
+        $scope.filterCollection = function (col) {
+            resetSelected();
+            $scope.selectedCollection = col;
+            $scope.selectedIcon = 'fa-cube';
+            $scope.filter = function (c) {
+                return c.collectionIds && c.collectionIds.indexOf(col.id) > -1;
+            };
+            fixLayout();
+        };
 
+        $scope.filterFolder = function (f) {
+            resetSelected();
+            $scope.selectedFolder = f;
+            $scope.selectedIcon = 'fa-folder-open' + (!f.id ? '-o' : '');
+            $scope.filter = function (c) {
+                return c.folderId === f.id;
+            };
+            fixLayout();
+        };
+
+        $scope.filterType = function (t) {
+            resetSelected();
+            $scope.selectedType = t;
+            switch (t) {
+                case constants.cipherType.login:
+                    $scope.selectedTitle = 'Login';
+                    $scope.selectedIcon = 'fa-globe';
+                    break;
+                case constants.cipherType.card:
+                    $scope.selectedTitle = 'Card';
+                    $scope.selectedIcon = 'fa-credit-card';
+                    break;
+                case constants.cipherType.identity:
+                    $scope.selectedTitle = 'Identity';
+                    $scope.selectedIcon = 'fa-id-card-o';
+                    break;
+                case constants.cipherType.secureNote:
+                    $scope.selectedTitle = 'Secure Note';
+                    $scope.selectedIcon = 'fa-sticky-note-o';
+                    break;
+                default:
+                    break;
+            }
+            $scope.filter = function (c) {
+                return c.type === t;
+            };
+            fixLayout();
+        };
+
+        $scope.filterFavorites = function () {
+            resetSelected();
+            $scope.selectedFavorites = true;
+            $scope.selectedTitle = 'Favorites';
+            $scope.selectedIcon = 'fa-star';
+            $scope.filter = function (c) {
+                return !!c.favorite;
+            };
+            fixLayout();
+        };
+
+        $scope.filterAll = function () {
+            resetSelected();
+            $scope.selectedAll = true;
+            $scope.selectedTitle = 'All';
+            $scope.selectedIcon = 'fa-th';
+            $scope.filter = null;
+            fixLayout();
+        };
+
+        function resetSelected() {
+            $scope.selectedFolder = undefined;
+            $scope.selectedCollection = undefined;
+            $scope.selectedType = undefined;
+            $scope.selectedFavorites = false;
+            $scope.selectedAll = false;
+        }
+
+        function fixLayout() {
             if ($.AdminLTE && $.AdminLTE.layout) {
                 $timeout(function () {
                     $.AdminLTE.layout.fix();
                 }, 0);
             }
-        };
+        }
 
-        $scope.filterType = function (type) {
-            $scope.typeFilter = type;
-
-            if ($.AdminLTE && $.AdminLTE.layout) {
-                $timeout(function () {
-                    $.AdminLTE.layout.fix();
-                }, 0);
-            }
-        };
-
-        $scope.clearFilters = function () {
-            $scope.groupingIdFilter = undefined;
-            $scope.typeFilter = undefined;
-
-            if ($.AdminLTE && $.AdminLTE.layout) {
-                $timeout(function () {
-                    $.AdminLTE.layout.fix();
-                }, 0);
-            }
-        };
-
-        $scope.groupingFilter = function (grouping) {
-            return $scope.groupingIdFilter === undefined || grouping.id === $scope.groupingIdFilter;
-        };
-
-        $scope.cipherFilter = function (grouping) {
+        $scope.cipherFilter = function () {
             return function (cipher) {
-                var matchesGrouping = grouping === null;
-                if (!matchesGrouping && grouping.folder && cipher.folderId === grouping.id) {
-                    matchesGrouping = true;
-                }
-                else if (!matchesGrouping && grouping.collection && cipher.collectionIds.indexOf(grouping.id) > -1) {
-                    matchesGrouping = true;
-                }
-
-                return matchesGrouping && ($scope.typeFilter === undefined || cipher.type === $scope.typeFilter);
+                return !$scope.filter || $scope.filter(cipher);
             };
         };
 
@@ -450,14 +417,8 @@
             selectAll(false);
         };
 
-        $scope.selectFolder = function (folder, $event) {
-            var checkbox = $($event.currentTarget).closest('.box').find('input[name="cipherSelection"]');
-            checkbox.prop('checked', true);
-        };
-
-        $scope.select = function ($event) {
-            var checkbox = $($event.currentTarget).closest('tr').find('input[name="cipherSelection"]');
-            checkbox.prop('checked', !checkbox.prop('checked'));
+        $scope.selectAll = function () {
+            selectAll(true);
         };
 
         function distinct(value, index, self) {

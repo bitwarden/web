@@ -51,14 +51,6 @@ angular
             $state.go('backend.org.dashboard', { orgId: org.id });
         };
 
-        $scope.searchVault = function () {
-            $state.go('backend.user.vault');
-        };
-
-        $scope.searchOrganizationVault = function () {
-            $state.go('backend.org.vault', { orgId: $state.params.orgId });
-        };
-
         $scope.isOrgOwner = function (org) {
             return org && org.type === constants.orgUserType.owner;
         };

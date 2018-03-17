@@ -49,10 +49,6 @@ angular
             vm.openControlSidebar = vm.usingControlSidebar && $document.width() > 768;
         });
 
-        $scope.$on('setSearchVaultText', function (event, val) {
-            vm.searchVaultText = val;
-        });
-
         $scope.addCipher = function () {
             $scope.$broadcast('vaultAddCipher');
         };

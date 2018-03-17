@@ -4,7 +4,7 @@
     .controller('vaultEditCipherController', function ($scope, apiService, $uibModalInstance, cryptoService, cipherService,
         passwordService, cipherId, $analytics, $rootScope, authService, $uibModal, constants, $filter) {
         $analytics.eventTrack('vaultEditCipherController', { category: 'Modal' });
-        $scope.folders = $filter('filter')($rootScope.vaultGroupings, { folder: true });
+        $scope.folders = $rootScope.vaultFolders;
         $scope.cipher = {};
         $scope.readOnly = false;
         $scope.constants = constants;

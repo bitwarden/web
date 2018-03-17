@@ -2,11 +2,18 @@
     .module('bit.organization')
 
     .controller('organizationVaultController', function ($scope, apiService, cipherService, $analytics, $q, $state,
-        $localStorage, $uibModal, $filter, authService, $uibModalStack) {
+        $localStorage, $uibModal, $filter, authService, $uibModalStack, constants, $timeout) {
         $scope.ciphers = [];
         $scope.collections = [];
         $scope.loading = true;
         $scope.useEvents = false;
+        $scope.constants = constants;
+        $scope.filter = undefined;
+        $scope.selectedType = undefined;
+        $scope.selectedCollection = undefined;
+        $scope.selectedAll = true;
+        $scope.selectedTitle = 'All';
+        $scope.selectedIcon = 'fa-th';
 
         $scope.$on('$viewContentLoaded', function () {
             authService.getUserProfile().then(function (profile) {
@@ -19,14 +26,11 @@
             var collectionPromise = apiService.collections.listOrganization({ orgId: $state.params.orgId }, function (collections) {
                 var decCollections = [{
                     id: null,
-                    name: 'Unassigned',
-                    collapsed: $localStorage.collapsedOrgCollections && 'unassigned' in $localStorage.collapsedOrgCollections
+                    name: 'Unassigned'
                 }];
 
                 for (var i = 0; i < collections.Data.length; i++) {
                     var decCollection = cipherService.decryptCollection(collections.Data[i], null, true);
-                    decCollection.collapsed = $localStorage.collapsedOrgCollections &&
-                        decCollection.id in $localStorage.collapsedOrgCollections;
                     decCollections.push(decCollection);
                 }
 
@@ -51,7 +55,7 @@
 
                 if ($state.params.search) {
                     $uibModalStack.dismissAll();
-                    $scope.$emit('setSearchVaultText', $state.params.search);
+                    $scope.searchVaultText = $state.params.search;
                 }
 
                 if ($state.params.viewEvents) {
@@ -64,37 +68,12 @@
             });
         });
 
-        $scope.filterByCollection = function (collection) {
-            return function (cipher) {
-                if (!cipher.collectionIds || !cipher.collectionIds.length) {
-                    return collection.id === null;
-                }
-
-                return cipher.collectionIds.indexOf(collection.id) > -1;
-            };
-        };
-
         $scope.collectionSort = function (item) {
             if (!item.id) {
                 return '';
             }
 
             return item.name.toLowerCase();
-        };
-
-        $scope.collapseExpand = function (collection) {
-            if (!$localStorage.collapsedOrgCollections) {
-                $localStorage.collapsedOrgCollections = {};
-            }
-
-            var id = collection.id || 'unassigned';
-
-            if (id in $localStorage.collapsedOrgCollections) {
-                delete $localStorage.collapsedOrgCollections[id];
-            }
-            else {
-                $localStorage.collapsedOrgCollections[id] = true;
-            }
         };
 
         $scope.editCipher = function (cipher) {
@@ -136,7 +115,8 @@
                 templateUrl: 'app/vault/views/vaultAddCipher.html',
                 controller: 'organizationVaultAddCipherController',
                 resolve: {
-                    orgId: function () { return $state.params.orgId; }
+                    orgId: function () { return $state.params.orgId; },
+                    selectedType: function () { return $scope.selectedType; }
                 }
             });
 
@@ -205,28 +185,6 @@
             });
         };
 
-        $scope.removeCipher = function (cipher, collection) {
-            if (!confirm('Are you sure you want to remove this item (' + cipher.name + ') from the ' +
-                'collection (' + collection.name + ') ?')) {
-                return;
-            }
-
-            var request = {
-                collectionIds: []
-            };
-
-            for (var i = 0; i < cipher.collectionIds.length; i++) {
-                if (cipher.collectionIds[i] !== collection.id) {
-                    request.collectionIds.push(cipher.collectionIds[i]);
-                }
-            }
-
-            apiService.ciphers.putCollections({ id: cipher.id }, request).$promise.then(function (response) {
-                $analytics.eventTrack('Removed Cipher From Collection');
-                cipher.collectionIds = request.collectionIds;
-            });
-        };
-
         $scope.deleteCipher = function (cipher) {
             if (!confirm('Are you sure you want to delete this item (' + cipher.name + ')?')) {
                 return;
@@ -239,5 +197,73 @@
                     $scope.ciphers.splice(index, 1);
                 }
             });
+        };
+
+        $scope.filterCollection = function (col) {
+            resetSelected();
+            $scope.selectedCollection = col;
+            $scope.selectedIcon = 'fa-cube';
+            $scope.filter = function (c) {
+                return c.collectionIds && c.collectionIds.indexOf(col.id) > -1;
+            };
+            fixLayout();
+        };
+
+        $scope.filterType = function (t) {
+            resetSelected();
+            $scope.selectedType = t;
+            switch (t) {
+                case constants.cipherType.login:
+                    $scope.selectedTitle = 'Login';
+                    $scope.selectedIcon = 'fa-globe';
+                    break;
+                case constants.cipherType.card:
+                    $scope.selectedTitle = 'Card';
+                    $scope.selectedIcon = 'fa-credit-card';
+                    break;
+                case constants.cipherType.identity:
+                    $scope.selectedTitle = 'Identity';
+                    $scope.selectedIcon = 'fa-id-card-o';
+                    break;
+                case constants.cipherType.secureNote:
+                    $scope.selectedTitle = 'Secure Note';
+                    $scope.selectedIcon = 'fa-sticky-note-o';
+                    break;
+                default:
+                    break;
+            }
+            $scope.filter = function (c) {
+                return c.type === t;
+            };
+            fixLayout();
+        };
+
+        $scope.filterAll = function () {
+            resetSelected();
+            $scope.selectedAll = true;
+            $scope.selectedTitle = 'All';
+            $scope.selectedIcon = 'fa-th';
+            $scope.filter = null;
+            fixLayout();
+        };
+
+        function resetSelected() {
+            $scope.selectedCollection = undefined;
+            $scope.selectedType = undefined;
+            $scope.selectedAll = false;
+        }
+
+        function fixLayout() {
+            if ($.AdminLTE && $.AdminLTE.layout) {
+                $timeout(function () {
+                    $.AdminLTE.layout.fix();
+                }, 0);
+            }
+        }
+
+        $scope.cipherFilter = function () {
+            return function (cipher) {
+                return !$scope.filter || $scope.filter(cipher);
+            };
         };
     });

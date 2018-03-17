@@ -190,7 +190,10 @@ angular
                 url: '/organization/:orgId/vault?viewEvents&search',
                 templateUrl: 'app/organization/views/organizationVault.html',
                 controller: 'organizationVaultController',
-                data: { pageTitle: 'Organization Vault' }
+                data: {
+                    pageTitle: 'Organization Vault',
+                    controlSidebar: true
+                }
             })
             .state('backend.org.groups', {
                 url: '/organization/:orgId/groups?search',
@@ -349,7 +352,7 @@ angular
             // user is guaranteed to be authenticated becuase of previous check
             if (toState.name.indexOf('backend.org.') > -1 && toParams.orgId) {
                 // clear vault rootScope when visiting org admin section
-                $rootScope.vaultCiphers = $rootScope.vaultGroupings = null;
+                $rootScope.vaultCiphers = $rootScope.vaultFolders = $rootScope.vaultCollections = null;
 
                 authService.getUserProfile().then(function (profile) {
                     var orgs = profile.organizations;
