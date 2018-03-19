@@ -40,10 +40,10 @@
     </h1>
 </section>
 <section class="content">
-    <div ng-show="loading">
+    <div ng-show="loadingCiphers">
         <p>Loading...</p>
     </div>
-    <div class="box" ng-show="!loading">
+    <div class="box" ng-show="!loadingCiphers">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa {{selectedIcon}}"></i>
@@ -195,10 +195,10 @@
             </ul>
         </div>
         <h3 class="control-sidebar-heading">Folders</h3>
-        <div ng-show="loading && !vaultFolders.length">
+        <div ng-show="loadingGroupings">
             <p>Loading...</p>
         </div>
-        <div class="control-sidebar-section" ng-show="!loading && vaultFolders.length">
+        <div class="control-sidebar-section" ng-show="!loadingGroupings">
             <ul class="control-sidebar-menu">
                 <li ng-repeat="folder in vaultFolders | orderBy: [groupingSort] track by folder.id"
                     ng-class="{active: selectedFolder && folder.id === selectedFolder.id}">
@@ -210,16 +210,16 @@
             </ul>
         </div>
         <h3 class="control-sidebar-heading">Collections</h3>
-        <div ng-show="loading && !vaultCollections.length">
+        <div ng-show="loadingGroupings">
             <p>Loading...</p>
         </div>
-        <div ng-show="!loading && !vaultCollections.length">
+        <div ng-show="!loadingGroupings && !vaultCollections.length">
             <p>No collections are being shared with you. <i class="fa fa-frown-o"></i></p>
             <a ui-sref="backend.user.settingsCreateOrg" class="btn btn-default btn-lint">
                 Create an Organization
             </a>
         </div>
-        <div class="control-sidebar-section" ng-show="!loading && vaultCollections.length">
+        <div class="control-sidebar-section" ng-show="!loadingGroupings && vaultCollections.length">
             <ul class="control-sidebar-menu">
                 <li ng-repeat="collection in vaultCollections | orderBy: [groupingSort] track by collection.id"
                     ng-class="{active: selectedCollection && collection.id === selectedCollection.id}">
