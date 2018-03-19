@@ -425,6 +425,11 @@
             selectAll(true);
         };
 
+        $scope.select = function ($event) {
+            var checkbox = $($event.currentTarget).closest('tr').find('input[name="cipherSelection"]');
+            checkbox.prop('checked', !checkbox.prop('checked'));
+        };
+
         function distinct(value, index, self) {
             return self.indexOf(value) === index;
         }
