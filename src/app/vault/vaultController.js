@@ -82,9 +82,8 @@
 
         function loadCipherData(decCiphers) {
             $rootScope.vaultCiphers = $scope.ciphers = $filter('orderBy')(decCiphers, ['sort', 'name', 'subTitle']);
-            $scope.loadingCiphers = false;
 
-            var chunks = chunk($rootScope.vaultCiphers, 400);
+            var chunks = chunk($rootScope.vaultCiphers, 200);
             if (chunks.length > 0) {
                 $scope.ciphers = chunks[0];
                 var delay = 200;
@@ -99,6 +98,8 @@
                     }
                 });
             }
+
+            $scope.loadingCiphers = false;
         }
 
         function sortScopedCipherData() {
