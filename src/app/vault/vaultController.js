@@ -3,7 +3,8 @@
 
     .controller('vaultController', function ($scope, $uibModal, apiService, $filter, cryptoService, authService, toastr,
         cipherService, $q, $localStorage, $timeout, $rootScope, $state, $analytics, constants, validationService) {
-        $scope.loading = true;
+        $scope.loadingCiphers = true;
+        $scope.loadingGroupings = true;
         $scope.ciphers = [];
         $scope.folders = [];
         $scope.collections = [];
@@ -29,7 +30,7 @@
             }, 500);
 
             if (($rootScope.vaultFolders || $rootScope.vaultCollections) && $rootScope.vaultCiphers) {
-                $scope.loading = false;
+                $scope.loadingCiphers = $scope.loadingGroupings = false;
                 loadCipherData($rootScope.vaultCiphers);
                 return;
             }
@@ -62,9 +63,10 @@
             var groupingPromise = $q.all([collectionPromise, folderPromise]).then(function () {
                 $rootScope.vaultCollections = decCollections;
                 $rootScope.vaultFolders = decFolders;
+                $scope.loadingGroupings = false;
             });
 
-            var cipherPromise = apiService.ciphers.list({}, function (ciphers) {
+            apiService.ciphers.list({}, function (ciphers) {
                 var decCiphers = [];
 
                 for (var i = 0; i < ciphers.Data.length; i++) {
@@ -76,14 +78,11 @@
                     loadCipherData(decCiphers);
                 });
             }).$promise;
-
-            $q.all([cipherPromise, groupingPromise]).then(function () {
-                $scope.loading = false;
-            });
         }
 
         function loadCipherData(decCiphers) {
             $rootScope.vaultCiphers = $scope.ciphers = $filter('orderBy')(decCiphers, ['sort', 'name', 'subTitle']);
+            $scope.loadingCiphers = false;
 
             var chunks = chunk($rootScope.vaultCiphers, 400);
             if (chunks.length > 0) {
