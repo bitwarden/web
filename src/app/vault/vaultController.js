@@ -243,6 +243,10 @@
         };
 
         $scope.editFolder = function (folder) {
+            if (!folder.id) {
+                return;
+            }
+
             var editModel = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/vault/views/vaultEditFolder.html',
@@ -276,6 +280,10 @@
         };
 
         $scope.deleteFolder = function (folder) {
+            if (!folder.id) {
+                return;
+            }
+
             if (!confirm('Are you sure you want to delete this folder (' + folder.name + ')? ' +
                 'Any items will be moved to "No Folder".')) {
                 return;
