@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     ngAnnotate = require('gulp-ng-annotate'),
     preprocess = require('gulp-preprocess'),
     runSequence = require('run-sequence'),
+    jeditor = require("gulp-json-editor"),
     merge = require('merge-stream'),
     ngConfig = require('gulp-ng-config'),
     settings = require('./settings.json'),
@@ -448,10 +449,16 @@ gulp.task('dist:preprocess', function () {
         .pipe(gulp.dest('.'));
 });
 
+gulp.task('dist:version', function () {
+    gulp.src(paths.webroot + 'version.json').pipe(jeditor({
+        'version': project.version
+    })).pipe(gulp.dest(paths.dist));
+});
+
 gulp.task('dist', ['build'], function (cb) {
     return runSequence(
         'dist:clean',
-        ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib', 'dist:js:fallback', 'dist:js:u2f'],
+        ['dist:move', 'dist:css', 'dist:js:app', 'dist:js:lib', 'dist:js:fallback', 'dist:js:u2f', 'dist:version'],
         'dist:preprocess',
         cb);
 });
