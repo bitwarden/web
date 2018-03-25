@@ -141,6 +141,7 @@
                 }
             }
 
+            var returnedCollectionIds = null;
             $scope.submitPromise = $q.all(attachmentSharePromises).then(function () {
                 if (errorOnUpload) {
                     return;
@@ -159,11 +160,15 @@
                     }
                 }
 
+                returnedCollectionIds = request.collectionIds;
                 return apiService.ciphers.putShare({ id: cipherId }, request).$promise;
             }).then(function (response) {
                 $analytics.eventTrack('Shared Cipher');
                 toastr.success('Item has been shared.');
-                $uibModalInstance.close(model.organizationId);
+                $uibModalInstance.close({
+                    orgId: model.organizationId,
+                    collectionIds: returnedCollectionIds
+                });
             });
         };
 

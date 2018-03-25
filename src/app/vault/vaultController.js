@@ -309,8 +309,9 @@
                 }
             });
 
-            modal.result.then(function (orgId) {
-                cipher.organizationId = orgId;
+            modal.result.then(function (returned) {
+                cipher.organizationId = returned.orgId;
+                cipher.collectionIds = returned.collectionIds || [];
             });
         };
 
