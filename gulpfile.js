@@ -78,7 +78,7 @@ gulp.task('min:js', ['clean:js'], function () {
         ], { base: '.' })
         .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(concat(paths.concatJsDest))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('.'));
 });
 
@@ -396,7 +396,7 @@ gulp.task('dist:js:app', function () {
         .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
         .pipe(concat(paths.dist + '/js/app.min.js'))
         .pipe(ngAnnotate())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('.'));
 });
 
@@ -408,7 +408,7 @@ gulp.task('dist:js:fallback', function () {
 
     merge(mainStream)
         .pipe(preprocess({ context: { cacheTag: randomString, selfHosted: selfHosted } }))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(paths.dist + 'js'));
 });
@@ -421,7 +421,7 @@ gulp.task('dist:js:u2f', function () {
 
     merge(mainStream)
         .pipe(concat(paths.dist + '/js/u2f.min.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('.'));
 });
 
@@ -436,7 +436,7 @@ gulp.task('dist:js:lib', function () {
             '!' + paths.libDir + 'jquery/**/*'
         ])
         .pipe(concat(paths.dist + '/js/lib.min.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('.'));
 });
 
