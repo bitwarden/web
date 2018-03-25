@@ -77,7 +77,7 @@
                 groupingPromise.then(function () {
                     loadCipherData(decCiphers);
                 });
-            }).$promise;
+            });
         }
 
         function loadCipherData(decCiphers) {
