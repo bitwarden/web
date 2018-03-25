@@ -73,7 +73,8 @@
         <div class="box-body" ng-class="{'no-padding': filteredCiphers.length}">
             <div ng-show="!filteredCiphers.length">
                 <p>No items to list.</p>
-                <button type="button" ng-click="addCipher()" class="btn btn-default btn-flat">
+                <button type="button" ng-click="addCipher()" class="btn btn-default btn-flat"
+                        ng-if="!selectedCollection">
                     Add an Item
                 </button>
             </div>
