@@ -18,6 +18,8 @@ then
     useradd -r -u $LUID -g $USERNAME $USERNAME
 fi
 
+mkdir -p /home/$USERNAME
+chown -R $USERNAME:$USERNAME /home/$USERNAME
 chown -R $USERNAME:$USERNAME /etc/bitwarden
 cp /etc/bitwarden/web/settings.js /app/js/settings.js
 cp /etc/bitwarden/web/app-id.json /app/app-id.json
