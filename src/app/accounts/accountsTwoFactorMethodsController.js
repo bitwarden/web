@@ -6,6 +6,9 @@
 
         $scope.providers = [];
 
+        if (providers.hasOwnProperty(constants.twoFactorProvider.organizationDuo)) {
+            add(constants.twoFactorProvider.organizationDuo);
+        }
         if (providers.hasOwnProperty(constants.twoFactorProvider.authenticator)) {
             add(constants.twoFactorProvider.authenticator);
         }

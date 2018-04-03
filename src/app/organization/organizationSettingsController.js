@@ -5,7 +5,7 @@
         $analytics, appSettings, constants, $filter) {
         $scope.selfHosted = appSettings.selfHosted;
         $scope.model = {};
-        $scope.twoStepProviders = constants.orgTwoFactorProviderInfo;
+        $scope.twoStepProviders = $filter('filter')(constants.twoFactorProviderInfo, { organization: true });
         $scope.use2fa = false;
 
         $scope.$on('$viewContentLoaded', function () {

@@ -3,7 +3,7 @@
 
     .controller('settingsTwoStepController', function ($scope, apiService, toastr, $analytics, constants,
         $filter, $uibModal, authService) {
-        $scope.providers = constants.twoFactorProviderInfo;
+        $scope.providers = $filter('filter')(constants.twoFactorProviderInfo, { organization: false });
         $scope.premium = true;
 
         authService.getUserProfile().then(function (profile) {

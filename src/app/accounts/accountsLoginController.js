@@ -216,8 +216,9 @@ angular
         function init() {
             stopU2fCheck = true;
             var params;
-            if ($scope.twoFactorProvider === constants.twoFactorProvider.duo) {
-                params = $scope.twoFactorProviders[constants.twoFactorProvider.duo];
+            if ($scope.twoFactorProvider === constants.twoFactorProvider.duo ||
+                $scope.twoFactorProvider === constants.twoFactorProvider.organizationDuo) {
+                params = $scope.twoFactorProviders[$scope.twoFactorProvider];
 
                 $window.Duo.init({
                     host: params.Host,

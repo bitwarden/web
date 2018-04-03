@@ -83,7 +83,8 @@
     </form>
 </div>
 
-<div ng-if="twoFactorProvider === twoFactorProviderConstants.duo">
+<div ng-if="twoFactorProvider === twoFactorProviderConstants.duo ||
+     twoFactorProvider === twoFactorProviderConstants.organizationDuo">
     <p class="login-box-msg">
         Complete logging in with Duo.
     </p>

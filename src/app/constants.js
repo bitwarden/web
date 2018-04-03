@@ -99,14 +99,15 @@ angular.module('bit')
                 type: 0,
                 name: 'Authenticator App',
                 description: 'Use an authenticator app (such as Authy or Google Authenticator) to generate time-based ' +
-                'verification codes.',
+                    'verification codes.',
                 enabled: false,
                 active: true,
                 free: true,
                 image: 'authapp.png',
                 displayOrder: 0,
                 priority: 1,
-                requiresUsb: false
+                requiresUsb: false,
+                organization: false
             },
             {
                 type: 3,
@@ -117,7 +118,8 @@ angular.module('bit')
                 image: 'yubico.png',
                 displayOrder: 1,
                 priority: 3,
-                requiresUsb: true
+                requiresUsb: true,
+                organization: false
             },
             {
                 type: 2,
@@ -128,7 +130,8 @@ angular.module('bit')
                 image: 'duo.png',
                 displayOrder: 2,
                 priority: 2,
-                requiresUsb: false
+                requiresUsb: false,
+                organization: false
             },
             {
                 type: 4,
@@ -139,7 +142,8 @@ angular.module('bit')
                 image: 'fido.png',
                 displayOrder: 3,
                 priority: 4,
-                requiresUsb: true
+                requiresUsb: true,
+                organization: false
             },
             {
                 type: 1,
@@ -151,20 +155,21 @@ angular.module('bit')
                 image: 'gmail.png',
                 displayOrder: 4,
                 priority: 0,
-                requiresUsb: false
-            }
-        ],
-        orgTwoFactorProviderInfo: [
+                requiresUsb: false,
+                organization: false
+            },
             {
                 type: 6,
-                name: 'Duo',
-                description: 'Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.',
+                name: 'Duo (Organization)',
+                description: 'Verify with Duo Security for your organization using the Duo Mobile app, SMS, ' +
+                    'phone call, or U2F security key.',
                 enabled: false,
                 active: true,
                 image: 'duo.png',
                 displayOrder: 1,
-                priority: 0,
-                requiresUsb: false
+                priority: 10,
+                requiresUsb: false,
+                organization: true
             }
         ],
         plans: {
