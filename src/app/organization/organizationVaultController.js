@@ -207,9 +207,16 @@
             resetSelected();
             $scope.selectedCollection = col;
             $scope.selectedIcon = 'fa-cube';
-            $scope.filter = function (c) {
-                return c.collectionIds && c.collectionIds.indexOf(col.id) > -1;
-            };
+            if (col.id) {
+                $scope.filter = function (c) {
+                    return c.collectionIds && c.collectionIds.indexOf(col.id) > -1;
+                };
+            }
+            else {
+                $scope.filter = function (c) {
+                    return !c.collectionIds || c.collectionIds.length === 0;
+                };
+            }
             fixLayout();
         };
 
