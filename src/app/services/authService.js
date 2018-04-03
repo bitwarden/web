@@ -152,6 +152,7 @@ angular
                             useGroups: profile.Organizations[i].UseGroups,
                             useDirectory: profile.Organizations[i].UseDirectory,
                             useEvents: profile.Organizations[i].UseEvents,
+                            use2fa: profile.Organizations[i].Use2fa,
                             useTotp: profile.Organizations[i].UseTotp
                         };
                     }
@@ -187,6 +188,7 @@ angular
                         useGroups: org.UseGroups,
                         useDirectory: org.UseDirectory,
                         useEvents: org.UseEvents,
+                        use2fa: org.Use2fa,
                         useTotp: org.UseTotp
                     };
                     profile.organizations[o.id] = o;

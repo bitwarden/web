@@ -26,7 +26,8 @@ angular.module('bit')
             duo: 2,
             authenticator: 0,
             email: 1,
-            remember: 5
+            remember: 5,
+            organizationDuo: 6
         },
         cipherType: {
             login: 1,
@@ -149,6 +150,19 @@ angular.module('bit')
                 free: true,
                 image: 'gmail.png',
                 displayOrder: 4,
+                priority: 0,
+                requiresUsb: false
+            }
+        ],
+        orgTwoFactorProviderInfo: [
+            {
+                type: 6,
+                name: 'Duo',
+                description: 'Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.',
+                enabled: false,
+                active: true,
+                image: 'duo.png',
+                displayOrder: 1,
                 priority: 0,
                 requiresUsb: false
             }

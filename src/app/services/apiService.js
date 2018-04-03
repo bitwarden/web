@@ -160,9 +160,11 @@
 
         _service.twoFactor = $resource(_apiUri + '/two-factor', {}, {
             list: { method: 'GET', params: {} },
+            listOrganization: { url: _apiUri + '/organizations/:orgId/two-factor', method: 'GET', params: { orgId: '@orgId' } },
             getEmail: { url: _apiUri + '/two-factor/get-email', method: 'POST', params: {} },
             getU2f: { url: _apiUri + '/two-factor/get-u2f', method: 'POST', params: {} },
             getDuo: { url: _apiUri + '/two-factor/get-duo', method: 'POST', params: {} },
+            getOrganizationDuo: { url: _apiUri + '/organizations/:orgId/two-factor/get-duo', method: 'POST', params: { orgId: '@orgId' } },
             getAuthenticator: { url: _apiUri + '/two-factor/get-authenticator', method: 'POST', params: {} },
             getYubi: { url: _apiUri + '/two-factor/get-yubikey', method: 'POST', params: {} },
             sendEmail: { url: _apiUri + '/two-factor/send-email', method: 'POST', params: {} },
@@ -171,8 +173,10 @@
             putU2f: { url: _apiUri + '/two-factor/u2f', method: 'POST', params: {} },
             putAuthenticator: { url: _apiUri + '/two-factor/authenticator', method: 'POST', params: {} },
             putDuo: { url: _apiUri + '/two-factor/duo', method: 'POST', params: {} },
+            putOrganizationDuo: { url: _apiUri + '/organizations/:orgId/two-factor/duo', method: 'POST', params: { orgId: '@orgId' } },
             putYubi: { url: _apiUri + '/two-factor/yubikey', method: 'POST', params: {} },
             disable: { url: _apiUri + '/two-factor/disable', method: 'POST', params: {} },
+            disableOrganization: { url: _apiUri + '/organizations/:orgId/two-factor/disable', method: 'POST', params: { orgId: '@orgId' } },
             recover: { url: _apiUri + '/two-factor/recover', method: 'POST', params: {} },
             getRecover: { url: _apiUri + '/two-factor/get-recover', method: 'POST', params: {} }
         });

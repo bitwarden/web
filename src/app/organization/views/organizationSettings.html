@@ -63,6 +63,36 @@
             </div>
         </form>
     </div>
+    <div class="box box-default" ng-if="use2fa">
+        <div class="box-header with-border">
+            <h3 class="box-title">Two-step Login Providers</h3>
+        </div>
+        <div class="box-body no-padding">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-vmiddle">
+                    <tbody>
+                        <tr ng-repeat="provider in twoStepProviders | orderBy: 'displayOrder'">
+                            <td style="width: 120px; height: 75px;" align="center">
+                                <a href="#" stop-click ng-click="edit(provider)">
+                                    <img alt="{{::provider.name}}" ng-src="{{'images/two-factor/' + provider.image}}" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" stop-click ng-click="edit(provider)">{{::provider.name}}</a>
+                                <div class="text-muted text-sm">{{::provider.description}}</div>
+                            </td>
+                            <td style="width: 100px;" class="text-right">
+                                <span class="label label-full"
+                                      ng-class="{ 'label-success': provider.enabled, 'label-default': !provider.enabled }">
+                                    {{provider.enabled ? 'Enabled' : 'Disabled'}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">Import/Export</h3>

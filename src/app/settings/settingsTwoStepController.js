@@ -60,7 +60,8 @@
                 templateUrl: 'app/settings/views/settingsTwoStep' + typeName + '.html',
                 controller: 'settingsTwoStep' + typeName + 'Controller',
                 resolve: {
-                    enabled: function () { return provider.enabled; }
+                    enabled: function () { return provider.enabled; },
+                    orgId: function () { return null; }
                 }
             });
 

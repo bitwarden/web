@@ -2,7 +2,7 @@
     .module('bit.settings')
 
     .controller('settingsTwoStepDuoController', function ($scope, apiService, $uibModalInstance, cryptoService,
-        toastr, $analytics, constants, $timeout) {
+        toastr, $analytics, constants, $timeout, orgId) {
         $analytics.eventTrack('settingsTwoStepDuoController', { category: 'Modal' });
         var _masterPasswordHash;
 
@@ -20,9 +20,16 @@
         $scope.auth = function (model) {
             $scope.authPromise = cryptoService.hashPassword(model.masterPassword).then(function (hash) {
                 _masterPasswordHash = hash;
-                return apiService.twoFactor.getDuo({}, {
+                var requestModel = {
                     masterPasswordHash: _masterPasswordHash
-                }).$promise;
+                };
+
+                if (orgId) {
+                    return apiService.twoFactor.getOrganizationDuo({ orgId: orgId }, requestModel).$promise;
+                }
+                else {
+                    return apiService.twoFactor.getDuo({}, requestModel).$promise;
+                }
             }).then(function (apiResponse) {
                 processResult(apiResponse);
                 $scope.authed = true;
@@ -43,27 +50,52 @@
                 return;
             }
 
-            $scope.submitPromise = apiService.twoFactor.disable({}, {
-                masterPasswordHash: _masterPasswordHash,
-                type: constants.twoFactorProvider.duo
-            }, function (response) {
-                $analytics.eventTrack('Disabled Two-step Duo');
-                toastr.success('Duo has been disabled.');
-                $scope.enabled = response.Enabled;
-                $scope.close();
-            }).$promise;
+            if (orgId) {
+                $scope.submitPromise = apiService.twoFactor.disableOrganization({ orgId: orgId }, {
+                    masterPasswordHash: _masterPasswordHash,
+                    type: constants.twoFactorProvider.organizationDuo
+                }, function (response) {
+                    $analytics.eventTrack('Disabled Two-step Organization Duo');
+                    toastr.success('Duo has been disabled.');
+                    $scope.enabled = response.Enabled;
+                    $scope.close();
+                }).$promise;
+            }
+            else {
+                $scope.submitPromise = apiService.twoFactor.disable({}, {
+                    masterPasswordHash: _masterPasswordHash,
+                    type: constants.twoFactorProvider.duo
+                }, function (response) {
+                    $analytics.eventTrack('Disabled Two-step Duo');
+                    toastr.success('Duo has been disabled.');
+                    $scope.enabled = response.Enabled;
+                    $scope.close();
+                }).$promise;
+            }
         }
 
         function update(model) {
-            $scope.submitPromise = apiService.twoFactor.putDuo({}, {
+            var requestModel = {
                 integrationKey: model.ikey,
                 secretKey: model.skey,
                 host: model.host,
                 masterPasswordHash: _masterPasswordHash
-            }, function (response) {
-                $analytics.eventTrack('Enabled Two-step Duo');
-                processResult(response);
-            }).$promise;
+            };
+
+            if (orgId) {
+                $scope.submitPromise = apiService.twoFactor.putOrganizationDuo({ orgId: orgId }, requestModel,
+                    function (response) {
+                        $analytics.eventTrack('Enabled Two-step Organization Duo');
+                        processResult(response);
+                    }).$promise;
+            }
+            else {
+                $scope.submitPromise = apiService.twoFactor.putDuo({}, requestModel,
+                    function (response) {
+                        $analytics.eventTrack('Enabled Two-step Duo');
+                        processResult(response);
+                    }).$promise;
+            }
         }
 
         function processResult(response) {
@@ -80,7 +112,7 @@
             closing = true;
             $uibModalInstance.close($scope.enabled);
         };
-        
+
         $scope.$on('modal.closing', function (e, reason, closed) {
             if (closing) {
                 return;
