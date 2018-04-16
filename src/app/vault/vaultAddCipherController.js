@@ -36,6 +36,11 @@
 
         $scope.savePromise = null;
         $scope.save = function () {
+            if ($scope.cipher.type === constants.cipherType.login && $scope.cipher.login.uris.length === 1 &&
+                ($scope.cipher.login.uris[0].uri == null || $scope.cipher.login.uris[0].uri === '')) {
+                $scope.cipher.login.uris = null;
+            }
+
             var cipher = cipherService.encryptCipher($scope.cipher);
             $scope.savePromise = apiService.ciphers.post(cipher, function (cipherResponse) {
                 $analytics.eventTrack('Created Cipher');
