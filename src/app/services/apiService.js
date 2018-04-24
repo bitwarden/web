@@ -19,7 +19,6 @@
             getAdmin: { url: _apiUri + '/ciphers/:id/admin', method: 'GET', params: { id: '@id' } },
             getDetails: { url: _apiUri + '/ciphers/:id/details', method: 'GET', params: { id: '@id' } },
             list: { method: 'GET', params: {} },
-            listDetails: { url: _apiUri + '/ciphers/details', method: 'GET', params: {} },
             listOrganizationDetails: { url: _apiUri + '/ciphers/organization-details', method: 'GET', params: {} },
             post: { method: 'POST', params: {} },
             postAdmin: { url: _apiUri + '/ciphers/admin', method: 'POST', params: {} },
