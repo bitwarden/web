@@ -235,7 +235,7 @@ angular
         };
 
         _service.makeKey = function (password, salt) {
-            if (!$window.cryptoShimmed && $window.navigator.userAgent.indexOf('Edge') === -1) {
+            if (_subtle != null && !$window.cryptoShimmed && $window.navigator.userAgent.indexOf('Edge') === -1) {
                 return pbkdf2WC(password, salt, 5000, 256).then(function (keyBuf) {
                     return new SymmetricCryptoKey(bufToB64(keyBuf), true);
                 });
@@ -305,7 +305,7 @@ angular
                 throw 'Invalid parameters.';
             }
 
-            if (!$window.cryptoShimmed && $window.navigator.userAgent.indexOf('Edge') === -1) {
+            if (_subtle != null && !$window.cryptoShimmed && $window.navigator.userAgent.indexOf('Edge') === -1) {
                 var keyBuf = key.getBuffers();
                 return pbkdf2WC(new Uint8Array(keyBuf.key), password, 1, 256).then(function (hashBuf) {
                     return bufToB64(hashBuf);
