@@ -36,16 +36,13 @@
                     'https://help.bitwarden.com/article/import-from-chrome/</a>')
             },
             {
-                id: 'firefoxpasswordexportercsvxml',
-                name: 'Firefox Password Exporter (xml)',
+                id: 'firefoxpasswordexportercsv',
+                name: 'Firefox Password Exporter (csv)',
                 featured: true,
                 sort: 4,
                 instructions: $sce.trustAsHtml('Use the ' +
-                    '<a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/password-exporter/">' +
-                    'Password Exporter</a> addon for FireFox to export your passwords to a XML file. After installing ' +
-                    'the addon, type <code>about:addons</code> in your FireFox navigation bar. Locate the Password Exporter ' +
-                    'addon and click the "Options" button. In the dialog that pops up, click the "Export Passwords" button ' +
-                    'to save the XML file.')
+                    '<a target="_blank" href="https://github.com/kspearrin/ff-password-exporter#ff-password-exporter">' +
+                    'FF Password Exporter</a> application to export your passwords to a CSV file.')
             },
             {
                 id: 'keepass2xml',

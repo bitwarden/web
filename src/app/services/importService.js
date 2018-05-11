@@ -40,8 +40,8 @@
                 case 'operacsv':
                     importChromeCsv(file, success, error);
                     break;
-                case 'firefoxpasswordexportercsvxml':
-                    importFirefoxPasswordExporterCsvXml(file, success, error);
+                case 'firefoxpasswordexportercsv':
+                    importFirefoxPasswordExporterCsv(file, success, error);
                     break;
                 case 'upmcsv':
                     importUpmCsv(file, success, error);
@@ -172,6 +172,12 @@
             // Non-English names
             'ort', 'adresse'
         ];
+
+        function loginNameFromUrl(url) {
+            var a = document.createElement('a');
+            a.href = url;
+            return a.hostname.startsWith('www.') ? a.hostname.replace('www.', '') : a.hostname;
+        }
 
         function isField(fieldText, refFieldValues) {
             if (!fieldText || fieldText === '') {
@@ -1484,65 +1490,34 @@
             });
         }
 
-        function importFirefoxPasswordExporterCsvXml(file, success, error) {
-            var folders = [],
-                ciphers = [];
+        function importFirefoxPasswordExporterCsv(file, success, error) {
+            Papa.parse(file, {
+                header: true,
+                encoding: 'UTF-8',
+                complete: function (results) {
+                    parseCsvErrors(results);
 
-            function getNameFromHost(host) {
-                var name = '--';
-                try {
-                    if (host && host !== '') {
-                        var parser = document.createElement('a');
-                        parser.href = host;
-                        if (parser.hostname) {
-                            name = parser.hostname;
-                        }
-                    }
-                }
-                catch (e) {
-                    // do nothing
-                }
+                    var folders = [],
+                        ciphers = [];
 
-                return name;
-            }
-
-            function parseXml(xmlDoc) {
-                var xml = $(xmlDoc);
-
-                var entries = xml.find('entry');
-                for (var i = 0; i < entries.length; i++) {
-                    var entry = $(entries[i]);
-                    if (!entry) {
-                        continue;
-                    }
-
-                    var host = entry.attr('host'),
-                        user = entry.attr('user'),
-                        password = entry.attr('password');
-
-                    ciphers.push({
-                        type: constants.cipherType.login,
-                        favorite: false,
-                        notes: null,
-                        name: getNameFromHost(host),
-                        login: {
-                            uris: makeUriArray(host),
-                            username: user && user !== '' ? user : null,
-                            password: password && password !== '' ? password : null,
-                        }
+                    angular.forEach(results.data, function (value, key) {
+                        
+                        ciphers.push({
+                            type: constants.cipherType.login,
+                            favorite: false,
+                            notes: null,
+                            name: value.hostname && value.hostname !== '' ? loginNameFromUrl(value.hostname) : '--',
+                            login: {
+                                uris: makeUriArray(value.hostname),
+                                username: value.username && value.username !== '' ? value.username : null,
+                                password: value.password && value.password !== '' ? value.password : null
+                            }
+                        });
                     });
+
+                    success(folders, ciphers, []);
                 }
-
-                success(folders, ciphers, []);
-            }
-
-            if (file.type && file.type === 'text/xml') {
-                getXmlFileContents(file, parseXml, error);
-            }
-            else {
-                error('Only .xml exports are supported.');
-                return;
-            }
+            });
         }
 
         function importUpmCsv(file, success, error) {
@@ -2601,12 +2576,6 @@
         }
 
         function importSaferPassCsv(file, success, error) {
-            function urlDomain(data) {
-                var a = document.createElement('a');
-                a.href = data;
-                return a.hostname.startsWith('www.') ? a.hostname.replace('www.', '') : a.hostname;
-            }
-
             var folders = [],
                 ciphers = [];
 
@@ -2621,7 +2590,7 @@
                             type: constants.cipherType.login,
                             favorite: false,
                             notes: value.notes && value.notes !== '' ? value.notes : null,
-                            name: value.url && value.url !== '' ? urlDomain(value.url) : '--',
+                            name: value.url && value.url !== '' ? loginNameFromUrl(value.url) : '--',
                             login: {
                                 uris: makeUriArray(value.url),
                                 username: value.username && value.username !== '' ? value.username : null,
