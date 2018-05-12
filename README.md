@@ -4,7 +4,7 @@
 
 The Bitwarden web project is an AngularJS application that powers the web vault (https://vault.bitwarden.com/).
 
-<img src="https://i.imgur.com/rxrykeX.png" alt="" width="791" height="739" />
+<img src="https://i.imgur.com/WB8J2bt.png" alt="" />
 
 # Build/Run
 
