@@ -294,6 +294,11 @@
                 var index = $rootScope.vaultFolders.indexOf(folder);
                 if (index > -1) {
                     $rootScope.vaultFolders.splice(index, 1);
+                    for(var i = 0; i < $rootScope.vaultCiphers.length; i++) {
+                        if($rootScope.vaultCiphers[i].folderId === folder.id) {
+                            $rootScope.vaultCiphers[i].folderId = null;
+                        }
+                    }
                     $scope.filterAll();
                 }
             });
