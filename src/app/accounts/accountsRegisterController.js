@@ -29,6 +29,13 @@ angular
         };
         $scope.readOnlyEmail = stateParams.email !== null;
 
+        var registerOrgUserId = null;
+        var registerToken = null;
+        if(stateParams.returnState && stateParams.returnState.params &&
+            stateParams.returnState.name === 'frontend.organizationAccept') {
+            registerOrgUserId = stateParams.returnState.params.organizationUserId || null;
+            registerToken = stateParams.returnState.params.token || null;
+        }
 
         $timeout(function () {
             if ($scope.model.email) {
@@ -73,7 +80,9 @@ angular
                     keys: {
                         publicKey: result.publicKey,
                         encryptedPrivateKey: result.privateKeyEnc
-                    }
+                    },
+                    token: registerToken,
+                    organizationUserId: registerOrgUserId
                 };
 
                 return apiService.accounts.register(request).$promise;
