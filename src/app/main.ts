@@ -6,6 +6,8 @@ require('../scss/styles.scss');
 
 import { AppModule } from './app.module';
 
-// enableProdMode(); // TODO: if production
+if (process.env.ENV === 'production') {
+    enableProdMode();
+}
 
 platformBrowserDynamic().bootstrapModule(AppModule);
