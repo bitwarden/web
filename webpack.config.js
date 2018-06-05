@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
-if (process.env.NODE_ENV == null) {
+if (process.env.NODE_ENV == null || process.env.WEBPACK_SERVE) {
     process.env.NODE_ENV = 'development';
 }
 const ENV = process.env.ENV = process.env.NODE_ENV;
@@ -100,8 +101,17 @@ if (ENV === 'production') {
     });
 }
 
+let localSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '';
+const serve = {
+    https: {
+        key: fs.readFileSync('dev-server' + localSuffix + '.pem'),
+        cert: fs.readFileSync('dev-server' + localSuffix + '.pem'),
+    },
+};
+
 const config = {
     mode: ENV,
+    serve: serve,
     entry: {
         'main': './src/app/main.ts',
     },
