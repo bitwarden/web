@@ -1,4 +1,7 @@
-﻿!(function () {
+﻿require('../scripts/duo');
+require('./duo.scss');
+
+!(function () {
     var frameElement = document.createElement('iframe');
     frameElement.setAttribute('id', 'duo_iframe');
     setFrameHeight();

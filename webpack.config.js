@@ -36,6 +36,18 @@ const moduleRules = [
         loader: 'html-loader',
     },
     {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        exclude: /.*(fontawesome-webfont|glyphicons-halflings-regular)\.svg/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: 'images/',
+                publicPath: './images/',
+            },
+        }],
+    },
+    {
         test: /\.scss$/,
         use: extractCss.extract({
             use: [
@@ -61,7 +73,17 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
-        chunks: ['vendor', 'main'],
+        chunks: ['app/vendor', 'app/main'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/duo.html',
+        filename: 'duo-connector.html',
+        chunks: ['connectors/duo'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/u2f.html',
+        filename: 'u2f-connector.html',
+        chunks: ['connectors/u2f'],
     }),
     new CopyWebpackPlugin([
         { from: './src/manifest.json' },
@@ -73,7 +95,7 @@ const plugins = [
     ]),
     new webpack.SourceMapDevToolPlugin({
         filename: '[name].js.map',
-        include: ['main.js'],
+        include: ['app/main.js'],
     }),
     extractCss,
     new webpack.DefinePlugin({
@@ -113,7 +135,9 @@ const config = {
     mode: ENV,
     serve: serve,
     entry: {
-        'main': './src/app/main.ts',
+        'app/main': './src/app/main.ts',
+        'connectors/u2f': './src/connectors/u2f.js',
+        'connectors/duo': './src/connectors/duo.js',
     },
     resolve: {
         extensions: ['.ts', '.js'],
@@ -132,7 +156,7 @@ const config = {
             cacheGroups: {
                 vendor: {
                     test: isVendorModule,
-                    name: 'vendor',
+                    name: 'app/vendor',
                     chunks: 'initial',
                     enforce: true,
                 }

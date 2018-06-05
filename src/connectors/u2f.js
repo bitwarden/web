@@ -1,4 +1,6 @@
-﻿document.addEventListener('DOMContentLoaded', function (event) {
+﻿require('../scripts/u2f');
+
+document.addEventListener('DOMContentLoaded', function (event) {
     init();
 });
 
