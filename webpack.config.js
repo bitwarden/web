@@ -123,11 +123,11 @@ if (ENV === 'production') {
     });
 }
 
-let localSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '';
+let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
 const serve = {
     https: {
-        key: fs.readFileSync('dev-server' + localSuffix + '.pem'),
-        cert: fs.readFileSync('dev-server' + localSuffix + '.pem'),
+        key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
+        cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
 };
 
