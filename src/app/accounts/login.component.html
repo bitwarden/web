@@ -1,0 +1,40 @@
+<form id="login-page" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+    <div class="content">
+        <p class="lead">{{'loginOrCreateNewAccount' | i18n}}</p>
+        <div class="box last">
+            <div class="box-content">
+                <div class="box-content-row" appBoxRow>
+                    <label for="email">{{'emailAddress' | i18n}}</label>
+                    <input id="email" type="text" name="Email" [(ngModel)]="email" required
+                           [appAutofocus]="email === ''">
+                </div>
+                <div class="box-content-row box-content-row-flex" appBoxRow>
+                    <div class="row-main">
+                        <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                        <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword"
+                               class="monospaced" [(ngModel)]="masterPassword" required [appAutofocus]="email !== ''">
+                    </div>
+                    <div class="action-buttons">
+                        <a class="row-btn" href="#" appStopClick appBlurClick
+                           title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
+                            <i class="fa fa-lg"
+                               [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn primary block" [disabled]="form.loading" appBlurClick>
+                <b [hidden]="form.loading"><i class="fa fa-sign-in"></i> {{'logIn' | i18n}}</b>
+                <i class="fa fa-spinner fa-spin" [hidden]="!form.loading"></i>
+            </button>
+            <a routerLink="/register" class="btn block">
+                <i class="fa fa-pencil-square-o"></i> {{'createAccount' | i18n}}
+            </a>
+        </div>
+        <div class="sub-options">
+            <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
+        </div>
+    </div>
+</form>

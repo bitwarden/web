@@ -97,6 +97,7 @@ const plugins = [
         { from: './src/browserconfig.xml' },
         { from: './src/app-id.json' },
         { from: './src/images', to: 'images' },
+        { from: './src/locales', to: 'locales' },
     ]),
     extractCss,
     new webpack.DefinePlugin({
