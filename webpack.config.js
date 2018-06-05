@@ -63,6 +63,11 @@ const plugins = [
         chunks: ['vendor', 'main'],
     }),
     new CopyWebpackPlugin([
+        { from: './src/manifest.json' },
+        { from: './src/favicon.ico' },
+        { from: './src/version.json' },
+        { from: './src/browserconfig.xml' },
+        { from: './src/app-id.json' },
         { from: './src/images', to: 'images' },
     ]),
     new webpack.SourceMapDevToolPlugin({
