@@ -20,10 +20,14 @@
   },
   "exclude": [
     "node_modules",
-    "jslib/node_modules",
     "dist",
-    "jslib/dist",
     "build",
-    "jslib/spec"
+    "jslib/dist",
+    "jslib/spec",
+    "jslib/src/electron",
+    "jslib/src/angular/components/modal.component.ts",
+    "jslib/src/angular/dummy.module.ts",
+    "jslib/src/services/nodeApi.service.ts",
+    "jslib/src/services/lowdbStorage.service.ts",
   ]
 }
