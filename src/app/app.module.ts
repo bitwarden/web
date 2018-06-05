@@ -19,9 +19,12 @@ import { AppComponent } from './app.component';
 import { HintComponent } from './accounts/hint.component';
 import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
+import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { VaultComponent } from './vault/vault.component';
+
+import { IconComponent } from 'jslib/angular/components/icon.component';
 
 import { ApiActionDirective } from 'jslib/angular/directives/api-action.directive';
 import { AutofocusDirective } from 'jslib/angular/directives/autofocus.directive';
@@ -57,6 +60,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BoxRowDirective,
         FallbackSrcDirective,
         HintComponent,
+        IconComponent,
         I18nPipe,
         InputVerbatimDirective,
         LoginComponent,
@@ -65,6 +69,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         StopClickDirective,
         StopPropDirective,
         TwoFactorComponent,
+        TwoFactorOptionsComponent,
         VaultComponent,
     ],
     entryComponents: [
