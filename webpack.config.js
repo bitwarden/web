@@ -61,6 +61,11 @@ const moduleRules = [
             publicPath: '../',
         }),
     },
+    // Hide System.import warnings. ref: https://github.com/angular/angular/issues/21560
+    {
+        test: /[\/\\]@angular[\/\\].+\.js$/,
+        parser: { system: true }
+    },
 ];
 
 const plugins = [
@@ -93,10 +98,6 @@ const plugins = [
         { from: './src/app-id.json' },
         { from: './src/images', to: 'images' },
     ]),
-    new webpack.SourceMapDevToolPlugin({
-        filename: '[name].js.map',
-        include: ['app/main.js'],
-    }),
     extractCss,
     new webpack.DefinePlugin({
         'process.env': {
@@ -133,6 +134,7 @@ const serve = {
 
 const config = {
     mode: ENV,
+    devtool: 'source-map',
     serve: serve,
     entry: {
         'app/main': './src/app/main.ts',
@@ -150,18 +152,6 @@ const config = {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'build'),
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    test: isVendorModule,
-                    name: 'app/vendor',
-                    chunks: 'initial',
-                    enforce: true,
-                }
-            }
-        }
     },
     module: { rules: moduleRules },
     plugins: plugins,
