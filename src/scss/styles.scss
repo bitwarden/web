@@ -7,6 +7,9 @@ $theme-colors: (
     "warning": #bf7e16
 );
 
+$body-bg: #ffffff;
+$body-color: #333333;
+
 $font-family-sans-serif: 'Open Sans','Helvetica Neue',Helvetica,
     Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
 
@@ -17,9 +20,26 @@ $h4-font-size: 1rem;
 $h5-font-size: 1rem;
 $h6-font-size: 1rem;
 
+$navbar-padding-y: .75rem;
 $grid-gutter-width: 20px;
+$card-spacer-y: .6rem;
+
+$list-group-item-padding-y: .6rem;
+$list-group-active-color: $body-color;
+$list-group-active-bg: #ffffff;
+$list-group-active-border-color: rgba(#000000, .125);
+
+$dropdown-link-hover-color: #ffffff;
+$dropdown-link-hover-bg: #3c8dbc;
+
+$navbar-dark-color: rgba(#ffffff, .7);
+$navbar-dark-hover-color: rgba(#ffffff, .9);
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+html {
+    font-size: 14px;
+}
 
 body {
     min-width: 1010px;
@@ -32,9 +52,9 @@ body {
 
 .container {
     width: 980px;
+    max-width: none !important;
     margin: 0 auto;
     padding: 0;
-    max-width: none !important;
 }
 
 .page-content {
@@ -45,4 +65,10 @@ body {
     margin-top: 40px;
     padding: 40px 0 10px 0;
     border-top: 1px solid $border-color;
+}
+
+.list-group-item.active {
+    border-left: 3px solid theme-color("primary");
+    font-weight: bold;
+    padding-left: calc(#{$list-group-item-padding-x} - 3px);
 }
