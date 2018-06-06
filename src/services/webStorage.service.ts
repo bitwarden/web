@@ -1,23 +1,27 @@
 import { StorageService } from 'jslib/abstractions/storage.service';
 
 export class WebStorageService implements StorageService {
-    private store: any = {};
-
     get<T>(key: string): Promise<T> {
-        const val = this.store[key];
-        if (val == null) {
+        const json = window.sessionStorage.getItem(key);
+        if (json == null) {
             return Promise.resolve(null);
         }
-        return Promise.resolve(val as T);
+        const obj = JSON.parse(json);
+        return Promise.resolve(obj as T);
     }
 
     save(key: string, obj: any): Promise<any> {
-        this.store[key] = obj;
+        if (obj == null) {
+            this.remove(key);
+            return;
+        }
+        const json = JSON.stringify(obj);
+        window.sessionStorage.setItem(key, json);
         return Promise.resolve();
     }
 
     remove(key: string): Promise<any> {
-        delete this.store[key];
+        window.sessionStorage.removeItem(key);
         return Promise.resolve();
     }
 

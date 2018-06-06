@@ -1,0 +1,72 @@
+<div class="card">
+    <div class="card-header">
+        Filters
+    </div>
+    <div class="card-body">
+        <input type="search" class="form-control" id="search" placeholder="Search vault">
+        <ul class="fa-ul">
+            <li [ngClass]="{active: selectedAll}">
+                <a href="#" appStopClick appBlurClick (click)="selectAll()">
+                    <i class="fa-li fa fa-fw fa-th"></i>All Items
+                </a>
+            </li>
+            <li [ngClass]="{active: selectedFavorites}">
+                <a href="#" appStopClick appBlurClick (click)="selectFavorites()">
+                    <i class="fa-li fa fa-fw fa-star"></i>Favorites
+                </a>
+            </li>
+        </ul>
+        <h3>Types</h3>
+        <ul class="fa-ul">
+            <li [ngClass]="{active: selectedType === cipherType.Login}">
+                <a href="#" appStopClick appBlurClick (click)="selectType(cipherType.Login)">
+                    <i class="fa-li fa fa-fw fa-globe"></i>Login
+                </a>
+            </li>
+            <li [ngClass]="{active: selectedType === cipherType.Card}">
+                <a href="#" appStopClick appBlurClick (click)="selectType(cipherType.Card)">
+                    <i class="fa-li fa fa-fw fa-credit-card"></i>Card
+                </a>
+            </li>
+            <li [ngClass]="{active: selectedType === cipherType.Identity}">
+                <a href="#" appStopClick appBlurClick (click)="selectType(cipherType.Identity)">
+                    <i class="fa-li fa fa-fw fa-id-card-o"></i>Identity
+                </a>
+            </li>
+            <li [ngClass]="{active: selectedType === cipherType.SecureNote}">
+                <a href="#" appStopClick appBlurClick (click)="selectType(cipherType.SecureNote)">
+                    <i class="fa-li fa fa-fw fa-sticky-note-o"></i>Secure Note
+                </a>
+            </li>
+        </ul>
+        <p *ngIf="!loaded" class="text-muted">Loading...</p>
+        <ng-container *ngIf="loaded">
+            <h3>
+                Folders
+                <button appBlurClick (click)="addFolder()" title="{{'addFolder' | i18n}}">
+                    <i class="fa fa-plus fa-fw"></i>
+                </button>
+            </h3>
+            <ul class="fa-ul">
+                <li *ngFor="let f of folders" [ngClass]="{active: selectedFolder && f.id === selectedFolderId}">
+                    <a href="#" appStopClick appBlurClick (click)="selectFolder(f)">
+                        <i class="fa-li fa fa-caret-right"></i> {{f.name}}
+                        <span appStopProp appStopClick (click)="editFolder(f)" title="{{'editFolder' | i18n}}" *ngIf="f.id">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <div *ngIf="collections && collections.length">
+                <h3>Collections</h3>
+                <ul class="fa-ul">
+                    <li *ngFor="let c of collections" [ngClass]="{active: c.id === selectedCollectionId}">
+                        <a href="#" appStopClick appBlurClick (click)="selectCollection(c)">
+                            <i class="fa-li fa fa-caret-right"></i> {{c.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+    </div>
+</div>

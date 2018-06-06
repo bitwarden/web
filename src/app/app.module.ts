@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServicesModule } from './services.module';
 
 import { AppComponent } from './app.component';
+import { ModalComponent } from './modal.component';
 
 import { HintComponent } from './accounts/hint.component';
 import { LoginComponent } from './accounts/login.component';
@@ -22,6 +23,10 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { AttachmentsComponent } from './vault/attachments.component';
+import { CiphersComponent } from './vault/ciphers.component';
+import { FolderAddEditComponent } from './vault/folder-add-edit.component';
+import { GroupingsComponent } from './vault/groupings.component';
 import { VaultComponent } from './vault/vault.component';
 
 import { IconComponent } from 'jslib/angular/components/icon.component';
@@ -37,6 +42,7 @@ import { StopPropDirective } from 'jslib/angular/directives/stop-prop.directive'
 
 import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
+import { Folder } from 'jslib/models/domain';
 
 @NgModule({
     imports: [
@@ -55,15 +61,20 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
     declarations: [
         ApiActionDirective,
         AppComponent,
+        AttachmentsComponent,
         AutofocusDirective,
         BlurClickDirective,
         BoxRowDirective,
+        CiphersComponent,
         FallbackSrcDirective,
+        FolderAddEditComponent,
+        GroupingsComponent,
         HintComponent,
         IconComponent,
         I18nPipe,
         InputVerbatimDirective,
         LoginComponent,
+        ModalComponent,
         RegisterComponent,
         SearchCiphersPipe,
         StopClickDirective,
@@ -73,7 +84,9 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         VaultComponent,
     ],
     entryComponents: [
-
+        AttachmentsComponent,
+        FolderAddEditComponent,
+        ModalComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

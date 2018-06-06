@@ -63,7 +63,7 @@ body {
 
 .footer {
     margin-top: 40px;
-    padding: 40px 0 10px 0;
+    padding: 40px 0 20px 0;
     border-top: 1px solid $border-color;
 }
 
@@ -83,6 +83,12 @@ app-vault {
             }
         }
 
+        tr:hover {
+            td:first-child {
+                background-color: $body-bg;
+            }
+        }
+
         td {
             vertical-align: middle;
 
@@ -92,11 +98,22 @@ app-vault {
         }
 
         td:first-child {
-            width: 80px;
+            width: 65px;
+            border: none;
         }
 
         td:nth-child(2) {
-            width: 40px;
+            width: 25px;
+        }
+
+        td:nth-child(3) {
+            width: 25px;
+            text-align: center;
+
+            img {
+                @extend .rounded;
+                @extend .img-fluid;
+            }
         }
     }
 }
