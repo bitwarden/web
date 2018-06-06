@@ -32,6 +32,9 @@ $list-group-active-border-color: rgba(#000000, .125);
 $dropdown-link-hover-color: #ffffff;
 $dropdown-link-hover-bg: #3c8dbc;
 
+$navbar-brand-font-size: 35px;
+$navbar-brand-height: 35px;
+$navbar-brand-padding-y: 0;
 $navbar-dark-color: rgba(#ffffff, .7);
 $navbar-dark-hover-color: rgba(#ffffff, .9);
 
@@ -48,6 +51,11 @@ body {
 .navbar {
     padding-left: 0;
     padding-right: 0;
+}
+
+.navbar-brand {
+    margin-top: -20px;
+    margin-bottom: -20px;
 }
 
 .container {
