@@ -72,3 +72,31 @@ body {
     font-weight: bold;
     padding-left: calc(#{$list-group-item-padding-x} - 3px);
 }
+
+app-vault {
+    .table {
+        line-height: 1;
+
+        tr:first-child {
+            td {
+                border: none;
+            }
+        }
+
+        td {
+            vertical-align: middle;
+
+            a {
+                display: block;
+            }
+        }
+
+        td:first-child {
+            width: 80px;
+        }
+
+        td:nth-child(2) {
+            width: 40px;
+        }
+    }
+}
