@@ -11,10 +11,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
-    styles: [],
-    template: `
-        <toaster-container [toasterconfig]="toasterConfig"></toaster-container>
-        <router-outlet></router-outlet>`,
+    templateUrl: 'app.component.html',
 })
 export class AppComponent {
     toasterConfig: ToasterConfig = new ToasterConfig({

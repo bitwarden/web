@@ -33,6 +33,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             this.deviceCache = DeviceType.Safari;
         } else if ((window as any).chrome && navigator.userAgent.indexOf(' Chrome/') !== -1) {
             this.deviceCache = DeviceType.Chrome;
+        } else if (navigator.userAgent.indexOf(' Trident/') !== -1) {
+            this.deviceCache = DeviceType.IE;
         }
 
         return this.deviceCache;
@@ -52,6 +54,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     isEdge(): boolean {
         return this.getDevice() === DeviceType.Edge;
+    }
+
+    isIE(): boolean {
+        return this.getDevice() === DeviceType.IE;
     }
 
     isOpera(): boolean {
