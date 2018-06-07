@@ -4,72 +4,49 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { AnalyticsIds } from 'jslib/misc/analytics';
-
-const DialogPromiseExpiration = 600000; // 10 minutes
+import { Utils } from 'jslib/misc/utils';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 
-    private showDialogResolves = new Map<number, { resolve: (value: boolean) => void, date: Date }>();
-    private deviceCache: DeviceType = null;
-    private analyticsIdCache: string = null;
+    private browserCache: string = null;
 
     constructor(private messagingService: MessagingService) { }
 
     getDevice(): DeviceType {
-        if (this.deviceCache) {
-            return this.deviceCache;
-        }
-
-        if (navigator.userAgent.indexOf(' Firefox/') !== -1 || navigator.userAgent.indexOf(' Gecko/') !== -1) {
-            this.deviceCache = DeviceType.Firefox;
-        } else if (navigator.userAgent.indexOf(' OPR/') >= 0) {
-            this.deviceCache = DeviceType.Opera;
-        } else if (navigator.userAgent.indexOf(' Edge/') !== -1) {
-            this.deviceCache = DeviceType.Edge;
-        } else if (navigator.userAgent.indexOf(' Vivaldi/') !== -1) {
-            this.deviceCache = DeviceType.Vivaldi;
-        } else if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
-            this.deviceCache = DeviceType.Safari;
-        } else if ((window as any).chrome && navigator.userAgent.indexOf(' Chrome/') !== -1) {
-            this.deviceCache = DeviceType.Chrome;
-        } else if (navigator.userAgent.indexOf(' Trident/') !== -1) {
-            this.deviceCache = DeviceType.IE;
-        }
-
-        return this.deviceCache;
+        return DeviceType.Web;
     }
 
     getDeviceString(): string {
-        return DeviceType[this.getDevice()].toLowerCase();
+        return 'Web';
     }
 
     isFirefox(): boolean {
-        return this.getDevice() === DeviceType.Firefox;
+        return this.getBrowserType() === 'firefox';
     }
 
     isChrome(): boolean {
-        return this.getDevice() === DeviceType.Chrome;
+        return this.getBrowserType() === 'chrome';
     }
 
     isEdge(): boolean {
-        return this.getDevice() === DeviceType.Edge;
-    }
-
-    isIE(): boolean {
-        return this.getDevice() === DeviceType.IE;
+        return this.getBrowserType() === 'edge';
     }
 
     isOpera(): boolean {
-        return this.getDevice() === DeviceType.Opera;
+        return this.getBrowserType() === 'opera';
     }
 
     isVivaldi(): boolean {
-        return this.getDevice() === DeviceType.Vivaldi;
+        return this.getBrowserType() === 'vivaldi';
     }
 
     isSafari(): boolean {
-        return this.getDevice() === DeviceType.Safari;
+        return this.getBrowserType() === 'safari';
+    }
+
+    isIE(): boolean {
+        return this.getBrowserType() === 'ie';
     }
 
     isMacAppStore(): boolean {
@@ -77,16 +54,11 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     analyticsId(): string {
-        if (this.analyticsIdCache) {
-            return this.analyticsIdCache;
-        }
-
-        this.analyticsIdCache = (AnalyticsIds as any)[this.getDevice()];
-        return this.analyticsIdCache;
+        return 'UA-81915606-3';
     }
 
     getDomain(uriString: string): string {
-        return uriString;
+        return Utils.getHostname(uriString);
     }
 
     isViewOpen(): boolean {
@@ -94,7 +66,11 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     launchUri(uri: string, options?: any): void {
-        //
+        const a = document.createElement('a');
+        a.href = uri;
+        a.target = '_blank';
+        a.rel = 'noreferrer noopener';
+        a.click();
     }
 
     saveFile(win: Window, blobData: any, blobOptions: any, fileName: string): void {
@@ -122,18 +98,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
-        const dialogId = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
-        this.messagingService.send('showDialog', {
-            text: text,
-            title: title,
-            confirmText: confirmText,
-            cancelText: cancelText,
-            type: type,
-            dialogId: dialogId,
-        });
-        return new Promise<boolean>((resolve) => {
-            this.showDialogResolves.set(dialogId, { resolve: resolve, date: new Date() });
-        });
+        return Promise.resolve(false);
     }
 
     isDev(): boolean {
@@ -165,23 +130,27 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         }
     }
 
-    resolveDialogPromise(dialogId: number, confirmed: boolean) {
-        if (this.showDialogResolves.has(dialogId)) {
-            const resolveObj = this.showDialogResolves.get(dialogId);
-            resolveObj.resolve(confirmed);
-            this.showDialogResolves.delete(dialogId);
+    private getBrowserType(): string {
+        if (this.browserCache != null) {
+            return this.browserCache;
         }
 
-        // Clean up old promises
-        const deleteIds: number[] = [];
-        this.showDialogResolves.forEach((val, key) => {
-            const age = new Date().getTime() - val.date.getTime();
-            if (age > DialogPromiseExpiration) {
-                deleteIds.push(key);
-            }
-        });
-        deleteIds.forEach((id) => {
-            this.showDialogResolves.delete(id);
-        });
+        if (navigator.userAgent.indexOf(' Firefox/') !== -1 || navigator.userAgent.indexOf(' Gecko/') !== -1) {
+            this.browserCache = 'firefox';
+        } else if (navigator.userAgent.indexOf(' OPR/') >= 0) {
+            this.browserCache = 'opera';
+        } else if (navigator.userAgent.indexOf(' Edge/') !== -1) {
+            this.browserCache = 'edge';
+        } else if (navigator.userAgent.indexOf(' Vivaldi/') !== -1) {
+            this.browserCache = 'vivaldi';
+        } else if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
+            this.browserCache = 'safari';
+        } else if ((window as any).chrome && navigator.userAgent.indexOf(' Chrome/') !== -1) {
+            this.browserCache = 'chrome';
+        } else if (navigator.userAgent.indexOf(' Trident/') !== -1) {
+            this.browserCache = 'ie';
+        }
+
+        return this.browserCache;
     }
 }

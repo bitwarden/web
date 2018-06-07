@@ -1,18 +1,19 @@
 <ng-container *ngIf="(ciphers | searchCiphers: searchText) as searchedCiphers">
-    <table class="table table-hover table-sm" *ngIf="searchedCiphers.length > 0">
+    <table class="table table-hover" *ngIf="searchedCiphers.length > 0">
         <tbody>
             <tr *ngFor="let c of searchedCiphers">
-                <td>
-                    <input type="checkbox">
+                <td (click)="checkCipher(c)">
+                    <input type="checkbox" [(ngModel)]="c.checked">
                 </td>
-                <td>
+                <td (click)="checkCipher(c)">
                     <app-vault-icon [cipher]="c"></app-vault-icon>
                 </td>
-                <td>
-                    <a href="#" appStopClick (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
-                    <i class="fa fa-share-alt text-muted" *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
-                    <i class="fa fa-paperclip text-muted" *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
-                    <small>{{c.subTitle}}</small>
+                <td (click)="checkCipher(c)">
+                    <a href="#" appStopClick appStopProp (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
+                    <i class="fa fa-share-alt text-muted" appStopProp *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
+                    <i class="fa fa-paperclip text-muted" appStopProp *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
+                    <br>
+                    <small appStopProp>{{c.subTitle}}</small>
                 </td>
                 <td>
                     <div class="dropdown" appListDropdown>
@@ -21,9 +22,26 @@
                             <i class="fa fa-cog"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.type === cipherType.Login">
+                                <i class="fa fa-fw fa-clipboard"></i>
+                                {{'copyPassword' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick>
+                                <i class="fa fa-fw fa-paperclip"></i>
+                                {{'attachments' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="!c.organizationId">
+                                <i class="fa fa-fw fa-share-alt"></i>
+                                {{'share' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId">
+                                <i class="fa fa-fw fa-cubes"></i>
+                                {{'collections' | i18n}}
+                            </a>
+                            <a class="dropdown-item text-danger" href="#" appStopClick>
+                                <i class="fa fa-fw fa-trash-o"></i>
+                                {{'delete' | i18n}}
+                            </a>
                         </div>
                     </div>
                 </td>

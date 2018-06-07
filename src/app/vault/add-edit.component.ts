@@ -14,6 +14,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib/angular/components/add-edit.component';
+import { LoginUriView } from 'jslib/models/view/loginUriView';
 
 @Component({
     selector: 'app-vault-add-edit',
@@ -30,5 +31,29 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
 
     async ngOnInit() {
         await super.load();
+    }
+
+    toggleFavorite() {
+        this.cipher.favorite = !this.cipher.favorite;
+    }
+
+    launch(uri: LoginUriView) {
+        if (!uri.canLaunch) {
+            return;
+        }
+
+        this.analytics.eventTrack.next({ action: 'Launched Login URI' });
+        this.platformUtilsService.launchUri(uri.uri);
+    }
+
+    copy(value: string, typeI18nKey: string, aType: string) {
+        if (value == null) {
+            return;
+        }
+
+        this.analytics.eventTrack.next({ action: 'Copied ' + aType });
+        this.platformUtilsService.copyToClipboard(value, { doc: window.document });
+        this.toasterService.popAsync('info', null,
+            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
     }
 }

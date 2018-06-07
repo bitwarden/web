@@ -1,7 +1,12 @@
 <div class="modal fade">
     <div class="modal-dialog modal-lg">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
-            <div class="modal-header">{{title}}</div>
+            <div class="modal-header">
+                <h2 class="modal-title">{{title}}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body" *ngIf="cipher">
                 <div class="row" *ngIf="!editMode">
                     <div class="col-6 form-group">
@@ -24,28 +29,45 @@
                     </div>
                 </div>
                 <!-- Login -->
-                <div *ngIf="cipher.type === cipherType.Login">
+                <ng-container *ngIf="cipher.type === cipherType.Login">
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="loginUsername">{{'username' | i18n}}</label>
-                            <input id="loginUsername" class="form-control" type="text" name="Login.Username" [(ngModel)]="cipher.login.username">
+                            <div class="input-group">
+                                <input id="loginUsername" class="form-control" type="text" name="Login.Username" [(ngModel)]="cipher.login.username">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyUsername' | i18n}}" (click)="copy(cipher.login.username, 'username', 'Username')"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg fa-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-6 form-group">
-                            <label for="loginPassword">{{'password' | i18n}}</label>
+                            <div class="d-flex">
+                                <label for="loginPassword">{{'password' | i18n}}</label>
+                                <div class="ml-auto d-flex">
+                                    <a href="#" class="d-block mr-2" appStopClick appBlurClick title="{{'generatePassword' | i18n}}" (click)="generatePassword()">
+                                        <i class="fa fa-lg fa-fw fa-refresh"></i>
+                                    </a>
+                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick appBlurClick title="{{'checkPassword' | i18n}}" (click)="checkPassword()"
+                                        [appApiAction]="checkPasswordPromise">
+                                        <i class="fa fa-lg fa-fw fa-check-circle" [hidden]="checkPasswordBtn.loading"></i>
+                                        <i class="fa fa-lg fa-fw fa-spinner fa-spin" [hidden]="!checkPasswordBtn.loading"></i>
+                                    </a>
+                                </div>
+                            </div>
                             <div class="input-group">
                                 <input id="loginPassword" class="form-control text-monospace" type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
                                     [(ngModel)]="cipher.login.password">
                                 <div class="input-group-append">
-                                    <button type="button" #checkPasswordBtn class="btn btn-outline-secondary" appBlurClick title="{{'checkPassword' | i18n}}"
-                                        (click)="checkPassword()" [appApiAction]="checkPasswordPromise" [disabled]="checkPasswordBtn.loading">
-                                        <i class="fa fa-lg fa-check-circle" [hidden]="checkPasswordBtn.loading"></i>
-                                        <i class="fa fa-lg fa-spinner fa-spin" [hidden]="!checkPasswordBtn.loading"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
+                                        tabindex="-1">
                                         <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'generatePassword' | i18n}}" (click)="generatePassword()">
-                                        <i class="fa fa-lg fa-refresh"></i>
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyPassword' | i18n}}" (click)="copy(cipher.login.password, 'password', 'Password')"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
                                 </div>
                             </div>
@@ -59,11 +81,22 @@
                     </div>
                     <ng-container *ngIf="cipher.login.hasUris">
                         <div class="row" appBoxRow *ngFor="let u of cipher.login.uris; let i = index">
-                            <div class="col-7">
+                            <div class="col-7 form-group">
                                 <label for="loginUri{{i}}">{{'uriPosition' | i18n : (i + 1)}}</label>
-                                <input class="form-control" id="loginUri{{i}}" type="text" name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" placeholder="{{'ex' | i18n}} https://google.com">
+                                <div class="input-group">
+                                    <input class="form-control" id="loginUri{{i}}" type="text" name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" placeholder="{{'ex' | i18n}} https://google.com">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'launch' | i18n}}" (click)="launch(u)" tabindex="-1">
+                                            <i class="fa fa-lg fa-share"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg fa-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 form-group">
                                 <label for="loginUriMatch{{i}}">
                                     {{'matchDetection' | i18n}}
                                 </label>
@@ -72,18 +105,19 @@
                                 </select>
                             </div>
                             <div class="col-1">
-                                <button class="btn btn-secondary" (click)="removeUri(u)" title="{{'remove' | i18n}}">
+                                <label class="invisible">&nbsp;</label>
+                                <button class="btn btn-link text-danger" (click)="removeUri(u)" title="{{'remove' | i18n}}">
                                     <i class="fa fa-minus-circle fa-lg"></i>
                                 </button>
                             </div>
                         </div>
                     </ng-container>
-                    <button type="button" appBlurClick (click)="addUri()" class="btn btn-link">
-                        <i class="fa fa-plus-circle fa-fw fa-lg"></i> {{'newUri' | i18n}}
-                    </button>
-                </div>
+                    <a href="#" appStopClick appBlurClick (click)="addUri()" class="d-inline-block mb-3">
+                        <i class="fa fa-plus-circle fa-fw"></i> {{'newUri' | i18n}}
+                    </a>
+                </ng-container>
                 <!-- Card -->
-                <div *ngIf="cipher.type === cipherType.Card">
+                <ng-container *ngIf="cipher.type === cipherType.Card">
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="cardCardholderName">{{'cardholderName' | i18n}}</label>
@@ -99,7 +133,15 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="cardNumber">{{'number' | i18n}}</label>
-                            <input id="cardNumber" class="form-control" type="text" name="Card.Number" [(ngModel)]="cipher.card.number">
+                            <div class="input-group">
+                                <input id="cardNumber" class="form-control" type="text" name="Card.Number" [(ngModel)]="cipher.card.number">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyNumber' | i18n}}" (click)="copy(cipher.card.number, 'number', 'Number')"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg fa-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="col form-group">
                             <label for="cardExpMonth">{{'expirationMonth' | i18n}}</label>
@@ -115,13 +157,20 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="cardCode">{{'securityCode' | i18n}}</label>
-                            <input id="cardCode" class="form-control" type="text" name="Card.Code" [(ngModel)]="cipher.card.code">
+                            <div class="input-group">
+                                <input id="cardCode" class="form-control" type="text" name="Card.Code" [(ngModel)]="cipher.card.code">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'securityCode' | i18n}}" (click)="copy(cipher.card.code, 'securityCode', 'Security Code')"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg fa-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                </ng-container>
                 <!-- Identity -->
-                <div *ngIf="cipher.type === cipherType.Identity">
+                <ng-container *ngIf="cipher.type === cipherType.Identity">
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idTitle">{{'title' | i18n}}</label>
@@ -214,32 +263,39 @@
                             <input id="idCountry" class="form-control" type="text" name="Identity.Country" [(ngModel)]="cipher.identity.country">
                         </div>
                     </div>
-                </div>
-
+                </ng-container>
                 <div class="form-group">
                     <label for="notes">{{'notes' | i18n}}</label>
                     <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes" class="form-control"></textarea>
                 </div>
-
-                <div class="form-group">
-                    <label for="favorite">{{'favorite' | i18n}}</label>
-                    <input id="favorite" type="checkbox" name="Favorite" [(ngModel)]="cipher.favorite">
-                </div>
-                <h4>{{'customFields' | i18n}}</h4>
+                <h3 class="mt-4">{{'customFields' | i18n}}</h3>
                 <ng-container *ngIf="cipher.hasFields">
                     <div class="row" appBoxRow *ngFor="let f of cipher.fields; let i = index">
-                        <div class="col-4">
+                        <div class="col-4 form-group">
                             <label for="fieldName{{i}}">{{'name' | i18n}}</label>
                             <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name" class="form-control">
                         </div>
-                        <div class="col-4">
+                        <div class="col-6 form-group">
                             <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
-                            <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}" [(ngModel)]="f.value" *ngIf="f.type === fieldType.Text">
+                            <div class="input-group" *ngIf="f.type === fieldType.Text">
+                                <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}" [(ngModel)]="f.value">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg fa-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="input-group" *ngIf="f.type === fieldType.Hidden">
                                 <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}" name="Field.Value{{i}}" [(ngModel)]="f.value" class="form-control text-monospace">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
+                                        tabindex="-1">
                                         <i class="fa fa-lg" [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
                                 </div>
                             </div>
@@ -247,33 +303,39 @@
                                 appTrueFalseValue trueValue="true" falseValue="false">
                         </div>
                         <div class="col-1">
-                            <button type="button" class="btn btn-secondary" (click)="removeField(f)" title="{{'remove' | i18n}}">
+                            <label class="invisible">&nbsp;</label>
+                            <button class="btn btn-link text-danger" (click)="removeField(f)" title="{{'remove' | i18n}}">
                                 <i class="fa fa-minus-circle fa-lg"></i>
                             </button>
                         </div>
                     </div>
                 </ng-container>
-                <button type="button" class="btn btn-link" appBlurClick (click)="addField()">
-                    <i class="fa fa-plus-circle fa-fw fa-lg"></i> {{'newCustomField' | i18n}}
-                </button>
-                <div>
-                    <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
-                    <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
-                        <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
-                    </select>
+                <a href="#" appStopClick appBlurClick (click)="addField()" class="d-inline-block mb-2">
+                    <i class="fa fa-plus-circle fa-fw"></i> {{'newCustomField' | i18n}}
+                </a>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
+                        <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
+                            <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button appBlurClick type="submit" class="primary" title="{{'save' | i18n}}" [disabled]="form.loading">
+                <button appBlurClick type="submit" class="btn btn-primary" title="{{'save' | i18n}}" [disabled]="form.loading">
                     <i class="fa fa-save fa-lg fa-fw" [hidden]="form.loading"></i>
                     <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!form.loading"></i>
                 </button>
-                <button appBlurClick type="button" data-dismiss="modal" title="{{'cancel' | i18n}}">
+                <button appBlurClick type="button" class="btn btn-outline-secondary" data-dismiss="modal" title="{{'cancel' | i18n}}">
                     {{'cancel' | i18n}}
                 </button>
-                <div class="right">
-                    <button #deleteBtn appBlurClick type="button" (click)="delete()" class="danger" title="{{'delete' | i18n}}" *ngIf="editMode"
-                        [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
+                <div class="ml-auto" *ngIf="cipher">
+                    <button appBlurClick type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
+                        <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"></i>
+                    </button>
+                    <button #deleteBtn appBlurClick type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"
+                        *ngIf="editMode" [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
                         <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"></i>
                     </button>
