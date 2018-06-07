@@ -1,5 +1,318 @@
 {
-  "hello": {
-    "message": "hello world"
+  "whatTypeOfItem": {
+    "message": "What type of item is this?"
+  },
+  "name": {
+    "message": "Name"
+  },
+  "uri": {
+    "message": "URI"
+  },
+  "uriPosition": {
+    "message": "URI $POSITION$",
+    "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
+    "placeholders": {
+      "position": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "newUri": {
+    "message": "New URI"
+  },
+  "username": {
+    "message": "Username"
+  },
+  "password": {
+    "message": "Password"
+  },
+  "notes": {
+    "message": "Notes"
+  },
+  "customFields": {
+    "message": "Custom Fields"
+  },
+  "cardholderName": {
+    "message": "Cardholder Name"
+  },
+  "number": {
+    "message": "Number"
+  },
+  "brand": {
+    "message": "Brand"
+  },
+  "expiration": {
+    "message": "Expiration"
+  },
+  "securityCode": {
+    "message": "Security Code"
+  },
+  "identityName": {
+    "message": "Identity Name"
+  },
+  "company": {
+    "message": "Company"
+  },
+  "ssn": {
+    "message": "Social Security Number"
+  },
+  "passportNumber": {
+    "message": "Passport Number"
+  },
+  "licenseNumber": {
+    "message": "License Number"
+  },
+  "email": {
+    "message": "Email"
+  },
+  "phone": {
+    "message": "Phone"
+  },
+  "january": {
+    "message": "January"
+  },
+  "february": {
+    "message": "February"
+  },
+  "march": {
+    "message": "March"
+  },
+  "april": {
+    "message": "April"
+  },
+  "may": {
+    "message": "May"
+  },
+  "june": {
+    "message": "June"
+  },
+  "july": {
+    "message": "July"
+  },
+  "august": {
+    "message": "August"
+  },
+  "september": {
+    "message": "September"
+  },
+  "october": {
+    "message": "October"
+  },
+  "november": {
+    "message": "November"
+  },
+  "december": {
+    "message": "December"
+  },
+  "title": {
+    "message": "Title"
+  },
+  "mr": {
+    "message": "Mr"
+  },
+  "mrs": {
+    "message": "Mrs"
+  },
+  "ms": {
+    "message": "Ms"
+  },
+  "dr": {
+    "message": "Dr"
+  },
+  "expirationMonth": {
+    "message": "Expiration Month"
+  },
+  "expirationYear": {
+    "message": "Expiration Year"
+  },
+  "authenticatorKeyTotp": {
+    "message": "Authenticator Key (TOTP)"
+  },
+  "folder": {
+    "message": "Folder"
+  },
+  "newCustomField": {
+    "message": "New Custom Field"
+  },
+  "value": {
+    "message": "Value"
+  },
+  "cfTypeText": {
+    "message": "Text"
+  },
+  "cfTypeHidden": {
+    "message": "Hidden"
+  },
+  "cfTypeBoolean": {
+    "message": "Boolean"
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "noneFolder": {
+    "message": "No Folder",
+    "description": "This is the folder for uncategorized items"
+  },
+  "addFolder": {
+    "message": "Add Folder"
+  },
+  "editFolder": {
+    "message": "Edit Folder"
+  },
+  "baseDomain": {
+    "message": "Base domain"
+  },
+  "host": {
+    "message": "Host",
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
+  },
+  "exact": {
+    "message": "Exact"
+  },
+  "startsWith": {
+    "message": "Starts with"
+  },
+  "regEx": {
+    "message": "Regular expression",
+    "description": "A programming term, also known as 'RegEx'."
+  },
+  "matchDetection": {
+    "message": "Match Detection",
+    "description": "URI match detection for auto-fill."
+  },
+  "defaultMatchDetection": {
+    "message": "Default match detection",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "never": {
+    "message": "Never"
+  },
+  "toggleVisibility": {
+    "message": "Toggle Visibility"
+  },
+  "generatePassword": {
+    "message": "Generate Password"
+  },
+  "checkPassword": {
+    "message": "Check if password has been exposed."
+  },
+  "passwordExposed": {
+    "message": "This password has been exposed $VALUE$ time(s) in data breaches. You should change it.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "passwordSafe": {
+    "message": "This password was not found in any known data breaches. It should be safe to use."
+  },
+  "save": {
+    "message": "Save"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "close": {
+    "message": "Close"
+  },
+  "delete": {
+    "message": "Delete"
+  },
+  "favorite": {
+    "message": "Favorite"
+  },
+  "edit": {
+    "message": "Edit"
+  },
+  "searchCollection": {
+    "message": "Search Collection"
+  },
+  "searchFolder": {
+    "message": "Search Folder"
+  },
+  "searchFavorites": {
+    "message": "Search Favorites"
+  },
+  "searchType": {
+    "message": "Search Type",
+    "description": "Search item type"
+  },
+  "searchVault": {
+    "message": "Search Vault"
+  },
+  "allItems": {
+    "message": "All Items"
+  },
+  "favorites": {
+    "message": "Favorites"
+  },
+  "types": {
+    "message": "Types"
+  },
+  "typeLogin": {
+    "message": "Login"
+  },
+  "typeCard": {
+    "message": "Card"
+  },
+  "typeIdentity": {
+    "message": "Identity"
+  },
+  "typeSecureNote": {
+    "message": "Secure Note"
+  },
+  "folders": {
+    "message": "Folders"
+  },
+  "collections": {
+    "message": "Collections"
+  },
+  "firstName": {
+    "message": "First Name"
+  },
+  "middleName": {
+    "message": "Middle Name"
+  },
+  "lastName": {
+    "message": "Last Name"
+  },
+  "address1": {
+    "message": "Address 1"
+  },
+  "address2": {
+    "message": "Address 2"
+  },
+  "address3": {
+    "message": "Address 3"
+  },
+  "cityTown": {
+    "message": "City / Town"
+  },
+  "stateProvince": {
+    "message": "State / Province"
+  },
+  "zipPostalCode": {
+    "message": "Zip / Postal Code"
+  },
+  "country": {
+    "message": "Country"
+  },
+  "shared": {
+    "message": "Shared"
+  },
+  "attachments": {
+    "message": "Attachments"
+  },
+  "select": {
+    "message": "Select"
+  },
+  "addItem": {
+    "message": "Add Item"
+  },
+  "editItem": {
+    "message": "Edit Item"
   }
 }

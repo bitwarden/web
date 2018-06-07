@@ -9,7 +9,7 @@
                     <app-vault-icon [cipher]="c"></app-vault-icon>
                 </td>
                 <td>
-                    <a href="#" appStopClick (click)="selectCipher(c)" title="{{'viewItem' | i18n}}">{{c.name}}</a>
+                    <a href="#" appStopClick (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
                     <i class="fa fa-share-alt text-muted" *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
                     <i class="fa fa-paperclip text-muted" *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
                     <small>{{c.subTitle}}</small>
