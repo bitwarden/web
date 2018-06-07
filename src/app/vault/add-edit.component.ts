@@ -1,6 +1,6 @@
 import {
     Component,
-    OnChanges,
+    OnInit,
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
@@ -19,7 +19,7 @@ import { AddEditComponent as BaseAddEditComponent } from 'jslib/angular/componen
     selector: 'app-vault-add-edit',
     templateUrl: 'add-edit.component.html',
 })
-export class AddEditComponent extends BaseAddEditComponent implements OnChanges {
+export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         analytics: Angulartics2, toasterService: ToasterService,
@@ -28,7 +28,7 @@ export class AddEditComponent extends BaseAddEditComponent implements OnChanges 
             toasterService, auditService, stateService);
     }
 
-    async ngOnChanges() {
+    async ngOnInit() {
         await super.load();
     }
 }

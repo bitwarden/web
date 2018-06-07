@@ -18,6 +18,7 @@ import { FolderView } from 'jslib/models/view/folderView';
 
 import { ModalComponent } from '../modal.component';
 
+import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
@@ -35,6 +36,7 @@ export class VaultComponent implements OnInit {
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditRef: ViewContainerRef;
 
     cipherId: string = null;
     favorites: boolean = false;
@@ -78,14 +80,6 @@ export class VaultComponent implements OnInit {
                 await this.ciphersComponent.load();
             }
         });
-    }
-
-    editCipher(cipher: CipherView) {
-        console.log(cipher);
-    }
-
-    addCipher(type: CipherType = null) {
-        //
     }
 
     async clearGroupingFilters() {
@@ -192,6 +186,37 @@ export class VaultComponent implements OnInit {
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
+    }
+
+    addCipher() {
+        const component = this.editCipher(null);
+        component.type = this.type;
+        component.folderId = this.folderId === 'none' ? null : this.folderId;
+    }
+
+    editCipher(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.cipherAddEditRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<AddEditComponent>(
+            AddEditComponent, this.cipherAddEditRef);
+
+        childComponent.cipherId = cipher == null ? null : cipher.id;
+        childComponent.onSavedCipher.subscribe(async (cipher: CipherView) => {
+            this.modal.close();
+        });
+        childComponent.onDeletedCipher.subscribe(async (cipher: CipherView) => {
+            this.modal.close();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+
+        return childComponent;
     }
 
     private clearFilters() {

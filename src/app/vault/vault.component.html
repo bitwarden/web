@@ -30,20 +30,17 @@
 <div class="container page-content">
     <div class="row">
         <div class="col-3">
-            <app-vault-groupings
-                (onAllClicked)="clearGroupingFilters()"
-                (onFavoritesClicked)="filterFavorites()"
-                (onCipherTypeClicked)="filterCipherType($event)"
-                (onFolderClicked)="filterFolder($event.id)"
-                (onAddFolder)="addFolder()"
-                (onEditFolder)="editFolder($event.id)"
-                (onCollectionClicked)="filterCollection($event.id)"
-                (onSearchTextChanged)="filterSearchText($event)">
+            <app-vault-groupings (onAllClicked)="clearGroupingFilters()" (onFavoritesClicked)="filterFavorites()" (onCipherTypeClicked)="filterCipherType($event)"
+                (onFolderClicked)="filterFolder($event.id)" (onAddFolder)="addFolder()" (onEditFolder)="editFolder($event.id)"
+                (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)">
             </app-vault-groupings>
         </div>
         <div class="col-6">
-            <app-vault-ciphers
-                (onCipherClicked)="editCipher($event)">
+            <button type="button" class="btn btn-secondary btn-sm pull-right" (click)="addCipher()">
+                <i class="fa fa-plus"></i>
+            </button>
+            <h1>My Vault</h1>
+            <app-vault-ciphers (onCipherClicked)="editCipher($event)">
             </app-vault-ciphers>
         </div>
         <div class="col-3">
@@ -70,3 +67,4 @@
 </div>
 <ng-template #attachments></ng-template>
 <ng-template #folderAddEdit></ng-template>
+<ng-template #cipherAddEdit></ng-template>

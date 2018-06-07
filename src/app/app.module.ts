@@ -23,6 +23,7 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { CiphersComponent } from './vault/ciphers.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
@@ -59,6 +60,7 @@ import { Folder } from 'jslib/models/domain';
         ToasterModule,
     ],
     declarations: [
+        AddEditComponent,
         ApiActionDirective,
         AppComponent,
         AttachmentsComponent,
@@ -84,6 +86,7 @@ import { Folder } from 'jslib/models/domain';
         VaultComponent,
     ],
     entryComponents: [
+        AddEditComponent,
         AttachmentsComponent,
         FolderAddEditComponent,
         ModalComponent,
