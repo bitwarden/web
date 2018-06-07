@@ -92,35 +92,40 @@ app-vault {
         }
 
         tr:hover {
-            td:first-child {
-                background-color: $body-bg;
+            td:last-child .dropdown button {
+                visibility: initial;
             }
         }
 
         td {
             vertical-align: middle;
 
-            a {
+            small {
                 display: block;
+                color: $text-muted;
             }
         }
 
         td:first-child {
-            width: 65px;
-            border: none;
-        }
-
-        td:nth-child(2) {
             width: 25px;
         }
 
-        td:nth-child(3) {
+        td:nth-child(2) {
             width: 25px;
             text-align: center;
 
             img {
                 @extend .rounded;
                 @extend .img-fluid;
+            }
+        }
+
+        td:last-child {
+            width: 65px;
+            text-align: right;
+            
+            .dropdown:not(.show) button {
+                visibility: hidden;
             }
         }
     }

@@ -3,31 +3,29 @@
         <tbody>
             <tr *ngFor="let c of searchedCiphers">
                 <td>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="fa fa-cog"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </td>
-                <td>
                     <input type="checkbox">
                 </td>
                 <td>
                     <app-vault-icon [cipher]="c"></app-vault-icon>
                 </td>
                 <td>
-                    <a href="#" appStopClick (click)="selectCipher(c)" title="{{'viewItem' | i18n}}">
-                        {{c.name}}
-                        <i class="fa fa-share-alt text-muted" *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
-                        <i class="fa fa-paperclip text-muted" *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
-                    </a>
-                    <small class="text-muted">{{c.subTitle}}</small>
+                    <a href="#" appStopClick (click)="selectCipher(c)" title="{{'viewItem' | i18n}}">{{c.name}}</a>
+                    <i class="fa fa-share-alt text-muted" *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
+                    <i class="fa fa-paperclip text-muted" *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
+                    <small>{{c.subTitle}}</small>
+                </td>
+                <td>
+                    <div class="dropdown" appListDropdown>
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>

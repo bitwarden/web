@@ -128,6 +128,10 @@ export class VaultComponent implements OnInit {
         this.go();
     }
 
+    filterSearchText(searchText: string) {
+        this.ciphersComponent.searchText = searchText;
+    }
+
     editCipherAttachments(cipher: CipherView) {
         if (this.modal != null) {
             this.modal.close();

@@ -37,7 +37,8 @@
                 (onFolderClicked)="filterFolder($event.id)"
                 (onAddFolder)="addFolder()"
                 (onEditFolder)="editFolder($event.id)"
-                (onCollectionClicked)="filterCollection($event.id)">
+                (onCollectionClicked)="filterCollection($event.id)"
+                (onSearchTextChanged)="filterSearchText($event)">
             </app-vault-groupings>
         </div>
         <div class="col-6">
