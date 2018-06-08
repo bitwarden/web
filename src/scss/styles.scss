@@ -48,6 +48,7 @@ $input-bg: #fafafa;
 $input-focus-bg: #ffffff;
 $input-disabled-bg: #e0e0e0;
 
+$table-accent-bg: rgba(#000000, .02);
 $table-hover-bg: rgba(#000000, .03);
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
@@ -143,32 +144,57 @@ form label {
     }
 }
 
+.table.table-list {
+    tr:first-child {
+        td {
+            border: none;
+        }
+    }
+
+    tr:hover {
+        td.table-list-options > .dropdown button, td.table-list-options > button {
+            visibility: visible;
+        }
+    }
+
+    td {
+        vertical-align: middle;
+        line-height: 1;
+
+        small {
+            color: $text-muted;
+        }
+    }
+
+    td.table-list-options {
+        width: 76px;
+        max-width: 76px;
+        text-align: right;
+
+        .btn {
+            line-height: 1;
+        }
+
+        .dropdown-menu {
+            line-height: $line-height-base;
+        }
+        
+        > .dropdown:not(.show) button {
+            visibility: hidden;
+        }
+
+        > button {
+            visibility: hidden;
+        }
+    }
+}
+
 app-vault-icon .fa {
     color: $text-muted;
 }
 
 app-vault {
-    .table {
-        tr:first-child {
-            td {
-                border: none;
-            }
-        }
-
-        tr:hover {
-            td:last-child .dropdown button {
-                visibility: visible;
-            }
-        }
-
-        td {
-            vertical-align: middle;
-
-            small {
-                color: $text-muted;
-            }
-        }
-
+    .table-ciphers {
         td:first-child {
             width: 35px;
             max-width: 35px;
@@ -182,24 +208,6 @@ app-vault {
             img {
                 @extend .rounded;
                 @extend .img-fluid;
-            }
-        }
-
-        td:nth-child(3) {
-            line-height: 1;
-        }
-
-        td:last-child {
-            width: 72px;
-            max-width: 72px;
-            text-align: right;
-
-            .btn {
-                line-height: 1;
-            }
-            
-            .dropdown:not(.show) button {
-                visibility: hidden;
             }
         }
     }
