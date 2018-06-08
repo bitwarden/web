@@ -207,9 +207,11 @@ export class VaultComponent implements OnInit {
         childComponent.cipherId = cipher == null ? null : cipher.id;
         childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
             this.modal.close();
+            await this.ciphersComponent.refresh();
         });
         childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
             this.modal.close();
+            await this.ciphersComponent.refresh();
         });
 
         this.modal.onClosed.subscribe(() => {

@@ -69,7 +69,7 @@ const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new WebMessagingService();
-const platformUtilsService = new WebPlatformUtilsService(messagingService);
+const platformUtilsService = new WebPlatformUtilsService(messagingService, i18nService);
 const storageService: StorageServiceAbstraction = new WebStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);

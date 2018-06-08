@@ -69,3 +69,83 @@
         }
     }
 }
+
+// SweetAlert
+
+.swal-overlay {
+    background-color: rgba(0,0,0,.3);
+}
+
+.swal-modal {
+    border-radius: $border-radius;
+    background-color: $modal-content-bg;
+    color: $body-color;
+
+    .swal-icon {
+        margin: 15px auto 0 auto;
+    }
+
+    .swal-content {
+        margin: 15px 0 15px 0;
+        padding: 0 10px;
+        font-size: $font-size-base;
+
+        .swal-text {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .swal-title, .swal-text {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    i.swal-custom-icon {
+        display: block;
+        margin: 0 auto;
+        font-size: 35px;
+    }
+
+    .swal-title {
+        padding: 10px 10px 15px 10px;
+        margin: 0;
+        font-size: $font-size-lg;
+        color: $body-color;
+    }
+
+    .swal-text {
+        font-size: $font-size-base;
+        color: $body-color;
+    }
+
+    .swal-footer {
+        padding: 15px 10px 10px 10px;
+        margin: 0;
+        border-top: $modal-footer-border-width solid $modal-footer-border-color;
+        background-color: $input-bg;
+        @include border-radius($modal-content-border-radius);
+        display: flex; 
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        font-size: $font-size-base;
+
+        .swal-button {
+            @extend .btn;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .swal-button--confirm {
+            @extend .btn-primary;
+        }
+
+        .swal-button--cancel {
+            @extend .btn-outline-secondary;
+            background-color: #ffffff;
+        }
+    }
+}

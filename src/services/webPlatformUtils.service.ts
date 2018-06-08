@@ -1,17 +1,24 @@
+import * as _swal from 'sweetalert';
+import { SweetAlert } from 'sweetalert/typings/core';
+
 import { DeviceType } from 'jslib/enums/deviceType';
 
+import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { AnalyticsIds } from 'jslib/misc/analytics';
 import { Utils } from 'jslib/misc/utils';
 
+// Hack due to Angular 5.2 bug
+const swal: SweetAlert = _swal as any;
+
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 
     private browserCache: string = null;
 
-    constructor(private messagingService: MessagingService) { }
+    constructor(private messagingService: MessagingService, private i18nService: I18nService) { }
 
     getDevice(): DeviceType {
         return DeviceType.Web;
@@ -108,8 +115,56 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         throw new Error('showToast not implemented');
     }
 
-    showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
-        return Promise.resolve(false);
+    async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
+        const buttons = [confirmText == null ? this.i18nService.t('ok') : confirmText];
+        if (cancelText != null) {
+            buttons.unshift(cancelText);
+        }
+
+        const contentDiv = document.createElement('div');
+        if (type != null) {
+            const icon = document.createElement('i');
+            icon.classList.add('swal-custom-icon');
+            switch (type) {
+                case 'success':
+                    icon.classList.add('fa', 'fa-check', 'text-success');
+                    break;
+                case 'warning':
+                    icon.classList.add('fa', 'fa-warning', 'text-warning');
+                    break;
+                case 'error':
+                    icon.classList.add('fa', 'fa-bolt', 'text-danger');
+                    break;
+                case 'info':
+                    icon.classList.add('fa', 'fa-info-circle', 'text-info');
+                    break;
+                default:
+                    break;
+            }
+            if (icon.classList.contains('fa')) {
+                contentDiv.appendChild(icon);
+            }
+        }
+
+        if (title != null) {
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('swal-title');
+            titleDiv.appendChild(document.createTextNode(title));
+            contentDiv.appendChild(titleDiv);
+        }
+
+        if (text != null) {
+            const textDiv = document.createElement('div');
+            textDiv.classList.add('swal-text');
+            textDiv.appendChild(document.createTextNode(text));
+            contentDiv.appendChild(textDiv);
+        }
+
+        const confirmed = await swal({
+            content: { element: contentDiv },
+            buttons: buttons,
+        });
+        return confirmed;
     }
 
     isDev(): boolean {
