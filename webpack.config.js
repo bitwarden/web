@@ -78,7 +78,7 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
-        chunks: ['app/vendor', 'app/main'],
+        chunks: ['app/polyfills', 'app/main'],
     }),
     new HtmlWebpackPlugin({
         template: './src/connectors/duo.html',
@@ -138,6 +138,7 @@ const config = {
     devtool: 'source-map',
     serve: serve,
     entry: {
+        'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
         'connectors/duo': './src/connectors/duo.js',

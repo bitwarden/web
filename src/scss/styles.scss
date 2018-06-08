@@ -122,7 +122,7 @@ body {
 }
 
 .modal-footer {
-    justify-content: initial;
+    justify-content: flex-start;
     background-color: $input-bg;
 }
 
@@ -156,7 +156,7 @@ app-vault {
 
         tr:hover {
             td:last-child .dropdown button {
-                visibility: initial;
+                visibility: visible;
             }
         }
 
@@ -170,10 +170,12 @@ app-vault {
 
         td:first-child {
             width: 35px;
+            max-width: 35px;
         }
 
         td:nth-child(2) {
             width: 45px;
+            max-width: 45px;
             text-align: center;
 
             img {
@@ -188,6 +190,7 @@ app-vault {
 
         td:last-child {
             width: 72px;
+            max-width: 72px;
             text-align: right;
 
             .btn {

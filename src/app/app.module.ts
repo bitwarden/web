@@ -1,5 +1,4 @@
 import 'core-js';
-import 'zone.js/dist/zone';
 
 import { ToasterModule } from 'angular2-toaster';
 import { Angulartics2Module } from 'angulartics2';
