@@ -51,7 +51,8 @@ $input-disabled-bg: #e0e0e0;
 $table-accent-bg: rgba(#000000, .02);
 $table-hover-bg: rgba(#000000, .03);
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+@import "./plugins";
 
 html {
     font-size: 14px;

@@ -19,6 +19,7 @@ export class AppComponent {
         mouseoverTimerStop: true,
         animation: 'flyRight',
         limit: 5,
+        positionClass: 'toast-bottom-right',
     });
 
     constructor() {
