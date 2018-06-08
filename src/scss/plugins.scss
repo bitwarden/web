@@ -77,18 +77,20 @@
 }
 
 .swal-modal {
-    border-radius: $border-radius;
     background-color: $modal-content-bg;
     color: $body-color;
+    border: $modal-content-border-width solid #9a9a9a;
+    @include border-radius($modal-content-border-radius);
 
     .swal-icon {
         margin: 15px auto 0 auto;
     }
 
     .swal-content {
-        margin: 15px 0 15px 0;
-        padding: 0 10px;
+        margin: 0;
+        padding: 15px 0;
         font-size: $font-size-base;
+        border-bottom: $modal-footer-border-width solid $modal-footer-border-color;
 
         .swal-text {
             &:last-child {
@@ -123,7 +125,6 @@
     .swal-footer {
         padding: 15px 10px 10px 10px;
         margin: 0;
-        border-top: $modal-footer-border-width solid $modal-footer-border-color;
         background-color: $input-bg;
         @include border-radius($modal-content-border-radius);
         display: flex; 
