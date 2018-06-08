@@ -141,7 +141,7 @@ const config = {
         'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
-        'connectors/duo': './src/connectors/duo.js',
+        'connectors/duo': './src/connectors/duo.ts',
     },
     resolve: {
         extensions: ['.ts', '.js'],

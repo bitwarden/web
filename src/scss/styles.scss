@@ -124,6 +124,7 @@ body {
 .modal-footer {
     justify-content: flex-start;
     background-color: $input-bg;
+    @include border-radius($modal-content-border-radius);
 }
 
 form label {
