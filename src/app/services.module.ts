@@ -5,8 +5,8 @@ import {
 
 import { ToasterModule } from 'angular2-toaster';
 
+import { BroadcasterMessagingService } from '../services/broadcasterMessaging.service';
 import { I18nService } from '../services/i18n.service';
-import { WebMessagingService } from '../services/webMessaging.service';
 import { WebPlatformUtilsService } from '../services/webPlatformUtils.service';
 import { WebStorageService } from '../services/webStorage.service';
 
@@ -68,7 +68,7 @@ import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.s
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
-const messagingService = new WebMessagingService();
+const messagingService = new BroadcasterMessagingService(broadcasterService);
 const platformUtilsService = new WebPlatformUtilsService(messagingService, i18nService);
 const storageService: StorageServiceAbstraction = new WebStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,

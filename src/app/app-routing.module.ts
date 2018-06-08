@@ -4,6 +4,10 @@ import {
     Routes,
 } from '@angular/router';
 
+import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
+import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout.component';
+
 import { HintComponent } from './accounts/hint.component';
 import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
@@ -12,15 +16,32 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VaultComponent } from './vault/vault.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/vault', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: '2fa', component: TwoFactorComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'hint', component: HintComponent },
     {
-        path: 'vault',
-        component: VaultComponent,
+        path: '',
+        component: UserLayoutComponent,
+        children: [
+            { path: '', redirectTo: 'vault', pathMatch: 'full' },
+            { path: 'vault', component: VaultComponent },
+        ],
     },
+    {
+        path: '',
+        component: FrontendLayoutComponent,
+        children: [
+            { path: 'login', component: LoginComponent },
+            { path: '2fa', component: TwoFactorComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: 'hint', component: HintComponent },
+        ],
+    },
+    {
+        path: 'organization/:organizationId',
+        component: OrganizationLayoutComponent,
+        children: [
+            { path: 'vault', component: VaultComponent },
+        ],
+    },
+    { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

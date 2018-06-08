@@ -16,6 +16,12 @@ import { ServicesModule } from './services.module';
 import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
+import { FooterComponent } from './layouts/footer.component';
+import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
+import { NavbarComponent } from './layouts/navbar.component';
+import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout.component';
+
 import { HintComponent } from './accounts/hint.component';
 import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
@@ -69,6 +75,8 @@ import { Folder } from 'jslib/models/domain';
         CiphersComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
+        FooterComponent,
+        FrontendLayoutComponent,
         GroupingsComponent,
         HintComponent,
         IconComponent,
@@ -76,12 +84,15 @@ import { Folder } from 'jslib/models/domain';
         InputVerbatimDirective,
         LoginComponent,
         ModalComponent,
+        NavbarComponent,
+        OrganizationLayoutComponent,
         RegisterComponent,
         SearchCiphersPipe,
         StopClickDirective,
         StopPropDirective,
         TwoFactorComponent,
         TwoFactorOptionsComponent,
+        UserLayoutComponent,
         VaultComponent,
     ],
     entryComponents: [
