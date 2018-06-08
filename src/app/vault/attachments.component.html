@@ -15,7 +15,8 @@
                     <tbody>
                         <tr *ngFor="let a of cipher.attachments">
                             <td>
-                                {{a.fileName}}
+                                <a href="#" appStopClick appBlurCLick (click)="download(a)">{{a.fileName}}</a>
+                                <i class="fa fa-spinner fa-fw fa-spin text-muted" *ngIf="a.downloading"></i>
                                 <br>
                                 <small>{{a.sizeName}}</small>
                             </td>
