@@ -2,16 +2,16 @@
     <table class="table table-hover table-list table-ciphers" *ngIf="searchedCiphers.length > 0">
         <tbody>
             <tr *ngFor="let c of searchedCiphers">
-                <td (click)="checkCipher(c)">
+                <td (click)="checkCipher(c)" class="table-list-checkbox">
                     <input type="checkbox" [(ngModel)]="c.checked">
                 </td>
-                <td (click)="checkCipher(c)">
+                <td (click)="checkCipher(c)" class="table-list-icon">
                     <app-vault-icon [cipher]="c"></app-vault-icon>
                 </td>
                 <td (click)="checkCipher(c)">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
-                    <i class="fa fa-share-alt text-muted" appStopProp *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
-                    <i class="fa fa-paperclip text-muted" appStopProp *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
+                    <i class="fa fa-share-alt" appStopProp *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
+                    <i class="fa fa-paperclip" appStopProp *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
                 </td>

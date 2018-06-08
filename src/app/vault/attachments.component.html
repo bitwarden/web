@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <h2 class="modal-title">
                     {{'attachments' | i18n}}
-                    <small>{{cipher.name}}</small>
+                    <small *ngIf="cipher">{{cipher.name}}</small>
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -14,9 +14,12 @@
                 <table class="table table-hover table-list" *ngIf="cipher && cipher.hasAttachments">
                     <tbody>
                         <tr *ngFor="let a of cipher.attachments">
+                            <td class="table-list-icon">
+                                <i class="fa fa-fw fa-lg fa-file-o" *ngIf="!a.downloading"></i>
+                                <i class="fa fa-spinner fa-lg fa-fw fa-spin" *ngIf="a.downloading"></i>
+                            </td>
                             <td>
                                 <a href="#" appStopClick appBlurCLick (click)="download(a)">{{a.fileName}}</a>
-                                <i class="fa fa-spinner fa-fw fa-spin text-muted" *ngIf="a.downloading"></i>
                                 <br>
                                 <small>{{a.sizeName}}</small>
                             </td>

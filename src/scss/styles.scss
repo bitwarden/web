@@ -162,7 +162,7 @@ form label {
         vertical-align: middle;
         line-height: 1;
 
-        small {
+        small, > .fa, .icon {
             color: $text-muted;
         }
     }
@@ -188,29 +188,21 @@ form label {
             visibility: hidden;
         }
     }
-}
 
-app-vault-icon .fa {
-    color: $text-muted;
-}
+    td.table-list-icon {
+        width: 45px;
+        max-width: 45px;
+        text-align: center;
 
-app-vault {
-    .table-ciphers {
-        td:first-child {
-            width: 35px;
-            max-width: 35px;
+        img {
+            @extend .rounded;
+            @extend .img-fluid;
         }
+    }
 
-        td:nth-child(2) {
-            width: 45px;
-            max-width: 45px;
-            text-align: center;
-
-            img {
-                @extend .rounded;
-                @extend .img-fluid;
-            }
-        }
+    td.table-list-checkbox {
+        width: 35px;
+        max-width: 35px;
     }
 }
 
