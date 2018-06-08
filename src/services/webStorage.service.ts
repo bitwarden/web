@@ -24,5 +24,4 @@ export class WebStorageService implements StorageService {
         window.sessionStorage.removeItem(key);
         return Promise.resolve();
     }
-
 }

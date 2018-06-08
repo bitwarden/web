@@ -74,7 +74,18 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     saveFile(win: Window, blobData: any, blobOptions: any, fileName: string): void {
-        //
+        const blob = new Blob([blobData], blobOptions);
+        if (navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, fileName);
+        } else {
+            const a = win.document.createElement('a');
+            a.href = win.URL.createObjectURL(blob);
+            a.download = fileName;
+            a.style.position = 'fixed';
+            win.document.body.appendChild(a);
+            a.click();
+            win.document.body.removeChild(a);
+        }
     }
 
     getApplicationVersion(): string {
