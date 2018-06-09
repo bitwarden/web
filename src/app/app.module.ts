@@ -23,6 +23,7 @@ import { OrganizationLayoutComponent } from './layouts/organization-layout.compo
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
 import { HintComponent } from './accounts/hint.component';
+import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
@@ -83,6 +84,7 @@ import { Folder } from 'jslib/models/domain';
         IconComponent,
         I18nPipe,
         InputVerbatimDirective,
+        LockComponent,
         LoginComponent,
         ModalComponent,
         NavbarComponent,

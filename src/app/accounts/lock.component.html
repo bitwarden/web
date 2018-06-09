@@ -1,0 +1,34 @@
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-5">
+            <p class="text-center mb-4">
+                <i class="fa fa-lock fa-4x"></i>
+            </p>
+            <p class="lead text-center mx-4 mb-4">{{'yourVaultIsLocked' | i18n}}</p>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                        <div class="d-flex">
+                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
+                                [(ngModel)]="masterPassword" required [appAutofocus]="email !== ''">
+                            <button type="button" class="ml-1 btn btn-link" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
+                                <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-primary btn-block" appBlurClick>
+                            <i class="fa fa-unlock-alt"></i>
+                            {{'unlock' | i18n}}
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-block ml-2 mt-0" appBlurClick (click)="logOut()">
+                            {{'logOut' | i18n}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

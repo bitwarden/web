@@ -9,6 +9,7 @@ import { OrganizationLayoutComponent } from './layouts/organization-layout.compo
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
 import { HintComponent } from './accounts/hint.component';
+import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
             { path: '2fa', component: TwoFactorComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'hint', component: HintComponent },
+            { path: 'lock', component: LockComponent },
         ],
     },
     {

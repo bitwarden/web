@@ -1,3 +1,7 @@
+import * as jq from 'jquery';
+import * as _swal from 'sweetalert';
+import { SweetAlert } from 'sweetalert/typings/core';
+
 import {
     ToasterConfig,
     ToasterContainerComponent,
@@ -11,7 +15,10 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+    NavigationEnd,
+    Router,
+} from '@angular/router';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
@@ -34,6 +41,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 import { ConstantsService } from 'jslib/services/constants.service';
 
 const BroadcasterSubscriptionId = 'AppComponent';
+// Hack due to Angular 5.2 bug
+const swal: SweetAlert = _swal as any;
 
 @Component({
     selector: 'app-root',
@@ -93,6 +102,19 @@ export class AppComponent implements OnDestroy, OnInit {
                     default:
                 }
             });
+        });
+
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                const modals = Array.from(document.querySelectorAll('.modal'));
+                for (const modal of modals) {
+                    (jq(modal) as any).modal('hide');
+                }
+
+                if (document.querySelector('.swal-modal') != null) {
+                    swal.close(undefined);
+                }
+            }
         });
     }
 
