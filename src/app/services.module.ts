@@ -6,9 +6,10 @@ import {
 import { ToasterModule } from 'angular2-toaster';
 
 import { BroadcasterMessagingService } from '../services/broadcasterMessaging.service';
+import { HtmlStorageService } from '../services/htmlStorage.service';
 import { I18nService } from '../services/i18n.service';
+import { MemoryStorageService } from '../services/memoryStorage.service';
 import { WebPlatformUtilsService } from '../services/webPlatformUtils.service';
-import { WebStorageService } from '../services/webStorage.service';
 
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
@@ -70,10 +71,11 @@ const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const platformUtilsService = new WebPlatformUtilsService(messagingService, i18nService);
-const storageService: StorageServiceAbstraction = new WebStorageService();
+const storageService: StorageServiceAbstraction = new HtmlStorageService();
+const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
-const cryptoService = new CryptoService(storageService, storageService, cryptoFunctionService);
+const cryptoService = new CryptoService(storageService, secureStorageService, cryptoFunctionService);
 const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
 const apiService = new ApiService(tokenService, platformUtilsService,
