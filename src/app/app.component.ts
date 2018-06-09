@@ -90,10 +90,10 @@ export class AppComponent implements OnDestroy, OnInit {
                         this.logOut(!!message.expired);
                         break;
                     case 'lockVault':
-                        //await this.lockService.lock();
+                        await this.lockService.lock();
                         break;
                     case 'locked':
-                        //this.router.navigate(['lock']);
+                        this.router.navigate(['lock']);
                         break;
                     case 'syncStarted':
                         break;
