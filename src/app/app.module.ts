@@ -45,6 +45,7 @@ import { FallbackSrcDirective } from 'jslib/angular/directives/fallback-src.dire
 import { InputVerbatimDirective } from 'jslib/angular/directives/input-verbatim.directive';
 import { StopClickDirective } from 'jslib/angular/directives/stop-click.directive';
 import { StopPropDirective } from 'jslib/angular/directives/stop-prop.directive';
+import { TrueFalseValueDirective } from 'jslib/angular/directives/true-false-value.directive';
 
 import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
@@ -90,6 +91,7 @@ import { Folder } from 'jslib/models/domain';
         SearchCiphersPipe,
         StopClickDirective,
         StopPropDirective,
+        TrueFalseValueDirective,
         TwoFactorComponent,
         TwoFactorOptionsComponent,
         UserLayoutComponent,

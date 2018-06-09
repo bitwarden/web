@@ -96,19 +96,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 form-group">
+                            <div class="col-5 form-group">
                                 <label for="loginUriMatch{{i}}">
                                     {{'matchDetection' | i18n}}
                                 </label>
-                                <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match" [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)">
-                                    <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}</option>
-                                </select>
-                            </div>
-                            <div class="col-1">
-                                <label class="invisible">&nbsp;</label>
-                                <button class="btn btn-link text-danger" (click)="removeUri(u)" title="{{'remove' | i18n}}">
-                                    <i class="fa fa-minus-circle fa-lg"></i>
-                                </button>
+                                <div class="d-flex">
+                                    <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match" [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)">
+                                        <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}</option>
+                                    </select>
+                                    <button class="btn btn-link text-danger ml-2" (click)="removeUri(u)" title="{{'remove' | i18n}}">
+                                        <i class="fa fa-minus-circle fa-lg"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </ng-container>
@@ -271,42 +270,43 @@
                 <h3 class="mt-4">{{'customFields' | i18n}}</h3>
                 <ng-container *ngIf="cipher.hasFields">
                     <div class="row" appBoxRow *ngFor="let f of cipher.fields; let i = index">
-                        <div class="col-4 form-group">
+                        <div class="col-5 form-group">
                             <label for="fieldName{{i}}">{{'name' | i18n}}</label>
                             <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name" class="form-control">
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-7 form-group">
                             <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
-                            <div class="input-group" *ngIf="f.type === fieldType.Text">
-                                <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}" [(ngModel)]="f.value">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
-                                        tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard"></i>
-                                    </button>
+                            <div class="d-flex align-items-center">
+                                <div class="input-group" *ngIf="f.type === fieldType.Text">
+                                    <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}" [(ngModel)]="f.value">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg fa-clipboard"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="input-group" *ngIf="f.type === fieldType.Hidden">
-                                <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}" name="Field.Value{{i}}" [(ngModel)]="f.value" class="form-control text-monospace">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
-                                        tabindex="-1">
-                                        <i class="fa fa-lg" [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
-                                        tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard"></i>
-                                    </button>
+                                <div class="input-group" *ngIf="f.type === fieldType.Hidden">
+                                    <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}" name="Field.Value{{i}}" [(ngModel)]="f.value" class="form-control text-monospace">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg" [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg fa-clipboard"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                                <div class="flex-fill">
+                                    <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox" [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean"
+                                        appTrueFalseValue trueValue="true" falseValue="false">
+                                </div>
+                                <button class="btn btn-link text-danger ml-2" (click)="removeField(f)" title="{{'remove' | i18n}}">
+                                    <i class="fa fa-minus-circle fa-lg"></i>
+                                </button>
                             </div>
-                            <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox" [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean"
-                                appTrueFalseValue trueValue="true" falseValue="false">
-                        </div>
-                        <div class="col-1">
-                            <label class="invisible">&nbsp;</label>
-                            <button class="btn btn-link text-danger" (click)="removeField(f)" title="{{'remove' | i18n}}">
-                                <i class="fa fa-minus-circle fa-lg"></i>
-                            </button>
                         </div>
                     </div>
                 </ng-container>
@@ -314,7 +314,7 @@
                     <i class="fa fa-plus-circle fa-fw"></i> {{'newCustomField' | i18n}}
                 </a>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-5">
                         <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
                         <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
                             <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
