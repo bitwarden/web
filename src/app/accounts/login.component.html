@@ -1,40 +1,40 @@
-<form id="login-page" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
-    <div class="content">
-        <p class="lead">{{'loginOrCreateNewAccount' | i18n}}</p>
-        <div class="box last">
-            <div class="box-content">
-                <div class="box-content-row" appBoxRow>
-                    <label for="email">{{'emailAddress' | i18n}}</label>
-                    <input id="email" type="text" name="Email" [(ngModel)]="email" required
-                           [appAutofocus]="email === ''">
-                </div>
-                <div class="box-content-row box-content-row-flex" appBoxRow>
-                    <div class="row-main">
-                        <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                        <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword"
-                               class="monospaced" [(ngModel)]="masterPassword" required [appAutofocus]="email !== ''">
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-5">
+            <img src="../../images/logo-dark@2x.png" class="img-fluid px-5 mb-4" alt="Bitwarden">
+            <p class="lead text-center mx-4 mb-4">{{'loginOrCreateNewAccount' | i18n}}</p>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="email">{{'emailAddress' | i18n}}</label>
+                        <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email" required [appAutofocus]="email === ''">
                     </div>
-                    <div class="action-buttons">
-                        <a class="row-btn" href="#" appStopClick appBlurClick
-                           title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
-                            <i class="fa fa-lg"
-                               [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                    <div class="form-group">
+                        <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                        <div class="d-flex">
+                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
+                                [(ngModel)]="masterPassword" required [appAutofocus]="email !== ''">
+                            <button type="button" class="ml-1 btn btn-link" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
+                                <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.loading" appBlurClick>
+                            <span [hidden]="form.loading">
+                                <i class="fa fa-sign-in"></i> {{'logIn' | i18n}}</span>
+                            <i class="fa fa-spinner fa-spin" [hidden]="!form.loading"></i>
+                        </button>
+                        <a routerLink="/register" class="btn btn-outline-secondary btn-block ml-2 mt-0">
+                            <i class="fa fa-pencil-square-o"></i> {{'createAccount' | i18n}}
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="buttons">
-            <button type="submit" class="btn primary block" [disabled]="form.loading" appBlurClick>
-                <b [hidden]="form.loading"><i class="fa fa-sign-in"></i> {{'logIn' | i18n}}</b>
-                <i class="fa fa-spinner fa-spin" [hidden]="!form.loading"></i>
-            </button>
-            <a routerLink="/register" class="btn block">
-                <i class="fa fa-pencil-square-o"></i> {{'createAccount' | i18n}}
-            </a>
-        </div>
-        <div class="sub-options">
-            <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
+            <div class="mt-3 text-center">
+                <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
+            </div>
         </div>
     </div>
 </form>
