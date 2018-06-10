@@ -40,6 +40,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { ConstantsService } from 'jslib/services/constants.service';
 
+import { RouterService } from './services/router.service';
+
 const BroadcasterSubscriptionId = 'AppComponent';
 // Hack due to Angular 5.2 bug
 const swal: SweetAlert = _swal as any;
@@ -67,7 +69,8 @@ export class AppComponent implements OnDestroy, OnInit {
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
         private lockService: LockService, private storageService: StorageService,
-        private cryptoService: CryptoService, private collectionService: CollectionService) { }
+        private cryptoService: CryptoService, private collectionService: CollectionService,
+        private routerService: RouterService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {

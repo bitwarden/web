@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ServicesModule } from './services.module';
+import { ServicesModule } from './services/services.module';
 
 import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';

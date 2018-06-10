@@ -5,13 +5,14 @@ import {
 
 import { ToasterModule } from 'angular2-toaster';
 
-import { BroadcasterMessagingService } from '../services/broadcasterMessaging.service';
-import { HtmlStorageService } from '../services/htmlStorage.service';
-import { I18nService } from '../services/i18n.service';
-import { MemoryStorageService } from '../services/memoryStorage.service';
-import { WebPlatformUtilsService } from '../services/webPlatformUtils.service';
+import { BroadcasterMessagingService } from '../../services/broadcasterMessaging.service';
+import { HtmlStorageService } from '../../services/htmlStorage.service';
+import { I18nService } from '../../services/i18n.service';
+import { MemoryStorageService } from '../../services/memoryStorage.service';
+import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
-import { UnauthGuardService } from './services/unauth-guard.service';
+import { RouterService } from './router.service';
+import { UnauthGuardService } from './unauth-guard.service';
 
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
@@ -138,6 +139,7 @@ export function initFactory(): Function {
         ValidationService,
         AuthGuardService,
         UnauthGuardService,
+        RouterService,
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
