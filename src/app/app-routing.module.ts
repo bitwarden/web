@@ -14,6 +14,10 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { ExportComponent } from './tools/export.component';
+import { ImportComponent } from './tools/import.component';
+import { ToolsComponent } from './tools/tools.component';
+
 import { VaultComponent } from './vault/vault.component';
 
 import { UnauthGuardService } from './services/unauth-guard.service';
@@ -37,6 +41,15 @@ const routes: Routes = [
         component: UserLayoutComponent,
         children: [
             { path: 'vault', component: VaultComponent, canActivate: [AuthGuardService] },
+            {
+                path: 'tools',
+                component: ToolsComponent,
+                children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'import' },
+                    { path: 'import', component: ImportComponent, canActivate: [AuthGuardService] },
+                    { path: 'export', component: ExportComponent, canActivate: [AuthGuardService] },
+                ],
+            },
         ],
     },
     {

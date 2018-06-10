@@ -29,6 +29,10 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { ExportComponent } from './tools/export.component';
+import { ImportComponent } from './tools/import.component';
+import { ToolsComponent } from './tools/tools.component';
+
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { CiphersComponent } from './vault/ciphers.component';
@@ -75,6 +79,7 @@ import { Folder } from 'jslib/models/domain';
         BlurClickDirective,
         BoxRowDirective,
         CiphersComponent,
+        ExportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
         FooterComponent,
@@ -83,6 +88,7 @@ import { Folder } from 'jslib/models/domain';
         HintComponent,
         IconComponent,
         I18nPipe,
+        ImportComponent,
         InputVerbatimDirective,
         LockComponent,
         LoginComponent,
@@ -93,6 +99,7 @@ import { Folder } from 'jslib/models/domain';
         SearchCiphersPipe,
         StopClickDirective,
         StopPropDirective,
+        ToolsComponent,
         TrueFalseValueDirective,
         TwoFactorComponent,
         TwoFactorOptionsComponent,
