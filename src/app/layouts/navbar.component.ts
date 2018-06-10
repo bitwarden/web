@@ -11,6 +11,10 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 export class NavbarComponent {
     constructor(private messagingService: MessagingService) { }
 
+    lock() {
+        this.messagingService.send('lockVault');
+    }
+
     logOut() {
         this.messagingService.send('logout');
     }
