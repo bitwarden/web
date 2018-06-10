@@ -11,6 +11,8 @@ import { I18nService } from '../services/i18n.service';
 import { MemoryStorageService } from '../services/memoryStorage.service';
 import { WebPlatformUtilsService } from '../services/webPlatformUtils.service';
 
+import { UnauthGuardService } from './services/unauth-guard.service';
+
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 import { ValidationService } from 'jslib/angular/services/validation.service';
@@ -135,6 +137,7 @@ export function initFactory(): Function {
     providers: [
         ValidationService,
         AuthGuardService,
+        UnauthGuardService,
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },

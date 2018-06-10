@@ -143,7 +143,7 @@ export class AppComponent implements OnDestroy, OnInit {
                 this.toasterService.popAsync('warning', this.i18nService.t('loggedOut'),
                     this.i18nService.t('loginExpired'));
             }
-            this.router.navigate(['login']);
+            this.router.navigate(['/']);
         });
     }
 

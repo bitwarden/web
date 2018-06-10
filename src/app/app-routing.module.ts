@@ -16,31 +16,34 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { VaultComponent } from './vault/vault.component';
 
+import { UnauthGuardService } from './services/unauth-guard.service';
+
+import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
+
 const routes: Routes = [
-    {
-        path: '',
-        component: UserLayoutComponent,
-        children: [
-            { path: '', redirectTo: 'vault', pathMatch: 'full' },
-            { path: 'vault', component: VaultComponent },
-        ],
-    },
     {
         path: '',
         component: FrontendLayoutComponent,
         children: [
-            { path: 'login', component: LoginComponent },
-            { path: '2fa', component: TwoFactorComponent },
-            { path: 'register', component: RegisterComponent },
-            { path: 'hint', component: HintComponent },
+            { path: '', pathMatch: 'full', component: LoginComponent, canActivate: [UnauthGuardService] },
+            { path: '2fa', component: TwoFactorComponent, canActivate: [UnauthGuardService] },
+            { path: 'register', component: RegisterComponent, canActivate: [UnauthGuardService] },
+            { path: 'hint', component: HintComponent, canActivate: [UnauthGuardService] },
             { path: 'lock', component: LockComponent },
+        ],
+    },
+    {
+        path: '',
+        component: UserLayoutComponent,
+        children: [
+            { path: 'vault', component: VaultComponent, canActivate: [AuthGuardService] },
         ],
     },
     {
         path: 'organization/:organizationId',
         component: OrganizationLayoutComponent,
         children: [
-            { path: 'vault', component: VaultComponent },
+            { path: 'vault', component: VaultComponent, canActivate: [AuthGuardService] },
         ],
     },
     { path: '**', redirectTo: '' },

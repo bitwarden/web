@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -16,12 +19,22 @@ import { LockComponent as BaseLockComponent } from 'jslib/angular/components/loc
     selector: 'app-lock',
     templateUrl: 'lock.component.html',
 })
-export class LockComponent extends BaseLockComponent {
+export class LockComponent extends BaseLockComponent implements OnInit {
     constructor(router: Router, analytics: Angulartics2,
         toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, messagingService: MessagingService,
         userService: UserService, cryptoService: CryptoService) {
         super(router, analytics, toasterService, i18nService, platformUtilsService,
             messagingService, userService, cryptoService);
+    }
+
+    async ngOnInit() {
+        const authed = await this.userService.isAuthenticated();
+        const key = await this.cryptoService.getKey();
+        if (!authed) {
+            this.router.navigate(['/']);
+        } else if (key != null) {
+            this.router.navigate(['vault']);
+        }
     }
 }
