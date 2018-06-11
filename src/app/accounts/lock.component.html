@@ -1,4 +1,4 @@
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container">
+<form (ngSubmit)="submit()" class="container">
     <div class="row justify-content-md-center mt-5">
         <div class="col-5">
             <p class="text-center mb-4">
@@ -11,7 +11,7 @@
                         <label for="masterPassword">{{'masterPass' | i18n}}</label>
                         <div class="d-flex">
                             <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
-                                [(ngModel)]="masterPassword" required [appAutofocus]="email !== ''">
+                                [(ngModel)]="masterPassword" required appAutofocus>
                             <button type="button" class="ml-1 btn btn-link" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
                                 <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>
