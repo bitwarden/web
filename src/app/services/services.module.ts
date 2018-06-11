@@ -119,7 +119,6 @@ export function initFactory(): Function {
         await i18nService.init(locale);
         await authService.init();
         const htmlEl = window.document.documentElement;
-        htmlEl.classList.add('os_' + platformUtilsService.getDeviceString());
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
         let theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {

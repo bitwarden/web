@@ -105,6 +105,7 @@ const plugins = [
         'process.env': {
             'ENV': JSON.stringify(ENV),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
+            'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
         }
     }),
 ];
