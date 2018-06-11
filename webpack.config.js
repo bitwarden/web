@@ -38,15 +38,14 @@ const moduleRules = [
     },
     {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        exclude: /.*(fontawesome-webfont|glyphicons-halflings-regular)\.svg/,
+        exclude: /.*(fontawesome-webfont)\.svg/,
         use: [{
             loader: 'file-loader',
             options: {
                 name: '[name].[ext]',
                 outputPath: 'images/',
-                publicPath: './images/',
-            },
-        }],
+            }
+        }]
     },
     {
         test: /\.scss$/,
