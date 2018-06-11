@@ -1,0 +1,10 @@
+<ul class="fa-ul card-ul carets">
+    <li *ngFor="let o of organizations">
+        <a href="#" appStopClick appBlurClick (click)="selectOrganization(o)">
+            <i class="fa-li fa fa-caret-right"></i> {{o.name}}</a>
+    </li>
+</ul>
+<button (click)="newOrganization()" class="btn btn-block btn-outline-primary">
+    <i class="fa fa-plus fa-fw"></i>
+    {{'newOrganization' | i18n}}
+</button>

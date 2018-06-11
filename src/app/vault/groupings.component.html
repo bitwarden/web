@@ -5,7 +5,7 @@
     <div class="card-body">
         <input type="search" placeholder="{{searchPlaceholder || ('searchVault' | i18n)}}" id="search" class="form-control" [(ngModel)]="searchText"
             (input)="searchTextChanged()" appAutofocus>
-        <ul class="fa-ul">
+        <ul class="fa-ul card-ul">
             <li [ngClass]="{active: selectedAll}">
                 <a href="#" appStopClick appBlurClick (click)="selectAll()">
                     <i class="fa-li fa fa-fw fa-th"></i>{{'allItems' | i18n}}
@@ -18,7 +18,7 @@
             </li>
         </ul>
         <h3>{{'types' | i18n}}</h3>
-        <ul class="fa-ul">
+        <ul class="fa-ul card-ul">
             <li [ngClass]="{active: selectedType === cipherType.Login}">
                 <a href="#" appStopClick appBlurClick (click)="selectType(cipherType.Login)">
                     <i class="fa-li fa fa-fw fa-globe"></i>{{'typeLogin' | i18n}}
@@ -50,7 +50,7 @@
                     <i class="fa fa-plus fa-fw"></i>
                 </a>
             </h3>
-            <ul class="fa-ul carets">
+            <ul class="fa-ul card-ul carets">
                 <li *ngFor="let f of folders" class="d-flex" [ngClass]="{active: selectedFolder && f.id === selectedFolderId}">
                     <a href="#" appStopClick appBlurClick (click)="selectFolder(f)">
                         <i class="fa-li fa fa-caret-right"></i> {{f.name}}</a>
@@ -61,7 +61,7 @@
             </ul>
             <div *ngIf="collections && collections.length">
                 <h3>{{'collections' | i18n}}</h3>
-                <ul class="fa-ul carets">
+                <ul class="fa-ul card-ul carets">
                     <li *ngFor="let c of collections" [ngClass]="{active: c.id === selectedCollectionId}">
                         <a href="#" appStopClick appBlurClick (click)="selectCollection(c)">
                             <i class="fa-li fa fa-caret-right"></i> {{c.name}}</a>

@@ -23,6 +23,7 @@ import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
+import { OrganizationsComponent } from './organizations.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
@@ -34,6 +35,7 @@ import { SyncService } from 'jslib/abstractions/sync.service';
 export class VaultComponent implements OnInit {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
+    @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditRef: ViewContainerRef;
@@ -53,7 +55,10 @@ export class VaultComponent implements OnInit {
     async ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(true);
-            await this.groupingsComponent.load();
+            await Promise.all([
+                this.groupingsComponent.load(),
+                this.organizationsComponent.load(),
+            ]);
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;

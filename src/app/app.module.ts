@@ -38,6 +38,7 @@ import { AttachmentsComponent } from './vault/attachments.component';
 import { CiphersComponent } from './vault/ciphers.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
+import { OrganizationsComponent } from './vault/organizations.component';
 import { VaultComponent } from './vault/vault.component';
 
 import { IconComponent } from 'jslib/angular/components/icon.component';
@@ -94,6 +95,7 @@ import { Folder } from 'jslib/models/domain';
         LoginComponent,
         ModalComponent,
         NavbarComponent,
+        OrganizationsComponent,
         OrganizationLayoutComponent,
         RegisterComponent,
         SearchCiphersPipe,

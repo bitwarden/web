@@ -58,7 +58,8 @@
                     Organizations
                 </div>
                 <div class="card-body">
-                    Your organizations.
+                    <app-vault-organizations (onOrganizationClicked)="selectOrganization($event)">
+                    </app-vault-organizations>
                 </div>
             </div>
         </div>

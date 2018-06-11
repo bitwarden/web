@@ -121,6 +121,22 @@ body {
     }
 }
 
+.card ul.fa-ul.card-ul {
+    margin-left: 1.9em;
+
+    .fa-li {
+        top: 4px;
+    }
+
+    &.carets {
+        margin-left: 1.1em;
+
+        .fa-li {
+            left: -24px;
+        }
+    }
+}
+
 .modal-body {
     h3 {
         font-weight: normal;
@@ -234,22 +250,6 @@ app-vault-groupings {
             &:hover {
                 &.text-muted {
                     color: $body-color !important;
-                }
-            }
-        }
-        
-        ul.fa-ul {
-            margin-left: 1.9em;
-
-            .fa-li {
-                top: 4px;
-            }
-
-            &.carets {
-                margin-left: 1.1em;
-
-                .fa-li {
-                    left: -24px;
                 }
             }
         }
