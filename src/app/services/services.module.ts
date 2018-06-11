@@ -78,7 +78,8 @@ const storageService: StorageServiceAbstraction = new HtmlStorageService();
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
-const cryptoService = new CryptoService(storageService, secureStorageService, cryptoFunctionService);
+const cryptoService = new CryptoService(storageService,
+    platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService);
 const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
 const apiService = new ApiService(tokenService, platformUtilsService,
