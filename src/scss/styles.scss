@@ -144,6 +144,14 @@ body {
         color: $text-muted;
     }
 }
+.modal .list-group-flush {
+    :first-child {
+        border-top: none;
+    }
+    :last-child {
+        border-bottom: none;
+    }
+}
 
 .modal-footer {
     justify-content: flex-start;
@@ -151,7 +159,7 @@ body {
     @include border-radius($modal-content-border-radius);
 }
 
-form label {
+form label:not(.form-check-label) {
     font-weight: bold;
 }
 

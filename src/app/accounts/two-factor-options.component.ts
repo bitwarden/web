@@ -22,10 +22,4 @@ export class TwoFactorOptionsComponent extends BaseTwoFactorOptionsComponent {
         i18nService: I18nService, platformUtilsService: PlatformUtilsService) {
         super(authService, router, analytics, toasterService, i18nService, platformUtilsService, window);
     }
-
-    choose(p: any) {
-        super.choose(p);
-        this.authService.selectedTwoFactorProviderType = p.type;
-        this.router.navigate(['2fa']);
-    }
 }

@@ -5,10 +5,11 @@ export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail',
         ConstantsService.disableFaviconKey, ConstantsService.lockOptionKey, ConstantsService.localeKey,
         ConstantsService.lockOptionKey]);
+    private localStorageStartsWithKeys = ['twoFactorToken_'];
 
     get<T>(key: string): Promise<T> {
         let json: string = null;
-        if (this.localStorageKeys.has(key)) {
+        if (this.isLocalStorage(key)) {
             json = window.localStorage.getItem(key);
         } else {
             json = window.sessionStorage.getItem(key);
@@ -26,7 +27,7 @@ export class HtmlStorageService implements StorageService {
         }
 
         const json = JSON.stringify(obj);
-        if (this.localStorageKeys.has(key)) {
+        if (this.isLocalStorage(key)) {
             window.localStorage.setItem(key, json);
         } else {
             window.sessionStorage.setItem(key, json);
@@ -35,11 +36,23 @@ export class HtmlStorageService implements StorageService {
     }
 
     remove(key: string): Promise<any> {
-        if (this.localStorageKeys.has(key)) {
+        if (this.isLocalStorage(key)) {
             window.localStorage.removeItem(key);
         } else {
             window.sessionStorage.removeItem(key);
         }
         return Promise.resolve();
+    }
+
+    private isLocalStorage(key: string): boolean {
+        if (this.localStorageKeys.has(key)) {
+            return true;
+        }
+        for (const swKey of this.localStorageStartsWithKeys) {
+            if (key.startsWith(swKey)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

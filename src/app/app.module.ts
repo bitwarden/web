@@ -113,6 +113,7 @@ import { Folder } from 'jslib/models/domain';
         AttachmentsComponent,
         FolderAddEditComponent,
         ModalComponent,
+        TwoFactorOptionsComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

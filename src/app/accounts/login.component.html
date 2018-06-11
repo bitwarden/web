@@ -18,6 +18,9 @@
                                 <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>
                         </div>
+                        <small class="form-text">
+                            <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
+                        </small>
                     </div>
                     <hr>
                     <div class="d-flex">
@@ -31,9 +34,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="mt-3 text-center">
-                <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
             </div>
         </div>
     </div>
