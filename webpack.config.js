@@ -134,6 +134,7 @@ const serve = {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
+    hot: false,
 };
 
 const config = {
