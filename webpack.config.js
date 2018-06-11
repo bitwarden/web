@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
+const pjson = require('./package.json');
 
 if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
@@ -102,7 +103,8 @@ const plugins = [
     extractCss,
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(ENV)
+            'ENV': JSON.stringify(ENV),
+            'APPLICATION_VERSION': JSON.stringify(pjson.version),
         }
     }),
 ];

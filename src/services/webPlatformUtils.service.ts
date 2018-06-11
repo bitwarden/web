@@ -100,7 +100,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     getApplicationVersion(): string {
-        return '1.2.3';
+        return process.env.APPLICATION_VERSION || '-';
     }
 
     supportsU2f(win: Window): boolean {
