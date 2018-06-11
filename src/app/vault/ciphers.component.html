@@ -49,11 +49,10 @@
         </tbody>
     </table>
     <div class="no-items" *ngIf="searchedCiphers.length === 0">
-        <i class="fa fa-spinner fa-spin fa-3x" *ngIf="!loaded"></i>
+        <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded"></i>
         <ng-container *ngIf="loaded">
-            <i class="fa fa-frown-o fa-4x"></i>
             <p>{{'noItemsInList' | i18n}}</p>
-            <button (click)="addCipher()" class="btn block primary link">{{'addItem' | i18n}}</button>
+            <button (click)="addCipher()" class="btn btn-outline-primary">{{'addItem' | i18n}}</button>
         </ng-container>
     </div>
 </ng-container>
