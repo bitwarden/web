@@ -86,7 +86,7 @@
                                 <div class="input-group">
                                     <input class="form-control" id="loginUri{{i}}" type="text" name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" placeholder="{{'ex' | i18n}} https://google.com">
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'launch' | i18n}}" (click)="launch(u)" tabindex="-1">
+                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'launch' | i18n}}" (click)="launch(u)" [disabled]="!u.canLaunch" tabindex="-1">
                                             <i class="fa fa-lg fa-share"></i>
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"

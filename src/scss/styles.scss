@@ -163,14 +163,20 @@ form label:not(.form-check-label) {
     font-weight: bold;
 }
 
-.btn[class*="btn-outline-"]:not(:hover) {
-    background-color: #ffffff;
+.btn[class*="btn-outline-"] {
+    &:not(:hover) {
+        background-color: #ffffff;
+    }
+
+    &:disabled {
+        opacity: 1;
+    }
 }
 
 .btn-outline-secondary {
     color: $text-muted;
 
-    &:hover {
+    &:hover:not(:disabled) {
         color: $body-color;
     }
 }
