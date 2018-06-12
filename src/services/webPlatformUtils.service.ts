@@ -85,7 +85,12 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     saveFile(win: Window, blobData: any, blobOptions: any, fileName: string): void {
-        const blob = new Blob([blobData], blobOptions);
+        let blob: Blob = null;
+        if (blobOptions != null && !this.isIE()) {
+            blob = new Blob([blobData], blobOptions);
+        } else {
+            blob = new Blob([blobData]);
+        }
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveBlob(blob, fileName);
         } else {
