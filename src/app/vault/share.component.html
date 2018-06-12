@@ -1,0 +1,54 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'share' | i18n}}
+                    <small *ngIf="cipher">{{cipher.name}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{'shareDesc' | i18n}}</p>
+                <div class="form-group">
+                    <label for="organization">{{'organization' | i18n}}</label>
+                    <select id="organization" name="OrganizationId" [(ngModel)]="organizationId" class="form-control" (change)="filterCollections()">
+                        <option *ngFor="let o of organizations" [ngValue]="o.id">{{o.name}}</option>
+                    </select>
+                </div>
+                <div class="d-flex">
+                    <h3>{{'collections' | i18n}}</h3>
+                    <small class="ml-auto d-flex">
+                        <button type="button" appBlurClick (click)="selectAll()" class="btn btn-link btn-sm py-0">
+                            {{'selectAll' | i18n}}
+                        </button>
+                        <button type="button" appBlurClick (click)="unselectAll()" class="btn btn-link btn-sm py-0">
+                            {{'unselectAll' | i18n}}
+                        </button>
+                    </small>
+                </div>
+                <table class="table table-hover table-list mb-0" *ngIf="collections">
+                    <tbody>
+                        <tr *ngFor="let c of collections; let i = index" (click)="check(c)">
+                            <td class="table-list-checkbox">
+                                <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked">
+                            </td>
+                            <td>
+                                <span appStopProp>{{c.name}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button appBlurClick type="submit" class="btn btn-primary" title="{{'save' | i18n}}" [disabled]="form.loading">
+                    <i class="fa fa-save fa-lg fa-fw" [hidden]="form.loading"></i>
+                    <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!form.loading"></i>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" title="{{'cancel' | i18n}}">{{'cancel' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -132,21 +132,17 @@
         justify-content: flex-end;
         font-size: $font-size-base;
 
-        .swal-button {
+        button.swal-button {
             @extend .btn;
 
-            &:focus {
-                box-shadow: none;
+            &.swal-button--confirm {
+                @extend .btn-primary;
             }
-        }
-
-        .swal-button--confirm {
-            @extend .btn-primary;
-        }
-
-        .swal-button--cancel {
-            @extend .btn-outline-secondary;
-            background-color: #ffffff;
+    
+            &.swal-button--cancel {
+                @extend .btn-outline-secondary;
+                background-color: #ffffff;
+            }
         }
     }
 }

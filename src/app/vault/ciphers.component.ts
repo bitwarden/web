@@ -23,6 +23,8 @@ import { CipherView } from 'jslib/models/view/cipherView';
 })
 export class CiphersComponent extends BaseCiphersComponent {
     @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
+    @Output() onShareClicked = new EventEmitter<CipherView>();
+    @Output() onCollectionsClicked = new EventEmitter<CipherView>();
     cipherType = CipherType;
 
     constructor(cipherService: CipherService, private analytics: Angulartics2,
@@ -40,11 +42,11 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     share(c: CipherView) {
-        //
+        this.onShareClicked.emit(c);
     }
 
     collections(c: CipherView) {
-        //
+        this.onCollectionsClicked.emit(c);
     }
 
     delete(c: CipherView) {

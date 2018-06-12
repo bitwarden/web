@@ -39,6 +39,7 @@ import { CiphersComponent } from './vault/ciphers.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
 import { OrganizationsComponent } from './vault/organizations.component';
+import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
 import { IconComponent } from 'jslib/angular/components/icon.component';
@@ -99,6 +100,7 @@ import { Folder } from 'jslib/models/domain';
         OrganizationLayoutComponent,
         RegisterComponent,
         SearchCiphersPipe,
+        ShareComponent,
         StopClickDirective,
         StopPropDirective,
         ToolsComponent,
@@ -113,6 +115,7 @@ import { Folder } from 'jslib/models/domain';
         AttachmentsComponent,
         FolderAddEditComponent,
         ModalComponent,
+        ShareComponent,
         TwoFactorOptionsComponent,
     ],
     providers: [],

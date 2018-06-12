@@ -44,7 +44,8 @@
                     </button>
                 </div>
             </div>
-            <app-vault-ciphers (onCipherClicked)="editCipher($event)" (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()">
+            <app-vault-ciphers (onCipherClicked)="editCipher($event)" (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
+                (onShareClicked)="shareCipher($event)">
             </app-vault-ciphers>
         </div>
         <div class="col-3">
@@ -68,3 +69,5 @@
 <ng-template #attachments></ng-template>
 <ng-template #folderAddEdit></ng-template>
 <ng-template #cipherAddEdit></ng-template>
+<ng-template #share></ng-template>
+<ng-template #collections></ng-template>

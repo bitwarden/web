@@ -27,6 +27,7 @@ import { OrganizationsComponent } from './organizations.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { ShareComponent } from './share.component';
 
 @Component({
     selector: 'app-vault',
@@ -38,7 +39,9 @@ export class VaultComponent implements OnInit {
     @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
 
     cipherId: string = null;
     favorites: boolean = false;
@@ -154,6 +157,26 @@ export class VaultComponent implements OnInit {
         });
     }
 
+    shareCipher(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.shareModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<ShareComponent>(ShareComponent, this.shareModalRef);
+
+        childComponent.cipherId = cipher.id;
+        childComponent.onSharedCipher.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
+    }
+
     async addFolder() {
         if (this.modal != null) {
             this.modal.close();
@@ -212,9 +235,9 @@ export class VaultComponent implements OnInit {
         }
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.cipherAddEditRef.createComponent(factory).instance;
+        this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<AddEditComponent>(
-            AddEditComponent, this.cipherAddEditRef);
+            AddEditComponent, this.cipherAddEditModalRef);
 
         childComponent.cipherId = cipher == null ? null : cipher.id;
         childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
