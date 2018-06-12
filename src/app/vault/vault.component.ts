@@ -30,6 +30,7 @@ import { ShareComponent } from './share.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { BulkMoveComponent } from './bulk-move.component';
 
 @Component({
     selector: 'app-vault',
@@ -45,6 +46,7 @@ export class VaultComponent implements OnInit {
     @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
     @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
     @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
+    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
 
     cipherId: string = null;
     favorites: boolean = false;
@@ -286,8 +288,7 @@ export class VaultComponent implements OnInit {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkDeleteComponent>(
-            BulkDeleteComponent, this.bulkDeleteModalRef);
+        const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
 
         childComponent.cipherIds = this.ciphersComponent.getSelected();
         childComponent.onDeleted.subscribe(async () => {
@@ -305,7 +306,23 @@ export class VaultComponent implements OnInit {
     }
 
     bulkMove() {
-        //
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
+
+        childComponent.cipherIds = this.ciphersComponent.getSelected();
+        childComponent.onMoved.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     selectAll(select: boolean) {
