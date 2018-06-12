@@ -21,13 +21,14 @@ import { ModalComponent } from '../modal.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
+import { CollectionsComponent } from './collections.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
 import { OrganizationsComponent } from './organizations.component';
+import { ShareComponent } from './share.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
-import { ShareComponent } from './share.component';
 
 @Component({
     selector: 'app-vault',
@@ -168,6 +169,26 @@ export class VaultComponent implements OnInit {
 
         childComponent.cipherId = cipher.id;
         childComponent.onSharedCipher.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
+    }
+
+    editCipherCollections(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.shareModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
+
+        childComponent.cipherId = cipher.id;
+        childComponent.onSavedCollections.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });

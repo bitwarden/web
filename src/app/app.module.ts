@@ -36,6 +36,7 @@ import { ToolsComponent } from './tools/tools.component';
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { CiphersComponent } from './vault/ciphers.component';
+import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
 import { OrganizationsComponent } from './vault/organizations.component';
@@ -81,6 +82,7 @@ import { Folder } from 'jslib/models/domain';
         BlurClickDirective,
         BoxRowDirective,
         CiphersComponent,
+        CollectionsComponent,
         ExportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
@@ -113,6 +115,7 @@ import { Folder } from 'jslib/models/domain';
     entryComponents: [
         AddEditComponent,
         AttachmentsComponent,
+        CollectionsComponent,
         FolderAddEditComponent,
         ModalComponent,
         ShareComponent,
