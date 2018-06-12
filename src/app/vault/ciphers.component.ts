@@ -49,8 +49,18 @@ export class CiphersComponent extends BaseCiphersComponent {
         this.onCollectionsClicked.emit(c);
     }
 
-    delete(c: CipherView) {
-        //
+    async delete(c: CipherView): Promise<boolean> {
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('deleteItemConfirmation'), this.i18nService.t('deleteItem'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        await this.cipherService.deleteWithServer(c.id);
+        this.analytics.eventTrack.next({ action: 'Deleted Cipher' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('deletedItem'));
+        this.refresh();
     }
 
     copy(value: string, typeI18nKey: string, aType: string) {
