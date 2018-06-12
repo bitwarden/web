@@ -20,6 +20,7 @@ import { ModalComponent } from '../modal.component';
 
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
+import { BulkDeleteComponent } from './bulk-delete.component';
 import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
@@ -43,6 +44,7 @@ export class VaultComponent implements OnInit {
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
     @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
     @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
+    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
 
     cipherId: string = null;
     favorites: boolean = false;
@@ -275,6 +277,39 @@ export class VaultComponent implements OnInit {
         });
 
         return childComponent;
+    }
+
+    bulkDelete() {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<BulkDeleteComponent>(
+            BulkDeleteComponent, this.bulkDeleteModalRef);
+
+        childComponent.cipherIds = this.ciphersComponent.getSelected();
+        childComponent.onDeleted.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+    }
+
+    bulkShare() {
+        //
+    }
+
+    bulkMove() {
+        //
+    }
+
+    selectAll(select: boolean) {
+        this.ciphersComponent.selectAll(select);
     }
 
     private clearFilters() {

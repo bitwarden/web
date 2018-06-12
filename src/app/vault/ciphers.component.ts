@@ -17,6 +17,8 @@ import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
+const MaxCheckedCount = 500;
+
 @Component({
     selector: 'app-vault-ciphers',
     templateUrl: 'ciphers.component.html',
@@ -25,6 +27,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
     @Output() onShareClicked = new EventEmitter<CipherView>();
     @Output() onCollectionsClicked = new EventEmitter<CipherView>();
+
     cipherType = CipherType;
 
     constructor(cipherService: CipherService, private analytics: Angulartics2,
@@ -35,6 +38,23 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     checkCipher(c: CipherView) {
         (c as any).checked = !(c as any).checked;
+    }
+
+    selectAll(select: boolean) {
+        if (select) {
+            this.selectAll(false);
+        }
+        const selectCount = select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
+        for (let i = 0; i < selectCount; i++) {
+            (this.ciphers[i] as any).checked = select;
+        }
+    }
+
+    getSelected(): string[] {
+        if (this.ciphers == null) {
+            return [];
+        }
+        return this.ciphers.filter((c) => !!(c as any).checked).map((c) => c.id);
     }
 
     attachments(c: CipherView) {
