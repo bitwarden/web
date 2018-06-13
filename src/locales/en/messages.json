@@ -671,6 +671,9 @@
   "shareDesc": {
     "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
   },
+  "shareManyDesc": {
+    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+  },
   "collectionsDesc": {
     "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
   },
@@ -689,6 +692,23 @@
       "count": {
         "content": "$1",
         "example": "150"
+      }
+    }
+  },
+  "shareSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      },
+      "shareable_count": {
+        "content": "$2",
+        "example": "8"
+      },
+      "nonshareable_count": {
+        "content": "$3",
+        "example": "2"
       }
     }
   }

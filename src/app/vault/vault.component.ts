@@ -31,6 +31,7 @@ import { ShareComponent } from './share.component';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { BulkMoveComponent } from './bulk-move.component';
+import { BulkShareComponent } from './bulk-share.component';
 
 @Component({
     selector: 'app-vault',
@@ -47,6 +48,7 @@ export class VaultComponent implements OnInit {
     @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
     @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
+    @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
 
     cipherId: string = null;
     favorites: boolean = false;
@@ -290,7 +292,7 @@ export class VaultComponent implements OnInit {
         this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
 
-        childComponent.cipherIds = this.ciphersComponent.getSelected();
+        childComponent.cipherIds = this.ciphersComponent.getSelectedIds();
         childComponent.onDeleted.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
@@ -302,7 +304,23 @@ export class VaultComponent implements OnInit {
     }
 
     bulkShare() {
-        //
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.bulkShareModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<BulkShareComponent>(BulkShareComponent, this.bulkShareModalRef);
+
+        childComponent.ciphers = this.ciphersComponent.getSelected();
+        childComponent.onShared.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
     }
 
     bulkMove() {
@@ -314,7 +332,7 @@ export class VaultComponent implements OnInit {
         this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
 
-        childComponent.cipherIds = this.ciphersComponent.getSelected();
+        childComponent.cipherIds = this.ciphersComponent.getSelectedIds();
         childComponent.onMoved.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();

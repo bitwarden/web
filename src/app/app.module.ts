@@ -37,6 +37,7 @@ import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { BulkDeleteComponent } from './vault/bulk-delete.component';
 import { BulkMoveComponent } from './vault/bulk-move.component';
+import { BulkShareComponent } from './vault/bulk-share.component';
 import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
@@ -85,6 +86,7 @@ import { Folder } from 'jslib/models/domain';
         BoxRowDirective,
         BulkDeleteComponent,
         BulkMoveComponent,
+        BulkShareComponent,
         CiphersComponent,
         CollectionsComponent,
         ExportComponent,
@@ -121,6 +123,7 @@ import { Folder } from 'jslib/models/domain';
         AttachmentsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
+        BulkShareComponent,
         CollectionsComponent,
         FolderAddEditComponent,
         ModalComponent,

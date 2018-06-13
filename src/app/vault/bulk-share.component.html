@@ -3,15 +3,15 @@
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
             <div class="modal-header">
                 <h2 class="modal-title">
-                    {{'share' | i18n}}
-                    <small *ngIf="cipher">{{cipher.name}}</small>
+                    {{'shareSelected' | i18n}}
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{'shareDesc' | i18n}}</p>
+                <p>{{'shareManyDesc' | i18n}}</p>
+                <p>{{'shareSelectedItemsDesc' | i18n: this.ciphers.length : shareableCiphers.length : nonShareableCount}}</p>
                 <div class="form-group">
                     <label for="organization">{{'organization' | i18n}}</label>
                     <select id="organization" name="OrganizationId" [(ngModel)]="organizationId" class="form-control" (change)="filterCollections()">

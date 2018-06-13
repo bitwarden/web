@@ -2,7 +2,6 @@ import {
     Component,
     EventEmitter,
     Input,
-    OnDestroy,
     OnInit,
     Output,
 } from '@angular/core';
@@ -15,33 +14,35 @@ import { CollectionService } from 'jslib/abstractions/collection.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-import { Organization } from 'jslib/models/domain/organization';
-import { CipherView } from 'jslib/models/view/cipherView';
+import { CipherView } from 'jslib/models/view';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
-@Component({
-    selector: 'app-vault-share',
-    templateUrl: 'share.component.html',
-})
-export class ShareComponent implements OnInit, OnDestroy {
-    @Input() cipherId: string;
-    @Input() organizationId: string;
-    @Output() onSharedCipher = new EventEmitter();
+import { Organization } from 'jslib/models/domain/organization';
 
-    formPromise: Promise<any>;
-    cipher: CipherView;
+@Component({
+    selector: 'app-vault-bulk-share',
+    templateUrl: 'bulk-share.component.html',
+})
+export class BulkShareComponent implements OnInit {
+    @Input() ciphers: CipherView[] = [];
+    @Input() organizationId: string;
+    @Output() onShared = new EventEmitter();
+
+    nonShareableCount = 0;
     collections: CollectionView[] = [];
     organizations: Organization[] = [];
+    formPromise: Promise<any>;
 
     private writeableCollections: CollectionView[] = [];
+    private shareableCiphers: CipherView[] = [];
 
-    constructor(private collectionService: CollectionService, private analytics: Angulartics2,
+    constructor(private analytics: Angulartics2, private cipherService: CipherService,
         private toasterService: ToasterService, private i18nService: I18nService,
-        private userService: UserService, private cipherService: CipherService) { }
+        private collectionService: CollectionService, private userService: UserService) { }
 
     async ngOnInit() {
-        const cipherDomain = await this.cipherService.get(this.cipherId);
-        this.cipher = await cipherDomain.decrypt();
+        this.shareableCiphers = this.ciphers.filter((c) => !c.hasAttachments && c.organizationId == null);
+        this.nonShareableCount = this.ciphers.length - this.shareableCiphers.length;
         const allCollections = await this.collectionService.getAllDecrypted();
         this.writeableCollections = allCollections.filter((c) => !c.readOnly);
         this.organizations = await this.userService.getAllOrganizations();
@@ -65,26 +66,13 @@ export class ShareComponent implements OnInit, OnDestroy {
     }
 
     async submit() {
-        const cipherDomain = await this.cipherService.get(this.cipherId);
-        const cipherView = await cipherDomain.decrypt();
-
-        const attachmentPromises: Array<Promise<any>> = [];
-        if (cipherView.attachments != null) {
-            for (const attachment of cipherView.attachments) {
-                const promise = this.cipherService.shareAttachmentWithServer(attachment,
-                    cipherView.id, this.organizationId);
-                attachmentPromises.push(promise);
-            }
-        }
-
         const checkedCollectionIds = this.collections.filter((c) => (c as any).checked).map((c) => c.id);
-        this.formPromise = Promise.all(attachmentPromises).then(async () => {
-            await this.cipherService.shareWithServer(cipherView, this.organizationId, checkedCollectionIds);
-            this.onSharedCipher.emit();
-            this.analytics.eventTrack.next({ action: 'Shared Cipher' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('sharedItem'));
-        });
+        this.formPromise = this.cipherService.shareManyWithServer(this.shareableCiphers, this.organizationId,
+            checkedCollectionIds);
         await this.formPromise;
+        this.onShared.emit();
+        this.analytics.eventTrack.next({ action: 'Bulk Shared Items' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('sharedItems'));
     }
 
     check(c: CollectionView) {

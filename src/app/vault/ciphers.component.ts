@@ -50,11 +50,15 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
     }
 
-    getSelected(): string[] {
+    getSelected(): CipherView[] {
         if (this.ciphers == null) {
             return [];
         }
-        return this.ciphers.filter((c) => !!(c as any).checked).map((c) => c.id);
+        return this.ciphers.filter((c) => !!(c as any).checked);
+    }
+
+    getSelectedIds(): string[] {
+        return this.getSelected().map((c) => c.id);
     }
 
     attachments(c: CipherView) {
