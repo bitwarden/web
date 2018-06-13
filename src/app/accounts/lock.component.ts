@@ -33,10 +33,9 @@ export class LockComponent extends BaseLockComponent implements OnInit {
 
     async ngOnInit() {
         const authed = await this.userService.isAuthenticated();
-        const key = await this.cryptoService.getKey();
         if (!authed) {
             this.router.navigate(['/']);
-        } else if (key != null) {
+        } else if (await this.cryptoService.hasKey()) {
             this.router.navigate(['vault']);
         }
 
