@@ -108,12 +108,10 @@ const auditService = new AuditService(cryptoFunctionService);
 const analytics = new Analytics(window, () => platformUtilsService.isDev(),
     platformUtilsService, storageService, appIdService);
 containerService.attachToWindow(window);
-environmentService.setUrlsFromStorage().then(() => {
-    return syncService.fullSync(true);
-});
 
 export function initFactory(): Function {
     return async () => {
+        await environmentService.setUrlsFromStorage();
         lockService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
         await i18nService.init(locale);
