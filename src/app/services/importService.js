@@ -1775,16 +1775,119 @@
                     var folders = [],
                         ciphers = [];
 
-                    for (var j = 0; j < results.data.length; j++) {
-                        var row = results.data[j];
+                    for (var x = 0; x < results.data.length; x++) {
+                        
+                        var row = results.data[x];
+
                         if (row.length < 2) {
                             continue;
                         }
-                        if (j === 0 && row[0] === 'Title') {
+                        if (x === 0 && row[0] === 'Title') {
                             continue;
                         }
 
                         var note = row[row.length - 1];
+
+                        // Note
+                        if(row.length == 2) {
+                            var noteCipher = {
+                                type: constants.cipherType.secureNote,
+                                name: row[0],
+                                favorite: false,
+                                notes: note && note !== '' ? note : null,
+                                fields: null,
+                                secureNote:  {
+                                    type: 0 // generic note
+                                }
+                            };
+                            ciphers.push(noteCipher);
+                            continue;
+                        }
+
+                        // Cards
+                        if(row.indexOf('Cardholder') > -1 && row.indexOf('Number') > -1 && row.indexOf('Expiry date')) {
+
+                            var cardCipher = {
+                                type: constants.cipherType.card,
+                                name: row[0],
+                                favorite: false,
+                                notes: note && note !== '' ? note : null,
+                                fields: null,
+                                card: {}
+                            };
+
+                            for (var j = 0; j < row.length - 2; j += 2) {
+                                var val = row[j + 2];
+                                if (!val || val === '') {
+                                    continue;
+                                }
+
+                                var f = row[j + 1];
+                                var lowerFieldName = f.toLowerCase();
+
+                                if (lowerFieldName === 'cardholder') {
+                                    cardCipher.card.cardholderName = val;
+                                } 
+                                else if (lowerFieldName === 'number') {
+                                    cardCipher.card.number = val;
+                                }
+                                else if (lowerFieldName === 'type') {
+
+                                    switch(val)
+                                    {
+                                        case "Master Card":
+                                            cardCipher.card.brand = "Mastercard";
+                                            break;
+                                        case "Visa Card":
+                                            cardCipher.card.brand = "Visa";
+                                            break;
+                                        case "Maestro Card":
+                                            cardCipher.card.brand = "Maestro";
+                                            break;
+                                        case "American Express":
+                                        case "Discover":
+                                        case "Diners Club":
+                                            cardCipher.card.brand = val;
+                                            break;
+                                        default:
+                                            cardCipher.card.brand = other;
+                                    }
+                                }
+                                else if (lowerFieldName === 'cvc') {
+                                    cardCipher.card.code = val;
+                                }
+                                else if (lowerFieldName == 'expiry date') {
+                                    // This is a string value, but recommended format is MM/YY, so try to parse that
+                                    if (val.indexOf('/') > -1) {
+                                        var ccexpParts = val.split('/');
+                                        if (ccexpParts.length > 1) {
+                                            cardCipher.card.expYear = ccexpParts[1];
+                                            if(cardCipher.card.expYear.length === 2) {
+                                                cardCipher.card.expYear = '20' + cardCipher.card.expYear;
+                                            }
+                                                cardCipher.card.expMonth = ccexpParts[0];
+                                            if (cardCipher.card.expMonth.length === 2 && cardCipher.card.expMonth[0] === '0') {
+                                                cardCipher.card.expMonth = cardCipher.card.expMonth[1];
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    // other fields
+                                    if (!cardCipher.fields) {
+                                        cardCipher.fields = [];
+                                    }
+                                    cardCipher.fields.push({
+                                        name: f,
+                                        value: val,
+                                        type: constants.fieldType.text
+                                    });
+                                }
+                            }
+
+                            ciphers.push(cardCipher);
+                            continue;
+                        } 
+
                         var cipher = {
                             type: constants.cipherType.login,
                             name: row[0],
