@@ -230,9 +230,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group" show-errors>
+                        <div class="pull-right password-options">
+                            <i class="fa fa-lg fa-eye" uib-tooltip="Toggle Security Code" tooltip-placement="left"
+                               password-viewer="#cardCode"></i>
+                        </div>
                         <label for="cardCode">Security Code</label>
                         <div class="input-group">
-                            <input type="text" id="cardCode" name="Card.Code" ng-model="cipher.card.code"
+                            <input type="password" id="cardCode" name="Card.Code" ng-model="cipher.card.code"
                                    class="form-control" ng-readonly="readOnly" api-field />
                             <span class="input-group-btn" uib-tooltip="Copy Code" tooltip-placement="left">
                                 <button class="btn btn-default btn-flat" type="button" ngclipboard
