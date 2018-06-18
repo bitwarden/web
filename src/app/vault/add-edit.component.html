@@ -157,8 +157,12 @@
                         <div class="col-6 form-group">
                             <label for="cardCode">{{'securityCode' | i18n}}</label>
                             <div class="input-group">
-                                <input id="cardCode" class="form-control" type="text" name="Card.Code" [(ngModel)]="cipher.card.code">
+                                <input id="cardCode" class="form-control" type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code" [(ngModel)]="cipher.card.code">
                                 <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg" [ngClass]="{'fa-eye': !showCardCode, 'fa-eye-slash': showCardCode}"></i>
+                                    </button>
                                     <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'securityCode' | i18n}}" (click)="copy(cipher.card.code, 'securityCode', 'Security Code')"
                                         tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
