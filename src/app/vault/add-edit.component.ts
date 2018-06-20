@@ -12,6 +12,7 @@ import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { TokenService } from 'jslib/abstractions/token.service';
@@ -38,7 +39,8 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         analytics: Angulartics2, toasterService: ToasterService,
         auditService: AuditService, stateService: StateService,
-        private tokenService: TokenService, private totpService: TotpService) {
+        private tokenService: TokenService, private totpService: TotpService,
+        private passwordGenerationService: PasswordGenerationService) {
         super(cipherService, folderService, i18nService, platformUtilsService, analytics,
             toasterService, auditService, stateService);
     }
@@ -81,6 +83,15 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         this.platformUtilsService.copyToClipboard(value, { doc: window.document });
         this.toasterService.popAsync('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+    }
+
+    async generatePassword(): Promise<boolean> {
+        const confirmed = await super.generatePassword();
+        if (confirmed) {
+            const options = await this.passwordGenerationService.getOptions();
+            this.cipher.login.password = await this.passwordGenerationService.generatePassword(options);
+        }
+        return confirmed;
     }
 
     private cleanUp() {

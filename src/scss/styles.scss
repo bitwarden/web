@@ -159,7 +159,7 @@ body {
     @include border-radius($modal-content-border-radius);
 }
 
-form label:not(.form-check-label) {
+label:not(.form-check-label) {
     font-weight: bold;
 }
 
@@ -293,6 +293,33 @@ app-login {
         height: 43px;
         margin: 0 auto;
         display: block;
+    }
+}
+
+app-password-generator {
+    #lengthRange {
+        width: 100%;
+    }
+
+    .card-password {
+        span {
+            word-break: break-all;
+            display: block;
+            text-align: center;
+            font-size: $font-size-lg;
+            font-family: $font-family-monospace;
+        }
+    }
+}
+
+app-password-generator-history {
+    .list-group-item {
+        line-height: 1;
+
+        .password {
+            word-break: break-all;
+            font-family: $font-family-monospace;
+        }
     }
 }
 

@@ -31,6 +31,8 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
+import { PasswordGeneratorHistoryComponent } from './tools/password-generator-history.component';
+import { PasswordGeneratorComponent } from './tools/password-generator.component';
 import { ToolsComponent } from './tools/tools.component';
 
 import { AddEditComponent } from './vault/add-edit.component';
@@ -60,7 +62,6 @@ import { TrueFalseValueDirective } from 'jslib/angular/directives/true-false-val
 
 import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
-import { Folder } from 'jslib/models/domain';
 
 @NgModule({
     imports: [
@@ -106,6 +107,8 @@ import { Folder } from 'jslib/models/domain';
         NavbarComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,
+        PasswordGeneratorComponent,
+        PasswordGeneratorHistoryComponent,
         RegisterComponent,
         SearchCiphersPipe,
         ShareComponent,
@@ -127,6 +130,7 @@ import { Folder } from 'jslib/models/domain';
         CollectionsComponent,
         FolderAddEditComponent,
         ModalComponent,
+        PasswordGeneratorHistoryComponent,
         ShareComponent,
         TwoFactorOptionsComponent,
     ],

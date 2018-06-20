@@ -16,6 +16,7 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
+import { PasswordGeneratorComponent } from './tools/password-generator.component';
 import { ToolsComponent } from './tools/tools.component';
 
 import { VaultComponent } from './vault/vault.component';
@@ -45,9 +46,10 @@ const routes: Routes = [
                 path: 'tools',
                 component: ToolsComponent,
                 children: [
-                    { path: '', pathMatch: 'full', redirectTo: 'import' },
+                    { path: '', pathMatch: 'full', redirectTo: 'generator' },
                     { path: 'import', component: ImportComponent, canActivate: [AuthGuardService] },
                     { path: 'export', component: ExportComponent, canActivate: [AuthGuardService] },
+                    { path: 'generator', component: PasswordGeneratorComponent, canActivate: [AuthGuardService] },
                 ],
             },
         ],

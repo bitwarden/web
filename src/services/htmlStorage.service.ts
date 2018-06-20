@@ -2,9 +2,9 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 import { ConstantsService } from 'jslib/services';
 
 export class HtmlStorageService implements StorageService {
-    private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail',
-        ConstantsService.disableFaviconKey, ConstantsService.lockOptionKey, ConstantsService.localeKey,
-        ConstantsService.lockOptionKey]);
+    private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
+        ConstantsService.disableFaviconKey, ConstantsService.lockOptionKey,
+        ConstantsService.localeKey, ConstantsService.lockOptionKey]);
     private localStorageStartsWithKeys = ['twoFactorToken_'];
 
     get<T>(key: string): Promise<T> {
