@@ -56,7 +56,6 @@ export class AppComponent implements OnDestroy, OnInit {
         mouseoverTimerStop: true,
         animation: 'flyRight',
         limit: 5,
-        positionClass: 'toast-bottom-right',
     });
 
     private lastActivity: number = null;

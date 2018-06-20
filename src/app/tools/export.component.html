@@ -1,3 +1,25 @@
-<div class="page-header">
-    <h1>Export</h1>
-</div>
+<form (ngSubmit)="submit()">
+    <div class="page-header">
+        <h1>{{'exportVault' | i18n}}</h1>
+    </div>
+    <p>{{'exportMasterPassword' | i18n}}</p>
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">{{'warning' | i18n}}</h4>
+        <p class="mb-0">{{'exportWarning' | i18n}}</p>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="masterPassword">{{'masterPass' | i18n}}</label>
+            <div class="d-flex">
+                <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
+                    [(ngModel)]="masterPassword" required appAutofocus>
+                <button type="button" class="ml-1 btn btn-link" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
+                    <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button appBlurClick type="submit" class="btn btn-primary">
+        {{'submit' | i18n}}
+    </button>
+</form>

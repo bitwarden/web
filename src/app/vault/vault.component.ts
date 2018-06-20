@@ -190,7 +190,7 @@ export class VaultComponent implements OnInit {
         }
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.shareModalRef.createComponent(factory).instance;
+        this.modal = this.collectionsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
 
         childComponent.cipherId = cipher.id;

@@ -1,6 +1,10 @@
 @import "~angular2-toaster/toaster";
 
 #toast-container {
+    &.toast-top-right {
+        top: 76px;
+    }
+
     .toast-close-button {
         right: -0.15em;
     }
