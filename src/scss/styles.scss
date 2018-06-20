@@ -306,3 +306,61 @@ app-login {
         border: none;
     }
 }
+
+.totp {
+    .totp-code {
+        @extend .text-monospace;
+        font-size: 1.2rem;
+    }
+
+    .totp-countdown {
+        margin: 3px 3px 0 0;
+        display: block;
+        user-select: none;
+
+        .totp-sec {
+            font-size: 0.85em;
+            position: absolute;
+            line-height: 32px;
+            width: 32px;
+            text-align: center;
+        }
+
+        svg {
+            width: 32px;
+            height: 32px;
+            transform: rotate(-90deg);
+        }
+
+        .totp-circle {
+            fill: none;
+            stroke: $primary;
+
+            &.inner {
+                stroke-width: 3;
+                stroke-dasharray: 78.6;
+                stroke-dashoffset: 0;
+            }
+
+            &.outer {
+                stroke-width: 2;
+                stroke-dasharray: 88;
+                stroke-dashoffset: 0;
+            }
+        }
+    }
+
+    > .align-items-center {
+        margin-bottom: -5px;
+    }
+
+    &.low {
+        .totp-sec, .totp-code {
+            color: $danger;
+        }
+
+        .totp-circle {
+            stroke: $danger;
+        }
+    }
+}
