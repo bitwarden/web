@@ -12,9 +12,9 @@
                 <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="folder.name">
             </div>
             <div class="modal-footer">
-                <button appBlurClick type="submit" class="btn btn-primary" title="{{'save' | i18n}}" [disabled]="form.loading">
-                    <i class="fa fa-save fa-lg fa-fw" [hidden]="form.loading"></i>
-                    <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!form.loading"></i>
+                <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'save' | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" title="{{'cancel' | i18n}}">{{'cancel' | i18n}}</button>
                 <div class="ml-auto">

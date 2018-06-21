@@ -185,6 +185,31 @@ label:not(.form-check-label) {
     }
 }
 
+.btn-submit {
+    position: relative;
+
+    .fa-spinner {
+        position: absolute;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &:disabled {
+        .fa-spinner {
+            display: flex;
+        }
+
+        span {
+            visibility: hidden;
+        }
+    }
+}
+
 .table.table-list {
     tr:first-child {
         td {
