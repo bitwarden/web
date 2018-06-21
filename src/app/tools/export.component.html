@@ -10,13 +10,7 @@
     <div class="row">
         <div class="form-group col-6">
             <label for="masterPassword">{{'masterPass' | i18n}}</label>
-            <div class="d-flex">
-                <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
-                    [(ngModel)]="masterPassword" required appAutofocus>
-                <button type="button" class="ml-1 btn btn-link" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
-                    <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
-                </button>
-            </div>
+            <input id="masterPassword" type="password" name="MasterPassword" class="form-control" [(ngModel)]="masterPassword" required>
         </div>
     </div>
     <button appBlurClick type="submit" class="btn btn-primary">
