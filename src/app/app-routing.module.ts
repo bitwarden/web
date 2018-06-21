@@ -14,6 +14,9 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { AccountComponent } from './settings/account.component';
+import { SettingsComponent } from './settings/settings.component';
+
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
@@ -42,6 +45,14 @@ const routes: Routes = [
         component: UserLayoutComponent,
         children: [
             { path: 'vault', component: VaultComponent, canActivate: [AuthGuardService] },
+            {
+                path: 'settings',
+                component: SettingsComponent,
+                children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'account' },
+                    { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
+                ],
+            },
             {
                 path: 'tools',
                 component: ToolsComponent,

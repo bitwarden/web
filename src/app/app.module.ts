@@ -29,6 +29,9 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { AccountComponent } from './settings/account.component';
+import { SettingsComponent } from './settings/settings.component';
+
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorHistoryComponent } from './tools/password-generator-history.component';
@@ -78,6 +81,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         ToasterModule,
     ],
     declarations: [
+        AccountComponent,
         AddEditComponent,
         ApiActionDirective,
         AppComponent,
@@ -111,6 +115,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         PasswordGeneratorHistoryComponent,
         RegisterComponent,
         SearchCiphersPipe,
+        SettingsComponent,
         ShareComponent,
         StopClickDirective,
         StopPropDirective,
