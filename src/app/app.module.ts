@@ -34,6 +34,7 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 import { AccountComponent } from './settings/account.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
+import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { ProfileComponent } from './settings/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -102,6 +103,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         ChangePasswordComponent,
         CiphersComponent,
         CollectionsComponent,
+        DeauthorizeSessionsComponent,
         ExportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
@@ -142,6 +144,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BulkMoveComponent,
         BulkShareComponent,
         CollectionsComponent,
+        DeauthorizeSessionsComponent,
         FolderAddEditComponent,
         ModalComponent,
         PasswordGeneratorHistoryComponent,

@@ -1,0 +1,29 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+            <div class="modal-header">
+                <h2 class="modal-title">{{'deauthorizeSessions' | i18n}}</h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{'deauthorizeSessionsDesc' | i18n}}</p>
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">{{'warning' | i18n}}</h4>
+                    <p class="mb-0">{{'deauthorizeSessionsWarning' | i18n}}</p>
+                </div>
+                <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
+                    appAutoFocus>
+            </div>
+            <div class="modal-footer">
+                <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'submit' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>
