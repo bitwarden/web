@@ -4,4 +4,16 @@ import { Component } from '@angular/core';
     selector: 'app-account',
     templateUrl: 'account.component.html',
 })
-export class AccountComponent { }
+export class AccountComponent {
+    deauthorizeSessions() {
+
+    }
+
+    purgeVault() {
+
+    }
+
+    deleteAccount() {
+
+    }
+}

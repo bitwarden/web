@@ -1,12 +1,19 @@
 <div class="page-header">
-    <h1>My Account</h1>
+    <h1>{{'myAccount' | i18n}}</h1>
 </div>
 <app-profile></app-profile>
 <div class="secondary-header">
-    <h1>Change Email</h1>
+    <h1>{{'changeEmail' | i18n}}</h1>
 </div>
 <app-change-email></app-change-email>
 <div class="secondary-header">
-    <h1>Change Master Password</h1>
+    <h1>{{'changeMasterPassword' | i18n}}</h1>
 </div>
 <app-change-password></app-change-password>
+<div class="secondary-header text-danger">
+    <h1>{{'dangerZone' | i18n}}</h1>
+</div>
+<p>{{'dangerZoneDesc' | i18n}}</p>
+<button type="button" class="btn btn-outline-secondary" (click)="deauthorizeSessions()">{{'deauthorizeSessions' | i18n}}</button>
+<button type="button" class="btn btn-outline-secondary" (click)="purgeVault()">{{'purgeVault' | i18n}}</button>
+<button type="button" class="btn btn-outline-secondary" (click)="deleteAccount()">{{'deleteAccount' | i18n}}</button>
