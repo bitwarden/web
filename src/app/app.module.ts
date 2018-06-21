@@ -32,6 +32,7 @@ import { TwoFactorOptionsComponent } from './accounts/two-factor-options.compone
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { AccountComponent } from './settings/account.component';
+import { ProfileComponent } from './settings/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 
 import { ExportComponent } from './tools/export.component';
@@ -116,6 +117,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         OrganizationLayoutComponent,
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
+        ProfileComponent,
         RegisterComponent,
         SearchCiphersPipe,
         SettingsComponent,

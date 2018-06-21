@@ -1,34 +1,7 @@
 <div class="page-header">
     <h1>My Account</h1>
 </div>
-<div *ngIf="loading">
-    <i class="fa fa-spinner fa-spin text-muted"></i>
-</div>
-<form *ngIf="profile && !loading" #profileForm (ngSubmit)="submit()" [appApiAction]="submitPromise">
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="name">{{'name' | i18n}}</label>
-                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="profile.name">
-            </div>
-            <div class="form-group">
-                <label for="email">{{'email' | i18n}}</label>
-                <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="profile.email" readonly>
-            </div>
-            <div class="form-group">
-                <label for="masterPasswordHint">{{'masterPassHintLabel' | i18n}}</label>
-                <input id="masterPasswordHint" class="form-control" type="text" name="MasterPasswordHint" [(ngModel)]="profile.masterPasswordHint">
-            </div>
-        </div>
-        <div class="col-6">
-            <app-avatar data="{{profile.name || profile.email}}" dynamic="true" width="75" height="75" fontSize="35"></app-avatar>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary btn-submit" appBlurClick [disabled]="profileForm.loading">
-        <i class="fa fa-spinner fa-spin"></i>
-        <span>{{'save' | i18n}}</span>
-    </button>
-</form>
+<app-profile></app-profile>
 <div class="secondary-header">
     <h1>Change Email</h1>
 </div>
