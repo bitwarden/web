@@ -16,6 +16,8 @@ import { ServicesModule } from './services/services.module';
 import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
+import { AvatarComponent } from './components/avatar.component';
+
 import { FooterComponent } from './layouts/footer.component';
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
 import { NavbarComponent } from './layouts/navbar.component';
@@ -87,6 +89,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
+        AvatarComponent,
         BlurClickDirective,
         BoxRowDirective,
         BulkDeleteComponent,

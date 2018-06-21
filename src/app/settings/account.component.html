@@ -20,6 +20,9 @@
                 <input id="masterPasswordHint" class="form-control" type="text" name="MasterPasswordHint" [(ngModel)]="profile.masterPasswordHint">
             </div>
         </div>
+        <div class="col-6">
+            <app-avatar data="{{profile.name}}" dynamic="true" width="75" height="75" fontSize="35"></app-avatar>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary btn-submit" appBlurClick [disabled]="profileForm.loading">
         <i class="fa fa-spinner fa-spin"></i>
