@@ -32,6 +32,8 @@ import { TwoFactorOptionsComponent } from './accounts/two-factor-options.compone
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { AccountComponent } from './settings/account.component';
+import { ChangeEmailComponent } from './settings/change-email.component';
+import { ChangePasswordComponent } from './settings/change-password.component';
 import { ProfileComponent } from './settings/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -96,6 +98,8 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkShareComponent,
+        ChangeEmailComponent,
+        ChangePasswordComponent,
         CiphersComponent,
         CollectionsComponent,
         ExportComponent,
