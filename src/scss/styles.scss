@@ -68,7 +68,7 @@ body {
     }
 }
 
-.page-header {
+.page-header, .secondary-header {
     border-bottom: 1px solid $border-color;
     padding-bottom: 0.6rem;
     margin-bottom: 0.5rem;
@@ -76,6 +76,10 @@ body {
     h1, h2, h3, h4 {
         margin: 0;
     }
+}
+
+.secondary-header {
+    margin-top: 4rem;
 }
 
 .navbar {
