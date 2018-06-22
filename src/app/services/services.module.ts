@@ -111,7 +111,14 @@ containerService.attachToWindow(window);
 
 export function initFactory(): Function {
     return async () => {
-        await environmentService.setUrlsFromStorage();
+        if (platformUtilsService.isDev()) {
+            await apiService.setUrls({
+                base: null,
+                api: 'https://api.bitwarden.com',
+                identity: 'https://identity.bitwarden.com',
+            });
+        } // TODO: elseif self host
+
         lockService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
         await i18nService.init(locale);
