@@ -35,7 +35,9 @@ import { AccountComponent } from './settings/account.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
+import { DeleteAccountComponent } from './settings/delete-account.component';
 import { ProfileComponent } from './settings/profile.component';
+import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
 
 import { ExportComponent } from './tools/export.component';
@@ -104,6 +106,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         CiphersComponent,
         CollectionsComponent,
         DeauthorizeSessionsComponent,
+        DeleteAccountComponent,
         ExportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
@@ -124,6 +127,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
         ProfileComponent,
+        PurgeVaultComponent,
         RegisterComponent,
         SearchCiphersPipe,
         SettingsComponent,
@@ -145,9 +149,11 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BulkShareComponent,
         CollectionsComponent,
         DeauthorizeSessionsComponent,
+        DeleteAccountComponent,
         FolderAddEditComponent,
         ModalComponent,
         PasswordGeneratorHistoryComponent,
+        PurgeVaultComponent,
         ShareComponent,
         TwoFactorOptionsComponent,
     ],

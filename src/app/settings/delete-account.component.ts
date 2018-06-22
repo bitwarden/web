@@ -11,10 +11,10 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerificationRequest';
 
 @Component({
-    selector: 'app-deauthorize-sessions',
-    templateUrl: 'deauthorize-sessions.component.html',
+    selector: 'app-delete-account',
+    templateUrl: 'delete-account.component.html',
 })
-export class DeauthorizeSessionsComponent {
+export class DeleteAccountComponent {
     masterPassword: string;
     formPromise: Promise<any>;
 
@@ -32,11 +32,11 @@ export class DeauthorizeSessionsComponent {
         const request = new PasswordVerificationRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.apiService.postSecurityStamp(request);
+            this.formPromise = this.apiService.postDeleteAccount(request);
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Deauthorized Sessions' });
-            this.toasterService.popAsync('success', this.i18nService.t('sessionsDeauthorized'),
-                this.i18nService.t('logBackIn'));
+            this.analytics.eventTrack.next({ action: 'Deleted Account' });
+            this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
+                this.i18nService.t('accountDeletedDesc'));
             this.messagingService.send('logout');
         } catch { }
     }
