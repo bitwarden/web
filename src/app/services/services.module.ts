@@ -111,13 +111,12 @@ containerService.attachToWindow(window);
 
 export function initFactory(): Function {
     return async () => {
-        if (platformUtilsService.isDev()) {
-            await apiService.setUrls({
-                base: null,
-                api: 'https://api.bitwarden.com',
-                identity: 'https://identity.bitwarden.com',
-            });
-        } // TODO: elseif self host
+        const isDev = platformUtilsService.isDev();
+        await apiService.setUrls({
+            base: isDev ? null : window.location.origin,
+            api: isDev ? 'https://api.bitwarden.com' : null,
+            identity: isDev ? 'https://identity.bitwarden.com' : null,
+        });
 
         lockService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
