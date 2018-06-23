@@ -1,3 +1,29 @@
 <div class="page-header">
     <h1>Import</h1>
 </div>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="type">1. {{'selectFormat' | i18n}}</label>
+                <select id="type" name="Format" [(ngModel)]="format" class="form-control" required>
+                    <option *ngFor="let o of featuredImportOptions" [ngValue]="o.id">{{o.name}}</option>
+                    <option value="-" disabled></option>
+                    <option *ngFor="let o of importOptions" [ngValue]="o.id">{{o.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="file">2. {{'selectImportFile' | i18n}}</label>
+                <input type="file" id="file" class="form-control-file" name="file">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fileContents">{{'orCopyPasteFileContents' | i18n}}</label>
+        <textarea id="fileContents" class="form-control" name="FileContents" [(ngModel)]="fileContents"></textarea>
+    </div>
+    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'import' | i18n}}</span>
+    </button>
+</form>
