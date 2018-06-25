@@ -173,10 +173,6 @@ label:not(.form-check-label) {
     &:not(:hover) {
         background-color: #ffffff;
     }
-
-    &:disabled {
-        opacity: 1;
-    }
 }
 
 .btn-outline-secondary {
@@ -184,6 +180,10 @@ label:not(.form-check-label) {
 
     &:hover:not(:disabled) {
         color: $body-color;
+    }
+
+    &:disabled {
+        opacity: 1;
     }
 }
 

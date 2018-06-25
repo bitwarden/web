@@ -16,6 +16,7 @@ import { FolderRequest } from 'jslib/models/request/folderRequest';
 import { ImportCiphersRequest } from 'jslib/models/request/importCiphersRequest';
 import { KvpRequest } from 'jslib/models/request/kvpRequest';
 
+import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
@@ -66,7 +67,7 @@ export class ImportComponent {
             { id: 'passworddragonxml', name: 'Password Dragon (xml)' },
             { id: 'padlockcsv', name: 'Padlock (csv)' },
             { id: 'clipperzhtml', name: 'Clipperz (html)' },
-            { id: 'avirajson', name: 'Avira (json)' },
+            { id: 'aviracsv', name: 'Avira (csv)' },
             { id: 'saferpasscsv', name: 'SaferPass (csv)' },
             { id: 'upmcsv', name: 'Universal Password Manager (csv)' },
             { id: 'ascendocsv', name: 'Ascendo DataVault (csv)' },
@@ -201,6 +202,8 @@ export class ImportComponent {
                 return new LastPassCsvImporter();
             case 'keepassxcsv':
                 return new KeePassXCsvImporter();
+            case 'aviracsv':
+                return new AviraCsvImporter();
             default:
                 return null;
         }
