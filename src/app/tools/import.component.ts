@@ -1,16 +1,26 @@
 import {
     Component,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
+import { ApiService } from 'jslib/abstractions/api.service';
+import { CipherService } from 'jslib/abstractions/cipher.service';
+import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+
+import { CipherRequest } from 'jslib/models/request/cipherRequest';
+import { FolderRequest } from 'jslib/models/request/folderRequest';
+import { ImportCiphersRequest } from 'jslib/models/request/importCiphersRequest';
+import { KvpRequest } from 'jslib/models/request/kvpRequest';
 
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
+import { CipherView } from 'jslib/models/view';
 
 @Component({
     selector: 'app-import',
@@ -22,11 +32,12 @@ export class ImportComponent {
     format: string = null;
     fileContents: string;
 
-    constructor(private i18nService: I18nService, protected analytics: Angulartics2,
-        protected toasterService: ToasterService) {
-        const bw = new BitwardenCsvImporter();
-        const lp = new LastPassCsvImporter();
+    formPromise: Promise<any>;
 
+    constructor(private i18nService: I18nService, private analytics: Angulartics2,
+        private toasterService: ToasterService, private cipherService: CipherService,
+        private folderService: FolderService, private apiService: ApiService,
+        private router: Router) {
         this.featuredImportOptions = [
             { id: null, name: '-- ' + i18nService.t('select') + ' --' },
             { id: 'bitwardencsv', name: 'Bitwarden (csv)' },
@@ -113,11 +124,43 @@ export class ImportComponent {
         }
 
         const importResult = await importer.parse(fileContents);
-        console.log(importResult);
         if (importResult.success) {
+            if (importResult.folders.length === 0 && importResult.ciphers.length === 0) {
+                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                    this.i18nService.t('importNothingError'));
+                return;
+            } else if (importResult.ciphers.length > 0) {
+                const halfway = Math.floor(importResult.ciphers.length / 2);
+                const last = importResult.ciphers.length - 1;
+                if (this.badData(importResult.ciphers[0]) && this.badData(importResult.ciphers[halfway]) &&
+                    this.badData(importResult.ciphers[last])) {
+                    this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                        this.i18nService.t('importFormatError'));
+                    return;
+                }
+            }
 
+            const request = new ImportCiphersRequest();
+            for (let i = 0; i < importResult.ciphers.length; i++) {
+                const c = await this.cipherService.encrypt(importResult.ciphers[i]);
+                request.ciphers.push(new CipherRequest(c));
+            }
+            for (let i = 0; i < importResult.folders.length; i++) {
+                const f = await this.folderService.encrypt(importResult.folders[i]);
+                request.folders.push(new FolderRequest(f));
+            }
+            importResult.folderRelationships.forEach((v: number, k: number) =>
+                request.folderRelationships.push(new KvpRequest(k, v)));
+
+            try {
+                this.formPromise = this.apiService.postImportCiphers(request);
+                await this.formPromise;
+                this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
+                this.router.navigate(['vault']);
+            } catch { }
         } else {
-
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('importFormatError'));
         }
     }
 
@@ -161,5 +204,10 @@ export class ImportComponent {
             default:
                 return null;
         }
+    }
+
+    private badData(c: CipherView) {
+        return (c.name == null || c.name === '--') &&
+            (c.login != null && (c.login.password == null || c.login.password === ''));
     }
 }
