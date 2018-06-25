@@ -215,7 +215,7 @@ export class VaultComponent implements OnInit {
             FolderAddEditComponent, this.folderAddEditModalRef);
 
         childComponent.folderId = null;
-        childComponent.onSavedFolder.subscribe(async (folder: FolderView) => {
+        childComponent.onSavedFolder.subscribe(async () => {
             this.modal.close();
             await this.groupingsComponent.loadFolders();
         });
@@ -236,13 +236,15 @@ export class VaultComponent implements OnInit {
             FolderAddEditComponent, this.folderAddEditModalRef);
 
         childComponent.folderId = folderId;
-        childComponent.onSavedFolder.subscribe(async (folder: FolderView) => {
+        childComponent.onSavedFolder.subscribe(async () => {
             this.modal.close();
             await this.groupingsComponent.loadFolders();
         });
-        childComponent.onDeletedFolder.subscribe(async (folder: FolderView) => {
+        childComponent.onDeletedFolder.subscribe(async () => {
             this.modal.close();
             await this.groupingsComponent.loadFolders();
+            await this.filterFolder('none');
+            this.groupingsComponent.selectedFolderId = null;
         });
 
         this.modal.onClosed.subscribe(() => {
