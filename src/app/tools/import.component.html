@@ -14,8 +14,8 @@
             </div>
         </div>
     </div>
-    <div class="alert alert-info" role="alert" *ngIf="format">
-        <h4 class="alert-heading">{{'instructionsFor' | i18n : getFormatName()}}</h4>
+    <div class="callout callout-info" role="alert" *ngIf="format">
+        <h3 class="callout-heading">{{'instructionsFor' | i18n : getFormatName()}}</h3>
         <p class="mb-0">
             <ng-container *ngIf="format === 'bitwardencsv'">
                 See detailed instructions on our help site at

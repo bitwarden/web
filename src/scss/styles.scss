@@ -433,3 +433,61 @@ app-avatar {
         }
     }
 }
+
+.callout {
+    padding: $alert-padding-y $alert-padding-x;
+    margin-bottom: $alert-margin-bottom;
+    border: 1px solid $card-border-color;
+    border-left-width: 5px;
+    border-radius: $card-inner-border-radius;
+    background-color: $card-bg;
+
+    .callout-heading {
+        margin-top: 0;
+    }
+
+    h3.callout-heading {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    &.callout-primary {
+        border-left-color: $primary;
+
+        .callout-heading {
+            color: $primary;
+        }
+    }
+
+    &.callout-info {
+        border-left-color: $gray-800;
+
+        .callout-heading {
+            color: $gray-800;
+        }
+    }
+
+    &.callout-danger {
+        border-left-color: $danger;
+
+        .callout-heading {
+            color: $danger;
+        }
+    }
+
+    &.callout-success {
+        border-left-color: $success;
+
+        .callout-heading {
+            color: $success;
+        }
+    }
+
+    &.callout-warning {
+        border-left-color: $warning;
+
+        .callout-heading {
+            color: $warning;
+        }
+    }
+}
