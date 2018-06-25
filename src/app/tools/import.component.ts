@@ -165,6 +165,18 @@ export class ImportComponent {
         }
     }
 
+    getFormatName() {
+        if (this.format == null) {
+            return null;
+        }
+
+        const results = this.featuredImportOptions.concat(this.importOptions).filter((o) => o.id === this.format);
+        if (results.length > 0) {
+            return results[0].name;
+        }
+        return null;
+    }
+
     private getFileContents(file: File): Promise<string> {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();

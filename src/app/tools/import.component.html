@@ -12,6 +12,29 @@
                     <option *ngFor="let o of importOptions" [ngValue]="o.id">{{o.name}}</option>
                 </select>
             </div>
+        </div>
+    </div>
+    <div class="alert alert-info" role="alert" *ngIf="format">
+        <h4 class="alert-heading">{{'instructionsFor' | i18n : getFormatName()}}</h4>
+        <p class="mb-0">
+            <ng-container *ngIf="format === 'bitwardencsv'">
+                See detailed instructions on our help site at
+                <a target="_blank" href="https://help.bitwarden.com/article/export-your-data/">https://help.bitwarden.com/article/export-your-data/</a>
+            </ng-container>
+            <ng-container *ngIf="format === 'lastpasscsv'">
+                See detailed instructions on our help site at
+                <a target="_blank" href="https://help.bitwarden.com/article/import-from-lastpass/">https://help.bitwarden.com/article/import-from-lastpass/</a>
+            </ng-container>
+            <ng-container *ngIf="format === 'keepassxcsv'">
+                Using the KeePassX desktop application, navigate to "Database" &rarr; "Export to CSV file" and save the CSV file.
+            </ng-container>
+            <ng-container *ngIf="format === 'aviracsv'">
+                In the Avira web vault, go to "Settings" &rarr; "My Data" &rarr; "Export data" and save the CSV file.
+            </ng-container>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-6">
             <div class="form-group">
                 <label for="file">2. {{'selectImportFile' | i18n}}</label>
                 <input type="file" id="file" class="form-control-file" name="file">
