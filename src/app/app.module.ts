@@ -36,6 +36,7 @@ import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
+import { OptionsComponent } from './settings/options.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -122,6 +123,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         LoginComponent,
         ModalComponent,
         NavbarComponent,
+        OptionsComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,
         PasswordGeneratorComponent,

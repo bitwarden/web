@@ -15,6 +15,7 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { AccountComponent } from './settings/account.component';
+import { OptionsComponent } from './settings/options.component';
 import { SettingsComponent } from './settings/settings.component';
 
 import { ExportComponent } from './tools/export.component';
@@ -51,6 +52,7 @@ const routes: Routes = [
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
                     { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
+                    { path: 'options', component: OptionsComponent, canActivate: [AuthGuardService] },
                 ],
             },
             {
