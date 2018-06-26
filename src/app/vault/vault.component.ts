@@ -64,7 +64,7 @@ export class VaultComponent implements OnInit {
 
     async ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
-            await this.syncService.fullSync(true);
+            await this.syncService.fullSync(false);
             await Promise.all([
                 this.groupingsComponent.load(),
                 this.organizationsComponent.load(),
