@@ -46,7 +46,7 @@ $navbar-brand-padding-y: 0;
 $navbar-dark-color: rgba(#ffffff, .7);
 $navbar-dark-hover-color: rgba(#ffffff, .9);
 
-$input-bg: #fafafa;
+$input-bg: #fbfbfb;
 $input-focus-bg: #ffffff;
 $input-disabled-bg: #e0e0e0;
 
@@ -54,6 +54,7 @@ $table-accent-bg: rgba(#000000, .02);
 $table-hover-bg: rgba(#000000, .03);
 
 $modal-backdrop-opacity: 0.3;
+$btn-font-weight: 600;
 
 @import "~bootstrap/scss/bootstrap";
 @import "./plugins";
@@ -171,7 +172,8 @@ label:not(.form-check-label) {
 
 .btn[class*="btn-outline-"] {
     &:not(:hover) {
-        background-color: #ffffff;
+        border-color: $secondary;
+        background-color: #fbfbfb;
     }
 }
 

@@ -10,14 +10,17 @@
     <h1>{{'changeMasterPassword' | i18n}}</h1>
 </div>
 <app-change-password></app-change-password>
-<div class="secondary-header text-danger">
+<div class="secondary-header text-danger border-0 mb-0">
     <h1>{{'dangerZone' | i18n}}</h1>
 </div>
-<p>{{'dangerZoneDesc' | i18n}}</p>
-<button type="button" class="btn btn-outline-secondary" (click)="deauthorizeSessions()" appBlurClick>{{'deauthorizeSessions' | i18n}}</button>
-<button type="button" class="btn btn-outline-secondary" (click)="purgeVault()" appBlurClick>{{'purgeVault' | i18n}}</button>
-<button type="button" class="btn btn-outline-secondary" (click)="deleteAccount()" appBlurClick>{{'deleteAccount' | i18n}}</button>
-
+<div class="card border-danger">
+    <div class="card-body">
+        <p>{{'dangerZoneDesc' | i18n}}</p>
+        <button type="button" class="btn btn-outline-danger" (click)="deauthorizeSessions()" appBlurClick>{{'deauthorizeSessions' | i18n}}</button>
+        <button type="button" class="btn btn-outline-danger" (click)="purgeVault()" appBlurClick>{{'purgeVault' | i18n}}</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteAccount()" appBlurClick>{{'deleteAccount' | i18n}}</button>
+    </div>
+</div>
 <ng-template #deauthorizeSessionsTemplate></ng-template>
 <ng-template #purgeVaultTemplate></ng-template>
 <ng-template #deleteAccountTemplate></ng-template>
