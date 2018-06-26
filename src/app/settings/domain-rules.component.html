@@ -1,0 +1,20 @@
+<div class="page-header">
+    <h1>{{'domainRules' | i18n}}</h1>
+</div>
+<p>{{'domainRulesDesc' | i18n}}</p>
+<h2>{{'customEqDomains' | i18n}}</h2>
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
+<table class="table table-hover table-list" *ngIf="!loading && custom.length > 0">
+    <tbody>
+        <tr *ngFor="let d of custom">
+        </tr>
+    </tbody>
+</table>
+<h2>{{'globalEqDomains' | i18n}}</h2>
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
+<table class="table table-hover table-list" *ngIf="!loading && global.length > 0">
+    <tbody>
+        <tr *ngFor="let d of global">
+        </tr>
+    </tbody>
+</table>
