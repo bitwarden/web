@@ -924,10 +924,37 @@
   "domainRulesDesc": {
     "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
   },
-  "globalEqRules": {
+  "globalEqDomains": {
     "message": "Global Equivalent Domains"
   },
-  "customEqRules": {
+  "customEqDomains": {
     "message": "Custom Equivalent Domains"
+  },
+  "exclude": {
+    "message": "Exclude"
+  },
+  "include": {
+    "message": "Include"
+  },
+  "customize": {
+    "message": "Customize"
+  },
+  "newCustomDomain": {
+    "message": "New Custom Domain"
+  },
+  "newCustomDomainDesc": {
+    "message": "Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp://package.name\" to associate an android app with other website domains."
+  },
+  "customDomainX": {
+    "message": "Custom Domain $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "domainsUpdated": {
+    "message": "Domains updated"
   }
 }

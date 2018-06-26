@@ -2,19 +2,64 @@
     <h1>{{'domainRules' | i18n}}</h1>
 </div>
 <p>{{'domainRulesDesc' | i18n}}</p>
-<h2>{{'customEqDomains' | i18n}}</h2>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
-<table class="table table-hover table-list" *ngIf="!loading && custom.length > 0">
-    <tbody>
-        <tr *ngFor="let d of custom">
-        </tr>
-    </tbody>
-</table>
-<h2>{{'globalEqDomains' | i18n}}</h2>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
-<table class="table table-hover table-list" *ngIf="!loading && global.length > 0">
-    <tbody>
-        <tr *ngFor="let d of global">
-        </tr>
-    </tbody>
-</table>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+    <h2>{{'customEqDomains' | i18n}}</h2>
+    <p *ngIf="loading">
+        <i class="fa fa-spinner fa-spin text-muted"></i>
+    </p>
+    <ng-container *ngIf="!loading">
+        <div class="form-group d-flex" *ngFor="let d of custom; let i = index; trackBy: indexTrackBy">
+            <div class="flex-fill">
+                <label for="customDomain_{{i}}" class="sr-only">{{'customDomainX' | i18n : (i + 1)}}</label>
+                <textarea class="form-control" name="CustomDomain[{{i}}]" id="customDomain_{{i}}" [(ngModel)]="custom[i]" placeholder="{{'ex' | i18n}} google.com, gmail.com"></textarea>
+            </div>
+            <button type="button" class="btn btn-link text-danger ml-2" (click)="remove(i)" title="{{'remove' | i18n}}">
+                <i class="fa fa-minus-circle fa-lg"></i>
+            </button>
+        </div>
+        <button type="button" appBlurClick (click)="add()" class="btn btn-outline-secondary btn-sm mb-2">
+            <i class="fa fa-plus-circle fa-fw"></i> {{'newCustomDomain' | i18n}}
+        </button>
+        <small class="text-muted d-block mb-3">{{'newCustomDomainDesc' | i18n}}</small>
+    </ng-container>
+    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'save' | i18n}}</span>
+    </button>
+    <h2 class="mt-5">{{'globalEqDomains' | i18n}}</h2>
+    <p *ngIf="loading">
+        <i class="fa fa-spinner fa-spin text-muted"></i>
+    </p>
+    <table class="table table-hover table-list" *ngIf="!loading && global.length > 0">
+        <tbody>
+            <tr *ngFor="let d of global">
+                <td class="normal-lh" [ngClass]="{'table-list-strike': d.excluded}">{{d.domains}}</td>
+                <td class="table-list-options">
+                    <div class="dropdown" appListDropdown>
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)" *ngIf="!d.excluded">
+                                <i class="fa fa-fw fa-close"></i>
+                                {{'exclude' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)" *ngIf="d.excluded">
+                                <i class="fa fa-fw fa-plus"></i>
+                                {{'include' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick (click)="customize(d)">
+                                <i class="fa fa-fw fa-scissors"></i>
+                                {{'customize' | i18n}}
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'save' | i18n}}</span>
+    </button>
+</form>

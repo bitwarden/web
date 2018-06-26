@@ -125,7 +125,7 @@
                                     <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match" [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)">
                                         <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}</option>
                                     </select>
-                                    <button class="btn btn-link text-danger ml-2" (click)="removeUri(u)" title="{{'remove' | i18n}}">
+                                    <button type="button" class="btn btn-link text-danger ml-2" (click)="removeUri(u)" title="{{'remove' | i18n}}">
                                         <i class="fa fa-minus-circle fa-lg"></i>
                                     </button>
                                 </div>
@@ -328,7 +328,7 @@
                                     <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox" [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean"
                                         appTrueFalseValue trueValue="true" falseValue="false">
                                 </div>
-                                <button class="btn btn-link text-danger ml-2" (click)="removeField(f)" title="{{'remove' | i18n}}">
+                                <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)" title="{{'remove' | i18n}}">
                                     <i class="fa fa-minus-circle fa-lg"></i>
                                 </button>
                             </div>
