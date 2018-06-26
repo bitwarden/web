@@ -165,14 +165,14 @@ export class ImportComponent {
         }
     }
 
-    getFormatName() {
+    getFormatInstructionTitle() {
         if (this.format == null) {
             return null;
         }
 
         const results = this.featuredImportOptions.concat(this.importOptions).filter((o) => o.id === this.format);
         if (results.length > 0) {
-            return results[0].name;
+            return this.i18nService.t('instructionsFor', results[0].name);
         }
         return null;
     }

@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
+import { CalloutComponent } from './components/callout.component';
 
 import { FooterComponent } from './layouts/footer.component';
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
@@ -102,6 +103,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkShareComponent,
+        CalloutComponent,
         ChangeEmailComponent,
         ChangePasswordComponent,
         CiphersComponent,

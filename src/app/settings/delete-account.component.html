@@ -9,10 +9,7 @@
             </div>
             <div class="modal-body">
                 <p>{{'deleteAccountDesc' | i18n}}</p>
-                <div class="callout callout-warning" role="alert">
-                    <h3 class="callout-heading">{{'warning' | i18n}}</h3>
-                    <p class="mb-0">{{'deleteAccountWarning' | i18n}}</p>
-                </div>
+                <app-callout type="warning">{{'deleteAccountWarning' | i18n}}</app-callout>
                 <label for="masterPassword">{{'masterPass' | i18n}}</label>
                 <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
                     appAutofocus>
