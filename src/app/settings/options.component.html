@@ -2,23 +2,28 @@
     <h1>{{'options' | i18n}}</h1>
 </div>
 <p>{{'optionsDesc' | i18n}}</p>
-<div class="row">
-    <div class="col-6">
-        <div class="form-group">
-            <label for="locale">{{'language' | i18n}}</label>
-            <select id="locale" name="Locale" [(ngModel)]="locale" (change)="saveLocale()" class="form-control">
-                <option *ngFor="let o of localeOptions" [ngValue]="o.value">{{o.name}}</option>
-            </select>
-            <small class="form-text text-muted">{{'languageDesc' | i18n}}</small>
+<form (ngSubmit)="submit()" ngNativeValidate>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="locale">{{'language' | i18n}}</label>
+                <select id="locale" name="Locale" [(ngModel)]="locale" class="form-control">
+                    <option *ngFor="let o of localeOptions" [ngValue]="o.value">{{o.name}}</option>
+                </select>
+                <small class="form-text text-muted">{{'languageDesc' | i18n}}</small>
+            </div>
         </div>
     </div>
-</div>
-<div class="form-group">
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="disableIcons" name="DisableIcons" [(ngModel)]="disableIcons" (change)="saveIcons()">
-        <label class="form-check-label" for="disableIcons">
-            {{'disableIcons' | i18n}}
-        </label>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="disableIcons" name="DisableIcons" [(ngModel)]="disableIcons">
+            <label class="form-check-label" for="disableIcons">
+                {{'disableIcons' | i18n}}
+            </label>
+        </div>
+        <small class="form-text text-muted">{{'disableIconsDesc' | i18n}}</small>
     </div>
-    <small class="form-text text-muted">{{'disableIconsDesc' | i18n}}</small>
-</div>
+    <button type="submit" class="btn btn-primary" appBlurClick>
+        {{'save' | i18n}}
+    </button>
+</form>

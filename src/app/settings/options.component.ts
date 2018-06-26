@@ -3,6 +3,7 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -20,8 +21,11 @@ export class OptionsComponent implements OnInit {
     locale: string;
     localeOptions: any[];
 
+    private startingLocale: string;
+
     constructor(private storageService: StorageService, private stateService: StateService,
-        private analytics: Angulartics2, i18nService: I18nService) {
+        private analytics: Angulartics2, private i18nService: I18nService,
+        private toasterService: ToasterService) {
         this.localeOptions = [{ name: i18nService.t('default'), value: null }];
         i18nService.supportedTranslationLocales.forEach((locale) => {
             this.localeOptions.push({ name: locale, value: locale });
@@ -30,24 +34,18 @@ export class OptionsComponent implements OnInit {
 
     async ngOnInit() {
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
-        this.locale = await this.storageService.get<string>(ConstantsService.localeKey);
+        this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
     }
 
-    async saveIcons() {
+    async submit() {
         await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
-        this.callAnalytics('Website Icons', !this.disableIcons);
-    }
-
-    async saveLocale() {
         await this.storageService.save(ConstantsService.localeKey, this.locale);
-        this.analytics.eventTrack.next({ action: 'Set Locale ' + this.locale });
-        window.location.reload();
+        this.analytics.eventTrack.next({ action: 'Saved Options' });
+        if (this.locale !== this.startingLocale) {
+            window.location.reload();
+        } else {
+            this.toasterService.popAsync('success', null, this.i18nService.t('optionsUpdated'));
+        }
     }
-
-    private callAnalytics(name: string, enabled: boolean) {
-        const status = enabled ? 'Enabled' : 'Disabled';
-        this.analytics.eventTrack.next({ action: `${status} ${name}` });
-    }
-
 }
