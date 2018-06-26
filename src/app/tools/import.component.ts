@@ -127,16 +127,14 @@ export class ImportComponent {
         const importResult = await importer.parse(fileContents);
         if (importResult.success) {
             if (importResult.folders.length === 0 && importResult.ciphers.length === 0) {
-                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                    this.i18nService.t('importNothingError'));
+                this.error(this.i18nService.t('importNothingError'));
                 return;
             } else if (importResult.ciphers.length > 0) {
                 const halfway = Math.floor(importResult.ciphers.length / 2);
                 const last = importResult.ciphers.length - 1;
                 if (this.badData(importResult.ciphers[0]) && this.badData(importResult.ciphers[halfway]) &&
                     this.badData(importResult.ciphers[last])) {
-                    this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                        this.i18nService.t('importFormatError'));
+                    this.error(this.i18nService.t('importFormatError'));
                     return;
                 }
             }
@@ -156,12 +154,15 @@ export class ImportComponent {
             try {
                 this.formPromise = this.apiService.postImportCiphers(request);
                 await this.formPromise;
+                this.analytics.eventTrack.next({
+                    action: 'Imported Data',
+                    properties: { label: this.format },
+                });
                 this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
                 this.router.navigate(['vault']);
             } catch { }
         } else {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('importFormatError'));
+            this.error(this.i18nService.t('importFormatError'));
         }
     }
 
@@ -175,6 +176,14 @@ export class ImportComponent {
             return this.i18nService.t('instructionsFor', results[0].name);
         }
         return null;
+    }
+
+    private error(errorMessage: string) {
+        this.analytics.eventTrack.next({
+            action: 'Import Data Failed',
+            properties: { label: this.format },
+        });
+        this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), errorMessage);
     }
 
     private getFileContents(file: File): Promise<string> {
