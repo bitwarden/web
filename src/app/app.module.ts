@@ -44,6 +44,7 @@ import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
+import { TwoFactorEmailComponent } from './settings/two-factor-email.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 
@@ -149,6 +150,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         TwoFactorAuthenticatorComponent,
         TwoFactorComponent,
         TwoFactorDuoComponent,
+        TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
         TwoFactorYubiKeyComponent,
         TwoFactorSetupComponent,
@@ -171,6 +173,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         ShareComponent,
         TwoFactorAuthenticatorComponent,
         TwoFactorDuoComponent,
+        TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
         TwoFactorYubiKeyComponent,
     ],
