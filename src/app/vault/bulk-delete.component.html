@@ -13,7 +13,7 @@
                 {{'deleteSelectedItemsDesc' | i18n: cipherIds.length}}
             </div>
             <div class="modal-footer">
-                <button appBlurClick type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
+                <button appBlurClick appAutoFocus type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
                     <i class="fa fa-spinner fa-spin"></i>
                     <span>{{'delete' | i18n}}</span>
                 </button>
