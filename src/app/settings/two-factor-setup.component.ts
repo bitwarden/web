@@ -19,6 +19,7 @@ import { ModalComponent } from '../modal.component';
 import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
 import { TwoFactorEmailComponent } from './two-factor-email.component';
+import { TwoFactorU2fComponent } from './two-factor-u2f.component';
 import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 
 @Component({
@@ -106,6 +107,12 @@ export class TwoFactorSetupComponent implements OnInit {
                 const emailComp = this.openModal(this.emailModalRef, TwoFactorEmailComponent);
                 emailComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Email);
+                });
+                break;
+            case TwoFactorProviderType.U2f:
+                const u2fComp = this.openModal(this.u2fModalRef, TwoFactorU2fComponent);
+                u2fComp.onUpdated.subscribe((enabled: boolean) => {
+                    this.updateStatus(enabled, TwoFactorProviderType.U2f);
                 });
                 break;
             default:

@@ -98,6 +98,7 @@ const plugins = [
         { from: './src/app-id.json' },
         { from: './src/images', to: 'images' },
         { from: './src/locales', to: 'locales' },
+        { from: './src/scripts', to: 'scripts' },
     ]),
     extractCss,
     new webpack.DefinePlugin({

@@ -970,6 +970,9 @@
     "message": "Providers",
     "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
   },
+  "enable": {
+    "message": "Enable"
+  },
   "enabled": {
     "message": "Enabled"
   },
@@ -1098,5 +1101,29 @@
   },
   "sendEmail": {
     "message": "Send Email"
+  },
+  "twoFactorU2fAdd": {
+    "message": "Add a FIDO U2F security key to your account"
+  },
+  "twoFactorU2fPlugIn": {
+    "message": "Plug the security key into your computer's USB port."
+  },
+  "twoFactorU2fTouchButton": {
+    "message": "If the security key has a button, touch it."
+  },
+  "twoFactorU2fWarning": {
+    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+  },
+  "twoFactorU2fSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+  },
+  "twoFactorU2fWaiting": {
+    "message": "Waiting for you to touch the button on your security key"
+  },
+  "twoFactorU2fClickEnable": {
+    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+  },
+  "twoFactorU2fProblemReading": {
+    "message": "There was a problem reading the security key."
   }
 }
