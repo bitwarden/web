@@ -17,6 +17,7 @@ import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 import { ModalComponent } from '../modal.component';
 
 import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.component';
+import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 
 @Component({
     selector: 'app-two-factor-setup',
@@ -81,9 +82,15 @@ export class TwoFactorSetupComponent implements OnInit {
     manage(type: TwoFactorProviderType) {
         switch (type) {
             case TwoFactorProviderType.Authenticator:
-                const component = this.openModal(this.authenticatorModalRef, TwoFactorAuthenticatorComponent);
-                component.onUpdated.subscribe((enabled: boolean) => {
+                const authComp = this.openModal(this.authenticatorModalRef, TwoFactorAuthenticatorComponent);
+                authComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Authenticator)
+                });
+                break;
+            case TwoFactorProviderType.Yubikey:
+                const yubiComp = this.openModal(this.yubikeyModalRef, TwoFactorYubiKeyComponent);
+                yubiComp.onUpdated.subscribe((enabled: boolean) => {
+                    this.updateStatus(enabled, TwoFactorProviderType.Yubikey)
                 });
                 break;
             default:
