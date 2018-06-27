@@ -39,6 +39,7 @@ export class ModalComponent extends BaseModalComponent {
             });
             this.el.on('shown.bs.modal', () => {
                 this.onShown.emit();
+                this.el.find('input[appAutoFocus]').focus();
             });
             this.el.on('hide.bs.modal', () => {
                 this.onClose.emit();
