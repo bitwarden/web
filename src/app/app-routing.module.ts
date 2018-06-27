@@ -18,6 +18,7 @@ import { AccountComponent } from './settings/account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
@@ -55,6 +56,7 @@ const routes: Routes = [
                     { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
                     { path: 'options', component: OptionsComponent, canActivate: [AuthGuardService] },
                     { path: 'domain-rules', component: DomainRulesComponent, canActivate: [AuthGuardService] },
+                    { path: 'two-factor', component: TwoFactorSetupComponent, canActivate: [AuthGuardService] },
                 ],
             },
             {

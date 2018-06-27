@@ -1,0 +1,35 @@
+<div class="page-header">
+    <h1>{{'twoStepLogin' | i18n}}</h1>
+</div>
+<app-callout type="warning">
+    <p>{{'twoStepLoginRecoveryWarning' | i18n}}</p>
+    <button type="button" class="btn btn-outline-secondary">{{'viewRecoveryCode' | i18n}}</button>
+</app-callout>
+<h2 class="mt-5">
+    {{'providers' | i18n}}
+    <small *ngIf="loading">
+        <i class="fa fa-spinner fa-spin text-muted"></i>
+    </small>
+</h2>
+<ul class="list-group list-group-2fa">
+    <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
+        <div class="logo-2fa d-flex justify-content-center">
+            <img [src]="'../images/two-factor/' + p.type + '.png'" alt="">
+        </div>
+        <div class="mx-4">
+            <h3 class="mb-0">
+                {{p.name}}
+                <i class="fa fa-check text-success fa-fw" *ngIf="p.enabled" title="{{'enabled' | i18n}}"></i>
+                <a href="#" appStopClick class="badge badge-primary" *ngIf="!premium && p.premium">
+                    {{'premium' | i18n}}
+                </a>
+            </h3>
+            {{p.description}}
+        </div>
+        <div class="ml-auto">
+            <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!premium && p.premium">
+                {{'manage' | i18n}}
+            </button>
+        </div>
+    </li>
+</ul>

@@ -42,6 +42,7 @@ import { OptionsComponent } from './settings/options.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
@@ -144,6 +145,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         TrueFalseValueDirective,
         TwoFactorComponent,
         TwoFactorOptionsComponent,
+        TwoFactorSetupComponent,
         UserLayoutComponent,
         VaultComponent,
     ],
