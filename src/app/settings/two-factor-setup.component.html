@@ -27,9 +27,16 @@
             {{p.description}}
         </div>
         <div class="ml-auto">
-            <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!premium && p.premium">
+            <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!premium && p.premium" (click)="manage(p.type)">
                 {{'manage' | i18n}}
             </button>
         </div>
     </li>
 </ul>
+
+<ng-template #authenticatorTemplate></ng-template>
+<ng-template #recoveryTemplate></ng-template>
+<ng-template #duoTemplate></ng-template>
+<ng-template #emailTemplate></ng-template>
+<ng-template #yubikeyTemplate></ng-template>
+<ng-template #u2fTemplate></ng-template>

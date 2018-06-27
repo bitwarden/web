@@ -1,0 +1,83 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'twoStepLogin' | i18n}}
+                    <small>{{'authenticatorAppTitle' | i18n}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form #authForm (ngSubmit)="auth()" [appApiAction]="authPromise" ngNativeValidate *ngIf="!authed">
+                <div class="modal-body">
+                    <p>{{'twoStepLoginAuthDesc' | i18n}}</p>
+                    <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                    <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
+                        appAutoFocus>
+                </div>
+                <div class="modal-footer">
+                    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="authForm.loading">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        <span>{{'continue' | i18n}}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                </div>
+            </form>
+            <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
+                <div class="modal-body">
+                    <ng-container *ngIf="!enabled">
+                        <p>{{'twoStepAuthenticatorDesc' | i18n}}</p>
+                        <p>
+                            <strong>1. {{'twoStepAuthenticatorDownloadApp' | i18n}}</strong>
+                        </p>
+                    </ng-container>
+                    <ng-container *ngIf="enabled">
+                        <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle">
+                            <p>{{'twoStepLoginProviderEnabled' | i18n}}</p>
+                            {{'twoStepAuthenticatorReaddDesc' | i18n}}
+                        </app-callout>
+                        <p>{{'twoStepAuthenticatorNeedApp' | i18n}}</p>
+                    </ng-container>
+                    <ul class="fa-ul">
+                        <li>
+                            <i class="fa-li fa fa-apple"></i>{{'iosDevices' | i18n}}:
+                            <a href="https://itunes.apple.com/us/app/authy/id494168017?mt=8" target="_blank" rel="noopener">Authy</a>
+                        </li>
+                        <li>
+                            <i class="fa-li fa fa-android"></i>{{'androidDevices' | i18n}}:
+                            <a href="https://play.google.com/store/apps/details?id=com.authy.authy" target="_blank" rel="noopener">Authy</a>
+                        </li>
+                        <li>
+                            <i class="fa-li fa fa-windows"></i>{{'windowsDevices' | i18n}}:
+                            <a href="https://www.microsoft.com/p/authenticator/9wzdncrfj3rj" target="_blank" rel="noopener">Microsoft Authenticator</a>
+                        </li>
+                    </ul>
+                    <p>{{'twoStepAuthenticatorAppsRecommended' | i18n}}</p>
+                    <p *ngIf="!enabled">
+                        <strong>2. {{'twoStepAuthenticatorScanCode' | i18n}}</strong>
+                    </p>
+                    <hr *ngIf="enabled">
+                    <p class="text-center" [ngClass]="{'mb-0': enabled}">
+                        <img [src]="qr" width="160" height="160" alt="">
+                        <br>
+                        <code title="{{'key' | i18n}}">{{key}}</code>
+                    </p>
+                    <ng-container *ngIf="!enabled">
+                        <label for="token">3. {{'twoStepAuthenticatorEnterCode' | i18n}}</label>
+                        <input id="token" type="text" name="Token" class="form-control" [(ngModel)]="token" required>
+                    </ng-container>
+                </div>
+                <div class="modal-footer">
+                    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        <span *ngIf="!enabled">{{'save' | i18n}}</span>
+                        <span *ngIf="enabled">{{'disable' | i18n}}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

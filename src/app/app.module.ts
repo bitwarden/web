@@ -42,6 +42,7 @@ import { OptionsComponent } from './settings/options.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 
 import { ExportComponent } from './tools/export.component';
@@ -143,6 +144,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         StopPropDirective,
         ToolsComponent,
         TrueFalseValueDirective,
+        TwoFactorAuthenticatorComponent,
         TwoFactorComponent,
         TwoFactorOptionsComponent,
         TwoFactorSetupComponent,
@@ -163,6 +165,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
         ShareComponent,
+        TwoFactorAuthenticatorComponent,
         TwoFactorOptionsComponent,
     ],
     providers: [],
