@@ -401,6 +401,24 @@ app-breach-report {
     }
 }
 
+.braintree-placeholder, .braintree-sheet__header {
+    display: none;
+}
+
+.braintree-sheet__content--button {
+    text-align: left;
+    padding: 0;
+    min-height: 0;
+}
+
+.braintree-sheet__container {
+    margin-bottom: 0;
+}
+
+.braintree-sheet {
+    border: none;
+}
+
 .totp {
     .totp-code {
         @extend .text-monospace;
