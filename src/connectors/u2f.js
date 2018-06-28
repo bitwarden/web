@@ -1,4 +1,4 @@
-﻿require('../scripts/u2f');
+﻿import * as u2f from 'u2f';
 
 document.addEventListener('DOMContentLoaded', function (event) {
     init();

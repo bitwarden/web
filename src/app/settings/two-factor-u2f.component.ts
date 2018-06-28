@@ -35,12 +35,13 @@ export class TwoFactorU2fComponent implements OnInit, OnDestroy {
     u2fListening: boolean;
     u2fResponse: string;
     masterPassword: string;
-    u2fScript: HTMLScriptElement;
 
     authPromise: Promise<any>;
     formPromise: Promise<any>;
 
     private masterPasswordHash: string;
+    private closed = false;
+    private u2fScript: HTMLScriptElement;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
@@ -55,6 +56,7 @@ export class TwoFactorU2fComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.closed = true;
         window.document.body.removeChild(this.u2fScript);
     }
 
@@ -86,7 +88,7 @@ export class TwoFactorU2fComponent implements OnInit, OnDestroy {
     }
 
     private readDevice() {
-        if (this.enabled) {
+        if (this.closed || this.enabled) {
             return;
         }
 

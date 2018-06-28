@@ -147,6 +147,9 @@ const config = {
         'connectors/u2f': './src/connectors/u2f.js',
         'connectors/duo': './src/connectors/duo.ts',
     },
+    externals: {
+        'u2f': 'u2f',
+    },
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
