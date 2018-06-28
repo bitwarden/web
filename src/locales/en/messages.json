@@ -1132,5 +1132,61 @@
   "printCode": {
     "message": "Print Code",
     "description": "Print 2FA recovery code"
+  },
+  "reports": {
+    "message": "Reports"
+  },
+  "dataBreachReport": {
+    "message": "Data Breach Report"
+  },
+  "breachDesc": {
+    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+  },
+  "breachEmailNotFound": {
+    "message": "Your email ($EMAIL$) was not found in any known data breaches.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "user@example.com"
+      }
+    }
+  },
+  "goodNews": {
+    "message": "Good News",
+    "description": "ex. Good News, No Breached Accounts Found!"
+  },
+  "breachEmailFound": {
+    "message": "Your email ($EMAIL$) was found in $COUNT$ different data breaches online.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "user@example.com"
+      },
+      "count": {
+        "content": "$2",
+        "example": "7"
+      }
+    }
+  },
+  "breachFound": {
+    "message": "Breached Accounts Found"
+  },
+  "compromisedData": {
+    "message": "Compromised data"
+  },
+  "website": {
+    "message": "Website"
+  },
+  "affectedUsers": {
+    "message": "Affected Users"
+  },
+  "breachOccurred": {
+    "message": "Breach Occurred"
+  },
+  "breachReported": {
+    "message": "Breach Reported"
+  },
+  "reportError": {
+    "message": "An error occurred trying to load the report. Try again"
   }
 }

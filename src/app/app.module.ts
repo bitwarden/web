@@ -51,6 +51,7 @@ import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 
+import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorHistoryComponent } from './tools/password-generator-history.component';
@@ -109,6 +110,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         AvatarComponent,
         BlurClickDirective,
         BoxRowDirective,
+        BreachReportComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkShareComponent,

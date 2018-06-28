@@ -20,6 +20,7 @@ import { OptionsComponent } from './settings/options.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 
+import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
@@ -67,6 +68,7 @@ const routes: Routes = [
                     { path: 'import', component: ImportComponent, canActivate: [AuthGuardService] },
                     { path: 'export', component: ExportComponent, canActivate: [AuthGuardService] },
                     { path: 'generator', component: PasswordGeneratorComponent, canActivate: [AuthGuardService] },
+                    { path: 'breach-report', component: BreachReportComponent, canActivate: [AuthGuardService] },
                 ],
             },
         ],
