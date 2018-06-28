@@ -1,66 +1,43 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
-import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerificationRequest';
-import { TwoFactorProviderRequest } from 'jslib/models/request/twoFactorProviderRequest';
 import { UpdateTwoFactorYubioOtpRequest } from 'jslib/models/request/updateTwoFactorYubioOtpRequest';
 import { TwoFactorYubiKeyResponse } from 'jslib/models/response/twoFactorYubiKeyResponse';
 
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 
+import { TwoFactorBaseComponent } from './two-factor-base.component';
+
 @Component({
     selector: 'app-two-factor-yubikey',
     templateUrl: 'two-factor-yubikey.component.html',
 })
-export class TwoFactorYubiKeyComponent {
-    @Output() onUpdated = new EventEmitter<boolean>();
-
-    enabled = false;
-    authed = false;
+export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     keys: any[];
     nfc = false;
-    masterPassword: string;
 
-    authPromise: Promise<TwoFactorYubiKeyResponse>;
     formPromise: Promise<any>;
     disablePromise: Promise<any>;
 
-    private masterPasswordHash: string;
-
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private platformUtilsService: PlatformUtilsService) { }
-
-    async auth() {
-        if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
-            return;
-        }
-
-        const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = this.masterPasswordHash =
-            await this.cryptoService.hashPassword(this.masterPassword, null);
-        try {
-            this.authPromise = this.apiService.getTwoFactorYubiKey(request);
-            const response = await this.authPromise;
-            this.authed = true;
-            this.processResponse(response);
-        } catch { }
+    constructor(apiService: ApiService, i18nService: I18nService,
+        analytics: Angulartics2, toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService) {
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService,
+            TwoFactorProviderType.Yubikey);
     }
 
-    async submit() {
+    auth(authResponse: any) {
+        super.auth(authResponse);
+        this.processResponse(authResponse.response);
+    }
+
+    submit() {
         const request = new UpdateTwoFactorYubioOtpRequest();
         request.masterPasswordHash = this.masterPasswordHash;
         request.key1 = this.keys != null && this.keys.length > 0 ? this.keys[0].key : null;
@@ -69,35 +46,17 @@ export class TwoFactorYubiKeyComponent {
         request.key4 = this.keys != null && this.keys.length > 3 ? this.keys[3].key : null;
         request.key5 = this.keys != null && this.keys.length > 4 ? this.keys[4].key : null;
         request.nfc = this.nfc;
-        try {
+
+        return super.enable(async () => {
             this.formPromise = this.apiService.putTwoFactorYubiKey(request);
             const response = await this.formPromise;
             await this.processResponse(response);
-            this.analytics.eventTrack.next({ action: 'Enabled Two-step YubiKey' });
-            this.processResponse(response);
             this.toasterService.popAsync('success', null, this.i18nService.t('yubikeysUpdated'));
-            this.onUpdated.emit(true);
-        } catch { }
+        });
     }
 
-    async disable() {
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('twoStepDisableDesc'),
-            this.i18nService.t('disable'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return;
-        }
-
-        try {
-            const request = new TwoFactorProviderRequest();
-            request.masterPasswordHash = this.masterPasswordHash;
-            request.type = TwoFactorProviderType.Yubikey;
-            this.disablePromise = this.apiService.putTwoFactorDisable(request);
-            await this.disablePromise;
-            this.enabled = false;
-            this.analytics.eventTrack.next({ action: 'Disabled Two-step YubiKey' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('twoStepDisabled'));
-            this.onUpdated.emit(false);
-        } catch { }
+    disable() {
+        return super.disable(this.disablePromise);
     }
 
     remove(key: any) {

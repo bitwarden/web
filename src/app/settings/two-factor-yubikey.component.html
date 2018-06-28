@@ -10,21 +10,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form #authForm (ngSubmit)="auth()" [appApiAction]="authPromise" ngNativeValidate *ngIf="!authed">
-                <div class="modal-body">
-                    <p>{{'twoStepLoginAuthDesc' | i18n}}</p>
-                    <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                    <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
-                        appAutoFocus>
-                </div>
-                <div class="modal-footer">
-                    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="authForm.loading">
-                        <i class="fa fa-spinner fa-spin"></i>
-                        <span>{{'continue' | i18n}}</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
-                </div>
-            </form>
+            <app-two-factor-verify [type]="twoFactorProviderType.Yubikey" (onAuthed)="auth($event)" *ngIf="!authed">
+            </app-two-factor-verify>
             <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
                 <div class="modal-body">
                     <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle" *ngIf="enabled">
@@ -49,7 +36,8 @@
                     <div class="row">
                         <div class="form-group col-6" *ngFor="let k of keys; let i = index">
                             <label for="key{{i + 1}}">{{'yubikeyX' | i18n : i + 1}}</label>
-                            <input id="key{{i + 1}}" type="text" name="Key{{i + 1}}" class="form-control" [(ngModel)]="k.key" *ngIf="!k.existingKey" appInputVerbatim>
+                            <input id="key{{i + 1}}" type="text" name="Key{{i + 1}}" class="form-control" [(ngModel)]="k.key" *ngIf="!k.existingKey"
+                                appInputVerbatim>
                             <div class="d-flex" *ngIf="k.existingKey">
                                 <span class="mr-2">{{k.existingKey}}</span>
                                 <button type="button" class="btn btn-link text-danger ml-auto" appBlurClick (click)="remove(k)" title="{{'remove' | i18n}}">
