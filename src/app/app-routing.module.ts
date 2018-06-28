@@ -19,6 +19,7 @@ import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
+import { UserBillingComponent } from './settings/user-billing.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
@@ -58,6 +59,7 @@ const routes: Routes = [
                     { path: 'options', component: OptionsComponent, canActivate: [AuthGuardService] },
                     { path: 'domain-rules', component: DomainRulesComponent, canActivate: [AuthGuardService] },
                     { path: 'two-factor', component: TwoFactorSetupComponent, canActivate: [AuthGuardService] },
+                    { path: 'billing', component: UserBillingComponent, canActivate: [AuthGuardService] },
                 ],
             },
             {
