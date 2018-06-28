@@ -14,12 +14,12 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerificationRequest';
+import { TwoFactorEmailRequest } from 'jslib/models/request/twoFactorEmailRequest';
 import { TwoFactorProviderRequest } from 'jslib/models/request/twoFactorProviderRequest';
 
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 import { UpdateTwoFactorEmailRequest } from 'jslib/models/request/updateTwoFactorEmailRequest';
 import { TwoFactorEmailResponse } from 'jslib/models/response/twoFactorEmailResponse';
-import { TwoFactorEmailRequest } from 'jslib/models/request';
 
 @Component({
     selector: 'app-two-factor-email',
