@@ -46,6 +46,9 @@ export class TwoFactorVerifyComponent {
 
         try {
             switch (this.type) {
+                case -1:
+                    this.formPromise = this.apiService.getTwoFactorRecover(request);
+                    break;
                 case TwoFactorProviderType.Duo:
                     this.formPromise = this.apiService.getTwoFactorDuo(request);
                     break;

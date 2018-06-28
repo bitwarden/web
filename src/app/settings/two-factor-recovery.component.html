@@ -1,0 +1,27 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'twoStepLogin' | i18n}}
+                    <small>{{'recoveryCodeTitle' | i18n}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <app-two-factor-verify [type]="-1" (onAuthed)="auth($event)" *ngIf="!authed">
+            </app-two-factor-verify>
+            <ng-container *ngIf="authed">
+                <div class="modal-body text-center">
+                    <p>{{'twoFactorRecoveryYourCode' | i18n}}:</p>
+                    <code>{{code}}</code>
+                </div>
+                <div class="modal-footer">
+                    <button appBlurClick type="button" class="btn btn-primary" (click)="print()">{{'printCode' | i18n}}</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

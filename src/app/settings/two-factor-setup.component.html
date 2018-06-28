@@ -3,7 +3,7 @@
 </div>
 <app-callout type="warning">
     <p>{{'twoStepLoginRecoveryWarning' | i18n}}</p>
-    <button type="button" class="btn btn-outline-secondary">{{'viewRecoveryCode' | i18n}}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="recoveryCode()">{{'viewRecoveryCode' | i18n}}</button>
 </app-callout>
 <h2 class="mt-5">
     {{'providers' | i18n}}

@@ -19,6 +19,7 @@ import { ModalComponent } from '../modal.component';
 import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
 import { TwoFactorEmailComponent } from './two-factor-email.component';
+import { TwoFactorRecoveryComponent } from './two-factor-recovery.component';
 import { TwoFactorU2fComponent } from './two-factor-u2f.component';
 import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 
@@ -118,6 +119,10 @@ export class TwoFactorSetupComponent implements OnInit {
             default:
                 break;
         }
+    }
+
+    recoveryCode() {
+        this.openModal(this.recoveryModalRef, TwoFactorRecoveryComponent);
     }
 
     private openModal<T>(ref: ViewContainerRef, type: Type<T>): T {

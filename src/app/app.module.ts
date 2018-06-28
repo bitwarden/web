@@ -45,6 +45,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
 import { TwoFactorEmailComponent } from './settings/two-factor-email.component';
+import { TwoFactorRecoveryComponent } from './settings/two-factor-recovery.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
@@ -154,10 +155,11 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         TwoFactorDuoComponent,
         TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
+        TwoFactorRecoveryComponent,
+        TwoFactorSetupComponent,
         TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
         TwoFactorYubiKeyComponent,
-        TwoFactorSetupComponent,
         UserLayoutComponent,
         VaultComponent,
     ],
@@ -179,6 +181,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         TwoFactorDuoComponent,
         TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
+        TwoFactorRecoveryComponent,
         TwoFactorU2fComponent,
         TwoFactorYubiKeyComponent,
     ],
