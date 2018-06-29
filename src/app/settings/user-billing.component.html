@@ -1,4 +1,106 @@
 <div class="page-header">
-    <h1>{{'billingAndLicensing' | i18n}}</h1>
+    <h1>
+        {{'billingAndLicensing' | i18n}}
+        <small>
+            <i class="fa fa-spinner fa-spin text-muted" *ngIf="firstLoaded && loading"></i>
+        </small>
+    </h1>
 </div>
-<app-premium *ngIf="!premium" (onPremiumPurchased)="loadPremiumStatus()"></app-premium>
+<app-premium *ngIf="!premium" (onPremiumPurchased)="load()"></app-premium>
+<ng-container *ngIf="premium">
+    <i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading"></i>
+    <ng-container *ngIf="billing">
+        <app-callout type="warning" title="{{'canceled' | i18n}}" *ngIf="subscription.cancelled">{{'subscriptionCanceled' | i18n}}</app-callout>
+        <app-callout type="warning" title="{{'pendingCancellation' | i18n}}" *ngIf="subscriptionMarkedForCancel">
+            <p>{{'subscriptionPendingCanceled' | i18n}}</p>
+            <button #reinstateBtn type="button" class="btn btn-outline-secondary btn-submit" (click)="reinstate()" [appApiAction]="reinstatePromise"
+                [disabled]="reinstateBtn.loading">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span>{{'reinstateSubscription' | i18n}}</span>
+            </button>
+        </app-callout>
+        <div class="row">
+            <div class="col-4">
+                <dl>
+                    <dt>{{'status' | i18n}}</dt>
+                    <dd>
+                        <span class="text-capitalize">{{(subscription && subscription.status) || '-'}}</span>
+                        <span class="badge badge-warning" *ngIf="subscriptionMarkedForCancel">{{'pendingCancellation' | i18n}}</span>
+                    </dd>
+                    <dt>{{'nextCharge' | i18n}}</dt>
+                    <dd>{{nextInvoice ? ((nextInvoice.date | date: 'mediumDate') + ', ' + (nextInvoice.amount | currency:'$'))
+                        : '-'}}</dd>
+                </dl>
+            </div>
+            <div class="col-8">
+                <strong class="d-block mb-1">{{'details' | i18n}}</strong>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let i of subscription.items">
+                            <td>
+                                {{i.name}} {{i.quantity > 1 ? '&times;' + i.quantity : ''}} @ {{i.amount | currency:'$'}}
+                            </td>
+                            <td>
+                                {{(i.quantity * i.amount) | currency:'$'}} /{{i.interval | i18n}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <ng-container *ngIf="!subscription.cancelled || subscriptionMarkedForCancel">
+            <div class="d-flex">
+                <button type="button" class="btn btn-outline-secondary" (click)="license()" *ngIf="!subscription.cancelled">
+                    {{'downloadLicense' | i18n}}
+                </button>
+                <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
+                    [disabled]="cancelBtn.loading" *ngIf="!subscription.cancelled && !subscriptionMarkedForCancel">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'cancelSubscription' | i18n}}</span>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!selfHosted">
+            <h2 class="spaced-header">{{'storage' | i18n}}</h2>
+            <p>{{'subscriptionStorage' | i18n : billing.maxStorageGb : billing.storageName}}</p>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{width: storagePercentage + '%' }" [attr.aria-valuenow]="storagePercentage"
+                    aria-valuemin="0" aria-valuemax="100">{{(storagePercentage / 100) | percent}}</div>
+            </div>
+            <ng-container *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel && paymentSource">
+                <div class="mt-3">
+                    <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(true)">
+                        {{'addStorage' | i18n}}
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(false)">
+                        {{'removeStorage' | i18n}}
+                    </button>
+                </div>
+            </ng-container>
+            <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>
+            <p *ngIf="!paymentSource">{{'noPaymentMethod' | i18n}}</p>
+            <p *ngIf="paymentSource">
+                <i class="fa fa-fw" [ngClass]="{'fa-credit-card': paymentSource.type === paymentMethodType.Card,
+                'fa-university': paymentSource.type === paymentMethodType.BankAccount, 
+                'fa-paypal text-primary': paymentSource.type === paymentMethodType.PayPal}"></i>
+                {{paymentSource.description}}
+            </p>
+            <button type="button" class="btn btn-outline-secondary" (click)="changePayment()">
+                {{(paymentSource ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}
+            </button>
+            <h2 class="spaced-header">{{'charges' | i18n}}</h2>
+            <p *ngIf="!charges || !charges.length">{{'noCharges' | i18n}}</p>
+            <table class="table mb-2" *ngIf="charges && charges.length">
+                <tbody>
+                    <tr *ngFor="let c of charges">
+                        <td>{{c.createdDate | date:'mediumDate'}}</td>
+                        <td>{{c.paymentSource ? c.paymentSource.description : '-'}}</td>
+                        <td class="text-capitalize">{{c.status}}</td>
+                        <td>{{c.amount | currency:'$'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <small class="text-muted">* {{'chargesStatement' | i18n : 'BITWARDEN'}}</small>
+        </ng-container>
+    </ng-container>
+</ng-container>

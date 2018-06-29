@@ -215,6 +215,9 @@
   "cancel": {
     "message": "Cancel"
   },
+  "canceled": {
+    "message": "Canceled"
+  },
   "close": {
     "message": "Close"
   },
@@ -1282,5 +1285,103 @@
   },
   "paypalClickSubmit": {
     "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+  },
+  "cancelSubscription": {
+    "message": "Cancel Subscription"
+  },
+  "subscriptionCanceled": {
+    "message": "The subscription has been canceled."
+  },
+  "pendingCancellation": {
+    "message": "Pending Cancellation"
+  },
+  "subscriptionPendingCanceled": {
+    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+  },
+  "reinstateSubscription": {
+    "message": "Reinstate Subscription"
+  },
+  "reinstateConfirmation": {
+    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+  },
+  "reinstated": {
+    "message": "The subscription has been reinstated."
+  },
+  "cancelConfirmation": {
+    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+  },
+  "canceledSubscription": {
+    "message": "The subscription has been canceled."
+  },
+  "neverExpires": {
+    "message": "Never Expires"
+  },
+  "status": {
+    "message": "Status"
+  },
+  "nextCharge": {
+    "message": "Next Charge"
+  },
+  "details": {
+    "message": "Details"
+  },
+  "downloadLicense": {
+    "message": "Download License"
+  },
+  "updateLicense": {
+    "message": "Update License"
+  },
+  "manageSubscription": {
+    "message": "Manage Subscription"
+  },
+  "storage": {
+    "message": "Storage"
+  },
+  "addStorage": {
+    "message": "Add Storage"
+  },
+  "removeStorage": {
+    "message": "Remove Storage"
+  },
+  "subscriptionStorage": {
+    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "placeholders": {
+      "max_storage": {
+        "content": "$1",
+        "example": "4"
+      },
+      "used_storage": {
+        "content": "$2",
+        "example": "65 MB"
+      }
+    }
+  },
+  "paymentMethod": {
+    "message": "Payment Method"
+  },
+  "noPaymentMethod": {
+    "message": "No payment method on file."
+  },
+  "addPaymentMethod": {
+    "message": "Add Payment Method"
+  },
+  "changePaymentMethod": {
+    "message": "Change Payment Method"
+  },
+  "charges": {
+    "message": "Charges",
+    "description": "Credit card charges/payments."
+  },
+  "noCharges": {
+    "message": "No charges."
+  },
+  "chargesStatement": {
+    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "placeholders": {
+      "statement_name": {
+        "content": "$1",
+        "example": "BITWARDEN"
+      }
+    }
   }
 }

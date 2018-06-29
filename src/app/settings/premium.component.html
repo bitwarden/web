@@ -22,7 +22,7 @@
             {{'premiumSignUpFuture' | i18n}}
         </li>
     </ul>
-    <p class="text-lg mb-0">{{'premiumPrice' | i18n : (premiumPrice | currency:'USD':'$')}}</p>
+    <p class="text-lg mb-0">{{'premiumPrice' | i18n : (premiumPrice | currency:'$')}}</p>
 </app-callout>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <h2 class="mt-5">{{'addons' | i18n}}</h2>
@@ -31,15 +31,15 @@
             <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
             <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb" [(ngModel)]="additionalStorage"
                 min="0" max="99" step="1" placeholder="{{'additionalStorageGbDesc' | i18n}}">
-            <small class="text-muted form-text">{{'additionalStorageDesc' | i18n : (storageGbPrice | currency:'USD')}}</small>
+            <small class="text-muted form-text">{{'additionalStorageDesc' | i18n : (storageGbPrice | currency:'$')}}</small>
         </div>
     </div>
     <h2 class="spaced-header">{{'summary' | i18n}}</h2>
-    {{'premiumMembership' | i18n}}: {{premiumPrice | currency:'USD':'$'}}
-    <br> {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} GB &times; {{storageGbPrice | currency:'USD'}} = {{additionalStorageTotal
-    | currency:'USD':'$'}}
+    {{'premiumMembership' | i18n}}: {{premiumPrice | currency:'$'}}
+    <br> {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} GB &times; {{storageGbPrice | currency:'$'}} = {{additionalStorageTotal
+    | currency:'$'}}
     <hr class="my-2">
-    <strong>{{'total' | i18n}}:</strong> USD {{total | currency:'USD'}} /{{'year' | i18n}}
+    <strong>{{'total' | i18n}}:</strong> {{total | currency:'USD $'}} /{{'year' | i18n}}
     <br>
     <small class="text-muted">{{'paymentChargedAnnually' | i18n}}</small>
     <h2 class="spaced-header">{{'paymentInformation' | i18n}}</h2>
