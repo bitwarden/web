@@ -18,6 +18,7 @@ import { KvpRequest } from 'jslib/models/request/kvpRequest';
 
 import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
+import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
@@ -76,6 +77,7 @@ export class ImportComponent {
             { id: 'operacsv', name: 'Opera (csv)' },
             { id: 'vivaldicsv', name: 'Vivaldi (csv)' },
             { id: 'gnomejson', name: 'GNOME Passwords and Keys/Seahorse (json)' },
+            { id: 'blurcsv', name: 'Blur (csv)' },
         ].sort((a, b) => {
             if (a.name == null && b.name != null) {
                 return -1;
@@ -225,6 +227,8 @@ export class ImportComponent {
                 return new KeePassXCsvImporter();
             case 'aviracsv':
                 return new AviraCsvImporter();
+            case 'blurcsv':
+                return new BlurCsvImporter();
             default:
                 return null;
         }
