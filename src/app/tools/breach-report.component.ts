@@ -12,21 +12,27 @@ import { BreachAccountResponse } from 'jslib/models/response/breachAccountRespon
     templateUrl: 'breach-report.component.html',
 })
 export class BreachReportComponent implements OnInit {
-    loading = true;
     error = false;
-    email: string;
+    username: string;
+    checkedUsername: string;
     breachedAccounts: BreachAccountResponse[] = [];
+    formPromise: Promise<BreachAccountResponse[]>;
 
     constructor(private auditService: AuditService, private userService: UserService) { }
 
     async ngOnInit() {
-        this.loading = true;
+        this.username = await this.userService.getEmail();
+    }
+
+    async submit() {
+        this.error = false;
+        this.username = this.username.toLowerCase();
         try {
-            this.email = await this.userService.getEmail();
-            this.breachedAccounts = await this.auditService.breachedAccounts(this.email);
+            this.formPromise = this.auditService.breachedAccounts(this.username);
+            this.breachedAccounts = await this.formPromise;
         } catch {
             this.error = true;
         }
-        this.loading = false;
+        this.checkedUsername = this.username;
     }
 }

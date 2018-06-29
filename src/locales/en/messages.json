@@ -1148,10 +1148,16 @@
   "breachDesc": {
     "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
   },
-  "breachEmailNotFound": {
-    "message": "Your email ($EMAIL$) was not found in any known data breaches.",
+  "breachCheckUsernameEmail": {
+    "message": "Check any usernames or email addresses that you use."
+  },
+  "checkBreaches": {
+    "message": "Check Breaches"
+  },
+  "breachUsernameNotFound": {
+    "message": "$USERNAME$ was not found in any known data breaches.",
     "placeholders": {
-      "email": {
+      "username": {
         "content": "$1",
         "example": "user@example.com"
       }
@@ -1161,10 +1167,10 @@
     "message": "Good News",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
-  "breachEmailFound": {
-    "message": "Your email ($EMAIL$) was found in $COUNT$ different data breaches online.",
+  "breachUsernameFound": {
+    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
     "placeholders": {
-      "email": {
+      "username": {
         "content": "$1",
         "example": "user@example.com"
       },
