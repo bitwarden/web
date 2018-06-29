@@ -26,11 +26,13 @@
 </app-callout>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <h2 class="mt-5">{{'addons' | i18n}}</h2>
-    <div class="form-group">
-        <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
-        <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb" [(ngModel)]="additionalStorage"
-            min="0" max="99" step="1" placeholder="{{'additionalStorageGbDesc' | i18n}}">
-        <small class="text-muted form-text">{{'additionalStorageDesc' | i18n : (storageGbPrice | currency:'USD')}}</small>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
+            <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb" [(ngModel)]="additionalStorage"
+                min="0" max="99" step="1" placeholder="{{'additionalStorageGbDesc' | i18n}}">
+            <small class="text-muted form-text">{{'additionalStorageDesc' | i18n : (storageGbPrice | currency:'USD')}}</small>
+        </div>
     </div>
     <h2 class="spaced-header">{{'summary' | i18n}}</h2>
     {{'premiumMembership' | i18n}}: {{premiumPrice | currency:'USD':'$'}}
