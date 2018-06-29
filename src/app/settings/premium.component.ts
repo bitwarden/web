@@ -55,7 +55,7 @@ export class PremiumComponent {
     private async finalizePremium() {
         await this.apiService.refreshIdentityToken();
         this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('accountUpdated'));
+        this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
         this.onPremiumPurchased.emit();
     }
 }
