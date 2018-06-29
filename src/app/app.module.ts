@@ -39,6 +39,7 @@ import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.co
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
+import { PaymentComponent } from './settings/payment.component';
 import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
@@ -144,6 +145,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         OrganizationLayoutComponent,
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
+        PaymentComponent,
         PremiumComponent,
         ProfileComponent,
         PurgeVaultComponent,

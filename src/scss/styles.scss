@@ -25,6 +25,7 @@ $h4-font-size: 1rem;
 $h5-font-size: 1rem;
 $h6-font-size: 1rem;
 
+$font-size-lg: 1.18rem;
 $code-font-size: 100%;
 
 $navbar-padding-y: .75rem;
@@ -84,7 +85,7 @@ body {
     }
 }
 
-.secondary-header {
+.secondary-header, .spaced-header {
     margin-top: 4rem;
 }
 
@@ -286,6 +287,10 @@ label:not(.form-check-label) {
     }
 }
 
+.text-lg {
+    font-size: $font-size-lg;
+}
+
 app-vault-groupings {
     .card {
         #search {
@@ -375,18 +380,6 @@ app-import {
 app-avatar {
     img {
         @extend .rounded;
-    }
-}
-
-app-two-factor-recovery {
-    code {
-        font-size: $font-size-lg;
-    }
-}
-
-app-breach-report {
-    .list-group-item h3 {
-        font-size: $font-size-lg;
     }
 }
 

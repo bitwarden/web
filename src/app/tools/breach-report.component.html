@@ -19,7 +19,7 @@
                         <img [src]="'https://haveibeenpwned.com/Content/Images/PwnedLogos/' + a.name + '.' + a.logoType" alt="" class="img-fluid">
                     </div>
                     <div class="col-7">
-                        <h3>{{a.title}}</h3>
+                        <h3 class="text-lg">{{a.title}}</h3>
                         <p [innerHTML]="a.description"></p>
                         <p class="mb-1">{{'compromisedData' | i18n}}:</p>
                         <ul>
