@@ -1,5 +1,31 @@
+<app-callout type="success" icon="fa-star" title="{{'goPremium' | i18n}}">
+    <p>{{'premiumSignUpAndGet' | i18n}}</p>
+    <ul class="fa-ul">
+        <li>
+            <i class="fa fa-check text-success fa-li"></i>
+            {{'premiumSignUpStorage' | i18n}}
+        </li>
+        <li>
+            <i class="fa fa-check text-success fa-li"></i>
+            {{'premiumSignUpTwoStep' | i18n}}
+        </li>
+        <li>
+            <i class="fa fa-check text-success fa-li"></i>
+            {{'premiumSignUpTotp' | i18n}}
+        </li>
+        <li>
+            <i class="fa fa-check text-success fa-li"></i>
+            {{'premiumSignUpSupport' | i18n}}
+        </li>
+        <li>
+            <i class="fa fa-check text-success fa-li"></i>
+            {{'premiumSignUpFuture' | i18n}}
+        </li>
+    </ul>
+    <p class="text-lg mb-0">{{'premiumPrice' | i18n : (premiumPrice | currency:'USD':'$')}}</p>
+</app-callout>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
-    <h2 class="spaced-header">{{'addons' | i18n}}</h2>
+    <h2 class="mt-5">{{'addons' | i18n}}</h2>
     <div class="form-group">
         <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
         <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb" [(ngModel)]="additionalStorage"
