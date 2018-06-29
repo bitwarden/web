@@ -1,4 +1,4 @@
 <div class="page-header">
     <h1>{{'billingAndLicensing' | i18n}}</h1>
 </div>
-<app-premium *ngIf="!premium"></app-premium>
+<app-premium *ngIf="!premium" (onPremiumPurchased)="loadPremiumStatus()"></app-premium>

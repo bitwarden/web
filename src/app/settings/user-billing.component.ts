@@ -15,6 +15,10 @@ export class UserBillingComponent implements OnInit {
     constructor(private tokenService: TokenService) { }
 
     async ngOnInit() {
+        this.loadPremiumStatus();
+    }
+
+    loadPremiumStatus() {
         this.premium = this.tokenService.getPremium();
     }
 }
