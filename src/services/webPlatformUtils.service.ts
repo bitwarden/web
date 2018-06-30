@@ -180,6 +180,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return process.env.ENV === 'development';
     }
 
+    isSelfHost(): boolean {
+        return process.env.SELF_HOST.toString() === 'true';
+    }
+
     copyToClipboard(text: string, options?: any): void {
         const doc = options ? options.doc : window.document;
         if ((window as any).clipboardData && (window as any).clipboardData.setData) {

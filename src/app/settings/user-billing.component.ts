@@ -15,8 +15,6 @@ import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
-import { AdjustStorageComponent } from './adjust-storage.component';
-
 @Component({
     selector: 'app-user-billing',
     templateUrl: 'user-billing.component.html',
@@ -30,13 +28,16 @@ export class UserBillingComponent implements OnInit {
     showAdjustPayment = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
+    selfHosted = false;
 
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+        private analytics: Angulartics2, private toasterService: ToasterService) {
+        this.selfHosted = platformUtilsService.isSelfHost();
+    }
 
     async ngOnInit() {
         await this.load();
@@ -96,13 +97,19 @@ export class UserBillingComponent implements OnInit {
         } catch { }
     }
 
-    license() {
+    downloadLicense() {
         if (this.loading) {
             return;
         }
 
         const licenseString = JSON.stringify(this.billing.license, null, 2);
         this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_premium_license.json');
+    }
+
+    updateLicense() {
+        if (this.loading) {
+            return;
+        }
     }
 
     adjustStorage(add: boolean) {

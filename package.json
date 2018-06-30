@@ -10,6 +10,10 @@
     "build:watch": "webpack-serve --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "build:prod:watch": "cross-env NODE_ENV=production webpack-serve --config webpack.config.js",
+    "build:selfhost": "cross-env SELF_HOST=true webpack-serve --config webpack.config.js",
+    "build:selfhost:watch": "cross-env SELF_HOST=true webpack-serve --config webpack.config.js",
+    "build:selfhost:prod": "cross-env SELF_HOST=true NODE_ENV=production webpack --config webpack.config.js",
+    "build:selfhost:prod:watch": "cross-env SELF_HOST=true NODE_ENV=production webpack-serve --config webpack.config.js",
     "dist": "npm run build:prod && gulp dist",
     "lint": "tslint src/**/*.ts || true",
     "lint:fix": "tslint src/**/*.ts --fix"

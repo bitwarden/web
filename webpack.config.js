@@ -13,6 +13,10 @@ if (process.env.NODE_ENV == null) {
 }
 const ENV = process.env.ENV = process.env.NODE_ENV;
 
+if (process.env.NODE_ENV == null) {
+    process.env.NODE_ENV = 'development';
+}
+
 const isVendorModule = (module) => {
     if (!module.context) {
         return false;
@@ -104,6 +108,7 @@ const plugins = [
     new webpack.DefinePlugin({
         'process.env': {
             'ENV': JSON.stringify(ENV),
+            'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
         }
