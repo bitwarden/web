@@ -27,6 +27,7 @@ export class UserBillingComponent implements OnInit {
     firstLoaded = false;
     adjustStorageAdd = true;
     showAdjustStorage = false;
+    showAdjustPayment = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
 
@@ -109,17 +110,22 @@ export class UserBillingComponent implements OnInit {
         this.showAdjustStorage = true;
     }
 
-    adjustedStorage(gbAmount: number) {
+    closeStorage(load: boolean) {
         this.showAdjustStorage = false;
-        this.load();
-    }
-
-    canceledAdjustStorage() {
-        this.showAdjustStorage = false;
+        if (load) {
+            this.load();
+        }
     }
 
     changePayment() {
+        this.showAdjustPayment = true;
+    }
 
+    closePayment(load: boolean) {
+        this.showAdjustPayment = false;
+        if (load) {
+            this.load();
+        }
     }
 
     get subscriptionMarkedForCancel() {

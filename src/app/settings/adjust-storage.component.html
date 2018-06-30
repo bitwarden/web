@@ -1,5 +1,6 @@
 <form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="card-body">
+        <h3 class="card-body-header">{{(add ? 'addStorage' : 'removeStorage') | i18n}}</h3>
         <div class="row">
             <div class="form-group col-6">
                 <label for="storageAdjustment">{{(add ? 'gbStorageAdd' : 'gbStorageRemove') | i18n}}</label>

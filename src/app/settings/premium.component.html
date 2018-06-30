@@ -42,7 +42,7 @@
     <strong>{{'total' | i18n}}:</strong> {{total | currency:'USD $'}} /{{'year' | i18n}}
     <br>
     <small class="text-muted">{{'paymentChargedAnnually' | i18n}}</small>
-    <h2 class="spaced-header">{{'paymentInformation' | i18n}}</h2>
+    <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
     <app-payment></app-payment>
     <button type="submit" class="btn btn-primary btn-submit" appBlurClick [disabled]="form.loading">
         <i class="fa fa-spinner fa-spin"></i>

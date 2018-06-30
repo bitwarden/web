@@ -1,4 +1,4 @@
-<div class="my-4 text-lg">
+<div class="mb-4 text-lg" *ngIf="showOptions">
     <div class="form-check form-check-inline mr-4">
         <input class="form-check-input" type="radio" name="Method" id="method-card" value="card" [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-card">
@@ -18,7 +18,7 @@
                 autocomplete="cc-number">
         </div>
         <div class="form-group col-7 d-flex align-items-end">
-            <img src="../../images/cards.png" alt="" width="277" height="32">
+            <img src="../../images/cards.png" alt="" width="323" height="32">
         </div>
         <div class="form-group col-4">
             <label for="exp_month">{{'expirationMonth' | i18n}}</label>

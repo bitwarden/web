@@ -1,5 +1,6 @@
 import {
     Component,
+    Input,
     OnInit,
 } from '@angular/core';
 
@@ -18,6 +19,8 @@ const Keys = {
     templateUrl: 'payment.component.html',
 })
 export class PaymentComponent implements OnInit {
+    @Input() showOptions = true;
+
     method = 'card';
     card: any = {
         number: null,

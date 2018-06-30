@@ -62,7 +62,7 @@
         </ng-container>
         <ng-container *ngIf="!selfHosted">
             <h2 class="spaced-header">{{'storage' | i18n}}</h2>
-            <p>{{'subscriptionStorage' | i18n : billing.maxStorageGb : billing.storageName}}</p>
+            <p>{{'subscriptionStorage' | i18n : billing.maxStorageGb : billing.storageName || '0 MB'}}</p>
             <div class="progress">
                 <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{width: storagePercentage + '%' }" [attr.aria-valuenow]="storagePercentage"
                     aria-valuemin="0" aria-valuemax="100">{{(storagePercentage / 100) | percent}}</div>
@@ -77,7 +77,7 @@
                             {{'removeStorage' | i18n}}
                         </button>
                     </ng-container>
-                    <app-adjust-storage [storageGbPrice]="4" [add]="adjustStorageAdd" [user]="true" (onAdjusted)="adjustedStorage($event)" (onCanceled)="canceledAdjustStorage()"
+                    <app-adjust-storage [storageGbPrice]="4" [add]="adjustStorageAdd" [user]="true" (onAdjusted)="closeStorage(true)" (onCanceled)="closeStorage(false)"
                         *ngIf="showAdjustStorage"></app-adjust-storage>
                 </div>
             </ng-container>
@@ -89,9 +89,12 @@
                 'fa-paypal text-primary': paymentSource.type === paymentMethodType.PayPal}"></i>
                 {{paymentSource.description}}
             </p>
-            <button type="button" class="btn btn-outline-secondary" (click)="changePayment()">
+            <button type="button" class="btn btn-outline-secondary" (click)="changePayment()" *ngIf="!showAdjustPayment">
                 {{(paymentSource ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}
             </button>
+            <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null" [user]="true" (onAdjusted)="closePayment(true)"
+                (onCanceled)="closePayment(false)" *ngIf="showAdjustPayment">
+            </app-adjust-payment>
             <h2 class="spaced-header">{{'charges' | i18n}}</h2>
             <p *ngIf="!charges || !charges.length">{{'noCharges' | i18n}}</p>
             <table class="table mb-2" *ngIf="charges && charges.length">

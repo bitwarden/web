@@ -33,6 +33,7 @@ import { TwoFactorOptionsComponent } from './accounts/two-factor-options.compone
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { AccountComponent } from './settings/account.component';
+import { AdjustPaymentComponent } from './settings/adjust-payment.component';
 import { AdjustStorageComponent } from './settings/adjust-storage.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
@@ -107,6 +108,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
     declarations: [
         AccountComponent,
         AddEditComponent,
+        AdjustPaymentComponent,
         AdjustStorageComponent,
         ApiActionDirective,
         AppComponent,

@@ -1,0 +1,22 @@
+<app-callout title="{{'contactSupport' | i18n}}" icon="fa-info-circle" *ngIf="!canChange">
+    <p>{{'contactSupportPaymentMethod' | i18n}}</p>
+    <a href="https://bitwarden.com/contact/" target="_blank" rel="noopener" class="btn btn-outline-secondary">
+        {{'contactSupport' | i18n}}
+    </a>
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">
+        {{'close' | i18n}}
+    </button>
+</app-callout>
+<form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="canChange">
+    <div class="card-body">
+        <h3 class="card-body-header">{{(currentType != null ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}</h3>
+        <app-payment [showOptions]="currentType == null"></app-payment>
+        <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+            <i class="fa fa-spinner fa-spin"></i>
+            <span>{{'submit' | i18n}}</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">
+            {{'cancel' | i18n}}
+        </button>
+    </div>
+</form>
