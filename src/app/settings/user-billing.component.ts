@@ -15,6 +15,8 @@ import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
+import { AdjustStorageComponent } from './adjust-storage.component';
+
 @Component({
     selector: 'app-user-billing',
     templateUrl: 'user-billing.component.html',
@@ -23,6 +25,8 @@ export class UserBillingComponent implements OnInit {
     premium = false;
     loading = false;
     firstLoaded = false;
+    adjustStorageAdd = true;
+    showAdjustStorage = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
 
@@ -101,7 +105,17 @@ export class UserBillingComponent implements OnInit {
     }
 
     adjustStorage(add: boolean) {
+        this.adjustStorageAdd = add;
+        this.showAdjustStorage = true;
+    }
 
+    adjustedStorage(gbAmount: number) {
+        this.showAdjustStorage = false;
+        this.load();
+    }
+
+    canceledAdjustStorage() {
+        this.showAdjustStorage = false;
     }
 
     changePayment() {

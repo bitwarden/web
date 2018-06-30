@@ -69,12 +69,16 @@
             </div>
             <ng-container *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel && paymentSource">
                 <div class="mt-3">
-                    <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(true)">
-                        {{'addStorage' | i18n}}
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(false)">
-                        {{'removeStorage' | i18n}}
-                    </button>
+                    <ng-container *ngIf="!showAdjustStorage">
+                        <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(true)">
+                            {{'addStorage' | i18n}}
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(false)">
+                            {{'removeStorage' | i18n}}
+                        </button>
+                    </ng-container>
+                    <app-adjust-storage [storageGbPrice]="4" [add]="adjustStorageAdd" [user]="true" (onAdjusted)="adjustedStorage($event)" (onCanceled)="canceledAdjustStorage()"
+                        *ngIf="showAdjustStorage"></app-adjust-storage>
                 </div>
             </ng-container>
             <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>

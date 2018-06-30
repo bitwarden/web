@@ -1,0 +1,25 @@
+<form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <div class="card-body">
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="storageAdjustment">{{(add ? 'gbStorageAdd' : 'gbStorageRemove') | i18n}}</label>
+                <input id="storageAdjustment" class="form-control" type="number" name="StroageGbAdjustment" [(ngModel)]="storageAdjustment"
+                    min="0" max="99" step="1">
+            </div>
+        </div>
+        <div *ngIf="add" class="mb-3">
+            <strong>{{'total' | i18n}}:</strong> {{storageAdjustment || 0}} GB &times; {{storageGbPrice | currency:'$'}} = {{adjustedStorageTotal
+            | currency:'$'}} /{{interval | i18n}}
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+            <i class="fa fa-spinner fa-spin"></i>
+            <span>{{'submit' | i18n}}</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">
+            {{'cancel' | i18n}}
+        </button>
+        <small class="d-block text-muted mt-3">
+            {{(add ? 'storageAddNote' : 'storageRemoveNote') | i18n}}
+        </small>
+    </div>
+</form>
