@@ -2,12 +2,13 @@
     <i class="fa fa-spinner fa-spin"></i>
 </p>
 <ng-container *ngIf="loaded">
-    <ul class="fa-ul card-ul carets">
+    <ul class="fa-ul card-ul carets" *ngIf="organizations && organizations.length">
         <li *ngFor="let o of organizations">
             <a href="#" class="text-body" appStopClick appBlurClick (click)="selectOrganization(o)">
                 <i class="fa-li fa fa-caret-right"></i> {{o.name}}</a>
         </li>
     </ul>
+    <p *ngIf="!organizations || !organizations.length">{{'noOrganizationsList' | i18n}}</p>
 </ng-container>
 <button (click)="newOrganization()" class="btn btn-block btn-outline-primary">
     <i class="fa fa-plus fa-fw"></i>
