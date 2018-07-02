@@ -37,6 +37,7 @@ import { AdjustPaymentComponent } from './settings/adjust-payment.component';
 import { AdjustStorageComponent } from './settings/adjust-storage.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
+import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
@@ -127,6 +128,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         ChangePasswordComponent,
         CiphersComponent,
         CollectionsComponent,
+        CreateOrganizationComponent,
         DeauthorizeSessionsComponent,
         DeleteAccountComponent,
         DomainRulesComponent,

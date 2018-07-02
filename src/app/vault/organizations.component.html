@@ -10,7 +10,7 @@
     </ul>
     <p *ngIf="!organizations || !organizations.length">{{'noOrganizationsList' | i18n}}</p>
 </ng-container>
-<button (click)="newOrganization()" class="btn btn-block btn-outline-primary">
+<a href="#" appStopClick routerLink="/settings/create-organization" class="btn btn-block btn-outline-primary">
     <i class="fa fa-plus fa-fw"></i>
     {{'newOrganization' | i18n}}
-</button>
+</a>

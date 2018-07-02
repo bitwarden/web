@@ -25,6 +25,7 @@ $h4-font-size: 1rem;
 $h5-font-size: 1rem;
 $h6-font-size: 1rem;
 
+$small-font-size: 90%;
 $font-size-lg: 1.18rem;
 $code-font-size: 100%;
 
@@ -547,4 +548,26 @@ app-user-billing {
     .logo-2fa {
         min-width: 100px;
     }
+}
+
+.form-check-block {
+    .form-check-label {
+        font-weight: bold;
+
+        > small {
+            display: block;
+            color: $text-muted;
+            font-weight: normal;
+        }
+
+        > span {
+            display: block;
+            font-weight: normal;
+            @extend .mt-2;
+        }
+    }
+}
+
+.form-check-block + .form-check-block {
+    @extend .mt-3;
 }
