@@ -9,7 +9,7 @@
 <app-premium *ngIf="!premium" (onPremiumPurchased)="load()"></app-premium>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="premium && !firstLoaded && loading"></i>
 <ng-container *ngIf="premium && billing">
-    <app-callout type="warning" title="{{'canceled' | i18n}}" *ngIf="subscription.cancelled">{{'subscriptionCanceled' | i18n}}</app-callout>
+    <app-callout type="warning" title="{{'canceled' | i18n}}" *ngIf="subscription && subscription.cancelled">{{'subscriptionCanceled' | i18n}}</app-callout>
     <app-callout type="warning" title="{{'pendingCancellation' | i18n}}" *ngIf="subscriptionMarkedForCancel">
         <p>{{'subscriptionPendingCanceled' | i18n}}</p>
         <button #reinstateBtn type="button" class="btn btn-outline-secondary btn-submit" (click)="reinstate()" [appApiAction]="reinstatePromise"
@@ -33,7 +33,8 @@
                 </dd>
                 <dt>{{'nextCharge' | i18n}}</dt>
                 <dd>{{nextInvoice ? ((nextInvoice.date | date: 'mediumDate') + ', ' + (nextInvoice.amount | currency:'$')) :
-                    '-'}}</dd>
+                    '-'}}
+                </dd>
             </dl>
         </div>
         <div class="col-8">
@@ -53,12 +54,20 @@
         </div>
     </div>
     <ng-container *ngIf="selfHosted">
-        <button type="button" class="btn btn-outline-secondary" (click)="updateLicense()">
-            {{'updateLicense' | i18n}}
-        </button>
-        <a href="https://vault.bitwarden.com/#/settings/billing" target="_blank" rel="noopener" class="btn btn-outline-secondary">
-            {{'manageSubscription' | i18n}}
-        </a>
+        <div>
+            <button type="button" class="btn btn-outline-secondary" (click)="updateLicense()">
+                {{'updateLicense' | i18n}}
+            </button>
+            <a href="https://vault.bitwarden.com/#/settings/billing" target="_blank" rel="noopener" class="btn btn-outline-secondary">
+                {{'manageSubscription' | i18n}}
+            </a>
+        </div>
+        <div class="card mt-3" *ngIf="showUpdateLicense">
+            <div class="card-body">
+                <h3 class="card-body-header">{{'updateLicense' | i18n}}</h3>
+                <app-update-license [create]="false" [user]="true" (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
+            </div>
+        </div>
     </ng-container>
     <ng-container *ngIf="!selfHosted">
         <ng-container *ngIf="!subscription.cancelled || subscriptionMarkedForCancel">

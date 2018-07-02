@@ -54,6 +54,7 @@ import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
+import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
@@ -171,6 +172,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
         TwoFactorYubiKeyComponent,
+        UpdateLicenseComponent,
         UserBillingComponent,
         UserLayoutComponent,
         VaultComponent,

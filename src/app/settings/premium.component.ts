@@ -10,6 +10,7 @@ import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { PaymentComponent } from './payment.component';
 
@@ -21,6 +22,7 @@ export class PremiumComponent {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
     @Output() onPremiumPurchased = new EventEmitter();
 
+    selfHosted = false;
     premiumPrice = 10;
     storageGbPrice = 4;
     additionalStorage = 0;
@@ -28,7 +30,10 @@ export class PremiumComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+        private analytics: Angulartics2, private toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService) {
+        this.selfHosted = platformUtilsService.isSelfHost();
+    }
 
     async submit() {
         try {
@@ -44,18 +49,18 @@ export class PremiumComponent {
         } catch { }
     }
 
+    async finalizePremium() {
+        await this.apiService.refreshIdentityToken();
+        this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
+        this.onPremiumPurchased.emit();
+    }
+
     get additionalStorageTotal(): number {
         return this.storageGbPrice * this.additionalStorage;
     }
 
     get total(): number {
         return this.additionalStorageTotal + this.premiumPrice;
-    }
-
-    private async finalizePremium() {
-        await this.apiService.refreshIdentityToken();
-        this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
-        this.onPremiumPurchased.emit();
     }
 }

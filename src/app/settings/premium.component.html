@@ -22,9 +22,17 @@
             {{'premiumSignUpFuture' | i18n}}
         </li>
     </ul>
-    <p class="text-lg mb-0">{{'premiumPrice' | i18n : (premiumPrice | currency:'$')}}</p>
+    <p class="text-lg" [ngClass]="{'mb-0':!selfHosted}">{{'premiumPrice' | i18n : (premiumPrice | currency:'$')}}</p>
+    <a href="https://vault.bitwarden.com/#/settings/billing" target="_blank" rel="noopener" class="btn btn-outline-secondary"
+        *ngIf="selfHosted">
+        {{'purchasePremium' | i18n}}
+    </a>
 </app-callout>
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+<ng-container *ngIf="selfHosted">
+    <p>{{'uploadLicenseFilePremium' | i18n}}</p>
+    <app-update-license [user]="true" [create]="true" (onUpdated)="finalizePremium()"></app-update-license>
+</ng-container>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!selfHosted">
     <h2 class="mt-5">{{'addons' | i18n}}</h2>
     <div class="row">
         <div class="form-group col-6">

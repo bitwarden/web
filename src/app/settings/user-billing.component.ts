@@ -26,6 +26,7 @@ export class UserBillingComponent implements OnInit {
     adjustStorageAdd = true;
     showAdjustStorage = false;
     showAdjustPayment = false;
+    showUpdateLicense = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
     selfHosted = false;
@@ -109,6 +110,14 @@ export class UserBillingComponent implements OnInit {
     updateLicense() {
         if (this.loading) {
             return;
+        }
+        this.showUpdateLicense = true;
+    }
+
+    closeUpdateLicense(load: boolean) {
+        this.showUpdateLicense = false;
+        if (load) {
+            this.load();
         }
     }
 

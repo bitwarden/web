@@ -114,8 +114,8 @@ export function initFactory(): Function {
         const isDev = platformUtilsService.isDev();
         await apiService.setUrls({
             base: isDev ? null : window.location.origin,
-            api: isDev ? 'https://api.bitwarden.com' : null,
-            identity: isDev ? 'https://identity.bitwarden.com' : null,
+            api: isDev ? 'http://localhost:4000' : null,
+            identity: isDev ? 'http://localhost:33656' : null,
         });
 
         lockService.init(true);
