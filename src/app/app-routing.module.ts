@@ -18,6 +18,7 @@ import { AccountComponent } from './settings/account.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
+import { PremiumComponent } from './settings/premium.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 import { UserBillingComponent } from './settings/user-billing.component';
@@ -60,10 +61,11 @@ const routes: Routes = [
                     { path: 'options', component: OptionsComponent, canActivate: [AuthGuardService] },
                     { path: 'domain-rules', component: DomainRulesComponent, canActivate: [AuthGuardService] },
                     { path: 'two-factor', component: TwoFactorSetupComponent, canActivate: [AuthGuardService] },
+                    { path: 'premium', component: PremiumComponent, canActivate: [AuthGuardService] },
                     { path: 'billing', component: UserBillingComponent, canActivate: [AuthGuardService] },
                     {
                         path: 'create-organization',
-                        component: CreateOrganizationComponent, 
+                        component: CreateOrganizationComponent,
                         canActivate: [AuthGuardService],
                     },
                 ],

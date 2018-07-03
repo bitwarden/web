@@ -6,9 +6,8 @@
         </small>
     </h1>
 </div>
-<app-premium *ngIf="!premium" (onPremiumPurchased)="load()"></app-premium>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="premium && !firstLoaded && loading"></i>
-<ng-container *ngIf="premium && billing">
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading"></i>
+<ng-container *ngIf="billing">
     <app-callout type="warning" title="{{'canceled' | i18n}}" *ngIf="subscription && subscription.cancelled">{{'subscriptionCanceled' | i18n}}</app-callout>
     <app-callout type="warning" title="{{'pendingCancellation' | i18n}}" *ngIf="subscriptionMarkedForCancel">
         <p>{{'subscriptionPendingCanceled' | i18n}}</p>

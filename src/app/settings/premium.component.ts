@@ -1,16 +1,18 @@
 import {
     Component,
-    EventEmitter,
-    Output,
+    OnInit,
     ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentComponent } from './payment.component';
 
@@ -18,9 +20,8 @@ import { PaymentComponent } from './payment.component';
     selector: 'app-premium',
     templateUrl: 'premium.component.html',
 })
-export class PremiumComponent {
+export class PremiumComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
-    @Output() onPremiumPurchased = new EventEmitter();
 
     selfHosted = false;
     premiumPrice = 10;
@@ -31,8 +32,17 @@ export class PremiumComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService) {
+        platformUtilsService: PlatformUtilsService, private tokenService: TokenService,
+        private router: Router, private messagingService: MessagingService) {
         this.selfHosted = platformUtilsService.isSelfHost();
+    }
+
+    async ngOnInit() {
+        const premium = await this.tokenService.getPremium();
+        if (premium) {
+            this.router.navigate(['/settings/billing']);
+            return;
+        }
     }
 
     async submit() {
@@ -53,7 +63,8 @@ export class PremiumComponent {
         await this.apiService.refreshIdentityToken();
         this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
         this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
-        this.onPremiumPurchased.emit();
+        this.messagingService.send('purchasedPremium');
+        this.router.navigate(['/settings/billing']);
     }
 
     get additionalStorageTotal(): number {

@@ -2,6 +2,7 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -20,7 +21,6 @@ import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
     templateUrl: 'user-billing.component.html',
 })
 export class UserBillingComponent implements OnInit {
-    premium = false;
     loading = false;
     firstLoaded = false;
     adjustStorageAdd = true;
@@ -36,7 +36,8 @@ export class UserBillingComponent implements OnInit {
 
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) {
+        private analytics: Angulartics2, private toasterService: ToasterService,
+        private router: Router) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -50,11 +51,15 @@ export class UserBillingComponent implements OnInit {
             return;
         }
 
-        this.premium = this.tokenService.getPremium();
-        if (this.premium) {
+        const premium = this.tokenService.getPremium();
+        if (premium) {
             this.loading = true;
             this.billing = await this.apiService.getUserBilling();
+        } else {
+            this.router.navigate(['/settings/premium']);
+            return;
         }
+
         this.loading = false;
     }
 
