@@ -1,3 +1,25 @@
 <app-navbar></app-navbar>
+<div class="orgnav" *ngIf="organization">
+    <div class="container d-flex flex-column justify-content-end">
+        <div class="my-auto d-flex align-items-center pl-1">
+            <app-avatar [data]="organization.name" [width]="45" [height]="45" [circle]="true"></app-avatar>
+            <span>{{organization.name}}</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+    </div>
+</div>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

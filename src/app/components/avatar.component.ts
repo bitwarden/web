@@ -8,7 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-avatar',
-    template: '<img [src]="sanitizer.bypassSecurityTrustResourceUrl(src)" title="{{data}}">',
+    template: '<img [src]="sanitizer.bypassSecurityTrustResourceUrl(src)" title="{{data}}" ' +
+        '[ngClass]="{\'rounded-circle\': circle}">',
 })
 export class AvatarComponent implements OnChanges, OnInit {
     @Input() data: string;
@@ -19,6 +20,7 @@ export class AvatarComponent implements OnChanges, OnInit {
     @Input() fontSize = 20;
     @Input() fontWeight = 300;
     @Input() dynamic = false;
+    @Input() circle = false;
 
     src: string;
 

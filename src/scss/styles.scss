@@ -571,3 +571,41 @@ app-user-billing {
 .form-check-block + .form-check-block {
     @extend .mt-3;
 }
+
+.orgnav {
+    background-color: $input-bg;
+    border-bottom: 1px solid $border-color;
+    height: 100px;
+    min-height: 100px;
+
+    .container {
+        height: 100%;
+    }
+
+    .nav-tabs {
+        border-bottom: none;
+
+        a {
+            color: $body-color;
+
+            &:hover:not(.active) {
+                border-color: transparent;
+            }
+
+            &.active {
+                border-top: 3px solid theme-color("primary");
+                font-weight: bold;
+                padding-top: calc(#{$nav-link-padding-y} - 2px);
+            }
+
+            &.disabled {
+                color: $input-placeholder-color;
+            }
+        }
+    }
+
+    span {
+        font-size: $font-size-lg;
+        @extend .ml-3;
+    }
+}
