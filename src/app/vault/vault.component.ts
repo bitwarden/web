@@ -24,7 +24,6 @@ import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
-import { OrganizationsComponent } from './organizations.component';
 import { ShareComponent } from './share.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -39,7 +38,6 @@ import { BulkShareComponent } from './bulk-share.component';
 export class VaultComponent implements OnInit {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
-    @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
@@ -66,7 +64,6 @@ export class VaultComponent implements OnInit {
             await this.syncService.fullSync(false);
             await Promise.all([
                 this.groupingsComponent.load(),
-                this.organizationsComponent.load(),
             ]);
 
             if (params == null) {
