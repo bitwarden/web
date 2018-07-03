@@ -153,10 +153,11 @@
                 </small>
             </label>
         </div>
-        <hr class="my-2">
-        <strong>{{'total' | i18n}}:</strong> {{total | currency:'USD $'}} /{{interval | i18n}}
-        <br>
-        <small class="text-muted">{{'paymentChargedWithTrial' | i18n : (interval | i18n) }}</small>
+        <hr class="my-3">
+        <div class="text-lg">
+            <strong>{{'total' | i18n}}:</strong> {{total | currency:'USD $'}} /{{interval | i18n}}
+        </div>
+        <small class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (interval | i18n) }}</small>
         <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
         <app-payment></app-payment>
     </ng-container>
