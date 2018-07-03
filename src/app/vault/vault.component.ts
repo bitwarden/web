@@ -14,7 +14,6 @@ import {
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
-import { FolderView } from 'jslib/models/view/folderView';
 
 import { ModalComponent } from '../modal.component';
 

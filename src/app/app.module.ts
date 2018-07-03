@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { OrganizationsModule } from './organizations/organizations.module';
 import { ServicesModule } from './services/services.module';
 
 import { AppComponent } from './app.component';
@@ -99,6 +100,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
+        OrganizationsModule,
         ServicesModule,
         Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], {
             pageTracking: {

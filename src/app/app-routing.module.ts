@@ -14,6 +14,8 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { VaultComponent as OrganizationVaultComponent } from './organizations/vault.component';
+
 import { AccountComponent } from './settings/account.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
@@ -84,10 +86,11 @@ const routes: Routes = [
         ],
     },
     {
-        path: 'organization/:organizationId',
+        path: 'organizations/:organizationId',
         component: OrganizationLayoutComponent,
         children: [
-            { path: 'vault', component: VaultComponent, canActivate: [AuthGuardService] },
+            { path: '', pathMatch: 'full', redirectTo: 'vault' },
+            { path: 'vault', component: OrganizationVaultComponent, canActivate: [AuthGuardService] },
         ],
     },
     { path: '**', redirectTo: '' },

@@ -13,19 +13,13 @@ import { Organization } from 'jslib/models/domain/organization';
     templateUrl: 'organizations.component.html',
 })
 export class OrganizationsComponent {
-    @Output() onOrganizationClicked = new EventEmitter<Organization>();
     organizations: Organization[];
     loaded: boolean = false;
 
-    constructor(private userService: UserService) {
-    }
+    constructor(private userService: UserService) { }
 
     async load() {
         this.organizations = await this.userService.getAllOrganizations();
         this.loaded = true;
-    }
-
-    selectOrganization(o: Organization) {
-        this.onOrganizationClicked.emit(o);
     }
 }
