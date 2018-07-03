@@ -572,7 +572,7 @@ app-user-billing {
     @extend .mt-3;
 }
 
-.orgnav {
+.org-nav {
     background-color: $input-bg;
     border-bottom: 1px solid $border-color;
     height: 100px;
@@ -604,8 +604,11 @@ app-user-billing {
         }
     }
 
-    span {
-        font-size: $font-size-lg;
-        @extend .ml-3;
+    .org-name {
+        line-height: 1;
+        span {
+            font-size: $font-size-lg;
+            display: block;
+        }
     }
 }
