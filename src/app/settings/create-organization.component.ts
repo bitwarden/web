@@ -87,6 +87,17 @@ export class CreateOrganizationComponent {
     }
 
     async submit() {
+        let files: FileList = null;
+        if (this.selfHosted) {
+            const fileEl = document.getElementById('file') as HTMLInputElement;
+            files = fileEl.files;
+            if (files == null || files.length === 0) {
+                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                    this.i18nService.t('selectFile'));
+                return;
+            }
+        }
+
         let key: string = null;
         let collectionCt: string = null;
 
@@ -96,34 +107,41 @@ export class CreateOrganizationComponent {
                 return this.cryptoService.encrypt('Default Collection', shareKey[1]);
             }).then((collection) => {
                 collectionCt = collection.encryptedString;
-                if (this.plan === 'free') {
+                if (this.selfHosted || this.plan === 'free') {
                     return null;
                 } else {
                     return this.paymentComponent.createPaymentToken();
                 }
             }).then((token: string) => {
-                const request = new OrganizationCreateRequest();
-                request.key = key;
-                request.collectionName = collectionCt;
-                request.name = this.name;
-                request.billingEmail = this.billingEmail;
-
-                if (this.plan === 'free') {
-                    request.planType = PlanType.Free;
+                if (this.selfHosted) {
+                    const fd = new FormData();
+                    fd.append('license', files[0]);
+                    fd.append('key', key);
+                    fd.append('collectionName', collectionCt);
+                    return this.apiService.postOrganizationLicense(fd);
                 } else {
-                    request.paymentToken = token;
-                    request.businessName = this.ownedBusiness ? this.businessName : null;
-                    request.additionalSeats = this.additionalSeats;
-                    request.additionalStorageGb = this.additionalStorage;
-                    request.country = this.paymentComponent.getCountry();
-                    if (this.interval === 'month') {
-                        request.planType = this.plans[this.plan].monthPlanType;
-                    } else {
-                        request.planType = this.plans[this.plan].annualPlanType;
-                    }
-                }
+                    const request = new OrganizationCreateRequest();
+                    request.key = key;
+                    request.collectionName = collectionCt;
+                    request.name = this.name;
+                    request.billingEmail = this.billingEmail;
 
-                return this.apiService.postOrganization(request);
+                    if (this.plan === 'free') {
+                        request.planType = PlanType.Free;
+                    } else {
+                        request.paymentToken = token;
+                        request.businessName = this.ownedBusiness ? this.businessName : null;
+                        request.additionalSeats = this.additionalSeats;
+                        request.additionalStorageGb = this.additionalStorage;
+                        request.country = this.paymentComponent.getCountry();
+                        if (this.interval === 'month') {
+                            request.planType = this.plans[this.plan].monthPlanType;
+                        } else {
+                            request.planType = this.plans[this.plan].annualPlanType;
+                        }
+                    }
+                    return this.apiService.postOrganization(request);
+                }
             }).then((response) => {
                 return this.finalize(response.id);
             });

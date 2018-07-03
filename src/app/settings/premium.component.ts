@@ -46,15 +46,34 @@ export class PremiumComponent implements OnInit {
     }
 
     async submit() {
+        let files: FileList = null;
+        if (this.selfHosted) {
+            const fileEl = document.getElementById('file') as HTMLInputElement;
+            files = fileEl.files;
+            if (files == null || files.length === 0) {
+                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                    this.i18nService.t('selectFile'));
+                return;
+            }
+        }
+
         try {
-            this.formPromise = this.paymentComponent.createPaymentToken().then((token) => {
+            if (this.selfHosted) {
                 const fd = new FormData();
-                fd.append('paymentToken', token);
-                fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
-                return this.apiService.postPremium(fd);
-            }).then(() => {
-                return this.finalizePremium();
-            });
+                fd.append('license', files[0]);
+                this.formPromise = this.apiService.postAccountLicense(fd).then(() => {
+                    return this.finalizePremium();
+                });
+            } else {
+                this.formPromise = this.paymentComponent.createPaymentToken().then((token) => {
+                    const fd = new FormData();
+                    fd.append('paymentToken', token);
+                    fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
+                    return this.apiService.postPremium(fd);
+                }).then(() => {
+                    return this.finalizePremium();
+                });
+            }
             await this.formPromise;
         } catch { }
     }
