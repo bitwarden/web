@@ -39,7 +39,7 @@
                             </a>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-sm" (click)="addCipher()" appBlurClick>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addCipher()" appBlurClick>
                         <i class="fa fa-plus fa-fw"></i>{{'addItem' | i18n}}
                     </button>
                 </div>
@@ -56,10 +56,10 @@
             </div>
             <div class="card mt-3">
                 <div class="card-header">
-                    Organizations
+                    {{'organizations' | i18n}}
                 </div>
                 <div class="card-body">
-                    <app-vault-organizations></app-vault-organizations>
+                    <app-organizations [vault]="true"></app-organizations>
                 </div>
             </div>
         </div>

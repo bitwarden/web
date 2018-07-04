@@ -52,7 +52,7 @@
         <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded"></i>
         <ng-container *ngIf="loaded">
             <p>{{'noItemsInList' | i18n}}</p>
-            <button (click)="addCipher()" class="btn btn-outline-primary">
+            <button (click)="addCipher()" class="btn btn-outline-primary" *ngIf="showAddNew">
                 <i class="fa fa-plus fa-fw"></i>{{'addItem' | i18n}}</button>
         </ng-container>
     </div>

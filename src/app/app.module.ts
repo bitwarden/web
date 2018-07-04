@@ -46,6 +46,7 @@ import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.co
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
+import { OrganizationsComponent } from './settings/organizations.component';
 import { PaymentComponent } from './settings/payment.component';
 import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
@@ -78,7 +79,6 @@ import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
-import { OrganizationsComponent } from './vault/organizations.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 

@@ -71,6 +71,7 @@ export class VaultComponent implements OnInit {
     }
 
     async clearGroupingFilters() {
+        this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
         await this.ciphersComponent.applyFilter();
         this.clearFilters();
@@ -78,6 +79,7 @@ export class VaultComponent implements OnInit {
     }
 
     async filterCipherType(type: CipherType, load = false) {
+        this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         const filter = (c: CipherView) => c.type === type;
         if (load) {
@@ -91,6 +93,7 @@ export class VaultComponent implements OnInit {
     }
 
     async filterCollection(collectionId: string, load = false) {
+        this.ciphersComponent.showAddNew = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
         const filter = (c: CipherView) => {
             if (collectionId === 'unassigned') {

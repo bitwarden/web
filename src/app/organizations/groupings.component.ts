@@ -54,15 +54,15 @@ export class GroupingsComponent extends BaseGroupingsComponent {
             } else {
                 this.collections = [];
             }
+
+            const unassignedCollection = new CollectionView();
+            unassignedCollection.name = this.i18nService.t('unassigned');
+            unassignedCollection.id = 'unassigned';
+            unassignedCollection.organizationId = this.organization.id;
+            unassignedCollection.readOnly = true;
+            this.collections.push(unassignedCollection);
         } else {
             await super.loadCollections(this.organization.id);
         }
-
-        const unassignedCollection = new CollectionView();
-        unassignedCollection.name = this.i18nService.t('unassigned');
-        unassignedCollection.id = 'unassigned';
-        unassignedCollection.organizationId = this.organization.id;
-        unassignedCollection.readOnly = true;
-        this.collections.push(unassignedCollection);
     }
 }

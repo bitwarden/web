@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    Input,
     Output,
 } from '@angular/core';
 
@@ -26,6 +27,7 @@ import { CipherView } from 'jslib/models/view/cipherView';
     templateUrl: '../vault/ciphers.component.html',
 })
 export class CiphersComponent extends BaseCiphersComponent {
+    @Input() showAddNew = true;
     @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
     @Output() onCollectionsClicked = new EventEmitter<CipherView>();
 
@@ -58,7 +60,16 @@ export class CiphersComponent extends BaseCiphersComponent {
             this.applyFilter(filter);
             this.loaded = true;
         } else {
-            await super.load((c) => c.organizationId === this.organization.id && (filter == null || filter(c)));
+            await super.load();
+        }
+    }
+
+    applyFilter(filter: (cipher: CipherView) => boolean = null) {
+        if (this.organization.isAdmin) {
+            super.applyFilter(filter);
+        } else {
+            const f = (c: CipherView) => c.organizationId === this.organization.id && (filter == null || filter(c));
+            super.applyFilter(f);
         }
     }
 

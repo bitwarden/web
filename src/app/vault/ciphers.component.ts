@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    Input,
     Output,
 } from '@angular/core';
 
@@ -24,6 +25,7 @@ const MaxCheckedCount = 500;
     templateUrl: 'ciphers.component.html',
 })
 export class CiphersComponent extends BaseCiphersComponent {
+    @Input() showAddNew = true;
     @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
     @Output() onShareClicked = new EventEmitter<CipherView>();
     @Output() onCollectionsClicked = new EventEmitter<CipherView>();

@@ -20,6 +20,7 @@ import { AccountComponent } from './settings/account.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
+import { OrganizationsComponent } from './settings/organizations.component';
 import { PremiumComponent } from './settings/premium.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
@@ -65,6 +66,7 @@ const routes: Routes = [
                     { path: 'two-factor', component: TwoFactorSetupComponent, canActivate: [AuthGuardService] },
                     { path: 'premium', component: PremiumComponent, canActivate: [AuthGuardService] },
                     { path: 'billing', component: UserBillingComponent, canActivate: [AuthGuardService] },
+                    { path: 'organizations', component: OrganizationsComponent, canActivate: [AuthGuardService] },
                     {
                         path: 'create-organization',
                         component: CreateOrganizationComponent,
