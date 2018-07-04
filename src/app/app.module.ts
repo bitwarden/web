@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { OrganizationsModule } from './organizations/organizations.module';
 import { ServicesModule } from './services/services.module';
 
 import { AppComponent } from './app.component';
@@ -32,6 +31,10 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
+
+import { CiphersComponent as OrgCiphersComponent } from './organizations/ciphers.component';
+import { GroupingsComponent as OrgGroupingsComponent } from './organizations/groupings.component';
+import { VaultComponent as OrgVaultComponent } from './organizations/vault.component';
 
 import { AccountComponent } from './settings/account.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';
@@ -100,7 +103,6 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
-        OrganizationsModule,
         ServicesModule,
         Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], {
             pageTracking: {
@@ -150,8 +152,11 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         ModalComponent,
         NavbarComponent,
         OptionsComponent,
+        OrgCiphersComponent,
+        OrgGroupingsComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,
+        OrgVaultComponent,
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
         PaymentComponent,

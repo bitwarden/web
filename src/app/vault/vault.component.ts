@@ -47,7 +47,6 @@ export class VaultComponent implements OnInit {
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
     @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
 
-    cipherId: string = null;
     favorites: boolean = false;
     type: CipherType = null;
     folderId: string = null;
@@ -62,9 +61,7 @@ export class VaultComponent implements OnInit {
     async ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
-            await Promise.all([
-                this.groupingsComponent.load(),
-            ]);
+            await this.groupingsComponent.load();
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
@@ -355,7 +352,6 @@ export class VaultComponent implements OnInit {
     private go(queryParams: any = null) {
         if (queryParams == null) {
             queryParams = {
-                cipherId: this.cipherId,
                 favorites: this.favorites ? true : null,
                 type: this.type,
                 folderId: this.folderId,
