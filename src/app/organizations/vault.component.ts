@@ -92,7 +92,13 @@ export class VaultComponent implements OnInit {
 
     async filterCollection(collectionId: string, load = false) {
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
-        const filter = (c: CipherView) => c.collectionIds.indexOf(collectionId) > -1;
+        const filter = (c: CipherView) => {
+            if (collectionId === 'unassigned') {
+                return c.collectionIds == null || c.collectionIds.length === 0;
+            } else {
+                return c.collectionIds.indexOf(collectionId) > -1;
+            }
+        };
         if (load) {
             await this.ciphersComponent.load(filter);
         } else {

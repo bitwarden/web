@@ -8,7 +8,7 @@ import {
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { GroupingsComponent as BaseGroupingsComponent } from 'jslib/angular/components/groupings.component';
 
@@ -29,7 +29,7 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     searchPlaceholder: string = null;
 
     constructor(collectionService: CollectionService, folderService: FolderService,
-        private apiService: ApiService, private userService: UserService) {
+        private apiService: ApiService, private i18nService: I18nService) {
         super(collectionService, folderService);
     }
 
@@ -57,5 +57,12 @@ export class GroupingsComponent extends BaseGroupingsComponent {
         } else {
             await super.loadCollections(this.organization.id);
         }
+
+        const unassignedCollection = new CollectionView();
+        unassignedCollection.name = this.i18nService.t('unassigned');
+        unassignedCollection.id = 'unassigned';
+        unassignedCollection.organizationId = this.organization.id;
+        unassignedCollection.readOnly = true;
+        this.collections.push(unassignedCollection);
     }
 }
