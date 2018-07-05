@@ -33,14 +33,14 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     totpSec: number;
     totpLow: boolean;
 
-    private totpInterval: number;
+    protected totpInterval: number;
 
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         analytics: Angulartics2, toasterService: ToasterService,
         auditService: AuditService, stateService: StateService,
-        private tokenService: TokenService, private totpService: TotpService,
-        private passwordGenerationService: PasswordGenerationService) {
+        protected tokenService: TokenService, protected totpService: TotpService,
+        protected passwordGenerationService: PasswordGenerationService) {
         super(cipherService, folderService, i18nService, platformUtilsService, analytics,
             toasterService, auditService, stateService);
     }
@@ -94,13 +94,13 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         return confirmed;
     }
 
-    private cleanUp() {
+    protected cleanUp() {
         if (this.totpInterval) {
             window.clearInterval(this.totpInterval);
         }
     }
 
-    private async totpUpdateCode() {
+    protected async totpUpdateCode() {
         if (this.cipher == null || this.cipher.type !== CipherType.Login || this.cipher.login.totp == null) {
             if (this.totpInterval) {
                 window.clearInterval(this.totpInterval);
@@ -119,7 +119,7 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         }
     }
 
-    private async totpTick() {
+    protected async totpTick() {
         const epoch = Math.round(new Date().getTime() / 1000.0);
         const mod = epoch % 30;
 

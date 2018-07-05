@@ -21,7 +21,7 @@
                         <label for="name">{{'name' | i18n}}</label>
                         <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="cipher.name">
                     </div>
-                    <div class="col-6 form-group">
+                    <div class="col-6 form-group" *ngIf="!organization">
                         <label for="folder">{{'folder' | i18n}}</label>
                         <select id="folder" name="FolderId" [(ngModel)]="cipher.folderId" class="form-control">
                             <option *ngFor="let f of folders" [ngValue]="f.id">{{f.name}}</option>
@@ -356,7 +356,7 @@
                     {{'cancel' | i18n}}
                 </button>
                 <div class="ml-auto" *ngIf="cipher">
-                    <button appBlurClick type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
+                    <button *ngIf="!organization" appBlurClick type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
                         <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"></i>
                     </button>
                     <button #deleteBtn appBlurClick type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"

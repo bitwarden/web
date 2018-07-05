@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
 import {
     Component,
+    ComponentFactoryResolver,
     OnInit,
     ViewChild,
+    ViewContainerRef,
 } from '@angular/core';
 import {
     ActivatedRoute,
@@ -18,6 +20,9 @@ import { CipherView } from 'jslib/models/view/cipherView';
 
 import { CipherType } from 'jslib/enums/cipherType';
 
+import { ModalComponent } from '../modal.component';
+
+import { AddEditComponent } from './add-edit.component';
 import { CiphersComponent } from './ciphers.component';
 import { GroupingsComponent } from './groupings.component';
 
@@ -28,14 +33,18 @@ import { GroupingsComponent } from './groupings.component';
 export class VaultComponent implements OnInit {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
 
     organization: Organization;
     collectionId: string;
     type: CipherType;
 
+    private modal: ModalComponent = null;
+
     constructor(private route: ActivatedRoute, private userService: UserService,
         private location: Location, private router: Router,
-        private syncService: SyncService, private i18nService: I18nService) { }
+        private syncService: SyncService, private i18nService: I18nService,
+        private componentFactoryResolver: ComponentFactoryResolver) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
@@ -114,6 +123,38 @@ export class VaultComponent implements OnInit {
 
     filterSearchText(searchText: string) {
         this.ciphersComponent.searchText = searchText;
+    }
+
+    addCipher() {
+        const component = this.editCipher(null);
+        component.type = this.type;
+    }
+
+    editCipher(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
+
+        childComponent.organization = this.organization;
+        childComponent.cipherId = cipher == null ? null : cipher.id;
+        childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+        childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+
+        return childComponent;
     }
 
     private clearFilters() {

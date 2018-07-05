@@ -32,6 +32,7 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { AddEditComponent as OrgAddEditComponent } from './organizations/add-edit.component';
 import { CiphersComponent as OrgCiphersComponent } from './organizations/ciphers.component';
 import { GroupingsComponent as OrgGroupingsComponent } from './organizations/groupings.component';
 import { VaultComponent as OrgVaultComponent } from './organizations/vault.component';
@@ -152,6 +153,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         ModalComponent,
         NavbarComponent,
         OptionsComponent,
+        OrgAddEditComponent,
         OrgCiphersComponent,
         OrgGroupingsComponent,
         OrganizationsComponent,
@@ -197,6 +199,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         DeleteAccountComponent,
         FolderAddEditComponent,
         ModalComponent,
+        OrgAddEditComponent,
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
         ShareComponent,
