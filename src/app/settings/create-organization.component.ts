@@ -105,7 +105,7 @@ export class CreateOrganizationComponent {
         try {
             this.formPromise = this.cryptoService.makeShareKey().then((shareKey) => {
                 key = shareKey[0].encryptedString;
-                return this.cryptoService.encrypt('Default Collection', shareKey[1]);
+                return this.cryptoService.encrypt(this.i18nService.t('defaultCollection'), shareKey[1]);
             }).then((collection) => {
                 collectionCt = collection.encryptedString;
                 if (this.selfHosted || this.plan === 'free') {
