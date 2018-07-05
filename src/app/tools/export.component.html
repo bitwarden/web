@@ -1,4 +1,4 @@
-<form (ngSubmit)="submit()" ngNativeValidate>
+<form #form (ngSubmit)="submit()" ngNativeValidate [appApiAction]="formPromise">
     <div class="page-header">
         <h1>{{'exportVault' | i18n}}</h1>
     </div>
@@ -10,7 +10,8 @@
             <input id="masterPassword" type="password" name="MasterPassword" class="form-control" [(ngModel)]="masterPassword" required>
         </div>
     </div>
-    <button appBlurClick type="submit" class="btn btn-primary">
-        {{'exportVault' | i18n}}
+    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'exportVault' | i18n}}</span>
     </button>
 </form>
