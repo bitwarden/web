@@ -1,40 +1,27 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
-import { GroupingsComponent as BaseGroupingsComponent } from 'jslib/angular/components/groupings.component';
-
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
 import { Organization } from 'jslib/models/domain/organization';
 import { CollectionView } from 'jslib/models/view/collectionView';
+
+import { GroupingsComponent as BaseGroupingsComponent } from '../vault/groupings.component';
 
 @Component({
     selector: 'app-org-vault-groupings',
     templateUrl: '../vault/groupings.component.html',
 })
 export class GroupingsComponent extends BaseGroupingsComponent {
-    @Output() onSearchTextChanged = new EventEmitter<string>();
-
     organization: Organization;
-    searchText: string = '';
-    searchPlaceholder: string = null;
 
     constructor(collectionService: CollectionService, folderService: FolderService,
         private apiService: ApiService, private i18nService: I18nService) {
         super(collectionService, folderService);
-    }
-
-    searchTextChanged() {
-        this.onSearchTextChanged.emit(this.searchText);
     }
 
     async loadCollections() {

@@ -32,9 +32,9 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     cipherType = CipherType;
 
-    constructor(cipherService: CipherService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService) {
+    constructor(cipherService: CipherService, protected analytics: Angulartics2,
+        protected toasterService: ToasterService, protected i18nService: I18nService,
+        protected platformUtilsService: PlatformUtilsService) {
         super(cipherService);
     }
 

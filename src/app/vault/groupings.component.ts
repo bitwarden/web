@@ -15,6 +15,7 @@ import { GroupingsComponent as BaseGroupingsComponent } from 'jslib/angular/comp
 })
 export class GroupingsComponent extends BaseGroupingsComponent {
     @Output() onSearchTextChanged = new EventEmitter<string>();
+
     searchText: string = '';
     searchPlaceholder: string = null;
 
