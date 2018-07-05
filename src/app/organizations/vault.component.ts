@@ -25,6 +25,7 @@ import { ModalComponent } from '../modal.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
+import { CollectionsComponent } from './collections.component';
 import { GroupingsComponent } from './groupings.component';
 
 @Component({
@@ -36,6 +37,7 @@ export class VaultComponent implements OnInit {
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
 
     organization: Organization;
     collectionId: string;
@@ -148,6 +150,31 @@ export class VaultComponent implements OnInit {
                 await this.ciphersComponent.refresh();
             }
             madeAttachmentChanges = false;
+        });
+    }
+
+    editCipherCollections(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.collectionsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
+
+        if (this.organization.isAdmin) {
+            childComponent.collectionIds = cipher.collectionIds;
+            childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+        }
+        childComponent.organization = this.organization;
+        childComponent.cipherId = cipher.id;
+        childComponent.onSavedCollections.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
         });
     }
 

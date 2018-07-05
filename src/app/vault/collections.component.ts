@@ -29,26 +29,26 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
     formPromise: Promise<any>;
     cipher: CipherView;
+    collectionIds: string[];
     collections: CollectionView[] = [];
 
-    private cipherDomain: Cipher;
+    protected cipherDomain: Cipher;
 
-    constructor(private collectionService: CollectionService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private cipherService: CipherService) { }
+    constructor(protected collectionService: CollectionService, protected analytics: Angulartics2,
+        protected toasterService: ToasterService, protected i18nService: I18nService,
+        protected cipherService: CipherService) { }
 
     async ngOnInit() {
-        this.cipherDomain = await this.cipherService.get(this.cipherId);
+        this.cipherDomain = await this.loadCipher();
+        this.collectionIds = this.loadCipherCollections();
         this.cipher = await this.cipherDomain.decrypt();
-        const allCollections = await this.collectionService.getAllDecrypted();
-        this.collections = allCollections.filter((c) =>
-            !c.readOnly && c.organizationId === this.cipher.organizationId);
+        this.collections = await this.loadCollections();
 
         this.unselectAll();
-        if (this.cipherDomain.collectionIds != null) {
-            for (const collection of this.collections) {
-                (collection as any).checked = this.cipherDomain.collectionIds.indexOf(collection.id) > -1;
-            }
+        if (this.collectionIds != null) {
+            this.collections.forEach((c) => {
+                (c as any).checked = this.collectionIds.indexOf(c.id) > -1;
+            });
         }
     }
 
@@ -60,7 +60,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         this.cipherDomain.collectionIds = this.collections
             .filter((c) => !!(c as any).checked)
             .map((c) => c.id);
-        this.formPromise = this.cipherService.saveCollectionsWithServer(this.cipherDomain);
+        this.formPromise = this.saveCollections();
         await this.formPromise;
         this.onSavedCollections.emit();
         this.analytics.eventTrack.next({ action: 'Edited Cipher Collections' });
@@ -81,5 +81,22 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         for (const c of this.collections) {
             (c as any).checked = false;
         }
+    }
+
+    protected loadCipher() {
+        return this.cipherService.get(this.cipherId);
+    }
+
+    protected loadCipherCollections() {
+        return this.cipherDomain.collectionIds;
+    }
+
+    protected async loadCollections() {
+        const allCollections = await this.collectionService.getAllDecrypted();
+        return allCollections.filter((c) => !c.readOnly && c.organizationId === this.cipher.organizationId);
+    }
+
+    protected saveCollections() {
+        return this.cipherService.saveCollectionsWithServer(this.cipherDomain);
     }
 }
