@@ -2,7 +2,7 @@
     <table class="table table-hover table-list table-ciphers" *ngIf="searchedCiphers.length > 0">
         <tbody>
             <tr *ngFor="let c of searchedCiphers">
-                <td (click)="checkCipher(c)" class="table-list-checkbox">
+                <td (click)="checkCipher(c)" class="table-list-checkbox" *ngIf="!organization">
                     <input type="checkbox" [(ngModel)]="c.checked">
                 </td>
                 <td (click)="checkCipher(c)" class="table-list-icon">
@@ -30,7 +30,7 @@
                                 <i class="fa fa-fw fa-paperclip"></i>
                                 {{'attachments' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="!c.organizationId" (click)="share(c)">
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="!organization && !c.organizationId" (click)="share(c)">
                                 <i class="fa fa-fw fa-share-alt"></i>
                                 {{'share' | i18n}}
                             </a>

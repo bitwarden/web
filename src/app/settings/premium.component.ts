@@ -12,6 +12,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentComponent } from './payment.component';
@@ -33,7 +34,8 @@ export class PremiumComponent implements OnInit {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private tokenService: TokenService,
-        private router: Router, private messagingService: MessagingService) {
+        private router: Router, private messagingService: MessagingService,
+        private syncService: SyncService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -79,7 +81,10 @@ export class PremiumComponent implements OnInit {
     }
 
     async finalizePremium() {
-        await this.apiService.refreshIdentityToken();
+        await Promise.all([
+            this.apiService.refreshIdentityToken(),
+            this.syncService.fullSync(true),
+        ]);
         this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
         this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
         this.messagingService.send('purchasedPremium');

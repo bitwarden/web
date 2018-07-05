@@ -14,6 +14,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { PaymentComponent } from './payment.component';
 
@@ -82,7 +83,7 @@ export class CreateOrganizationComponent {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router) {
+        private router: Router, private syncService: SyncService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -150,7 +151,10 @@ export class CreateOrganizationComponent {
     }
 
     async finalize(orgId: string) {
-        this.apiService.refreshIdentityToken();
+        await Promise.all([
+            this.apiService.refreshIdentityToken(),
+            this.syncService.fullSync(true),
+        ]);
         this.analytics.eventTrack.next({ action: 'Created Organization' });
         this.toasterService.popAsync('success', this.i18nService.t('organizationCreated'),
             this.i18nService.t('organizationReadyToGo'));
