@@ -13,11 +13,11 @@ import { Cipher } from 'jslib/models/domain/cipher';
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherView } from 'jslib/models/view/cipherView';
 
-import { CiphersComponent as BaseCiphersComponent } from '../vault/ciphers.component';
+import { CiphersComponent as BaseCiphersComponent } from '../../vault/ciphers.component';
 
 @Component({
     selector: 'app-org-vault-ciphers',
-    templateUrl: '../vault/ciphers.component.html',
+    templateUrl: '../../vault/ciphers.component.html',
 })
 export class CiphersComponent extends BaseCiphersComponent {
     organization: Organization;

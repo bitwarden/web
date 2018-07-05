@@ -32,12 +32,12 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
-import { AddEditComponent as OrgAddEditComponent } from './organizations/add-edit.component';
-import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/attachments.component';
-import { CiphersComponent as OrgCiphersComponent } from './organizations/ciphers.component';
-import { CollectionsComponent as OrgCollectionsComponent } from './organizations/collections.component';
-import { GroupingsComponent as OrgGroupingsComponent } from './organizations/groupings.component';
-import { VaultComponent as OrgVaultComponent } from './organizations/vault.component';
+import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
+import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
+import { CiphersComponent as OrgCiphersComponent } from './organizations/vault/ciphers.component';
+import { CollectionsComponent as OrgCollectionsComponent } from './organizations/vault/collections.component';
+import { GroupingsComponent as OrgGroupingsComponent } from './organizations/vault/groupings.component';
+import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
 import { AccountComponent } from './settings/account.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';

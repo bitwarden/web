@@ -10,11 +10,11 @@ import { Collection } from 'jslib/models/domain/collection';
 import { Organization } from 'jslib/models/domain/organization';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
-import { GroupingsComponent as BaseGroupingsComponent } from '../vault/groupings.component';
+import { GroupingsComponent as BaseGroupingsComponent } from '../../vault/groupings.component';
 
 @Component({
     selector: 'app-org-vault-groupings',
-    templateUrl: '../vault/groupings.component.html',
+    templateUrl: '../../vault/groupings.component.html',
 })
 export class GroupingsComponent extends BaseGroupingsComponent {
     organization: Organization;

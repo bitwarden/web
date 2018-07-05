@@ -14,7 +14,7 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
-import { VaultComponent as OrganizationVaultComponent } from './organizations/vault.component';
+import { VaultComponent as OrganizationVaultComponent } from './organizations/vault/vault.component';
 
 import { AccountComponent } from './settings/account.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';

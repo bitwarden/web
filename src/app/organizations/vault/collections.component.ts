@@ -13,11 +13,11 @@ import { Cipher } from 'jslib/models/domain/cipher';
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherCollectionsRequest } from 'jslib/models/request/cipherCollectionsRequest';
 
-import { CollectionsComponent as BaseCollectionsComponent } from '../vault/collections.component';
+import { CollectionsComponent as BaseCollectionsComponent } from '../../vault/collections.component';
 
 @Component({
     selector: 'app-org-vault-collections',
-    templateUrl: '../vault/collections.component.html',
+    templateUrl: '../../vault/collections.component.html',
 })
 export class CollectionsComponent extends BaseCollectionsComponent {
     organization: Organization;

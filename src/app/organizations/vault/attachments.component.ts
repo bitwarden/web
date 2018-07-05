@@ -14,11 +14,11 @@ import { CipherData } from 'jslib/models/data/cipherData';
 import { Cipher } from 'jslib/models/domain/cipher';
 import { Organization } from 'jslib/models/domain/organization';
 
-import { AttachmentsComponent as BaseAttachmentsComponent } from '../vault/attachments.component';
+import { AttachmentsComponent as BaseAttachmentsComponent } from '../../vault/attachments.component';
 
 @Component({
     selector: 'app-org-vault-attachments',
-    templateUrl: '../vault/attachments.component.html',
+    templateUrl: '../../vault/attachments.component.html',
 })
 export class AttachmentsComponent extends BaseAttachmentsComponent {
     organization: Organization;

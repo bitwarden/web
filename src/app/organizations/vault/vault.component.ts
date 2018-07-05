@@ -20,7 +20,7 @@ import { CipherView } from 'jslib/models/view/cipherView';
 
 import { CipherType } from 'jslib/enums/cipherType';
 
-import { ModalComponent } from '../modal.component';
+import { ModalComponent } from '../../modal.component';
 
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
