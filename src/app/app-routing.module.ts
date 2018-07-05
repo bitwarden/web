@@ -37,9 +37,13 @@ import { ToolsComponent } from './tools/tools.component';
 
 import { VaultComponent } from './vault/vault.component';
 
+import { OrganizationGuardService } from './services/organization-guard.service';
+import { OrganizationTypeGuardService } from './services/organization-type-guard.service';
 import { UnauthGuardService } from './services/unauth-guard.service';
 
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
+
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 
 const routes: Routes = [
     {
@@ -56,36 +60,34 @@ const routes: Routes = [
     {
         path: '',
         component: UserLayoutComponent,
+        canActivate: [AuthGuardService],
         children: [
-            { path: 'vault', component: VaultComponent, canActivate: [AuthGuardService] },
+            { path: 'vault', component: VaultComponent },
             {
                 path: 'settings',
                 component: SettingsComponent,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
-                    { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
-                    { path: 'options', component: OptionsComponent, canActivate: [AuthGuardService] },
-                    { path: 'domain-rules', component: DomainRulesComponent, canActivate: [AuthGuardService] },
-                    { path: 'two-factor', component: TwoFactorSetupComponent, canActivate: [AuthGuardService] },
-                    { path: 'premium', component: PremiumComponent, canActivate: [AuthGuardService] },
-                    { path: 'billing', component: UserBillingComponent, canActivate: [AuthGuardService] },
-                    { path: 'organizations', component: OrganizationsComponent, canActivate: [AuthGuardService] },
-                    {
-                        path: 'create-organization',
-                        component: CreateOrganizationComponent,
-                        canActivate: [AuthGuardService],
-                    },
+                    { path: 'account', component: AccountComponent },
+                    { path: 'options', component: OptionsComponent },
+                    { path: 'domain-rules', component: DomainRulesComponent },
+                    { path: 'two-factor', component: TwoFactorSetupComponent },
+                    { path: 'premium', component: PremiumComponent },
+                    { path: 'billing', component: UserBillingComponent },
+                    { path: 'organizations', component: OrganizationsComponent },
+                    { path: 'create-organization', component: CreateOrganizationComponent },
                 ],
             },
             {
                 path: 'tools',
                 component: ToolsComponent,
+                canActivate: [AuthGuardService],
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'generator' },
-                    { path: 'import', component: ImportComponent, canActivate: [AuthGuardService] },
-                    { path: 'export', component: ExportComponent, canActivate: [AuthGuardService] },
-                    { path: 'generator', component: PasswordGeneratorComponent, canActivate: [AuthGuardService] },
-                    { path: 'breach-report', component: BreachReportComponent, canActivate: [AuthGuardService] },
+                    { path: 'import', component: ImportComponent },
+                    { path: 'export', component: ExportComponent },
+                    { path: 'generator', component: PasswordGeneratorComponent },
+                    { path: 'breach-report', component: BreachReportComponent },
                 ],
             },
         ],
@@ -93,16 +95,19 @@ const routes: Routes = [
     {
         path: 'organizations/:organizationId',
         component: OrganizationLayoutComponent,
+        canActivate: [AuthGuardService, OrganizationGuardService],
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'vault' },
-            { path: 'vault', component: OrgVaultComponent, canActivate: [AuthGuardService] },
+            { path: 'vault', component: OrgVaultComponent },
             {
                 path: 'tools',
                 component: OrgToolsComponent,
+                canActivate: [OrganizationTypeGuardService],
+                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'export' },
-                    // { path: 'import', component: ImportComponent, canActivate: [AuthGuardService] },
-                    { path: 'export', component: OrgExportComponent, canActivate: [AuthGuardService] },
+                    // { path: 'import', component: ImportComponent },
+                    { path: 'export', component: OrgExportComponent },
                 ],
             },
         ],

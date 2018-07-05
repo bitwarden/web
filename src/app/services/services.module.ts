@@ -11,6 +11,8 @@ import { I18nService } from '../../services/i18n.service';
 import { MemoryStorageService } from '../../services/memoryStorage.service';
 import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
+import { OrganizationGuardService } from './organization-guard.service';
+import { OrganizationTypeGuardService } from './organization-type-guard.service';
 import { RouterService } from './router.service';
 import { UnauthGuardService } from './unauth-guard.service';
 
@@ -142,6 +144,8 @@ export function initFactory(): Function {
     providers: [
         ValidationService,
         AuthGuardService,
+        OrganizationGuardService,
+        OrganizationTypeGuardService,
         UnauthGuardService,
         RouterService,
         { provide: AuditServiceAbstraction, useValue: auditService },
