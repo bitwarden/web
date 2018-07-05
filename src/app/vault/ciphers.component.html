@@ -10,7 +10,7 @@
                 </td>
                 <td (click)="checkCipher(c)">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
-                    <i class="fa fa-share-alt" appStopProp *ngIf="c.organizationId" title="{{'shared' | i18n}}"></i>
+                    <i class="fa fa-share-alt" appStopProp *ngIf="!organization && c.organizationId" title="{{'shared' | i18n}}"></i>
                     <i class="fa fa-paperclip" appStopProp *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>

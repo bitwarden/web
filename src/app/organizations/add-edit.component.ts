@@ -50,6 +50,13 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         }
     }
 
+    protected encryptCipher() {
+        if (!this.editMode) {
+            this.cipher.organizationId = this.organization.id;
+        }
+        return super.encryptCipher();
+    }
+
     protected async saveCipher(cipher: Cipher) {
         if (this.organization.isAdmin) {
             const request = new CipherRequest(cipher);
