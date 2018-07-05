@@ -29,27 +29,27 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
-        if (this.organization.isAdmin) {
-            const ciphers = await this.apiService.getCiphersOrganization(this.organization.id);
-            if (ciphers != null && ciphers.data != null && ciphers.data.length) {
-                const decCiphers: CipherView[] = [];
-                const promises: any[] = [];
-                ciphers.data.forEach((r) => {
-                    const data = new CipherData(r);
-                    const cipher = new Cipher(data);
-                    promises.push(cipher.decrypt().then((c) => decCiphers.push(c)));
-                });
-                await Promise.all(promises);
-                decCiphers.sort(this.cipherService.getLocaleSortingFunction());
-                this.allCiphers = decCiphers;
-            } else {
-                this.allCiphers = [];
-            }
-            this.applyFilter(filter);
-            this.loaded = true;
-        } else {
+        if (!this.organization.isAdmin) {
             await super.load();
+            return;
         }
+        const ciphers = await this.apiService.getCiphersOrganization(this.organization.id);
+        if (ciphers != null && ciphers.data != null && ciphers.data.length) {
+            const decCiphers: CipherView[] = [];
+            const promises: any[] = [];
+            ciphers.data.forEach((r) => {
+                const data = new CipherData(r);
+                const cipher = new Cipher(data);
+                promises.push(cipher.decrypt().then((c) => decCiphers.push(c)));
+            });
+            await Promise.all(promises);
+            decCiphers.sort(this.cipherService.getLocaleSortingFunction());
+            this.allCiphers = decCiphers;
+        } else {
+            this.allCiphers = [];
+        }
+        this.applyFilter(filter);
+        this.loaded = true;
     }
 
     applyFilter(filter: (cipher: CipherView) => boolean = null) {

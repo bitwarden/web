@@ -23,6 +23,7 @@ import { CipherType } from 'jslib/enums/cipherType';
 import { ModalComponent } from '../modal.component';
 
 import { AddEditComponent } from './add-edit.component';
+import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
 import { GroupingsComponent } from './groupings.component';
 
@@ -33,6 +34,7 @@ import { GroupingsComponent } from './groupings.component';
 export class VaultComponent implements OnInit {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
+    @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
 
     organization: Organization;
@@ -123,6 +125,30 @@ export class VaultComponent implements OnInit {
 
     filterSearchText(searchText: string) {
         this.ciphersComponent.searchText = searchText;
+    }
+
+    editCipherAttachments(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.attachmentsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<AttachmentsComponent>(AttachmentsComponent, this.attachmentsModalRef);
+
+        childComponent.organization = this.organization;
+        childComponent.cipherId = cipher.id;
+        let madeAttachmentChanges = false;
+        childComponent.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
+        childComponent.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+            if (madeAttachmentChanges) {
+                await this.ciphersComponent.refresh();
+            }
+            madeAttachmentChanges = false;
+        });
     }
 
     addCipher() {

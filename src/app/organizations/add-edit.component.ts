@@ -42,12 +42,11 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     }
 
     protected async loadCipher() {
-        if (this.organization.isAdmin) {
-            const response = await this.apiService.getCipherAdmin(this.cipherId);
-            return new Cipher(new CipherData(response));
-        } else {
+        if (!this.organization.isAdmin) {
             return await super.loadCipher();
         }
+        const response = await this.apiService.getCipherAdmin(this.cipherId);
+        return new Cipher(new CipherData(response));
     }
 
     protected encryptCipher() {
@@ -58,23 +57,21 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     }
 
     protected async saveCipher(cipher: Cipher) {
-        if (this.organization.isAdmin) {
-            const request = new CipherRequest(cipher);
-            if (this.editMode) {
-                return this.apiService.putCipherAdmin(this.cipherId, request);
-            } else {
-                return this.apiService.postCipherAdmin(request);
-            }
-        } else {
+        if (!this.organization.isAdmin) {
             return super.saveCipher(cipher);
+        }
+        const request = new CipherRequest(cipher);
+        if (this.editMode) {
+            return this.apiService.putCipherAdmin(this.cipherId, request);
+        } else {
+            return this.apiService.postCipherAdmin(request);
         }
     }
 
     protected async deleteCipher() {
-        if (this.organization.isAdmin) {
-            return this.apiService.deleteCipherAdmin(this.cipherId);
-        } else {
+        if (!this.organization.isAdmin) {
             return super.deleteCipher();
         }
+        return this.apiService.deleteCipherAdmin(this.cipherId);
     }
 }

@@ -25,31 +25,31 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     }
 
     async loadCollections() {
-        if (this.organization.isAdmin) {
-            const collections = await this.apiService.getCollections(this.organization.id);
-            if (collections != null && collections.data != null && collections.data.length) {
-                const decCollections: CollectionView[] = [];
-                const promises: any[] = [];
-                collections.data.forEach((r) => {
-                    const data = new CollectionData(r);
-                    const collection = new Collection(data);
-                    promises.push(collection.decrypt().then((c) => decCollections.push(c)));
-                });
-                await Promise.all(promises);
-                decCollections.sort(this.collectionService.getLocaleSortingFunction());
-                this.collections = decCollections;
-            } else {
-                this.collections = [];
-            }
-
-            const unassignedCollection = new CollectionView();
-            unassignedCollection.name = this.i18nService.t('unassigned');
-            unassignedCollection.id = 'unassigned';
-            unassignedCollection.organizationId = this.organization.id;
-            unassignedCollection.readOnly = true;
-            this.collections.push(unassignedCollection);
-        } else {
+        if (!this.organization.isAdmin) {
             await super.loadCollections(this.organization.id);
+            return;
         }
+        const collections = await this.apiService.getCollections(this.organization.id);
+        if (collections != null && collections.data != null && collections.data.length) {
+            const decCollections: CollectionView[] = [];
+            const promises: any[] = [];
+            collections.data.forEach((r) => {
+                const data = new CollectionData(r);
+                const collection = new Collection(data);
+                promises.push(collection.decrypt().then((c) => decCollections.push(c)));
+            });
+            await Promise.all(promises);
+            decCollections.sort(this.collectionService.getLocaleSortingFunction());
+            this.collections = decCollections;
+        } else {
+            this.collections = [];
+        }
+
+        const unassignedCollection = new CollectionView();
+        unassignedCollection.name = this.i18nService.t('unassigned');
+        unassignedCollection.id = 'unassigned';
+        unassignedCollection.organizationId = this.organization.id;
+        unassignedCollection.readOnly = true;
+        this.collections.push(unassignedCollection);
     }
 }

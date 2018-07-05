@@ -86,6 +86,12 @@ body {
     }
 }
 
+h1, h2, h3, h4, h5 {
+    small {
+        font-size: 80%;
+    }
+}
+
 .secondary-header, .spaced-header {
     margin-top: 4rem;
 }
@@ -130,6 +136,7 @@ body {
     small {
         font-weight: normal;
         text-transform: none;
+        @extend .text-muted;
     }
 }
 
