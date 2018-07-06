@@ -32,6 +32,12 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
+import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
+import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
+import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
+import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
+
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
@@ -163,9 +169,14 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         OrgAttachmentsComponent,
         OrgCiphersComponent,
         OrgCollectionsComponent,
+        OrgEventsComponent,
         OrgExportComponent,
         OrgImportComponent,
         OrgGroupingsComponent,
+        OrgGroupsComponent,
+        OrgManageCollectionsComponent,
+        OrgManageComponent,
+        OrgPeopleComponent,
         OrgToolsComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,

@@ -14,6 +14,12 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
+import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
+import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
+import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
+import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
+
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
@@ -125,6 +131,19 @@ const routes: Routes = [
                     { path: '', pathMatch: 'full', redirectTo: 'import' },
                     { path: 'import', component: OrgImportComponent, data: { titleId: 'importData' } },
                     { path: 'export', component: OrgExportComponent, data: { titleId: 'exportVault' } },
+                ],
+            },
+            {
+                path: 'manage',
+                component: OrgManageComponent,
+                canActivate: [OrganizationTypeGuardService],
+                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
+                children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'people' },
+                    { path: 'collections', component: OrgManageCollectionsComponent, data: { titleId: 'collections' } },
+                    { path: 'events', component: OrgEventsComponent, data: { titleId: 'eventLogs' } },
+                    { path: 'groups', component: OrgGroupsComponent, data: { titleId: 'groups' } },
+                    { path: 'people', component: OrgPeopleComponent, data: { titleId: 'people' } },
                 ],
             },
         ],
