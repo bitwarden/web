@@ -8,8 +8,10 @@
                 <label for="type">1. {{'selectFormat' | i18n}}</label>
                 <select id="type" name="Format" [(ngModel)]="format" class="form-control" required>
                     <option *ngFor="let o of featuredImportOptions" [ngValue]="o.id">{{o.name}}</option>
-                    <option value="-" disabled></option>
-                    <option *ngFor="let o of importOptions" [ngValue]="o.id">{{o.name}}</option>
+                    <ng-container *ngIf="importOptions && importOptions.length">
+                        <option value="-" disabled></option>
+                        <option *ngFor="let o of importOptions" [ngValue]="o.id">{{o.name}}</option>
+                    </ng-container>
                 </select>
             </div>
         </div>

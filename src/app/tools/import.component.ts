@@ -1,5 +1,6 @@
 import {
     Component,
+    OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,6 +11,8 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+
+import { ImportResult } from 'jslib/models/domain/importResult';
 
 import { CipherRequest } from 'jslib/models/request/cipherRequest';
 import { FolderRequest } from 'jslib/models/request/folderRequest';
@@ -28,57 +31,22 @@ import { CipherView } from 'jslib/models/view';
     selector: 'app-import',
     templateUrl: 'import.component.html',
 })
-export class ImportComponent {
+export class ImportComponent implements OnInit {
     featuredImportOptions: any[];
     importOptions: any[];
     format: string = null;
     fileContents: string;
-
     formPromise: Promise<any>;
 
-    constructor(private i18nService: I18nService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private cipherService: CipherService,
-        private folderService: FolderService, private apiService: ApiService,
-        private router: Router) {
-        this.featuredImportOptions = [
-            { id: null, name: '-- ' + i18nService.t('select') + ' --' },
-            { id: 'bitwardencsv', name: 'Bitwarden (csv)' },
-            { id: 'lastpasscsv', name: 'LastPass (csv)' },
-            { id: 'chromecsv', name: 'Chrome (csv)' },
-            { id: 'firefoxcsv', name: 'Firefox (csv)' },
-            { id: 'keepass2xml', name: 'KeePass 2 (xml)' },
-            { id: '1password1pif', name: '1Password (1pif)' },
-            { id: 'dashlanecsv', name: 'Dashlane (csv)' },
-        ];
+    constructor(protected i18nService: I18nService, protected analytics: Angulartics2,
+        protected toasterService: ToasterService, protected cipherService: CipherService,
+        protected folderService: FolderService, protected apiService: ApiService,
+        protected router: Router) {
+    }
 
-        this.importOptions = [
-            { id: 'keepassxcsv', name: 'KeePassX (csv)' },
-            { id: '1password6wincsv', name: '1Password 6 Windows (csv)' },
-            { id: 'roboformcsv', name: 'RoboForm (csv)' },
-            { id: 'keepercsv', name: 'Keeper (csv)' },
-            { id: 'enpasscsv', name: 'Enpass (csv)' },
-            { id: 'safeincloudxml', name: 'SafeInCloud (xml)' },
-            { id: 'pwsafexml', name: 'Password Safe (xml)' },
-            { id: 'stickypasswordxml', name: 'Sticky Password (xml)' },
-            { id: 'msecurecsv', name: 'mSecure (csv)' },
-            { id: 'truekeycsv', name: 'True Key (csv)' },
-            { id: 'passwordbossjson', name: 'Password Boss (json)' },
-            { id: 'zohovaultcsv', name: 'Zoho Vault (csv)' },
-            { id: 'splashidcsv', name: 'SplashID (csv)' },
-            { id: 'passworddragonxml', name: 'Password Dragon (xml)' },
-            { id: 'padlockcsv', name: 'Padlock (csv)' },
-            { id: 'clipperzhtml', name: 'Clipperz (html)' },
-            { id: 'aviracsv', name: 'Avira (csv)' },
-            { id: 'saferpasscsv', name: 'SaferPass (csv)' },
-            { id: 'upmcsv', name: 'Universal Password Manager (csv)' },
-            { id: 'ascendocsv', name: 'Ascendo DataVault (csv)' },
-            { id: 'meldiumcsv', name: 'Meldium (csv)' },
-            { id: 'passkeepcsv', name: 'PassKeep (csv)' },
-            { id: 'operacsv', name: 'Opera (csv)' },
-            { id: 'vivaldicsv', name: 'Vivaldi (csv)' },
-            { id: 'gnomejson', name: 'GNOME Passwords and Keys/Seahorse (json)' },
-            { id: 'blurcsv', name: 'Blur (csv)' },
-        ].sort((a, b) => {
+    ngOnInit() {
+        this.setImportOptions();
+        this.importOptions.sort((a, b) => {
             if (a.name == null && b.name != null) {
                 return -1;
             }
@@ -141,20 +109,8 @@ export class ImportComponent {
                 }
             }
 
-            const request = new ImportCiphersRequest();
-            for (let i = 0; i < importResult.ciphers.length; i++) {
-                const c = await this.cipherService.encrypt(importResult.ciphers[i]);
-                request.ciphers.push(new CipherRequest(c));
-            }
-            for (let i = 0; i < importResult.folders.length; i++) {
-                const f = await this.folderService.encrypt(importResult.folders[i]);
-                request.folders.push(new FolderRequest(f));
-            }
-            importResult.folderRelationships.forEach((v: number, k: number) =>
-                request.folderRelationships.push(new KvpRequest(k, v)));
-
             try {
-                this.formPromise = this.apiService.postImportCiphers(request);
+                this.formPromise = this.postImport(importResult);
                 await this.formPromise;
                 this.analytics.eventTrack.next({
                     action: 'Imported Data',
@@ -178,6 +134,88 @@ export class ImportComponent {
             return this.i18nService.t('instructionsFor', results[0].name);
         }
         return null;
+    }
+
+    protected async postImport(importResult: ImportResult) {
+        const request = new ImportCiphersRequest();
+        for (let i = 0; i < importResult.ciphers.length; i++) {
+            const c = await this.cipherService.encrypt(importResult.ciphers[i]);
+            request.ciphers.push(new CipherRequest(c));
+        }
+        if (importResult.folders != null) {
+            for (let i = 0; i < importResult.folders.length; i++) {
+                const f = await this.folderService.encrypt(importResult.folders[i]);
+                request.folders.push(new FolderRequest(f));
+            }
+        }
+        if (importResult.folderRelationships != null) {
+            importResult.folderRelationships.forEach((v: number, k: number) =>
+                request.folderRelationships.push(new KvpRequest(k, v)));
+        }
+        return await this.apiService.postImportCiphers(request);
+    }
+
+    protected setImportOptions() {
+        this.featuredImportOptions = [
+            { id: null, name: '-- ' + this.i18nService.t('select') + ' --' },
+            { id: 'bitwardencsv', name: 'Bitwarden (csv)' },
+            { id: 'lastpasscsv', name: 'LastPass (csv)' },
+            { id: 'chromecsv', name: 'Chrome (csv)' },
+            { id: 'firefoxcsv', name: 'Firefox (csv)' },
+            { id: 'keepass2xml', name: 'KeePass 2 (xml)' },
+            { id: '1password1pif', name: '1Password (1pif)' },
+            { id: 'dashlanecsv', name: 'Dashlane (csv)' },
+        ];
+
+        this.importOptions = [
+            { id: 'keepassxcsv', name: 'KeePassX (csv)' },
+            { id: '1password6wincsv', name: '1Password 6 Windows (csv)' },
+            { id: 'roboformcsv', name: 'RoboForm (csv)' },
+            { id: 'keepercsv', name: 'Keeper (csv)' },
+            { id: 'enpasscsv', name: 'Enpass (csv)' },
+            { id: 'safeincloudxml', name: 'SafeInCloud (xml)' },
+            { id: 'pwsafexml', name: 'Password Safe (xml)' },
+            { id: 'stickypasswordxml', name: 'Sticky Password (xml)' },
+            { id: 'msecurecsv', name: 'mSecure (csv)' },
+            { id: 'truekeycsv', name: 'True Key (csv)' },
+            { id: 'passwordbossjson', name: 'Password Boss (json)' },
+            { id: 'zohovaultcsv', name: 'Zoho Vault (csv)' },
+            { id: 'splashidcsv', name: 'SplashID (csv)' },
+            { id: 'passworddragonxml', name: 'Password Dragon (xml)' },
+            { id: 'padlockcsv', name: 'Padlock (csv)' },
+            { id: 'clipperzhtml', name: 'Clipperz (html)' },
+            { id: 'aviracsv', name: 'Avira (csv)' },
+            { id: 'saferpasscsv', name: 'SaferPass (csv)' },
+            { id: 'upmcsv', name: 'Universal Password Manager (csv)' },
+            { id: 'ascendocsv', name: 'Ascendo DataVault (csv)' },
+            { id: 'meldiumcsv', name: 'Meldium (csv)' },
+            { id: 'passkeepcsv', name: 'PassKeep (csv)' },
+            { id: 'operacsv', name: 'Opera (csv)' },
+            { id: 'vivaldicsv', name: 'Vivaldi (csv)' },
+            { id: 'gnomejson', name: 'GNOME Passwords and Keys/Seahorse (json)' },
+            { id: 'blurcsv', name: 'Blur (csv)' },
+        ];
+    }
+
+    protected getImporter(): Importer {
+        if (this.format == null || this.format === '') {
+            return null;
+        }
+
+        switch (this.format) {
+            case 'bitwardencsv':
+                return new BitwardenCsvImporter();
+            case 'lastpasscsv':
+                return new LastPassCsvImporter();
+            case 'keepassxcsv':
+                return new KeePassXCsvImporter();
+            case 'aviracsv':
+                return new AviraCsvImporter();
+            case 'blurcsv':
+                return new BlurCsvImporter();
+            default:
+                return null;
+        }
     }
 
     private error(errorMessage: string) {
@@ -211,27 +249,6 @@ export class ImportComponent {
                 reject();
             };
         });
-    }
-
-    private getImporter(): Importer {
-        if (this.format == null || this.format === '') {
-            return null;
-        }
-
-        switch (this.format) {
-            case 'bitwardencsv':
-                return new BitwardenCsvImporter();
-            case 'lastpasscsv':
-                return new LastPassCsvImporter();
-            case 'keepassxcsv':
-                return new KeePassXCsvImporter();
-            case 'aviracsv':
-                return new AviraCsvImporter();
-            case 'blurcsv':
-                return new BlurCsvImporter();
-            default:
-                return null;
-        }
     }
 
     private badData(c: CipherView) {

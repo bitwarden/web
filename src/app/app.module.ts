@@ -33,6 +33,7 @@ import { TwoFactorOptionsComponent } from './accounts/two-factor-options.compone
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
+import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
 
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
@@ -163,6 +164,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         OrgCiphersComponent,
         OrgCollectionsComponent,
         OrgExportComponent,
+        OrgImportComponent,
         OrgGroupingsComponent,
         OrgToolsComponent,
         OrganizationsComponent,
