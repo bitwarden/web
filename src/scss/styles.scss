@@ -92,6 +92,12 @@ h1, h2, h3, h4, h5 {
     }
 }
 
+input, select, textarea {
+    &:required {
+        box-shadow: none;
+    }
+}
+
 .secondary-header, .spaced-header {
     margin-top: 4rem;
 }
