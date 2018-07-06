@@ -22,7 +22,7 @@ export class ExportComponent extends BaseExportComponent {
     constructor(analytics: Angulartics2, toasterService: ToasterService,
         cryptoService: CryptoService, userService: UserService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
-        exportService: ExportService, private route: ActivatedRoute, ) {
+        exportService: ExportService, private route: ActivatedRoute) {
         super(analytics, toasterService, cryptoService, userService, i18nService, platformUtilsService,
             exportService);
     }
