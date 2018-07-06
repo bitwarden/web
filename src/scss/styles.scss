@@ -49,6 +49,7 @@ $navbar-brand-height: 35px;
 $navbar-brand-padding-y: 0;
 $navbar-dark-color: rgba(#ffffff, .7);
 $navbar-dark-hover-color: rgba(#ffffff, .9);
+$navbar-nav-link-padding-x: 0.8rem;
 
 $input-bg: #fbfbfb;
 $input-focus-bg: #ffffff;
@@ -120,6 +121,10 @@ input, select, textarea {
                 text-overflow: ellipsis;
             }
         }
+    }
+
+    .nav-link {
+        font-weight: 600;
     }
 }
 
@@ -212,7 +217,7 @@ input, select, textarea {
 }
 
 label:not(.form-check-label):not(.btn) {
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .btn[class*="btn-outline-"] {
@@ -587,7 +592,7 @@ app-user-billing {
 
 .form-check-block {
     .form-check-label {
-        font-weight: bold;
+        font-weight: 600;
 
         > small {
             display: block;
@@ -608,7 +613,7 @@ app-user-billing {
 }
 
 .org-nav {
-    background-color: #ecf0f5;
+    background-color: $input-bg;
     border-bottom: 1px solid $border-color;
     height: 100px;
     min-height: 100px;
