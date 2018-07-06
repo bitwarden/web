@@ -105,11 +105,33 @@ input, select, textarea {
 .navbar {
     padding-left: 0;
     padding-right: 0;
+
+    .dropdown-menu {
+        min-width: 200px;
+        max-width: 250px;
+
+        .dropdown-item-text {
+            line-height: 1.3;
+
+            small {
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
 }
 
 .navbar-brand {
     margin-top: -20px;
     margin-bottom: -20px;
+}
+
+.dropdown-menu {
+    button {
+        cursor: pointer;
+    }
 }
 
 .container {

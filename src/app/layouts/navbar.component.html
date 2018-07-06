@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark bg-primary" [ngClass]="{'bg-secondary-alt': selfHosted}">
     <div class="container">
-        <a class="navbar-brand" routerLink="/">
+        <a class="navbar-brand" routerLink="/" title="{{'pageTitle' | i18n : 'Bitwarden'}}">
             <i class="fa fa-shield"></i>
         </a>
         <div class="collapse navbar-collapse">
@@ -22,11 +22,28 @@
                     <i class="fa fa-user fa-lg"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-profile">
-                    <a class="dropdown-item" href="#">Help</a>
-                    <a class="dropdown-item" href="#">Get the Apps</a>
+                    <span class="dropdown-item-text">
+                        {{'loggedInAs' | i18n}}
+                        <small class="text-muted">{{email}}</small>
+                    </span>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" appStopClick (click)="lock()">{{'lockNow' | i18n}}</a>
-                    <a class="dropdown-item" href="#" appStopClick (click)="logOut()">{{'logOut' | i18n}}</a>
+                    <a class="dropdown-item" href="https://help.bitwarden.com" target="_blank" rel="noopener">
+                        <i class="fa fa-fw fa-question-circle"></i>
+                        {{'getHelp' | i18n}}
+                    </a>
+                    <a class="dropdown-item" href="https://bitwarden.com#download" target="_blank" rel="noopener">
+                        <i class="fa fa-fw fa-download"></i>
+                        {{'getApps' | i18n}}
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button type="button" class="dropdown-item" (click)="lock()">
+                        <i class="fa fa-fw fa-lock"></i>
+                        {{'lockNow' | i18n}}
+                    </button>
+                    <button type="button" class="dropdown-item" (click)="logOut()">
+                        <i class="fa fa-fw fa-sign-out"></i>
+                        {{'logOut' | i18n}}
+                    </button>
                 </div>
             </li>
         </ul>
