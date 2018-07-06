@@ -122,7 +122,7 @@ const routes: Routes = [
                 canActivate: [OrganizationTypeGuardService],
                 data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
                 children: [
-                    { path: '', pathMatch: 'full', redirectTo: 'export' },
+                    { path: '', pathMatch: 'full', redirectTo: 'import' },
                     { path: 'import', component: OrgImportComponent, data: { titleId: 'importData' } },
                     { path: 'export', component: OrgExportComponent, data: { titleId: 'exportVault' } },
                 ],

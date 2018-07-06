@@ -38,6 +38,8 @@ export class ImportComponent implements OnInit {
     fileContents: string;
     formPromise: Promise<any>;
 
+    protected successNavigate: any[] = ['vault'];
+
     constructor(protected i18nService: I18nService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected cipherService: CipherService,
         protected folderService: FolderService, protected apiService: ApiService,
@@ -117,7 +119,7 @@ export class ImportComponent implements OnInit {
                     properties: { label: this.format },
                 });
                 this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
-                this.router.navigate(['vault']);
+                this.router.navigate(this.successNavigate);
             } catch { }
         } else {
             this.error(this.i18nService.t('importFormatError'));
