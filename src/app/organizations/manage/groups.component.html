@@ -12,7 +12,7 @@
     </div>
 </div>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
-<ng-container *ngIf="!loading && (groups | search:searchText:'name') as searchedGroups">
+<ng-container *ngIf="!loading && (groups | search:searchText:'name':'id') as searchedGroups">
     <p *ngIf="!searchedGroups.length">{{'noItemsInList' | i18n}}</p>
     <table class="table table-hover table-list" *ngIf="searchedGroups.length">
         <tbody>
