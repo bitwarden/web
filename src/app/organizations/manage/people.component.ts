@@ -9,6 +9,9 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
+import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+
 import { Utils } from 'jslib/misc/utils';
 
 @Component({
@@ -20,6 +23,8 @@ export class PeopleComponent implements OnInit {
     organizationId: string;
     users: OrganizationUserUserDetailsResponse[];
     searchText: string;
+    organizationUserType = OrganizationUserType;
+    organizationUserStatusType = OrganizationUserStatusType;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService) { }

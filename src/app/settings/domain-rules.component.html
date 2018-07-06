@@ -33,7 +33,7 @@
     <table class="table table-hover table-list" *ngIf="!loading && global.length > 0">
         <tbody>
             <tr *ngFor="let d of global">
-                <td class="normal-lh" [ngClass]="{'table-list-strike': d.excluded}">{{d.domains}}</td>
+                <td [ngClass]="{'table-list-strike': d.excluded}">{{d.domains}}</td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

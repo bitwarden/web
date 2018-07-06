@@ -211,7 +211,7 @@ input, select, textarea {
     @include border-radius($modal-content-border-radius);
 }
 
-label:not(.form-check-label) {
+label:not(.form-check-label):not(.btn) {
     font-weight: bold;
 }
 
@@ -275,7 +275,7 @@ label:not(.form-check-label) {
     td {
         vertical-align: middle;
         
-        &:not(.normal-lh) {
+        &.reduced-lh {
             line-height: 1;
         }
 

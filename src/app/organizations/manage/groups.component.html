@@ -17,7 +17,7 @@
     <table class="table table-hover table-list" *ngIf="searchedGroups.length">
         <tbody>
             <tr *ngFor="let g of searchedGroups">
-                <td class="normal-lh">
+                <td>
                     <a href="#" appStopClick (click)="edit(g)">{{g.name}}</a>
                 </td>
                 <td class="table-list-options">

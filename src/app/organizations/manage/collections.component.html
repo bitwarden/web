@@ -17,7 +17,7 @@
     <table class="table table-hover table-list" *ngIf="searchedCollections.length">
         <tbody>
             <tr *ngFor="let c of searchedCollections">
-                <td class="normal-lh">
+                <td>
                     <a href="#" appStopClick (click)="edit(c)">{{c.name}}</a>
                 </td>
                 <td class="table-list-options">
