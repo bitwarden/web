@@ -15,6 +15,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 
+import { Utils } from 'jslib/misc/utils';
+
 @Component({
     selector: 'app-organizations',
     templateUrl: 'organizations.component.html',
@@ -37,20 +39,7 @@ export class OrganizationsComponent implements OnInit {
 
     async load() {
         const orgs = await this.userService.getAllOrganizations();
-        orgs.sort((a, b) => {
-            if (a.name == null && b.name != null) {
-                return -1;
-            }
-            if (a.name != null && b.name == null) {
-                return 1;
-            }
-            if (a.name == null && b.name == null) {
-                return 0;
-            }
-
-            return this.i18nService.collator ? this.i18nService.collator.compare(a.name, b.name) :
-                a.name.localeCompare(b.name);
-        });
+        orgs.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.organizations = orgs;
         this.loaded = true;
     }

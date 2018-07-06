@@ -9,6 +9,8 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { GroupResponse } from 'jslib/models/response/groupResponse';
 
+import { Utils } from 'jslib/misc/utils';
+
 @Component({
     selector: 'app-org-groups',
     templateUrl: 'groups.component.html',
@@ -32,20 +34,7 @@ export class GroupsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getGroups(this.organizationId);
         const groups = response.data != null && response.data.length > 0 ? response.data : [];
-        groups.sort((a, b) => {
-            if (a.name == null && b.name != null) {
-                return -1;
-            }
-            if (a.name != null && b.name == null) {
-                return 1;
-            }
-            if (a.name == null && b.name == null) {
-                return 0;
-            }
-
-            return this.i18nService.collator ? this.i18nService.collator.compare(a.name, b.name) :
-                a.name.localeCompare(b.name);
-        });
+        groups.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.groups = groups;
         this.loading = false;
     }
