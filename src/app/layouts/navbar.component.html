@@ -22,10 +22,13 @@
                     <i class="fa fa-user fa-lg"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-profile">
-                    <span class="dropdown-item-text">
-                        {{'loggedInAs' | i18n}}
-                        <small class="text-muted">{{email}}</small>
-                    </span>
+                    <div class="dropdown-item-text d-flex align-items-center" *ngIf="name" appStopProp>
+                        <app-avatar [data]="name" width="25" height="25" fontSize="14" [circle]="true"></app-avatar>
+                        <div class="ml-2">
+                            {{'loggedInAs' | i18n}}
+                            <small class="text-muted">{{name}}</small>
+                        </div>
+                    </div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="https://help.bitwarden.com" target="_blank" rel="noopener">
                         <i class="fa fa-fw fa-question-circle"></i>

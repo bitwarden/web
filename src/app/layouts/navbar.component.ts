@@ -5,7 +5,7 @@ import {
 
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { TokenService } from 'jslib/abstractions/token.service';
 
 @Component({
     selector: 'app-navbar',
@@ -13,15 +13,18 @@ import { UserService } from 'jslib/abstractions/user.service';
 })
 export class NavbarComponent implements OnInit {
     selfHosted = false;
-    email: string;
+    name: string;
 
     constructor(private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
-        private userService: UserService) {
+        private tokenService: TokenService) {
         this.selfHosted = this.platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
-        this.email = await this.userService.getEmail();
+        this.name = await this.tokenService.getName();
+        if (this.name == null || this.name.trim() === '') {
+            this.name = await this.tokenService.getEmail();
+        }
     }
 
     lock() {
