@@ -20,6 +20,7 @@ export class OrganizationLayoutComponent implements OnInit {
     constructor(private route: ActivatedRoute, private userService: UserService) { }
 
     ngOnInit() {
+        document.body.classList.remove('layout_frontend');
         this.route.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             await this.load();
