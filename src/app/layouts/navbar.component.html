@@ -19,7 +19,7 @@
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
             <li class="nav-item dropdown">
                 <a class="nav-item nav-link dropdown-toggle" href="#" id="nav-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user fa-lg"></i>
+                    <i class="fa fa-user-circle fa-lg"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-profile">
                     <div class="dropdown-item-text d-flex align-items-center" *ngIf="name" appStopProp>
@@ -30,6 +30,10 @@
                         </div>
                     </div>
                     <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" routerLink="/settings/account">
+                        <i class="fa fa-fw fa-user"></i>
+                        {{'myAccount' | i18n}}
+                    </a>
                     <a class="dropdown-item" href="https://help.bitwarden.com" target="_blank" rel="noopener">
                         <i class="fa fa-fw fa-question-circle"></i>
                         {{'getHelp' | i18n}}
