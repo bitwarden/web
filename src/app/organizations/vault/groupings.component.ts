@@ -31,16 +31,8 @@ export class GroupingsComponent extends BaseGroupingsComponent {
         }
         const collections = await this.apiService.getCollections(this.organization.id);
         if (collections != null && collections.data != null && collections.data.length) {
-            const decCollections: CollectionView[] = [];
-            const promises: any[] = [];
-            collections.data.forEach((r) => {
-                const data = new CollectionData(r);
-                const collection = new Collection(data);
-                promises.push(collection.decrypt().then((c) => decCollections.push(c)));
-            });
-            await Promise.all(promises);
-            decCollections.sort(this.collectionService.getLocaleSortingFunction());
-            this.collections = decCollections;
+            const collectionDomains = collections.data.map((r) => new Collection(new CollectionData(r)));
+            this.collections = await this.collectionService.decryptMany(collectionDomains);
         } else {
             this.collections = [];
         }

@@ -1,3 +1,43 @@
-<div class="page-header">
+<div class="page-header d-flex">
     <h1>{{'collections' | i18n}}</h1>
+    <div class="ml-auto d-flex">
+        <div class="form-inline">
+            <label class="sr-only" for="search">{{'search' | i18n}}</label>
+            <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}" [(ngModel)]="searchText">
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="add()">
+            <i class="fa fa-plus fa-fw"></i>
+            {{'newCollection' | i18n}}
+        </button>
+    </div>
 </div>
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
+<ng-container *ngIf="!loading && (collections | search:searchText:'name') as searchedCollections">
+    <p *ngIf="!searchedCollections.length">{{'noItemsInList' | i18n}}</p>
+    <table class="table table-hover table-list" *ngIf="searchedCollections.length">
+        <tbody>
+            <tr *ngFor="let c of searchedCollections">
+                <td class="normal-lh">
+                    <a href="#" appStopClick (click)="edit(c)">{{c.name}}</a>
+                </td>
+                <td class="table-list-options">
+                    <div class="dropdown" appListDropdown>
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" appStopClick (click)="users(c)">
+                                <i class="fa fa-fw fa-users"></i>
+                                {{'users' | i18n}}
+                            </a>
+                            <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
+                                <i class="fa fa-fw fa-trash-o"></i>
+                                {{'delete' | i18n}}
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

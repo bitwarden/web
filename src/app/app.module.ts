@@ -109,6 +109,7 @@ import { TrueFalseValueDirective } from 'jslib/angular/directives/true-false-val
 
 import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
+import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
 @NgModule({
     imports: [
@@ -189,6 +190,7 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
         PurgeVaultComponent,
         RegisterComponent,
         SearchCiphersPipe,
+        SearchPipe,
         SettingsComponent,
         ShareComponent,
         StopClickDirective,
