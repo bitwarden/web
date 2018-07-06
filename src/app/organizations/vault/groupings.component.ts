@@ -8,6 +8,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
 import { Organization } from 'jslib/models/domain/organization';
+import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { GroupingsComponent as BaseGroupingsComponent } from '../../vault/groupings.component';
@@ -31,7 +32,8 @@ export class GroupingsComponent extends BaseGroupingsComponent {
         }
         const collections = await this.apiService.getCollections(this.organization.id);
         if (collections != null && collections.data != null && collections.data.length) {
-            const collectionDomains = collections.data.map((r) => new Collection(new CollectionData(r)));
+            const collectionDomains = collections.data.map((r) =>
+                new Collection(new CollectionData(r as CollectionDetailsResponse)));
             this.collections = await this.collectionService.decryptMany(collectionDomains);
         } else {
             this.collections = [];

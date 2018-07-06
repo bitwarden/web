@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 
-import { GroupResponse } from 'jslib/models/response/groupUserResponse';
+import { GroupResponse } from 'jslib/models/response/groupResponse';
 
 @Component({
     selector: 'app-org-groups',

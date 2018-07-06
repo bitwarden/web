@@ -9,6 +9,7 @@ import { CollectionService } from 'jslib/abstractions/collection.service';
 
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
+import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 @Component({
@@ -33,7 +34,8 @@ export class CollectionsComponent implements OnInit {
 
     async load() {
         const response = await this.apiService.getCollections(this.organizationId);
-        const collections = response.data.map((r) => new Collection(new CollectionData(r)));
+        const collections = response.data.map((r) =>
+            new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
         this.loading = false;
     }
