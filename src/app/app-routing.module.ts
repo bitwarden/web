@@ -52,8 +52,16 @@ const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', component: LoginComponent, canActivate: [UnauthGuardService] },
             { path: '2fa', component: TwoFactorComponent, canActivate: [UnauthGuardService] },
-            { path: 'register', component: RegisterComponent, canActivate: [UnauthGuardService] },
-            { path: 'hint', component: HintComponent, canActivate: [UnauthGuardService] },
+            {
+                path: 'register', component: RegisterComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'createAccount' },
+            },
+            {
+                path: 'hint', component: HintComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'passwordHint' },
+            },
             { path: 'lock', component: LockComponent },
         ],
     },
@@ -62,20 +70,24 @@ const routes: Routes = [
         component: UserLayoutComponent,
         canActivate: [AuthGuardService],
         children: [
-            { path: 'vault', component: VaultComponent },
+            { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
             {
                 path: 'settings',
                 component: SettingsComponent,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
-                    { path: 'account', component: AccountComponent },
-                    { path: 'options', component: OptionsComponent },
-                    { path: 'domain-rules', component: DomainRulesComponent },
-                    { path: 'two-factor', component: TwoFactorSetupComponent },
-                    { path: 'premium', component: PremiumComponent },
-                    { path: 'billing', component: UserBillingComponent },
-                    { path: 'organizations', component: OrganizationsComponent },
-                    { path: 'create-organization', component: CreateOrganizationComponent },
+                    { path: 'account', component: AccountComponent, data: { titleId: 'myAccount' } },
+                    { path: 'options', component: OptionsComponent, data: { titleId: 'options' } },
+                    { path: 'domain-rules', component: DomainRulesComponent, data: { titleId: 'domainRules' } },
+                    { path: 'two-factor', component: TwoFactorSetupComponent, data: { titleId: 'twoStepLogin' } },
+                    { path: 'premium', component: PremiumComponent, data: { titleId: 'goPremium' } },
+                    { path: 'billing', component: UserBillingComponent, data: { titleId: 'billingAndLicensing' } },
+                    { path: 'organizations', component: OrganizationsComponent, data: { titleId: 'organizations' } },
+                    {
+                        path: 'create-organization',
+                        component: CreateOrganizationComponent,
+                        data: { titleId: 'newOrganization' },
+                    },
                 ],
             },
             {
@@ -84,10 +96,14 @@ const routes: Routes = [
                 canActivate: [AuthGuardService],
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'generator' },
-                    { path: 'import', component: ImportComponent },
-                    { path: 'export', component: ExportComponent },
-                    { path: 'generator', component: PasswordGeneratorComponent },
-                    { path: 'breach-report', component: BreachReportComponent },
+                    { path: 'import', component: ImportComponent, data: { titleId: 'importData' } },
+                    { path: 'export', component: ExportComponent, data: { titleId: 'exportVault' } },
+                    {
+                        path: 'generator',
+                        component: PasswordGeneratorComponent,
+                        data: { titleId: 'passwordGenerator' },
+                    },
+                    { path: 'breach-report', component: BreachReportComponent, data: { titleId: 'dataBreachReport' } },
                 ],
             },
         ],
@@ -98,7 +114,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService, OrganizationGuardService],
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'vault' },
-            { path: 'vault', component: OrgVaultComponent },
+            { path: 'vault', component: OrgVaultComponent, data: { titleId: 'vault' } },
             {
                 path: 'tools',
                 component: OrgToolsComponent,
@@ -106,8 +122,8 @@ const routes: Routes = [
                 data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'export' },
-                    // { path: 'import', component: ImportComponent },
-                    { path: 'export', component: OrgExportComponent },
+                    // { path: 'import', component: ImportComponent, data: { titleId: 'importData' } },
+                    { path: 'export', component: OrgExportComponent, data: { titleId: 'exportVault' } },
                 ],
             },
         ],

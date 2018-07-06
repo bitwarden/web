@@ -15,7 +15,7 @@ export class OrganizationTypeGuardService implements CanActivate {
 
     async canActivate(route: ActivatedRouteSnapshot) {
         const org = await this.userService.getOrganization(route.parent.params.organizationId);
-        const allowedTypes = route.data['allowedTypes'] as OrganizationUserType[];
+        const allowedTypes = route.data == null ? null : route.data.allowedTypes as OrganizationUserType[];
         if (allowedTypes == null || allowedTypes.indexOf(org.type) === -1) {
             this.router.navigate(['/organizations', org.id]);
             return false;
