@@ -27,8 +27,8 @@ export class GroupsComponent implements OnInit {
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
+            await this.load();
         });
-        await this.load();
     }
 
     async load() {

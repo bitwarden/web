@@ -1,3 +1,46 @@
-<div class="page-header">
+<div class="page-header d-flex">
     <h1>{{'eventLogs' | i18n}}</h1>
+    <div class="ml-auto d-flex">
+        <div class="form-inline">
+            <label class="sr-only" for="start">{{'startDate' | i18n}}</label>
+            <input type="datetime-local" class="form-control form-control-sm" id="start" placeholder="{{'startDate' | i18n}}" [(ngModel)]="start">
+            <span class="mx-2">-</span>
+            <label class="sr-only" for="end">{{'endDate' | i18n}}</label>
+            <input type="datetime-local" class="form-control form-control-sm" id="end" placeholder="{{'endDate' | i18n}}" [(ngModel)]="end">
+        </div>
+        <button #refreshBtn [appApiAction]="refreshPromise" type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="loadEvents(true)"
+            [disabled]="loaded && refreshBtn.loading">
+            <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"></i>
+            {{'refresh' | i18n}}
+        </button>
+    </div>
 </div>
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded"></i>
+<ng-container *ngIf="loaded">
+    <p *ngIf="!events || !events.length">{{'noItemsInList' | i18n}}</p>
+    <table class="table table-hover" *ngIf="events && events.length">
+        <thead>
+            <tr>
+                <th class="border-top-0">{{'timestamp' | i18n}}</th>
+                <th class="border-top-0">{{'user' | i18n}}</th>
+                <th class="border-top-0">{{'event' | i18n}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of events">
+                <td>{{e.date | date:'medium'}}</td>
+                <td>
+                    {{e.userId}}
+                </td>
+                <td>
+                    {{e.type}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit" (click)="loadEvents(false)"
+        [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'loadMore' | i18n}}</span>
+    </button>
+</ng-container>
