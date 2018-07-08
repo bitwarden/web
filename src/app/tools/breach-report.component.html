@@ -25,7 +25,7 @@
             {{'breachUsernameFound' | i18n : checkedUsername : breachedAccounts.length}}
         </app-callout>
         <ul class="list-group list-group-breach" *ngIf="breachedAccounts.length">
-            <li *ngFor="let a of breachedAccounts" class="list-group-item d-flex align-items-center">
+            <li *ngFor="let a of breachedAccounts" class="list-group-item min-height-fix">
                 <div class="row">
                     <div class="col-2 text-center">
                         <img [src]="'https://haveibeenpwned.com/Content/Images/PwnedLogos/' + a.name + '.' + a.logoType" alt="" class="img-fluid">
