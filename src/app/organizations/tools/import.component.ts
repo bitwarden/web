@@ -68,15 +68,6 @@ export class ImportComponent extends BaseImportComponent {
         return await this.apiService.postImportOrganizationCiphers(this.organizationId, request);
     }
 
-    protected setImportOptions() {
-        this.featuredImportOptions = [
-            { id: null, name: '-- ' + this.i18nService.t('select') + ' --' },
-            { id: 'bitwardencsv', name: 'Bitwarden (csv)' },
-            { id: 'lastpasscsv', name: 'LastPass (csv)' },
-        ];
-        this.importOptions = [];
-    }
-
     protected getImporter(): Importer {
         const importer = super.getImporter();
         if (importer != null) {
