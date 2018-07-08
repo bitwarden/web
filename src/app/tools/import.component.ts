@@ -19,13 +19,15 @@ import { FolderRequest } from 'jslib/models/request/folderRequest';
 import { ImportCiphersRequest } from 'jslib/models/request/importCiphersRequest';
 import { KvpRequest } from 'jslib/models/request/kvpRequest';
 
+import { CipherView } from 'jslib/models/view/cipherView';
+
 import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
-import { CipherView } from 'jslib/models/view';
+import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 
 @Component({
     selector: 'app-import',
@@ -215,6 +217,8 @@ export class ImportComponent implements OnInit {
                 return new AviraCsvImporter();
             case 'blurcsv':
                 return new BlurCsvImporter();
+            case 'safeincloudxml':
+                return new SafeInCloudXmlImporter();
             default:
                 return null;
         }
