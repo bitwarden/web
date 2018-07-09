@@ -4,7 +4,10 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ToasterService } from 'angular2-toaster';
+
 import { ApiService } from 'jslib/abstractions/api.service';
+import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { EventService } from '../../services/event.service';
 
@@ -26,8 +29,12 @@ export class EventsComponent implements OnInit {
     refreshPromise: Promise<any>;
     morePromise: Promise<any>;
 
+    private orgUsersUserIdMap = new Map<string, any>();
+    private orgUsersIdMap = new Map<string, any>();
+
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private eventService: EventService) { }
+        private eventService: EventService, private i18nService: I18nService,
+        private toasterService: ToasterService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -40,7 +47,12 @@ export class EventsComponent implements OnInit {
     }
 
     async load() {
-        // TODO: load users
+        const response = await this.apiService.getOrganizationUsers(this.organizationId);
+        response.data.forEach((u) => {
+            const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+            this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
+            this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
+        });
         await this.loadEvents(true);
         this.loaded = true;
     }
@@ -54,7 +66,8 @@ export class EventsComponent implements OnInit {
         try {
             dates = this.eventService.formatDateFilters(this.start, this.end);
         } catch (e) {
-            // TODO: error toast
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('invalidDateRange'));
             return;
         }
 
@@ -75,12 +88,15 @@ export class EventsComponent implements OnInit {
         const events = response.data.map((r) => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = this.eventService.getEventInfo(r);
+            const user = userId != null && this.orgUsersUserIdMap.has(userId) ?
+                this.orgUsersUserIdMap.get(userId) : null;
             return {
                 message: eventInfo.message,
                 appIcon: eventInfo.appIcon,
                 appName: eventInfo.appName,
                 userId: userId,
-                userName: userId != null ? 'user' : '-',
+                userName: user != null ? user.name : this.i18nService.t('unknown'),
+                userEmail: user != null ? user.email : '',
                 date: r.date,
                 ip: r.ipAddress,
             };

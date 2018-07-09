@@ -36,7 +36,7 @@
                     <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"></i>
                 </td>
                 <td>
-                    {{e.userName}}
+                    <span title="{{e.userEmail}}">{{e.userName}}</span>
                 </td>
                 <td [innerHTML]="e.message"></td>
             </tr>
