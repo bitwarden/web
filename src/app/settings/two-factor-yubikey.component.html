@@ -1,0 +1,71 @@
+<div class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'twoStepLogin' | i18n}}
+                    <small>YubiKey</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <app-two-factor-verify [type]="twoFactorProviderType.Yubikey" (onAuthed)="auth($event)" *ngIf="!authed">
+            </app-two-factor-verify>
+            <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
+                <div class="modal-body">
+                    <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle" *ngIf="enabled">
+                        {{'twoStepLoginProviderEnabled' | i18n}}
+                    </app-callout>
+                    <app-callout type="warning">
+                        <p>{{'twoFactorYubikeyWarning' | i18n}}</p>
+                        <ul class="mb-0">
+                            <li>{{'twoFactorYubikeySupportUsb' | i18n}}</li>
+                            <li>{{'twoFactorYubikeySupportMobile' | i18n}}</li>
+                        </ul>
+                    </app-callout>
+                    <img src="../../images/two-factor/3.png" class="float-right" alt="">
+                    <p>{{'twoFactorYubikeyAdd' | i18n}}:</p>
+                    <ol>
+                        <li>{{'twoFactorYubikeyPlugIn' | i18n}}</li>
+                        <li>{{'twoFactorYubikeySelectKey' | i18n}}</li>
+                        <li>{{'twoFactorYubikeyTouchButton' | i18n}}</li>
+                        <li>{{'twoFactorYubikeySaveForm' | i18n}}</li>
+                    </ol>
+                    <hr>
+                    <div class="row">
+                        <div class="form-group col-6" *ngFor="let k of keys; let i = index">
+                            <label for="key{{i + 1}}">{{'yubikeyX' | i18n : i + 1}}</label>
+                            <input id="key{{i + 1}}" type="text" name="Key{{i + 1}}" class="form-control" [(ngModel)]="k.key" *ngIf="!k.existingKey"
+                                appInputVerbatim>
+                            <div class="d-flex" *ngIf="k.existingKey">
+                                <span class="mr-2">{{k.existingKey}}</span>
+                                <button type="button" class="btn btn-link text-danger ml-auto" appBlurClick (click)="remove(k)" title="{{'remove' | i18n}}">
+                                    <i class="fa fa-minus-circle fa-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <strong class="d-block mb-2">{{'nfcSupport' | i18n}}</strong>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">{{'twoFactorYubikeySupportsNfc' | i18n}}</label>
+                    </div>
+                    <small class="form-text text-muted">{{'twoFactorYubikeySupportsNfcDesc' | i18n}}</small>
+                </div>
+                <div class="modal-footer">
+                    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        <span>{{'save' | i18n}}</span>
+                    </button>
+                    <button #disableBtn appBlurClick type="button" class="btn btn-outline-secondary btn-submit" [appApiAction]="disablePromise"
+                        [disabled]="disableBtn.loading" (click)="disable()">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        <span>{{'disableAllKeys' | i18n}}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

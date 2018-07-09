@@ -1,0 +1,71 @@
+<div class="page-header d-flex">
+    <h1>{{'people' | i18n}}</h1>
+    <div class="ml-auto d-flex">
+        <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
+            <label class="btn btn-outline-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> {{'all' | i18n}}
+            </label>
+            <label class="btn btn-outline-secondary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> {{'invited' | i18n}}
+                <span class="badge badge-pill badge-info">4</span>
+            </label>
+            <label class="btn btn-outline-secondary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> {{'accepted' | i18n}}
+                <span class="badge badge-pill badge-warning">4</span>
+            </label>
+        </div>
+        <div class="ml-3">
+            <label class="sr-only" for="search">{{'search' | i18n}}</label>
+            <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}" [(ngModel)]="searchText">
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="add()">
+            <i class="fa fa-plus fa-fw"></i>
+            {{'inviteUser' | i18n}}
+        </button>
+    </div>
+</div>
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
+<ng-container *ngIf="!loading && (users | search:searchText:'name':'email':'id') as searchedUsers">
+    <p *ngIf="!searchedUsers.length">{{'noItemsInList' | i18n}}</p>
+    <table class="table table-hover table-list" *ngIf="searchedUsers.length">
+        <tbody>
+            <tr *ngFor="let u of searchedUsers">
+                <td width="30">
+                    <app-avatar [data]="u.name || u.email" width="25" height="25" [circle]="true" [fontSize]="14"></app-avatar>
+                </td>
+                <td>
+                    <a href="#" appStopClick (click)="edit(u)">{{u.email}}</a>
+                    <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
+                    <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
+                    <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
+                </td>
+                <td>
+                    <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
+                    <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
+                    <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
+                </td>
+                <td class="table-list-options">
+                    <div class="dropdown" appListDropdown>
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" appStopClick (click)="groups(u)">
+                                <i class="fa fa-fw fa-sitemap"></i>
+                                {{'groups' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick (click)="events(u)">
+                                <i class="fa fa-fw fa-file-text-o"></i>
+                                {{'eventLogs' | i18n}}
+                            </a>
+                            <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
+                                <i class="fa fa-fw fa-remove"></i>
+                                {{'remove' | i18n}}
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="org-nav" *ngIf="organization">
+    <div class="container d-flex flex-column">
+        <div class="my-auto d-flex align-items-center pl-1">
+            <app-avatar [data]="organization.name" [width]="45" [height]="45" [circle]="true"></app-avatar>
+            <div class="org-name ml-3">
+                <span>{{organization.name}}</span>
+                <small class="text-muted">{{'organization' | i18n}}</small>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="vault" routerLinkActive="active">
+                    <i class="fa fa-lock"></i>
+                    {{'vault' | i18n}}
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="organization.isAdmin">
+                <a class="nav-link" routerLink="manage" routerLinkActive="active">
+                    <i class="fa fa-sliders"></i>
+                    {{'manage' | i18n}}
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="organization.isAdmin">
+                <a class="nav-link" routerLink="tools" routerLinkActive="active">
+                    <i class="fa fa-wrench"></i>
+                    {{'tools' | i18n}}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="settings" routerLinkActive="active">
+                    <i class="fa fa-cogs"></i>
+                    {{'settings' | i18n}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

@@ -1,249 +1,35 @@
 ﻿<!DOCTYPE html>
-<html ng-app="bit" ng-csp>
+<html>
+
 <head>
     <meta charset="utf-8" />
-    <!-- @if selfHosted !>
-    <meta http-equiv="Content-Security-Policy" content="
-          default-src
-            'self';
-          style-src
-            'self'
-            'unsafe-inline'
-            https://fonts.googleapis.com;
-          img-src
-            'self'
-            data:
-            https://haveibeenpwned.com
-            https://chart.googleapis.com;
-          font-src
-            'self'
-            https://fonts.gstatic.com;
-          child-src
-            'self'
-            https://*.duosecurity.com;
-          frame-src
-            'self'
-            https://*.duosecurity.com;
-          connect-src
-            *;">
-    <!-- @endif -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=1020, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="theme-color" content="#3c8dbc">
-    <base href="/" />
+    <base href="" />
 
     <title page-title>Bitwarden Web Vault</title>
 
-    <!-- @if !selfHosted -->
-    <script src="https://js.stripe.com/v2/"></script>
-    <script src="https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js"></script>
-    <!-- @endif -->
-    <!-- @if !selfHosted !>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <!-- @endif -->
-    <!-- @if true !>
-    <meta name="x-stylesheet-test" content="" class="fa invisible" />
-    <script src="js/fallback-styles.min.js?v=<!-- @echo cacheTag !>"></script>
-
-    <link rel="stylesheet" href="css/vault.min.css?v=<!-- @echo cacheTag !>" />
-    <!-- @endif -->
-    <!-- @exclude -->
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
-
-    <link rel="stylesheet" href="css/vault.css" />
-    <!-- @endexclude -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
     <link rel="mask-icon" href="images/icons/safari-pinned-tab.svg" color="#3c8dbc">
     <link rel="manifest" href="manifest.json">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
 </head>
-<body ng-controller="mainController as main" class="layout-boxed {{main.skinClass}} sidebar-mini {{main.bodyClass}}"
-      ng-class="{'using-control-sidebar': main.usingControlSidebar,
-      'control-sidebar-open': main.usingControlSidebar && main.openControlSidebar}">
-    <div ui-view></div>
 
-    <!-- @if !selfHosted !>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-            integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"
-            integrity="sha384-R6kAKgTgRiD5889XyzYD/aMryNA4Yr9EBnt6rIXuukLgVONifQDnHNaadrSNakQl" crossorigin="anonymous"></script>
-    <!-- @endif -->
-    <!-- @if true !>
-    <script src="js/fallback-scripts.min.js?v=<!-- @echo cacheTag !>"></script>
-    <script src="js/settings.js?v=<!-- @echo cacheTag !>"></script>
-
-    <script src="js/lib.min.js?v=<!-- @echo cacheTag !>"></script>
-    <script src="js/bw.min.js?v=<!-- @echo cacheTag !>"></script>
-    <script src="js/app.min.js?v=<!-- @echo cacheTag !>"></script>
-    <!-- @endif -->
-    <!-- @exclude -->
-    <script src="lib/jquery/jquery.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <script src="js/main.js"></script>
-    <script src="lib/admin-lte/js/app.js"></script>
-    <script src="js/u2f-api.js"></script>
-
-    <script src="lib/forge/forge.js"></script>
-    <script src="lib/papaparse/papaparse.js"></script>
-    <script src="lib/clipboard/clipboard.js"></script>
-    <script src="js/duo.js"></script>
-    <script src="js/webcrypto-shim.js"></script>
-    <script src="js/settings.js"></script>
-
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-promise-polyfill/index.js"></script>
-    <script src="lib/angular-cookies/angular-cookies.js"></script>
-    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
-    <script src="lib/angular-messages/angular-messages.js"></script>
-    <script src="lib/angular-jwt/angular-jwt.js"></script>
-    <script src="lib/angular-resource/angular-resource.js"></script>
-    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
-    <script src="lib/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="lib/angular-toastr/angular-toastr.tpls.js"></script>
-    <script src="lib/angular-bootstrap-show-errors/showErrors.js"></script>
-    <script src="lib/ngstorage/ngStorage.js"></script>
-    <script src="lib/ngclipboard/ngclipboard.js"></script>
-    <script src="lib/angulartics/angulartics.js"></script>
-    <script src="lib/angulartics/angulartics-ga.js"></script>
-    <script src="lib/angular-stripe/angular-stripe.js"></script>
-    <script src="lib/angular-credit-cards/angular-credit-cards.js"></script>
-
-    <script src="app/app.js"></script>
-    <script src="app/settings.js"></script>
-    <script src="app/constants.js"></script>
-    <script src="app/config.js"></script>
-    <script src="app/apiInterceptor.js"></script>
-
-    <script src="app/directives/directivesModule.js"></script>
-    <script src="app/directives/pageTitleDirective.js"></script>
-    <script src="app/directives/apiFormDirective.js"></script>
-    <script src="app/directives/apiFieldDirective.js"></script>
-    <script src="app/directives/masterPasswordDirective.js"></script>
-    <script src="app/directives/passwordMeterDirective.js"></script>
-    <script src="app/directives/passwordViewerDirective.js"></script>
-    <script src="app/directives/letterAvatarDirective.js"></script>
-    <script src="app/directives/stopClickDirective.js"></script>
-    <script src="app/directives/stopPropDirective.js"></script>
-    <script src="app/directives/totpDirective.js"></script>
-    <script src="app/directives/fallbackSrcDirective.js"></script>
-
-    <script src="app/filters/filtersModule.js"></script>
-    <script src="app/filters/enumNameFilter.js"></script>
-    <script src="app/filters/enumLabelClassFilter.js"></script>
-
-    <script src="app/services/servicesModule.js"></script>
-    <script src="app/services/tokenService.js"></script>
-    <script src="app/services/apiService.js"></script>
-    <script src="app/services/authService.js"></script>
-    <script src="app/services/cryptoService.js"></script>
-    <script src="app/services/cipherService.js"></script>
-    <script src="app/services/validationService.js"></script>
-    <script src="app/services/passwordService.js"></script>
-    <script src="app/services/importService.js"></script>
-    <script src="app/services/eventService.js"></script>
-    <script src="app/services/utilsService.js"></script>
-
-    <script src="app/global/globalModule.js"></script>
-    <script src="app/global/mainController.js"></script>
-    <script src="app/global/topNavController.js"></script>
-    <script src="app/global/sideNavController.js"></script>
-    <script src="app/global/premiumRequiredController.js"></script>
-    <script src="app/global/paidOrgRequiredController.js"></script>
-
-    <script src="app/accounts/accountsModule.js"></script>
-    <script src="app/accounts/accountsLoginController.js"></script>
-    <script src="app/accounts/accountsLogoutController.js"></script>
-    <script src="app/accounts/accountsRegisterController.js"></script>
-    <script src="app/accounts/accountsPasswordHintController.js"></script>
-    <script src="app/accounts/accountsRecoverController.js"></script>
-    <script src="app/accounts/accountsOrganizationAcceptController.js"></script>
-    <script src="app/accounts/accountsTwoFactorMethodsController.js"></script>
-    <script src="app/accounts/accountsVerifyEmailController.js"></script>
-    <script src="app/accounts/accountsRecoverDeleteController.js"></script>
-    <script src="app/accounts/accountsVerifyRecoverDeleteController.js"></script>
-
-    <script src="app/vault/vaultModule.js"></script>
-    <script src="app/vault/vaultController.js"></script>
-    <script src="app/vault/vaultEditCipherController.js"></script>
-    <script src="app/vault/vaultAddCipherController.js"></script>
-    <script src="app/vault/vaultEditFolderController.js"></script>
-    <script src="app/vault/vaultAddFolderController.js"></script>
-    <script src="app/vault/vaultShareCipherController.js"></script>
-    <script src="app/vault/vaultCipherCollectionsController.js"></script>
-    <script src="app/vault/vaultMoveCiphersController.js"></script>
-    <script src="app/vault/vaultAttachmentsController.js"></script>
-
-    <script src="app/organization/organizationModule.js"></script>
-    <script src="app/organization/organizationDashboardController.js"></script>
-    <script src="app/organization/organizationPeopleController.js"></script>
-    <script src="app/organization/organizationPeopleInviteController.js"></script>
-    <script src="app/organization/organizationPeopleEditController.js"></script>
-    <script src="app/organization/organizationPeopleGroupsController.js"></script>
-    <script src="app/organization/organizationPeopleEventsController.js"></script>
-    <script src="app/organization/organizationCollectionsController.js"></script>
-    <script src="app/organization/organizationCollectionsAddController.js"></script>
-    <script src="app/organization/organizationCollectionsEditController.js"></script>
-    <script src="app/organization/organizationCollectionsUsersController.js"></script>
-    <script src="app/organization/organizationSettingsController.js"></script>
-    <script src="app/organization/organizationSettingsImportController.js"></script>
-    <script src="app/organization/organizationSettingsExportController.js"></script>
-    <script src="app/organization/organizationBillingController.js"></script>
-    <script src="app/organization/organizationBillingChangePaymentController.js"></script>
-    <script src="app/organization/organizationBillingAdjustSeatsController.js"></script>
-    <script src="app/organization/organizationBillingAdjustStorageController.js"></script>
-    <script src="app/organization/organizationBillingUpdateLicenseController.js"></script>
-    <script src="app/organization/organizationDeleteController.js"></script>
-    <script src="app/organization/organizationBillingChangePlanController.js"></script>
-    <script src="app/organization/organizationBillingVerifyBankController.js"></script>
-    <script src="app/organization/organizationVaultController.js"></script>
-    <script src="app/organization/organizationVaultAddCipherController.js"></script>
-    <script src="app/organization/organizationVaultEditCipherController.js"></script>
-    <script src="app/organization/organizationVaultCipherCollectionsController.js"></script>
-    <script src="app/organization/organizationVaultCipherEventsController.js"></script>
-    <script src="app/organization/organizationVaultAttachmentsController.js"></script>
-    <script src="app/organization/organizationGroupsController.js"></script>
-    <script src="app/organization/organizationGroupsAddController.js"></script>
-    <script src="app/organization/organizationGroupsEditController.js"></script>
-    <script src="app/organization/organizationGroupsUsersController.js"></script>
-    <script src="app/organization/organizationEventsController.js"></script>
-
-    <script src="app/settings/settingsModule.js"></script>
-    <script src="app/settings/settingsController.js"></script>
-    <script src="app/settings/settingsChangePasswordController.js"></script>
-    <script src="app/settings/settingsChangeEmailController.js"></script>
-    <script src="app/settings/settingsTwoStepAuthenticatorController.js"></script>
-    <script src="app/settings/settingsTwoStepDuoController.js"></script>
-    <script src="app/settings/settingsTwoStepU2fController.js"></script>
-    <script src="app/settings/settingsTwoStepEmailController.js"></script>
-    <script src="app/settings/settingsTwoStepRecoverController.js"></script>
-    <script src="app/settings/settingsTwoStepYubiController.js"></script>
-    <script src="app/settings/settingsSessionsController.js"></script>
-    <script src="app/settings/settingsDomainsController.js"></script>
-    <script src="app/settings/settingsTwoStepController.js"></script>
-    <script src="app/settings/settingsAddEditEquivalentDomainController.js"></script>
-    <script src="app/settings/settingsDeleteController.js"></script>
-    <script src="app/settings/settingsPurgeController.js"></script>
-    <script src="app/settings/settingsCreateOrganizationController.js"></script>
-    <script src="app/settings/settingsBillingController.js"></script>
-    <script src="app/settings/settingsBillingAdjustStorageController.js"></script>
-    <script src="app/settings/settingsBillingChangePaymentController.js"></script>
-    <script src="app/settings/settingsUpdateKeyController.js"></script>
-    <script src="app/settings/settingsPremiumController.js"></script>
-    <script src="app/settings/settingsBillingUpdateLicenseController.js"></script>
-
-    <script src="app/tools/toolsModule.js"></script>
-    <script src="app/tools/toolsController.js"></script>
-    <script src="app/tools/toolsImportController.js"></script>
-    <script src="app/tools/toolsExportController.js"></script>
-
-    <script src="app/reports/reportsModule.js"></script>
-    <script src="app/reports/reportsBreachController.js"></script>
-    <!-- @endexclude -->
+<body class="layout_frontend">
+    <app-root>
+        <div class="mt-5 d-flex justify-content-center">
+            <div>
+                <img src="./images/logo-dark@2x.png" class="mb-4 logo" alt="Bitwarden">
+                <p class="text-center">
+                    <i class="fa fa-spinner fa-spin fa-2x text-muted"></i>
+                </p>
+            </div>
+        </div>
+    </app-root>
 </body>
+
 </html>

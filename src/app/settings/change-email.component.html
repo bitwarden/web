@@ -1,0 +1,36 @@
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
+                    [readonly]="tokenSent">
+            </div>
+            <div class="form-group">
+                <label for="newEmail">{{'newEmail' | i18n}}</label>
+                <input id="newEmail" class="form-control" type="text" name="NewEmail" [(ngModel)]="newEmail" required [readonly]="tokenSent">
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="tokenSent">
+        <hr>
+        <p>{{'changeEmailDesc' | i18n : newEmail}}</p>
+        <app-callout type="warning">{{'loggedOutWarning' | i18n}}</app-callout>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="token">{{'code' | i18n}}</label>
+                    <input id="token" class="form-control" type="text" name="Token" [(ngModel)]="token" required>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <button type="submit" class="btn btn-primary btn-submit" appBlurClick [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span *ngIf="!tokenSent">{{'continue' | i18n}}</span>
+        <span *ngIf="tokenSent">{{'changeEmail' | i18n}}</span>
+    </button>
+    <button type="button" class="btn btn-outline-secondary" *ngIf="tokenSent" (click)="reset()">
+        {{'cancel' | i18n}}
+    </button>
+</form>

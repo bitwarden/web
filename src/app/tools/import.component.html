@@ -1,0 +1,55 @@
+<div class="page-header">
+    <h1>{{'importData' | i18n}}</h1>
+</div>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="type">1. {{'selectFormat' | i18n}}</label>
+                <select id="type" name="Format" [(ngModel)]="format" class="form-control" required>
+                    <option *ngFor="let o of featuredImportOptions" [ngValue]="o.id">{{o.name}}</option>
+                    <ng-container *ngIf="importOptions && importOptions.length">
+                        <option value="-" disabled></option>
+                        <option *ngFor="let o of importOptions" [ngValue]="o.id">{{o.name}}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+    </div>
+    <app-callout type="info" title="{{getFormatInstructionTitle()}}" *ngIf="format">
+        <ng-container *ngIf="format === 'bitwardencsv'">
+            See detailed instructions on our help site at
+            <a target="_blank" href="https://help.bitwarden.com/article/export-your-data/">https://help.bitwarden.com/article/export-your-data/</a>
+        </ng-container>
+        <ng-container *ngIf="format === 'lastpasscsv'">
+            See detailed instructions on our help site at
+            <a target="_blank" href="https://help.bitwarden.com/article/import-from-lastpass/">https://help.bitwarden.com/article/import-from-lastpass/</a>
+        </ng-container>
+        <ng-container *ngIf="format === 'keepassxcsv'">
+            Using the KeePassX desktop application, navigate to "Database" &rarr; "Export to CSV file" and save the CSV file.
+        </ng-container>
+        <ng-container *ngIf="format === 'aviracsv'">
+            In the Avira web vault, go to "Settings" &rarr; "My Data" &rarr; "Export data" and save the CSV file.
+        </ng-container>
+        <ng-container *ngIf="format === 'blurcsv'">
+            In the Blur web vault, click your username at the top and go to "Settings" &rarr; "Export Data", then click "Export CSV"
+            for your "Accounts".
+        </ng-container>
+    </app-callout>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="file">2. {{'selectImportFile' | i18n}}</label>
+                <input type="file" id="file" class="form-control-file" name="file">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fileContents">{{'orCopyPasteFileContents' | i18n}}</label>
+        <textarea id="fileContents" class="form-control" name="FileContents" [(ngModel)]="fileContents"></textarea>
+    </div>
+    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'importData' | i18n}}</span>
+    </button>
+</form>

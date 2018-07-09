@@ -1,0 +1,35 @@
+<div class="container page-content">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">{{'settings' | i18n}}</div>
+                <div class="list-group list-group-flush">
+                    <a routerLink="account" class="list-group-item" routerLinkActive="active">
+                        {{'myAccount' | i18n}}
+                    </a>
+                    <a routerLink="options" class="list-group-item" routerLinkActive="active">
+                        {{'options' | i18n}}
+                    </a>
+                    <a routerLink="organizations" class="list-group-item" routerLinkActive="active">
+                        Organizations
+                    </a>
+                    <a routerLink="billing" class="list-group-item" routerLinkActive="active" *ngIf="premium">
+                        {{'billingAndLicensing' | i18n}}
+                    </a>
+                    <a routerLink="premium" class="list-group-item" routerLinkActive="active" *ngIf="!premium">
+                        {{'goPremium' | i18n}}
+                    </a>
+                    <a routerLink="two-factor" class="list-group-item" routerLinkActive="active">
+                        {{'twoStepLogin' | i18n}}
+                    </a>
+                    <a routerLink="domain-rules" class="list-group-item" routerLinkActive="active">
+                        Domain Rules
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

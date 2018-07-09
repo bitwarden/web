@@ -1,0 +1,75 @@
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-5" [ngClass]="{'col-9': selectedProviderType === providerType.Duo || selectedProviderType === providerType.OrganizationDuo}">
+            <p class="lead text-center mb-4">{{title}}</p>
+            <div class="card">
+                <div class="card-body">
+                    <ng-container *ngIf="selectedProviderType === providerType.Email || selectedProviderType === providerType.Authenticator">
+                        <p *ngIf="selectedProviderType === providerType.Authenticator">{{'enterVerificationCodeApp' | i18n}}</p>
+                        <p *ngIf="selectedProviderType === providerType.Email">
+                            {{'enterVerificationCodeEmail' | i18n : twoFactorEmail}}
+                        </p>
+                        <div class="form-group">
+                            <label for="code" class="sr-only">{{'verificationCode' | i18n}}</label>
+                            <input id="code" type="text" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus>
+                            <small class="form-text" *ngIf="selectedProviderType === providerType.Email">
+                                <a href="#" appStopClick (click)="sendEmail(true)" [appApiAction]="emailPromise" *ngIf="selectedProviderType === providerType.Email">
+                                    {{'sendVerificationCodeEmailAgain' | i18n}}
+                                </a>
+                            </small>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="selectedProviderType === providerType.Yubikey">
+                        <p class="text-center">{{'insertYubiKey' | i18n}}</p>
+                        <img src="../../images/yubikey.jpg" class="rounded img-fluid mb-3" alt="">
+                        <div class="form-group">
+                            <label for="code" class="sr-only">{{'verificationCode' | i18n}}</label>
+                            <input id="code" type="password" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="selectedProviderType === providerType.U2f">
+                        <p class="text-center" *ngIf="!u2fReady">
+                            <i class="fa fa-spinner fa-spin text-muted"></i>
+                        </p>
+                        <ng-container *ngIf="u2fReady">
+                            <p class="text-center">{{'insertU2f' | i18n}}</p>
+                            <img src="../../images/u2fkey.jpg" alt="" class="rounded img-fluid mb-3">
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="selectedProviderType === providerType.Duo ||
+                        selectedProviderType === providerType.OrganizationDuo">
+                        <div id="duo-frame" class="mb-3">
+                            <iframe id="duo_iframe"></iframe>
+                        </div>
+                    </ng-container>
+                    <i class="fa fa-spinner text-muted fa-spin pull-right" *ngIf="form.loading && selectedProviderType === providerType.U2f"></i>
+                    <div class="form-check" *ngIf="selectedProviderType != null">
+                        <input id="remember" type="checkbox" name="Remember" class="form-check-input" [(ngModel)]="remember">
+                        <label for="remember" class="form-check-label">{{'rememberMe' | i18n}}</label>
+                    </div>
+                    <ng-container *ngIf="selectedProviderType == null">
+                        <p>{{'noTwoStepProviders' | i18n}}</p>
+                        <p>{{'noTwoStepProviders2' | i18n}}</p>
+                    </ng-container>
+                    <hr>
+                    <div class="d-flex mb-3">
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.loading" appBlurClick *ngIf="selectedProviderType != null && selectedProviderType !== providerType.Duo && 
+                        selectedProviderType !== providerType.OrganizationDuo && selectedProviderType !== providerType.U2f">
+                            <span [hidden]="form.loading">
+                                <i class="fa fa-sign-in"></i> {{'continue' | i18n}}</span>
+                            <i class="fa fa-spinner fa-spin" [hidden]="!form.loading"></i>
+                        </button>
+                        <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
+                            {{'cancel' | i18n}}
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" appStopClick (click)="anotherMethod()">{{'useAnotherTwoStepMethod' | i18n}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<ng-template #twoFactorOptions></ng-template>
+<iframe id="u2f_iframe" hidden></iframe>

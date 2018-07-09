@@ -1,0 +1,152 @@
+@import "~angular2-toaster/toaster";
+
+#toast-container {
+    &.toast-top-right {
+        top: 76px;
+    }
+
+    .toast-close-button {
+        right: -0.15em;
+    }
+
+    .toast {
+        opacity: 1 !important;
+        background-image: none !important;
+        border-radius: $border-radius;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        &:before {
+            font-family: FontAwesome;
+            font-size: 25px;
+            line-height: 20px;
+            float: left;
+            color: #ffffff;
+            padding-right: 10px;
+            margin: auto 0 auto -36px;
+        }
+
+        .toaster-icon {
+            display: none;
+        }
+
+        &.toast-danger, &.toast-error {
+            background-image: none !important;
+            background-color: $danger;
+
+            &:before {
+                content: "\f0e7";
+                margin-left: -30px;
+            }
+        }
+
+        &.toast-warning {
+            background-image: none !important;
+            background-color: $warning;
+
+            &:before {
+                content: "\f071";
+            }
+        }
+
+        &.toast-info {
+            background-image: none !important;
+            background-color: $info;
+
+            &:before {
+                content: "\f05a";
+            }
+        }
+
+        &.toast-success {
+            background-image: none !important;
+            background-color: $success;
+
+            &:before {
+                content: "\f00C";
+            }
+        }
+    }
+}
+
+// SweetAlert
+
+.swal-overlay {
+    background-color: rgba(0,0,0,.3);
+}
+
+.swal-modal {
+    background-color: $modal-content-bg;
+    color: $body-color;
+    border: $modal-content-border-width solid #9a9a9a;
+    @include border-radius($modal-content-border-radius);
+
+    .swal-icon {
+        margin: 15px auto 0 auto;
+    }
+
+    .swal-content {
+        margin: 0;
+        padding: 15px 0;
+        font-size: $font-size-base;
+        border-bottom: $modal-footer-border-width solid $modal-footer-border-color;
+
+        .swal-text {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .swal-title, .swal-text {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    i.swal-custom-icon {
+        display: block;
+        margin: 0 auto;
+        font-size: 35px;
+    }
+
+    .swal-title {
+        padding: 10px 10px 15px 10px;
+        margin: 0;
+        font-size: $font-size-lg;
+        color: $body-color;
+    }
+
+    .swal-text {
+        font-size: $font-size-base;
+        color: $body-color;
+    }
+
+    .swal-footer {
+        padding: 15px 10px 10px 10px;
+        margin: 0;
+        background-color: $input-bg;
+        @include border-radius($modal-content-border-radius);
+        display: flex; 
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        font-size: $font-size-base;
+
+        button.swal-button {
+            @extend .btn;
+
+            &.swal-button--confirm {
+                @extend .btn-primary;
+            }
+    
+            &.swal-button--cancel {
+                @extend .btn-outline-secondary;
+                background-color: #ffffff;
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es5", "es6", "dom"],
+    "allowJs": true,
+    "sourceMap": true,
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "jslib/*": [ "jslib/src/*" ],
+      "@angular/*": [ "node_modules/@angular/*" ],
+      "angular2-toaster": [ "node_modules/angular2-toaster" ],
+      "angulartics2": [ "node_modules/angulartics2" ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "jslib/dist",
+    "jslib/spec",
+    "jslib/src/electron",
+    "jslib/src/services/nodeApi.service.ts",
+    "jslib/src/services/lowdbStorage.service.ts",
+    "jslib/src/misc/nodeUtils.ts",
+  ]
+}

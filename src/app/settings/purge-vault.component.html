@@ -1,0 +1,26 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+            <div class="modal-header">
+                <h2 class="modal-title">{{'purgeVault' | i18n}}</h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{'purgeVaultDesc' | i18n}}</p>
+                <app-callout type="warning">{{'purgeVaultWarning' | i18n}}</app-callout>
+                <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
+                    appAutofocus>
+            </div>
+            <div class="modal-footer">
+                <button appBlurClick type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'purgeVault' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>
