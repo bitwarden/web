@@ -16,44 +16,67 @@ const swal: SweetAlert = _swal as any;
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 
-    private browserCache: string = null;
+    private browserCache: DeviceType = null;
 
-    constructor(private messagingService: MessagingService, private i18nService: I18nService) { }
+    constructor(private i18nService: I18nService) { }
 
     getDevice(): DeviceType {
-        return DeviceType.Web;
+        if (this.browserCache != null) {
+            return this.browserCache;
+        }
+
+        if (navigator.userAgent.indexOf(' Firefox/') !== -1 || navigator.userAgent.indexOf(' Gecko/') !== -1) {
+            this.browserCache = DeviceType.FirefoxBrowser;
+        } else if (navigator.userAgent.indexOf(' OPR/') >= 0) {
+            this.browserCache = DeviceType.OperaBrowser;
+        } else if (navigator.userAgent.indexOf(' Edge/') !== -1) {
+            this.browserCache = DeviceType.EdgeBrowser;
+        } else if (navigator.userAgent.indexOf(' Vivaldi/') !== -1) {
+            this.browserCache = DeviceType.VivaldiBrowser;
+        } else if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
+            this.browserCache = DeviceType.SafariBrowser;
+        } else if ((window as any).chrome && navigator.userAgent.indexOf(' Chrome/') !== -1) {
+            this.browserCache = DeviceType.ChromeBrowser;
+        } else if (navigator.userAgent.indexOf(' Trident/') !== -1) {
+            this.browserCache = DeviceType.IEBrowser;
+        } else {
+            this.browserCache = DeviceType.UnknownBrowser;
+        }
+
+        return this.browserCache;
     }
 
     getDeviceString(): string {
-        return 'Web';
+        const device = DeviceType[this.getDevice()].toLowerCase();
+        return device.replace('browser', '');
     }
 
     isFirefox(): boolean {
-        return this.getBrowserType() === 'firefox';
+        return this.getDevice() === DeviceType.FirefoxBrowser;
     }
 
     isChrome(): boolean {
-        return this.getBrowserType() === 'chrome';
+        return this.getDevice() === DeviceType.ChromeBrowser;
     }
 
     isEdge(): boolean {
-        return this.getBrowserType() === 'edge';
+        return this.getDevice() === DeviceType.EdgeBrowser;
     }
 
     isOpera(): boolean {
-        return this.getBrowserType() === 'opera';
+        return this.getDevice() === DeviceType.OperaBrowser;
     }
 
     isVivaldi(): boolean {
-        return this.getBrowserType() === 'vivaldi';
+        return this.getDevice() === DeviceType.VivaldiBrowser;
     }
 
     isSafari(): boolean {
-        return this.getBrowserType() === 'safari';
+        return this.getDevice() === DeviceType.SafariBrowser;
     }
 
     isIE(): boolean {
-        return this.getBrowserType() === 'ie';
+        return this.getDevice() === DeviceType.IEBrowser;
     }
 
     isMacAppStore(): boolean {
@@ -207,29 +230,5 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
                 doc.body.removeChild(textarea);
             }
         }
-    }
-
-    private getBrowserType(): string {
-        if (this.browserCache != null) {
-            return this.browserCache;
-        }
-
-        if (navigator.userAgent.indexOf(' Firefox/') !== -1 || navigator.userAgent.indexOf(' Gecko/') !== -1) {
-            this.browserCache = 'firefox';
-        } else if (navigator.userAgent.indexOf(' OPR/') >= 0) {
-            this.browserCache = 'opera';
-        } else if (navigator.userAgent.indexOf(' Edge/') !== -1) {
-            this.browserCache = 'edge';
-        } else if (navigator.userAgent.indexOf(' Vivaldi/') !== -1) {
-            this.browserCache = 'vivaldi';
-        } else if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
-            this.browserCache = 'safari';
-        } else if ((window as any).chrome && navigator.userAgent.indexOf(' Chrome/') !== -1) {
-            this.browserCache = 'chrome';
-        } else if (navigator.userAgent.indexOf(' Trident/') !== -1) {
-            this.browserCache = 'ie';
-        }
-
-        return this.browserCache;
     }
 }
