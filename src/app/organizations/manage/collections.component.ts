@@ -39,4 +39,16 @@ export class CollectionsComponent implements OnInit {
         this.collections = await this.collectionService.decryptMany(collections);
         this.loading = false;
     }
+
+    edit(collection: CollectionView) {
+        //
+    }
+
+    add() {
+        this.edit(null);
+    }
+
+    async delete(collection: CollectionView) {
+        //
+    }
 }

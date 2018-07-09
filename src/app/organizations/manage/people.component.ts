@@ -43,4 +43,16 @@ export class PeopleComponent implements OnInit {
         this.users = users;
         this.loading = false;
     }
+
+    edit(user: OrganizationUserUserDetailsResponse) {
+        //
+    }
+
+    invite() {
+        //
+    }
+
+    async remove(user: OrganizationUserUserDetailsResponse) {
+        //
+    }
 }

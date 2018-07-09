@@ -91,7 +91,7 @@ export class ShareComponent implements OnInit, OnDestroy {
         (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
-    selectAll(select: false) {
+    selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
         collections.forEach((c) => this.check(c, select));
     }
