@@ -21,8 +21,11 @@
     <table class="table table-hover" *ngIf="events && events.length">
         <thead>
             <tr>
-                <th class="border-top-0">{{'timestamp' | i18n}}</th>
-                <th class="border-top-0">{{'user' | i18n}}</th>
+                <th class="border-top-0" width="210">{{'timestamp' | i18n}}</th>
+                <th class="border-top-0" width="40">
+                    <span class="sr-only">{{'device' | i18n}}</span>
+                </th>
+                <th class="border-top-0" width="150">{{'user' | i18n}}</th>
                 <th class="border-top-0">{{'event' | i18n}}</th>
             </tr>
         </thead>
@@ -30,11 +33,12 @@
             <tr *ngFor="let e of events">
                 <td>{{e.date | date:'medium'}}</td>
                 <td>
-                    {{e.userId}}
+                    <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"></i>
                 </td>
                 <td>
-                    {{e.type}}
+                    {{e.userName}}
                 </td>
+                <td [innerHTML]="e.message"></td>
             </tr>
         </tbody>
     </table>

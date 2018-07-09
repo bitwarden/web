@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
+import { DeviceType } from 'jslib/enums/deviceType';
+import { EventType } from 'jslib/enums/eventType';
+
+import { EventResponse } from 'jslib/models/response/eventResponse';
+
 @Injectable()
 export class EventService {
     constructor(private i18nService: I18nService) { }
@@ -23,6 +28,210 @@ export class EventService {
         return [start.toISOString(), end.toISOString()];
     }
 
+    getEventInfo(ev: EventResponse, options = new EventOptions()): EventInfo {
+        const appInfo = this.getAppInfo(ev.deviceType);
+        return {
+            message: this.getEventMessage(ev, options),
+            appIcon: appInfo[0],
+            appName: appInfo[1],
+        };
+    }
+
+    private getEventMessage(ev: EventResponse, options: EventOptions) {
+        let msg = '';
+        switch (ev.type) {
+            // User
+            case EventType.User_LoggedIn:
+                msg = this.i18nService.t('loggedIn');
+                break;
+            case EventType.User_ChangedPassword:
+                msg = this.i18nService.t('changedPassword');
+                break;
+            case EventType.User_Enabled2fa:
+                msg = this.i18nService.t('enabled2fa');
+                break;
+            case EventType.User_Disabled2fa:
+                msg = this.i18nService.t('disabled2fa');
+                break;
+            case EventType.User_Recovered2fa:
+                msg = this.i18nService.t('recovered2fa');
+                break;
+            case EventType.User_FailedLogIn:
+                msg = this.i18nService.t('failedLogin');
+                break;
+            case EventType.User_FailedLogIn2fa:
+                msg = this.i18nService.t('failedLogin2fa');
+                break;
+            // Cipher
+            case EventType.Cipher_Created:
+                msg = this.i18nService.t('createdThing', this.i18nService.t('item').toLocaleLowerCase(),
+                    this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_Updated:
+                msg = this.i18nService.t('editedThing', this.i18nService.t('item').toLocaleLowerCase(),
+                    this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_Deleted:
+                msg = this.i18nService.t('deletedThing', this.i18nService.t('item').toLocaleLowerCase(),
+                    this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_AttachmentCreated:
+                msg = this.i18nService.t('createdAttachmentForItem', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_AttachmentDeleted:
+                msg = this.i18nService.t('deletedAttachmentForItem', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_Shared:
+                msg = this.i18nService.t('sharedThing', this.i18nService.t('item').toLocaleLowerCase(),
+                    this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_UpdatedCollections:
+                msg = this.i18nService.t('editedCollectionsForItem', this.formatCipherId(ev, options));
+                break;
+            // Collection
+            case EventType.Collection_Created:
+                msg = this.i18nService.t('createdThing', this.i18nService.t('collection').toLocaleLowerCase(),
+                    this.formatCollectionId(ev));
+                break;
+            case EventType.Collection_Updated:
+                msg = this.i18nService.t('editedThing', this.i18nService.t('collection').toLocaleLowerCase(),
+                    this.formatCollectionId(ev));
+                break;
+            case EventType.Collection_Deleted:
+                msg = this.i18nService.t('deletedThing', this.i18nService.t('collection').toLocaleLowerCase(),
+                    this.formatCollectionId(ev));
+                break;
+            // Group
+            case EventType.Group_Created:
+                msg = this.i18nService.t('createdThing', this.i18nService.t('group').toLocaleLowerCase(),
+                    this.formatGroupId(ev));
+                break;
+            case EventType.Group_Updated:
+                msg = this.i18nService.t('editedThing', this.i18nService.t('group').toLocaleLowerCase(),
+                    this.formatGroupId(ev));
+                break;
+            case EventType.Group_Deleted:
+                msg = this.i18nService.t('deletedThing', this.i18nService.t('group').toLocaleLowerCase(),
+                    this.formatGroupId(ev));
+                break;
+            // Org user
+            case EventType.OrganizationUser_Invited:
+                msg = this.i18nService.t('invitedUser', this.formatOrgUserId(ev));
+                break;
+            case EventType.OrganizationUser_Confirmed:
+                msg = this.i18nService.t('confirmedUser', this.formatOrgUserId(ev));
+                break;
+            case EventType.OrganizationUser_Updated:
+                msg = this.i18nService.t('editedThing', this.i18nService.t('user').toLocaleLowerCase(),
+                    this.formatOrgUserId(ev));
+                break;
+            case EventType.OrganizationUser_Removed:
+                msg = this.i18nService.t('removedThing', this.i18nService.t('user').toLocaleLowerCase(),
+                    this.formatOrgUserId(ev));
+                break;
+            case EventType.OrganizationUser_UpdatedGroups:
+                msg = this.i18nService.t('editedGroupsForUser', this.formatOrgUserId(ev));
+                break;
+            // Org
+            case EventType.Organization_Updated:
+                msg = this.i18nService.t('editedOrgSettings');
+                break;
+            default:
+                break;
+        }
+        return msg === '' ? null : msg;
+    }
+
+    private getAppInfo(deviceType: DeviceType): [string, string] {
+        switch (deviceType) {
+            case DeviceType.Android:
+                return ['fa-android', this.i18nService.t('mobile') + ' - Android'];
+            case DeviceType.iOS:
+                return ['fa-apple', this.i18nService.t('mobile') + ' - iOS'];
+            case DeviceType.UWP:
+                return ['fa-windows', this.i18nService.t('mobile') + ' - Windows'];
+            case DeviceType.ChromeExtension:
+                return ['fa-chrome', this.i18nService.t('extension') + ' - Chrome'];
+            case DeviceType.FirefoxExtension:
+                return ['fa-firefox', this.i18nService.t('extension') + ' - Firefox'];
+            case DeviceType.OperaExtension:
+                return ['fa-opera', this.i18nService.t('extension') + ' - Opera'];
+            case DeviceType.EdgeExtension:
+                return ['fa-edge', this.i18nService.t('extension') + ' - Edge'];
+            case DeviceType.VivaldiExtension:
+                return ['fa-puzzle-piece', this.i18nService.t('extension') + ' - Vivaldi'];
+            case DeviceType.SafariExtension:
+                return ['fa-safari', this.i18nService.t('extension') + ' - Safari'];
+            case DeviceType.WindowsDesktop:
+                return ['fa-windows', this.i18nService.t('desktop') + ' - Windows'];
+            case DeviceType.MacOsDesktop:
+                return ['fa-apple', this.i18nService.t('desktop') + ' - macOS'];
+            case DeviceType.LinuxDesktop:
+                return ['fa-linux', this.i18nService.t('desktop') + ' - Linux'];
+            case DeviceType.ChromeBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - Chrome'];
+            case DeviceType.FirefoxBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - Firefox'];
+            case DeviceType.OperaBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - Opera'];
+            case DeviceType.SafariBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - Safari'];
+            case DeviceType.VivaldiBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - Vivaldi'];
+            case DeviceType.EdgeBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - Edge'];
+            case DeviceType.IEBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - IE'];
+            case DeviceType.UnknownBrowser:
+                return ['fa-globe', this.i18nService.t('webVault') + ' - ' + this.i18nService.t('unknown')];
+            default:
+                return ['fa-globe', this.i18nService.t('unknown')];
+        }
+    }
+
+    private formatCipherId(ev: EventResponse, options: EventOptions) {
+        const shortId = this.getShortId(ev.cipherId);
+        if (ev.organizationId == null || !options.cipherInfo) {
+            return '<code>' + shortId + '</code>';
+        }
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/vault?search=' + shortId +
+            '&viewEvents=' + ev.cipherId);
+        return a.outerHTML;
+    }
+
+    private formatGroupId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.groupId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/groups?search=' + shortId);
+        return a.outerHTML;
+    }
+
+    private formatCollectionId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.collectionId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/collections?search=' + shortId);
+        return a.outerHTML;
+    }
+
+    private formatOrgUserId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.organizationUserId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/people?search=' + shortId);
+        return a.outerHTML;
+    }
+
+    private makeAnchor(shortId: string) {
+        const a = document.createElement('a');
+        a.title = this.i18nService.t('view');
+        a.innerHTML = '<code>' + shortId + '</code>';
+        return a;
+    }
+
+    private getShortId(id: string) {
+        return id.substring(0, 8);
+    }
+
     private toDateTimeLocalString(date: Date) {
         return date.getFullYear() +
             '-' + this.pad(date.getMonth() + 1) +
@@ -35,4 +244,14 @@ export class EventService {
         const norm = Math.floor(Math.abs(num));
         return (norm < 10 ? '0' : '') + norm;
     }
+}
+
+export class EventInfo {
+    message: string;
+    appIcon: string;
+    appName: string;
+}
+
+export class EventOptions {
+    cipherInfo = true;
 }

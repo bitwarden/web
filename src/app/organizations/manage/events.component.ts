@@ -8,6 +8,9 @@ import { ApiService } from 'jslib/abstractions/api.service';
 
 import { EventService } from '../../services/event.service';
 
+import { EventResponse } from 'jslib/models/response/eventResponse';
+import { ListResponse } from 'jslib/models/response/listResponse';
+
 @Component({
     selector: 'app-org-events',
     templateUrl: 'events.component.html',
@@ -56,6 +59,7 @@ export class EventsComponent implements OnInit {
         }
 
         this.loading = true;
+        let response: ListResponse<EventResponse>;
         try {
             const promise = this.apiService.getEventsOrganization(this.organizationId, dates[0], dates[1],
                 clearExisting ? null : this.continuationToken);
@@ -64,28 +68,30 @@ export class EventsComponent implements OnInit {
             } else {
                 this.morePromise = promise;
             }
-            const response = await promise;
-            this.continuationToken = response.continuationToken;
-            const events = response.data.map((r) => {
-                const userId = r.actingUserId == null ? r.userId : r.actingUserId;
-                const eventInfo: any = {};
-                const htmlMessage = '';
-                return {
-                    message: htmlMessage,
-                    appIcon: eventInfo.appIcon,
-                    appName: eventInfo.appName,
-                    userId: userId,
-                    userName: userId != null ? 'user' : '-',
-                    date: r.date,
-                    ip: r.ipAddress,
-                };
-            });
-            if (!clearExisting && this.events != null && this.events.length > 0) {
-                this.events = this.events.concat(events);
-            } else {
-                this.events = events;
-            }
+            response = await promise;
         } catch { }
+
+        this.continuationToken = response.continuationToken;
+        const events = response.data.map((r) => {
+            const userId = r.actingUserId == null ? r.userId : r.actingUserId;
+            const eventInfo = this.eventService.getEventInfo(r);
+            return {
+                message: eventInfo.message,
+                appIcon: eventInfo.appIcon,
+                appName: eventInfo.appName,
+                userId: userId,
+                userName: userId != null ? 'user' : '-',
+                date: r.date,
+                ip: r.ipAddress,
+            };
+        });
+
+        if (!clearExisting && this.events != null && this.events.length > 0) {
+            this.events = this.events.concat(events);
+        } else {
+            this.events = events;
+        }
+
         this.loading = false;
         this.morePromise = null;
         this.refreshPromise = null;
