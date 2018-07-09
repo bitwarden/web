@@ -19,7 +19,21 @@ npm install
 npm run build:watch
 ```
 
-You can now access the web vault in your browser at `https://localhost:8080`.
+You can now access the web vault in your browser at `https://localhost:8080`. You can adjust your API endpoint settings in `src/app/services/services.module.ts` by altering the `apiService.setUrls` call. For example:
+
+```typescript
+await apiService.setUrls({
+    base: isDev ? null : window.location.origin,
+    api: isDev ? 'http://mylocalapi' : null,
+    identity: isDev ? 'http://mylocalidentity' : null,
+});
+```
+
+If you want to run a production build of the web vault (pointed to the production API), run:
+
+```
+npm run build:prod:watch
+```
 
 # Contribute
 
