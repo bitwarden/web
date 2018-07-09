@@ -2,7 +2,7 @@
 
 # Bitwarden Web Vault
 
-The Bitwarden web project is an AngularJS application that powers the web vault (https://vault.bitwarden.com/).
+The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
 
 <img src="https://i.imgur.com/WB8J2bt.png" alt="" />
 
@@ -10,20 +10,16 @@ The Bitwarden web project is an AngularJS application that powers the web vault 
 
 **Requirements**
 
-- Node.js
-- Gulp
+- [Node.js](https://nodejs.org) v8.11 or greater
 
-By default the application points to the production API. If you want to change that to point to a local instance of
-the [Core](https://github.com/bitwarden/core) API, you can modify the `package.json` `env` property to `Development`
-and then set your local endpoints in `settings.json`.
+**Run the app**
 
-Then run the following commands:
+```
+npm install
+npm run build:watch
+```
 
-- `npm install`
-- `gulp build`
-- `gulp serve`
-
-You can now access the web vault at `http://localhost:4001`.
+You can now access the web vault in your browser at `https://localhost:8080`.
 
 # Contribute
 
