@@ -3,10 +3,10 @@
     <div class="ml-auto d-flex">
         <div class="form-inline">
             <label class="sr-only" for="start">{{'startDate' | i18n}}</label>
-            <input type="datetime-local" class="form-control form-control-sm" id="start" placeholder="{{'startDate' | i18n}}" [(ngModel)]="start">
+            <input type="datetime-local" class="form-control form-control-sm" id="start" placeholder="{{'startDate' | i18n}}" [(ngModel)]="start" placeholder="YYYY-MM-DDTHH:MM">
             <span class="mx-2">-</span>
             <label class="sr-only" for="end">{{'endDate' | i18n}}</label>
-            <input type="datetime-local" class="form-control form-control-sm" id="end" placeholder="{{'endDate' | i18n}}" [(ngModel)]="end">
+            <input type="datetime-local" class="form-control form-control-sm" id="end" placeholder="{{'endDate' | i18n}}" [(ngModel)]="end" placeholder="YYYY-MM-DDTHH:MM">
         </div>
         <button #refreshBtn [appApiAction]="refreshPromise" type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="loadEvents(true)"
             [disabled]="loaded && refreshBtn.loading">
