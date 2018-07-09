@@ -31,10 +31,10 @@ export class BulkShareComponent implements OnInit {
     nonShareableCount = 0;
     collections: CollectionView[] = [];
     organizations: Organization[] = [];
+    shareableCiphers: CipherView[] = [];
     formPromise: Promise<any>;
 
     private writeableCollections: CollectionView[] = [];
-    private shareableCiphers: CipherView[] = [];
 
     constructor(private analytics: Angulartics2, private cipherService: CipherService,
         private toasterService: ToasterService, private i18nService: I18nService,
