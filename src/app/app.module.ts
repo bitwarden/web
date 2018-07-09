@@ -34,6 +34,7 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
+import { GroupAddEditComponent as OrgGroupAddEditComponent } from './organizations/manage/group-add-edit.component';
 import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
@@ -173,6 +174,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgEventsComponent,
         OrgExportComponent,
         OrgImportComponent,
+        OrgGroupAddEditComponent,
         OrgGroupingsComponent,
         OrgGroupsComponent,
         OrgManageCollectionsComponent,
@@ -226,6 +228,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgAddEditComponent,
         OrgAttachmentsComponent,
         OrgCollectionsComponent,
+        OrgGroupAddEditComponent,
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
         ShareComponent,

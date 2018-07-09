@@ -591,6 +591,15 @@
   "noItemsInList": {
     "message": "There are no items to list."
   },
+  "noCollectionsInList": {
+    "message": "There are no collections to list."
+  },
+  "noGroupsInList": {
+    "message": "There are no collections to list."
+  },
+  "noUsersInList": {
+    "message": "There are no users to list."
+  },
   "newOrganization": {
     "message": "New Organization"
   },
@@ -1703,11 +1712,47 @@
   "newGroup": {
     "message": "New Group"
   },
+  "addGroup": {
+    "message": "Add Group"
+  },
+  "editGroup": {
+    "message": "Edit Group"
+  },
+  "deleteGroupConfirmation": {
+    "message": "Are you sure you want to delete this group?"
+  },
+  "externalId": {
+    "message": "External Id"
+  },
+  "accessControl": {
+    "message": "Access Control"
+  },
+  "groupAccessAllItems": {
+    "message": "This group can access and modify all items."
+  },
+  "groupAccessSelectedCollections": {
+    "message": "This group can access only the selected collections."
+  },
+  "readOnly": {
+    "message": "Read Only"
+  },
   "newCollection": {
     "message": "New Collection"
   },
+  "addCollection": {
+    "message": "Add Collection"
+  },
+  "editCollection": {
+    "message": "Edit Collection"
+  },
   "inviteUser": {
     "message": "Invite User"
+  },
+  "userAccessAllItems": {
+    "message": "This user can access and modify all items."
+  },
+  "userAccessSelectedCollections": {
+    "message": "This user can access only the selected collections."
   },
   "search": {
     "message": "Search"
@@ -1789,7 +1834,7 @@
   },
   "createdThing": {
     "message": "Created $THING$ $ID$.",
-    "description": "Created item abe89f32.",
+    "description": "Created item 'Google'.",
     "placeholders": {
       "thing": {
         "content": "$1",
@@ -1797,13 +1842,13 @@
       },
       "id": {
         "content": "$2",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
   "editedThing": {
     "message": "Edited $THING$ $ID$.",
-    "description": "Edited item abe89f32.",
+    "description": "Edited item 'Google'.",
     "placeholders": {
       "thing": {
         "content": "$1",
@@ -1811,13 +1856,13 @@
       },
       "id": {
         "content": "$2",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
   "deletedThing": {
     "message": "Deleted $THING$ $ID$.",
-    "description": "Deleted item abe89f32.",
+    "description": "Deleted item 'Google'.",
     "placeholders": {
       "thing": {
         "content": "$1",
@@ -1825,12 +1870,13 @@
       },
       "id": {
         "content": "$2",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
   "sharedThing": {
     "message": "Shared $THING$ $ID$.",
+    "description": "Shared item 'Google'.",
     "placeholders": {
       "thing": {
         "content": "$1",
@@ -1838,12 +1884,13 @@
       },
       "id": {
         "content": "$2",
-        "example": "abe89f32"
+        "example": "'Google'"
       }
     }
   },
   "removedThing": {
     "message": "Removed $THING$ $ID$.",
+    "description": "Shared item 'Google'.",
     "placeholders": {
       "thing": {
         "content": "$1",
@@ -1851,7 +1898,7 @@
       },
       "id": {
         "content": "$2",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
@@ -1860,7 +1907,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
@@ -1869,7 +1916,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
@@ -1878,7 +1925,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "abe89f32"
+        "example": "Google"
       }
     }
   },
@@ -1887,7 +1934,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "abe89f32"
+        "example": "John Smith"
       }
     }
   },
@@ -1896,7 +1943,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "abe89f32"
+        "example": "John Smith"
       }
     }
   },
@@ -1905,7 +1952,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "abe89f32"
+        "example": "John Smith"
       }
     }
   },

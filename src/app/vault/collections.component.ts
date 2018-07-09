@@ -44,7 +44,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         this.cipher = await this.cipherDomain.decrypt();
         this.collections = await this.loadCollections();
 
-        this.unselectAll();
+        this.selectAll(false);
         if (this.collectionIds != null) {
             this.collections.forEach((c) => {
                 (c as any).checked = this.collectionIds.indexOf(c.id) > -1;
@@ -53,7 +53,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.unselectAll();
+        this.selectAll(false);
     }
 
     async submit() {
@@ -67,20 +67,12 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         this.toasterService.popAsync('success', null, this.i18nService.t('editedItem'));
     }
 
-    check(c: CollectionView) {
-        (c as any).checked = !(c as any).checked;
+    check(c: CollectionView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
-    selectAll() {
-        for (const c of this.collections) {
-            (c as any).checked = true;
-        }
-    }
-
-    unselectAll() {
-        for (const c of this.collections) {
-            (c as any).checked = false;
-        }
+    selectAll(select: boolean) {
+        this.collections.forEach((c) => this.check(c, select));
     }
 
     protected loadCipher() {

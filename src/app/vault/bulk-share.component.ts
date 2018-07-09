@@ -75,14 +75,12 @@ export class BulkShareComponent implements OnInit {
         this.toasterService.popAsync('success', null, this.i18nService.t('sharedItems'));
     }
 
-    check(c: CollectionView) {
-        (c as any).checked = !(c as any).checked;
+    check(c: CollectionView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
-    selectAll(select: false) {
+    selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
-        for (const c of collections) {
-            (c as any).checked = select;
-        }
+        collections.forEach((c) => this.check(c, select));
     }
 }

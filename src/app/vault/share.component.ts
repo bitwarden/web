@@ -87,14 +87,12 @@ export class ShareComponent implements OnInit, OnDestroy {
         await this.formPromise;
     }
 
-    check(c: CollectionView) {
-        (c as any).checked = !(c as any).checked;
+    check(c: CollectionView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
     selectAll(select: false) {
         const collections = select ? this.collections : this.writeableCollections;
-        for (const c of collections) {
-            (c as any).checked = select;
-        }
+        collections.forEach((c) => this.check(c, select));
     }
 }

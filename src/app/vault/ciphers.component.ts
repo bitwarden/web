@@ -38,8 +38,8 @@ export class CiphersComponent extends BaseCiphersComponent {
         super(cipherService);
     }
 
-    checkCipher(c: CipherView) {
-        (c as any).checked = !(c as any).checked;
+    checkCipher(c: CipherView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
     selectAll(select: boolean) {
@@ -48,7 +48,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
         const selectCount = select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
         for (let i = 0; i < selectCount; i++) {
-            (this.ciphers[i] as any).checked = select;
+            this.checkCipher(this.ciphers[i], select);
         }
     }
 

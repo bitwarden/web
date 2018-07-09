@@ -15,10 +15,10 @@
                 <div class="d-flex">
                     <h3>{{'collections' | i18n}}</h3>
                     <small class="ml-auto d-flex">
-                        <button type="button" appBlurClick (click)="selectAll()" class="btn btn-link btn-sm py-0">
+                        <button type="button" appBlurClick (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
                             {{'selectAll' | i18n}}
                         </button>
-                        <button type="button" appBlurClick (click)="unselectAll()" class="btn btn-link btn-sm py-0">
+                        <button type="button" appBlurClick (click)="selectAll(false)" class="btn btn-link btn-sm py-0">
                             {{'unselectAll' | i18n}}
                         </button>
                     </small>
