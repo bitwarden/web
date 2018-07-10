@@ -27,6 +27,7 @@ import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
+import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 
 @Component({
@@ -153,8 +154,8 @@ export class ImportComponent implements OnInit {
             }
         }
         if (importResult.folderRelationships != null) {
-            importResult.folderRelationships.forEach((v: number, k: number) =>
-                request.folderRelationships.push(new KvpRequest(k, v)));
+            importResult.folderRelationships.forEach((r) =>
+                request.folderRelationships.push(new KvpRequest(r[0], r[1])));
         }
         return await this.apiService.postImportCiphers(request);
     }
@@ -219,6 +220,8 @@ export class ImportComponent implements OnInit {
                 return new BlurCsvImporter();
             case 'safeincloudxml':
                 return new SafeInCloudXmlImporter();
+            case 'padlockcsv':
+                return new PadlockCsvImporter();
             default:
                 return null;
         }

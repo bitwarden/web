@@ -62,8 +62,8 @@ export class ImportComponent extends BaseImportComponent {
             }
         }
         if (importResult.collectionRelationships != null) {
-            importResult.collectionRelationships.forEach((v: number, k: number) =>
-                request.collectionRelationships.push(new KvpRequest(k, v)));
+            importResult.collectionRelationships.forEach((r) =>
+                request.collectionRelationships.push(new KvpRequest(r[0], r[1])));
         }
         return await this.apiService.postImportOrganizationCiphers(this.organizationId, request);
     }
