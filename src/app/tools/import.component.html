@@ -42,6 +42,9 @@
             Using the Padlock desktop application, click the hamburger icon in the top left corner and navigate to "Settings" &rarr;
             "Export" button and save the file "As CSV".
         </ng-container>
+        <ng-container *ngIf="format === 'keepass2xml'">
+            Using the KeePass 2 desktop application, navigate to "File" &rarr; "Export" and select the "KeePass XML (2.x)" option.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

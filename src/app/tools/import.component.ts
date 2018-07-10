@@ -25,6 +25,7 @@ import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { Importer } from 'jslib/importers/importer';
+import { KeePass2XmlImporter } from 'jslib/importers/keepass2XmlImporter';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
@@ -222,6 +223,8 @@ export class ImportComponent implements OnInit {
                 return new SafeInCloudXmlImporter();
             case 'padlockcsv':
                 return new PadlockCsvImporter();
+            case 'keepass2xml':
+                return new KeePass2XmlImporter();
             default:
                 return null;
         }
