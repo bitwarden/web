@@ -13,7 +13,7 @@
 </div>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="loading"></i>
 <ng-container *ngIf="!loading && (collections | search:searchText:'name':'id') as searchedCollections">
-    <p *ngIf="!searchedCollections.length">{{'noItemsInList' | i18n}}</p>
+    <p *ngIf="!searchedCollections.length">{{'noCollectionsInList' | i18n}}</p>
     <table class="table table-hover table-list" *ngIf="searchedCollections.length">
         <tbody>
             <tr *ngFor="let c of searchedCollections">
