@@ -1,0 +1,71 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+            <div class="modal-header">
+                <h2 class="modal-title">{{title}}</h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="loading">
+                <i class="fa fa-spinner fa-spin text-muted"></i>
+            </div>
+            <div class="modal-body" *ngIf="!loading">
+                <div class="form-group">
+                    <label for="name">{{'name' | i18n}}</label>
+                    <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name">
+                </div>
+                <h3 class="mt-4 d-flex mb-0">
+                    {{'groupAccess' | i18n}}
+                    <div class="ml-auto" *ngIf="groups && groups.length">
+                        <button type="button" appBlurClick (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
+                            {{'selectAll' | i18n}}
+                        </button>
+                        <button type="button" appBlurClick (click)="selectAll(false)" class="btn btn-link btn-sm py-0">
+                            {{'unselectAll' | i18n}}
+                        </button>
+                    </div>
+                </h3>
+                <div *ngIf="!groups || !groups.length">
+                    {{'noGroupsInList' | i18n}}
+                </div>
+                <table class="table table-hover table-list mb-0" *ngIf="groups && groups.length">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>{{'name' | i18n}}</th>
+                            <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let g of groups; let i = index">
+                            <td class="table-list-checkbox" (click)="check(g)">
+                                <input type="checkbox" [(ngModel)]="g.checked" name="Groups[{{i}}].Checked">
+                            </td>
+                            <td (click)="check(g)">
+                                <span appStopProp>{{g.name}}</span>
+                            </td>
+                            <td class="text-center">
+                                <input type="checkbox" [(ngModel)]="g.readOnly" name="Groups[{{i}}].ReadOnly" [disabled]="!g.checked">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'save' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'cancel' | i18n}}</button>
+                <div class="ml-auto">
+                    <button #deleteBtn appBlurClick type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"
+                        *ngIf="editMode" [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
+                        <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
+                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

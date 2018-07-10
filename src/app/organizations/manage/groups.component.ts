@@ -85,7 +85,7 @@ export class GroupsComponent implements OnInit {
         });
         childComponent.onDeletedGroup.subscribe(() => {
             this.modal.close();
-            this.load();
+            this.removeGroup(group);
         });
 
         this.modal.onClosed.subscribe(() => {
@@ -109,10 +109,7 @@ export class GroupsComponent implements OnInit {
             await this.apiService.deleteGroup(this.organizationId, group.id);
             this.analytics.eventTrack.next({ action: 'Deleted Group' });
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', group.name));
-            const index = this.groups.indexOf(group);
-            if (index > -1) {
-                this.groups.splice(index, 1);
-            }
+            this.removeGroup(group);
         } catch { }
     }
 
@@ -134,5 +131,12 @@ export class GroupsComponent implements OnInit {
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
+    }
+
+    private removeGroup(group: GroupResponse) {
+        const index = this.groups.indexOf(group);
+        if (index > -1) {
+            this.groups.splice(index, 1);
+        }
     }
 }

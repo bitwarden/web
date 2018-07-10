@@ -20,7 +20,19 @@
                     <input id="externalId" class="form-control" type="text" name="ExternalId" [(ngModel)]="externalId">
                     <small class="form-text text-muted">{{'externalIdGroupDesc' | i18n}}</small>
                 </div>
-                <h3 class="mt-4">{{'accessControl' | i18n}}</h3>
+                <h3 class="mt-4 d-flex">
+                    <div class="mb-1">
+                        {{'accessControl' | i18n}}
+                    </div>
+                    <div class="ml-auto" *ngIf="access === 'selected' && collections && collections.length">
+                        <button type="button" appBlurClick (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
+                            {{'selectAll' | i18n}}
+                        </button>
+                        <button type="button" appBlurClick (click)="selectAll(false)" class="btn btn-link btn-sm py-0">
+                            {{'unselectAll' | i18n}}
+                        </button>
+                    </div>
+                </h3>
                 <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="access" id="accessAll" value="all" [(ngModel)]="access">
@@ -39,37 +51,28 @@
                     <div *ngIf="!collections || !collections.length">
                         {{'noCollectionsInList' | i18n}}
                     </div>
-                    <ng-container *ngIf="collections && collections.length">
-                        <hr>
-                        <button type="button" appBlurClick (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
-                            {{'selectAll' | i18n}}
-                        </button>
-                        <button type="button" appBlurClick (click)="selectAll(false)" class="btn btn-link btn-sm py-0">
-                            {{'unselectAll' | i18n}}
-                        </button>
-                        <table class="table table-hover table-list mb-0">
-                            <thead>
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th>{{'collections' | i18n}}</th>
-                                    <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let c of collections; let i = index">
-                                    <td class="table-list-checkbox" (click)="check(c)">
-                                        <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked">
-                                    </td>
-                                    <td (click)="check(c)">
-                                        <span appStopProp>{{c.name}}</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly" [disabled]="!c.checked">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </ng-container>
+                    <table class="table table-hover table-list mb-0" *ngIf="collections && collections.length">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>{{'name' | i18n}}</th>
+                                <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let c of collections; let i = index">
+                                <td class="table-list-checkbox" (click)="check(c)">
+                                    <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked">
+                                </td>
+                                <td (click)="check(c)">
+                                    <span appStopProp>{{c.name}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly" [disabled]="!c.checked">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </ng-container>
             </div>
             <div class="modal-footer">

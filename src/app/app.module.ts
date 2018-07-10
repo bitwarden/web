@@ -32,6 +32,9 @@ import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 
+import {
+    CollectionAddEditComponent as OrgCollectionAddEditComponent,
+} from './organizations/manage/collection-add-edit.component';
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
 import { EntityUsersComponent as OrgEntityUsersComponent } from './organizations/manage/entity-users.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
@@ -171,6 +174,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgAddEditComponent,
         OrgAttachmentsComponent,
         OrgCiphersComponent,
+        OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
         OrgEntityUsersComponent,
         OrgEventsComponent,
@@ -229,6 +233,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         ModalComponent,
         OrgAddEditComponent,
         OrgAttachmentsComponent,
+        OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
