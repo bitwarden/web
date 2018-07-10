@@ -38,11 +38,11 @@
                                 <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
                             </td>
-                            <td class="table-list-options">
-                                <button type="button" class="btn btn-outline-danger" (click)="remove(u)" #removeBtn appBlurClick [disabled]="removeBtn.loading"
-                                    [appApiAction]="actionPromise" title="{{'remove' | i18n}}" *ngIf="!u.accessAll">
-                                    <i class="fa fa-remove fa-lg fa-fw" [hidden]="removeBtn.loading"></i>
-                                    <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!removeBtn.loading"></i>
+                            <td class="table-list-options wider">
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-submit" (click)="remove(u)" #removeBtn appBlurClick [disabled]="removeBtn.loading"
+                                    [appApiAction]="actionPromise" *ngIf="!u.accessAll">
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                    <span>{{'remove' | i18n}}</span>
                                 </button>
                             </td>
                         </tr>
