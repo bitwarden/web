@@ -58,7 +58,7 @@ export class EntityUsersComponent implements OnInit {
     }
 
     async remove(user: any) {
-        if (this.actionPromise != null || user.accessAll) {
+        if (this.actionPromise != null || (this.entity === 'collection' && user.accessAll)) {
             return;
         }
 

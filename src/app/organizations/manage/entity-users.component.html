@@ -40,7 +40,7 @@
                             </td>
                             <td class="table-list-options wider">
                                 <button type="button" class="btn btn-sm btn-outline-danger btn-submit" (click)="remove(u)" #removeBtn appBlurClick [disabled]="removeBtn.loading"
-                                    [appApiAction]="actionPromise" *ngIf="!u.accessAll">
+                                    [appApiAction]="actionPromise" *ngIf="entity !== 'collection' || !u.accessAll">
                                     <i class="fa fa-spinner fa-spin"></i>
                                     <span>{{'remove' | i18n}}</span>
                                 </button>
