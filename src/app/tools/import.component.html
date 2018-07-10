@@ -35,6 +35,13 @@
             In the Blur web vault, click your username at the top and go to "Settings" &rarr; "Export Data", then click "Export CSV"
             for your "Accounts".
         </ng-container>
+        <ng-container *ngIf="format === 'safeincloudxml'">
+            Using the SaveInCloud desktop application, navigate to "File" &rarr; "Export" &rarr; "As XML" and save the XML file.
+        </ng-container>
+        <ng-container *ngIf="format === 'padlockcsv'">
+            Using the Padlock desktop application, click the hamburger icon in the top left corner and navigate to "Settings" &rarr;
+            "Export" button and save the file "As CSV".
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
