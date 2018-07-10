@@ -10,10 +10,10 @@
                     <a routerLink="collections" class="list-group-item" routerLinkActive="active">
                         {{'collections' | i18n}}
                     </a>
-                    <a routerLink="groups" class="list-group-item" routerLinkActive="active">
+                    <a routerLink="groups" class="list-group-item" routerLinkActive="active" *ngIf="accessGroups">
                         {{'groups' | i18n}}
                     </a>
-                    <a routerLink="events" class="list-group-item" routerLinkActive="active">
+                    <a routerLink="events" class="list-group-item" routerLinkActive="active" *ngIf="accessEvents">
                         {{'eventLogs' | i18n}}
                     </a>
                 </div>

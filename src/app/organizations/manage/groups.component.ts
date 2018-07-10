@@ -5,7 +5,10 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -13,6 +16,7 @@ import { Angulartics2 } from 'angulartics2';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { GroupResponse } from 'jslib/models/response/groupResponse';
 
@@ -40,11 +44,17 @@ export class GroupsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private platformUtilsService: PlatformUtilsService, private userService: UserService,
+        private router: Router) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
+            const organization = await this.userService.getOrganization(this.organizationId);
+            if (organization == null || !organization.useGroups) {
+                this.router.navigate(['/organizations', this.organizationId]);
+                return;
+            }
             await this.load();
         });
     }

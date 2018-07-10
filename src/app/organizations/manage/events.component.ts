@@ -2,12 +2,13 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { EventService } from '../../services/event.service';
 
@@ -34,11 +35,17 @@ export class EventsComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private eventService: EventService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private toasterService: ToasterService, private userService: UserService,
+        private router: Router) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
+            const organization = await this.userService.getOrganization(this.organizationId);
+            if (organization == null || !organization.useEvents) {
+                this.router.navigate(['/organizations', this.organizationId]);
+                return;
+            }
             const defaultDates = this.eventService.getDefaultDateFilters();
             this.start = defaultDates[0];
             this.end = defaultDates[1];
