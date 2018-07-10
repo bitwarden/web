@@ -82,8 +82,7 @@ export class EntityUsersComponent implements OnInit {
                 this.analytics.eventTrack.next({ action: 'Removed User From Collection' });
             }
 
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t('removedThing', this.i18nService.t('user').toLocaleLowerCase(), user.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.email));
             this.onRemovedUser.emit();
             const index = this.users.indexOf(user);
             if (index > -1) {

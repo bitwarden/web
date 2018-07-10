@@ -64,16 +64,13 @@ export class EventService {
                 break;
             // Cipher
             case EventType.Cipher_Created:
-                msg = this.i18nService.t('createdThing', this.i18nService.t('item').toLocaleLowerCase(),
-                    this.formatCipherId(ev, options));
+                msg = this.i18nService.t('createdItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_Updated:
-                msg = this.i18nService.t('editedThing', this.i18nService.t('item').toLocaleLowerCase(),
-                    this.formatCipherId(ev, options));
+                msg = this.i18nService.t('editedItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_Deleted:
-                msg = this.i18nService.t('deletedThing', this.i18nService.t('item').toLocaleLowerCase(),
-                    this.formatCipherId(ev, options));
+                msg = this.i18nService.t('deletedItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_AttachmentCreated:
                 msg = this.i18nService.t('createdAttachmentForItem', this.formatCipherId(ev, options));
@@ -82,37 +79,30 @@ export class EventService {
                 msg = this.i18nService.t('deletedAttachmentForItem', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_Shared:
-                msg = this.i18nService.t('sharedThing', this.i18nService.t('item').toLocaleLowerCase(),
-                    this.formatCipherId(ev, options));
+                msg = this.i18nService.t('sharedItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_UpdatedCollections:
                 msg = this.i18nService.t('editedCollectionsForItem', this.formatCipherId(ev, options));
                 break;
             // Collection
             case EventType.Collection_Created:
-                msg = this.i18nService.t('createdThing', this.i18nService.t('collection').toLocaleLowerCase(),
-                    this.formatCollectionId(ev));
+                msg = this.i18nService.t('createdCollectionId', this.formatCollectionId(ev));
                 break;
             case EventType.Collection_Updated:
-                msg = this.i18nService.t('editedThing', this.i18nService.t('collection').toLocaleLowerCase(),
-                    this.formatCollectionId(ev));
+                msg = this.i18nService.t('editedCollectionId', this.formatCollectionId(ev));
                 break;
             case EventType.Collection_Deleted:
-                msg = this.i18nService.t('deletedThing', this.i18nService.t('collection').toLocaleLowerCase(),
-                    this.formatCollectionId(ev));
+                msg = this.i18nService.t('deletedCollectionId', this.formatCollectionId(ev));
                 break;
             // Group
             case EventType.Group_Created:
-                msg = this.i18nService.t('createdThing', this.i18nService.t('group').toLocaleLowerCase(),
-                    this.formatGroupId(ev));
+                msg = this.i18nService.t('createdGroupId', this.formatGroupId(ev));
                 break;
             case EventType.Group_Updated:
-                msg = this.i18nService.t('editedThing', this.i18nService.t('group').toLocaleLowerCase(),
-                    this.formatGroupId(ev));
+                msg = this.i18nService.t('editedGroupId', this.formatGroupId(ev));
                 break;
             case EventType.Group_Deleted:
-                msg = this.i18nService.t('deletedThing', this.i18nService.t('group').toLocaleLowerCase(),
-                    this.formatGroupId(ev));
+                msg = this.i18nService.t('deletedGroupId', this.formatGroupId(ev));
                 break;
             // Org user
             case EventType.OrganizationUser_Invited:
@@ -122,12 +112,10 @@ export class EventService {
                 msg = this.i18nService.t('confirmedUser', this.formatOrgUserId(ev));
                 break;
             case EventType.OrganizationUser_Updated:
-                msg = this.i18nService.t('editedThing', this.i18nService.t('user').toLocaleLowerCase(),
-                    this.formatOrgUserId(ev));
+                msg = this.i18nService.t('editedUserId', this.formatOrgUserId(ev));
                 break;
             case EventType.OrganizationUser_Removed:
-                msg = this.i18nService.t('removedThing', this.i18nService.t('user').toLocaleLowerCase(),
-                    this.formatOrgUserId(ev));
+                msg = this.i18nService.t('removedUserId', this.formatOrgUserId(ev));
                 break;
             case EventType.OrganizationUser_UpdatedGroups:
                 msg = this.i18nService.t('editedGroupsForUser', this.formatOrgUserId(ev));

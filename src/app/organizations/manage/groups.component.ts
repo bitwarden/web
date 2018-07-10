@@ -98,8 +98,7 @@ export class GroupsComponent implements OnInit {
         try {
             await this.apiService.deleteGroup(this.organizationId, group.id);
             this.analytics.eventTrack.next({ action: 'Deleted Group' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t('deletedThing', this.i18nService.t('group').toLocaleLowerCase(), group.name));
+            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', group.name));
             const index = this.groups.indexOf(group);
             if (index > -1) {
                 this.groups.splice(index, 1);

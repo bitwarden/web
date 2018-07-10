@@ -111,8 +111,7 @@ export class GroupAddEditComponent implements OnInit {
             await this.formPromise;
             this.analytics.eventTrack.next({ action: this.editMode ? 'Edited Group' : 'Created Group' });
             this.toasterService.popAsync('success', null,
-                this.i18nService.t(this.editMode ? 'editedThing' : 'createdThing',
-                    this.i18nService.t('group').toLocaleLowerCase(), this.name));
+                this.i18nService.t(this.editMode ? 'editedGroupId' : 'createdGroupId', this.name));
             this.onSavedGroup.emit();
         } catch { }
     }
@@ -133,8 +132,7 @@ export class GroupAddEditComponent implements OnInit {
             this.deletePromise = this.apiService.deleteGroup(this.organizationId, this.groupId);
             await this.deletePromise;
             this.analytics.eventTrack.next({ action: 'Deleted Group' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t('deletedThing', this.i18nService.t('group').toLocaleLowerCase(), this.name));
+            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', this.name));
             this.onDeletedGroup.emit();
         } catch { }
     }

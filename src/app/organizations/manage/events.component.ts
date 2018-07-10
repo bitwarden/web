@@ -99,6 +99,7 @@ export class EventsComponent implements OnInit {
                 userEmail: user != null ? user.email : '',
                 date: r.date,
                 ip: r.ipAddress,
+                type: r.type,
             };
         });
 

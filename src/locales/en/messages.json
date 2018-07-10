@@ -1727,14 +1727,8 @@
   "externalId": {
     "message": "External Id"
   },
-  "externalIdDesc": {
-    "message": "The external id is used to link this $THING$ to an external system such as a directory.",
-    "placeholders": {
-      "thing": {
-        "content": "$1",
-        "example": "group"
-      }
-    }
+  "externalIdGroupDesc": {
+    "message": "The external id is used to link this group to an external system such as a user directory."
   },
   "accessControl": {
     "message": "Access Control"
@@ -1844,73 +1838,102 @@
   "editedOrgSettings": {
     "message": "Edited organization settings."
   },
-  "createdThing": {
-    "message": "Created $THING$ $ID$.",
-    "description": "Created item 'Google'.",
+  "createdItemId": {
+    "message": "Created item $ID$.",
     "placeholders": {
-      "thing": {
-        "content": "$1",
-        "example": "item"
-      },
       "id": {
-        "content": "$2",
+        "content": "$1",
         "example": "Google"
       }
     }
   },
-  "editedThing": {
-    "message": "Edited $THING$ $ID$.",
-    "description": "Edited item 'Google'.",
+  "editedItemId": {
+    "message": "Edited item $ID$.",
     "placeholders": {
-      "thing": {
-        "content": "$1",
-        "example": "item"
-      },
       "id": {
-        "content": "$2",
+        "content": "$1",
         "example": "Google"
       }
     }
   },
-  "deletedThing": {
-    "message": "Deleted $THING$ $ID$.",
-    "description": "Deleted item 'Google'.",
+  "deletedItemId": {
+    "message": "Deleted item $ID$.",
     "placeholders": {
-      "thing": {
-        "content": "$1",
-        "example": "item"
-      },
       "id": {
-        "content": "$2",
+        "content": "$1",
         "example": "Google"
       }
     }
   },
-  "sharedThing": {
-    "message": "Shared $THING$ $ID$.",
-    "description": "Shared item 'Google'.",
+  "sharedItemId": {
+    "message": "Shared item $ID$.",
     "placeholders": {
-      "thing": {
-        "content": "$1",
-        "example": "item"
-      },
       "id": {
-        "content": "$2",
+        "content": "$1",
         "example": "'Google'"
       }
     }
   },
-  "removedThing": {
-    "message": "Removed $THING$ $ID$.",
-    "description": "Shared item 'Google'.",
+  "createdCollectionId": {
+    "message": "Created collection $ID$.",
     "placeholders": {
-      "thing": {
-        "content": "$1",
-        "example": "item"
-      },
       "id": {
-        "content": "$2",
-        "example": "Google"
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedCollectionId": {
+    "message": "Edited collection $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "deletedCollectionId": {
+    "message": "Deleted collection $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "createdGroupId": {
+    "message": "Created group $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "editedGroupId": {
+    "message": "Edited group $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "deletedGroupId": {
+    "message": "Deleted group $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "removedUserId": {
+    "message": "Removed user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
       }
     }
   },
@@ -1941,7 +1964,7 @@
       }
     }
   },
-  "invitedUser": {
+  "invitedUserId": {
     "message": "Invited user $ID$.",
     "placeholders": {
       "id": {
@@ -1950,8 +1973,17 @@
       }
     }
   },
-  "confirmedUser": {
+  "confirmedUserId": {
     "message": "Confirmed user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedUserId": {
+    "message": "Edited user $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1967,15 +1999,6 @@
         "example": "John Smith"
       }
     }
-  },
-  "item": {
-    "message": "Item"
-  },
-  "collection": {
-    "message": "Collection"
-  },
-  "group": {
-    "message": "Group"
   },
   "device": {
     "message": "Device"

@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="externalId">{{'externalId' | i18n}}</label>
                     <input id="externalId" class="form-control" type="text" name="ExternalId" [(ngModel)]="externalId">
-                    <small class="form-text text-muted">{{'externalIdDesc' | i18n : ('group' | i18n).toLocaleLowerCase()}}</small>
+                    <small class="form-text text-muted">{{'externalIdGroupDesc' | i18n}}</small>
                 </div>
                 <h3 class="mt-4">{{'accessControl' | i18n}}</h3>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                             <thead>
                                 <tr>
                                     <th>&nbsp;</th>
-                                    <th>{{'collection' | i18n}}</th>
+                                    <th>{{'collections' | i18n}}</th>
                                     <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
                                 </tr>
                             </thead>
