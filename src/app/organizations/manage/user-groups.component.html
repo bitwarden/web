@@ -1,0 +1,49 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'groupAccess' | i18n}}
+                    <small class="text-muted" *ngIf="name">{{name}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="loading">
+                <i class="fa fa-spinner fa-spin text-muted"></i>
+            </div>
+            <div class="modal-body" *ngIf="!loading">
+                <p>{{'groupAccessUserDesc' | i18n}}</p>
+                <div *ngIf="!groups || !groups.length">
+                    {{'noGroupsInList' | i18n}}
+                </div>
+                <table class="table table-hover table-list mb-0" *ngIf="groups && groups.length">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>{{'name' | i18n}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let g of groups; let i = index">
+                            <td class="table-list-checkbox" (click)="check(g)">
+                                <input type="checkbox" [(ngModel)]="g.checked" name="Groups[{{i}}].Checked">
+                            </td>
+                            <td (click)="check(g)">
+                                <span appStopProp>{{g.name}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'save' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'cancel' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>

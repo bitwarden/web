@@ -23,6 +23,7 @@ import { Utils } from 'jslib/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
 import { UserAddEditComponent } from './user-add-edit.component';
+import { UserGroupsComponent } from './user-groups.component';
 
 @Component({
     selector: 'app-org-people',
@@ -90,6 +91,28 @@ export class PeopleComponent implements OnInit {
 
     invite() {
         this.edit(null);
+    }
+
+    groups(user: OrganizationUserUserDetailsResponse) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.groupsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<UserGroupsComponent>(
+            UserGroupsComponent, this.groupsModalRef);
+
+        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.organizationId = this.organizationId;
+        childComponent.organizationUserId = user != null ? user.id : null;
+        childComponent.onSavedUser.subscribe(() => {
+            this.modal.close();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     async remove(user: OrganizationUserUserDetailsResponse) {
