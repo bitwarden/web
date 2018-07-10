@@ -1,0 +1,57 @@
+<div class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'userAccess' | i18n}}
+                    <small>{{entityName}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="loading">
+                <i class="fa fa-spinner fa-spin text-muted"></i>
+            </div>
+            <div class="modal-body" *ngIf="!loading">
+                <ng-container *ngIf="!users || !users.length">
+                    {{'noUsersInList' | i18n}}
+                </ng-container>
+                <table class="table table-hover table-list mb-0" *ngIf="users && users.length">
+                    <tbody>
+                        <tr *ngFor="let u of users">
+                            <td width="30">
+                                <app-avatar [data]="u.name || u.email" width="25" height="25" [circle]="true" [fontSize]="14"></app-avatar>
+                            </td>
+                            <td>
+                                {{u.email}}
+                                <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
+                                <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
+                                <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
+                            </td>
+                            <td *ngIf="entity === 'collection'">
+                                <i class="fa fa-th" *ngIf="u.accessAll" title="{{'userAccessAllItems' | i18n}}"></i>
+                                <i class="fa fa-eye" *ngIf="u.readOnly" title="{{'readOnly' | i18n}}"></i>
+                            </td>
+                            <td>
+                                <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
+                                <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
+                                <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
+                            </td>
+                            <td class="table-list-options">
+                                <button type="button" class="btn btn-outline-danger" (click)="remove(u)" #removeBtn appBlurClick [disabled]="removeBtn.loading"
+                                    [appApiAction]="actionPromise" title="{{'remove' | i18n}}" *ngIf="!u.accessAll">
+                                    <i class="fa fa-remove fa-lg fa-fw" [hidden]="removeBtn.loading"></i>
+                                    <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!removeBtn.loading"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+            </div>
+        </div>
+    </div>
+</div>

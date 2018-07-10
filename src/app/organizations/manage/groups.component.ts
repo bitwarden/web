@@ -19,6 +19,7 @@ import { GroupResponse } from 'jslib/models/response/groupResponse';
 import { Utils } from 'jslib/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
+import { EntityUsersComponent } from './entity-users.component';
 import { GroupAddEditComponent } from './group-add-edit.component';
 
 @Component({
@@ -27,6 +28,7 @@ import { GroupAddEditComponent } from './group-add-edit.component';
 })
 export class GroupsComponent implements OnInit {
     @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
+    @ViewChild('usersTemplate', { read: ViewContainerRef }) usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -98,7 +100,30 @@ export class GroupsComponent implements OnInit {
             this.analytics.eventTrack.next({ action: 'Deleted Group' });
             this.toasterService.popAsync('success', null,
                 this.i18nService.t('deletedThing', this.i18nService.t('group').toLocaleLowerCase(), group.name));
-            await this.load();
+            const index = this.groups.indexOf(group);
+            if (index > -1) {
+                this.groups.splice(index, 1);
+            }
         } catch { }
+    }
+
+    users(group: GroupResponse) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.usersModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<EntityUsersComponent>(
+            EntityUsersComponent, this.usersModalRef);
+
+        childComponent.organizationId = this.organizationId;
+        childComponent.entity = 'group';
+        childComponent.entityId = group.id;
+        childComponent.entityName = group.name;
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 }
