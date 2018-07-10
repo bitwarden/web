@@ -632,7 +632,9 @@ app-user-billing {
 }
 
 .form-check-block + .form-check-block {
-    @extend .mt-3;
+    &:not(.mt-2) {
+        @extend .mt-3;
+    }
 }
 
 .org-nav {

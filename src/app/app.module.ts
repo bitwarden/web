@@ -42,6 +42,7 @@ import { GroupAddEditComponent as OrgGroupAddEditComponent } from './organizatio
 import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
+import { UserAddEditComponent as OrgUserAddEditComponent } from './organizations/manage/user-add-edit.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
@@ -187,6 +188,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgManageComponent,
         OrgPeopleComponent,
         OrgToolsComponent,
+        OrgUserAddEditComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,
         OrgVaultComponent,
@@ -237,6 +239,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgCollectionsComponent,
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
+        OrgUserAddEditComponent,
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
         ShareComponent,

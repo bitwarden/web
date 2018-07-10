@@ -1754,8 +1754,23 @@
   "deleteCollectionConfirmation": {
     "message": "Are you sure you want to delete this collection?"
   },
+  "editUser": {
+    "message": "Edit User"
+  },
   "inviteUser": {
     "message": "Invite User"
+  },
+  "inviteUserDesc": {
+    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "inviteMultipleEmailDesc": {
+    "message": "You can invite up to $COUNT$ users at a time by comma separating a list of email addresses.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
   },
   "userAccessAllItems": {
     "message": "This user can access and modify all items."
@@ -1778,11 +1793,20 @@
   "owner": {
     "message": "Owner"
   },
+  "ownerDesc": {
+    "message": "The highest access user that can manage all aspects of your organization."
+  },
   "admin": {
     "message": "Admin"
   },
+  "adminDesc": {
+    "message": " Admins can access and manage all items, collections and users in your organization."
+  },
   "user": {
     "message": "User"
+  },
+  "userDesc": {
+    "message": "A regular user with access to your organization's collections."
   },
   "all": {
     "message": "All"
@@ -2018,7 +2042,13 @@
   "userAccess": {
     "message": "User Access"
   },
+  "userType": {
+    "message": "User Type"
+  },
   "groupAccess": {
     "message": "Group Access"
+  },
+  "invitedUsers": {
+    "message": "Invited user(s)."
   }
 }

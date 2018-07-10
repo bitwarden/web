@@ -16,49 +16,53 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
-import { GroupRequest } from 'jslib/models/request/groupRequest';
+import { OrganizationUserInviteRequest } from 'jslib/models/request/organizationUserInviteRequest';
+import { OrganizationUserUpdateRequest } from 'jslib/models/request/organizationUserUpdateRequest';
 import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
 import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+
 @Component({
-    selector: 'app-group-add-edit',
-    templateUrl: 'group-add-edit.component.html',
+    selector: 'app-user-add-edit',
+    templateUrl: 'user-add-edit.component.html',
 })
-export class GroupAddEditComponent implements OnInit {
-    @Input() groupId: string;
+export class UserAddEditComponent implements OnInit {
+    @Input() name: string;
+    @Input() organizationUserId: string;
     @Input() organizationId: string;
-    @Output() onSavedGroup = new EventEmitter();
-    @Output() onDeletedGroup = new EventEmitter();
+    @Output() onSavedUser = new EventEmitter();
+    @Output() onDeletedUser = new EventEmitter();
 
     loading = true;
     editMode: boolean = false;
     title: string;
-    name: string;
-    externalId: string;
+    emails: string;
+    type: OrganizationUserType = OrganizationUserType.User;
     access: 'all' | 'selected' = 'selected';
     collections: CollectionView[] = [];
     formPromise: Promise<any>;
     deletePromise: Promise<any>;
+    organizationUserType = OrganizationUserType;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         private collectionService: CollectionService, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
-        this.editMode = this.loading = this.groupId != null;
+        this.editMode = this.loading = this.organizationUserId != null;
         await this.loadCollections();
 
         if (this.editMode) {
             this.editMode = true;
-            this.title = this.i18nService.t('editGroup');
+            this.title = this.i18nService.t('editUser');
             try {
-                const group = await this.apiService.getGroupDetails(this.organizationId, this.groupId);
-                this.access = group.accessAll ? 'all' : 'selected';
-                this.name = group.name;
-                this.externalId = group.externalId;
-                if (group.collections != null && this.collections != null) {
-                    group.collections.forEach((s) => {
+                const user = await this.apiService.getOrganizationUser(this.organizationId, this.organizationUserId);
+                this.access = user.accessAll ? 'all' : 'selected';
+                this.type = user.type;
+                if (user.collections != null && this.collections != null) {
+                    user.collections.forEach((s) => {
                         const collection = this.collections.filter((c) => c.id === s.id);
                         if (collection != null && collection.length > 0) {
                             (collection[0] as any).checked = true;
@@ -68,7 +72,7 @@ export class GroupAddEditComponent implements OnInit {
                 }
             } catch { }
         } else {
-            this.title = this.i18nService.t('addGroup');
+            this.title = this.i18nService.t('inviteUser');
         }
 
         this.loading = false;
@@ -93,26 +97,33 @@ export class GroupAddEditComponent implements OnInit {
     }
 
     async submit() {
-        const request = new GroupRequest();
-        request.name = this.name;
-        request.externalId = this.externalId;
-        request.accessAll = this.access === 'all';
-        if (!request.accessAll) {
-            request.collections = this.collections.filter((c) => (c as any).checked)
+        let collections: SelectionReadOnlyRequest[] = null;
+        if (this.access !== 'all') {
+            collections = this.collections.filter((c) => (c as any).checked)
                 .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly));
         }
 
         try {
             if (this.editMode) {
-                this.formPromise = this.apiService.putGroup(this.organizationId, this.groupId, request);
+                const request = new OrganizationUserUpdateRequest();
+                request.accessAll = this.access === 'all';
+                request.type = this.type;
+                request.collections = collections;
+                this.formPromise = this.apiService.putOrganizationUser(this.organizationId, this.organizationUserId,
+                    request);
             } else {
-                this.formPromise = this.apiService.postGroup(this.organizationId, request);
+                const request = new OrganizationUserInviteRequest();
+                request.emails = this.emails.trim().split(/\s*,\s*/);
+                request.accessAll = this.access === 'all';
+                request.type = this.type;
+                request.collections = collections;
+                this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited Group' : 'Created Group' });
+            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited User' : 'Invited User' });
             this.toasterService.popAsync('success', null,
-                this.i18nService.t(this.editMode ? 'editedGroupId' : 'createdGroupId', this.name));
-            this.onSavedGroup.emit();
+                this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
+            this.onSavedUser.emit();
         } catch { }
     }
 
@@ -122,18 +133,18 @@ export class GroupAddEditComponent implements OnInit {
         }
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteGroupConfirmation'), this.name,
+            this.i18nService.t('removeUserConfirmation'), this.name,
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
         }
 
         try {
-            this.deletePromise = this.apiService.deleteGroup(this.organizationId, this.groupId);
+            this.deletePromise = this.apiService.deleteOrganizationUser(this.organizationId, this.organizationUserId);
             await this.deletePromise;
-            this.analytics.eventTrack.next({ action: 'Deleted Group' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', this.name));
-            this.onDeletedGroup.emit();
+            this.analytics.eventTrack.next({ action: 'Deleted User' });
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.name));
+            this.onDeletedUser.emit();
         } catch { }
     }
 }
