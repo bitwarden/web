@@ -139,6 +139,7 @@ const serve = {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
+    // host: '192.168.1.9',
     hot: false,
 };
 
