@@ -106,10 +106,10 @@ export class EventService {
                 break;
             // Org user
             case EventType.OrganizationUser_Invited:
-                msg = this.i18nService.t('invitedUser', this.formatOrgUserId(ev));
+                msg = this.i18nService.t('invitedUserId', this.formatOrgUserId(ev));
                 break;
             case EventType.OrganizationUser_Confirmed:
-                msg = this.i18nService.t('confirmedUser', this.formatOrgUserId(ev));
+                msg = this.i18nService.t('confirmedUserId', this.formatOrgUserId(ev));
                 break;
             case EventType.OrganizationUser_Updated:
                 msg = this.i18nService.t('editedUserId', this.formatOrgUserId(ev));
