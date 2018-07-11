@@ -43,6 +43,8 @@ export class PeopleComponent implements OnInit {
     organizationId: string;
     users: OrganizationUserUserDetailsResponse[];
     searchText: string;
+    status: OrganizationUserStatusType = null;
+    statusMap = new Map<OrganizationUserStatusType, OrganizationUserUserDetailsResponse[]>();
     organizationUserType = OrganizationUserType;
     organizationUserStatusType = OrganizationUserStatusType;
     actionPromise: Promise<any>;
@@ -50,6 +52,7 @@ export class PeopleComponent implements OnInit {
     accessGroups = false;
 
     private modal: ModalComponent = null;
+    private allUsers: OrganizationUserUserDetailsResponse[];
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
@@ -79,10 +82,37 @@ export class PeopleComponent implements OnInit {
 
     async load() {
         const response = await this.apiService.getOrganizationUsers(this.organizationId);
-        const users = response.data != null && response.data.length > 0 ? response.data : [];
-        users.sort(Utils.getSortFunction(this.i18nService, 'email'));
-        this.users = users;
+        this.statusMap.clear();
+        this.allUsers = response.data != null && response.data.length > 0 ? response.data : [];
+        this.allUsers.sort(Utils.getSortFunction(this.i18nService, 'email'));
+        this.allUsers.forEach((u) => {
+            if (!this.statusMap.has(u.status)) {
+                this.statusMap.set(u.status, [u]);
+            } else {
+                this.statusMap.get(u.status).push(u);
+            }
+        });
+        this.filter(this.status);
         this.loading = false;
+    }
+
+    filter(status: OrganizationUserStatusType) {
+        this.status = status;
+        if (this.status != null) {
+            this.users = this.statusMap.get(this.status);
+        } else {
+            this.users = this.allUsers;
+        }
+    }
+
+    get invitedCount() {
+        return this.statusMap.has(OrganizationUserStatusType.Invited) ?
+            this.statusMap.get(OrganizationUserStatusType.Invited).length : 0;
+    }
+
+    get acceptedCount() {
+        return this.statusMap.has(OrganizationUserStatusType.Accepted) ?
+            this.statusMap.get(OrganizationUserStatusType.Accepted).length : 0;
     }
 
     edit(user: OrganizationUserUserDetailsResponse) {
