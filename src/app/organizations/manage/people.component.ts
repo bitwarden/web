@@ -11,8 +11,11 @@ import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+
+import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
@@ -39,13 +42,14 @@ export class PeopleComponent implements OnInit {
     searchText: string;
     organizationUserType = OrganizationUserType;
     organizationUserStatusType = OrganizationUserStatusType;
+    actionPromise: Promise<any>;
 
     private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
-        private toasterService: ToasterService) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -129,6 +133,43 @@ export class PeopleComponent implements OnInit {
             this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
             this.removeUser(user);
         } catch { }
+    }
+
+    async reinvite(user: OrganizationUserUserDetailsResponse) {
+        if (this.actionPromise != null) {
+            return;
+        }
+        this.actionPromise = this.apiService.postOrganizationUserReinvite(this.organizationId, user.id);
+        await this.actionPromise;
+        this.analytics.eventTrack.next({ action: 'Reinvited User' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+        this.actionPromise = null;
+    }
+
+    async confirm(user: OrganizationUserUserDetailsResponse) {
+        if (this.actionPromise != null) {
+            return;
+        }
+        this.actionPromise = this.doConfirmation(user);
+        await this.actionPromise;
+        user.status = OrganizationUserStatusType.Confirmed;
+        this.analytics.eventTrack.next({ action: 'Confirmed User' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
+        this.actionPromise = null;
+    }
+
+    async events(user: OrganizationUserUserDetailsResponse) {
+
+    }
+
+    private async doConfirmation(user: OrganizationUserUserDetailsResponse) {
+        const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
+        const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
+        const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
+        const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
+        const request = new OrganizationUserConfirmRequest();
+        request.key = key.encryptedString;
+        await this.apiService.postOrganizationUserConfirm(this.organizationId, user.id, request);
     }
 
     private removeUser(user: OrganizationUserUserDetailsResponse) {

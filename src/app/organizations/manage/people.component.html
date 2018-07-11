@@ -50,6 +50,14 @@
                             <i class="fa fa-cog fa-lg"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" appStopClick (click)="reinvite(u)" *ngIf="u.status === organizationUserStatusType.Invited">
+                                <i class="fa fa-fw fa-envelope-o"></i>
+                                {{'resendInvitation' | i18n}}
+                            </a>
+                            <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(u)" *ngIf="u.status === organizationUserStatusType.Accepted">
+                                <i class="fa fa-fw fa-check"></i>
+                                {{'confirm' | i18n}}
+                            </a>
                             <a class="dropdown-item" href="#" appStopClick (click)="groups(u)">
                                 <i class="fa fa-fw fa-sitemap"></i>
                                 {{'groups' | i18n}}
