@@ -67,19 +67,26 @@ export class VaultComponent implements OnInit {
                 if (qParams == null) {
                     this.groupingsComponent.selectedAll = true;
                     await this.ciphersComponent.load();
-                    return;
+                } else {
+                    if (qParams.type) {
+                        const t = parseInt(qParams.type, null);
+                        this.groupingsComponent.selectedType = t;
+                        await this.filterCipherType(t, true);
+                    } else if (qParams.collectionId) {
+                        this.groupingsComponent.selectedCollectionId = qParams.collectionId;
+                        await this.filterCollection(qParams.collectionId, true);
+                    } else {
+                        this.groupingsComponent.selectedAll = true;
+                        await this.ciphersComponent.load();
+                    }
                 }
 
-                if (qParams.type) {
-                    const t = parseInt(qParams.type, null);
-                    this.groupingsComponent.selectedType = t;
-                    await this.filterCipherType(t, true);
-                } else if (qParams.collectionId) {
-                    this.groupingsComponent.selectedCollectionId = qParams.collectionId;
-                    await this.filterCollection(qParams.collectionId, true);
-                } else {
-                    this.groupingsComponent.selectedAll = true;
-                    await this.ciphersComponent.load();
+                this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
+                if (qParams.viewEvents != null) {
+                    const cipher = this.ciphersComponent.ciphers.filter((c) => c.id === qParams.viewEvents);
+                    if (cipher.length > 0) {
+                        this.viewEvents(cipher[0]);
+                    }
                 }
             });
         });

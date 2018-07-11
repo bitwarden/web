@@ -205,7 +205,8 @@ export class EventService {
     private formatOrgUserId(ev: EventResponse) {
         const shortId = this.getShortId(ev.organizationUserId);
         const a = this.makeAnchor(shortId);
-        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/people?search=' + shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/people?search=' + shortId +
+            '&viewEvents=' + ev.organizationUserId);
         return a.outerHTML;
     }
 

@@ -64,6 +64,16 @@ export class PeopleComponent implements OnInit {
             this.accessEvents = organization.useEvents;
             this.accessGroups = organization.useGroups;
             await this.load();
+
+            this.route.queryParams.subscribe(async (qParams) => {
+                this.searchText = qParams.search;
+                if (qParams.viewEvents != null) {
+                    const user = this.users.filter((u) => u.id === qParams.viewEvents);
+                    if (user.length > 0) {
+                        this.events(user[0]);
+                    }
+                }
+            });
         });
     }
 

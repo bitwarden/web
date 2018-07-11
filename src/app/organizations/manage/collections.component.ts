@@ -48,6 +48,9 @@ export class CollectionsComponent implements OnInit {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             await this.load();
+            this.route.queryParams.subscribe(async (qParams) => {
+                this.searchText = qParams.search;
+            });
         });
     }
 
