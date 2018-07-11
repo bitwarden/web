@@ -56,6 +56,10 @@
             Using the Meldium web vault, navigate to "Settings". Locate the "Export data" function and click "Show me my data" to save
             the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'keepercsv'">
+            Log into the Keeper web vault (keepersecurity.com/vault). Navigate to "Backup" (top right) and find the "Export to .csv File"
+            option. Click "Export Now" to save the CSV file.
+        </ng-container>
         <ng-container *ngIf="format === 'chromecsv' || format === 'operacsv' || format === 'vivaldicsv'">
             <span *ngIf="format !== 'chromecsv'">
                 The process is exactly the same as importing from Google Chrome.

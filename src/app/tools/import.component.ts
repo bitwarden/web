@@ -29,6 +29,7 @@ import { FirefoxCsvImporter } from 'jslib/importers/firefoxCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePass2XmlImporter } from 'jslib/importers/keepass2XmlImporter';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
+import { KeeperCsvImporter } from 'jslib/importers/keeperCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
 import { MeldiumCsvImporter } from 'jslib/importers/meldiumCsvImporter';
 import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter';
@@ -248,6 +249,8 @@ export class ImportComponent implements OnInit {
                 return new OnePassword1PifImporter();
             case '1passwordwincsv':
                 return new OnePasswordWinCsvImporter();
+            case 'keepercsv':
+                return new KeeperCsvImporter();
             default:
                 return null;
         }
