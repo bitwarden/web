@@ -15,13 +15,15 @@ import { EventResponse } from 'jslib/models/response/eventResponse';
 import { ListResponse } from 'jslib/models/response/listResponse';
 
 @Component({
-    selector: 'app-user-events',
-    templateUrl: 'user-events.component.html',
+    selector: 'app-entity-events',
+    templateUrl: 'entity-events.component.html',
 })
-export class UserEventsComponent implements OnInit {
+export class EntityEventsComponent implements OnInit {
     @Input() name: string;
-    @Input() organizationUserId: string;
+    @Input() entity: 'user' | 'cipher';
+    @Input() entityId: string;
     @Input() organizationId: string;
+    @Input() showUser = false;
 
     loading = true;
     loaded = false;
@@ -32,6 +34,9 @@ export class UserEventsComponent implements OnInit {
     refreshPromise: Promise<any>;
     morePromise: Promise<any>;
 
+    private orgUsersUserIdMap = new Map<string, any>();
+    private orgUsersIdMap = new Map<string, any>();
+
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private eventService: EventService, private toasterService: ToasterService) { }
 
@@ -39,6 +44,18 @@ export class UserEventsComponent implements OnInit {
         const defaultDates = this.eventService.getDefaultDateFilters();
         this.start = defaultDates[0];
         this.end = defaultDates[1];
+        await this.load();
+    }
+
+    async load() {
+        if (this.showUser) {
+            const response = await this.apiService.getOrganizationUsers(this.organizationId);
+            response.data.forEach((u) => {
+                const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+                this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
+                this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
+            });
+        }
         await this.loadEvents(true);
         this.loaded = true;
     }
@@ -60,8 +77,14 @@ export class UserEventsComponent implements OnInit {
         this.loading = true;
         let response: ListResponse<EventResponse>;
         try {
-            const promise = this.apiService.getEventsOrganizationUser(this.organizationId, this.organizationUserId,
-                dates[0], dates[1], clearExisting ? null : this.continuationToken);
+            let promise: Promise<any>;
+            if (this.entity === 'user') {
+                promise = this.apiService.getEventsOrganizationUser(this.organizationId, this.entityId,
+                    dates[0], dates[1], clearExisting ? null : this.continuationToken);
+            } else {
+                promise = this.apiService.getEventsCipher(this.entityId,
+                    dates[0], dates[1], clearExisting ? null : this.continuationToken);
+            }
             if (clearExisting) {
                 this.refreshPromise = promise;
             } else {
@@ -74,11 +97,15 @@ export class UserEventsComponent implements OnInit {
         const events = response.data.map((r) => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = this.eventService.getEventInfo(r);
+            const user = this.showUser && userId != null && this.orgUsersUserIdMap.has(userId) ?
+                this.orgUsersUserIdMap.get(userId) : null;
             return {
                 message: eventInfo.message,
                 appIcon: eventInfo.appIcon,
                 appName: eventInfo.appName,
                 userId: userId,
+                userName: user != null ? user.name : this.showUser ? this.i18nService.t('unknown') : null,
+                userEmail: user != null ? user.email : this.showUser ? '' : null,
                 date: r.date,
                 ip: r.ipAddress,
                 type: r.type,

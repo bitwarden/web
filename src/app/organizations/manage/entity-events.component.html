@@ -41,6 +41,7 @@
                             <th class="border-top-0" width="40">
                                 <span class="sr-only">{{'device' | i18n}}</span>
                             </th>
+                            <th class="border-top-0" width="150" *ngIf="showUser">{{'user' | i18n}}</th>
                             <th class="border-top-0">{{'event' | i18n}}</th>
                         </tr>
                     </thead>
@@ -49,6 +50,9 @@
                             <td>{{e.date | date:'medium'}}</td>
                             <td>
                                 <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"></i>
+                            </td>
+                            <td *ngIf="showUser">
+                                <span title="{{e.userEmail}}">{{e.userName}}</span>
                             </td>
                             <td [innerHTML]="e.message"></td>
                         </tr>

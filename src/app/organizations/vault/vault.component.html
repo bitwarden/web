@@ -13,7 +13,7 @@
                 </button>
             </div>
             <app-org-vault-ciphers (onCipherClicked)="editCipher($event)" (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
-                (onCollectionsClicked)="editCipherCollections($event)">
+                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)">
             </app-org-vault-ciphers>
         </div>
     </div>
@@ -21,3 +21,4 @@
 <ng-template #attachments></ng-template>
 <ng-template #cipherAddEdit></ng-template>
 <ng-template #collections></ng-template>
+<ng-template #eventsTemplate></ng-template>

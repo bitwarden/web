@@ -38,6 +38,10 @@
                                 <i class="fa fa-fw fa-cubes"></i>
                                 {{'collections' | i18n}}
                             </a>
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId && accessEvents" (click)="events(c)">
+                                <i class="fa fa-fw fa-file-text-o"></i>
+                                {{'eventLogs' | i18n}}
+                            </a>
                             <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
                                 <i class="fa fa-fw fa-trash-o"></i>
                                 {{'delete' | i18n}}

@@ -26,8 +26,8 @@ import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 import { Utils } from 'jslib/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
+import { EntityEventsComponent } from './entity-events.component';
 import { UserAddEditComponent } from './user-add-edit.component';
-import { UserEventsComponent } from './user-events.component';
 import { UserGroupsComponent } from './user-groups.component';
 
 @Component({
@@ -174,12 +174,14 @@ export class PeopleComponent implements OnInit {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.eventsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<UserEventsComponent>(
-            UserEventsComponent, this.eventsModalRef);
+        const childComponent = this.modal.show<EntityEventsComponent>(
+            EntityEventsComponent, this.eventsModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = user.name || user.email;
         childComponent.organizationId = this.organizationId;
-        childComponent.organizationUserId = user != null ? user.id : null;
+        childComponent.entityId = user.id;
+        childComponent.showUser = false;
+        childComponent.entity = 'user';
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;

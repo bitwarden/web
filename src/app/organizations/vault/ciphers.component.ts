@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Output,
+} from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -20,7 +24,10 @@ import { CiphersComponent as BaseCiphersComponent } from '../../vault/ciphers.co
     templateUrl: '../../vault/ciphers.component.html',
 })
 export class CiphersComponent extends BaseCiphersComponent {
+    @Output() onEventsClicked = new EventEmitter<CipherView>();
+
     organization: Organization;
+    accessEvents = false;
 
     constructor(cipherService: CipherService, analytics: Angulartics2,
         toasterService: ToasterService, i18nService: I18nService,
@@ -33,6 +40,7 @@ export class CiphersComponent extends BaseCiphersComponent {
             await super.load();
             return;
         }
+        this.accessEvents = this.organization.useEvents;
         const ciphers = await this.apiService.getCiphersOrganization(this.organization.id);
         if (ciphers != null && ciphers.data != null && ciphers.data.length) {
             const decCiphers: CipherView[] = [];
@@ -63,5 +71,9 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     checkCipher(c: CipherView) {
         // do nothing
+    }
+
+    events(c: CipherView) {
+        this.onEventsClicked.emit(c);
     }
 }

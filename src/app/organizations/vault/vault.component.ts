@@ -22,6 +22,7 @@ import { CipherType } from 'jslib/enums/cipherType';
 
 import { ModalComponent } from '../../modal.component';
 
+import { EntityEventsComponent } from '../manage/entity-events.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
@@ -38,6 +39,7 @@ export class VaultComponent implements OnInit {
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
     @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
 
     organization: Organization;
     collectionId: string;
@@ -208,6 +210,27 @@ export class VaultComponent implements OnInit {
         });
 
         return childComponent;
+    }
+
+    async viewEvents(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.eventsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<EntityEventsComponent>(
+            EntityEventsComponent, this.eventsModalRef);
+
+        childComponent.name = cipher.name;
+        childComponent.organizationId = this.organization.id;
+        childComponent.entityId = cipher.id;
+        childComponent.showUser = true;
+        childComponent.entity = 'cipher';
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     private clearFilters() {
