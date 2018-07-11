@@ -14,6 +14,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
@@ -26,6 +27,7 @@ import { Utils } from 'jslib/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
 import { UserAddEditComponent } from './user-add-edit.component';
+import { UserEventsComponent } from './user-events.component';
 import { UserGroupsComponent } from './user-groups.component';
 
 @Component({
@@ -35,6 +37,7 @@ import { UserGroupsComponent } from './user-groups.component';
 export class PeopleComponent implements OnInit {
     @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
     @ViewChild('groupsTemplate', { read: ViewContainerRef }) groupsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -43,17 +46,23 @@ export class PeopleComponent implements OnInit {
     organizationUserType = OrganizationUserType;
     organizationUserStatusType = OrganizationUserStatusType;
     actionPromise: Promise<any>;
+    accessEvents = false;
+    accessGroups = false;
 
     private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private cryptoService: CryptoService) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private userService: UserService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
+            const organization = await this.userService.getOrganization(this.organizationId);
+            this.accessEvents = organization.useEvents;
+            this.accessGroups = organization.useGroups;
             await this.load();
         });
     }
@@ -159,7 +168,22 @@ export class PeopleComponent implements OnInit {
     }
 
     async events(user: OrganizationUserUserDetailsResponse) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
 
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.eventsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<UserEventsComponent>(
+            UserEventsComponent, this.eventsModalRef);
+
+        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.organizationId = this.organizationId;
+        childComponent.organizationUserId = user != null ? user.id : null;
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     private async doConfirmation(user: OrganizationUserUserDetailsResponse) {

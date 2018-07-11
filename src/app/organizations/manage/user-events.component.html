@@ -1,0 +1,68 @@
+<div class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'eventLogs' | i18n}}
+                    <small class="text-muted" *ngIf="name">{{name}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="!loaded">
+                <i class="fa fa-spinner fa-spin text-muted"></i>
+            </div>
+            <div class="modal-body" *ngIf="loaded">
+                <div class="d-flex">
+                    <div class="form-inline">
+                        <label class="sr-only" for="start">{{'startDate' | i18n}}</label>
+                        <input type="datetime-local" class="form-control form-control-sm" id="start" placeholder="{{'startDate' | i18n}}" [(ngModel)]="start"
+                            placeholder="YYYY-MM-DDTHH:MM">
+                        <span class="mx-2">-</span>
+                        <label class="sr-only" for="end">{{'endDate' | i18n}}</label>
+                        <input type="datetime-local" class="form-control form-control-sm" id="end" placeholder="{{'endDate' | i18n}}" [(ngModel)]="end"
+                            placeholder="YYYY-MM-DDTHH:MM">
+                    </div>
+                    <button #refreshBtn [appApiAction]="refreshPromise" type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="loadEvents(true)"
+                        [disabled]="loaded && refreshBtn.loading">
+                        <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"></i>
+                        {{'refresh' | i18n}}
+                    </button>
+                </div>
+                <hr>
+                <div *ngIf="!events || !events.length">
+                    {{'noEventsInList' | i18n}}
+                </div>
+                <table class="table table-hover mb-0" *ngIf="events && events.length">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0" width="210">{{'timestamp' | i18n}}</th>
+                            <th class="border-top-0" width="40">
+                                <span class="sr-only">{{'device' | i18n}}</span>
+                            </th>
+                            <th class="border-top-0">{{'event' | i18n}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let e of events">
+                            <td>{{e.date | date:'medium'}}</td>
+                            <td>
+                                <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"></i>
+                            </td>
+                            <td [innerHTML]="e.message"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit" (click)="loadEvents(false)"
+                    [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>{{'loadMore' | i18n}}</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+            </div>
+        </div>
+    </div>
+</div>

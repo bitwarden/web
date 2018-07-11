@@ -17,7 +17,7 @@
 </div>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded"></i>
 <ng-container *ngIf="loaded">
-    <p *ngIf="!events || !events.length">{{'noItemsInList' | i18n}}</p>
+    <p *ngIf="!events || !events.length">{{'noEventsInList' | i18n}}</p>
     <table class="table table-hover" *ngIf="events && events.length">
         <thead>
             <tr>
