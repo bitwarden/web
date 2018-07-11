@@ -31,6 +31,8 @@ import { KeePass2XmlImporter } from 'jslib/importers/keepass2XmlImporter';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
 import { MeldiumCsvImporter } from 'jslib/importers/meldiumCsvImporter';
+import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter';
+import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
@@ -180,7 +182,7 @@ export class ImportComponent implements OnInit {
 
         this.importOptions = [
             { id: 'keepassxcsv', name: 'KeePassX (csv)' },
-            { id: '1password6wincsv', name: '1Password 6 Windows (csv)' },
+            { id: '1passwordwincsv', name: '1Password 6 and 7 Windows (csv)' },
             { id: 'roboformcsv', name: 'RoboForm (csv)' },
             { id: 'keepercsv', name: 'Keeper (csv)' },
             { id: 'enpasscsv', name: 'Enpass (csv)' },
@@ -242,6 +244,10 @@ export class ImportComponent implements OnInit {
                 return new SaferPassCsvImporter();
             case 'meldiumcsv':
                 return new MeldiumCsvImporter();
+            case '1password1pif':
+                return new OnePassword1PifImporter();
+            case '1passwordwincsv':
+                return new OnePasswordWinCsvImporter();
             default:
                 return null;
         }
