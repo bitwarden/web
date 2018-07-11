@@ -24,12 +24,17 @@ import { CipherView } from 'jslib/models/view/cipherView';
 import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
+import { ChromeCsvImporter } from 'jslib/importers/chromeCsvImporter';
+import { FirefoxCsvImporter } from 'jslib/importers/firefoxCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePass2XmlImporter } from 'jslib/importers/keepass2XmlImporter';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
+import { MeldiumCsvImporter } from 'jslib/importers/meldiumCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
+import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
+import { UpmCsvImporter } from 'jslib/importers/upmCsvImporter';
 
 @Component({
     selector: 'app-import',
@@ -225,6 +230,18 @@ export class ImportComponent implements OnInit {
                 return new PadlockCsvImporter();
             case 'keepass2xml':
                 return new KeePass2XmlImporter();
+            case 'chromecsv':
+            case 'operacsv':
+            case 'vivaldicsv':
+                return new ChromeCsvImporter();
+            case 'firefoxcsv':
+                return new FirefoxCsvImporter();
+            case 'upmcsv':
+                return new UpmCsvImporter();
+            case 'saferpasscsv':
+                return new SaferPassCsvImporter();
+            case 'meldiumcsv':
+                return new MeldiumCsvImporter();
             default:
                 return null;
         }

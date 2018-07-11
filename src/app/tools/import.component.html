@@ -45,6 +45,28 @@
         <ng-container *ngIf="format === 'keepass2xml'">
             Using the KeePass 2 desktop application, navigate to "File" &rarr; "Export" and select the "KeePass XML (2.x)" option.
         </ng-container>
+        <ng-container *ngIf="format === 'upmcsv'">
+            Using the Universal Password Manager desktop application, navigate to "Database" &rarr; "Export" and save the CSV file.
+        </ng-container>
+        <ng-container *ngIf="format === 'saferpasscsv'">
+            Using the SaferPass browser extension, click the hamburger icon in the top left corner and navigate to "Settings". Click
+            the "Export accounts" button to save the CSV file.
+        </ng-container>
+        <ng-container *ngIf="format === 'meldiumcsv'">
+            Using the Meldium web vault, navigate to "Settings". Locate the "Export data" function and click "Show me my data" to save
+            the CSV file.
+        </ng-container>
+        <ng-container *ngIf="format === 'chromecsv' || format === 'operacsv' || format === 'vivaldicsv'">
+            <span *ngIf="format !== 'chromecsv'">
+                The process is exactly the same as importing from Google Chrome.
+            </span>
+            See detailed instructions on our help site at
+            <a target="_blank" href="https://help.bitwarden.com/article/import-from-chrome/">https://help.bitwarden.com/article/import-from-chrome/</a>
+        </ng-container>
+        <ng-container *ngIf="format === 'firefoxcsv'">
+            Use the
+            <a target="_blank" href="https://github.com/kspearrin/ff-password-exporter/blob/master/README.md#ff-password-exporter">FF Password Exporter</a> application to export your passwords to a CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
