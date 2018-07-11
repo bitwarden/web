@@ -17,9 +17,12 @@ import { CipherView } from 'jslib/models/view/cipherView';
 
 import { ModalComponent } from '../modal.component';
 
+import { OrganizationsComponent } from '../settings/organizations.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { BulkDeleteComponent } from './bulk-delete.component';
+import { BulkMoveComponent } from './bulk-move.component';
+import { BulkShareComponent } from './bulk-share.component';
 import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
@@ -28,8 +31,6 @@ import { ShareComponent } from './share.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
-import { BulkMoveComponent } from './bulk-move.component';
-import { BulkShareComponent } from './bulk-share.component';
 
 @Component({
     selector: 'app-vault',
@@ -38,6 +39,7 @@ import { BulkShareComponent } from './bulk-share.component';
 export class VaultComponent implements OnInit {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
+    @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
     @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
@@ -61,7 +63,10 @@ export class VaultComponent implements OnInit {
     async ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
-            await this.groupingsComponent.load();
+            await Promise.all([
+                this.groupingsComponent.load(),
+                this.organizationsComponent.load(),
+            ]);
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
