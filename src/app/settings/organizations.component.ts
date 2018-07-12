@@ -34,7 +34,7 @@ export class OrganizationsComponent implements OnInit {
         private syncService: SyncService) { }
 
     async ngOnInit() {
-        if (this.vault) {
+        if (!this.vault) {
             await this.load();
         }
     }
