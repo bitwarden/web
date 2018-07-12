@@ -92,6 +92,9 @@
             Using the Dashlane desktop application, navigate to "File" &rarr; "Export" &rarr; "Unsecured archive (readable) in CSV format"
             and save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'msecurecsv'">
+            Using the mSecure desktop application, navigate to "File" &rarr; "Export" &rarr; "CSV File..." and save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

@@ -34,6 +34,7 @@ import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
 import { KeeperCsvImporter } from 'jslib/importers/keeperCsvImporter';
 import { LastPassCsvImporter } from 'jslib/importers/lastpassCsvImporter';
 import { MeldiumCsvImporter } from 'jslib/importers/meldiumCsvImporter';
+import { MSecureCsvImporter } from 'jslib/importers/msecureCsvImporter';
 import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter';
 import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
@@ -263,6 +264,8 @@ export class ImportComponent implements OnInit {
                 return new PasswordSafeXmlImporter();
             case 'dashlanecsv':
                 return new DashlaneCsvImporter();
+            case 'msecurecsv':
+                return new MSecureCsvImporter();
             default:
                 return null;
         }
