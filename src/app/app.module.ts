@@ -31,6 +31,7 @@ import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
+import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 
 import {
     CollectionAddEditComponent as OrgCollectionAddEditComponent,
@@ -227,6 +228,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         UserLayoutComponent,
         VaultComponent,
         VerifyEmailComponent,
+        VerifyEmailTokenComponent,
     ],
     entryComponents: [
         AddEditComponent,

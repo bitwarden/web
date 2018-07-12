@@ -13,6 +13,7 @@ import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
+import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
@@ -70,6 +71,7 @@ const routes: Routes = [
                 data: { titleId: 'passwordHint' },
             },
             { path: 'lock', component: LockComponent },
+            { path: 'verify-email', component: VerifyEmailTokenComponent },
         ],
     },
     {
