@@ -72,7 +72,7 @@ export class PeopleComponent implements OnInit {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
                     const user = this.users.filter((u) => u.id === qParams.viewEvents);
-                    if (user.length > 0) {
+                    if (user.length > 0 && user[0].status === OrganizationUserStatusType.Confirmed) {
                         this.events(user[0]);
                     }
                 }
