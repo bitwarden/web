@@ -84,6 +84,10 @@
             and save the CSV file. Note that the importer only supports files exported while Enpass is set to the English
             language, so adjust your settings accordingly.
         </ng-container>
+        <ng-container *ngIf="format === 'pwsafexml'">
+            Using the Password Safe desktop application, navigate to "File" &rarr; "Export To" &rarr; "XML format..." and save the XML
+            file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
