@@ -88,6 +88,10 @@
             Using the Password Safe desktop application, navigate to "File" &rarr; "Export To" &rarr; "XML format..." and save the XML
             file.
         </ng-container>
+        <ng-container *ngIf="format === 'dashlanecsv'">
+            Using the Dashlane desktop application, navigate to "File" &rarr; "Export" &rarr; "Unsecured archive (readable) in CSV format"
+            and save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

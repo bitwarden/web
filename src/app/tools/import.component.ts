@@ -25,6 +25,7 @@ import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { ChromeCsvImporter } from 'jslib/importers/chromeCsvImporter';
+import { DashlaneCsvImporter } from 'jslib/importers/dashlaneCsvImporter';
 import { EnpassCsvImporter } from 'jslib/importers/enpassCsvImporter';
 import { FirefoxCsvImporter } from 'jslib/importers/firefoxCsvImporter';
 import { Importer } from 'jslib/importers/importer';
@@ -260,6 +261,8 @@ export class ImportComponent implements OnInit {
                 return new EnpassCsvImporter();
             case 'pwsafexml':
                 return new PasswordSafeXmlImporter();
+            case 'dashlanecsv':
+                return new DashlaneCsvImporter();
             default:
                 return null;
         }
