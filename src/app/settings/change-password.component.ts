@@ -28,8 +28,8 @@ export class ChangePasswordComponent {
         private userService: UserService) { }
 
     async submit() {
-        const hasKey = await this.cryptoService.hasKey();
-        if (!hasKey) {
+        const hasEncKey = await this.cryptoService.hasEncKey();
+        if (!hasEncKey) {
             this.toasterService.popAsync('error', null, this.i18nService.t('updateKey'));
             return;
         }

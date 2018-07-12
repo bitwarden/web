@@ -29,8 +29,8 @@ import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
 import { ShareComponent } from './share.component';
 
+import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
@@ -64,12 +64,13 @@ export class VaultComponent implements OnInit {
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private location: Location,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private tokenService: TokenService, private storageService: StorageService) { }
+        private tokenService: TokenService, private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
-        this.showUpdateKey = !this.showVerifyEmail && (await this.storageService.get<string>('encKey')) == null;
+        const hasEncKey = await this.cryptoService.hasEncKey();
+        this.showUpdateKey = !this.showVerifyEmail && hasEncKey;
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);

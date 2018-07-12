@@ -30,8 +30,8 @@ export class ChangeEmailComponent {
         private cryptoService: CryptoService, private messagingService: MessagingService) { }
 
     async submit() {
-        const hasKey = await this.cryptoService.hasKey();
-        if (!hasKey) {
+        const hasEncKey = await this.cryptoService.hasEncKey();
+        if (!hasEncKey) {
             this.toasterService.popAsync('error', null, this.i18nService.t('updateKey'));
             return;
         }
