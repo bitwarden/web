@@ -25,6 +25,7 @@ import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { ChromeCsvImporter } from 'jslib/importers/chromeCsvImporter';
+import { EnpassCsvImporter } from 'jslib/importers/enpassCsvImporter';
 import { FirefoxCsvImporter } from 'jslib/importers/firefoxCsvImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePass2XmlImporter } from 'jslib/importers/keepass2XmlImporter';
@@ -254,6 +255,8 @@ export class ImportComponent implements OnInit {
                 return new KeeperCsvImporter();
             case 'passworddragonxml':
                 return new PasswordDragonXmlImporter();
+            case 'enpasscsv':
+                return new EnpassCsvImporter();
             default:
                 return null;
         }

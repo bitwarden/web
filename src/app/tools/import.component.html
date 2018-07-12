@@ -79,6 +79,11 @@
             Using the Password Dragon desktop application, navigate to "File" &rarr; "Export" &rarr; "To XML". In the dialog that pops
             up select "All Rows" and check all fields. Click the "Export" button and save the XML file.
         </ng-container>
+        <ng-container *ngIf="format === 'enpasscsv'">
+            Using the Enpass desktop application, navigate to "File" &rarr; "Export" &rarr; "As CSV". Select "OK" to the warning alert
+            and save the CSV file. Note that the importer only supports files exported while Enpass is set to the English
+            language, so adjust your settings accordingly.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
