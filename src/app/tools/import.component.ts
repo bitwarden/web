@@ -35,6 +35,7 @@ import { MeldiumCsvImporter } from 'jslib/importers/meldiumCsvImporter';
 import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter';
 import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
+import { PasswordDragonXmlImporter } from 'jslib/importers/passwordDragonXmlImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
 import { UpmCsvImporter } from 'jslib/importers/upmCsvImporter';
@@ -251,6 +252,8 @@ export class ImportComponent implements OnInit {
                 return new OnePasswordWinCsvImporter();
             case 'keepercsv':
                 return new KeeperCsvImporter();
+            case 'passworddragonxml':
+                return new PasswordDragonXmlImporter();
             default:
                 return null;
         }

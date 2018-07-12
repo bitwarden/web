@@ -75,6 +75,10 @@
             See detailed instructions on our help site at
             <a target="_blank" href="https://help.bitwarden.com/article/import-from-1password/">https://help.bitwarden.com/article/import-from-1password/</a>.
         </ng-container>
+        <ng-container *ngIf="format === 'passworddragonxml'">
+            Using the Password Dragon desktop application, navigate to "File" &rarr; "Export" &rarr; "To XML". In the dialog that pops
+            up select "All Rows" and check all fields. Click the "Export" button and save the XML file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
