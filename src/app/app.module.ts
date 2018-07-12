@@ -25,6 +25,7 @@ import { NavbarComponent } from './layouts/navbar.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
@@ -136,6 +137,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         ToasterModule,
     ],
     declarations: [
+        AcceptOrganizationComponent,
         AccountComponent,
         AddEditComponent,
         AdjustPaymentComponent,

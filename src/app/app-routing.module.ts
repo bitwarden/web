@@ -8,6 +8,7 @@ import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
@@ -72,6 +73,7 @@ const routes: Routes = [
             },
             { path: 'lock', component: LockComponent },
             { path: 'verify-email', component: VerifyEmailTokenComponent },
+            { path: 'accept-organization', component: AcceptOrganizationComponent },
         ],
     },
     {

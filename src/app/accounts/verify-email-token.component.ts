@@ -25,7 +25,12 @@ export class VerifyEmailTokenComponent implements OnInit {
         private apiService: ApiService, private userService: UserService) { }
 
     ngOnInit() {
+        let fired = false;
         this.route.queryParams.subscribe(async (qParams) => {
+            if (fired) {
+                return;
+            }
+            fired = true;
             if (qParams.userId != null && qParams.token != null) {
                 try {
                     await this.apiService.postAccountVerifyEmailToken(
