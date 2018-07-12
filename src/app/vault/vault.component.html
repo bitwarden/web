@@ -49,12 +49,19 @@
             </app-vault-ciphers>
         </div>
         <div class="col-3">
-            <div class="card">
+            <app-verify-email *ngIf="showVerifyEmail" class="d-block mb-4"></app-verify-email>
+            <div class="card border-warning mb-4" *ngIf="showBrowserOutdated">
+                <div class="card-header bg-warning text-white">
+                    <i class="fa fa-warning fa-fw"></i> {{'updateBrowser' | i18n}}
+                </div>
                 <div class="card-body">
-                    Some callout
+                    <p>{{'updateBrowserDesc' | i18n}}</p>
+                    <a class="btn btn-block btn-outline-secondary" target="_blank" href="https://browser-update.org/update-browser.html" rel="noopener">
+                        {{'updateBrowser' | i18n}}
+                    </a>
                 </div>
             </div>
-            <div class="card mt-3">
+            <div class="card">
                 <div class="card-header">
                     {{'organizations' | i18n}}
                 </div>

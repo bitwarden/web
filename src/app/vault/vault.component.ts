@@ -30,7 +30,9 @@ import { GroupingsComponent } from './groupings.component';
 import { ShareComponent } from './share.component';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { StorageService } from 'jslib/abstractions/storage.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { TokenService } from 'jslib/abstractions/token.service';
 
 @Component({
     selector: 'app-vault',
@@ -53,14 +55,22 @@ export class VaultComponent implements OnInit {
     type: CipherType = null;
     folderId: string = null;
     collectionId: string = null;
+    showVerifyEmail = false;
+    showBrowserOutdated = false;
+    showUpdateKey = false;
 
     private modal: ModalComponent = null;
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private location: Location,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver) { }
+        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
+        private tokenService: TokenService, private storageService: StorageService) { }
 
     async ngOnInit() {
+        this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
+        this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
+        this.showUpdateKey = !this.showVerifyEmail && (await this.storageService.get<string>('encKey')) == null;
+
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
             await Promise.all([

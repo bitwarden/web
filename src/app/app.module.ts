@@ -83,6 +83,7 @@ import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
+import { VerifyEmailComponent } from './settings/verify-email.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
@@ -225,6 +226,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         UserBillingComponent,
         UserLayoutComponent,
         VaultComponent,
+        VerifyEmailComponent,
     ],
     entryComponents: [
         AddEditComponent,
