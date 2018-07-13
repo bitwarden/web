@@ -12,6 +12,7 @@ import { AcceptOrganizationComponent } from './accounts/accept-organization.comp
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
+import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
@@ -74,6 +75,8 @@ const routes: Routes = [
             { path: 'lock', component: LockComponent },
             { path: 'verify-email', component: VerifyEmailTokenComponent },
             { path: 'accept-organization', component: AcceptOrganizationComponent },
+            { path: 'recover', pathMatch: 'full', redirectTo: 'recover-2fa' },
+            { path: 'recover-2fa', component: RecoverTwoFactorComponent, canActivate: [UnauthGuardService] },
         ],
     },
     {
