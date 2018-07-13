@@ -95,6 +95,10 @@
         <ng-container *ngIf="format === 'msecurecsv'">
             Using the mSecure desktop application, navigate to "File" &rarr; "Export" &rarr; "CSV File..." and save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'stickypasswordxml'">
+            Using the Sticky Password desktop application, navigate to "Menu" (top right) &rarr; "Export" &rarr; "Export all". Select
+            the unencrypted format XML option and save the XML file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

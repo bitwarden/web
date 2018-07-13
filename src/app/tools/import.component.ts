@@ -42,6 +42,7 @@ import { PasswordDragonXmlImporter } from 'jslib/importers/passwordDragonXmlImpo
 import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
+import { StickyPasswordXmlImporter } from 'jslib/importers/stickyPasswordXmlImporter';
 import { UpmCsvImporter } from 'jslib/importers/upmCsvImporter';
 
 @Component({
@@ -266,6 +267,8 @@ export class ImportComponent implements OnInit {
                 return new DashlaneCsvImporter();
             case 'msecurecsv':
                 return new MSecureCsvImporter();
+            case 'stickypasswordxml':
+                return new StickyPasswordXmlImporter();
             default:
                 return null;
         }
