@@ -12,6 +12,7 @@ import { AcceptOrganizationComponent } from './accounts/accept-organization.comp
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
+import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
@@ -77,6 +78,7 @@ const routes: Routes = [
             { path: 'accept-organization', component: AcceptOrganizationComponent },
             { path: 'recover', pathMatch: 'full', redirectTo: 'recover-2fa' },
             { path: 'recover-2fa', component: RecoverTwoFactorComponent, canActivate: [UnauthGuardService] },
+            { path: 'recover-delete', component: RecoverDeleteComponent, canActivate: [UnauthGuardService] },
         ],
     },
     {

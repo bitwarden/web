@@ -29,6 +29,7 @@ import { AcceptOrganizationComponent } from './accounts/accept-organization.comp
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
+import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
@@ -207,6 +208,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         PremiumComponent,
         ProfileComponent,
         PurgeVaultComponent,
+        RecoverDeleteComponent,
         RecoverTwoFactorComponent,
         RegisterComponent,
         SearchCiphersPipe,
