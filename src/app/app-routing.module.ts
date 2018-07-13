@@ -17,6 +17,7 @@ import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.compone
 import { RegisterComponent } from './accounts/register.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
+import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
@@ -75,10 +76,30 @@ const routes: Routes = [
             },
             { path: 'lock', component: LockComponent },
             { path: 'verify-email', component: VerifyEmailTokenComponent },
-            { path: 'accept-organization', component: AcceptOrganizationComponent },
+            {
+                path: 'accept-organization',
+                component: AcceptOrganizationComponent,
+                data: { titleId: 'joinOrganization' },
+            },
             { path: 'recover', pathMatch: 'full', redirectTo: 'recover-2fa' },
-            { path: 'recover-2fa', component: RecoverTwoFactorComponent, canActivate: [UnauthGuardService] },
-            { path: 'recover-delete', component: RecoverDeleteComponent, canActivate: [UnauthGuardService] },
+            {
+                path: 'recover-2fa',
+                component: RecoverTwoFactorComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'recoverAccountTwoStep' },
+            },
+            {
+                path: 'recover-delete',
+                component: RecoverDeleteComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'deleteAccount' },
+            },
+            {
+                path: 'verify-recover-delete',
+                component: VerifyRecoverDeleteComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'deleteAccount' },
+            },
         ],
     },
     {
