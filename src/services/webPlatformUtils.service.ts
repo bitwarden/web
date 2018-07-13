@@ -4,10 +4,8 @@ import { SweetAlert } from 'sweetalert/typings/core';
 import { DeviceType } from 'jslib/enums/deviceType';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
-import { AnalyticsIds } from 'jslib/misc/analytics';
 import { Utils } from 'jslib/misc/utils';
 
 // Hack due to Angular 5.2 bug

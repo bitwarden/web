@@ -5,7 +5,6 @@ import {
 import {
     ActivatedRoute,
     Router,
-    NavigationEnd,
 } from '@angular/router';
 
 import {
