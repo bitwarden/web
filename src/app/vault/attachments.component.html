@@ -1,6 +1,6 @@
 <div class="modal fade">
     <div class="modal-dialog">
-        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title">
                     {{'attachments' | i18n}}

@@ -2,7 +2,7 @@
     <h1>{{'domainRules' | i18n}}</h1>
 </div>
 <p>{{'domainRulesDesc' | i18n}}</p>
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <h2>{{'customEqDomains' | i18n}}</h2>
     <p *ngIf="loading">
         <i class="fa fa-spinner fa-spin text-muted"></i>
@@ -11,7 +11,8 @@
         <div class="form-group d-flex" *ngFor="let d of custom; let i = index; trackBy: indexTrackBy">
             <div class="flex-fill">
                 <label for="customDomain_{{i}}" class="sr-only">{{'customDomainX' | i18n : (i + 1)}}</label>
-                <textarea class="form-control" name="CustomDomain[{{i}}]" id="customDomain_{{i}}" [(ngModel)]="custom[i]" placeholder="{{'ex' | i18n}} google.com, gmail.com"></textarea>
+                <textarea class="form-control" name="CustomDomain[{{i}}]" id="customDomain_{{i}}" [(ngModel)]="custom[i]" placeholder="{{'ex' | i18n}} google.com, gmail.com"
+                    required></textarea>
             </div>
             <button type="button" class="btn btn-link text-danger ml-2" (click)="remove(i)" title="{{'remove' | i18n}}">
                 <i class="fa fa-minus-circle fa-lg"></i>

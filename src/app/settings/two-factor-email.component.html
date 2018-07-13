@@ -27,7 +27,7 @@
                         </p>
                         <div class="form-group">
                             <label for="email">1. {{'twoFactorEmailEnterEmail' | i18n}}</label>
-                            <input id="email" type="text" name="Email" class="form-control" [(ngModel)]="email" required>
+                            <input id="email" type="text" name="Email" class="form-control" [(ngModel)]="email" required inputmode="email" appInputVerbatim="false">
                         </div>
                         <div class="mb-3 d-flex">
                             <button #sendBtn type="button" class="btn btn-outline-primary btn-sm btn-submit align-self-start" appBlurClick (click)="sendEmail()"

@@ -4,11 +4,12 @@
             <div class="form-group">
                 <label for="masterPassword">{{'masterPass' | i18n}}</label>
                 <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
-                    [readonly]="tokenSent">
+                    [readonly]="tokenSent" appInputVerbatim>
             </div>
             <div class="form-group">
                 <label for="newEmail">{{'newEmail' | i18n}}</label>
-                <input id="newEmail" class="form-control" type="text" name="NewEmail" [(ngModel)]="newEmail" required [readonly]="tokenSent">
+                <input id="newEmail" class="form-control" type="text" name="NewEmail" [(ngModel)]="newEmail" required [readonly]="tokenSent"
+                    inputmode="email" appInputVerbatim="false">
             </div>
         </div>
     </div>
@@ -20,7 +21,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="token">{{'code' | i18n}}</label>
-                    <input id="token" class="form-control" type="text" name="Token" [(ngModel)]="token" required>
+                    <input id="token" class="form-control" type="text" name="Token" [(ngModel)]="token" required appInputVerbatim>
                 </div>
             </div>
         </div>

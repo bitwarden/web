@@ -1,6 +1,6 @@
 <div class="modal fade">
     <div class="modal-dialog">
-        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title">{{title}}</h2>
                 <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
@@ -13,7 +13,7 @@
             <div class="modal-body" *ngIf="!loading">
                 <div class="form-group">
                     <label for="name">{{'name' | i18n}}</label>
-                    <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name">
+                    <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required>
                 </div>
                 <h3 class="mt-4 d-flex mb-0">
                     {{'groupAccess' | i18n}}

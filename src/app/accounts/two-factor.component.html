@@ -1,4 +1,4 @@
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container">
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
     <div class="row justify-content-md-center mt-5">
         <div class="col-5" [ngClass]="{'col-9': selectedProviderType === providerType.Duo || selectedProviderType === providerType.OrganizationDuo}">
             <p class="lead text-center mb-4">{{title}}</p>
@@ -11,7 +11,7 @@
                         </p>
                         <div class="form-group">
                             <label for="code" class="sr-only">{{'verificationCode' | i18n}}</label>
-                            <input id="code" type="text" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus>
+                            <input id="code" type="text" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus inputmode="tel" appInputVerbatim>
                             <small class="form-text" *ngIf="selectedProviderType === providerType.Email">
                                 <a href="#" appStopClick (click)="sendEmail(true)" [appApiAction]="emailPromise" *ngIf="selectedProviderType === providerType.Email">
                                     {{'sendVerificationCodeEmailAgain' | i18n}}
@@ -24,7 +24,7 @@
                         <img src="../../images/yubikey.jpg" class="rounded img-fluid mb-3" alt="">
                         <div class="form-group">
                             <label for="code" class="sr-only">{{'verificationCode' | i18n}}</label>
-                            <input id="code" type="password" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus>
+                            <input id="code" type="password" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus appInputVerbatim>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.U2f">

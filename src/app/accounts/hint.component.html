@@ -1,4 +1,4 @@
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container">
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
     <div class="row justify-content-md-center mt-5">
         <div class="col-5">
             <p class="lead text-center mb-4">{{'passwordHint' | i18n}}</p>
@@ -6,7 +6,8 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="email">{{'emailAddress' | i18n}}</label>
-                        <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email" required appAutofocus appInputVerbatim="false">
+                        <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email" required appAutofocus inputmode="email"
+                            appInputVerbatim="false">
                         <small class="form-text text-muted">{{'enterEmailToGetHint' | i18n}}</small>
                     </div>
                     <hr>

@@ -1,6 +1,6 @@
 <div class="modal fade">
     <div class="modal-dialog">
-        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title">{{'deleteAccount' | i18n}}</h2>
                 <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
@@ -12,7 +12,7 @@
                 <app-callout type="warning">{{'deleteAccountWarning' | i18n}}</app-callout>
                 <label for="masterPassword">{{'masterPass' | i18n}}</label>
                 <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
-                    appAutofocus>
+                    appAutofocus appInputVerbatim>
             </div>
             <div class="modal-footer">
                 <button appBlurClick type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
