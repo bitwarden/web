@@ -21,7 +21,7 @@ import { AuthService } from 'jslib/abstractions/auth.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
+import { StateService } from 'jslib/abstractions/state.service';
 
 import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib/angular/components/two-factor.component';
 
@@ -35,10 +35,11 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     constructor(authService: AuthService, router: Router,
         analytics: Angulartics2, toasterService: ToasterService,
         i18nService: I18nService, apiService: ApiService,
-        platformUtilsService: PlatformUtilsService, private syncService: SyncService,
+        platformUtilsService: PlatformUtilsService, private stateService: StateService,
         environmentService: EnvironmentService, private componentFactoryResolver: ComponentFactoryResolver) {
         super(authService, router, analytics, toasterService, i18nService, apiService,
             platformUtilsService, window, environmentService);
+        this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
     anotherMethod() {
@@ -55,5 +56,14 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
         childComponent.onRecoverSelected.subscribe(() => {
             modal.close();
         });
+    }
+
+    async goAfterLogIn() {
+        const invite = await this.stateService.get<any>('orgInvitation');
+        if (invite != null) {
+            this.router.navigate(['accept-organization'], { queryParams: invite });
+        } else {
+            this.router.navigate([this.successRoute]);
+        }
     }
 }

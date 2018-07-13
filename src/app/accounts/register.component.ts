@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -19,7 +22,15 @@ export class RegisterComponent extends BaseRegisterComponent {
     constructor(authService: AuthService, router: Router,
         analytics: Angulartics2, toasterService: ToasterService,
         i18nService: I18nService, cryptoService: CryptoService,
-        apiService: ApiService) {
+        apiService: ApiService, private route: ActivatedRoute) {
         super(authService, router, analytics, toasterService, i18nService, cryptoService, apiService);
+    }
+
+    ngOnInit() {
+        this.route.queryParams.subscribe((qParams) => {
+            if (qParams.email != null && qParams.email.indexOf('@') > -1) {
+                this.email = qParams.email;
+            }
+        });
     }
 }

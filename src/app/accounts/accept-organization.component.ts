@@ -14,6 +14,7 @@ import {
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { StateService } from 'jslib/abstractions/state.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserAcceptRequest } from 'jslib/models/request/organizationUserAcceptRequest';
@@ -31,7 +32,8 @@ export class AcceptOrganizationComponent implements OnInit {
 
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
-        private apiService: ApiService, private userService: UserService) { }
+        private apiService: ApiService, private userService: UserService,
+        private stateService: StateService) { }
 
     ngOnInit() {
         let fired = false;
@@ -40,8 +42,8 @@ export class AcceptOrganizationComponent implements OnInit {
                 return;
             }
             fired = true;
-            let error = qParams.organizationId == null || qParams.organizationUserId == null ||
-                qParams.token == null;
+            await this.stateService.remove('orgInvitation');
+            let error = qParams.organizationId == null || qParams.organizationUserId == null || qParams.token == null;
             if (!error) {
                 this.authed = await this.userService.isAuthenticated();
                 if (this.authed) {
@@ -63,6 +65,7 @@ export class AcceptOrganizationComponent implements OnInit {
                         error = true;
                     }
                 } else {
+                    await this.stateService.save('orgInvitation', qParams);
                     this.email = qParams.email;
                     this.orgName = qParams.organizationName;
                 }
@@ -75,13 +78,5 @@ export class AcceptOrganizationComponent implements OnInit {
 
             this.loading = false;
         });
-    }
-
-    login() {
-        //
-    }
-
-    register() {
-        //
     }
 }

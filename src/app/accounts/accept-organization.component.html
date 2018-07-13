@@ -19,10 +19,10 @@
                     <p>{{'joinOrganizationDesc' | i18n}}</p>
                     <hr>
                     <div class="d-flex">
-                        <a routerLink="/" class="btn btn-primary btn-block">
+                        <a routerLink="/" [queryParams]="{email: email}" class="btn btn-primary btn-block">
                             {{'logIn' | i18n}}
                         </a>
-                        <a routerLink="/" class="btn btn-primary btn-block ml-2 mt-0">
+                        <a routerLink="/register" [queryParams]="{email: email}" class="btn btn-primary btn-block ml-2 mt-0">
                             {{'createAccount' | i18n}}
                         </a>
                     </div>
