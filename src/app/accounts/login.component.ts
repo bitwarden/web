@@ -32,7 +32,6 @@ export class LoginComponent extends BaseLoginComponent {
                 this.email = qParams.email;
             }
             await super.ngOnInit();
-            document.getElementById(this.email == null || this.email === '' ? 'email' : 'masterPassword').focus();
         });
     }
 }
