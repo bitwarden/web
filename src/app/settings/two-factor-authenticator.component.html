@@ -49,8 +49,7 @@
                     </p>
                     <hr *ngIf="enabled">
                     <p class="text-center" [ngClass]="{'mb-0': enabled}">
-                        <img [src]="qr" width="160" height="160" alt="">
-                        <br>
+                        <canvas id="qr"></canvas><br>
                         <code title="{{'key' | i18n}}">{{key}}</code>
                     </p>
                     <ng-container *ngIf="!enabled">

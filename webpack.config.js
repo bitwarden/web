@@ -103,6 +103,7 @@ const plugins = [
         { from: './src/images', to: 'images' },
         { from: './src/locales', to: 'locales' },
         { from: './src/scripts', to: 'scripts' },
+        { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
     ]),
     extractCss,
     new webpack.DefinePlugin({

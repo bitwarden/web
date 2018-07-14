@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -19,17 +23,29 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     selector: 'app-two-factor-authenticator',
     templateUrl: 'two-factor-authenticator.component.html',
 })
-export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent {
+export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent implements OnInit, OnDestroy {
     key: string;
-    qr: string;
     token: string;
     formPromise: Promise<any>;
+
+    private qrScript: HTMLScriptElement;
 
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         private userService: UserService, platformUtilsService: PlatformUtilsService) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService,
             TwoFactorProviderType.Authenticator);
+        this.qrScript = window.document.createElement('script');
+        this.qrScript.src = 'scripts/qrious.min.js';
+        this.qrScript.async = true;
+    }
+
+    ngOnInit() {
+        window.document.body.appendChild(this.qrScript);
+    }
+
+    ngOnDestroy() {
+        window.document.body.removeChild(this.qrScript);
     }
 
     auth(authResponse: any) {
@@ -62,9 +78,14 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent {
         this.token = null;
         this.enabled = response.enabled;
         this.key = response.key;
-        this.qr = 'https://chart.googleapis.com/chart?chs=160x160&chld=L|0&cht=qr&chl=otpauth://totp/' +
-            'Bitwarden:' + encodeURIComponent(await this.userService.getEmail()) +
-            '%3Fsecret=' + encodeURIComponent(this.key) +
-            '%26issuer=Bitwarden';
+        const email = await this.userService.getEmail();
+        window.setTimeout(() => {
+            const qr = new (window as any).QRious({
+                element: document.getElementById('qr'),
+                value: 'otpauth://totp/Bitwarden:' + encodeURIComponent(email) +
+                    '?secret=' + encodeURIComponent(this.key) + '&issuer=Bitwarden',
+                size: 160,
+            });
+        }, 100);
     }
 }
