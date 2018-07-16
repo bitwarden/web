@@ -10,7 +10,7 @@
 <form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="canChange">
     <div class="card-body">
         <h3 class="card-body-header">{{(currentType != null ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}</h3>
-        <app-payment [showOptions]="currentType == null"></app-payment>
+        <app-payment [showOptions]="!organizationId || currentType == null" [hidePaypal]="true" [hideBank]="!organizationId"></app-payment>
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
             <i class="fa fa-spinner fa-spin"></i>
             <span>{{'submit' | i18n}}</span>

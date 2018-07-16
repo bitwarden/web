@@ -20,7 +20,7 @@ import { StorageRequest } from 'jslib/models/request/storageRequest';
 export class AdjustStorageComponent {
     @Input() storageGbPrice = 0;
     @Input() add = true;
-    @Input() user = true;
+    @Input() organizationId: string;
     @Input() interval = 'year';
     @Output() onAdjusted = new EventEmitter<number>();
     @Output() onCanceled = new EventEmitter();
@@ -39,8 +39,10 @@ export class AdjustStorageComponent {
                 request.storageGbAdjustment *= -1;
             }
 
-            if (this.user) {
+            if (this.organizationId == null) {
                 this.formPromise = this.apiService.postAccountStorage(request);
+            } else {
+                this.formPromise = this.apiService.postOrganizationStorage(this.organizationId, request);
             }
             await this.formPromise;
             this.analytics.eventTrack.next({ action: this.add ? 'Added Storage' : 'Removed Storage' });

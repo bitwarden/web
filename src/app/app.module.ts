@@ -53,6 +53,7 @@ import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/m
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
+import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
@@ -188,6 +189,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OptionsComponent,
         OrgAccountComponent,
         OrgAddEditComponent,
+        OrganizationBillingComponent,
         OrgAttachmentsComponent,
         OrgCiphersComponent,
         OrgCollectionAddEditComponent,

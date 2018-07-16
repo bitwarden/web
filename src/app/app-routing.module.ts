@@ -26,6 +26,7 @@ import { ManageComponent as OrgManageComponent } from './organizations/manage/ma
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
+import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { SettingsComponent as OrgSettingsComponent } from './organizations/settings/settings.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
@@ -187,6 +188,11 @@ const routes: Routes = [
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
                     { path: 'account', component: OrgAccountComponent, data: { titleId: 'myOrganization' } },
+                    {
+                        path: 'billing',
+                        component: OrganizationBillingComponent,
+                        data: { titleId: 'billingAndLicensing' },
+                    },
                 ],
             },
         ],

@@ -18,6 +18,8 @@
         </button>
     </app-callout>
     <dl *ngIf="selfHosted">
+        <dt>{{'billingPlan' | i18n}}</dt>
+        <dd>{{billing.plan}}</dd>
         <dt>{{'expiration' | i18n}}</dt>
         <dd *ngIf="billing.expiration">{{billing.expiration | date:'mediumDate'}}</dd>
         <dd *ngIf="!billing.expiration">{{'neverExpires' | i18n}}</dd>
@@ -25,15 +27,19 @@
     <div class="row" *ngIf="!selfHosted">
         <div class="col-4">
             <dl>
-                <dt>{{'status' | i18n}}</dt>
-                <dd>
-                    <span class="text-capitalize">{{(subscription && subscription.status) || '-'}}</span>
-                    <span class="badge badge-warning" *ngIf="subscriptionMarkedForCancel">{{'pendingCancellation' | i18n}}</span>
-                </dd>
-                <dt>{{'nextCharge' | i18n}}</dt>
-                <dd>{{nextInvoice ? ((nextInvoice.date | date: 'mediumDate') + ', ' + (nextInvoice.amount | currency:'$')) :
-                    '-'}}
-                </dd>
+                <dt>{{'billingPlan' | i18n}}</dt>
+                <dd>{{billing.plan}}</dd>
+                <ng-container *ngIf="subscription">
+                    <dt>{{'status' | i18n}}</dt>
+                    <dd>
+                        <span class="text-capitalize">{{subscription.status || '-'}}</span>
+                        <span class="badge badge-warning" *ngIf="subscriptionMarkedForCancel">{{'pendingCancellation' | i18n}}</span>
+                    </dd>
+                    <dt>{{'nextCharge' | i18n}}</dt>
+                    <dd>{{nextInvoice ? ((nextInvoice.date | date: 'mediumDate') + ', ' + (nextInvoice.amount | currency:'$'))
+                        : '-'}}
+                    </dd>
+                </ng-container>
             </dl>
         </div>
         <div class="col-8" *ngIf="subscription">
@@ -64,23 +70,24 @@
         <div class="card mt-3" *ngIf="showUpdateLicense">
             <div class="card-body">
                 <h3 class="card-body-header">{{'updateLicense' | i18n}}</h3>
-                <app-update-license [user]="true" (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
+                <app-update-license [user]="false" (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
             </div>
         </div>
     </ng-container>
     <ng-container *ngIf="!selfHosted">
-        <ng-container *ngIf="!subscription.cancelled || subscriptionMarkedForCancel">
-            <div class="d-flex">
-                <button type="button" class="btn btn-outline-secondary" (click)="downloadLicense()" *ngIf="!subscription.cancelled">
-                    {{'downloadLicense' | i18n}}
-                </button>
-                <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
-                    [disabled]="cancelBtn.loading" *ngIf="!subscription.cancelled && !subscriptionMarkedForCancel">
-                    <i class="fa fa-spinner fa-spin"></i>
-                    <span>{{'cancelSubscription' | i18n}}</span>
-                </button>
-            </div>
-        </ng-container>
+        <div class="d-flex">
+            <button type="button" class="btn btn-outline-secondary" (click)="changePlan()">
+                {{'changeBillingPlan' | i18n}}
+            </button>
+            <button type="button" class="btn btn-outline-secondary ml-1" (click)="downloadLicense()" *ngIf="subscription && !subscription.cancelled">
+                {{'downloadLicense' | i18n}}
+            </button>
+            <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
+                [disabled]="cancelBtn.loading" *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span>{{'cancelSubscription' | i18n}}</span>
+            </button>
+        </div>
         <h2 class="spaced-header">{{'storage' | i18n}}</h2>
         <p>{{'subscriptionStorage' | i18n : billing.maxStorageGb || 0 : billing.storageName || '0 MB'}}</p>
         <div class="progress">
@@ -93,33 +100,46 @@
                     <button type="button" class="btn btn-outline-secondary" (click)="adjustStorage(true)">
                         {{'addStorage' | i18n}}
                     </button>
-                    <button type="button" class="ml-1 btn btn-outline-secondary" (click)="adjustStorage(false)">
+                    <button type="button" class="btn btn-outline-secondary ml-1" (click)="adjustStorage(false)">
                         {{'removeStorage' | i18n}}
                     </button>
                 </div>
-                <app-adjust-storage [storageGbPrice]="4" [add]="adjustStorageAdd" (onAdjusted)="closeStorage(true)" (onCanceled)="closeStorage(false)"
-                    *ngIf="showAdjustStorage"></app-adjust-storage>
+                <app-adjust-storage [storageGbPrice]="storageGbPrice" [add]="adjustStorageAdd" [organizationId]="organizationId" [interval]="billingInterval"
+                    (onAdjusted)="closeStorage(true)" (onCanceled)="closeStorage(false)" *ngIf="showAdjustStorage"></app-adjust-storage>
             </div>
         </ng-container>
         <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>
         <p *ngIf="!paymentSource">{{'noPaymentMethod' | i18n}}</p>
-        <p *ngIf="paymentSource">
-            <i class="fa fa-fw" [ngClass]="{'fa-credit-card': paymentSource.type === paymentMethodType.Card,
+        <ng-container *ngIf="paymentSource">
+            <app-callout type="warning" title="{{'verifyBankAccount' | i18n}}" *ngIf="paymentSource.type === paymentMethodType.BankAccount && paymentSource.needsVerification">
+                <p>{{'verifyBankAccountDesc' | i18n}} {{'verifyBankAccountFailureWarning' | i18n}}</p>
+                <button type="button" class="btn btn-outline-secondary" (click)="verifyBank()">
+                    {{'verifyBankAccount' | i18n}}
+                </button>
+            </app-callout>
+            <p>
+                <i class="fa fa-fw" [ngClass]="{'fa-credit-card': paymentSource.type === paymentMethodType.Card,
                 'fa-university': paymentSource.type === paymentMethodType.BankAccount, 
                 'fa-paypal text-primary': paymentSource.type === paymentMethodType.PayPal}"></i>
-            {{paymentSource.description}}
-        </p>
+                {{paymentSource.description}}
+            </p>
+        </ng-container>
         <button type="button" class="btn btn-outline-secondary" (click)="changePayment()" *ngIf="!showAdjustPayment">
             {{(paymentSource ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}
         </button>
-        <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null" (onAdjusted)="closePayment(true)" (onCanceled)="closePayment(false)"
-            *ngIf="showAdjustPayment">
+        <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null" [organizationId]="organizationId" (onAdjusted)="closePayment(true)"
+            (onCanceled)="closePayment(false)" *ngIf="showAdjustPayment">
         </app-adjust-payment>
         <h2 class="spaced-header">{{'charges' | i18n}}</h2>
         <p *ngIf="!charges || !charges.length">{{'noCharges' | i18n}}</p>
         <table class="table mb-2" *ngIf="charges && charges.length">
             <tbody>
                 <tr *ngFor="let c of charges">
+                    <td>
+                        <a href="#" appStopClick (click)="viewInvoice(c)" title="{{'invoice' | i18n}}">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </a>
+                    </td>
                     <td>{{c.createdDate | date:'mediumDate'}}</td>
                     <td>{{c.paymentSource ? c.paymentSource.description : '-'}}</td>
                     <td class="text-capitalize">{{c.status}}</td>

@@ -4,7 +4,12 @@
         <label class="form-check-label" for="method-card">
             <i class="fa fa-fw fa-credit-card"></i> {{'creditCard' | i18n}}</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check form-check-inline mr-4" *ngIf="!hideBank">
+        <input class="form-check-input" type="radio" name="Method" id="method-bank" value="bank" [(ngModel)]="method" (change)="changeMethod()">
+        <label class="form-check-label" for="method-bank">
+            <i class="fa fa-fw fa-university"></i> {{'bankAccount' | i18n}}</label>
+    </div>
+    <div class="form-check form-check-inline" *ngIf="!hidePaypal">
         <input class="form-check-input" type="radio" name="Method" id="method-paypal" value="paypal" [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-paypal">
             <i class="fa fa-fw fa-paypal"></i> PayPal</label>
@@ -307,5 +312,33 @@
     <div class="mb-3">
         <div id="bt-dropin-container" class="mb-1"></div>
         <small class="text-muted">{{'paypalClickSubmit' | i18n}}</small>
+    </div>
+</ng-container>
+<ng-container *ngIf="method === 'bank'">
+    <app-callout type="warning" title="{{'verifyBankAccount' | i18n}}">
+        {{'verifyBankAccountInitialDesc' | i18n}} {{'verifyBankAccountFailureWarning' | i18n}}
+    </app-callout>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="routing_number">{{'routingNumber' | i18n}}</label>
+            <input id="routing_number" class="form-control" type="text" name="routing_number" [(ngModel)]="bank.routing_number" required>
+        </div>
+        <div class="form-group col-6">
+            <label for="account_number">{{'accountNumber' | i18n}}</label>
+            <input id="account_number" class="form-control" type="text" name="account_number" [(ngModel)]="bank.account_number" required>
+        </div>
+        <div class="form-group col-6">
+            <label for="account_holder_name">{{'accountHolderName' | i18n}}</label>
+            <input id="account_holder_name" class="form-control" type="text" name="account_holder_name" [(ngModel)]="bank.account_holder_name"
+                required>
+        </div>
+        <div class="form-group col-6">
+            <label for="account_holder_type">{{'bankAccountType' | i18n}}</label>
+            <select id="account_holder_type" class="form-control" name="account_holder_type" [(ngModel)]="bank.account_holder_type" required>
+                <option value="">-- {{'select' | i18n}} --</option>
+                <option value="company">{{'bankAccountTypeCompany' | i18n}}</option>
+                <option value="individual">{{'bankAccountTypeIndividual' | i18n}}</option>
+            </select>
+        </div>
     </div>
 </ng-container>

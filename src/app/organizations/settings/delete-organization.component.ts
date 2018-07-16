@@ -34,7 +34,7 @@ export class DeleteOrganizationComponent {
         const request = new PasswordVerificationRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.apiService.postDeleteOrganization(this.organizationId, request);
+            this.formPromise = this.apiService.deleteOrganization(this.organizationId, request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Deleted Organization' });
             this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),

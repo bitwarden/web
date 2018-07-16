@@ -32,7 +32,7 @@ export class DeleteAccountComponent {
         const request = new PasswordVerificationRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.apiService.postDeleteAccount(request);
+            this.formPromise = this.apiService.deleteAccount(request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Deleted Account' });
             this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),

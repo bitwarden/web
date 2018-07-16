@@ -20,14 +20,24 @@ const Keys = {
 })
 export class PaymentComponent implements OnInit {
     @Input() showOptions = true;
+    @Input() method = 'card';
+    @Input() hideBank = false;
+    @Input() hidePaypal = false;
 
-    method = 'card';
     card: any = {
         number: null,
         exp_month: null,
         exp_year: null,
         address_country: '',
         address_zip: null,
+    };
+    bank: any = {
+        routing_number: null,
+        account_number: null,
+        account_holder_name: null,
+        account_holder_type: '',
+        currency: 'USD',
+        country: 'US',
     };
     cardExpMonthOptions: any[];
     cardExpYearOptions: any[];
@@ -68,24 +78,32 @@ export class PaymentComponent implements OnInit {
             { name: '-- ' + i18nService.t('select') + ' --', value: null },
         ];
         const year = (new Date()).getFullYear();
-        for (let i = year; i < (year + 10); i++) {
+        for (let i = year; i < (year + 15); i++) {
             this.cardExpYearOptions.push({ name: i.toString(), value: i.toString().slice(-2) });
         }
     }
 
     ngOnInit() {
+        if (!this.showOptions) {
+            this.hidePaypal = this.method !== 'paypal';
+            this.hideBank = this.method !== 'bank';
+        }
         window.document.head.appendChild(this.stripeScript);
-        window.document.head.appendChild(this.btScript);
+        if (!this.hidePaypal) {
+            window.document.head.appendChild(this.btScript);
+        }
     }
 
     ngOnDestroy() {
         window.document.head.removeChild(this.stripeScript);
-        window.document.head.removeChild(this.btScript);
         Array.from(window.document.querySelectorAll('iframe')).forEach((el) => {
             if (el.src != null && el.src.indexOf('stripe') > -1) {
                 window.document.body.removeChild(el);
             }
         });
+        if (!this.hidePaypal) {
+            window.document.head.removeChild(this.btScript);
+        }
     }
 
     changeMethod() {
@@ -127,8 +145,18 @@ export class PaymentComponent implements OnInit {
                 }).catch((err: any) => {
                     reject(err.message);
                 });
-            } else {
+            } else if (this.method === 'card') {
                 (window as any).Stripe.card.createToken(this.card, (status: number, response: any) => {
+                    if (status === 200 && response.id != null) {
+                        resolve(response.id);
+                    } else if (response.error != null) {
+                        reject(response.error.message);
+                    } else {
+                        reject();
+                    }
+                });
+            } else if (this.method === 'bank') {
+                (window as any).Stripe.bankAccount.createToken(this.bank, (status: number, response: any) => {
                     if (status === 200 && response.id != null) {
                         resolve(response.id);
                     } else if (response.error != null) {

@@ -26,7 +26,7 @@ export class AdjustPaymentComponent {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
 
     @Input() currentType?: PaymentMethodType;
-    @Input() user = true;
+    @Input() organizationId: string;
     @Output() onAdjusted = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
@@ -41,8 +41,10 @@ export class AdjustPaymentComponent {
             const request = new PaymentRequest();
             this.formPromise = this.paymentComponent.createPaymentToken().then((token) => {
                 request.paymentToken = token;
-                if (this.user) {
+                if (this.organizationId == null) {
                     return this.apiService.postAccountPayment(request);
+                } else {
+                    return this.apiService.postOrganizationPayment(this.organizationId, request);
                 }
             });
             await this.formPromise;

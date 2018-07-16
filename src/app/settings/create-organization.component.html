@@ -169,7 +169,7 @@
         </div>
         <small class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (interval | i18n) }}</small>
         <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
-        <app-payment></app-payment>
+        <app-payment [hidePaypal]="true"></app-payment>
     </ng-container>
     <div [ngClass]="{'mt-4': plans[plan].noPayment}">
         <button type="submit" class="btn btn-primary btn-submit" appBlurClick [disabled]="form.loading">

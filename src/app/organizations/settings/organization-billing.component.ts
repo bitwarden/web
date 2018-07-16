@@ -2,12 +2,17 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router
+} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
-import { BillingResponse } from 'jslib/models/response/billingResponse';
+
+import { BillingChargeResponse } from 'jslib/models/response/billingResponse';
+import { OrganizationBillingResponse } from 'jslib/models/response/organizationBillingResponse';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -15,19 +20,21 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+import { PlanType } from 'jslib/enums/planType';
 
 @Component({
-    selector: 'app-user-billing',
-    templateUrl: 'user-billing.component.html',
+    selector: 'app-org-billing',
+    templateUrl: 'organization-billing.component.html',
 })
-export class UserBillingComponent implements OnInit {
+export class OrganizationBillingComponent implements OnInit {
     loading = false;
     firstLoaded = false;
+    organizationId: string;
     adjustStorageAdd = true;
     showAdjustStorage = false;
     showAdjustPayment = false;
     showUpdateLicense = false;
-    billing: BillingResponse;
+    billing: OrganizationBillingResponse;
     paymentMethodType = PaymentMethodType;
     selfHosted = false;
 
@@ -37,29 +44,24 @@ export class UserBillingComponent implements OnInit {
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router) {
+        private router: Router, private route: ActivatedRoute) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
-        await this.load();
-        this.firstLoaded = true;
+        this.route.parent.parent.params.subscribe(async (params) => {
+            this.organizationId = params.organizationId;
+            await this.load();
+            this.firstLoaded = true;
+        });
     }
 
     async load() {
         if (this.loading) {
             return;
         }
-
-        const premium = this.tokenService.getPremium();
-        if (premium) {
-            this.loading = true;
-            this.billing = await this.apiService.getUserBilling();
-        } else {
-            this.router.navigate(['/settings/premium']);
-            return;
-        }
-
+        this.loading = true;
+        this.billing = await this.apiService.getOrganizationBilling(this.organizationId);
         this.loading = false;
     }
 
@@ -107,9 +109,6 @@ export class UserBillingComponent implements OnInit {
         if (this.loading) {
             return;
         }
-
-        const licenseString = JSON.stringify(this.billing.license, null, 2);
-        this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_premium_license.json');
     }
 
     updateLicense() {
@@ -149,6 +148,13 @@ export class UserBillingComponent implements OnInit {
         }
     }
 
+    async viewInvoice(charge: BillingChargeResponse) {
+        const token = await this.tokenService.getToken();
+        const url = this.apiService.apiBaseUrl + '/organizations/' + this.organizationId +
+            '/billing-invoice/' + charge.invoiceId + '?access_token=' + token;
+        this.platformUtilsService.launchUri(url);
+    }
+
     get subscriptionMarkedForCancel() {
         return this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate;
     }
@@ -176,5 +182,19 @@ export class UserBillingComponent implements OnInit {
 
     get storageProgressWidth() {
         return this.storagePercentage < 5 ? 5 : 0;
+    }
+
+    get billingInterval() {
+        const monthly = this.billing.planType === PlanType.EnterpriseMonthly ||
+            this.billing.planType === PlanType.TeamsMonthly;
+        return monthly ? 'month' : 'year';
+    }
+
+    get storageGbPrice() {
+        return this.billingInterval === 'month' ? 0.5 : 4;
+    }
+
+    get seatPrice() {
+        return 4;
     }
 }
