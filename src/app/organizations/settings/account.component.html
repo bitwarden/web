@@ -1,0 +1,55 @@
+<div class="page-header">
+    <h1>{{'myOrganization' | i18n}}</h1>
+</div>
+<div *ngIf="loading">
+    <i class="fa fa-spinner fa-spin text-muted"></i>
+</div>
+<form *ngIf="org && !loading" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name">{{'organizationName' | i18n}}</label>
+                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="org.name">
+            </div>
+            <div class="form-group">
+                <label for="billingEmail">{{'billingEmail' | i18n}}</label>
+                <input id="billingEmail" class="form-control" type="text" name="BillingEmail" [(ngModel)]="org.billingEmail">
+            </div>
+            <div class="form-group">
+                <label for="businessName">{{'businessName' | i18n}}</label>
+                <input id="businessName" class="form-control" type="text" name="BusinessName" [(ngModel)]="org.businessName">
+            </div>
+        </div>
+        <div class="col-6">
+            <app-avatar data="{{org.name}}" dynamic="true" width="75" height="75" fontSize="35"></app-avatar>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-submit" appBlurClick [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>{{'save' | i18n}}</span>
+    </button>
+</form>
+<div class="secondary-header border-0 mb-0">
+    <h1>{{'taxInformation' | i18n}}</h1>
+</div>
+<div class="mb-3" *ngIf="org && (org.businessAddress1 || org.businessTaxNumber)">
+    <div>{{org.businessAddress1}}</div>
+    <div>{{org.businessAddress2}}</div>
+    <div>{{org.businessAddress3}}</div>
+    <div>{{org.businessCountry}}</div>
+    <div>{{org.businessTaxNumber}}</div>
+</div>
+<p>{{'taxInformationDesc' | i18n}}</p>
+<a href="https://bitwarden.com/contact/" target="_blank" rel="noopener" class="btn btn-outline-secondary">
+    {{'contactSupport' | i18n}}
+</a>
+<div class="secondary-header text-danger border-0 mb-0">
+    <h1>{{'dangerZone' | i18n}}</h1>
+</div>
+<div class="card border-danger">
+    <div class="card-body">
+        <p>{{'dangerZoneDesc' | i18n}}</p>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteOrganization()" appBlurClick>{{'deleteOrganization' | i18n}}</button>
+    </div>
+</div>
+<ng-template #deleteOrganizationTemplate></ng-template>

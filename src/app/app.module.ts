@@ -51,6 +51,10 @@ import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/pe
 import { UserAddEditComponent as OrgUserAddEditComponent } from './organizations/manage/user-add-edit.component';
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
 
+import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
+import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
+import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
+
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
@@ -164,6 +168,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         CreateOrganizationComponent,
         DeauthorizeSessionsComponent,
         DeleteAccountComponent,
+        DeleteOrganizationComponent,
         DomainRulesComponent,
         ExportComponent,
         FallbackSrcDirective,
@@ -181,6 +186,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         ModalComponent,
         NavbarComponent,
         OptionsComponent,
+        OrgAccountComponent,
         OrgAddEditComponent,
         OrgAttachmentsComponent,
         OrgCiphersComponent,
@@ -197,6 +203,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgManageCollectionsComponent,
         OrgManageComponent,
         OrgPeopleComponent,
+        OrgSettingComponent,
         OrgToolsComponent,
         OrgUserAddEditComponent,
         OrgUserGroupsComponent,
@@ -247,6 +254,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         CollectionsComponent,
         DeauthorizeSessionsComponent,
         DeleteAccountComponent,
+        DeleteOrganizationComponent,
         FolderAddEditComponent,
         ModalComponent,
         OrgAddEditComponent,

@@ -1,0 +1,20 @@
+<div class="container page-content">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">{{'settings' | i18n}}</div>
+                <div class="list-group list-group-flush">
+                    <a routerLink="account" class="list-group-item" routerLinkActive="active">
+                        {{'myOrganization' | i18n}}
+                    </a>
+                    <a routerLink="billing" class="list-group-item" routerLinkActive="active">
+                        {{'billingAndLicensing' | i18n}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

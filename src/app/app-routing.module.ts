@@ -25,6 +25,9 @@ import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/gr
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
 
+import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
+import { SettingsComponent as OrgSettingsComponent } from './organizations/settings/settings.component';
+
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
@@ -174,6 +177,16 @@ const routes: Routes = [
                     { path: 'events', component: OrgEventsComponent, data: { titleId: 'eventLogs' } },
                     { path: 'groups', component: OrgGroupsComponent, data: { titleId: 'groups' } },
                     { path: 'people', component: OrgPeopleComponent, data: { titleId: 'people' } },
+                ],
+            },
+            {
+                path: 'settings',
+                component: OrgSettingsComponent,
+                canActivate: [OrganizationTypeGuardService],
+                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
+                children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'account' },
+                    { path: 'account', component: OrgAccountComponent, data: { titleId: 'myOrganization' } },
                 ],
             },
         ],
