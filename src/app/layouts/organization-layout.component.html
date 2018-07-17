@@ -27,7 +27,7 @@
                     {{'tools' | i18n}}
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="organization.isOwner">
                 <a class="nav-link" routerLink="settings" routerLinkActive="active">
                     <i class="fa fa-cogs"></i>
                     {{'settings' | i18n}}

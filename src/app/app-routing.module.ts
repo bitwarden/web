@@ -184,7 +184,7 @@ const routes: Routes = [
                 path: 'settings',
                 component: OrgSettingsComponent,
                 canActivate: [OrganizationTypeGuardService],
-                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
+                data: { allowedTypes: [OrganizationUserType.Owner] },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
                     { path: 'account', component: OrgAccountComponent, data: { titleId: 'myOrganization' } },
