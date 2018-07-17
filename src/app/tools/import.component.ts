@@ -25,6 +25,7 @@ import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
 import { ChromeCsvImporter } from 'jslib/importers/chromeCsvImporter';
+import { ClipperzHtmlImporter } from 'jslib/importers/clipperzHtmlImporter';
 import { DashlaneCsvImporter } from 'jslib/importers/dashlaneCsvImporter';
 import { EnpassCsvImporter } from 'jslib/importers/enpassCsvImporter';
 import { FirefoxCsvImporter } from 'jslib/importers/firefoxCsvImporter';
@@ -272,6 +273,8 @@ export class ImportComponent implements OnInit {
                 return new StickyPasswordXmlImporter();
             case 'truekeycsv':
                 return new TrueKeyCsvImporter();
+            case 'clipperzhtml':
+                return new ClipperzHtmlImporter();
             default:
                 return null;
         }

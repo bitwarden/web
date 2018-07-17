@@ -103,6 +103,10 @@
             Using the True Key desktop application, click the gear icon (top right) and then navigate to "App Settings". Click the "Export"
             button, enter your password and save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'clipperzhtml'">
+            Log into the Clipperz web application (clipperz.is/app). Click the hamburger menu icon in the top right to expand the navigation
+            bar. Navigate to "Data" &rarr; "Export". Click the "download HTML+JSON" button to save the HTML file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
