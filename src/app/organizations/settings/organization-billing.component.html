@@ -79,8 +79,10 @@
             <button type="button" class="btn btn-outline-secondary" (click)="changePlan()">
                 {{'changeBillingPlan' | i18n}}
             </button>
-            <button type="button" class="btn btn-outline-secondary ml-1" (click)="downloadLicense()" *ngIf="subscription && !subscription.cancelled">
-                {{'downloadLicense' | i18n}}
+            <button type="button" class="btn btn-outline-secondary btn-submit ml-1" #licenseBtn [appApiAction]="licensePromise" [disabled]="licenseBtn.loading"
+                (click)="downloadLicense()" *ngIf="subscription && !subscription.cancelled">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span>{{'downloadLicense' | i18n}}</span>
             </button>
             <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
                 [disabled]="cancelBtn.loading" *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel">

@@ -40,6 +40,7 @@ export class OrganizationBillingComponent implements OnInit {
 
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
+    licensePromise: Promise<any>;
 
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
@@ -113,10 +114,22 @@ export class OrganizationBillingComponent implements OnInit {
         }
     }
 
-    downloadLicense() {
+    async downloadLicense() {
         if (this.loading) {
             return;
         }
+
+        const installationId = window.prompt(this.i18nService.t('enterInstallationId'));
+        if (installationId == null || installationId === '') {
+            return;
+        }
+
+        try {
+            this.licensePromise = this.apiService.getOrganizationLicense(this.organizationId, installationId);
+            const license = await this.licensePromise;
+            const licenseString = JSON.stringify(license, null, 2);
+            this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_organization_license.json');
+        } catch { }
     }
 
     updateLicense() {
