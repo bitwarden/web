@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
     ActivatedRoute,
-    Router
+    Router,
 } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
