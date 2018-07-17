@@ -131,9 +131,28 @@
         <ng-container *ngIf="paymentSource">
             <app-callout type="warning" title="{{'verifyBankAccount' | i18n}}" *ngIf="paymentSource.type === paymentMethodType.BankAccount && paymentSource.needsVerification">
                 <p>{{'verifyBankAccountDesc' | i18n}} {{'verifyBankAccountFailureWarning' | i18n}}</p>
-                <button type="button" class="btn btn-outline-secondary" (click)="verifyBank()">
-                    {{'verifyBankAccount' | i18n}}
-                </button>
+                <form #verifyForm class="form-inline" (ngSubmit)="verifyBank()" [appApiAction]="verifyBankPromise" ngNativeValidate>
+                    <label class="sr-only" for="verifyAmount1">{{'amount' | i18n : '1'}}</label>
+                    <div class="input-group mr-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">$0.</div>
+                        </div>
+                        <input type="number" class="form-control" id="verifyAmount1" placeholder="xx" name="Amount1" [(ngModel)]="verifyAmount1"
+                            min="1" max="99" step="1" required>
+                    </div>
+                    <label class="sr-only" for="verifyAmount2">{{'amount' | i18n : '2'}}</label>
+                    <div class="input-group mr-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">$0.</div>
+                        </div>
+                        <input type="number" class="form-control" id="verifyAmount2" placeholder="xx" name="Amount2" [(ngModel)]="verifyAmount2"
+                            min="1" max="99" step="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary btn-submit" [disabled]="verifyForm.loading">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        <span>{{'verifyBankAccount' | i18n}}</span>
+                    </button>
+                </form>
             </app-callout>
             <p>
                 <i class="fa fa-fw" [ngClass]="{'fa-credit-card': paymentSource.type === paymentMethodType.Card,

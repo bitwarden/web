@@ -10,6 +10,7 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
+import { VerifyBankRequest } from 'jslib/models/request/verifyBankRequest';
 
 import { BillingChargeResponse } from 'jslib/models/response/billingResponse';
 import { OrganizationBillingResponse } from 'jslib/models/response/organizationBillingResponse';
@@ -39,10 +40,13 @@ export class OrganizationBillingComponent implements OnInit {
     billing: OrganizationBillingResponse;
     paymentMethodType = PaymentMethodType;
     selfHosted = false;
+    verifyAmount1: number;
+    verifyAmount2: number;
 
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
     licensePromise: Promise<any>;
+    verifyBankPromise: Promise<any>;
 
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
@@ -139,6 +143,23 @@ export class OrganizationBillingComponent implements OnInit {
             return;
         }
         this.showUpdateLicense = true;
+    }
+
+    async verifyBank() {
+        if (this.loading) {
+            return;
+        }
+
+        try {
+            const request = new VerifyBankRequest();
+            request.amount1 = this.verifyAmount1;
+            request.amount2 = this.verifyAmount2;
+            this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(this.organizationId, request);
+            await this.verifyBankPromise;
+            this.analytics.eventTrack.next({ action: 'Verified Bank Account' });
+            this.toasterService.popAsync('success', null, this.i18nService.t('verifiedBankAccount'));
+            this.load();
+        } catch { }
     }
 
     closeUpdateLicense(load: boolean) {

@@ -2198,8 +2198,21 @@
   "verifyBankAccountFailureWarning": {
     "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
   },
+  "verifiedBankAccount": {
+    "message": "Bank account has been verified."
+  },
   "bankAccount": {
     "message": "Bank Account"
+  },
+  "amountX": {
+    "message": "Amount $COUNT$",
+    "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "routingNumber": {
     "message": "Routing Number",
