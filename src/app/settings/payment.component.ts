@@ -20,7 +20,7 @@ const Keys = {
 })
 export class PaymentComponent implements OnInit {
     @Input() showOptions = true;
-    @Input() method = 'card';
+    @Input() method: 'card' | 'paypal' | 'bank' = 'card';
     @Input() hideBank = false;
     @Input() hidePaypal = false;
 
@@ -145,18 +145,11 @@ export class PaymentComponent implements OnInit {
                 }).catch((err: any) => {
                     reject(err.message);
                 });
-            } else if (this.method === 'card') {
-                (window as any).Stripe.card.createToken(this.card, (status: number, response: any) => {
-                    if (status === 200 && response.id != null) {
-                        resolve(response.id);
-                    } else if (response.error != null) {
-                        reject(response.error.message);
-                    } else {
-                        reject();
-                    }
-                });
-            } else if (this.method === 'bank') {
-                (window as any).Stripe.bankAccount.createToken(this.bank, (status: number, response: any) => {
+            } else if (this.method === 'card' || this.method === 'bank') {
+                const createObj: any = this.method === 'card' ? (window as any).Stripe.card :
+                    (window as any).Stripe.bankAccount;
+                const sourceObj = this.method === 'card' ? this.card : this.bank;
+                createObj.createToken(sourceObj, (status: number, response: any) => {
                     if (status === 200 && response.id != null) {
                         resolve(response.id);
                     } else if (response.error != null) {

@@ -61,6 +61,6 @@ export class AdjustPaymentComponent {
     }
 
     get canChange() {
-        return this.currentType == null || this.currentType === PaymentMethodType.Card;
+        return this.currentType == null || this.currentType === PaymentMethodType.Card || this.organizationId != null;
     }
 }
