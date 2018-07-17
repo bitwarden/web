@@ -77,9 +77,9 @@ export class OrganizationBillingComponent implements OnInit {
         }
 
         try {
-            this.reinstatePromise = this.apiService.postReinstatePremium();
+            this.reinstatePromise = this.apiService.postOrganizationReinstate(this.organizationId);
             await this.reinstatePromise;
-            this.analytics.eventTrack.next({ action: 'Reinstated Premium' });
+            this.analytics.eventTrack.next({ action: 'Reinstated Plan' });
             this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
             this.load();
         } catch { }
@@ -97,12 +97,20 @@ export class OrganizationBillingComponent implements OnInit {
         }
 
         try {
-            this.cancelPromise = this.apiService.postCancelPremium();
+            this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
-            this.analytics.eventTrack.next({ action: 'Canceled Premium' });
+            this.analytics.eventTrack.next({ action: 'Canceled Plan' });
             this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
         } catch { }
+    }
+
+    async changePlan() {
+        const contactSupport = await this.platformUtilsService.showDialog(this.i18nService.t('changeBillingPlanDesc'),
+            this.i18nService.t('changeBillingPlan'), this.i18nService.t('contactSupport'), this.i18nService.t('close'));
+        if (contactSupport) {
+            this.platformUtilsService.launchUri('https://bitwarden.com/contact');
+        }
     }
 
     downloadLicense() {
