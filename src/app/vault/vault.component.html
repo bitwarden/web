@@ -61,6 +61,17 @@
                     </a>
                 </div>
             </div>
+            <div class="card border-warning mb-4" *ngIf="showUpdateKey">
+                <div class="card-header bg-warning text-white">
+                    <i class="fa fa-warning fa-fw"></i> {{'updateKeyTitle' | i18n}}
+                </div>
+                <div class="card-body">
+                    <p>{{'updateEncryptionKeyShortDesc' | i18n}}</p>
+                    <button class="btn btn-block btn-outline-secondary" type="button" (click)="updateKey()">
+                        {{'updateEncryptionKey' | i18n}}
+                    </button>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     {{'organizations' | i18n}}
@@ -80,3 +91,4 @@
 <ng-template #bulkDeleteTemplate></ng-template>
 <ng-template #bulkMoveTemplate></ng-template>
 <ng-template #bulkShareTemplate></ng-template>
+<ng-template #updateKeyTemplate></ng-template>

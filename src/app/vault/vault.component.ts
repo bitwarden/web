@@ -18,6 +18,7 @@ import { CipherView } from 'jslib/models/view/cipherView';
 import { ModalComponent } from '../modal.component';
 
 import { OrganizationsComponent } from '../settings/organizations.component';
+import { UpdateKeyComponent } from '../settings/update-key.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { BulkDeleteComponent } from './bulk-delete.component';
@@ -50,6 +51,7 @@ export class VaultComponent implements OnInit {
     @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
     @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
+    @ViewChild('updateKeyTemplate', { read: ViewContainerRef }) updateKeyModalRef: ViewContainerRef;
 
     favorites: boolean = false;
     type: CipherType = null;
@@ -70,7 +72,7 @@ export class VaultComponent implements OnInit {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
         const hasEncKey = await this.cryptoService.hasEncKey();
-        this.showUpdateKey = !this.showVerifyEmail && hasEncKey;
+        this.showUpdateKey = !hasEncKey;
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
@@ -361,6 +363,20 @@ export class VaultComponent implements OnInit {
 
     selectAll(select: boolean) {
         this.ciphersComponent.selectAll(select);
+    }
+
+    updateKey() {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.updateKeyModalRef.createComponent(factory).instance;
+        this.modal.show<UpdateKeyComponent>(UpdateKeyComponent, this.updateKeyModalRef);
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     private clearFilters() {

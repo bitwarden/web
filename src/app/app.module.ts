@@ -92,6 +92,7 @@ import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
+import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { VerifyEmailComponent } from './settings/verify-email.component';
@@ -241,6 +242,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
         TwoFactorYubiKeyComponent,
+        UpdateKeyComponent,
         UpdateLicenseComponent,
         UserBillingComponent,
         UserLayoutComponent,
@@ -280,6 +282,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         TwoFactorRecoveryComponent,
         TwoFactorU2fComponent,
         TwoFactorYubiKeyComponent,
+        UpdateKeyComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

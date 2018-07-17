@@ -837,6 +837,9 @@
   "logBackIn": {
     "message": "Please log back in."
   },
+  "logBackInOthersToo": {
+    "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
+  },
   "changeMasterPassword": {
     "message": "Change Master Password"
   },
@@ -2273,5 +2276,23 @@
         "example": "15"
       }
     }
+  },
+  "keyUpdated": {
+    "message": "Key Updated"
+  },
+  "updateKeyTitle": {
+    "message": "Update Key"
+  },
+  "updateEncryptionKey": {
+    "message": "Update Encryption Key"
+  },
+  "updateEncryptionKeyShortDesc": {
+    "message": "You are currently using an outdated encryption scheme."
+  },
+  "updateEncryptionKeyDesc": {
+    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+  },
+  "updateEncryptionKeyWarning": {
+    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   }
 }
