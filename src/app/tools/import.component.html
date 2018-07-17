@@ -99,6 +99,10 @@
             Using the Sticky Password desktop application, navigate to "Menu" (top right) &rarr; "Export" &rarr; "Export all". Select
             the unencrypted format XML option and save the XML file.
         </ng-container>
+        <ng-container *ngIf="format === 'truekeycsv'">
+            Using the True Key desktop application, click the gear icon (top right) and then navigate to "App Settings". Click the "Export"
+            button, enter your password and save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

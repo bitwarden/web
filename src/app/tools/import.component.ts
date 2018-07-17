@@ -43,6 +43,7 @@ import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
 import { StickyPasswordXmlImporter } from 'jslib/importers/stickyPasswordXmlImporter';
+import { TrueKeyCsvImporter } from 'jslib/importers/truekeyCsvImporter';
 import { UpmCsvImporter } from 'jslib/importers/upmCsvImporter';
 
 @Component({
@@ -269,6 +270,8 @@ export class ImportComponent implements OnInit {
                 return new MSecureCsvImporter();
             case 'stickypasswordxml':
                 return new StickyPasswordXmlImporter();
+            case 'truekeycsv':
+                return new TrueKeyCsvImporter();
             default:
                 return null;
         }
