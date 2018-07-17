@@ -52,6 +52,7 @@ import { UserAddEditComponent as OrgUserAddEditComponent } from './organizations
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
+import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
@@ -149,6 +150,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         AccountComponent,
         AddEditComponent,
         AdjustPaymentComponent,
+        AdjustSeatsComponent,
         AdjustStorageComponent,
         ApiActionDirective,
         AppComponent,

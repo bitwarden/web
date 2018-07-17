@@ -30,6 +30,8 @@ export class OrganizationBillingComponent implements OnInit {
     loading = false;
     firstLoaded = false;
     organizationId: string;
+    adjustSeatsAdd = true;
+    showAdjustSeats = false;
     adjustStorageAdd = true;
     showAdjustStorage = false;
     showAdjustPayment = false;
@@ -146,6 +148,18 @@ export class OrganizationBillingComponent implements OnInit {
         }
     }
 
+    adjustSeats(add: boolean) {
+        this.adjustSeatsAdd = add;
+        this.showAdjustSeats = true;
+    }
+
+    closeSeats(load: boolean) {
+        this.showAdjustSeats = false;
+        if (load) {
+            this.load();
+        }
+    }
+
     adjustStorage(add: boolean) {
         this.adjustStorageAdd = add;
         this.showAdjustStorage = true;
@@ -216,6 +230,23 @@ export class OrganizationBillingComponent implements OnInit {
     }
 
     get seatPrice() {
-        return 4;
+        switch (this.billing.planType) {
+            case PlanType.EnterpriseMonthly:
+                return 4;
+            case PlanType.EnterpriseAnnually:
+                return 3;
+            case PlanType.TeamsMonthly:
+                return 2.5;
+            case PlanType.TeamsAnnually:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    get canAdjustSeats() {
+        return this.billing.planType === PlanType.EnterpriseMonthly ||
+            this.billing.planType === PlanType.EnterpriseAnnually ||
+            this.billing.planType === PlanType.TeamsMonthly || this.billing.planType === PlanType.TeamsAnnually;
     }
 }

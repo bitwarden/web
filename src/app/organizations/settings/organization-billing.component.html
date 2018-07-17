@@ -90,6 +90,22 @@
                 <span>{{'cancelSubscription' | i18n}}</span>
             </button>
         </div>
+        <h2 class="spaced-header">{{'userSeats' | i18n}}</h2>
+        <p>{{'subscriptionUserSeats' | i18n : billing.seats}}</p>
+        <ng-container *ngIf="subscription && canAdjustSeats">
+            <div class="mt-3">
+                <div class="d-flex" *ngIf="!showAdjustSeats">
+                    <button type="button" class="btn btn-outline-secondary" (click)="adjustSeats(true)">
+                        {{'addSeats' | i18n}}
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary ml-1" (click)="adjustSeats(false)">
+                        {{'removeSeats' | i18n}}
+                    </button>
+                </div>
+                <app-adjust-seats [seatPrice]="seatPrice" [add]="adjustSeatsAdd" [organizationId]="organizationId" [interval]="billingInterval"
+                    (onAdjusted)="closeSeats(true)" (onCanceled)="closeSeats(false)" *ngIf="showAdjustSeats"></app-adjust-seats>
+            </div>
+        </ng-container>
         <h2 class="spaced-header">{{'storage' | i18n}}</h2>
         <p>{{'subscriptionStorage' | i18n : billing.maxStorageGb || 0 : billing.storageName || '0 MB'}}</p>
         <div class="progress">

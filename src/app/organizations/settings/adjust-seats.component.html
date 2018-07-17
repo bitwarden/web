@@ -1,15 +1,15 @@
 <form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="card-body">
-        <h3 class="card-body-header">{{(add ? 'addStorage' : 'removeStorage') | i18n}}</h3>
+        <h3 class="card-body-header">{{(add ? 'addSeats' : 'removeSeats') | i18n}}</h3>
         <div class="row">
             <div class="form-group col-6">
-                <label for="storageAdjustment">{{(add ? 'gbStorageAdd' : 'gbStorageRemove') | i18n}}</label>
-                <input id="storageAdjustment" class="form-control" type="number" name="StroageGbAdjustment" [(ngModel)]="storageAdjustment"
-                    min="0" max="99" step="1" required>
+                <label for="seatAdjustment">{{(add ? 'seatsToAdd' : 'seatsToRemove') | i18n}}</label>
+                <input id="seatAdjustment" class="form-control" type="number" name="SeatAdjustment" [(ngModel)]="seatAdjustment" min="0"
+                    step="1" required>
             </div>
         </div>
         <div *ngIf="add" class="mb-3">
-            <strong>{{'total' | i18n}}:</strong> {{storageAdjustment || 0}} GB &times; {{storageGbPrice | currency:'$'}} = {{adjustedStorageTotal
+            <strong>{{'total' | i18n}}:</strong> {{seatAdjustment || 0}} &times; {{seatPrice | currency:'$'}} = {{adjustedSeatTotal
             | currency:'$'}} /{{interval | i18n}}
         </div>
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
@@ -20,7 +20,7 @@
             {{'cancel' | i18n}}
         </button>
         <small class="d-block text-muted mt-3">
-            {{(add ? 'storageAddNote' : 'storageRemoveNote') | i18n}}
+            {{(add ? 'seatsAddNote' : 'seatsRemoveNote') | i18n}}
         </small>
     </div>
 </form>
