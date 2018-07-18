@@ -36,7 +36,7 @@
                             <div class="input-group">
                                 <input id="loginUsername" class="form-control" type="text" name="Login.Username" [(ngModel)]="cipher.login.username" appInputVerbatim>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyUsername' | i18n}}" (click)="copy(cipher.login.username, 'username', 'Username')"
+                                    <button type="button" class="btn btn-outline-secondary" title="{{'copyUsername' | i18n}}" (click)="copy(cipher.login.username, 'username', 'Username')"
                                         tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
@@ -47,10 +47,10 @@
                             <div class="d-flex">
                                 <label for="loginPassword">{{'password' | i18n}}</label>
                                 <div class="ml-auto d-flex">
-                                    <a href="#" class="d-block mr-2" appStopClick appBlurClick title="{{'generatePassword' | i18n}}" (click)="generatePassword()">
+                                    <a href="#" class="d-block mr-2" appStopClick title="{{'generatePassword' | i18n}}" (click)="generatePassword()">
                                         <i class="fa fa-lg fa-fw fa-refresh"></i>
                                     </a>
-                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick appBlurClick title="{{'checkPassword' | i18n}}" (click)="checkPassword()"
+                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick title="{{'checkPassword' | i18n}}" (click)="checkPassword()"
                                         [appApiAction]="checkPasswordPromise">
                                         <i class="fa fa-lg fa-fw fa-check-circle" [hidden]="checkPasswordBtn.loading"></i>
                                         <i class="fa fa-lg fa-fw fa-spinner fa-spin" [hidden]="!checkPasswordBtn.loading" title="{{'loading' | i18n}}"></i>
@@ -61,11 +61,11 @@
                                 <input id="loginPassword" class="form-control text-monospace" type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
                                     [(ngModel)]="cipher.login.password" appInputVerbatim>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
+                                    <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
                                         tabindex="-1">
                                         <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyPassword' | i18n}}" (click)="copy(cipher.login.password, 'password', 'Password')"
+                                    <button type="button" class="btn btn-outline-secondary" title="{{'copyPassword' | i18n}}" (click)="copy(cipher.login.password, 'password', 'Password')"
                                         tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
@@ -93,7 +93,7 @@
                                     </svg>
                                 </span>
                                 <span class="totp-code mr-2" title="{{'verificationCodeTotp' | i18n}}">{{totpCodeFormatted}}</span>
-                                <button type="button" class="btn btn-link" appBlurClick title="{{'copyVerificationCode' | i18n}}" (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')">
+                                <button type="button" class="btn btn-link" title="{{'copyVerificationCode' | i18n}}" (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')">
                                     <i class="fa fa-clipboard"></i>
                                 </button>
                             </div>
@@ -107,11 +107,11 @@
                                     <input class="form-control" id="loginUri{{i}}" type="text" name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" placeholder="{{'ex' | i18n}} https://google.com"
                                         appInputVerbatim>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'launch' | i18n}}" (click)="launch(u)" [disabled]="!u.canLaunch"
+                                        <button type="button" class="btn btn-outline-secondary" title="{{'launch' | i18n}}" (click)="launch(u)" [disabled]="!u.canLaunch"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-share"></i>
                                         </button>
-                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
+                                        <button type="button" class="btn btn-outline-secondary" title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <a href="#" appStopClick appBlurClick (click)="addUri()" class="d-inline-block mb-3">
+                    <a href="#" appStopClick (click)="addUri()" class="d-inline-block mb-3">
                         <i class="fa fa-plus-circle fa-fw"></i> {{'newUri' | i18n}}
                     </a>
                 </ng-container>
@@ -157,7 +157,7 @@
                             <div class="input-group">
                                 <input id="cardNumber" class="form-control" type="text" name="Card.Number" [(ngModel)]="cipher.card.number" appInputVerbatim>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyNumber' | i18n}}" (click)="copy(cipher.card.number, 'number', 'Number')"
+                                    <button type="button" class="btn btn-outline-secondary" title="{{'copyNumber' | i18n}}" (click)="copy(cipher.card.number, 'number', 'Number')"
                                         tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
@@ -182,11 +182,11 @@
                                 <input id="cardCode" class="form-control text-monospace" type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code" [(ngModel)]="cipher.card.code"
                                     appInputVerbatim>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
+                                    <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
                                         tabindex="-1">
                                         <i class="fa fa-lg" [ngClass]="{'fa-eye': !showCardCode, 'fa-eye-slash': showCardCode}"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'securityCode' | i18n}}" (click)="copy(cipher.card.code, 'securityCode', 'Security Code')"
+                                    <button type="button" class="btn btn-outline-secondary" title="{{'securityCode' | i18n}}" (click)="copy(cipher.card.code, 'securityCode', 'Security Code')"
                                         tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
@@ -309,7 +309,7 @@
                                 <div class="input-group" *ngIf="f.type === fieldType.Text">
                                     <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}" [(ngModel)]="f.value" appInputVerbatim>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                        <button type="button" class="btn btn-outline-secondary" title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>
@@ -319,11 +319,11 @@
                                     <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}" name="Field.Value{{i}}" [(ngModel)]="f.value" class="form-control text-monospace"
                                         appInputVerbatim>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
+                                        <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
                                             tabindex="-1">
                                             <i class="fa fa-lg" [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
                                         </button>
-                                        <button type="button" class="btn btn-outline-secondary" appBlurClick title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                        <button type="button" class="btn btn-outline-secondary" title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>
@@ -340,7 +340,7 @@
                         </div>
                     </div>
                 </ng-container>
-                <a href="#" appStopClick appBlurClick (click)="addField()" class="d-inline-block mb-2">
+                <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2">
                     <i class="fa fa-plus-circle fa-fw"></i> {{'newCustomField' | i18n}}
                 </a>
                 <div class="row">
@@ -361,10 +361,10 @@
                     {{'cancel' | i18n}}
                 </button>
                 <div class="ml-auto" *ngIf="cipher">
-                    <button *ngIf="!organization" appBlurClick type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
+                    <button *ngIf="!organization" type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
                         <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"></i>
                     </button>
-                    <button #deleteBtn appBlurClick type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"
+                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"
                         *ngIf="editMode" [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
                         <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>

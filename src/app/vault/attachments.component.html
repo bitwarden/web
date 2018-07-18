@@ -19,13 +19,13 @@
                                 <i class="fa fa-spinner fa-lg fa-fw fa-spin" *ngIf="a.downloading"></i>
                             </td>
                             <td>
-                                <a href="#" appStopClick appBlurCLick (click)="download(a)">{{a.fileName}}</a>
+                                <a href="#" appStopClick (click)="download(a)">{{a.fileName}}</a>
                                 <br>
                                 <small>{{a.sizeName}}</small>
                             </td>
                             <td class="table-list-options">
-                                <button class="btn btn-outline-danger" type="button" appStopClick appBlurClick title="{{'delete' | i18n}}" (click)="delete(a)"
-                                    #deleteBtn [appApiAction]="deletePromises[a.id]" [disabled]="deleteBtn.loading">
+                                <button class="btn btn-outline-danger" type="button" appStopClick title="{{'delete' | i18n}}" (click)="delete(a)" #deleteBtn
+                                    [appApiAction]="deletePromises[a.id]" [disabled]="deleteBtn.loading">
                                     <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
                                     <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>
                                 </button>

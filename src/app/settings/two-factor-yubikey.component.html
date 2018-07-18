@@ -40,7 +40,7 @@
                                 appInputVerbatim>
                             <div class="d-flex" *ngIf="k.existingKey">
                                 <span class="mr-2">{{k.existingKey}}</span>
-                                <button type="button" class="btn btn-link text-danger ml-auto" appBlurClick (click)="remove(k)" title="{{'remove' | i18n}}">
+                                <button type="button" class="btn btn-link text-danger ml-auto" (click)="remove(k)" title="{{'remove' | i18n}}">
                                     <i class="fa fa-minus-circle fa-lg"></i>
                                 </button>
                             </div>
@@ -54,12 +54,12 @@
                     <small class="form-text text-muted">{{'twoFactorYubikeySupportsNfcDesc' | i18n}}</small>
                 </div>
                 <div class="modal-footer">
-                    <button appBlurClick type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
                         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                         <span>{{'save' | i18n}}</span>
                     </button>
-                    <button #disableBtn appBlurClick type="button" class="btn btn-outline-secondary btn-submit" [appApiAction]="disablePromise"
-                        [disabled]="disableBtn.loading" (click)="disable()">
+                    <button #disableBtn type="button" class="btn btn-outline-secondary btn-submit" [appApiAction]="disablePromise" [disabled]="disableBtn.loading"
+                        (click)="disable()">
                         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                         <span>{{'disableAllKeys' | i18n}}</span>
                     </button>

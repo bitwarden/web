@@ -12,18 +12,18 @@
                         <div class="d-flex">
                             <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
                                 [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
-                            <button type="button" class="ml-1 btn btn-link" appBlurClick title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
+                            <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
                                 <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>
                         </div>
                     </div>
                     <hr>
                     <div class="d-flex">
-                        <button type="submit" class="btn btn-primary btn-block" appBlurClick>
+                        <button type="submit" class="btn btn-primary btn-block">
                             <i class="fa fa-unlock-alt"></i>
                             {{'unlock' | i18n}}
                         </button>
-                        <button type="button" class="btn btn-outline-secondary btn-block ml-2 mt-0" appBlurClick (click)="logOut()">
+                        <button type="button" class="btn btn-outline-secondary btn-block ml-2 mt-0" (click)="logOut()">
                             {{'logOut' | i18n}}
                         </button>
                     </div>
