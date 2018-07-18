@@ -41,6 +41,17 @@ const moduleRules = [
         loader: 'html-loader',
     },
     {
+        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        exclude: /loading.svg/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: 'fonts/',
+            },
+        }],
+    },
+    {
         test: /\.(jpe?g|png|gif|svg)$/i,
         exclude: /.*(fontawesome-webfont)\.svg/,
         use: [{
