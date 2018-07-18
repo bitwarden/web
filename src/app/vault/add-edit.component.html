@@ -80,10 +80,10 @@
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
                                 <img src="../../images/totp-countdown.png" title="{{'verificationCodeTotp' | i18n}}" class="ml-2">
-                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()" *ngIf="!cipher.organizationId && !isPremium">
+                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()" *ngIf="!organization && !cipher.organizationId && !isPremium">
                                     {{'premium' | i18n}}
                                 </a>
-                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="upgradeOrganization()" *ngIf="cipher.organizationId && !organizationUseTotp">
+                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="upgradeOrganization()" *ngIf="(organization && !organization.useTotp) || (cipher.organizationId && !cipher.organizationUseTotp)">
                                     {{'upgrade' | i18n}}
                                 </a>
                             </div>
