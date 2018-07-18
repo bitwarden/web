@@ -14,7 +14,9 @@
     "build:selfhost:watch": "gulp build && cross-env SELF_HOST=true webpack-serve --config webpack.config.js",
     "build:selfhost:prod": "gulp build && cross-env SELF_HOST=true NODE_ENV=production webpack --config webpack.config.js",
     "build:selfhost:prod:watch": "gulp build && cross-env SELF_HOST=true NODE_ENV=production webpack-serve --config webpack.config.js",
-    "dist": "npm run build:prod && gulp dist",
+    "dist": "npm run build:prod",
+    "deploy": "npm run build:prod",
+    "deploy:preview": "npm run dist && gh-pages -d build -r git@github.com:kspearrin/web-preview.git",
     "lint": "tslint src/**/*.ts || true",
     "lint:fix": "tslint src/**/*.ts --fix"
   },
@@ -35,6 +37,7 @@
     "del": "^3.0.0",
     "extract-text-webpack-plugin": "next",
     "file-loader": "^1.1.11",
+    "gh-pages": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-google-webfonts": "^2.0.0",
     "html-loader": "^0.5.5",
