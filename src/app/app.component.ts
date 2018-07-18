@@ -4,10 +4,10 @@ import { SweetAlert } from 'sweetalert/typings/core';
 
 import {
     ToasterConfig,
-    ToasterContainerComponent,
     ToasterService,
 } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import {
     Component,
@@ -60,7 +60,8 @@ export class AppComponent implements OnDestroy, OnInit {
 
     private lastActivity: number = null;
 
-    constructor(private broadcasterService: BroadcasterService, private userService: UserService,
+    constructor(private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
+        private broadcasterService: BroadcasterService, private userService: UserService,
         private tokenService: TokenService, private folderService: FolderService,
         private settingsService: SettingsService, private syncService: SyncService,
         private passwordGenerationService: PasswordGenerationService, private cipherService: CipherService,
