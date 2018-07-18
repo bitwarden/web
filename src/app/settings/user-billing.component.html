@@ -73,7 +73,7 @@
         </div>
     </ng-container>
     <ng-container *ngIf="!selfHosted">
-        <ng-container *ngIf="!subscription.cancelled || subscriptionMarkedForCancel">
+        <ng-container *ngIf="subscription && !subscription.cancelled || subscriptionMarkedForCancel">
             <div class="d-flex">
                 <button type="button" class="btn btn-outline-secondary" (click)="downloadLicense()" *ngIf="!subscription.cancelled">
                     {{'downloadLicense' | i18n}}
