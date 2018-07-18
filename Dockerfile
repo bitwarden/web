@@ -10,7 +10,7 @@ RUN apt-get update \
 ENV ASPNETCORE_URLS http://+:5000
 WORKDIR /app
 EXPOSE 5000
-COPY ./dist .
+COPY ./build .
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 

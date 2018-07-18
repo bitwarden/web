@@ -4,9 +4,9 @@ echo "`n# Building Web"
 
 echo "`nBuilding app"
 echo "npm version $(npm --version)"
-echo "gulp version $(gulp --version)"
 npm install
-gulp dist:selfHosted
+npm run sub:update
+npm run dist:selfhost
 
 echo "`nBuilding docker image"
 docker --version

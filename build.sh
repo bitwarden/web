@@ -22,9 +22,9 @@ else
     echo ""
     echo "Building app"
     echo "npm version $(npm --version)"
-    echo "gulp version $(gulp --version)"
     npm install
-    gulp dist:selfHosted
+    npm run sub:update
+    npm run dist:selfhost
 
     echo ""
     echo "Building docker image"
