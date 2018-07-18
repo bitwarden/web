@@ -36,6 +36,7 @@ export class TwoFactorSetupComponent implements OnInit {
     @ViewChild('duoTemplate', { read: ViewContainerRef }) duoModalRef: ViewContainerRef;
     @ViewChild('emailTemplate', { read: ViewContainerRef }) emailModalRef: ViewContainerRef;
 
+    organizationId: string;
     providers: any[] = [];
     premium: boolean;
     loading = true;

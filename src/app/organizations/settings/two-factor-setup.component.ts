@@ -18,8 +18,6 @@ import { TwoFactorSetupComponent as BaseTwoFactorSetupComponent } from '../../se
     templateUrl: '../../settings/two-factor-setup.component.html',
 })
 export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
-    organizationId: string;
-
     constructor(apiService: ApiService, tokenService: TokenService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
         private route: ActivatedRoute) {
