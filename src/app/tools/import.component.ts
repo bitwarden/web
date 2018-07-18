@@ -41,6 +41,7 @@ import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImpo
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
 import { PasswordDragonXmlImporter } from 'jslib/importers/passwordDragonXmlImporter';
 import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter';
+import { RoboFormCsvImporter } from 'jslib/importers/roboformCsvImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
 import { StickyPasswordXmlImporter } from 'jslib/importers/stickyPasswordXmlImporter';
@@ -275,6 +276,8 @@ export class ImportComponent implements OnInit {
                 return new TrueKeyCsvImporter();
             case 'clipperzhtml':
                 return new ClipperzHtmlImporter();
+            case 'roboformcsv':
+                return new RoboFormCsvImporter();
             default:
                 return null;
         }

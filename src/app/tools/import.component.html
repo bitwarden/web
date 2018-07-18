@@ -107,6 +107,12 @@
             Log into the Clipperz web application (clipperz.is/app). Click the hamburger menu icon in the top right to expand the navigation
             bar. Navigate to "Data" &rarr; "Export". Click the "download HTML+JSON" button to save the HTML file.
         </ng-container>
+        <ng-container *ngIf="format === 'roboformcsv'">
+            Using the RoboForm Editor desktop application, navigate to "RoboForm" (top left) &rarr; "Options" &rarr; "Account &amp; Data"
+            and click the "Export" button. Select all of your data, change the "Format" to "CSV file" and then click the
+            "Export" button to save the CSV file. Note: RoboForm only allows you to export Logins. Other items will not be
+            exported.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
