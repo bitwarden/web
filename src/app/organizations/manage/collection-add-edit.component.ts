@@ -20,6 +20,8 @@ import { CollectionRequest } from 'jslib/models/request/collectionRequest';
 import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
 import { GroupResponse } from 'jslib/models/response/groupResponse';
 
+import { Utils } from 'jslib/misc/utils';
+
 @Component({
     selector: 'app-collection-add-edit',
     templateUrl: 'collection-add-edit.component.html',
@@ -47,7 +49,7 @@ export class CollectionAddEditComponent implements OnInit {
     async ngOnInit() {
         this.editMode = this.loading = this.collectionId != null;
         const groupsResponse = await this.apiService.getGroups(this.organizationId);
-        this.groups = groupsResponse.data.map((r) => r);
+        this.groups = groupsResponse.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.orgKey = await this.cryptoService.getOrgKey(this.organizationId);
 
         if (this.editMode) {
@@ -58,7 +60,7 @@ export class CollectionAddEditComponent implements OnInit {
                 this.name = await this.cryptoService.decryptToUtf8(new CipherString(collection.name), this.orgKey);
                 if (collection.groups != null && this.groups != null) {
                     collection.groups.forEach((s) => {
-                        const group = this.groups.filter((g) => g.id === s.id);
+                        const group = this.groups.filter((g) => !g.accessAll && g.id === s.id);
                         if (group != null && group.length > 0) {
                             (group[0] as any).checked = true;
                             (group[0] as any).readOnly = s.readOnly;
@@ -70,10 +72,19 @@ export class CollectionAddEditComponent implements OnInit {
             this.title = this.i18nService.t('addCollection');
         }
 
+        this.groups.forEach((g) => {
+            if (g.accessAll) {
+                (g as any).checked = true;
+            }
+        });
+
         this.loading = false;
     }
 
     check(g: GroupResponse, select?: boolean) {
+        if (g.accessAll) {
+            return;
+        }
         (g as any).checked = select == null ? !(g as any).checked : select;
         if (!(g as any).checked) {
             (g as any).readOnly = false;
@@ -87,7 +98,7 @@ export class CollectionAddEditComponent implements OnInit {
     async submit() {
         const request = new CollectionRequest();
         request.name = (await this.cryptoService.encrypt(this.name, this.orgKey)).encryptedString;
-        request.groups = this.groups.filter((g) => (g as any).checked)
+        request.groups = this.groups.filter((g) => (g as any).checked && !g.accessAll)
             .map((g) => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly));
 
         try {

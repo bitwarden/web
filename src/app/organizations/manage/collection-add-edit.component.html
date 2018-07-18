@@ -40,13 +40,16 @@
                     <tbody>
                         <tr *ngFor="let g of groups; let i = index">
                             <td class="table-list-checkbox" (click)="check(g)">
-                                <input type="checkbox" [(ngModel)]="g.checked" name="Groups[{{i}}].Checked">
+                                <input type="checkbox" [(ngModel)]="g.checked" name="Groups[{{i}}].Checked" [disabled]="g.accessAll">
                             </td>
                             <td (click)="check(g)">
-                                <span appStopProp>{{g.name}}</span>
+                                <span appStopProp>
+                                    {{g.name}}
+                                    <i class="fa fa-th text-muted fa-fw" *ngIf="g.accessAll" title="This group can access all items"></i>
+                                </span>
                             </td>
                             <td class="text-center">
-                                <input type="checkbox" [(ngModel)]="g.readOnly" name="Groups[{{i}}].ReadOnly" [disabled]="!g.checked">
+                                <input type="checkbox" [(ngModel)]="g.readOnly" name="Groups[{{i}}].ReadOnly" [disabled]="!g.checked || g.accessAll">
                             </td>
                         </tr>
                     </tbody>
