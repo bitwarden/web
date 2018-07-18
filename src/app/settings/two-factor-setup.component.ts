@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
 import { TwoFactorProviders } from 'jslib/services/auth.service';
@@ -42,7 +43,7 @@ export class TwoFactorSetupComponent implements OnInit {
     private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private tokenService: TokenService,
-        private componentFactoryResolver: ComponentFactoryResolver) { }
+        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService) { }
 
     async ngOnInit() {
         this.premium = this.tokenService.getPremium();
@@ -123,6 +124,14 @@ export class TwoFactorSetupComponent implements OnInit {
 
     recoveryCode() {
         this.openModal(this.recoveryModalRef, TwoFactorRecoveryComponent);
+    }
+
+    async premiumRequired() {
+        const premium = await this.tokenService.getPremium();
+        if (!premium) {
+            this.messagingService.send('premiumRequired');
+            return;
+        }
     }
 
     private openModal<T>(ref: ViewContainerRef, type: Type<T>): T {

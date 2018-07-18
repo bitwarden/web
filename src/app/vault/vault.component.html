@@ -49,6 +49,17 @@
             </app-vault-ciphers>
         </div>
         <div class="col-3">
+            <div class="card border-warning mb-4" *ngIf="showUpdateKey">
+                <div class="card-header bg-warning text-white">
+                    <i class="fa fa-warning fa-fw"></i> {{'updateKeyTitle' | i18n}}
+                </div>
+                <div class="card-body">
+                    <p>{{'updateEncryptionKeyShortDesc' | i18n}}</p>
+                    <button class="btn btn-block btn-outline-secondary" type="button" (click)="updateKey()">
+                        {{'updateEncryptionKey' | i18n}}
+                    </button>
+                </div>
+            </div>
             <app-verify-email *ngIf="showVerifyEmail" class="d-block mb-4"></app-verify-email>
             <div class="card border-warning mb-4" *ngIf="showBrowserOutdated">
                 <div class="card-header bg-warning text-white">
@@ -59,17 +70,6 @@
                     <a class="btn btn-block btn-outline-secondary" target="_blank" href="https://browser-update.org/update-browser.html" rel="noopener">
                         {{'updateBrowser' | i18n}}
                     </a>
-                </div>
-            </div>
-            <div class="card border-warning mb-4" *ngIf="showUpdateKey">
-                <div class="card-header bg-warning text-white">
-                    <i class="fa fa-warning fa-fw"></i> {{'updateKeyTitle' | i18n}}
-                </div>
-                <div class="card-body">
-                    <p>{{'updateEncryptionKeyShortDesc' | i18n}}</p>
-                    <button class="btn btn-block btn-outline-secondary" type="button" (click)="updateKey()">
-                        {{'updateEncryptionKey' | i18n}}
-                    </button>
                 </div>
             </div>
             <div class="card">

@@ -11,6 +11,7 @@ import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
@@ -36,9 +37,11 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         analytics: Angulartics2, toasterService: ToasterService,
         auditService: AuditService, stateService: StateService,
         tokenService: TokenService, totpService: TotpService,
-        passwordGenerationService: PasswordGenerationService, private apiService: ApiService) {
+        passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
+        messagingService: MessagingService) {
         super(cipherService, folderService, i18nService, platformUtilsService, analytics,
-            toasterService, auditService, stateService, tokenService, totpService, passwordGenerationService);
+            toasterService, auditService, stateService, tokenService, totpService, passwordGenerationService,
+            messagingService);
     }
 
     protected async loadCipher() {

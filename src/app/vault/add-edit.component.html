@@ -50,8 +50,7 @@
                                     <a href="#" class="d-block mr-2" appStopClick title="{{'generatePassword' | i18n}}" (click)="generatePassword()">
                                         <i class="fa fa-lg fa-fw fa-refresh"></i>
                                     </a>
-                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick title="{{'checkPassword' | i18n}}" (click)="checkPassword()"
-                                        [appApiAction]="checkPasswordPromise">
+                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick title="{{'checkPassword' | i18n}}" (click)="checkPassword()" [appApiAction]="checkPasswordPromise">
                                         <i class="fa fa-lg fa-fw fa-check-circle" [hidden]="checkPasswordBtn.loading"></i>
                                         <i class="fa fa-lg fa-fw fa-spinner fa-spin" [hidden]="!checkPasswordBtn.loading" title="{{'loading' | i18n}}"></i>
                                     </a>
@@ -81,6 +80,12 @@
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
                                 <img src="../../images/totp-countdown.png" title="{{'verificationCodeTotp' | i18n}}" class="ml-2">
+                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()" *ngIf="!cipher.organizationId && !isPremium">
+                                    {{'premium' | i18n}}
+                                </a>
+                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="upgradeOrganization()" *ngIf="cipher.organizationId && !organizationUseTotp">
+                                    {{'upgrade' | i18n}}
+                                </a>
                             </div>
                             <div *ngIf="cipher.login.totp && totpCode" class="d-flex align-items-center">
                                 <span class="totp-countdown mr-3 ml-2">
@@ -364,8 +369,8 @@
                     <button *ngIf="!organization" type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
                         <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"></i>
                     </button>
-                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"
-                        *ngIf="editMode" [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
+                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}" *ngIf="editMode"
+                        [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
                         <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>
                     </button>

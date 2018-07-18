@@ -101,7 +101,24 @@ export class AppComponent implements OnDestroy, OnInit {
                         break;
                     case 'syncCompleted':
                         break;
+                    case 'upgradeOrganization':
+                        const upgradeConfirmed = await this.platformUtilsService.showDialog(
+                            this.i18nService.t('upgradeOrganizationDesc'), this.i18nService.t('upgradeOrganization'),
+                            this.i18nService.t('upgradeOrganization'), this.i18nService.t('cancel'));
+                        if (upgradeConfirmed) {
+                            this.router.navigate(['organizations', message.organizationId, 'settings', 'billing']);
+                        }
+                        break;
+                    case 'premiumRequired':
+                        const premiumConfirmed = await this.platformUtilsService.showDialog(
+                            this.i18nService.t('premiumRequiredDesc'), this.i18nService.t('premiumRequired'),
+                            this.i18nService.t('learnMore'), this.i18nService.t('cancel'));
+                        if (premiumConfirmed) {
+                            this.router.navigate(['settings/premium']);
+                        }
+                        break;
                     default:
+                        break;
                 }
             });
         });

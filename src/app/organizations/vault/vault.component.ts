@@ -12,6 +12,7 @@ import {
 } from '@angular/router';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
@@ -50,7 +51,7 @@ export class VaultComponent implements OnInit {
     constructor(private route: ActivatedRoute, private userService: UserService,
         private location: Location, private router: Router,
         private syncService: SyncService, private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver) { }
+        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
@@ -139,6 +140,11 @@ export class VaultComponent implements OnInit {
     }
 
     editCipherAttachments(cipher: CipherView) {
+        if (this.organization.maxStorageGb == null || this.organization.maxStorageGb === 0) {
+            this.messagingService.send('upgradeOrganization', { organizationId: cipher.organizationId });
+            return;
+        }
+
         if (this.modal != null) {
             this.modal.close();
         }

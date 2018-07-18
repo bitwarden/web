@@ -32,8 +32,10 @@ import { ShareComponent } from './share.component';
 
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 @Component({
     selector: 'app-vault',
@@ -66,7 +68,8 @@ export class VaultComponent implements OnInit {
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private location: Location,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private tokenService: TokenService, private cryptoService: CryptoService) { }
+        private tokenService: TokenService, private cryptoService: CryptoService,
+        private messagingService: MessagingService, private userService: UserService) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
@@ -157,7 +160,19 @@ export class VaultComponent implements OnInit {
         this.ciphersComponent.searchText = searchText;
     }
 
-    editCipherAttachments(cipher: CipherView) {
+    async editCipherAttachments(cipher: CipherView) {
+        const premium = await this.tokenService.getPremium();
+        if (cipher.organizationId == null && !premium) {
+            this.messagingService.send('premiumRequired');
+            return;
+        } else if (cipher.organizationId != null) {
+            const org = await this.userService.getOrganization(cipher.organizationId);
+            if (org != null && (org.maxStorageGb == null || org.maxStorageGb === 0)) {
+                this.messagingService.send('upgradeOrganization', { organizationId: cipher.organizationId });
+                return;
+            }
+        }
+
         if (this.modal != null) {
             this.modal.close();
         }

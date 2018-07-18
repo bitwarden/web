@@ -20,7 +20,7 @@
             <h3 class="mb-0">
                 {{p.name}}
                 <i class="fa fa-check text-success fa-fw" *ngIf="p.enabled" title="{{'enabled' | i18n}}"></i>
-                <a href="#" appStopClick class="badge badge-primary" *ngIf="!premium && p.premium">
+                <a href="#" appStopClick class="badge badge-primary" *ngIf="!premium && p.premium" (click)="premiumRequired()">
                     {{'premium' | i18n}}
                 </a>
             </h3>
