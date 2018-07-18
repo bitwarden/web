@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="modal-body" *ngIf="loading">
-                <i class="fa fa-spinner fa-spin text-muted"></i>
+                <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
             </div>
             <div class="modal-body" *ngIf="!loading">
                 <ng-container *ngIf="!users || !users.length">
@@ -41,7 +41,7 @@
                             <td class="table-list-options wider">
                                 <button type="button" class="btn btn-sm btn-outline-danger btn-submit" (click)="remove(u)" #removeBtn appBlurClick [disabled]="removeBtn.loading"
                                     [appApiAction]="actionPromise" *ngIf="entity !== 'collection' || !u.accessAll">
-                                    <i class="fa fa-spinner fa-spin"></i>
+                                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                                     <span>{{'remove' | i18n}}</span>
                                 </button>
                             </td>

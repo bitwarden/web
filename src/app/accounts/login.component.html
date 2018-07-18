@@ -28,10 +28,11 @@
                     </div>
                     <hr>
                     <div class="d-flex">
-                        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.loading" appBlurClick>
-                            <span [hidden]="form.loading">
-                                <i class="fa fa-sign-in"></i> {{'logIn' | i18n}}</span>
-                            <i class="fa fa-spinner fa-spin" [hidden]="!form.loading"></i>
+                        <button type="submit" class="btn btn-primary btn-block btn-submit" [disabled]="form.loading">
+                            <span>
+                                <i class="fa fa-sign-in"></i> {{'logIn' | i18n}}
+                            </span>
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                         </button>
                         <a routerLink="/register" [queryParams]="{email: email}" class="btn btn-outline-secondary btn-block ml-2 mt-0">
                             <i class="fa fa-pencil-square-o"></i> {{'createAccount' | i18n}}

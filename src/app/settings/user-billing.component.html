@@ -2,18 +2,18 @@
     <h1>
         {{'billingAndLicensing' | i18n}}
         <small>
-            <i class="fa fa-spinner fa-spin text-muted" *ngIf="firstLoaded && loading"></i>
+            <i class="fa fa-spinner fa-spin text-muted" *ngIf="firstLoaded && loading" title="{{'loading' | i18n}}"></i>
         </small>
     </h1>
 </div>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading"></i>
+<i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading" title="{{'loading' | i18n}}"></i>
 <ng-container *ngIf="billing">
     <app-callout type="warning" title="{{'canceled' | i18n}}" *ngIf="subscription && subscription.cancelled">{{'subscriptionCanceled' | i18n}}</app-callout>
     <app-callout type="warning" title="{{'pendingCancellation' | i18n}}" *ngIf="subscriptionMarkedForCancel">
         <p>{{'subscriptionPendingCanceled' | i18n}}</p>
         <button #reinstateBtn type="button" class="btn btn-outline-secondary btn-submit" (click)="reinstate()" [appApiAction]="reinstatePromise"
             [disabled]="reinstateBtn.loading">
-            <i class="fa fa-spinner fa-spin"></i>
+            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
             <span>{{'reinstateSubscription' | i18n}}</span>
         </button>
     </app-callout>
@@ -80,7 +80,7 @@
                 </button>
                 <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
                     [disabled]="cancelBtn.loading" *ngIf="!subscription.cancelled && !subscriptionMarkedForCancel">
-                    <i class="fa fa-spinner fa-spin"></i>
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                     <span>{{'cancelSubscription' | i18n}}</span>
                 </button>
             </div>

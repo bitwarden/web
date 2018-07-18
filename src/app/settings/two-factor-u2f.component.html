@@ -54,8 +54,8 @@
                     </ng-container>
                 </div>
                 <div class="modal-footer">
-                    <button appBlurClick type="submit" class="btn btn-primary" [disabled]="form.loading || (!enabled && !u2fResponse)">
-                        <i class="fa fa-spinner fa-spin" *ngIf="form.loading"></i>
+                    <button type="submit" class="btn btn-primary" [disabled]="form.loading || (!enabled && !u2fResponse)">
+                        <i class="fa fa-spinner fa-spin" *ngIf="form.loading" title="{{'loading' | i18n}}"></i>
                         <ng-container *ngIf="!form.loading">
                             <span *ngIf="!enabled">{{'enable' | i18n}}</span>
                             <span *ngIf="enabled">{{'disable' | i18n}}</span>

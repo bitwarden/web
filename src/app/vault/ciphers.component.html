@@ -53,7 +53,7 @@
         </tbody>
     </table>
     <div class="no-items" *ngIf="searchedCiphers.length === 0">
-        <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded"></i>
+        <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded" title="{{'loading' | i18n}}"></i>
         <ng-container *ngIf="loaded">
             <p>{{'noItemsInList' | i18n}}</p>
             <button (click)="addCipher()" class="btn btn-outline-primary" *ngIf="showAddNew">

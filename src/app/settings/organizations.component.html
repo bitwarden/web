@@ -1,6 +1,6 @@
 <ng-container *ngIf="vault">
     <p *ngIf="!loaded" class="text-muted">
-        <i class="fa fa-spinner fa-spin"></i>
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
     </p>
     <ng-container *ngIf="loaded">
         <ul class="fa-ul card-ul carets" *ngIf="organizations && organizations.length">
@@ -22,7 +22,7 @@
         <h1>
             {{'organizations' | i18n}}
             <small [appApiAction]="actionPromise" #action>
-                <i class="fa fa-spinner fa-spin text-muted" *ngIf="action.loading"></i>
+                <i class="fa fa-spinner fa-spin text-muted" *ngIf="action.loading" title="{{'loading' | i18n}}"></i>
             </small>
         </h1>
         <a href="#" routerLink="/settings/create-organization" class="btn btn-sm btn-outline-primary ml-auto">
@@ -30,7 +30,7 @@
             {{'newOrganization' | i18n}}
         </a>
     </div>
-    <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded"></i>
+    <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded" title="{{'loading' | i18n}}"></i>
     <ng-container *ngIf="loaded">
         <p *ngIf="!organizations || !organizations.length">{{'noOrganizationsList' | i18n}}</p>
         <table class="table table-hover table-list" *ngIf="organizations && organizations.length">

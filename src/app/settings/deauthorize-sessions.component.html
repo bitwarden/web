@@ -15,8 +15,8 @@
                     appAutoFocus appInputVerbatim>
             </div>
             <div class="modal-footer">
-                <button appBlurClick type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
-                    <i class="fa fa-spinner fa-spin"></i>
+                <button type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                     <span>{{'deauthorizeSessions' | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>

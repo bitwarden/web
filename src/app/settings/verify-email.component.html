@@ -6,7 +6,7 @@
         <p>{{'verifyEmailDesc' | i18n}}</p>
         <button type="button" class="btn btn-block btn-outline-secondary btn-submit" #sendBtn [appApiAction]="actionPromise" [disabled]="sendBtn.loading"
             (click)="send()">
-            <i class="fa fa-spin fa-spinner"></i>
+            <i class="fa fa-spin fa-spinner" title="{{'loading' | i18n}}"></i>
             <span>
                 {{'sendEmail' | i18n}}
             </span>
