@@ -17,6 +17,10 @@
             <span>{{'reinstateSubscription' | i18n}}</span>
         </button>
     </app-callout>
+    <dl>
+        <dt>{{'subscription' | i18n}}</dt>
+        <dd>{{'premiumMembership' | i18n}}</dd>
+    </dl>
     <dl *ngIf="selfHosted">
         <dt>{{'expiration' | i18n}}</dt>
         <dd *ngIf="billing.expiration">{{billing.expiration | date:'mediumDate'}}</dd>
@@ -64,7 +68,7 @@
         <div class="card mt-3" *ngIf="showUpdateLicense">
             <div class="card-body">
                 <h3 class="card-body-header">{{'updateLicense' | i18n}}</h3>
-                <app-update-license [user]="true" (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
+                <app-update-license (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
             </div>
         </div>
     </ng-container>

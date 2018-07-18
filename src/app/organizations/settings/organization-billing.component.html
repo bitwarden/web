@@ -63,14 +63,14 @@
             <button type="button" class="btn btn-outline-secondary" (click)="updateLicense()">
                 {{'updateLicense' | i18n}}
             </button>
-            <a href="https://vault.bitwarden.com/#/settings/billing" target="_blank" rel="noopener" class="btn btn-outline-secondary">
+            <a href="https://vault.bitwarden.com" target="_blank" rel="noopener" class="btn btn-outline-secondary">
                 {{'manageSubscription' | i18n}}
             </a>
         </div>
         <div class="card mt-3" *ngIf="showUpdateLicense">
             <div class="card-body">
                 <h3 class="card-body-header">{{'updateLicense' | i18n}}</h3>
-                <app-update-license [user]="false" (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
+                <app-update-license [organizationId]="organizationId" (onUpdated)="closeUpdateLicense(true)" (onCanceled)="closeUpdateLicense(false)"></app-update-license>
             </div>
         </div>
     </ng-container>

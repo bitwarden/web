@@ -16,7 +16,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
     templateUrl: 'update-license.component.html',
 })
 export class UpdateLicenseComponent {
-    @Input() user = true;
+    @Input() organizationId: string;
     @Output() onUpdated = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
@@ -38,10 +38,10 @@ export class UpdateLicenseComponent {
             const fd = new FormData();
             fd.append('license', files[0]);
 
-            if (this.user) {
+            if (this.organizationId == null) {
                 this.formPromise = this.apiService.postAccountLicense(fd);
             } else {
-                // TODO
+                this.formPromise = this.apiService.postOrganizationLicenseUpdate(this.organizationId, fd);
             }
 
             await this.formPromise;
