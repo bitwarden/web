@@ -11,6 +11,7 @@ import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
     templateUrl: 'two-factor-recovery.component.html',
 })
 export class TwoFactorRecoveryComponent {
+    type = -1;
     code: string;
     authed: boolean;
     twoFactorProviderType = TwoFactorProviderType;

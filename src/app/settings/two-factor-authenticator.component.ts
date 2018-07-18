@@ -24,6 +24,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     templateUrl: 'two-factor-authenticator.component.html',
 })
 export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent implements OnInit, OnDestroy {
+    type = TwoFactorProviderType.Authenticator;
     key: string;
     token: string;
     formPromise: Promise<any>;
@@ -33,8 +34,7 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         private userService: UserService, platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, analytics, toasterService, platformUtilsService,
-            TwoFactorProviderType.Authenticator);
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
         this.qrScript = window.document.createElement('script');
         this.qrScript.src = 'scripts/qrious.min.js';
         this.qrScript.async = true;

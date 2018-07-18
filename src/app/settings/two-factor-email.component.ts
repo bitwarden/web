@@ -21,6 +21,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     templateUrl: 'two-factor-email.component.html',
 })
 export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
+    type = TwoFactorProviderType.Email;
     email: string;
     token: string;
     sentEmail: string;
@@ -30,8 +31,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private userService: UserService) {
-        super(apiService, i18nService, analytics, toasterService, platformUtilsService,
-            TwoFactorProviderType.Email);
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 
     auth(authResponse: any) {

@@ -16,6 +16,8 @@ import { TwoFactorProviderRequest } from 'jslib/models/request/twoFactorProvider
 export abstract class TwoFactorBaseComponent {
     @Output() onUpdated = new EventEmitter<boolean>();
 
+    type: TwoFactorProviderType;
+    organizationId: string;
     twoFactorProviderType = TwoFactorProviderType;
     enabled = false;
     authed = false;
@@ -24,7 +26,7 @@ export abstract class TwoFactorBaseComponent {
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
         protected analytics: Angulartics2, protected toasterService: ToasterService,
-        protected platformUtilsService: PlatformUtilsService, private type: TwoFactorProviderType) { }
+        protected platformUtilsService: PlatformUtilsService) { }
 
     protected auth(authResponse: any) {
         this.masterPasswordHash = authResponse.masterPasswordHash;
@@ -52,7 +54,11 @@ export abstract class TwoFactorBaseComponent {
             const request = new TwoFactorProviderRequest();
             request.masterPasswordHash = this.masterPasswordHash;
             request.type = this.type;
-            promise = this.apiService.putTwoFactorDisable(request);
+            if (this.organizationId != null) {
+                promise = this.apiService.putTwoFactorOrganizationDisable(this.organizationId, request);
+            } else {
+                promise = this.apiService.putTwoFactorDisable(request);
+            }
             await promise;
             this.enabled = false;
             this.analytics.eventTrack.next({

@@ -56,6 +56,9 @@ import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.comp
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
+import {
+    TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
+} from './organizations/settings/two-factor-setup.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
@@ -210,6 +213,7 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
         OrgPeopleComponent,
         OrgSettingComponent,
         OrgToolsComponent,
+        OrgTwoFactorSetupComponent,
         OrgUserAddEditComponent,
         OrgUserGroupsComponent,
         OrganizationsComponent,

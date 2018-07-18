@@ -28,6 +28,9 @@ import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/pe
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { SettingsComponent as OrgSettingsComponent } from './organizations/settings/settings.component';
+import {
+    TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
+} from './organizations/settings/two-factor-setup.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
@@ -188,6 +191,7 @@ const routes: Routes = [
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
                     { path: 'account', component: OrgAccountComponent, data: { titleId: 'myOrganization' } },
+                    { path: 'two-factor', component: OrgTwoFactorSetupComponent, data: { titleId: 'twoStepLogin' } },
                     {
                         path: 'billing',
                         component: OrganizationBillingComponent,

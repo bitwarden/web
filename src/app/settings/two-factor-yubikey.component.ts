@@ -19,6 +19,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     templateUrl: 'two-factor-yubikey.component.html',
 })
 export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
+    type = TwoFactorProviderType.Yubikey;
     keys: any[];
     nfc = false;
 
@@ -28,8 +29,7 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, analytics, toasterService, platformUtilsService,
-            TwoFactorProviderType.Yubikey);
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 
     auth(authResponse: any) {

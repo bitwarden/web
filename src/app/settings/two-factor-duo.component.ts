@@ -18,6 +18,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     templateUrl: 'two-factor-duo.component.html',
 })
 export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
+    type = TwoFactorProviderType.Duo;
     ikey: string;
     skey: string;
     host: string;
@@ -26,8 +27,7 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, analytics, toasterService, platformUtilsService,
-            TwoFactorProviderType.Duo);
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 
     auth(authResponse: any) {
@@ -51,7 +51,11 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
         request.host = this.host;
 
         return super.enable(async () => {
-            this.formPromise = this.apiService.putTwoFactorDuo(request);
+            if (this.organizationId != null) {
+                this.formPromise = this.apiService.putTwoFactorOrganizationDuo(this.organizationId, request);
+            } else {
+                this.formPromise = this.apiService.putTwoFactorDuo(request);
+            }
             const response = await this.formPromise;
             await this.processResponse(response);
         });

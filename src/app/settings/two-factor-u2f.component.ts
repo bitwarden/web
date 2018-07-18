@@ -22,6 +22,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     templateUrl: 'two-factor-u2f.component.html',
 })
 export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnInit, OnDestroy {
+    type = TwoFactorProviderType.U2f;
     u2fChallenge: any;
     u2fError: boolean;
     u2fListening: boolean;
@@ -34,8 +35,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, analytics, toasterService, platformUtilsService,
-            TwoFactorProviderType.U2f);
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
         this.u2fScript = window.document.createElement('script');
         this.u2fScript.src = 'scripts/u2f.js';
         this.u2fScript.async = true;

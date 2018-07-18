@@ -42,8 +42,8 @@ export class TwoFactorSetupComponent implements OnInit {
 
     private modal: ModalComponent = null;
 
-    constructor(private apiService: ApiService, private tokenService: TokenService,
-        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService) { }
+    constructor(protected apiService: ApiService, protected tokenService: TokenService,
+        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService) { }
 
     async ngOnInit() {
         this.premium = this.tokenService.getPremium();
@@ -54,7 +54,7 @@ export class TwoFactorSetupComponent implements OnInit {
             }
 
             const p = (TwoFactorProviders as any)[key];
-            if (p.type === TwoFactorProviderType.OrganizationDuo) {
+            if (this.filterProvider(p.type)) {
                 continue;
             }
 
@@ -74,7 +74,7 @@ export class TwoFactorSetupComponent implements OnInit {
 
     async load() {
         this.loading = true;
-        const providerList = await this.apiService.getTwoFactorProviders();
+        const providerList = await this.getTwoFactorProviders();
         providerList.data.forEach((p) => {
             this.providers.forEach((p2) => {
                 if (p.type === p2.type) {
@@ -134,7 +134,15 @@ export class TwoFactorSetupComponent implements OnInit {
         }
     }
 
-    private openModal<T>(ref: ViewContainerRef, type: Type<T>): T {
+    protected getTwoFactorProviders() {
+        return this.apiService.getTwoFactorProviders();
+    }
+
+    protected filterProvider(type: TwoFactorProviderType) {
+        return type === TwoFactorProviderType.OrganizationDuo;
+    }
+
+    protected openModal<T>(ref: ViewContainerRef, type: Type<T>): T {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -149,7 +157,7 @@ export class TwoFactorSetupComponent implements OnInit {
         return childComponent;
     }
 
-    private updateStatus(enabled: boolean, type: TwoFactorProviderType) {
+    protected updateStatus(enabled: boolean, type: TwoFactorProviderType) {
         if (!enabled && this.modal != null) {
             this.modal.close();
         }

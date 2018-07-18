@@ -20,10 +20,9 @@ import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerifi
     templateUrl: 'two-factor-verify.component.html',
 })
 export class TwoFactorVerifyComponent {
-    @Input()
-    type: TwoFactorProviderType;
-    @Output()
-    onAuthed = new EventEmitter<any>();
+    @Input() type: TwoFactorProviderType;
+    @Input() organizationId: string;
+    @Output() onAuthed = new EventEmitter<any>();
 
     masterPassword: string;
     formPromise: Promise<any>;
@@ -50,7 +49,12 @@ export class TwoFactorVerifyComponent {
                     this.formPromise = this.apiService.getTwoFactorRecover(request);
                     break;
                 case TwoFactorProviderType.Duo:
-                    this.formPromise = this.apiService.getTwoFactorDuo(request);
+                case TwoFactorProviderType.OrganizationDuo:
+                    if (this.organizationId != null) {
+                        this.formPromise = this.apiService.getTwoFactorOrganizationDuo(this.organizationId, request);
+                    } else {
+                        this.formPromise = this.apiService.getTwoFactorDuo(request);
+                    }
                     break;
                 case TwoFactorProviderType.Email:
                     this.formPromise = this.apiService.getTwoFactorEmail(request);
