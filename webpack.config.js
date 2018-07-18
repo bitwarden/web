@@ -25,7 +25,7 @@ const isVendorModule = (module) => {
 };
 
 const extractCss = new ExtractTextPlugin({
-    filename: '[name].css',
+    filename: '[name].[chunkhash].css',
     disable: false,
     allChunks: true,
 });
@@ -177,7 +177,7 @@ const config = {
         modules: [path.resolve('node_modules')],
     },
     output: {
-        filename: '[name].js',
+        filename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'build'),
     },
     module: { rules: moduleRules },
