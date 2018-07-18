@@ -15,6 +15,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+
 import { Utils } from 'jslib/misc/utils';
 
 @Component({
