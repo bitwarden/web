@@ -113,6 +113,11 @@
             "Export" button to save the CSV file. Note: RoboForm only allows you to export Logins. Other items will not be
             exported.
         </ng-container>
+        <ng-container *ngIf="format === 'passboltcsv'">
+            Log into the Passbolt web vault and navigate to the "Passwords" listing. Select all of the passwords you would like to export
+            and click the "Export" button at the top of the listing. Choose the "csv (lastpass)" export format and click
+            the "Export" button.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

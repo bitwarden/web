@@ -206,6 +206,7 @@ export class ImportComponent implements OnInit {
             { id: 'splashidcsv', name: 'SplashID (csv)' },
             { id: 'passworddragonxml', name: 'Password Dragon (xml)' },
             { id: 'padlockcsv', name: 'Padlock (csv)' },
+            { id: 'passboltcsv', name: 'Passbolt (csv)' },
             { id: 'clipperzhtml', name: 'Clipperz (html)' },
             { id: 'aviracsv', name: 'Avira (csv)' },
             { id: 'saferpasscsv', name: 'SaferPass (csv)' },
@@ -229,6 +230,7 @@ export class ImportComponent implements OnInit {
             case 'bitwardencsv':
                 return new BitwardenCsvImporter();
             case 'lastpasscsv':
+            case 'passboltcsv':
                 return new LastPassCsvImporter();
             case 'keepassxcsv':
                 return new KeePassXCsvImporter();
