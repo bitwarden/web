@@ -34,7 +34,7 @@
     <ng-container *ngIf="loaded">
         <ng-container *ngIf="!organizations || !organizations.length">
             <p>{{'noOrganizationsList' | i18n}}</p>
-            <a href="#" routerLink="/settings/create-organization" class="btn btn-outline-primary ml-auto">
+            <a href="#" routerLink="/settings/create-organization" class="btn btn-outline-primary">
                 <i class="fa fa-plus fa-fw"></i>
                 {{'newOrganization' | i18n}}
             </a>
