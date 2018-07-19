@@ -66,7 +66,7 @@ export class DomainRulesComponent implements OnInit {
             request.excludedGlobalEquivalentDomains = null;
         }
         request.equivalentDomains = this.custom.filter((d) => d != null && d.trim() !== '')
-            .map((d) => d.split(' ').join('').split(','));
+            .map((d) => d.split(',').map((d2) => d2.trim()));
         if (request.equivalentDomains.length === 0) {
             request.equivalentDomains = null;
         }
