@@ -80,6 +80,9 @@ export class UpdateKeyComponent {
 
         const folders = await this.folderService.getAllDecrypted();
         for (let i = 0; i < folders.length; i++) {
+            if (folders[i].id == null) {
+                continue;
+            }
             const folder = await this.folderService.encrypt(folders[i], encKey[0]);
             request.folders.push(new FolderWithIdRequest(folder));
         }
