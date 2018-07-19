@@ -126,6 +126,12 @@
             Using the Password Boss desktop application, navigate to "File" &rarr; "Export data" &rarr; "Password Boss JSON - not encrypted"
             and save the JSON file.
         </ng-container>
+        <ng-container *ngIf="format === 'zohovaultcsv'">
+            Log into the Zoho web vault (vault.zoho.com). Navigate to "Tools" &rarr; "Export Secrets". Select "All Secrets" and click
+            the "Zoho Vault Format CSV" button. Highlight and copy the data from the textarea. Open a text editor like Notepad
+            and paste the data. Save the data from the text editor as
+            <code>zoho_export.csv</code>.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

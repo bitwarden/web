@@ -49,6 +49,7 @@ import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
 import { StickyPasswordXmlImporter } from 'jslib/importers/stickyPasswordXmlImporter';
 import { TrueKeyCsvImporter } from 'jslib/importers/truekeyCsvImporter';
 import { UpmCsvImporter } from 'jslib/importers/upmCsvImporter';
+import { ZohoVaultCsvImporter } from 'jslib/importers/zohoVaultCsvImporter';
 
 @Component({
     selector: 'app-import',
@@ -286,6 +287,8 @@ export class ImportComponent implements OnInit {
                 return new AscendoCsvImporter();
             case 'passwordbossjson':
                 return new PasswordBossJsonImporter();
+            case 'zohovaultcsv':
+                return new ZohoVaultCsvImporter();
             default:
                 return null;
         }
