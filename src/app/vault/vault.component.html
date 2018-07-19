@@ -73,8 +73,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex">
                     {{'organizations' | i18n}}
+                    <a class="ml-auto" href="https://help.bitwarden.com/article/what-is-an-organization/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                        <i class="fa fa-question-circle-o"></i>
+                    </a>
                 </div>
                 <div class="card-body">
                     <app-organizations [vault]="true"></app-organizations>

@@ -23,7 +23,7 @@
                 autocomplete="cc-number">
         </div>
         <div class="form-group col-7 d-flex align-items-end">
-            <img src="../../images/cards.png" alt="" width="323" height="32">
+            <img src="../../images/cards.png" alt="Visa, MasterCard, Discover, AmEx, JCB, Diners Club, UnionPay" width="323" height="32">
         </div>
         <div class="form-group col-4">
             <label for="exp_month">{{'expirationMonth' | i18n}}</label>
@@ -40,8 +40,8 @@
         <div class="form-group col-4">
             <label for="cvc" class="d-flex">
                 {{'securityCode' | i18n}}
-                <a href="https://www.cvvnumber.com/cvv.html" target="_blank" rel="noopener noreferrer" class="ml-auto">
-                    <i class="fa fa-question-circle"></i>
+                <a href="https://www.cvvnumber.com/cvv.html" target="_blank" rel="noopener noreferrer" class="ml-auto" title="{{'learnMore' | i18n}}">
+                    <i class="fa fa-question-circle-o"></i>
                 </a>
             </label>
             <input id="cvc" class="form-control" type="text" name="cvc" [(ngModel)]="card.cvc" required autocomplete="cc-csc">

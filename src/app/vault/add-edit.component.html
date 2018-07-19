@@ -124,9 +124,14 @@
                                 </div>
                             </div>
                             <div class="col-5 form-group">
-                                <label for="loginUriMatch{{i}}">
-                                    {{'matchDetection' | i18n}}
-                                </label>
+                                <div class="d-flex">
+                                    <label for="loginUriMatch{{i}}">
+                                        {{'matchDetection' | i18n}}
+                                    </label>
+                                    <a class="ml-auto" href="https://help.bitwarden.com/article/uri-match-detection/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                                        <i class="fa fa-question-circle-o"></i>
+                                    </a>
+                                </div>
                                 <div class="d-flex">
                                     <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match" [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)">
                                         <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}</option>
@@ -305,7 +310,12 @@
                 <ng-container *ngIf="cipher.hasFields">
                     <div class="row" appBoxRow *ngFor="let f of cipher.fields; let i = index">
                         <div class="col-5 form-group">
-                            <label for="fieldName{{i}}">{{'name' | i18n}}</label>
+                            <div class="d-flex">
+                                <label for="fieldName{{i}}">{{'name' | i18n}}</label>
+                                <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                                    <i class="fa fa-question-circle-o"></i>
+                                </a>
+                            </div>
                             <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name" class="form-control" appInputVerbatim>
                         </div>
                         <div class="col-7 form-group">
