@@ -122,6 +122,10 @@
             Using the Ascendo DataVault desktop application, navigate to "Tools" &rarr; "Export". In the dialog that pops up, select
             the "All Items (DVX, CSV)" option. Click the "Ok" button to save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'passwordbossjson'">
+            Using the Password Boss desktop application, navigate to "File" &rarr; "Export data" &rarr; "Password Boss JSON - not encrypted"
+            and save the JSON file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

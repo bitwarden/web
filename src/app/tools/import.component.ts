@@ -40,6 +40,7 @@ import { MSecureCsvImporter } from 'jslib/importers/msecureCsvImporter';
 import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter';
 import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
+import { PasswordBossJsonImporter } from 'jslib/importers/passwordBossJsonImporter';
 import { PasswordDragonXmlImporter } from 'jslib/importers/passwordDragonXmlImporter';
 import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter';
 import { RoboFormCsvImporter } from 'jslib/importers/roboformCsvImporter';
@@ -283,6 +284,8 @@ export class ImportComponent implements OnInit {
                 return new RoboFormCsvImporter();
             case 'ascendocsv':
                 return new AscendoCsvImporter();
+            case 'passwordbossjson':
+                return new PasswordBossJsonImporter();
             default:
                 return null;
         }
