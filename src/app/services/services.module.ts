@@ -115,6 +115,9 @@ containerService.attachToWindow(window);
 export function initFactory(): Function {
     return async () => {
         const isDev = platformUtilsService.isDev();
+        if (!isDev && platformUtilsService.isSelfHost()) {
+            environmentService.baseUrl = window.location.origin;
+        }
         await apiService.setUrls({
             base: isDev ? null : window.location.origin,
             api: isDev ? 'http://localhost:4000' : null,
