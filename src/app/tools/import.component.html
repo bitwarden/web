@@ -118,6 +118,10 @@
             and click the "Export" button at the top of the listing. Choose the "csv (lastpass)" export format and click
             the "Export" button.
         </ng-container>
+        <ng-container *ngIf="format === 'ascendocsv'">
+            Using the Ascendo DataVault desktop application, navigate to "Tools" &rarr; "Export". In the dialog that pops up, select
+            the "All Items (DVX, CSV)" option. Click the "Ok" button to save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

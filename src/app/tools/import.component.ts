@@ -21,6 +21,7 @@ import { KvpRequest } from 'jslib/models/request/kvpRequest';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
+import { AscendoCsvImporter } from 'jslib/importers/ascendoCsvImporter';
 import { AviraCsvImporter } from 'jslib/importers/aviraCsvImporter';
 import { BitwardenCsvImporter } from 'jslib/importers/bitwardenCsvImporter';
 import { BlurCsvImporter } from 'jslib/importers/blurCsvImporter';
@@ -280,6 +281,8 @@ export class ImportComponent implements OnInit {
                 return new ClipperzHtmlImporter();
             case 'roboformcsv':
                 return new RoboFormCsvImporter();
+            case 'ascendocsv':
+                return new AscendoCsvImporter();
             default:
                 return null;
         }
