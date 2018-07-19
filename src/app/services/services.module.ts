@@ -108,7 +108,7 @@ const authService = new AuthService(cryptoService, apiService,
 const exportService = new ExportService(folderService, cipherService, apiService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 
-const analytics = new Analytics(window, () => platformUtilsService.isDev(),
+const analytics = new Analytics(window, () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
     platformUtilsService, storageService, appIdService);
 containerService.attachToWindow(window);
 
