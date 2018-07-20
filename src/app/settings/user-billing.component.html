@@ -73,18 +73,16 @@
         </div>
     </ng-container>
     <ng-container *ngIf="!selfHosted">
-        <ng-container *ngIf="subscription && !subscription.cancelled || subscriptionMarkedForCancel">
-            <div class="d-flex">
-                <button type="button" class="btn btn-outline-secondary" (click)="downloadLicense()" *ngIf="!subscription.cancelled">
-                    {{'downloadLicense' | i18n}}
-                </button>
-                <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
-                    [disabled]="cancelBtn.loading" *ngIf="!subscription.cancelled && !subscriptionMarkedForCancel">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
-                    <span>{{'cancelSubscription' | i18n}}</span>
-                </button>
-            </div>
-        </ng-container>
+        <div class="d-flex">
+            <button type="button" class="btn btn-outline-secondary" (click)="downloadLicense()" *ngIf="!subscription || !subscription.cancelled">
+                {{'downloadLicense' | i18n}}
+            </button>
+            <button #cancelBtn type="button" class="btn btn-outline-danger btn-submit ml-auto" (click)="cancel()" [appApiAction]="cancelPromise"
+                [disabled]="cancelBtn.loading" *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel">
+                <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                <span>{{'cancelSubscription' | i18n}}</span>
+            </button>
+        </div>
         <h2 class="spaced-header">{{'storage' | i18n}}</h2>
         <p>{{'subscriptionStorage' | i18n : billing.maxStorageGb || 0 : billing.storageName || '0 MB'}}</p>
         <div class="progress">

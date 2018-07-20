@@ -2,10 +2,7 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -51,7 +48,7 @@ export class OrganizationBillingComponent implements OnInit {
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router, private route: ActivatedRoute) {
+        private route: ActivatedRoute) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -269,5 +266,10 @@ export class OrganizationBillingComponent implements OnInit {
         return this.billing.planType === PlanType.EnterpriseMonthly ||
             this.billing.planType === PlanType.EnterpriseAnnually ||
             this.billing.planType === PlanType.TeamsMonthly || this.billing.planType === PlanType.TeamsAnnually;
+    }
+
+    get canDownloadLicense() {
+        return (this.billing.planType !== PlanType.Free && this.subscription == null) ||
+            (this.subscription != null && !this.subscription.cancelled);
     }
 }
