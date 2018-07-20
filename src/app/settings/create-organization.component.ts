@@ -1,11 +1,12 @@
 import {
     Component,
-    EventEmitter,
-    Output,
+    OnInit,
     ViewChild,
 } from '@angular/core';
-
-import { Router } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -25,7 +26,7 @@ import { OrganizationCreateRequest } from 'jslib/models/request/organizationCrea
     selector: 'app-create-organization',
     templateUrl: 'create-organization.component.html',
 })
-export class CreateOrganizationComponent {
+export class CreateOrganizationComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
 
     selfHosted = false;
@@ -83,8 +84,17 @@ export class CreateOrganizationComponent {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
+        private router: Router, private syncService: SyncService,
+        private route: ActivatedRoute) {
         this.selfHosted = platformUtilsService.isSelfHost();
+    }
+
+    ngOnInit() {
+        this.route.queryParams.subscribe(async (qParams) => {
+            if (qParams.plan === 'families' || qParams.plan === 'teams' || qParams.plan === 'enterprise') {
+                this.plan = qParams.plan;
+            }
+        });
     }
 
     async submit() {

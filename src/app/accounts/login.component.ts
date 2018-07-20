@@ -32,6 +32,12 @@ export class LoginComponent extends BaseLoginComponent {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
+            if (qParams.premium != null) {
+                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+            } else if (qParams.org != null) {
+                this.stateService.save('loginRedirect',
+                    { route: '/settings/create-organization', qParams: { plan: qParams.org } });
+            }
             await super.ngOnInit();
         });
     }
@@ -41,7 +47,13 @@ export class LoginComponent extends BaseLoginComponent {
         if (invite != null) {
             this.router.navigate(['accept-organization'], { queryParams: invite });
         } else {
-            this.router.navigate([this.successRoute]);
+            const loginRedirect = await this.stateService.get<any>('loginRedirect');
+            if (loginRedirect != null) {
+                this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
+                await this.stateService.remove('loginRedirect');
+            } else {
+                this.router.navigate([this.successRoute]);
+            }
         }
     }
 }

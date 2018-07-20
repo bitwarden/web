@@ -20,6 +20,8 @@ import { RegisterComponent as BaseRegisterComponent } from 'jslib/angular/compon
     templateUrl: 'register.component.html',
 })
 export class RegisterComponent extends BaseRegisterComponent {
+    showCreateOrgMessage = false;
+
     constructor(authService: AuthService, router: Router,
         analytics: Angulartics2, toasterService: ToasterService,
         i18nService: I18nService, cryptoService: CryptoService,
@@ -32,6 +34,13 @@ export class RegisterComponent extends BaseRegisterComponent {
         this.route.queryParams.subscribe((qParams) => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
+            }
+            if (qParams.premium != null) {
+                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+            } else if (qParams.org != null) {
+                this.showCreateOrgMessage = true;
+                this.stateService.save('loginRedirect',
+                    { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
         });
     }
