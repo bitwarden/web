@@ -103,6 +103,10 @@ export class PaymentComponent implements OnInit {
         });
         if (!this.hidePaypal) {
             window.document.head.removeChild(this.btScript);
+            const btStylesheet = window.document.head.querySelector('#braintree-dropin-stylesheet');
+            if (btStylesheet != null) {
+                window.document.head.removeChild(btStylesheet);
+            }
         }
     }
 
