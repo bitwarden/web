@@ -61,6 +61,12 @@ export class PremiumComponent implements OnInit {
 
         try {
             if (this.selfHosted) {
+                if (!this.tokenService.getEmailVerified()) {
+                    this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                        this.i18nService.t('verifyEmailFirst'));
+                    return;
+                }
+
                 const fd = new FormData();
                 fd.append('license', files[0]);
                 this.formPromise = this.apiService.postAccountLicense(fd).then(() => {
