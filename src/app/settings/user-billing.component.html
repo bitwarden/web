@@ -125,7 +125,7 @@
                     <td>{{c.createdDate | date:'mediumDate'}}</td>
                     <td>{{c.paymentSource ? c.paymentSource.description : '-'}}</td>
                     <td class="text-capitalize">{{c.status}}</td>
-                    <td>{{c.amount | currency:'$'}}</td>
+                    <td [ngClass]="{'text-strike':c.refunded}" title="{{(c.refunded ? 'refunded' : '') | i18n}}">{{c.amount | currency:'$'}}</td>
                 </tr>
             </tbody>
         </table>
