@@ -13,7 +13,10 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 import { UpdateTwoFactorU2fRequest } from 'jslib/models/request/updateTwoFactorU2fRequest';
-import { TwoFactorU2fResponse } from 'jslib/models/response/twoFactorU2fResponse';
+import {
+    ChallengeResponse,
+    TwoFactorU2fResponse,
+} from 'jslib/models/response/twoFactorU2fResponse';
 
 import { TwoFactorBaseComponent } from './two-factor-base.component';
 
@@ -23,7 +26,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
 })
 export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnInit, OnDestroy {
     type = TwoFactorProviderType.U2f;
-    u2fChallenge: any;
+    u2fChallenge: ChallengeResponse;
     u2fError: boolean;
     u2fListening: boolean;
     u2fResponse: string;
@@ -88,9 +91,9 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
         this.u2fError = false;
         this.u2fListening = true;
 
-        (window as any).u2f.register(this.u2fChallenge.AppId, [{
-            version: this.u2fChallenge.Version,
-            challenge: this.u2fChallenge.Challenge,
+        (window as any).u2f.register(this.u2fChallenge.appId, [{
+            version: this.u2fChallenge.version,
+            challenge: this.u2fChallenge.challenge,
         }], [], (data: any) => {
             this.u2fListening = false;
             if (data.errorCode === 5) {
