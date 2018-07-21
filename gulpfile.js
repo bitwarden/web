@@ -1,8 +1,12 @@
 const gulp = require('gulp');
 const googleWebFonts = require('gulp-google-webfonts');
 const del = require('del');
+const package = require('./package.json');
+const fs = require('fs');
 
 const paths = {
+    src: './src/',
+    build: './build/',
     cssDir: './src/css/',
 };
 
@@ -20,6 +24,12 @@ function webfonts() {
         .pipe(gulp.dest(paths.cssDir));
 };
 
+function version() {
+    fs.writeFileSync(paths.build + 'version.json', '{"version":"' + package.version + '"}');
+}
+
 gulp.task('clean', clean);
 gulp.task('webfonts', ['clean'], webfonts);
-gulp.task('build', ['webfonts']);
+gulp.task('prebuild', ['webfonts']);
+gulp.task('version', version);
+gulp.task('postdist', ['version']);
