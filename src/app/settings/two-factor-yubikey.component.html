@@ -48,8 +48,8 @@
                     </div>
                     <strong class="d-block mb-2">{{'nfcSupport' | i18n}}</strong>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">{{'twoFactorYubikeySupportsNfc' | i18n}}</label>
+                        <input type="checkbox" class="form-check-input" id="nfc" name="Nfc" [(ngModel)]="nfc">
+                        <label class="form-check-label" for="nfc">{{'twoFactorYubikeySupportsNfc' | i18n}}</label>
                     </div>
                     <small class="form-text text-muted">{{'twoFactorYubikeySupportsNfcDesc' | i18n}}</small>
                 </div>

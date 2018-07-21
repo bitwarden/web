@@ -21,7 +21,7 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
 export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     type = TwoFactorProviderType.Yubikey;
     keys: any[];
-    nfc = true;
+    nfc = false;
 
     formPromise: Promise<any>;
     disablePromise: Promise<any>;
