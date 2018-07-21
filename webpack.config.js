@@ -17,13 +17,6 @@ if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
 }
 
-const isVendorModule = (module) => {
-    if (!module.context) {
-        return false;
-    }
-    return module.context.indexOf('node_modules') !== -1;
-};
-
 const extractCss = new ExtractTextPlugin({
     filename: '[name].[chunkhash].css',
     disable: false,
@@ -66,12 +59,8 @@ const moduleRules = [
         test: /\.scss$/,
         use: extractCss.extract({
             use: [
-                {
-                    loader: 'css-loader',
-                },
-                {
-                    loader: 'sass-loader',
-                },
+                { loader: 'css-loader' },
+                { loader: 'sass-loader' },
             ],
             publicPath: '../',
         }),
@@ -79,7 +68,7 @@ const moduleRules = [
     // Hide System.import warnings. ref: https://github.com/angular/angular/issues/21560
     {
         test: /[\/\\]@angular[\/\\].+\.js$/,
-        parser: { system: true }
+        parser: { system: true },
     },
 ];
 
@@ -93,7 +82,7 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
-        chunks: ['app/polyfills', 'app/main'],
+        chunks: ['app/polyfills', 'app/vendor', 'app/main'],
     }),
     new HtmlWebpackPlugin({
         template: './src/connectors/duo.html',
@@ -167,6 +156,19 @@ const config = {
     },
     externals: {
         'u2f': 'u2f',
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'app/vendor',
+                    chunks: (chunk) => {
+                        return chunk.name === 'app/main';
+                    },
+                },
+            },
+        },
     },
     resolve: {
         extensions: ['.ts', '.js'],
