@@ -11,6 +11,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { ToasterService } from 'angular2-toaster';
+
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -72,7 +74,7 @@ export class VaultComponent implements OnInit {
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
@@ -323,6 +325,13 @@ export class VaultComponent implements OnInit {
     }
 
     bulkDelete() {
+        const selectedIds = this.ciphersComponent.getSelectedIds();
+        if (selectedIds.length === 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected'));
+            return;
+        }
+
         if (this.modal != null) {
             this.modal.close();
         }
@@ -331,7 +340,7 @@ export class VaultComponent implements OnInit {
         this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
 
-        childComponent.cipherIds = this.ciphersComponent.getSelectedIds();
+        childComponent.cipherIds = selectedIds;
         childComponent.onDeleted.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
@@ -343,6 +352,13 @@ export class VaultComponent implements OnInit {
     }
 
     bulkShare() {
+        const selectedCiphers = this.ciphersComponent.getSelected();
+        if (selectedCiphers.length === 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected'));
+            return;
+        }
+
         if (this.modal != null) {
             this.modal.close();
         }
@@ -351,7 +367,7 @@ export class VaultComponent implements OnInit {
         this.modal = this.bulkShareModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkShareComponent>(BulkShareComponent, this.bulkShareModalRef);
 
-        childComponent.ciphers = this.ciphersComponent.getSelected();
+        childComponent.ciphers = selectedCiphers;
         childComponent.onShared.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
@@ -363,6 +379,13 @@ export class VaultComponent implements OnInit {
     }
 
     bulkMove() {
+        const selectedIds = this.ciphersComponent.getSelectedIds();
+        if (selectedIds.length === 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected'));
+            return;
+        }
+
         if (this.modal != null) {
             this.modal.close();
         }
@@ -371,7 +394,7 @@ export class VaultComponent implements OnInit {
         this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
 
-        childComponent.cipherIds = this.ciphersComponent.getSelectedIds();
+        childComponent.cipherIds = selectedIds;
         childComponent.onMoved.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
