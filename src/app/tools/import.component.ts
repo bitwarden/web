@@ -30,6 +30,7 @@ import { ClipperzHtmlImporter } from 'jslib/importers/clipperzHtmlImporter';
 import { DashlaneCsvImporter } from 'jslib/importers/dashlaneCsvImporter';
 import { EnpassCsvImporter } from 'jslib/importers/enpassCsvImporter';
 import { FirefoxCsvImporter } from 'jslib/importers/firefoxCsvImporter';
+import { GnomeJsonImporter } from 'jslib/importers/gnomeJsonImporter';
 import { Importer } from 'jslib/importers/importer';
 import { KeePass2XmlImporter } from 'jslib/importers/keepass2XmlImporter';
 import { KeePassXCsvImporter } from 'jslib/importers/keepassxCsvImporter';
@@ -295,6 +296,8 @@ export class ImportComponent implements OnInit {
                 return new SplashIdCsvImporter();
             case 'passkeepcsv':
                 return new PassKeepCsvImporter();
+            case 'gnomejson':
+                return new GnomeJsonImporter();
             default:
                 return null;
         }

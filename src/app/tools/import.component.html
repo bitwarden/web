@@ -140,6 +140,14 @@
             Using the PassKeep mobile app, navigate to "Backup/Restore". Locate the "CSV Backup/Restore" section and click "Backup to
             CSV" to save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'gnomejson'">
+            Make sure you have python-keyring and python-gnomekeyring installed. Save the
+            <a target="_blank" rel="noopener" href="https://bit.ly/2sMldAI">GNOME Keyring Import/Export</a> python script to your desktop as
+            <code>pw_helper.py</code>. Open terminal and run
+            <code>chmod +rx Desktop/pw_helper.py</code> and then
+            <code>python Desktop/pw_helper.py export Desktop/my_passwords.json</code>. Then upload the resulting
+            <code>my_passwords.json</code> file here to Bitwarden.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
