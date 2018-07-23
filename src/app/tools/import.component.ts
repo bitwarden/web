@@ -46,6 +46,7 @@ import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter
 import { RoboFormCsvImporter } from 'jslib/importers/roboformCsvImporter';
 import { SafeInCloudXmlImporter } from 'jslib/importers/safeInCloudXmlImporter';
 import { SaferPassCsvImporter } from 'jslib/importers/saferpassCsvImport';
+import { SplashIdCsvImporter } from 'jslib/importers/splashIdCsvImporter';
 import { StickyPasswordXmlImporter } from 'jslib/importers/stickyPasswordXmlImporter';
 import { TrueKeyCsvImporter } from 'jslib/importers/truekeyCsvImporter';
 import { UpmCsvImporter } from 'jslib/importers/upmCsvImporter';
@@ -289,6 +290,8 @@ export class ImportComponent implements OnInit {
                 return new PasswordBossJsonImporter();
             case 'zohovaultcsv':
                 return new ZohoVaultCsvImporter();
+            case 'splashidcsv':
+                return new SplashIdCsvImporter();
             default:
                 return null;
         }
