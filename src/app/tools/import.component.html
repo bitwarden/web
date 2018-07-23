@@ -136,6 +136,10 @@
             Using the SplashID Safe desktop application, click on the SplashID blue lock logo in the top right corner. Navigate to "Export"
             &rarr; "Export as CSV" and save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'passkeepcsv'">
+            Using the PassKeep mobile app, navigate to "Backup/Restore". Locate the "CSV Backup/Restore" section and click "Backup to
+            CSV" to save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">

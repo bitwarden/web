@@ -40,6 +40,7 @@ import { MSecureCsvImporter } from 'jslib/importers/msecureCsvImporter';
 import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter';
 import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
+import { PassKeepCsvImporter } from 'jslib/importers/passkeepCsvImporter';
 import { PasswordBossJsonImporter } from 'jslib/importers/passwordBossJsonImporter';
 import { PasswordDragonXmlImporter } from 'jslib/importers/passwordDragonXmlImporter';
 import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter';
@@ -292,6 +293,8 @@ export class ImportComponent implements OnInit {
                 return new ZohoVaultCsvImporter();
             case 'splashidcsv':
                 return new SplashIdCsvImporter();
+            case 'passkeepcsv':
+                return new PassKeepCsvImporter();
             default:
                 return null;
         }
