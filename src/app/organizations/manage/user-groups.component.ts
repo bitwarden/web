@@ -15,6 +15,8 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { OrganizationUserUpdateGroupsRequest } from 'jslib/models/request/organizationUserUpdateGroupsRequest';
 import { GroupResponse } from 'jslib/models/response/groupResponse';
 
+import { Utils } from 'jslib/misc/utils';
+
 @Component({
     selector: 'app-user-groups',
     templateUrl: 'user-groups.component.html',
@@ -34,7 +36,9 @@ export class UserGroupsComponent implements OnInit {
 
     async ngOnInit() {
         const groupsResponse = await this.apiService.getGroups(this.organizationId);
-        this.groups = groupsResponse.data.map((r) => r);
+        const groups = groupsResponse.data.map((r) => r);
+        groups.sort(Utils.getSortFunction(this.i18nService, 'name'));
+        this.groups = groups;
 
         try {
             const userGroups = await this.apiService.getOrganizationUserGroups(
