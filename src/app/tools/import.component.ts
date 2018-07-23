@@ -42,6 +42,7 @@ import { OnePassword1PifImporter } from 'jslib/importers/onepassword1PifImporter
 import { OnePasswordWinCsvImporter } from 'jslib/importers/onepasswordWinCsvImporter';
 import { PadlockCsvImporter } from 'jslib/importers/padlockCsvImporter';
 import { PassKeepCsvImporter } from 'jslib/importers/passkeepCsvImporter';
+import { PasswordAgentCsvImporter } from 'jslib/importers/passwordAgentCsvImporter';
 import { PasswordBossJsonImporter } from 'jslib/importers/passwordBossJsonImporter';
 import { PasswordDragonXmlImporter } from 'jslib/importers/passwordDragonXmlImporter';
 import { PasswordSafeXmlImporter } from 'jslib/importers/passwordSafeXmlImporter';
@@ -224,6 +225,7 @@ export class ImportComponent implements OnInit {
             { id: 'vivaldicsv', name: 'Vivaldi (csv)' },
             { id: 'gnomejson', name: 'GNOME Passwords and Keys/Seahorse (json)' },
             { id: 'blurcsv', name: 'Blur (csv)' },
+            { id: 'passwordagentcsv', name: 'Password Agent (csv)' },
         ];
     }
 
@@ -298,6 +300,8 @@ export class ImportComponent implements OnInit {
                 return new PassKeepCsvImporter();
             case 'gnomejson':
                 return new GnomeJsonImporter();
+            case 'passwordagentcsv':
+                return new PasswordAgentCsvImporter();
             default:
                 return null;
         }

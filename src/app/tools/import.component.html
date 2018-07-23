@@ -148,6 +148,11 @@
             <code>python Desktop/pw_helper.py export Desktop/my_passwords.json</code>. Then upload the resulting
             <code>my_passwords.json</code> file here to Bitwarden.
         </ng-container>
+        <ng-container *ngIf="format === 'passwordagentcsv'">
+            Using the Password Agent desktop application navigate to "File" &rarr; "Export", select the "Fields to export" button and
+            check all of the fields, change the "Output format" to "CSV", and then click the "Start" button to save the CSV
+            file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
