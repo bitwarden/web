@@ -16,7 +16,7 @@
     "build:selfhost:prod:watch": "gulp prebuild && cross-env SELF_HOST=true NODE_ENV=production webpack-serve --config webpack.config.js",
     "dist": "npm run build:prod && gulp postdist",
     "dist:selfhost": "npm run build:selfhost:prod && gulp postdist",
-    "deploy": "npm run build:prod",
+    "deploy": "npm run dist && gh-pages -d build",
     "deploy:preview": "npm run dist && gh-pages -d build -r git@github.com:kspearrin/web-preview.git",
     "lint": "tslint src/**/*.ts || true",
     "lint:fix": "tslint src/**/*.ts --fix"
