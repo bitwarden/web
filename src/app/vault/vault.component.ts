@@ -83,7 +83,7 @@ export class VaultComponent implements OnInit {
         this.showUpdateKey = !hasEncKey;
         const isPremium = await this.tokenService.getPremium();
         this.showPremiumCallout = !this.showVerifyEmail && !isPremium &&
-            !this.platformUtilsService.isSelfHost();
+            !this.platformUtilsService.isSelfHost() && !this.inOrgWithPremium();
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
@@ -442,5 +442,15 @@ export class VaultComponent implements OnInit {
 
         const url = this.router.createUrlTree(['vault'], { queryParams: queryParams }).toString();
         this.location.go(url);
+    }
+
+    private async inOrgWithPremium() {
+        const orgs = await this.userService.getAllOrganizations();
+        for (let i = 0; i < orgs.length; i++) {
+            if (orgs[i].usersGetPremium) {
+                return true;
+            }
+        }
+        return false;
     }
 }
