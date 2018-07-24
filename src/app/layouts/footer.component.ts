@@ -11,7 +11,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 })
 export class FooterComponent implements OnInit {
     version: string;
-    year: string = '2016';
+    year: string = '2015';
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
