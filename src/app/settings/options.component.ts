@@ -12,6 +12,8 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 
 import { ConstantsService } from 'jslib/services/constants.service';
 
+import { Utils } from 'jslib/misc/utils';
+
 @Component({
     selector: 'app-options',
     templateUrl: 'options.component.html',
@@ -26,10 +28,13 @@ export class OptionsComponent implements OnInit {
     constructor(private storageService: StorageService, private stateService: StateService,
         private analytics: Angulartics2, private i18nService: I18nService,
         private toasterService: ToasterService) {
-        this.localeOptions = [{ name: i18nService.t('default'), value: null }];
+        const localeOptions: any[] = [];
         i18nService.supportedTranslationLocales.forEach((locale) => {
-            this.localeOptions.push({ name: locale, value: locale });
+            localeOptions.push({ name: locale, value: locale });
         });
+        localeOptions.sort(Utils.getSortFunction(i18nService, 'name'));
+        localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
+        this.localeOptions = localeOptions;
     }
 
     async ngOnInit() {
