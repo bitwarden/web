@@ -1,45 +1,30 @@
 <!DOCTYPE html>
-<html ng-app="bit" ng-csp>
+<html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
     <meta name="theme-color" content="#3c8dbc">
-    <base href="/" />
 
     <title page-title>Bitwarden Web Vault</title>
 
-    <script src="https://js.stripe.com/v2/"></script>
-    <script src="https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <meta name="x-stylesheet-test" content="" class="fa invisible" />
-    <script src="js/fallback-styles.min.js?v=3qobma"></script>
-
-    <link rel="stylesheet" href="css/vault.min.css?v=3qobma" />
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
     <link rel="mask-icon" href="images/icons/safari-pinned-tab.svg" color="#3c8dbc">
     <link rel="manifest" href="manifest.json">
-</head>
-<body ng-controller="mainController as main" class="layout-boxed {{main.skinClass}} sidebar-mini {{main.bodyClass}}"
-      ng-class="{'using-control-sidebar': main.usingControlSidebar,
-      'control-sidebar-open': main.usingControlSidebar && main.openControlSidebar}">
-    <div ui-view></div>
+<link href="app/main.ab824703902179d0a060.css" rel="stylesheet"></head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-            integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"
-            integrity="sha384-R6kAKgTgRiD5889XyzYD/aMryNA4Yr9EBnt6rIXuukLgVONifQDnHNaadrSNakQl" crossorigin="anonymous"></script>
-    <script src="js/fallback-scripts.min.js?v=3qobma"></script>
-    <script src="js/settings.js?v=3qobma"></script>
+<body class="layout_frontend">
+    <app-root>
+        <div class="mt-5 d-flex justify-content-center">
+            <div>
+                <img src="images/logo-dark@2x.png" class="mb-4 logo" alt="Bitwarden">
+                <p class="text-center">
+                    <i class="fa fa-spinner fa-spin fa-2x text-muted" title="Loading"></i>
+                </p>
+            </div>
+        </div>
+    </app-root>
+<script type="text/javascript" src="app/polyfills.035f2b6e82050f616be5.js"></script><script type="text/javascript" src="app/vendor.5c419f27bf1b0699ed35.js"></script><script type="text/javascript" src="app/main.ab824703902179d0a060.js"></script></body>
 
-    <script src="js/lib.min.js?v=3qobma"></script>
-    <script src="js/bw.min.js?v=3qobma"></script>
-    <script src="js/app.min.js?v=3qobma"></script>
-</body>
 </html>
