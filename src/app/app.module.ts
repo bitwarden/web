@@ -137,8 +137,10 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
 import { registerLocaleData } from '@angular/common';
 import localeDa from '@angular/common/locales/da';
+import localeSk from '@angular/common/locales/sk';
 
 registerLocaleData(localeDa, 'da');
+registerLocaleData(localeSk, 'sk');
 
 @NgModule({
     imports: [
