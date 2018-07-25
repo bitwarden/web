@@ -102,7 +102,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         a.href = uri;
         a.target = '_blank';
         a.rel = 'noreferrer noopener';
+        a.classList.add('d-none');
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
     }
 
     saveFile(win: Window, blobData: any, blobOptions: any, fileName: string): void {
