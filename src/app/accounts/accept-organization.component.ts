@@ -68,6 +68,10 @@ export class AcceptOrganizationComponent implements OnInit {
                     await this.stateService.save('orgInvitation', qParams);
                     this.email = qParams.email;
                     this.orgName = qParams.organizationName;
+                    if (this.orgName != null) {
+                        // Fix URL encoding of space issue with Angular
+                        this.orgName.replace(/\+/g, ' ');
+                    }
                 }
             }
 
