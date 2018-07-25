@@ -82,7 +82,6 @@ export class VaultComponent implements OnInit {
         const hasEncKey = await this.cryptoService.hasEncKey();
         this.showUpdateKey = !hasEncKey;
         const isPremium = await this.tokenService.getPremium();
-        this.showPremiumCallout = ;
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
