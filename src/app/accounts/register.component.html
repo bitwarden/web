@@ -54,7 +54,7 @@
                             {{'cancel' | i18n}}
                         </a>
                     </div>
-                    <small class="text-muted">
+                    <small class="text-muted" *ngIf="showTerms">
                         {{'submitAgreePolicies' | i18n}}
                         <a href="https://bitwarden.com/terms/" target="_blank" rel="noopener">{{'termsOfService' | i18n}}</a>,
                         <a href="https://bitwarden.com/privacy/" target="_blank" rel="noopener">{{'privacyPolicy' | i18n}}</a>
