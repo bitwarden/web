@@ -82,8 +82,7 @@ export class VaultComponent implements OnInit {
         const hasEncKey = await this.cryptoService.hasEncKey();
         this.showUpdateKey = !hasEncKey;
         const isPremium = await this.tokenService.getPremium();
-        this.showPremiumCallout = !this.showVerifyEmail && !isPremium &&
-            !this.platformUtilsService.isSelfHost() && !(await this.inOrgWithPremium());
+        this.showPremiumCallout = !this.showVerifyEmail && !isPremium && !this.platformUtilsService.isSelfHost();
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
@@ -91,6 +90,10 @@ export class VaultComponent implements OnInit {
                 this.groupingsComponent.load(),
                 this.organizationsComponent.load(),
             ]);
+
+            if (this.showPremiumCallout) {
+                this.showPremiumCallout = !(await this.inOrgWithPremium());
+            }
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
