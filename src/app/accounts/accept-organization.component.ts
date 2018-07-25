@@ -70,7 +70,7 @@ export class AcceptOrganizationComponent implements OnInit {
                     this.orgName = qParams.organizationName;
                     if (this.orgName != null) {
                         // Fix URL encoding of space issue with Angular
-                        this.orgName.replace(/\+/g, ' ');
+                        this.orgName = this.orgName.replace(/\+/g, ' ');
                     }
                 }
             }
