@@ -2,10 +2,10 @@
     <b>Bitwarden Web Vault</b>
 </p>
 <p align="center">
-    The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
+    <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
 </p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
+    The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
 </p>
 <p align="center">
   <a href="https://ci.appveyor.com/project/bitwarden/web/branch/master" target="_blank">
