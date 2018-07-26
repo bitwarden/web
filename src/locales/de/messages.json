@@ -174,7 +174,7 @@
     "message": "Ordner bearbeiten"
   },
   "baseDomain": {
-    "message": "Hauptdomain"
+    "message": "Basisdomäne"
   },
   "host": {
     "message": "Server",
@@ -256,7 +256,7 @@
     "message": "Favoriten durchsuchen"
   },
   "searchType": {
-    "message": "Suchmodus",
+    "message": "Suche nach Elementtyp",
     "description": "Search item type"
   },
   "searchVault": {
@@ -718,7 +718,7 @@
     "message": "Wähle eine Organisation aus, für die du diese Einträge freigeben möchtest. Die gemeinsame Nutzung überträgt das Eigentum an den Einträgen auf diese Organisation. Du bist nicht mehr der direkte Besitzer dieser Einträge, sobald sie geteilt wurden."
   },
   "collectionsDesc": {
-    "message": "Bearbeite die Sammlungen, mit denen dieser Eintrag geteilt wird. Nur Organisationsbenutzer mit Zugriff auf diese Sammlungen werden diesen Eintrag sehen."
+    "message": "Bearbeiten Sie die Sammlungen, mit denen dieser Eintrag geteilt wird. Nur Organisationsbenutzer mit Zugriff auf diese Sammlungen werden diesen Eintrag sehen."
   },
   "deleteSelectedItemsDesc": {
     "message": "Du hast $COUNT$ Eintrag\/Einträge zum Löschen ausgewählt. Bist du sicher, dass du alle diese Einträge löschen möchtest?",
@@ -1533,13 +1533,13 @@
     "message": "Benutzerplätze"
   },
   "additionalUserSeats": {
-    "message": "Weitere Benutzer"
+    "message": "Weitere Benutzerplätze"
   },
   "userSeatsDesc": {
     "message": "Anzahl der Benutzerplätze"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Dein Abonnement beinhaltet $BASE_SEATS$ Benutzerplätze. Du kannst weitere Benutzer für $SEAT_PRICE$ pro Benutzer\/Monat hinzufügen.",
+    "message": "Ihr Abonnement beinhaltet $BASE_SEATS$ Benutzerplätze. Sie können weitere Benutzer für $SEAT_PRICE$ pro Benutzer\/Monat hinzufügen.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1552,7 +1552,7 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "Wie viele Benutzerplätze benötigst du? Bei Bedarf kannst du auch nachträglich weitere Plätze hinzufügen."
+    "message": "Wie viele Benutzerplätze benötigen Sie? Bei Bedarf können Sie auch nachträglich weitere Plätze zu einem späteren Zeitpunkt hinzufügen."
   },
   "planNameFree": {
     "message": "Kostenlos"
@@ -1639,7 +1639,7 @@
     "message": "Hinzufügen und teilen mit einer unbegrenzten Anzahl von Benutzern"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "Erstellen von unbegrenzten Sammlungen"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ verschlüsselter Datenspeicher",
@@ -1702,7 +1702,7 @@
     "message": "Sie haben die Organisation verlassen."
   },
   "defaultCollection": {
-    "message": "Default Collection"
+    "message": "Standardsammlung"
   },
   "getHelp": {
     "message": "Holen Sie sich Hilfe"
@@ -1750,7 +1750,7 @@
     "message": "Diese Gruppe kann auf alle Elemente zugreifen und diese ändern."
   },
   "groupAccessSelectedCollections": {
-    "message": "Diese Gruppe kann nur auf die ausgewählten Kollektionen zugreifen."
+    "message": "Diese Gruppe kann nur auf die ausgewählten Sammlungen zugreifen."
   },
   "readOnly": {
     "message": "Nur Lesen"
@@ -1819,7 +1819,7 @@
     "message": "Benutzer"
   },
   "userDesc": {
-    "message": "Ein regulärer Benutzer mit Zugriff auf die Sammlungen Ihrer Organisation."
+    "message": "Ein normaler Benutzer mit Zugriff auf die Sammlungen Ihrer Organisation."
   },
   "all": {
     "message": "Alle"
@@ -1996,7 +1996,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Sammlungen des Eintrag $ID$ bearbeitet.",
+    "message": "Sammlungen des Eintrags $ID$ bearbeitet.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2185,7 +2185,7 @@
     "message": "Steuerliche Information"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Bitte kontaktieren Sie den Support, um Steuerinformationen für Ihre Rechnungen zu übermitteln (oder zu aktualisieren)."
   },
   "billingPlan": {
     "message": "Abonnement",
@@ -2206,10 +2206,10 @@
     "message": "Bankkonto verifizieren"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "Wir haben zwei Mikro-Transaktionen auf Ihr Bankkonto getätigt (es kann 1-2 Werktage dauern bis diese sichtbar werden). Geben Sie diese Daten ein um Ihr Bankkonto zu verifizieren."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "Zahlungen über ein Bankkonto ist nur für Benutzer in den Vereinigten Staaten verfügbar. Hierfür müssen Sie Ihr Bankkonto verifizieren. Wir werden dann innerhalb der nächsten 1-2 Werktage zwei Mikro-Transaktionen durchführen. Geben Sie im Anschluss diese Daten auf der Organisationsseite ein, um Ihr Bankkonto zu verifizieren."
   },
   "verifyBankAccountFailureWarning": {
     "message": "Ein Fehlschlag bei der Verifizierung des Bankkontos wird zu einer versäumten Zahlung führen und Ihr Abonnement wird deaktiviert."
@@ -2253,11 +2253,11 @@
     "message": "Geben Sie Ihre Installations-id ein"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "Benutzerplätze hinzufügen",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "Benutzerplätze entfernen",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2270,19 +2270,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "Hinzufügen von Benutzerplätzen"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "Entfernen von Benutzerplätzen"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Das Hinzufügen von Benutzerplätzen führt zu einer Anpassung deiner Rechnungssummen und belastet deine Zahlungsmethode sofort. Die erste Gebühr wird für den Rest des aktuellen Abrechnungszyklus anteilig berechnet."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Das Entfernen von Benutzerplätzen führt zu einer Anpassung deiner Rechnungssumme, die als Gutschrift auf deine nächste Rechnung angerechnet wird."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "$AMOUNT$ Benutzerplätze eingestellt.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2294,7 +2294,7 @@
     "message": "Schlüssel aktualisiert"
   },
   "updateKeyTitle": {
-    "message": "Update Key"
+    "message": "Schlüssel aktualisieren"
   },
   "updateEncryptionKey": {
     "message": "Verschlüsselungscode aktualisieren"
@@ -2344,5 +2344,8 @@
   },
   "privacyPolicy": {
     "message": "Datenschutzrichtlinie"
+  },
+  "filters": {
+    "message": "Filters"
   }
 }
