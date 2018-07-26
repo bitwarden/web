@@ -4,7 +4,7 @@
 
 The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
 
-<img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault.png" alt="" />
+<img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" />
 
 # Build/Run
 
@@ -29,11 +29,16 @@ await apiService.setUrls({
 });
 ```
 
-If you want to run a production build of the web vault (pointed to the production API), run:
+If you want to point the development web vault to the production APIs, you can set:
 
+```typescript
+await apiService.setUrls({
+    base: null,
+    api: 'https://api.bitwarden.com',
+    identity: 'https://identity.bitwarden.com',
+});
 ```
-npm run build:prod:watch
-```
+
 
 # Contribute
 
