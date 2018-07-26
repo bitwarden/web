@@ -16,10 +16,10 @@
     "message": "Nome"
   },
   "uri": {
-    "message": "URI"
+    "message": "URL"
   },
   "uriPosition": {
-    "message": "URI $POSITION$",
+    "message": "URL $POSITION$",
     "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
     "placeholders": {
       "position": {
@@ -211,7 +211,7 @@
     "message": "Verifique se a senha foi exposta."
   },
   "passwordExposed": {
-    "message": "Esta senha foi exposta $VALUE$ vez(es) em brechas de dados. Você deve alterá-la.",
+    "message": "Esta senha foi exposta $VALUE$ vez(es) em violações de dados. Você deve alterá-la.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -220,7 +220,7 @@
     }
   },
   "passwordSafe": {
-    "message": "Esta senha não foi encontrada em brechas de dados conhecidas. Deve ser seguro de usar."
+    "message": "Esta senha não foi encontrada em violações de dados conhecidos. Deve ser seguro de usar."
   },
   "save": {
     "message": "Salvar"
@@ -508,7 +508,7 @@
     "message": "Enviar"
   },
   "emailAddressDesc": {
-    "message": "Você usará seu endereço de e-mail para iniciar sessão."
+    "message": "Você usará o seu endereço de e-mail para a iniciar sessão."
   },
   "yourName": {
     "message": "Seu Nome"
@@ -658,7 +658,7 @@
     "message": "Esta conta tem a verificação em duas etapas ativada, no entanto, nenhum dos provedores de verificação em duas etapas configurados são suportados por este navegador web."
   },
   "noTwoStepProviders2": {
-    "message": "Por favor utilize um navegador web suportado (tal como o Chrome) e\/ou inclua provedores adicionais que são melhor suportados entre navegadores web (tal como uma aplicativo de autenticação)."
+    "message": "Por favor utilize um navegador web suportado (tal como o Chrome) e\/ou inclua provedores adicionais que são melhor suportados entre navegadores web (tal como um aplicativo de autenticação)."
   },
   "twoStepOptions": {
     "message": "Opções de Login em Duas Etapas"
@@ -680,18 +680,18 @@
     "message": "Chave de Segurança YubiKey OTP"
   },
   "yubiKeyDesc": {
-    "message": "Utilize uma YubiKey para acessar a sua conta. Funciona com YubiKey 4, 4 Nano, 4C, e dispositivos NEO."
+    "message": "Utilize um YubiKey para acessar a sua conta. Funciona com YubiKey 4, 4 Nano, 4C, e dispositivos NEO."
   },
   "duoDesc": {
     "message": "Verifique com o Duo Security utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Verifique com o Duo Security utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
+    "message": "Verifique com o Duo Security para sua organização utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
-    "message": "Utilize qualquer chave de segurança ativada por FIDO U2F para acessar à sua conta."
+    "message": "Utilize qualquer chave de segurança ativada por FIDO U2F para acessar a sua conta."
   },
   "u2fTitle": {
     "message": "Chave de Segurança FIDO U2F"
@@ -712,16 +712,16 @@
     "message": "Organizações"
   },
   "shareDesc": {
-    "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
+    "message": "Escolha uma organização com a qual você deseja compartilhar este item. O compartilhamento transfere a propriedade do item para a organização. Você não será mais o proprietário direto deste item depois que ele for compartilhado."
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "Escolha uma organização com a qual você deseja compartilhar estes itens. O compartilhamento transfere a propriedade dos itens para a organização. Você não será mais o proprietário direto destes itens depois de serem compartilhados."
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "Edite as coleções com as quais este item está sendo compartilhado. Somente usuários da organização com acesso a estas coleções poderão ver esse item."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "Você selecionou $COUNT$ item(ns) para excluir. Tem certeza que deseja excluir todos estes itens?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "Escolha uma pasta para a qual você deseja mover os $COUNT$ itens selecionados.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +739,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "Você selecionou $COUNT$ itens. $SHAREABLE_COUNT$ itens são compartilháveis, $NONSHAREABLE_COUNT$ não são. Itens com anexos devem ser compartilhados individualmente.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -765,10 +765,10 @@
     "message": "Aviso"
   },
   "exportWarning": {
-    "message": "This export contains your unencrypted data in .csv format. You should not store or send it over unsecure channels (such as email). Delete it immediately after your are done using it."
+    "message": "Essa exportação contém seus dados não criptografados no formato .csv. Você não deve armazená-lo ou enviá-lo por canais não seguros (como e-mail). Exclua imediatamente após terminar de usá-lo."
   },
   "exportMasterPassword": {
-    "message": "Enter your master password to export your vault data."
+    "message": "Insira a sua senha mestra para exportar os dados do seu cofre."
   },
   "exportVault": {
     "message": "Exportar Cofre"
@@ -877,7 +877,7 @@
     "message": "Continue abaixo para excluir todos os itens e pastas do seu cofre. Itens que pertencem a uma organização com a qual você compartilha não serão excluídos."
   },
   "purgeVaultWarning": {
-    "message": "Limpando o seu cofre permanente. Não pode ser desfeito."
+    "message": "Limpando o seu cofre permanentemente. Não pode ser desfeito."
   },
   "vaultPurged": {
     "message": "O seu cofre foi limpo."
@@ -886,7 +886,7 @@
     "message": "Excluir a Conta"
   },
   "deleteAccountDesc": {
-    "message": "Prossiga abaixo para excluir sua conta e todos os dados associados."
+    "message": "Prossiga abaixo para excluir a sua conta e todos os dados associados."
   },
   "deleteAccountWarning": {
     "message": "A exclusão de sua conta é permanente. Não pode ser desfeito."
@@ -922,7 +922,7 @@
     "message": "Selecione o arquivo de importação"
   },
   "orCopyPasteFileContents": {
-    "message": "or copy\/paste the import file contents"
+    "message": "ou copie\/cole o conteúdo do arquivo de importação"
   },
   "instructionsFor": {
     "message": "$NAME$ Instruções",
@@ -938,10 +938,10 @@
     "message": "Opções"
   },
   "optionsDesc": {
-    "message": "Customize your web vault experience."
+    "message": "Personalize sua experiência no cofre web."
   },
   "optionsUpdated": {
-    "message": "Options updated"
+    "message": "Opções atualizadas"
   },
   "language": {
     "message": "Idioma"
@@ -962,13 +962,13 @@
     "message": "Regras de Domínio"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "Se você tiver a mesma credencial em vários domínios de sites diferentes, poderá marcar o site como \"equivalente\". Domínios \"globais\" são aqueles já criados para você pelo Bitwarden."
   },
   "globalEqDomains": {
     "message": "Domínios Equivalentes Globais"
   },
   "customEqDomains": {
-    "message": "Custom Equivalent Domains"
+    "message": "Domínios Equivalentes Personalizados"
   },
   "exclude": {
     "message": "Excluir"
@@ -1001,13 +1001,13 @@
     "message": "Login em Duas Etapas"
   },
   "twoStepLoginDesc": {
-    "message": "Secure your account by requiring an additional step when logging in."
+    "message": "Proteja a sua conta exigindo uma etapa adicional ao iniciar sessão."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "Exigir login em duas etapas para os usuários da organização, configurando provedores no nível da organização."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+    "message": "Ativar o login em duas etapas pode bloquear você permanentemente da sua conta no Bitwarden. Um código de recuperação permite que você acesse sua conta no caso de não poder mais usar seu provedor de login em duas etapas normalmente (por exemplo, você perde seu dispositivo). O suporte do Bitwarden não poderá ajudá-lo se você perder o acesso à sua conta. Recomendamos que você anote ou imprima o código de recuperação e mantenha-o em um local seguro."
   },
   "viewRecoveryCode": {
     "message": "Ver Código de Recuperação"
@@ -1042,19 +1042,19 @@
     "message": "Desabilitar"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "Este provedor de login em duas etapas está ativado em sua conta."
   },
   "twoStepLoginAuthDesc": {
-    "message": "Enter your master password to modify two-step login settings."
+    "message": "Insira a sua senha mestra para modificar as configurações de login em duas etapas."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "Siga estas etapas para configurar o login em duas etapas com um aplicativo autenticador:"
   },
   "twoStepAuthenticatorDownloadApp": {
     "message": "Baixar um app autenticador de duas etapas"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "Need a two-step authenticator app? Download one of the following"
+    "message": "Precisa de um aplicativo autenticador de duas etapas? Baixe um dos seguintes"
   },
   "iosDevices": {
     "message": "Dispositivos iOS"
@@ -1078,13 +1078,13 @@
     "message": "Insira o código de verificação de 6 dígitos resultante do aplicativo"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "Caso você precise adicioná-lo a outro dispositivo, abaixo está o código QR (ou chave) exigido pelo aplicativo autenticador."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "Tem certeza que deseja desativar este provedor de login em duas etapas?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "Provedor de login em duas etapas desativado."
   },
   "twoFactorYubikeyAdd": {
     "message": "Adicionar um novo Yubikey à sua conta"
@@ -1105,7 +1105,7 @@
     "message": "Devido as limitações da plataforma, YubiKeys não podem ser usados em todos os aplicativos do Bitwarden. Você deve habilitar outro provedor de login em duas etapas, para que você possa acessar a sua conta quando YubiKeys não puderem ser usados. Plataformas suportadas:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Cofre da Web, aplicativo de desktop, CLI e todas as extensões do navegador em um dispositivo com uma porta USB que pode aceitar o seu YubiKey."
+    "message": "Cofre Web, aplicativo de desktop, CLI e todas as extensões do navegador em um dispositivo com uma porta USB que pode aceitar o seu YubiKey."
   },
   "twoFactorYubikeySupportMobile": {
     "message": "Aplicativos móveis em um dispositivo com capacidades de NFC ou uma porta USB que pode aceitar o seu YubiKey."
@@ -1144,62 +1144,62 @@
     "message": "Chave Secreta"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "Servidor API"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "Siga estas etapas para configurar o login em duas etapas com e-mail:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "Insira o e-mail que você deseja receber o códigos de verificação"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the email"
+    "message": "Insira o código de verificação de 6 dígitos que foi enviado pro seu e-mail"
   },
   "sendEmail": {
     "message": "Enviar E-mail"
   },
   "twoFactorU2fAdd": {
-    "message": "Add a FIDO U2F security key to your account"
+    "message": "Adicione uma chave de segurança FIDO U2F à sua conta"
   },
   "twoFactorU2fPlugIn": {
-    "message": "Plug the security key into your computer's USB port."
+    "message": "Conecte a chave de segurança na porta USB do seu computador."
   },
   "twoFactorU2fTouchButton": {
-    "message": "If the security key has a button, touch it."
+    "message": "Se a chave de segurança tiver um botão, toque nele."
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "Devido as limitações da plataforma, o FIDO U2F não pode ser usado em todas os aplicativos do Bitwarden. Você deve habilitar outro provedor de login em duas etapas para poder acessar sua conta quando o FIDO U2F não puder ser usado. Plataformas Suportadas:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Cofre web e extensões de navegador em um desktop\/laptop com um navegador habilitado para U2F (Chrome, Opera, Vivaldi ou Firefox com o FIDO U2F ativado)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "Esperando que você toque no botão da sua chave de segurança"
   },
   "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+    "message": "Clique no botão \"Habilitar\" abaixo para ativar essa chave de segurança para o login em duas etapas."
   },
   "twoFactorU2fProblemReading": {
-    "message": "There was a problem reading the security key."
+    "message": "Houve um problema ao ler a chave de segurança."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "Seu código de recuperação de login em duas etapas do Bitwarden"
   },
   "twoFactorRecoveryNoCode": {
     "message": "Você ainda não habilitou nenhum provedor de login em duas etapas. Depois de ativar um provedor de login em duas etapas, você pode conferir aqui o seu código de recuperação."
   },
   "printCode": {
-    "message": "Print Code",
+    "message": "Imprimir Código",
     "description": "Print 2FA recovery code"
   },
   "reports": {
-    "message": "Reports"
+    "message": "Relatórios"
   },
   "dataBreachReport": {
-    "message": "Data Breach Report"
+    "message": "Relatório de Violação de Dados"
   },
   "breachDesc": {
-    "message": "Uma \"brecha\" é um incidente em que os dados de um site foram acessados ilegalmente por hackers e liberados publicamente. Revise os tipos de dados que foram comprometidos (endereços de e-mail, senhas, cartões de crédito etc.) e tome as medidas adequadas, como a alteração de senhas."
+    "message": "Uma \"violação\" é um incidente em que os dados de um site foram acessados ilegalmente por hackers e liberados publicamente. Revise os tipos de dados que foram comprometidos (endereços de e-mail, senhas, cartões de crédito etc.) e tome as medidas adequadas, como a alteração de senhas."
   },
   "breachCheckUsernameEmail": {
     "message": "Verifique qualquer nome de usuário ou endereço de e-mail que você usa."
@@ -1208,7 +1208,7 @@
     "message": "Verificar Brechas"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "$USERNAME$ não foi encontrado em nenhuma violação de dados conhecida.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1217,11 +1217,11 @@
     }
   },
   "goodNews": {
-    "message": "Good News",
+    "message": "Boas Notícias",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$ foi encontrado em $COUNT$ violações de dados diferentes on-line.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1246,10 +1246,10 @@
     "message": "Usuários Afetados"
   },
   "breachOccurred": {
-    "message": "Ocorreu uma Brecha"
+    "message": "Ocorreu uma Violação"
   },
   "breachReported": {
-    "message": "Brecha Reportada"
+    "message": "Violação Reportada"
   },
   "reportError": {
     "message": "Ocorreu um erro ao tentar carregar o relatório. Tente novamente"
@@ -1265,16 +1265,16 @@
     "message": "Você atualizou para premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Atualize a sua conta para uma conta premium e desbloqueie ótimos recursos adicionais."
   },
   "premiumSignUpStorage": {
     "message": "1 GB de armazenamento de arquivos encriptados."
   },
   "premiumSignUpTwoStep": {
-    "message": "Additional two-step login options such as YubiKey, FIDO U2F, and Duo."
+    "message": "Opções adicionais de login em duas etapas, como YubiKey, FIDO U2F e Duo."
   },
   "premiumSignUpTotp": {
-    "message": "TOTP verification code (2FA) generator for logins in your vault."
+    "message": "Gerador de código de verificação TOTP (2FA) para logins no seu cofre."
   },
   "premiumSignUpSupport": {
     "message": "Prioridade no suporte ao cliente."
@@ -1333,7 +1333,7 @@
     "message": "O seu método de pagamento será cobrado imediatamente e de forma recorrente a cada ano. Você pode cancelar a qualquer momento."
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Seu plano vem com um teste gratuito de 7 dias. Seu cartão não será cobrado até que o período de teste termine e de forma recorrente a cada $INTERVAL$. Você pode cancelar a qualquer momento.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1366,16 +1366,16 @@
     "message": "Restabelecer Assinatura"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "Você tem certeza que deseja remover a solicitação de cancelamento pendente e restabelecer sua assinatura?"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "A assinatura foi restabelecida."
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "Você tem certeza que deseja cancelar? Você perderá o acesso a todos os recursos dessa assinatura no final deste ciclo de faturamento."
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "A assinatura foi cancelada."
   },
   "neverExpires": {
     "message": "Nunca Expirar"
@@ -1524,7 +1524,7 @@
     "message": "Nome da Empresa"
   },
   "chooseYourPlan": {
-    "message": "Escolhe Seu Plano"
+    "message": "Escolha Seu Plano"
   },
   "users": {
     "message": "Usuários"
@@ -2092,10 +2092,10 @@
     }
   },
   "startDate": {
-    "message": "Start Date"
+    "message": "Data de Início"
   },
   "endDate": {
-    "message": "End Date"
+    "message": "Data do Término"
   },
   "verifyEmail": {
     "message": "Verificar E-mail"
@@ -2116,7 +2116,7 @@
     "message": "Unable to verify your email. Try sending a new verification email."
   },
   "updateBrowser": {
-    "message": "Update Browser"
+    "message": "Atualizar Navegador"
   },
   "updateBrowserDesc": {
     "message": "You are using an unsupported web browser. The web vault may not function properly."
@@ -2209,7 +2209,7 @@
     "message": "Fizemos dois micro-depósitos em sua conta bancária (pode demorar de 1 a 2 dias úteis para aparecer). Insira esses valores para confirmar a conta bancária."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "O pagamento com uma conta bancária só está disponível para clientes nos Estados Unidos. Você será solicitado a confirmar sua conta bancária. Vamos fazer dois micro-depósitos nos próximos 1-2 dias úteis. Insira esses valores na página de faturamento da organização para confirmar a conta bancária."
+    "message": "O pagamento com uma conta bancária só está disponível para clientes nos Estados Unidos. Você será solicitado a confirmar sua conta bancária. Vamos fazer dois micro depósitos nos próximos 1-2 dias úteis. Insira esses valores na página de faturamento da organização para confirmar a conta bancária."
   },
   "verifyBankAccountFailureWarning": {
     "message": "A não verificação da conta bancária resultará em um pagamento não atendido e sua assinatura será desativada."
@@ -2344,5 +2344,8 @@
   },
   "privacyPolicy": {
     "message": "Privacy Policy"
+  },
+  "filters": {
+    "message": "Filters"
   }
 }
