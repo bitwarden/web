@@ -1,4 +1,10 @@
 <p align="center">
+    <b>Bitwarden Web Vault</b>
+</p>
+<p align="center">
+    The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
+</p>
+<p align="center">
     <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
 </p>
 <p align="center">
@@ -18,15 +24,13 @@
 
 -----
 
-The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
+## Build/Run
 
-# Build/Run
-
-**Requirements**
+### Requirements
 
 - [Node.js](https://nodejs.org) v8.11 or greater
 
-**Run the app**
+### Run the app
 
 ```
 npm install
@@ -54,7 +58,7 @@ await apiService.setUrls({
 ```
 
 
-# Contribute
+## Contribute
 
 Code contributions are welcome! Please commit any pull requests against the `master` branch.
 
