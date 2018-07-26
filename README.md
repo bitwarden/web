@@ -1,7 +1,4 @@
 <p align="center">
-    <b>Bitwarden Web Vault</b>
-</p>
-<p align="center">
     <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
 </p>
 <p align="center">
