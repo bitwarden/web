@@ -208,7 +208,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     copyToClipboard(text: string, options?: any): void {
-        const doc = options ? options.doc : window.document;
+        const doc: Document = options ? options.doc : window.document;
         if ((window as any).clipboardData && (window as any).clipboardData.setData) {
             // IE specific code path to prevent textarea being shown while dialog is visible.
             (window as any).clipboardData.setData('Text', text);
@@ -217,9 +217,13 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             textarea.textContent = text;
             // Prevent scrolling to bottom of page in MS Edge.
             textarea.style.position = 'fixed';
-            doc.body.appendChild(textarea);
+            let copyEl = doc.body;
+            // For some reason copy command won't work in Firefox when modal is open if appending to body
+            if (this.isFirefox() && doc.body.classList.contains('modal-open')) {
+                copyEl = doc.body.querySelector<HTMLElement>('.modal');
+            }
+            copyEl.appendChild(textarea);
             textarea.select();
-
             try {
                 // Security exception may be thrown by some browsers.
                 doc.execCommand('copy');
@@ -227,7 +231,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
                 // tslint:disable-next-line
                 console.warn('Copy to clipboard failed.', e);
             } finally {
-                doc.body.removeChild(textarea);
+                copyEl.removeChild(textarea);
             }
         }
     }
