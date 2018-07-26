@@ -1,10 +1,24 @@
-[![appveyor build](https://ci.appveyor.com/api/projects/status/github/bitwarden/web?branch=master&svg=true)](https://ci.appveyor.com/project/bitwarden/web) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/bitwarden-web/localized.svg)](https://crowdin.com/project/bitwarden-web) [![DockerHub](https://img.shields.io/docker/pulls/bitwarden/web.svg)](https://hub.docker.com/u/bitwarden/) [![Join the chat at https://gitter.im/bitwarden/Lobby](https://badges.gitter.im/bitwarden/Lobby.svg)](https://gitter.im/bitwarden/Lobby)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
+</p>
+<p align="center">
+  <a href="https://ci.appveyor.com/project/bitwarden/web/branch/master" target="_blank">
+    <img src="https://ci.appveyor.com/api/projects/status/github/bitwarden/web?branch=master&svg=true" alt="appveyor build" />
+  </a>
+  <a href="https://crowdin.com/project/bitwarden-web" target="_blank">
+    <img src="https://d322cqt584bo4o.cloudfront.net/bitwarden-web/localized.svg" alt="Crowdin" />
+  </a>
+  <a href="https://hub.docker.com/u/bitwarden/" target="_blank">
+    <img src="https://img.shields.io/docker/pulls/bitwarden/web.svg" alt="DockerHub" />
+  </a>
+  <a href="https://gitter.im/bitwarden/Lobby" target="_blank">
+    <img src="https://badges.gitter.im/bitwarden/Lobby.svg" alt="gitter chat" />
+  </a>
+</p>
 
-# Bitwarden Web Vault
+-----
 
 The Bitwarden web project is an Angular application that powers the web vault (https://vault.bitwarden.com/).
-
-<img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" />
 
 # Build/Run
 
