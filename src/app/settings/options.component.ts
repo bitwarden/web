@@ -7,6 +7,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { LockService } from 'jslib/abstractions/lock.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 
@@ -19,15 +20,27 @@ import { Utils } from 'jslib/misc/utils';
     templateUrl: 'options.component.html',
 })
 export class OptionsComponent implements OnInit {
+    lockOption: number = null;
     disableIcons: boolean;
     locale: string;
+    lockOptions: any[];
     localeOptions: any[];
 
     private startingLocale: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private analytics: Angulartics2, private i18nService: I18nService,
-        private toasterService: ToasterService) {
+        private toasterService: ToasterService, private lockService: LockService) {
+        this.lockOptions = [
+            { name: i18nService.t('oneMinute'), value: 1 },
+            { name: i18nService.t('fiveMinutes'), value: 5 },
+            { name: i18nService.t('fifteenMinutes'), value: 15 },
+            { name: i18nService.t('thirtyMinutes'), value: 30 },
+            { name: i18nService.t('oneHour'), value: 60 },
+            { name: i18nService.t('fourHours'), value: 240 },
+            { name: i18nService.t('onRefresh'), value: -1 },
+        ];
+
         const localeOptions: any[] = [];
         i18nService.supportedTranslationLocales.forEach((locale) => {
             localeOptions.push({ name: locale, value: locale });
@@ -38,11 +51,13 @@ export class OptionsComponent implements OnInit {
     }
 
     async ngOnInit() {
+        this.lockOption = await this.storageService.get<number>(ConstantsService.lockOptionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
     }
 
     async submit() {
+        await this.lockService.setLockOption(this.lockOption != null ? this.lockOption : null);
         await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.storageService.save(ConstantsService.localeKey, this.locale);

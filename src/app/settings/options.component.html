@@ -6,6 +6,17 @@
     <div class="row">
         <div class="col-6">
             <div class="form-group">
+                <label for="lockOption">{{'lockOptions' | i18n}}</label>
+                <select id="lockOption" name="LockOption" [(ngModel)]="lockOption" class="form-control">
+                    <option *ngFor="let o of lockOptions" [ngValue]="o.value">{{o.name}}</option>
+                </select>
+                <small class="form-text text-muted">{{'lockOptionsDesc' | i18n}}</small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
                 <div class="d-flex">
                     <label for="locale">{{'language' | i18n}}</label>
                     <a class="ml-auto" href="https://help.bitwarden.com/article/localization/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">

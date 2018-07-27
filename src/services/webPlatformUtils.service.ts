@@ -94,7 +94,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     lockTimeout(): number {
-        return 15;
+        return null;
     }
 
     launchUri(uri: string, options?: any): void {

@@ -7,6 +7,13 @@ export class HtmlStorageService implements StorageService {
         ConstantsService.localeKey, ConstantsService.lockOptionKey]);
     private localStorageStartsWithKeys = ['twoFactorToken_'];
 
+    async init() {
+        const lockOption = await this.get<number>(ConstantsService.lockOptionKey);
+        if (lockOption == null) {
+            await this.save(ConstantsService.lockOptionKey, 15);
+        }
+    }
+
     get<T>(key: string): Promise<T> {
         let json: string = null;
         if (this.isLocalStorage(key)) {
