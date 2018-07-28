@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnDestroy,
     Output,
 } from '@angular/core';
 
@@ -26,7 +27,7 @@ const MaxCheckedCount = 500;
     selector: 'app-vault-ciphers',
     templateUrl: 'ciphers.component.html',
 })
-export class CiphersComponent extends BaseCiphersComponent {
+export class CiphersComponent extends BaseCiphersComponent implements OnDestroy {
     @Input() showAddNew = true;
     @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
     @Output() onShareClicked = new EventEmitter<CipherView>();
@@ -41,6 +42,10 @@ export class CiphersComponent extends BaseCiphersComponent {
         protected platformUtilsService: PlatformUtilsService) {
         super(cipherService);
         this.searchPipe = new SearchCiphersPipe(platformUtilsService);
+    }
+
+    ngOnDestroy() {
+        this.selectAll(false);
     }
 
     checkCipher(c: CipherView, select?: boolean) {
