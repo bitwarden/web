@@ -8,6 +8,7 @@ import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { LockService } from 'jslib/abstractions/lock.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 
@@ -30,7 +31,8 @@ export class OptionsComponent implements OnInit {
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private analytics: Angulartics2, private i18nService: I18nService,
-        private toasterService: ToasterService, private lockService: LockService) {
+        private toasterService: ToasterService, private lockService: LockService,
+        private platformUtilsService: PlatformUtilsService) {
         this.lockOptions = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -40,6 +42,9 @@ export class OptionsComponent implements OnInit {
             { name: i18nService.t('fourHours'), value: 240 },
             { name: i18nService.t('onRefresh'), value: -1 },
         ];
+        if (this.platformUtilsService.isDev()) {
+            this.lockOptions.push({ name: i18nService.t('never'), value: null });
+        }
 
         const localeOptions: any[] = [];
         i18nService.supportedTranslationLocales.forEach((locale) => {
