@@ -366,6 +366,19 @@
                         </select>
                     </div>
                 </div>
+                <ng-container *ngIf="editMode">
+                    <h3 class="mt-4">{{'other' | i18n}}</h3>
+                    <div class="small text-muted">
+                        <div>
+                            <b class="font-weight-semibold">{{'dateUpdated' | i18n}}:</b>
+                            {{cipher.revisionDate | date:'medium'}}
+                        </div>
+                        <div *ngIf="passwordRevisionDate">
+                            <b class="font-weight-semibold">{{'datePasswordUpdated' | i18n}}:</b>
+                            {{passwordRevisionDate | date:'medium'}}
+                        </div>
+                    </div>
+                </ng-container>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
