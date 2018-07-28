@@ -34,6 +34,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     @Output() onCollectionsClicked = new EventEmitter<CipherView>();
 
     cipherType = CipherType;
+    actionPromise: Promise<any>;
 
     private searchPipe: SearchCiphersPipe;
 
@@ -91,6 +92,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async delete(c: CipherView): Promise<boolean> {
+        if (this.actionPromise != null) {
+            return;
+        }
         const confirmed = await this.platformUtilsService.showDialog(
             this.i18nService.t('deleteItemConfirmation'), this.i18nService.t('deleteItem'),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
@@ -98,10 +102,14 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             return false;
         }
 
-        await this.cipherService.deleteWithServer(c.id);
-        this.analytics.eventTrack.next({ action: 'Deleted Cipher' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('deletedItem'));
-        this.refresh();
+        try {
+            this.actionPromise = this.deleteCipher(c.id);
+            await this.actionPromise;
+            this.analytics.eventTrack.next({ action: 'Deleted Cipher' });
+            this.toasterService.popAsync('success', null, this.i18nService.t('deletedItem'));
+            this.refresh();
+        } catch { }
+        this.actionPromise = null;
     }
 
     copy(value: string, typeI18nKey: string, aType: string) {
@@ -113,5 +121,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.platformUtilsService.copyToClipboard(value, { doc: window.document });
         this.toasterService.popAsync('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+    }
+
+    protected deleteCipher(id: string) {
+        return this.cipherService.deleteWithServer(id);
     }
 }

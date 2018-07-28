@@ -76,4 +76,11 @@ export class CiphersComponent extends BaseCiphersComponent {
     events(c: CipherView) {
         this.onEventsClicked.emit(c);
     }
+
+    protected deleteCipher(id: string) {
+        if (!this.organization.isAdmin) {
+            return super.deleteCipher(id);
+        }
+        return this.apiService.deleteCipherAdmin(id);
+    }
 }

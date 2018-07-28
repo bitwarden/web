@@ -51,7 +51,11 @@ export class CollectionsComponent extends BaseCollectionsComponent {
     }
 
     protected saveCollections() {
-        const request = new CipherCollectionsRequest(this.cipherDomain.collectionIds);
-        return this.apiService.putCipherCollectionsAdmin(this.cipherId, request);
+        if (this.organization.isAdmin) {
+            const request = new CipherCollectionsRequest(this.cipherDomain.collectionIds);
+            return this.apiService.putCipherCollectionsAdmin(this.cipherId, request);
+        } else {
+            return super.saveCollections();
+        }
     }
 }
