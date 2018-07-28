@@ -45,6 +45,7 @@ export class VaultComponent implements OnInit {
     organization: Organization;
     collectionId: string;
     type: CipherType;
+    showAdd = true;
 
     private modal: ModalComponent = null;
 
@@ -56,6 +57,7 @@ export class VaultComponent implements OnInit {
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
             this.organization = await this.userService.getOrganization(params.organizationId);
+            this.showAdd = this.organization.isAdmin;
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
