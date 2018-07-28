@@ -78,13 +78,15 @@ export class ShareComponent implements OnInit, OnDestroy {
         }
 
         const checkedCollectionIds = this.collections.filter((c) => (c as any).checked).map((c) => c.id);
-        this.formPromise = Promise.all(attachmentPromises).then(async () => {
-            await this.cipherService.shareWithServer(cipherView, this.organizationId, checkedCollectionIds);
-            this.onSharedCipher.emit();
-            this.analytics.eventTrack.next({ action: 'Shared Cipher' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('sharedItem'));
-        });
-        await this.formPromise;
+        try {
+            this.formPromise = Promise.all(attachmentPromises).then(async () => {
+                await this.cipherService.shareWithServer(cipherView, this.organizationId, checkedCollectionIds);
+                this.onSharedCipher.emit();
+                this.analytics.eventTrack.next({ action: 'Shared Cipher' });
+                this.toasterService.popAsync('success', null, this.i18nService.t('sharedItem'));
+            });
+            await this.formPromise;
+        } catch { }
     }
 
     check(c: CollectionView, select?: boolean) {
