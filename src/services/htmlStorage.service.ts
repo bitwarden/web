@@ -1,3 +1,4 @@
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { ConstantsService } from 'jslib/services';
 
@@ -7,9 +8,11 @@ export class HtmlStorageService implements StorageService {
         ConstantsService.localeKey, ConstantsService.lockOptionKey]);
     private localStorageStartsWithKeys = ['twoFactorToken_'];
 
+    constructor(private platformUtilsService: PlatformUtilsService) { }
+
     async init() {
         const lockOption = await this.get<number>(ConstantsService.lockOptionKey);
-        if (lockOption == null) {
+        if (lockOption == null && !this.platformUtilsService.isDev()) {
             await this.save(ConstantsService.lockOptionKey, 15);
         }
     }
