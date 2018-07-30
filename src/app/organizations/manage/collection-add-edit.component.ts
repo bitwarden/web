@@ -13,6 +13,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherString } from 'jslib/models/domain/cipherString';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
@@ -34,6 +35,7 @@ export class CollectionAddEditComponent implements OnInit {
 
     loading = true;
     editMode: boolean = false;
+    accessGroups: boolean = false;
     title: string;
     name: string;
     groups: GroupResponse[] = [];
@@ -44,12 +46,17 @@ export class CollectionAddEditComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService) { }
+        private platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
+        private userService: UserService) { }
 
     async ngOnInit() {
+        const organization = await this.userService.getOrganization(this.organizationId);
+        this.accessGroups = organization.useGroups;
         this.editMode = this.loading = this.collectionId != null;
-        const groupsResponse = await this.apiService.getGroups(this.organizationId);
-        this.groups = groupsResponse.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
+        if (this.accessGroups) {
+            const groupsResponse = await this.apiService.getGroups(this.organizationId);
+            this.groups = groupsResponse.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
+        }
         this.orgKey = await this.cryptoService.getOrgKey(this.organizationId);
 
         if (this.editMode) {
@@ -58,7 +65,7 @@ export class CollectionAddEditComponent implements OnInit {
             try {
                 const collection = await this.apiService.getCollectionDetails(this.organizationId, this.collectionId);
                 this.name = await this.cryptoService.decryptToUtf8(new CipherString(collection.name), this.orgKey);
-                if (collection.groups != null && this.groups != null) {
+                if (collection.groups != null && this.groups.length > 0) {
                     collection.groups.forEach((s) => {
                         const group = this.groups.filter((g) => !g.accessAll && g.id === s.id);
                         if (group != null && group.length > 0) {
