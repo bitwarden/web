@@ -1,6 +1,6 @@
 <div class="modal fade">
     <div class="modal-dialog modal-lg">
-        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate autocomplete="off">
             <div class="modal-header">
                 <h2 class="modal-title">{{title}}</h2>
                 <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="input-group">
                                 <input id="loginPassword" class="form-control text-monospace" type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
-                                    [(ngModel)]="cipher.login.password" appInputVerbatim>
+                                    [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
                                         tabindex="-1">
@@ -190,7 +190,7 @@
                             <label for="cardCode">{{'securityCode' | i18n}}</label>
                             <div class="input-group">
                                 <input id="cardCode" class="form-control text-monospace" type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code" [(ngModel)]="cipher.card.code"
-                                    appInputVerbatim>
+                                    appInputVerbatim autocomplete="new-password">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
                                         tabindex="-1">
@@ -332,7 +332,7 @@
                                 </div>
                                 <div class="input-group" *ngIf="f.type === fieldType.Hidden">
                                     <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}" name="Field.Value{{i}}" [(ngModel)]="f.value" class="form-control text-monospace"
-                                        appInputVerbatim>
+                                        appInputVerbatim autocomplete="new-password">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
                                             tabindex="-1">

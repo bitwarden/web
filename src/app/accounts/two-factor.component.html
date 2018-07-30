@@ -1,4 +1,4 @@
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate autocomplete="off">
     <div class="row justify-content-md-center mt-5">
         <div class="col-5" [ngClass]="{'col-9': selectedProviderType === providerType.Duo || selectedProviderType === providerType.OrganizationDuo}">
             <p class="lead text-center mb-4">{{title}}</p>
@@ -24,7 +24,8 @@
                         <img src="../../images/yubikey.jpg" class="rounded img-fluid mb-3" alt="">
                         <div class="form-group">
                             <label for="code" class="sr-only">{{'verificationCode' | i18n}}</label>
-                            <input id="code" type="password" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus appInputVerbatim>
+                            <input id="code" type="password" name="Code" class="form-control" [(ngModel)]="token" required appAutofocus appInputVerbatim
+                                autocomplete="new-password">
                         </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.U2f">

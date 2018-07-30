@@ -12,7 +12,7 @@
             </div>
             <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)" *ngIf="!authed">
             </app-two-factor-verify>
-            <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
+            <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed" autocomplete="off">
                 <div class="modal-body">
                     <ng-container *ngIf="enabled">
                         <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label for="skey">{{'twoFactorDuoSecretKey' | i18n}}</label>
-                            <input id="skey" type="password" name="SecretKey" class="form-control" [(ngModel)]="skey" required appInputVerbatim>
+                            <input id="skey" type="password" name="SecretKey" class="form-control" [(ngModel)]="skey" required appInputVerbatim autocomplete="new-password">
                         </div>
                         <div class="form-group">
                             <label for="host">{{'twoFactorDuoApiHostname' | i18n}}</label>
