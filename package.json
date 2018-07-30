@@ -6,7 +6,7 @@
     "sub:update": "git submodule update --remote",
     "sub:pull": "git submodule foreach git pull",
     "postinstall": "npm run sub:init",
-    "clean:l10n": "git branch -d origin/l10n_master",
+    "clean:l10n": "git push origin --delete l10n_master",
     "build": "gulp prebuild && webpack --config webpack.config.js",
     "build:watch": "gulp prebuild && webpack-serve --config webpack.config.js",
     "build:prod": "gulp prebuild && cross-env NODE_ENV=production webpack --config webpack.config.js",
