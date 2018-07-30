@@ -377,6 +377,18 @@
                             <b class="font-weight-semibold">{{'datePasswordUpdated' | i18n}}:</b>
                             {{passwordRevisionDate | date:'medium'}}
                         </div>
+                        <div *ngIf="cipher.hasPasswordHistory">
+                            <b class="font-weight-semibold">{{'passwordHistory' | i18n}}:</b>
+                            <a href="#" appStopClick (click)="viewHistory()" title="{{'view' | i18n}}">
+                                {{cipher.passwordHistory.length}}
+                            </a>
+                        </div>
+                        <div class="ml-3" *ngIf="viewingPasswordHistory">
+                            <div *ngFor="let ph of cipher.passwordHistory">
+                                {{ph.lastUsedDate | date:'short'}} -
+                                <span class="text-monospace ml-2">{{ph.password}}</span>
+                            </div>
+                        </div>
                     </div>
                 </ng-container>
             </div>

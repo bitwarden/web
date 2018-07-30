@@ -34,6 +34,7 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     totpSec: number;
     totpLow: boolean;
     passwordRevisionDate: Date;
+    viewingPasswordHistory = false;
 
     protected totpInterval: number;
 
@@ -107,6 +108,10 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
 
     async upgradeOrganization() {
         this.messagingService.send('upgradeOrganization', { organizationId: this.cipher.organizationId });
+    }
+
+    viewHistory() {
+        this.viewingPasswordHistory = !this.viewingPasswordHistory;
     }
 
     protected cleanUp() {
