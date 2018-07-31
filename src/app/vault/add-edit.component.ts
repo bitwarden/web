@@ -33,7 +33,8 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     totpDash: number;
     totpSec: number;
     totpLow: boolean;
-    passwordRevisionDate: Date;
+    showRevisionDate = false;
+    hasPasswordHistory = false;
     viewingPasswordHistory = false;
 
     protected totpInterval: number;
@@ -50,7 +51,8 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
 
     async ngOnInit() {
         await super.load();
-        this.passwordRevisionDate = this.cipher.passwordRevisionDisplayDate;
+        this.showRevisionDate = this.cipher.passwordRevisionDisplayDate != null;
+        this.hasPasswordHistory = this.cipher.hasPasswordHistory;
         this.cleanUp();
 
         this.isPremium = this.tokenService.getPremium();

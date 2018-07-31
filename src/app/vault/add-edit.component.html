@@ -367,17 +367,16 @@
                     </div>
                 </div>
                 <ng-container *ngIf="editMode">
-                    <h3 class="mt-4">{{'other' | i18n}}</h3>
-                    <div class="small text-muted">
+                    <div class="small text-muted mt-4">
                         <div>
                             <b class="font-weight-semibold">{{'dateUpdated' | i18n}}:</b>
                             {{cipher.revisionDate | date:'medium'}}
                         </div>
-                        <div *ngIf="passwordRevisionDate">
+                        <div *ngIf="showRevisionDate">
                             <b class="font-weight-semibold">{{'datePasswordUpdated' | i18n}}:</b>
-                            {{passwordRevisionDate | date:'medium'}}
+                            {{cipher.passwordRevisionDisplayDate | date:'medium'}}
                         </div>
-                        <div *ngIf="cipher.hasPasswordHistory">
+                        <div *ngIf="hasPasswordHistory">
                             <b class="font-weight-semibold">{{'passwordHistory' | i18n}}:</b>
                             <a href="#" appStopClick (click)="viewHistory()" title="{{'view' | i18n}}">
                                 {{cipher.passwordHistory.length}}
