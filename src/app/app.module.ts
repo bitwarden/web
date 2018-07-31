@@ -137,9 +137,17 @@ import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
 import { registerLocaleData } from '@angular/common';
 import localeDa from '@angular/common/locales/da';
+import localeDe from '@angular/common/locales/de';
+import localePt from '@angular/common/locales/pt';
+import localePtPt from '@angular/common/locales/pt-PT';
+import localeRu from '@angular/common/locales/ru';
 import localeSk from '@angular/common/locales/sk';
 
 registerLocaleData(localeDa, 'da');
+registerLocaleData(localeDe, 'de');
+registerLocaleData(localePt, 'pt-BR');
+registerLocaleData(localePtPt, 'pt-PT');
+registerLocaleData(localeRu, 'ru');
 registerLocaleData(localeSk, 'sk');
 
 @NgModule({
