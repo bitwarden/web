@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
                 this.platformUtilsService.isDev() ? Keys.stripeTest : Keys.stripeLive);
         };
         this.btScript = window.document.createElement('script');
-        this.btScript.src = 'https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js';
+        this.btScript.src = 'scripts/braintree.js';
         this.btScript.async = true;
 
         this.cardExpMonthOptions = [
