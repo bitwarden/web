@@ -21,7 +21,7 @@
                     <tbody>
                         <tr *ngFor="let u of users">
                             <td width="30">
-                                <app-avatar [data]="u.name || u.email" width="25" height="25" [circle]="true" [fontSize]="14"></app-avatar>
+                                <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true" [fontSize]="14"></app-avatar>
                             </td>
                             <td>
                                 {{u.email}}

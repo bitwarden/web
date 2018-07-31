@@ -6,6 +6,11 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
+import { StateService } from 'jslib/abstractions/state.service';
+
+import { Utils } from 'jslib/misc/utils';
+
 @Component({
     selector: 'app-avatar',
     template: '<img [src]="sanitizer.bypassSecurityTrustResourceUrl(src)" title="{{data}}" ' +
@@ -13,8 +18,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AvatarComponent implements OnChanges, OnInit {
     @Input() data: string;
-    @Input() width = 45;
-    @Input() height = 45;
+    @Input() email: string;
+    @Input() size = 45;
     @Input() charCount = 2;
     @Input() textColor = '#ffffff';
     @Input() fontSize = 20;
@@ -24,7 +29,8 @@ export class AvatarComponent implements OnChanges, OnInit {
 
     src: string;
 
-    constructor(public sanitizer: DomSanitizer) { }
+    constructor(public sanitizer: DomSanitizer, private cryptoFunctionService: CryptoFunctionService,
+        private stateService: StateService) { }
 
     ngOnInit() {
         if (!this.dynamic) {
@@ -38,24 +44,31 @@ export class AvatarComponent implements OnChanges, OnInit {
         }
     }
 
-    private generate() {
-        let chars: string = null;
-        const upperData = this.data.toUpperCase();
+    private async generate() {
+        const useGravatars = await this.stateService.get<boolean>('useGravatars');
+        if (useGravatars && this.email != null) {
+            const hashBytes = await this.cryptoFunctionService.hash(this.email.toLowerCase().trim(), 'md5');
+            const hash = Utils.fromBufferToHex(hashBytes).toLowerCase();
+            this.src = 'https://www.gravatar.com/avatar/' + hash + '?s=' + this.size + '&r=pg&d=retro';
+        } else {
+            let chars: string = null;
+            const upperData = this.data.toUpperCase();
 
-        if (this.charCount > 1) {
-            chars = this.getFirstLetters(upperData, this.charCount);
-        }
-        if (chars == null) {
-            chars = upperData.substr(0, this.charCount);
-        }
+            if (this.charCount > 1) {
+                chars = this.getFirstLetters(upperData, this.charCount);
+            }
+            if (chars == null) {
+                chars = upperData.substr(0, this.charCount);
+            }
 
-        const charObj = this.getCharText(chars);
-        const color = this.stringToColor(upperData);
-        const svg = this.getSvg(this.width, this.height, color);
-        svg.appendChild(charObj);
-        const html = window.document.createElement('div').appendChild(svg).outerHTML;
-        const svgHtml = window.btoa(unescape(encodeURIComponent(html)));
-        this.src = 'data:image/svg+xml;base64,' + svgHtml;
+            const charObj = this.getCharText(chars);
+            const color = this.stringToColor(upperData);
+            const svg = this.getSvg(this.size, color);
+            svg.appendChild(charObj);
+            const html = window.document.createElement('div').appendChild(svg).outerHTML;
+            const svgHtml = window.btoa(unescape(encodeURIComponent(html)));
+            this.src = 'data:image/svg+xml;base64,' + svgHtml;
+        }
     }
 
     private stringToColor(str: string): string {
@@ -85,15 +98,15 @@ export class AvatarComponent implements OnChanges, OnInit {
         return null;
     }
 
-    private getSvg(width: number, height: number, color: string): HTMLElement {
+    private getSvg(size: number, color: string): HTMLElement {
         const svgTag = window.document.createElement('svg');
         svgTag.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         svgTag.setAttribute('pointer-events', 'none');
-        svgTag.setAttribute('width', width.toString());
-        svgTag.setAttribute('height', height.toString());
+        svgTag.setAttribute('width', size.toString());
+        svgTag.setAttribute('height', size.toString());
         svgTag.style.backgroundColor = color;
-        svgTag.style.width = width + 'px';
-        svgTag.style.height = height + 'px';
+        svgTag.style.width = size + 'px';
+        svgTag.style.height = size + 'px';
         return svgTag;
     }
 

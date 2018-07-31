@@ -14,6 +14,7 @@ import { TokenService } from 'jslib/abstractions/token.service';
 export class NavbarComponent implements OnInit {
     selfHosted = false;
     name: string;
+    email: string;
 
     constructor(private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
         private tokenService: TokenService) {
@@ -22,8 +23,9 @@ export class NavbarComponent implements OnInit {
 
     async ngOnInit() {
         this.name = await this.tokenService.getName();
+        this.email = await this.tokenService.getEmail();
         if (this.name == null || this.name.trim() === '') {
-            this.name = await this.tokenService.getEmail();
+            this.name = this.email;
         }
     }
 

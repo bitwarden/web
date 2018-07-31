@@ -2,7 +2,7 @@
 <div class="org-nav" *ngIf="organization">
     <div class="container d-flex flex-column">
         <div class="my-auto d-flex align-items-center pl-1">
-            <app-avatar [data]="organization.name" [width]="45" [height]="45" [circle]="true"></app-avatar>
+            <app-avatar [data]="organization.name" size="45" [circle]="true"></app-avatar>
             <div class="org-name ml-3">
                 <span>{{organization.name}}</span>
                 <small class="text-muted">{{'organization' | i18n}}</small>

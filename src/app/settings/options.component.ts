@@ -23,6 +23,7 @@ import { Utils } from 'jslib/misc/utils';
 export class OptionsComponent implements OnInit {
     lockOption: number = null;
     disableIcons: boolean;
+    useGravatars: boolean;
     locale: string;
     lockOptions: any[];
     localeOptions: any[];
@@ -58,6 +59,7 @@ export class OptionsComponent implements OnInit {
     async ngOnInit() {
         this.lockOption = await this.storageService.get<number>(ConstantsService.lockOptionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
+        this.useGravatars = await this.storageService.get<boolean>('useGravatars');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
     }
 
@@ -65,6 +67,8 @@ export class OptionsComponent implements OnInit {
         await this.lockService.setLockOption(this.lockOption != null ? this.lockOption : null);
         await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
+        await this.storageService.save('useGravatars', this.useGravatars);
+        await this.stateService.save('useGravatars', this.useGravatars);
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         this.analytics.eventTrack.next({ action: 'Saved Options' });
         if (this.locale !== this.startingLocale) {

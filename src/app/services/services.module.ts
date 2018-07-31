@@ -146,6 +146,7 @@ export function initFactory(): Function {
         htmlEl.classList.add('theme_' + theme);
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
+        stateService.save('useGravatars', await storageService.get<boolean>('useGravatars'));
     };
 }
 
@@ -184,6 +185,7 @@ export function initFactory(): Function {
         { provide: StorageServiceAbstraction, useValue: storageService },
         { provide: StateServiceAbstraction, useValue: stateService },
         { provide: ExportServiceAbstraction, useValue: exportService },
+        { provide: CryptoFunctionServiceAbstraction, useValue: cryptoFunctionService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,
