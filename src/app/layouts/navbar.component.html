@@ -25,7 +25,7 @@
                     <div class="dropdown-item-text d-flex align-items-center" *ngIf="name" appStopProp>
                         <app-avatar [data]="name" width="25" height="25" fontSize="14" [circle]="true"></app-avatar>
                         <div class="ml-2 overflow-hidden">
-                            {{'loggedInAs' | i18n}}
+                            <span>{{'loggedInAs' | i18n}}</span>
                             <small class="text-muted">{{name}}</small>
                         </div>
                     </div>
