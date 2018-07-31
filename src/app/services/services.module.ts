@@ -146,7 +146,7 @@ export function initFactory(): Function {
         htmlEl.classList.add('theme_' + theme);
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
-        stateService.save('useGravatars', await storageService.get<boolean>('useGravatars'));
+        stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
     };
 }
 

@@ -44,15 +44,15 @@
     </div>
     <div class="form-group">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="useGravatars" name="UseGravatars" [(ngModel)]="useGravatars">
-            <label class="form-check-label" for="useGravatars">
-                {{'useGravatars' | i18n}}
+            <input class="form-check-input" type="checkbox" id="enableGravatars" name="enableGravatars" [(ngModel)]="enableGravatars">
+            <label class="form-check-label" for="enableGravatars">
+                {{'enableGravatars' | i18n}}
             </label>
             <a href="https://gravatar.com/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
                 <i class="fa fa-question-circle-o"></i>
             </a>
         </div>
-        <small class="form-text text-muted">{{'useGravatarsDesc' | i18n}}</small>
+        <small class="form-text text-muted">{{'enableGravatarsDesc' | i18n}}</small>
     </div>
     <button type="submit" class="btn btn-primary">
         {{'save' | i18n}}
