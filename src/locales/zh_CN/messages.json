@@ -562,7 +562,7 @@
     "message": "两次填写的主密码不一致。"
   },
   "newAccountCreated": {
-    "message": "已经为您建立了账户，您可以登录了。"
+    "message": "已经为您建立了帐户，您可以登录了。"
   },
   "masterPassSent": {
     "message": "我们已经为您发送了包含主密码提示的邮件。"
@@ -683,15 +683,15 @@
     "message": "使用 YubiKey 来访问您的账户。支持 YubiKey 4、4 Nano、4C 和 NEO 。"
   },
   "duoDesc": {
-    "message": "Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "使用 Duo Security 的 Duo Mobile 应用、短信、电话或 U2F 安全钥匙验证身份。",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Verify with Duo Security for your organization using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "使用 Duo Security 的 Duo Mobile 应用、短信、电话或 U2F 安全钥匙验证身份。",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
-    "message": "Use any FIDO U2F enabled security key to access your account."
+    "message": "使用 FIDO U2F 安全密钥来访问您的帐户。"
   },
   "u2fTitle": {
     "message": "FIDO U2F 安全密钥"
@@ -715,13 +715,13 @@
     "message": "选择您希望与之共享此项目的组织。共享将项目的所有权转移到组织。一旦共享, 您将不再是此项目的直接所有者。"
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "选择您希望与之共享这些项目的组织。共享将项目的所有权转移到组织。一旦共享, 您将不再是这些项目的直接所有者。"
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "编辑与此项共享的集合。只有具有这些集合访问权限的组织用户才能看到此项目。"
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "您选择了要删除 $COUNT$ 个项目。确实要删除所有这些项目吗？",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "选择要将这 $COUNT$ 个项目移动到的文件夹。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +739,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "您选择了 $COUNT$ 项。其中有 $SHAREABLE_COUNT$ 项是可以共享的, $NONSHAREABLE_COUNT$ 项不能。具有附件的项目必须单独共享。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -765,10 +765,10 @@
     "message": "警告"
   },
   "exportWarning": {
-    "message": "This export contains your unencrypted data in .csv format. You should not store or send it over unsecure channels (such as email). Delete it immediately after your are done using it."
+    "message": "导出会将你的数据存储成未经加密的 .csv 文件。你不应该长期保存，或者通过不加密的方式传送这个文件（例如电子邮件）。请在使用完之后立即删除这个文件。"
   },
   "exportMasterPassword": {
-    "message": "Enter your master password to export your vault data."
+    "message": "输入主密码来导出你的密码库。"
   },
   "exportVault": {
     "message": "导出密码库"
@@ -805,7 +805,7 @@
     "message": "清除"
   },
   "accountUpdated": {
-    "message": "账户已更新"
+    "message": "帐户已更新"
   },
   "changeEmail": {
     "message": "更改电子邮件"
@@ -817,7 +817,7 @@
     "message": "代码"
   },
   "changeEmailDesc": {
-    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize your the email address change.",
+    "message": "我们已将验证码发送到 $EMAIL$。请检查您的电子邮件, 在下方输入验证码, 以确认您的电子邮件地址更改。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -826,7 +826,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "接下来将会注销您当前的会话, 要求您重新登录。其他设备上的活动会话可能会继续保持最多一小时。"
   },
   "emailChanged": {
     "message": "电子邮件已更改"
@@ -835,7 +835,7 @@
     "message": "请重新登录。"
   },
   "logBackInOthersToo": {
-    "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
+    "message": "请重新登录。如果您还在使用其他 Bitwarden 应用程序, 也请注销并重新登陆。"
   },
   "changeMasterPassword": {
     "message": "修改主密码"
@@ -865,67 +865,67 @@
     "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "接下来将会注销您当前的会话, 要求您重新登录。如果有两步验证，也需要重新验证。其他设备上的活动会话可能会继续保持最多一小时。"
   },
   "sessionsDeauthorized": {
-    "message": "All Sessions Deauthorized"
+    "message": "所有会话未经授权"
   },
   "purgeVault": {
-    "message": "Purge Vault"
+    "message": "清空密码库"
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "接下来的操作会删除密码库中的所有项目和文件夹。属于组织的共享项目将不会被删除。"
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "清空密码库是永久性的。不能被撤消。"
   },
   "vaultPurged": {
-    "message": "Your vault has been purged."
+    "message": "你的密码库已经被清空。"
   },
   "deleteAccount": {
-    "message": "Delete Account"
+    "message": "删除帐户"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "会删除您的帐户和所有相关数据。"
   },
   "deleteAccountWarning": {
-    "message": "Deleting your account is permanent. It cannot be undone."
+    "message": "删除帐户是永久性的。不能被撤消。"
   },
   "accountDeleted": {
-    "message": "Account Deleted"
+    "message": "帐户已被删除"
   },
   "accountDeletedDesc": {
-    "message": "Your account has been closed and all associated data has been deleted."
+    "message": "您的帐户已关闭, 所有相关数据已被删除。"
   },
   "myAccount": {
-    "message": "My Account"
+    "message": "我的帐户"
   },
   "tools": {
-    "message": "Tools"
+    "message": "工具"
   },
   "importData": {
-    "message": "Import Data"
+    "message": "导入数据"
   },
   "importSuccess": {
-    "message": "Data has been successfully imported into your vault."
+    "message": "数据已经成功导入到密码库"
   },
   "importFormatError": {
-    "message": "Data is not formatted correctly. Please check your import file and try again."
+    "message": "数据格式不正确。请检查您的导入文件并重试。"
   },
   "importNothingError": {
-    "message": "Nothing was imported."
+    "message": "没有导入任何内容。"
   },
   "selectFormat": {
-    "message": "Select the format of the import file"
+    "message": "选择导入文件的格式"
   },
   "selectImportFile": {
-    "message": "Select the import file"
+    "message": "选择导入文件"
   },
   "orCopyPasteFileContents": {
-    "message": "or copy\/paste the import file contents"
+    "message": "或粘贴导入文件的内容"
   },
   "instructionsFor": {
-    "message": "$NAME$ Instructions",
+    "message": "$NAME$ 文件说明",
     "description": "The title for the import tool instructions.",
     "placeholders": {
       "name": {
@@ -935,58 +935,65 @@
     }
   },
   "options": {
-    "message": "Options"
+    "message": "选项"
   },
   "optionsDesc": {
-    "message": "Customize your web vault experience."
+    "message": "个性化你的体验。"
   },
   "optionsUpdated": {
-    "message": "Options updated"
+    "message": "选项已更新"
   },
   "language": {
-    "message": "Language"
+    "message": "语言"
   },
   "languageDesc": {
-    "message": "Change the language used by the web vault."
+    "message": "更改使用的语言。"
   },
   "disableIcons": {
-    "message": "Disable Website Icons"
+    "message": "禁用网站图标"
   },
   "disableIconsDesc": {
-    "message": "Website Icons provide a recognizable image next to each login item in your vault."
+    "message": "在您密码库的每个登录项旁显示一个容易区分的图标。"
+  },
+  "enableGravatars": {
+    "message": "Enable Gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Use avatar images loaded from gravatar.com."
   },
   "default": {
-    "message": "Default"
+    "message": "默认"
   },
   "domainRules": {
-    "message": "Domain Rules"
+    "message": "域名规则"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "如果你在多个不同网站使用同样的登陆信息，你可以把这些网站标记为“通用”。Bitwarden会帮你设置“全局”域名。"
   },
   "globalEqDomains": {
-    "message": "Global Equivalent Domains"
+    "message": "全局通用域名"
   },
   "customEqDomains": {
-    "message": "Custom Equivalent Domains"
+    "message": "自定义通用域名"
   },
   "exclude": {
-    "message": "Exclude"
+    "message": "排除"
   },
   "include": {
-    "message": "Include"
+    "message": "包括"
   },
   "customize": {
-    "message": "Customize"
+    "message": "自定义"
   },
   "newCustomDomain": {
-    "message": "New Custom Domain"
+    "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
+    "message": "输入用逗号分隔的域列表。只能使用顶级域名。不需要输入二级域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用程序与其他网站域名关联。"
   },
   "customDomainX": {
-    "message": "Custom Domain $INDEX$",
+    "message": "自定义域名 $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -995,25 +1002,25 @@
     }
   },
   "domainsUpdated": {
-    "message": "Domains updated"
+    "message": "域名已更新"
   },
   "twoStepLogin": {
     "message": "两步登录"
   },
   "twoStepLoginDesc": {
-    "message": "Secure your account by requiring an additional step when logging in."
+    "message": "在登录时需要额外的步骤来保护您的帐户。"
   },
   "twoStepLoginOrganizationDesc": {
     "message": "Require two-step login for your organization's users by configuring providers at the organization level."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+    "message": "启用两步登录可以永久地锁定您的Bitwarden 帐户。恢复代码允许您在无法正常使用两步登录的情况（例如你丢失了你的设备）下访问您的帐户。如果您无法访问您的帐户，Bitwarden 无法帮助您。我们建议您记下或打印恢复代码，并将其妥善保管。"
   },
   "viewRecoveryCode": {
     "message": "查看恢复码"
   },
   "providers": {
-    "message": "Providers",
+    "message": "提供方",
     "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
   },
   "enable": {
@@ -1023,17 +1030,17 @@
     "message": "已启用"
   },
   "premium": {
-    "message": "Premium",
+    "message": "高级版",
     "description": "Premium Membership"
   },
   "premiumMembership": {
-    "message": "Premium Membership"
+    "message": "高级会员"
   },
   "premiumRequired": {
-    "message": "Premium Required"
+    "message": "需要高级版"
   },
   "premiumRequiredDesc": {
-    "message": "A premium membership is required to use this feature."
+    "message": "使用此功能需要高级会员资格。"
   },
   "manage": {
     "message": "管理"
@@ -1042,19 +1049,19 @@
     "message": "停用"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "您的帐户已经启动两步验证。"
   },
   "twoStepLoginAuthDesc": {
-    "message": "Enter your master password to modify two-step login settings."
+    "message": "输入主密码以修改两步验证设置。"
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "按照以下步骤，使用身份验证程序设置两步验证："
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "Download a two-step authenticator app"
+    "message": "下载两步验证应用程序"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "Need a two-step authenticator app? Download one of the following"
+    "message": "没有两步验证程序？可以下载以下应用"
   },
   "iosDevices": {
     "message": "iOS 设备"
@@ -1066,10 +1073,10 @@
     "message": "Windows 设备"
   },
   "twoStepAuthenticatorAppsRecommended": {
-    "message": "These apps are recommended, however, other authenticator apps will also work."
+    "message": "只是推荐使用这些应用，其它的身份验证应用也可以"
   },
   "twoStepAuthenticatorScanCode": {
-    "message": "Scan this QR code with your authenticator app"
+    "message": "使用身份验证应用扫描这个二维码"
   },
   "key": {
     "message": "密钥"
@@ -1084,10 +1091,10 @@
     "message": "Are you sure you want to disable this two-step login provider?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "已禁用两步登录提供程序。"
   },
   "twoFactorYubikeyAdd": {
-    "message": "Add a new YubiKey to your account"
+    "message": "向您的帐户添加新 YubiKey"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "Plug the YubiKey (NEO or 4 series) into your computer's USB port."
@@ -1156,7 +1163,7 @@
     "message": "Enter the resulting 6 digit verification code from the email"
   },
   "sendEmail": {
-    "message": "Send Email"
+    "message": "发送电子邮件"
   },
   "twoFactorU2fAdd": {
     "message": "Add a FIDO U2F security key to your account"
