@@ -862,7 +862,7 @@
     "message": "Fjern godkendelsen fra sessioner"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Bekymret for om din konto er logget ind på en anden enhed? Fortsæt nedenfor for at fjerne godkendelsen for alle computere eller enheder, som du tidligere har brugt. Dette sikkerhedstrin anbefales, hvis du tidligere har brugt en offentlig pc eller ved et uheld har gemt dit kodeord på en enhed, der ikke er din. Dette trin fjerner også alle tidligere huskede to-trins-login sessioner."
+    "message": "Bekymret for om din konto er logget ind på en anden enhed? Fortsæt nedenfor for at fjerne godkendelsen for alle computere eller enheder, som du tidligere har brugt. Dette sikkerhedstrin anbefales, hvis du tidligere har brugt en offentlig computer eller ved et uheld har gemt dit kodeord på en enhed, der ikke er din. Dette trin fjerner også alle tidligere huskede to-trins-login sessioner."
   },
   "deauthorizeSessionsWarning": {
     "message": "Ved at fortsætte vil du også blive logget ud af din nuværende session, og du skal logge ind igen. Du bliver også bedt om to-trins login igen, hvis det er aktiveret. Aktive sessioner på andre enheder kan fortsat forblive aktive i op til én time."
@@ -954,6 +954,13 @@
   },
   "disableIconsDesc": {
     "message": "Webikoner vises som et genkendeligt billede ved siden af hvert loginelement i din boks."
+  },
+  "enableGravatars": {
+    "message": "Enable Gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Use avatar images loaded from gravatar.com."
   },
   "default": {
     "message": "Standard"
@@ -1093,7 +1100,7 @@
     "message": "Sæt YubiKey'en (NEO eller 4-serien) i din computers USB-port."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Vælg i det første tomme YubiKey-indtastningsfelt nedenfor."
+    "message": "Vælg det første tomme YubiKey-indtastningsfelt nedenfor."
   },
   "twoFactorYubikeyTouchButton": {
     "message": "Tryk på YubiKey knappen."
@@ -1330,10 +1337,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Din valgte betalingsmetode vil blive opkrævet straks og løbende hvert år. Du kan til enhver tid opsige."
+    "message": "Din valgte betalingsmetode vil blive opkrævet straks og derefter løbende hvert år. Du kan til enhver tid opsige."
   },
   "paymentChargedWithTrial": {
-    "message": "Dit abonnement indeholder en gratis 7-dages prøveperiode. Dit kort debiteres ikke, før prøveperioden er afsluttet, og derefter hver $INTERVAL$. Du kan til enhver tid opsige.",
+    "message": "Dit abonnement kommer med en gratis 7-dages prøveperiode. Din valgte betalingsmetode vil ikke blive opkrævet, før prøveperioden er afsluttet. Fakturering finder sted hver(t) $INTERVAL$. Du kan til enhver tid opsige.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -2346,6 +2353,41 @@
     "message": "Privatlivspolitik"
   },
   "filters": {
-    "message": "Filters"
+    "message": "Filtre"
+  },
+  "lockOptions": {
+    "message": "Låseindstillinger"
+  },
+  "lockOptionsDesc": {
+    "message": "Vælg hvornår din boks låses. En låst boks kræver at du gentaster din hovedadgangskode for at tilgå den igen."
+  },
+  "oneMinute": {
+    "message": "1 minut"
+  },
+  "fiveMinutes": {
+    "message": "5 minutter"
+  },
+  "fifteenMinutes": {
+    "message": "15 minutter"
+  },
+  "thirtyMinutes": {
+    "message": "30 minutter"
+  },
+  "oneHour": {
+    "message": "1 time"
+  },
+  "fourHours": {
+    "message": "4 timer"
+  },
+  "onRefresh": {
+    "message": "Ved browser opdatering"
+  },
+  "dateUpdated": {
+    "message": "Opdateret",
+    "description": "ex. Date this item was updated"
+  },
+  "datePasswordUpdated": {
+    "message": "Adgangskode opdateret",
+    "description": "ex. Date this password was updated"
   }
 }
