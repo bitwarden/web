@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { ModalComponent as BaseModalComponent } from 'jslib/angular/components/modal.component';
+import { Utils } from 'jslib/misc/utils';
 
 @Component({
     selector: 'app-modal',
@@ -39,7 +40,9 @@ export class ModalComponent extends BaseModalComponent {
             });
             this.el.on('shown.bs.modal', () => {
                 this.onShown.emit();
-                this.el.find('*[appAutoFocus]').focus();
+                if (!Utils.isMobileBrowser) {
+                    this.el.find('*[appAutoFocus]').focus();
+                }
             });
             this.el.on('hide.bs.modal', () => {
                 this.onClose.emit();
