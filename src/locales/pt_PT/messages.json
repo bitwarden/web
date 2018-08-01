@@ -484,7 +484,7 @@
     "message": "Tem certeza que pretende terminar a sessão?"
   },
   "logOut": {
-    "message": "Desligar"
+    "message": "Terminar sessão"
   },
   "ok": {
     "message": "Ok"
@@ -502,13 +502,13 @@
     "message": "Criar Conta"
   },
   "logIn": {
-    "message": "Iniciar sessão"
+    "message": "Iniciar Sessão"
   },
   "submit": {
     "message": "Submeter"
   },
   "emailAddressDesc": {
-    "message": "Você vai usar seu endereço de email para iniciar sessão."
+    "message": "Você vai usar o seu endereço de email para iniciar sessão."
   },
   "yourName": {
     "message": "O Seu Nome"
@@ -571,10 +571,10 @@
     "message": "Ocorreu um erro inesperado."
   },
   "emailAddress": {
-    "message": "Endereço de email"
+    "message": "Endereço de Email"
   },
   "yourVaultIsLocked": {
-    "message": "O seu cofre está bloqueado. Verifique a sua palavra-passe mestra para continuar."
+    "message": "O seu cofre está bloqueado. Confirme a sua palavra-passe mestra para continuar."
   },
   "unlock": {
     "message": "Desbloquear"
@@ -583,7 +583,7 @@
     "message": "Palavra-passe mestra inválida"
   },
   "lockNow": {
-    "message": "Bloquear agora"
+    "message": "Bloquear Agora"
   },
   "noItemsInList": {
     "message": "Não existem itens para exibir."
@@ -616,10 +616,10 @@
     }
   },
   "enterVerificationCodeApp": {
-    "message": "Introduza o código de verificação de 6 dígitos da sua aplicação de autenticação."
+    "message": "Introduza o código de confirmação de 6 dígitos da sua aplicação de autenticação."
   },
   "enterVerificationCodeEmail": {
-    "message": "Introduza o código de verificação de 6 dígitos que foi enviado para o email $EMAIL$.",
+    "message": "Introduza o código de confirmação de 6 dígitos que foi enviado para o email $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -628,7 +628,7 @@
     }
   },
   "verificationCodeEmailSent": {
-    "message": "Email de verificação enviado para $EMAIL$.",
+    "message": "Email de confirmação enviado para $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -640,7 +640,7 @@
     "message": "Memorizar-me"
   },
   "sendVerificationCodeEmailAgain": {
-    "message": "Reenviar código de verificação"
+    "message": "Reenviar email com o código de confirmação"
   },
   "useAnotherTwoStepMethod": {
     "message": "Utilizar outro método de início de sessão de dois passos"
@@ -655,7 +655,7 @@
     "message": "Início de sessão Indisponível"
   },
   "noTwoStepProviders": {
-    "message": "Esta conta tem o início de sessão de dois passos ativado, no entanto, nenhum dos provedores de início de sessão de dois passos configurados são suportados por este navegador web."
+    "message": "Esta conta tem o início de sessão de dois passos ativado, no entanto, nenhum dos métodos de início de sessão de dois passos configurados são suportados por este navegador web."
   },
   "noTwoStepProviders2": {
     "message": "Por favor utilize um navegador web suportado (tal como o Chrome) e\/ou adicione provedores adicionais que são melhor suportados entre navegadores web (tal como uma aplicação de autenticador)."
@@ -955,6 +955,13 @@
   "disableIconsDesc": {
     "message": "Os ícones dos sites adicionam uma imagem identificável junto a cada item de acesso no seu cofre."
   },
+  "enableGravatars": {
+    "message": "Enable Gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Use avatar images loaded from gravatar.com."
+  },
   "default": {
     "message": "Predefinido"
   },
@@ -1240,7 +1247,7 @@
     "message": "Dados comprometidos"
   },
   "website": {
-    "message": "Website"
+    "message": "Site"
   },
   "affectedUsers": {
     "message": "Utilizadores Afetados"
@@ -1262,7 +1269,7 @@
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "Atualizou para Premium."
+    "message": "Atualizou para premium."
   },
   "premiumUpgradeUnlockFeatures": {
     "message": "Atualiza a sua conta para uma subscrição premium e desbloqueie fantásticas funções adicionais."
@@ -1274,7 +1281,7 @@
     "message": "Opções adicionais de início de sessão em dois passos, como YubiKey, FIDO U2F, e Duo."
   },
   "premiumSignUpTotp": {
-    "message": "Gerador de códigos de verificação TOTP (2FA) para aceder ao seu cofre."
+    "message": "Gerador de códigos de confirmação TOTP (2FA) para aceder ao seu cofre."
   },
   "premiumSignUpSupport": {
     "message": "Apoio ao cliente prioritário."
@@ -1330,10 +1337,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and on a recurring basis each year. You may cancel at any time."
+    "message": "O seu método de pagamento será imediatamente cobrado e, de forma regular, anualmente. Pode cancelar a qualquer momento."
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "O seu plano inclui um teste gratuito de 7 dias. O seu cartão de crédito apenas será debotado quanto o período de teste acabar e regularmente a cada $INTERVAL$. Pode cancelar em qualquer altura.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1768,7 +1775,7 @@
     "message": "Tem certeza que quer eliminar esta coleção?"
   },
   "editUser": {
-    "message": "Alterar Utiliador"
+    "message": "Alterar Utilizador"
   },
   "inviteUser": {
     "message": "Convidar Utilizador"
@@ -1777,7 +1784,7 @@
     "message": "Convide um novo utilizador para a sua organização introduzindo abaixo o endereço de email da sua conta Bitwarden. Se ainda não tiverem uma conta Bitwarden, ser-lhes-á pedido para criarem uma."
   },
   "inviteMultipleEmailDesc": {
-    "message": "Pode convidar até $COUNT$ utilizadores de cada vez separando os endereços de email com vírgulas.",
+    "message": "Pode convidar até $COUNT$ utilizadores de cada vez, separando os endereços de email com vírgulas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1813,7 +1820,7 @@
     "message": "Admin"
   },
   "adminDesc": {
-    "message": " Admins podem aceder e gerir todos os itens, coleções e utilizadores na sua organização."
+    "message": " Administradores podem aceder e gerir todos os itens, coleções e utilizadores na sua organização."
   },
   "user": {
     "message": "Utilizador"
@@ -1879,7 +1886,7 @@
     "message": "Definições de organização alteradas."
   },
   "createdItemId": {
-    "message": "Criado o item $ID$.",
+    "message": "Item $ID$ criado.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2170,7 +2177,7 @@
     "message": "Continue para apagar esta organização e todos os dados associados. Contas de utilizadores individuais serão mantidas, embora já não associadas a esta organização. "
   },
   "deleteOrganizationWarning": {
-    "message": "Eliminar a organização é permanente. Não pode ser desfeito."
+    "message": "A eliminação da organização é permanente. Não pode ser desfeita."
   },
   "organizationDeleted": {
     "message": "Organização Eliminada"
@@ -2182,10 +2189,10 @@
     "message": "Organização atualizada"
   },
   "taxInformation": {
-    "message": "Informação fiscal"
+    "message": "Informação Fiscal"
   },
   "taxInformationDesc": {
-    "message": "Por favor contacte o apoio para indicar (ou atualizar) informação fiscal para a faturação."
+    "message": "Por favor contacte o apoio para indicar (ou atualizar) a informação fiscal para faturação."
   },
   "billingPlan": {
     "message": "Plano",
@@ -2203,10 +2210,10 @@
     "message": "Fatura"
   },
   "verifyBankAccount": {
-    "message": "Verificar Conta Bancária"
+    "message": "Confirmar Conta Bancária"
   },
   "verifyBankAccountDesc": {
-    "message": "Fizemos dois micro-depósitos na sua conta (pode demorar 1-2 dias úteis a aparecer). Introduza estas quantias para verificar a conta bancária."
+    "message": "Fizemos dois micro-depósitos na sua conta (pode demorar 1-2 dias úteis a aparecer). Introduza estas quantias para confirmar a conta bancária."
   },
   "verifyBankAccountInitialDesc": {
     "message": "Pagamento via conta bancária apenas está disponível para clientes nos Estados Unidos. Ser-lhe-á pedido para confirmar a sua conta bancária. Procederemos a dois micro-depósitos nos próximos 1-2 dias úteis. Introduza estas quantias na página de faturação da organização para confirmar a conta bancária."
@@ -2215,7 +2222,7 @@
     "message": "Não confirmar a conta bancária implicará a falta de um pagamento e a sua subscrição ser desativada."
   },
   "verifiedBankAccount": {
-    "message": "Conta bancária verificada."
+    "message": "A conta bancária foi confirmada."
   },
   "bankAccount": {
     "message": "Conta Bancária"
@@ -2349,38 +2356,38 @@
     "message": "Filtros"
   },
   "lockOptions": {
-    "message": "Lock Options"
+    "message": "Opções de Bloqueio"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "Escolha quando o seu cofre se bloqueia. Para voltar a abrir um cofre bloqueado precisa de reintroduzir a palavra-passe mestra."
   },
   "oneMinute": {
-    "message": "1 minute"
+    "message": "1 minuto"
   },
   "fiveMinutes": {
-    "message": "5 minutes"
+    "message": "5 minutos"
   },
   "fifteenMinutes": {
-    "message": "15 minutes"
+    "message": "15 minutos"
   },
   "thirtyMinutes": {
-    "message": "30 minutes"
+    "message": "30 minutos"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 hora"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 horas"
   },
   "onRefresh": {
-    "message": "On Browser Refresh"
+    "message": "Quando Reiniciar o Navegador"
   },
   "dateUpdated": {
-    "message": "Updated",
+    "message": "Atualizado",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Password Updated",
+    "message": "Palavra-passe Atualizada",
     "description": "ex. Date this password was updated"
   }
 }
