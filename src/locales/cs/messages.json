@@ -604,7 +604,7 @@
     "message": "Nová organizace"
   },
   "noOrganizationsList": {
-    "message": "You do not belong to any organizations. Organizations allow you to securely share items with other users."
+    "message": "Nepatříte do žádné organizace. Organizace umožňují bezpečné sdílení položek s ostatními uživateli."
   },
   "versionNumber": {
     "message": "Verze $VERSION_NUMBER$",
@@ -712,16 +712,16 @@
     "message": "Organizace"
   },
   "shareDesc": {
-    "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
+    "message": "Vyberte organizaci se kterou chcete sdílet tuto položku. Sdílením přenese vlastnictví položky na organizaci a již nadále nebudete přímým vlastníkem této položky."
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "Vyberte organizaci se kterou chcete sdílet tyto položky. Sdílením přenese vlastnictví položek na organizaci a již nadále nebudete přímým vlastníkem těchto položek."
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "Upravit kolekce, ve kterých je tato položka sdílená. Pouze uživatelé organizace, kteří mají přístup k těmto kolekcím, budou moci tuto položku vidět."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "Vybrali jste $COUNT$ položek ke smazání. Opravdu chcete tyto položky smazat?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "Vyberte složku, do které chcete přesunout $COUNT$ vybraných položek.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +739,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "Vybrali jste $COUNT$ položek. $SHAREABLE_COUNT$ položek je možné sdílet a $NONSHAREABLE_COUNT$ položek ne. Položky s přílohami musí být sdíleny jednotlivě.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -817,7 +817,7 @@
     "message": "Kód"
   },
   "changeEmailDesc": {
-    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize your the email address change.",
+    "message": "Na e-mail $EMAIL$ jsme odeslali ověřovací kód. Zkontrolujte prosím svou e-mailovou schránku a pro potvrzení nové e-mailové adresy zadejte níže obdržený kód.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -826,7 +826,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Pokud chcete pokračovat, budete odhlášeni z aktuální relace a bude nutné se znovu přihlásit. Aktivní relace na jiných zařízeních mohou nadále zůstat aktivní po dobu až jedné hodiny."
   },
   "emailChanged": {
     "message": "E-mail byl změněn"
@@ -862,22 +862,22 @@
     "message": "Zrušit autorizaci relací"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public computer or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "Je váš účet přihlášen na jiném zařízení? Pokračujte níže ke zrušení přihlášení všech počítačů a zařízení, která jste dříve používali. Tento bezpečnostní krok je doporučen, pokud jste dříve používali veřejný počítač nebo nechtěně uložili heslo na zařízení, které není vaše. Tímto krokem se také zruší dříve zapamatovaná dvoufázová přihlášení."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Pokud chcete pokračovat, budete také odhlášeni z aktuální relace a bude nutné se znovu přihlásit. Pokud používáte dvoufázové přihlášení, bude také vyžadováno. Aktivní relace na jiných zařízeních mohou nadále zůstat aktivní po dobu až jedné hodiny."
   },
   "sessionsDeauthorized": {
-    "message": "All Sessions Deauthorized"
+    "message": "Všechny relace byly zrušeny"
   },
   "purgeVault": {
     "message": "Vymazat celý trezor"
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "Pokračujte níže ke smazání všech položek a složek ve vašem trezoru. Položky sdílené s organizací nebudou smazány."
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "Vymazání trezoru je trvalé. Tuto akci nelze vrátit zpět."
   },
   "vaultPurged": {
     "message": "Výš trezor byl vymazán"
@@ -886,16 +886,16 @@
     "message": "Smazat účet"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "Pokračujte níže ke smazání účtu a všech souvisejících dat."
   },
   "deleteAccountWarning": {
-    "message": "Deleting your account is permanent. It cannot be undone."
+    "message": "Smazání účtu je trvalé. Tuto akci nelze vrátit zpět."
   },
   "accountDeleted": {
     "message": "Účet byl smazán"
   },
   "accountDeletedDesc": {
-    "message": "Your account has been closed and all associated data has been deleted."
+    "message": "Váš účet byl uzavřen a všechna související data byla smazána."
   },
   "myAccount": {
     "message": "Můj účet"
@@ -910,7 +910,7 @@
     "message": "Data byla úspěšně importována"
   },
   "importFormatError": {
-    "message": "Data is not formatted correctly. Please check your import file and try again."
+    "message": "Data nemají správný formát. Zkontrolujte importovaný soubor a zkuste to znovu."
   },
   "importNothingError": {
     "message": "Nic nebylo importováno"
@@ -922,7 +922,7 @@
     "message": "Vyberte soubor pro import"
   },
   "orCopyPasteFileContents": {
-    "message": "or copy\/paste the import file contents"
+    "message": "nebo zkopírujte a vložte obsah souboru"
   },
   "instructionsFor": {
     "message": "Instrukce pro $NAME$",
@@ -938,16 +938,16 @@
     "message": "Možnosti"
   },
   "optionsDesc": {
-    "message": "Customize your web vault experience."
+    "message": "Přizpůsobte si váš webový trezor."
   },
   "optionsUpdated": {
-    "message": "Options updated"
+    "message": "Možnosti byly upraveny"
   },
   "language": {
     "message": "Jazyk"
   },
   "languageDesc": {
-    "message": "Change the language used by the web vault."
+    "message": "Změňte jazyk používaný ve webovém trezoru."
   },
   "disableIcons": {
     "message": "Zakázat ikonky webových stránek"
@@ -955,38 +955,45 @@
   "disableIconsDesc": {
     "message": "Ikonky webových stránek zobrazí snadno rozeznatelný obrázek vedle každé položky ve vašem trezoru."
   },
+  "enableGravatars": {
+    "message": "Enable Gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Use avatar images loaded from gravatar.com."
+  },
   "default": {
     "message": "Výchozí"
   },
   "domainRules": {
-    "message": "Domain Rules"
+    "message": "Doménová pravidla"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "Pokud máte stejné přihlašovací údaje napříč různými doménami, můžete je označit jako \"ekvivalentní\". Bitwarden za vás již vytvořil seznam globálních domén."
   },
   "globalEqDomains": {
-    "message": "Global Equivalent Domains"
+    "message": "Globální ekvivalentní domény"
   },
   "customEqDomains": {
-    "message": "Custom Equivalent Domains"
+    "message": "Vlastní ekvivalentní domény"
   },
   "exclude": {
-    "message": "Exclude"
+    "message": "Vyřadit"
   },
   "include": {
-    "message": "Include"
+    "message": "Zahrnout"
   },
   "customize": {
-    "message": "Customize"
+    "message": "Přizpůsobit"
   },
   "newCustomDomain": {
-    "message": "New Custom Domain"
+    "message": "Přidat vlastní doménu"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
+    "message": "Zadejte seznam domén oddělených čárkou. Povolené jsou pouze \"základní\" domény a proto nezadávejte subdomény. Například zadejte \"bitwarden.com\" místo \"vault.bitwarden.com\". Můžete také zadat \"androidapp:\/\/package.name\" pokud chcete přiřadit Android aplikaci k ostatním webovým doménám."
   },
   "customDomainX": {
-    "message": "Custom Domain $INDEX$",
+    "message": "Vlastní doména $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -995,19 +1002,19 @@
     }
   },
   "domainsUpdated": {
-    "message": "Domains updated"
+    "message": "Domény byly upraveny"
   },
   "twoStepLogin": {
-    "message": "Two-step Login"
+    "message": "Dvoufázové přihlášení"
   },
   "twoStepLoginDesc": {
-    "message": "Secure your account by requiring an additional step when logging in."
+    "message": "Zabezpečte svůj účet vyžadováním dodatečného kroku při přihlašování."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "Vyžadovat dvoufázové přihlášení pro uživatele vaší organizace nastavením poskytovatelů na úrovni organizace."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+    "message": "Povolením dvoufázového přihlášení může dojít k trvalému uzamčení vašeho účtu. Obnovovací kód umožňuje přístup do vašeho účtu i v případě, pokud již nemůžete použít svůj normální způsob dvoufázového přihlášení (např. ztráta zařízení). Pokud ztratíte přístup k vašemu účtu, nebude vám schopna pomoci ani zákaznická podpora Bitwardenu. Doporučujeme si proto kód pro obnovení zapsat nebo vytisknout a uložit jej na bezpečném místě."
   },
   "viewRecoveryCode": {
     "message": "Zobrazit kód pro obnovení"
@@ -1042,73 +1049,73 @@
     "message": "Zakázat"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "Tento poskytovatel dvoufázového přihlášení byl povolen."
   },
   "twoStepLoginAuthDesc": {
-    "message": "Enter your master password to modify two-step login settings."
+    "message": "Zadejte hlavní heslo pro úpravu dvoufázového přihlášení."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "Postupujte podle následujících kroků pro nastavení pro dvoufázového přihlášení pomocí ověřovací aplikace:"
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "Download a two-step authenticator app"
+    "message": "Stáhněte si ověřovací aplikaci"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "Need a two-step authenticator app? Download one of the following"
+    "message": "Potřebujete aplikaci pro dvoufázové ověření? Stáhněte si jednu z následujících"
   },
   "iosDevices": {
-    "message": "iOS devices"
+    "message": "iOS zařízení"
   },
   "androidDevices": {
-    "message": "Android devices"
+    "message": "Android zařízení"
   },
   "windowsDevices": {
-    "message": "Windows devices"
+    "message": "Windows zařízení"
   },
   "twoStepAuthenticatorAppsRecommended": {
-    "message": "These apps are recommended, however, other authenticator apps will also work."
+    "message": "Tyto aplikaci doporučujeme, nicméně další aplikace pro ověření budou fungovat také."
   },
   "twoStepAuthenticatorScanCode": {
-    "message": "Scan this QR code with your authenticator app"
+    "message": "Naskenujte tento QR kód s vaší ověřovací aplikací"
   },
   "key": {
     "message": "Klíč"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the app"
+    "message": "Zadejte 6-místný kód z ověřovací aplikace"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "V případě potřeby přidání do jiného zařízení, je níže zobrazen QR kód (nebo klíč) vyžadovaný ověřovací aplikací."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "Opravdu chcete zakázat tohoto poskytovatele dvoufázového přihlášení?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "Poskytovatel dvoufázového přihlášení byl zakázán"
   },
   "twoFactorYubikeyAdd": {
-    "message": "Add a new YubiKey to your account"
+    "message": "Přidání nového YubiKey k vašemu účtu"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Plug the YubiKey (NEO or 4 series) into your computer's USB port."
+    "message": "Připojte YubiKey (NEO nebo 4. řada) do USB portu počítače."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Select in the first empty YubiKey input field below."
+    "message": "Vyberte první prázdné pole YubiKey níže."
   },
   "twoFactorYubikeyTouchButton": {
-    "message": "Touch the YubiKey's button."
+    "message": "Dotkněte se tlačítka na YubiKey."
   },
   "twoFactorYubikeySaveForm": {
-    "message": "Save the form."
+    "message": "Uložte formulář."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "Z důvodu omezení různých platforem, nemůže být YubiKey použit ve všech aplikacích Bitwarden. Měli byste povolit jiný způsob dvoufázového přihlášení pro případy, kdy nelze YubiKey použít. Podporované platformy:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "Webový trezor, aplikace, CLI a rozšíření pro prohlížeče na zařízeních s USB portem."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "Mobilní aplikace na zařízeních s podporou NFC nebo USB portu."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1126,7 +1133,7 @@
     "message": "Jeden z mých klíčů podporuje NFC."
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
+    "message": "Pokud některý z vašich YubiKey podporuje NFC (např. YubiKey NEO), budete na mobilních zařízeních vyzvání k ověření pomocí NFC, pokud bude na daném zařízení tato technologie detekována."
   },
   "yubikeysUpdated": {
     "message": "YubiKey byly aktualizovány"
@@ -1135,58 +1142,58 @@
     "message": "Zakázat všechny klíče"
   },
   "twoFactorDuoDesc": {
-    "message": "Enter the Bitwarden application information from your Duo Admin panel."
+    "message": "Zadejte informace o aplikaci Bitwarden z panelu Duo Admin."
   },
   "twoFactorDuoIntegrationKey": {
-    "message": "Integration Key"
+    "message": "Integrační klíč"
   },
   "twoFactorDuoSecretKey": {
-    "message": "Secret Key"
+    "message": "Tajný klíč"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "Host API"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "Postupujte podle následujících kroků pro nastavení dvoufázového přihlášení pomocí e-mailu:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "Zadejte e-mail, na který si přejete dostávat ověřovací kódy"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the email"
+    "message": "Zadejte 6-místný kód zaslaný na e-mail"
   },
   "sendEmail": {
     "message": "Odeslat e-mail"
   },
   "twoFactorU2fAdd": {
-    "message": "Add a FIDO U2F security key to your account"
+    "message": "Přidání bezpečnostního klíče FIDO U2F k vašemu účtu"
   },
   "twoFactorU2fPlugIn": {
-    "message": "Plug the security key into your computer's USB port."
+    "message": "Připojte bezpečnostní klíč do portu USB počítače."
   },
   "twoFactorU2fTouchButton": {
-    "message": "If the security key has a button, touch it."
+    "message": "Pokud má bezpečnostní klíč tlačítko, zmáčkněte jej."
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "Z důvodu omezení různých platforem, nemůže být FIDO U2F použit ve všech aplikacích Bitwarden. Měli byste povolit jiný způsob dvoufázového přihlášení pro případy, kdy nelze FIDO U2F použít. Podporované platformy:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Webový trezor a rozšíření pro prohlížeče s podporou U2F (Chrome, Opera, Vivaldi nebo Firefox)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "Čeká se na stisknutí tlačítka na bezpečnostním klíči"
   },
   "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+    "message": "Klepněte níže na tlačítko \"Povolit\" pro povolení tohoto bezpečnostního klíče pro dvoufázové přihlášení."
   },
   "twoFactorU2fProblemReading": {
-    "message": "There was a problem reading the security key."
+    "message": "Došlo k potížím při čtení bezpečnostního klíče."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "Váše kód pro obnovení dvoufázového přihlášení"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "Doposud jste nepovolili žádný způsob dvoufázového přihlášení. Až některý způsob povolíte, můžete se sem vrátit pro zobrazení kódu pro obnovení."
   },
   "printCode": {
     "message": "Vytisknout kód",
@@ -1295,10 +1302,10 @@
     "message": "Doplňky"
   },
   "additionalStorageGb": {
-    "message": "Additional Storage (GB)"
+    "message": "Další úložiště (GB)"
   },
   "additionalStorageGbDesc": {
-    "message": "# of additional GB"
+    "message": "# dalších GB"
   },
   "additionalStorageDesc": {
     "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/year.",
@@ -1521,7 +1528,7 @@
     "message": "E-mailová adresa pro fakturaci"
   },
   "businessName": {
-    "message": "Business Name"
+    "message": "Obchodní jméno"
   },
   "chooseYourPlan": {
     "message": "Choose Your Plan"
@@ -1588,7 +1595,7 @@
     "message": "Navždy zdarma"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "zahrnuje $COUNT$ uživatelů",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1600,7 +1607,7 @@
     "message": "Additional Users"
   },
   "costPerUser": {
-    "message": "$COST$ per user",
+    "message": "$COST$ za uživatele",
     "placeholders": {
       "cost": {
         "content": "$1",
@@ -1678,13 +1685,13 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "Měsíčně"
   },
   "annually": {
-    "message": "Annually"
+    "message": "Ročně"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "Základní cena"
   },
   "organizationCreated": {
     "message": "Organizace byla vytvořena"
@@ -2352,7 +2359,7 @@
     "message": "Lock Options"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "Vyberte kdy dojde k automatickému uzamčení trezoru. Pro opětovný přístup do uzamčeného trezoru bude potřeba znovu zadat hlavního heslo."
   },
   "oneMinute": {
     "message": "1 minute"
