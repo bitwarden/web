@@ -955,6 +955,13 @@
   "disableIconsDesc": {
     "message": "Les icônes de sites web permettent d'avoir une icône reconnaissable à côté de chaque identifiant dans votre coffre-fort."
   },
+  "enableGravatars": {
+    "message": "Enable Gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Use avatar images loaded from gravatar.com."
+  },
   "default": {
     "message": "Par défaut"
   },
@@ -1171,10 +1178,10 @@
     "message": "En raison des limitations de la plate-forme, FIDO U2F ne peut servir à toutes les applications de Bitwarden. Vous devez activer un autre fournisseur de connexion en deux étapes afin que vous pouvez accéder à votre compte lorsque FIDO U2F ne peut pas être utilisé. Plates-formes supportées :"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Coffre web et extensions sur un ordinateur fixe\/portable avec un navigateur compatible U2F (Chrome, Opera, Vivaldi ou Firefox avec FIDO U2F activé)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "Dans l'attente que vous appuyez sur le bouton sur votre clé de sécurité"
   },
   "twoFactorU2fClickEnable": {
     "message": "Cliquez sur le bouton « Activer » ci-dessous pour activer cette clé de sécurité pour une connexion en deux étapes."
@@ -1199,7 +1206,7 @@
     "message": "Rapport de fuites de données"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Une « brèche » est un incident où les données d’un site a été accédées illégalement par des pirates puis rendues public. Examiner les types de données qui ont été compromis (adresses e-mail, mots de passe, cartes de crédit etc.) et prenez les mesures appropriées, telles que la modification des mots de passe."
   },
   "breachCheckUsernameEmail": {
     "message": "Vérifiez toutes les adresses noms d’utilisateur ou e-mail que vous utilisez."
@@ -1221,7 +1228,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$ a été trouvé dans $COUNT$ brèches de données différentes en ligne.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1252,7 +1259,7 @@
     "message": "Accident signalé"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "Une erreur est survenue en essayant de charger le rapport. Réessayez"
   },
   "billingAndLicensing": {
     "message": "Facturation & License"
@@ -1265,7 +1272,7 @@
     "message": "Vous venez de passer à un compte Premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Mettre à niveau votre compte à un abonnement premium et débloquez les incroyables fonctionnalités supplémentaires."
   },
   "premiumSignUpStorage": {
     "message": "1 Go de stockage de fichiers chiffrés."
@@ -1301,7 +1308,7 @@
     "message": "# de Go additionnels"
   },
   "additionalStorageDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/year.",
+    "message": "Votre plan offre un stockage de fichiers chiffré de $SIZE$. Vous pouvez ajouter du stockage additionnel pour $PRICE$ par Go\/an.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1539,7 +1546,7 @@
     "message": "# des sièges utilisateurs"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Votre plan offre $BASE_SEATS$ accès utilisateurs. Vous pouvez ajouter des utilisateurs supplémentaires pour $SEAT_PRICE$ par utilisateur\/mois.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1552,13 +1559,13 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "How many user seats do you need? You can also add additional seats later if needed."
+    "message": "De combien de comptes utilisateur avez-vous besoin ? Vous pouvez également en ajouter ultérieurement si besoin."
   },
   "planNameFree": {
     "message": "Gratuit"
   },
   "planDescFree": {
-    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "message": "Pour les utilisateurs de test ou utilisateurs individuels à partager avec $COUNT$ autres utilisateurs.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1627,7 +1634,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Add and share with up to $COUNT$ users",
+    "message": "Ajoutez et partagez jusqu'à $COUNT$ utilisateurs",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1636,7 +1643,7 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "Ajouter et partager avec un nombre illimité d'utilisateurs"
   },
   "createUnlimitedCollections": {
     "message": "Créer un nombre illimité de collections"
@@ -1657,7 +1664,7 @@
     "message": "Contrôler l'accès des utilisateurs avec des groupes"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "Synchroniser vos utilisateurs et les groupes à partir d’un répertoire"
   },
   "trackAuditLogs": {
     "message": "Suivre les actions avec les logs d'audit"
@@ -2032,7 +2039,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "Groupes édités pour l'utilisateur $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2062,7 +2069,7 @@
     "message": "Accès des groupes"
   },
   "groupAccessUserDesc": {
-    "message": "Edit the groups that this user belongs to."
+    "message": "Modifier les groupes auxquels appartient cet utilisateur."
   },
   "invitedUsers": {
     "message": "Utilisateurs invités."
@@ -2104,7 +2111,7 @@
     "message": "Vérifiez l'adresse mail de votre compte pour débloquer l'ensemble des fonctionnalités."
   },
   "verifyEmailFirst": {
-    "message": "Your account's email address first must be verified."
+    "message": "Votre adresse de messagerie principale doit d'abord être vérifiée."
   },
   "checkInboxForVerification": {
     "message": "Vérifiez votre email pour le lien de vérification."
@@ -2131,31 +2138,31 @@
     "message": "Invitation acceptée"
   },
   "inviteAcceptedDesc": {
-    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Vous pouvez accéder à cette organisation une fois qu’un administrateur confirme votre adhésion. Nous vous enverrons un email quand cela se produit."
   },
   "inviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+    "message": "Impossible d’accepter l’invitation. Demander à un administrateur d’organisation d’envoyer une nouvelle invitation."
   },
   "rememberEmail": {
     "message": "Se souvenir de l'e-mail"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "Si vous ne pouvez pas accéder à votre compte grâce à vos méthodes de connexion normale en deux étapes, vous pouvez utiliser votre code de récupération de login en deux étapes pour désactiver tous les fournisseurs en deux étapes sur votre compte."
   },
   "recoverAccountTwoStep": {
     "message": "Récupérer votre compte d'authentification à deux étapes"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "Ce fournisseur de connexion en deux étapes a été désactivé sur votre compte."
   },
   "learnMore": {
     "message": "En savoir plus"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "Entrez votre adresse email ci-dessous pour récupérer et supprimer votre compte."
   },
   "deleteRecoverEmailSent": {
-    "message": "If your account exists, we've sent you an email with further instructions."
+    "message": "Si votre compte existe, nous vous avons envoyé un e-mail avec des instructions supplémentaires."
   },
   "deleteRecoverConfirmDesc": {
     "message": "Vous avez demandé de supprimer votre compte Bitwarden. Cliquez sur le bouton ci-dessous pour confirmer."
@@ -2167,7 +2174,7 @@
     "message": "Supprimer l'organisation"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Confirmez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs restent inchangés mais ils ne seront plus associés à cette organisation. "
   },
   "deleteOrganizationWarning": {
     "message": "La suppression d'une organisation est permanente. Elle ne peut être annulée."
@@ -2176,7 +2183,7 @@
     "message": "Organisation supprimée"
   },
   "organizationDeletedDesc": {
-    "message": "The organization and all associated data has been deleted."
+    "message": "L’organisation et toutes ses données associées a été supprimées."
   },
   "organizationUpdated": {
     "message": "Organisation mise à jour"
@@ -2185,7 +2192,7 @@
     "message": "Information fiscale"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Veuillez contacter le support pour fournir (ou mettre à jour) des renseignements fiscaux pour vos factures."
   },
   "billingPlan": {
     "message": "Pack",
@@ -2206,13 +2213,13 @@
     "message": "Vérification du compte bancaire"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "Nous avons effectué deux faibles dépôts sur votre compte bancaire (cela peut prendre 1-2 jours ouvrés pour les voir). Saisissez ces montants pour valider le compte bancaire."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "Le paiement avec un compte bancaire est seulement disponible pour les clients résidant aux États-Unis. Il vous sera demandé de valider votre compte bancaire. Nous effectuerons deux faibles dépôts sous 1-2 jours ouvrés. Saisissez les montants sur la page de facturation de votre organisation pour valider votre compte bancaire."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "Une erreur lors de la validation de votre compte bancaire annulera le paiement et votre abonnement sera désactivé."
   },
   "verifiedBankAccount": {
     "message": "Votre compte bancaire a été vérifié."
@@ -2276,13 +2283,13 @@
     "message": "Sièges à enlever"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "L'ajout de sièges utilisateur va entraîner des ajustements sur votre facturation globale et débiter immédiatement la méthode de paiement courante. Le premier paiement sera calculée au prorata du reste de l’actuel cycle de facturation."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "La suppression de sièges utilisateur va entraîner des ajustements sur votre facturation globale, ils seront calculés au prorata en tant que crédit pour votre prochaine facturation."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "$AMOUNT$ comptes utilisateurs mis à jour.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2303,10 +2310,10 @@
     "message": "Vous utilisez un moyen de chiffrement obsolète."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "Nous sommes passés à des clés de chiffrement plus importantes qui fournissent une meilleure sécurité et offrent de nouvelles fonctionnalités. La mise à jour de votre clé de chiffrement est rapide et facile.\nTapez simplement votre mot de passe maître ci-dessous. Cette mise à jour deviendra peut-être obligatoire."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "Après avoir mis à jour votre clé de chiffrement, vous devrez vous reconnecter sur toutes les applications Bitwarden que vous utilisez actuellement (comme l'appli mobile, les extensions de navigateur). Une erreur lors de la réconnexion (téléchargement de la nouvelle clé) peut amener à une corruption des données. Nous allons essayer de vous déconnecter automatiquement, mais cela demande un peu de temps."
   },
   "subscription": {
     "message": "Abonnement"
@@ -2336,7 +2343,7 @@
     "message": "Vous n'avez rien selectionné."
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "En cliquant sur le bouton « Soumettre », vous acceptez les politiques suivantes :",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2349,10 +2356,10 @@
     "message": "Filtres"
   },
   "lockOptions": {
-    "message": "Lock Options"
+    "message": "Options de verrouillage"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "Choisissez quand votre coffre se verrouille. Un coffre verrouillé requiert la saisie de votre mot de passe maître pour y avoir à nouveau accès."
   },
   "oneMinute": {
     "message": "1 minute"
@@ -2367,20 +2374,20 @@
     "message": "30 minutes"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 heure"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 heures"
   },
   "onRefresh": {
-    "message": "On Browser Refresh"
+    "message": "Au rafraîchissement du navigateur"
   },
   "dateUpdated": {
-    "message": "Updated",
+    "message": "Mis à jour",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Password Updated",
+    "message": "Mot de passe mis à jour",
     "description": "ex. Date this password was updated"
   }
 }
