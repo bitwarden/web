@@ -208,6 +208,10 @@ export class OrganizationBillingComponent implements OnInit {
         this.platformUtilsService.launchUri(url);
     }
 
+    get isExpired() {
+        return this.billing != null && this.billing.expiration != null && this.billing.expiration < new Date();
+    }
+
     get subscriptionMarkedForCancel() {
         return this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate;
     }

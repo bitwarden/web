@@ -21,7 +21,13 @@
         <dt>{{'billingPlan' | i18n}}</dt>
         <dd>{{billing.plan}}</dd>
         <dt>{{'expiration' | i18n}}</dt>
-        <dd *ngIf="billing.expiration">{{billing.expiration | date:'mediumDate'}}</dd>
+        <dd *ngIf="billing.expiration">
+            {{billing.expiration | date:'mediumDate'}}
+            <span *ngIf="isExpired" class="text-danger ml-2">
+                <i class="fa fa-exclamation-triangle"></i>
+                {{'licenseIsExpired' | i18n}}
+            </span>
+        </dd>
         <dd *ngIf="!billing.expiration">{{'neverExpires' | i18n}}</dd>
     </dl>
     <div class="row" *ngIf="!selfHosted">

@@ -7,6 +7,7 @@
             <li *ngFor="let o of organizations">
                 <a [routerLink]="['/organizations', o.id]" class="text-body">
                     <i class="fa-li fa fa-caret-right"></i> {{o.name}}
+                    <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger" title="{{'organizationIsDisabled' | i18n}}"></i>
                 </a>
             </li>
         </ul>
@@ -47,6 +48,7 @@
                     </td>
                     <td>
                         <a href="#" [routerLink]="['/organizations', o.id]">{{o.name}}</a>
+                        <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger" title="{{'organizationIsDisabled' | i18n}}"></i>
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>

@@ -7,6 +7,12 @@
                 <span>{{organization.name}}</span>
                 <small class="text-muted">{{'organization' | i18n}}</small>
             </div>
+            <div class="ml-auto card border-danger text-danger bg-transparent" *ngIf="!organization.enabled">
+                <div class="card-body py-2">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    {{'organizationIsDisabled' | i18n}}
+                </div>
+            </div>
         </div>
         <ul class="nav nav-tabs" *ngIf="organization.isAdmin">
             <li class="nav-item">
