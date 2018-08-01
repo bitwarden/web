@@ -11,7 +11,7 @@ export class I18nService extends BaseI18nService {
         });
 
         this.supportedTranslationLocales = [
-            'en', 'da', 'de', 'pt-PT', 'pt-BR', 'ru', 'sk',
+            'en', 'da', 'de', 'fr', 'pt-PT', 'pt-BR', 'ru', 'sk',
         ];
     }
 }
