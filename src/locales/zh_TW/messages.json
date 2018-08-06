@@ -508,13 +508,13 @@
     "message": "送出"
   },
   "emailAddressDesc": {
-    "message": "You'll use your email address to log in."
+    "message": "您將使用您的電子郵件地址登入。"
   },
   "yourName": {
     "message": "您的姓名"
   },
   "yourNameDesc": {
-    "message": "What should we call you?"
+    "message": "我們應該怎樣稱呼您?"
   },
   "masterPass": {
     "message": "主密碼"
@@ -604,7 +604,7 @@
     "message": "新增組織"
   },
   "noOrganizationsList": {
-    "message": "You do not belong to any organizations. Organizations allow you to securely share items with other users."
+    "message": "您沒有加入任何組織。同一組織的使用者可以安全地分享登入帳密等資料。"
   },
   "versionNumber": {
     "message": "版本 $VERSION_NUMBER$",
@@ -712,10 +712,10 @@
     "message": "組織"
   },
   "shareDesc": {
-    "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
+    "message": "選擇您希望分享這個項目的組織。項目的擁有權將會轉移到組織。一經分享，您將不再是此項目的直接擁有者。"
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "選擇您希望分享這些項目的組織。這些項目的擁有權將會轉移到組織。一經分享，您將不再是這些項目的直接擁有者。"
   },
   "collectionsDesc": {
     "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
@@ -774,7 +774,7 @@
     "message": "匯出密碼庫"
   },
   "exportSuccess": {
-    "message": "Your vault data has been exported."
+    "message": "已匯出您的密碼庫資料。"
   },
   "passwordGenerator": {
     "message": "密碼產生器"
@@ -832,7 +832,7 @@
     "message": "電子郵件已更改"
   },
   "logBackIn": {
-    "message": "Please log back in."
+    "message": "請重新登入。"
   },
   "logBackInOthersToo": {
     "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
@@ -871,7 +871,7 @@
     "message": "All Sessions Deauthorized"
   },
   "purgeVault": {
-    "message": "Purge Vault"
+    "message": "清除密碼庫"
   },
   "purgeVaultDesc": {
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
@@ -880,7 +880,7 @@
     "message": "Purging your vault is permanent. It cannot be undone."
   },
   "vaultPurged": {
-    "message": "Your vault has been purged."
+    "message": "已清除您的密碼庫資料。"
   },
   "deleteAccount": {
     "message": "刪除帳戶"
@@ -916,7 +916,7 @@
     "message": "Nothing was imported."
   },
   "selectFormat": {
-    "message": "Select the format of the import file"
+    "message": "選擇匯入檔案的格式"
   },
   "selectImportFile": {
     "message": "選擇匯入檔案"
@@ -947,7 +947,7 @@
     "message": "語言"
   },
   "languageDesc": {
-    "message": "Change the language used by the web vault."
+    "message": "變更網頁版密碼庫使用的語言。"
   },
   "disableIcons": {
     "message": "停用網站圖示"
@@ -956,17 +956,17 @@
     "message": "在您密碼庫的每個登入資料旁顯示一個可辨識圖示。"
   },
   "enableGravatars": {
-    "message": "Enable Gravatars",
+    "message": "啟用 Gravatars 頭像",
     "description": "'Gravatar' is the name of a service. See www.gravatar.com"
   },
   "enableGravatarsDesc": {
-    "message": "Use avatar images loaded from gravatar.com."
+    "message": "載入 gravatar.com 上的頭像圖片。"
   },
   "default": {
     "message": "預設"
   },
   "domainRules": {
-    "message": "Domain Rules"
+    "message": "網域規則"
   },
   "domainRulesDesc": {
     "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
@@ -993,7 +993,7 @@
     "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
   },
   "customDomainX": {
-    "message": "Custom Domain $INDEX$",
+    "message": "自訂網域 $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1079,7 +1079,7 @@
     "message": "Scan this QR code with your authenticator app"
   },
   "key": {
-    "message": "Key"
+    "message": "金鑰"
   },
   "twoStepAuthenticatorEnterCode": {
     "message": "Enter the resulting 6 digit verification code from the app"
@@ -1088,13 +1088,13 @@
     "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "您確定要停用兩步驟驗證嗎?"
   },
   "twoStepDisabled": {
     "message": "Two-step login provider disabled."
   },
   "twoFactorYubikeyAdd": {
-    "message": "Add a new YubiKey to your account"
+    "message": "新增 YubiKey 身分認證裝置至您的帳戶。"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "Plug the YubiKey (NEO or 4 series) into your computer's USB port."
@@ -1103,7 +1103,7 @@
     "message": "Select in the first empty YubiKey input field below."
   },
   "twoFactorYubikeyTouchButton": {
-    "message": "Touch the YubiKey's button."
+    "message": "按下 YubiKey 的按鈕。"
   },
   "twoFactorYubikeySaveForm": {
     "message": "儲存表單"
@@ -1136,22 +1136,22 @@
     "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
   },
   "yubikeysUpdated": {
-    "message": "YubiKeys updated"
+    "message": "YubiKeys 已更新"
   },
   "disableAllKeys": {
-    "message": "Disable All Keys"
+    "message": "停用全部金鑰"
   },
   "twoFactorDuoDesc": {
     "message": "Enter the Bitwarden application information from your Duo Admin panel."
   },
   "twoFactorDuoIntegrationKey": {
-    "message": "Integration Key"
+    "message": "整合金鑰"
   },
   "twoFactorDuoSecretKey": {
     "message": "秘密金鑰"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "API 主機名稱"
   },
   "twoFactorEmailDesc": {
     "message": "Follow these steps to set up two-step login with email:"
@@ -1187,16 +1187,16 @@
     "message": "Click the \"Enable\" button below to enable this security key for two-step login."
   },
   "twoFactorU2fProblemReading": {
-    "message": "There was a problem reading the security key."
+    "message": "讀取安全金鑰時發生問題。"
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "您的 Bitwarden 兩步登入復原碼"
   },
   "twoFactorRecoveryNoCode": {
     "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
   },
   "printCode": {
-    "message": "Print Code",
+    "message": "列印代碼",
     "description": "Print 2FA recovery code"
   },
   "reports": {
@@ -1215,7 +1215,7 @@
     "message": "Check Breaches"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "在任何已知的外洩密碼資料庫中都找不到 $USERNAME$。",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1228,7 +1228,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$ 在不同的外洩密碼資料庫中找到了 $COUNT$ 次。",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1397,13 +1397,13 @@
     "message": "詳細資料"
   },
   "downloadLicense": {
-    "message": "Download License"
+    "message": "下載授權證"
   },
   "updateLicense": {
-    "message": "更新授權"
+    "message": "更新授權證"
   },
   "updatedLicense": {
-    "message": "授權已更新"
+    "message": "授權證已更新"
   },
   "manageSubscription": {
     "message": "管理訂閱"
@@ -2395,6 +2395,6 @@
     "message": "Organization is disabled."
   },
   "licenseIsExpired": {
-    "message": "License is expired."
+    "message": "授權已過期。"
   }
 }
