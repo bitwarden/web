@@ -817,7 +817,7 @@
     "message": "代码"
   },
   "changeEmailDesc": {
-    "message": "我们已将验证码发送到 $EMAIL$。请检查您的电子邮件, 在下方输入验证码, 以确认您的电子邮件地址更改。",
+    "message": "我们已将验证码发送到 $EMAIL$。请检查您的电子邮件，在下方输入验证码，以确认更改您的电子邮件地址。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -826,7 +826,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "接下来将会注销您当前的会话, 要求您重新登录。其他设备上的活动会话可能会继续保持最多一小时。"
+    "message": "接下来将会注销您当前的会话，要求您重新登录。其他设备上的活动会话可能会继续保持最多一小时。"
   },
   "emailChanged": {
     "message": "电子邮件已更改"
@@ -835,7 +835,7 @@
     "message": "请重新登录。"
   },
   "logBackInOthersToo": {
-    "message": "请重新登录。如果您还在使用其他 Bitwarden 应用程序, 也请注销并重新登陆。"
+    "message": "请重新登录。如果您还在使用其他 Bitwarden 应用，也请注销并重新登陆。"
   },
   "changeMasterPassword": {
     "message": "修改主密码"
@@ -868,7 +868,7 @@
     "message": "接下来将会注销您当前的会话, 要求您重新登录。如果有两步验证，也需要重新验证。其他设备上的活动会话可能会继续保持最多一小时。"
   },
   "sessionsDeauthorized": {
-    "message": "所有会话未经授权"
+    "message": "已取消所有会话授权"
   },
   "purgeVault": {
     "message": "清空密码库"
@@ -910,7 +910,7 @@
     "message": "数据已经成功导入到密码库"
   },
   "importFormatError": {
-    "message": "数据格式不正确。请检查您的导入文件并重试。"
+    "message": "数据格式不正确。请检查您的导入文件后重试。"
   },
   "importNothingError": {
     "message": "没有导入任何内容。"
@@ -990,7 +990,7 @@
     "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "输入用逗号分隔的域列表。只能使用主域名。不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用程序与其他网站域名关联。"
+    "message": "输入用逗号分隔的域列表。只能使用主域名。不要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用与其他网站域名关联。"
   },
   "customDomainX": {
     "message": "自定义域名 $INDEX$",
@@ -1011,7 +1011,7 @@
     "message": "在登录时需要额外的步骤来保护您的帐户。"
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "在组织机构层面配置提供程序，使您组织的用户采用两步登录。"
+    "message": "在组织机构层面配置验证应用，使您组织的用户采用两步登录。"
   },
   "twoStepLoginRecoveryWarning": {
     "message": "启用两步登录可以永久地锁定您的Bitwarden 帐户。恢复代码允许您在无法正常使用两步登录的情况（例如你丢失了你的设备）下访问您的帐户。如果您无法访问您的帐户，Bitwarden 无法帮助您。我们建议您记下或打印恢复代码，并将其妥善保管。"
@@ -1020,7 +1020,7 @@
     "message": "查看恢复码"
   },
   "providers": {
-    "message": "提供方",
+    "message": "应用",
     "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
   },
   "enable": {
@@ -1030,17 +1030,17 @@
     "message": "已启用"
   },
   "premium": {
-    "message": "高级版",
+    "message": "高级会员",
     "description": "Premium Membership"
   },
   "premiumMembership": {
     "message": "高级会员"
   },
   "premiumRequired": {
-    "message": "需要高级版"
+    "message": "需要高级会员"
   },
   "premiumRequiredDesc": {
-    "message": "使用此功能需要高级会员资格。"
+    "message": "此功能需要高级会员资格。"
   },
   "manage": {
     "message": "管理"
@@ -1049,19 +1049,19 @@
     "message": "停用"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "您的帐户已经启动两步验证。"
+    "message": "您的帐户已经启用此两步登录验证应用。"
   },
   "twoStepLoginAuthDesc": {
-    "message": "输入主密码以修改两步验证设置。"
+    "message": "输入主密码以修改两步登录设置。"
   },
   "twoStepAuthenticatorDesc": {
-    "message": "按照以下步骤，使用身份验证程序设置两步验证："
+    "message": "按照以下步骤，使用身份验证应用设置两步登录："
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "下载两步验证应用程序"
+    "message": "下载两步登录验证应用"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "没有两步验证程序？可以下载以下应用"
+    "message": "需要两步登录验证应用？您可以下载以下应用："
   },
   "iosDevices": {
     "message": "iOS 设备"
@@ -1073,7 +1073,7 @@
     "message": "Windows 设备"
   },
   "twoStepAuthenticatorAppsRecommended": {
-    "message": "只是推荐使用这些应用，其它的身份验证应用也可以"
+    "message": "推荐使用这些应用，您也可以使用其它的验证应用。"
   },
   "twoStepAuthenticatorScanCode": {
     "message": "使用身份验证应用扫描这个二维码"
@@ -1085,13 +1085,13 @@
     "message": "输入 App 中的 6 位验证码"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "如果您要把它添加到另一个设备，下面是您的认证 App 所需要的二维码（或密钥）。"
+    "message": "如果您要把它添加到另一个设备，下面是您的验证应用所需要的二维码（或密钥）。"
   },
   "twoStepDisableDesc": {
-    "message": "您确定想要禁用此两步登录提供程序吗？"
+    "message": "您确定想要禁用此两步登录验证应用吗？"
   },
   "twoStepDisabled": {
-    "message": "已禁用两步登录提供程序。"
+    "message": "已禁用两步登录验证应用。"
   },
   "twoFactorYubikeyAdd": {
     "message": "向您的帐户添加新 YubiKey"
@@ -1109,7 +1109,7 @@
     "message": "保存表单"
   },
   "twoFactorYubikeyWarning": {
-    "message": "由于平台限制，YubiKey 无法用于所有的 Bitwarden 应用。您应启用另一个两步登录提供程序，以便在 YubiKey 不可用时，也能访问您的账户。支持的平台："
+    "message": "由于平台限制，YubiKey 无法用于所有的 Bitwarden 应用。您应启用另一个两步登录验证应用，以便在 YubiKey 不可用时，也能访问您的账户。支持的平台："
   },
   "twoFactorYubikeySupportUsb": {
     "message": "具有 USB 端口的设备上的网页密码库，桌面应用程序，CLI 以及浏览器扩展都可以访问您的 YubiKey。"
@@ -1133,7 +1133,7 @@
     "message": "我的一把密钥支持 NFC。"
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "如果您的某个YubiKeys支持NFC（例如YubiKey NEO），则只要检测到NFC可用性，系统就会在移动设备上提示您。"
+    "message": "如果您的某个 YubiKey 支持 NFC（例如 YubiKey NEO），则只要检测到 NFC 可用性，系统就会在移动设备上提示您。"
   },
   "yubikeysUpdated": {
     "message": "YubiKey 已更新"
@@ -1142,7 +1142,7 @@
     "message": "禁用全部密钥"
   },
   "twoFactorDuoDesc": {
-    "message": "从 \"Duo Admin\" 面板输入 Bitwarden 应用程序信息。"
+    "message": "从 \"Duo Admin\" 面板输入 Bitwarden 应用信息。"
   },
   "twoFactorDuoIntegrationKey": {
     "message": "集成密钥"
@@ -1175,7 +1175,7 @@
     "message": "如果安全密钥有按钮，请按下它。"
   },
   "twoFactorU2fWarning": {
-    "message": "由于平台限制，FIDO U2F 无法用于所有的 Bitwarden 应用程序。 您应启用另一个两步登录提供程序，以便在 FIDO U2F 不可用时，也能访问您的帐户。 支持的平台："
+    "message": "由于平台限制，FIDO U2F 无法用于所有的 Bitwarden 应用。 您应启用另一个两步登录验证应用，以便在 FIDO U2F 不可用时，也能访问您的帐户。 支持的平台："
   },
   "twoFactorU2fSupportWeb": {
     "message": "支持 U2F 的桌面 \/ 笔记本电脑上的网页密码库和浏览器扩展（Chrome，Opera，Vivaldi 或启用了FIDO U2F 的 Firefox）。"
@@ -1193,7 +1193,7 @@
     "message": "您的 Bitwarden 两步登录恢复代码"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "您尚未启用任何两步登录提供程序。在启用了两步登录提供程序后, 您可以在这里检查恢复代码。"
+    "message": "您尚未启用任何两步登录验证应用。在启用了两步登录验证应用后, 您可以在这里检查恢复代码。"
   },
   "printCode": {
     "message": "打印代码",
@@ -1671,13 +1671,13 @@
     "message": "Track user actions with audit logs"
   },
   "enforce2faDuo": {
-    "message": "Enforce 2FA with Duo"
+    "message": "强制启用 Duo 的两步登录"
   },
   "priorityCustomerSupport": {
-    "message": "Priority customer support"
+    "message": "优先客户支持"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$ 天免费试用，随时取消",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1695,10 +1695,10 @@
     "message": "基本价格"
   },
   "organizationCreated": {
-    "message": "Organization Created"
+    "message": "组织已创建"
   },
   "organizationReadyToGo": {
-    "message": "Your new organization is ready to go!"
+    "message": "你的组织准备好了！"
   },
   "leave": {
     "message": "离开"
@@ -1728,7 +1728,7 @@
     "message": "People"
   },
   "groups": {
-    "message": "Groups"
+    "message": "分组"
   },
   "newGroup": {
     "message": "New Group"
@@ -2099,6 +2099,12 @@
       }
     }
   },
+  "confirmUsers": {
+    "message": "Confirm Users"
+  },
+  "usersNeedConfirmed": {
+    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
+  },
   "startDate": {
     "message": "开始日期"
   },
@@ -2109,19 +2115,19 @@
     "message": "验证电子邮件"
   },
   "verifyEmailDesc": {
-    "message": "Verify your account's email address to unlock access to all features."
+    "message": "验证您的电子邮件地址来解锁所有功能。"
   },
   "verifyEmailFirst": {
-    "message": "Your account's email address first must be verified."
+    "message": "首先必须验证您帐户的电子邮件地址。"
   },
   "checkInboxForVerification": {
-    "message": "Check your email inbox for a verification link."
+    "message": "检查您的电子邮箱获取验证码链接"
   },
   "emailVerified": {
-    "message": "Your email has been verified."
+    "message": "您的电子邮件已验证。"
   },
   "emailVerifiedFailed": {
-    "message": "Unable to verify your email. Try sending a new verification email."
+    "message": "无法验证您的电子邮件。尝试发送新的验证电子邮件。"
   },
   "updateBrowser": {
     "message": "更新浏览器"
@@ -2133,34 +2139,34 @@
     "message": "加入组织"
   },
   "joinOrganizationDesc": {
-    "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "邀请您加入下面的组织。要接受邀请，您需要登录或者创建一个 Bitwarden 账户。"
   },
   "inviteAccepted": {
     "message": "邀请已接受"
   },
   "inviteAcceptedDesc": {
-    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "管理员确认您的资格后，您将能访问此组织。我们将向您发送电子邮件通知。"
   },
   "inviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+    "message": "无法接受邀请，请向组织管理员要求重新发送邀请。"
   },
   "rememberEmail": {
-    "message": "Remember email"
+    "message": "记住电子邮件"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "如果您无法通过正常的两步登录方法访问您的帐户，您可以使用两步登录恢复代码来禁用帐户上的所有两步登录验证应用。"
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "恢复帐户两步登录"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "您的帐户已禁用两步登录。"
   },
   "learnMore": {
     "message": "进一步了解"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "请在下面输入您的电子邮件地址以恢复和删除您的帐户。"
   },
   "deleteRecoverEmailSent": {
     "message": "If your account exists, we've sent you an email with further instructions."
@@ -2181,13 +2187,13 @@
     "message": "Deleting the organization is permanent. It cannot be undone."
   },
   "organizationDeleted": {
-    "message": "Organization Deleted"
+    "message": "组织已删除"
   },
   "organizationDeletedDesc": {
     "message": "The organization and all associated data has been deleted."
   },
   "organizationUpdated": {
-    "message": "Organization updated"
+    "message": "组织已更新"
   },
   "taxInformation": {
     "message": "税收信息"
@@ -2211,7 +2217,7 @@
     "message": "收据"
   },
   "verifyBankAccount": {
-    "message": "Verify Bank Account"
+    "message": "验证银行帐户"
   },
   "verifyBankAccountDesc": {
     "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
@@ -2223,13 +2229,13 @@
     "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
   },
   "verifiedBankAccount": {
-    "message": "Bank account has been verified."
+    "message": "您的银行账户已验证。"
   },
   "bankAccount": {
     "message": "银行账户"
   },
   "amountX": {
-    "message": "Amount $COUNT$",
+    "message": "金额 $COUNT$",
     "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
     "placeholders": {
       "count": {
@@ -2249,13 +2255,13 @@
     "message": "Account Holder Name"
   },
   "bankAccountType": {
-    "message": "Account Type"
+    "message": "帐户类型"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "公司"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "个人"
   },
   "enterInstallationId": {
     "message": "Enter your installation id"
@@ -2299,7 +2305,7 @@
     }
   },
   "keyUpdated": {
-    "message": "Key Updated"
+    "message": "密钥已更新"
   },
   "updateKeyTitle": {
     "message": "更新密钥"
@@ -2323,7 +2329,7 @@
     "message": "正在加载"
   },
   "upgrade": {
-    "message": "升級"
+    "message": "升级"
   },
   "upgradeOrganization": {
     "message": "升级组织"
@@ -2344,7 +2350,7 @@
     "message": "您没有选择任何内容。"
   },
   "submitAgreePolicies": {
-    "message": "当您单击 \"提交\" 按钮，就表示您同意以下条款：",
+    "message": "当您点击 \"提交\" 按钮，就表示您同意以下条款：",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
