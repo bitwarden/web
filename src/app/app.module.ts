@@ -136,21 +136,31 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
 import { registerLocaleData } from '@angular/common';
+import localeCs from '@angular/common/locales/cs';
 import localeDa from '@angular/common/locales/da';
 import localeDe from '@angular/common/locales/de';
+import localeEs from '@angular/common/locales/es';
 import localeFr from '@angular/common/locales/fr';
+import localeNb from '@angular/common/locales/nb';
 import localePtBr from '@angular/common/locales/pt';
 import localePtPt from '@angular/common/locales/pt-PT';
 import localeRu from '@angular/common/locales/ru';
 import localeSk from '@angular/common/locales/sk';
+import localeSv from '@angular/common/locales/sv';
+import localeZhCn from '@angular/common/locales/zh-Hans';
 
+registerLocaleData(localeCs, 'cs');
 registerLocaleData(localeDa, 'da');
 registerLocaleData(localeDe, 'de');
+registerLocaleData(localeEs, 'es');
 registerLocaleData(localeFr, 'fr');
+registerLocaleData(localeNb, 'nb');
 registerLocaleData(localePtBr, 'pt-BR');
 registerLocaleData(localePtPt, 'pt-PT');
 registerLocaleData(localeRu, 'ru');
 registerLocaleData(localeSk, 'sk');
+registerLocaleData(localeSv, 'sv');
+registerLocaleData(localeZhCn, 'zh-CN');
 
 @NgModule({
     imports: [
