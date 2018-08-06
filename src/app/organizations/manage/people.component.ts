@@ -115,6 +115,16 @@ export class PeopleComponent implements OnInit {
             this.statusMap.get(OrganizationUserStatusType.Accepted).length : 0;
     }
 
+    get confirmedCount() {
+        return this.statusMap.has(OrganizationUserStatusType.Confirmed) ?
+            this.statusMap.get(OrganizationUserStatusType.Confirmed).length : 0;
+    }
+
+    get showConfirmUsers(): boolean {
+        return this.allUsers != null && this.statusMap != null && this.allUsers.length > 1 &&
+            this.confirmedCount > 0 && this.confirmedCount < 3 && this.acceptedCount > 0;
+    }
+
     edit(user: OrganizationUserUserDetailsResponse) {
         if (this.modal != null) {
             this.modal.close();
@@ -202,6 +212,11 @@ export class PeopleComponent implements OnInit {
         this.actionPromise = this.doConfirmation(user);
         await this.actionPromise;
         user.status = OrganizationUserStatusType.Confirmed;
+        const mapIndex = this.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
+        if (mapIndex > -1) {
+            this.statusMap.get(OrganizationUserStatusType.Accepted).splice(mapIndex, 1);
+            this.statusMap.get(OrganizationUserStatusType.Confirmed).push(user);
+        }
         this.analytics.eventTrack.next({ action: 'Confirmed User' });
         this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
         this.actionPromise = null;
@@ -228,15 +243,6 @@ export class PeopleComponent implements OnInit {
         });
     }
 
-    get showConfirmUsers(): boolean {
-        return this.allUsers != null && this.allUsers.length > 1 &&
-            this.statusMap.has(OrganizationUserStatusType.Confirmed) &&
-            this.statusMap.get(OrganizationUserStatusType.Confirmed).length > 0 &&
-            this.statusMap.get(OrganizationUserStatusType.Confirmed).length < 3 &&
-            this.statusMap.has(OrganizationUserStatusType.Accepted) &&
-            this.statusMap.get(OrganizationUserStatusType.Accepted).length > 0;
-    }
-
     private async doConfirmation(user: OrganizationUserUserDetailsResponse) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
@@ -248,9 +254,27 @@ export class PeopleComponent implements OnInit {
     }
 
     private removeUser(user: OrganizationUserUserDetailsResponse) {
-        const index = this.users.indexOf(user);
+        let index = this.users.indexOf(user);
         if (index > -1) {
             this.users.splice(index, 1);
+        }
+        if (this.statusMap.has(OrganizationUserStatusType.Accepted)) {
+            index = this.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
+            if (index > -1) {
+                this.statusMap.get(OrganizationUserStatusType.Accepted).splice(index, 1);
+            }
+        }
+        if (this.statusMap.has(OrganizationUserStatusType.Invited)) {
+            index = this.statusMap.get(OrganizationUserStatusType.Invited).indexOf(user);
+            if (index > -1) {
+                this.statusMap.get(OrganizationUserStatusType.Invited).splice(index, 1);
+            }
+        }
+        if (this.statusMap.has(OrganizationUserStatusType.Confirmed)) {
+            index = this.statusMap.get(OrganizationUserStatusType.Confirmed).indexOf(user);
+            if (index > -1) {
+                this.statusMap.get(OrganizationUserStatusType.Confirmed).splice(index, 1);
+            }
         }
     }
 }
