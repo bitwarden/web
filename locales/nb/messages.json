@@ -712,16 +712,16 @@
     "message": "Organisasjoner"
   },
   "shareDesc": {
-    "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
+    "message": "Velg en organisasjon som du ønsker å dele denne gjenstanden med. Deling overfører gjenstandens eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av denne gjenstanden når den først har blitt delt."
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "Velg en organisasjon som du ønsker å dele disse gjenstandene med. Deling overfører gjenstandenes eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av disse gjenstandene når den først har blitt delt."
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "Rediger samlingene som denne gjenstanden blir delt med. Kun organisasjonsbrukere med tilgang til disse samlingene vil kunne se denne gjenstanden."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "Du har valgt $COUNT$ gjenstand(er) som skal slettes. Er du sikker på du vil slette alle disse gjenstandene?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "Velg en mappe som du ønsker å flytte $COUNT$ valgt(e) gjenstand(er) til.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +739,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "Du har valgt $COUNT$ gjenstand(er). $SHAREABLE_COUNT$ gjenstander kan deles, mens $NONSHAREABLE_COUNT$ kan ikke det. Gjenstander med vedlegg må deles individuelt.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -826,7 +826,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Å fortsette vil logge deg ut av din nåværende økt, og krever at du logger deg på igjen. Aktive økter på andre enheter kan forbli aktive i opptil en time."
   },
   "emailChanged": {
     "message": "E-postadressen er endret"
@@ -835,7 +835,7 @@
     "message": "Vennligst logg på igjen."
   },
   "logBackInOthersToo": {
-    "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
+    "message": "Vennligst logg inn på nytt. Dersom du bruker andre Bitwarden-apper og -programmer, logg av og på på dem også."
   },
   "changeMasterPassword": {
     "message": "Endre superpassordet"
@@ -859,25 +859,25 @@
     "message": "Vær forsiktig, disse handlingene kan ikke reverseres!"
   },
   "deauthorizeSessions": {
-    "message": "Deauthorize Sessions"
+    "message": "Fjern autorisering av økter"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public computer or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "Er du bekymret for at kontoen din er pålogget på en annen enhet? Fortsett nedenfor for å fjerne autoriseringen til alle datamaskiner eller enheter som du tidligere har brukt. Dette sikkerhetstrinnet er anbefalt dersom du tidligere har brukt en offentlig PC eller lagret passordet ditt ved et uhell på en enhet som ikke er din. Dette trinnet vil også fjerne alle tidligere huskede 2-trinnsinnloggingsøkter."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Å fortsette vil også logge deg av din nåværende økt, og gjør at du vil måtte logge på igjen. Du vil også bli bedt om 2-trinnsinnlogging igjen, dersom det er aktivert. Aktive økter på andre enheter kan kanskje forbli aktive i opptil en time."
   },
   "sessionsDeauthorized": {
-    "message": "All Sessions Deauthorized"
+    "message": "Alle økter har mistet autoriseringen"
   },
   "purgeVault": {
     "message": "Tøm hvelvet"
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "Fortsett nedenfor for å slette alle gjenstander og mapper i ditt hvelv. Gjenstander som tilhører en organisasjon som du deler med, vil ikke bli slettet."
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "Å tømme hvelvet ditt er permanent. Det kan ikke bli angret på."
   },
   "vaultPurged": {
     "message": "Hvelvet ditt har blitt tømt."
@@ -886,10 +886,10 @@
     "message": "Slett kontoen din"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "Fortsett nedenfor for å slette din konto og alle dens tilknyttede data."
   },
   "deleteAccountWarning": {
-    "message": "Deleting your account is permanent. It cannot be undone."
+    "message": "Å slette kontoen din er permanent. Det kan ikke bli angret på."
   },
   "accountDeleted": {
     "message": "Kontoen er slettet"
@@ -907,10 +907,10 @@
     "message": "Importer data"
   },
   "importSuccess": {
-    "message": "Data has been successfully imported into your vault."
+    "message": "Dataene har blitt vellykket importert inn i hvelvet ditt."
   },
   "importFormatError": {
-    "message": "Data is not formatted correctly. Please check your import file and try again."
+    "message": "Dataene er ikke formattert riktig. Vennligst sjekk importfilen din og prøv igjen."
   },
   "importNothingError": {
     "message": "Ingenting ble importert."
@@ -956,11 +956,11 @@
     "message": "Nettstedsikoner sørger for et gjenkjennelig bilde ved siden av hver innloggingsgjenstand i hvelvet ditt."
   },
   "enableGravatars": {
-    "message": "Enable Gravatars",
+    "message": "Skru på Gravatarer",
     "description": "'Gravatar' is the name of a service. See www.gravatar.com"
   },
   "enableGravatarsDesc": {
-    "message": "Use avatar images loaded from gravatar.com."
+    "message": "Bruk avatarbilder som har blitt lastet inn fra gravatar.com."
   },
   "default": {
     "message": "Standard"
@@ -969,7 +969,7 @@
     "message": "Domeneregler"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "Hvis du har den samme innloggingen på flere forskjellige nettstedsdomene, kan du merke nettstedet som \"tilsvarende\". \"Forvalgte\" domener er de som har blitt forhåndsvalgt for deg av Bitwarden."
   },
   "globalEqDomains": {
     "message": "Standard samsvaringsdomener"
@@ -1008,13 +1008,13 @@
     "message": "2-trinnsinnlogging"
   },
   "twoStepLoginDesc": {
-    "message": "Secure your account by requiring an additional step when logging in."
+    "message": "Sikre kontoen din ved å kreve et ekstra trinn når du logger på."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "Krev 2-trinnsinnlogging for din organisasjons brukere, ved å sette opp leverandører på organisasjonsnivået."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+    "message": "Å skru på 2-trinnsinnlogging kan låse deg permanent ut av din Bitwarden-konto. En gjenopprettingskode gir deg tilgang til kontoen din i det tilfellet at du ikke lenger kan bruke din vanlige 2-trinnsinnloggingsleverandør (f.eks. at du mister enheten din). Bitwarden-kundestøtten vil ikke kunne hjelpe deg dersom du mister tilgang til kontoen din. Vi anbefaler at du skriver ned eller skriver ut gjenopprettingskoden og legger den på en trygg plass."
   },
   "viewRecoveryCode": {
     "message": "Vis gjenopprettingskode"
@@ -1049,19 +1049,19 @@
     "message": "Deaktiver"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "Denne 2-trinnsleverandøren er aktivert på din konto."
   },
   "twoStepLoginAuthDesc": {
-    "message": "Enter your master password to modify two-step login settings."
+    "message": "Skriv inn ditt superpassord for å endre på 2-trinnsinnloggingsinnstillingene."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "Følg disse trinnene for å sette opp 2-trinnsinnlogging med en autentiseringsapp:"
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "Download a two-step authenticator app"
+    "message": "Last ned en 2-trinnsinnloggingsapp"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "Need a two-step authenticator app? Download one of the following"
+    "message": "Trenger du en 2-trinnsinnloggingsapp? Last ned en av de følgende"
   },
   "iosDevices": {
     "message": "iOS-enheter"
@@ -1091,31 +1091,31 @@
     "message": "Er du sikker på at du vil skru av denne 2-trinnsinnloggingsleverandøren?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "2-trinnsinnloggingsleverandøren har blitt skrudd av."
   },
   "twoFactorYubikeyAdd": {
-    "message": "Add a new YubiKey to your account"
+    "message": "Legg til en ny YubiKey til din konto"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Plug the YubiKey (NEO or 4 series) into your computer's USB port."
+    "message": "Sett YubiKey-en (fra NEO- eller 4-seriene) inn i din datamaskins USB-port."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Select in the first empty YubiKey input field below."
+    "message": "Velg det første tomme YubiKey-inndatafeltet nedenfor."
   },
   "twoFactorYubikeyTouchButton": {
-    "message": "Touch the YubiKey's button."
+    "message": "Trykk på YubiKey-ens knapp."
   },
   "twoFactorYubikeySaveForm": {
-    "message": "Save the form."
+    "message": "Lagre skjemaet."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "På grunn av plattformbegrensninger, kan YubiKey-er ikke bli brukt på alle Bitwarden-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når YubiKeys ikke kan bli brukt. Støttede plattformer:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "Netthvelvet, datamaskinprogrammet, CLI, og alle nettleserutvidelser, på en enhet med en USB-port som støtter din YubiKey."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "Mobilapper på en enhet med NFC-funksjoner, eller som har en USB-port som støtter din YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1127,73 +1127,73 @@
     }
   },
   "nfcSupport": {
-    "message": "NFC Support"
+    "message": "NFC-støtte"
   },
   "twoFactorYubikeySupportsNfc": {
-    "message": "One of my keys supports NFC."
+    "message": "En av mine YubiKey-er støtter NFC."
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
+    "message": "Dersom en av dine YubiKey-er støtter NFC (f.eks. en YubiKey NEO), vil du på mobilenheter bli bedt om det når enn NFC-støtte blir oppdaget."
   },
   "yubikeysUpdated": {
-    "message": "YubiKeys updated"
+    "message": "YubiKey-ene har blitt oppdatert"
   },
   "disableAllKeys": {
-    "message": "Disable All Keys"
+    "message": "Deaktiver alle YubiKey-ene"
   },
   "twoFactorDuoDesc": {
-    "message": "Enter the Bitwarden application information from your Duo Admin panel."
+    "message": "Skriv inn Bitwarden-appinformasjonen i ditt Duo Admin-panel."
   },
   "twoFactorDuoIntegrationKey": {
-    "message": "Integration Key"
+    "message": "Integreringsnøkkel"
   },
   "twoFactorDuoSecretKey": {
-    "message": "Secret Key"
+    "message": "Hemmelig nøkkel"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "API-vertsnavn"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "Følg disse trinnene for å sette opp 2-trinnsinnlogging med E-post:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "Skriv inn E-posten som du vil bruke til å motta verifiseringskoder"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the email"
+    "message": "Skriv inn den påfølgende 6-sifrede verifiseringskoden fra E-posten"
   },
   "sendEmail": {
-    "message": "Send Email"
+    "message": "Send en E-post"
   },
   "twoFactorU2fAdd": {
-    "message": "Add a FIDO U2F security key to your account"
+    "message": "Legg til en FIDO U2F-sikkerhetsnøkkel til din konto"
   },
   "twoFactorU2fPlugIn": {
-    "message": "Plug the security key into your computer's USB port."
+    "message": "Sett inn sikkerhetsnøkkelen i din datamaskins USB-port."
   },
   "twoFactorU2fTouchButton": {
-    "message": "If the security key has a button, touch it."
+    "message": "Dersom sikkerhetsnøkkelen har en knapp, trykk på den."
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "På grunn av plattformbegrensninger, kan FIDO U2F ikke bli brukt på alle Bitwarden-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når FIDO U2F ikke kan bli brukt. Støttede plattformer:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Netthvelv og nettleserutvidelser, på en datamaskin med en U2F-støttende nettleser (Chrome, Opera, Vivaldi, eller Firefox med FIDO U2F aktivert)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "Venter på at du skal trykke på knappen på din sikkerhetsnøkkel"
   },
   "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+    "message": "Klikk på «Aktiver»-knappen nedenfor for å aktivere denne sikkerhetsnøkkelen for 2-trinnsinnlogging."
   },
   "twoFactorU2fProblemReading": {
-    "message": "There was a problem reading the security key."
+    "message": "Det var et problem med å lese sikkerhetsnøkkelen."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "Din 2-trinnsinnloggingsgjenopprettingskode for Bitwarden"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "Du har ikke aktivert noen 2-trinnsinnloggingsleverandører ennå. Etter at du har aktivert en 2-trinnsinnloggingsleverandør, kan du komme tilbake hit for å se din gjenopprettingskode."
   },
   "printCode": {
     "message": "Skriv ut koden",
@@ -1206,7 +1206,7 @@
     "message": "Databruddrapporter"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Et \"databrudd\" er en hendelse hvor hackere har fått tilgang til et nettsteds dataer på ulovlig vis og så sluppet dem ut i offentlighet. Gå gjennom datatypene som ble kompromittert (E-postadresser, passord, bankkort, osv.) og ta handling deretter, slik som å endre passord."
   },
   "breachCheckUsernameEmail": {
     "message": "Sjekk noen av brukernavnene eller E-postadressene som du bruker."
@@ -1262,7 +1262,7 @@
     "message": "En feil oppstod under forsøk på å laste inn rapporten. Prøv igjen."
   },
   "billingAndLicensing": {
-    "message": "Billing & Licensing"
+    "message": "Regninger og lisensiering"
   },
   "goPremium": {
     "message": "Oppgrader til Premium",
@@ -1272,22 +1272,22 @@
     "message": "Du har oppgradert til Premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Oppgrader kontoen din til et Premium-medlemsskap og lås opp noen strålende ekstra egenskaper."
   },
   "premiumSignUpStorage": {
     "message": "1 GB med kryptert fillagring."
   },
   "premiumSignUpTwoStep": {
-    "message": "Additional two-step login options such as YubiKey, FIDO U2F, and Duo."
+    "message": "Ytterligere 2-trinnsinnloggingsmuligheter, slik som YubiKey, FIDO U2F, og Duo."
   },
   "premiumSignUpTotp": {
-    "message": "TOTP verification code (2FA) generator for logins in your vault."
+    "message": "TOTP-verifiseringskodegenerator (2FA) for innlogginger i ditt hvelv."
   },
   "premiumSignUpSupport": {
     "message": "Prioritert kundestøtte."
   },
   "premiumSignUpFuture": {
-    "message": "All future premium features. More coming soon!"
+    "message": "Alle fremtidige Premium-egenskaper. Mere er planlagt snart!"
   },
   "premiumPrice": {
     "message": "Alt dette for bare $PRICE$\/år!",
@@ -1305,10 +1305,10 @@
     "message": "Ytterligere lagringsplass (GB)"
   },
   "additionalStorageGbDesc": {
-    "message": "# of additional GB"
+    "message": "Antall ekstra GB"
   },
   "additionalStorageDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/year.",
+    "message": "Din funksjonsplan kommer med $SIZE$ kryptert fillagring. Du kan legge til ytterligere lagring for $PRICE$ per GB per år.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1337,10 +1337,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each year. You may cancel at any time."
+    "message": "Din betalingsmetode vil bli trekt umiddelbart og deretter på en gjentakende basis hvert år. Du kan avbryte det til enhver tid."
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your payment method will not be charged until the trial has ended. Billing will occur on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Funksjonsplanen din kommer med en gratis 7-dagersprøveperiode. Din betalingsmetode vil ikke bli trekt før prøveperiode har utløpt. Regningstrekk vil skje på en gjentakende basis hver(t) $INTERVAL$. Du kan avbryte når som helst.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1355,34 +1355,34 @@
     "message": "Bankkort"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "Klikk på PayPal-knappen for å logge på din PayPal-konto, og så klikk på «Send inn»-knappen nedenfor for å fortsette."
   },
   "cancelSubscription": {
     "message": "Avbryt abonnementet"
   },
   "subscriptionCanceled": {
-    "message": "The subscription has been canceled."
+    "message": "Abonnementet har blitt avbrutt."
   },
   "pendingCancellation": {
-    "message": "Pending Cancellation"
+    "message": "Avventer planlagt avbrytelse"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "Abonnementet har blitt øremerket for avbrytelse etter den nåværende regningsperioden."
   },
   "reinstateSubscription": {
-    "message": "Reinstate Subscription"
+    "message": "Gjeninnfør abonnementet"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "Er du sikker på at du vil fjerne den avventende avbrytelsesforespørselen og i stedet gjeninnføre abonnementet ditt?"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "Abonnementet har blitt gjeninnført."
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "Er du sikker på at du vil avbryte? Du vil miste tilgang til alle funksjonene til dette abonnementet etter den inneværende regningsperioden."
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "Abonnementet har blitt avbrutt."
   },
   "neverExpires": {
     "message": "Utløper aldri"
@@ -1391,34 +1391,34 @@
     "message": "Status"
   },
   "nextCharge": {
-    "message": "Next Charge"
+    "message": "Neste trekk"
   },
   "details": {
     "message": "Detaljer"
   },
   "downloadLicense": {
-    "message": "Download License"
+    "message": "Last ned lisens"
   },
   "updateLicense": {
-    "message": "Update License"
+    "message": "Oppdater lisens"
   },
   "updatedLicense": {
-    "message": "Updated license"
+    "message": "Oppdaterte lisensen"
   },
   "manageSubscription": {
-    "message": "Manage Subscription"
+    "message": "Behandle abonnementet"
   },
   "storage": {
-    "message": "Storage"
+    "message": "Lagring"
   },
   "addStorage": {
-    "message": "Add Storage"
+    "message": "Legg til lagring"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "Fjern lagring"
   },
   "subscriptionStorage": {
-    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "message": "Ditt abonnement har totalt $MAX_STORAGE$GB med kryptert fillagring til rådighet. Du bruker for øyeblikket $USED_STORAGE$.",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1431,26 +1431,26 @@
     }
   },
   "paymentMethod": {
-    "message": "Payment Method"
+    "message": "Betalingsmetode"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "Ingen lagrede betalingsmetoder."
   },
   "addPaymentMethod": {
-    "message": "Add Payment Method"
+    "message": "Legg til betalingsmetode"
   },
   "changePaymentMethod": {
-    "message": "Change Payment Method"
+    "message": "Endre betalingsmetoden"
   },
   "charges": {
-    "message": "Charges",
+    "message": "Trekk",
     "description": "Credit card charges\/payments."
   },
   "noCharges": {
-    "message": "No charges."
+    "message": "Ingen trekk."
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "Ethvert trekk vil dukke opp i bankkontooppsummeringen din som $STATEMENT_NAME$.",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1459,19 +1459,19 @@
     }
   },
   "gbStorageAdd": {
-    "message": "GB of Storage To Add"
+    "message": "Antall GB lagring som skal legges til"
   },
   "gbStorageRemove": {
-    "message": "GB of Storage To Remove"
+    "message": "Antall GB lagring som skal fjernes"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Å legge til lagring vil føre til justeringer i dine regningssummer og vil umiddelbart trekke fra den lagrede betalingsmetoden din. Det første trekket vil bli fordelt utover resten av den nåværende regningsperioden."
   },
   "storageRemoveNote": {
-    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Å fjerne lagring vil føre til justeringer i dine regningssummer som vil bli fordelt som kreditt opp mot ditt neste regningstrekk."
   },
   "adjustedStorage": {
-    "message": "Adjusted $AMOUNT$ GB of storage.",
+    "message": "Justerte $AMOUNT$GB med lagring.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1480,22 +1480,22 @@
     }
   },
   "contactSupport": {
-    "message": "Contact Customer Support"
+    "message": "Ta kontakt med kundestøtte"
   },
   "contactSupportPaymentMethod": {
-    "message": "If you would like to change from this payment method please contact customer support."
+    "message": "Hvis du vil ta trekk ifra denne betalingsmetoden, vennligst kontakt kundestøtte."
   },
   "updatedPaymentMethod": {
-    "message": "Updated payment method."
+    "message": "Oppdaterte betalingsmetoden."
   },
   "purchasePremium": {
-    "message": "Purchase Premium"
+    "message": "Kjøp Premium"
   },
   "licenseFile": {
-    "message": "License File"
+    "message": "Lisensfil"
   },
   "licenseFileDesc": {
-    "message": "Your license file will be named something like $FILE_NAME$",
+    "message": "Lisensfilen din vil være navngitt noe i retning $FILE_NAME$",
     "placeholders": {
       "file_name": {
         "content": "$1",
@@ -1504,49 +1504,49 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "To upgrade your account to a premium membership you need to upload a valid license file."
+    "message": "For å oppgradere kontoen din til et Premium-medlemsskap, vil du måtte laste opp en gyldig lisensfil."
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+    "message": "For å opprette en lokalt betjent organisasjon, vil måtte laste opp en gyldig lisensfil."
   },
   "accountEmailMustBeVerified": {
-    "message": "Your account's email address must be verified."
+    "message": "Din kontos E-postadresse må bli verifisert."
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "Organisasjoner gjør at du kan dele deler av hvelvet ditt med andre, i tillegg til å behandle relaterte brukere for en spesifikk enhet, f.eks. en familie, et lite lag, eller et stort firma."
   },
   "generalInformation": {
-    "message": "General Information"
+    "message": "Generell informasjon"
   },
   "organizationName": {
-    "message": "Organization Name"
+    "message": "Organisasjonens navn"
   },
   "accountOwnedBusiness": {
-    "message": "This account is owned by a business."
+    "message": "Denne kontoen er eid av et firma."
   },
   "billingEmail": {
-    "message": "Billing Email"
+    "message": "Regnings-E-post"
   },
   "businessName": {
-    "message": "Business Name"
+    "message": "Firmaets navn"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "Velg din funksjonsplan"
   },
   "users": {
-    "message": "Users"
+    "message": "Brukere"
   },
   "userSeats": {
-    "message": "User Seats"
+    "message": "Brukerseter"
   },
   "additionalUserSeats": {
-    "message": "Additional User Seats"
+    "message": "Ekstra brukerseter"
   },
   "userSeatsDesc": {
-    "message": "# of user seats"
+    "message": "Antall brukerseter"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Planen din kommer $BASE_SEATS$ brukerseter. Du kan legge til ekstra brukere for $SEAT_PRICE$ per bruker per måned.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1559,14 +1559,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "How many user seats do you need? You can also add additional seats later if needed."
+    "message": "Hvor mange brukerseter behøver du? Du kan også legge til ekstra seter senere dersom det skulle bli nødvendig."
   },
   "planNameFree": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "message": "For testing eller personlige brukere til å dele med $COUNT$ annen bruker(e).",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1575,28 +1575,28 @@
     }
   },
   "planNameFamilies": {
-    "message": "Families"
+    "message": "Familier"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "For personlig bruk, til å dele med familie og venner."
   },
   "planNameTeams": {
-    "message": "Teams"
+    "message": "Lag (Teams)"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "For firmaer og andre lagorganisasjoner."
   },
   "planNameEnterprise": {
-    "message": "Enterprise"
+    "message": "Bedrift"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "For firmaer og andre store organisjoner."
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "Gratis for evig og alltid"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "inkluderer $COUNT$ brukere",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1605,10 +1605,10 @@
     }
   },
   "additionalUsers": {
-    "message": "Additional Users"
+    "message": "Ekstra brukere"
   },
   "costPerUser": {
-    "message": "$COST$ per user",
+    "message": "$COST$ per bruker",
     "placeholders": {
       "cost": {
         "content": "$1",
@@ -1617,7 +1617,7 @@
     }
   },
   "limitedUsers": {
-    "message": "Limited to $COUNT$ users (including you)",
+    "message": "Begrenset til $COUNT$ brukere (inkludert deg)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1626,7 +1626,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Limited to $COUNT$ collections",
+    "message": "Begrenset til $COUNT$ samlinger",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1635,7 +1635,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Add and share with up to $COUNT$ users",
+    "message": "Legg til og del med opptil $COUNT$ brukere",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1644,13 +1644,13 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "Legg til og del med et ubegrenset antall brukere"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "Lag ubegrenset med samlinger"
   },
   "gbEncryptedFileStorage": {
-    "message": "$SIZE$ encrypted file storage",
+    "message": "$SIZE$ kryptert fillagring",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1659,25 +1659,25 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "Lokal betjening (valgfritt)"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "Kontroller brukertilgang med grupper"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "Synkroniser dine brukere og grupper fra en mappe"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "Spor brukerhandlinger med undersøkingslogger"
   },
   "enforce2faDuo": {
-    "message": "Enforce 2FA with Duo"
+    "message": "Krev 2FA med Duo"
   },
   "priorityCustomerSupport": {
-    "message": "Priority customer support"
+    "message": "Prioritert kundestøtte"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$-dagers gratis prøveperiode, avbryt når som helst",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1686,106 +1686,106 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "Månedlig"
   },
   "annually": {
-    "message": "Annually"
+    "message": "Årlig"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "Grunnpris"
   },
   "organizationCreated": {
-    "message": "Organization Created"
+    "message": "Organisasjonen ble opprettet"
   },
   "organizationReadyToGo": {
-    "message": "Your new organization is ready to go!"
+    "message": "Din nye organisasjon er klar til å begynne!"
   },
   "leave": {
-    "message": "Leave"
+    "message": "Forlat"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Are you sure you want to leave this organization?"
+    "message": "Er du sikker på at du vil forlate denne organisasjonen?"
   },
   "leftOrganization": {
-    "message": "You have left the organization."
+    "message": "Du har forlatt organisasjonen."
   },
   "defaultCollection": {
-    "message": "Default Collection"
+    "message": "Standardsamling"
   },
   "getHelp": {
-    "message": "Get Help"
+    "message": "Få hjelp"
   },
   "getApps": {
-    "message": "Get the Apps"
+    "message": "Hent appene"
   },
   "loggedInAs": {
-    "message": "Logged in as"
+    "message": "Pålogget som"
   },
   "eventLogs": {
-    "message": "Event Logs"
+    "message": "Hendelsesloggbøker"
   },
   "people": {
-    "message": "People"
+    "message": "Personer"
   },
   "groups": {
-    "message": "Groups"
+    "message": "Grupper"
   },
   "newGroup": {
-    "message": "New Group"
+    "message": "Ny gruppe"
   },
   "addGroup": {
-    "message": "Add Group"
+    "message": "Legg til gruppe"
   },
   "editGroup": {
-    "message": "Edit Group"
+    "message": "Rediger gruppe"
   },
   "deleteGroupConfirmation": {
-    "message": "Are you sure you want to delete this group?"
+    "message": "Er du sikker på at du vil slette denne gruppen?"
   },
   "removeUserConfirmation": {
-    "message": "Are you sure you want to remove this user?"
+    "message": "Er du sikker på at du vil slette denne brukeren?"
   },
   "externalId": {
-    "message": "External Id"
+    "message": "Ekstern ID"
   },
   "externalIdGroupDesc": {
-    "message": "The external id is used to link this group to an external system such as a user directory."
+    "message": "Den ekstern IDen brukes til å knytte denne gruppen til et eksternt system, f.eks. en brukermappe."
   },
   "accessControl": {
-    "message": "Access Control"
+    "message": "Tilgangsstyring"
   },
   "groupAccessAllItems": {
-    "message": "This group can access and modify all items."
+    "message": "Denne gruppen kan få tilgang til og modifisere alle gjenstander."
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "Denne gruppen har bare tilgang til de valgte samlingene."
   },
   "readOnly": {
-    "message": "Read Only"
+    "message": "Skrivebeskyttet"
   },
   "newCollection": {
-    "message": "New Collection"
+    "message": "Ny samling"
   },
   "addCollection": {
-    "message": "Add Collection"
+    "message": "Legg til samling"
   },
   "editCollection": {
-    "message": "Edit Collection"
+    "message": "Rediger samling"
   },
   "deleteCollectionConfirmation": {
-    "message": "Are you sure you want to delete this collection?"
+    "message": "Er du sikker på at du vil slette denne samlingen?"
   },
   "editUser": {
-    "message": "Edit User"
+    "message": "Rediger bruker"
   },
   "inviteUser": {
-    "message": "Invite User"
+    "message": "Inviter bruker"
   },
   "inviteUserDesc": {
-    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Inviter en ny bruker til din organisasjon ved å skrive inn E-postadressen til Bitwarden-kontoen deres nedenfor. Hvis de ikke allerede har en Bitwarden-konto, vil de bli forespurt om å lage en ny konto."
   },
   "inviteMultipleEmailDesc": {
-    "message": "You can invite up to $COUNT$ users at a time by comma separating a list of email addresses.",
+    "message": "Du kan invitere opptil $COUNT$ brukere om gangen ved å komma-adskille en liste over E-postadresser.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1794,100 +1794,100 @@
     }
   },
   "userAccessAllItems": {
-    "message": "This user can access and modify all items."
+    "message": "Denne brukeren kan få tilgang til og modifisere alle gjenstander."
   },
   "userAccessSelectedCollections": {
-    "message": "This user can access only the selected collections."
+    "message": "Denne brukeren har bare tilgang til de valgte samlingene."
   },
   "search": {
-    "message": "Search"
+    "message": "Søk"
   },
   "invited": {
-    "message": "Invited"
+    "message": "Invitert"
   },
   "accepted": {
-    "message": "Accepted"
+    "message": "Godtatt"
   },
   "confirmed": {
-    "message": "Confirmed"
+    "message": "Bekreftet"
   },
   "owner": {
-    "message": "Owner"
+    "message": "Eier"
   },
   "ownerDesc": {
-    "message": "The highest access user that can manage all aspects of your organization."
+    "message": "Høyestetilgangsbrukeren som kan behandle alle aspekter av din organisasjon."
   },
   "admin": {
     "message": "Admin"
   },
   "adminDesc": {
-    "message": " Admins can access and manage all items, collections and users in your organization."
+    "message": " Administratorer kan få tilgang til og behandle alle gjenstander, samlinger og brukere i din organisasjon."
   },
   "user": {
-    "message": "User"
+    "message": "Bruker"
   },
   "userDesc": {
-    "message": "A regular user with access to your organization's collections."
+    "message": "En vanlig bruker med tilgang til din organisasjons samlinger."
   },
   "all": {
-    "message": "All"
+    "message": "Alle"
   },
   "refresh": {
-    "message": "Refresh"
+    "message": "Oppfrisk"
   },
   "timestamp": {
-    "message": "Timestamp"
+    "message": "Tidsstempel"
   },
   "event": {
-    "message": "Event"
+    "message": "Hendelse"
   },
   "unknown": {
-    "message": "Unknown"
+    "message": "Ukjent"
   },
   "loadMore": {
-    "message": "Load More"
+    "message": "Last inn mer"
   },
   "mobile": {
-    "message": "Mobile",
+    "message": "Mobil",
     "description": "Mobile app"
   },
   "extension": {
-    "message": "Extension",
+    "message": "Utvidelse",
     "description": "Browser extension\/addon"
   },
   "desktop": {
-    "message": "Desktop",
+    "message": "Skrivebord",
     "description": "Desktop app"
   },
   "webVault": {
-    "message": "Web Vault"
+    "message": "Netthvelv"
   },
   "loggedIn": {
-    "message": "Logged in."
+    "message": "Pålogget."
   },
   "changedPassword": {
-    "message": "Changed account password."
+    "message": "Endret kontopassordet."
   },
   "enabled2fa": {
-    "message": "Enabled two-step login."
+    "message": "Skrudde på 2-trinnsinnlogging."
   },
   "disabled2fa": {
-    "message": "Disabled two-step login."
+    "message": "Skrudde av 2-trinnsinnlogging."
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "Fikk tilgang til kontoen igjen med 2-trinnsinnlogging."
   },
   "failedLogin": {
-    "message": "Login attempt failed with incorrect password."
+    "message": "Innloggingsforsøket mislyktes grunnet feil passord."
   },
   "failedLogin2fa": {
-    "message": "Login attempt failed with incorrect two-step login."
+    "message": "Innloggingsforsøket mislyktes grunnet feil 2-trinnsinnlogging."
   },
   "editedOrgSettings": {
-    "message": "Edited organization settings."
+    "message": "Redigerte organisasjonens innstillinger."
   },
   "createdItemId": {
-    "message": "Created item $ID$.",
+    "message": "Lagde $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1896,7 +1896,7 @@
     }
   },
   "editedItemId": {
-    "message": "Edited item $ID$.",
+    "message": "Redigerte $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1905,7 +1905,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Deleted item $ID$.",
+    "message": "Slettet $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1914,7 +1914,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Shared item $ID$.",
+    "message": "Delte $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1923,7 +1923,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Created collection $ID$.",
+    "message": "Lagde $ID$-samlingen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1932,7 +1932,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Edited collection $ID$.",
+    "message": "Redigerte $ID$-samlingen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1941,7 +1941,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Deleted collection $ID$.",
+    "message": "Slettet $ID$-samlingen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1950,7 +1950,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Created group $ID$.",
+    "message": "Lagde $ID$-gruppen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1959,7 +1959,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Edited group $ID$.",
+    "message": "Redigerte $ID$-gruppen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1968,7 +1968,7 @@
     }
   },
   "deletedGroupId": {
-    "message": "Deleted group $ID$.",
+    "message": "Slettet $ID$-gruppen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1977,7 +1977,7 @@
     }
   },
   "removedUserId": {
-    "message": "Removed user $ID$.",
+    "message": "Fjernet brukeren $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1986,7 +1986,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Created attachment for item $ID$.",
+    "message": "Lagde et vedlegg for $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1995,7 +1995,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Deleted attachment for item $ID$.",
+    "message": "Slettet et vedlegg for $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2004,7 +2004,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Edited collections for item $ID$.",
+    "message": "Redigerte samlingene til $ID$-gjenstanden.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2013,7 +2013,7 @@
     }
   },
   "invitedUserId": {
-    "message": "Invited user $ID$.",
+    "message": "Inviterte brukeren $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2022,7 +2022,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Confirmed user $ID$.",
+    "message": "Bekreftet brukeren $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2031,7 +2031,7 @@
     }
   },
   "editedUserId": {
-    "message": "Edited user $ID$.",
+    "message": "Redigerte brukeren $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2040,7 +2040,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "Redigerte gruppene til brukeren $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2049,37 +2049,37 @@
     }
   },
   "device": {
-    "message": "Device"
+    "message": "Enhet"
   },
   "view": {
-    "message": "View"
+    "message": "Vis"
   },
   "invalidDateRange": {
-    "message": "Invalid date range."
+    "message": "Ugyldig datoområde."
   },
   "errorOccurred": {
-    "message": "An error has occurred."
+    "message": "En feil har oppstått."
   },
   "userAccess": {
-    "message": "User Access"
+    "message": "Brukertilgang"
   },
   "userType": {
-    "message": "User Type"
+    "message": "Brukertype"
   },
   "groupAccess": {
-    "message": "Group Access"
+    "message": "Gruppetilgang"
   },
   "groupAccessUserDesc": {
-    "message": "Edit the groups that this user belongs to."
+    "message": "Rediger gruppene som denne brukeren tilhører."
   },
   "invitedUsers": {
-    "message": "Invited user(s)."
+    "message": "Inviterte bruker(e)."
   },
   "resendInvitation": {
-    "message": "Resend Invitation"
+    "message": "Send invitasjonen på nytt"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "$USER$ har blitt invitert på nytt.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2088,10 +2088,10 @@
     }
   },
   "confirm": {
-    "message": "Confirm"
+    "message": "Bekreft"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "$USER$ har blitt bekreftet.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2100,136 +2100,136 @@
     }
   },
   "startDate": {
-    "message": "Start Date"
+    "message": "Startdato"
   },
   "endDate": {
-    "message": "End Date"
+    "message": "Sluttdato"
   },
   "verifyEmail": {
-    "message": "Verify Email"
+    "message": "Bekreft E-postadresse"
   },
   "verifyEmailDesc": {
-    "message": "Verify your account's email address to unlock access to all features."
+    "message": "Bekreft din kontos E-postadresse for å få tilgang til alle egenskapene."
   },
   "verifyEmailFirst": {
-    "message": "Your account's email address first must be verified."
+    "message": "Din kontos E-postadresse må først bli verifisert."
   },
   "checkInboxForVerification": {
-    "message": "Check your email inbox for a verification link."
+    "message": "Se etter i din E-postkontos innboks for en verifiseringslenke."
   },
   "emailVerified": {
-    "message": "Your email has been verified."
+    "message": "Din E-postadresse har blitt bekreftet."
   },
   "emailVerifiedFailed": {
-    "message": "Unable to verify your email. Try sending a new verification email."
+    "message": "Klarte ikke å bekrefte E-postadressen din. Prøv å sende en ny bekreftelses-E-post."
   },
   "updateBrowser": {
-    "message": "Update Browser"
+    "message": "Oppdater nettleseren"
   },
   "updateBrowserDesc": {
-    "message": "You are using an unsupported web browser. The web vault may not function properly."
+    "message": "Du bruker en ustøttet nettleser. Netthvelvet vil kanskje ikke fungere ordentlig."
   },
   "joinOrganization": {
-    "message": "Join Organization"
+    "message": "Bli med i organisasjon"
   },
   "joinOrganizationDesc": {
-    "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Du har blitt invitert til å bli med i organisasjonen som er listet opp ovenfor. For å godkjenne invitasjonen, må du enten logge på eller lage en ny Bitwarden-konto."
   },
   "inviteAccepted": {
-    "message": "Invitation Accepted"
+    "message": "Invitasjonen ble godkjent"
   },
   "inviteAcceptedDesc": {
-    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Du kan få tilgang til denne organisasjonen så fort en administrator godkjenner ditt medlemskap. Vi vil sende deg E-post når det skjer."
   },
   "inviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+    "message": "Klarte ikke å godkjenne invitasjonen. Spør en organisasjonsadmin om å sende en ny invitasjon."
   },
   "rememberEmail": {
-    "message": "Remember email"
+    "message": "Husk på E-postadressen"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "Hvis du ikke klarer å få tilgang til kontoen din gjennom dine vanlige 2-trinnsinnloggingsmetoder, kan du bruke din 2-trinnsinnloggingsgjenopprettingskode til å deaktivere alle 2-trinnsinnloggingsleverandører på din konto."
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "Få tilbake tilgangen til din kontos 2-trinnsinnlogging"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "2-trinnsinnlogging har blitt skrudd av på din konto."
   },
   "learnMore": {
-    "message": "Learn more"
+    "message": "Lær mer"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "Skriv inn din E-postadresse nedenfor for å få tilbake tilgangen til og å slette din konto."
   },
   "deleteRecoverEmailSent": {
-    "message": "If your account exists, we've sent you an email with further instructions."
+    "message": "Dersom kontoen din eksisterer, har vi sendt deg en E-post med ytterligere instrukser."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
+    "message": "Du har bedt om å slette Bitwarden-kontoen din. Klikk knappen nedenfor for å bekrefte."
   },
   "myOrganization": {
-    "message": "My Organization"
+    "message": "Min organisasjon"
   },
   "deleteOrganization": {
-    "message": "Delete Organization"
+    "message": "Slett organisasjonen"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Fortsett nedenfor for å slette denne organisasjonen og alle dens tilknyttede data. Individuelle brukerkontoer vil forbli igjen, skjønt de vil ikke være tilknyttet denne organisasjonen lenger. "
   },
   "deleteOrganizationWarning": {
-    "message": "Deleting the organization is permanent. It cannot be undone."
+    "message": "Å slette organisasjonen er permanent. Det kan ikke bli angret på."
   },
   "organizationDeleted": {
-    "message": "Organization Deleted"
+    "message": "Organisasjonen ble slettet"
   },
   "organizationDeletedDesc": {
-    "message": "The organization and all associated data has been deleted."
+    "message": "Organisasjonen og alle dens tilknyttede data ble slettet."
   },
   "organizationUpdated": {
-    "message": "Organization updated"
+    "message": "Organisasjonen ble oppdatert"
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "Skatteinformasjon"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Vennligst kontakt kundestøtte for å sende inn (eller oppdatere) skatteinformasjonen til dine fakturaer."
   },
   "billingPlan": {
-    "message": "Plan",
+    "message": "Funksjonsplan",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Change Plan",
+    "message": "Endre funksjonsplanen",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "Kontakt kundestøtte dersom du vil endre funksjonsplanen din. Vennligst sørg for at du har en aktiv betalingsmetode lagt til i kontoen din.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoice": {
-    "message": "Invoice"
+    "message": "Faktura"
   },
   "verifyBankAccount": {
-    "message": "Verify Bank Account"
+    "message": "Bekreft bankkontoen din"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "Vi har gjort 2 mikroinnskudd i bankkontoen din (Det kan 1-2 virkedager før de dukker opp). Skriv inn disse summene for å bekrefte bankkontoen."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "Betaling med en bankkonto er selvfølgelig bare tilgjengelig til kunder i USA. Du vi bli påkrevd å bekrefte din bankkonto. Vi vil sende deg 2 mikroinnskudd innen 1-2 virkedager. Skriv inn disse summene på din organisasjons regningsside for å bekrefte bankkontoen."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "Å mislykkes i å bekrefte bankkontoen vil føre til en uteblivende betaling og at abonnementet ditt blir skrudd av."
   },
   "verifiedBankAccount": {
-    "message": "Bank account has been verified."
+    "message": "Bankkontoen har blitt bekreftet."
   },
   "bankAccount": {
-    "message": "Bank Account"
+    "message": "Bankkonto"
   },
   "amountX": {
-    "message": "Amount $COUNT$",
+    "message": "Sum $COUNT$",
     "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
     "placeholders": {
       "count": {
@@ -2239,37 +2239,37 @@
     }
   },
   "routingNumber": {
-    "message": "Routing Number",
+    "message": "Rutingsnummer",
     "description": "Bank account routing number"
   },
   "accountNumber": {
-    "message": "Account Number"
+    "message": "Kontonummer"
   },
   "accountHolderName": {
-    "message": "Account Holder Name"
+    "message": "Kontoholderens navn"
   },
   "bankAccountType": {
-    "message": "Account Type"
+    "message": "Kontotype"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "Firma"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Individuelt (Personlig)"
   },
   "enterInstallationId": {
-    "message": "Enter your installation id"
+    "message": "Skriv inn din installasjons-ID"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "Legg til seter",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "Fjern seter",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "Your subscription allows for a total of $COUNT$ users.",
+    "message": "Ditt abonnement tillater opptil $COUNT$ brukere.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2278,19 +2278,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "Seter som skal legges til"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "Seter som skal fjernes"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Å legge til brukerseter vil føre til justeringer i dine regningssummer og vil umiddelbart trekke på den lagrede betalingsmetoden din. Det første trekket vil bli fordelt utover resten av den nåværende regningsperioden."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Å fjerne brukerseter vil føre til justeringer i dine regningssummer som vil bli fordelt som kreditt opp mot ditt neste regningstrekk."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "Justerte $AMOUNT$ brukerseter.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2299,102 +2299,102 @@
     }
   },
   "keyUpdated": {
-    "message": "Key Updated"
+    "message": "Nøkkelen ble oppdatert"
   },
   "updateKeyTitle": {
-    "message": "Update Key"
+    "message": "Oppdater nøkkelen"
   },
   "updateEncryptionKey": {
-    "message": "Update Encryption Key"
+    "message": "Oppdater krypteringsnøkkelen"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "You are currently using an outdated encryption scheme."
+    "message": "Du bruker for øyeblikket et utdatert krypteringsoppsett."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "Vi har byttet over til lengre krypteringsnøkler som sørger for bedre sikkerhet og tilgang til nyere funksjoner. Å oppdatere krypteringsnøkkelen din er raskt og enkelt. Bare skriv inn superpassordet ditt nedenfor. Denne oppdateringen vil etter hvert bli påbudt."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "Etter å ha oppdatert krypteringsnøkkelen din, er du påkrevd å logge av og på på alle Bitwarden-appene og -programmene som du bruker for øyeblikket (deriblant mobilappen og nettleserutvidelsene). Å ikke logge av og på igjen (noe som vil laste ned din nye krypteringsnøkkel) kan føre til datakorrumpering. Vi vil forsøke å logge deg av automatisk, men det kan kanskje bli forsinket."
   },
   "subscription": {
-    "message": "Subscription"
+    "message": "Abonnement"
   },
   "loading": {
-    "message": "Loading"
+    "message": "Laster inn"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "Oppgrader"
   },
   "upgradeOrganization": {
-    "message": "Upgrade Organization"
+    "message": "Oppgrader organisasjonen"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "Denne egenskapen er ikke tilgjengelig for gratisorganisasjoner. Bytt over til en betalt funksjonsplan for å låse opp flere egenskaper."
   },
   "createOrganizationStep1": {
-    "message": "Create Organization: Step 1"
+    "message": "Lag en organisasjon: Trinn 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "Før du lager organisasjonen din, må du først lage en gratis personlig konto."
   },
   "refunded": {
-    "message": "Refunded"
+    "message": "Tilbakebetalt"
   },
   "nothingSelected": {
-    "message": "You have not selected anything."
+    "message": "Du har ikke valgt noe."
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "Ved å klikke på «Send inn»-knappen, sier du deg enig i de følgende retningslinjene:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
-    "message": "Terms of Service"
+    "message": "Tjenestevilkår"
   },
   "privacyPolicy": {
-    "message": "Privacy Policy"
+    "message": "Personvernsretningslinjer"
   },
   "filters": {
-    "message": "Filters"
+    "message": "Filtre"
   },
   "lockOptions": {
-    "message": "Lock Options"
+    "message": "Låseinnstillinger"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "Velg når hvelvet ditt skal låses. Et låst hvelv innebærer at du må skrive inn superpassordet ditt på nytt for å få tilgang til den igjen."
   },
   "oneMinute": {
-    "message": "1 minute"
+    "message": "1 minutt"
   },
   "fiveMinutes": {
-    "message": "5 minutes"
+    "message": "5 minutter"
   },
   "fifteenMinutes": {
-    "message": "15 minutes"
+    "message": "15 minutter"
   },
   "thirtyMinutes": {
-    "message": "30 minutes"
+    "message": "30 minutter"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 time"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 timer"
   },
   "onRefresh": {
-    "message": "On Browser Refresh"
+    "message": "Ved nettlesergjeninnlasting"
   },
   "dateUpdated": {
-    "message": "Updated",
+    "message": "Oppdatert den",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Password Updated",
+    "message": "Passordet ble oppdatert den",
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "Organisasjonen er skrudd av."
   },
   "licenseIsExpired": {
-    "message": "License is expired."
+    "message": "Lisensen har utløpt."
   }
 }
