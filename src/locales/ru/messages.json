@@ -13,7 +13,7 @@
     "message": "Какой это тип элемента?"
   },
   "name": {
-    "message": "Название"
+    "message": "Имя"
   },
   "uri": {
     "message": "URI"
@@ -505,7 +505,7 @@
     "message": "Войти"
   },
   "submit": {
-    "message": "Отправить"
+    "message": "Подтвердить"
   },
   "emailAddressDesc": {
     "message": "Адрес электронной почты будет использоваться для входа."
@@ -604,7 +604,7 @@
     "message": "Новая организация"
   },
   "noOrganizationsList": {
-    "message": "Вы не принадлежите к каким-либо организациям. Организации позволяют безопасно обмениваться элементами с другими пользователями."
+    "message": "Вы не являетесь членом какой-либо организации. Организации позволяют безопасно обмениваться элементами с другими пользователями."
   },
   "versionNumber": {
     "message": "Версия $VERSION_NUMBER$",
@@ -721,7 +721,7 @@
     "message": "Отредактируйте коллекции, с которыми совместно используется этот элемент. Только пользователи организации, имеющие доступ к этим коллекциям, смогут видеть этот элемент."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "Вы выбрали $COUNT$ элемента(-ов) для удаления. Вы уверены, что хотите удалить все эти элементы?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "Выберите папку, в которую вы хотите переместить $COUNT$ выбранных элемента(-ов).",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +739,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "Вы выбрали $COUNT$ элемента(-ов). $SHAREABLE_COUNT$ элемента(-ов) являются общими, $NONSHAREABLE_COUNT$ не являются. Делиться элементами с вложениями необходимо по отдельности.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -826,7 +826,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "В случае продолжения, ваша сессия будет завершена и вам будет предложено авторизоваться повторно. Сеансы на других устройствах могут продолжать оставаться активными в течение одного часа."
   },
   "emailChanged": {
     "message": "Email изменен"
@@ -862,10 +862,10 @@
     "message": "Деавторизовать сессии"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "Беспокоитесь о том, что ваша учетная запись авторизована на другом устройстве? Выполните следующие действия, чтобы отменить авторизацию всех компьютеров или устройств, которые вы ранее использовали. Этот шаг безопасности рекомендуется, если вы ранее использовали общедоступный компьютер или случайно сохранили свой пароль на устройстве, которое вам не принадлежит. Этот шаг также очистит все ранее сохраненные сессии двухфакторного входа."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "В случае продолжения, ваша сессия также будет завершена и вам будет предложено авторизоваться повторно. Также вам будет предложено повторно авторизоваться при помощи двухфакторной аутентификации, если она включена. Сеансы на других устройствах могут продолжать оставаться активными в течение одного часа."
   },
   "sessionsDeauthorized": {
     "message": "Все сессии деавторизованы"
@@ -960,7 +960,7 @@
     "description": "'Gravatar' is the name of a service. See www.gravatar.com"
   },
   "enableGravatarsDesc": {
-    "message": "Использовать аватары, загружаемые с gravatar.com."
+    "message": "Использовать аватары, загруженные с gravatar.com."
   },
   "default": {
     "message": "По умолчанию"
@@ -1011,10 +1011,10 @@
     "message": "Защитите свою учетную запись, при помощи дополнительного шага при авторизации."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "Требовать двухфакторную аутентификацию для пользователей вашей организации, путем конфигурации ее на уровне организации."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+    "message": "При включении двухфакторной аутентификации вы можете навсегда потерять доступ к вашей учетной записи Bitwarden. Код восстановления позволяет получить доступ к вашему аккаунту в случае, если вы больше не можете использовать свой обычный метод двухфакторной аутентификации (например, при потере устройства). Поддержка Bitwarden не сможет вам помочь, если вы потеряете доступ к своей учетной записи. Мы рекомендуем вам записать или распечатать код восстановления и сохранить его в надежном месте."
   },
   "viewRecoveryCode": {
     "message": "Просмотреть код восстановления"
@@ -1049,13 +1049,13 @@
     "message": "Выключить"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "Этот провайдер двухфакторной аутентификации включен для вашего аккаунта."
   },
   "twoStepLoginAuthDesc": {
     "message": "Для изменения настроек двухфакторной аутентификации введите мастер-пароль."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "Выполните следующие шаги, чтобы настроить двухфакторную аутентификацию с помощью приложения-аутетификатора:"
   },
   "twoStepAuthenticatorDownloadApp": {
     "message": "Загрузите приложение-аутентификатор"
@@ -1184,7 +1184,7 @@
     "message": "В ожидании нажатия кнопки на ключе безопасности"
   },
   "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+    "message": "Нажмите кнопку \"Включить\" ниже, чтобы активировать этот ключ безопасности для двухфакторной аутентификации."
   },
   "twoFactorU2fProblemReading": {
     "message": "Не удалось прочитать ключ безопасности."
@@ -1193,7 +1193,7 @@
     "message": "Ваш код восстановления двухфакторной ауентификации Bitwarden"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "Вы еще не включили ни одного провайдера двухфакторной аутентификации. После включения, вы можете вернуться сюда и проверить ваш код восстановления."
   },
   "printCode": {
     "message": "Печать кода",
@@ -1206,7 +1206,7 @@
     "message": "Отчет о данных утечек"
   },
   "breachDesc": {
-    "message": "\"Утечка\" - это инцидент, при котором данные сайта стали незаконно доступны хакерам, а затем были публично опубликованы. Просмотрите типы данных, которые были скомпрометированы (адреса email, пароли, кредитные карты и т. д.) И предпримите соответствующие действия, такие как смена паролей."
+    "message": "Утечка - это инцидент, при котором данные сайта стали незаконно доступны хакерам и впоследствии опубликованы. Проверьте типы данных, которые были скомпрометированы (адреса email, пароли, кредитные карты и т. д.) и примите соответствующие меры, такие как изменение паролей."
   },
   "breachCheckUsernameEmail": {
     "message": "Проверьте имена пользователей или адреса email, которые вы используете."
@@ -1272,7 +1272,7 @@
     "message": "Вы обновились до Премиум."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Обновите свою учетную запись до Премиум-статуса и разблокируйте несколько великолепных дополнительных возможностей."
+    "message": "Обновите свою учетную запись до Премиум и разблокируйте несколько великолепных дополнительных возможностей."
   },
   "premiumSignUpStorage": {
     "message": "1 ГБ зашифрованного хранилища файлов."
@@ -1337,10 +1337,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Ваш метод оплаты будет активирован немедленно и использоваться ежегодно. Вы можете отменить это в любой момент."
+    "message": "Необходимая сумма с вашего метода оплаты будет списана немедленно, а затем с периодичностью каждый год. Можно отменить в любой момент."
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Ваш план включает семидневную бесплатную пробную версию. Ваш метод оплаты не будет использован до окончания пробной версии. Оплата будет осуществляться каждый $INTERVAL$. Вы можете отменить в любое время.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1355,7 +1355,7 @@
     "message": "Кредитная карта"
   },
   "paypalClickSubmit": {
-    "message": "Нажмите кнопку PayPal, чтобы войти в свою учетную запись PayPal, затем нажмите кнопку Отправить ниже, чтобы продолжить."
+    "message": "Нажмите кнопку PayPal, чтобы войти в свою учетную запись PayPal, затем нажмите кнопку 'Подтвердить' ниже, чтобы продолжить."
   },
   "cancelSubscription": {
     "message": "Отменить подписку"
@@ -1562,7 +1562,7 @@
     "message": "Какое количество пользовательских лицензий вам нужно? При необходимости, вы можете добавить дополнительные лицензии позже."
   },
   "planNameFree": {
-    "message": "Бесплатно",
+    "message": "Бесплатный",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
@@ -1575,13 +1575,13 @@
     }
   },
   "planNameFamilies": {
-    "message": "Семьи"
+    "message": "Семья"
   },
   "planDescFamilies": {
     "message": "Для личного использования, чтобы поделиться с семьей и друзьями."
   },
   "planNameTeams": {
-    "message": "Команды"
+    "message": "Команда"
   },
   "planDescTeams": {
     "message": "Для компаний и других командных организаций."
@@ -1662,7 +1662,7 @@
     "message": "Локальный хостинг (опционально)"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "Управление доступом пользователей с помощью групп"
   },
   "syncUsersFromDirectory": {
     "message": "Синхронизация ваших пользователей и групп из каталога"
@@ -1785,7 +1785,7 @@
     "message": "Пригласите нового пользователя в свою организацию, введя адрес email его учетной записи Bitwarden ниже. Если у него пока нет учетной записи Bitwarden, то будет предложено ее создать."
   },
   "inviteMultipleEmailDesc": {
-    "message": "You can invite up to $COUNT$ users at a time by comma separating a list of email addresses.",
+    "message": "Вы можете пригласить до $COUNT$ пользователей одновременно, разделяя адреса email запятыми.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1875,7 +1875,7 @@
     "message": "Двухфакторная аутентификация выключена."
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "Аккаунт восстановлен после двухфакторной аутентификации."
   },
   "failedLogin": {
     "message": "Ошибка входа из-за неправильного пароля."
@@ -2344,7 +2344,7 @@
     "message": "Вы ничего не выбрали."
   },
   "submitAgreePolicies": {
-    "message": "Нажимая кнопку Отправить, вы принимаете следующие правила:",
+    "message": "Нажимая кнопку 'Подтвердить', вы принимаете следующие правила:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2381,7 +2381,7 @@
     "message": "Через 4 часа"
   },
   "onRefresh": {
-    "message": "On Browser Refresh"
+    "message": "При обновлении браузера"
   },
   "dateUpdated": {
     "message": "Обновлено",
@@ -2392,9 +2392,9 @@
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "Организация отключена."
   },
   "licenseIsExpired": {
-    "message": "License is expired."
+    "message": "Срок действия лицензии истек."
   }
 }

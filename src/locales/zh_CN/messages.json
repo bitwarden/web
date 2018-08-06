@@ -74,7 +74,7 @@
     "message": "许可证号码"
   },
   "email": {
-    "message": "Email"
+    "message": "电子邮件"
   },
   "phone": {
     "message": "电话"
@@ -619,7 +619,7 @@
     "message": "请输入您的身份验证器应用中的 6 位验证码。"
   },
   "enterVerificationCodeEmail": {
-    "message": "请输入 6 位验证码，我们将其已发至$EMAIL$",
+    "message": "请输入 6 位验证码，我们将其已发至 $EMAIL$",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -640,7 +640,7 @@
     "message": "记住我"
   },
   "sendVerificationCodeEmailAgain": {
-    "message": "重发验证码邮件"
+    "message": "重发验证码电子邮件"
   },
   "useAnotherTwoStepMethod": {
     "message": "使用其他两步登录方法"
@@ -680,14 +680,14 @@
     "message": "YubiKey OTP 安全密钥"
   },
   "yubiKeyDesc": {
-    "message": "使用 YubiKey 来访问您的账户。支持 YubiKey 4、4 Nano、4C 和 NEO 。"
+    "message": "使用 YubiKey 来访问您的账户。支持 YubiKey 4、4 Nano、4C 以及 NEO 设备。"
   },
   "duoDesc": {
     "message": "使用 Duo Security 的 Duo Mobile 应用、短信、电话或 U2F 安全钥匙验证身份。",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "使用 Duo Security 的 Duo Mobile 应用、短信、电话或 U2F 安全钥匙验证身份。",
+    "message": "使用 Duo Security 的 Duo Mobile 应用、短信、电话或 U2F 安全密钥验证身份。",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
@@ -697,7 +697,7 @@
     "message": "FIDO U2F 安全密钥"
   },
   "emailTitle": {
-    "message": "Email"
+    "message": "电子邮件"
   },
   "emailDesc": {
     "message": "验证码将会发送到您的电子邮箱。"
@@ -862,7 +862,7 @@
     "message": "取消会话"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "您是否担心自己的帐号在其他设备上登录？请按照以下步骤取消对之前使用过的所有计算机或设备的授权。如果您以前使用过公共电脑或不小心曾将密码保存在不属于您的设备上，则建议执行此安全步骤。此步骤还将清除所有以前记住的两步登录会话。"
   },
   "deauthorizeSessionsWarning": {
     "message": "接下来将会注销您当前的会话, 要求您重新登录。如果有两步验证，也需要重新验证。其他设备上的活动会话可能会继续保持最多一小时。"
@@ -947,20 +947,20 @@
     "message": "语言"
   },
   "languageDesc": {
-    "message": "更改使用的语言。"
+    "message": "更改网页密码库的语言。"
   },
   "disableIcons": {
     "message": "禁用网站图标"
   },
   "disableIconsDesc": {
-    "message": "在您密码库的每个登录项旁显示一个容易区分的图标。"
+    "message": "在您密码库的每个登录项旁显示一个容易识别的图标。"
   },
   "enableGravatars": {
-    "message": "Enable Gravatars",
+    "message": "启用 Gravatar 头像",
     "description": "'Gravatar' is the name of a service. See www.gravatar.com"
   },
   "enableGravatarsDesc": {
-    "message": "Use avatar images loaded from gravatar.com."
+    "message": "使用从 gravatar.com 加载的头像图像。"
   },
   "default": {
     "message": "默认"
@@ -969,7 +969,7 @@
     "message": "域名规则"
   },
   "domainRulesDesc": {
-    "message": "如果你在多个不同网站使用同样的登陆信息，你可以把这些网站标记为“通用”。Bitwarden会帮你设置“全局”域名。"
+    "message": "如果您在多个不同网站使用同样的登陆信息，您可以把这些网站标记为 “通用”。Bitwarden 会为您设置 “全局” 域名。"
   },
   "globalEqDomains": {
     "message": "全局通用域名"
@@ -990,7 +990,7 @@
     "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "输入用逗号分隔的域列表。只能使用顶级域名。不需要输入二级域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用程序与其他网站域名关联。"
+    "message": "输入用逗号分隔的域列表。只能使用主域名。不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用程序与其他网站域名关联。"
   },
   "customDomainX": {
     "message": "自定义域名 $INDEX$",
@@ -1011,7 +1011,7 @@
     "message": "在登录时需要额外的步骤来保护您的帐户。"
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "在组织机构层面配置提供程序，使您组织的用户采用两步登录。"
   },
   "twoStepLoginRecoveryWarning": {
     "message": "启用两步登录可以永久地锁定您的Bitwarden 帐户。恢复代码允许您在无法正常使用两步登录的情况（例如你丢失了你的设备）下访问您的帐户。如果您无法访问您的帐户，Bitwarden 无法帮助您。我们建议您记下或打印恢复代码，并将其妥善保管。"
@@ -1082,13 +1082,13 @@
     "message": "密钥"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the app"
+    "message": "输入 App 中的 6 位验证码"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "如果您要把它添加到另一个设备，下面是您的认证 App 所需要的二维码（或密钥）。"
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "您确定想要禁用此两步登录提供程序吗？"
   },
   "twoStepDisabled": {
     "message": "已禁用两步登录提供程序。"
@@ -1097,10 +1097,10 @@
     "message": "向您的帐户添加新 YubiKey"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Plug the YubiKey (NEO or 4 series) into your computer's USB port."
+    "message": "将 YubiKey（NEO 或者 4 系列）插入您电脑的 USB 端口。"
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Select in the first empty YubiKey input field below."
+    "message": "在下面选择第一个空的 YubiKey 输入域。"
   },
   "twoFactorYubikeyTouchButton": {
     "message": "按下 YubiKey 的按钮。"
@@ -1109,13 +1109,13 @@
     "message": "保存表单"
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "由于平台限制，YubiKey 无法用于所有的 Bitwarden 应用。您应启用另一个两步登录提供程序，以便在 YubiKey 不可用时，也能访问您的账户。支持的平台："
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "具有 USB 端口的设备上的网页密码库，桌面应用程序，CLI 以及浏览器扩展都可以访问您的 YubiKey。"
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "兼容 NFC 或者有 USB 端口的设备上的移动 APP可以访问您的 YubiKey。"
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1130,73 +1130,73 @@
     "message": "NFC 支持"
   },
   "twoFactorYubikeySupportsNfc": {
-    "message": "One of my keys supports NFC."
+    "message": "我的一把密钥支持 NFC。"
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
+    "message": "如果您的某个YubiKeys支持NFC（例如YubiKey NEO），则只要检测到NFC可用性，系统就会在移动设备上提示您。"
   },
   "yubikeysUpdated": {
-    "message": "YubiKeys updated"
+    "message": "YubiKey 已更新"
   },
   "disableAllKeys": {
-    "message": "Disable All Keys"
+    "message": "禁用全部密钥"
   },
   "twoFactorDuoDesc": {
-    "message": "Enter the Bitwarden application information from your Duo Admin panel."
+    "message": "从 \"Duo Admin\" 面板输入 Bitwarden 应用程序信息。"
   },
   "twoFactorDuoIntegrationKey": {
-    "message": "Integration Key"
+    "message": "集成密钥"
   },
   "twoFactorDuoSecretKey": {
-    "message": "安全秘钥"
+    "message": "安全密钥"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "API 主机名"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "按照以下步骤设置使用电子邮件两步登录:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "输入您希望接收验证码的电子邮件"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the email"
+    "message": "输入电子邮件中的 6 位验证码"
   },
   "sendEmail": {
     "message": "发送电子邮件"
   },
   "twoFactorU2fAdd": {
-    "message": "Add a FIDO U2F security key to your account"
+    "message": "在您的帐户中添加 FIDO U2F 安全密钥"
   },
   "twoFactorU2fPlugIn": {
-    "message": "Plug the security key into your computer's USB port."
+    "message": "将安全密钥插入电脑的 USB 端口。"
   },
   "twoFactorU2fTouchButton": {
-    "message": "If the security key has a button, touch it."
+    "message": "如果安全密钥有按钮，请按下它。"
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "由于平台限制，FIDO U2F 无法用于所有的 Bitwarden 应用程序。 您应启用另一个两步登录提供程序，以便在 FIDO U2F 不可用时，也能访问您的帐户。 支持的平台："
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "支持 U2F 的桌面 \/ 笔记本电脑上的网页密码库和浏览器扩展（Chrome，Opera，Vivaldi 或启用了FIDO U2F 的 Firefox）。"
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "请您按下安全密钥上的按钮"
   },
   "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+    "message": "单击下面的 \"启用\" 按钮，启用此安全密钥进行两步登录。"
   },
   "twoFactorU2fProblemReading": {
-    "message": "There was a problem reading the security key."
+    "message": "读取安全密钥时出现问题。"
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "您的 Bitwarden 两步登录恢复代码"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "您尚未启用任何两步登录提供程序。在启用了两步登录提供程序后, 您可以在这里检查恢复代码。"
   },
   "printCode": {
-    "message": "Print Code",
+    "message": "打印代码",
     "description": "Print 2FA recovery code"
   },
   "reports": {
@@ -1206,16 +1206,16 @@
     "message": "数据泄露报告"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "“泄漏”是指黑客非法访问网站数据然后公开发布的事件。查看已泄露的数据类型（电子邮件地址，密码，信用卡等）并采取适当的措施，例如更改密码。"
   },
   "breachCheckUsernameEmail": {
-    "message": "Check any usernames or email addresses that you use."
+    "message": "检查您使用的任何用户名或电子邮件地址。"
   },
   "checkBreaches": {
-    "message": "Check Breaches"
+    "message": "检查泄漏情况"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "在任何已知数据泄漏中找不到 $USERNAME$。",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1228,7 +1228,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$ 在不同的数据泄漏中找到 $COUNT$  次。",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1241,7 +1241,7 @@
     }
   },
   "breachFound": {
-    "message": "Breached Accounts Found"
+    "message": "发现被泄露的帐户"
   },
   "compromisedData": {
     "message": "Compromised data"
@@ -1253,44 +1253,44 @@
     "message": "受影响的用户"
   },
   "breachOccurred": {
-    "message": "Breach Occurred"
+    "message": "已发生泄漏"
   },
   "breachReported": {
-    "message": "Breach Reported"
+    "message": "泄漏已报告"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "加载报告时发生错误，请重试。"
   },
   "billingAndLicensing": {
-    "message": "Billing & Licensing"
+    "message": "计费和许可"
   },
   "goPremium": {
-    "message": "Go Premium",
+    "message": "升级高级会员",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "您已升级到高级会员。"
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "将您的帐户升级为高级会员，将解锁一些强大的附加功能。"
   },
   "premiumSignUpStorage": {
     "message": "1 GB 加密文件存储。"
   },
   "premiumSignUpTwoStep": {
-    "message": "Additional two-step login options such as YubiKey, FIDO U2F, and Duo."
+    "message": "其他两步登录选项，如 YubiKey、FIDO U2F 和 Duo。"
   },
   "premiumSignUpTotp": {
-    "message": "TOTP verification code (2FA) generator for logins in your vault."
+    "message": "用于登录密码库的 TOTP 验证码（两步验证）生成器。"
   },
   "premiumSignUpSupport": {
-    "message": "Priority customer support."
+    "message": "优先客户支持。"
   },
   "premiumSignUpFuture": {
-    "message": "All future premium features. More coming soon!"
+    "message": "所有未来的高级功能，即将推出！"
   },
   "premiumPrice": {
-    "message": "All for just $PRICE$ \/year!",
+    "message": "每年只需 $PRICE$ ！",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1302,13 +1302,13 @@
     "message": "Addons"
   },
   "additionalStorageGb": {
-    "message": "Additional Storage (GB)"
+    "message": "附加存储 (GB)"
   },
   "additionalStorageGbDesc": {
     "message": "# of additional GB"
   },
   "additionalStorageDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/year.",
+    "message": "您的计划附带 $SIZE$ 的加密存储空间。您也可以用 $PRICE$ 每 GB 每年购买附加存储。",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1333,14 +1333,14 @@
     "message": "月"
   },
   "monthAbbr": {
-    "message": "mo.",
+    "message": "月",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and on a recurring basis each year. You may cancel at any time."
+    "message": "将立即从您的支付方式扣款，并且将每年定期扣款。您可以随时取消。"
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "您的计划包含了 7 天的试用期。在试用期结束前，你的卡片不会被扣款。随后将会在每个 $INTERVAL$ 定期扣款。您可以随时取消。",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1349,40 +1349,40 @@
     }
   },
   "paymentInformation": {
-    "message": "Payment Information"
+    "message": "支付信息"
   },
   "creditCard": {
     "message": "信用卡"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "点击 PayPal 按钮登录您的 PayPal 账户，然后点击 提交 按钮。"
   },
   "cancelSubscription": {
     "message": "取消订阅"
   },
   "subscriptionCanceled": {
-    "message": "您的订购已取消。"
+    "message": "您的订阅已取消。"
   },
   "pendingCancellation": {
-    "message": "Pending Cancellation"
+    "message": "待取消"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "订阅已在当前账单周期结束时标记为取消。"
   },
   "reinstateSubscription": {
-    "message": "Reinstate Subscription"
+    "message": "恢复订阅"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "您确定要撤销请求并恢复订阅吗？"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "您的订阅已恢复。"
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "您确定要取消吗？在本次账单周期结束后，您将无法使用所有订阅功能。"
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "订阅已取消。"
   },
   "neverExpires": {
     "message": "永不过期"
@@ -1391,34 +1391,34 @@
     "message": "状态"
   },
   "nextCharge": {
-    "message": "Next Charge"
+    "message": "下一次收费"
   },
   "details": {
-    "message": "Details"
+    "message": "详细信息"
   },
   "downloadLicense": {
-    "message": "Download License"
+    "message": "下载许可证"
   },
   "updateLicense": {
-    "message": "Update License"
+    "message": "更新许可证"
   },
   "updatedLicense": {
-    "message": "Updated license"
+    "message": "已更新的许可证"
   },
   "manageSubscription": {
-    "message": "Manage Subscription"
+    "message": "管理订阅"
   },
   "storage": {
-    "message": "Storage"
+    "message": "存储"
   },
   "addStorage": {
-    "message": "Add Storage"
+    "message": "添加存储"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "移除存储"
   },
   "subscriptionStorage": {
-    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "message": "您的订阅共有 $MAX_STORAGE$ GB 的加密存储空间。您目前已使用 $USED_STORAGE$ 。",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1431,26 +1431,26 @@
     }
   },
   "paymentMethod": {
-    "message": "Payment Method"
+    "message": "支付方式"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "没有支付方式"
   },
   "addPaymentMethod": {
-    "message": "Add Payment Method"
+    "message": "添加支付方式"
   },
   "changePaymentMethod": {
-    "message": "Change Payment Method"
+    "message": "更改支付方式"
   },
   "charges": {
-    "message": "Charges",
+    "message": "收费",
     "description": "Credit card charges\/payments."
   },
   "noCharges": {
-    "message": "No charges."
+    "message": "无费用"
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "任何费用将在您的对账单上以 $STATEMENT_NAME$ 显示。",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1459,10 +1459,10 @@
     }
   },
   "gbStorageAdd": {
-    "message": "GB of Storage To Add"
+    "message": "GB 存储空间将增加"
   },
   "gbStorageRemove": {
-    "message": "GB of Storage To Remove"
+    "message": "GB 存储空间将删除"
   },
   "storageAddNote": {
     "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
@@ -1513,28 +1513,28 @@
     "message": "Your account's email address must be verified."
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "组织允许您与他人以及特定实体（如家庭、小型团队或大公司）的相关用户共享部分密码库。"
   },
   "generalInformation": {
-    "message": "General Information"
+    "message": "常规信息"
   },
   "organizationName": {
-    "message": "Organization Name"
+    "message": "组织名称"
   },
   "accountOwnedBusiness": {
     "message": "This account is owned by a business."
   },
   "billingEmail": {
-    "message": "Billing Email"
+    "message": "电子邮件账单"
   },
   "businessName": {
-    "message": "Business Name"
+    "message": "公司名称"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "选择您的计划"
   },
   "users": {
-    "message": "Users"
+    "message": "用户"
   },
   "userSeats": {
     "message": "User Seats"
@@ -1562,7 +1562,7 @@
     "message": "How many user seats do you need? You can also add additional seats later if needed."
   },
   "planNameFree": {
-    "message": "Free",
+    "message": "免费",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
@@ -1575,28 +1575,28 @@
     }
   },
   "planNameFamilies": {
-    "message": "Families"
+    "message": "家庭"
   },
   "planDescFamilies": {
     "message": "For personal use, to share with family & friends."
   },
   "planNameTeams": {
-    "message": "Teams"
+    "message": "团队"
   },
   "planDescTeams": {
     "message": "For businesses and other team organizations."
   },
   "planNameEnterprise": {
-    "message": "Enterprise"
+    "message": "企业"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "为企业和其他大型组织。"
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "永远免费"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "包括 $COUNT$ 位用户",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1608,7 +1608,7 @@
     "message": "Additional Users"
   },
   "costPerUser": {
-    "message": "$COST$ per user",
+    "message": "每位用户 $COST$",
     "placeholders": {
       "cost": {
         "content": "$1",
@@ -1686,13 +1686,13 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "每月"
   },
   "annually": {
-    "message": "Annually"
+    "message": "每年"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "基本价格"
   },
   "organizationCreated": {
     "message": "Organization Created"
@@ -1701,28 +1701,28 @@
     "message": "Your new organization is ready to go!"
   },
   "leave": {
-    "message": "Leave"
+    "message": "离开"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Are you sure you want to leave this organization?"
+    "message": "您确定要离开此组织吗？"
   },
   "leftOrganization": {
-    "message": "You have left the organization."
+    "message": "您已经离开该组织。"
   },
   "defaultCollection": {
-    "message": "Default Collection"
+    "message": "搜索集合"
   },
   "getHelp": {
-    "message": "Get Help"
+    "message": "获取帮助"
   },
   "getApps": {
-    "message": "Get the Apps"
+    "message": "获取应用"
   },
   "loggedInAs": {
-    "message": "Logged in as"
+    "message": "已登录为"
   },
   "eventLogs": {
-    "message": "Event Logs"
+    "message": "事件日志"
   },
   "people": {
     "message": "People"
@@ -1752,7 +1752,7 @@
     "message": "The external id is used to link this group to an external system such as a user directory."
   },
   "accessControl": {
-    "message": "Access Control"
+    "message": "访问控制"
   },
   "groupAccessAllItems": {
     "message": "This group can access and modify all items."
@@ -1761,7 +1761,7 @@
     "message": "This group can access only the selected collections."
   },
   "readOnly": {
-    "message": "Read Only"
+    "message": "只读"
   },
   "newCollection": {
     "message": "New Collection"
@@ -1776,10 +1776,10 @@
     "message": "Are you sure you want to delete this collection?"
   },
   "editUser": {
-    "message": "Edit User"
+    "message": "编辑用户"
   },
   "inviteUser": {
-    "message": "Invite User"
+    "message": "邀请用户"
   },
   "inviteUserDesc": {
     "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
@@ -1800,16 +1800,16 @@
     "message": "This user can access only the selected collections."
   },
   "search": {
-    "message": "Search"
+    "message": "搜索"
   },
   "invited": {
-    "message": "Invited"
+    "message": "已邀请"
   },
   "accepted": {
-    "message": "Accepted"
+    "message": "已接受"
   },
   "confirmed": {
-    "message": "Confirmed"
+    "message": "已确认"
   },
   "owner": {
     "message": "Owner"
@@ -1818,13 +1818,13 @@
     "message": "The highest access user that can manage all aspects of your organization."
   },
   "admin": {
-    "message": "Admin"
+    "message": "管理员"
   },
   "adminDesc": {
-    "message": " Admins can access and manage all items, collections and users in your organization."
+    "message": " 管理员可以访问和管理组织中的所有项目、集合和用户。"
   },
   "user": {
-    "message": "User"
+    "message": "用户"
   },
   "userDesc": {
     "message": "A regular user with access to your organization's collections."
@@ -2073,13 +2073,13 @@
     "message": "Edit the groups that this user belongs to."
   },
   "invitedUsers": {
-    "message": "Invited user(s)."
+    "message": "受邀用户。"
   },
   "resendInvitation": {
-    "message": "Resend Invitation"
+    "message": "重新发送邀请"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "已重新邀请 $USER$。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2088,10 +2088,10 @@
     }
   },
   "confirm": {
-    "message": "Confirm"
+    "message": "确认"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "已确认 $USER$。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2100,13 +2100,13 @@
     }
   },
   "startDate": {
-    "message": "Start Date"
+    "message": "开始日期"
   },
   "endDate": {
-    "message": "End Date"
+    "message": "结束日期"
   },
   "verifyEmail": {
-    "message": "Verify Email"
+    "message": "验证电子邮件"
   },
   "verifyEmailDesc": {
     "message": "Verify your account's email address to unlock access to all features."
@@ -2124,19 +2124,19 @@
     "message": "Unable to verify your email. Try sending a new verification email."
   },
   "updateBrowser": {
-    "message": "Update Browser"
+    "message": "更新浏览器"
   },
   "updateBrowserDesc": {
-    "message": "You are using an unsupported web browser. The web vault may not function properly."
+    "message": "您使用的是不受支持的Web浏览器。 网页密码库可能无法正常运行。"
   },
   "joinOrganization": {
-    "message": "Join Organization"
+    "message": "加入组织"
   },
   "joinOrganizationDesc": {
     "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
   },
   "inviteAccepted": {
-    "message": "Invitation Accepted"
+    "message": "邀请已接受"
   },
   "inviteAcceptedDesc": {
     "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
@@ -2157,7 +2157,7 @@
     "message": "Two-step login has been disabled on your account."
   },
   "learnMore": {
-    "message": "Learn more"
+    "message": "进一步了解"
   },
   "deleteRecoverDesc": {
     "message": "Enter your email address below to recover and delete your account."
@@ -2169,10 +2169,10 @@
     "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
   },
   "myOrganization": {
-    "message": "My Organization"
+    "message": "我的组织"
   },
   "deleteOrganization": {
-    "message": "Delete Organization"
+    "message": "删除组织"
   },
   "deleteOrganizationDesc": {
     "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
@@ -2190,17 +2190,17 @@
     "message": "Organization updated"
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "税收信息"
   },
   "taxInformationDesc": {
     "message": "Please contact support to provide (or update) tax information for your invoices."
   },
   "billingPlan": {
-    "message": "Plan",
+    "message": "计划",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Change Plan",
+    "message": "更改计划",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2208,7 +2208,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoice": {
-    "message": "Invoice"
+    "message": "收据"
   },
   "verifyBankAccount": {
     "message": "Verify Bank Account"
@@ -2226,7 +2226,7 @@
     "message": "Bank account has been verified."
   },
   "bankAccount": {
-    "message": "Bank Account"
+    "message": "银行账户"
   },
   "amountX": {
     "message": "Amount $COUNT$",
@@ -2302,7 +2302,7 @@
     "message": "Key Updated"
   },
   "updateKeyTitle": {
-    "message": "Update Key"
+    "message": "更新密钥"
   },
   "updateEncryptionKey": {
     "message": "Update Encryption Key"
@@ -2317,84 +2317,84 @@
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   },
   "subscription": {
-    "message": "Subscription"
+    "message": "订阅"
   },
   "loading": {
-    "message": "Loading"
+    "message": "正在加载"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "升級"
   },
   "upgradeOrganization": {
-    "message": "Upgrade Organization"
+    "message": "升级组织"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "本功能对免费组织不可用。切换到付费计划以打开更多功能。"
   },
   "createOrganizationStep1": {
-    "message": "Create Organization: Step 1"
+    "message": "创建组织：第一步"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "在创建组织之前, 首先需要创建一个免费的个人帐户。"
   },
   "refunded": {
-    "message": "Refunded"
+    "message": "退款"
   },
   "nothingSelected": {
-    "message": "You have not selected anything."
+    "message": "您没有选择任何内容。"
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "当您单击 \"提交\" 按钮，就表示您同意以下条款：",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
-    "message": "Terms of Service"
+    "message": "服务条款"
   },
   "privacyPolicy": {
-    "message": "Privacy Policy"
+    "message": "隐私条款"
   },
   "filters": {
-    "message": "Filters"
+    "message": "筛选器"
   },
   "lockOptions": {
-    "message": "Lock Options"
+    "message": "锁定选项"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "选择密码库锁定的时间。必须重新输入主密码才能打开锁定的密码库。"
   },
   "oneMinute": {
-    "message": "1 minute"
+    "message": "1 分钟"
   },
   "fiveMinutes": {
-    "message": "5 minutes"
+    "message": "5 分钟"
   },
   "fifteenMinutes": {
-    "message": "15 minutes"
+    "message": "15 分钟"
   },
   "thirtyMinutes": {
-    "message": "30 minutes"
+    "message": "30 分钟"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 小时"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 小时"
   },
   "onRefresh": {
-    "message": "On Browser Refresh"
+    "message": "在浏览器刷新时"
   },
   "dateUpdated": {
-    "message": "Updated",
+    "message": "更新于",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Password Updated",
+    "message": "密码更新于",
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "组织被禁用。"
   },
   "licenseIsExpired": {
-    "message": "License is expired."
+    "message": "授权已过期"
   }
 }
