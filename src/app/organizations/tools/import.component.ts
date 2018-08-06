@@ -7,20 +7,8 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
-import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-
-import { Importer } from 'jslib/importers/importer';
-
-import { CipherRequest } from 'jslib/models/request/cipherRequest';
-import { CollectionRequest } from 'jslib/models/request/collectionRequest';
-import { ImportOrganizationCiphersRequest } from 'jslib/models/request/importOrganizationCiphersRequest';
-import { KvpRequest } from 'jslib/models/request/kvpRequest';
-
-import { ImportResult } from 'jslib/models/domain/importResult';
+import { ImportService } from 'jslib/abstractions/import.service';
 
 import { ImportComponent as BaseImportComponent } from '../../tools/import.component';
 
@@ -29,14 +17,10 @@ import { ImportComponent as BaseImportComponent } from '../../tools/import.compo
     templateUrl: '../../tools/import.component.html',
 })
 export class ImportComponent extends BaseImportComponent {
-    organizationId: string;
-
     constructor(i18nService: I18nService, analytics: Angulartics2,
-        toasterService: ToasterService, cipherService: CipherService,
-        folderService: FolderService, apiService: ApiService,
-        router: Router, private collectionService: CollectionService,
-        private route: ActivatedRoute) {
-        super(i18nService, analytics, toasterService, cipherService, folderService, apiService, router);
+        toasterService: ToasterService, importService: ImportService,
+        router: Router, private route: ActivatedRoute) {
+        super(i18nService, analytics, toasterService, importService, router);
     }
 
     ngOnInit() {
@@ -45,34 +29,5 @@ export class ImportComponent extends BaseImportComponent {
             this.successNavigate = ['organizations', this.organizationId, 'vault'];
             super.ngOnInit();
         });
-    }
-
-    protected async postImport(importResult: ImportResult) {
-        const request = new ImportOrganizationCiphersRequest();
-        for (let i = 0; i < importResult.ciphers.length; i++) {
-            importResult.ciphers[i].organizationId = this.organizationId;
-            const c = await this.cipherService.encrypt(importResult.ciphers[i]);
-            request.ciphers.push(new CipherRequest(c));
-        }
-        if (importResult.collections != null) {
-            for (let i = 0; i < importResult.collections.length; i++) {
-                importResult.collections[i].organizationId = this.organizationId;
-                const c = await this.collectionService.encrypt(importResult.collections[i]);
-                request.collections.push(new CollectionRequest(c));
-            }
-        }
-        if (importResult.collectionRelationships != null) {
-            importResult.collectionRelationships.forEach((r) =>
-                request.collectionRelationships.push(new KvpRequest(r[0], r[1])));
-        }
-        return await this.apiService.postImportOrganizationCiphers(this.organizationId, request);
-    }
-
-    protected getImporter(): Importer {
-        const importer = super.getImporter();
-        if (importer != null) {
-            importer.organization = true;
-        }
-        return importer;
     }
 }
