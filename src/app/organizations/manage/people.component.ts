@@ -228,6 +228,15 @@ export class PeopleComponent implements OnInit {
         });
     }
 
+    get showConfirmUsers(): boolean {
+        return this.allUsers != null && this.allUsers.length > 1 &&
+            this.statusMap.has(OrganizationUserStatusType.Confirmed) &&
+            this.statusMap.get(OrganizationUserStatusType.Confirmed).length > 0 &&
+            this.statusMap.get(OrganizationUserStatusType.Confirmed).length < 3 &&
+            this.statusMap.has(OrganizationUserStatusType.Accepted) &&
+            this.statusMap.get(OrganizationUserStatusType.Accepted).length > 0;
+    }
+
     private async doConfirmation(user: OrganizationUserUserDetailsResponse) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);

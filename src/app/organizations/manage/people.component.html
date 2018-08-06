@@ -29,55 +29,60 @@
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="loading" title="{{'loading' | i18n}}"></i>
 <ng-container *ngIf="!loading && (users | search:searchText:'name':'email':'id') as searchedUsers">
     <p *ngIf="!searchedUsers.length">{{'noUsersInList' | i18n}}</p>
-    <table class="table table-hover table-list" *ngIf="searchedUsers.length">
-        <tbody>
-            <tr *ngFor="let u of searchedUsers">
-                <td width="30">
-                    <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true" [fontSize]="14"></app-avatar>
-                </td>
-                <td>
-                    <a href="#" appStopClick (click)="edit(u)">{{u.email}}</a>
-                    <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
-                    <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
-                    <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
-                </td>
-                <td>
-                    <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
-                    <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
-                    <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
-                </td>
-                <td class="table-list-options">
-                    <div class="dropdown" appListDropdown>
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-cog fa-lg"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" appStopClick (click)="reinvite(u)" *ngIf="u.status === organizationUserStatusType.Invited">
-                                <i class="fa fa-fw fa-envelope-o"></i>
-                                {{'resendInvitation' | i18n}}
-                            </a>
-                            <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(u)" *ngIf="u.status === organizationUserStatusType.Accepted">
-                                <i class="fa fa-fw fa-check"></i>
-                                {{'confirm' | i18n}}
-                            </a>
-                            <a class="dropdown-item" href="#" appStopClick (click)="groups(u)" *ngIf="accessGroups">
-                                <i class="fa fa-fw fa-sitemap"></i>
-                                {{'groups' | i18n}}
-                            </a>
-                            <a class="dropdown-item" href="#" appStopClick (click)="events(u)" *ngIf="accessEvents && u.status === organizationUserStatusType.Confirmed">
-                                <i class="fa fa-fw fa-file-text-o"></i>
-                                {{'eventLogs' | i18n}}
-                            </a>
-                            <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
-                                <i class="fa fa-fw fa-remove"></i>
-                                {{'remove' | i18n}}
-                            </a>
+    <ng-container *ngIf="searchedUsers.length">
+        <app-callout type="info" title="{{'confirmUsers' | i18n}}" icon="fa-check-circle" *ngIf="showConfirmUsers">
+            {{'usersNeedConfirmed' | i18n}}
+        </app-callout>
+        <table class="table table-hover table-list">
+            <tbody>
+                <tr *ngFor="let u of searchedUsers">
+                    <td width="30">
+                        <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true" [fontSize]="14"></app-avatar>
+                    </td>
+                    <td>
+                        <a href="#" appStopClick (click)="edit(u)">{{u.email}}</a>
+                        <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
+                        <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
+                        <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
+                    </td>
+                    <td>
+                        <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
+                        <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
+                        <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
+                    </td>
+                    <td class="table-list-options">
+                        <div class="dropdown" appListDropdown>
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog fa-lg"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#" appStopClick (click)="reinvite(u)" *ngIf="u.status === organizationUserStatusType.Invited">
+                                    <i class="fa fa-fw fa-envelope-o"></i>
+                                    {{'resendInvitation' | i18n}}
+                                </a>
+                                <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(u)" *ngIf="u.status === organizationUserStatusType.Accepted">
+                                    <i class="fa fa-fw fa-check"></i>
+                                    {{'confirm' | i18n}}
+                                </a>
+                                <a class="dropdown-item" href="#" appStopClick (click)="groups(u)" *ngIf="accessGroups">
+                                    <i class="fa fa-fw fa-sitemap"></i>
+                                    {{'groups' | i18n}}
+                                </a>
+                                <a class="dropdown-item" href="#" appStopClick (click)="events(u)" *ngIf="accessEvents && u.status === organizationUserStatusType.Confirmed">
+                                    <i class="fa fa-fw fa-file-text-o"></i>
+                                    {{'eventLogs' | i18n}}
+                                </a>
+                                <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
+                                    <i class="fa fa-fw fa-remove"></i>
+                                    {{'remove' | i18n}}
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
 </ng-container>
 <ng-template #addEdit></ng-template>
 <ng-template #groupsTemplate></ng-template>
