@@ -35,4 +35,4 @@ chown -R $USERNAME:$GROUPNAME /app
 chown -R $USERNAME:$GROUPNAME /bitwarden_server
 
 exec gosu $USERNAME:$GROUPNAME dotnet /bitwarden_server/Server.dll \
-    /contentRoot=/app /webRoot=. /serveUnknown=false
+    /contentRoot=/app /webRoot=. /serveUnknown=false /cacheWeb=true
