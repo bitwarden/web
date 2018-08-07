@@ -877,7 +877,7 @@
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "清除密碼庫是永久性的。將無法被還原。"
   },
   "vaultPurged": {
     "message": "已清除您的密碼庫資料。"
@@ -913,7 +913,7 @@
     "message": "Data is not formatted correctly. Please check your import file and try again."
   },
   "importNothingError": {
-    "message": "Nothing was imported."
+    "message": "沒有匯入任何內容。"
   },
   "selectFormat": {
     "message": "選擇匯入檔案的格式"
@@ -987,7 +987,7 @@
     "message": "自訂"
   },
   "newCustomDomain": {
-    "message": "New Custom Domain"
+    "message": "新增自訂網域"
   },
   "newCustomDomainDesc": {
     "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
@@ -1166,10 +1166,10 @@
     "message": "傳送電子郵件"
   },
   "twoFactorU2fAdd": {
-    "message": "Add a FIDO U2F security key to your account"
+    "message": "在您的帳戶中新增 FIDO U2F 安全金鑰"
   },
   "twoFactorU2fPlugIn": {
-    "message": "Plug the security key into your computer's USB port."
+    "message": "將安全金鑰插入電腦的 USB 連接埠。"
   },
   "twoFactorU2fTouchButton": {
     "message": "If the security key has a button, touch it."
@@ -1212,7 +1212,7 @@
     "message": "Check any usernames or email addresses that you use."
   },
   "checkBreaches": {
-    "message": "Check Breaches"
+    "message": "檢查密碼外洩情況"
   },
   "breachUsernameNotFound": {
     "message": "在任何已知的外洩密碼資料庫中都找不到 $USERNAME$。",
@@ -1253,10 +1253,10 @@
     "message": "受影響的使用者"
   },
   "breachOccurred": {
-    "message": "Breach Occurred"
+    "message": "已發生外洩"
   },
   "breachReported": {
-    "message": "Breach Reported"
+    "message": "已回報外洩"
   },
   "reportError": {
     "message": "An error occurred trying to load the report. Try again"
@@ -1333,7 +1333,7 @@
     "message": "月"
   },
   "monthAbbr": {
-    "message": "mo.",
+    "message": "月",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
@@ -1385,7 +1385,7 @@
     "message": "The subscription has been canceled."
   },
   "neverExpires": {
-    "message": "Never Expires"
+    "message": "絕不過期"
   },
   "status": {
     "message": "狀態"
@@ -1431,23 +1431,23 @@
     }
   },
   "paymentMethod": {
-    "message": "Payment Method"
+    "message": "付款方式"
   },
   "noPaymentMethod": {
     "message": "No payment method on file."
   },
   "addPaymentMethod": {
-    "message": "Add Payment Method"
+    "message": "新增付款方式"
   },
   "changePaymentMethod": {
-    "message": "Change Payment Method"
+    "message": "變更付款方式"
   },
   "charges": {
-    "message": "Charges",
+    "message": "收費",
     "description": "Credit card charges\/payments."
   },
   "noCharges": {
-    "message": "No charges."
+    "message": "不收費。"
   },
   "chargesStatement": {
     "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
@@ -1486,7 +1486,7 @@
     "message": "If you would like to change from this payment method please contact customer support."
   },
   "updatedPaymentMethod": {
-    "message": "Updated payment method."
+    "message": "已更新付款方式。"
   },
   "purchasePremium": {
     "message": "購買進階會員資格"
@@ -1525,13 +1525,13 @@
     "message": "This account is owned by a business."
   },
   "billingEmail": {
-    "message": "Billing Email"
+    "message": "電子郵件帳單"
   },
   "businessName": {
-    "message": "Business Name"
+    "message": "公司名稱"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "選擇您的方案"
   },
   "users": {
     "message": "使用者"
@@ -1575,7 +1575,7 @@
     }
   },
   "planNameFamilies": {
-    "message": "Families"
+    "message": "家庭"
   },
   "planDescFamilies": {
     "message": "For personal use, to share with family & friends."
@@ -1587,13 +1587,13 @@
     "message": "For businesses and other team organizations."
   },
   "planNameEnterprise": {
-    "message": "Enterprise"
+    "message": "企業"
   },
   "planDescEnterprise": {
     "message": "For businesses and other large organizations."
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "永遠免費"
   },
   "includesXUsers": {
     "message": "includes $COUNT$ users",
@@ -1830,13 +1830,13 @@
     "message": "A regular user with access to your organization's collections."
   },
   "all": {
-    "message": "All"
+    "message": "全部"
   },
   "refresh": {
     "message": "重新整理"
   },
   "timestamp": {
-    "message": "Timestamp"
+    "message": "時間戳記"
   },
   "event": {
     "message": "事件"
@@ -1848,15 +1848,15 @@
     "message": "載入更多"
   },
   "mobile": {
-    "message": "Mobile",
+    "message": "手機版應用程式",
     "description": "Mobile app"
   },
   "extension": {
-    "message": "Extension",
+    "message": "擴充套件",
     "description": "Browser extension\/addon"
   },
   "desktop": {
-    "message": "Desktop",
+    "message": "電腦版應用程式",
     "description": "Desktop app"
   },
   "webVault": {
@@ -1887,7 +1887,7 @@
     "message": "Edited organization settings."
   },
   "createdItemId": {
-    "message": "Created item $ID$.",
+    "message": "已建立項目 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1896,7 +1896,7 @@
     }
   },
   "editedItemId": {
-    "message": "Edited item $ID$.",
+    "message": "已編輯項目 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1905,7 +1905,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Deleted item $ID$.",
+    "message": "已刪除項目 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1914,7 +1914,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Shared item $ID$.",
+    "message": "已分享項目 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1950,7 +1950,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Created group $ID$.",
+    "message": "已建立群組 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1959,7 +1959,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Edited group $ID$.",
+    "message": "已編輯群組 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1968,7 +1968,7 @@
     }
   },
   "deletedGroupId": {
-    "message": "Deleted group $ID$.",
+    "message": "已刪除群組 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1977,7 +1977,7 @@
     }
   },
   "removedUserId": {
-    "message": "Removed user $ID$.",
+    "message": "已移除使用者 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2031,7 +2031,7 @@
     }
   },
   "editedUserId": {
-    "message": "Edited user $ID$.",
+    "message": "已編輯使用者 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2055,19 +2055,19 @@
     "message": "檢視"
   },
   "invalidDateRange": {
-    "message": "Invalid date range."
+    "message": "無效的日期範圍。"
   },
   "errorOccurred": {
     "message": "發生錯誤。"
   },
   "userAccess": {
-    "message": "User Access"
+    "message": "使用者存取"
   },
   "userType": {
     "message": "使用者類型"
   },
   "groupAccess": {
-    "message": "Group Access"
+    "message": "群組存取"
   },
   "groupAccessUserDesc": {
     "message": "Edit the groups that this user belongs to."
@@ -2098,6 +2098,12 @@
         "example": "John Smith"
       }
     }
+  },
+  "confirmUsers": {
+    "message": "Confirm Users"
+  },
+  "usersNeedConfirmed": {
+    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
   },
   "startDate": {
     "message": "開始日期"
@@ -2136,7 +2142,7 @@
     "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
   },
   "inviteAccepted": {
-    "message": "Invitation Accepted"
+    "message": "邀請已接受"
   },
   "inviteAcceptedDesc": {
     "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
@@ -2187,10 +2193,10 @@
     "message": "The organization and all associated data has been deleted."
   },
   "organizationUpdated": {
-    "message": "Organization updated"
+    "message": "組織已更新"
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "稅務資訊"
   },
   "taxInformationDesc": {
     "message": "Please contact support to provide (or update) tax information for your invoices."
@@ -2299,10 +2305,10 @@
     }
   },
   "keyUpdated": {
-    "message": "Key Updated"
+    "message": "金鑰已更新"
   },
   "updateKeyTitle": {
-    "message": "Update Key"
+    "message": "更新金鑰"
   },
   "updateEncryptionKey": {
     "message": "Update Encryption Key"
