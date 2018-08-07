@@ -30,7 +30,6 @@ mkhomedir_helper $USERNAME
 # The rest...
 
 chown -R $USERNAME:$GROUPNAME /etc/bitwarden
-cp /etc/bitwarden/web/settings.js /app/js/settings.js
 cp /etc/bitwarden/web/app-id.json /app/app-id.json
 chown -R $USERNAME:$GROUPNAME /app
 chown -R $USERNAME:$GROUPNAME /bitwarden_server
