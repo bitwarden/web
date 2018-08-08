@@ -87,10 +87,8 @@ export class PremiumComponent implements OnInit {
     }
 
     async finalizePremium() {
-        await Promise.all([
-            this.apiService.refreshIdentityToken(),
-            this.syncService.fullSync(true),
-        ]);
+        await this.apiService.refreshIdentityToken();
+        await this.syncService.fullSync(true);
         this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
         this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
         this.messagingService.send('purchasedPremium');
