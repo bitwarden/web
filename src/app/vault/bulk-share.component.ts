@@ -67,12 +67,14 @@ export class BulkShareComponent implements OnInit {
 
     async submit() {
         const checkedCollectionIds = this.collections.filter((c) => (c as any).checked).map((c) => c.id);
-        this.formPromise = this.cipherService.shareManyWithServer(this.shareableCiphers, this.organizationId,
-            checkedCollectionIds);
-        await this.formPromise;
-        this.onShared.emit();
-        this.analytics.eventTrack.next({ action: 'Bulk Shared Items' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('sharedItems'));
+        try {
+            this.formPromise = this.cipherService.shareManyWithServer(this.shareableCiphers, this.organizationId,
+                checkedCollectionIds);
+            await this.formPromise;
+            this.onShared.emit();
+            this.analytics.eventTrack.next({ action: 'Bulk Shared Items' });
+            this.toasterService.popAsync('success', null, this.i18nService.t('sharedItems'));
+        } catch { }
     }
 
     check(c: CollectionView, select?: boolean) {
@@ -82,5 +84,16 @@ export class BulkShareComponent implements OnInit {
     selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
         collections.forEach((c) => this.check(c, select));
+    }
+
+    get canSave() {
+        if (this.shareableCiphers != null && this.shareableCiphers.length > 0 && this.collections != null) {
+            for (let i = 0; i < this.collections.length; i++) {
+                if ((this.collections[i] as any).checked) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

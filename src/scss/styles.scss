@@ -276,7 +276,7 @@ label:not(.form-check-label):not(.btn) {
         right: 0;
     }
 
-    &:disabled {
+    &:disabled:not(.manual), &.loading {
         .fa-spinner {
             display: flex;
         }
