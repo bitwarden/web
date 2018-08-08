@@ -161,10 +161,8 @@ export class CreateOrganizationComponent implements OnInit {
     }
 
     async finalize(orgId: string) {
-        await Promise.all([
-            this.apiService.refreshIdentityToken(),
-            this.syncService.fullSync(true),
-        ]);
+        await this.apiService.refreshIdentityToken();
+        await this.syncService.fullSync(true);
         this.analytics.eventTrack.next({ action: 'Created Organization' });
         this.toasterService.popAsync('success', this.i18nService.t('organizationCreated'),
             this.i18nService.t('organizationReadyToGo'));
