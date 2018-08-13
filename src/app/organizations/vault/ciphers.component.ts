@@ -78,10 +78,14 @@ export class CiphersComponent extends BaseCiphersComponent {
             return super.search(timeout);
         }
         this.searchPending = false;
+        let filteredCiphers = this.allCiphers;
+        if (this.filter != null) {
+            filteredCiphers = filteredCiphers.filter(this.filter);
+        }
         if (this.searchText == null || this.searchText.trim().length < 2) {
-            this.ciphers = this.allCiphers;
+            this.ciphers = filteredCiphers;
         } else {
-            this.ciphers = this.searchService.searchCiphersBasic(this.allCiphers, this.searchText);
+            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText);
         }
     }
 
