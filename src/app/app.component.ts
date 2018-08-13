@@ -33,6 +33,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { LockService } from 'jslib/abstractions/lock.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 import { SettingsService } from 'jslib/abstractions/settings.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
@@ -70,7 +71,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
         private lockService: LockService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
-        private routerService: RouterService) { }
+        private routerService: RouterService, private searchService: SearchService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -157,6 +158,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.passwordGenerationService.clear(),
         ]);
 
+        this.searchService.clearIndex();
         this.authService.logOut(async () => {
             this.analytics.eventTrack.next({ action: 'Logged Out' });
             if (expired) {

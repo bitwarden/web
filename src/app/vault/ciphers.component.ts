@@ -12,6 +12,7 @@ import { Angulartics2 } from 'angulartics2';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/components/ciphers.component';
 
@@ -38,10 +39,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     private searchPipe: SearchCiphersPipe;
 
-    constructor(cipherService: CipherService, protected analytics: Angulartics2,
+    constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
-        protected platformUtilsService: PlatformUtilsService) {
-        super(cipherService);
+        protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService) {
+        super(searchService);
         this.searchPipe = new SearchCiphersPipe(platformUtilsService);
     }
 

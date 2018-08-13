@@ -1,7 +1,7 @@
-<ng-container *ngIf="(ciphers | searchCiphers: searchText) as searchedCiphers">
-    <table class="table table-hover table-list table-ciphers" *ngIf="searchedCiphers.length > 0">
+<ng-container *ngIf="ciphers">
+    <table class="table table-hover table-list table-ciphers" *ngIf="ciphers.length > 0">
         <tbody>
-            <tr *ngFor="let c of searchedCiphers">
+            <tr *ngFor="let c of ciphers">
                 <td (click)="checkCipher(c)" class="table-list-checkbox" *ngIf="!organization">
                     <input type="checkbox" [(ngModel)]="c.checked">
                 </td>
@@ -52,7 +52,7 @@
             </tr>
         </tbody>
     </table>
-    <div class="no-items" *ngIf="searchedCiphers.length === 0">
+    <div class="no-items" *ngIf="ciphers.length === 0">
         <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded" title="{{'loading' | i18n}}"></i>
         <ng-container *ngIf="loaded">
             <p>{{'noItemsInList' | i18n}}</p>

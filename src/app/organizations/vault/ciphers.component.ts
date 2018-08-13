@@ -11,6 +11,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 
 import { CipherData } from 'jslib/models/data/cipherData';
 import { Cipher } from 'jslib/models/domain/cipher';
@@ -29,10 +30,13 @@ export class CiphersComponent extends BaseCiphersComponent {
     organization: Organization;
     accessEvents = false;
 
-    constructor(cipherService: CipherService, analytics: Angulartics2,
+    protected allCiphers: CipherView[] = [];
+
+    constructor(searchService: SearchService, analytics: Angulartics2,
         toasterService: ToasterService, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
-        super(cipherService, analytics, toasterService, i18nService, platformUtilsService);
+        platformUtilsService: PlatformUtilsService, cipherService: CipherService,
+        private apiService: ApiService) {
+        super(searchService, analytics, toasterService, i18nService, platformUtilsService, cipherService);
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
@@ -60,12 +64,24 @@ export class CiphersComponent extends BaseCiphersComponent {
         this.loaded = true;
     }
 
-    applyFilter(filter: (cipher: CipherView) => boolean = null) {
+    async applyFilter(filter: (cipher: CipherView) => boolean = null) {
         if (this.organization.isAdmin) {
-            super.applyFilter(filter);
+            await super.applyFilter(filter);
         } else {
             const f = (c: CipherView) => c.organizationId === this.organization.id && (filter == null || filter(c));
-            super.applyFilter(f);
+            await super.applyFilter(f);
+        }
+    }
+
+    search(timeout: number = null) {
+        if (!this.organization.isAdmin) {
+            return super.search(timeout);
+        }
+        this.searchPending = false;
+        if (this.searchText == null || this.searchText.trim().length < 2) {
+            this.ciphers = this.allCiphers;
+        } else {
+            this.ciphers = this.searchService.searchCiphersBasic(this.allCiphers, this.searchText);
         }
     }
 

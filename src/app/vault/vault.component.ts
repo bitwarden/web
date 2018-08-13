@@ -167,6 +167,7 @@ export class VaultComponent implements OnInit {
 
     filterSearchText(searchText: string) {
         this.ciphersComponent.searchText = searchText;
+        this.ciphersComponent.search(200);
     }
 
     async editCipherAttachments(cipher: CipherView) {
