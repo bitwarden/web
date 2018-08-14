@@ -9,6 +9,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { EmailRequest } from 'jslib/models/request/emailRequest';
 import { EmailTokenRequest } from 'jslib/models/request/emailTokenRequest';
@@ -27,7 +28,8 @@ export class ChangeEmailComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private messagingService: MessagingService) { }
+        private cryptoService: CryptoService, private messagingService: MessagingService,
+        private userService: UserService) { }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
@@ -51,7 +53,9 @@ export class ChangeEmailComponent {
             request.token = this.token;
             request.newEmail = this.newEmail;
             request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
-            const newKey = await this.cryptoService.makeKey(this.masterPassword, this.newEmail);
+            const kdf = await this.userService.getKdf();
+            const kdfIterations = await this.userService.getKdfIterations();
+            const newKey = await this.cryptoService.makeKey(this.masterPassword, this.newEmail, kdf, kdfIterations);
             request.newMasterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, newKey);
             const encKey = await this.cryptoService.getEncKey();
             const newEncKey = await this.cryptoService.encrypt(encKey.key, newKey);

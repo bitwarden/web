@@ -5,6 +5,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { AuthService } from 'jslib/abstractions/auth.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
@@ -22,15 +23,15 @@ export class RecoverTwoFactorComponent {
 
     constructor(private router: Router, private apiService: ApiService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService, private cryptoService: CryptoService) {
-    }
+        private i18nService: I18nService, private cryptoService: CryptoService,
+        private authService: AuthService) { }
 
     async submit() {
         try {
             const request = new TwoFactorRecoveryRequest();
             request.recoveryCode = this.recoveryCode.replace(/\s/g, '').toLowerCase();
             request.email = this.email.toLowerCase();
-            const key = await this.cryptoService.makeKey(this.masterPassword, request.email);
+            const key = await this.authService.makePreloginKey(this.masterPassword, request.email);
             request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
             this.formPromise = this.apiService.postTwoFactorRecover(request);
             await this.formPromise;
