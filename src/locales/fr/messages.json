@@ -158,7 +158,7 @@
     "message": "Booléen"
   },
   "remove": {
-    "message": "Supprimer"
+    "message": "Retirer"
   },
   "unassigned": {
     "message": "Non attribué"
@@ -1308,7 +1308,7 @@
     "message": "# Go additionnels"
   },
   "additionalStorageDesc": {
-    "message": "Votre plan comprend $SIZE$ de stockage de fichiers chiffrés. Vous pouvez ajouter du stockage supplémentaire pour $PRICE$ par Go\/an.",
+    "message": "Votre offre comprend $SIZE$ de stockage de fichiers chiffrés. Vous pouvez ajouter du stockage supplémentaire pour $PRICE$ par Go\/an.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1340,7 +1340,7 @@
     "message": "Votre mode de paiement sera facturé immédiatement et de manière récurrente chaque année. Vous pouvez annuler à tout moment."
   },
   "paymentChargedWithTrial": {
-    "message": "Votre plan comprend un essai gratuit de 7 jours. Votre mode de paiement ne sera pas facturé avant la fin de la période d'essai. La facturation se fera sur une base récurrente chaque $INTERVAL$. Vous pouvez annuler à tout moment.",
+    "message": "Votre offre comprend un essai gratuit de 7 jours. Votre mode de paiement ne sera pas facturé avant la fin de la période d'essai. La facturation se fera sur une base récurrente chaque $INTERVAL$. Vous pouvez annuler à tout moment.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1373,7 +1373,7 @@
     "message": "Rétablir l’abonnement"
   },
   "reinstateConfirmation": {
-    "message": "Êtes-vous sûr de vouloir supprimer la demande d’annulation en attente et rétablir votre abonnement ?"
+    "message": "Êtes-vous sûr de vouloir retirer la demande d’annulation en attente et rétablir votre abonnement ?"
   },
   "reinstated": {
     "message": "Votre abonnement a été rétabli."
@@ -1415,7 +1415,7 @@
     "message": "Ajouter du stockage"
   },
   "removeStorage": {
-    "message": "Supprimer le stockage"
+    "message": "Retirer du stockage"
   },
   "subscriptionStorage": {
     "message": "Votre abonnement a un total de $MAX_STORAGE$ Go de stockage de fichiers chiffrés. Vous utilisez actuellement $USED_STORAGE$.",
@@ -1462,7 +1462,7 @@
     "message": "Go de stockage à ajouter"
   },
   "gbStorageRemove": {
-    "message": "Go de stockage à supprimer"
+    "message": "Go de stockage à retirer"
   },
   "storageAddNote": {
     "message": "L'ajout d'espace de stockage entraînera des ajustements sur vos totaux de facturation et facturera immédiatement le moyen de paiement enregistré. La première facturation sera calculée au prorata du reste du cycle de facturation en cours."
@@ -1471,7 +1471,7 @@
     "message": "La suppression d'espace de stockage entraînera des ajustements sur vos totaux de facturation qui seront calculés au prorata et portés au crédit de votre prochaine facturation."
   },
   "adjustedStorage": {
-    "message": "Ajusté à $AMOUNT$ GB de stockage.",
+    "message": "$AMOUNT$ Go de stockage mis à jour.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1504,16 +1504,16 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "Pour mettre à niveau votre compte vers un abonnement premium, vous devez télécharger un fichier de licence valide."
+    "message": "Pour mettre à niveau votre compte vers un abonnement premium, vous devez fournir un fichier de licence valide."
   },
   "uploadLicenseFileOrg": {
-    "message": "Pour créer sur un site hébergé un organisation vous devez télécharger un fichier de licence valide."
+    "message": "Pour créer une organisation sur une instance auto-hébergée vous devez fournir un fichier de licence valide."
   },
   "accountEmailMustBeVerified": {
-    "message": "Votre adresse de messagerie principale doit être vérifiée."
+    "message": "L'adresse e-mail de votre compte doit être vérifiée."
   },
   "newOrganizationDesc": {
-    "message": "Les organisations permettent de partager des parties de votre coffre-fort avec les autres ainsi que de gérer des utilisateurs pour une entité spécifique comme une famille, une petite équipe ou une grande entreprise."
+    "message": "Les organisations permettent de partager des parties de votre coffre-fort avec d'autres personnes ainsi que de gérer des utilisateurs pour une entité spécifique comme une famille, une petite équipe ou une grande entreprise."
   },
   "generalInformation": {
     "message": "Informations générales"
@@ -1531,22 +1531,22 @@
     "message": "Nom de l'entreprise"
   },
   "chooseYourPlan": {
-    "message": "Choisissez votre plan"
+    "message": "Choisissez votre offre"
   },
   "users": {
     "message": "Utilisateurs"
   },
   "userSeats": {
-    "message": "Nombre de sièges utilisateurs"
+    "message": "Licences utilisateur"
   },
   "additionalUserSeats": {
-    "message": "Sièges d'utilisateurs supplémentaires"
+    "message": "Licences utilisateur supplémentaires"
   },
   "userSeatsDesc": {
-    "message": "# des sièges utilisateurs"
+    "message": "Nombre de licences utilisateur"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Votre plan offre $BASE_SEATS$ accès utilisateurs. Vous pouvez ajouter des utilisateurs supplémentaires pour $SEAT_PRICE$ par utilisateur\/mois.",
+    "message": "Votre offre comprend $BASE_SEATS$ licences utilisateurs. Vous pouvez ajouter des utilisateurs supplémentaires pour $SEAT_PRICE$ par utilisateur\/mois.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1559,14 +1559,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "De combien de comptes utilisateur avez-vous besoin ? Vous pouvez également en ajouter ultérieurement si besoin."
+    "message": "De combien de licences utilisateur avez-vous besoin ? Vous pouvez également en ajouter ultérieurement si besoin."
   },
   "planNameFree": {
     "message": "Gratuit",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "Pour les utilisateurs de test ou utilisateurs individuels à partager avec $COUNT$ autres utilisateurs.",
+    "message": "Pour tester ou pour les utilisateurs individuels qui souhaitent partager avec $COUNT$ autre(s) utilisateur(s).",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1578,25 +1578,25 @@
     "message": "Familles"
   },
   "planDescFamilies": {
-    "message": "Pour utilisation personnelle, pour partager avec la famille et les amis."
+    "message": "Pour une utilisation personnelle, pour partager avec la famille et les amis."
   },
   "planNameTeams": {
     "message": "Équipes"
   },
   "planDescTeams": {
-    "message": "Pour les entreprises et autres petites équipes."
+    "message": "Pour les entreprises et autres équipes."
   },
   "planNameEnterprise": {
     "message": "Entreprise"
   },
   "planDescEnterprise": {
-    "message": "Pour entreprises et autres grandes organisations."
+    "message": "Pour les entreprises et autres grandes organisations."
   },
   "freeForever": {
     "message": "Gratuit pour toujours"
   },
   "includesXUsers": {
-    "message": "inclus $COUNT$ utilisateurs",
+    "message": "comprend $COUNT$ utilisateurs",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1635,7 +1635,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Ajoutez et partagez jusqu'à $COUNT$ utilisateurs",
+    "message": "Ajoutez et partagez avec jusqu'à $COUNT$ utilisateurs",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1644,10 +1644,10 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Ajouter et partager avec un nombre illimité d'utilisateurs"
+    "message": "Ajoutez et partagez avec un nombre illimité d'utilisateurs"
   },
   "createUnlimitedCollections": {
-    "message": "Créer un nombre illimité de collections"
+    "message": "Créez un nombre illimité de collections"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ de stockage de fichiers chiffrés",
@@ -1659,19 +1659,19 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "Hébergement à la demande (optionnel)"
+    "message": "Hébergement local (optionnel)"
   },
   "controlAccessWithGroups": {
-    "message": "Contrôler l'accès des utilisateurs avec des groupes"
+    "message": "Contrôlez l'accès des utilisateurs avec des groupes"
   },
   "syncUsersFromDirectory": {
-    "message": "Synchroniser vos utilisateurs et les groupes à partir d’un répertoire"
+    "message": "Synchronisez vos utilisateurs et vos groupes à partir d’un répertoire"
   },
   "trackAuditLogs": {
-    "message": "Suivre les actions avec les logs d'audit"
+    "message": "Suivez les actions des utilisateurs avec les journaux d'audit"
   },
   "enforce2faDuo": {
-    "message": "Appliquer 2FA avec Duo"
+    "message": "Forcez l'authentification double facteurs (2FA) avec Duo"
   },
   "priorityCustomerSupport": {
     "message": "Support client prioritaire"
@@ -1698,7 +1698,7 @@
     "message": "L'organisation a été créée"
   },
   "organizationReadyToGo": {
-    "message": "Votre nouvelle organisation est prête!"
+    "message": "Votre nouvelle organisation est prête !"
   },
   "leave": {
     "message": "Quitter"
@@ -1716,7 +1716,7 @@
     "message": "Obtenir de l'aide"
   },
   "getApps": {
-    "message": "Téléchargez l'app"
+    "message": "Télécharger les applications"
   },
   "loggedInAs": {
     "message": "Connecté en tant que"
@@ -1746,22 +1746,22 @@
     "message": "Êtes-vous sûr de vouloir retirer cet utilisateur ?"
   },
   "externalId": {
-    "message": "Id externe"
+    "message": "Identifiant externe"
   },
   "externalIdGroupDesc": {
-    "message": "L’id externe est utilisé pour lier ce groupe à un système externe tel qu’un répertoire utilisateur."
+    "message": "L’identifiant externe est utilisé pour lier ce groupe à un système externe tel qu’un répertoire utilisateur."
   },
   "accessControl": {
     "message": "Contrôle d’accès"
   },
   "groupAccessAllItems": {
-    "message": "Ce groupe peut accéder et modifier tous les éléments."
+    "message": "Ce groupe peut voir et modifier tous les éléments."
   },
   "groupAccessSelectedCollections": {
     "message": "Ce groupe peut accéder uniquement aux collections sélectionnées."
   },
   "readOnly": {
-    "message": "En lecture seule"
+    "message": "Lecture seule"
   },
   "newCollection": {
     "message": "Nouvelle collection"
@@ -1770,7 +1770,7 @@
     "message": "Ajouter une collection"
   },
   "editCollection": {
-    "message": "Éditer la collection"
+    "message": "Modifier la collection"
   },
   "deleteCollectionConfirmation": {
     "message": "Êtes-vous sûr de vouloir supprimer cette collection?"
@@ -1782,7 +1782,7 @@
     "message": "Inviter un utilisateur"
   },
   "inviteUserDesc": {
-    "message": "Invitez un nouvel utilisateur de votre organisation en entrant son adresse e-mail de compte Bitwarden ci-dessous. Si ils n’ont pas déjà un compte Bitwarden, il leur sera demané de créer un nouveau compte."
+    "message": "Invitez de nouveaux utilisateurs à votre organisation en entrant leur adresse e-mail de compte Bitwarden ci-dessous. S'ils n’ont pas déjà un compte Bitwarden, il leur sera demandé d'en créer un nouveau."
   },
   "inviteMultipleEmailDesc": {
     "message": "Vous pouvez inviter jusqu'à $COUNT$ utilisateurs à la fois en séparant les adresses e-mail par une virgule.",
@@ -1794,7 +1794,7 @@
     }
   },
   "userAccessAllItems": {
-    "message": "Cet utilisateur peut accéder et modifier tous les éléments."
+    "message": "Cet utilisateur peut voir et modifier tous les éléments."
   },
   "userAccessSelectedCollections": {
     "message": "Cet utilisateur peut accéder uniquement aux collections sélectionnées."
@@ -1818,16 +1818,16 @@
     "message": "L’utilisateur avec l’accès le plus élevé qui peut gérer tous les aspects de votre organisation."
   },
   "admin": {
-    "message": "Admin"
+    "message": "Administrateur"
   },
   "adminDesc": {
-    "message": " Les Admins peuvent accéder et gérer tous les éléments, les collections et les utilisateurs de votre organisation."
+    "message": " Les administrateurs peuvent voir et gérer tous les éléments, les collections et les utilisateurs de votre organisation."
   },
   "user": {
     "message": "Utilisateur"
   },
   "userDesc": {
-    "message": "Un utilisateur avec l’accès aux collections de votre organisation."
+    "message": "Un utilisateur normal avec accès aux collections de votre organisation."
   },
   "all": {
     "message": "Tous"
@@ -1839,13 +1839,13 @@
     "message": "Horodatage"
   },
   "event": {
-    "message": "Événement"
+    "message": "Évènement"
   },
   "unknown": {
     "message": "Inconnu"
   },
   "loadMore": {
-    "message": "Plus de Résultats"
+    "message": "Plus de résultats"
   },
   "mobile": {
     "message": "Mobile",
@@ -1860,7 +1860,7 @@
     "description": "Desktop app"
   },
   "webVault": {
-    "message": "Coffre-fort web"
+    "message": "Coffre web"
   },
   "loggedIn": {
     "message": "Connecté."
@@ -1881,7 +1881,7 @@
     "message": "Tentative de connexion avec mot de passe incorrect."
   },
   "failedLogin2fa": {
-    "message": "Tentative de connexion échouée avec login en deux étapes incorrect."
+    "message": "Tentative de connexion échouée avec deuxième facteur incorrect."
   },
   "editedOrgSettings": {
     "message": "Paramètres de l’organisation modifiés."
@@ -1896,7 +1896,7 @@
     }
   },
   "editedItemId": {
-    "message": "Élément $ID$ édité.",
+    "message": "Élément $ID$ modifié.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1914,7 +1914,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Partage de l'élément $ID$.",
+    "message": "Élément $ID$ partagé.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1977,7 +1977,7 @@
     }
   },
   "removedUserId": {
-    "message": "Utilisateur $ID$ supprimé.",
+    "message": "Utilisateur $ID$ retiré.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2067,16 +2067,16 @@
     "message": "Type d'utilisateur"
   },
   "groupAccess": {
-    "message": "Accès des groupes"
+    "message": "Accès groupes"
   },
   "groupAccessUserDesc": {
     "message": "Modifier les groupes auxquels appartient cet utilisateur."
   },
   "invitedUsers": {
-    "message": "Utilisateurs invités."
+    "message": "Utilisateur(s) invité(s)."
   },
   "resendInvitation": {
-    "message": "Renvoyer l'Invitation"
+    "message": "Renvoyer l'invitation"
   },
   "hasBeenReinvited": {
     "message": "$USER$ a été réinvité.",
@@ -2106,34 +2106,34 @@
     "message": "Vous avez des utilisateurs qui ont accepté leur invitation mais ils doivent être confirmés. Les utilisateurs n'auront pas accès à l'organisation jusqu'à ce qu'ils soient confirmés."
   },
   "startDate": {
-    "message": "Date de départ"
+    "message": "Date de début"
   },
   "endDate": {
-    "message": "Date de Fin"
+    "message": "Date de fin"
   },
   "verifyEmail": {
-    "message": "Vérifier l'adresse email"
+    "message": "Vérifier l'adresse e-mail"
   },
   "verifyEmailDesc": {
-    "message": "Vérifiez l'adresse mail de votre compte pour débloquer l'ensemble des fonctionnalités."
+    "message": "Vérifiez l'adresse e-mail de votre compte pour débloquer l'ensemble des fonctionnalités."
   },
   "verifyEmailFirst": {
-    "message": "Votre adresse de messagerie principale doit d'abord être vérifiée."
+    "message": "L'adresse e-mail de votre compte doit d'abord être vérifiée."
   },
   "checkInboxForVerification": {
-    "message": "Vérifiez votre email pour le lien de vérification."
+    "message": "Vérifiez votre boîte de réception pour le lien de vérification."
   },
   "emailVerified": {
     "message": "Votre adresse e-mail a été vérifiée."
   },
   "emailVerifiedFailed": {
-    "message": "Impossible de vérifier votre adresse mail. Essayez de renvoyer un nouveau mail de vérification."
+    "message": "Impossible de vérifier votre adresse e-mail. Essayez de renvoyer un nouvel e-mail de vérification."
   },
   "updateBrowser": {
     "message": "Mettre à jour le navigateur"
   },
   "updateBrowserDesc": {
-    "message": "Vous utilisez un navigateur non supporté, Le coffre-fort web pourrait ne pas fonctionner correctement."
+    "message": "Vous utilisez un navigateur non supporté. Le coffre web pourrait ne pas fonctionner correctement."
   },
   "joinOrganization": {
     "message": "Rejoindre l'organisation"
@@ -2145,28 +2145,28 @@
     "message": "Invitation acceptée"
   },
   "inviteAcceptedDesc": {
-    "message": "Vous pouvez accéder à cette organisation une fois qu’un administrateur confirme votre adhésion. Nous vous enverrons un email quand cela se produit."
+    "message": "Vous pouvez accéder à cette organisation une fois qu’un administrateur aura confirmé votre adhésion. Nous vous enverrons un e-mail lorsque ce sera fait."
   },
   "inviteAcceptFailed": {
-    "message": "Impossible d’accepter l’invitation. Demander à un administrateur d’organisation d’envoyer une nouvelle invitation."
+    "message": "Impossible d’accepter l’invitation. Demandez à un administrateur de l'organisation d’envoyer une nouvelle invitation."
   },
   "rememberEmail": {
     "message": "Se souvenir de l'e-mail"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "Si vous ne pouvez pas accéder à votre compte grâce à vos méthodes de connexion normale en deux étapes, vous pouvez utiliser votre code de récupération de login en deux étapes pour désactiver tous les fournisseurs en deux étapes sur votre compte."
+    "message": "Si vous ne pouvez pas accéder à votre compte grâce à vos méthodes de connexion en deux étapes habituelles, vous pouvez utiliser votre code de récupération de connexion en deux étapes pour désactiver tous les fournisseurs en deux étapes sur votre compte."
   },
   "recoverAccountTwoStep": {
     "message": "Récupérer votre compte d'authentification à deux étapes"
   },
   "twoStepRecoverDisabled": {
-    "message": "Ce fournisseur de connexion en deux étapes a été désactivé sur votre compte."
+    "message": "L'authentification en deux étapes a été désactivée sur votre compte."
   },
   "learnMore": {
     "message": "En savoir plus"
   },
   "deleteRecoverDesc": {
-    "message": "Entrez votre adresse email ci-dessous pour récupérer et supprimer votre compte."
+    "message": "Entrez votre adresse e-mail ci-dessous pour récupérer et supprimer votre compte."
   },
   "deleteRecoverEmailSent": {
     "message": "Si votre compte existe, nous vous avons envoyé un e-mail avec des instructions supplémentaires."
@@ -2181,55 +2181,55 @@
     "message": "Supprimer l'organisation"
   },
   "deleteOrganizationDesc": {
-    "message": "Confirmez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs restent inchangés mais ils ne seront plus associés à cette organisation. "
+    "message": "Poursuivez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs restent inchangés mais ils ne seront plus associés à cette organisation. "
   },
   "deleteOrganizationWarning": {
-    "message": "La suppression d'une organisation est permanente. Elle ne peut être annulée."
+    "message": "La suppression d'une organisation est définitive. Elle ne peut être annulée."
   },
   "organizationDeleted": {
     "message": "Organisation supprimée"
   },
   "organizationDeletedDesc": {
-    "message": "L’organisation et toutes ses données associées a été supprimées."
+    "message": "L’organisation et toutes les données associées ont été supprimées."
   },
   "organizationUpdated": {
     "message": "Organisation mise à jour"
   },
   "taxInformation": {
-    "message": "Information fiscale"
+    "message": "Informations fiscales"
   },
   "taxInformationDesc": {
-    "message": "Veuillez contacter le support pour fournir (ou mettre à jour) des renseignements fiscaux pour vos factures."
+    "message": "Veuillez contacter le support pour fournir (ou mettre à jour) les informations fiscales pour vos factures."
   },
   "billingPlan": {
-    "message": "Pack",
+    "message": "Offre",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Changement de pack",
+    "message": "Changer d'offre",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contacter l’assistance clientèle si vous souhaitez modifier votre plan. Veuillez vous assurer que vous disposez d’une méthode de paiement actif ajoutée au compte.",
+    "message": "Contactez le support client si vous souhaitez changer d'offre. Veuillez vous assurer que vous disposez d’un moyen de paiement actif sur votre compte.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoice": {
     "message": "Facture"
   },
   "verifyBankAccount": {
-    "message": "Vérification du compte bancaire"
+    "message": "Vérifier le compte bancaire"
   },
   "verifyBankAccountDesc": {
-    "message": "Nous avons effectué deux faibles dépôts sur votre compte bancaire (cela peut prendre 1-2 jours ouvrés pour les voir). Saisissez ces montants pour valider le compte bancaire."
+    "message": "Nous avons effectué deux dépôts d'un faible montant sur votre compte bancaire (ils peuvent prendre 1-2 jours ouvrés pour apparaître). Saisissez ces montants pour valider le compte bancaire."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Le paiement avec un compte bancaire est seulement disponible pour les clients résidant aux États-Unis. Il vous sera demandé de valider votre compte bancaire. Nous effectuerons deux faibles dépôts sous 1-2 jours ouvrés. Saisissez les montants sur la page de facturation de votre organisation pour valider votre compte bancaire."
+    "message": "Le paiement avec un compte bancaire est seulement disponible pour les clients résidant aux États-Unis. Il vous sera demandé de valider votre compte bancaire. Nous effectuerons deux dépôts d'un faible montant sous 1-2 jours ouvrés. Saisissez ces montants sur la page de facturation de votre organisation pour valider votre compte bancaire."
   },
   "verifyBankAccountFailureWarning": {
     "message": "Une erreur lors de la validation de votre compte bancaire annulera le paiement et votre abonnement sera désactivé."
   },
   "verifiedBankAccount": {
-    "message": "Votre compte bancaire a été vérifié."
+    "message": "Le compte bancaire a été vérifié."
   },
   "bankAccount": {
     "message": "Compte bancaire"
@@ -2258,7 +2258,7 @@
     "message": "Type de compte"
   },
   "bankAccountTypeCompany": {
-    "message": "Entreprise (Professionnel)"
+    "message": "Entreprise (professionnel)"
   },
   "bankAccountTypeIndividual": {
     "message": "Individuel (personnel)"
@@ -2267,11 +2267,11 @@
     "message": "Entrez votre id d’installation"
   },
   "addSeats": {
-    "message": "Ajouter des sièges",
+    "message": "Ajouter des licences",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Retirer les sièges",
+    "message": "Retirer des licences",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2284,19 +2284,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "Sièges à ajouter"
+    "message": "Licences à ajouter"
   },
   "seatsToRemove": {
-    "message": "Sièges à enlever"
+    "message": "Licences à retirer"
   },
   "seatsAddNote": {
-    "message": "L'ajout de sièges utilisateur va entraîner des ajustements sur votre facturation globale et débiter immédiatement la méthode de paiement courante. Le premier paiement sera calculée au prorata du reste de l’actuel cycle de facturation."
+    "message": "L'ajout de licences utilisateur entraînera des ajustements sur vos totaux de facturation et facturera immédiatement le moyen de paiement enregistré. La première facturation sera calculée au prorata du reste du cycle de facturation en cours."
   },
   "seatsRemoveNote": {
-    "message": "La suppression de sièges utilisateur va entraîner des ajustements sur votre facturation globale, ils seront calculés au prorata en tant que crédit pour votre prochaine facturation."
+    "message": "La suppression de licences utilisateur entraînera des ajustements sur vos totaux de facturation qui seront calculés au prorata et portés au crédit de votre prochaine facturation."
   },
   "adjustedSeats": {
-    "message": "$AMOUNT$ comptes utilisateurs mis à jour.",
+    "message": "$AMOUNT$ licences utilisateurs mis à jour.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2314,13 +2314,13 @@
     "message": "Mettre à jour la clé de chiffrement"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "Vous utilisez un moyen de chiffrement obsolète."
+    "message": "Vous utilisez actuellement un moyen de chiffrement obsolète."
   },
   "updateEncryptionKeyDesc": {
-    "message": "Nous sommes passés à des clés de chiffrement plus importantes qui fournissent une meilleure sécurité et offrent de nouvelles fonctionnalités. La mise à jour de votre clé de chiffrement est rapide et facile.\nTapez simplement votre mot de passe maître ci-dessous. Cette mise à jour deviendra peut-être obligatoire."
+    "message": "Nous sommes passés à des clés de chiffrement plus longues qui fournissent une meilleure sécurité et permettent l'accès à de nouvelles fonctionnalités. La mise à jour de votre clé de chiffrement est rapide et facile. Tapez simplement votre mot de passe maître ci-dessous. Cette mise à jour deviendra peut-être obligatoire."
   },
   "updateEncryptionKeyWarning": {
-    "message": "Après avoir mis à jour votre clé de chiffrement, vous devrez vous reconnecter sur toutes les applications Bitwarden que vous utilisez actuellement (comme l'appli mobile, les extensions de navigateur). Une erreur lors de la réconnexion (téléchargement de la nouvelle clé) peut amener à une corruption des données. Nous allons essayer de vous déconnecter automatiquement, mais cela demande un peu de temps."
+    "message": "Après avoir mis à jour votre clé de chiffrement, vous devrez vous reconnecter sur toutes les applications Bitwarden que vous utilisez actuellement (comme par exemple l'application mobile ou les extensions de navigateur). Le fait de ne pas vous déconnecter et de vous reconnecter (ce qui télécharge votre nouvelle clé de chiffrement) pourrait entraîner une corruption des données. Nous allons essayer de vous déconnecter automatiquement, mais cela demande un peu de temps."
   },
   "subscription": {
     "message": "Abonnement"
@@ -2335,10 +2335,10 @@
     "message": "Mettre à jour l'organisation"
   },
   "upgradeOrganizationDesc": {
-    "message": "Cette fonctionnalité n'est pas disponible pour les organisations gratuites. Passez à un plan payé pour déverouiller plus de fonctionnalités."
+    "message": "Cette fonctionnalité n'est pas disponible pour les organisations gratuites. Passez à une offre payante pour déverouiller plus de fonctionnalités."
   },
   "createOrganizationStep1": {
-    "message": "Créer une organisation: Etape 1"
+    "message": "Créer une organisation: Étape 1"
   },
   "createOrganizationCreatePersonalAccount": {
     "message": "Avant de créer votre organisation, vous devez d’abord créer un compte personnel gratuit."
@@ -2347,14 +2347,14 @@
     "message": "Remboursé"
   },
   "nothingSelected": {
-    "message": "Vous n'avez rien selectionné."
+    "message": "Vous n'avez rien sélectionné."
   },
   "submitAgreePolicies": {
     "message": "En cliquant sur le bouton « Soumettre », vous acceptez les politiques suivantes :",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
-    "message": "\"Conditions d'utilisation\""
+    "message": "Conditions d'utilisation"
   },
   "privacyPolicy": {
     "message": "Politique de confidentialité"
@@ -2387,7 +2387,7 @@
     "message": "4 heures"
   },
   "onRefresh": {
-    "message": "Au rafraîchissement du navigateur"
+    "message": "Au rechargement de la page"
   },
   "dateUpdated": {
     "message": "Mis à jour",
