@@ -31,6 +31,7 @@ import { AddEditComponent as BaseAddEditComponent } from '../../vault/add-edit.c
 })
 export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     organization: Organization;
+    originalCipher: Cipher = null;
 
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
@@ -49,14 +50,19 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
             return await super.loadCipher();
         }
         const response = await this.apiService.getCipherAdmin(this.cipherId);
-        return new Cipher(new CipherData(response));
+        const data = new CipherData(response);
+        this.originalCipher = new Cipher(data);
+        return new Cipher(data);
     }
 
     protected encryptCipher() {
         if (!this.editMode) {
             this.cipher.organizationId = this.organization.id;
         }
-        return super.encryptCipher();
+        if (!this.organization.isAdmin) {
+            return super.encryptCipher();
+        }
+        return this.cipherService.encrypt(this.cipher, null, this.originalCipher);
     }
 
     protected async saveCipher(cipher: Cipher) {
