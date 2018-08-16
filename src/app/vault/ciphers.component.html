@@ -8,7 +8,7 @@
                 <td (click)="checkCipher(c)" class="table-list-icon">
                     <app-vault-icon [cipher]="c"></app-vault-icon>
                 </td>
-                <td (click)="checkCipher(c)" class="reduced-lh">
+                <td (click)="checkCipher(c)" class="reduced-lh wrap">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
                     <i class="fa fa-share-alt" appStopProp *ngIf="!organization && c.organizationId" title="{{'shared' | i18n}}"></i>
                     <i class="fa fa-paperclip" appStopProp *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
