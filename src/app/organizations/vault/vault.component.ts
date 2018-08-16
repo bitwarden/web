@@ -62,6 +62,7 @@ export class VaultComponent implements OnInit {
             this.ciphersComponent.organization = this.organization;
 
             this.route.queryParams.subscribe(async (qParams) => {
+                this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
                 if (!this.organization.isAdmin) {
                     await this.syncService.fullSync(false);
                 }
@@ -84,7 +85,6 @@ export class VaultComponent implements OnInit {
                     }
                 }
 
-                this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
                     const cipher = this.ciphersComponent.ciphers.filter((c) => c.id === qParams.viewEvents);
                     if (cipher.length > 0) {
