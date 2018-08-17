@@ -119,7 +119,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         }
 
         this.analytics.eventTrack.next({ action: 'Copied ' + aType.toLowerCase() + ' from listing.' });
-        this.platformUtilsService.copyToClipboard(value, { doc: window.document });
+        this.platformUtilsService.copyToClipboard(value, { window: window });
         this.toasterService.popAsync('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
     }

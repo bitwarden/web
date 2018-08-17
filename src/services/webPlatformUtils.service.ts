@@ -208,10 +208,19 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     copyToClipboard(text: string, options?: any): void {
-        const doc: Document = options ? options.doc : window.document;
-        if ((window as any).clipboardData && (window as any).clipboardData.setData) {
+        let win = window;
+        let doc = window.document;
+        if (options && (options.window || options.win)) {
+            win = options.window || options.win;
+            doc = win.document;
+        } else if (options && options.doc) {
+            doc = options.doc;
+        }
+        if ((win as any).navigator.clipboard && (win as any).navigator.clipboard.writeText) {
+            (win as any).navigator.clipboard.writeText(text);
+        } else if ((win as any).clipboardData && (win as any).clipboardData.setData) {
             // IE specific code path to prevent textarea being shown while dialog is visible.
-            (window as any).clipboardData.setData('Text', text);
+            (win as any).clipboardData.setData('Text', text);
         } else if (doc.queryCommandSupported && doc.queryCommandSupported('copy')) {
             const textarea = doc.createElement('textarea');
             textarea.textContent = text;
