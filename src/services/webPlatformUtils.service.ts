@@ -216,9 +216,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         } else if (options && options.doc) {
             doc = options.doc;
         }
-        if ((win as any).navigator.clipboard && (win as any).navigator.clipboard.writeText) {
-            (win as any).navigator.clipboard.writeText(text);
-        } else if ((win as any).clipboardData && (win as any).clipboardData.setData) {
+        if ((win as any).clipboardData && (win as any).clipboardData.setData) {
             // IE specific code path to prevent textarea being shown while dialog is visible.
             (win as any).clipboardData.setData('Text', text);
         } else if (doc.queryCommandSupported && doc.queryCommandSupported('copy')) {
