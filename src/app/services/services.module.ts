@@ -130,8 +130,10 @@ export function initFactory(): Function {
         const isDev = platformUtilsService.isDev();
         if (!isDev && platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
+        } else {
+            environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
+                'https://notifications.bitwarden.com';
         }
-        environmentService.notificationsUrl = isDev ? 'http://localhost:61840' : null;
         await apiService.setUrls({
             base: isDev ? null : window.location.origin,
             api: isDev ? 'http://localhost:4000' : null,
