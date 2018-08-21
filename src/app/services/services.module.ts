@@ -38,6 +38,7 @@ import { ExportService } from 'jslib/services/export.service';
 import { FolderService } from 'jslib/services/folder.service';
 import { ImportService } from 'jslib/services/import.service';
 import { LockService } from 'jslib/services/lock.service';
+import { NotificationsService } from 'jslib/services/notifications.service';
 import { PasswordGenerationService } from 'jslib/services/passwordGeneration.service';
 import { SearchService } from 'jslib/services/search.service';
 import { SettingsService } from 'jslib/services/settings.service';
@@ -64,6 +65,7 @@ import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/im
 import { LockService as LockServiceAbstraction } from 'jslib/abstractions/lock.service';
 import { LogService as LogServiceAbstraction } from 'jslib/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib/abstractions/messaging.service';
+import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/abstractions/notifications.service';
 import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
 } from 'jslib/abstractions/passwordGeneration.service';
@@ -92,7 +94,6 @@ const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
 const apiService = new ApiService(tokenService, platformUtilsService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const environmentService = new EnvironmentService(apiService, storageService);
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
@@ -114,6 +115,9 @@ const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService);
 const exportService = new ExportService(folderService, cipherService, apiService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
+const notificationsService = new NotificationsService(userService, tokenService, syncService, appIdService,
+    apiService);
+const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 
 const analytics = new Analytics(window, () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
@@ -127,6 +131,7 @@ export function initFactory(): Function {
         if (!isDev && platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         }
+        environmentService.notificationsUrl = isDev ? 'http://localhost:61840' : null;
         await apiService.setUrls({
             base: isDev ? null : window.location.origin,
             api: isDev ? 'http://localhost:4000' : null,
@@ -139,6 +144,7 @@ export function initFactory(): Function {
             // api: 'https://api.bitwarden.com',
             // identity: 'https://identity.bitwarden.com',
         });
+        setTimeout(() => notificationsService.init(environmentService), 3000);
 
         lockService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
@@ -194,6 +200,7 @@ export function initFactory(): Function {
         { provide: ExportServiceAbstraction, useValue: exportService },
         { provide: SearchServiceAbstraction, useValue: searchService },
         { provide: ImportServiceAbstraction, useValue: importService },
+        { provide: NotificationsServiceAbstraction, useValue: notificationsService },
         { provide: CryptoFunctionServiceAbstraction, useValue: cryptoFunctionService },
         {
             provide: APP_INITIALIZER,

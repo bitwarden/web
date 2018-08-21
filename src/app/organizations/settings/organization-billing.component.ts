@@ -209,7 +209,8 @@ export class OrganizationBillingComponent implements OnInit {
     }
 
     get isExpired() {
-        return this.billing != null && this.billing.expiration != null && this.billing.expiration < new Date();
+        return this.billing != null && this.billing.expiration != null &&
+            new Date(this.billing.expiration) < new Date();
     }
 
     get subscriptionMarkedForCancel() {

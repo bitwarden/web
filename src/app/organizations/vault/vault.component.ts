@@ -1,7 +1,10 @@
 import { Location } from '@angular/common';
 import {
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
+    NgZone,
+    OnDestroy,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -15,6 +18,8 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { UserService } from 'jslib/abstractions/user.service';
+
+import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -30,11 +35,13 @@ import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { GroupingsComponent } from './groupings.component';
 
+const BroadcasterSubscriptionId = 'OrgVaultComponent';
+
 @Component({
     selector: 'app-org-vault',
     templateUrl: 'vault.component.html',
 })
-export class VaultComponent implements OnInit {
+export class VaultComponent implements OnInit, OnDestroy {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
     @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
@@ -52,7 +59,9 @@ export class VaultComponent implements OnInit {
     constructor(private route: ActivatedRoute, private userService: UserService,
         private location: Location, private router: Router,
         private syncService: SyncService, private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService) { }
+        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
+        private broadcasterService: BroadcasterService, private ngZone: NgZone,
+        private changeDetectorRef: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
@@ -65,6 +74,21 @@ export class VaultComponent implements OnInit {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
                 if (!this.organization.isAdmin) {
                     await this.syncService.fullSync(false);
+                    this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
+                        this.ngZone.run(async () => {
+                            switch (message.command) {
+                                case 'syncCompleted':
+                                    if (message.successfully) {
+                                        await Promise.all([
+                                            this.groupingsComponent.load(),
+                                            this.ciphersComponent.refresh(),
+                                        ]);
+                                        this.changeDetectorRef.detectChanges();
+                                    }
+                                    break;
+                            }
+                        });
+                    });
                 }
                 await this.groupingsComponent.load();
 
@@ -93,6 +117,10 @@ export class VaultComponent implements OnInit {
                 }
             });
         });
+    }
+
+    ngOnDestroy() {
+        this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     }
 
     async clearGroupingFilters() {

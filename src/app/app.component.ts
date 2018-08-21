@@ -31,6 +31,7 @@ import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { LockService } from 'jslib/abstractions/lock.service';
+import { NotificationsService } from 'jslib/abstractions/notifications.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
@@ -71,7 +72,8 @@ export class AppComponent implements OnDestroy, OnInit {
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
         private lockService: LockService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
-        private routerService: RouterService, private searchService: SearchService) { }
+        private routerService: RouterService, private searchService: SearchService,
+        private notificationsService: NotificationsService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -87,8 +89,10 @@ export class AppComponent implements OnDestroy, OnInit {
             this.ngZone.run(async () => {
                 switch (message.command) {
                     case 'loggedIn':
-                    case 'unlocked':
                     case 'loggedOut':
+                        this.notificationsService.updateConnection();
+                        break;
+                    case 'unlocked':
                         break;
                     case 'logout':
                         this.logOut(!!message.expired);

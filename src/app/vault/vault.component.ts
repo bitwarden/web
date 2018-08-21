@@ -1,7 +1,10 @@
 import { Location } from '@angular/common';
 import {
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
+    NgZone,
+    OnDestroy,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -40,11 +43,15 @@ import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
+import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+
+const BroadcasterSubscriptionId = 'VaultComponent';
+
 @Component({
     selector: 'app-vault',
     templateUrl: 'vault.component.html',
 })
-export class VaultComponent implements OnInit {
+export class VaultComponent implements OnInit, OnDestroy {
     @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
     @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
     @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
@@ -74,7 +81,9 @@ export class VaultComponent implements OnInit {
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService) { }
+        private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
+        private broadcasterService: BroadcasterService, private ngZone: NgZone,
+        private changeDetectorRef: ChangeDetectorRef) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
@@ -85,6 +94,23 @@ export class VaultComponent implements OnInit {
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
+            this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
+                this.ngZone.run(async () => {
+                    switch (message.command) {
+                        case 'syncCompleted':
+                            if (message.successfully) {
+                                await Promise.all([
+                                    this.groupingsComponent.load(),
+                                    this.organizationsComponent.load(),
+                                    this.ciphersComponent.refresh(),
+                                ]);
+                                this.changeDetectorRef.detectChanges();
+                            }
+                            break;
+                    }
+                });
+            });
+
             await Promise.all([
                 this.groupingsComponent.load(),
                 this.organizationsComponent.load(),
@@ -118,6 +144,10 @@ export class VaultComponent implements OnInit {
                 await this.ciphersComponent.load();
             }
         });
+    }
+
+    ngOnDestroy() {
+        this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     }
 
     async clearGroupingFilters() {
