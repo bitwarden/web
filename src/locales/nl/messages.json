@@ -272,7 +272,7 @@
     "message": "Types"
   },
   "typeLogin": {
-    "message": "Login"
+    "message": "Aanmelden"
   },
   "typeCard": {
     "message": "Kaart"
@@ -481,10 +481,10 @@
     "message": "Uw sessie is verlopen."
   },
   "logOutConfirmation": {
-    "message": "Weet u zeker dat u wilt uitloggen?"
+    "message": "Weet u zeker dat u wilt afmelden?"
   },
   "logOut": {
-    "message": "Uitloggen"
+    "message": "Afmelden"
   },
   "ok": {
     "message": "Oké"
@@ -502,7 +502,7 @@
     "message": "Account aanmaken"
   },
   "logIn": {
-    "message": "Inloggen"
+    "message": "Aanmelden"
   },
   "submit": {
     "message": "Versturen"
@@ -562,7 +562,7 @@
     "message": "De hoofdwachtwoorden komen niet overeen."
   },
   "newAccountCreated": {
-    "message": "Uw nieuwe account is aangemaakt! U kunt nu inloggen."
+    "message": "Uw nieuwe account is aangemaakt! U kunt nu aanmelden."
   },
   "masterPassSent": {
     "message": "We hebben u een e-mail gestuurd met uw hoofdwachtwoordhint."
@@ -643,7 +643,7 @@
     "message": "Verificatiecode-e-mail opnieuw versturen"
   },
   "useAnotherTwoStepMethod": {
-    "message": "Andere tweestapsinlogmethode gebruiken"
+    "message": "Andere tweestapsaanmeldingsmethode gebruiken"
   },
   "insertYubiKey": {
     "message": "Steek uw YubiKey in de USB-poort van uw computer en druk op de knop."
@@ -652,7 +652,7 @@
     "message": "Steek uw beveilingssleutel in de USB-poort van uw computer. Als het een knop heeft, druk deze dan in."
   },
   "loginUnavailable": {
-    "message": "Inloggen niet beschikbaar"
+    "message": "Aanmelden niet beschikbaar"
   },
   "noTwoStepProviders": {
     "message": "Er is tweestapsverificatie ingeschakeld voor dit account, maar geen van de ingestelde aanbieders wordt ondersteund door deze webbrowser."
@@ -661,7 +661,7 @@
     "message": "Gebruik een ondersteunde webbrowser (zoals Chrome) en\/of voeg extra aanbieders toe die beter worden ondersteund in webbrowsers (zoals een authenticator-app)."
   },
   "twoStepOptions": {
-    "message": "Tweestapsinlogopties"
+    "message": "Tweestapsaanmeldingsopties"
   },
   "recoveryCodeDesc": {
     "message": "Heeft u geen toegang meer tot al uw tweestapsaanbieders? Gebruik dan uw herstelcode om alle tweestapsaanbieders van uw account uit te schakelen."
@@ -718,10 +718,10 @@
     "message": "Kies een organisatie waarmee u deze items wil delen. Door het delen krijgt de organisatie de eigendomsrechten van de items. U bent niet langer meer de directe eigenaar van de items wanneer u dezen deelt."
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "Wijzig de verzamelingen waarmee dit item gedeeld is. Alleen organisatiegebruikers met toegang tot deze verzamelingen kunnen dit item inzien."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "U heeft $COUNT$ item(s) geselecteerd om te verwijderen. Weet u zeker dat u al deze items wilt verwijderen?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "Kies een map waar u de $COUNT$ geselecteerde item(s) heen wilt verplaatsen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +739,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "U heeft $COUNT$ item(s) geselecteerd. Hiervan zijn $SHAREABLE_COUNT$ items deelbaar en $NONSHAREABLE_COUNT$ niet. Items met een bijlage moeten afzonderlijk worden gedeeld.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -826,7 +826,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Doorgaan zal uw huidige sessie afmelden, waarna het nodig is terug aan te melden. Actieve sessies op andere apparaten kunnen mogelijks tot één uur actief blijven."
   },
   "emailChanged": {
     "message": "E-mailadres gewijzigd"
@@ -835,7 +835,7 @@
     "message": "Log opnieuw in."
   },
   "logBackInOthersToo": {
-    "message": "Log opnieuw in. Als u gebruik maakt van andere Bitwarden applicaties moet u hier ook opnieuw inloggen."
+    "message": "Gelieve opnieuw aan te melden. Als u gebruik maakt van andere Bitwarden applicaties moet u hier ook opnieuw aanmelden."
   },
   "changeMasterPassword": {
     "message": "Wijzig Hoofdwachtwoord"
@@ -862,10 +862,10 @@
     "message": "Autorisatie van sessies intrekken"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public computer or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "Bezorgd dat uw account op een ander apparaat is aangemeld? Ga hieronder verder om de autorisatie van alle computers of apparaten die u eerder hebt gebruikt te verwijderen. Deze beveiligingsstap wordt aanbevolen als u eerder een openbare computer hebt gebruikt of per ongeluk uw wachtwoord hebt opgeslagen op een apparaat dat niet van u is. Met deze stap worden ook alle eerder onthouden aanmeldsessies in twee stappen gewist."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Als u doorgaat, wordt u ook afgemeld van uw huidige sessie en moet u zich opnieuw aanmelden. U wordt ook gevraagd om opnieuw in twee stappen aan te melden, indien dit is ingeschakeld. Actieve sessies op andere apparaten kunnen mogelijks tot één uur actief blijven."
   },
   "sessionsDeauthorized": {
     "message": "Autorisatie van alle sessies ingetrokken"
@@ -874,10 +874,10 @@
     "message": "Kluis legen"
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "Ga hieronder verder om alle items en mappen in uw kluis te verwijderen. Items die behoren tot een organisatie waarmee u deelt, worden niet verwijderd."
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "Het leegmaken van uw webkluis is permanent en kan niet ongedaan worden gemaakt."
   },
   "vaultPurged": {
     "message": "Uw kluis-gegevens zijn geleegd."
@@ -886,7 +886,7 @@
     "message": "Account Verwijderen"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "Ga hieronder verder om uw account en alle bijbehorende gegevens te verwijderen."
   },
   "deleteAccountWarning": {
     "message": "Het verwijderen van uw account is permanent en kan niet ongedaan worden gemaakt."
@@ -895,7 +895,7 @@
     "message": "Account verwijderd"
   },
   "accountDeletedDesc": {
-    "message": "Your account has been closed and all associated data has been deleted."
+    "message": "Uw account is gesloten en alle bijbehorende gegevens zijn verwijderd."
   },
   "myAccount": {
     "message": "Mijn Account"
@@ -907,16 +907,16 @@
     "message": "Gegevens importeren"
   },
   "importSuccess": {
-    "message": "Data has been successfully imported into your vault."
+    "message": "De gegevens zijn met succes geïmporteerd in uw kluis."
   },
   "importFormatError": {
-    "message": "Data is not formatted correctly. Please check your import file and try again."
+    "message": "De gegevens zijn niet correct opgemaakt. Gelieve uw importbestand te controleren en probeer het opnieuw."
   },
   "importNothingError": {
     "message": "Er is niets geïmporteerd."
   },
   "selectFormat": {
-    "message": "Select the format of the import file"
+    "message": "Selecteer het formaat van het importbestand"
   },
   "selectImportFile": {
     "message": "Kies het import bestand"
@@ -938,7 +938,7 @@
     "message": "Opties"
   },
   "optionsDesc": {
-    "message": "Customize your web vault experience."
+    "message": "Pas uw ervaring met de webkluis aan."
   },
   "optionsUpdated": {
     "message": "Opties bijgewerkt"
@@ -969,13 +969,13 @@
     "message": "Domeinregels"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "Als u dezelfde aanmeldingsgegevens hebt voor meerdere verschillende websitedomeinen, kunt u de website als \"equivalent\" markeren. \"Globale\" domeinen zijn degenen die Bitwarden voor u al heeft aangemaakt."
   },
   "globalEqDomains": {
-    "message": "Global Equivalent Domains"
+    "message": "Globale Equivalente Domeinen"
   },
   "customEqDomains": {
-    "message": "Custom Equivalent Domains"
+    "message": "Aangepaste Equivalente Domeinen"
   },
   "exclude": {
     "message": "Uitsluiten"
@@ -990,10 +990,10 @@
     "message": "Nieuw Aangepast Domein"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
+    "message": "Voer een lijst met domeinen in, gescheiden door komma's. Alleen \"basis\" domeinen zijn toegestaan. Voer geen subdomeinen in. Gebruik bijvoorbeeld \"google.com\" in plaats van \"www.google.com\". U kunt ook \"androidapp:\/\/package.name\" invoeren om een Android-app te verbinden aan andere websitedomeinen."
   },
   "customDomainX": {
-    "message": "Custom Domain $INDEX$",
+    "message": "Aangepast Domein $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1005,16 +1005,16 @@
     "message": "Domeinen bijgewerkt"
   },
   "twoStepLogin": {
-    "message": "Tweestapslogin"
+    "message": "Tweestapsaanmelding"
   },
   "twoStepLoginDesc": {
-    "message": "Secure your account by requiring an additional step when logging in."
+    "message": "Beveilig uw account door een extra stap te vereisen bij het aanmelden."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "Vereis aanmelden in twee stappen voor de gebruikers van uw organisatie door aanbieders te configureren op organisatieniveau."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+    "message": "Door aanmelden in twee stappen in te schakelen, kunt u uw Bitwarden-account permanent blokkeren. Een herstelcode geeft u toegang tot uw account in het geval dat u uw normale tweestapsaanmeldingsaanbieder niet meer kunt gebruiken (bv. als u uw apparaat verliest). De Bitwarden klantenondersteuning kan u niet helpen als u de toegang tot uw account verliest. We raden u aan de herstelcode op te schrijven of af te drukken en op een veilige plaats te bewaren."
   },
   "viewRecoveryCode": {
     "message": "Herstelcode inzien"
@@ -1049,13 +1049,13 @@
     "message": "Uitschakelen"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "Deze tweestaps-inlogaanbieder is geactiveerd voor uw account."
+    "message": "Deze tweestapsaanmeldingsaanbieder is geactiveerd voor uw account."
   },
   "twoStepLoginAuthDesc": {
-    "message": "Vul uw hoofdwachtwoord in om uw tweestapsinlog-instellingen te wijzigen."
+    "message": "Vul uw hoofdwachtwoord in om uw tweestapsaanmeldingsinstellingen te wijzigen."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "Volg deze stappen om tweestapsaanmelding op te zetten met een authenticatie-app:"
   },
   "twoStepAuthenticatorDownloadApp": {
     "message": "Download een tweestaps authenticator app"
@@ -1085,13 +1085,13 @@
     "message": "Vul de resulterende 6-cijferige verificatiecode van de app in"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "In het geval dat u het aan een ander apparaat moet toevoegen, is hieronder de QR-code (of sleutel) die vereist is voor uw authenticatie-app."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "Weet u zeker dat u deze aanbieder van tweestapsaanmeldig wilt uitschakelen?"
   },
   "twoStepDisabled": {
-    "message": "Tweestapsinlog-aanbieder is uitgeschakeld."
+    "message": "Tweestapsaanmeldingsaanbieder is uitgeschakeld."
   },
   "twoFactorYubikeyAdd": {
     "message": "Voeg een nieuwe YubiKey toe aan uw account"
@@ -1109,7 +1109,7 @@
     "message": "Sla het formulier op."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Vanwege platformbeperkingen kunnen YubiKeys niet in alle Bitwarden applicaties gebruikt worden. U zou een andere tweestapsinlog aanbieder moeten instellen voor wanneer YubiKeys niet gebruikt kunnen worden. De volgende platformen worden ondersteunt:"
+    "message": "Vanwege platformbeperkingen kunnen YubiKeys niet in alle Bitwarden applicaties gebruikt worden. U zou een andere tweestapsaanmeldingsaanbieder moeten instellen voor wanneer YubiKeys niet gebruikt kunnen worden. De volgende platformen worden ondersteunt:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Web-kluis, desktop applicatie, CLI en alle browser-extensies op een apparaat met een USB-poort welke YubiKey accepteert."
@@ -1154,10 +1154,10 @@
     "message": "API-hostnaam"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "Volg deze stappen om tweestapsaanmelding in te stellen met e-mail:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "Voer de e-mail in waar u de verificatiecodes wilt ontvangen"
   },
   "twoFactorEmailEnterCode": {
     "message": "Vul de resulterende 6-cijferige verificatiecode van de e-mail in"
@@ -1175,7 +1175,7 @@
     "message": "Druk op de knop van de beveiligingssleutel wanneer deze aanwezig is."
   },
   "twoFactorU2fWarning": {
-    "message": "Vanwege platformbeperkingen kunnen FIDO U2F niet in alle Bitwarden applicaties gebruikt worden. U zou een andere tweestapsinlog-aanbieder moeten instellen voor wanneer FIDO U2F niet gebruikt kunnen worden. De volgende platformen worden ondersteunt:"
+    "message": "Vanwege platformbeperkingen kunnen FIDO U2F niet in alle Bitwarden applicaties gebruikt worden. U zou een andere tweestapsaanmeldingsaanbieder moeten instellen voor wanneer FIDO U2F niet gebruikt kunnen worden. De volgende platformen worden ondersteunt:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Webkluis en browser-extensies op een desktop\/laptop met een browser ondersteuning voor U2F (Chrome, Opera, Vivaldi of Firefox met FIDO U2F ingeschakeld)."
@@ -1184,16 +1184,16 @@
     "message": "Wachten tot u op de knop van de beveiligingssleutel hebt gedrukt"
   },
   "twoFactorU2fClickEnable": {
-    "message": "Klik op de \"Activeren\"-knop hier beneden om deze beveiligingssleutel te activeren als tweestaps-inlogmethode."
+    "message": "Klik op de \"Activeren\"-knop hier beneden om deze beveiligingssleutel te activeren als tweestapsaanmeldingsmethode."
   },
   "twoFactorU2fProblemReading": {
     "message": "Er was een probleem met het lezen van de beveiligingssleutel."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Uw Bitwarden tweestaps-login herstelcode"
+    "message": "Uw Bitwarden tweestapsaanmelding herstelcode"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "U hebt nog geen tweestapsaanmeldingsaanbieders ingeschakeld. Nadat u een tweestapsaanmeldingsaanbieder heeft ingeschakeld kunt u hier uw herstelcode vinden."
   },
   "printCode": {
     "message": "Print herstelcode",
@@ -1203,10 +1203,10 @@
     "message": "Rapportages"
   },
   "dataBreachReport": {
-    "message": "Data Breach Report"
+    "message": "Datalek verslag"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Een \"lek\" is een incident waarbij de gegevens van een site zijn gestolen door hackers en vervolgens publiekelijk zijn vrijgegeven. Controleer de soorten gegevens die zijn gecompromitteerd (e-mailadressen, wachtwoorden, creditcards, enz.) en neem passende maatregelen, zoals het wijzigen van wachtwoorden."
   },
   "breachCheckUsernameEmail": {
     "message": "Controleer elke gebruikersnaam of e-mailadres dat u gebruikt."
@@ -1241,10 +1241,10 @@
     }
   },
   "breachFound": {
-    "message": "Breached Accounts Found"
+    "message": "Gecompromitteerde accounts gevonden"
   },
   "compromisedData": {
-    "message": "Compromised data"
+    "message": "Gecompromitteerde gegevens"
   },
   "website": {
     "message": "Website"
@@ -1253,13 +1253,13 @@
     "message": "Getroffen Gebruikers"
   },
   "breachOccurred": {
-    "message": "Breach Occurred"
+    "message": "Datalek vond plaats"
   },
   "breachReported": {
     "message": "Lek Gerapporteerd"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "Er is een fout opgetreden bij het laden van het verslag. Probeer het nog eens"
   },
   "billingAndLicensing": {
     "message": "Facturatie & Licenties"
@@ -1269,19 +1269,19 @@
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "U bent opgewaardeerd naar premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Upgrade uw account naar een premium-lidmaatschap en ontgrendel enkele geweldige extra functies."
   },
   "premiumSignUpStorage": {
     "message": "1 GB versleutelde bestandsopslag."
   },
   "premiumSignUpTwoStep": {
-    "message": "Extra tweestapsinlogopties zoals YubiKey, FIDO U2F en Duo."
+    "message": "Extra tweestapsaanmeldingsopties zoals YubiKey, FIDO U2F en Duo."
   },
   "premiumSignUpTotp": {
-    "message": "TOTP-verificatiecodegenerator (2FA) voor logins in uw kluis."
+    "message": "TOTP-verificatiecodegenerator (tweestapsaanmelding) voor aanmeldingsgegevens in uw kluis."
   },
   "premiumSignUpSupport": {
     "message": "Klantondersteuning met hoge prioriteit."
@@ -1308,7 +1308,7 @@
     "message": "# extra GB"
   },
   "additionalStorageDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/year.",
+    "message": "Uw abonnement omvat $SIZE$ gecodeerde bestandsopslag. U kunt extra opslagruimte toevoegen voor $PRICE$ per GB \/ jaar.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1333,14 +1333,14 @@
     "message": "maand"
   },
   "monthAbbr": {
-    "message": "mo.",
+    "message": "mnd",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each year. You may cancel at any time."
+    "message": "Uw betaalmethode wordt onmiddellijk in rekening gebracht en vervolgens jaarlijks op terugkerende basis. U kunt op elk moment annuleren."
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your payment method will not be charged until the trial has ended. Billing will occur on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Uw pakket komt met een gratis proefperiode van 7 dagen. Er worden geen kosten in rekening gebracht op uw betaalmethode voor de proefperiode voorbij is. De betaling gebeurt op een terugkerende basis elk $INTERVAL$. U kunt op elk moment opzeggen.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1355,7 +1355,7 @@
     "message": "Creditcard"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "Klik op de PayPal knop om u aan te melden bij uw PayPal-account. Klik vervolgens hieronder op de knop Verzenden om verder te gaan."
   },
   "cancelSubscription": {
     "message": "Abonnement opzeggen"
@@ -1367,31 +1367,31 @@
     "message": "Afwachting van annulering"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "Het abonnement is gemarkeerd voor annulering aan het einde van de huidige betalingsperiode."
   },
   "reinstateSubscription": {
-    "message": "Reinstate Subscription"
+    "message": "Abonnement opnieuw activeren"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "Weet u zeker dat u het lopende annuleringsverzoek wilt verwijderen en uw abonnement wilt herstellen?"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "Het abonnement is opnieuw geactiveerd."
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "Weet u zeker dat u wilt annuleren? U verliest de toegang tot alle functies van dit abonnement aan het einde van deze betalingscyclus."
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "Het abonnement is geannuleerd."
   },
   "neverExpires": {
-    "message": "Never Expires"
+    "message": "Vervalt nooit"
   },
   "status": {
     "message": "Status"
   },
   "nextCharge": {
-    "message": "Next Charge"
+    "message": "Volgende rekening"
   },
   "details": {
     "message": "Details"
@@ -1400,25 +1400,25 @@
     "message": "Download licentie"
   },
   "updateLicense": {
-    "message": "Update License"
+    "message": "Wijzig licentie"
   },
   "updatedLicense": {
-    "message": "Updated license"
+    "message": "Licentie gewijzigd"
   },
   "manageSubscription": {
-    "message": "Manage Subscription"
+    "message": "Abonnement beheren"
   },
   "storage": {
-    "message": "Storage"
+    "message": "Opslagruimte"
   },
   "addStorage": {
-    "message": "Add Storage"
+    "message": "Opslagruimte toevoegen"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "Opslagruimte verwijderen"
   },
   "subscriptionStorage": {
-    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "message": "Uw abonnement heeft een totaal van $MAX_STORAGE$ GB aan versleutelde bestandsopslag. U gebruikt momenteel $USED_STORAGE$.",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1431,26 +1431,26 @@
     }
   },
   "paymentMethod": {
-    "message": "Payment Method"
+    "message": "Betalingsmethode"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "Geen betaalmethode gekozen."
   },
   "addPaymentMethod": {
-    "message": "Add Payment Method"
+    "message": "Betalingsmethode toevoegen"
   },
   "changePaymentMethod": {
-    "message": "Change Payment Method"
+    "message": "Betalingsmethode wijzigen"
   },
   "charges": {
-    "message": "Charges",
+    "message": "Kosten",
     "description": "Credit card charges\/payments."
   },
   "noCharges": {
-    "message": "No charges."
+    "message": "Geen kosten."
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "Eventuele kosten zullen op uw afschrift worden weergegeven als $STATEMENT_NAME$.",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1459,19 +1459,19 @@
     }
   },
   "gbStorageAdd": {
-    "message": "GB of Storage To Add"
+    "message": "Toe te voegen opslagruimte (GB)"
   },
   "gbStorageRemove": {
-    "message": "GB of Storage To Remove"
+    "message": "Te verwijderen opslagruimte (GB)"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Als u opslag toevoegt worden uw factuurtotalen aangepast en wordt dit onmiddellijk in rekening gebracht met uw geregistreerde betalingsmethode. De eerste aanrekening wordt pro rata berekend voor de rest van de huidige factureringscyclus."
   },
   "storageRemoveNote": {
-    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Als u opslag verwijdert worden uw factuurtotalen aangepast en worden deze pro rata gecrediteerd bij uw volgende betaling."
   },
   "adjustedStorage": {
-    "message": "Adjusted $AMOUNT$ GB of storage.",
+    "message": "Aantal GB opslagruimte is aangepast naar $AMOUNT$.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1480,13 +1480,13 @@
     }
   },
   "contactSupport": {
-    "message": "Contact Customer Support"
+    "message": "Neem contact op met de klantenservice"
   },
   "contactSupportPaymentMethod": {
-    "message": "If you would like to change from this payment method please contact customer support."
+    "message": "Neem contact op met de klantenservice als u deze betaalmethode wilt wijzigen."
   },
   "updatedPaymentMethod": {
-    "message": "Updated payment method."
+    "message": "Betalingsmethode bijgewerkt."
   },
   "purchasePremium": {
     "message": "Premium kopen"
@@ -1504,16 +1504,16 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "To upgrade your account to a premium membership you need to upload a valid license file."
+    "message": "Om uw account te upgraden naar een premium-lidmaatschap, moet u een geldig licentiebestand uploaden."
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+    "message": "Om een op locatie gehoste organisatie aan te maken, moet u een geldig licentiebestand uploaden."
   },
   "accountEmailMustBeVerified": {
-    "message": "Your account's email address must be verified."
+    "message": "Het e-mailadres van uw account moet bevestigd zijn."
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "Organisaties stellen u in staat om delen van uw kluis met anderen te delen en om gerelateerde gebruikers te beheren voor een specifieke entiteit zoals een familie, een klein team of een groot bedrijf."
   },
   "generalInformation": {
     "message": "Algemene informatie"
@@ -1522,10 +1522,10 @@
     "message": "Organisatienaam"
   },
   "accountOwnedBusiness": {
-    "message": "This account is owned by a business."
+    "message": "Dit account is eigendom van een bedrijf."
   },
   "billingEmail": {
-    "message": "Billing Email"
+    "message": "Facturering E-mailadres"
   },
   "businessName": {
     "message": "Bedrijfsnaam"
@@ -1537,16 +1537,16 @@
     "message": "Gebruikers"
   },
   "userSeats": {
-    "message": "User Seats"
+    "message": "Gebruikersplaatsen"
   },
   "additionalUserSeats": {
-    "message": "Additional User Seats"
+    "message": "Extra gebruikersplaatsen"
   },
   "userSeatsDesc": {
-    "message": "# of user seats"
+    "message": "Aantal gebruikersplaatsen"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Uw plan komt met $BASE_SEATS$ gebruikersplaatsen. U kunt extra gebruikersplaatsen kopen voor $SEAT_PRICE$ per gebruiker \/maand.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1559,14 +1559,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "How many user seats do you need? You can also add additional seats later if needed."
+    "message": "Hoeveel gebruikersplaatsen heeft u nodig? U kunt later altijd nog extra plaatsen toevoegen."
   },
   "planNameFree": {
     "message": "Gratis",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "message": "Voor test of persoonlijke gebruikers, welke met $COUNT$ andere gebruikers kunnen delen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1578,25 +1578,25 @@
     "message": "Families"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "Voor persoonlijk gebruik, om met familie en vrienden te delen."
   },
   "planNameTeams": {
     "message": "Teams"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "Voor bedrijven en andere team-organisaties."
   },
   "planNameEnterprise": {
     "message": "Enterprise"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "Voor bedrijven en andere grote organisaties."
   },
   "freeForever": {
     "message": "Altijd gratis"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "bevat $COUNT$ gebruikers",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1635,7 +1635,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Add and share with up to $COUNT$ users",
+    "message": "Voeg toe en deel met maximaal $COUNT$ gebruikers",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1644,13 +1644,13 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "Voeg toe en deel met een onbeperkt aantal gebruikers"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "Maak oneindig veel verzamelingen"
   },
   "gbEncryptedFileStorage": {
-    "message": "$SIZE$ encrypted file storage",
+    "message": "$SIZE$ versleutelde bestandsopslag",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1659,25 +1659,25 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "On-premise hosting (optioneel)"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "Beheer gebruikerstoegang met groepen"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "Synchroniseer uw gebruikers en groepen vanuit een adresboek"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "Volg gebruikersacties met auditlogboeken"
   },
   "enforce2faDuo": {
-    "message": "Enforce 2FA with Duo"
+    "message": "Dwing tweestapsverificatie af met Duo"
   },
   "priorityCustomerSupport": {
-    "message": "Priority customer support"
+    "message": "Klantondersteuning met hoge prioriteit"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$ dagen gratis proefperiode. Annuleer op elk moment",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1686,19 +1686,19 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "Maandelijks"
   },
   "annually": {
-    "message": "Annually"
+    "message": "Jaarlijks"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "Basisprijs"
   },
   "organizationCreated": {
-    "message": "Organization Created"
+    "message": "Organisatie aangemaakt"
   },
   "organizationReadyToGo": {
-    "message": "Your new organization is ready to go!"
+    "message": "Uw nieuwe organisatie is klaar voor gebruik!"
   },
   "leave": {
     "message": "Verlaten"
@@ -1749,7 +1749,7 @@
     "message": "Externe Id"
   },
   "externalIdGroupDesc": {
-    "message": "The external id is used to link this group to an external system such as a user directory."
+    "message": "De externe ID wordt gebruikt om deze groep te koppelen aan een extern systeem, zoals een gebruikersadresboek."
   },
   "accessControl": {
     "message": "Toegangsbeheer"
@@ -1869,22 +1869,22 @@
     "message": "Veranderd account wachtwoord."
   },
   "enabled2fa": {
-    "message": "Tweestaps-inloggen geactiveerd."
+    "message": "Tweestapsaanmelden geactiveerd."
   },
   "disabled2fa": {
-    "message": "Tweestaps-inloggen uitgeschakeld."
+    "message": "Tweestapsaanmelden uitgeschakeld."
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "Hersteld account van aanmelden in twee stappen."
   },
   "failedLogin": {
-    "message": "Login attempt failed with incorrect password."
+    "message": "Aanmeldpoging mislukt met onjuist wachtwoord."
   },
   "failedLogin2fa": {
-    "message": "Login attempt failed with incorrect two-step login."
+    "message": "Aanmeldpoging mislukt met onjuist tweestapsaanmelding."
   },
   "editedOrgSettings": {
-    "message": "Edited organization settings."
+    "message": "Organisatie-instellingen gewijzigd."
   },
   "createdItemId": {
     "message": "Item $ID$ aangemaakt.",
@@ -1914,7 +1914,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Shared item $ID$.",
+    "message": "Item $ID$ gedeeld.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1923,7 +1923,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Created collection $ID$.",
+    "message": "Verzameling $ID$ aangemaakt.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1932,7 +1932,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Edited collection $ID$.",
+    "message": "Verzameling $ID$ gewijzigd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1941,7 +1941,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Deleted collection $ID$.",
+    "message": "Verzameling $ID$ verwijderd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1950,7 +1950,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Created group $ID$.",
+    "message": "Groep $ID$ aangemaakt.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1959,7 +1959,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Edited group $ID$.",
+    "message": "Groep $ID$ gewijzigd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1968,7 +1968,7 @@
     }
   },
   "deletedGroupId": {
-    "message": "Deleted group $ID$.",
+    "message": "Groep $ID$ verwijderd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1977,7 +1977,7 @@
     }
   },
   "removedUserId": {
-    "message": "Removed user $ID$.",
+    "message": "Gebruiker $ID$ verwijderd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1986,7 +1986,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Created attachment for item $ID$.",
+    "message": "Bijlage aangemaakt voor item $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1995,7 +1995,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Deleted attachment for item $ID$.",
+    "message": "Bijlage verwijderd voor item $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2004,7 +2004,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Edited collections for item $ID$.",
+    "message": "Verzamelingen gewijzigd voor item $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2013,7 +2013,7 @@
     }
   },
   "invitedUserId": {
-    "message": "Invited user $ID$.",
+    "message": "Gebruiker $ID$ uitgenodigd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2022,7 +2022,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Confirmed user $ID$.",
+    "message": "Gebruiker $ID$ bevestigd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2031,7 +2031,7 @@
     }
   },
   "editedUserId": {
-    "message": "Edited user $ID$.",
+    "message": "Gebruiker $ID$ gewijzigd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2040,7 +2040,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "Groepen van gebruiker $ID$ gewijzigd.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2067,10 +2067,10 @@
     "message": "Gebruikerstype"
   },
   "groupAccess": {
-    "message": "Group Access"
+    "message": "Groepstoegang"
   },
   "groupAccessUserDesc": {
-    "message": "Edit the groups that this user belongs to."
+    "message": "Wijzig de groep waar deze gebruiker bij hoort."
   },
   "invitedUsers": {
     "message": "Gebruiker(s) uitgenodigd."
@@ -2103,7 +2103,7 @@
     "message": "Bevestig gebruikers"
   },
   "usersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
+    "message": "U heeft gebruikers die hun uitnodiging hebben geaccepteerd, maar die nog moeten worden bevestigd. Gebruikers hebben geen toegang tot de organisatie totdat ze zijn bevestigd."
   },
   "startDate": {
     "message": "Begindatum"
@@ -2127,7 +2127,7 @@
     "message": "Uw e-mail is bevestigd."
   },
   "emailVerifiedFailed": {
-    "message": "Unable to verify your email. Try sending a new verification email."
+    "message": "Kan uw e-mail niet verifiëren. Probeer een nieuwe verificatie e-mail te verzenden."
   },
   "updateBrowser": {
     "message": "Update uw browser"
@@ -2139,40 +2139,40 @@
     "message": "Lid worden van organisatie"
   },
   "joinOrganizationDesc": {
-    "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "U bent uitgenodigd om lid te worden van de bovenstaande organisatie. Om de uitnodiging te accepteren, moet je inloggen of een nieuw Bitwarden-account aanmaken."
   },
   "inviteAccepted": {
     "message": "Uitnodiging geaccepteerd"
   },
   "inviteAcceptedDesc": {
-    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "U krijgt toegang tot deze organisatie zodra een beheerder uw lidmaatschap bevestigt. We sturen u een e-mail wanneer dat gebeurt."
   },
   "inviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+    "message": "Kan de uitnodiging niet accepteren. Vraag een organisatiebeheerder om een nieuwe uitnodiging te verzenden."
   },
   "rememberEmail": {
     "message": "Mijn e-mailadres onthouden"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "Als u geen toegang tot uw account kunt krijgen via uw normale tweestapsaanmeldingsmethodes, kunt u uw tweestapsaanmeldingsherstelcode gebruiken om alle tweestapsaanmeldingsaanbieders in uw account uit te schakelen."
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "Herstel Account Tweestapsaanmelding"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "Tweestapsaanmeldig is uitgeschakeld voor uw account."
   },
   "learnMore": {
     "message": "Meer informatie"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "Voer uw e-mailadres hieronder in om uw account te herstellen en te verwijderen."
   },
   "deleteRecoverEmailSent": {
-    "message": "If your account exists, we've sent you an email with further instructions."
+    "message": "Als uw account bestaat, hebben we u een e-mail met verdere instructies gestuurd."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
+    "message": "U hebt verzocht om uw Bitwarden-account te verwijderen. Klik op onderstaande knop om te bevestigen."
   },
   "myOrganization": {
     "message": "Mijn organisatie"
@@ -2181,7 +2181,7 @@
     "message": "Verwijder organisatie"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Ga hieronder verder om deze organisatie en alle bijbehorende gegevens te verwijderen. De individuele gebruikersaccounts blijven bestaan maar ze zullen niet meer gekoppeld zijn aan deze organisatie."
   },
   "deleteOrganizationWarning": {
     "message": "Het verwijderen van de organisatie is permanent en kan niet ongedaan worden gemaakt."
@@ -2199,7 +2199,7 @@
     "message": "Belastinginformatie"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Gelieve de klantenondersteuning te contacteren om belastinginformatie voor uw facturen te verstrekken (of bij te werken)."
   },
   "billingPlan": {
     "message": "Pakket",
@@ -2210,7 +2210,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "Neem contact op met de klantenservice als u uw pakket wilt wijzigen. Zorg ervoor dat u een actieve betaalmethode aan het account hebt toegevoegd.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoice": {
@@ -2220,13 +2220,13 @@
     "message": "Verifieer bankrekening"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "We hebben twee micro-stortingen gedaan op uw bankrekening (het kan 1-2 werkdagen duren voordat deze zichtbaar zijn). Voer deze bedragen in om de bankrekening te verifiëren."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "Betaling met een bankrekening is alleen beschikbaar voor klanten in de Verenigde Staten. U bent verplicht om uw bankrekening te verifiëren. We zullen twee micro-stortingen uitvoeren tijdens volgende 1-2 werkdagen. Voer deze bedragen in op de factureringspagina van de organisatie om de bankrekening te verifiëren."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "Als u de bankrekening niet verifieert, resulteert dit in een gemiste betaling en wordt uw abonnement uitgeschakeld."
   },
   "verifiedBankAccount": {
     "message": "Bankrekening is geverifieerd."
@@ -2258,24 +2258,24 @@
     "message": "Accounttype"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "Bedrijf (Zakelijk)"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Individueel (Persoonlijk)"
   },
   "enterInstallationId": {
     "message": "Voer uw installatie-id in"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "Plaats toevoegen",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "Plaats verwijderen",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "Your subscription allows for a total of $COUNT$ users.",
+    "message": "Uw abonnement biedt in totaal $COUNT$ gebruikers toegang.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2284,19 +2284,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "Toe te voegen plaatsen"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "Te verwijderen plaatsen"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Als u gebruikersplaatsen toevoegt worden uw factuurtotalen aangepast en wordt dit onmiddellijk in rekening gebracht met uw geregistreerde betalingsmethode. De eerste aanrekening wordt pro rata berekend voor de rest van de huidige factureringscyclus."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Als u gebruikersplaatsen verwijdert worden uw factuurtotalen aangepast en worden deze pro rata gecrediteerd bij uw volgende betaling."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "Aantal plaatsen aangepast naar $AMOUNT$.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2311,16 +2311,16 @@
     "message": "Sleutel wijzigen"
   },
   "updateEncryptionKey": {
-    "message": "Wijzig coderingssleutel"
+    "message": "Wijzig encryptiesleutel"
   },
   "updateEncryptionKeyShortDesc": {
     "message": "U maakt op dit moment gebruik van een oud versleutelingsschema."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "We zijn overgeschakeld naar grotere encryptiesleutels voor betere beveiliging en toegang tot nieuwere functies. Het updaten van uw encryptiesleutel gaat snel en eenvoudig. Typ gewoon je hoofdwachtwoord hieronder in. Deze update zal uiteindelijk verplicht worden."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "Na het updaten van je encryptiesleutel moet je je afmelden en weer aanmelden bij alle Bitwarden-applicaties die je momenteel gebruikt (zoals de mobiele app of browserextensies). Hierdoor wordt uw nieuwe encryptiesleutel gedownload. Als u dit niet doet kan dit gegevensbeschadiging tot gevolg hebben. We zullen proberen u automatisch af te melden, maar het kan zijn dat dit met enige vertraging gebeurt."
   },
   "subscription": {
     "message": "Abonnement"
