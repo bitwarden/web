@@ -47,7 +47,7 @@ import { RouterService } from './services/router.service';
 const BroadcasterSubscriptionId = 'AppComponent';
 // Hack due to Angular 5.2 bug
 const swal: SweetAlert = _swal as any;
-const IdleTimeout = 60000 * 5; // 5 minutes
+const IdleTimeout = 60000 * 10; // 10 minutes
 
 @Component({
     selector: 'app-root',
