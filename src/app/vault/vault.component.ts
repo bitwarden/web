@@ -102,7 +102,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                                 await Promise.all([
                                     this.groupingsComponent.load(),
                                     this.organizationsComponent.load(),
-                                    this.ciphersComponent.refresh(),
+                                    this.ciphersComponent.load(this.ciphersComponent.filter),
                                 ]);
                                 this.changeDetectorRef.detectChanges();
                             }

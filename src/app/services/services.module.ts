@@ -115,8 +115,8 @@ const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService);
 const exportService = new ExportService(folderService, cipherService, apiService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
-const notificationsService = new NotificationsService(userService, tokenService, syncService, appIdService,
-    apiService);
+const notificationsService = new NotificationsService(userService, syncService, appIdService,
+    apiService, cryptoService);
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 

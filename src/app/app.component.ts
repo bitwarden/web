@@ -47,6 +47,7 @@ import { RouterService } from './services/router.service';
 const BroadcasterSubscriptionId = 'AppComponent';
 // Hack due to Angular 5.2 bug
 const swal: SweetAlert = _swal as any;
+const IdleTimeout = 60000 * 5; // 5 minutes
 
 @Component({
     selector: 'app-root',
@@ -61,6 +62,8 @@ export class AppComponent implements OnDestroy, OnInit {
     });
 
     private lastActivity: number = null;
+    private idleTimer: number = null;
+    private isIdle = false;
 
     constructor(private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
         private broadcasterService: BroadcasterService, private userService: UserService,
@@ -90,9 +93,8 @@ export class AppComponent implements OnDestroy, OnInit {
                 switch (message.command) {
                     case 'loggedIn':
                     case 'loggedOut':
-                        this.notificationsService.updateConnection();
-                        break;
                     case 'unlocked':
+                        this.notificationsService.updateConnection();
                         break;
                     case 'logout':
                         this.logOut(!!message.expired);
@@ -101,6 +103,7 @@ export class AppComponent implements OnDestroy, OnInit {
                         await this.lockService.lock();
                         break;
                     case 'locked':
+                        this.notificationsService.updateConnection();
                         this.router.navigate(['lock']);
                         break;
                     case 'syncStarted':
@@ -181,5 +184,29 @@ export class AppComponent implements OnDestroy, OnInit {
 
         this.lastActivity = now;
         this.storageService.save(ConstantsService.lastActiveKey, now);
+
+        // Idle states
+        if (this.isIdle) {
+            this.isIdle = false;
+            this.idleStateChanged();
+        }
+        if (this.idleTimer != null) {
+            window.clearTimeout(this.idleTimer);
+            this.idleTimer = null;
+        }
+        this.idleTimer = window.setTimeout(() => {
+            if (!this.isIdle) {
+                this.isIdle = true;
+                this.idleStateChanged();
+            }
+        }, IdleTimeout);
+    }
+
+    private idleStateChanged() {
+        if (this.isIdle) {
+            this.notificationsService.disconnectFromInactivity();
+        } else {
+            this.notificationsService.reconnectFromActivity();
+        }
     }
 }
