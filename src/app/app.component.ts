@@ -94,7 +94,7 @@ export class AppComponent implements OnDestroy, OnInit {
                     case 'loggedIn':
                     case 'loggedOut':
                     case 'unlocked':
-                        this.notificationsService.updateConnection();
+                        this.notificationsService.updateConnection(false);
                         break;
                     case 'logout':
                         this.logOut(!!message.expired);
@@ -103,7 +103,7 @@ export class AppComponent implements OnDestroy, OnInit {
                         await this.lockService.lock();
                         break;
                     case 'locked':
-                        this.notificationsService.updateConnection();
+                        this.notificationsService.updateConnection(false);
                         this.router.navigate(['lock']);
                         break;
                     case 'syncStarted':
