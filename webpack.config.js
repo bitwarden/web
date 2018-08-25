@@ -13,10 +13,6 @@ if (process.env.NODE_ENV == null) {
 }
 const ENV = process.env.ENV = process.env.NODE_ENV;
 
-if (process.env.NODE_ENV == null) {
-    process.env.NODE_ENV = 'development';
-}
-
 const extractCss = new ExtractTextPlugin({
     filename: '[name].[chunkhash].css',
     disable: false,
