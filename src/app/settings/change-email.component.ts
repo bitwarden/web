@@ -57,9 +57,8 @@ export class ChangeEmailComponent {
             const kdfIterations = await this.userService.getKdfIterations();
             const newKey = await this.cryptoService.makeKey(this.masterPassword, this.newEmail, kdf, kdfIterations);
             request.newMasterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, newKey);
-            const encKey = await this.cryptoService.getEncKey();
-            const newEncKey = await this.cryptoService.encrypt(encKey.key, newKey);
-            request.key = newEncKey.encryptedString;
+            const newEncKey = await this.cryptoService.remakeEncKey(newKey);
+            request.key = newEncKey[1].encryptedString;
             try {
                 this.formPromise = this.apiService.postEmail(request);
                 await this.formPromise;
