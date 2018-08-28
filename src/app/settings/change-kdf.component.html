@@ -1,0 +1,47 @@
+<app-callout type="warning">{{'loggedOutWarning' | i18n}}</app-callout>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate autocomplete="off">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="kdfMasterPassword">{{'masterPass' | i18n}}</label>
+                <input id="kdfMasterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword"
+                    required appInputVerbatim>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mb-0">
+                <label for="kdf">{{'kdfAlgorithm' | i18n}}</label>
+                <a class="ml-auto" href="https://en.wikipedia.org/wiki/Key_derivation_function" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                    <i class="fa fa-question-circle-o"></i>
+                </a>
+                <select id="kdf" name="Kdf" [(ngModel)]="kdf" class="form-control" required>
+                    <option *ngFor="let o of kdfOptions" [ngValue]="o.value">{{o.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mb-0">
+                <label for="kdfIterations">{{'kdfIterations' | i18n}}</label>
+                <a class="ml-auto" href="https://en.wikipedia.org/wiki/PBKDF2" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                    <i class="fa fa-question-circle-o"></i>
+                </a>
+                <input id="kdfIterations" type="number" min="5000" max="1000000" name="KdfIterations" class="form-control" [(ngModel)]="kdfIterations"
+                    required>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <div class="small form-text text-muted">
+                    <p>{{'kdfIterationsDesc' | i18n : (100000 | number)}}</p>
+                    <strong>{{'warning' | i18n}}</strong>: {{'kdfIterationsWarning' | i18n : (50000 | number)}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+        <span>{{'changeKdf' | i18n}}</span>
+    </button>
+</form>

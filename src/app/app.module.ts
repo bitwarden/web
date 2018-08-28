@@ -75,6 +75,7 @@ import { AccountComponent } from './settings/account.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';
 import { AdjustStorageComponent } from './settings/adjust-storage.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
+import { ChangeKdfComponent } from './settings/change-kdf.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
@@ -204,6 +205,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         BulkShareComponent,
         CalloutComponent,
         ChangeEmailComponent,
+        ChangeKdfComponent,
         ChangePasswordComponent,
         CiphersComponent,
         CollectionsComponent,
