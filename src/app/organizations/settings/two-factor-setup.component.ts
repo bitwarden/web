@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { TokenService } from 'jslib/abstractions/token.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 
@@ -18,10 +18,10 @@ import { TwoFactorSetupComponent as BaseTwoFactorSetupComponent } from '../../se
     templateUrl: '../../settings/two-factor-setup.component.html',
 })
 export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
-    constructor(apiService: ApiService, tokenService: TokenService,
+    constructor(apiService: ApiService, userService: UserService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
         private route: ActivatedRoute) {
-        super(apiService, tokenService, componentFactoryResolver, messagingService);
+        super(apiService, userService, componentFactoryResolver, messagingService);
     }
 
     async ngOnInit() {

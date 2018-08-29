@@ -16,8 +16,8 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
-import { TokenService } from 'jslib/abstractions/token.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib/angular/components/add-edit.component';
 import { LoginUriView } from 'jslib/models/view/loginUriView';
@@ -27,7 +27,7 @@ import { LoginUriView } from 'jslib/models/view/loginUriView';
     templateUrl: 'add-edit.component.html',
 })
 export class AddEditComponent extends BaseAddEditComponent implements OnInit {
-    isPremium: boolean;
+    canAccessPremium: boolean;
     totpCode: string;
     totpCodeFormatted: string;
     totpDash: number;
@@ -43,7 +43,7 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         analytics: Angulartics2, toasterService: ToasterService,
         auditService: AuditService, stateService: StateService,
-        protected tokenService: TokenService, protected totpService: TotpService,
+        protected userService: UserService, protected totpService: TotpService,
         protected passwordGenerationService: PasswordGenerationService, protected messagingService: MessagingService) {
         super(cipherService, folderService, i18nService, platformUtilsService, analytics,
             toasterService, auditService, stateService);
@@ -55,9 +55,9 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         this.hasPasswordHistory = this.cipher.hasPasswordHistory;
         this.cleanUp();
 
-        this.isPremium = this.tokenService.getPremium();
+        this.canAccessPremium = await this.userService.canAccessPremium();
         if (this.cipher.type === CipherType.Login && this.cipher.login.totp &&
-            (this.cipher.organizationUseTotp || this.isPremium)) {
+            (this.cipher.organizationUseTotp || this.canAccessPremium)) {
             await this.totpUpdateCode();
             const interval = this.totpService.getTimeInterval(this.cipher.login.totp);
             await this.totpTick(interval);
@@ -102,8 +102,7 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     }
 
     async premiumRequired() {
-        const premium = await this.tokenService.getPremium();
-        if (!premium) {
+        if (!this.canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;
         }

@@ -90,7 +90,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
         const hasEncKey = await this.cryptoService.hasEncKey();
         this.showUpdateKey = !hasEncKey;
-        const isPremium = await this.tokenService.getPremium();
+        const canAccessPremium = await this.userService.canAccessPremium();
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
@@ -116,8 +116,8 @@ export class VaultComponent implements OnInit, OnDestroy {
                 this.organizationsComponent.load(),
             ]);
 
-            this.showPremiumCallout = !this.showVerifyEmail && !isPremium &&
-                !this.platformUtilsService.isSelfHost() && !(await this.inOrgWithPremium());
+            this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
+                !this.platformUtilsService.isSelfHost();
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
@@ -474,15 +474,5 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         const url = this.router.createUrlTree(['vault'], { queryParams: queryParams }).toString();
         this.location.go(url);
-    }
-
-    private async inOrgWithPremium() {
-        const orgs = await this.userService.getAllOrganizations();
-        for (let i = 0; i < orgs.length; i++) {
-            if (orgs[i].usersGetPremium) {
-                return true;
-            }
-        }
-        return false;
     }
 }

@@ -9,7 +9,7 @@ import {
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { TokenService } from 'jslib/abstractions/token.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { TwoFactorProviders } from 'jslib/services/auth.service';
 
@@ -38,16 +38,16 @@ export class TwoFactorSetupComponent implements OnInit {
 
     organizationId: string;
     providers: any[] = [];
-    premium: boolean;
+    canAccessPremium: boolean;
     loading = true;
 
     private modal: ModalComponent = null;
 
-    constructor(protected apiService: ApiService, protected tokenService: TokenService,
+    constructor(protected apiService: ApiService, protected userService: UserService,
         protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService) { }
 
     async ngOnInit() {
-        this.premium = this.tokenService.getPremium();
+        this.canAccessPremium = await this.userService.canAccessPremium();
 
         for (const key in TwoFactorProviders) {
             if (!TwoFactorProviders.hasOwnProperty(key)) {
@@ -128,8 +128,7 @@ export class TwoFactorSetupComponent implements OnInit {
     }
 
     async premiumRequired() {
-        const premium = await this.tokenService.getPremium();
-        if (!premium) {
+        if (!this.canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;
         }

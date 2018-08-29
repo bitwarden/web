@@ -51,8 +51,7 @@ export class UserBillingComponent implements OnInit {
             return;
         }
 
-        const premium = this.tokenService.getPremium();
-        if (premium) {
+        if (this.tokenService.getPremium()) {
             this.loading = true;
             this.billing = await this.apiService.getUserBilling();
         } else {
