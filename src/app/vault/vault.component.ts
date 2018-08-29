@@ -201,8 +201,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async editCipherAttachments(cipher: CipherView) {
-        const premium = await this.tokenService.getPremium();
-        if (cipher.organizationId == null && !premium) {
+        const canAccessPremium = await this.userService.canAccessPremium();
+        if (cipher.organizationId == null && !canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;
         } else if (cipher.organizationId != null) {
