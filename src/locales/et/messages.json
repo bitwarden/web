@@ -199,7 +199,7 @@
     "description": "Default URI match detection for auto-fill."
   },
   "never": {
-    "message": "Mitte kunagi"
+    "message": "Ära tuvasta"
   },
   "toggleVisibility": {
     "message": "Näita sisu"
@@ -385,7 +385,7 @@
     "message": "Hoidla"
   },
   "shareSelected": {
-    "message": "Jaga valitut"
+    "message": "Jaga valituid"
   },
   "deleteSelected": {
     "message": "Kustuta valitud"
@@ -565,7 +565,7 @@
     "message": "Sinu konto on loodud! Võid nüüd sisse logida."
   },
   "masterPassSent": {
-    "message": "Ülemparooli vihje saadeti Sinu e-postile."
+    "message": "Ülemparooli vihje saadeti sinu e-posti aadressile."
   },
   "unexpectedError": {
     "message": "Tekkis ootamatu viga."
@@ -583,7 +583,7 @@
     "message": "Vale ülemparool"
   },
   "lockNow": {
-    "message": "Kliki paroolihoidla lukustamiseks"
+    "message": "Lukusta paroolihoidla"
   },
   "noItemsInList": {
     "message": "Puuduvad kirjed, mida kuvada."
@@ -595,7 +595,7 @@
     "message": "Puuduvad grupid, mida kuvada."
   },
   "noUsersInList": {
-    "message": "Puuduvad kasutajad, mida kuvada."
+    "message": "Puuduvad kasutajad, keda kuvada."
   },
   "noEventsInList": {
     "message": "Puuduvad sündmused, mida kuvada."
@@ -604,7 +604,7 @@
     "message": "Uus organisatsioon"
   },
   "noOrganizationsList": {
-    "message": "Sa ei kuulu ühessegi organisatsiooni. Organisatsioonid võimaldavad sul kirjeid teiste kasutajatega turvaliselt jagada."
+    "message": "Sa ei kuulu ühessegi organisatsiooni. Organisatsioonid võimaldavad sul kirjeid turvaliselt teiste kasutajatega jagada."
   },
   "versionNumber": {
     "message": "Versioon $VERSION_NUMBER$",
@@ -640,7 +640,7 @@
     "message": "Jäta mind meelde"
   },
   "sendVerificationCodeEmailAgain": {
-    "message": "Saada kinnituskood uuesti e-postile"
+    "message": "Saada e-postile uus kinnituskood"
   },
   "useAnotherTwoStepMethod": {
     "message": "Kasuta teist kaheastmelist sisselogimise meetodit"
@@ -730,7 +730,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Vali kaust, kuhu soovid $COUNT$ objekti liigutada.",
+    "message": "Vali kaust, kuhu soovid need $COUNT$ kirjet liigutada.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -777,7 +777,7 @@
     "message": "Hoidla on eksporditud."
   },
   "passwordGenerator": {
-    "message": "Parooli genereerimine"
+    "message": "Parooli loomine"
   },
   "minNumbers": {
     "message": "Vähim arv numbreid"
@@ -796,7 +796,7 @@
     "message": "Pikkus"
   },
   "passwordHistory": {
-    "message": "Salasõna ajalugu"
+    "message": "Paroolide ajalugu"
   },
   "noPasswordsInList": {
     "message": "Puuduvad paroolid, mida kuvada."
@@ -808,10 +808,10 @@
     "message": "Konto uuendatud"
   },
   "changeEmail": {
-    "message": "Muuda e-posti"
+    "message": "E-posti aadressi muutmine"
   },
   "newEmail": {
-    "message": "Uus e-post"
+    "message": "Uus e-posti aadress"
   },
   "code": {
     "message": "Kood"
@@ -852,8 +852,41 @@
   "confirmNewMasterPass": {
     "message": "Kinnita uus ülemparool"
   },
+  "encKeySettings": {
+    "message": "Encryption Key Settings"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF Algorithm"
+  },
+  "kdfIterations": {
+    "message": "KDF Iterations"
+  },
+  "kdfIterationsDesc": {
+    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Change KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Encryption Key Settings Changed"
+  },
   "dangerZone": {
-    "message": "Ohutsoon"
+    "message": "Ohtlik tsoon"
   },
   "dangerZoneDesc": {
     "message": "Ettevaatust, neid toiminguid ei saa tagasi võtta!"
@@ -862,7 +895,7 @@
     "message": "Sessioonide haldamine"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "Muretsed, et sinu kontosse on võõra seadme alt sisse logitud? Allpool saad kõikidest kasutatud seadmetest välja logida. See valik võib olla kasulik näiteks juhtudel, kus oled kasutanud avalikku arvutit või salvestasid kogemata parooli seadmes, mis sinule ei kuulu. Samuti nullib see tegevus kõik varasemad kaheastmelise kinnitamise poolt meelde jäetud seadmed."
   },
   "deauthorizeSessionsWarning": {
     "message": "Jätkatest logitakse sind ka käimasolevast sessioonist välja, mistõttu pead kontosse uuesti sisse logima. Lisaks võidakse küsida kaheastmelist kinnitust, kui see on sisse lülitatud. Teised kontoga ühendatud seadmed võivad jääda sisselogituks kuni üheks tunniks."
@@ -990,7 +1023,7 @@
     "message": "Uus võrdväärne domeen"
   },
   "newCustomDomainDesc": {
-    "message": "Sisesta domeenid, eraldades need komadega. Lubatud on ainult \"põhi\" domeenid. Ära sisesta alamdomeene. Nt: sisesta \"google.com\", aga mitte \"www.google.com\". Võid ka sisestada \"androidapp:\/\/package.name\", et seostada Androidi äppi mistahes veebilehtede domeenidega."
+    "message": "Sisesta domeenid, eraldades need komadega. Lubatud on ainult \"põhi\" domeenid. Ära sisesta alamdomeene. Nt: sisesta \"google.com\", aga mitte \"www.google.com\". Võid ka sisestada \"androidapp:\/\/package.name\", et seostada Androidi äpp mistahes veebilehtede domeenidega."
   },
   "customDomainX": {
     "message": "Kohandatud domeeni $INDEX$",
@@ -1014,7 +1047,7 @@
     "message": "Nõua organisatsiooni liikmetelt kaheastmelist kinnitamist, seadistades taolise teenuse pakkujad organisatsiooni tasemel."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Kaheastmelise kinnitamine aktiveerimine võib luua olukorra, kus sul on võimatu oma Bitwardeni kontosse sisse logida. Näiteks juhtudel, kui kaotad oma nutiseadme. Taastamise kood võimaldab aga kontole ligi pääseda ka juhtudel, kui kaheastmelist kinnitamist ei ole võimalik läbi viia. Ka Bitwardeni klienditugi ei saa sinu ligipääsu kontole taastada. Selle tõttu soovitame taastekoodi välja printida ja seda turvalises kohas hoida."
+    "message": "Kaheastmelise kinnitamine aktiveerimine võib luua olukorra, kus sul on võimatu oma Bitwardeni kontosse sisse logida. Näiteks juhtudel, kui kaotad oma nutiseadme. Taastamise kood võimaldab aga kontole ligi pääseda ka juhtudel, kui kaheastmelist kinnitamist ei ole võimalik läbi viia. Sellistel juhtudel ei saa ka Bitwardeni klienditugi sinu kontole ligipääsu taastada. Selle tõttu soovitame taastekoodi välja printida ja seda turvalises kohas hoida."
   },
   "viewRecoveryCode": {
     "message": "Vaata taaastamise koodi"
@@ -1040,10 +1073,10 @@
     "message": "Vajalik on Preemium versioon"
   },
   "premiumRequiredDesc": {
-    "message": "Selle funktsiooni kasutamiseks on vajalik tasulist kontot omada."
+    "message": "Selle funktsiooni kasutamiseks on vajalik preemium kontot omada."
   },
   "manage": {
-    "message": "Halda"
+    "message": "Haldamine"
   },
   "disable": {
     "message": "Keela"
@@ -1085,7 +1118,7 @@
     "message": "Sisesta äpi kuvatav 6 kohaline kinnituskood"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "Kui soovid lisada veel seadmeid, siis all on kuvatud QR kood (võ võti), mida autentimisrakendusega kasutada saad."
+    "message": "Kui soovid lisada veel seadmeid, siis all on kuvatud QR kood (ehk võti), mida autentimisrakendusega kasutada saad."
   },
   "twoStepDisableDesc": {
     "message": "Oled kindel, et soovid selle kaheastmelise kinnitamise teenuspakkuja välja lülitada?"
@@ -1272,7 +1305,7 @@
     "message": "Oled nüüd Preemium konto omanik."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Tee oma kontost preemium konto ning saa osa paljudest lisahüvedest, mis sellega kaasnevad."
+    "message": "Muuda oma konto preemium kontoks ning saa osa paljudest lisahüvedest, mis sellega kaasnevad."
   },
   "premiumSignUpStorage": {
     "message": "1 GB ulatuses krüpteeritud salvestusruum."
@@ -1284,10 +1317,10 @@
     "message": "TOTP kinnituskoodide (2FA) genereeria hoidlas olevatele kasutajakontodele."
   },
   "premiumSignUpSupport": {
-    "message": "Kiirema kasutajatoe."
+    "message": "Kiirem klienditugi."
   },
   "premiumSignUpFuture": {
-    "message": "Tulevased preemium funktsioonid - tasuta!"
+    "message": "Kõik tulevased preemium funktsioonid - tasuta!"
   },
   "premiumPrice": {
     "message": "Kõik see ainult $PRICE$ \/ aastas!",
@@ -1337,7 +1370,7 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and on a recurring basis each year. You may cancel at any time."
+    "message": "Makse sooritatakse kohe pärast tellimuse esitamist. Järgmine makse toimub aasta pärast. Tellimust on võimalik igal ajal tühistada."
   },
   "paymentChargedWithTrial": {
     "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
@@ -1349,7 +1382,7 @@
     }
   },
   "paymentInformation": {
-    "message": "Makseinfo"
+    "message": "Maksemeetod"
   },
   "creditCard": {
     "message": "Krediitkaart"
@@ -1406,7 +1439,7 @@
     "message": "Litsents on uuendatud"
   },
   "manageSubscription": {
-    "message": "Halda tellimust"
+    "message": "Tellimuse haldamine"
   },
   "storage": {
     "message": "Salvestusruum"
@@ -1525,7 +1558,7 @@
     "message": "Seda kontot omab ettevõte."
   },
   "billingEmail": {
-    "message": "Arve e-post"
+    "message": "Arve saaja e-posti aadress"
   },
   "businessName": {
     "message": "Ettevõtte nimi"
@@ -1537,7 +1570,7 @@
     "message": "Kasutajad"
   },
   "userSeats": {
-    "message": "Kasutajaid"
+    "message": "Kasutajad"
   },
   "additionalUserSeats": {
     "message": "Lisakasutajad"
@@ -1566,7 +1599,7 @@
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "Teistimiseks ja isiklikuks kasutamiseks, et jagada $COUNT$ teise kasutajaga.",
+    "message": "Testimiseks ja isiklikuks kasutamiseks, et jagada $COUNT$ teise kasutajaga.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1575,13 +1608,13 @@
     }
   },
   "planNameFamilies": {
-    "message": "Perekonnad"
+    "message": "Perekond"
   },
   "planDescFamilies": {
     "message": "Isiklikuks kasutamiseks, jagamaks sõprade ja perega."
   },
   "planNameTeams": {
-    "message": "Meeskonnad"
+    "message": "Meeskond"
   },
   "planDescTeams": {
     "message": "Ettevõtetele ja teistele meeskondadele\/organisatsioonidele."
@@ -1689,7 +1722,7 @@
     "message": "Igakuiselt"
   },
   "annually": {
-    "message": "Aastas"
+    "message": "Tasumine aasta kaupa"
   },
   "basePrice": {
     "message": "Baashind"
@@ -1716,10 +1749,10 @@
     "message": "Klienditugi"
   },
   "getApps": {
-    "message": "Hangi äpid"
+    "message": "Hangi rakendused"
   },
   "loggedInAs": {
-    "message": "Sisse logitud kui"
+    "message": "Logis sisse kui"
   },
   "eventLogs": {
     "message": "Sündmuste logid"
@@ -1776,7 +1809,7 @@
     "message": "Oled kindel, et soovid selle kogumiku kustutada?"
   },
   "editUser": {
-    "message": "Muuda kasutajat"
+    "message": "Kasutaja muutmine"
   },
   "inviteUser": {
     "message": "Kutsu kasutaja"
@@ -1785,7 +1818,7 @@
     "message": "Kutsu organisatsiooni uusi kasutajaid, sisestades alla nende Bitwardeni konto e-posti aadressid. Kui neil ei ole veel Bitwardeni kontot, pakutakse neile võimalus see luua."
   },
   "inviteMultipleEmailDesc": {
-    "message": "Saad kutsuda kuni $COUNT$ kasutajat, eraldades nende e-posti aadressid komaga.",
+    "message": "Saad kutsuda kuni $COUNT$ kasutajat. Eralda nende e-posti aadressid komaga.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1863,7 +1896,7 @@
     "message": "Veebihoidla"
   },
   "loggedIn": {
-    "message": "Sisse logitud."
+    "message": "Logis sisse."
   },
   "changedPassword": {
     "message": "Muuda konto parooli."
@@ -2073,7 +2106,7 @@
     "message": "Muuda gruppe, kuhu see kasutaja kuulub."
   },
   "invitedUsers": {
-    "message": "Kutsutud kasutaja(d)."
+    "message": "Kutse on saadetud."
   },
   "resendInvitation": {
     "message": "Saada kutse uuesti"
@@ -2091,7 +2124,7 @@
     "message": "Kinnita"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ on kutse vastu võtnud.",
+    "message": "Kasutaja $USER$ on kinnitatud.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2100,10 +2133,10 @@
     }
   },
   "confirmUsers": {
-    "message": "Kinnita kasutajaid"
+    "message": "Kasutajate kinnitamine"
   },
   "usersNeedConfirmed": {
-    "message": "Sul on kasutajaid, kes on küll kutsumisega nõustunud, aga vajavad veel kinnitust. Kasutajad ei pääse organisatsioonile ligi enne, kui nad on kinnitatud."
+    "message": "Sul on kasutajaid, kes on organisatsiooniga liitunud, aga vajavad veel kinnitust. Kasutajad ei pääse organisatsioonile ligi enne, kui nad on kinnitatud."
   },
   "startDate": {
     "message": "Alguskuupäev"
@@ -2115,7 +2148,7 @@
     "message": "Kinnita e-posti aadress"
   },
   "verifyEmailDesc": {
-    "message": "Kõikide võimaluste kasutamiseks on vajalik konto e-posti aadressi kinnitamine."
+    "message": "Kõikide võimaluste kasutamiseks pead oma konto e-posti aadressi kinnitama."
   },
   "verifyEmailFirst": {
     "message": "Esmalt pead kinnitama konto e-poesti aadressi."
@@ -2139,7 +2172,7 @@
     "message": "Liitu organisatsiooniga"
   },
   "joinOrganizationDesc": {
-    "message": "Sind on kutsutud ülal oleva organisatsiooniga liituma. Liitumise kinnitamiseks pead sisse logima või omale Bitwardeni konto looma."
+    "message": "Sind on kutsutud ülal oleva organisatsiooniga liituma. Liitumise kinnitamiseks pead oma Bitwardeni kontosse sisse logima. Kui sul ei ole veel kontot, saad selle luua."
   },
   "inviteAccepted": {
     "message": "Kutse on vastu võetud"
