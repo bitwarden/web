@@ -88,36 +88,19 @@ export class VaultComponent implements OnInit, OnDestroy {
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
-        const hasEncKey = await this.cryptoService.hasEncKey();
-        this.showUpdateKey = !hasEncKey;
-        const canAccessPremium = await this.userService.canAccessPremium();
 
         this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
-            this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
-                this.ngZone.run(async () => {
-                    switch (message.command) {
-                        case 'syncCompleted':
-                            if (message.successfully) {
-                                await Promise.all([
-                                    this.groupingsComponent.load(),
-                                    this.organizationsComponent.load(),
-                                    this.ciphersComponent.load(this.ciphersComponent.filter),
-                                ]);
-                                this.changeDetectorRef.detectChanges();
-                            }
-                            break;
-                    }
-                });
-            });
+
+            this.showUpdateKey = !(await this.cryptoService.hasEncKey());
+            const canAccessPremium = await this.userService.canAccessPremium();
+            this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
+                !this.platformUtilsService.isSelfHost();
 
             await Promise.all([
                 this.groupingsComponent.load(),
                 this.organizationsComponent.load(),
             ]);
-
-            this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
-                !this.platformUtilsService.isSelfHost();
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
@@ -143,6 +126,23 @@ export class VaultComponent implements OnInit, OnDestroy {
                 this.groupingsComponent.selectedAll = true;
                 await this.ciphersComponent.load();
             }
+
+            this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
+                this.ngZone.run(async () => {
+                    switch (message.command) {
+                        case 'syncCompleted':
+                            if (message.successfully) {
+                                await Promise.all([
+                                    this.groupingsComponent.load(),
+                                    this.organizationsComponent.load(),
+                                    this.ciphersComponent.load(this.ciphersComponent.filter),
+                                ]);
+                                this.changeDetectorRef.detectChanges();
+                            }
+                            break;
+                    }
+                });
+            });
         });
     }
 
