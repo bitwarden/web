@@ -14,6 +14,7 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
 
@@ -24,6 +25,7 @@ import { PaymentComponent } from './payment.component';
 export class PremiumComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
 
+    canAccessPremium = false;
     selfHosted = false;
     premiumPrice = 10;
     storageGbPrice = 4;
@@ -35,11 +37,12 @@ export class PremiumComponent implements OnInit {
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private tokenService: TokenService,
         private router: Router, private messagingService: MessagingService,
-        private syncService: SyncService) {
+        private syncService: SyncService, private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
+        this.canAccessPremium = await this.userService.canAccessPremium();
         const premium = await this.tokenService.getPremium();
         if (premium) {
             this.router.navigate(['/settings/billing']);

@@ -1,6 +1,9 @@
 <div class="page-header">
     <h1>{{'goPremium' | i18n}}</h1>
 </div>
+<app-callout type="info" *ngIf="canAccessPremium" title="{{'youHavePremiumAccess' | i18n}}" icon="fa-star">
+    {{'alreadyPremiumFromOrg' | i18n}}
+</app-callout>
 <app-callout type="success">
     <p>{{'premiumUpgradeUnlockFeatures' | i18n}}</p>
     <ul class="fa-ul">
