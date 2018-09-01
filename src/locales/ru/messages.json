@@ -853,16 +853,16 @@
     "message": "Подтвердите новый мастер-пароль"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Настройки ключа шифрования"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "Алгоритм KDF"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "Итерации KDF"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Более высокие итерации KDF могут помочь защитить ваш мастер-пароль от атаки грубой силой (полным перебором). Мы рекомендуем значение $VALUE$ или больше.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +871,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Установка слишком высоких итераций KDF может привести к снижению производительности при входе (и разблокировке) на устройствах с медленными процессорами. Мы рекомендуем увеличить значение с шагом $INCREMENT$, а затем проверить все ваши устройства.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,10 +880,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Изменить KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Настройки ключа шифрования изменены"
   },
   "dangerZone": {
     "message": "Опасная зона"
@@ -1074,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Для использования этой функции требуется премиум-статус."
+  },
+  "youHavePremiumAccess": {
+    "message": "You have premium access"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "You already have access to premium features because of an organization you are a member of."
   },
   "manage": {
     "message": "Управление"
@@ -1693,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Локальный хостинг (опционально)"
+  },
+  "usersGetPremium": {
+    "message": "Users get access to premium membership features"
   },
   "controlAccessWithGroups": {
     "message": "Управление доступом пользователей с помощью групп"
