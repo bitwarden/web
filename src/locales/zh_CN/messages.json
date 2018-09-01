@@ -853,16 +853,16 @@
     "message": "确认新主密码"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "加密密钥设置"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "KDF 算法"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "KDF 迭代"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "更高的 KDF 迭代可以帮助保护您的主密码免遭攻击者的暴力强制。建议 $VALUE$ 或更高。",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +871,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "如果将 KDF 迭代设置得太高, 可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能较差。建议您增加 $INCREMENT$ 的增量值, 然后测试所有设备。",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,10 +880,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "更改 KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "加密密钥设置已更改"
   },
   "dangerZone": {
     "message": "危险操作区"
@@ -1074,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "此功能需要高级会员资格。"
+  },
+  "youHavePremiumAccess": {
+    "message": "You have premium access"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "You already have access to premium features because of an organization you are a member of."
   },
   "manage": {
     "message": "管理"
@@ -1693,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "内部托管（可选）"
+  },
+  "usersGetPremium": {
+    "message": "Users get access to premium membership features"
   },
   "controlAccessWithGroups": {
     "message": "使用群组控制用户访问权限"
