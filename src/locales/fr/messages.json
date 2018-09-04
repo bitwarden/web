@@ -853,16 +853,16 @@
     "message": "Confirmer le nouveau mot de passe maître"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Paramètres de la clé de chiffrement"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "Algorithme KDF"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "Nombre d'itérations de KDF"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Un nombre plus élevé d'itérations de KDF peut aider à protéger votre mot de passe maître contre une attaque par force brute. Nous recommandons une valeur de $VALUE$ ou plus.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +871,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Si vous définissez un nombre d'itérations KDF trop élevé, les performances risquent d'être mauvaises lorsque vous vous connectez (et déverrouillez) Bitwarden sur des périphériques dont les processeurs sont plus lents. Nous vous recommandons d'augmenter la valeur par incréments de $INCREMENT$, puis de tester tous vos appareils.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,10 +880,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Modifier KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Paramètres de la clé de chiffrement modifiés"
   },
   "dangerZone": {
     "message": "Zone de danger"
@@ -1074,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Une adhésion premium est requise pour utiliser cette fonctionnalité."
+  },
+  "youHavePremiumAccess": {
+    "message": "You have premium access"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "You already have access to premium features because of an organization you are a member of."
   },
   "manage": {
     "message": "Gérer"
@@ -1693,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Hébergement local (optionnel)"
+  },
+  "usersGetPremium": {
+    "message": "Users get access to premium membership features"
   },
   "controlAccessWithGroups": {
     "message": "Contrôlez l'accès des utilisateurs avec des groupes"
