@@ -38,7 +38,7 @@ export class ChangeEmailComponent {
             return;
         }
 
-        this.newEmail = this.newEmail.toLowerCase();
+        this.newEmail = this.newEmail.trim().toLowerCase();
         if (!this.tokenSent) {
             const request = new EmailTokenRequest();
             request.newEmail = this.newEmail;

@@ -30,7 +30,7 @@ export class RecoverTwoFactorComponent {
         try {
             const request = new TwoFactorRecoveryRequest();
             request.recoveryCode = this.recoveryCode.replace(/\s/g, '').toLowerCase();
-            request.email = this.email.toLowerCase();
+            request.email = this.email.trim().toLowerCase();
             const key = await this.authService.makePreloginKey(this.masterPassword, request.email);
             request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
             this.formPromise = this.apiService.postTwoFactorRecover(request);
