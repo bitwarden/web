@@ -47,7 +47,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         this.selectAll(false);
         if (this.collectionIds != null) {
             this.collections.forEach((c) => {
-                (c as any).checked = this.collectionIds.indexOf(c.id) > -1;
+                (c as any).checked = this.collectionIds != null && this.collectionIds.indexOf(c.id) > -1;
             });
         }
     }

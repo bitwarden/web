@@ -152,7 +152,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             if (collectionId === 'unassigned') {
                 return c.collectionIds == null || c.collectionIds.length === 0;
             } else {
-                return c.collectionIds.indexOf(collectionId) > -1;
+                return c.collectionIds != null && c.collectionIds.indexOf(collectionId) > -1;
             }
         };
         if (load) {
