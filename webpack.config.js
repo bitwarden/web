@@ -14,7 +14,7 @@ if (process.env.NODE_ENV == null) {
 const ENV = process.env.ENV = process.env.NODE_ENV;
 
 const extractCss = new ExtractTextPlugin({
-    filename: '[name].[chunkhash].css',
+    filename: '[name].[hash].css',
     disable: false,
     allChunks: true,
 });
@@ -73,7 +73,7 @@ const plugins = [
         path.resolve(__dirname, 'build/*'),
     ]),
     // ref: https://github.com/angular/angular/issues/20357
-    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/,
+    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)fesm5/,
         path.resolve(__dirname, './src')),
     new HtmlWebpackPlugin({
         template: './src/index.html',
@@ -136,7 +136,9 @@ const serve = {
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
     // host: '192.168.1.9',
-    hot: false,
+
+    // host client has issues. ref: https://github.com/webpack-contrib/webpack-serve/issues/233
+    // hotClient: false,
 };
 
 const config = {
@@ -174,7 +176,7 @@ const config = {
         modules: [path.resolve('node_modules')],
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[hash].js',
         path: path.resolve(__dirname, 'build'),
     },
     module: { rules: moduleRules },

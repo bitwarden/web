@@ -24,6 +24,10 @@ function webfonts() {
         .pipe(gulp.dest(paths.cssDir));
 };
 
+function cleanupNodeTypes() {
+    return del(['./jslib/node_modules/@types/node/']);
+}
+
 function version() {
     fs.writeFileSync(paths.build + 'version.json', '{"version":"' + package.version + '"}');
 }
@@ -31,5 +35,7 @@ function version() {
 gulp.task('clean', clean);
 gulp.task('webfonts', ['clean'], webfonts);
 gulp.task('prebuild', ['webfonts']);
+gulp.task('cleanupNodeTypes', cleanupNodeTypes);
+gulp.task('predist', ['cleanupNodeTypes']);
 gulp.task('version', version);
 gulp.task('postdist', ['version']);
