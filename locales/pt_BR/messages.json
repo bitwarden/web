@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "Confirme a Nova Senha Mestra"
   },
+  "encKeySettings": {
+    "message": "Configurações da Chave de Criptografia"
+  },
+  "kdfAlgorithm": {
+    "message": "Algoritmo KDF"
+  },
+  "kdfIterations": {
+    "message": "Iterações KDF"
+  },
+  "kdfIterationsDesc": {
+    "message": "As iterações KDF mais altas podem ajudar a proteger a sua senha mestra de ser descoberta pela força bruta de um invasor. Recomendamos um valor de $VALUE$ ou mais.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Configurar as suas iterações KDF muito alta pode resultar em baixo desempenho ao iniciar sessão (e desbloquear) no Bitwarden em dispositivos com CPUs mais lentas. Recomendamos que você aumente o valor em incrementos de $INCREMENT$ e, em seguida, teste em todos os seus dispositivos.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Alterar KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "As Configurações da Chave de Criptografia foram Alteradas"
+  },
   "dangerZone": {
     "message": "Zona de Perigo"
   },
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Uma conta premium é necessária para usar esse recurso."
+  },
+  "youHavePremiumAccess": {
+    "message": "Você tem acesso premium"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Você já tem acesso às funcionalidades premium por causa de uma organização da qual é um membro."
   },
   "manage": {
     "message": "Gerenciar"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Hospedagem Local (opcional)"
+  },
+  "usersGetPremium": {
+    "message": "Os usuários obtêm acesso às funcionalidades premium dos associados"
   },
   "controlAccessWithGroups": {
     "message": "Controle o acesso do usuário com grupos"

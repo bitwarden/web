@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "Neues Master-Passwort bestätigen"
   },
+  "encKeySettings": {
+    "message": "Einstellungen des Verschlüsselungsschlüssels"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF-Algorithmus"
+  },
+  "kdfIterations": {
+    "message": "KDF-Iterationen"
+  },
+  "kdfIterationsDesc": {
+    "message": "Eine höhere Anzahl von KDF-Iterationen hilft dabei, dein Master-Passwort besser vor Brute-Force-Angriffen zu schützen. Wir empfehlen einen Wert von $VALUE$ oder mehr.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Wenn Sie die Anzahl der KDF-Iterationen zu hoch setzen, kann es sein, dass das Einloggen in (und Entsperren von) Bitwarden auf langsameren Geräten länger dauert. Wir empfehlen, dass Sie den Wert wiederholt um $INCREMENT$ anheben und auf all ihren Geräten testen.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "KDF ändern"
+  },
+  "encKeySettingsChanged": {
+    "message": "Einstellungen des Verschlüsselungsschlüssels wurden geändert"
+  },
   "dangerZone": {
     "message": "Gefahrenzone"
   },
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Für diese Funktion ist eine Premium-Mitgliedschaft notwendig."
+  },
+  "youHavePremiumAccess": {
+    "message": "Sie haben Zugriff auf Premium-Funktionen"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Wegen einer Organisation, bei der Sie Mitglied sind, haben Sie bereits Zugriff auf Premium-Funktionen."
   },
   "manage": {
     "message": "Verwalten"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Hosting auf eigenem Server (optional)"
+  },
+  "usersGetPremium": {
+    "message": "Mitglieder erhalten Zugriff auf Premium-Funktionen"
   },
   "controlAccessWithGroups": {
     "message": "Zugriffskontrolle durch Gruppen"

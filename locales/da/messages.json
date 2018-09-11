@@ -771,7 +771,7 @@
     "message": "Indtast din hovedadgangskode for at eksportere dine data fra boksen."
   },
   "exportVault": {
-    "message": "Eksporter boks"
+    "message": "Eksportér boks"
   },
   "exportSuccess": {
     "message": "Dine boksdata er blevet eksporteret."
@@ -851,6 +851,39 @@
   },
   "confirmNewMasterPass": {
     "message": "Bekræft ny hovedadgangskode"
+  },
+  "encKeySettings": {
+    "message": "Indstillinger for krypteringsnøgle"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF algoritme"
+  },
+  "kdfIterations": {
+    "message": "KDF iterationer"
+  },
+  "kdfIterationsDesc": {
+    "message": "Flere KDF iterationer kan hjælpe med at beskytte din hovedadgangskode imod brute force angreb. Vi anbefaler en værdi på $VALUE$ eller mere.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Hvis du indstiller dine KDF iterationer for højt, kan det resultere i dårlig ydeevne, når du logger ind på (og låser op for) Bitwarden på enheder med langsomme CPU'er. Vi anbefaler at du øger værdien i trin på $INCREMENT$ og derefter tester alle dine enheder.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Ændre KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Krypteringsnøgleindstillinger ændret"
   },
   "dangerZone": {
     "message": "Farezone"
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Premium-medlemskab kræves for at anvende denne funktion."
+  },
+  "youHavePremiumAccess": {
+    "message": "Du har premium adgang"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Du har allerede adgang til premium-funktioner på grund af en organisation, du er medlem af."
   },
   "manage": {
     "message": "Håndtér"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Lokal-hosting (valgfri)"
+  },
+  "usersGetPremium": {
+    "message": "Brugere får adgang til premium-medlemskabsfunktioner"
   },
   "controlAccessWithGroups": {
     "message": "Kontroller brugeradgang med grupper"

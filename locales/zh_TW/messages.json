@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "確認新密碼"
   },
+  "encKeySettings": {
+    "message": "Encryption Key Settings"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF Algorithm"
+  },
+  "kdfIterations": {
+    "message": "KDF Iterations"
+  },
+  "kdfIterationsDesc": {
+    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Change KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Encryption Key Settings Changed"
+  },
   "dangerZone": {
     "message": "危險區域"
   },
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "進階會員才可使用此功能。"
+  },
+  "youHavePremiumAccess": {
+    "message": "You have premium access"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "You already have access to premium features because of an organization you are a member of."
   },
   "manage": {
     "message": "管理"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "On-premise hosting (optional)"
+  },
+  "usersGetPremium": {
+    "message": "Users get access to premium membership features"
   },
   "controlAccessWithGroups": {
     "message": "Control user access with groups"

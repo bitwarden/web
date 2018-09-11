@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "Confirmer le nouveau mot de passe maître"
   },
+  "encKeySettings": {
+    "message": "Paramètres de la clé de chiffrement"
+  },
+  "kdfAlgorithm": {
+    "message": "Algorithme KDF"
+  },
+  "kdfIterations": {
+    "message": "Nombre d'itérations de KDF"
+  },
+  "kdfIterationsDesc": {
+    "message": "Un nombre plus élevé d'itérations de KDF peut aider à protéger votre mot de passe maître contre une attaque par force brute. Nous recommandons une valeur de $VALUE$ ou plus.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Si vous définissez un nombre d'itérations KDF trop élevé, les performances risquent d'être mauvaises lorsque vous vous connectez (et déverrouillez) Bitwarden sur des périphériques dont les processeurs sont plus lents. Nous vous recommandons d'augmenter la valeur par incréments de $INCREMENT$, puis de tester tous vos appareils.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Modifier KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Paramètres de la clé de chiffrement modifiés"
+  },
   "dangerZone": {
     "message": "Zone de danger"
   },
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Une adhésion premium est requise pour utiliser cette fonctionnalité."
+  },
+  "youHavePremiumAccess": {
+    "message": "Vous avez un accès premium"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Vous avez déjà accès aux fonctionnalités premium grâce à une organisation dont vous êtes membre."
   },
   "manage": {
     "message": "Gérer"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Hébergement local (optionnel)"
+  },
+  "usersGetPremium": {
+    "message": "Les utilisateurs auront accès aux fonctionnalités premium"
   },
   "controlAccessWithGroups": {
     "message": "Contrôlez l'accès des utilisateurs avec des groupes"

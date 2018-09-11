@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "Confirma la nueva contraseña maestra"
   },
+  "encKeySettings": {
+    "message": "Configuración de clave de cifrado"
+  },
+  "kdfAlgorithm": {
+    "message": "Algoritmo KDF"
+  },
+  "kdfIterations": {
+    "message": "Iteraciones de KDF"
+  },
+  "kdfIterationsDesc": {
+    "message": "Mientras más iteraciones KDF, mejor la protección a su contraseña maestra de ser descubierta por un ataque de fuerza bruta. Recomendamos un valor de $VALUE$ o más.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Establecer las iteraciones KDF con un valor muy alto, podría resultar en un rendimiento pobre al ingresar, y\/o desbloquear Bitwarden en dispositivos con CPUs lentos. Recomendamos que aumente el valor en incrementos de $INCREMENT$ y luego pruebe en todos sus dispositivos.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Modificar KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Se cambió la configuración de clave de cifrado"
+  },
   "dangerZone": {
     "message": "Zona peligrosa"
   },
@@ -1042,6 +1075,12 @@
   "premiumRequiredDesc": {
     "message": "Se quiere membrasía Premium para poder utilizar esta característica."
   },
+  "youHavePremiumAccess": {
+    "message": "Usted tiene acceso premium"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Ya tiene acceso a las características premium, debido a que es miembro de una organización."
+  },
   "manage": {
     "message": "Gestionar"
   },
@@ -1100,7 +1139,7 @@
     "message": "Conecta la YubiKey (NEO o serie 4) al puerto USB de tu ordenador."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Seleccione el primer campo de entrada YubiKey vacío a continuación."
+    "message": "Elija el primer campo de entrada vacío de YubiKey de abajo."
   },
   "twoFactorYubikeyTouchButton": {
     "message": "Toca el botón del YubiKey."
@@ -1169,13 +1208,13 @@
     "message": "Agregar una clave de seguridad U2F FIDO a su cuenta"
   },
   "twoFactorU2fPlugIn": {
-    "message": "Conecte la llave de seguridad al puerto USB de su ordenador."
+    "message": "Conecte la llave de seguridad al puerto USB de su computadora."
   },
   "twoFactorU2fTouchButton": {
     "message": "Si la clave de seguridad tiene un botón, tócalo."
   },
   "twoFactorU2fWarning": {
-    "message": "Debido a las limitaciones de la plataforma, FIDO U2F no puede utilizarse en todas las aplicaciones de Bitwarden. Debe habilitar otro proveedor de inicio de sesión de dos pasos para que puede acceder a su cuenta cuando FIDO U2F no pueda utilizarse. Plataformas soportadas:"
+    "message": "Debido a limitaciones de la plataforma, FIDO U2F no puede ser usado en todas las aplicaciones de Bitwarden. Debería habilitar otro proveedor de inicio de sesión de dos pasos, para que pueda acceder a su cuenta cuando FIDO U2F no pueda ser utilizado. Plataformas soportadas:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Bóveda web y extensiones de navegador en un escritorio\/portátil con un navegador compatible con U2F (Chrome, Opera, Vivaldi, o Firefox con FIDO U2F activado)."
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Alojamiento propio (opcional)"
+  },
+  "usersGetPremium": {
+    "message": "Los usuarios obtienen acceso a las características de una membresía premium"
   },
   "controlAccessWithGroups": {
     "message": "Control el acceso de usuarios con grupos"

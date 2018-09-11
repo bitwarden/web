@@ -787,7 +787,7 @@
     "description": "Minimum Special Characters"
   },
   "ambiguous": {
-    "message": "Onduidelijke tekens vermijden"
+    "message": "Vermijd dubbelzinnige tekens"
   },
   "regeneratePassword": {
     "message": "Wachtwoord opnieuw genereren"
@@ -851,6 +851,39 @@
   },
   "confirmNewMasterPass": {
     "message": "Bevestig nieuw Hoofdwachtwoord"
+  },
+  "encKeySettings": {
+    "message": "Instellingen coderingssleutel"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF Algortime"
+  },
+  "kdfIterations": {
+    "message": "KDF Herhalingen"
+  },
+  "kdfIterationsDesc": {
+    "message": "Hogere KDF iteraties kunnen helpen om je hoofdwachtwoord te beschermen tegen brute-force aanvallen. Het is raadzaam een waarde van $VALUE$ of hoger te kiezen.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Je KDF iteraties te hoog instellen kan leiden tot tot slechte performance bij het inloggen (en ontgrendelen) van Bitwarden op apparaten met langzamere CPU's. Het is aanbevolen dat je de waarde in stappen van $INCREMENT$ verhoogt, en vervolgens al je apparaten test.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Wijzig KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Instellingen coderingssleutel zijn gewijzigd"
   },
   "dangerZone": {
     "message": "Gevaren zone"
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "U heeft een Premium-lidmaatschap nodig om deze functie te kunnen gebruiken."
+  },
+  "youHavePremiumAccess": {
+    "message": "Je hebt premium toegang"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Je hebt al toegang tot premium functies, omdat je lid bent van een organisatie."
   },
   "manage": {
     "message": "Beheer"
@@ -1265,7 +1304,7 @@
     "message": "Facturatie & Licenties"
   },
   "goPremium": {
-    "message": "Neem Permium",
+    "message": "Neem Premium",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "On-premise hosting (optioneel)"
+  },
+  "usersGetPremium": {
+    "message": "Gebruikers krijgen toegang tot premium lidmaatschap functies"
   },
   "controlAccessWithGroups": {
     "message": "Beheer gebruikerstoegang met groepen"

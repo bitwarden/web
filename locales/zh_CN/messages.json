@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "确认新主密码"
   },
+  "encKeySettings": {
+    "message": "加密密钥设置"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF 算法"
+  },
+  "kdfIterations": {
+    "message": "KDF 迭代"
+  },
+  "kdfIterationsDesc": {
+    "message": "更高的 KDF 迭代可以帮助保护您的主密码免遭攻击者的暴力强制。建议 $VALUE$ 或更高。",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "如果将 KDF 迭代设置得太高, 可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能较差。建议您增加 $INCREMENT$ 的增量值, 然后测试所有设备。",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "更改 KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "加密密钥设置已更改"
+  },
   "dangerZone": {
     "message": "危险操作区"
   },
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "此功能需要高级会员资格。"
+  },
+  "youHavePremiumAccess": {
+    "message": "您有高级版访问权限"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "由于您所属的组织, 您已经拥有高级版功能权限。"
   },
   "manage": {
     "message": "管理"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "内部托管（可选）"
+  },
+  "usersGetPremium": {
+    "message": "用户拥有高级会员功能权限"
   },
   "controlAccessWithGroups": {
     "message": "使用群组控制用户访问权限"

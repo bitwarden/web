@@ -852,6 +852,39 @@
   "confirmNewMasterPass": {
     "message": "Potwierdź nowe hasło główne"
   },
+  "encKeySettings": {
+    "message": "Ustawienia klucza szyfrowania"
+  },
+  "kdfAlgorithm": {
+    "message": "Algorytm KDF"
+  },
+  "kdfIterations": {
+    "message": "Powtórzenia KDF"
+  },
+  "kdfIterationsDesc": {
+    "message": "Wyższa liczba powtórzeń KDF może pomóc chronić Twoje hasło główne przed atakami typu brute force. Zalecamy ustawienie wartości $VALUE$ lub wyższej.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Ustawienie zbyt wysokiej liczby powtórzeń KDF może skutkować obniżeniem wydajności podczas logowania do Bitwarden (oraz odblokowywania sejfu) na urządzeniach z wolniejszym procesorem. Zalecamy stopniowe zwiększanie tej wartości o $INCREMENT$ i przetestowanie jej na wszystkich Twoich urządzeniach.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Zmień KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Zmieniono ustawienia klucza szyfrowania"
+  },
   "dangerZone": {
     "message": "Strefa niebezpieczeństwa"
   },
@@ -1041,6 +1074,12 @@
   },
   "premiumRequiredDesc": {
     "message": "Członkostwo premium jest wymagane do korzystania z tej funkcji."
+  },
+  "youHavePremiumAccess": {
+    "message": "Masz dostęp do funkcji premium"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Posiadasz już dostęp do funkcji wersji premium dzięki organizacji, której jesteś członkiem."
   },
   "manage": {
     "message": "Zarządzaj"
@@ -1660,6 +1699,9 @@
   },
   "onPremHostingOptional": {
     "message": "Hosting na własnym serwerze (opcjonalny)"
+  },
+  "usersGetPremium": {
+    "message": "Użytkownicy uzyskują dostęp do funkcji członkostwa premium"
   },
   "controlAccessWithGroups": {
     "message": "Kontroluj dostęp z użyciem grup użytkowników"
