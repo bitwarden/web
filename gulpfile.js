@@ -24,18 +24,12 @@ function webfonts() {
         .pipe(gulp.dest(paths.cssDir));
 };
 
-function cleanupNodeTypes() {
-    return del(['./jslib/node_modules/@types/node/']);
-}
-
 function version() {
     fs.writeFileSync(paths.build + 'version.json', '{"version":"' + package.version + '"}');
 }
 
 gulp.task('clean', clean);
 gulp.task('webfonts', ['clean'], webfonts);
-gulp.task('cleanupNodeTypes', cleanupNodeTypes);
 gulp.task('prebuild', ['webfonts']);
-gulp.task('prebuild:prod', ['prebuild', 'cleanupNodeTypes']);
 gulp.task('version', version);
 gulp.task('postdist', ['version']);
