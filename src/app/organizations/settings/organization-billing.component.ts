@@ -257,11 +257,11 @@ export class OrganizationBillingComponent implements OnInit {
             case PlanType.EnterpriseMonthly:
                 return 4;
             case PlanType.EnterpriseAnnually:
-                return 3;
+                return 36;
             case PlanType.TeamsMonthly:
                 return 2.5;
             case PlanType.TeamsAnnually:
-                return 2;
+                return 24;
             default:
                 return 0;
         }
