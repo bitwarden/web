@@ -1,5 +1,4 @@
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
+import swal from 'sweetalert';
 
 import { DeviceType } from 'jslib/enums/deviceType';
 
@@ -7,9 +6,6 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { Utils } from 'jslib/misc/utils';
-
-// Hack due to Angular 5.2 bug
-const swal: SweetAlert = _swal as any;
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
