@@ -32,13 +32,6 @@
 <div class="secondary-header border-0 mb-0">
     <h1>{{'taxInformation' | i18n}}</h1>
 </div>
-<div class="mb-3" *ngIf="org && (org.businessAddress1 || org.businessTaxNumber)">
-    <div>{{org.businessAddress1}}</div>
-    <div>{{org.businessAddress2}}</div>
-    <div>{{org.businessAddress3}}</div>
-    <div>{{org.businessCountry}}</div>
-    <div>{{org.businessTaxNumber}}</div>
-</div>
 <p>{{'taxInformationDesc' | i18n}}</p>
 <a href="https://bitwarden.com/contact/" target="_blank" rel="noopener" class="btn btn-outline-secondary">
     {{'contactSupport' | i18n}}
