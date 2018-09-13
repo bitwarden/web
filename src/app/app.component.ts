@@ -1,5 +1,6 @@
 import * as jq from 'jquery';
-import swal from 'sweetalert';
+import * as _swal from 'sweetalert';
+import { SweetAlert } from 'sweetalert/typings/core';
 
 import {
     ToasterConfig,
@@ -44,6 +45,8 @@ import { ConstantsService } from 'jslib/services/constants.service';
 import { RouterService } from './services/router.service';
 
 const BroadcasterSubscriptionId = 'AppComponent';
+// Hack due to Angular 5.2 bug
+const swal: SweetAlert = _swal as any;
 const IdleTimeout = 60000 * 10; // 10 minutes
 
 @Component({
