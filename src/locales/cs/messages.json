@@ -853,16 +853,16 @@
     "message": "Potvrzení nového hesla"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Nastavení šifrovacího klíče"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "KDF algoritmus"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "KDF iterace"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Vyšší hodnota KDF iterací pomáhá chránit vaše hlavní heslo před útokem hrubou silou (brute force attack). Doporučujeme nastavit hodnotu $VALUE$ nebo vyšší.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +871,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Nastavení příliš vysoké hodnoty počtu KDF iterací může mít za následek špatný výkon při přihlašování (a odemykání) aplikace Bitwarden na zařízeních se slabým procesorem. Doporučujeme hodnotu navyšovat přírůstkově po $INCREMENT$ a vyzkoušet všechna vaše zařízení.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,10 +880,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Změnit KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Nastavení šifrovacího klíče bylo změněno"
   },
   "dangerZone": {
     "message": "Nebezpečná zóna"
@@ -1076,10 +1076,10 @@
     "message": "Pro použití této funkce je potřebné prémiové členství."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Máte prémiový přístup"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Již máte přístup k prémiovým funkcím díky organizaci, které jste členem."
   },
   "manage": {
     "message": "Správa"
@@ -1308,10 +1308,10 @@
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "Povýšili jste na premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Povyšte svůj účet na prémiové členství a odemkněte další skvělé funkce."
   },
   "premiumSignUpStorage": {
     "message": "1 GB šifrovaného uložiště."
@@ -2130,10 +2130,10 @@
     }
   },
   "confirm": {
-    "message": "Confirm"
+    "message": "Potvrdit"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "Uživatel $USER$ byl potvrzen.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2142,16 +2142,16 @@
     }
   },
   "confirmUsers": {
-    "message": "Confirm Users"
+    "message": "Potvrdit uživatele"
   },
   "usersNeedConfirmed": {
     "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
   },
   "startDate": {
-    "message": "Start Date"
+    "message": "Datum začátku"
   },
   "endDate": {
-    "message": "End Date"
+    "message": "Datum konce"
   },
   "verifyEmail": {
     "message": "Ověřit e-mail"
@@ -2353,16 +2353,16 @@
     "message": "Update Key"
   },
   "updateEncryptionKey": {
-    "message": "Update Encryption Key"
+    "message": "Aktualizovat šifrovací klíč"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "You are currently using an outdated encryption scheme."
+    "message": "Používáte zastaralé šifrovací schéma."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "Přešli jsme na delší šifrovací klíče, které poskytují vyšší úroveň zabezpečení a přístup k novým funkcím. Aktualizace vašeho šifrovacího klíče je rychlá a snadná. Stačí níže zadat vaše hlavní heslo. Provedení této aktualizace může být v budoucnu povinné."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "Po aktualizace šifrovacího klíče dojde k odhlášení a budete se muset opětovně přihlásit do všech Bitwarden aplikací, které aktuálně používáte (např. mobilní aplikace či rozšíření pro prohlížeč). Nezdaří-li se odhlášení a opětovné přihlášení (během něhož bude stažen nový šifrovací klíč), může dojít k poškození údajů. Pokusíme se vás automaticky odhlásit, nicméně, může to chvíli trvat."
   },
   "subscription": {
     "message": "Odběr"
@@ -2371,13 +2371,13 @@
     "message": "Načítání"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "Povýšit"
   },
   "upgradeOrganization": {
     "message": "Upgrade Organization"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "Tato funkce je nedostupná pro bezplatné organizace. Přejděte na placené členství a odemkněte více funkcí."
   },
   "createOrganizationStep1": {
     "message": "Create Organization: Step 1"
