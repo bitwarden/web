@@ -130,22 +130,21 @@ if (ENV === 'production') {
     });
 }
 
+// ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
-const serve = {
+const devServer = {
     https: {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
     // host: '192.168.1.9',
-
-    // host client has issues. ref: https://github.com/webpack-contrib/webpack-serve/issues/233
-    // hotClient: false,
+    hot: false,
 };
 
 const config = {
     mode: ENV,
     devtool: 'source-map',
-    serve: serve,
+    devServer: devServer,
     entry: {
         'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
