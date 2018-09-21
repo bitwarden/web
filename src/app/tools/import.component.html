@@ -153,6 +153,10 @@
             check all of the fields, change the "Output format" to "CSV", and then click the "Start" button to save the CSV
             file.
         </ng-container>
+        <ng-container *ngIf="format === 'passpackcsv'">
+            Log into the Passpack website vault and navigate to "Settings" &rarr; "Export", then click the "Download" button to save
+            the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
