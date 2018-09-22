@@ -91,6 +91,7 @@ const plugins = [
         chunks: ['connectors/u2f'],
     }),
     new CopyWebpackPlugin([
+        { from: './src/.nojekyll' },
         { from: './src/manifest.json' },
         { from: './src/favicon.ico' },
         { from: './src/browserconfig.xml' },
