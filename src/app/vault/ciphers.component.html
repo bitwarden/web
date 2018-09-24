@@ -3,7 +3,7 @@
         <tbody>
             <tr *ngFor="let c of ciphers">
                 <td (click)="checkCipher(c)" class="table-list-checkbox" *ngIf="!organization">
-                    <input type="checkbox" [(ngModel)]="c.checked">
+                    <input type="checkbox" [(ngModel)]="c.checked" appStopProp>
                 </td>
                 <td (click)="checkCipher(c)" class="table-list-icon">
                     <app-vault-icon [cipher]="c"></app-vault-icon>

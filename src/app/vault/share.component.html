@@ -39,7 +39,7 @@
                     <tbody>
                         <tr *ngFor="let c of collections; let i = index" (click)="check(c)">
                             <td class="table-list-checkbox">
-                                <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked">
+                                <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked" appStopProp>
                             </td>
                             <td>
                                 <span appStopProp>{{c.name}}</span>
