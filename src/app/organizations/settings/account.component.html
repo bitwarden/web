@@ -43,6 +43,8 @@
     <div class="card-body">
         <p>{{'dangerZoneDesc' | i18n}}</p>
         <button type="button" class="btn btn-outline-danger" (click)="deleteOrganization()">{{'deleteOrganization' | i18n}}</button>
+        <button type="button" class="btn btn-outline-danger" (click)="purgeVault()">{{'purgeVault' | i18n}}</button>
     </div>
 </div>
 <ng-template #deleteOrganizationTemplate></ng-template>
+<ng-template #purgeOrganizationTemplate></ng-template>

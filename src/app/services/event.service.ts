@@ -124,6 +124,9 @@ export class EventService {
             case EventType.Organization_Updated:
                 msg = this.i18nService.t('editedOrgSettings');
                 break;
+            case EventType.Organization_PurgedVault:
+                msg = this.i18nService.t('purgedOrganizationVault');
+                break;
             default:
                 break;
         }

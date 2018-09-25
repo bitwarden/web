@@ -17,6 +17,7 @@ import { OrganizationUpdateRequest } from 'jslib/models/request/organizationUpda
 import { OrganizationResponse } from 'jslib/models/response/organizationResponse';
 
 import { ModalComponent } from '../../modal.component';
+import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { DeleteOrganizationComponent } from './delete-organization.component';
 
 @Component({
@@ -25,6 +26,7 @@ import { DeleteOrganizationComponent } from './delete-organization.component';
 })
 export class AccountComponent {
     @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef }) deleteModalRef: ViewContainerRef;
+    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef }) purgeModalRef: ViewContainerRef;
 
     loading = true;
     org: OrganizationResponse;
@@ -72,6 +74,21 @@ export class AccountComponent {
         this.modal = this.deleteModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<DeleteOrganizationComponent>(
             DeleteOrganizationComponent, this.deleteModalRef);
+        childComponent.organizationId = this.organizationId;
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
+    }
+
+    purgeVault() {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.purgeModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<PurgeVaultComponent>(PurgeVaultComponent, this.purgeModalRef);
         childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {
