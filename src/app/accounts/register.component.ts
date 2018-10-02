@@ -29,7 +29,8 @@ export class RegisterComponent extends BaseRegisterComponent {
         i18nService: I18nService, cryptoService: CryptoService,
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService) {
-        super(authService, router, analytics, toasterService, i18nService, cryptoService, apiService, stateService);
+        super(authService, router, analytics, toasterService, i18nService, cryptoService, apiService, stateService,
+            platformUtilsService);
         this.showTerms = !platformUtilsService.isSelfHost();
     }
 
