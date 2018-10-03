@@ -7,9 +7,6 @@ import {
 
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
 import { ModalComponent } from '../modal.component';
@@ -33,12 +30,10 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     @ViewChild('twoFactorOptions', { read: ViewContainerRef }) twoFactorOptionsModal: ViewContainerRef;
 
     constructor(authService: AuthService, router: Router,
-        analytics: Angulartics2, toasterService: ToasterService,
         i18nService: I18nService, apiService: ApiService,
         platformUtilsService: PlatformUtilsService, private stateService: StateService,
         environmentService: EnvironmentService, private componentFactoryResolver: ComponentFactoryResolver) {
-        super(authService, router, analytics, toasterService, i18nService, apiService,
-            platformUtilsService, window, environmentService);
+        super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 

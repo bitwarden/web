@@ -1,6 +1,3 @@
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import {
     Component,
     ComponentFactoryResolver,
@@ -28,10 +25,9 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
 
     private modal: ModalComponent = null;
 
-    constructor(passwordGenerationService: PasswordGenerationService, analytics: Angulartics2,
-        platformUtilsService: PlatformUtilsService, i18nService: I18nService,
-        toasterService: ToasterService, private componentFactoryResolver: ComponentFactoryResolver) {
-        super(passwordGenerationService, analytics, platformUtilsService, i18nService, toasterService, window);
+    constructor(passwordGenerationService: PasswordGenerationService, platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver) {
+        super(passwordGenerationService, platformUtilsService, i18nService, window);
     }
 
     history() {

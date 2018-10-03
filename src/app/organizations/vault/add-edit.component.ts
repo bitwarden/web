@@ -3,9 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { ApiService } from 'jslib/abstractions/api.service';
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -35,14 +32,12 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
 
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
-        analytics: Angulartics2, toasterService: ToasterService,
         auditService: AuditService, stateService: StateService,
         userService: UserService, totpService: TotpService,
         passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
         messagingService: MessagingService) {
-        super(cipherService, folderService, i18nService, platformUtilsService, analytics,
-            toasterService, auditService, stateService, userService, totpService, passwordGenerationService,
-            messagingService);
+        super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
+            userService, totpService, passwordGenerationService, messagingService);
     }
 
     protected async loadCipher() {
