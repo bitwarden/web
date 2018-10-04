@@ -134,7 +134,7 @@ export function initFactory(): Function {
             environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
                 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
         }
-        await apiService.setUrls({
+        apiService.setUrls({
             base: isDev ? null : window.location.origin,
             api: isDev ? 'http://localhost:4000' : null,
             identity: isDev ? 'http://localhost:33656' : null,
@@ -151,7 +151,7 @@ export function initFactory(): Function {
         lockService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
         await i18nService.init(locale);
-        await authService.init();
+        authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
         let theme = await storageService.get<string>(ConstantsService.themeKey);
