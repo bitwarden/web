@@ -222,18 +222,42 @@ input, select, textarea {
 }
 
 .modal-body {
-    h3 {
+    h3,
+    legend {
+        font-size: 1rem;
         font-weight: normal;
         text-transform: uppercase;
         color: $text-muted;
     }
 }
+
 .modal .list-group-flush {
     :first-child {
         border-top: none;
     }
     :last-child {
         border-bottom: none;
+    }
+}
+
+.checkbox-form-group {
+    border-top: 1px solid #dee2e6;
+    padding: 3px 0;
+
+    &:first-child {
+        border-top: none;
+    }
+
+    &:hover {
+        background-color: rgba(0,0,0,0.03);
+    }
+
+    input {
+        margin: 12px;
+    }
+
+    label {
+        padding-left: 5px;
     }
 }
 

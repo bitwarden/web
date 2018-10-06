@@ -10,34 +10,36 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p>{{'collectionsDesc' | i18n}}</p>
-                <div class="d-flex">
-                    <h3>{{'collections' | i18n}}</h3>
-                    <div class="ml-auto d-flex" *ngIf="collections && collections.length">
-                        <button type="button" (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
-                            {{'selectAll' | i18n}}
-                        </button>
-                        <button type="button" (click)="selectAll(false)" class="btn btn-link btn-sm py-0">
-                            {{'unselectAll' | i18n}}
-                        </button>
+            <div class="modal-body" attr.aria-labelledby="CollectionTitle" attr.aria-describedby="CollectionDesc">
+                <fieldset>
+                    <p id="CollectionDesc">{{'collectionsDesc' | i18n}}</p>
+                    <div class="d-flex">
+                        <legend id="CollectionTitle">{{'collections' | i18n}}</legend>
+                        <div class="ml-auto d-flex" *ngIf="collections && collections.length">
+                            <button type="button" (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
+                                {{'selectAll' | i18n}}
+                            </button>
+                            <button type="button" (click)="selectAll(false)" class="btn btn-link btn-sm py-0">
+                                {{'unselectAll' | i18n}}
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div *ngIf="!collections || !collections.length">
-                    {{'noCollectionsInList' | i18n}}
-                </div>
-                <table class="table table-hover table-list mb-0" *ngIf="collections && collections.length">
-                    <tbody>
-                        <tr *ngFor="let c of collections; let i = index" (click)="check(c)">
-                            <td class="table-list-checkbox">
-                                <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked">
-                            </td>
-                            <td>
-                                <span appStopProp>{{c.name}}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                    <div *ngIf="!collections || !collections.length">
+                        {{'noCollectionsInList' | i18n}}
+                    </div>
+
+                    <div *ngIf="!collections || !collections.length">
+                        {{'noCollectionsInList' | i18n}}
+                    </div>
+
+                    <div *ngIf="collections && collections.length">
+                        <div class="checkbox-form-group" *ngFor="let c of collections; let i = index">
+                            <input type="checkbox" [(ngModel)]="c.checked" id="Collection[{{i}}]" name="Collection[{{i}}].Checked">
+                            <label class="form-check-label" for="Collection[{{i}}]">{{c.name}}</label>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
