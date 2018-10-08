@@ -127,7 +127,7 @@ containerService.attachToWindow(window);
 export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
-        const isDev = platformUtilsService.isDev();
+        const isDev = true;
         if (!isDev && platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
