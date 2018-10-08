@@ -906,8 +906,14 @@
   "purgeVault": {
     "message": "Kluis legen"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Ga hieronder verder om alle items en mappen in uw kluis te verwijderen. Items die behoren tot een organisatie waarmee u deelt, worden niet verwijderd."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Het leegmaken van uw webkluis is permanent en kan niet ongedaan worden gemaakt."
@@ -1165,6 +1171,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC ondersteuning"
   },
@@ -1207,11 +1222,26 @@
   "twoFactorU2fAdd": {
     "message": "Voeg een FIDO U2F beveiligingssleutel toe aan uw account"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Stop de beveiligingssleutel in een USB-poort van uw computer."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Druk op de knop van de beveiligingssleutel wanneer deze aanwezig is."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Vanwege platformbeperkingen kunnen FIDO U2F niet in alle Bitwarden applicaties gebruikt worden. U zou een andere tweestapsaanmeldingsaanbieder moeten instellen voor wanneer FIDO U2F niet gebruikt kunnen worden. De volgende platformen worden ondersteunt:"
@@ -1222,11 +1252,11 @@
   "twoFactorU2fWaiting": {
     "message": "Wachten tot u op de knop van de beveiligingssleutel hebt gedrukt"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Klik op de \"Activeren\"-knop hier beneden om deze beveiligingssleutel te activeren als tweestapsaanmeldingsmethode."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Er was een probleem met het lezen van de beveiligingssleutel."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Uw Bitwarden tweestapsaanmelding herstelcode"

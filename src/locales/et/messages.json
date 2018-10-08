@@ -906,8 +906,14 @@
   "purgeVault": {
     "message": "Likvideeri Hoidla"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Jätkates kustutatakse kõik hoidlas olevad kirjed ja kaustad. Andmed, mis kuuluvad organisatsioonile, jäävad puutumata."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Hoidla likvideerimine on alatine. Seda ei saa tagasi võtta."
@@ -1165,6 +1171,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFS tugi"
   },
@@ -1207,11 +1222,26 @@
   "twoFactorU2fAdd": {
     "message": "Lisa oma kontole FIDO U2F turvavõti"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Sisesta turvavõti oma arvuti USB pessa."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Kui turvavõtmel on nupp, siis vajuta seda."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Mõnede platvormi piirangute tõttu ei saa FIDO U2F-i kõikide Bitwardeni rakendustega kasutada. Võiksid kaaluda teise kaheastmelise kinnitamise aktiveerimist olukordadeks, kus FIDO U2F-i ei saa kasutada. Toetatud platvormid:"
@@ -1222,11 +1252,11 @@
   "twoFactorU2fWaiting": {
     "message": "Ootame, kuni puudutad turvavõtmel olevat nuppu"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Kliki all olevale \"Luba\" nupule, et kaheastmeline kinnitamine läbi turvavõtme sisse lülitada."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Turvavõtme lugemisel tekkis tõrge."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwardeni kaheastmelise logimise varukood"

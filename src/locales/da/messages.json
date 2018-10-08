@@ -906,8 +906,14 @@
   "purgeVault": {
     "message": "Tøm boks"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Fortsæt nedenfor for at slette alle elementer og mapper i din boks. Elementer, der tilhører en organisation du deler med, slettes ikke."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Tømning af din boks er permanent. Det kan ikke fortrydes."
@@ -1165,6 +1171,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC understøttelse"
   },
@@ -1207,11 +1222,26 @@
   "twoFactorU2fAdd": {
     "message": "Tilføj en FIDO U2F sikkerhedsnøgle til din konto"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Sæt sikkerhedsnøglen i computerens USB-port."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Hvis sikkerhedsnøglen har en knap, skal du trykke på den."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "På grund af platformbegrænsninger kan FIDO U2F ikke bruges på alle Bitwarden-applikationer. Du bør aktivere en anden to-trins login udbyder, så du kan få adgang til din konto, når FIDO U2F ikke kan benyttes. Understøttede platforme:"
@@ -1222,11 +1252,11 @@
   "twoFactorU2fWaiting": {
     "message": "Venter på at du trykker på knappen på din sikkerhedsnøgle"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Klik på knappen \"Aktivér\" nedenfor for at benytte denne sikkerhedsnøgle til to-trins-login."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Der opstod et problem med at læse sikkerhedsnøglen."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din Bitwarden to-trins-login gendannelseskode"

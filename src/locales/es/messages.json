@@ -906,8 +906,14 @@
   "purgeVault": {
     "message": "Purgar caja fuerte"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Proceder eliminará todos los elementos y carpetas de tu caja fuerte. Los elementos que petenezcan a una organización con la que compartes contenido, no serán eliminados."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Purgar tu caja fuerte es permanente. No se puede deshacer."
@@ -1165,6 +1171,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Soporte NFC"
   },
@@ -1207,11 +1222,26 @@
   "twoFactorU2fAdd": {
     "message": "Agregar una clave de seguridad U2F FIDO a su cuenta"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Conecte la llave de seguridad al puerto USB de su computadora."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Si la clave de seguridad tiene un botón, tócalo."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Debido a limitaciones de la plataforma, FIDO U2F no puede ser usado en todas las aplicaciones de Bitwarden. Debería habilitar otro proveedor de inicio de sesión de dos pasos, para que pueda acceder a su cuenta cuando FIDO U2F no pueda ser utilizado. Plataformas soportadas:"
@@ -1222,11 +1252,11 @@
   "twoFactorU2fWaiting": {
     "message": "Esperando que toque el botón de su clave de seguridad"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Haga clic en el botón \"Habilitar\" a continuación para habilitar esta clave de seguridad para el inicio de sesión en dos pasos."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Hubo un problema leyendo la clave de seguridad."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Su código de recuperación de inicio de sesión de dos pasos Bitwarden"

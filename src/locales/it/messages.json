@@ -906,8 +906,14 @@
   "purgeVault": {
     "message": "Svuota Cassaforte"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Procedi in basso per eliminare tutti gli elementi e le cartelle nel Vault. Gli elementi che appartengono a un'organizzazione con cui condividi non verranno eliminati."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Svuotare la tua cassaforte è permanente. Questa azione non è reversibile."
@@ -1165,6 +1171,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Supporto per NFC"
   },
@@ -1207,11 +1222,26 @@
   "twoFactorU2fAdd": {
     "message": "Aggiungi una chiave di sicurezza di FIDO U2F al tuo account"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Inserire la chiave di protezione nella porta USB del tuo computer."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Se la chiave di protezione dispone di un pulsante, premilo."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "A causa di limitazioni della piattaforma, FIDO U2F non può essere utilizzato su tutte le applicazioni Bitwarden. Si consiglia di abilitare un altro metodo di verifica in due passaggi in modo da poter accedere al tuo account anche dove FIDO U2F non può essere usato. Piattaforme supportate:"
@@ -1222,11 +1252,11 @@
   "twoFactorU2fWaiting": {
     "message": "In attesa che venga premuto il pulsante della tua chiave di sicurezza"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Fai click sul pulsante \"Abilita\" per abilitare questa chiave di sicurezza per la verifica in due passaggi."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Si è verificato un problema durante la lettura della chiave di sicurezza."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Il tuo codice di recupero Bitwarden per la verifica in due passaggi"
