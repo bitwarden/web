@@ -37,6 +37,9 @@
   "password": {
     "message": "Senha"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Notas"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Comprimento"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Histórico de Senha"
   },
@@ -907,13 +916,13 @@
     "message": "Limpar o Cofre"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Cofre da organização limpado."
   },
   "purgeVaultDesc": {
     "message": "Continue abaixo para excluir todos os itens e pastas do seu cofre. Itens que pertencem a uma organização com a qual você compartilha não serão excluídos."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Continue abaixo para excluir todos os itens no cofre da organização."
   },
   "purgeVaultWarning": {
     "message": "Limpando o seu cofre permanentemente. Não pode ser desfeito."
@@ -1142,7 +1151,7 @@
     "message": "Adicionar um novo Yubikey à sua conta"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Conecte o YubiKey (NEO ou 4 series) a porta USB do seu computador."
+    "message": "Conecte o YubiKey na porta USB do seu computador."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Selecione o YubiKey no primeiro campo vazio abaixo."
@@ -1172,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "Chave U2F $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1223,25 +1232,25 @@
     "message": "Adicione uma chave de segurança FIDO U2F à sua conta"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Tem certeza que deseja remover esta chave de segurança?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Chave de Leitura"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "A chave está comprometida."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Dê à chave de segurança um nome amigável para identificá-la."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Conecte a chave de segurança na porta USB do seu computador e clique no botão \"Ler Chave\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Se a chave de segurança tiver um botão, toque nele."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Salvar o formulário."
   },
   "twoFactorU2fWarning": {
     "message": "Devido as limitações da plataforma, o FIDO U2F não pode ser usado em todas os aplicativos do Bitwarden. Você deve habilitar outro provedor de login em duas etapas para poder acessar sua conta quando o FIDO U2F não puder ser usado. Plataformas Suportadas:"
@@ -1253,10 +1262,10 @@
     "message": "Esperando que você toque no botão da sua chave de segurança"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Clique no botão \"Salvar\" abaixo para ativar essa chave de segurança para o login em duas etapas."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Houve um problema ao ler a chave de segurança. Tente novamente."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Seu código de recuperação de login em duas etapas do Bitwarden"
