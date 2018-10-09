@@ -37,6 +37,9 @@
   "password": {
     "message": "Adgangskode"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Noter"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Længde"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Adgangskodehistorik"
   },
@@ -907,13 +916,13 @@
     "message": "Tøm boks"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Organisationsboks tømt."
   },
   "purgeVaultDesc": {
     "message": "Fortsæt nedenfor for at slette alle elementer og mapper i din boks. Elementer, der tilhører en organisation du deler med, slettes ikke."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Fortsæt nedenfor for at slette alle elementer i organisationens boks."
   },
   "purgeVaultWarning": {
     "message": "Tømning af din boks er permanent. Det kan ikke fortrydes."
@@ -1142,7 +1151,7 @@
     "message": "Tilføj en ny YubiKey til din konto"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Sæt YubiKey'en (NEO eller 4-serien) i din computers USB-port."
+    "message": "Sæt YubiKey'en i din computers USB-port."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Vælg det første tomme YubiKey-indtastningsfelt nedenfor."
@@ -1172,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F nøgle $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1223,25 +1232,25 @@
     "message": "Tilføj en FIDO U2F sikkerhedsnøgle til din konto"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Er du sikker på, at du vil fjerne denne sikkerhedsnøgle?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Læs nøgle"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Nøglen er kompromitteret."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Giv sikkerhedsnøglen et brugervenligt navn til at identificere den."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Sæt sikkerhedsnøglen i computerens USB-port, og klik på knappen \"Læs nøgle\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Hvis sikkerhedsnøglen har en knap, skal du trykke på den."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Gem formularen."
   },
   "twoFactorU2fWarning": {
     "message": "På grund af platformbegrænsninger kan FIDO U2F ikke bruges på alle Bitwarden-applikationer. Du bør aktivere en anden to-trins login udbyder, så du kan få adgang til din konto, når FIDO U2F ikke kan benyttes. Understøttede platforme:"
@@ -1253,10 +1262,10 @@
     "message": "Venter på at du trykker på knappen på din sikkerhedsnøgle"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Klik på \"Gem\" knappen nedenfor for at aktivere denne sikkerhedsnøgle til to-trins login."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Der opstod et problem med at læse sikkerhedsnøglen. Prøv igen."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din Bitwarden to-trins-login gendannelseskode"
