@@ -37,6 +37,9 @@
   "password": {
     "message": "Parool"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Märkmed"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Pikkus"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Paroolide ajalugu"
   },
@@ -907,13 +916,13 @@
     "message": "Likvideeri Hoidla"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Organisatsiooni hoidla on likvideeritud."
   },
   "purgeVaultDesc": {
     "message": "Jätkates kustutatakse kõik hoidlas olevad kirjed ja kaustad. Andmed, mis kuuluvad organisatsioonile, jäävad puutumata."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Jätka allpool, et kõik organisatsiooni kirjed hoidlast likvideerida."
   },
   "purgeVaultWarning": {
     "message": "Hoidla likvideerimine on alatine. Seda ei saa tagasi võtta."
@@ -1172,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F võtme $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1223,25 +1232,25 @@
     "message": "Lisa oma kontole FIDO U2F turvavõti"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Oled kindel, et soovid selle turvavõtme eemaldada?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Loe võtit"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Võti on ohus."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Anna turvavõtmele lihtne nimi, et seda oleks lihtsam ära tunda."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Sisesta turvavõti arvuti USB pessa ning kliki \"Loe võtit\" nupul."
   },
   "twoFactorU2fTouchButton": {
     "message": "Kui turvavõtmel on nupp, siis vajuta seda."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Salvesta vorm."
   },
   "twoFactorU2fWarning": {
     "message": "Mõnede platvormi piirangute tõttu ei saa FIDO U2F-i kõikide Bitwardeni rakendustega kasutada. Võiksid kaaluda teise kaheastmelise kinnitamise aktiveerimist olukordadeks, kus FIDO U2F-i ei saa kasutada. Toetatud platvormid:"
@@ -1253,10 +1262,10 @@
     "message": "Ootame, kuni puudutad turvavõtmel olevat nuppu"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Kliki all olevale \"Luba\" nupule, et kaheastmeline kinnitamine läbi selle turvavõtme sisse lülitada."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Turvavõtme lugemisel tekkis tõrge. Proovi uuesti."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwardeni kaheastmelise logimise varukood"
