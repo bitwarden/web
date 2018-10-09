@@ -37,6 +37,9 @@
   "password": {
     "message": "Пароль"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Заметки"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Длина"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "История паролей"
   },
@@ -907,13 +916,13 @@
     "message": "Очистить хранилище"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Хранилище организации очищено."
   },
   "purgeVaultDesc": {
     "message": "Чтобы удалить все элементы и папки из вашего хранилища, выполните действие ниже. Элементы, принадлежащие организации, с которой вы делитесь, удалены не будут."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Для удаления всех элементов в хранилище организации выполните следующие действия."
   },
   "purgeVaultWarning": {
     "message": "Очистка вашего хранилища необратима. Ее нельзя отменить."
@@ -1142,7 +1151,7 @@
     "message": "Добавить новый YubiKey в свою учетную запись"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Подключите YubiKey (NEO или 4 серии) к USB-порту вашего компьютера."
+    "message": "Подключите YubiKey к USB-порту вашего компьютера."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Выберите первое пустое поле ввода YubiKey ниже."
@@ -1172,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "Ключ U2F $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1223,25 +1232,25 @@
     "message": "Добавьте в свою учетную запись ключ безопасности FIDO U2F"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Вы действительно хотите удалить этот ключ безопасности?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Чтение ключа"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Ключ скомпрометирован."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Присвойте ключу безопасности понятное имя для его идентификации."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Подключите ключ безопасности к USB-порту компьютера и нажмите кнопку 'Чтение ключа'."
   },
   "twoFactorU2fTouchButton": {
     "message": "Если у ключа безопасности есть кнопка, нажмите ее."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Сохранить форму."
   },
   "twoFactorU2fWarning": {
     "message": "Из-за ограничений платформы FIDO U2F нельзя использовать во всех приложениях Bitwarden. Вы должны включить другого провайдера двухфакторной аутентификации, чтобы иметь возможность получить доступ к своей учетной записи, когда FIDO U2F не может быть использован. Поддерживаемые платформы:"
@@ -1253,10 +1262,10 @@
     "message": "В ожидании нажатия кнопки на ключе безопасности"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Нажмите кнопку 'Сохранить' ниже, чтобы включить этот ключ безопасности для двухфакторной аутентификации."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Не удалось прочитать ключ безопасности. Попробуйте снова."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Ваш код восстановления двухфакторной аутентификации Bitwarden"
