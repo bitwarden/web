@@ -37,6 +37,9 @@
   "password": {
     "message": "密码"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "笔记"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "长度"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "密码历史记录"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "清空密码库"
   },
+  "purgedOrganizationVault": {
+    "message": "已清除的组织密码库。"
+  },
   "purgeVaultDesc": {
     "message": "接下来的操作会删除密码库中的所有项目和文件夹。属于组织的共享项目将不会被删除。"
+  },
+  "purgeOrgVaultDesc": {
+    "message": "继续执行以下操作以删除组织的密码库中的所有项目。"
   },
   "purgeVaultWarning": {
     "message": "清空密码库是永久性的。不能被撤消。"
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC 支持"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "在您的帐户中添加 FIDO U2F 安全密钥"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "将安全密钥插入电脑的 USB 端口。"
+  "removeU2fConfirmation": {
+    "message": "您确认要删除这个安全密钥？"
+  },
+  "readKey": {
+    "message": "读取密钥"
+  },
+  "keyCompromised": {
+    "message": "密钥被破坏。"
+  },
+  "twoFactorU2fGiveName": {
+    "message": "给安全密钥一个友好的名称来标识它。"
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "将安全密钥插入计算机的 USB 端口, 然后单击 \"读取密钥\" 按钮。"
   },
   "twoFactorU2fTouchButton": {
     "message": "如果安全密钥有按钮，请按下它。"
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "保存表单。"
   },
   "twoFactorU2fWarning": {
     "message": "由于平台限制，FIDO U2F 无法用于所有的 Bitwarden 应用。 您应启用另一个两步登录验证应用，以便在 FIDO U2F 不可用时，也能访问您的帐户。 支持的平台："
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "请您按下安全密钥上的按钮"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "单击下面的 \"启用\" 按钮，启用此安全密钥进行两步登录。"
+  "twoFactorU2fClickSave": {
+    "message": "单击下面的 \"保存\" 按钮，启用此安全密钥进行两步登录。"
   },
-  "twoFactorU2fProblemReading": {
-    "message": "读取安全密钥时出现问题。"
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "读取安全密钥时出现问题，请再试一次。"
   },
   "twoFactorRecoveryYourCode": {
     "message": "您的 Bitwarden 两步登录恢复代码"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "已更改帐户密码。"
   },
-  "enabled2fa": {
-    "message": "已启用两步登录。"
+  "enabledUpdated2fa": {
+    "message": "Enabled\/updated two-step login."
   },
   "disabled2fa": {
     "message": "已禁用两步登录。"

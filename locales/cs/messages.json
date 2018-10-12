@@ -37,6 +37,9 @@
   "password": {
     "message": "Heslo"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Poznámky"
   },
@@ -616,7 +619,7 @@
     }
   },
   "enterVerificationCodeApp": {
-    "message": "Zadejte 6-místný kód z ověřovací aplikace."
+    "message": "Zadejte 6místný kód z ověřovací aplikace."
   },
   "enterVerificationCodeEmail": {
     "message": "Zadejte 6místný kód z e-mailu, který byl zaslán na $EMAIL$.",
@@ -795,6 +798,12 @@
   "length": {
     "message": "Délka"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Historie hesel"
   },
@@ -853,16 +862,16 @@
     "message": "Potvrzení nového hesla"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Nastavení šifrovacího klíče"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "KDF algoritmus"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "KDF iterace"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Vyšší hodnota KDF iterací pomáhá chránit vaše hlavní heslo před útokem hrubou silou (brute force attack). Doporučujeme nastavit hodnotu $VALUE$ nebo vyšší.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +880,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Nastavení příliš vysoké hodnoty počtu KDF iterací může mít za následek špatný výkon při přihlašování (a odemykání) aplikace Bitwarden na zařízeních se slabým procesorem. Doporučujeme hodnotu navyšovat přírůstkově po $INCREMENT$ a vyzkoušet všechna vaše zařízení.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,16 +889,16 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Změnit KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Nastavení šifrovacího klíče bylo změněno"
   },
   "dangerZone": {
     "message": "Nebezpečná zóna"
   },
   "dangerZoneDesc": {
-    "message": "Opatrně tyto akce se nedají vrátit!"
+    "message": "Opatrně. Tyto akce se nedají vrátit!"
   },
   "deauthorizeSessions": {
     "message": "Zrušit autorizaci relací"
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Vymazat celý trezor"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Pokračujte níže ke smazání všech položek a složek ve vašem trezoru. Položky sdílené s organizací nebudou smazány."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Vymazání trezoru je trvalé. Tuto akci nelze vrátit zpět."
@@ -1002,7 +1017,7 @@
     "message": "Doménová pravidla"
   },
   "domainRulesDesc": {
-    "message": "Pokud máte stejné přihlašovací údaje napříč různými doménami, můžete je označit jako \"ekvivalentní\". Bitwarden za vás již vytvořil seznam globálních domén."
+    "message": "Pokud máte stejné přihlašovací údaje napříč různými doménami, můžete je označit jako „ekvivalentní“. Bitwarden za vás již vytvořil seznam globálních domén."
   },
   "globalEqDomains": {
     "message": "Globální ekvivalentní domény"
@@ -1023,7 +1038,7 @@
     "message": "Přidat vlastní doménu"
   },
   "newCustomDomainDesc": {
-    "message": "Zadejte seznam domén oddělených čárkou. Povolené jsou pouze \"základní\" domény a proto nezadávejte subdomény. Například zadejte \"bitwarden.com\" místo \"vault.bitwarden.com\". Můžete také zadat \"androidapp:\/\/package.name\" pokud chcete přiřadit Android aplikaci k ostatním webovým doménám."
+    "message": "Zadejte seznam domén oddělených čárkou. Povolené jsou pouze „základní“ domény. Nezadávejte subdomény. Například zadejte „bitwarden.com“, nikoliv „vault.bitwarden.com“. Můžete také zadat „androidapp:\/\/package.name“ pokud chcete přiřadit Android aplikaci k ostatním webovým doménám."
   },
   "customDomainX": {
     "message": "Vlastní doména $INDEX$",
@@ -1076,10 +1091,10 @@
     "message": "Pro použití této funkce je potřebné prémiové členství."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Máte prémiový přístup"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Již máte přístup k prémiovým funkcím díky organizaci, které jste členem."
   },
   "manage": {
     "message": "Správa"
@@ -1121,7 +1136,7 @@
     "message": "Klíč"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Zadejte 6-místný kód z ověřovací aplikace"
+    "message": "Zadejte 6místný kód z ověřovací aplikace"
   },
   "twoStepAuthenticatorReaddDesc": {
     "message": "V případě potřeby přidání do jiného zařízení, je níže zobrazen QR kód (nebo klíč) vyžadovaný ověřovací aplikací."
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Podpora NFC"
   },
@@ -1199,7 +1223,7 @@
     "message": "Zadejte e-mail, na který si přejete dostávat ověřovací kódy"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Zadejte 6-místný kód zaslaný na e-mail"
+    "message": "Zadejte 6místný kód zaslaný na e-mail"
   },
   "sendEmail": {
     "message": "Odeslat e-mail"
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Přidání bezpečnostního klíče FIDO U2F k vašemu účtu"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Připojte bezpečnostní klíč do portu USB počítače."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Pokud má bezpečnostní klíč tlačítko, zmáčkněte jej."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Z důvodu omezení různých platforem, nemůže být FIDO U2F použit ve všech aplikacích Bitwarden. Měli byste povolit jiný způsob dvoufázového přihlášení pro případy, kdy nelze FIDO U2F použít. Podporované platformy:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Čeká se na stisknutí tlačítka na bezpečnostním klíči"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Klepněte níže na tlačítko \"Povolit\" pro povolení tohoto bezpečnostního klíče pro dvoufázové přihlášení."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Došlo k potížím při čtení bezpečnostního klíče."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Váše kód pro obnovení dvoufázového přihlášení"
@@ -1245,7 +1284,7 @@
     "message": "Hlášení o úniku dat"
   },
   "breachDesc": {
-    "message": "\"Únik\" je incident, při kterém se podařilo hackerům nelegální cestou získat údaje z webových stránek a následně je také zveřejnit. Zkontrolujte prosím kompromitovaná data (e-mailové adresy, hesla, kreditní karty, ...) a proveďte příslušná opatření (např. změňte heslo)."
+    "message": "„Únik“ je incident, při kterém se podařilo hackerům nelegální cestou získat údaje z webových stránek a následně je také zveřejnit. Zkontrolujte prosím kompromitovaná data (e-mailové adresy, hesla, kreditní karty, …) a proveďte příslušná opatření (např. změňte heslo)."
   },
   "breachCheckUsernameEmail": {
     "message": "Zkontrolujte všechna uživatelská jména nebo e-mailové adresy, které používáte."
@@ -1308,10 +1347,10 @@
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "Povýšili jste na premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Povyšte svůj účet na prémiové členství a odemkněte další skvělé funkce."
   },
   "premiumSignUpStorage": {
     "message": "1 GB šifrovaného uložiště."
@@ -1379,7 +1418,7 @@
     "message": "Částka bude stržena okamžitě a poté opakovaně každý rok. Plán můžete kdykoli zrušit."
   },
   "paymentChargedWithTrial": {
-    "message": "Vybraný plán obsahuje bezplatnou 7denní zkušební dobu. Částka z vašeho účtu nebude stržena, dokud tato zkušební doba neuplyne. Stržení platby a fakturace bude následně probíhat opakovaně každý $ INTERVAL $. Plán můžete kdykoli zrušit.",
+    "message": "Vybraný plán obsahuje bezplatnou 7denní zkušební dobu. Částka z vašeho účtu nebude stržena, dokud tato zkušební doba neuplyne. Stržení platby a fakturace bude následně probíhat opakovaně každý $INTERVAL$. Plán můžete kdykoli zrušit.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1457,7 +1496,7 @@
     "message": "Odebrat uložiště"
   },
   "subscriptionStorage": {
-    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "message": "Vaše předplatné zahrnuje celkem $MAX_STORAGE$ GB místa v šifrovaném úložišti. Aktuálně používáte $USED_STORAGE$.",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1689,7 +1728,7 @@
     "message": "Create unlimited collections"
   },
   "gbEncryptedFileStorage": {
-    "message": "$SIZE$ encrypted file storage",
+    "message": "$SIZE$ šifrovaného úložiště",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1719,7 +1758,7 @@
     "message": "Přednostní zákaznická podpora"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$denní zkušební verze, možno kdykoliv zrušit",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Heslo účtu bylo změněno"
   },
-  "enabled2fa": {
-    "message": "Dvoufázové přihlášení bylo povoleno"
+  "enabledUpdated2fa": {
+    "message": "Enabled\/updated two-step login."
   },
   "disabled2fa": {
     "message": "Dvoufázové přihlášení bylo zakázáno"
@@ -2118,7 +2157,7 @@
     "message": "Invited user(s)."
   },
   "resendInvitation": {
-    "message": "Resend Invitation"
+    "message": "Znovu poslat pozvánku"
   },
   "hasBeenReinvited": {
     "message": "$USER$ has been reinvited.",
@@ -2130,10 +2169,10 @@
     }
   },
   "confirm": {
-    "message": "Confirm"
+    "message": "Potvrdit"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "Uživatel $USER$ byl potvrzen.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2142,16 +2181,16 @@
     }
   },
   "confirmUsers": {
-    "message": "Confirm Users"
+    "message": "Potvrdit uživatele"
   },
   "usersNeedConfirmed": {
     "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
   },
   "startDate": {
-    "message": "Start Date"
+    "message": "Datum začátku"
   },
   "endDate": {
-    "message": "End Date"
+    "message": "Datum konce"
   },
   "verifyEmail": {
     "message": "Ověřit e-mail"
@@ -2274,7 +2313,7 @@
     "message": "Bank account has been verified."
   },
   "bankAccount": {
-    "message": "Bank Account"
+    "message": "Bankovní účet"
   },
   "amountX": {
     "message": "Amount $COUNT$",
@@ -2287,17 +2326,17 @@
     }
   },
   "routingNumber": {
-    "message": "Routing Number",
+    "message": "Směrovací číslo",
     "description": "Bank account routing number"
   },
   "accountNumber": {
-    "message": "Account Number"
+    "message": "Číslo účtu"
   },
   "accountHolderName": {
-    "message": "Account Holder Name"
+    "message": "Jméno majitele účtu"
   },
   "bankAccountType": {
-    "message": "Account Type"
+    "message": "Typ účtu"
   },
   "bankAccountTypeCompany": {
     "message": "Company (Business)"
@@ -2306,7 +2345,7 @@
     "message": "Individual (Personal)"
   },
   "enterInstallationId": {
-    "message": "Enter your installation id"
+    "message": "Zadejte ID instalace"
   },
   "addSeats": {
     "message": "Add Seats",
@@ -2350,19 +2389,19 @@
     "message": "Key Updated"
   },
   "updateKeyTitle": {
-    "message": "Update Key"
+    "message": "Aktualizovat klíč"
   },
   "updateEncryptionKey": {
-    "message": "Update Encryption Key"
+    "message": "Aktualizovat šifrovací klíč"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "You are currently using an outdated encryption scheme."
+    "message": "Používáte zastaralé šifrovací schéma."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "Přešli jsme na delší šifrovací klíče, které poskytují vyšší úroveň zabezpečení a přístup k novým funkcím. Aktualizace vašeho šifrovacího klíče je rychlá a snadná. Stačí níže zadat vaše hlavní heslo. Provedení této aktualizace může být v budoucnu povinné."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "Po aktualizace šifrovacího klíče dojde k odhlášení a budete se muset opětovně přihlásit do všech Bitwarden aplikací, které aktuálně používáte (např. mobilní aplikace či rozšíření pro prohlížeč). Nezdaří-li se odhlášení a opětovné přihlášení (během něhož bude stažen nový šifrovací klíč), může dojít k poškození údajů. Pokusíme se vás automaticky odhlásit, nicméně, může to chvíli trvat."
   },
   "subscription": {
     "message": "Odběr"
@@ -2371,13 +2410,13 @@
     "message": "Načítání"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "Povýšit"
   },
   "upgradeOrganization": {
     "message": "Upgrade Organization"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "Tato funkce je nedostupná pro bezplatné organizace. Přejděte na placené členství a odemkněte více funkcí."
   },
   "createOrganizationStep1": {
     "message": "Create Organization: Step 1"

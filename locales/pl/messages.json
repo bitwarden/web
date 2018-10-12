@@ -37,6 +37,9 @@
   "password": {
     "message": "Hasło"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Notatki"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Długość"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Historia haseł"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Wyczyść sejf"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Kontynuuj poniżej, aby usunąć wszystkie elementy i foldery z Twojego sejfu. Elementy udostępnione organizacji nie zostaną usunięte."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Wykasowanie sejfu jest nieodwracalne. Akcja ta nie może być cofnięta."
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Obsługa NFC"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Dodaj klucz bezpieczeństwa FIDO U2F do swojego konta"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Włóż klucz bezpieczeństwa do portu USB swojego komputera."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Jeśli klucz bezpieczeństwa posiada przycisk, dotknij go."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Z powodu ograniczeń platformy, FIDO U2F nie może być używany we wszystkich aplikacjach Bitwarden. Powinieneś włączyć inną metodę dwustopniowego logowania, tak abyś miał dostęp do swojego konta w sytuacji, gdy FIDO U2F nie będzie mógł zostać użyty. Wspierane platformy:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Oczekiwanie na dotknięcie klucza bezpieczeństwa"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Kliknij przycisk \"Włącz\" poniżej, aby aktywować dwustopniowe logowanie za pomocą tego klucza bezpieczeństwa."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Wystąpił problem z odczytem klucza bezpieczeństwa."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Twój kod odzyskiwania Bitwarden"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Zmieniono hasło do konta."
   },
-  "enabled2fa": {
-    "message": "Włączono dwustopniowe logowanie."
+  "enabledUpdated2fa": {
+    "message": "Enabled\/updated two-step login."
   },
   "disabled2fa": {
     "message": "Wyłączono dwustopniowe logowanie."

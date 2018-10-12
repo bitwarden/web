@@ -37,6 +37,9 @@
   "password": {
     "message": "Jelszó"
   },
+  "passphrase": {
+    "message": "Kulcsszó"
+  },
   "notes": {
     "message": "Jegyzetek"
   },
@@ -164,48 +167,48 @@
     "message": "Nincs kijelölve"
   },
   "noneFolder": {
-    "message": "No Folder",
+    "message": "Nincs mappa",
     "description": "This is the folder for uncategorized items"
   },
   "addFolder": {
-    "message": "Add Folder"
+    "message": "Mappa hozzáadása"
   },
   "editFolder": {
-    "message": "Edit Folder"
+    "message": "Mappa szerkesztése"
   },
   "baseDomain": {
-    "message": "Base domain"
+    "message": "Alap domain"
   },
   "host": {
-    "message": "Host",
+    "message": "Hoszt",
     "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
-    "message": "Exact"
+    "message": "Pontos"
   },
   "startsWith": {
-    "message": "Starts with"
+    "message": "Ezzel kezdődik"
   },
   "regEx": {
-    "message": "Regular expression",
+    "message": "Reguláris kifejezés",
     "description": "A programming term, also known as 'RegEx'."
   },
   "matchDetection": {
-    "message": "Match Detection",
+    "message": "Találatfelismerés",
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
-    "message": "Default match detection",
+    "message": "Alapértelmezett találatfelismerés",
     "description": "Default URI match detection for auto-fill."
   },
   "never": {
-    "message": "Never"
+    "message": "Soha"
   },
   "toggleVisibility": {
-    "message": "Toggle Visibility"
+    "message": "Láthatóság váltása"
   },
   "generatePassword": {
-    "message": "Generate Password"
+    "message": "Jelszó generálása"
   },
   "checkPassword": {
     "message": "Check if password has been exposed."
@@ -795,6 +798,12 @@
   "length": {
     "message": "Length"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Password History"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Purge Vault"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Purging your vault is permanent. It cannot be undone."
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC Support"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Add a FIDO U2F security key to your account"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Plug the security key into your computer's USB port."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "If the security key has a button, touch it."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Waiting for you to touch the button on your security key"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "There was a problem reading the security key."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Your Bitwarden two-step login recovery code"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Changed account password."
   },
-  "enabled2fa": {
-    "message": "Enabled two-step login."
+  "enabledUpdated2fa": {
+    "message": "Enabled\/updated two-step login."
   },
   "disabled2fa": {
     "message": "Disabled two-step login."

@@ -37,6 +37,9 @@
   "password": {
     "message": "密碼"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "筆記"
   },
@@ -718,10 +721,10 @@
     "message": "選擇您希望分享這些項目的組織。這些項目的擁有權將會轉移到組織。一經分享，您將不再是這些項目的直接擁有者。"
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "編輯與此項目共享的集合。只有具有這些集合存取權限的組織使用者才能夠看到此項目。"
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "您已經選取了 $COUNT$ 個項目要刪除。確定要刪除這些項目嗎 ?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -730,7 +733,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "選擇要將這 $COUNT$ 個項目移動到的資料夾。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -739,7 +742,7 @@
     }
   },
   "shareSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not. Items with attachments must be shared individually.",
+    "message": "您已經選取了 $COUNT$ 個項目。 $SHAREABLE_COUNT$ 個項目是可以分享的，$NONSHAREABLE_COUNT$ 則否。有附件的的項目必須單獨分享。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -795,6 +798,12 @@
   "length": {
     "message": "長度"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "密碼歷史記錄"
   },
@@ -826,7 +835,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "接下來會取消目前的會話，並要求您重新登入。其他裝置上的會話可能最多會保持一個小時。"
   },
   "emailChanged": {
     "message": "電子郵件已更改"
@@ -835,7 +844,7 @@
     "message": "請重新登入。"
   },
   "logBackInOthersToo": {
-    "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
+    "message": "請重新登入。如果您還在使用其他 Bitwarden 應用，也請登出並重新登入。"
   },
   "changeMasterPassword": {
     "message": "變更主密碼"
@@ -853,16 +862,16 @@
     "message": "確認新密碼"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "加密金鑰設定"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "KDF 算法"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "KDF 遞代"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "較高的 KDF 遞代次數可以避免您的主密碼遭到暴力破解。我們建議 $VALUE$ 或更高。",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +880,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "把 KDF 遞代次數設太高會導致在 CPU 較慢的裝置上登入 ( 與解鎖 ) Bitwarden 時降低效能。我們建議您增加 $INCREMENT$ 的值並且在所有的裝置上測試。",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,10 +889,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "改變 KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "加密金鑰設定已更改"
   },
   "dangerZone": {
     "message": "危險區域"
@@ -892,22 +901,28 @@
     "message": "小心, 這些動作是無法挽回的！"
   },
   "deauthorizeSessions": {
-    "message": "Deauthorize Sessions"
+    "message": "取消登入階段"
   },
   "deauthorizeSessionsDesc": {
     "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "接下來會取消目前的登入階段，並要求您重新登入。您還會被要求再次兩步驟登入 ( 如果啟用的話 ) 。其他裝置上的登入階段可能最多會保持一個小時。"
   },
   "sessionsDeauthorized": {
-    "message": "All Sessions Deauthorized"
+    "message": "所有的登入階段已取消授權"
   },
   "purgeVault": {
     "message": "清除密碼庫"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "清除密碼庫是永久性的。將無法被還原。"
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC 支援"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "在您的帳戶中新增 FIDO U2F 安全金鑰"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "將安全金鑰插入電腦的 USB 連接埠。"
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "If the security key has a button, touch it."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Waiting for you to touch the button on your security key"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Click the \"Enable\" button below to enable this security key for two-step login."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "讀取安全金鑰時發生問題。"
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "您的 Bitwarden 兩步登入復原碼"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Changed account password."
   },
-  "enabled2fa": {
-    "message": "Enabled two-step login."
+  "enabledUpdated2fa": {
+    "message": "Enabled\/updated two-step login."
   },
   "disabled2fa": {
     "message": "Disabled two-step login."
