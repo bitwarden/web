@@ -77,10 +77,6 @@ export class BulkShareComponent implements OnInit {
         } catch { }
     }
 
-    check(c: CollectionView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
-    }
-
     selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
         collections.forEach((c) => this.check(c, select));
@@ -95,5 +91,9 @@ export class BulkShareComponent implements OnInit {
             }
         }
         return false;
+    }
+
+    protected check(c: CollectionView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 }

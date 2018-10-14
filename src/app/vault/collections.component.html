@@ -29,10 +29,6 @@
                         {{'noCollectionsInList' | i18n}}
                     </div>
 
-                    <div *ngIf="!collections || !collections.length">
-                        {{'noCollectionsInList' | i18n}}
-                    </div>
-
                     <div *ngIf="collections && collections.length">
                         <div class="checkbox-form-group" *ngFor="let c of collections; let i = index">
                             <input type="checkbox" [(ngModel)]="c.checked" id="Collection[{{i}}]" name="Collection[{{i}}].Checked">
