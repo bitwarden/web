@@ -98,7 +98,7 @@ const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, platformUtilsService, () => searchService);
+    apiService, storageService, i18nService, () => searchService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
@@ -110,7 +110,7 @@ const syncService = new SyncService(userService, apiService, settingsService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService);
 const totpService = new TotpService(storageService, cryptoFunctionService);
-const containerService = new ContainerService(cryptoService, platformUtilsService);
+const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService);
 const exportService = new ExportService(folderService, cipherService, apiService);

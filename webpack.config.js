@@ -172,6 +172,7 @@ const config = {
         extensions: ['.ts', '.js'],
         alias: {
             jslib: path.join(__dirname, 'jslib/src'),
+            tldjs: path.join(__dirname, 'jslib/src/misc/tldjs.noop'),
         },
         symlinks: false,
         modules: [path.resolve('node_modules')],

@@ -86,10 +86,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return 'UA-81915606-3';
     }
 
-    getDomain(uriString: string): string {
-        return Utils.getHostname(uriString);
-    }
-
     isViewOpen(): boolean {
         return false;
     }
