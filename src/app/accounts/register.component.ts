@@ -4,9 +4,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { ApiService } from 'jslib/abstractions/api.service';
 import { AuthService } from 'jslib/abstractions/auth.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -25,11 +22,10 @@ export class RegisterComponent extends BaseRegisterComponent {
     showTerms = true;
 
     constructor(authService: AuthService, router: Router,
-        analytics: Angulartics2, toasterService: ToasterService,
         i18nService: I18nService, cryptoService: CryptoService,
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService) {
-        super(authService, router, analytics, toasterService, i18nService, cryptoService, apiService, stateService);
+        super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService);
         this.showTerms = !platformUtilsService.isSelfHost();
     }
 

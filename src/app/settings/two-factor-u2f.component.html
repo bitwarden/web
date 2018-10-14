@@ -1,5 +1,5 @@
 <div class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">
@@ -23,43 +23,66 @@
                             <li>{{'twoFactorU2fSupportWeb' | i18n}}</li>
                         </ul>
                     </app-callout>
-                    <ng-container *ngIf="!enabled">
-                        <img src="../../images/two-factor/4.png" class="float-right ml-5" alt="">
-                        <p>{{'twoFactorU2fAdd' | i18n}}:</p>
-                        <ol>
-                            <li>{{'twoFactorU2fPlugIn' | i18n}}</li>
-                            <li>{{'twoFactorU2fTouchButton' | i18n}}</li>
-                        </ol>
-                        <hr>
-                        <div class="text-center">
-                            <ng-container *ngIf="u2fListening">
-                                <p>
-                                    <i class="fa fa-spinner fa-spin fa-2x text-muted"></i>
-                                </p>
-                                {{'twoFactorU2fWaiting' | i18n}}...
+                    <img src="../../images/two-factor/4.png" class="float-right ml-5" alt="">
+                    <ul class="fa-ul">
+                        <li *ngFor="let k of keys; let i = index" #removeKeyBtn [appApiAction]="k.removePromise">
+                            <i class="fa-li fa fa-key"></i>
+                            <strong *ngIf="!k.configured || !k.name">{{'u2fkeyX' | i18n : i + 1}}</strong>
+                            <strong *ngIf="k.configured && k.name">{{k.name}}</strong>
+                            <i class="fa fa-fw" [ngClass]="{'fa-check text-success': !k.compromised, 'fa-exclamation-triangle text-warning': k.compromised}"
+                                *ngIf="k.configured && !removeKeyBtn.loading" title="{{(k.compromised ? 'keyCompromised' : 'enabled') | i18n}}"></i>
+                            <ng-container *ngIf="keysConfiguredCount > 1 && k.configured">
+                                <i class="fa fa-spin fa-spinner text-muted fa-fw" title="{{'loading' | i18n}}" *ngIf="removeKeyBtn.loading"></i>
+                                -
+                                <a href="#" appStopClick (click)="remove(k)">{{'remove' | i18n}}</a>
                             </ng-container>
-                            <ng-container *ngIf="u2fResponse">
-                                <p>
-                                    <i class="fa fa-check-circle fa-2x text-success"></i>
-                                </p>
-                                {{'twoFactorU2fClickEnable' | i18n}}
-                            </ng-container>
-                            <ng-container *ngIf="u2fError">
-                                <p>
-                                    <i class="fa fa-warning fa-2x text-danger"></i>
-                                </p>
-                                {{'twoFactorU2fProblemReading' | i18n}}
-                            </ng-container>
+                        </li>
+                    </ul>
+                    <hr>
+                    <p>{{'twoFactorU2fAdd' | i18n}}:</p>
+                    <ol>
+                        <li>{{'twoFactorU2fGiveName' | i18n}}</li>
+                        <li>{{'twoFactorU2fPlugInReadKey' | i18n}}</li>
+                        <li>{{'twoFactorU2fTouchButton' | i18n}}</li>
+                        <li>{{'twoFactorU2fSaveForm' | i18n}}</li>
+                    </ol>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="name">{{'name' | i18n}}</label>
+                            <input id="name" type="text" name="Name" class="form-control" [(ngModel)]="name" [disabled]="!keyIdAvailable">
                         </div>
+                    </div>
+                    <button type="button" (click)="readKey()" class="btn btn-outline-secondary mr-2" [disabled]="readKeyBtn.loading || u2fListening || !keyIdAvailable"
+                        #readKeyBtn [appApiAction]="challengePromise">
+                        {{'readKey' | i18n}}
+                    </button>
+                    <ng-container *ngIf="readKeyBtn.loading">
+                        <i class="fa fa-spinner fa-spin text-muted"></i>
+                    </ng-container>
+                    <ng-container *ngIf="!readKeyBtn.loading">
+                        <ng-container *ngIf="u2fListening">
+                            <i class="fa fa-spinner fa-spin text-muted"></i>
+                            {{'twoFactorU2fWaiting' | i18n}}...
+                        </ng-container>
+                        <ng-container *ngIf="u2fResponse">
+                            <i class="fa fa-check-circle text-success"></i>
+                            {{'twoFactorU2fClickSave' | i18n}}
+                        </ng-container>
+                        <ng-container *ngIf="u2fError">
+                            <i class="fa fa-warning text-danger"></i>
+                            {{'twoFactorU2fProblemReadingTryAgain' | i18n}}
+                        </ng-container>
                     </ng-container>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="form.loading || (!enabled && !u2fResponse)">
+                    <button type="submit" class="btn btn-primary" [disabled]="form.loading || !u2fResponse">
                         <i class="fa fa-spinner fa-spin" *ngIf="form.loading" title="{{'loading' | i18n}}"></i>
-                        <ng-container *ngIf="!form.loading">
-                            <span *ngIf="!enabled">{{'enable' | i18n}}</span>
-                            <span *ngIf="enabled">{{'disable' | i18n}}</span>
-                        </ng-container>
+                        <span *ngIf="!form.loading">{{'save' | i18n}}</span>
+                    </button>
+                    <button #disableBtn type="button" class="btn btn-outline-secondary btn-submit" [appApiAction]="disablePromise"
+                        [disabled]="disableBtn.loading" (click)="disable()" *ngIf="enabled">
+                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                        <span>{{'disableAllKeys' | i18n}}</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
                 </div>

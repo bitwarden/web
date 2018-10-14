@@ -37,6 +37,9 @@
   "password": {
     "message": "Palavra-passe"
   },
+  "passphrase": {
+    "message": "Frase-passe"
+  },
   "notes": {
     "message": "Notas"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Comprimento"
   },
+  "numWords": {
+    "message": "Número de palavras"
+  },
+  "wordSeparator": {
+    "message": "Separador de palavras"
+  },
   "passwordHistory": {
     "message": "Histórico de Palavras-passe"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Esvaziar Cofre"
   },
+  "purgedOrganizationVault": {
+    "message": "Cofre da organização purgado."
+  },
   "purgeVaultDesc": {
     "message": "Continue para eliminar todos os itens e pastas do seu cofre. Itens que pertençam a uma organização que partilhe não serão eliminados."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceda abaixo para apagar todos os itens no cofre da organização."
   },
   "purgeVaultWarning": {
     "message": "Esvaziar o seu cofre é permanente. Não pode ser desfeito."
@@ -1076,10 +1091,10 @@
     "message": "Para utilizar esta opção é necessária uma subscrição Premium."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Você tem acesso premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Você já tem acesso às funcionalidades premium por causa de uma organização da qual é um membro."
   },
   "manage": {
     "message": "Gerir"
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "Chave $INDEX$ U2F",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Suporte NFC"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Adicione à sua conta uma chave de segurança FIDO U2F"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Ligue a chave de segurança numa porta USB do seu computador."
+  "removeU2fConfirmation": {
+    "message": "Tem a certeza de que pretende remover esta chave de segurança?"
+  },
+  "readKey": {
+    "message": "Ler chave"
+  },
+  "keyCompromised": {
+    "message": "A chave foi comprometida."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Dê à chave de segurança um nome amigável para a identificar."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Coloque a chave de segurança na porta USB do seu computador e clique no botão \"Ler chave\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Se a chave de segurança tiver um botão, toque-lhe."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Guarde o formulário."
   },
   "twoFactorU2fWarning": {
     "message": "Devido a limitações da plataforma, FIDO U2F não pode ser utilizado em todas as aplicações Bitwarden. Deverá escolher outro método de início de sessão em dois passos quando FIDO U2F não puder ser utilizado. Plataformas suportadas:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "A aguardar que toque no botão da sua chave de segurança"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Clique no botão \"Ativar\" abaixo para ativar esta chave de segurança para o início de sessão em dois passos."
+  "twoFactorU2fClickSave": {
+    "message": "Clique no botão \"Guardar\" abaixo para ativar esta chave de segurança para o início de sessão em dois passos."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Ocorreu um problema ao ler a chave de segurança."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Ocorreu um problema ao ler a chave de segurança. Tente novamente."
   },
   "twoFactorRecoveryYourCode": {
     "message": "O seu código Bitwarden de recuperação de início de sessão em dois passos"
@@ -1701,7 +1740,7 @@
     "message": "Alojamento próprio (opcional)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Os utilizadores obtêm acesso a funcionalidades de adesão premium"
   },
   "controlAccessWithGroups": {
     "message": "Controle o acesso de utilizadores com grupos"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Palavra-passe da conta alterada."
   },
-  "enabled2fa": {
-    "message": "Início de sessão em dois passos ativado."
+  "enabledUpdated2fa": {
+    "message": "Início de sessão em dois passos ativado\/atualizado."
   },
   "disabled2fa": {
     "message": "Início de sessão em dois passos desativado."

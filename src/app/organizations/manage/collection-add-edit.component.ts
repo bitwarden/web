@@ -103,6 +103,10 @@ export class CollectionAddEditComponent implements OnInit {
     }
 
     async submit() {
+        if (this.orgKey == null) {
+            throw new Error('No encryption key for this organization.');
+        }
+
         const request = new CollectionRequest();
         request.name = (await this.cryptoService.encrypt(this.name, this.orgKey)).encryptedString;
         request.groups = this.groups.filter((g) => (g as any).checked && !g.accessAll)

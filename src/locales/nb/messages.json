@@ -37,6 +37,9 @@
   "password": {
     "message": "Passord"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Notater"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Lengde"
   },
+  "numWords": {
+    "message": "Number of Words"
+  },
+  "wordSeparator": {
+    "message": "Word Separator"
+  },
   "passwordHistory": {
     "message": "Passordhistorikk"
   },
@@ -853,16 +862,16 @@
     "message": "Bekreft det nye superpassordet"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Innstillinger for krypteringsnøkkel"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "KDF Algoritmen"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "KDF gjentakelser"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Høyere KDF gjentakelser kan beskytte hovedpassordet fra blir brute tvunget av angriperen. Verdien $VALUE$ eller mer anbefales.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -880,7 +889,7 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Endre KDF"
   },
   "encKeySettingsChanged": {
     "message": "Encryption Key Settings Changed"
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Tøm hvelvet"
   },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
   "purgeVaultDesc": {
     "message": "Fortsett nedenfor for å slette alle gjenstander og mapper i ditt hvelv. Gjenstander som tilhører en organisasjon som du deler med, vil ikke bli slettet."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
     "message": "Å tømme hvelvet ditt er permanent. Det kan ikke bli angret på."
@@ -1076,10 +1091,10 @@
     "message": "Et Premium-medlemskap er påkrevd for å bruke denne funksjonen."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Du har premium tilgang"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Du har allerede tilgang til premiumfunksjoner på grunn av en organisasjon du er medlem av."
   },
   "manage": {
     "message": "Behandle"
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC-støtte"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Legg til en FIDO U2F-sikkerhetsnøkkel til din konto"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Sett inn sikkerhetsnøkkelen i din datamaskins USB-port."
+  "removeU2fConfirmation": {
+    "message": "Are you sure you want to remove this security key?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Key is compromised."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Give the security key a friendly name to identify it."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
   },
   "twoFactorU2fTouchButton": {
     "message": "Dersom sikkerhetsnøkkelen har en knapp, trykk på den."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Save the form."
   },
   "twoFactorU2fWarning": {
     "message": "På grunn av plattformbegrensninger, kan FIDO U2F ikke bli brukt på alle Bitwarden-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når FIDO U2F ikke kan bli brukt. Støttede plattformer:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Venter på at du skal trykke på knappen på din sikkerhetsnøkkel"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Klikk på «Aktiver»-knappen nedenfor for å aktivere denne sikkerhetsnøkkelen for 2-trinnsinnlogging."
+  "twoFactorU2fClickSave": {
+    "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Det var et problem med å lese sikkerhetsnøkkelen."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "There was a problem reading the security key. Try again."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din 2-trinnsinnloggingsgjenopprettingskode for Bitwarden"
@@ -1701,7 +1740,7 @@
     "message": "Lokal betjening (valgfritt)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Brukerne får tilgang til premium medlemskap funksjoner"
   },
   "controlAccessWithGroups": {
     "message": "Kontroller brukertilgang med grupper"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Endret kontopassordet."
   },
-  "enabled2fa": {
-    "message": "Skrudde på 2-trinnsinnlogging."
+  "enabledUpdated2fa": {
+    "message": "Enabled\/updated two-step login."
   },
   "disabled2fa": {
     "message": "Skrudde av 2-trinnsinnlogging."
@@ -2142,10 +2181,10 @@
     }
   },
   "confirmUsers": {
-    "message": "Confirm Users"
+    "message": "Bekreft brukere"
   },
   "usersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
+    "message": "Du har brukere som har akseptert sin invitasjon, men må fortsatt bekreftes. Brukere vil ikke ha tilgang til organisasjonen før de er bekreftet."
   },
   "startDate": {
     "message": "Startdato"

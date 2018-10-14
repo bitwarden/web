@@ -25,7 +25,7 @@ export class RecoverDeleteComponent {
     async submit() {
         try {
             const request = new DeleteRecoverRequest();
-            request.email = this.email.toLowerCase();
+            request.email = this.email.trim().toLowerCase();
             this.formPromise = this.apiService.postAccountRecoverDelete(request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Started Delete Recovery' });

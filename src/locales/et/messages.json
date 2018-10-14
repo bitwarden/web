@@ -37,6 +37,9 @@
   "password": {
     "message": "Parool"
   },
+  "passphrase": {
+    "message": "Passphrase"
+  },
   "notes": {
     "message": "Märkmed"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Pikkus"
   },
+  "numWords": {
+    "message": "Sõnade arv"
+  },
+  "wordSeparator": {
+    "message": "Sõna eraldaja"
+  },
   "passwordHistory": {
     "message": "Paroolide ajalugu"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Likvideeri Hoidla"
   },
+  "purgedOrganizationVault": {
+    "message": "Organisatsiooni hoidla on likvideeritud."
+  },
   "purgeVaultDesc": {
     "message": "Jätkates kustutatakse kõik hoidlas olevad kirjed ja kaustad. Andmed, mis kuuluvad organisatsioonile, jäävad puutumata."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Jätka allpool, et kõik organisatsiooni kirjed hoidlast likvideerida."
   },
   "purgeVaultWarning": {
     "message": "Hoidla likvideerimine on alatine. Seda ei saa tagasi võtta."
@@ -1076,10 +1091,10 @@
     "message": "Selle funktsiooni kasutamiseks on vajalik preemium kontot omada."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Sul on preemium ligipääs"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Organisatsiooni kuulumise tõttu on sul juba juurdepääs preemium funktsioonidele."
   },
   "manage": {
     "message": "Haldamine"
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "U2F võtme $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFS tugi"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Lisa oma kontole FIDO U2F turvavõti"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Sisesta turvavõti oma arvuti USB pessa."
+  "removeU2fConfirmation": {
+    "message": "Oled kindel, et soovid selle turvavõtme eemaldada?"
+  },
+  "readKey": {
+    "message": "Loe võtit"
+  },
+  "keyCompromised": {
+    "message": "Võti on ohus."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Anna turvavõtmele lihtne nimi, et seda oleks lihtsam ära tunda."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Sisesta turvavõti arvuti USB pessa ning kliki \"Loe võtit\" nupul."
   },
   "twoFactorU2fTouchButton": {
     "message": "Kui turvavõtmel on nupp, siis vajuta seda."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Salvesta vorm."
   },
   "twoFactorU2fWarning": {
     "message": "Mõnede platvormi piirangute tõttu ei saa FIDO U2F-i kõikide Bitwardeni rakendustega kasutada. Võiksid kaaluda teise kaheastmelise kinnitamise aktiveerimist olukordadeks, kus FIDO U2F-i ei saa kasutada. Toetatud platvormid:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Ootame, kuni puudutad turvavõtmel olevat nuppu"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Kliki all olevale \"Luba\" nupule, et kaheastmeline kinnitamine läbi turvavõtme sisse lülitada."
+  "twoFactorU2fClickSave": {
+    "message": "Kliki all olevale \"Luba\" nupule, et kaheastmeline kinnitamine läbi selle turvavõtme sisse lülitada."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Turvavõtme lugemisel tekkis tõrge."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Turvavõtme lugemisel tekkis tõrge. Proovi uuesti."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwardeni kaheastmelise logimise varukood"
@@ -1701,7 +1740,7 @@
     "message": "Ise majutamine (valikuline)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Kasutajad saavad juurdepääsu preemium funktsioonidele"
   },
   "controlAccessWithGroups": {
     "message": "Halda gruppide abil kasutajate ligipääse"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Muuda konto parooli."
   },
-  "enabled2fa": {
-    "message": "Lülita kaheastmeline kinnitamine sisse."
+  "enabledUpdated2fa": {
+    "message": "Lülitasime sisse\/uuendasime kaheastmelist kinnitamist."
   },
   "disabled2fa": {
     "message": "Keela kaheastmeline kinnitamine."

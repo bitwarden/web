@@ -14,7 +14,7 @@ if (process.env.NODE_ENV == null) {
 const ENV = process.env.ENV = process.env.NODE_ENV;
 
 const extractCss = new ExtractTextPlugin({
-    filename: '[name].[chunkhash].css',
+    filename: '[name].[hash].css',
     disable: false,
     allChunks: true,
 });
@@ -73,7 +73,7 @@ const plugins = [
         path.resolve(__dirname, 'build/*'),
     ]),
     // ref: https://github.com/angular/angular/issues/20357
-    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/,
+    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)fesm5/,
         path.resolve(__dirname, './src')),
     new HtmlWebpackPlugin({
         template: './src/index.html',
@@ -91,6 +91,7 @@ const plugins = [
         chunks: ['connectors/u2f'],
     }),
     new CopyWebpackPlugin([
+        { from: './src/.nojekyll' },
         { from: './src/manifest.json' },
         { from: './src/favicon.ico' },
         { from: './src/browserconfig.xml' },
@@ -99,6 +100,7 @@ const plugins = [
         { from: './src/locales', to: 'locales' },
         { from: './src/scripts', to: 'scripts' },
         { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
+        { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
     ]),
     extractCss,
     new webpack.DefinePlugin({
@@ -129,8 +131,9 @@ if (ENV === 'production') {
     });
 }
 
+// ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
-const serve = {
+const devServer = {
     https: {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
@@ -142,7 +145,7 @@ const serve = {
 const config = {
     mode: ENV,
     devtool: 'source-map',
-    serve: serve,
+    devServer: devServer,
     entry: {
         'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
@@ -169,12 +172,13 @@ const config = {
         extensions: ['.ts', '.js'],
         alias: {
             jslib: path.join(__dirname, 'jslib/src'),
+            tldjs: path.join(__dirname, 'jslib/src/misc/tldjs.noop'),
         },
         symlinks: false,
         modules: [path.resolve('node_modules')],
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[hash].js',
         path: path.resolve(__dirname, 'build'),
     },
     module: { rules: moduleRules },

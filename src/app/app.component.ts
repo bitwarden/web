@@ -3,7 +3,10 @@ import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
 
 import {
+    BodyOutputType,
+    Toast,
     ToasterConfig,
+    ToasterContainerComponent,
     ToasterService,
 } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -14,7 +17,9 @@ import {
     NgZone,
     OnDestroy,
     OnInit,
+    SecurityContext,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import {
     NavigationEnd,
     Router,
@@ -75,7 +80,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
         private lockService: LockService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
-        private routerService: RouterService, private searchService: SearchService,
+        private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService) { }
 
     ngOnInit() {
@@ -125,6 +130,15 @@ export class AppComponent implements OnDestroy, OnInit {
                         if (premiumConfirmed) {
                             this.router.navigate(['settings/premium']);
                         }
+                        break;
+                    case 'showToast':
+                        this.showToast(message);
+                        break;
+                    case 'analyticsEventTrack':
+                        this.analytics.eventTrack.next({
+                            action: message.action,
+                            properties: { label: message.label },
+                        });
                         break;
                     default:
                         break;
@@ -200,6 +214,33 @@ export class AppComponent implements OnDestroy, OnInit {
                 this.idleStateChanged();
             }
         }, IdleTimeout);
+    }
+
+    private showToast(msg: any) {
+        const toast: Toast = {
+            type: msg.type,
+            title: msg.title,
+        };
+        if (typeof (msg.text) === 'string') {
+            toast.body = msg.text;
+        } else if (msg.text.length === 1) {
+            toast.body = msg.text[0];
+        } else {
+            let message = '';
+            msg.text.forEach((t: string) =>
+                message += ('<p>' + this.sanitizer.sanitize(SecurityContext.HTML, t) + '</p>'));
+            toast.body = message;
+            toast.bodyOutputType = BodyOutputType.TrustedHtml;
+        }
+        if (msg.options != null) {
+            if (msg.options.trustedHtml === true) {
+                toast.bodyOutputType = BodyOutputType.TrustedHtml;
+            }
+            if (msg.options.timeout != null && msg.options.timeout > 0) {
+                toast.timeout = msg.options.timeout;
+            }
+        }
+        this.toasterService.popAsync(toast);
     }
 
     private idleStateChanged() {

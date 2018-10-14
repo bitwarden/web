@@ -47,8 +47,8 @@ export class EventService {
             case EventType.User_ChangedPassword:
                 msg = this.i18nService.t('changedPassword');
                 break;
-            case EventType.User_Enabled2fa:
-                msg = this.i18nService.t('enabled2fa');
+            case EventType.User_Updated2fa:
+                msg = this.i18nService.t('enabledUpdated2fa');
                 break;
             case EventType.User_Disabled2fa:
                 msg = this.i18nService.t('disabled2fa');
@@ -123,6 +123,9 @@ export class EventService {
             // Org
             case EventType.Organization_Updated:
                 msg = this.i18nService.t('editedOrgSettings');
+                break;
+            case EventType.Organization_PurgedVault:
+                msg = this.i18nService.t('purgedOrganizationVault');
                 break;
             default:
                 break;

@@ -83,7 +83,7 @@ const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
-const platformUtilsService = new WebPlatformUtilsService(i18nService);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
@@ -98,7 +98,7 @@ const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, platformUtilsService, () => searchService);
+    apiService, storageService, i18nService, () => searchService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
@@ -110,7 +110,7 @@ const syncService = new SyncService(userService, apiService, settingsService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService);
 const totpService = new TotpService(storageService, cryptoFunctionService);
-const containerService = new ContainerService(cryptoService, platformUtilsService);
+const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService);
 const exportService = new ExportService(folderService, cipherService, apiService);
@@ -134,7 +134,7 @@ export function initFactory(): Function {
             environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
                 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
         }
-        await apiService.setUrls({
+        apiService.setUrls({
             base: isDev ? null : window.location.origin,
             api: isDev ? 'http://localhost:4000' : null,
             identity: isDev ? 'http://localhost:33656' : null,
@@ -151,7 +151,7 @@ export function initFactory(): Function {
         lockService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
         await i18nService.init(locale);
-        await authService.init();
+        authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
         let theme = await storageService.get<string>(ConstantsService.themeKey);

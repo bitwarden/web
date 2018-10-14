@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -23,12 +20,10 @@ import { AttachmentsComponent as BaseAttachmentsComponent } from '../../vault/at
 export class AttachmentsComponent extends BaseAttachmentsComponent {
     organization: Organization;
 
-    constructor(cipherService: CipherService, analytics: Angulartics2,
-        toasterService: ToasterService, i18nService: I18nService,
+    constructor(cipherService: CipherService, i18nService: I18nService,
         cryptoService: CryptoService, userService: UserService,
         platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
-        super(cipherService, analytics, toasterService, i18nService, cryptoService, userService,
-            platformUtilsService);
+        super(cipherService, i18nService, cryptoService, userService, platformUtilsService);
     }
 
     protected async loadCipher() {

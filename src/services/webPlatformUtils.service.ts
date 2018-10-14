@@ -4,6 +4,7 @@ import { SweetAlert } from 'sweetalert/typings/core';
 import { DeviceType } from 'jslib/enums/deviceType';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { Utils } from 'jslib/misc/utils';
@@ -16,7 +17,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     private browserCache: DeviceType = null;
 
-    constructor(private i18nService: I18nService) { }
+    constructor(private i18nService: I18nService, private messagingService: MessagingService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -85,10 +86,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return 'UA-81915606-3';
     }
 
-    getDomain(uriString: string): string {
-        return Utils.getHostname(uriString);
-    }
-
     isViewOpen(): boolean {
         return false;
     }
@@ -143,8 +140,14 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return true;
     }
 
-    showToast(type: 'error' | 'success' | 'warning' | 'info', title: string, text: string, global?: any): void {
-        throw new Error('showToast not implemented');
+    showToast(type: 'error' | 'success' | 'warning' | 'info', title: string, text: string | string[],
+        options?: any): void {
+        this.messagingService.send('showToast', {
+            text: text,
+            title: title,
+            type: type,
+            options: options,
+        });
     }
 
     async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
@@ -197,6 +200,14 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             buttons: buttons,
         });
         return confirmed;
+    }
+
+    eventTrack(action: string, label?: string, options?: any) {
+        this.messagingService.send('analyticsEventTrack', {
+            action: action,
+            label: label,
+            options: options,
+        });
     }
 
     isDev(): boolean {

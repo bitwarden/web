@@ -3,9 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { AuditService } from 'jslib/abstractions/audit.service';
@@ -41,12 +38,10 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
 
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
-        analytics: Angulartics2, toasterService: ToasterService,
         auditService: AuditService, stateService: StateService,
         protected userService: UserService, protected totpService: TotpService,
         protected passwordGenerationService: PasswordGenerationService, protected messagingService: MessagingService) {
-        super(cipherService, folderService, i18nService, platformUtilsService, analytics,
-            toasterService, auditService, stateService);
+        super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService);
     }
 
     async ngOnInit() {
@@ -77,7 +72,7 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
             return;
         }
 
-        this.analytics.eventTrack.next({ action: 'Launched Login URI' });
+        this.platformUtilsService.eventTrack('Launched Login URI');
         this.platformUtilsService.launchUri(uri.uri);
     }
 
@@ -86,9 +81,9 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
             return;
         }
 
-        this.analytics.eventTrack.next({ action: 'Copied ' + aType });
+        this.platformUtilsService.eventTrack('Copied ' + aType);
         this.platformUtilsService.copyToClipboard(value, { window: window });
-        this.toasterService.popAsync('info', null,
+        this.platformUtilsService.showToast('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
     }
 
@@ -157,5 +152,4 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
             await this.totpUpdateCode();
         }
     }
-
 }

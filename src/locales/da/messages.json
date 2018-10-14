@@ -37,6 +37,9 @@
   "password": {
     "message": "Adgangskode"
   },
+  "passphrase": {
+    "message": "Adgangssætning"
+  },
   "notes": {
     "message": "Noter"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Længde"
   },
+  "numWords": {
+    "message": "Antal ord"
+  },
+  "wordSeparator": {
+    "message": "Ordseparator"
+  },
   "passwordHistory": {
     "message": "Adgangskodehistorik"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Tøm boks"
   },
+  "purgedOrganizationVault": {
+    "message": "Organisationsboks tømt."
+  },
   "purgeVaultDesc": {
     "message": "Fortsæt nedenfor for at slette alle elementer og mapper i din boks. Elementer, der tilhører en organisation du deler med, slettes ikke."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Fortsæt nedenfor for at slette alle elementer i organisationens boks."
   },
   "purgeVaultWarning": {
     "message": "Tømning af din boks er permanent. Det kan ikke fortrydes."
@@ -1076,10 +1091,10 @@
     "message": "Premium-medlemskab kræves for at anvende denne funktion."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Du har premium adgang"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Du har allerede adgang til premium-funktioner på grund af en organisation, du er medlem af."
   },
   "manage": {
     "message": "Håndtér"
@@ -1136,7 +1151,7 @@
     "message": "Tilføj en ny YubiKey til din konto"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Sæt YubiKey'en (NEO eller 4-serien) i din computers USB-port."
+    "message": "Sæt YubiKey'en i din computers USB-port."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Vælg det første tomme YubiKey-indtastningsfelt nedenfor."
@@ -1158,6 +1173,15 @@
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "U2F nøgle $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Tilføj en FIDO U2F sikkerhedsnøgle til din konto"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Sæt sikkerhedsnøglen i computerens USB-port."
+  "removeU2fConfirmation": {
+    "message": "Er du sikker på, at du vil fjerne denne sikkerhedsnøgle?"
+  },
+  "readKey": {
+    "message": "Læs nøgle"
+  },
+  "keyCompromised": {
+    "message": "Nøglen er kompromitteret."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Giv sikkerhedsnøglen et brugervenligt navn til at identificere den."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Sæt sikkerhedsnøglen i computerens USB-port, og klik på knappen \"Læs nøgle\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Hvis sikkerhedsnøglen har en knap, skal du trykke på den."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Gem formularen."
   },
   "twoFactorU2fWarning": {
     "message": "På grund af platformbegrænsninger kan FIDO U2F ikke bruges på alle Bitwarden-applikationer. Du bør aktivere en anden to-trins login udbyder, så du kan få adgang til din konto, når FIDO U2F ikke kan benyttes. Understøttede platforme:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Venter på at du trykker på knappen på din sikkerhedsnøgle"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Klik på knappen \"Aktivér\" nedenfor for at benytte denne sikkerhedsnøgle til to-trins-login."
+  "twoFactorU2fClickSave": {
+    "message": "Klik på \"Gem\" knappen nedenfor for at aktivere denne sikkerhedsnøgle til to-trins login."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Der opstod et problem med at læse sikkerhedsnøglen."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Der opstod et problem med at læse sikkerhedsnøglen. Prøv igen."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din Bitwarden to-trins-login gendannelseskode"
@@ -1701,7 +1740,7 @@
     "message": "Lokal-hosting (valgfri)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Brugere får adgang til premium-medlemskabsfunktioner"
   },
   "controlAccessWithGroups": {
     "message": "Kontroller brugeradgang med grupper"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Ændrede konto kodeord."
   },
-  "enabled2fa": {
-    "message": "Aktiverede to-trins-login."
+  "enabledUpdated2fa": {
+    "message": "Aktiverede\/opdaterede to-trins login."
   },
   "disabled2fa": {
     "message": "Deaktiverede to-trins-login."

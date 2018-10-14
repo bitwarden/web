@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    Input,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -15,6 +18,8 @@ import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerifi
     templateUrl: 'purge-vault.component.html',
 })
 export class PurgeVaultComponent {
+    @Input() organizationId?: string = null;
+
     masterPassword: string;
     formPromise: Promise<any>;
 
@@ -32,11 +37,17 @@ export class PurgeVaultComponent {
         const request = new PasswordVerificationRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.apiService.postPurgeCiphers(request);
+            this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Purged Vault' });
+            this.analytics.eventTrack.next({
+                action: this.organizationId != null ? 'Purged Organization Vault' : 'Purged Vault',
+            });
             this.toasterService.popAsync('success', null, this.i18nService.t('vaultPurged'));
-            this.router.navigate(['vault']);
+            if (this.organizationId != null) {
+                this.router.navigate(['organizations', this.organizationId, 'vault']);
+            } else {
+                this.router.navigate(['vault']);
+            }
         } catch { }
     }
 }

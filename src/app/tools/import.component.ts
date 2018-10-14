@@ -129,7 +129,7 @@ export class ImportComponent implements OnInit {
             reader.onload = (evt) => {
                 if (this.format === 'lastpasscsv' && file.type === 'text/html') {
                     const parser = new DOMParser();
-                    const doc = parser.parseFromString(evt.target.result, 'text/html');
+                    const doc = parser.parseFromString((evt.target as any).result, 'text/html');
                     const pre = doc.querySelector('pre');
                     if (pre != null) {
                         resolve(pre.textContent);
@@ -139,7 +139,7 @@ export class ImportComponent implements OnInit {
                     return;
                 }
 
-                resolve(evt.target.result);
+                resolve((evt.target as any).result);
             };
             reader.onerror = () => {
                 reject();

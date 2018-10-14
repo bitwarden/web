@@ -6,22 +6,38 @@
     "experimentalDecorators": true,
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es5", "es6", "dom"],
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
     "allowJs": true,
     "sourceMap": true,
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "jslib/*": [ "jslib/src/*" ],
-      "@angular/*": [ "node_modules/@angular/*" ],
-      "angular2-toaster": [ "node_modules/angular2-toaster" ],
-      "angulartics2": [ "node_modules/angulartics2" ]
+      "tldjs": [
+        "jslib/src/misc/tldjs.noop"
+      ],
+      "jslib/*": [
+        "jslib/src/*"
+      ],
+      "@angular/*": [
+        "node_modules/@angular/*"
+      ],
+      "node": [
+        "node_modules/@types/node"
+      ]
     }
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
   },
   "exclude": [
     "node_modules",
     "dist",
     "build",
+    "jslib/node_modules",
     "jslib/dist",
     "jslib/spec",
     "jslib/src/electron",

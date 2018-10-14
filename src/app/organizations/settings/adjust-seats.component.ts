@@ -53,6 +53,6 @@ export class AdjustSeatsComponent {
     }
 
     get adjustedSeatTotal(): number {
-        return this.seatAdjustment * this.seatAdjustment;
+        return this.seatAdjustment * this.seatPrice;
     }
 }

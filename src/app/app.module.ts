@@ -183,7 +183,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
                 clearQueryParams: true,
             },
         }),
-        ToasterModule,
+        ToasterModule.forRoot(),
     ],
     declarations: [
         AcceptOrganizationComponent,

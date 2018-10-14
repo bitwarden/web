@@ -1,6 +1,3 @@
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,11 +15,10 @@ import { ExportComponent as BaseExportComponent } from '../../tools/export.compo
 export class ExportComponent extends BaseExportComponent {
     organizationId: string;
 
-    constructor(analytics: Angulartics2, toasterService: ToasterService,
-        cryptoService: CryptoService, i18nService: I18nService,
+    constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         private route: ActivatedRoute) {
-        super(analytics, toasterService, cryptoService, i18nService, platformUtilsService, exportService);
+        super(cryptoService, i18nService, platformUtilsService, exportService);
     }
 
     ngOnInit() {

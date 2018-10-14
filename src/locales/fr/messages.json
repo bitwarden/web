@@ -37,6 +37,9 @@
   "password": {
     "message": "Mot de passe"
   },
+  "passphrase": {
+    "message": "Phrase de passe"
+  },
   "notes": {
     "message": "Notes"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Longueur"
   },
+  "numWords": {
+    "message": "Nombre de mots"
+  },
+  "wordSeparator": {
+    "message": "Séparateur de mots"
+  },
   "passwordHistory": {
     "message": "Historique des mots de passe"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Effacer le coffre"
   },
+  "purgedOrganizationVault": {
+    "message": "Le coffre de l'organisation a été effacé."
+  },
   "purgeVaultDesc": {
     "message": "Poursuivez ci-dessous pour supprimer tous les éléments et dossiers de votre coffre. Les éléments qui appartiennent à une organisation avec laquelle vous partagez ne seront pas supprimés."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Poursuivez ci-dessous pour supprimer tous les éléments du coffre de votre organisation."
   },
   "purgeVaultWarning": {
     "message": "L'effacement votre coffre est définitif. Cette action ne peut pas être annulée."
@@ -1076,10 +1091,10 @@
     "message": "Une adhésion premium est requise pour utiliser cette fonctionnalité."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Vous avez un accès premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Vous avez déjà accès aux fonctionnalités premium grâce à une organisation dont vous êtes membre."
   },
   "manage": {
     "message": "Gérer"
@@ -1165,6 +1180,15 @@
       }
     }
   },
+  "u2fkeyX": {
+    "message": "Clé U2F $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Support du NFC"
   },
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Ajouter une clé de sécurité FIDO U2F à votre compte"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Branchez la clé de sécurité sur un port USB de votre ordinateur."
+  "removeU2fConfirmation": {
+    "message": "Êtes-vous certain de vouloir retirer cette clé de sécurité ?"
+  },
+  "readKey": {
+    "message": "Lire la clé"
+  },
+  "keyCompromised": {
+    "message": "La clé est compromise."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Donnez un nom convivial à la clé de sécurité pour l'identifier."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Branchez la clé de sécurité sur un port USB de votre ordinateur et cliquez sur le bouton \"Lire la clé\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Si la clé de sécurité a un bouton, touchez-le."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Sauvegarder le contenu du formulaire."
   },
   "twoFactorU2fWarning": {
     "message": "En raison de limitations de plateforme, FIDO U2F n'est pas utilisable sur toutes les applications Bitwarden. Vous devriez activer un autre fournisseur de connexion en deux étapes afin de pouvoir accéder à votre compte lorsque vous ne pouvez pas utiliser FIDO U2F. Plateformes prises en charge :"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Attente de l'appui sur le bouton de votre clé de sécurité"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Cliquez sur le bouton « Activer » ci-dessous pour activer cette clé de sécurité pour une connexion en deux étapes."
+  "twoFactorU2fClickSave": {
+    "message": "Cliquez sur le bouton « Sauvegarder » ci-dessous pour activer cette clé de sécurité pour une connexion en deux étapes."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Un problème est survenu lors de la lecture de la clé de sécurité."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Un problème est survenu lors de la lecture de la clé de sécurité. Veuillez réessayer."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Votre code de récupération de connexion en deux étapes Bitwarden"
@@ -1701,7 +1740,7 @@
     "message": "Hébergement local (optionnel)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Les utilisateurs auront accès aux fonctionnalités premium"
   },
   "controlAccessWithGroups": {
     "message": "Contrôlez l'accès des utilisateurs avec des groupes"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Mot de passe changé."
   },
-  "enabled2fa": {
-    "message": "Connexion en deux étapes activée."
+  "enabledUpdated2fa": {
+    "message": "Connexion en deux étapes activée\/mise à jour."
   },
   "disabled2fa": {
     "message": "Connexion en deux étapes désactivée."

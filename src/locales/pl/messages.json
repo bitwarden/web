@@ -37,6 +37,9 @@
   "password": {
     "message": "Hasło"
   },
+  "passphrase": {
+    "message": "Hasło"
+  },
   "notes": {
     "message": "Notatki"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Długość"
   },
+  "numWords": {
+    "message": "Liczba słów"
+  },
+  "wordSeparator": {
+    "message": "Separator wyrazów"
+  },
   "passwordHistory": {
     "message": "Historia haseł"
   },
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Wyczyść sejf"
   },
+  "purgedOrganizationVault": {
+    "message": "Wyczyszczono sejf organizacji."
+  },
   "purgeVaultDesc": {
     "message": "Kontynuuj poniżej, aby usunąć wszystkie elementy i foldery z Twojego sejfu. Elementy udostępnione organizacji nie zostaną usunięte."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Przejdź poniżej, aby usunąć wszystkie elementy z sejfu organizacji."
   },
   "purgeVaultWarning": {
     "message": "Wykasowanie sejfu jest nieodwracalne. Akcja ta nie może być cofnięta."
@@ -1076,10 +1091,10 @@
     "message": "Członkostwo premium jest wymagane do korzystania z tej funkcji."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Masz dostęp do funkcji premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Posiadasz już dostęp do funkcji wersji premium dzięki organizacji, której jesteś członkiem."
   },
   "manage": {
     "message": "Zarządzaj"
@@ -1136,7 +1151,7 @@
     "message": "Dodaj nowy klucz YubiKey do swojego konta"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Włóż klucz YubiKey (NEO lub seria 4) do portu USB swojego komputera."
+    "message": "Włóż YubiKey do portu USB swojego komputera."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Wybierz poniżej pierwsze wolne pole YubiKey."
@@ -1158,6 +1173,15 @@
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "Klucz U2F $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1207,11 +1231,26 @@
   "twoFactorU2fAdd": {
     "message": "Dodaj klucz bezpieczeństwa FIDO U2F do swojego konta"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Włóż klucz bezpieczeństwa do portu USB swojego komputera."
+  "removeU2fConfirmation": {
+    "message": "Czy jesteś pewien, że chcesz usunąć ten klucz bezpieczeństwa?"
+  },
+  "readKey": {
+    "message": "Odczytaj klucz"
+  },
+  "keyCompromised": {
+    "message": "Klucz został złamany."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Nadaj kluczowi bezpieczeństwa przyjazną nazwę, aby go łatwiej zidentyfikować."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Podłącz klucz bezpieczeństwa do portu USB komputera i kliknij przycisk \"Odczytaj klucz\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Jeśli klucz bezpieczeństwa posiada przycisk, dotknij go."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Zapisz formularz."
   },
   "twoFactorU2fWarning": {
     "message": "Z powodu ograniczeń platformy, FIDO U2F nie może być używany we wszystkich aplikacjach Bitwarden. Powinieneś włączyć inną metodę dwustopniowego logowania, tak abyś miał dostęp do swojego konta w sytuacji, gdy FIDO U2F nie będzie mógł zostać użyty. Wspierane platformy:"
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Oczekiwanie na dotknięcie klucza bezpieczeństwa"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Kliknij przycisk \"Włącz\" poniżej, aby aktywować dwustopniowe logowanie za pomocą tego klucza bezpieczeństwa."
+  "twoFactorU2fClickSave": {
+    "message": "Kliknij przycisk \"Zapisz\" poniżej, aby włączyć ten klucz bezpieczeństwa dla dwustopniowego logowania."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Wystąpił problem z odczytem klucza bezpieczeństwa."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Wystąpił problem z odczytem klucza bezpieczeństwa. Spróbuj ponownie."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Twój kod odzyskiwania Bitwarden"
@@ -1701,7 +1740,7 @@
     "message": "Hosting na własnym serwerze (opcjonalny)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Użytkownicy uzyskują dostęp do funkcji członkostwa premium"
   },
   "controlAccessWithGroups": {
     "message": "Kontroluj dostęp z użyciem grup użytkowników"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Zmieniono hasło do konta."
   },
-  "enabled2fa": {
-    "message": "Włączono dwustopniowe logowanie."
+  "enabledUpdated2fa": {
+    "message": "Włączono\/zaktualizowano dwustopniowe logowanie."
   },
   "disabled2fa": {
     "message": "Wyłączono dwustopniowe logowanie."

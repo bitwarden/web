@@ -37,6 +37,9 @@
   "password": {
     "message": "Contraseña"
   },
+  "passphrase": {
+    "message": "Frase de contraseña"
+  },
   "notes": {
     "message": "Notas"
   },
@@ -795,6 +798,12 @@
   "length": {
     "message": "Longitud"
   },
+  "numWords": {
+    "message": "Número de palabras"
+  },
+  "wordSeparator": {
+    "message": "Separador de palabras"
+  },
   "passwordHistory": {
     "message": "Historial de contraseñas"
   },
@@ -853,16 +862,16 @@
     "message": "Confirma la nueva contraseña maestra"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Configuración de clave de cifrado"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "Algoritmo KDF"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "Iteraciones de KDF"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Mientras más iteraciones KDF, mejor la protección a su contraseña maestra de ser descubierta por un ataque de fuerza bruta. Recomendamos un valor de $VALUE$ o más.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -871,7 +880,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Establecer las iteraciones KDF con un valor muy alto, podría resultar en un rendimiento pobre al ingresar, y\/o desbloquear Bitwarden en dispositivos con CPUs lentos. Recomendamos que aumente el valor en incrementos de $INCREMENT$ y luego pruebe en todos sus dispositivos.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -880,10 +889,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Modificar KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Se cambió la configuración de clave de cifrado"
   },
   "dangerZone": {
     "message": "Zona peligrosa"
@@ -906,8 +915,14 @@
   "purgeVault": {
     "message": "Purgar caja fuerte"
   },
+  "purgedOrganizationVault": {
+    "message": "Bóveda de organización purgada."
+  },
   "purgeVaultDesc": {
     "message": "Proceder eliminará todos los elementos y carpetas de tu caja fuerte. Los elementos que petenezcan a una organización con la que compartes contenido, no serán eliminados."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceda a continuación para eliminar todos los elementos de la bóveda de la organización."
   },
   "purgeVaultWarning": {
     "message": "Purgar tu caja fuerte es permanente. No se puede deshacer."
@@ -1076,10 +1091,10 @@
     "message": "Se quiere membrasía Premium para poder utilizar esta característica."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Usted tiene acceso premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Ya tiene acceso a las características premium, debido a que es miembro de una organización."
   },
   "manage": {
     "message": "Gestionar"
@@ -1139,7 +1154,7 @@
     "message": "Conecta la YubiKey (NEO o serie 4) al puerto USB de tu ordenador."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Seleccione el primer campo de entrada YubiKey vacío a continuación."
+    "message": "Elija el primer campo de entrada vacío de YubiKey de abajo."
   },
   "twoFactorYubikeyTouchButton": {
     "message": "Toca el botón del YubiKey."
@@ -1158,6 +1173,15 @@
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "Llave U2F $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1207,14 +1231,29 @@
   "twoFactorU2fAdd": {
     "message": "Agregar una clave de seguridad U2F FIDO a su cuenta"
   },
-  "twoFactorU2fPlugIn": {
-    "message": "Conecte la llave de seguridad al puerto USB de su ordenador."
+  "removeU2fConfirmation": {
+    "message": "¿Estás seguro de que quieres eliminar esta clave de seguridad?"
+  },
+  "readKey": {
+    "message": "Leer llave"
+  },
+  "keyCompromised": {
+    "message": "La clave está comprometida."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Asigne un nombre descriptivo a la llave de seguridad."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Conecte la llave de seguridad al puerto USB de su ordenador y haga clic en el botón \"Leer llave\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Si la clave de seguridad tiene un botón, tócalo."
   },
+  "twoFactorU2fSaveForm": {
+    "message": "Guarda el formulario."
+  },
   "twoFactorU2fWarning": {
-    "message": "Debido a las limitaciones de la plataforma, FIDO U2F no puede utilizarse en todas las aplicaciones de Bitwarden. Debe habilitar otro proveedor de inicio de sesión de dos pasos para que puede acceder a su cuenta cuando FIDO U2F no pueda utilizarse. Plataformas soportadas:"
+    "message": "Debido a limitaciones de la plataforma, FIDO U2F no puede ser usado en todas las aplicaciones de Bitwarden. Debería habilitar otro proveedor de inicio de sesión de dos pasos, para que pueda acceder a su cuenta cuando FIDO U2F no pueda ser utilizado. Plataformas soportadas:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Bóveda web y extensiones de navegador en un escritorio\/portátil con un navegador compatible con U2F (Chrome, Opera, Vivaldi, o Firefox con FIDO U2F activado)."
@@ -1222,11 +1261,11 @@
   "twoFactorU2fWaiting": {
     "message": "Esperando que toque el botón de su clave de seguridad"
   },
-  "twoFactorU2fClickEnable": {
-    "message": "Haga clic en el botón \"Habilitar\" a continuación para habilitar esta clave de seguridad para el inicio de sesión en dos pasos."
+  "twoFactorU2fClickSave": {
+    "message": "Haga clic en el botón \"guardar\" para habilitar esta clave de seguridad para el inicio de sesión de dos pasos."
   },
-  "twoFactorU2fProblemReading": {
-    "message": "Hubo un problema leyendo la clave de seguridad."
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Hubo un problema al leer la clave de seguridad. Inténtalo de nuevo."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Su código de recuperación de inicio de sesión de dos pasos Bitwarden"
@@ -1701,7 +1740,7 @@
     "message": "Alojamiento propio (opcional)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Los usuarios obtienen acceso a las características de una membresía premium"
   },
   "controlAccessWithGroups": {
     "message": "Control el acceso de usuarios con grupos"
@@ -1910,8 +1949,8 @@
   "changedPassword": {
     "message": "Contraseña de la cuenta cambiada."
   },
-  "enabled2fa": {
-    "message": "Autenticación en dos pasos habilitada."
+  "enabledUpdated2fa": {
+    "message": "Autenticación en dos pasos habilitado\/actualizado."
   },
   "disabled2fa": {
     "message": "Autenticación en dos pasos deshabilitada."
