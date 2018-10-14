@@ -46,13 +46,11 @@
                 </fieldset>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-submit manual" [disabled]="form.loading || !canSave"
-                    [ngClass]="{loading:form.loading}">
+                <button type="submit" class="btn btn-primary btn-submit manual" [disabled]="form.loading || !canSave" [ngClass]="{loading:form.loading}">
                     <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                     <span>{{'save' | i18n}}</span>
                 </button>
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" title="{{'cancel' | i18n}}">{{'cancel'
-                    | i18n}}</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" title="{{'cancel' | i18n}}">{{'cancel' | i18n}}</button>
             </div>
         </form>
     </div>
