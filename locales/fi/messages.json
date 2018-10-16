@@ -38,7 +38,7 @@
     "message": "Salasana"
   },
   "passphrase": {
-    "message": "Passphrase"
+    "message": "Tunnuslause"
   },
   "notes": {
     "message": "Merkinnät"
@@ -607,7 +607,7 @@
     "message": "Uusi organisaatio"
   },
   "noOrganizationsList": {
-    "message": "You do not belong to any organizations. Organizations allow you to securely share items with other users."
+    "message": "Et kuulu mihinkään organisaatioon. Organisaatiot mahdollistavat sinun jakaa kohteita muiden käyttäjien kanssa turvallisesti."
   },
   "versionNumber": {
     "message": "Versio $VERSION_NUMBER$",
@@ -619,10 +619,10 @@
     }
   },
   "enterVerificationCodeApp": {
-    "message": "Enter the 6 digit verification code from your authenticator app."
+    "message": "Syötä 6-numeroinen vahvistuskoodi todennussovelluksestasi."
   },
   "enterVerificationCodeEmail": {
-    "message": "Enter the 6 digit verification code that was emailed to $EMAIL$.",
+    "message": "Syötä 6-numeroinen vahvistuskoodi, joka lähetettiin osoitteeseen $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -631,7 +631,7 @@
     }
   },
   "verificationCodeEmailSent": {
-    "message": "Verification email sent to $EMAIL$.",
+    "message": "Vahvistussähköposti lähetettiin osoitteeseen $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -643,7 +643,7 @@
     "message": "Muista minut"
   },
   "sendVerificationCodeEmailAgain": {
-    "message": "Send verification code email again"
+    "message": "Lähetä vahvistuskoodisähköposti uudestaan"
   },
   "useAnotherTwoStepMethod": {
     "message": "Käytä toista menetelmää kaksivaiheiseen kirjautumiseen"
@@ -655,7 +655,7 @@
     "message": "Insert your security key into your computer's USB port. If it has a button, touch it."
   },
   "loginUnavailable": {
-    "message": "Login Unavailable"
+    "message": "Kirjautuminen ei ole käytettävissä"
   },
   "noTwoStepProviders": {
     "message": "This account has two-step login enabled, however, none of the configured two-step providers are supported by this web browser."
@@ -799,10 +799,10 @@
     "message": "Pituus"
   },
   "numWords": {
-    "message": "Number of Words"
+    "message": "Sanojen määrä"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Sanaerotin"
   },
   "passwordHistory": {
     "message": "Salasanahistoria"
@@ -892,13 +892,13 @@
     "message": "Change KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Salausavaimen asetukset muutettu"
   },
   "dangerZone": {
-    "message": "Danger Zone"
+    "message": "Vaaravyöhyke"
   },
   "dangerZoneDesc": {
-    "message": "Careful, these actions are not reversible!"
+    "message": "Varovasti, näitä toimintoja ei voi perua!"
   },
   "deauthorizeSessions": {
     "message": "Deauthorize Sessions"
@@ -998,17 +998,17 @@
     "message": "Vaihda verkkoholvissa käytettävää kieltä."
   },
   "disableIcons": {
-    "message": "Disable Website Icons"
+    "message": "Poista käytöstä verkkosivustojen kuvakkeet"
   },
   "disableIconsDesc": {
     "message": "Website Icons provide a recognizable image next to each login item in your vault."
   },
   "enableGravatars": {
-    "message": "Enable Gravatars",
+    "message": "Käytä gravatareja",
     "description": "'Gravatar' is the name of a service. See www.gravatar.com"
   },
   "enableGravatarsDesc": {
-    "message": "Use avatar images loaded from gravatar.com."
+    "message": "Käytä avatar-profiilikuvia gravatar.com-palvelusta."
   },
   "default": {
     "message": "Oletus"
@@ -1193,7 +1193,7 @@
     "message": "NFC-tuki"
   },
   "twoFactorYubikeySupportsNfc": {
-    "message": "One of my keys supports NFC."
+    "message": "Yksi avaimistani tukee NFC:tä."
   },
   "twoFactorYubikeySupportsNfcDesc": {
     "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
@@ -1238,7 +1238,7 @@
     "message": "Read Key"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Avain on vaarantunut."
   },
   "twoFactorU2fGiveName": {
     "message": "Give the security key a friendly name to identify it."
@@ -1274,7 +1274,7 @@
     "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
   },
   "printCode": {
-    "message": "Print Code",
+    "message": "Tulosta koodi",
     "description": "Print 2FA recovery code"
   },
   "reports": {
@@ -1377,7 +1377,7 @@
     }
   },
   "addons": {
-    "message": "Addons"
+    "message": "Lisäosat"
   },
   "additionalStorageGb": {
     "message": "Additional Storage (GB)"
@@ -1463,7 +1463,7 @@
     "message": "Tilaus on peruttu."
   },
   "neverExpires": {
-    "message": "Never Expires"
+    "message": "Ei vanhene koskaan"
   },
   "status": {
     "message": "Tila"
@@ -1671,7 +1671,7 @@
     "message": "For businesses and other large organizations."
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "Ilmainen ikuisesti"
   },
   "includesXUsers": {
     "message": "sisältää $COUNT$ käyttäjää",
@@ -1725,7 +1725,7 @@
     "message": "Add and share with unlimited users"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "Luo rajattomasti kokoelmia"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ encrypted file storage",
@@ -1737,19 +1737,19 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "Ylläpidä omilla palvelimilla (valinnainen)"
   },
   "usersGetPremium": {
     "message": "Users get access to premium membership features"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "Hallitse käyttäjien oikeuksia ryhmillä"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "Synkronoi käyttäjät ja ryhmät käyttäjähakemistosta"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "Seuraa käyttäjien toimintoja audit-lokeilla"
   },
   "enforce2faDuo": {
     "message": "Enforce 2FA with Duo"
@@ -1797,7 +1797,7 @@
     "message": "Get Help"
   },
   "getApps": {
-    "message": "Get the Apps"
+    "message": "Hanki sovellukset"
   },
   "loggedInAs": {
     "message": "Kirjautuneena käyttäjänä"
@@ -1875,10 +1875,10 @@
     }
   },
   "userAccessAllItems": {
-    "message": "This user can access and modify all items."
+    "message": "Tämä käyttäjä voi käyttää ja muokata kaikkia tietueita."
   },
   "userAccessSelectedCollections": {
-    "message": "This user can access only the selected collections."
+    "message": "Tällä käyttäjällä on pääsy vain valittuihin kokoelmiin."
   },
   "search": {
     "message": "Search"
@@ -1959,10 +1959,10 @@
     "message": "Recovered account from two-step login."
   },
   "failedLogin": {
-    "message": "Login attempt failed with incorrect password."
+    "message": "Sisäänkirjautumisyritys epäonnistui väärän salasanan takia."
   },
   "failedLogin2fa": {
-    "message": "Login attempt failed with incorrect two-step login."
+    "message": "Sisäänkirjautumisyritys epäonnistui väärän kaksivaiheisen todennuksen takia."
   },
   "editedOrgSettings": {
     "message": "Edited organization settings."
@@ -2160,7 +2160,7 @@
     "message": "Lähetä kutsu uudelleen"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "$USER$ on kutsuttu uudelleen.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2169,7 +2169,7 @@
     }
   },
   "confirm": {
-    "message": "Confirm"
+    "message": "Vahvista"
   },
   "hasBeenConfirmed": {
     "message": "$USER$ on vahvistettu.",
@@ -2339,10 +2339,10 @@
     "message": "Tilin tyyppi"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "Yhteisö (yritys)"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Yksityinen (henkilö)"
   },
   "enterInstallationId": {
     "message": "Enter your installation id"
@@ -2392,7 +2392,7 @@
     "message": "Päivitä avain"
   },
   "updateEncryptionKey": {
-    "message": "Update Encryption Key"
+    "message": "Päivitä salausavain"
   },
   "updateEncryptionKeyShortDesc": {
     "message": "You are currently using an outdated encryption scheme."
