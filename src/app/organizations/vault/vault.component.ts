@@ -124,7 +124,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async clearGroupingFilters() {
-        this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.showAddNew = this.showAdd;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
         await this.ciphersComponent.applyFilter();
         this.clearFilters();
@@ -132,7 +132,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async filterCipherType(type: CipherType, load = false) {
-        this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.showAddNew = this.showAdd;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         const filter = (c: CipherView) => c.type === type;
         if (load) {

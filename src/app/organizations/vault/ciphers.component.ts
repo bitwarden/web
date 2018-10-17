@@ -41,7 +41,7 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     async load(filter: (cipher: CipherView) => boolean = null) {
         if (!this.organization.isAdmin) {
-            await super.load();
+            await super.load(filter);
             return;
         }
         this.accessEvents = this.organization.useEvents;
