@@ -14,10 +14,15 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
-import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
+import {
+    CollectionDetailsResponse,
+    CollectionResponse,
+} from 'jslib/models/response/collectionResponse';
+import { ListResponse } from 'jslib/models/response/listResponse';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { ModalComponent } from '../../modal.component';
@@ -42,7 +47,8 @@ export class CollectionsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private collectionService: CollectionService, private componentFactoryResolver: ComponentFactoryResolver,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService) { }
+        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
+        private userService: UserService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -55,7 +61,13 @@ export class CollectionsComponent implements OnInit {
     }
 
     async load() {
-        const response = await this.apiService.getCollections(this.organizationId);
+        const organization = await this.userService.getOrganization(this.organizationId);
+        let response: ListResponse<CollectionResponse>;
+        if (organization.isAdmin) {
+            response = await this.apiService.getCollections(this.organizationId);
+        } else {
+            response = await this.apiService.getUserCollections();
+        }
         const collections = response.data.map((r) =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
