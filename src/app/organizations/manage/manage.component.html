@@ -1,7 +1,7 @@
 <div class="container page-content">
     <div class="row">
         <div class="col-3">
-            <div class="card">
+            <div class="card" *ngIf="organization">
                 <div class="card-header">{{'manage' | i18n}}</div>
                 <div class="list-group list-group-flush">
                     <a routerLink="people" class="list-group-item" routerLinkActive="active" *ngIf="organization.isAdmin">
