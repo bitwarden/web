@@ -8,7 +8,11 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
 import { Organization } from 'jslib/models/domain/organization';
-import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
+import {
+    CollectionDetailsResponse,
+    CollectionResponse,
+} from 'jslib/models/response/collectionResponse';
+import { ListResponse } from 'jslib/models/response/listResponse';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { GroupingsComponent as BaseGroupingsComponent } from '../../vault/groupings.component';
@@ -26,11 +30,16 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     }
 
     async loadCollections() {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.isManager) {
             await super.loadCollections(this.organization.id);
             return;
         }
-        const collections = await this.apiService.getCollections(this.organization.id);
+        let collections: ListResponse<CollectionResponse>;
+        if (this.organization.isAdmin) {
+            collections = await this.apiService.getCollections(this.organization.id);
+        } else {
+            collections = await this.apiService.getUserCollections();
+        }
         if (collections != null && collections.data != null && collections.data.length) {
             const collectionDomains = collections.data.map((r) =>
                 new Collection(new CollectionData(r as CollectionDetailsResponse)));
@@ -39,11 +48,13 @@ export class GroupingsComponent extends BaseGroupingsComponent {
             this.collections = [];
         }
 
-        const unassignedCollection = new CollectionView();
-        unassignedCollection.name = this.i18nService.t('unassigned');
-        unassignedCollection.id = 'unassigned';
-        unassignedCollection.organizationId = this.organization.id;
-        unassignedCollection.readOnly = true;
-        this.collections.push(unassignedCollection);
+        if (this.organization.isAdmin) {
+            const unassignedCollection = new CollectionView();
+            unassignedCollection.name = this.i18nService.t('unassigned');
+            unassignedCollection.id = 'unassigned';
+            unassignedCollection.organizationId = this.organization.id;
+            unassignedCollection.readOnly = true;
+            this.collections.push(unassignedCollection);
+        }
     }
 }
