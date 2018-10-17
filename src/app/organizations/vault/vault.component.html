@@ -18,7 +18,7 @@
                 </button>
             </div>
             <app-org-vault-ciphers (onCipherClicked)="editCipher($event)" (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
-                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)">
+                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)" [showAddNew]="showAdd">
             </app-org-vault-ciphers>
         </div>
     </div>
