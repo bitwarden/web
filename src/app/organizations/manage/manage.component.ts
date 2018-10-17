@@ -6,11 +6,14 @@ import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from 'jslib/abstractions/user.service';
 
+import { Organization } from 'jslib/models/domain/organization';
+
 @Component({
     selector: 'app-org-manage',
     templateUrl: 'manage.component.html',
 })
 export class ManageComponent implements OnInit {
+    organization: Organization;
     accessGroups = false;
     accessEvents = false;
 
@@ -18,9 +21,9 @@ export class ManageComponent implements OnInit {
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
-            const organization = await this.userService.getOrganization(params.organizationId);
-            this.accessEvents = organization.useEvents;
-            this.accessGroups = organization.useGroups;
+            this.organization = await this.userService.getOrganization(params.organizationId);
+            this.accessEvents = this.organization.useEvents;
+            this.accessGroups = this.organization.useGroups;
         });
     }
 }

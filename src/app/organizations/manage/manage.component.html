@@ -4,16 +4,16 @@
             <div class="card">
                 <div class="card-header">{{'manage' | i18n}}</div>
                 <div class="list-group list-group-flush">
-                    <a routerLink="people" class="list-group-item" routerLinkActive="active">
+                    <a routerLink="people" class="list-group-item" routerLinkActive="active" *ngIf="organization.isAdmin">
                         {{'people' | i18n}}
                     </a>
                     <a routerLink="collections" class="list-group-item" routerLinkActive="active">
                         {{'collections' | i18n}}
                     </a>
-                    <a routerLink="groups" class="list-group-item" routerLinkActive="active" *ngIf="accessGroups">
+                    <a routerLink="groups" class="list-group-item" routerLinkActive="active" *ngIf="organization.isAdmin && accessGroups">
                         {{'groups' | i18n}}
                     </a>
-                    <a routerLink="events" class="list-group-item" routerLinkActive="active" *ngIf="accessEvents">
+                    <a routerLink="events" class="list-group-item" routerLinkActive="active" *ngIf="organization.isAdmin && accessEvents">
                         {{'eventLogs' | i18n}}
                     </a>
                 </div>

@@ -174,7 +174,13 @@ const routes: Routes = [
                 path: 'manage',
                 component: OrgManageComponent,
                 canActivate: [OrganizationTypeGuardService],
-                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
+                data: {
+                    allowedTypes: [
+                        OrganizationUserType.Owner,
+                        OrganizationUserType.Admin,
+                        OrganizationUserType.Manager,
+                    ]
+                },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'people' },
                     { path: 'collections', component: OrgManageCollectionsComponent, data: { titleId: 'collections' } },

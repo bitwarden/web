@@ -36,6 +36,7 @@
                             <td>
                                 <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
+                                <span *ngIf="u.type === organizationUserType.Manager">{{'manager' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
                             </td>
                             <td class="table-list-options wider">

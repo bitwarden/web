@@ -5,7 +5,10 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -58,12 +61,16 @@ export class PeopleComponent implements OnInit {
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private userService: UserService) { }
+        private userService: UserService, private router: Router) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
+            if (!organization.isAdmin) {
+                this.router.navigate(['../collections'], { relativeTo: this.route });
+                return;
+            }
             this.accessEvents = organization.useEvents;
             this.accessGroups = organization.useGroups;
             await this.load();
