@@ -67,12 +67,12 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         this.toasterService.popAsync('success', null, this.i18nService.t('editedItem'));
     }
 
-    check(c: CollectionView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
-    }
-
     selectAll(select: boolean) {
         this.collections.forEach((c) => this.check(c, select));
+    }
+
+    protected check(c: CollectionView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
     protected loadCipher() {
