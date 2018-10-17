@@ -179,7 +179,7 @@ const routes: Routes = [
                         OrganizationUserType.Owner,
                         OrganizationUserType.Admin,
                         OrganizationUserType.Manager,
-                    ]
+                    ],
                 },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'people' },
