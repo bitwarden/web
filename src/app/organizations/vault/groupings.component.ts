@@ -30,16 +30,12 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     }
 
     async loadCollections() {
-        if (!this.organization.isManager) {
+        if (!this.organization.isAdmin) {
             await super.loadCollections(this.organization.id);
             return;
         }
-        let collections: ListResponse<CollectionResponse>;
-        if (this.organization.isAdmin) {
-            collections = await this.apiService.getCollections(this.organization.id);
-        } else {
-            collections = await this.apiService.getUserCollections();
-        }
+
+        const collections = await this.apiService.getCollections(this.organization.id);
         if (collections != null && collections.data != null && collections.data.length) {
             const collectionDomains = collections.data.map((r) =>
                 new Collection(new CollectionData(r as CollectionDetailsResponse)));
@@ -48,13 +44,11 @@ export class GroupingsComponent extends BaseGroupingsComponent {
             this.collections = [];
         }
 
-        if (this.organization.isAdmin) {
-            const unassignedCollection = new CollectionView();
-            unassignedCollection.name = this.i18nService.t('unassigned');
-            unassignedCollection.id = 'unassigned';
-            unassignedCollection.organizationId = this.organization.id;
-            unassignedCollection.readOnly = true;
-            this.collections.push(unassignedCollection);
-        }
+        const unassignedCollection = new CollectionView();
+        unassignedCollection.name = this.i18nService.t('unassigned');
+        unassignedCollection.id = 'unassigned';
+        unassignedCollection.organizationId = this.organization.id;
+        unassignedCollection.readOnly = true;
+        this.collections.push(unassignedCollection);
     }
 }
