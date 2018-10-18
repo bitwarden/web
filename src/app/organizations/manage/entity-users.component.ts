@@ -63,7 +63,7 @@ export class EntityUsersComponent implements OnInit {
             const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
                 response.forEach((s) => {
-                    const user = users.data.filter((u) => !u.accessAll && u.id === s);
+                    const user = users.data.filter((u) => u.id === s);
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
                     }
@@ -83,7 +83,7 @@ export class EntityUsersComponent implements OnInit {
         }
 
         this.allUsers.forEach((u) => {
-            if (u.accessAll) {
+            if (this.entity === 'collection' && u.accessAll) {
                 (u as any).checked = true;
             }
             if ((u as any).checked) {
@@ -93,7 +93,7 @@ export class EntityUsersComponent implements OnInit {
     }
 
     check(u: OrganizationUserUserDetailsResponse) {
-        if (u.accessAll) {
+        if (this.entity === 'collection' && u.accessAll) {
             return;
         }
         (u as any).checked = !(u as any).checked;
@@ -118,7 +118,7 @@ export class EntityUsersComponent implements OnInit {
     async submit() {
         try {
             if (this.entity === 'group') {
-                const selections = this.users.filter((u) => (u as any).checked && !u.accessAll).map((u) => u.id);
+                const selections = this.users.filter((u) => (u as any).checked).map((u) => u.id);
                 this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
             } else {
                 const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
