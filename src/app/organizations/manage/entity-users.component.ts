@@ -11,7 +11,6 @@ import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
@@ -39,8 +38,7 @@ export class EntityUsersComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private analytics: Angulartics2, private toasterService: ToasterService) { }
 
     async ngOnInit() {
         await this.loadUsers();
@@ -52,10 +50,18 @@ export class EntityUsersComponent implements OnInit {
         this.users = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
         if (this.entity === 'group') {
             const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
+            if (response != null && users.data.length > 0) {
+                response.forEach((s) => {
+                    const user = users.data.filter((u) => !u.accessAll && u.id === s);
+                    if (user != null && user.length > 0) {
+                        (user[0] as any).checked = true;
+                    }
+                });
+            }
         } else if (this.entity === 'collection') {
             const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
-                response.data.forEach((s) => {
+                response.forEach((s) => {
                     const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
@@ -80,19 +86,18 @@ export class EntityUsersComponent implements OnInit {
     }
 
     async submit() {
-        const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
-            .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly));
-
         try {
             if (this.entity === 'group') {
-                //
+                const selections = this.users.filter((u) => (u as any).checked && !u.accessAll).map((u) => u.id);
+                this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
             } else {
+                const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
+                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly));
                 this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
             }
             await this.formPromise;
             this.analytics.eventTrack.next({
-                action: this.entity === 'group' ? 'Edited Group Users' :
-                    'Edited Collection Users',
+                action: this.entity === 'group' ? 'Edited Group Users' : 'Edited Collection Users',
             });
             this.toasterService.popAsync('success', null, this.i18nService.t('updatedUsers'));
             this.onEditedUsers.emit();

@@ -131,6 +131,9 @@ export class GroupsComponent implements OnInit {
         childComponent.entityId = group.id;
         childComponent.entityName = group.name;
 
+        childComponent.onEditedUsers.subscribe(() => {
+            this.modal.close();
+        });
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
