@@ -33,9 +33,12 @@ export class EntityUsersComponent implements OnInit {
     organizationUserType = OrganizationUserType;
     organizationUserStatusType = OrganizationUserStatusType;
 
+    showSelected = false;
     loading = true;
-    users: OrganizationUserUserDetailsResponse[] = [];
     formPromise: Promise<any>;
+    selectedCount = 0;
+
+    private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService) { }
@@ -45,9 +48,17 @@ export class EntityUsersComponent implements OnInit {
         this.loading = false;
     }
 
+    get users() {
+        if (this.showSelected) {
+            return this.allUsers.filter((u) => (u as any).checked);
+        } else {
+            return this.allUsers;
+        }
+    }
+
     async loadUsers() {
         const users = await this.apiService.getOrganizationUsers(this.organizationId);
-        this.users = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
+        this.allUsers = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
         if (this.entity === 'group') {
             const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
@@ -71,9 +82,12 @@ export class EntityUsersComponent implements OnInit {
             }
         }
 
-        this.users.forEach((u) => {
+        this.allUsers.forEach((u) => {
             if (u.accessAll) {
                 (u as any).checked = true;
+            }
+            if ((u as any).checked) {
+                this.selectedCount++;
             }
         });
     }
@@ -83,6 +97,22 @@ export class EntityUsersComponent implements OnInit {
             return;
         }
         (u as any).checked = !(u as any).checked;
+        this.selectedChanged(u);
+    }
+
+    selectedChanged(u: OrganizationUserUserDetailsResponse) {
+        if ((u as any).checked) {
+            this.selectedCount++;
+        } else {
+            if (this.entity === 'collection') {
+                (u as any).readOnly = false;
+            }
+            this.selectedCount--;
+        }
+    }
+
+    filterSelected(showSelected: boolean) {
+        this.showSelected = showSelected;
     }
 
     async submit() {
