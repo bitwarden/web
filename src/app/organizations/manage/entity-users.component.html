@@ -18,6 +18,16 @@
                     {{'noUsersInList' | i18n}}
                 </ng-container>
                 <table class="table table-hover table-list mb-0" *ngIf="users && users.length">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>{{'name' | i18n}}</th>
+                            <th *ngIf="entity === 'collection'">&nbsp;</th>
+                            <th>{{'userType' | i18n}}</th>
+                            <th width="100" class="text-center" *ngIf="entity === 'collection'">{{'readOnly' | i18n}}</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr *ngFor="let u of users; let i = index">
                             <td class="table-list-checkbox" (click)="check(u)">
@@ -30,19 +40,23 @@
                             </td>
                             <td>
                                 {{u.email}}
-                                <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
-                                <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
+                                <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited'
+                                    | i18n}}</span>
+                                <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted'
+                                    | i18n}}</span>
                                 <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
                             </td>
                             <td *ngIf="entity === 'collection'">
                                 <i class="fa fa-th" *ngIf="u.accessAll" title="{{'userAccessAllItems' | i18n}}"></i>
-                                <i class="fa fa-eye" *ngIf="u.readOnly" title="{{'readOnly' | i18n}}"></i>
                             </td>
                             <td>
                                 <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.Manager">{{'manager' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
+                            </td>
+                            <td class="text-center" *ngIf="entity === 'collection'">
+                                <input type="checkbox" [(ngModel)]="u.readOnly" name="Users[{{i}}].ReadOnly" [disabled]="u.accessAll || !u.checked">
                             </td>
                         </tr>
                     </tbody>
