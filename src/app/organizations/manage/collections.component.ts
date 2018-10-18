@@ -135,6 +135,10 @@ export class CollectionsComponent implements OnInit {
         childComponent.entityId = collection.id;
         childComponent.entityName = collection.name;
 
+        childComponent.onEditedUsers.subscribe(() => {
+            this.load();
+            this.modal.close();
+        });
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });

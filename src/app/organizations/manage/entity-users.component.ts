@@ -15,6 +15,8 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
+import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { Utils } from 'jslib/misc/utils';
 
@@ -27,14 +29,14 @@ export class EntityUsersComponent implements OnInit {
     @Input() entityId: string;
     @Input() entityName: string;
     @Input() organizationId: string;
-    @Output() onRemovedUser = new EventEmitter();
+    @Output() onEditedUsers = new EventEmitter();
 
     organizationUserType = OrganizationUserType;
     organizationUserStatusType = OrganizationUserStatusType;
 
     loading = true;
-    users: any[] = [];
-    actionPromise: Promise<any>;
+    users: OrganizationUserUserDetailsResponse[] = [];
+    formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
@@ -46,49 +48,54 @@ export class EntityUsersComponent implements OnInit {
     }
 
     async loadUsers() {
-        let users: any[] = [];
+        const users = await this.apiService.getOrganizationUsers(this.organizationId);
+        this.users = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
         if (this.entity === 'group') {
             const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
-            users = response.data.map((r) => r);
         } else if (this.entity === 'collection') {
             const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
-            users = response.data.map((r) => r);
+            if (response != null && users.data.length > 0) {
+                response.data.forEach((s) => {
+                    const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
+                    if (user != null && user.length > 0) {
+                        (user[0] as any).checked = true;
+                        (user[0] as any).readOnly = s.readOnly;
+                    }
+                });
+            }
         }
-        users.sort(Utils.getSortFunction(this.i18nService, 'email'));
-        this.users = users;
+
+        this.users.forEach((u) => {
+            if (u.accessAll) {
+                (u as any).checked = true;
+            }
+        });
     }
 
-    async remove(user: any) {
-        if (this.actionPromise != null || (this.entity === 'collection' && user.accessAll)) {
+    check(u: OrganizationUserUserDetailsResponse) {
+        if (u.accessAll) {
             return;
         }
+        (u as any).checked = !(u as any).checked;
+    }
 
-        const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), user.email,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return false;
-        }
+    async submit() {
+        const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
+            .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly));
 
         try {
             if (this.entity === 'group') {
-                this.actionPromise = this.apiService.deleteGroupUser(this.organizationId, this.entityId,
-                    user.organizationUserId);
-                await this.actionPromise;
-                this.analytics.eventTrack.next({ action: 'Removed User From Group' });
-            } else if (this.entity === 'collection') {
-                this.actionPromise = this.apiService.deleteCollectionUser(this.organizationId, this.entityId,
-                    user.organizationUserId);
-                await this.actionPromise;
-                this.analytics.eventTrack.next({ action: 'Removed User From Collection' });
+                //
+            } else {
+                this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
             }
-
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.email));
-            this.onRemovedUser.emit();
-            const index = this.users.indexOf(user);
-            if (index > -1) {
-                this.users.splice(index, 1);
-            }
+            await this.formPromise;
+            this.analytics.eventTrack.next({
+                action: this.entity === 'group' ? 'Edited Group Users' :
+                    'Edited Collection Users',
+            });
+            this.toasterService.popAsync('success', null, this.i18nService.t('updatedUsers'));
+            this.onEditedUsers.emit();
         } catch { }
     }
 }

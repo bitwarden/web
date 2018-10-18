@@ -1,6 +1,6 @@
 <div class="modal fade">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title">
                     {{'userAccess' | i18n}}
@@ -19,9 +19,14 @@
                 </ng-container>
                 <table class="table table-hover table-list mb-0" *ngIf="users && users.length">
                     <tbody>
-                        <tr *ngFor="let u of users">
-                            <td width="30">
-                                <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true" [fontSize]="14"></app-avatar>
+                        <tr *ngFor="let u of users; let i = index">
+                            <td class="table-list-checkbox" (click)="check(u)">
+                                <input type="checkbox" [(ngModel)]="u.checked" name="Users[{{i}}].Checked" [disabled]="u.accessAll"
+                                    appStopProp>
+                            </td>
+                            <td width="30" (click)="check(u)">
+                                <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true"
+                                    [fontSize]="14"></app-avatar>
                             </td>
                             <td>
                                 {{u.email}}
@@ -39,20 +44,17 @@
                                 <span *ngIf="u.type === organizationUserType.Manager">{{'manager' | i18n}}</span>
                                 <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
                             </td>
-                            <td class="table-list-options wider">
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-submit" (click)="remove(u)" #removeBtn [disabled]="removeBtn.loading"
-                                    [appApiAction]="actionPromise" *ngIf="entity !== 'collection' || !u.accessAll">
-                                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
-                                    <span>{{'remove' | i18n}}</span>
-                                </button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <span>{{'save' | i18n}}</span>
+                </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
