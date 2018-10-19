@@ -1,11 +1,9 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { CollectionService } from 'jslib/abstractions/collection.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -18,6 +16,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 import { CipherData } from 'jslib/models/data/cipherData';
 import { Cipher } from 'jslib/models/domain/cipher';
 import { Organization } from 'jslib/models/domain/organization';
+import { CipherCreateRequest } from 'jslib/models/request/cipherCreateRequest';
 import { CipherRequest } from 'jslib/models/request/cipherRequest';
 
 import { AddEditComponent as BaseAddEditComponent } from '../../vault/add-edit.component';
@@ -26,18 +25,27 @@ import { AddEditComponent as BaseAddEditComponent } from '../../vault/add-edit.c
     selector: 'app-org-vault-add-edit',
     templateUrl: '../../vault/add-edit.component.html',
 })
-export class AddEditComponent extends BaseAddEditComponent implements OnInit {
+export class AddEditComponent extends BaseAddEditComponent {
     organization: Organization;
     originalCipher: Cipher = null;
 
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         auditService: AuditService, stateService: StateService,
-        userService: UserService, totpService: TotpService,
-        passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
+        userService: UserService, collectionService: CollectionService,
+        totpService: TotpService, passwordGenerationService: PasswordGenerationService,
+        private apiService: ApiService,
         messagingService: MessagingService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, totpService, passwordGenerationService, messagingService);
+            userService, collectionService, totpService, passwordGenerationService, messagingService);
+    }
+
+    async load() {
+        await super.load();
+        if (!this.editMode) {
+            this.cipher.organizationId = this.organization.id;
+        }
+        await this.organizationChanged();
     }
 
     protected async loadCipher() {
@@ -51,9 +59,6 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
     }
 
     protected encryptCipher() {
-        if (!this.editMode) {
-            this.cipher.organizationId = this.organization.id;
-        }
         if (!this.organization.isAdmin) {
             return super.encryptCipher();
         }
@@ -64,10 +69,11 @@ export class AddEditComponent extends BaseAddEditComponent implements OnInit {
         if (!this.organization.isAdmin) {
             return super.saveCipher(cipher);
         }
-        const request = new CipherRequest(cipher);
         if (this.editMode) {
+            const request = new CipherRequest(cipher);
             return this.apiService.putCipherAdmin(this.cipherId, request);
         } else {
+            const request = new CipherCreateRequest(cipher);
             return this.apiService.postCipherAdmin(request);
         }
     }

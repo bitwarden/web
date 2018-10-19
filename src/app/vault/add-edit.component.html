@@ -83,7 +83,7 @@
                                 <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()" *ngIf="!organization && !cipher.organizationId && !canAccessPremium">
                                     {{'premium' | i18n}}
                                 </a>
-                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="upgradeOrganization()" *ngIf="(organization && !organization.useTotp) || (cipher.organizationId && !cipher.organizationUseTotp)">
+                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="upgradeOrganization()" *ngIf="(organization && !organization.useTotp) || (!organization && !canAccessPremium && cipher.organizationId && !cipher.organizationUseTotp)">
                                     {{'upgrade' | i18n}}
                                 </a>
                             </div>
@@ -366,6 +366,30 @@
                         </select>
                     </div>
                 </div>
+                <ng-container *ngIf="!editMode && !organization && ownershipOptions && ownershipOptions.length > 1">
+                    <h3 class="mt-4">{{'ownership' | i18n}}</h3>
+                    <div class="row">
+                        <div class="col-5">
+                            <label for="organizationId">{{'whoOwnsThisItem' | i18n}}</label>
+                            <select id="organizationId" class="form-control" name="OrganizationId" [(ngModel)]="cipher.organizationId"
+                                (change)="organizationChanged()">
+                                <option *ngFor="let o of ownershipOptions" [ngValue]="o.value">{{o.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!editMode && cipher.organizationId">
+                    <h3 class="mt-4">{{'collections' | i18n}}</h3>
+                    <div *ngIf="!collections || !collections.length">
+                        {{'noCollectionsInList' | i18n}}
+                    </div>
+                    <ng-container *ngIf="collections && collections.length">
+                        <div class="form-check" *ngFor="let c of collections; let i = index">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="c.checked" id="collection-{{i}}" name="Collection[{{i}}].Checked">
+                            <label class="form-check-label" for="collection-{{i}}">{{c.name}}</label>
+                        </div>
+                    </ng-container>
+                </ng-container>
                 <ng-container *ngIf="editMode">
                     <div class="small text-muted mt-4">
                         <div>
