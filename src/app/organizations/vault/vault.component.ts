@@ -238,6 +238,9 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
 
+        if (this.organization.isAdmin) {
+            childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+        }
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher == null ? null : cipher.id;
         childComponent.onSavedCipher.subscribe(async (c: CipherView) => {

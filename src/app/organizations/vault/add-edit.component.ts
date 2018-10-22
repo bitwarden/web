@@ -48,6 +48,13 @@ export class AddEditComponent extends BaseAddEditComponent {
         await this.organizationChanged();
     }
 
+    protected loadCollections() {
+        if (!this.organization.isAdmin) {
+            return super.loadCollections();
+        }
+        return Promise.resolve(this.collections);
+    }
+
     protected async loadCipher() {
         if (!this.organization.isAdmin) {
             return await super.loadCipher();
