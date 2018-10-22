@@ -40,14 +40,6 @@ export class AddEditComponent extends BaseAddEditComponent {
             userService, collectionService, totpService, passwordGenerationService, messagingService);
     }
 
-    async load() {
-        await super.load();
-        if (!this.editMode) {
-            this.cipher.organizationId = this.organization.id;
-        }
-        await this.organizationChanged();
-    }
-
     protected loadCollections() {
         if (!this.organization.isAdmin) {
             return super.loadCollections();

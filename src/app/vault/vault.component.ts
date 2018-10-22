@@ -187,7 +187,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async filterCollection(collectionId: string) {
-        this.ciphersComponent.showAddNew = false;
+        this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
         await this.ciphersComponent.load((c) => c.collectionIds != null && c.collectionIds.indexOf(collectionId) > -1);
         this.clearFilters();
@@ -327,6 +327,13 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = this.editCipher(null);
         component.type = this.type;
         component.folderId = this.folderId === 'none' ? null : this.folderId;
+        if (this.collectionId != null) {
+            const collection = this.groupingsComponent.collections.filter((c) => c.id === this.collectionId);
+            if (collection.length > 0) {
+                component.organizationId = collection[0].organizationId;
+                component.collectionIds = [this.collectionId];
+            }
+        }
     }
 
     editCipher(cipher: CipherView) {

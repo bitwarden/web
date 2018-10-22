@@ -13,12 +13,12 @@
                         <i *ngIf="actionSpinner.loading" class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
                     </small>
                 </h1>
-                <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()" *ngIf="showAdd">
+                <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()">
                     <i class="fa fa-plus fa-fw"></i>{{'addItem' | i18n}}
                 </button>
             </div>
             <app-org-vault-ciphers (onCipherClicked)="editCipher($event)" (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
-                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)" [showAddNew]="showAdd">
+                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)">
             </app-org-vault-ciphers>
         </div>
     </div>

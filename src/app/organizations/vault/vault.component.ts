@@ -52,7 +52,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     organization: Organization;
     collectionId: string;
     type: CipherType;
-    showAdd = true;
 
     private modal: ModalComponent = null;
 
@@ -66,7 +65,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
             this.organization = await this.userService.getOrganization(params.organizationId);
-            this.showAdd = this.organization.isAdmin;
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
@@ -124,7 +122,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async clearGroupingFilters() {
-        this.ciphersComponent.showAddNew = this.showAdd;
+        this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
         await this.ciphersComponent.applyFilter();
         this.clearFilters();
@@ -132,7 +130,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async filterCipherType(type: CipherType, load = false) {
-        this.ciphersComponent.showAddNew = this.showAdd;
+        this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         const filter = (c: CipherView) => c.type === type;
         if (load) {
@@ -146,7 +144,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async filterCollection(collectionId: string, load = false) {
-        this.ciphersComponent.showAddNew = false;
+        this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
         const filter = (c: CipherView) => {
             if (collectionId === 'unassigned') {
@@ -226,7 +224,14 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     addCipher() {
         const component = this.editCipher(null);
+        component.organizationId = this.organization.id;
         component.type = this.type;
+        if (this.organization.isAdmin) {
+            component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+        }
+        if (this.collectionId != null) {
+            component.collectionIds = [this.collectionId];
+        }
     }
 
     editCipher(cipher: CipherView) {
@@ -238,9 +243,6 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
 
-        if (this.organization.isAdmin) {
-            childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
-        }
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher == null ? null : cipher.id;
         childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
