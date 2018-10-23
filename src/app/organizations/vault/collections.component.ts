@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { CipherData } from 'jslib/models/data/cipherData';
 import { Cipher } from 'jslib/models/domain/cipher';
@@ -22,10 +20,10 @@ import { CollectionsComponent as BaseCollectionsComponent } from '../../vault/co
 export class CollectionsComponent extends BaseCollectionsComponent {
     organization: Organization;
 
-    constructor(collectionService: CollectionService, analytics: Angulartics2,
-        toasterService: ToasterService, i18nService: I18nService,
-        cipherService: CipherService, private apiService: ApiService) {
-        super(collectionService, analytics, toasterService, i18nService, cipherService);
+    constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService, cipherService: CipherService,
+        private apiService: ApiService) {
+        super(collectionService, platformUtilsService, i18nService, cipherService);
     }
 
     protected async loadCipher() {
