@@ -1,92 +1,31 @@
 import {
     Component,
-    EventEmitter,
-    Input,
     OnDestroy,
-    OnInit,
-    Output,
 } from '@angular/core';
-
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-import { Organization } from 'jslib/models/domain/organization';
-import { CipherView } from 'jslib/models/view/cipherView';
 import { CollectionView } from 'jslib/models/view/collectionView';
+
+import { ShareComponent as BaseShareComponent } from 'jslib/angular/components/share.component';
 
 @Component({
     selector: 'app-vault-share',
     templateUrl: 'share.component.html',
 })
-export class ShareComponent implements OnInit, OnDestroy {
-    @Input() cipherId: string;
-    @Input() organizationId: string;
-    @Output() onSharedCipher = new EventEmitter();
-
-    formPromise: Promise<any>;
-    cipher: CipherView;
-    collections: CollectionView[] = [];
-    organizations: Organization[] = [];
-
-    private writeableCollections: CollectionView[] = [];
-
-    constructor(private collectionService: CollectionService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private userService: UserService, private cipherService: CipherService) { }
-
-    async ngOnInit() {
-        const cipherDomain = await this.cipherService.get(this.cipherId);
-        this.cipher = await cipherDomain.decrypt();
-        const allCollections = await this.collectionService.getAllDecrypted();
-        this.writeableCollections = allCollections.filter((c) => !c.readOnly);
-        this.organizations = await this.userService.getAllOrganizations();
-        if (this.organizationId == null && this.organizations.length > 0) {
-            this.organizationId = this.organizations[0].id;
-        }
-        this.filterCollections();
+export class ShareComponent extends BaseShareComponent implements OnDestroy {
+    constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService, userService: UserService,
+        cipherService: CipherService) {
+        super(collectionService, platformUtilsService, i18nService, userService, cipherService);
     }
 
     ngOnDestroy() {
         this.selectAll(false);
-    }
-
-    filterCollections() {
-        this.selectAll(false);
-        if (this.organizationId == null || this.writeableCollections.length === 0) {
-            this.collections = [];
-        } else {
-            this.collections = this.writeableCollections.filter((c) => c.organizationId === this.organizationId);
-        }
-    }
-
-    async submit() {
-        const cipherDomain = await this.cipherService.get(this.cipherId);
-        const cipherView = await cipherDomain.decrypt();
-
-        const attachmentPromises: Array<Promise<any>> = [];
-        if (cipherView.attachments != null) {
-            for (const attachment of cipherView.attachments) {
-                const promise = this.cipherService.shareAttachmentWithServer(attachment,
-                    cipherView.id, this.organizationId);
-                attachmentPromises.push(promise);
-            }
-        }
-
-        const checkedCollectionIds = this.collections.filter((c) => (c as any).checked).map((c) => c.id);
-        try {
-            this.formPromise = Promise.all(attachmentPromises).then(async () => {
-                await this.cipherService.shareWithServer(cipherView, this.organizationId, checkedCollectionIds);
-                this.onSharedCipher.emit();
-                this.analytics.eventTrack.next({ action: 'Shared Cipher' });
-                this.toasterService.popAsync('success', null, this.i18nService.t('sharedItem'));
-            });
-            await this.formPromise;
-        } catch { }
     }
 
     check(c: CollectionView, select?: boolean) {
@@ -96,16 +35,5 @@ export class ShareComponent implements OnInit, OnDestroy {
     selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
         collections.forEach((c) => this.check(c, select));
-    }
-
-    get canSave() {
-        if (this.collections != null) {
-            for (let i = 0; i < this.collections.length; i++) {
-                if ((this.collections[i] as any).checked) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }
