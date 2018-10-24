@@ -799,10 +799,10 @@
     "message": "Länge"
   },
   "numWords": {
-    "message": "Number of Words"
+    "message": "Anzahl der Wörter"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Trennungszeichen"
   },
   "passwordHistory": {
     "message": "Kennwort-Historie"
@@ -916,13 +916,13 @@
     "message": "Tresor leeren"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Gelöschter Organisations-Tresor."
   },
   "purgeVaultDesc": {
     "message": "Gehen Sie wie folgt vor, um alle Einträge und Ordner in Ihrem Tresor zu löschen. Einträge, die zu einer Organisation gehören, die Sie mit anderen teilen, werden nicht gelöscht."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Bitte bestätige, dass du alle Inhalte dieses Tresores löschen möchtest."
   },
   "purgeVaultWarning": {
     "message": "Die Leerung des Tresor ist permanent. Sie kann nicht rückgängig gemacht werden."
@@ -1181,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F Schlüssel $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1232,25 +1232,25 @@
     "message": "Fügen Sie Ihrem Konto einen FIDO U2F-Sicherheitsschlüssel hinzu"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Sind Sie sich sicher, dass Sie diesen U2F-Schlüssel entfernen möchten?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Schlüssel erfassen"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Dieser Schlüssel ist kompromitiert."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Vergeben Sie einen Namen um den Schlüssel zu unterscheiden."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Stecken Sie den Schlüssel in den Computer und drücken Sie den \"Schlüssel erfassen\" Knopf."
   },
   "twoFactorU2fTouchButton": {
     "message": "Wenn der Sicherheitsschlüssel eine Taste hat, drücken Sie die."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Formular absenden."
   },
   "twoFactorU2fWarning": {
     "message": "Aufgrund von Plattformbeschränkungen kann FIDO U2F nicht mit allen Bitwarden-Anwendungen verwendet werden. Sie sollten einen anderen Zwei-Faktor-Authentifizierungsanbieter aktivieren, damit Sie auf Ihr Konto zugreifen können, wenn FIDO U2F nicht verwendet werden kann. Unterstützte Plattformen sind:"
@@ -1262,10 +1262,10 @@
     "message": "Es wird darauf gewartet, dass Sie die Taste Ihres Sicherheitsschlüssels betätigen"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Speichern drücken um den Sicherheitsschlüssel für die Zwei-Schritte Anmeldung zu aktivieren."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Es gab ein Problem beim lesen des Sicherheitsschlüssels, bitte erneut versuchen."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Ihr Wiederherstellungsschlüssel für die Zwei-Faktor-Anmeldung in Bitwarden"
@@ -1910,6 +1910,12 @@
   "userDesc": {
     "message": "Ein normaler Benutzer mit Zugriff auf die Sammlungen Ihrer Organisation."
   },
+  "manager": {
+    "message": "Manager"
+  },
+  "managerDesc": {
+    "message": "Managers can access and manage assigned collections in your organization."
+  },
   "all": {
     "message": "Alle"
   },
@@ -1950,7 +1956,7 @@
     "message": "Benutzerpasswort geändert."
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "Zwei-Schritte Anmeldung aktiviert \/ aktualisiert."
   },
   "disabled2fa": {
     "message": "Zwei-Faktor-Anmeldung deaktiviert."
@@ -2483,5 +2489,17 @@
   },
   "licenseIsExpired": {
     "message": "Lizenz ist abgelaufen."
+  },
+  "updatedUsers": {
+    "message": "Updated users"
+  },
+  "selected": {
+    "message": "Selected"
+  },
+  "ownership": {
+    "message": "Ownership"
+  },
+  "whoOwnsThisItem": {
+    "message": "Who owns this item?"
   }
 }
