@@ -68,7 +68,7 @@ export class CollectionsComponent implements OnInit {
         } else {
             response = await this.apiService.getUserCollections();
         }
-        const collections = response.data.map((r) =>
+        const collections = response.data.filter((c) => c.organizationId === this.organizationId).map((r) =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
         this.loading = false;
