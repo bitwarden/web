@@ -37,6 +37,7 @@ export class EntityUsersComponent implements OnInit {
     loading = true;
     formPromise: Promise<any>;
     selectedCount = 0;
+    searchText: string;
 
     private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
