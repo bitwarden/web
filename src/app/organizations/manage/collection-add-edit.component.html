@@ -44,10 +44,8 @@
                                     <input type="checkbox" [(ngModel)]="g.checked" name="Groups[{{i}}].Checked" [disabled]="g.accessAll" appStopProp>
                                 </td>
                                 <td (click)="check(g)">
-                                    <span appStopProp>
-                                        {{g.name}}
-                                        <i class="fa fa-th text-muted fa-fw" *ngIf="g.accessAll" title="This group can access all items"></i>
-                                    </span>
+                                    {{g.name}}
+                                    <i class="fa fa-th text-muted fa-fw" *ngIf="g.accessAll" title="This group can access all items"></i>
                                 </td>
                                 <td class="text-center">
                                     <input type="checkbox" [(ngModel)]="g.readOnly" name="Groups[{{i}}].ReadOnly" [disabled]="!g.checked || g.accessAll">
@@ -64,8 +62,8 @@
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'cancel' | i18n}}</button>
                 <div class="ml-auto">
-                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}" *ngIf="editMode"
-                        [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
+                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}"
+                        *ngIf="editMode" [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
                         <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>
                     </button>

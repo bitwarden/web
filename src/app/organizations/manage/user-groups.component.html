@@ -25,7 +25,7 @@
                                 <input type="checkbox" [(ngModel)]="g.checked" name="Groups[{{i}}].Checked" appStopProp>
                             </td>
                             <td (click)="check(g)">
-                                <span appStopProp>{{g.name}}</span>
+                                {{g.name}}
                             </td>
                         </tr>
                     </tbody>

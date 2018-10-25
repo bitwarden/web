@@ -96,7 +96,7 @@
                                     <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked" appStopProp>
                                 </td>
                                 <td (click)="check(c)">
-                                    <span appStopProp>{{c.name}}</span>
+                                    {{c.name}}
                                 </td>
                                 <td class="text-center">
                                     <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly" [disabled]="!c.checked">
