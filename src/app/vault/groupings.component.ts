@@ -21,6 +21,7 @@ export class GroupingsComponent extends BaseGroupingsComponent {
 
     constructor(collectionService: CollectionService, folderService: FolderService) {
         super(collectionService, folderService);
+        this.loadNestedFolder = true;
     }
 
     searchTextChanged() {

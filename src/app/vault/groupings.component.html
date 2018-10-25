@@ -3,8 +3,8 @@
         {{'filters' | i18n}}
     </div>
     <div class="card-body">
-        <input type="search" placeholder="{{searchPlaceholder || ('searchVault' | i18n)}}" id="search" class="form-control" [(ngModel)]="searchText"
-            (input)="searchTextChanged()" appAutofocus>
+        <input type="search" placeholder="{{searchPlaceholder || ('searchVault' | i18n)}}" id="search" class="form-control"
+            [(ngModel)]="searchText" (input)="searchTextChanged()" appAutofocus>
         <ul class="fa-ul card-ul">
             <li [ngClass]="{active: selectedAll}">
                 <a href="#" appStopClick (click)="selectAll()">
@@ -52,13 +52,22 @@
                     </a>
                 </h3>
                 <ul class="fa-ul card-ul carets">
-                    <li *ngFor="let f of folders" class="d-flex" [ngClass]="{active: selectedFolder && f.id === selectedFolderId}">
-                        <a href="#" appStopClick (click)="selectFolder(f)">
-                            <i class="fa-li fa fa-caret-right"></i> {{f.name}}</a>
-                        <a href="#" class="text-muted ml-auto show-active" appStopClick (click)="editFolder(f)" title="{{'editFolder' | i18n}}" *ngIf="f.id">
-                            <i class="fa fa-pencil fa-fw"></i>
-                        </a>
-                    </li>
+                    <ng-template #recursiveList let-folders>
+                        <li *ngFor="let f of folders" [ngClass]="{active: selectedFolder && f.node.id === selectedFolderId}">
+                            <div class="d-flex">
+                                <a href="#" appStopClick (click)="selectFolder(f.node)">
+                                    <i class="fa-li fa fa-caret-right"></i> {{f.node.name}}</a>
+                                <a href="#" class="text-muted ml-auto show-active" appStopClick (click)="editFolder(f.node)"
+                                    title="{{'editFolder' | i18n}}" *ngIf="f.node.id">
+                                    <i class="fa fa-pencil fa-fw"></i>
+                                </a>
+                            </div>
+                            <ul class="fa-ul card-ul carets" *ngIf="f.children.length">
+                                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: f.children }"></ng-container>
+                            </ul>
+                        </li>
+                    </ng-template>
+                    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: nestedFolders }"></ng-container>
                 </ul>
             </ng-container>
             <ng-container *ngIf="showCollections && collections && collections.length">

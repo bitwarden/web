@@ -207,6 +207,12 @@ input, select, textarea {
             left: -24px;
         }
     }
+
+    ul {
+        &.carets {
+            margin-left: 0.85em;
+        }
+    }
 }
 
 .modal-dialog {
@@ -419,13 +425,13 @@ app-vault-groupings, app-org-vault-groupings {
         }
 
         li.active {
-            .show-active {
+            > .show-active, > div .show-active {
                 display: inline;
             }
         }
 
         li.active {
-            a:first-child {
+            > a:first-child, > div a:first-child {
                 font-weight: bold;
                 color: theme-color("primary");
             }
