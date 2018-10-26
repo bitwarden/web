@@ -8,11 +8,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
 import { Organization } from 'jslib/models/domain/organization';
-import {
-    CollectionDetailsResponse,
-    CollectionResponse,
-} from 'jslib/models/response/collectionResponse';
-import { ListResponse } from 'jslib/models/response/listResponse';
+import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { GroupingsComponent as BaseGroupingsComponent } from '../../vault/groupings.component';
