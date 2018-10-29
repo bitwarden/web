@@ -1100,13 +1100,13 @@
     "message": "管理"
   },
   "disable": {
-    "message": "Disable"
+    "message": "無効化"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "この二段階認証プロバイダは、あなたのアカウントで有効になっています。"
   },
   "twoStepLoginAuthDesc": {
-    "message": "Enter your master password to modify two-step login settings."
+    "message": "二段階認証の設定を変更するためにマスターパスワードを入力して下さい。"
   },
   "twoStepAuthenticatorDesc": {
     "message": "Follow these steps to set up two-step login with an authenticator app:"
@@ -1118,37 +1118,37 @@
     "message": "Need a two-step authenticator app? Download one of the following"
   },
   "iosDevices": {
-    "message": "iOS devices"
+    "message": "iOSデバイス"
   },
   "androidDevices": {
-    "message": "Android devices"
+    "message": "Androidデバイス"
   },
   "windowsDevices": {
-    "message": "Windows devices"
+    "message": "Windowsデバイス"
   },
   "twoStepAuthenticatorAppsRecommended": {
-    "message": "These apps are recommended, however, other authenticator apps will also work."
+    "message": "これらのアプリがお勧めですが、他の認証アプリでも動作します。"
   },
   "twoStepAuthenticatorScanCode": {
-    "message": "Scan this QR code with your authenticator app"
+    "message": "認証アプリでQRコードをスキャンして下さい。"
   },
   "key": {
-    "message": "Key"
+    "message": "キー"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the app"
+    "message": "認証アプリに表示された6桁の確認コードを入力して下さい。"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "別のデバイスの認証アプリを利用する場合、以下のQRコード(またはキー)が必要となります。"
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "この二段階認証プロバイダを無効にしますか？"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "二段階認証プロバイダが無効化されました。"
   },
   "twoFactorYubikeyAdd": {
-    "message": "Add a new YubiKey to your account"
+    "message": "あなたのアカウントに新しいYubiKeyを追加するには"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "YubiKey をコンピューターの USB ポートに挿入してください。"
@@ -1157,19 +1157,19 @@
     "message": "最初の未入力の YubiKey 入力フィールドを選択してください。"
   },
   "twoFactorYubikeyTouchButton": {
-    "message": "Touch the YubiKey's button."
+    "message": "YubiKeyのボタンにタッチします。"
   },
   "twoFactorYubikeySaveForm": {
-    "message": "Save the form."
+    "message": "フォームを保存します。"
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "プラットフォームの制限によりYubiKeyはBitwardenのアプリケーションのすべてで使用できるわけではありません。他の二段階認証プロバイダを有効化しておくと、YubiKeyが使用できない場合でもアカウントにアクセスできます。サポートされるプラットフォーム:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "ウェブ保管庫、デスクトップアプリ、コマンドラインツール、USBポートのあるデバイス上のブラウザ拡張機能ではYubiKeyを使用できます。"
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "NFCまたはUSBポートのあるデバイスのモバイルアプリではYubiKeyを使用できます。"
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1181,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F対応キー $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1190,19 +1190,19 @@
     }
   },
   "nfcSupport": {
-    "message": "NFC Support"
+    "message": "NFC対応"
   },
   "twoFactorYubikeySupportsNfc": {
-    "message": "One of my keys supports NFC."
+    "message": "NFC対応のYubiKeyが含まれています"
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
+    "message": "NFC対応のYubiKey(YubiKey NEOなど)が含まれる場合、NFC対応のモバイルデバイスで確認画面が表示されます。"
   },
   "yubikeysUpdated": {
-    "message": "YubiKeys updated"
+    "message": "YubiKeyが更新されました"
   },
   "disableAllKeys": {
-    "message": "Disable All Keys"
+    "message": "すべてのキーを無効化"
   },
   "twoFactorDuoDesc": {
     "message": "Enter the Bitwarden application information from your Duo Admin panel."
@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# of additional GB"
   },
-  "additionalStorageDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/year.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1902,13 +1906,13 @@
     "message": "Admin"
   },
   "adminDesc": {
-    "message": " Admins can access and manage all items, collections and users in your organization."
+    "message": "管理者はあなたの組織のすべてのアイテム、コレクション、ユーザーへアクセス・管理できます。"
   },
   "user": {
     "message": "User"
   },
   "userDesc": {
-    "message": "A regular user with access to your organization's collections."
+    "message": "あなたの組織に割り当てられたコレクションへのアクセス権を持つ標準ユーザーです。"
   },
   "manager": {
     "message": "Manager"

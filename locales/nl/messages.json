@@ -38,7 +38,7 @@
     "message": "Wachtwoord"
   },
   "passphrase": {
-    "message": "Passphrase"
+    "message": "Wachtwoordzin"
   },
   "notes": {
     "message": "Notities"
@@ -799,10 +799,10 @@
     "message": "Lengte"
   },
   "numWords": {
-    "message": "Number of Words"
+    "message": "Aantal woorden"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Woordscheidingsteken"
   },
   "passwordHistory": {
     "message": "Wachtwoordgeschiedenis"
@@ -916,13 +916,13 @@
     "message": "Kluis legen"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Organisatie kluis leeg gemaakt."
   },
   "purgeVaultDesc": {
     "message": "Ga hieronder verder om alle items en mappen in uw kluis te verwijderen. Items die behoren tot een organisatie waarmee u deelt, worden niet verwijderd."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Ga hieronder verder om alle objecten in de organisatie kluis te verwijderen."
   },
   "purgeVaultWarning": {
     "message": "Het leegmaken van uw webkluis is permanent en kan niet ongedaan worden gemaakt."
@@ -1181,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F sleutel $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1232,25 +1232,25 @@
     "message": "Voeg een FIDO U2F beveiligingssleutel toe aan uw account"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Lees sleutel"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Sleutel is gecompromitteerd."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Geef de beveiligingssleutel een beschrijvende naam om deze te identificeren."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Stop de beveiligingssleutel in een USB-poort van uw computer en klik op de \"Lees sleutel\" knop."
   },
   "twoFactorU2fTouchButton": {
     "message": "Druk op de knop van de beveiligingssleutel wanneer deze aanwezig is."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Sla het formulier op."
   },
   "twoFactorU2fWarning": {
     "message": "Vanwege platformbeperkingen kunnen FIDO U2F niet in alle Bitwarden applicaties gebruikt worden. U zou een andere tweestapsaanmeldingsaanbieder moeten instellen voor wanneer FIDO U2F niet gebruikt kunnen worden. De volgende platformen worden ondersteunt:"
@@ -1262,10 +1262,10 @@
     "message": "Wachten tot u op de knop van de beveiligingssleutel hebt gedrukt"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Klik op de \"Opslaan\"-knop hier beneden om deze beveiligingssleutel te activeren als tweestapsaanmeldingsmethode."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Er was een probleem met het lezen van de beveiligingssleutel. Probeer het nogmaals."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Uw Bitwarden tweestapsaanmelding herstelcode"
@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# extra GB"
   },
-  "additionalStorageDesc": {
-    "message": "Uw abonnement omvat $SIZE$ gecodeerde bestandsopslag. U kunt extra opslagruimte toevoegen voor $PRICE$ per GB \/ jaar.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1839,22 +1843,22 @@
     "message": "Deze groep kan alle items inzien en bewerken."
   },
   "groupAccessSelectedCollections": {
-    "message": "Deze groep heeft alleen toegang tot de geselecteerde collecties."
+    "message": "Deze groep heeft alleen toegang tot de geselecteerde verzamelingen."
   },
   "readOnly": {
     "message": "Alleen-lezen"
   },
   "newCollection": {
-    "message": "Nieuwe Collectie"
+    "message": "Nieuwe verzameling"
   },
   "addCollection": {
-    "message": "Collectie toevoegen"
+    "message": "Verzameling toevoegen"
   },
   "editCollection": {
-    "message": "Collectie bewerken"
+    "message": "Verzameling bewerken"
   },
   "deleteCollectionConfirmation": {
-    "message": "Weet u zeker dat u deze collectie wilt verwijderen?"
+    "message": "Weet u zeker dat u deze verzameling wilt verwijderen?"
   },
   "editUser": {
     "message": "Gebruiker bewerken"
@@ -1878,7 +1882,7 @@
     "message": "Deze gebruiker kan alle items inzien en bewerken."
   },
   "userAccessSelectedCollections": {
-    "message": "Deze gebruiker heeft alleen toegang tot de geselecteerde collecties."
+    "message": "Deze gebruiker heeft alleen toegang tot de geselecteerde verzamelingen."
   },
   "search": {
     "message": "Zoeken"
@@ -1902,19 +1906,19 @@
     "message": "Administrator"
   },
   "adminDesc": {
-    "message": "Administrators hebben toegang tot alle items, collecties en gebruikers binnen uw organisatie en kunnen deze ook beheren."
+    "message": "Administrators hebben toegang tot alle items, verzamelingen en gebruikers binnen uw organisatie en kunnen deze ook beheren."
   },
   "user": {
     "message": "Gebruiker"
   },
   "userDesc": {
-    "message": "Een normale gebruiker met toegang tot de collecties van uw organisatie."
+    "message": "Een normale gebruiker met toegang tot de verzamelingen van uw organisatie."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Beheerder"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Beheerders hebben toegang tot toegewezen collecties binnen uw organisatie en kunnen deze ook beheren."
   },
   "all": {
     "message": "Alles"
@@ -1956,7 +1960,7 @@
     "message": "Veranderd account wachtwoord."
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "Tweestapsaanmelden geactiveerd\/bijgewerkt."
   },
   "disabled2fa": {
     "message": "Tweestapsaanmelden uitgeschakeld."
@@ -2491,15 +2495,15 @@
     "message": "De licentie is verlopen."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Bijgewerkte gebruikers"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Geselecteerde"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Eigendom"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Wie is eigenaar van dit object?"
   }
 }

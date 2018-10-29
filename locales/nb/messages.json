@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "Antall ekstra GB"
   },
-  "additionalStorageDesc": {
-    "message": "Din funksjonsplan kommer med $SIZE$ kryptert fillagring. Du kan legge til ytterligere lagring for $PRICE$ per GB per år.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -2491,15 +2495,15 @@
     "message": "Lisensen har utløpt."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Oppdatert brukere"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Valgt"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Eierskap"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Hvem eier dette elementet?"
   }
 }
