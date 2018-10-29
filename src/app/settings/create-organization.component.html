@@ -121,7 +121,7 @@
                 <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
                 <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb" [(ngModel)]="additionalStorage"
                     min="0" max="99" step="1" placeholder="{{'additionalStorageGbDesc' | i18n}}">
-                <small class="text-muted form-text">{{'additionalStorageDesc' | i18n : '1 GB' : (storageGb.price | currency:'$')}}</small>
+                <small class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGb.price | currency:'$') : ('month' | i18n)}}</small>
             </div>
         </div>
         <h2 class="spaced-header">{{'summary' | i18n}}</h2>
