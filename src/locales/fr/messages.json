@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# Go additionnels"
   },
-  "additionalStorageDesc": {
-    "message": "Votre offre comprend $SIZE$ de stockage de fichiers chiffrés. Vous pouvez ajouter du stockage supplémentaire pour $PRICE$ par Go\/an.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1911,10 +1915,10 @@
     "message": "Un utilisateur normal avec accès aux collections de votre organisation."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Gestionnaire"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Les gestionnaires peuvent voir et gérer les collections de votre organisation qui leur ont été assignées."
   },
   "all": {
     "message": "Tous"
@@ -2491,15 +2495,15 @@
     "message": "La licence a expiré."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Utilisateurs mis à jour"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Sélectionné"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Propriété"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "À qui appartient cet élément?"
   }
 }

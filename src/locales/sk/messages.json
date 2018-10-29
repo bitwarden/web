@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "množstvo dodatočných GB"
   },
-  "additionalStorageDesc": {
-    "message": "Váš plán zahŕňa $SIZE$ šifrovaného úložiska. Môžete si dokúpiť dodatočné miesto za $PRICE$\/GB ročne.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },

@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# di GB aggiuntivi"
   },
-  "additionalStorageDesc": {
-    "message": "Il piano è dotato di $SIZE$ di archiviazione crittografato. È possibile aggiungere spazio di archiviazione aggiuntivo per $PRICE$ per GB\/anno.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },

@@ -683,7 +683,7 @@
     "message": "Klucz bezpieczeństwa YubiKey OTP"
   },
   "yubiKeyDesc": {
-    "message": "Użyj YubiKey jako metody dostępu do konta. Działa z YubiKey 4, 4 Nano, 4C i urządzeniami NEO."
+    "message": "Użyj YubiKey jako metody dostępu do konta. Działa z YubiKey serii 4, serii 5 i urządzeniami NEO."
   },
   "duoDesc": {
     "message": "Weryfikacja z użyciem Duo Security poprzez aplikację Duo Mobile, SMS, połączenie telefoniczne lub klucz bezpieczeństwa U2F.",
@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# dodatkowych GB"
   },
-  "additionalStorageDesc": {
-    "message": "Twój plan zawiera $SIZE$ szyfrowanej przestrzeni. Możesz zwiększyć rozmiar dostępnej przestrzeni za $PRICE$ za GB\/rok.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1902,7 +1906,7 @@
     "message": "Administrator"
   },
   "adminDesc": {
-    "message": " Administratorzy mają dostęp do wszystkich elementów, kolekcji i użytkowników w Twojej organizacji."
+    "message": "Administratorzy mają dostęp do wszystkich elementów, kolekcji i użytkowników w Twojej organizacji."
   },
   "user": {
     "message": "Użytkownik"
@@ -1911,10 +1915,10 @@
     "message": "Zwykły użytkownik, posiadający dostęp do kolekcji w Twojej organizacji."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Menedżer"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Menedżerowie mają dostęp i mogą zarządzać kolekcjami przypisanymi do Twojej organizacji."
   },
   "all": {
     "message": "Wszystkie"
@@ -2491,15 +2495,15 @@
     "message": "Licencja wygasła."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Zaktualizowano użytkowników"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Wybrano"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Własność"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Kto jest właścicielem tego elementu?"
   }
 }

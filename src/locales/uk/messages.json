@@ -683,7 +683,7 @@
     "message": "Ключ безпеки YubiKey OTP"
   },
   "yubiKeyDesc": {
-    "message": "Використовуйте YubiKey для доступу до сховища. Працює з YubiKey 4, 4 Nano, 4C та пристроями NEO."
+    "message": "Використовуйте YubiKey для доступу до облікового запису. Працює з YubiKey серії 4, 5, а також пристроями NEO."
   },
   "duoDesc": {
     "message": "Авторизуйтесь за допомогою Duo Security з використанням мобільного додатку Duo Mobile, SMS, телефонного виклику, або ключа безпеки U2F.",
@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# додаткових ГБ"
   },
-  "additionalStorageDesc": {
-    "message": "Ваш тарифний план має зашифроване сховище файлів, розміром $SIZE$. Ви можете збільшити обсяг сховища по ціні $PRICE$ за ГБ \/рік.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1902,19 +1906,19 @@
     "message": "Адміністратор"
   },
   "adminDesc": {
-    "message": " Адміністратори мають доступ і можливість керування всіма записами, збірками та користувачами організації."
+    "message": "Адміністратори мають доступ і можливість керування всіма записами, збірками та користувачами вашої організації."
   },
   "user": {
     "message": "Користувач"
   },
   "userDesc": {
-    "message": "Звичайний користувач з доступом до збірок вашої організації."
+    "message": "Звичайний користувач з доступом до пов'язаних збірок вашої організації."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Менеджер"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Менеджери мають доступ і можуть керувати пов'язаними збірками вашої організації."
   },
   "all": {
     "message": "Усі"
@@ -2491,15 +2495,15 @@
     "message": "Термін дії ліцензії завершився."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Оновлені користувачі"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Вибрано"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Власник"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Хто є власником цього елемента?"
   }
 }
