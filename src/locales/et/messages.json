@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# lisa GB"
   },
-  "additionalStorageDesc": {
-    "message": "Sul on kasutada $SIZE$ krüpteeritud failiruumi Soovi korral saad osta lisaruumi hinnaga $PRICE$ GB \/aastas.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1911,10 +1915,10 @@
     "message": "Tavaline kasutaja, kel on ligipääsu organisatsiooni kirjetele."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Administraator"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Administraatorid pääsevad ligi ja saavad hallata organisatsiooni poolt määratud kollektsioone."
   },
   "all": {
     "message": "Kõik"
@@ -2491,15 +2495,15 @@
     "message": "Litsents on aegunud."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Kasutajad on uuendatud"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Valitud"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Omanik"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Kes seda üksust omab?"
   }
 }
