@@ -46,9 +46,6 @@ export class GroupingsComponent extends BaseGroupingsComponent {
         unassignedCollection.organizationId = this.organization.id;
         unassignedCollection.readOnly = true;
         this.collections.push(unassignedCollection);
-
-        if (this.loadNestedCollections) {
-            this.nestedCollections = await this.collectionService.getAllNested(this.collections);
-        }
+        this.nestedCollections = await this.collectionService.getAllNested(this.collections);
     }
 }
