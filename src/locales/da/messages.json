@@ -1385,8 +1385,8 @@
   "additionalStorageGbDesc": {
     "message": "# af ekstra GB"
   },
-  "additionalStorageDesc": {
-    "message": "Dit abonnement indeholder $SIZE$ krypteret fillagring. Du kan tilføje ekstra lagerplads til $PRICE$ per GB \/ år.",
+  "additionalStorageIntervalDesc": {
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1395,6 +1395,10 @@
       "price": {
         "content": "$2",
         "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
       }
     }
   },
@@ -1908,13 +1912,13 @@
     "message": "Bruger"
   },
   "userDesc": {
-    "message": "En almindelig bruger med adgang til organisationens samlinger."
+    "message": "En almindelig bruger med adgang til tildelte samlinger i din organisation."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Administrator"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Administratorer kan få adgang til og håndtere tildelte samlinger i din organisation."
   },
   "all": {
     "message": "Alle"
@@ -2491,15 +2495,15 @@
     "message": "Licensen er udløbet."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Opdaterede brugere"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Valgt"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Ejerskab"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Hvem ejer dette element?"
   }
 }
