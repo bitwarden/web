@@ -107,6 +107,31 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     saveFile(win: Window, blobData: any, blobOptions: any, fileName: string): void {
         let blob: Blob = null;
+        let type: string = null;
+        const fileNameLower = fileName.toLowerCase();
+        if (fileNameLower.endsWith('.pdf')) {
+            type = 'application/pdf';
+        } else if (fileNameLower.endsWith('.xlsx')) {
+            type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        } else if (fileNameLower.endsWith('.docx')) {
+            type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        } else if (fileNameLower.endsWith('.pptx')) {
+            type = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+        } else if (fileNameLower.endsWith('.csv')) {
+            type = 'text/csv';
+        } else if (fileNameLower.endsWith('.png')) {
+            type = 'image/png';
+        } else if (fileNameLower.endsWith('.jpg') || fileNameLower.endsWith('.jpeg')) {
+            type = 'image/jpeg';
+        } else if (fileNameLower.endsWith('.gif')) {
+            type = 'image/gif';
+        }
+        if (type != null) {
+            blobOptions = blobOptions || {};
+            if (blobOptions.type == null) {
+                blobOptions.type = type;
+            }
+        }
         if (blobOptions != null && !this.isIE()) {
             blob = new Blob([blobData], blobOptions);
         } else {
@@ -119,6 +144,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             a.href = win.URL.createObjectURL(blob);
             a.download = fileName;
             a.style.position = 'fixed';
+            a.target = '_blank';
             win.document.body.appendChild(a);
             a.click();
             win.document.body.removeChild(a);
