@@ -721,7 +721,7 @@
     "message": "これらのアイテムを共有する組織を選択してください。共有するとアイテムの所有権は組織に移行し、あなたはもはやこれらのアイテムの直接のオーナーではなくなります。"
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "このアイテムを共有するコレクションを編集します。共有したアイテムは、当該コレクションにアクセスできる組織ユーザーにのみ表示されます。"
   },
   "deleteSelectedItemsDesc": {
     "message": "$COUNT$個のアイテムを削除しようとしています。本当にこれらのアイテムを削除しますか？",
@@ -901,7 +901,7 @@
     "message": "これらの操作はやり直せないため注意してください！"
   },
   "deauthorizeSessions": {
-    "message": "Deauthorize Sessions"
+    "message": "セッションの承認を取り消す"
   },
   "deauthorizeSessionsDesc": {
     "message": "あなたのアカウントに別のデバイスからログインされていますか？ 以下で以前に使用したすべてのコンピューターやデバイスの認証を解除できます。 このステップは、以前に公共のコンピューターを使用した場合や、誤って他人のデバイスにパスワードを保存した場合におすすめです。 以前に記憶された二段階認証のログインセッションもすべてクリアされます。"
@@ -1041,7 +1041,7 @@
     "message": "コンマで区切ったドメインリストを入力します。サブドメインを除いて入力してください。例えば、\"www.google.com\"ではなく\"google.com\"を入力します。\"androidapp:\/\/package.name\"の形式で入力することでドメインとAndroidアプリを関連付けることもできます。"
   },
   "customDomainX": {
-    "message": "Custom Domain $INDEX$",
+    "message": "カスタムドメイン $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1059,7 +1059,7 @@
     "message": "ログイン時に追加の手順を必要としアカウントを保護します。"
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "組織レベルで認証プロバイダを設定することで、組織のユーザーに二段階の認証を必要とします。"
   },
   "twoStepLoginRecoveryWarning": {
     "message": "二段階認証を有効にするとBitwardenアカウントから永久に閉め出されてしまうことがあります。リカバリーコードがあれば、通常の二段階認証プロバイダを使えなくなったとき(デバイスの紛失等)でもアカウントにアクセスできます。アカウントにアクセスできなくなってもBitwardenはサポート出来ないため、リカバリーコードを書き出すか印刷し安全な場所で保管しておくことを推奨します。"
@@ -1078,7 +1078,7 @@
     "message": "有効化されました"
   },
   "premium": {
-    "message": "Premium",
+    "message": "プレミアム版",
     "description": "Premium Membership"
   },
   "premiumMembership": {
@@ -1091,7 +1091,7 @@
     "message": "この機能はプレミアムメンバー専用です。"
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "あなたはプレミアム会員です。"
   },
   "alreadyPremiumFromOrg": {
     "message": "You already have access to premium features because of an organization you are a member of."
@@ -1109,13 +1109,13 @@
     "message": "二段階認証の設定を変更するためにマスターパスワードを入力して下さい。"
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "認証アプリによる二段階認証を設定するために必要な手順:"
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "Download a two-step authenticator app"
+    "message": "二段階認証アプリをダウンロード"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "Need a two-step authenticator app? Download one of the following"
+    "message": "二段階認証アプリが必要ですか？以下からダウンロードして下さい。"
   },
   "iosDevices": {
     "message": "iOSデバイス"
@@ -1205,95 +1205,95 @@
     "message": "すべてのキーを無効化"
   },
   "twoFactorDuoDesc": {
-    "message": "Enter the Bitwarden application information from your Duo Admin panel."
+    "message": "Bitwardenアプリの情報をDuoの管理パネルから入力して下さい。"
   },
   "twoFactorDuoIntegrationKey": {
     "message": "Integration Key"
   },
   "twoFactorDuoSecretKey": {
-    "message": "Secret Key"
+    "message": "秘密鍵"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "API のホスト名"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "Eメールによる二段階認証を設定するために必要な手順:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "認証コードを受信したいメールアドレスを入力して下さい。"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the email"
+    "message": "Eメールに記載された6桁の認証コードを入力して下さい。"
   },
   "sendEmail": {
-    "message": "Send Email"
+    "message": "メールを送信"
   },
   "twoFactorU2fAdd": {
-    "message": "Add a FIDO U2F security key to your account"
+    "message": "FIDO U2F対応キーをアカウントに追加"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "本当にこのセキュリティキーを削除しますか？"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "読み取りキー"
   },
   "keyCompromised": {
     "message": "Key is compromised."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "セキュリティキーを識別するための名前を追加します。"
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "セキュリティキーをコンピューターのUSBポートに差し込み、「読み取りキー」ボタンをクリックしてください。"
   },
   "twoFactorU2fTouchButton": {
-    "message": "If the security key has a button, touch it."
+    "message": "セキュリティキーにボタンがある場合、タッチして下さい。"
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "フォームを保存します。"
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "プラットフォームの制限によりFIDO U2F対応キーはBitwardenのアプリケーションのすべてで使用できるわけではありません。他の二段階認証プロバイダを有効化しておくと、FIDO U2F対応キーが使用できない場合でもアカウントにアクセスできます。サポートされるプラットフォーム:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "ウェブ保管庫とU2Fに対応したブラウザ(Chrome、Opera、Vivaldi、Firefox)のブラウザ拡張機能"
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "セキュリティキーのボタンがタッチされるのを待っています。"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "このセキュリティキーを二段階認証で有効化するには、「保存」ボタンをクリックして下さい。"
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "セキュリティキーの読み取り中に問題が発生しました。もう一度やり直して下さい。"
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "二段階認証のリカバリーコード"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "あなたはまだ二段階認証プロバイダを有効化していません。有効化すると、ここでリカバリーコードを確認できます。"
   },
   "printCode": {
-    "message": "Print Code",
+    "message": "コードを印刷する",
     "description": "Print 2FA recovery code"
   },
   "reports": {
-    "message": "Reports"
+    "message": "レポート"
   },
   "dataBreachReport": {
-    "message": "Data Breach Report"
+    "message": "情報漏えい調査"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "ハッカーに不正にアクセスされ、サイトのデータが流出した事件の情報から、あなたのメールアドレス、パスワード、クレジットカードなどが危険に晒されていないかを調査し、パスワード変更など適切な対処を行いましょう。"
   },
   "breachCheckUsernameEmail": {
-    "message": "Check any usernames or email addresses that you use."
+    "message": "チェックしたいユーザー名またはメールアドレスを入力して下さい。"
   },
   "checkBreaches": {
-    "message": "Check Breaches"
+    "message": "調査する"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "$USERNAME$は漏えいデータ内に見つかりませんでした。",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1302,11 +1302,11 @@
     }
   },
   "goodNews": {
-    "message": "Good News",
+    "message": "良いお知らせです！",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$は$COUNT$つの漏えいデータ内で見つかりました。",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1319,38 +1319,38 @@
     }
   },
   "breachFound": {
-    "message": "Breached Accounts Found"
+    "message": "漏えいデータが見つかりました"
   },
   "compromisedData": {
-    "message": "Compromised data"
+    "message": "漏えいしたデータ"
   },
   "website": {
     "message": "ウェブサイト"
   },
   "affectedUsers": {
-    "message": "Affected Users"
+    "message": "影響を受けるユーザー"
   },
   "breachOccurred": {
-    "message": "Breach Occurred"
+    "message": "発生日"
   },
   "breachReported": {
-    "message": "Breach Reported"
+    "message": "報告日"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "調査データのロード中にエラーが発生しました。もう一度やり直して下さい。"
   },
   "billingAndLicensing": {
-    "message": "Billing & Licensing"
+    "message": "お支払いとライセンス"
   },
   "goPremium": {
-    "message": "Go Premium",
+    "message": "プレミアム版にアップグレード",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "プレミアム版にアップグレードされました。"
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "プレミアム会員にアップグレードして他の素晴らしい追加機能を使えるようにします。"
   },
   "premiumSignUpStorage": {
     "message": "1GB の暗号化されたファイルストレージ"
@@ -1359,7 +1359,7 @@
     "message": "YubiKey、FIDO U2F、Duoなどの追加の2段階認証ログインオプション"
   },
   "premiumSignUpTotp": {
-    "message": "TOTP verification code (2FA) generator for logins in your vault."
+    "message": "保管庫内での2段階認証コード生成"
   },
   "premiumSignUpSupport": {
     "message": "優先カスタマーサポート"
@@ -1380,13 +1380,13 @@
     "message": "アドオン"
   },
   "additionalStorageGb": {
-    "message": "Additional Storage (GB)"
+    "message": "追加ストレージ容量(GB)"
   },
   "additionalStorageGbDesc": {
     "message": "# of additional GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "あなたのプランは$SIZE$の暗号化ファイルストレージを使用できます。1GBあたり$PRICE$\/$INTERVAL$でストレージ容量を追加できます。",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1403,19 +1403,19 @@
     }
   },
   "summary": {
-    "message": "Summary"
+    "message": "概要"
   },
   "total": {
     "message": "Total"
   },
   "year": {
-    "message": "year"
+    "message": "年"
   },
   "month": {
-    "message": "month"
+    "message": "月"
   },
   "monthAbbr": {
-    "message": "mo.",
+    "message": "月",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
@@ -1431,76 +1431,76 @@
     }
   },
   "paymentInformation": {
-    "message": "Payment Information"
+    "message": "お支払い情報"
   },
   "creditCard": {
-    "message": "Credit Card"
+    "message": "クレジットカード"
   },
   "paypalClickSubmit": {
     "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
   },
   "cancelSubscription": {
-    "message": "Cancel Subscription"
+    "message": "契約のキャンセル"
   },
   "subscriptionCanceled": {
-    "message": "The subscription has been canceled."
+    "message": "契約はキャンセルされました。"
   },
   "pendingCancellation": {
-    "message": "Pending Cancellation"
+    "message": "保留中のキャンセル"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "契約は現在の請求期間の終期にキャンセルされます。"
   },
   "reinstateSubscription": {
-    "message": "Reinstate Subscription"
+    "message": "契約の再開"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "本当に保留中のキャンセルを削除して契約を再開しますか？"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "契約が再開されました。"
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "本当にキャンセルしますか？契約していたすべての追加機能が請求期間の終期で利用できなくなります。"
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "契約はキャンセルされました。"
   },
   "neverExpires": {
-    "message": "Never Expires"
+    "message": "無期限"
   },
   "status": {
-    "message": "Status"
+    "message": "ステータス"
   },
   "nextCharge": {
-    "message": "Next Charge"
+    "message": "次回の請求"
   },
   "details": {
-    "message": "Details"
+    "message": "詳細"
   },
   "downloadLicense": {
-    "message": "Download License"
+    "message": "ライセンスのダウンロード"
   },
   "updateLicense": {
-    "message": "Update License"
+    "message": "ライセンスの更新"
   },
   "updatedLicense": {
-    "message": "Updated license"
+    "message": "ライセンスは更新されました"
   },
   "manageSubscription": {
-    "message": "Manage Subscription"
+    "message": "契約の管理"
   },
   "storage": {
-    "message": "Storage"
+    "message": "ストレージ"
   },
   "addStorage": {
-    "message": "Add Storage"
+    "message": "ストレージの追加"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "追加したストレージの削除"
   },
   "subscriptionStorage": {
-    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "message": "あなたの契約は合計$MAX_STORAGE$GBの暗号化ファイルストレージを利用できます。現在、$USED_STORAGE$使用しています。",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1513,26 +1513,26 @@
     }
   },
   "paymentMethod": {
-    "message": "Payment Method"
+    "message": "お支払い方法"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "お支払い方法が登録されていません。"
   },
   "addPaymentMethod": {
-    "message": "Add Payment Method"
+    "message": "お支払い方法を追加"
   },
   "changePaymentMethod": {
-    "message": "Change Payment Method"
+    "message": "お支払い方法の変更"
   },
   "charges": {
-    "message": "Charges",
+    "message": "料金",
     "description": "Credit card charges\/payments."
   },
   "noCharges": {
-    "message": "No charges."
+    "message": "料金はかかりません。"
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "料金は$STATEMENT_NAME$と明細に表示されます。",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1541,10 +1541,10 @@
     }
   },
   "gbStorageAdd": {
-    "message": "GB of Storage To Add"
+    "message": "追加するストレージ容量(GB)"
   },
   "gbStorageRemove": {
-    "message": "GB of Storage To Remove"
+    "message": "削除するストレージ容量(GB)"
   },
   "storageAddNote": {
     "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
@@ -1562,19 +1562,19 @@
     }
   },
   "contactSupport": {
-    "message": "Contact Customer Support"
+    "message": "カスタマーサポートに連絡"
   },
   "contactSupportPaymentMethod": {
-    "message": "If you would like to change from this payment method please contact customer support."
+    "message": "現在のお支払い方法から変更を希望される場合、カスタマーサポートまでお問い合わせください。"
   },
   "updatedPaymentMethod": {
-    "message": "Updated payment method."
+    "message": "お支払い方法を更新しました。"
   },
   "purchasePremium": {
-    "message": "Purchase Premium"
+    "message": "プレミアム会員に加入"
   },
   "licenseFile": {
-    "message": "License File"
+    "message": "ライセンスファイル"
   },
   "licenseFileDesc": {
     "message": "Your license file will be named something like $FILE_NAME$",
@@ -1586,13 +1586,13 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "To upgrade your account to a premium membership you need to upload a valid license file."
+    "message": "プレミアム会員にアップグレードするには、有効なライセンスファイルをアップロードする必要があります。"
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+    "message": "オンプレミス型の組織を作成するには、正しいライセンスファイルをアップロードする必要があります。"
   },
   "accountEmailMustBeVerified": {
-    "message": "Your account's email address must be verified."
+    "message": "アカウントのメールアドレスを確認する必要があります。"
   },
   "newOrganizationDesc": {
     "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
@@ -1601,19 +1601,19 @@
     "message": "General Information"
   },
   "organizationName": {
-    "message": "Organization Name"
+    "message": "組織名"
   },
   "accountOwnedBusiness": {
-    "message": "This account is owned by a business."
+    "message": "このアカウントはビジネス用です。"
   },
   "billingEmail": {
     "message": "Billing Email"
   },
   "businessName": {
-    "message": "Business Name"
+    "message": "企業名"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "プランを選択してください"
   },
   "users": {
     "message": "Users"
