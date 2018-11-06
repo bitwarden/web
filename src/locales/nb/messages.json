@@ -38,7 +38,7 @@
     "message": "Passord"
   },
   "passphrase": {
-    "message": "Passphrase"
+    "message": "Passfrase"
   },
   "notes": {
     "message": "Notater"
@@ -802,7 +802,7 @@
     "message": "Antall ord"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Ordadskiller"
   },
   "passwordHistory": {
     "message": "Passordhistorikk"
@@ -865,13 +865,13 @@
     "message": "Innstillinger for krypteringsnøkkel"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algoritmen"
+    "message": "KDF-algoritme"
   },
   "kdfIterations": {
-    "message": "KDF gjentakelser"
+    "message": "KDF-gjentakelser"
   },
   "kdfIterationsDesc": {
-    "message": "Høyere KDF gjentakelser kan beskytte hovedpassordet fra blir brute tvunget av angriperen. Verdien $VALUE$ eller mer anbefales.",
+    "message": "Flere KDF-gjentakelser kan hjelpe til med å beskytte superpassordet fra å bli tvunget inn i av en angriper. Vi anbefaler en verdi på $VALUE$ eller mer.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -880,7 +880,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Å velge for mange KDF-gjentakelser kan føre til dårlig ytelse når du logger inn på (og låser opp) Bitwarden på enheter med tregere CPUer. Vi anbefaler at du øker verdien trinnvis, $INCREMENT$ om gangen, og å så teste det på alle dine enheter.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -892,7 +892,7 @@
     "message": "Endre KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Krypteringsnøkkelinnstillingene har blitt endret"
   },
   "dangerZone": {
     "message": "Faresone"
@@ -916,13 +916,13 @@
     "message": "Tøm hvelvet"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Tømte organisasjonens hvelv."
   },
   "purgeVaultDesc": {
     "message": "Fortsett nedenfor for å slette alle gjenstander og mapper i ditt hvelv. Gjenstander som tilhører en organisasjon som du deler med, vil ikke bli slettet."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Fortsett nedenfor for å slette alle gjenstandene i organisasjonens hvelv."
   },
   "purgeVaultWarning": {
     "message": "Å tømme hvelvet ditt er permanent. Det kan ikke bli angret på."
@@ -1091,10 +1091,10 @@
     "message": "Et Premium-medlemskap er påkrevd for å bruke denne funksjonen."
   },
   "youHavePremiumAccess": {
-    "message": "Du har premium tilgang"
+    "message": "Du har Premium-tilgang"
   },
   "alreadyPremiumFromOrg": {
-    "message": "Du har allerede tilgang til premiumfunksjoner på grunn av en organisasjon du er medlem av."
+    "message": "Du har allerede tilgang til Premium-funksjoner takket være en organisasjon som du er medlem av."
   },
   "manage": {
     "message": "Behandle"
@@ -1181,7 +1181,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F-nøkkel $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1241,10 +1241,10 @@
     "message": "Nøkkelen er kompromittert."
   },
   "twoFactorU2fGiveName": {
-    "message": "Gi sikkerhetsnøkkelen et vennlig navn for å identifisere det."
+    "message": "Gi sikkerhetsnøkkelen et vennlig navn for å identifisere den."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Sett sikkerhetsnøkkelen inn i din datamaskins USB-port, og klikk på «Les nøkkel»-knappen."
   },
   "twoFactorU2fTouchButton": {
     "message": "Dersom sikkerhetsnøkkelen har en knapp, trykk på den."
@@ -1262,7 +1262,7 @@
     "message": "Venter på at du skal trykke på knappen på din sikkerhetsnøkkel"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Klikk på «Lagre»-knappen nedenfor for å aktivere denne sikkerhetsnøkkelen for 2-trinnsinnlogging."
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Det oppsto et problem med å lese sikkerhetsnøkkelen. Prøv igjen."
@@ -1340,7 +1340,7 @@
     "message": "En feil oppstod under forsøk på å laste inn rapporten. Prøv igjen."
   },
   "billingAndLicensing": {
-    "message": "Regninger og lisensiering"
+    "message": "Fakturering og lisensiering"
   },
   "goPremium": {
     "message": "Oppgrader til Premium",
@@ -1386,7 +1386,7 @@
     "message": "Antall ekstra GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "Din funksjonsplan kommer med $SIZE$ kryptert fillagring. Du kan legge til ytterligere lagring for $PRICE$ per GB per $INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1744,7 +1744,7 @@
     "message": "Lokal betjening (valgfritt)"
   },
   "usersGetPremium": {
-    "message": "Brukerne får tilgang til premium medlemskap funksjoner"
+    "message": "Brukerne får tilgang til Premium-medlemskapsfunksjoner"
   },
   "controlAccessWithGroups": {
     "message": "Kontroller brukertilgang med grupper"
@@ -1906,19 +1906,19 @@
     "message": "Admin"
   },
   "adminDesc": {
-    "message": " Administratorer kan få tilgang til og behandle alle gjenstander, samlinger og brukere i din organisasjon."
+    "message": "Administratorer kan få tilgang til og behandle alle gjenstander, samlinger og brukere i din organisasjon."
   },
   "user": {
     "message": "Bruker"
   },
   "userDesc": {
-    "message": "En vanlig bruker med tilgang til din organisasjons samlinger."
+    "message": "En vanlig bruker med tilgang til tilegnede samlinger i din organisasjon."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Behandler"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Behandlere har tilgang til og kan behandle tilegnede samlinger i din organisasjon."
   },
   "all": {
     "message": "Alle"
@@ -1960,7 +1960,7 @@
     "message": "Endret kontopassordet."
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "Aktiverte\/oppdaterte 2-trinnsinnloggingen."
   },
   "disabled2fa": {
     "message": "Skrudde av 2-trinnsinnlogging."
@@ -2194,7 +2194,7 @@
     "message": "Bekreft brukere"
   },
   "usersNeedConfirmed": {
-    "message": "Du har brukere som har akseptert sin invitasjon, men må fortsatt bekreftes. Brukere vil ikke ha tilgang til organisasjonen før de er bekreftet."
+    "message": "Du har brukere som har akseptert sin invitasjon, men som fortsatt må bekreftes. Brukere vil ikke ha tilgang til organisasjonen før de er bekreftet."
   },
   "startDate": {
     "message": "Startdato"
@@ -2495,7 +2495,7 @@
     "message": "Lisensen har utløpt."
   },
   "updatedUsers": {
-    "message": "Oppdatert brukere"
+    "message": "Oppdaterte brukere"
   },
   "selected": {
     "message": "Valgt"
