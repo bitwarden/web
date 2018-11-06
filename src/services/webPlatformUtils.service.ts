@@ -109,8 +109,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         let blob: Blob = null;
         let type: string = null;
         const fileNameLower = fileName.toLowerCase();
+        let doDownload = true;
         if (fileNameLower.endsWith('.pdf')) {
             type = 'application/pdf';
+            doDownload = false;
         } else if (fileNameLower.endsWith('.xlsx')) {
             type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
         } else if (fileNameLower.endsWith('.docx')) {
@@ -141,10 +143,13 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             navigator.msSaveBlob(blob, fileName);
         } else {
             const a = win.document.createElement('a');
+            if (doDownload) {
+                a.download = fileName;
+            } else {
+                a.target = '_blank';
+            }
             a.href = win.URL.createObjectURL(blob);
-            a.download = fileName;
             a.style.position = 'fixed';
-            a.target = '_blank';
             win.document.body.appendChild(a);
             a.click();
             win.document.body.removeChild(a);
