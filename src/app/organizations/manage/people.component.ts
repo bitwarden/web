@@ -254,9 +254,11 @@ export class PeopleComponent implements OnInit {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
-        // tslint:disable-next-line
-        console.log('User\'s fingerprint: ' +
-            (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
+        try {
+            // tslint:disable-next-line
+            console.log('User\'s fingerprint: ' +
+                (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
+        } catch { }
         const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
         const request = new OrganizationUserConfirmRequest();
         request.key = key.encryptedString;
