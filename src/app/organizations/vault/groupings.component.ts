@@ -4,6 +4,8 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { StorageService } from 'jslib/abstractions/storage.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CollectionData } from 'jslib/models/data/collectionData';
 import { Collection } from 'jslib/models/domain/collection';
@@ -21,8 +23,9 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     organization: Organization;
 
     constructor(collectionService: CollectionService, folderService: FolderService,
+        storageService: StorageService, userService: UserService,
         private apiService: ApiService, private i18nService: I18nService) {
-        super(collectionService, folderService);
+        super(collectionService, folderService, storageService, userService);
     }
 
     async loadCollections() {
@@ -47,5 +50,13 @@ export class GroupingsComponent extends BaseGroupingsComponent {
         unassignedCollection.readOnly = true;
         this.collections.push(unassignedCollection);
         this.nestedCollections = await this.collectionService.getAllNested(this.collections);
+    }
+
+    collapse(grouping: CollectionView) {
+        super.collapse(grouping, 'org_');
+    }
+
+    isCollapsed(grouping: CollectionView) {
+        return super.isCollapsed(grouping, 'org_');
     }
 }

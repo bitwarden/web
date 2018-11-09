@@ -424,6 +424,12 @@ app-vault-groupings, app-org-vault-groupings {
             display: none;
         }
 
+        li {
+            > .fa, > div > .fa {
+                cursor: pointer;
+            }
+        }
+
         li.active {
             > .show-active, > div .show-active {
                 display: inline;
@@ -431,8 +437,12 @@ app-vault-groupings, app-org-vault-groupings {
         }
 
         li.active {
-            > a:first-child, > div a:first-child {
+            > a:first-of-type, > div a:first-of-type {
                 font-weight: bold;
+                color: theme-color("primary");
+            }
+
+            > .fa, > div > .fa {
                 color: theme-color("primary");
             }
         }
