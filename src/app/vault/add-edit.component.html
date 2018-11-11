@@ -214,6 +214,10 @@
                                 <option *ngFor="let o of identityTitleOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
+                        <div class="col-4 form-group">
+                            <label for="idBirthday">{{'birthday' | i18n}}</label>
+                            <input id="idBirthday" class="form-control" type="date" name="Identity.Birthday" [(ngModel)]="cipher.identity.birthday">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-4 form-group">
