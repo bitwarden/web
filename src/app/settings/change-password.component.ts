@@ -1,5 +1,6 @@
 import {
     Component,
+    OnInit,
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
@@ -19,7 +20,7 @@ import { PasswordRequest } from 'jslib/models/request/passwordRequest';
     selector: 'app-change-password',
     templateUrl: 'change-password.component.html',
 })
-export class ChangePasswordComponent {
+export class ChangePasswordComponent implements OnInit {
     currentMasterPassword: string;
     newMasterPassword: string;
     confirmNewMasterPassword: string;
@@ -27,12 +28,17 @@ export class ChangePasswordComponent {
     masterPasswordScore: number;
 
     private masterPasswordStrengthTimeout: any;
+    private email: string;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         private cryptoService: CryptoService, private messagingService: MessagingService,
         private userService: UserService, private passwordGenerationService: PasswordGenerationService,
         private platformUtilsService: PlatformUtilsService) { }
+
+    async ngOnInit() {
+        this.email = await this.userService.getEmail();
+    }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
@@ -58,7 +64,8 @@ export class ChangePasswordComponent {
             return;
         }
 
-        const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword, null);
+        const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword,
+            this.getPasswordStrengthUserInput());
         if (strengthResult != null && strengthResult.score < 3) {
             const result = await this.platformUtilsService.showDialog(this.i18nService.t('weakMasterPasswordDesc'),
                 this.i18nService.t('weakMasterPassword'), this.i18nService.t('yes'), this.i18nService.t('no'),
@@ -92,8 +99,18 @@ export class ChangePasswordComponent {
             clearTimeout(this.masterPasswordStrengthTimeout);
         }
         this.masterPasswordStrengthTimeout = setTimeout(() => {
-            const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword, null);
+            const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword,
+                this.getPasswordStrengthUserInput());
             this.masterPasswordScore = strengthResult == null ? null : strengthResult.score;
         }, 300);
+    }
+
+    private getPasswordStrengthUserInput() {
+        let userInput: string[] = [];
+        const atPosition = this.email.indexOf('@');
+        if (atPosition > -1) {
+            userInput = userInput.concat(this.email.substr(0, atPosition).trim().toLowerCase().split(/[^A-Za-z0-9]/));
+        }
+        return userInput;
     }
 }
