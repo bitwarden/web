@@ -26,9 +26,12 @@
                                     [(ngModel)]="masterPassword" (input)="updatePasswordStrength()" required appInputVerbatim>
                                 <app-password-strength [score]="masterPasswordScore" [showText]="true"></app-password-strength>
                             </div>
-                            <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword(false)">
-                                <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
-                            </button>
+                            <div>
+                                <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword(false)">
+                                    <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                </button>
+                                <div class="progress-bar invisible"></div>
+                            </div>
                         </div>
                         <small class="form-text text-muted">{{'masterPassDesc' | i18n}}</small>
                     </div>
