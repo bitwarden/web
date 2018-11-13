@@ -28,8 +28,8 @@ export class PasswordStrengthComponent implements OnChanges {
                 this.text = this.i18nService.t('strong');
                 break;
             case 3:
-                this.color = 'bg-warning';
-                this.text = this.i18nService.t('ok');
+                this.color = 'bg-primary';
+                this.text = this.i18nService.t('good');
                 break;
             case 2:
                 this.color = 'bg-warning';
