@@ -21,8 +21,11 @@
                     <div class="form-group">
                         <label for="masterPassword">{{'masterPass' | i18n}}</label>
                         <div class="d-flex">
-                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
-                                [(ngModel)]="masterPassword" required appInputVerbatim>
+                            <div class="w-100">
+                                <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control mb-1"
+                                    [(ngModel)]="masterPassword" (input)="updatePasswordStrength()" required appInputVerbatim>
+                                <app-password-strength [score]="masterPasswordScore" [showText]="true"></app-password-strength>
+                            </div>
                             <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword(false)">
                                 <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>

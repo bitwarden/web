@@ -18,6 +18,7 @@ import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
 import { CalloutComponent } from './components/callout.component';
+import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
@@ -291,6 +292,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         VerifyEmailComponent,
         VerifyEmailTokenComponent,
         VerifyRecoverDeleteComponent,
+        PasswordStrengthComponent,
     ],
     entryComponents: [
         AddEditComponent,
