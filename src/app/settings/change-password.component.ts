@@ -9,7 +9,10 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
+
 import { PasswordRequest } from 'jslib/models/request/passwordRequest';
 
 @Component({
@@ -21,11 +24,15 @@ export class ChangePasswordComponent {
     newMasterPassword: string;
     confirmNewMasterPassword: string;
     formPromise: Promise<any>;
+    masterPasswordScore: number;
+
+    private masterPasswordStrengthTimeout: any;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         private cryptoService: CryptoService, private messagingService: MessagingService,
-        private userService: UserService) { }
+        private userService: UserService, private passwordGenerationService: PasswordGenerationService,
+        private platformUtilsService: PlatformUtilsService) { }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
@@ -51,6 +58,16 @@ export class ChangePasswordComponent {
             return;
         }
 
+        const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword, null);
+        if (strengthResult != null && strengthResult.score < 3) {
+            const result = await this.platformUtilsService.showDialog(this.i18nService.t('weakMasterPasswordDesc'),
+                this.i18nService.t('weakMasterPassword'), this.i18nService.t('yes'), this.i18nService.t('no'),
+                'warning');
+            if (!result) {
+                return;
+            }
+        }
+
         const request = new PasswordRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.currentMasterPassword, null);
         const email = await this.userService.getEmail();
@@ -68,5 +85,15 @@ export class ChangePasswordComponent {
                 this.i18nService.t('logBackIn'));
             this.messagingService.send('logout');
         } catch { }
+    }
+
+    updatePasswordStrength() {
+        if (this.masterPasswordStrengthTimeout != null) {
+            clearTimeout(this.masterPasswordStrengthTimeout);
+        }
+        this.masterPasswordStrengthTimeout = setTimeout(() => {
+            const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword, null);
+            this.masterPasswordScore = strengthResult == null ? null : strengthResult.score;
+        }, 300);
     }
 }
