@@ -11,7 +11,11 @@
                 <td (click)="checkCipher(c)" class="reduced-lh wrap">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
                     <i class="fa fa-share-alt" appStopProp *ngIf="!organization && c.organizationId" title="{{'shared' | i18n}}"></i>
-                    <i class="fa fa-paperclip" appStopProp *ngIf="c.hasAttachments" title="{{'attachments' | i18n}}"></i>
+                    <ng-container *ngIf="c.hasAttachments">
+                        <i class="fa fa-paperclip" appStopProp  title="{{'attachments' | i18n}}"></i>
+                        <i class="fa fa-exclamation-triangle text-warning" appStopProp *ngIf="showFixOldAttachments(c)"
+                            title="{{'attachmentsNeedFix' | i18n}}"></i>
+                    </ng-container>
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
                 </td>

@@ -11,6 +11,8 @@ import { CipherData } from 'jslib/models/data/cipherData';
 import { Cipher } from 'jslib/models/domain/cipher';
 import { Organization } from 'jslib/models/domain/organization';
 
+import { AttachmentView } from 'jslib/models/view/attachmentView';
+
 import { AttachmentsComponent as BaseAttachmentsComponent } from '../../vault/attachments.component';
 
 @Component({
@@ -24,6 +26,12 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
         cryptoService: CryptoService, userService: UserService,
         platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
         super(cipherService, i18nService, cryptoService, userService, platformUtilsService);
+    }
+
+    protected async reupload(attachment: AttachmentView) {
+        if (this.organization.isAdmin && this.showFixOldAttachments(attachment)) {
+            await super.reuploadCipherAttachment(attachment, true);
+        }
     }
 
     protected async loadCipher() {
@@ -43,5 +51,9 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
             return super.deleteCipherAttachment(attachmentId);
         }
         return this.apiService.deleteCipherAttachmentAdmin(this.cipherId, attachmentId);
+    }
+
+    protected showFixOldAttachments(attachment: AttachmentView) {
+        return attachment.key == null && this.organization.isAdmin;
     }
 }

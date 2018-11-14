@@ -103,4 +103,8 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
         return this.apiService.deleteCipherAdmin(id);
     }
+
+    protected showFixOldAttachments(c: CipherView) {
+        return this.organization.isAdmin && c.hasOldAttachments;
+    }
 }

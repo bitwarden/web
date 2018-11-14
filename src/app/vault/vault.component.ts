@@ -225,6 +225,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         let madeAttachmentChanges = false;
         childComponent.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
         childComponent.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
+        childComponent.onReuploadedAttachment.subscribe(() => madeAttachmentChanges = true);
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;

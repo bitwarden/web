@@ -127,4 +127,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     protected deleteCipher(id: string) {
         return this.cipherService.deleteWithServer(id);
     }
+
+    protected showFixOldAttachments(c: CipherView) {
+        return c.hasOldAttachments && c.organizationId == null;
+    }
 }
