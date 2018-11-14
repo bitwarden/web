@@ -128,8 +128,30 @@ export class ChangePasswordComponent implements OnInit {
         }, 300);
     }
 
-    async showEncKeyWarning() {
+    async rotateEncKeyClicked() {
         if (this.rotateEncKey) {
+            const ciphers = await this.cipherService.getAllDecrypted();
+            let hasOldAttachments = false;
+            if (ciphers != null) {
+                for (let i = 0; i < ciphers.length; i++) {
+                    if (ciphers[i].organizationId == null && ciphers[i].hasOldAttachments) {
+                        hasOldAttachments = true;
+                        break;
+                    }
+                }
+            }
+
+            if (hasOldAttachments) {
+                const learnMore = await this.platformUtilsService.showDialog(
+                    this.i18nService.t('oldAttachmentsNeedFixDesc'), null,
+                    this.i18nService.t('learnMore'), this.i18nService.t('close'), 'warning');
+                if (learnMore) {
+                    this.platformUtilsService.launchUri('https://help.bitwarden.com/article/attachments/');
+                }
+                this.rotateEncKey = false;
+                return;
+            }
+
             const result = await this.platformUtilsService.showDialog(
                 this.i18nService.t('updateEncryptionKeyWarning') + ' ' +
                 this.i18nService.t('rotateEncKeyConfirmation'), this.i18nService.t('rotateEncKeyTitle'),
