@@ -226,9 +226,12 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             contentDiv.appendChild(textDiv);
         }
 
-        const confirmed = await swal({
+        const confirmed = buttons.length > 1 ? await swal({
             content: { element: contentDiv },
             buttons: buttons,
+        }) : await (swal as any)({
+            content: { element: contentDiv },
+            button: buttons[0],
         });
         return confirmed;
     }
