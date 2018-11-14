@@ -102,9 +102,7 @@ export class ChangePasswordComponent implements OnInit {
         try {
             if (this.rotateEncKey) {
                 this.formPromise = this.apiService.postPassword(request).then(() => {
-                    return this.makeRequest(newKey, request.newMasterPasswordHash);
-                }).then((updateKeyRequest) => {
-                    return this.apiService.postAccountKey(updateKeyRequest);
+                    return this.updateKey(newKey, request.newMasterPasswordHash);
                 });
             } else {
                 this.formPromise = this.apiService.postPassword(request);
@@ -171,7 +169,7 @@ export class ChangePasswordComponent implements OnInit {
         return userInput;
     }
 
-    private async makeRequest(key: SymmetricCryptoKey, masterPasswordHash: string): Promise<UpdateKeyRequest> {
+    private async updateKey(key: SymmetricCryptoKey, masterPasswordHash: string) {
         const encKey = await this.cryptoService.makeEncKey(key);
         const privateKey = await this.cryptoService.getPrivateKey();
         let encPrivateKey: CipherString = null;
@@ -202,6 +200,6 @@ export class ChangePasswordComponent implements OnInit {
             request.ciphers.push(new CipherWithIdRequest(cipher));
         }
 
-        return request;
+        await this.apiService.postAccountKey(request);
     }
 }
