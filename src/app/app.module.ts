@@ -50,6 +50,7 @@ import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/gr
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
 import { UserAddEditComponent as OrgUserAddEditComponent } from './organizations/manage/user-add-edit.component';
+import { UserConfirmComponent as OrgUserConfirmComponent } from './organizations/manage/user-confirm.component';
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
@@ -253,6 +254,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgToolsComponent,
         OrgTwoFactorSetupComponent,
         OrgUserAddEditComponent,
+        OrgUserConfirmComponent,
         OrgUserGroupsComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,
@@ -314,6 +316,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
         OrgUserAddEditComponent,
+        OrgUserConfirmComponent,
         OrgUserGroupsComponent,
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,

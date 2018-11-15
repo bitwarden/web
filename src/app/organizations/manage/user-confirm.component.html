@@ -1,0 +1,35 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    {{'confirmUser' | i18n}}
+                    <small class="text-muted" *ngIf="name">{{name}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    {{'fingerprintEnsureIntegrity' | i18n}}
+                    <a href="#" target="_blank" rel="noopener">{{'learnMore' | i18n}}</a>
+                </p>
+                <p><code>{{fingerprint}}</code></p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="dontAskAgain" name="DontAskAgain" [(ngModel)]="dontAskAgain">
+                    <label class="form-check-label" for="dontAskAgain">
+                        {{'dontAskFingerprintAgain' | i18n}}
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <span>{{'confirm' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'cancel' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>

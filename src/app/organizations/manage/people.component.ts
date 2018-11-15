@@ -13,10 +13,13 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
+import { ConstantsService } from 'jslib/services/constants.service';
+
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
@@ -31,6 +34,7 @@ import { Utils } from 'jslib/misc/utils';
 import { ModalComponent } from '../../modal.component';
 import { EntityEventsComponent } from './entity-events.component';
 import { UserAddEditComponent } from './user-add-edit.component';
+import { UserConfirmComponent } from './user-confirm.component';
 import { UserGroupsComponent } from './user-groups.component';
 
 @Component({
@@ -41,6 +45,7 @@ export class PeopleComponent implements OnInit {
     @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
     @ViewChild('groupsTemplate', { read: ViewContainerRef }) groupsModalRef: ViewContainerRef;
     @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
+    @ViewChild('confirmTemplate', { read: ViewContainerRef }) confirmModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -61,7 +66,8 @@ export class PeopleComponent implements OnInit {
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private userService: UserService, private router: Router) { }
+        private userService: UserService, private router: Router,
+        private storageService: StorageService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -213,17 +219,48 @@ export class PeopleComponent implements OnInit {
     }
 
     async confirm(user: OrganizationUserUserDetailsResponse) {
+        function updateUser(self: PeopleComponent) {
+            user.status = OrganizationUserStatusType.Confirmed;
+            const mapIndex = self.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
+            if (mapIndex > -1) {
+                self.statusMap.get(OrganizationUserStatusType.Accepted).splice(mapIndex, 1);
+                self.statusMap.get(OrganizationUserStatusType.Confirmed).push(user);
+            }
+        }
+
         if (this.actionPromise != null) {
             return;
         }
+
+        const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+        if (autoConfirm == null || !autoConfirm) {
+            if (this.modal != null) {
+                this.modal.close();
+            }
+
+            const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+            this.modal = this.groupsModalRef.createComponent(factory).instance;
+            const childComponent = this.modal.show<UserConfirmComponent>(
+                UserConfirmComponent, this.confirmModalRef);
+
+            childComponent.name = user != null ? user.name || user.email : null;
+            childComponent.organizationId = this.organizationId;
+            childComponent.organizationUserId = user != null ? user.id : null;
+            childComponent.userId = user != null ? user.userId : null;
+            childComponent.onConfirmedUser.subscribe(() => {
+                this.modal.close();
+                updateUser(this);
+            });
+
+            this.modal.onClosed.subscribe(() => {
+                this.modal = null;
+            });
+            return;
+        }
+
         this.actionPromise = this.doConfirmation(user);
         await this.actionPromise;
-        user.status = OrganizationUserStatusType.Confirmed;
-        const mapIndex = this.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
-        if (mapIndex > -1) {
-            this.statusMap.get(OrganizationUserStatusType.Accepted).splice(mapIndex, 1);
-            this.statusMap.get(OrganizationUserStatusType.Confirmed).push(user);
-        }
+        updateUser(this);
         this.analytics.eventTrack.next({ action: 'Confirmed User' });
         this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
         this.actionPromise = null;
