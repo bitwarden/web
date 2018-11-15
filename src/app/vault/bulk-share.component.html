@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <p>{{'shareManyDesc' | i18n}}</p>
-                <p>{{'shareSelectedItemsDesc' | i18n: this.ciphers.length : shareableCiphers.length : nonShareableCount}}</p>
+                <p>{{'shareSelectedItemsCountDesc' | i18n: this.ciphers.length : shareableCiphers.length : nonShareableCount}}</p>
                 <div class="form-group">
                     <label for="organization">{{'organization' | i18n}}</label>
                     <select id="organization" name="OrganizationId" [(ngModel)]="organizationId" class="form-control" (change)="filterCollections()">

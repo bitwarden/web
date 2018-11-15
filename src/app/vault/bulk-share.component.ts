@@ -41,7 +41,7 @@ export class BulkShareComponent implements OnInit {
         private collectionService: CollectionService, private userService: UserService) { }
 
     async ngOnInit() {
-        this.shareableCiphers = this.ciphers.filter((c) => !c.hasAttachments && c.organizationId == null);
+        this.shareableCiphers = this.ciphers.filter((c) => !c.hasOldAttachments && c.organizationId == null);
         this.nonShareableCount = this.ciphers.length - this.shareableCiphers.length;
         const allCollections = await this.collectionService.getAllDecrypted();
         this.writeableCollections = allCollections.filter((c) => !c.readOnly);
