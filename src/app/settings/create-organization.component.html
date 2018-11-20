@@ -124,6 +124,15 @@
                 <small class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGb.price | currency:'$') : ('month' | i18n)}}</small>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-6" *ngIf="plans[plan].canBuyPremiumAccessAddon">
+                <div class="form-check">
+                    <input id="premiumAccess" class="form-check-input" type="checkbox" name="PremiumAccessAddon" [(ngModel)]="premiumAccessAddon">
+                    <label for="premiumAccess" class="form-check-label bold">{{'premiumAccess' | i18n}}</label>
+                </div>
+                <small class="text-muted form-text">{{'premiumAccessDesc' | i18n : (3.33 | currency:'$') : ('month' | i18n)}}</small>
+            </div>
+        </div>
         <h2 class="spaced-header">{{'summary' | i18n}}</h2>
         <div class="form-check form-check-block">
             <input class="form-check-input" type="radio" name="BillingInterval" id="intervalAnnually" value="year" [(ngModel)]="interval">
@@ -142,6 +151,10 @@
                 <small>
                     {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} &times; {{storageGb.price | currency:'$'}} &times;12 {{'monthAbbr'
                     | i18n}} = {{additionalStorageTotal(true) | currency:'$'}} /{{'year' | i18n}}
+                </small>
+                <small *ngIf="plans[plan].canBuyPremiumAccessAddon && premiumAccessAddon">
+                    {{'premiumAccess' | i18n}}:
+                    {{3.33 | currency:'$'}} &times;12 {{'monthAbbr' | i18n}} = {{40 | currency:'$'}} /{{'year' | i18n}}
                 </small>
             </label>
         </div>

@@ -31,6 +31,7 @@ export class CreateOrganizationComponent implements OnInit {
 
     selfHosted = false;
     ownedBusiness = false;
+    premiumAccessAddon = false;
     storageGbPriceMonthly = 0.33;
     additionalStorage = 0;
     additionalSeats = 0;
@@ -58,6 +59,7 @@ export class CreateOrganizationComponent implements OnInit {
             baseSeats: 5,
             noAdditionalSeats: true,
             annualPlanType: PlanType.FamiliesAnnually,
+            canBuyPremiumAccessAddon: true,
         },
         teams: {
             basePrice: 5,
@@ -144,6 +146,8 @@ export class CreateOrganizationComponent implements OnInit {
                         request.businessName = this.ownedBusiness ? this.businessName : null;
                         request.additionalSeats = this.additionalSeats;
                         request.additionalStorageGb = this.additionalStorage;
+                        request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                            this.premiumAccessAddon;
                         request.country = this.paymentComponent.getCountry();
                         if (this.interval === 'month') {
                             request.planType = this.plans[this.plan].monthPlanType;
@@ -170,6 +174,10 @@ export class CreateOrganizationComponent implements OnInit {
     }
 
     changedPlan() {
+        if (!this.plans[this.plan].canBuyPremiumAccessAddon) {
+            this.premiumAccessAddon = false;
+        }
+
         if (this.plans[this.plan].monthPlanType == null) {
             this.interval = 'year';
         }
@@ -217,8 +225,18 @@ export class CreateOrganizationComponent implements OnInit {
         }
     }
 
+    premiumAccessTotal(annual: boolean): number {
+        if (this.plans[this.plan].canBuyPremiumAccessAddon && this.premiumAccessAddon) {
+            if (annual) {
+                return 40;
+            }
+        }
+        return 0;
+    }
+
     get total(): number {
         const annual = this.interval === 'year';
-        return this.baseTotal(annual) + this.seatTotal(annual) + this.additionalStorageTotal(annual);
+        return this.baseTotal(annual) + this.seatTotal(annual) + this.additionalStorageTotal(annual) +
+            this.premiumAccessTotal(annual);
     }
 }

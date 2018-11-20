@@ -250,7 +250,7 @@ input, select, textarea {
     @include border-radius($modal-content-border-radius);
 }
 
-label:not(.form-check-label):not(.btn) {
+label:not(.form-check-label):not(.btn), label.bold {
     font-weight: 600;
 }
 
