@@ -208,7 +208,7 @@
     "message": "表示切り替え"
   },
   "toggleCollapse": {
-    "message": "Toggle Collapse",
+    "message": "開く\/閉じる",
     "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
@@ -746,7 +746,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "$COUNT$アイテムを選択しました。$SHAREABLE_COUNT$個が共有可能で、$NONSHAREABLE_COUNT$個は共有できません。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1384,10 +1384,10 @@
     "message": "アドオン"
   },
   "premiumAccess": {
-    "message": "Premium Access"
+    "message": "プレミアムアクセス"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "message": "$PRICE$\/$INTERVAL$で、あなたの組織のすべてのメンバーにプレミアム機能を付帯できます。",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1567,7 +1567,7 @@
     "message": "削除するストレージ容量(GB)"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "ストレージ容量を追加すると、請求金額が変更され、登録されたお支払い方法に直ちに差額が請求されます。初めに請求された分は現在の請求期間の残りの期間で按分されます。"
   },
   "storageRemoveNote": {
     "message": "ストレージ容量を削除すると、請求金額が変更され、差額は次回請求時のクレジットとして割り当てられます。"
@@ -2202,7 +2202,7 @@
     "message": "確認"
   },
   "confirmUser": {
-    "message": "Confirm User"
+    "message": "ユーザーの確認"
   },
   "hasBeenConfirmed": {
     "message": "$USER$が確認されました。",
@@ -2404,7 +2404,7 @@
     "message": "ライセンスの削除"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "ユーザー数を追加すると、請求金額が変更され、登録されたお支払い方法に直ちに差額が請求されます。初めに請求された分は現在の請求期間の残りの期間で按分されます。"
   },
   "seatsRemoveNote": {
     "message": "ユーザー数を削除すると、請求金額が変更され、差額は次回請求時のクレジットとして割り当てられます。"
@@ -2530,55 +2530,55 @@
     "message": "このアイテムは誰が所有していますか？"
   },
   "strong": {
-    "message": "Strong",
+    "message": "強力",
     "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "良好",
     "description": "ex. A good password. Scale: Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "脆弱",
     "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
-    "message": "Weak Master Password"
+    "message": "脆弱なマスターパスワード"
   },
   "weakMasterPasswordDesc": {
-    "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
+    "message": "設定されたマスターパスワードの強度は脆弱です。Bitwardenアカウントを適切に保護するために、強力なマスターパスワード(またはパスフレーズ)を使用すべきです。本当にこのマスターパスワードを使用しますか？"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "暗号化キーをローテーションする"
   },
   "rotateEncKeyTitle": {
-    "message": "Rotate Encryption Key"
+    "message": "暗号化キーをローテーションする"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "暗号化キーをローテーションしてよろしいですか？"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "このアイテムは添付ファイルが古いため修正する必要があります。"
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "これは古い添付ファイルのため修正する必要があります。詳しくはこちら。"
   },
   "fix": {
-    "message": "Fix",
+    "message": "修正",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "暗号化キーの回転を行う前に保管庫内の古い添付ファイルを修正する必要があります。"
   },
   "yourAccountsFingerprint": {
-    "message": "Your account's fingerprint phrase",
+    "message": "アカウントの指紋認証用フレーズ",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
-  "fingerprintEnsureIntegrity": {
-    "message": "The ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "今後指紋認証用フレーズを確認しない",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }
