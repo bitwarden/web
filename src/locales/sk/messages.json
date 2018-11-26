@@ -208,7 +208,7 @@
     "message": "Prepnúť viditeľnosť"
   },
   "toggleCollapse": {
-    "message": "Toggle Collapse",
+    "message": "Prepnúť zloženie",
     "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
@@ -746,7 +746,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "Vybrali ste $COUNT$ položiek. $SHAREABLE_COUNT$ sa dá zdieľať, $NONSHAREABLE_COUNT$ sa nedá zdieľať.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1384,10 +1384,10 @@
     "message": "Doplnky"
   },
   "premiumAccess": {
-    "message": "Premium Access"
+    "message": "Prémium prístup"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "message": "Môžete pridať prémium prístup všetkým členom organizácie za $PRICE$ \/$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1406,7 +1406,7 @@
     "message": "množstvo dodatočných GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "Váš plán zahŕňa $SIZE$ šifrovaného úložiska. Môžete si dokúpiť dodatočné miesto za $PRICE$\/GB \/ $INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1926,7 +1926,7 @@
     "message": "Administrátor"
   },
   "adminDesc": {
-    "message": " Administrátori môžu pristupovať k a spravovať všetky položky a používateľov organizácie."
+    "message": "Administrátori môžu pristupovať k a spravovať všetky položky a používateľov organizácie."
   },
   "user": {
     "message": "Používateľ"
@@ -1935,10 +1935,10 @@
     "message": "Obyčajný používateľ s prístupom k zbierkam organizácie."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Manažér"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Manažéri môžu pristupovať k a spravovať pridelené zbierky v organizácii."
   },
   "all": {
     "message": "Všetky"
@@ -2202,7 +2202,7 @@
     "message": "Potvrdiť"
   },
   "confirmUser": {
-    "message": "Confirm User"
+    "message": "Potvrdiť používateľa"
   },
   "hasBeenConfirmed": {
     "message": "$USER$ bol potvrdený.",
@@ -2518,67 +2518,67 @@
     "message": "Licencia vypršala."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Používatelia aktualizovaní"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Vybraté"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Vlastníctvo"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Kto vlastní túto položku?"
   },
   "strong": {
-    "message": "Strong",
+    "message": "Silné",
     "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "Dobré",
     "description": "ex. A good password. Scale: Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Slabé",
     "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
-    "message": "Weak Master Password"
+    "message": "Slabé hlavné heslo"
   },
   "weakMasterPasswordDesc": {
-    "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
+    "message": "Hlavné heslo ktoré ste zadali je slabé. Mali by ste použiť silné heslo (alebo frázu) aby ste spoľahlivo ochránili váš Bitwarden účet. Naozaj chcete použiť toto heslo?"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "Obnoviť aj môj šifrovací kľúč k účtu"
   },
   "rotateEncKeyTitle": {
-    "message": "Rotate Encryption Key"
+    "message": "Obnoviť šifrovací kľúč"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "Naozaj chcete obnoviť váš šifrovací kľúč k účtu?"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "Táto položka má staré prílohy, ktoré je potrebné opraviť."
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "Táto stará príloha musí byť opravená. Kliknite ak sa chcete dozvedieť viac."
   },
   "fix": {
-    "message": "Fix",
+    "message": "Opraviť",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "V trezore máte staré prílohy ktoré musia byť opravené pred tým, než budete môcť obnoviť šifrovací kľúč k účtu."
   },
   "yourAccountsFingerprint": {
-    "message": "Your account's fingerprint phrase",
+    "message": "Fráza odtlačku vašeho účtu",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+    "message": "Na zabezpečenie integrity šifrovacích kľúčov, skontrolujte frázu odtlačku používateľa pred tým než budete pokračovať.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "Nepýtať sa znovu na overenie frázy odtlačku",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }
