@@ -207,6 +207,10 @@
   "toggleVisibility": {
     "message": "表示切り替え"
   },
+  "toggleCollapse": {
+    "message": "開く\/閉じる",
+    "description": "Toggling an expand\/collapse state."
+  },
   "generatePassword": {
     "message": "パスワードの自動生成"
   },
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "$COUNT$個（共有可能：$SHAREABLE_COUNT$個、共有不可：$NONSHAREABLE_COUNT$個）のアイテムを選択しています。添付ファイルのあるアイテムは個別に共有する必要があります。",
+  "shareSelectedItemsCountDesc": {
+    "message": "$COUNT$アイテムを選択しました。$SHAREABLE_COUNT$個が共有可能で、$NONSHAREABLE_COUNT$個は共有できません。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1094,7 +1098,7 @@
     "message": "あなたはプレミアム会員です。"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "あなたが属している組織のおかげで、あなたは既にプレミアム機能が利用可能です。"
   },
   "manage": {
     "message": "管理"
@@ -1208,7 +1212,7 @@
     "message": "Bitwardenアプリの情報をDuoの管理パネルから入力して下さい。"
   },
   "twoFactorDuoIntegrationKey": {
-    "message": "Integration Key"
+    "message": "連携キー"
   },
   "twoFactorDuoSecretKey": {
     "message": "秘密鍵"
@@ -1238,7 +1242,7 @@
     "message": "読み取りキー"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "キーが壊れています。"
   },
   "twoFactorU2fGiveName": {
     "message": "セキュリティキーを識別するための名前を追加します。"
@@ -1379,11 +1383,27 @@
   "addons": {
     "message": "アドオン"
   },
+  "premiumAccess": {
+    "message": "プレミアムアクセス"
+  },
+  "premiumAccessDesc": {
+    "message": "$PRICE$\/$INTERVAL$で、あなたの組織のすべてのメンバーにプレミアム機能を付帯できます。",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
   "additionalStorageGb": {
     "message": "追加ストレージ容量(GB)"
   },
   "additionalStorageGbDesc": {
-    "message": "# of additional GB"
+    "message": "# 追加容量(GB)"
   },
   "additionalStorageIntervalDesc": {
     "message": "あなたのプランは$SIZE$の暗号化ファイルストレージを使用できます。1GBあたり$PRICE$\/$INTERVAL$でストレージ容量を追加できます。",
@@ -1406,7 +1426,7 @@
     "message": "概要"
   },
   "total": {
-    "message": "Total"
+    "message": "合計"
   },
   "year": {
     "message": "年"
@@ -1437,7 +1457,7 @@
     "message": "クレジットカード"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "PayPalボタンからPayPalアカウントにログインし、送信ボタンをクリックし続行して下さい。"
   },
   "cancelSubscription": {
     "message": "契約のキャンセル"
@@ -1547,13 +1567,13 @@
     "message": "削除するストレージ容量(GB)"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "ストレージ容量を追加すると、請求金額が変更され、登録されたお支払い方法に直ちに差額が請求されます。初めに請求された分は現在の請求期間の残りの期間で按分されます。"
   },
   "storageRemoveNote": {
-    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "ストレージ容量を削除すると、請求金額が変更され、差額は次回請求時のクレジットとして割り当てられます。"
   },
   "adjustedStorage": {
-    "message": "Adjusted $AMOUNT$ GB of storage.",
+    "message": "ストレージ容量が$AMOUNT$GBに変更されました。",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1577,7 +1597,7 @@
     "message": "ライセンスファイル"
   },
   "licenseFileDesc": {
-    "message": "Your license file will be named something like $FILE_NAME$",
+    "message": "ライセンスファイルは$FILE_NAME$のような名前のものです。",
     "placeholders": {
       "file_name": {
         "content": "$1",
@@ -1595,10 +1615,10 @@
     "message": "アカウントのメールアドレスを確認する必要があります。"
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "組織では、保管庫のアイテムを共有したり家族・小規模チーム・大企業など特定のグループに関連するユーザーを管理することができます。"
   },
   "generalInformation": {
-    "message": "General Information"
+    "message": "一般情報"
   },
   "organizationName": {
     "message": "組織名"
@@ -1607,7 +1627,7 @@
     "message": "このアカウントはビジネス用です。"
   },
   "billingEmail": {
-    "message": "Billing Email"
+    "message": "お支払い用メールアドレス"
   },
   "businessName": {
     "message": "企業名"
@@ -1616,19 +1636,19 @@
     "message": "プランを選択してください"
   },
   "users": {
-    "message": "Users"
+    "message": "ユーザー"
   },
   "userSeats": {
-    "message": "User Seats"
+    "message": "ユーザー数"
   },
   "additionalUserSeats": {
-    "message": "Additional User Seats"
+    "message": "追加ユーザー数"
   },
   "userSeatsDesc": {
-    "message": "# of user seats"
+    "message": "# ユーザー数"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "$BASE_SEATS$ユーザーまで利用できます。1ユーザーあたり月$SEAT_PRICE$で追加できます。",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1641,14 +1661,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "How many user seats do you need? You can also add additional seats later if needed."
+    "message": "どれくらいのユーザー数が必要ですか？必要なときに後から追加することもできます。"
   },
   "planNameFree": {
-    "message": "Free",
+    "message": "フリー",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "message": "テスト目的や個人ユーザーは$COUNT$人の他のユーザーと共有できます。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1657,28 +1677,28 @@
     }
   },
   "planNameFamilies": {
-    "message": "Families"
+    "message": "ファミリー"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "個人利用の場合、家族や友人と共有できます。"
   },
   "planNameTeams": {
-    "message": "Teams"
+    "message": "チーム"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "ビジネスやチーム組織のために。"
   },
   "planNameEnterprise": {
-    "message": "Enterprise"
+    "message": "エンタープライズ"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "ビジネスやその他の大きな組織のために。"
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "永久に無料"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "$COUNT$ユーザーを含む",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1687,10 +1707,10 @@
     }
   },
   "additionalUsers": {
-    "message": "Additional Users"
+    "message": "追加ユーザー"
   },
   "costPerUser": {
-    "message": "$COST$ per user",
+    "message": "1ユーザーにつき$COST$",
     "placeholders": {
       "cost": {
         "content": "$1",
@@ -1699,7 +1719,7 @@
     }
   },
   "limitedUsers": {
-    "message": "Limited to $COUNT$ users (including you)",
+    "message": "あなたを含め$COUNT$ユーザーに限ります。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1708,7 +1728,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Limited to $COUNT$ collections",
+    "message": "$COUNT$コレクションに限ります。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1717,7 +1737,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Add and share with up to $COUNT$ users",
+    "message": "最大$COUNT$ユーザーとの共有",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1726,13 +1746,13 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "無制限の人数との共有"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "コレクション数無制限"
   },
   "gbEncryptedFileStorage": {
-    "message": "$SIZE$ encrypted file storage",
+    "message": "暗号化ストレージ:$SIZE$",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1741,28 +1761,28 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "オンプレミス型ホスティング(オプション)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "ユーザーはプレミアム会員の機能を利用できます"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "グループ単位でユーザーのアクセス権を管理"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "ユーザーとグループのディレクトリサービスからの同期"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "ユーザーの操作を確認できる監査ログ"
   },
   "enforce2faDuo": {
-    "message": "Enforce 2FA with Duo"
+    "message": "Duoによる二段階認証を強制"
   },
   "priorityCustomerSupport": {
     "message": "優先カスタマーサポート"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$日間の無料試用、いつでもキャンセル可能",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1771,106 +1791,106 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "1ヶ月"
   },
   "annually": {
-    "message": "Annually"
+    "message": "1年"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "基本価格"
   },
   "organizationCreated": {
-    "message": "Organization Created"
+    "message": "組織を作成しました"
   },
   "organizationReadyToGo": {
-    "message": "Your new organization is ready to go!"
+    "message": "新しい組織の準備ができました！"
   },
   "leave": {
-    "message": "Leave"
+    "message": "脱退"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Are you sure you want to leave this organization?"
+    "message": "本当にこの組織から脱退しますか？"
   },
   "leftOrganization": {
-    "message": "You have left the organization."
+    "message": "組織から脱退しました。"
   },
   "defaultCollection": {
-    "message": "Default Collection"
+    "message": "既定のコレクション"
   },
   "getHelp": {
-    "message": "Get Help"
+    "message": "ヘルプを参照する"
   },
   "getApps": {
-    "message": "Get the Apps"
+    "message": "アプリを入手する"
   },
   "loggedInAs": {
-    "message": "Logged in as"
+    "message": "ログイン中のアカウント："
   },
   "eventLogs": {
-    "message": "Event Logs"
+    "message": "イベントログ"
   },
   "people": {
-    "message": "People"
+    "message": "メンバー"
   },
   "groups": {
-    "message": "Groups"
+    "message": "グループ"
   },
   "newGroup": {
-    "message": "New Group"
+    "message": "新規グループ"
   },
   "addGroup": {
-    "message": "Add Group"
+    "message": "グループの追加"
   },
   "editGroup": {
-    "message": "Edit Group"
+    "message": "グループの編集"
   },
   "deleteGroupConfirmation": {
-    "message": "Are you sure you want to delete this group?"
+    "message": "本当にこのグループを削除してもよろしいですか？"
   },
   "removeUserConfirmation": {
-    "message": "Are you sure you want to remove this user?"
+    "message": "本当にこのユーザーを削除してもよろしいですか？"
   },
   "externalId": {
-    "message": "External Id"
+    "message": "外部ID"
   },
   "externalIdGroupDesc": {
-    "message": "The external id is used to link this group to an external system such as a user directory."
+    "message": "外部IDはこのグループをディレクトリサービスなどの外部システムにリンクするのに使われます。"
   },
   "accessControl": {
-    "message": "Access Control"
+    "message": "アクセスコントロール"
   },
   "groupAccessAllItems": {
-    "message": "This group can access and modify all items."
+    "message": "全てのアイテムの読み取り・編集"
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "選択コレクション内のアクセス"
   },
   "readOnly": {
-    "message": "Read Only"
+    "message": "読み取り専用"
   },
   "newCollection": {
-    "message": "New Collection"
+    "message": "新規コレクション"
   },
   "addCollection": {
-    "message": "Add Collection"
+    "message": "コレクションの追加"
   },
   "editCollection": {
-    "message": "Edit Collection"
+    "message": "コレクションの編集"
   },
   "deleteCollectionConfirmation": {
-    "message": "Are you sure you want to delete this collection?"
+    "message": "本当にこのコレクションを削除しますか？"
   },
   "editUser": {
-    "message": "Edit User"
+    "message": "ユーザーの編集"
   },
   "inviteUser": {
-    "message": "Invite User"
+    "message": "ユーザーの招待"
   },
   "inviteUserDesc": {
-    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "組織に新しいユーザーを招待するには、そのユーザーのBitwardenアカウントのメールアドレスを入力して下さい。Bitwardenアカウントをお持ちでない場合は、アカウントの作成を求められます。"
   },
   "inviteMultipleEmailDesc": {
-    "message": "You can invite up to $COUNT$ users at a time by comma separating a list of email addresses.",
+    "message": "「,」でメールアドレスを区切ることで、一度に最大$COUNT$ユーザーを招待できます。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1879,106 +1899,106 @@
     }
   },
   "userAccessAllItems": {
-    "message": "This user can access and modify all items."
+    "message": "全てのアイテムの読み取り・編集"
   },
   "userAccessSelectedCollections": {
-    "message": "This user can access only the selected collections."
+    "message": "選択コレクション内のアクセス"
   },
   "search": {
-    "message": "Search"
+    "message": "検索"
   },
   "invited": {
-    "message": "Invited"
+    "message": "招待済み"
   },
   "accepted": {
-    "message": "Accepted"
+    "message": "承諾済み"
   },
   "confirmed": {
-    "message": "Confirmed"
+    "message": "確認済み"
   },
   "owner": {
-    "message": "Owner"
+    "message": "オーナー"
   },
   "ownerDesc": {
-    "message": "The highest access user that can manage all aspects of your organization."
+    "message": "組織内のすべてを管理できる最高のアクセス権を与えます"
   },
   "admin": {
-    "message": "Admin"
+    "message": "管理者"
   },
   "adminDesc": {
     "message": "管理者はあなたの組織のすべてのアイテム、コレクション、ユーザーへアクセス・管理できます。"
   },
   "user": {
-    "message": "User"
+    "message": "ユーザー"
   },
   "userDesc": {
     "message": "あなたの組織に割り当てられたコレクションへのアクセス権を持つ標準ユーザーです。"
   },
   "manager": {
-    "message": "Manager"
+    "message": "マネージャー"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "マネージャーは組織内の割り当てられたコレクションへアクセスし管理することができます。"
   },
   "all": {
-    "message": "All"
+    "message": "すべて"
   },
   "refresh": {
-    "message": "Refresh"
+    "message": "更新"
   },
   "timestamp": {
-    "message": "Timestamp"
+    "message": "タイムスタンプ"
   },
   "event": {
-    "message": "Event"
+    "message": "イベント"
   },
   "unknown": {
-    "message": "Unknown"
+    "message": "不明"
   },
   "loadMore": {
-    "message": "Load More"
+    "message": "もっと見る"
   },
   "mobile": {
-    "message": "Mobile",
+    "message": "モバイル",
     "description": "Mobile app"
   },
   "extension": {
-    "message": "Extension",
+    "message": "拡張機能",
     "description": "Browser extension\/addon"
   },
   "desktop": {
-    "message": "Desktop",
+    "message": "デスクトップ",
     "description": "Desktop app"
   },
   "webVault": {
-    "message": "Web Vault"
+    "message": "ウェブ保管庫"
   },
   "loggedIn": {
-    "message": "Logged in."
+    "message": "ログイン"
   },
   "changedPassword": {
-    "message": "Changed account password."
+    "message": "パスワードの変更"
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "二段階認証の有効化\/更新"
   },
   "disabled2fa": {
-    "message": "Disabled two-step login."
+    "message": "二段階認証の無効化"
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "リカバリーコードによる認証"
   },
   "failedLogin": {
-    "message": "Login attempt failed with incorrect password."
+    "message": "誤ったパスワードによるログインの失敗"
   },
   "failedLogin2fa": {
-    "message": "Login attempt failed with incorrect two-step login."
+    "message": "二段階認証時の誤りによるログインの失敗"
   },
   "editedOrgSettings": {
-    "message": "Edited organization settings."
+    "message": "組織の設定の編集"
   },
   "createdItemId": {
-    "message": "Created item $ID$.",
+    "message": "アイテム「$ID$」の作成",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1987,7 +2007,7 @@
     }
   },
   "editedItemId": {
-    "message": "Edited item $ID$.",
+    "message": "アイテム「$ID$」の編集",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -1996,7 +2016,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Deleted item $ID$.",
+    "message": "アイテム「$ID$」の削除",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2005,7 +2025,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Shared item $ID$.",
+    "message": "アイテム「$ID$」の共有",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2014,7 +2034,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Created collection $ID$.",
+    "message": "コレクション「$ID$」の作成",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2023,7 +2043,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Edited collection $ID$.",
+    "message": "コレクション「$ID$」の編集",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2032,7 +2052,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Deleted collection $ID$.",
+    "message": "コレクション「$ID$」の削除",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2041,7 +2061,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Created group $ID$.",
+    "message": "グループ「$ID$」の作成",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2050,7 +2070,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Edited group $ID$.",
+    "message": "グループ「$ID$」の編集",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2059,7 +2079,7 @@
     }
   },
   "deletedGroupId": {
-    "message": "Deleted group $ID$.",
+    "message": "グループ「$ID$」の削除",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2068,7 +2088,7 @@
     }
   },
   "removedUserId": {
-    "message": "Removed user $ID$.",
+    "message": "ユーザー「$ID$」の削除",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2077,7 +2097,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Created attachment for item $ID$.",
+    "message": "アイテム「$ID$」の添付ファイルの作成",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2086,7 +2106,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Deleted attachment for item $ID$.",
+    "message": "アイテム「$ID$」の添付ファイルの削除",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2095,7 +2115,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Edited collections for item $ID$.",
+    "message": "アイテム「$ID$」のコレクションの編集",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2104,7 +2124,7 @@
     }
   },
   "invitedUserId": {
-    "message": "Invited user $ID$.",
+    "message": "ユーザー「$ID$」の招待",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2113,7 +2133,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Confirmed user $ID$.",
+    "message": "ユーザー「$ID$」の確認",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2122,7 +2142,7 @@
     }
   },
   "editedUserId": {
-    "message": "Edited user $ID$.",
+    "message": "ユーザー「$ID$」の編集",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2131,7 +2151,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "ユーザー「$ID$」のグループの編集",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2161,16 +2181,16 @@
     "message": "グループのアクセス"
   },
   "groupAccessUserDesc": {
-    "message": "Edit the groups that this user belongs to."
+    "message": "このユーザーが属するグループを編集します。"
   },
   "invitedUsers": {
-    "message": "Invited user(s)."
+    "message": "ユーザーを招待します。"
   },
   "resendInvitation": {
-    "message": "Resend Invitation"
+    "message": "招待を再送信"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "$USER$が再招待されました。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2179,10 +2199,13 @@
     }
   },
   "confirm": {
-    "message": "Confirm"
+    "message": "確認"
+  },
+  "confirmUser": {
+    "message": "ユーザーの確認"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "$USER$が確認されました。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2191,97 +2214,97 @@
     }
   },
   "confirmUsers": {
-    "message": "Confirm Users"
+    "message": "ユーザーの確認"
   },
   "usersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
+    "message": "招待を受け入れ確認待ちのユーザーがいます。未確認のユーザーは組織にアクセスできません。"
   },
   "startDate": {
-    "message": "Start Date"
+    "message": "開始日時"
   },
   "endDate": {
-    "message": "End Date"
+    "message": "終了日時"
   },
   "verifyEmail": {
-    "message": "Verify Email"
+    "message": "メールアドレスを確認"
   },
   "verifyEmailDesc": {
-    "message": "Verify your account's email address to unlock access to all features."
+    "message": "メールアドレスを確認するとすべての機能が使用できます。"
   },
   "verifyEmailFirst": {
-    "message": "Your account's email address first must be verified."
+    "message": "アカウントのメールアドレスを確認する必要があります。"
   },
   "checkInboxForVerification": {
-    "message": "Check your email inbox for a verification link."
+    "message": "確認用のリンクが記載されたメールをチェックしてください。"
   },
   "emailVerified": {
-    "message": "Your email has been verified."
+    "message": "メールアドレスが確認されました。"
   },
   "emailVerifiedFailed": {
-    "message": "Unable to verify your email. Try sending a new verification email."
+    "message": "メールアドレスを確認できませんでした。確認メールを再送信してください。"
   },
   "updateBrowser": {
-    "message": "Update Browser"
+    "message": "ブラウザを更新"
   },
   "updateBrowserDesc": {
-    "message": "You are using an unsupported web browser. The web vault may not function properly."
+    "message": "サポートされていないブラウザを使用しています。ウェブ保管庫が正しく動作しないかもしれません。"
   },
   "joinOrganization": {
-    "message": "Join Organization"
+    "message": "組織に参加"
   },
   "joinOrganizationDesc": {
-    "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "あなたは上記の組織への参加の招待を受けています。招待を承諾するには、ログインするかBitwardenアカウントを作成してください。"
   },
   "inviteAccepted": {
-    "message": "Invitation Accepted"
+    "message": "招待が承諾されました。"
   },
   "inviteAcceptedDesc": {
-    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "組織の管理者が承認すると組織へアクセスできるようになります。アクセスできるようになったらメールでお知らせします。"
   },
   "inviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+    "message": "招待を承諾出来ませんでした。組織の管理者に招待を再送信するように依頼してください。"
   },
   "rememberEmail": {
-    "message": "Remember email"
+    "message": "メールアドレスを保存"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "もし通常の二段階認証の方法でアカウントにアクセスできなくなった場合、リカバリーコードにより全ての二段階認証プロバイダを無効化することができます。"
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "二段階認証ログインの回復"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "二段階認証が無効化されました。"
   },
   "learnMore": {
-    "message": "Learn more"
+    "message": "さらに詳しく"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "メールアドレスを入力してアカウントを削除します。"
   },
   "deleteRecoverEmailSent": {
-    "message": "If your account exists, we've sent you an email with further instructions."
+    "message": "アカウントが存在する場合、詳細な手順を記載したメールを送信しました。"
   },
   "deleteRecoverConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
+    "message": "Bitwardenアカウント削除のリクエストがありました。削除する場合はボタンをクリックしてください。"
   },
   "myOrganization": {
-    "message": "My Organization"
+    "message": "組織"
   },
   "deleteOrganization": {
-    "message": "Delete Organization"
+    "message": "組織の削除"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "続行するとこの組織と関連するすべてのデータが削除されます。組織と関連がなくなっても個々のユーザーアカウントは維持されます。"
   },
   "deleteOrganizationWarning": {
-    "message": "Deleting the organization is permanent. It cannot be undone."
+    "message": "組織を恒久的に削除します。元に戻すことはできません。"
   },
   "organizationDeleted": {
-    "message": "Organization Deleted"
+    "message": "組織が削除されました。"
   },
   "organizationDeletedDesc": {
-    "message": "The organization and all associated data has been deleted."
+    "message": "組織と関連するすべてのデータが削除されました。"
   },
   "organizationUpdated": {
     "message": "組織を更新しました"
@@ -2290,7 +2313,7 @@
     "message": "税金情報"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "請求書に税務情報を提供(更新)する場合、サポートにご連絡ください。"
   },
   "billingPlan": {
     "message": "プラン",
@@ -2301,7 +2324,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "契約プランを変更したい場合はサポートまでご連絡ください。アカウントに有効なお支払い方法が登録されていることをご確認ください。",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoice": {
@@ -2311,22 +2334,22 @@
     "message": "銀行口座の認証"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "あなたの銀行口座に2件の少額送金を行います(着金まで1-2営業日かかります)。送金された金額を入力して銀行口座の確認を完了してください。"
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "銀行口座によるお支払いはアメリカ合衆国のお客様のみ利用でき銀行口座の確認が必要となります。1-2営業日以内に2件の少額送金を行いますので、組織のお支払いページから送金された金額を入力して銀行口座の確認を完了して下さい。"
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "銀行口座の確認に失敗するとお支払いはキャンセルされ契約は無効となります。"
   },
   "verifiedBankAccount": {
-    "message": "Bank account has been verified."
+    "message": "銀行口座が確認されました。"
   },
   "bankAccount": {
-    "message": "Bank Account"
+    "message": "銀行口座"
   },
   "amountX": {
-    "message": "Amount $COUNT$",
+    "message": "送金$COUNT$",
     "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
     "placeholders": {
       "count": {
@@ -2336,37 +2359,37 @@
     }
   },
   "routingNumber": {
-    "message": "Routing Number",
+    "message": "ルーティングナンバー",
     "description": "Bank account routing number"
   },
   "accountNumber": {
-    "message": "Account Number"
+    "message": "口座番号"
   },
   "accountHolderName": {
-    "message": "Account Holder Name"
+    "message": "口座名義人"
   },
   "bankAccountType": {
-    "message": "Account Type"
+    "message": "口座種別"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "ビジネス"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "個人"
   },
   "enterInstallationId": {
-    "message": "Enter your installation id"
+    "message": "インストールIDを入力してください。"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "ライセンスの追加",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "ライセンスの削除",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "Your subscription allows for a total of $COUNT$ users.",
+    "message": "あなたの契約では合計$COUNT$ユーザーまで利用できます。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2375,19 +2398,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "ライセンスの追加"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "ライセンスの削除"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "ユーザー数を追加すると、請求金額が変更され、登録されたお支払い方法に直ちに差額が請求されます。初めに請求された分は現在の請求期間の残りの期間で按分されます。"
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "ユーザー数を削除すると、請求金額が変更され、差額は次回請求時のクレジットとして割り当てられます。"
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "ユーザー数が$AMOUNT$に変更されました。",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2396,68 +2419,68 @@
     }
   },
   "keyUpdated": {
-    "message": "Key Updated"
+    "message": "キーが更新されました"
   },
   "updateKeyTitle": {
-    "message": "Update Key"
+    "message": "キーの更新"
   },
   "updateEncryptionKey": {
-    "message": "Update Encryption Key"
+    "message": "暗号化キーを更新します。"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "You are currently using an outdated encryption scheme."
+    "message": "古い暗号化方式が使用されています。"
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "より良いセキュリティと新しい機能が利用できる強力な暗号化方式へ移行することにしました。暗号化キーの更新は迅速かつ簡単です。以下にマスターパスワードを入力して下さい。この更新はやがて必須になります。"
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "暗号化キーの更新後は、モバイルアプリやブラウザ拡張機能など現在利用中のすべてのBitwardenアプリで再ログインが必要となります。再ログインしないと(新しい暗号化キーをダウンロードすると)データが破損する可能性があります。自動的にログアウトを試みますが、遅延することがあります。"
   },
   "subscription": {
-    "message": "Subscription"
+    "message": "契約"
   },
   "loading": {
-    "message": "Loading"
+    "message": "読み込み中"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "アップグレード"
   },
   "upgradeOrganization": {
-    "message": "Upgrade Organization"
+    "message": "組織のアップグレード"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "この機能は無料プランの組織では利用できません。有料プランに変更すると多数の機能が利用可能になります。"
   },
   "createOrganizationStep1": {
-    "message": "Create Organization: Step 1"
+    "message": "組織の作成: 最初のステップ"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "組織を作成する前に無料の個人アカウントの作成が必要です。"
   },
   "refunded": {
-    "message": "Refunded"
+    "message": "払い戻し"
   },
   "nothingSelected": {
-    "message": "You have not selected anything."
+    "message": "何も選択されていません。"
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "「送信」ボタンをクリックすると、次のポリシーに同意します。",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
-    "message": "Terms of Service"
+    "message": "利用規約"
   },
   "privacyPolicy": {
-    "message": "Privacy Policy"
+    "message": "プライバシーポリシー"
   },
   "filters": {
-    "message": "Filters"
+    "message": "フィルタ"
   },
   "lockOptions": {
-    "message": "Lock Options"
+    "message": "ロックオプション"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "いつ保管庫をロックするか選択します。ロックされた保管庫にアクセスするためにはマスターパスワードを入力する必要があります。"
   },
   "oneMinute": {
     "message": "1分"
@@ -2495,15 +2518,67 @@
     "message": "ライセンスの有効期限が切れています。"
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "ユーザーを更新しました"
   },
   "selected": {
-    "message": "Selected"
+    "message": "選択済み"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "所有者"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "このアイテムは誰が所有していますか？"
+  },
+  "strong": {
+    "message": "強力",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "良好",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "脆弱",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "脆弱なマスターパスワード"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "設定されたマスターパスワードの強度は脆弱です。Bitwarden アカウントを適切に保護するために、強力なマスターパスワード（またはパスフレーズ）を使用すべきです。本当にこのマスターパスワードを使用しますか？"
+  },
+  "rotateAccountEncKey": {
+    "message": "暗号化キーをローテーションする"
+  },
+  "rotateEncKeyTitle": {
+    "message": "暗号化キーをローテーションする"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "暗号化キーをローテーションしてよろしいですか？"
+  },
+  "attachmentsNeedFix": {
+    "message": "このアイテムは添付ファイルが古いため修正する必要があります。"
+  },
+  "attachmentFixDesc": {
+    "message": "これは古い添付ファイルのため修正する必要があります。詳しくはこちら。"
+  },
+  "fix": {
+    "message": "修正",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "暗号化キーのローテーションを行う前に、保管庫内の古い添付ファイルを修正する必要があります。"
+  },
+  "yourAccountsFingerprint": {
+    "message": "アカウントの指紋認証用フレーズ",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "暗号化キーの完全性を確保するため、先に指紋認証用フレーズを確認して下さい。",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "今後指紋認証用フレーズを確認しない",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }

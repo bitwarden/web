@@ -207,6 +207,10 @@
   "toggleVisibility": {
     "message": "Alternar Visibilidade"
   },
+  "toggleCollapse": {
+    "message": "Alternar Colapso",
+    "description": "Toggling an expand\/collapse state."
+  },
   "generatePassword": {
     "message": "Gerar Senha"
   },
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "Você selecionou $COUNT$ itens. $SHAREABLE_COUNT$ itens são compartilháveis, $NONSHAREABLE_COUNT$ não são. Itens com anexos devem ser compartilhados individualmente.",
+  "shareSelectedItemsCountDesc": {
+    "message": "Você selecionou $COUNT$ item(ns). $SHAREABLE_COUNT$ itens são compartilháveis, $NONSHAREABLE_COUNT$ não são.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1379,6 +1383,22 @@
   "addons": {
     "message": "Complementos"
   },
+  "premiumAccess": {
+    "message": "Acesso Premium"
+  },
+  "premiumAccessDesc": {
+    "message": "Você pode adicionar acesso premium a todos os membros da sua organização por $PRICE$ \/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
   "additionalStorageGb": {
     "message": "Armazenamento Adicional (GB)"
   },
@@ -1386,7 +1406,7 @@
     "message": "# de GB adicional"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Seu plano tem $SIZE$ de amazenamento criptografado de arquivos. Você pode adicionar armazenamento adicional por $PRICE$ por GB\/$INTERVAL$.",
+    "message": "Seu plano tem $SIZE$ de armazenamento criptografado de arquivos. Você pode adicionar armazenamento adicional por $PRICE$ por GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -2181,6 +2201,9 @@
   "confirm": {
     "message": "Confirmar"
   },
+  "confirmUser": {
+    "message": "Confirmar Usuário"
+  },
   "hasBeenConfirmed": {
     "message": "$USER$ foi confirmado(a).",
     "placeholders": {
@@ -2505,5 +2528,57 @@
   },
   "whoOwnsThisItem": {
     "message": "Quem possui este item?"
+  },
+  "strong": {
+    "message": "Forte",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Boa",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Fraca",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Senha Mestra Fraca"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "A senha mestra que você selecionou está fraca. Você deve usar uma senha mestra forte (ou uma frase-passe) para proteger a sua conta Bitwarden adequadamente. Tem certeza que deseja usar esta senha mestra?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Também rodar a chave de encriptação da minha conta"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Rodar Chave de Encriptação"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Você tem certeza que quer rodar a chave de encriptação da sua conta?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Este item tem anexos de arquivos antigos que precisam ser corrigidos."
+  },
+  "attachmentFixDesc": {
+    "message": "Este é um anexo de arquivo antigo que precisa ser corrigido. Clique para saber mais."
+  },
+  "fix": {
+    "message": "Corrigir",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Há anexos de arquivos antigos no seu cofre que precisam ser corrigidos antes que você possa girar a chave de criptografia da sua conta."
+  },
+  "yourAccountsFingerprint": {
+    "message": "A sua frase biométrica",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "Para garantir a integridade de suas chaves de criptografia, verifique a frase biométrica do usuário antes de continuar.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Não peça para verificar a frase biométrica novamente",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }

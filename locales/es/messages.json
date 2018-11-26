@@ -207,6 +207,10 @@
   "toggleVisibility": {
     "message": "Alternar visibilidad"
   },
+  "toggleCollapse": {
+    "message": "Colapsar\/Expandir",
+    "description": "Toggling an expand\/collapse state."
+  },
   "generatePassword": {
     "message": "Generar contraseña"
   },
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "Has seleccionado $COUNT$ elementos. $SHAREABLE_COUNT$ son compartibles, $NONSHAREABLE_COUNT$ no lo son. Los elementos que contengan adjuntos deben ser compartidos de forma individual.",
+  "shareSelectedItemsCountDesc": {
+    "message": "Ha seleccionado $COUNT$ elemento(s). $SHAREABLE_COUNT$ elementos son compartibles, $NONSHAREABLE_COUNT$ no.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1091,10 +1095,10 @@
     "message": "Se quiere membrasía Premium para poder utilizar esta característica."
   },
   "youHavePremiumAccess": {
-    "message": "Usted tiene acceso premium"
+    "message": "Tienes acceso premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "Ya tiene acceso a las características premium, debido a que es miembro de una organización."
+    "message": "Ya tienes acceso a las características premium, debido a una organización de la que eres miembro."
   },
   "manage": {
     "message": "Gestionar"
@@ -1154,7 +1158,7 @@
     "message": "Conecta la YubiKey (NEO o serie 4) al puerto USB de tu ordenador."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Elija el primer campo de entrada vacío de YubiKey de abajo."
+    "message": "Elije el primer campo de entrada vacío de YubiKey de abajo."
   },
   "twoFactorYubikeyTouchButton": {
     "message": "Toca el botón del YubiKey."
@@ -1205,7 +1209,7 @@
     "message": "Deshabilitar todas las llaves"
   },
   "twoFactorDuoDesc": {
-    "message": "Ingrese la información de la aplicación Bitwarden desde su panel de administración Duo."
+    "message": "Introduce la información de la aplicación Bitwarden de tu panel de administración Duo."
   },
   "twoFactorDuoIntegrationKey": {
     "message": "Clave de integración"
@@ -1220,16 +1224,16 @@
     "message": "Sigue estos pasos para configurar la autenticación en dos pasos con una aplicación autenticadora:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Ingrese el correo electrónico donde desea recibir los códigos de verificación"
+    "message": "Introduce el correo electrónico donde deseas recibir los códigos de verificación"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Ingrese el código de verificación de 6 dígitos enviado a su correo electrónico"
+    "message": "Introduce el código de verificación de 6 dígitos enviado a tu correo electrónico"
   },
   "sendEmail": {
     "message": "Enviar correo electrónico"
   },
   "twoFactorU2fAdd": {
-    "message": "Agregar una clave de seguridad U2F FIDO a su cuenta"
+    "message": "Agregar una clave de seguridad U2F FIDO a tu cuenta"
   },
   "removeU2fConfirmation": {
     "message": "¿Estás seguro de que quieres eliminar esta clave de seguridad?"
@@ -1241,37 +1245,37 @@
     "message": "La clave está comprometida."
   },
   "twoFactorU2fGiveName": {
-    "message": "Asigne un nombre descriptivo a la llave de seguridad."
+    "message": "Asigna un nombre descriptivo a la llave de seguridad."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Conecte la llave de seguridad al puerto USB de su ordenador y haga clic en el botón \"Leer llave\"."
+    "message": "Conecta la llave de seguridad al puerto USB de tu ordenador y haz clic en el botón \"Leer llave\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Si la clave de seguridad tiene un botón, tócalo."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Guarda el formulario."
+    "message": "Guardar el formulario."
   },
   "twoFactorU2fWarning": {
-    "message": "Debido a limitaciones de la plataforma, FIDO U2F no puede ser usado en todas las aplicaciones de Bitwarden. Debería habilitar otro proveedor de inicio de sesión de dos pasos, para que pueda acceder a su cuenta cuando FIDO U2F no pueda ser utilizado. Plataformas soportadas:"
+    "message": "Debido a limitaciones de la plataforma, FIDO U2F no puede ser usado en todas las aplicaciones de Bitwarden. Deberías habilitar otro proveedor de inicio de sesión de dos pasos, para que puedas acceder a tu cuenta cuando FIDO U2F no pueda ser utilizado. Plataformas soportadas:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Bóveda web y extensiones de navegador en un escritorio\/portátil con un navegador compatible con U2F (Chrome, Opera, Vivaldi, o Firefox con FIDO U2F activado)."
+    "message": "Caja fuerte web y extensiones de navegador en un escritorio\/portátil con un navegador compatible con U2F (Chrome, Opera, Vivaldi, o Firefox con FIDO U2F activado)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Esperando que toque el botón de su clave de seguridad"
+    "message": "Esperando a que toques el botón de tu llave de seguridad"
   },
   "twoFactorU2fClickSave": {
-    "message": "Haga clic en el botón \"guardar\" para habilitar esta clave de seguridad para el inicio de sesión de dos pasos."
+    "message": "Haz clic en el botón \"guardar\" para habilitar esta  llave de seguridad para el inicio de sesión de dos pasos."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "Hubo un problema al leer la clave de seguridad. Inténtalo de nuevo."
+    "message": "Hubo un problema al leer la llave de seguridad. Inténtalo de nuevo."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Su código de recuperación de inicio de sesión de dos pasos Bitwarden"
+    "message": "Tu código de recuperación de inicio de sesión de dos pasos de Bitwarden"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "Aún no ha habilitado ningún proveedor de inicio de sesión de dos pasos. Después de haber habilitado un proveedor de inicio de sesión de dos pasos, puede volver aquí para ver el código de recuperación."
+    "message": "Aún no has habilitado ningún proveedor de inicio de sesión en dos pasos. Después de haber habilitado un proveedor de inicio de sesión en dos pasos, puedes volver aquí para ver el código de recuperación."
   },
   "printCode": {
     "message": "Imprimir código",
@@ -1284,16 +1288,16 @@
     "message": "Informe de violación de datos"
   },
   "breachDesc": {
-    "message": "Una \"violación\" es un incidente en el que los delincuentes informáticos han accedido ilegalmente a los datos de un sitio y los han hecho públicos. Revise los tipos de datos que fueron comprometidos (direcciones de correo electrónico, contraseñas, tarjetas de crédito, etc.) y tome las medidas apropiadas, como cambiar las contraseñas."
+    "message": "Una \"filtración\" es un incidente en el que los delincuentes informáticos han accedido ilegalmente a los datos de un sitio y los han hecho públicos. Revisa los tipos de datos que fueron comprometidos (direcciones de correo electrónico, contraseñas, tarjetas de crédito, etc.) y toma las medidas apropiadas, como cambiar las contraseñas."
   },
   "breachCheckUsernameEmail": {
-    "message": "Verifique cualquier nombre de usuario o dirección de correo electrónico que use."
+    "message": "Verifica cualquier nombre de usuario o dirección de correo electrónico que utilices."
   },
   "checkBreaches": {
-    "message": "Comprobar las violaciones"
+    "message": "Comprobar filtraciones"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ no se encontró en ninguna violación de datos conocida.",
+    "message": "$USERNAME$ no se encontró en ninguna filtración de datos conocida.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1306,7 +1310,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ fue encontrado $COUNT$ diferentes violaciones de datos en línea.",
+    "message": "$USERNAME$ fue encontrado en $COUNT$ filtración\/es de datos en línea.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1334,7 +1338,7 @@
     "message": "Se ha producido una filtración"
   },
   "breachReported": {
-    "message": "Infracción notificada"
+    "message": "Filtración reportada"
   },
   "reportError": {
     "message": "Se ha producido un error al intentar cargar el informe. Vuelve a intentarlo"
@@ -1343,7 +1347,7 @@
     "message": "Facturación y licencias"
   },
   "goPremium": {
-    "message": "Hazte premium",
+    "message": "Hazte Premium",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
@@ -1378,6 +1382,22 @@
   },
   "addons": {
     "message": "Complementos"
+  },
+  "premiumAccess": {
+    "message": "Acceso Premium"
+  },
+  "premiumAccessDesc": {
+    "message": "Puede Agregar acceso premium a todos los miembros de su organización por $PRICE$ \/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
   },
   "additionalStorageGb": {
     "message": "Almacenamiento adicional (GB)"
@@ -2181,6 +2201,9 @@
   "confirm": {
     "message": "Confirmar"
   },
+  "confirmUser": {
+    "message": "Confirmar usuario"
+  },
   "hasBeenConfirmed": {
     "message": "El usuario $USER$ ha sido confirmado.",
     "placeholders": {
@@ -2505,5 +2528,57 @@
   },
   "whoOwnsThisItem": {
     "message": "¿Quién posee este elemento?"
+  },
+  "strong": {
+    "message": "Fuerte",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Bueno",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Débil",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Contraseña maestra débil"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "La contraseña maestra que ha elegido es débil. Debe usar una contraseña maestra fuerte (o una frase de contraseña) para proteger adecuadamente su cuenta de Bitwarden. ¿Está seguro de que desea utilizar esta contraseña maestra?"
+  },
+  "rotateAccountEncKey": {
+    "message": "También rotar la clave de encriptación de mi cuenta"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Rotar clave de encriptación"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "¿Está seguro de que desea rotar la clave de encriptación de su cuenta?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Este elemento tiene archivos adjuntos antiguos que deben ser corregidos."
+  },
+  "attachmentFixDesc": {
+    "message": "Este es un archivo adjunto antiguo que necesita ser corregido. Haga clic para obtener más información."
+  },
+  "fix": {
+    "message": "Arreglar",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Hay archivos adjuntos antiguos en la bóveda que necesitan ser corregidos antes de poder rotar la clave de encriptación de su cuenta."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Frase de la huella digital de su cuenta",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "Para asegurar la integridad de sus claves de encriptación, por favor verifique la frase de la huella digital del usuario antes de continuar.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "No pida verificar la frase de la huella dactilar de nuevo",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }

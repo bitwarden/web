@@ -38,7 +38,7 @@
     "message": "Password"
   },
   "passphrase": {
-    "message": "Passphrase"
+    "message": "Frase segreta"
   },
   "notes": {
     "message": "Note"
@@ -206,6 +206,10 @@
   },
   "toggleVisibility": {
     "message": "Mostra\/Nascondi"
+  },
+  "toggleCollapse": {
+    "message": "Attiva\/disattiva Collasso",
+    "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
     "message": "Genera Password"
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "La selezione comprende $COUNT$ elementi. $SHAREABLE_COUNT$ elementi possono essere condivisi, i restanti $NONSHAREABLE_COUNT$ no. Gli elementi con allegati devono essere condivisi individualmente.",
+  "shareSelectedItemsCountDesc": {
+    "message": "Hai selezionato $COUNT$ elemento(i). $SHAREABLE_COUNT$ elementi sono condivisibili, $NONSHAREABLE_COUNT$ non lo sono.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -799,10 +803,10 @@
     "message": "Lunghezza"
   },
   "numWords": {
-    "message": "Number of Words"
+    "message": "Numero di parole"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Separatore parole"
   },
   "passwordHistory": {
     "message": "Cronologia delle password"
@@ -862,16 +866,16 @@
     "message": "Conferma Nuova Password Principale"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "Impostazioni chiave di crittografia"
   },
   "kdfAlgorithm": {
-    "message": "KDF Algorithm"
+    "message": "Algoritmo KDF"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "Iterazioni KDF"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Le iterazioni KDF più elevate possono aiutare a proteggere la tua password master dall'essere forzata da un utente malintenzionato. Consigliamo un valore di $VALUE$ o più.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -880,7 +884,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "L'impostazione delle iterazioni KDF troppo elevata potrebbe comportare prestazioni scadenti durante l'accesso (e lo sblocco) di Bitwarden su dispositivi con CPU lente. Ti consigliamo di aumentare il valore in incrementi di $INCREMENT$ e poi testare tutti i tuoi dispositivi.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -889,10 +893,10 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Cambia KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "Impostazioni chiave di crittografia modificate"
   },
   "dangerZone": {
     "message": "Zona Pericolosa"
@@ -916,13 +920,13 @@
     "message": "Svuota Cassaforte"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Purifica il caveau dell'organizzazione."
   },
   "purgeVaultDesc": {
     "message": "Procedi in basso per eliminare tutti gli elementi e le cartelle nel Vault. Gli elementi che appartengono a un'organizzazione con cui condividi non verranno eliminati."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Procedi sotto per eliminare tutti gli elementi nel caveau dell'organizzazione."
   },
   "purgeVaultWarning": {
     "message": "Svuotare la tua cassaforte è permanente. Questa azione non è reversibile."
@@ -1091,10 +1095,10 @@
     "message": "Un abbonamento premium è richiesto per utilizzare questa funzionalità."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "Hai accesso premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "Hai già accesso alle funzioni premium a causa di un'organizzazione di cui sei membro."
   },
   "manage": {
     "message": "Gestisci"
@@ -1181,7 +1185,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "Chiave U2F $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1232,25 +1236,25 @@
     "message": "Aggiungi una chiave di sicurezza di FIDO U2F al tuo account"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Sei sicuro di voler rimuovere questa chiave di sicurezza?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Leggi chiave"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "La chiave è compromessa."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Assegna alla chiave di sicurezza un nome descrittivo per identificarla."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "Inserire la chiave di sicurezza nella porta USB del tuo computer e clicca sul pulsante \"Leggi chiave\"."
   },
   "twoFactorU2fTouchButton": {
     "message": "Se la chiave di protezione dispone di un pulsante, premilo."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Salva il modulo."
   },
   "twoFactorU2fWarning": {
     "message": "A causa di limitazioni della piattaforma, FIDO U2F non può essere utilizzato su tutte le applicazioni Bitwarden. Si consiglia di abilitare un altro metodo di verifica in due passaggi in modo da poter accedere al tuo account anche dove FIDO U2F non può essere usato. Piattaforme supportate:"
@@ -1262,10 +1266,10 @@
     "message": "In attesa che venga premuto il pulsante della tua chiave di sicurezza"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Clicca sul pulsante \"Salva\" qui sotto per abilitare questa chiave di sicurezza per la verifica in due passaggi."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Si è verificato un problema durante la lettura della chiave di sicurezza. Riprova."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Il tuo codice di recupero Bitwarden per la verifica in due passaggi"
@@ -1379,6 +1383,22 @@
   "addons": {
     "message": "Estensioni"
   },
+  "premiumAccess": {
+    "message": "Accesso Premium"
+  },
+  "premiumAccessDesc": {
+    "message": "Puoi aggiungere l'accesso premium a tutti i membri della tua organizzazione per $PRICE$ \/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
   "additionalStorageGb": {
     "message": "Spazio di archiviazione aggiuntivo (GB)"
   },
@@ -1386,7 +1406,7 @@
     "message": "# di GB aggiuntivi"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "Il tuo piano viene fornito con $SIZE$ di archiviazione crittografata. Puoi aggiungere ulteriore spazio di archiviazione per $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1744,7 +1764,7 @@
     "message": "Self hosting (opzionale)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Gli utenti ottengono l'accesso alle funzionalità dei membri premium"
   },
   "controlAccessWithGroups": {
     "message": "Controllare l'accesso utente con gruppi"
@@ -1915,10 +1935,10 @@
     "message": "User normale con accesso alle collezioni della tua organizzazione."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Amministratore"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "I manager possono accedere e gestire le raccolte assegnate nella propria organizzazione."
   },
   "all": {
     "message": "Tutti"
@@ -2180,6 +2200,9 @@
   },
   "confirm": {
     "message": "Conferma"
+  },
+  "confirmUser": {
+    "message": "Conferma utente"
   },
   "hasBeenConfirmed": {
     "message": "$USER$ è stato confermato.",
@@ -2495,15 +2518,67 @@
     "message": "La licenza è scaduta."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Utenti aggiornati"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Selezionato"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Proprietà"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "A chi appartiene questo elemento?"
+  },
+  "strong": {
+    "message": "Forte",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Buono",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Debole",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Password Principale Debole"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "La password principale che hai scelto è debole. È necessario utilizzare una password principale avanzata (o una Frase segreta) per proteggere adeguatamente il tuo account Bitwarden. Sei sicuro di voler utilizzare questa password principale?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Ruota anche la chiave di crittografia del mio account"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Ruota la chiave di crittografia"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Sei sicuro di voler ruotare la chiave di crittografia del tuo account?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Questo elemento ha vecchi file allegati che devono essere corretti."
+  },
+  "attachmentFixDesc": {
+    "message": "Questo è un vecchio file allegato che deve essere corretto. Clicca per saperne di più."
+  },
+  "fix": {
+    "message": "Fix",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Ci sono vecchi file allegati nella tua cassaforte che devono essere corretti prima di poter ruotare la chiave di crittografia del tuo account."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Frase dell'impronta digitale del tuo account",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "Per garantire l'integrità delle tue chiavi di crittografia, verifica la frase dell'impronta digitale dell'utente prima di continuare.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Non chiedere di verificare di nuovo la frase dell'impronta digitale",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }

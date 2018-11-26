@@ -207,6 +207,10 @@
   "toggleVisibility": {
     "message": "Afficher\/Masquer"
   },
+  "toggleCollapse": {
+    "message": "Déplier ou replier",
+    "description": "Toggling an expand\/collapse state."
+  },
   "generatePassword": {
     "message": "Générer un mot de passe"
   },
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "Vous avez sélectionné $COUNT$ élément(s). $SHAREABLE_COUNT$ éléments peuvent être partagés, $NONSHAREABLE_COUNT$ ne le peuvent pas.\nLes éléments avec des pièces jointes doivent être partagés individuellement.",
+  "shareSelectedItemsCountDesc": {
+    "message": "Vous avez sélectionné $COUNT$ élément(s). $SHAREABLE_COUNT$ éléments sont partageables, $NONSHAREABLE_COUNT$ ne le sont pas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1378,6 +1382,22 @@
   },
   "addons": {
     "message": "Add-ons"
+  },
+  "premiumAccess": {
+    "message": "Accès premium"
+  },
+  "premiumAccessDesc": {
+    "message": "Vous pouvez ajouter un accès premium à tous les membres de votre organisation pour $PRICE$\/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
   },
   "additionalStorageGb": {
     "message": "Stockage additionnel (Go)"
@@ -2181,6 +2201,9 @@
   "confirm": {
     "message": "Confirmer"
   },
+  "confirmUser": {
+    "message": "Confirmer l'utilisateur"
+  },
   "hasBeenConfirmed": {
     "message": "$USER$ a été confirmé.",
     "placeholders": {
@@ -2505,5 +2528,57 @@
   },
   "whoOwnsThisItem": {
     "message": "À qui appartient cet élément?"
+  },
+  "strong": {
+    "message": "Fort",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Suffisant",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Faible",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Mot de passe maître faible"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Le mot de passe maître que vous avez choisi est faible. Vous devriez utiliser un mot de passe (ou une phrase de passe) fort(e) pour protéger correctement votre compte Bitwarden. Êtes-vous certain de vouloir utiliser ce mot de passe maître ?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Faire également pivoter la clé de chiffrement de mon compte"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Faire pivoter la clé de chiffrement"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Êtes-vous sûr de vouloir modifier la clé de chiffrement de votre compte ?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Cet élément a d'anciennes pièces jointes qui doivent être réparées."
+  },
+  "attachmentFixDesc": {
+    "message": "Il s'agit d'une ancienne pièce jointe qui doit être réparée. Cliquez pour en savoir plus."
+  },
+  "fix": {
+    "message": "Réparer",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Il y a d'anciennes pièces jointes dans votre coffre qui doivent être réparées avant que vous ne puissiez faire pivoter la clé de chiffrement de votre compte."
+  },
+  "yourAccountsFingerprint": {
+    "message": "La phrase d'empreinte de votre compte",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "Pour assurer l'intégrité de vos clés de chiffrement, merci de vérifier la phrase d'empreinte de l'utilisateur avant de continuer.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Ne plus me demander de vérifier de phrase d'empreinte",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }

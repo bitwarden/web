@@ -207,6 +207,10 @@
   "toggleVisibility": {
     "message": "Slå synlighed til\/fra"
   },
+  "toggleCollapse": {
+    "message": "Fold sammen\/fold ud",
+    "description": "Toggling an expand\/collapse state."
+  },
   "generatePassword": {
     "message": "Generér adgangskode"
   },
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "Du har valgt $COUNT$ element(er). $SHAREABLE_COUNT$ element(er) er delbare, $NONSHAREABLE_COUNT$ er ikke. Elementer med vedhæftninger skal deles individuelt.",
+  "shareSelectedItemsCountDesc": {
+    "message": "Du har valgt $COUNT$ element(er). $SHAREABLE_COUNT$ element(er) kan deles, $NONSHAREABLE_COUNT$ kan ikke.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1378,6 +1382,22 @@
   },
   "addons": {
     "message": "Tilføjelser"
+  },
+  "premiumAccess": {
+    "message": "Premium adgang"
+  },
+  "premiumAccessDesc": {
+    "message": "Du kan tilføje premium adgang til alle medlemmer af din organisation for $PRICE$ \/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
   },
   "additionalStorageGb": {
     "message": "Ekstra lagerplads (GB)"
@@ -2181,6 +2201,9 @@
   "confirm": {
     "message": "Bekræft"
   },
+  "confirmUser": {
+    "message": "Bekræft bruger"
+  },
   "hasBeenConfirmed": {
     "message": "$USER$ er blevet bekræftet.",
     "placeholders": {
@@ -2505,5 +2528,57 @@
   },
   "whoOwnsThisItem": {
     "message": "Hvem ejer dette element?"
+  },
+  "strong": {
+    "message": "Stærk",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "God",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Svag",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Svag hovedadgangskode"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Hovedadgangskoden du har valgt er svag. Du skal bruge en stærk hovedadgangskode (eller en adgangssætning) for at beskytte din Bitwarden-konto korrekt. Er du sikker på, at du vil bruge denne hovedadgangskode?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Rotér også min kontos krypteringsnøgle"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Rotér krypteringsnøgle"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Er du sikker på, at du vil rotere din kontos krypteringsnøgle?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Dette element har gamle filvedhæftninger, der skal repareres."
+  },
+  "attachmentFixDesc": {
+    "message": "Dette er en gammel filvedhæftning, der skal repareres. Klik for at lære mere."
+  },
+  "fix": {
+    "message": "Reparér",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Der er gamle filvedhæftninger i din boks, der skal repareres, før du kan rotere din kontos krypteringsnøgle."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Din kontos fingeraftrykssætning",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "For at sikre integriteten af dine krypteringsnøgler, bedes du bekræfte brugerens fingeraftrykssætning, inden du fortsætter.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Spørg ikke om at bekræfte fingeraftrykssætning igen",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }

@@ -38,7 +38,7 @@
     "message": "Heslo"
   },
   "passphrase": {
-    "message": "Passphrase"
+    "message": "Heslová fráze"
   },
   "notes": {
     "message": "Poznámky"
@@ -206,6 +206,10 @@
   },
   "toggleVisibility": {
     "message": "Přepnout viditelnost"
+  },
+  "toggleCollapse": {
+    "message": "Přepnout sbalení",
+    "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
     "message": "Vygenerovat heslo"
@@ -436,10 +440,10 @@
     "message": "Položka byla upravena"
   },
   "sharedItem": {
-    "message": "Položka byla nasdílena"
+    "message": "Položka byla sdílena"
   },
   "sharedItems": {
-    "message": "Položky byly nasdíleny"
+    "message": "Položky byly sdíleny"
   },
   "deleteItem": {
     "message": "Smazat položku"
@@ -547,7 +551,7 @@
     "message": "Zadejte e-mailovou adresu pro zaslání nápovědy k hlavnímu heslu."
   },
   "getMasterPasswordHint": {
-    "message": "Získat nápovědu pro hlavní heslo"
+    "message": "Zaslat nápovědu k hlavnímu heslu"
   },
   "emailRequired": {
     "message": "E-mailová adresa je povinná."
@@ -643,7 +647,7 @@
     "message": "Pamatuj si mě"
   },
   "sendVerificationCodeEmailAgain": {
-    "message": "Zaslat znovu ověřovací kód na e-mail"
+    "message": "Znovu zaslat ověřovací kód na e-mail"
   },
   "useAnotherTwoStepMethod": {
     "message": "Použít jinou metodu dvoufázového přihlášení"
@@ -683,7 +687,7 @@
     "message": "YubiKey OTP bezpečnostní klíč"
   },
   "yubiKeyDesc": {
-    "message": "Použít YubiKey pro přístup k vašemu trezoru. Podporuje YubiKey 4, 4 Nano, 4C a NEO zařízení."
+    "message": "Použít YubiKey pro přístup k vašemu trezoru. Podporuje YubiKey 4. série, 5. série a zařízení řady NEO."
   },
   "duoDesc": {
     "message": "Ověřit pomocí Duo Security prostřednictvím aplikace Duo Mobile, SMS, telefonního hovoru nebo U2F bezpečnostního kódu.",
@@ -715,10 +719,10 @@
     "message": "Organizace"
   },
   "shareDesc": {
-    "message": "Vyberte organizaci se kterou chcete sdílet tuto položku. Sdílením přenese vlastnictví položky na organizaci a již nadále nebudete přímým vlastníkem této položky."
+    "message": "Vyberte organizaci se kterou chcete tuto položku sdílet. Sdílením přenese vlastnictví položky na organizaci a již nadále nebudete přímým vlastníkem."
   },
   "shareManyDesc": {
-    "message": "Vyberte organizaci se kterou chcete sdílet tyto položky. Sdílením přenese vlastnictví položek na organizaci a již nadále nebudete přímým vlastníkem těchto položek."
+    "message": "Vyberte organizaci se kterou chcete tyto položky sdílet. Sdílením přenese vlastnictví položek na organizaci a již nadále nebudete přímým vlastníkem."
   },
   "collectionsDesc": {
     "message": "Upravit kolekce, ve kterých je tato položka sdílená. Pouze uživatelé organizace, kteří mají přístup k těmto kolekcím, budou moci tuto položku vidět."
@@ -741,8 +745,8 @@
       }
     }
   },
-  "shareSelectedItemsDesc": {
-    "message": "Vybrali jste $COUNT$ položek. $SHAREABLE_COUNT$ položek je možné sdílet a $NONSHAREABLE_COUNT$ položek ne. Položky s přílohami musí být sdíleny jednotlivě.",
+  "shareSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -799,10 +803,10 @@
     "message": "Délka"
   },
   "numWords": {
-    "message": "Number of Words"
+    "message": "Počet slov"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Oddělovač slov"
   },
   "passwordHistory": {
     "message": "Historie hesel"
@@ -916,13 +920,13 @@
     "message": "Vymazat celý trezor"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "Trezor organizace byl vyprázdněn."
   },
   "purgeVaultDesc": {
-    "message": "Pokračujte níže ke smazání všech položek a složek ve vašem trezoru. Položky sdílené s organizací nebudou smazány."
+    "message": "Chcete-li smazat všechny položky a složky ve vašem trezoru, pokračujte podle následujících pokynů. Položky sdílené s organizací nebudou smazány."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "Chcete-li smazat všechny položky v trezoru organizace, pokračujte podle následujících pokynů."
   },
   "purgeVaultWarning": {
     "message": "Vymazání trezoru je trvalé. Tuto akci nelze vrátit zpět."
@@ -1151,7 +1155,7 @@
     "message": "Přidání nového YubiKey k vašemu účtu"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Připojte YubiKey (NEO nebo 4. řada) do USB portu počítače."
+    "message": "Připojte YubiKey do USB portu počítače."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Vyberte první prázdné pole YubiKey níže."
@@ -1181,7 +1185,7 @@
     }
   },
   "u2fkeyX": {
-    "message": "U2F Key $INDEX$",
+    "message": "U2F klíč $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1232,13 +1236,13 @@
     "message": "Přidání bezpečnostního klíče FIDO U2F k vašemu účtu"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Opravdu chcete odebrat tento bezpečnostní klíč?"
   },
   "readKey": {
-    "message": "Read Key"
+    "message": "Přečíst klíč"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Klíč je prozrazen."
   },
   "twoFactorU2fGiveName": {
     "message": "Give the security key a friendly name to identify it."
@@ -1250,7 +1254,7 @@
     "message": "Pokud má bezpečnostní klíč tlačítko, zmáčkněte jej."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Uložte formulář."
   },
   "twoFactorU2fWarning": {
     "message": "Z důvodu omezení různých platforem, nemůže být FIDO U2F použit ve všech aplikacích Bitwarden. Měli byste povolit jiný způsob dvoufázového přihlášení pro případy, kdy nelze FIDO U2F použít. Podporované platformy:"
@@ -1379,6 +1383,22 @@
   "addons": {
     "message": "Doplňky"
   },
+  "premiumAccess": {
+    "message": "Premium Access"
+  },
+  "premiumAccessDesc": {
+    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
   "additionalStorageGb": {
     "message": "Další úložiště (GB)"
   },
@@ -1449,19 +1469,19 @@
     "message": "Čeká na zrušení"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "Předplatné bude zrušeno na konci aktuálního fakturačního období."
   },
   "reinstateSubscription": {
     "message": "Obnovit předplatné"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "Opravdu chcete zrušit požadavek na ukončení předplatného a obnovit původní předplatné?"
   },
   "reinstated": {
     "message": "Předplatné bylo obnoveno"
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "Opravdu chcete zrušit předplatné? Na konci fakturačního období přijdete o veškeré výhody plynoucí z vybraného plánu."
   },
   "canceledSubscription": {
     "message": "Předplatné bylo zrušeno"
@@ -1513,7 +1533,7 @@
     }
   },
   "paymentMethod": {
-    "message": "Způsob Platby"
+    "message": "Způsob platby"
   },
   "noPaymentMethod": {
     "message": "No payment method on file."
@@ -1532,7 +1552,7 @@
     "message": "Žádné platby."
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": " Veškeré platby se na výpisu objeví jako $STATEMENT_NAME$.",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1589,13 +1609,13 @@
     "message": "To upgrade your account to a premium membership you need to upload a valid license file."
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+    "message": "Pro vytvoření organizace hostované na vlastní doméně, musíte nahrát platný licenční soubor."
   },
   "accountEmailMustBeVerified": {
     "message": "E-mailová adresa vašeho účtu musí být ověřena."
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "Organizace umožňují sdílení položek vašeho trezoru s ostatními uživateli a také správu uživatelů jako členů rodiny, malého týmu nebo velké organizace."
   },
   "generalInformation": {
     "message": "Obecné informace"
@@ -1604,13 +1624,13 @@
     "message": "Název organizace"
   },
   "accountOwnedBusiness": {
-    "message": "Tento účet je vlastněn společností,"
+    "message": "Tento účet je vlastněn firmou."
   },
   "billingEmail": {
     "message": "E-mailová adresa pro fakturaci"
   },
   "businessName": {
-    "message": "Název společnosti"
+    "message": "Název firmy"
   },
   "chooseYourPlan": {
     "message": "Vyberte plán"
@@ -1619,10 +1639,10 @@
     "message": "Uživatelé"
   },
   "userSeats": {
-    "message": "User Seats"
+    "message": "Počet uživatelů"
   },
   "additionalUserSeats": {
-    "message": "Additional User Seats"
+    "message": "Další uživatelé"
   },
   "userSeatsDesc": {
     "message": "# of user seats"
@@ -1648,7 +1668,7 @@
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "message": "Pro testování nebo osobní použití a sdílení s $COUNT$ dalším uživatelem.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1660,19 +1680,19 @@
     "message": "Rodiny"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "Pro osobní použití a sdílení s rodinou či přáteli."
   },
   "planNameTeams": {
     "message": "Týmy"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "Pro firmy a různé týmy."
   },
   "planNameEnterprise": {
     "message": "Enterprise"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "Pro firmy a velké organizace."
   },
   "freeForever": {
     "message": "Navždy zdarma"
@@ -1687,7 +1707,7 @@
     }
   },
   "additionalUsers": {
-    "message": "Additional Users"
+    "message": "Další uživatelé"
   },
   "costPerUser": {
     "message": "$COST$ za uživatele",
@@ -1699,7 +1719,7 @@
     }
   },
   "limitedUsers": {
-    "message": "Limited to $COUNT$ users (including you)",
+    "message": "Omezeno na $COUNT$ uživatele (včetně vás)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1708,7 +1728,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Limited to $COUNT$ collections",
+    "message": "Omezeno na $COUNT$ kolekce",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1726,10 +1746,10 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "Neomezený počet uživatelů"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "Neomezený počet kolekcí"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ šifrovaného úložiště",
@@ -1741,7 +1761,7 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "Možnost hostování na vlastní doméně"
   },
   "usersGetPremium": {
     "message": "Users get access to premium membership features"
@@ -1792,16 +1812,16 @@
     "message": "Opravdu chcete tuto organizaci opustit?"
   },
   "leftOrganization": {
-    "message": "Organizace byla opuštěna"
+    "message": "Organizace byla opuštěna."
   },
   "defaultCollection": {
     "message": "Výchozí kolekce"
   },
   "getHelp": {
-    "message": "Získat nápovědu"
+    "message": "Nápověda"
   },
   "getApps": {
-    "message": "Získat aplikaci"
+    "message": "Stáhnout aplikaci"
   },
   "loggedInAs": {
     "message": "Přihlášen jako"
@@ -1810,7 +1830,7 @@
     "message": "Protokol událostí"
   },
   "people": {
-    "message": "Lidé"
+    "message": "Uživatelé"
   },
   "groups": {
     "message": "Skupiny"
@@ -1837,13 +1857,13 @@
     "message": "Externí ID slouží k propojení této skupiny s externím systémem, například s adresářem uživatelů."
   },
   "accessControl": {
-    "message": "Správa přístupů"
+    "message": "Správa přístupu"
   },
   "groupAccessAllItems": {
-    "message": "This group can access and modify all items."
+    "message": "Tato skupina může vidět a upravovat vše."
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "Tato skupina může vidět a upravovat pouze vybrané kolekce."
   },
   "readOnly": {
     "message": "Pouze pro čtení"
@@ -1879,16 +1899,16 @@
     }
   },
   "userAccessAllItems": {
-    "message": "This user can access and modify all items."
+    "message": "Tento uživatel může vidět a upravovat vše."
   },
   "userAccessSelectedCollections": {
-    "message": "This user can access only the selected collections."
+    "message": "Tento uživatel může vidět a upravovat pouze vybrané kolekce."
   },
   "search": {
     "message": "Hledat"
   },
   "invited": {
-    "message": "Pozván\/a"
+    "message": "Pozváno"
   },
   "accepted": {
     "message": "Přijato"
@@ -1912,13 +1932,13 @@
     "message": "Uživatel"
   },
   "userDesc": {
-    "message": "A regular user with access to your organization's collections."
+    "message": "Běžný uživatel s přístupem k přiřazeným kolekcím vaší organizace."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Správce"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Správci mohou přistupovat a spravovat přiřazené kolekce ve vaší organizaci."
   },
   "all": {
     "message": "Vše"
@@ -2170,7 +2190,7 @@
     "message": "Znovu poslat pozvánku"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "Uživatel $USER$ byl znovu pozván.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2180,6 +2200,9 @@
   },
   "confirm": {
     "message": "Potvrdit"
+  },
+  "confirmUser": {
+    "message": "Potvrdit uživatele"
   },
   "hasBeenConfirmed": {
     "message": "Uživatel $USER$ byl potvrzen.",
@@ -2194,7 +2217,7 @@
     "message": "Potvrdit uživatele"
   },
   "usersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
+    "message": "Někteří uživatelé přijali pozvánku, ale nejdříve musí být potvrzeni. Dokud nedojde k potvrzení, nebudou mít tito uživatelé přístup k organizaci."
   },
   "startDate": {
     "message": "Datum začátku"
@@ -2209,7 +2232,7 @@
     "message": "Verify your account's email address to unlock access to all features."
   },
   "verifyEmailFirst": {
-    "message": "Your account's email address first must be verified."
+    "message": "E-mailová adresa vašeho účtu musí být ověřena."
   },
   "checkInboxForVerification": {
     "message": "Check your email inbox for a verification link."
@@ -2218,22 +2241,22 @@
     "message": "Vaše e-mailová adresa byla ověřena"
   },
   "emailVerifiedFailed": {
-    "message": "Unable to verify your email. Try sending a new verification email."
+    "message": "Váš e-mail se nepodařilo ověřit. Zkuste odeslat nový ověřovací e-mail."
   },
   "updateBrowser": {
-    "message": "Update Browser"
+    "message": "Aktualizace prohlížeče"
   },
   "updateBrowserDesc": {
-    "message": "You are using an unsupported web browser. The web vault may not function properly."
+    "message": "Používáte nepodporovaný webový prohlížeč. Aplikace nemusí pracovat správně."
   },
   "joinOrganization": {
     "message": "Přidat se k organizaci"
   },
   "joinOrganizationDesc": {
-    "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Byly jste pozváni do výše uvedené organizace. Pro přijetí pozvánky se musíte přihlásit nebo si založit nový účet."
   },
   "inviteAccepted": {
-    "message": "Pozvánka byla přijata"
+    "message": "Pozvánka byla přijata."
   },
   "inviteAcceptedDesc": {
     "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
@@ -2275,7 +2298,7 @@
     "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
   },
   "deleteOrganizationWarning": {
-    "message": "Deleting the organization is permanent. It cannot be undone."
+    "message": "Smazání organizace je trvalé. Tuto akci nelze vrátit zpět."
   },
   "organizationDeleted": {
     "message": "Organizace byla smazána."
@@ -2284,13 +2307,13 @@
     "message": "Organizace a veškerá související data byla smazána."
   },
   "organizationUpdated": {
-    "message": "Organizace byla aktualizována"
+    "message": "Organizace byla aktualizována."
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "Daňové údaje"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Pro poskytnutí nebo aktualizaci daňových údajů pro vaše faktury kontaktujte zákaznickou podporu."
   },
   "billingPlan": {
     "message": "Plán",
@@ -2301,14 +2324,14 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "Pokud chcete změnit svůj plán, kontaktujte zákaznickou podporu. Ujistěte se prosím, zda máte k účtu přidán způsob platby.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoice": {
     "message": "Faktura"
   },
   "verifyBankAccount": {
-    "message": "Verify Bank Account"
+    "message": "Ověření bankovního účtu"
   },
   "verifyBankAccountDesc": {
     "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
@@ -2320,13 +2343,13 @@
     "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
   },
   "verifiedBankAccount": {
-    "message": "Bank account has been verified."
+    "message": "Bankovní účet byl ověřen."
   },
   "bankAccount": {
     "message": "Bankovní účet"
   },
   "amountX": {
-    "message": "Amount $COUNT$",
+    "message": "Částka $COUNT$",
     "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
     "placeholders": {
       "count": {
@@ -2349,7 +2372,7 @@
     "message": "Typ účtu"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "Společnost (firma)"
   },
   "bankAccountTypeIndividual": {
     "message": "Individual (Personal)"
@@ -2396,7 +2419,7 @@
     }
   },
   "keyUpdated": {
-    "message": "Key Updated"
+    "message": "Klíč byl upraven."
   },
   "updateKeyTitle": {
     "message": "Aktualizovat klíč"
@@ -2429,16 +2452,16 @@
     "message": "Tato funkce je nedostupná pro bezplatné organizace. Přejděte na placené členství a odemkněte více funkcí."
   },
   "createOrganizationStep1": {
-    "message": "Create Organization: Step 1"
+    "message": "Vytvoření organizace: Krok 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "Před vytvořením organizace si musíte nejdříve vytvořit bezplatný osobní účet."
   },
   "refunded": {
     "message": "Platba vrácena"
   },
   "nothingSelected": {
-    "message": "Nic jste nevybrali."
+    "message": "Nevybrali jste žádné položky."
   },
   "submitAgreePolicies": {
     "message": "Klepnutím na tlačítko \"Odeslat\" souhlasíte s následující podmínkami:",
@@ -2457,7 +2480,7 @@
     "message": "Možnosti zamknutí"
   },
   "lockOptionsDesc": {
-    "message": "Vyberte kdy dojde k automatickému uzamčení trezoru. Pro opětovný přístup do uzamčeného trezoru bude potřeba znovu zadat hlavního heslo."
+    "message": "Vyberte kdy dojde k automatickému uzamčení trezoru. Pro opětovný přístup do trezoru bude potřeba znovu zadat hlavního heslo."
   },
   "oneMinute": {
     "message": "Po 1 minutě"
@@ -2498,12 +2521,64 @@
     "message": "Updated users"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Vybrané"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Vlastnictví"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Kdo vlastní tuto položku?"
+  },
+  "strong": {
+    "message": "Silné",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Dobré",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Slabé",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Slabé hlavní heslo"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Hlavní heslo, které jste si vybrali, je slabé. Pro správnou ochranu účtu Bitwarden byste měli použít silné hlavní heslo (nebo heslovou frázi). Opravdu chcete toto heslo použít?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Also rotate my account's encryption key"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Rotate Encryption Key"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Are you sure you want to rotate your account's encryption key?"
+  },
+  "attachmentsNeedFix": {
+    "message": "This item has old file attachments that need to be fixed."
+  },
+  "attachmentFixDesc": {
+    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+  },
+  "fix": {
+    "message": "Opravit",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Fráze otisku prstu vašeho účtu",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Don't ask to verify fingerprint phrase again",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   }
 }
