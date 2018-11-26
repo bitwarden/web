@@ -145,7 +145,7 @@ export class ChangePasswordComponent implements OnInit {
                     this.i18nService.t('learnMore'), this.i18nService.t('close'), 'warning');
                 if (learnMore) {
                     this.platformUtilsService.launchUri(
-                        'http://localhost:4009/article/attachments/#fixing-old-attachments');
+                        'https://help.bitwarden.com/article/attachments/#fixing-old-attachments');
                 }
                 this.rotateEncKey = false;
                 return;
