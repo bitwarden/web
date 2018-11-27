@@ -24,12 +24,13 @@ function webfonts() {
         .pipe(gulp.dest(paths.cssDir));
 };
 
-function version() {
+function version(cb) {
     fs.writeFileSync(paths.build + 'version.json', '{"version":"' + package.version + '"}');
+    cb();
 }
 
-gulp.task('clean', clean);
-gulp.task('webfonts', ['clean'], webfonts);
-gulp.task('prebuild', ['webfonts']);
-gulp.task('version', version);
-gulp.task('postdist', ['version']);
+exports.clean = clean;
+exports.webfonts = gulp.series(clean, webfonts);
+exports.prebuild = gulp.series(clean, webfonts);
+exports.version = version;
+exports.postdist = version;
