@@ -28,7 +28,7 @@
             <li *ngFor="let a of breachedAccounts" class="list-group-item min-height-fix">
                 <div class="row">
                     <div class="col-2 text-center">
-                        <img [src]="'https://haveibeenpwned.com/Content/Images/PwnedLogos/' + a.name + '.' + a.logoType" alt="" class="img-fluid">
+                        <img [src]="a.logoPath" alt="" class="img-fluid">
                     </div>
                     <div class="col-7">
                         <h3 class="text-lg">{{a.title}}</h3>
