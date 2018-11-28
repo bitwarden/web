@@ -95,7 +95,8 @@ export class ChangePasswordComponent implements OnInit {
         const email = await this.userService.getEmail();
         const kdf = await this.userService.getKdf();
         const kdfIterations = await this.userService.getKdfIterations();
-        const newKey = await this.cryptoService.makeKey(this.newMasterPassword, email, kdf, kdfIterations);
+        const newKey = await this.cryptoService.makeKey(this.newMasterPassword, email.trim().toLowerCase(),
+            kdf, kdfIterations);
         request.newMasterPasswordHash = await this.cryptoService.hashPassword(this.newMasterPassword, newKey);
         const newEncKey = await this.cryptoService.remakeEncKey(newKey);
         request.key = newEncKey[1].encryptedString;
