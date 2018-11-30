@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
     ChangeDetectorRef,
     Component,
@@ -56,11 +55,10 @@ export class VaultComponent implements OnInit, OnDestroy {
     private modal: ModalComponent = null;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
-        private location: Location, private router: Router,
+        private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
         private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone,
-        private changeDetectorRef: ChangeDetectorRef) { }
+        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
@@ -295,8 +293,10 @@ export class VaultComponent implements OnInit, OnDestroy {
             };
         }
 
-        const url = this.router.createUrlTree(['organizations', this.organization.id, 'vault'],
-            { queryParams: queryParams }).toString();
-        this.location.go(url);
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: queryParams,
+            replaceUrl: true,
+        });
     }
 }
