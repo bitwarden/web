@@ -254,6 +254,10 @@ label:not(.form-check-label):not(.btn), label.bold {
     font-weight: 600;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
 .btn[class*="btn-outline-"] {
     &:not(:hover) {
         border-color: $secondary;
