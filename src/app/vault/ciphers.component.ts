@@ -20,8 +20,6 @@ import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
-import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
-
 const MaxCheckedCount = 500;
 
 @Component({
@@ -37,13 +35,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     cipherType = CipherType;
     actionPromise: Promise<any>;
 
-    private searchPipe: SearchCiphersPipe;
-
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService) {
         super(searchService);
-        this.searchPipe = new SearchCiphersPipe(platformUtilsService);
     }
 
     ngOnDestroy() {
@@ -58,14 +53,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (select) {
             this.selectAll(false);
         }
-        let filteredCiphers = this.ciphers;
-        if (select) {
-            filteredCiphers = this.searchPipe.transform(this.ciphers, this.searchText);
-        }
-        const selectCount = select && filteredCiphers.length > MaxCheckedCount ?
-            MaxCheckedCount : filteredCiphers.length;
+        const selectCount = select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
         for (let i = 0; i < selectCount; i++) {
-            this.checkCipher(filteredCiphers[i], select);
+            this.checkCipher(this.ciphers[i], select);
         }
     }
 
