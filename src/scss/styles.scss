@@ -399,6 +399,19 @@ input[type="search"]::-webkit-search-cancel-button {
     font-weight: 600;
 }
 
+.password-wrapper {
+    display: flex !important;
+    flex-wrap: wrap;
+}
+
+.password-number {
+    color: #007fde;
+}
+
+.password-special {
+    color: #c40800;
+}
+
 app-vault-groupings, app-org-vault-groupings {
     .card {
         #search {
@@ -461,7 +474,10 @@ app-password-generator {
 
     .card-password {
         .card-body {
-            word-break: break-all;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             font-size: $font-size-lg;
             font-family: $font-family-monospace;
@@ -474,7 +490,6 @@ app-password-generator-history {
         line-height: 1;
 
         .password {
-            word-break: break-all;
             font-family: $font-family-monospace;
         }
     }
