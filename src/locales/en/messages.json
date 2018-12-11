@@ -1308,6 +1308,27 @@
   "noUnsecuredWebsites": {
     "message": "No items in your vault have unsecured URIs."
   },
+  "weakPasswordsReport": {
+    "message": "Weak Passwords Report"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "Weak passwords can easily be guessed by hackers and automated tools that brute force passwords."
+  },
+  "weakPasswordsFound": {
+    "message": "Weak Passwords Found"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "We found $COUNT$ items in your vault that have weak passwords. You should update them to use stronger passwords.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "No items in your vault have weak passwords."
+  },
   "reusedPasswordsReport": {
     "message": "Reused Passwords Report"
   },
@@ -2585,15 +2606,19 @@
   },
   "strong": {
     "message": "Strong",
-    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
     "message": "Good",
-    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
     "message": "Weak",
-    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "Very Weak",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
     "message": "Weak Master Password"

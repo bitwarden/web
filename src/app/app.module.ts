@@ -111,6 +111,7 @@ import { PasswordGeneratorComponent } from './tools/password-generator.component
 import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
 import { ToolsComponent } from './tools/tools.component';
 import { UnsecuredWebsitesReportComponent } from './tools/unsecured-websites-report.component';
+import { WeakPasswordsReportComponent } from './tools/weak-passwords-report.component';
 
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
@@ -301,6 +302,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         VerifyEmailComponent,
         VerifyEmailTokenComponent,
         VerifyRecoverDeleteComponent,
+        WeakPasswordsReportComponent,
     ],
     entryComponents: [
         AddEditComponent,
