@@ -110,6 +110,7 @@ import { PasswordGeneratorHistoryComponent } from './tools/password-generator-hi
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
 import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
 import { ToolsComponent } from './tools/tools.component';
+import { UnsecuredWebsitesReportComponent } from './tools/unsecured-websites-report.component';
 
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
@@ -264,6 +265,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgVaultComponent,
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
+        PasswordStrengthComponent,
         PaymentComponent,
         PremiumComponent,
         ProfileComponent,
@@ -290,6 +292,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
         TwoFactorYubiKeyComponent,
+        UnsecuredWebsitesReportComponent,
         UpdateKeyComponent,
         UpdateLicenseComponent,
         UserBillingComponent,
@@ -298,7 +301,6 @@ registerLocaleData(localeZhCn, 'zh-CN');
         VerifyEmailComponent,
         VerifyEmailTokenComponent,
         VerifyRecoverDeleteComponent,
-        PasswordStrengthComponent,
     ],
     entryComponents: [
         AddEditComponent,

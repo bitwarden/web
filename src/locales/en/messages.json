@@ -1287,6 +1287,27 @@
   "reports": {
     "message": "Reports"
   },
+  "unsecuredWebsitesReport": {
+    "message": "Unsecured Websites Report"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "Unsecured Websites Found"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:// if they allow it.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "No items in your vault have unsecured URIs."
+  },
   "reusedPasswordsReport": {
     "message": "Reused Passwords Report"
   },

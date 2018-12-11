@@ -54,6 +54,7 @@ import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
 import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
 import { ToolsComponent } from './tools/tools.component';
+import { UnsecuredWebsitesReportComponent } from './tools/unsecured-websites-report.component';
 
 import { VaultComponent } from './vault/vault.component';
 
@@ -153,6 +154,11 @@ const routes: Routes = [
                         path: 'reused-passwords-report',
                         component: ReusedPasswordsReportComponent,
                         data: { titleId: 'reusedPasswordsReport' },
+                    },
+                    {
+                        path: 'unsecured-websites-report',
+                        component: UnsecuredWebsitesReportComponent,
+                        data: { titleId: 'unsecuredWebsitesReport' },
                     },
                 ],
             },
