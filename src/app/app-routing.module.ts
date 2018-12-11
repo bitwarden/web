@@ -52,6 +52,7 @@ import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
+import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
 import { ToolsComponent } from './tools/tools.component';
 
 import { VaultComponent } from './vault/vault.component';
@@ -148,6 +149,11 @@ const routes: Routes = [
                         data: { titleId: 'passwordGenerator' },
                     },
                     { path: 'breach-report', component: BreachReportComponent, data: { titleId: 'dataBreachReport' } },
+                    {
+                        path: 'reused-passwords-report',
+                        component: ReusedPasswordsReportComponent,
+                        data: { titleId: 'reusedPasswordsReport' },
+                    },
                 ],
             },
         ],

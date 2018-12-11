@@ -108,6 +108,7 @@ import { ExportComponent } from './tools/export.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorHistoryComponent } from './tools/password-generator-history.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
+import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
 import { ToolsComponent } from './tools/tools.component';
 
 import { AddEditComponent } from './vault/add-edit.component';
@@ -270,6 +271,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         RecoverDeleteComponent,
         RecoverTwoFactorComponent,
         RegisterComponent,
+        ReusedPasswordsReportComponent,
         SearchCiphersPipe,
         SearchPipe,
         SettingsComponent,

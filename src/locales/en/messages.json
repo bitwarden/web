@@ -1287,6 +1287,36 @@
   "reports": {
     "message": "Reports"
   },
+  "reusedPasswordsReport": {
+    "message": "Reused Passwords Report"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+  },
+  "reusedPasswordsFound": {
+    "message": "Reused Passwords Found"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "No logins in your vault have passwords that are being reused."
+  },
+  "reusedXTimes": {
+    "message": "Reused $COUNT$ times",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
   "dataBreachReport": {
     "message": "Data Breach Report"
   },
