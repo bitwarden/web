@@ -31,19 +31,20 @@ export class UnsecuredWebsitesReportComponent implements OnInit {
     constructor(private ciphersService: CipherService, private componentFactoryResolver: ComponentFactoryResolver) { }
 
     async ngOnInit() {
-        this.load();
+        await this.load();
         this.hasLoaded = true;
     }
 
     async load() {
         this.loading = true;
         const allCiphers = await this.ciphersService.getAllDecrypted();
-        this.ciphers = allCiphers.filter((c) => {
+        const unsecuredCiphers = allCiphers.filter((c) => {
             if (c.type !== CipherType.Login || !c.login.hasUris) {
                 return false;
             }
             return c.login.uris.find((u) => u.uri.indexOf('http://') === 0) != null;
         });
+        this.ciphers = unsecuredCiphers;
         this.loading = false;
     }
 

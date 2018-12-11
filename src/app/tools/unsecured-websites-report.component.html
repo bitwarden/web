@@ -1,8 +1,13 @@
 <div class="page-header">
-    <h1>{{'unsecuredWebsitesReport' | i18n}}</h1>
+    <h1>
+        {{'unsecuredWebsitesReport' | i18n}}
+        <small *ngIf="hasLoaded && loading">
+            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+        </small>
+    </h1>
 </div>
 <p>{{'unsecuredWebsitesReportDesc' | i18n}}</p>
-<div *ngIf="loading">
+<div *ngIf="!hasLoaded && loading">
     <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
 </div>
 <div class="mt-4" *ngIf="!loading">
