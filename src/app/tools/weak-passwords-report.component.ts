@@ -37,16 +37,22 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     async setCiphers() {
         const allCiphers = await this.ciphersService.getAllDecrypted();
         const weakPasswordCiphers: CipherView[] = [];
+        const promises: Array<Promise<any>> = [];
         allCiphers.forEach((c) => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
                 return;
             }
-            const result = this.passwordGenerationService.passwordStrength(c.login.password);
-            if (result.score <= 3) {
-                this.passwordStrengthMap.set(c.id, this.scoreKey(result.score));
-                weakPasswordCiphers.push(c);
-            }
+            const promise = new Promise((resolve) => {
+                const result = this.passwordGenerationService.passwordStrength(c.login.password);
+                if (result.score <= 3) {
+                    this.passwordStrengthMap.set(c.id, this.scoreKey(result.score));
+                    weakPasswordCiphers.push(c);
+                }
+                resolve();
+            });
+            promises.push(promise);
         });
+        await Promise.all(promises);
         this.ciphers = weakPasswordCiphers;
     }
 
