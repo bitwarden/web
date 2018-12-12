@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -22,12 +24,15 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     services = new Map<string, string>();
     cipherDocs = new Map<string, string>();
 
-    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver) {
-        super(componentFactoryResolver);
+    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService, userService: UserService) {
+        super(componentFactoryResolver, userService, messagingService, true);
     }
 
-    ngOnInit() {
-        this.load();
+    async ngOnInit() {
+        if (await this.checkPremium()) {
+            await super.load();
+        }
     }
 
     async setCiphers() {

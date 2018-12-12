@@ -9,6 +9,9 @@ import { CipherView } from 'jslib/models/view/cipherView';
 import { ModalComponent } from '../modal.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
+import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { UserService } from 'jslib/abstractions/user.service';
+
 export class CipherReportComponent {
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
 
@@ -18,7 +21,8 @@ export class CipherReportComponent {
 
     private modal: ModalComponent = null;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+    constructor(private componentFactoryResolver: ComponentFactoryResolver, protected userService: UserService,
+        protected messagingService: MessagingService, public requiresPremium: boolean) { }
 
     async load() {
         this.loading = true;
@@ -52,6 +56,16 @@ export class CipherReportComponent {
         });
 
         return childComponent;
+    }
+
+    protected async checkPremium(): Promise<boolean> {
+        const accessPremium = await this.userService.canAccessPremium();
+        if (this.requiresPremium && !accessPremium) {
+            this.messagingService.send('premiumRequired');
+            this.loading = false;
+            return false;
+        }
+        return true;
     }
 
     protected async setCiphers() {

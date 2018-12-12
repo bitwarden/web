@@ -1,10 +1,13 @@
 import {
     Component,
     ComponentFactoryResolver,
+    OnInit,
 } from '@angular/core';
 
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -16,12 +19,23 @@ import { CipherReportComponent } from './cipher-report.component';
     selector: 'app-exposed-passwords-report',
     templateUrl: 'exposed-passwords-report.component.html',
 })
-export class ExposedPasswordsReportComponent extends CipherReportComponent {
+export class ExposedPasswordsReportComponent extends CipherReportComponent implements OnInit {
     exposedPasswordMap = new Map<string, number>();
 
     constructor(private ciphersService: CipherService, private auditService: AuditService,
-        componentFactoryResolver: ComponentFactoryResolver) {
-        super(componentFactoryResolver);
+        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
+        userService: UserService) {
+        super(componentFactoryResolver, userService, messagingService, true);
+    }
+
+    ngOnInit() {
+        this.checkPremium();
+    }
+
+    async load() {
+        if (await this.checkPremium()) {
+            super.load();
+        }
     }
 
     async setCiphers() {

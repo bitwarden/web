@@ -5,7 +5,9 @@ import {
 } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -21,12 +23,15 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     passwordStrengthMap = new Map<string, [string, string]>();
 
     constructor(private ciphersService: CipherService, private passwordGenerationService: PasswordGenerationService,
-        componentFactoryResolver: ComponentFactoryResolver) {
-        super(componentFactoryResolver);
+        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
+        userService: UserService) {
+        super(componentFactoryResolver, userService, messagingService, true);
     }
 
-    ngOnInit() {
-        this.load();
+    async ngOnInit() {
+        if (await this.checkPremium()) {
+            await super.load();
+        }
     }
 
     async setCiphers() {

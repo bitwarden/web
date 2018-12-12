@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherType } from 'jslib/enums/cipherType';
 
@@ -15,12 +17,15 @@ import { CipherReportComponent } from './cipher-report.component';
     templateUrl: 'unsecured-websites-report.component.html',
 })
 export class UnsecuredWebsitesReportComponent extends CipherReportComponent implements OnInit {
-    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver) {
-        super(componentFactoryResolver);
+    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService, userService: UserService) {
+        super(componentFactoryResolver, userService, messagingService, true);
     }
 
-    ngOnInit() {
-        this.load();
+    async ngOnInit() {
+        if (await this.checkPremium()) {
+            await super.load();
+        }
     }
 
     async setCiphers() {
