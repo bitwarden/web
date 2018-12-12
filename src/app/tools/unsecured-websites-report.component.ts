@@ -32,7 +32,6 @@ export class UnsecuredWebsitesReportComponent implements OnInit {
 
     async ngOnInit() {
         await this.load();
-        this.hasLoaded = true;
     }
 
     async load() {
@@ -46,6 +45,7 @@ export class UnsecuredWebsitesReportComponent implements OnInit {
         });
         this.ciphers = unsecuredCiphers;
         this.loading = false;
+        this.hasLoaded = true;
     }
 
     selectCipher(cipher: CipherView) {

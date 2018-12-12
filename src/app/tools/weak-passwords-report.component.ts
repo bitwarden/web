@@ -35,7 +35,6 @@ export class WeakPasswordsReportComponent implements OnInit {
 
     async ngOnInit() {
         await this.load();
-        this.hasLoaded = true;
     }
 
     async load() {
@@ -54,6 +53,7 @@ export class WeakPasswordsReportComponent implements OnInit {
         });
         this.ciphers = weakPasswordCiphers;
         this.loading = false;
+        this.hasLoaded = true;
     }
 
     selectCipher(cipher: CipherView) {

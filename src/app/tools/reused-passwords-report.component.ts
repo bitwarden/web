@@ -33,7 +33,6 @@ export class ReusedPasswordsReportComponent implements OnInit {
 
     async ngOnInit() {
         await this.load();
-        this.hasLoaded = true;
     }
 
     async load() {
@@ -56,6 +55,7 @@ export class ReusedPasswordsReportComponent implements OnInit {
             this.passwordUseMap.has(c.login.password) && this.passwordUseMap.get(c.login.password) > 1);
         this.ciphers = reusedPasswordCiphers;
         this.loading = false;
+        this.hasLoaded = true;
     }
 
     selectCipher(cipher: CipherView) {
