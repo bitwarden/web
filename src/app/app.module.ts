@@ -107,6 +107,7 @@ import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
 import { ExposedPasswordsReportComponent } from './tools/exposed-passwords-report.component';
 import { ImportComponent } from './tools/import.component';
+import { InactiveTwoFactorReportComponent } from './tools/inactive-two-factor-report.component';
 import { PasswordGeneratorHistoryComponent } from './tools/password-generator-history.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
 import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
@@ -230,9 +231,10 @@ registerLocaleData(localeZhCn, 'zh-CN');
         FrontendLayoutComponent,
         GroupingsComponent,
         HintComponent,
-        IconComponent,
         I18nPipe,
+        IconComponent,
         ImportComponent,
+        InactiveTwoFactorReportComponent,
         InputVerbatimDirective,
         LockComponent,
         LoginComponent,

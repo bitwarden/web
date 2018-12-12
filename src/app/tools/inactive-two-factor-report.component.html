@@ -1,0 +1,44 @@
+<div class="page-header">
+    <h1>
+        {{'inactive2faReport' | i18n}}
+        <small *ngIf="hasLoaded && loading">
+            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+        </small>
+    </h1>
+</div>
+<p>{{'inactive2faReportDesc' | i18n}}</p>
+<div *ngIf="!hasLoaded && loading">
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+</div>
+<div class="mt-4" *ngIf="hasLoaded">
+    <app-callout type="success" title="{{'goodNews' | i18n}}" *ngIf="!ciphers.length">
+        {{'noInactive2fa'}}
+    </app-callout>
+    <ng-container *ngIf="ciphers.length">
+        <app-callout type="danger" title="{{'inactive2faFound' | i18n}}">
+            {{'inactive2faFoundDesc' | i18n : (ciphers.length | number)}}
+        </app-callout>
+        <table class="table table-hover table-list table-ciphers">
+            <tbody>
+                <tr *ngFor="let c of ciphers">
+                    <td class="table-list-icon">
+                        <app-vault-icon [cipher]="c"></app-vault-icon>
+                    </td>
+                    <td class="reduced-lh wrap">
+                        <a href="#" appStopClick (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
+                        <i class="fa fa-share-alt" *ngIf="!organization && c.organizationId" title="{{'shared' | i18n}}"></i>
+                        <i class="fa fa-paperclip" title="{{'attachments' | i18n}}" *ngIf="c.hasAttachments"></i>
+                        <br>
+                        <small>{{c.subTitle}}</small>
+                    </td>
+                    <td class="text-right">
+                        <a class="badge badge-primary" href="{{cipherDocs.get(c.id)}}" target="_blank" rel="noopener"
+                            *ngIf="cipherDocs.has(c.id)">
+                            {{'2faInstructions' | i18n}}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</div>
+<ng-template #cipherAddEdit></ng-template>

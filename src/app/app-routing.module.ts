@@ -52,6 +52,7 @@ import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
 import { ExposedPasswordsReportComponent } from './tools/exposed-passwords-report.component';
 import { ImportComponent } from './tools/import.component';
+import { InactiveTwoFactorReportComponent } from './tools/inactive-two-factor-report.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
 import { ReusedPasswordsReportComponent } from './tools/reused-passwords-report.component';
 import { ToolsComponent } from './tools/tools.component';
@@ -170,6 +171,11 @@ const routes: Routes = [
                     {
                         path: 'exposed-passwords-report',
                         component: ExposedPasswordsReportComponent,
+                        data: { titleId: 'exposedPasswordsReport' },
+                    },
+                    {
+                        path: 'inactive-two-factor-report',
+                        component: InactiveTwoFactorReportComponent,
                         data: { titleId: 'exposedPasswordsReport' },
                     },
                 ],
