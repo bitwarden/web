@@ -1308,6 +1308,39 @@
   "noUnsecuredWebsites": {
     "message": "No items in your vault have unsecured URIs."
   },
+  "exposedPasswordsReport": {
+    "message": "Exposed Passwords Report"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "Exposed passwords have been uncovered in known data breaches."
+  },
+  "exposedPasswordsFound": {
+    "message": "Exposed Passwords Found"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+  },
+  "checkExposedPasswords": {
+    "message": "Check Exposed Passwords"
+  },
+  "exposedXTimes": {
+    "message": "Exposed $COUNT$ time(s)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
   "weakPasswordsReport": {
     "message": "Weak Passwords Report"
   },

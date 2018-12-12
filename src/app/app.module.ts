@@ -105,6 +105,7 @@ import { VerifyEmailComponent } from './settings/verify-email.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
+import { ExposedPasswordsReportComponent } from './tools/exposed-passwords-report.component';
 import { ImportComponent } from './tools/import.component';
 import { PasswordGeneratorHistoryComponent } from './tools/password-generator-history.component';
 import { PasswordGeneratorComponent } from './tools/password-generator.component';
@@ -222,6 +223,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         DeleteOrganizationComponent,
         DomainRulesComponent,
         ExportComponent,
+        ExposedPasswordsReportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
         FooterComponent,
