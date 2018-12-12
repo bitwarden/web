@@ -1284,6 +1284,135 @@
   "reports": {
     "message": "Rapportages"
   },
+  "unsecuredWebsitesReport": {
+    "message": "Unsecured Websites Report"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "Unsecured Websites Found"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "No items in your vault have unsecured URIs."
+  },
+  "inactive2faReport": {
+    "message": "Inactive 2FA Report"
+  },
+  "inactive2faReportDesc": {
+    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+  },
+  "inactive2faFound": {
+    "message": "Logins Without 2FA Found"
+  },
+  "inactive2faFoundDesc": {
+    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noInactive2fa": {
+    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+  },
+  "instructions": {
+    "message": "Instructions"
+  },
+  "exposedPasswordsReport": {
+    "message": "Exposed Passwords Report"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+  },
+  "exposedPasswordsFound": {
+    "message": "Exposed Passwords Found"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+  },
+  "checkExposedPasswords": {
+    "message": "Check Exposed Passwords"
+  },
+  "exposedXTimes": {
+    "message": "Exposed $COUNT$ time(s)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
+  "weakPasswordsReport": {
+    "message": "Weak Passwords Report"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+  },
+  "weakPasswordsFound": {
+    "message": "Weak Passwords Found"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "No items in your vault have weak passwords."
+  },
+  "reusedPasswordsReport": {
+    "message": "Reused Passwords Report"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+  },
+  "reusedPasswordsFound": {
+    "message": "Reused Passwords Found"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "No logins in your vault have passwords that are being reused."
+  },
+  "reusedXTimes": {
+    "message": "Reused $COUNT$ times",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
   "dataBreachReport": {
     "message": "Datalek verslag"
   },
@@ -1361,6 +1490,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "Extra tweestapsaanmeldingsopties zoals YubiKey, FIDO U2F en Duo."
+  },
+  "premiumSignUpReports": {
+    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
   },
   "premiumSignUpTotp": {
     "message": "TOTP-verificatiecodegenerator (tweestapsaanmelding) voor aanmeldingsgegevens in uw kluis."
@@ -2531,15 +2663,19 @@
   },
   "strong": {
     "message": "Sterk",
-    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
     "message": "Goed",
-    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
     "message": "Zwak",
-    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "Very Weak",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
     "message": "Zwak hoofdwachtwoord"
@@ -2580,5 +2716,9 @@
   "dontAskFingerprintAgain": {
     "message": "Niet meer vragen om de vingerafdrukfrase te controleren",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "free": {
+    "message": "Free",
+    "description": "Free, as in 'Free beer'"
   }
 }
