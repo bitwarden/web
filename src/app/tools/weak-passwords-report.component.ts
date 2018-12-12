@@ -22,6 +22,8 @@ import { CipherReportComponent } from './cipher-report.component';
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
     passwordStrengthMap = new Map<string, [string, string]>();
 
+    private passwordStrengthCache = new Map<string, number>();
+
     constructor(private ciphersService: CipherService, private passwordGenerationService: PasswordGenerationService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
         userService: UserService) {
@@ -37,22 +39,20 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     async setCiphers() {
         const allCiphers = await this.ciphersService.getAllDecrypted();
         const weakPasswordCiphers: CipherView[] = [];
-        const promises: Array<Promise<any>> = [];
         allCiphers.forEach((c) => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
                 return;
             }
-            const promise = new Promise((resolve) => {
+            if (!this.passwordStrengthCache.has(c.login.password)) {
                 const result = this.passwordGenerationService.passwordStrength(c.login.password);
-                if (result.score <= 3) {
-                    this.passwordStrengthMap.set(c.id, this.scoreKey(result.score));
-                    weakPasswordCiphers.push(c);
-                }
-                resolve();
-            });
-            promises.push(promise);
+                this.passwordStrengthCache.set(c.login.password, result.score);
+            }
+            const score = this.passwordStrengthCache.get(c.login.password);
+            if (score != null && score <= 3) {
+                this.passwordStrengthMap.set(c.id, this.scoreKey(score));
+                weakPasswordCiphers.push(c);
+            }
         });
-        await Promise.all(promises);
         this.ciphers = weakPasswordCiphers;
     }
 
