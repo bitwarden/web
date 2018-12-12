@@ -1291,13 +1291,13 @@
     "message": "Unsecured Websites Report"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme."
+    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme so that your connection is encrypted."
   },
   "unsecuredWebsitesFound": {
     "message": "Unsecured Websites Found"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:// if they allow it.",
+    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:// if the website allows it.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1318,7 +1318,7 @@
     "message": "Logins Without 2FA Found"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect your accounts, you should always use two-factor authentication.",
+    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1336,7 +1336,7 @@
     "message": "Exposed Passwords Report"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords have been uncovered in known data breaches."
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "Exposed Passwords Found"
@@ -1369,13 +1369,13 @@
     "message": "Weak Passwords Report"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that brute force passwords."
+    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
   },
   "weakPasswordsFound": {
     "message": "Weak Passwords Found"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have weak passwords. You should update them to use stronger passwords.",
+    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1396,7 +1396,7 @@
     "message": "Reused Passwords Found"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them.",
+    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
     "placeholders": {
       "count": {
         "content": "$1",
