@@ -208,7 +208,7 @@
     "message": "Sichtbarkeit umschalten"
   },
   "toggleCollapse": {
-    "message": "Toggle Collapse",
+    "message": "Sammlung ein- \/ ausklappen",
     "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
@@ -746,7 +746,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "Sie haben $COUNT$ Einträge ausgewählt, $SHAREABLE_COUNT$ davon können geteilt werden, $NONSHAREABLE_COUNT$ nicht.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -772,7 +772,7 @@
     "message": "Warnung"
   },
   "exportWarning": {
-    "message": "Dieser Export enthält Ihre unverschlüsselten Daten im CSV-Format. Sie sollten sie nicht speichern oder über unsichere Kanäle (z. B. E-Mail) senden. Löschen Sie sie sofort nach der Verwendung."
+    "message": "Dieser Export enthält deine unverschlüsselten Daten im CSV-Format. Du solltest sie nicht speichern oder über unsichere Kanäle (z. B. E-Mail) senden. Lösche sie sofort nach ihrer Verwendung."
   },
   "exportMasterPassword": {
     "message": "Geben Sie das Master-Passwort ein, um Ihre Tresordaten zu exportieren."
@@ -1284,6 +1284,135 @@
   "reports": {
     "message": "Berichte"
   },
+  "unsecuredWebsitesReport": {
+    "message": "Unsecured Websites Report"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "Unsecured Websites Found"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "No items in your vault have unsecured URIs."
+  },
+  "inactive2faReport": {
+    "message": "Inactive 2FA Report"
+  },
+  "inactive2faReportDesc": {
+    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+  },
+  "inactive2faFound": {
+    "message": "Logins Without 2FA Found"
+  },
+  "inactive2faFoundDesc": {
+    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noInactive2fa": {
+    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+  },
+  "instructions": {
+    "message": "Instructions"
+  },
+  "exposedPasswordsReport": {
+    "message": "Exposed Passwords Report"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+  },
+  "exposedPasswordsFound": {
+    "message": "Exposed Passwords Found"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+  },
+  "checkExposedPasswords": {
+    "message": "Check Exposed Passwords"
+  },
+  "exposedXTimes": {
+    "message": "Exposed $COUNT$ time(s)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
+  "weakPasswordsReport": {
+    "message": "Weak Passwords Report"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+  },
+  "weakPasswordsFound": {
+    "message": "Weak Passwords Found"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "No items in your vault have weak passwords."
+  },
+  "reusedPasswordsReport": {
+    "message": "Reused Passwords Report"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+  },
+  "reusedPasswordsFound": {
+    "message": "Reused Passwords Found"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "No logins in your vault have passwords that are being reused."
+  },
+  "reusedXTimes": {
+    "message": "Reused $COUNT$ times",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
   "dataBreachReport": {
     "message": "Datendiebstahl-Bericht"
   },
@@ -1362,6 +1491,9 @@
   "premiumSignUpTwoStep": {
     "message": "Zusätzliche Zwei-Faktor-Authentifizierungsmöglichkeiten wie z.B. YubiKey, FIDO U2F und Duo."
   },
+  "premiumSignUpReports": {
+    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+  },
   "premiumSignUpTotp": {
     "message": "TOTP Verifizierungscode-Generator (2FA) für Konten in Ihrem Tresor."
   },
@@ -1384,10 +1516,10 @@
     "message": "Erweiterungen"
   },
   "premiumAccess": {
-    "message": "Premium Access"
+    "message": "Zugriff für Premium"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "message": "Sie können allen Mitgliedern Ihrer Organisation für den Preis $PRICE$ \/ $INTERVAL$ kaufen.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -2202,7 +2334,7 @@
     "message": "Bestätigen"
   },
   "confirmUser": {
-    "message": "Confirm User"
+    "message": "Benutzer bestätigen"
   },
   "hasBeenConfirmed": {
     "message": "$USER$ wurde bestätigt.",
@@ -2530,55 +2662,63 @@
     "message": "Wem gehört dieser Eintrag?"
   },
   "strong": {
-    "message": "Strong",
-    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+    "message": "Stark",
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
-    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+    "message": "Gut",
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
-    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+    "message": "Schwach",
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "Very Weak",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
-    "message": "Weak Master Password"
+    "message": "Schwaches Haupt-Passwort"
   },
   "weakMasterPasswordDesc": {
-    "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
+    "message": "Das Haupt-Passwort, das Sie gewählt haben ist schwach. Sie sollten ein starkes Haupt-Passwort auswählen, um Ihr Bitwarden-Konto richtig zu schützen. Sind Sie sicher, dass Sie dieses Haupt-Passwort verwenden sollen?"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "Auch meinen Verschlüsselungsschlüssel aktualisieren"
   },
   "rotateEncKeyTitle": {
-    "message": "Rotate Encryption Key"
+    "message": "Verschlüsselungscode aktualisieren"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "Sind Sie sich sicher, dass Sie ihren Schlüssel aktualisieren möchten?"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "Dieser Eintrag hat Anhänge die repariert werden müssen."
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "Diese Dateianlage muss aufgrund ihres Alters aktualisiert werden. Klicken Sie um mehr zu erfahren."
   },
   "fix": {
-    "message": "Fix",
+    "message": "Reparieren",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "Es gibt Dateianhänge in ihrem Tresor die repariert werden müssen, bevor du deienn Verschlüsselungsschlüssel aktualisierst."
   },
   "yourAccountsFingerprint": {
-    "message": "Your account's fingerprint phrase",
+    "message": "Prüfschlüssel für deinen Account",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+    "message": "Um die Sicherheit ihres Hauptpasswortes zu gewähren, verifizieren Sie bitte den Prüfschlüssel des Benutzers.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "Nicht erneut nach dem Prüfschlüssel fragen",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "free": {
+    "message": "Free",
+    "description": "Free, as in 'Free beer'"
   }
 }
