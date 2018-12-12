@@ -16,7 +16,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">{{'reports' | i18n}}</div>
+                <div class="card-header d-flex">
+                    {{'reports' | i18n}}
+                    <div class="ml-auto">
+                        <a href="#" appStopClick class="badge badge-primary" *ngIf="!canAccessPremium" (click)="premiumRequired()">
+                            {{'premium' | i18n}}
+                        </a>
+                    </div>
+                </div>
                 <div class="list-group list-group-flush">
                     <a routerLink="exposed-passwords-report" class="list-group-item" routerLinkActive="active">
                         {{'exposedPasswordsReport' | i18n}}
@@ -33,8 +40,13 @@
                     <a routerLink="inactive-two-factor-report" class="list-group-item" routerLinkActive="active">
                         {{'inactive2faReport' | i18n}}
                     </a>
-                    <a routerLink="breach-report" class="list-group-item" routerLinkActive="active">
+                    <a routerLink="breach-report" class="list-group-item d-flex" routerLinkActive="active">
                         {{'dataBreachReport' | i18n}}
+                        <div class="ml-auto">
+                            <span class="badge badge-success" *ngIf="!canAccessPremium">
+                                {{'free' | i18n | uppercase}}
+                            </span>
+                        </div>
                     </a>
                 </div>
             </div>
