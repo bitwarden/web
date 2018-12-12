@@ -16,7 +16,7 @@
     </app-callout>
     <ng-container *ngIf="ciphers.length">
         <app-callout type="danger" title="{{'unsecuredWebsitesFound' | i18n}}">
-            {{'unsecuredWebsitesFoundDesc' | i18n : ciphers.length}}
+            {{'unsecuredWebsitesFoundDesc' | i18n : (ciphers.length | number)}}
         </app-callout>
         <table class="table table-hover table-list table-ciphers">
             <tbody>
