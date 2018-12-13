@@ -43,11 +43,26 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
                 return;
             }
-            if (!this.passwordStrengthCache.has(c.login.password)) {
-                const result = this.passwordGenerationService.passwordStrength(c.login.password);
-                this.passwordStrengthCache.set(c.login.password, result.score);
+            const hasUsername = c.login.username != null && c.login.username.trim() !== '';
+            const cacheKey = c.login.password + '_____' + (hasUsername ? c.login.username : '');
+            if (!this.passwordStrengthCache.has(cacheKey)) {
+                let userInput: string[] = [];
+                if (hasUsername) {
+                    const atPosition = c.login.username.indexOf('@');
+                    if (atPosition > -1) {
+                        userInput = userInput.concat(
+                            c.login.username.substr(0, atPosition).trim().toLowerCase().split(/[^A-Za-z0-9]/))
+                            .filter((i) => i.length >= 3);
+                    } else {
+                        userInput = c.login.username.trim().toLowerCase().split(/[^A-Za-z0-9]/)
+                            .filter((i) => i.length >= 3);
+                    }
+                }
+                const result = this.passwordGenerationService.passwordStrength(c.login.password,
+                    userInput.length > 0 ? userInput : null);
+                this.passwordStrengthCache.set(cacheKey, result.score);
             }
-            const score = this.passwordStrengthCache.get(c.login.password);
+            const score = this.passwordStrengthCache.get(cacheKey);
             if (score != null && score <= 3) {
                 this.passwordStrengthMap.set(c.id, this.scoreKey(score));
                 weakPasswordCiphers.push(c);
