@@ -10,6 +10,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherType } from 'jslib/enums/cipherType';
 
+import { CipherView } from 'jslib/models/view/cipherView';
+
 import { CipherReportComponent } from './cipher-report.component';
 
 @Component({
@@ -17,7 +19,7 @@ import { CipherReportComponent } from './cipher-report.component';
     templateUrl: 'unsecured-websites-report.component.html',
 })
 export class UnsecuredWebsitesReportComponent extends CipherReportComponent implements OnInit {
-    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
         messagingService: MessagingService, userService: UserService) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
@@ -29,7 +31,7 @@ export class UnsecuredWebsitesReportComponent extends CipherReportComponent impl
     }
 
     async setCiphers() {
-        const allCiphers = await this.ciphersService.getAllDecrypted();
+        const allCiphers = await this.getAllCiphers();
         const unsecuredCiphers = allCiphers.filter((c) => {
             if (c.type !== CipherType.Login || !c.login.hasUris) {
                 return false;
@@ -37,5 +39,9 @@ export class UnsecuredWebsitesReportComponent extends CipherReportComponent impl
             return c.login.uris.find((u) => u.uri != null && u.uri.indexOf('http://') === 0) != null;
         });
         this.ciphers = unsecuredCiphers;
+    }
+
+    protected getAllCiphers(): Promise<CipherView[]> {
+        return this.cipherService.getAllDecrypted();
     }
 }

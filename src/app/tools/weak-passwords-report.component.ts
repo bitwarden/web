@@ -24,7 +24,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
 
     private passwordStrengthCache = new Map<string, number>();
 
-    constructor(private ciphersService: CipherService, private passwordGenerationService: PasswordGenerationService,
+    constructor(protected cipherService: CipherService, protected passwordGenerationService: PasswordGenerationService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
         userService: UserService) {
         super(componentFactoryResolver, userService, messagingService, true);
@@ -37,7 +37,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     }
 
     async setCiphers() {
-        const allCiphers = await this.ciphersService.getAllDecrypted();
+        const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
         allCiphers.forEach((c) => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
@@ -69,6 +69,10 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             }
         });
         this.ciphers = weakPasswordCiphers;
+    }
+
+    protected getAllCiphers(): Promise<CipherView[]> {
+        return this.cipherService.getAllDecrypted();
     }
 
     private scoreKey(score: number): [string, string] {

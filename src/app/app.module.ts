@@ -70,7 +70,16 @@ import { ImportComponent as OrgImportComponent } from './organizations/tools/imp
 import {
     InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
 } from './organizations/tools/inactive-two-factor-report.component';
+import {
+    ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent,
+} from './organizations/tools/reused-passwords-report.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
+import {
+    UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent,
+} from './organizations/tools/unsecured-websites-report.component';
+import {
+    WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
+} from './organizations/tools/weak-passwords-report.component';
 
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
 import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
@@ -267,6 +276,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgManageCollectionsComponent,
         OrgManageComponent,
         OrgPeopleComponent,
+        OrgReusedPasswordsReportComponent,
         OrgSettingComponent,
         OrgToolsComponent,
         OrgTwoFactorSetupComponent,
@@ -275,7 +285,9 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgUserGroupsComponent,
         OrganizationsComponent,
         OrganizationLayoutComponent,
+        OrgUnsecuredWebsitesReportComponent,
         OrgVaultComponent,
+        OrgWeakPasswordsReportComponent,
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
         PasswordStrengthComponent,

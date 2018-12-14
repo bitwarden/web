@@ -40,7 +40,16 @@ import { ImportComponent as OrgImportComponent } from './organizations/tools/imp
 import {
     InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
 } from './organizations/tools/inactive-two-factor-report.component';
+import {
+    ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent,
+} from './organizations/tools/reused-passwords-report.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
+import {
+    UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent,
+} from './organizations/tools/unsecured-websites-report.component';
+import {
+    WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
+} from './organizations/tools/weak-passwords-report.component';
 
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
@@ -213,6 +222,21 @@ const routes: Routes = [
                         path: 'inactive-two-factor-report',
                         component: OrgInactiveTwoFactorReportComponent,
                         data: { titleId: 'inactive2faReport' },
+                    },
+                    {
+                        path: 'reused-passwords-report',
+                        component: OrgReusedPasswordsReportComponent,
+                        data: { titleId: 'reusedPasswordsReport' },
+                    },
+                    {
+                        path: 'unsecured-websites-report',
+                        component: OrgUnsecuredWebsitesReportComponent,
+                        data: { titleId: 'unsecuredWebsitesReport' },
+                    },
+                    {
+                        path: 'weak-passwords-report',
+                        component: OrgWeakPasswordsReportComponent,
+                        data: { titleId: 'weakPasswordsReport' },
                     },
                 ],
             },

@@ -21,7 +21,7 @@ import { CipherReportComponent } from './cipher-report.component';
 export class ReusedPasswordsReportComponent extends CipherReportComponent implements OnInit {
     passwordUseMap: Map<string, number>;
 
-    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
         messagingService: MessagingService, userService: UserService) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
@@ -33,7 +33,7 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
     }
 
     async setCiphers() {
-        const allCiphers = await this.ciphersService.getAllDecrypted();
+        const allCiphers = await this.getAllCiphers();
         const ciphersWithPasswords: CipherView[] = [];
         this.passwordUseMap = new Map<string, number>();
         allCiphers.forEach((c) => {
@@ -50,5 +50,9 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
         const reusedPasswordCiphers = ciphersWithPasswords.filter((c) =>
             this.passwordUseMap.has(c.login.password) && this.passwordUseMap.get(c.login.password) > 1);
         this.ciphers = reusedPasswordCiphers;
+    }
+
+    protected getAllCiphers(): Promise<CipherView[]> {
+        return this.cipherService.getAllDecrypted();
     }
 }

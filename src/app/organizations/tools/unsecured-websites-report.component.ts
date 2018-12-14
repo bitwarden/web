@@ -9,16 +9,16 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import {
-    InactiveTwoFactorReportComponent as BaseInactiveTwoFactorReportComponent,
-} from '../../tools/inactive-two-factor-report.component';
+    UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent,
+} from '../../tools/unsecured-websites-report.component';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
 @Component({
-    selector: 'app-inactive-two-factor-report',
-    templateUrl: '../../tools/inactive-two-factor-report.component.html',
+    selector: 'app-unsecured-websites-report',
+    templateUrl: '../../tools/unsecured-websites-report.component.html',
 })
-export class InactiveTwoFactorReportComponent extends BaseInactiveTwoFactorReportComponent {
+export class UnsecuredWebsitesReportComponent extends BaseUnsecuredWebsitesReportComponent {
     constructor(cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
         messagingService: MessagingService, userService: UserService,
         private route: ActivatedRoute) {

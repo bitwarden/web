@@ -8,17 +8,17 @@ import { CipherService } from 'jslib/abstractions/cipher.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-import {
-    InactiveTwoFactorReportComponent as BaseInactiveTwoFactorReportComponent,
-} from '../../tools/inactive-two-factor-report.component';
-
 import { CipherView } from 'jslib/models/view/cipherView';
 
+import {
+    ReusedPasswordsReportComponent as BaseReusedPasswordsReportComponent,
+} from '../../tools/reused-passwords-report.component';
+
 @Component({
-    selector: 'app-inactive-two-factor-report',
-    templateUrl: '../../tools/inactive-two-factor-report.component.html',
+    selector: 'app-reused-passwords-report',
+    templateUrl: '../../tools/reused-passwords-report.component.html',
 })
-export class InactiveTwoFactorReportComponent extends BaseInactiveTwoFactorReportComponent {
+export class ReusedPasswordsReportComponent extends BaseReusedPasswordsReportComponent {
     constructor(cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
         messagingService: MessagingService, userService: UserService,
         private route: ActivatedRoute) {
