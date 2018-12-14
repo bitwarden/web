@@ -19,7 +19,7 @@ export class ToolsComponent implements OnInit {
         this.canAccessPremium = await this.userService.canAccessPremium();
     }
 
-    async premiumRequired() {
+    premiumRequired() {
         if (!this.canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;

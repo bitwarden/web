@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Organization } from 'jslib/models/domain/organization';
 
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ToolsComponent {
     organization: Organization;
     accessReports = false;
 
-    constructor(private route: ActivatedRoute, private userService: UserService) { }
+    constructor(private route: ActivatedRoute, private userService: UserService,
+        private messagingService: MessagingService) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
@@ -24,4 +26,7 @@ export class ToolsComponent {
         });
     }
 
+    upgradeOrganization() {
+        this.messagingService.send('upgradeOrganization', { organizationId: this.organization.id });
+    }
 }

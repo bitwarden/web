@@ -12,9 +12,14 @@
                     </a>
                 </div>
             </div>
-            <div class="card" *ngIf="accessReports">
-                <div class="card-header">
+            <div class="card">
+                <div class="card-header d-flex">
                     {{'reports' | i18n}}
+                    <div class="ml-auto">
+                        <a href="#" appStopClick class="badge badge-primary" *ngIf="!accessReport" (click)="upgradeOrganization()">
+                            {{'upgrade' | i18n}}
+                        </a>
+                    </div>
                 </div>
                 <div class="list-group list-group-flush">
                     <a routerLink="exposed-passwords-report" class="list-group-item" routerLinkActive="active">

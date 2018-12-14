@@ -97,14 +97,14 @@ export class AddEditComponent extends BaseAddEditComponent {
         return confirmed;
     }
 
-    async premiumRequired() {
+    premiumRequired() {
         if (!this.canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;
         }
     }
 
-    async upgradeOrganization() {
+    upgradeOrganization() {
         this.messagingService.send('upgradeOrganization', { organizationId: this.cipher.organizationId });
     }
 
