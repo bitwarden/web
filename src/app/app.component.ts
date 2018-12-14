@@ -81,7 +81,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private lockService: LockService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
         private sanitizer: DomSanitizer, private searchService: SearchService,
-        private notificationsService: NotificationsService) { }
+        private notificationsService: NotificationsService, private routerService: RouterService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
