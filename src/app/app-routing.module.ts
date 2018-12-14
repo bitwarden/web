@@ -37,6 +37,9 @@ import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
 } from './organizations/tools/exposed-passwords-report.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
+import {
+    InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
+} from './organizations/tools/inactive-two-factor-report.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
 
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
@@ -179,7 +182,7 @@ const routes: Routes = [
                     {
                         path: 'inactive-two-factor-report',
                         component: InactiveTwoFactorReportComponent,
-                        data: { titleId: 'exposedPasswordsReport' },
+                        data: { titleId: 'inactive2faReport' },
                     },
                 ],
             },
@@ -205,6 +208,11 @@ const routes: Routes = [
                         path: 'exposed-passwords-report',
                         component: OrgExposedPasswordsReportComponent,
                         data: { titleId: 'exposedPasswordsReport' },
+                    },
+                    {
+                        path: 'inactive-two-factor-report',
+                        component: OrgInactiveTwoFactorReportComponent,
+                        data: { titleId: 'inactive2faReport' },
                     },
                 ],
             },

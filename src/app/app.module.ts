@@ -67,6 +67,9 @@ import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
 } from './organizations/tools/exposed-passwords-report.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
+import {
+    InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
+} from './organizations/tools/inactive-two-factor-report.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
 
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
@@ -257,6 +260,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgExportComponent,
         OrgExposedPasswordsReportComponent,
         OrgImportComponent,
+        OrgInactiveTwoFactorReportComponent,
         OrgGroupAddEditComponent,
         OrgGroupingsComponent,
         OrgGroupsComponent,

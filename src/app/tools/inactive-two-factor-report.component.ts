@@ -24,7 +24,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     services = new Map<string, string>();
     cipherDocs = new Map<string, string>();
 
-    constructor(private ciphersService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
         messagingService: MessagingService, userService: UserService) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
@@ -40,7 +40,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
             await this.load2fa();
         } catch { }
         if (this.services.size > 0) {
-            const allCiphers = await this.ciphersService.getAllDecrypted();
+            const allCiphers = await this.getAllCiphers();
             const inactive2faCiphers: CipherView[] = [];
             const promises: Array<Promise<void>> = [];
             const docs = new Map<string, string>();
@@ -66,6 +66,10 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
             this.ciphers = inactive2faCiphers;
             this.cipherDocs = docs;
         }
+    }
+
+    protected getAllCiphers(): Promise<CipherView[]> {
+        return this.cipherService.getAllDecrypted();
     }
 
     private async load2fa() {
