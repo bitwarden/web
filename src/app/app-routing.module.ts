@@ -33,6 +33,9 @@ import {
 } from './organizations/settings/two-factor-setup.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
+import {
+    ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
+} from './organizations/tools/exposed-passwords-report.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
 
@@ -198,6 +201,11 @@ const routes: Routes = [
                     { path: '', pathMatch: 'full', redirectTo: 'import' },
                     { path: 'import', component: OrgImportComponent, data: { titleId: 'importData' } },
                     { path: 'export', component: OrgExportComponent, data: { titleId: 'exportVault' } },
+                    {
+                        path: 'exposed-passwords-report',
+                        component: OrgExposedPasswordsReportComponent,
+                        data: { titleId: 'exposedPasswordsReport' },
+                    },
                 ],
             },
             {

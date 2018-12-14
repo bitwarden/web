@@ -6,7 +6,10 @@ import {
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
+import { Organization } from 'jslib/models/domain/organization';
+
 import { ModalComponent } from '../modal.component';
+import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/add-edit.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -18,11 +21,12 @@ export class CipherReportComponent {
     loading = false;
     hasLoaded = false;
     ciphers: CipherView[] = [];
+    organization: Organization;
 
     private modal: ModalComponent = null;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, protected userService: UserService,
-        protected messagingService: MessagingService, public requiresPremium: boolean) { }
+        protected messagingService: MessagingService, public requiresPaid: boolean) { }
 
     async load() {
         this.loading = true;
@@ -38,10 +42,18 @@ export class CipherReportComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddEditComponent>(
-            AddEditComponent, this.cipherAddEditModalRef);
+        let childComponent: OrgAddEditComponent | AddEditComponent;
+        if (this.organization != null) {
+            childComponent = this.modal.show<OrgAddEditComponent>(OrgAddEditComponent, this.cipherAddEditModalRef);
+            (childComponent as OrgAddEditComponent).organization = this.organization;
+        } else {
+            childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
+        }
 
         childComponent.cipherId = cipher == null ? null : cipher.id;
+        if (this.organization != null) {
+            childComponent.organizationId = this.organization.id;
+        }
         childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
             this.modal.close();
             await this.load();
@@ -58,12 +70,21 @@ export class CipherReportComponent {
         return childComponent;
     }
 
-    protected async checkPremium(): Promise<boolean> {
-        const accessPremium = await this.userService.canAccessPremium();
-        if (this.requiresPremium && !accessPremium) {
-            this.messagingService.send('premiumRequired');
-            this.loading = false;
-            return false;
+    protected async checkAccess(): Promise<boolean> {
+        if (this.organization != null) {
+            // TODO: Maybe we want to just make sure they are not on a free plan? Just compare use2fa for now
+            // since all paid plans include use2fa
+            if (this.requiresPaid && !this.organization.use2fa) {
+                this.messagingService.send('upgradeOrganization', { organizationId: this.organization.id });
+                return false;
+            }
+        } else {
+            const accessPremium = await this.userService.canAccessPremium();
+            if (this.requiresPaid && !accessPremium) {
+                this.messagingService.send('premiumRequired');
+                this.loading = false;
+                return false;
+            }
         }
         return true;
     }

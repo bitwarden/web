@@ -45,21 +45,7 @@ export class CiphersComponent extends BaseCiphersComponent {
             return;
         }
         this.accessEvents = this.organization.useEvents;
-        const ciphers = await this.apiService.getCiphersOrganization(this.organization.id);
-        if (ciphers != null && ciphers.data != null && ciphers.data.length) {
-            const decCiphers: CipherView[] = [];
-            const promises: any[] = [];
-            ciphers.data.forEach((r) => {
-                const data = new CipherData(r);
-                const cipher = new Cipher(data);
-                promises.push(cipher.decrypt().then((c) => decCiphers.push(c)));
-            });
-            await Promise.all(promises);
-            decCiphers.sort(this.cipherService.getLocaleSortingFunction());
-            this.allCiphers = decCiphers;
-        } else {
-            this.allCiphers = [];
-        }
+        this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
         this.applyFilter(filter);
         this.loaded = true;
     }

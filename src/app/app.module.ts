@@ -63,6 +63,9 @@ import {
 } from './organizations/settings/two-factor-setup.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
+import {
+    ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
+} from './organizations/tools/exposed-passwords-report.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
 
@@ -252,6 +255,7 @@ registerLocaleData(localeZhCn, 'zh-CN');
         OrgEntityUsersComponent,
         OrgEventsComponent,
         OrgExportComponent,
+        OrgExposedPasswordsReportComponent,
         OrgImportComponent,
         OrgGroupAddEditComponent,
         OrgGroupingsComponent,

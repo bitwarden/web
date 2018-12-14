@@ -22,24 +22,24 @@ import { CipherReportComponent } from './cipher-report.component';
 export class ExposedPasswordsReportComponent extends CipherReportComponent implements OnInit {
     exposedPasswordMap = new Map<string, number>();
 
-    constructor(private ciphersService: CipherService, private auditService: AuditService,
+    constructor(protected cipherService: CipherService, protected auditService: AuditService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
         userService: UserService) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
 
     ngOnInit() {
-        this.checkPremium();
+        this.checkAccess();
     }
 
     async load() {
-        if (await this.checkPremium()) {
+        if (await this.checkAccess()) {
             super.load();
         }
     }
 
     async setCiphers() {
-        const allCiphers = await this.ciphersService.getAllDecrypted();
+        const allCiphers = await this.getAllCiphers();
         const exposedPasswordCiphers: CipherView[] = [];
         const promises: Array<Promise<void>> = [];
         allCiphers.forEach((c) => {
@@ -56,5 +56,9 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
         });
         await Promise.all(promises);
         this.ciphers = exposedPasswordCiphers;
+    }
+
+    protected getAllCiphers(): Promise<CipherView[]> {
+        return this.cipherService.getAllDecrypted();
     }
 }

@@ -23,7 +23,7 @@ export class UnsecuredWebsitesReportComponent extends CipherReportComponent impl
     }
 
     async ngOnInit() {
-        if (await this.checkPremium()) {
+        if (await this.checkAccess()) {
             await super.load();
         }
     }
