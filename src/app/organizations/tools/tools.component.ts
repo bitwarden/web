@@ -20,9 +20,9 @@ export class ToolsComponent {
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
             this.organization = await this.userService.getOrganization(params.organizationId);
-            // TODO: Maybe we want to just make sure they are not on a free plan? Just compare use2fa for now
-            // since all paid plans include use2fa
-            this.accessReports = this.organization.use2fa;
+            // TODO: Maybe we want to just make sure they are not on a free plan? Just compare useTotp for now
+            // since all paid plans include useTotp
+            this.accessReports = this.organization.useTotp;
         });
     }
 

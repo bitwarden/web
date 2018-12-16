@@ -72,9 +72,9 @@ export class CipherReportComponent {
 
     protected async checkAccess(): Promise<boolean> {
         if (this.organization != null) {
-            // TODO: Maybe we want to just make sure they are not on a free plan? Just compare use2fa for now
-            // since all paid plans include use2fa
-            if (this.requiresPaid && !this.organization.use2fa) {
+            // TODO: Maybe we want to just make sure they are not on a free plan? Just compare useTotp for now
+            // since all paid plans include useTotp
+            if (this.requiresPaid && !this.organization.useTotp) {
                 this.messagingService.send('upgradeOrganization', { organizationId: this.organization.id });
                 return false;
             }
