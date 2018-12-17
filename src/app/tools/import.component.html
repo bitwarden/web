@@ -17,7 +17,7 @@
         </div>
     </div>
     <app-callout type="info" title="{{getFormatInstructionTitle()}}" *ngIf="format">
-        <ng-container *ngIf="format === 'bitwardencsv'">
+        <ng-container *ngIf="format === 'bitwardencsv' || format === 'bitwardenjson'">
             See detailed instructions on our help site at
             <a target="_blank" rel="noopener" href="https://help.bitwarden.com/article/export-your-data/">https://help.bitwarden.com/article/export-your-data/</a>
         </ng-container>
