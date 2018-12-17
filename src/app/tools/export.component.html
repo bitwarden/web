@@ -6,18 +6,18 @@
     <app-callout type="warning">{{'exportWarningDesc' | i18n}}</app-callout>
     <div class="row">
         <div class="form-group col-6">
-            <label for="masterPassword">{{'masterPass' | i18n}}</label>
-            <input id="masterPassword" type="password" name="MasterPassword" class="form-control" [(ngModel)]="masterPassword" required
-                appInputVerbatim>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-6">
             <label for="format">{{'fileFormat' | i18n}}</label>
             <select class="form-control" id="format" name="Format" [(ngModel)]="format">
                 <option value="json">.json</option>
                 <option value="csv">.csv</option>
             </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="masterPassword">{{'masterPass' | i18n}}</label>
+            <input id="masterPassword" type="password" name="MasterPassword" class="form-control" [(ngModel)]="masterPassword" required
+                appInputVerbatim>
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
