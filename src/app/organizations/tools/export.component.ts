@@ -28,7 +28,7 @@ export class ExportComponent extends BaseExportComponent {
     }
 
     getExportData() {
-        return this.exportService.getOrganizationExport(this.organizationId, 'csv');
+        return this.exportService.getOrganizationExport(this.organizationId, this.format);
     }
 
     getFileName() {
