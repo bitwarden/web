@@ -1,4 +1,4 @@
-﻿import * as DuoWebSDK from 'jslib/misc/duo';
+﻿import * as DuoWebSDK from 'duo_web_sdk';
 
 // tslint:disable-next-line
 require('./duo.scss');
