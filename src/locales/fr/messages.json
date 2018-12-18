@@ -662,7 +662,7 @@
     "message": "Identifiant non disponible"
   },
   "noTwoStepProviders": {
-    "message": "Ce compte dispose d'une authentification à deux facteurs, cependant aucun de vos services d'authentification à deux facteurs n'est supporté par ce navigateur web."
+    "message": "Ce compte dispose d'une authentification en deux étapes, cependant aucun de vos services d'authentification en deux étapes n'est supporté par ce navigateur web."
   },
   "noTwoStepProviders2": {
     "message": "Merci d'utiliser un navigateur web compatible (comme Chrome) et\/ou d'ajouter des services additionnels de double authentification qui sont mieux supportés par les navigateurs web (comme par exemple une application d'authentification)."
@@ -687,7 +687,7 @@
     "message": "Clé de sécurité YubiKey OTP"
   },
   "yubiKeyDesc": {
-    "message": "Utiliser une YubiKey pour accéder à votre compte. Fonctionne avec les appareils YubiKey série 4, série 5 et NEO."
+    "message": "Utilisez une YubiKey pour accéder à votre compte. Fonctionne avec les YubiKey série 4, série 5 et NEO."
   },
   "duoDesc": {
     "message": "Vérifier avec Duo Security via l'application Duo Mobile, un SMS, un appel vocal ou une clé de sécurité U2F.",
@@ -771,14 +771,17 @@
   "warning": {
     "message": "Attention"
   },
-  "exportWarning": {
-    "message": "Cet export contient des données non chiffrées au format .csv. Vous ne devriez ni le stocker ni l'envoyer via des canaux non sécurisés (tel que l'e-mail). Supprimez-le immédiatement après l'avoir utilisé."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Saisissez votre mot de passe maître pour exporter les données de votre coffre."
   },
   "exportVault": {
     "message": "Exporter le coffre"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "Les données de votre coffre-fort ont été exportées."
@@ -1285,16 +1288,16 @@
     "message": "Rapports"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Rapport sur les sites web non sécurisés"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "L'utilisation de sites Web non sécurisés avec le schéma http:\/\/ peut être dangereuse. Si le site Web le permet, vous devriez toujours y accéder en utilisant le schéma https:\/\/ afin que votre connexion soit chiffrée."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Sites web non sécurisés trouvés"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Nous avons trouvé $COUNT$ éléments dans votre coffre avec des URI non sécurisés. Vous devriez remplacer leur schéma URI par https:\/\/ si le site Web le permet.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Aucun élément dans votre coffre-fort n'a d'URI non sécurisés."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Rapport 2FA inactif"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "L'authentification à deux facteurs (2FA) est un paramètre de sécurité important qui permet de sécuriser vos comptes. Si le site Web le propose, vous devriez toujours activer l'authentification à deux facteurs."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Identifiants sans 2FA trouvés"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Nous avons trouvé $COUNT$ site(s) web(s) dans votre coffre qui ne sont peut-être pas configurés avec une authentification à deux facteurs (d'après twofactorauth.org). Pour mieux protéger ces comptes, vous devriez activer l'authentification à deux facteurs.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Aucun site web n'a été trouvé dans votre coffre-fort avec une configuration d'authentification à deux facteurs manquante."
   },
   "instructions": {
     "message": "Instructions"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Rapport sur les mots de passe exposés"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Les mots de passe exposés sont des mots de passe qui ont été découverts lors de fuites de données connues qui ont été rendues publiques ou vendues sur le Web par des pirates informatiques."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Mots de passe exposés trouvés"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Nous avons trouvé $COUNT$ éléments dans votre coffre qui ont des mots de passe qui ont été exposés dans des fuites de données connues. Vous devriez les changer pour utiliser un nouveau mot de passe.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Aucun élément de votre coffre-fort n'a de mots de passe qui ont été révélés lors de fuites de données connues."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Vérifier les mots de passe exposés"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Exposé $COUNT$ fois",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Rapport sur les mots de passe faibles"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Les mots de passe faibles peuvent être facilement devinés par des pirates informatiques et des outils automatisés qui sont utilisés pour pirater les mots de passe. Le générateur de mots de passe Bitwarden peut vous aider à créer des mots de passe forts."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Mots de passe faibles trouvés"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Nous avons trouvé $COUNT$ éléments dans votre coffre avec des mots de passe qui ne sont pas forts. Vous devriez les mettre à jour pour utiliser des mots de passe plus forts.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Aucun élément dans votre coffre n'a de mots de passe faibles."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Rapport sur les mots de passe réutilisés"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Si un service que vous utilisez est compromis, la réutilisation du même mot de passe ailleurs peut permettre aux pirates d'accéder facilement à un plus grand nombre de vos comptes en ligne. Vous devriez utiliser un mot de passe unique pour chaque compte ou service."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Mots de passe réutilisés trouvés"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Nous avons trouvé $COUNT$ mots de passe qui sont réutilisés dans votre coffre. Vous devriez les changer pour utiliser des mots de passe différents.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "Aucun identifiant dans votre coffre n'a de mots de passe qui sont réutilisés."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Réutilisé $COUNT$ fois",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1489,13 +1492,13 @@
     "message": "1 Go de stockage de fichiers chiffrés."
   },
   "premiumSignUpTwoStep": {
-    "message": "Options d'identification à double facteurs additionnelles comme YubiKey, FIDO U2F et Duo."
+    "message": "Options d'identification en deux étapes additionnelles comme YubiKey, FIDO U2F et Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Rapports sur l'hygiène des mots de passe, la santé des comptes et les fuites de données pour assurer la sécurité de votre coffre."
   },
   "premiumSignUpTotp": {
-    "message": "Génération d'un code de vérification TOTP (double facteurs \/ 2FA) pour les identifiants de votre coffre."
+    "message": "Génération d'un code de vérification TOTP (2FA) pour les identifiants de votre coffre."
   },
   "premiumSignUpSupport": {
     "message": "Support client prioritaire."
@@ -1908,7 +1911,7 @@
     "message": "Suivez les actions des utilisateurs avec les journaux d'audit"
   },
   "enforce2faDuo": {
-    "message": "Forcez l'authentification double facteurs (2FA) avec Duo"
+    "message": "Forcez l'authentification à deux facteurs (2FA) avec Duo"
   },
   "priorityCustomerSupport": {
     "message": "Support client prioritaire"
@@ -2058,13 +2061,13 @@
     "message": "Administrateur"
   },
   "adminDesc": {
-    "message": " Les administrateurs peuvent voir et gérer tous les éléments, les collections et les utilisateurs de votre organisation."
+    "message": "Les administrateurs peuvent voir et gérer tous les éléments, les collections et les utilisateurs de votre organisation."
   },
   "user": {
     "message": "Utilisateur"
   },
   "userDesc": {
-    "message": "Un utilisateur normal avec accès aux collections de votre organisation."
+    "message": "Un utilisateur standard avec accès aux collections qui lui sont assignées dans votre organisation."
   },
   "manager": {
     "message": "Gestionnaire"
@@ -2575,10 +2578,10 @@
     "message": "Chargement"
   },
   "upgrade": {
-    "message": "Mettre à jour"
+    "message": "Mettre à niveau"
   },
   "upgradeOrganization": {
-    "message": "Mettre à jour l'organisation"
+    "message": "Mettre à niveau l'organisation"
   },
   "upgradeOrganizationDesc": {
     "message": "Cette fonctionnalité n'est pas disponible pour les organisations gratuites. Passez à une offre payante pour déverouiller plus de fonctionnalités."
@@ -2674,7 +2677,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Très faible",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2721,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Gratuit",
     "description": "Free, as in 'Free beer'"
   }
 }
