@@ -771,14 +771,17 @@
   "warning": {
     "message": "Attenzione"
   },
-  "exportWarning": {
-    "message": "Questo file contiene i tuoi dati in formato .csv non crittografato. Non dovresti memorizzarlo o inviarlo attraverso canali non sicuri (come un'email). Assicurati di eliminarlo non appena hai finito di usarlo."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Inserisci la tua password principale per esportare i dati della tua cassaforte."
   },
   "exportVault": {
     "message": "Esporta Cassaforte"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "I dati della tua cassaforte sono stati esportati."
@@ -1285,16 +1288,16 @@
     "message": "Rapporti"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Rapporto sui siti Web non protetti"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "L'utilizzo di siti Web non protetti con lo schema http:\/\/ può essere pericoloso. Se il sito Web lo consente, devi sempre accedervi utilizzando lo schema https:\/\/ in modo che la connessione sia crittografata."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Siti Web non protetti trovati"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Abbiamo trovato $COUNT$ elementi nella tua cassaforte con URI non protetti. Dovresti cambiare il loro schema URL in https:\/\/ se il sito lo consente.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Nessun elemento nella tua cassaforte ha URI non protetti."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Rapporto 2FA inattivo"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "L'autenticazione a due fattori (2FA) è un'impostazione di sicurezza importante che consente di proteggere i tuoi account. Se il sito Web lo offre, devi sempre abilitare l'autenticazione a due fattori."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Login senza 2FA trovato"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Abbiamo trovato $COUNT$ sito(i) Web nella tua cassaforte che potrebbero non essere configurati con l'autenticazione a due fattori (secondo twofactorauth.org). Per proteggere ulteriormente questi account, è necessario abilitare l'autenticazione a due fattori.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Nessun sito Web è stato trovato nella cassaforte con una configurazione di autenticazione a due fattori mancante."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Istruzioni"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Rapporto password esposte"
   },
   "exposedPasswordsReportDesc": {
     "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Trovate password esposte"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Abbiamo trovato $COUNT$ elementi nella tua cassaforte che hanno password che sono state esposte a violazioni di dati noti. Dovresti cambiarli per usare una nuova password.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Nessun elemento nella tua cassaforte ha password che sono state esposte a violazioni note dei dati."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Controlla le password esposte"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Esposto $COUNT$ volta(e)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Rapporto sulle password deboli"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Le password deboli possono essere facilmente intuite dagli hacker e dagli strumenti automatici utilizzati per decifrare le password. Il generatore di password di Bitwarden può aiutarti a creare password complesse."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Trovate password deboli"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Abbiamo trovato $COUNT$ elementi nella tua cassaforte con password che non sono forti. Dovresti aggiornarli per usare password più forti.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Nessun elemento nella tua cassaforte ha password deboli."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Rapporto sulle password riutilizzate"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Se un servizio che usi è compromesso, riutilizzare la stessa password altrove può consentire agli hacker di accedere facilmente a più account online. È necessario utilizzare una password univoca per ogni account o servizio."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Trovate password riutilizzate"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Abbiamo trovato $COUNT$ password che vengono riutilizzate nella tua cassaforte. Dovresti cambiarli in un valore univoco.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "Nessun login nella tua cassaforte ha password che vengono riutilizzate."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Riutilizzato $COUNT$ volte",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1492,7 +1495,7 @@
     "message": "Opzioni di verifica in due passaggi addizionali come YubiKey, FIDO U2F, e Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Sicurezza delle password, integrità dell'account, e rapporti sulla violazione dei dati per mantenere sicura la tua cassaforte."
   },
   "premiumSignUpTotp": {
     "message": "Generatore di codice (2FA) di verifica di TOTP per gli account di accesso nel tuo vault."
@@ -2674,7 +2677,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Molto debole",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2721,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free, as in 'Free beer'"
   }
 }

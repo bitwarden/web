@@ -771,14 +771,17 @@
   "warning": {
     "message": "Advarsel"
   },
-  "exportWarning": {
-    "message": "Denne eksport indeholder dine ikke-krypterede data i .csv-format. Du bør ikke gemme eller sende den over usikre kanaler (f.eks. email). Slet den umiddelbart efter at du er færdig med at bruge den."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Indtast din hovedadgangskode for at eksportere dine data fra boksen."
   },
   "exportVault": {
     "message": "Eksportér boks"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "Dine boksdata er blevet eksporteret."
@@ -1285,16 +1288,16 @@
     "message": "Rapporter"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Rapport over ikke-sikrede hjemmesider"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Brug af ikke-sikrede hjemmesider med http:\/\/-protokollen kan være farlig. Hvis hjemmesiden tillader det, skal du altid tilgå det ved hjælp af https:\/\/-protokollen, så din forbindelse er krypteret."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Ikke-sikrede hjemmesider fundet"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Vi fandt $COUNT$ elementer i din boks med ikke-sikreded URI'er. Du bør ændre deres URI-protokol til https:\/\/ hvis hjemmesiden tillader det.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Ingen elementer i din boks har ikke-sikrede URI'er."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Rapport over inaktive 2FA"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "To-faktor autentificering (2FA) er en vigtig sikkerhedsindstilling, der hjælper med at sikre dine konti. Hvis hjemmesiden tilbyder det, skal du altid aktivere to-faktor autentificering."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Logins uden 2FA fundet"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Vi har fundet $COUNT$ hjemmeside(r) i din boks, der muligvis ikke er konfigureret med to-faktor autentificering (ifølge twofactorauth.org). For at beskytte disse konti yderligere bør du aktivere to-faktor autentificering.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Der blev ikke fundet nogen hjemmesider i din boks med manglende konfiguration af to-faktor autentificering."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Instruktioner"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Rapport over afslørede adgangskoder"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Afslørede adgangskoder er adgangskoder, der er blevet afsløret i kendte datalæk og er blevet offentliggjort eller solgt på det mørke web af hackere."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Afslørede adgangskoder fundet"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Vi fandt $COUNT$ elementer i din boks, som har adgangskoder, der blev afsløret i kendte datalæk. Du bør ændre dem og bruge en ny adgangskode.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Ingen elementer i din boks har adgangskoder, der har været afsløret i kendte datalæk."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Tjek for afslørede adgangskoder"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Afsløret $COUNT$ gang(e)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Rapport over svage adgangskoder"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Svage adgangskoder kan nemt gættes af hackere og automatiserede værktøjer, der bruges til at knække adgangskoder. Bitwarden adgangskodegenerator kan hjælpe dig med at oprette stærke adgangskoder."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Svage adgangskoder fundet"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Vi fandt $COUNT$ elementer i din boks med adgangskoder, der ikke er stærke. Du bør opdatere dem og bruge stærkere adgangskoder.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Ingen elementer i din boks har svage adgangskoder."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Rapport over genbrugte adgangskoder"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Hvis en tjeneste, som du bruger, bliver kompromitteret, kan genbrug af samme adgangskode andetsteds tillade, at hackere nemt får adgang til flere af dine onlinekonti. Du bør bruge en unik adgangskode for hver konto eller tjeneste."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Genbrugte adgangskoder fundet"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Vi fandt $COUNT$ adgangskoder, der genbruges i din boks. Du bør ændre dem til unikke koder.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "Ingen logins i din boks har adgangskoder, der genbruges."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Genbrugt $COUNT$ gange",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1486,13 +1489,13 @@
     "message": "Opgrader din konto til et premium medlemskab og lås op for nogle fantastiske ekstra funktioner."
   },
   "premiumSignUpStorage": {
-    "message": "1 GB krypteret filopbevaring."
+    "message": "1 GB krypteret lager til vedhæftede filer."
   },
   "premiumSignUpTwoStep": {
     "message": "Yderligere to-trins-loginmuligheder såsom YubiKey, FIDO U2F og Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Adgangskodehygiejne, kontosundhed og rapporter om datalæk til at holde din boks sikker."
   },
   "premiumSignUpTotp": {
     "message": "TOTP verifikationskode (2FA) generator til logins i din boks."
@@ -2674,7 +2677,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Meget svag",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2721,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free, as in 'Free beer'"
   }
 }

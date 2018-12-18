@@ -198,7 +198,7 @@
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
-    "message": "Vaikse sobivuse tuvastamine",
+    "message": "Vaikeseadistus",
     "description": "Default URI match detection for auto-fill."
   },
   "never": {
@@ -257,7 +257,7 @@
     "message": "Otsi kogumikku"
   },
   "searchFolder": {
-    "message": "Otsi kausta"
+    "message": "Otsi andmeid"
   },
   "searchFavorites": {
     "message": "Otsi lemmikute hulgast"
@@ -771,8 +771,8 @@
   "warning": {
     "message": "Hoiatus"
   },
-  "exportWarning": {
-    "message": "Ekspordi tulemusena luuakse ilma krüpteringuta .csv formaadis fail. Seda faili ei tohiks kaua käidelda ning mitte mingil juhul ebaturvaliselt saata (näiteks e-postiga). Kustuta see koheselt pärast kasutamist."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Hoidlas olevate andmete eksportimiseks on vajalik ülemparooli sisestamine."
@@ -780,11 +780,14 @@
   "exportVault": {
     "message": "Ekspordi hoidla"
   },
+  "fileFormat": {
+    "message": "File Format"
+  },
   "exportSuccess": {
     "message": "Hoidla on eksporditud."
   },
   "passwordGenerator": {
-    "message": "Parooli loomine"
+    "message": "Parooli genereerimine"
   },
   "minNumbers": {
     "message": "Vähim arv numbreid"
@@ -875,7 +878,7 @@
     "message": "KDF iteratsioonid"
   },
   "kdfIterationsDesc": {
-    "message": "Suuremad KDF iteratsioonid aitavad ülemparooli paremini jõhkra jõu rünneete vastu kaitsta. Soovitame kasutada väärtust $VALUE$ või suuremat.",
+    "message": "Suuremad KDF iteratsioonid aitavad ülemparooli paremini jõhkra jõu rünnete vastu kaitsta. Soovitame kasutada väärtust $VALUE$ või suuremat.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -884,7 +887,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Seadistades KDF-i liiga pikaks, võib Bitwardenisse sisselogimisel (ja lahtilukustamisel) tekkida jõudlusprobleeme ja hangumisi. Seda eriti aeglasemate protsessoritega seadmetes. Soovitame kasutada pikkus ligikaudu $INCREMENT$ ja testida jõudlust kõikides seadmetes.",
+    "message": "Seadistades KDF-i liiga pikaks, võib Bitwardenisse sisselogimisel (ja lahtilukustamisel) tekkida jõudlusprobleeme ja hangumisi. Seda eriti aeglasemate protsessoritega seadmetes. Soovitame kasutada pikkust ligikaudu $INCREMENT$ ja testida jõudlust kõikides seadmetes.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -905,7 +908,7 @@
     "message": "Ettevaatust, neid toiminguid ei saa tagasi võtta!"
   },
   "deauthorizeSessions": {
-    "message": "Sessioonide haldamine"
+    "message": "Sessioonide tühistamine"
   },
   "deauthorizeSessionsDesc": {
     "message": "Muretsed, et sinu kontosse on võõra seadme alt sisse logitud? Allpool saad kõikidest kasutatud seadmetest välja logida. See valik võib olla kasulik näiteks juhtudel, kus oled kasutanud avalikku arvutit või salvestasid kogemata parooli seadmes, mis sinule ei kuulu. Samuti nullib see tegevus kõik varasemad kaheastmelise kinnitamise poolt meelde jäetud seadmed."
@@ -993,7 +996,7 @@
     "message": "Erinevad Veebihoidla kohandamise valikud."
   },
   "optionsUpdated": {
-    "message": "Valikud on uuendatud"
+    "message": "Seadistus on uuendatud"
   },
   "language": {
     "message": "Keel"
@@ -1021,7 +1024,7 @@
     "message": "Domeeni reeglid"
   },
   "domainRulesDesc": {
-    "message": "Kui sul on erinevatel domenidel samade andmetega kontod, võid need domeenid märkida \"võrdväärseteks\". \"Globaalsed\" domeenid on need, mille Bitwarden juba eelseadistanud on."
+    "message": "Kui sul on erinevatel domeenidel samade andmetega kontod, võid need domeenid märkida \"võrdväärseteks\". \"Globaalsed\" domeenid on need, mille Bitwarden juba eelseadistanud on."
   },
   "globalEqDomains": {
     "message": "Globaalsed võrdväärsed domeenid"
@@ -1082,23 +1085,23 @@
     "message": "Sisselülitatud"
   },
   "premium": {
-    "message": "Preemium",
+    "message": "Premium",
     "description": "Premium Membership"
   },
   "premiumMembership": {
-    "message": "Preemium versioon"
+    "message": "Premium versioon"
   },
   "premiumRequired": {
-    "message": "Vajalik on Preemium versioon"
+    "message": "Nõutav on Premium konto"
   },
   "premiumRequiredDesc": {
-    "message": "Selle funktsiooni kasutamiseks on vajalik preemium kontot omada."
+    "message": "Selle funktsiooni kasutamiseks on vajalik premium kontot omada."
   },
   "youHavePremiumAccess": {
-    "message": "Sul on preemium ligipääs"
+    "message": "Sul on premium ligipääs"
   },
   "alreadyPremiumFromOrg": {
-    "message": "Organisatsiooni kuulumise tõttu on sul juba juurdepääs preemium funktsioonidele."
+    "message": "Organisatsiooni kuulumise tõttu on sul juba juurdepääs premium funktsioonidele."
   },
   "manage": {
     "message": "Haldamine"
@@ -1158,7 +1161,7 @@
     "message": "Sisesta YubiKey (NEO või 4. seeria) arvuti USB pessa."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Select in the first empty YubiKey input field below."
+    "message": "Vali esimene tühi YubiKey sisendväli allpool."
   },
   "twoFactorYubikeyTouchButton": {
     "message": "Puuduta YubiKey nuppu."
@@ -1173,7 +1176,7 @@
     "message": "Veebihoidla, töölaua rakendus, CL ja kõikide brauserite lisad seadmes, kus on USB port mis võimaldab YubiKeyd kasutada."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "NFC toega seadmel olevad äpid või USB port, mis saab YubiKey-d omaks võtta."
+    "message": "NFC toega seadmel olevad äpid või USB port, mis võimaldab YubiKeyd kasutada."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1194,7 +1197,7 @@
     }
   },
   "nfcSupport": {
-    "message": "NFS tugi"
+    "message": "NFC tugi"
   },
   "twoFactorYubikeySupportsNfc": {
     "message": "Üks minu võtmetest toetab NFC-d."
@@ -1285,16 +1288,16 @@
     "message": "Raportid"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Ebaturvalise veebilehe teavitus"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Ebaturvalise (http:\/\/) veebilehte kasutamine võib olla ohtlik. Kui veebileht seda võimaldab, siis soovitame tungivalt kasutada https:\/\/ versioon. Nii on ühendus ja saadetavad andmed krüpteeringuga kaitstud. "
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Leiti ebaturvaline veebileht"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Leidsime sinu hoidlast $COUNT$ ebaturvalist veebilehte. Kui veebilehed seda võimaldavad, soovitame tungivalt need https:\/\/ URL-ideks muuta ",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Hoidlas olevad kirjed ei kasuta ebaturvalisi URL-e."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Sisselülitamata 2FA hoiatus"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust tõstev seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelist kinnitamist kasutada. "
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "2FA-ta kontoandmed"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Leidsime sinu hoidlast $COUNT$ veebilehte, kus kaheastmeline kinnitamine ei pruugi olla sisselülitatud (kontrolliks kasutatakse twofactorauth.org). Nende kontode paremaks kaitsmiseks soovitame kaheastmelise kinnitamise sisse lülitada.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Hoidlast ei leitud veebilehti, kus kaheastmelise kinnitamise seadistus on välja lülitatud."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Juhised"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Lekkinud paroolide raport"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Lekkinud paroolid on paroolid, mis pärinevad andmeleketest. Neid paroole võidakse müüa tumeveebis ning nende kaudu võidakse ka sinu teistele kontodele ligi pääseda."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Avastatud on lekkinud paroole"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Leidsime sinu hoidlast $COUNT$ kirjet, millede paroolid on teadaolevate andmelekete tagajärjel avalikustatud. Soovitame tungivalt need paroolid ära vahetada.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Hoidlast ei leitud kirjeid, mis oleksid teadaolevate andmelekete kaudu avalikustatud."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Kontrolli lekkinud paroole"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Lekkinud $COUNT$ korda",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Nõrkade paroolide raport"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Nõrgad paroolid on häkkerite poolt lihtsasti lahtimurtavad, sest selleks kasutatakse automatiseeritud tööriistu. Bitwardeni parooli genereerija aitab sul tugevaid paroole luua."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Avastatud on nõrku paroole"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Leidsime sinu hoidlast $COUNT$ kirjet, milledel on nõrgad paroolid. Soovitame tungivalt need paroolid tugevamate vastu välja vahetada.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Hoidlas olevatest kirjetest ei leitud nõrku paroole."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Korduvate paroolide raport"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Kui kasutatav teenus või veebileht langeb rünnaku ohvriks, võib sama parooli kasutamine anda häkkeritele ligipääsu sinu teistele onlain kontodele. Soovitame tungivalt igas teenuses või kasutajakontos unikaalset parooli kasutada."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Leiti korduvalt kasutatud paroole"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Leidsime sinu hoidlast $COUNT$ parooli, mis on kasutusel rohkem kui üks kord Soovitame need paroolid unikaalseteks muuta.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "Hoidlas puuduvad paroolid, mida kasutatakse rohkem kui üks kord."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Kasutusel $COUNT$ korral.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1439,7 +1442,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ leiti kokku $COUNT$ erinevas andmelekkes.",
+    "message": "$USERNAME$ esineb kokku $COUNT$ erinevas andmelekkes.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1480,10 +1483,10 @@
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "Oled nüüd Preemium konto omanik."
+    "message": "Oled nüüd Premium konto omanik."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Muuda oma konto preemium kontoks ning saa osa paljudest lisahüvedest, mis sellega kaasnevad."
+    "message": "Muuda oma konto premium kontoks ning saa osa paljudest lisahüvedest, mis sellega kaasnevad."
   },
   "premiumSignUpStorage": {
     "message": "1 GB ulatuses krüpteeritud salvestusruum."
@@ -1492,7 +1495,7 @@
     "message": "Lisavõimalused kaheastmeliseks kinnitamiseks, näiteks YubiKey, FIDO U2F ja Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Parooli hügieen, konto seisukord ja andmelekete raportid aitavad hoidlat turvalisena hoida."
   },
   "premiumSignUpTotp": {
     "message": "TOTP kinnituskoodide (2FA) genereeria hoidlas olevatele kasutajakontodele."
@@ -1501,7 +1504,7 @@
     "message": "Kiirem klienditugi."
   },
   "premiumSignUpFuture": {
-    "message": "Kõik tulevased preemium funktsioonid - tasuta!"
+    "message": "Kõik tulevased premium funktsioonid - tasuta!"
   },
   "premiumPrice": {
     "message": "Kõik see ainult $PRICE$ \/ aastas!",
@@ -1519,7 +1522,7 @@
     "message": "Premium ligipääs"
   },
   "premiumAccessDesc": {
-    "message": "Saad kõikidele organisatsiooni liikmetele anda ligipääsu preemium funktsioonidele - hinnaga $PRICE$ \/$INTERVAL$.",
+    "message": "Saad kõikidele organisatsiooni liikmetele anda ligipääsu premium funktsioonidele - hinnaga $PRICE$ \/$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1574,7 +1577,7 @@
     "message": "Makse sooritatakse kohe pärast tellimuse esitamist. Järgmine makse toimub aasta pärast. Tellimust on võimalik igal ajal tühistada."
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Sinu valitud pakett sisaldab 7 päevast prooviperioodi. Krediitkaardilt ei debiteerita raha enne, kui prooviperiood otsa lõpeb. Kirjas olev summa debiteeritakse iga $INTERVAL$. Tellimust on võimalik igal ajal tühistada.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1601,7 +1604,7 @@
     "message": "Tühistamise ootel"
   },
   "subscriptionPendingCanceled": {
-    "message": "Tellimus on märgitud tühistatuks. Tellimus tühistatakse lõplikult käesoleva arveperioodi lõpus."
+    "message": "Tellimus on märgitud tühistatuks. Tellimus tühistatakse lõplikult käimasoleva arveperioodi lõpus."
   },
   "reinstateSubscription": {
     "message": "Tellimuse uuesti aktiveerimine"
@@ -1649,10 +1652,10 @@
     "message": "Lisa ruumi"
   },
   "removeStorage": {
-    "message": "Eemalda salvestusruum"
+    "message": "Vähenda salvestusruumi"
   },
   "subscriptionStorage": {
-    "message": "Sinu tellimuses on maksimaalselt $MAX_STORAGE$ GB krüpteeritud salvestusruumi. Praegu on kasutusel $USED_STORAGE$.",
+    "message": "Sinu tellimus lubab kasutada maksimaalselt $MAX_STORAGE$ GB krüpteeritud salvestusruumi. Praegu on kasutusel $USED_STORAGE$.",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1699,10 +1702,10 @@
     "message": "Eemaldatav GB hulk"
   },
   "storageAddNote": {
-    "message": "Lisades rohkem salvestusruumi, võetakse kehtiva maksemeetodi vahendusel koheselt selle eest tasu. Esimene makse tehakse proportsionaalselt koos järelejäänud summaga, mis sel arveldusperioodil tasuda tuleb."
+    "message": "Salvestusruumi suurendamisel võetakse kehtiva maksemeetodi vahendusel koheselt selle eest ka tasu. Esimene makse tehakse proportsionaalselt koos järelejäänud summaga, mis sel arveldusperioodil tasuda tuleb."
   },
   "storageRemoveNote": {
-    "message": "Salvestusmahu eemaldamisel arvestatakse järelejäänud summa järgmisest maksest krediidina maha."
+    "message": "Salvestusmahu vähendamisel arvestatakse järelejäänud summa järgmisest maksest krediidina maha."
   },
   "adjustedStorage": {
     "message": "Kohandati $AMOUNT$ GB salvestusruumi.",
@@ -1738,7 +1741,7 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "Muutmaks oma konto preemiumiks, pead üles laadima kehtiva litsentsifaili."
+    "message": "Muutmaks oma konto premiumiks, pead üles laadima kehtiva litsentsifaili."
   },
   "uploadLicenseFileOrg": {
     "message": "Loomaks asutusesiseseselt majutatud organisatsiooni, pead üles laadima kehtiva litsentsifaili."
@@ -1896,7 +1899,7 @@
     "message": "Ise majutamine (valikuline)"
   },
   "usersGetPremium": {
-    "message": "Kasutajad saavad juurdepääsu preemium funktsioonidele"
+    "message": "Kasutajad saavad juurdepääsu premium funktsioonidele"
   },
   "controlAccessWithGroups": {
     "message": "Halda gruppide abil kasutajate ligipääse"
@@ -1956,7 +1959,7 @@
     "message": "Hangi rakendused"
   },
   "loggedInAs": {
-    "message": "Logis sisse kui"
+    "message": "Sisse logitud kui"
   },
   "eventLogs": {
     "message": "Sündmuste logid"
@@ -1998,7 +2001,7 @@
     "message": "See grupp pääseb ligi ainult valitud kirjetele."
   },
   "readOnly": {
-    "message": "Ainult loetav"
+    "message": "Saab ainult lugeda"
   },
   "newCollection": {
     "message": "Uus kogumik"
@@ -2043,7 +2046,7 @@
     "message": "Kutsutud"
   },
   "accepted": {
-    "message": "Nõustutud"
+    "message": "Nõustunud"
   },
   "confirmed": {
     "message": "Kinnitatud"
@@ -2067,7 +2070,7 @@
     "message": "Tavaline kasutaja, kel on ligipääsu organisatsiooni kirjetele."
   },
   "manager": {
-    "message": "Administraator"
+    "message": "Haldaja"
   },
   "managerDesc": {
     "message": "Administraatorid pääsevad ligi ja saavad hallata organisatsiooni poolt määratud kollektsioone."
@@ -2379,7 +2382,7 @@
     "message": "Uuenda brauserit"
   },
   "updateBrowserDesc": {
-    "message": "Kasutad brauserit, mida ei toetata. Veebihoidla ei pruugi hästi töödata."
+    "message": "Kasutad brauserit, mida ei toetata. Veebihoidla ei pruugi hästi töötada."
   },
   "joinOrganization": {
     "message": "Liitu organisatsiooniga"
@@ -2536,7 +2539,7 @@
     "message": "Eemaldatavad kasutajad"
   },
   "seatsAddNote": {
-    "message": "Lisades rohkem kasutajaid, võetakse kehtiva maksemeetodi vahendusel koheselt selle eest tasu. Esimene makse tehakse proportsionaalselt koos järelejäänud summaga, mis sel arveldusperioodil tasuda tuleb."
+    "message": "Kasutajate hulga suurendamisel võetakse kehtiva maksemeetodi vahendusel selle eest koheselt ka tasu. Esimene makse tehakse proportsionaalselt koos järelejäänud summaga, mis sel arveldusperioodil tasuda tuleb."
   },
   "seatsRemoveNote": {
     "message": "Kasutajate eemaldamisel arvestatakse järelejäänud summa järgmisest maksest krediidina maha."
@@ -2596,7 +2599,7 @@
     "message": "Midagi pole valitud."
   },
   "submitAgreePolicies": {
-    "message": "Klikkides \"Saada\" nupule, nõustud järgnevate tingimustega:",
+    "message": "Klikkides \"Kinnita\" nupule, nõustud järgnevate tingimustega:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2674,7 +2677,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Väga nõrk",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2721,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Tasuta",
     "description": "Free, as in 'Free beer'"
   }
 }

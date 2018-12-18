@@ -288,7 +288,7 @@
     "message": "Identiteit"
   },
   "typeSecureNote": {
-    "message": "Veilige notitie"
+    "message": "Veilige notities"
   },
   "folders": {
     "message": "Mappen"
@@ -392,7 +392,7 @@
     "message": "Kluis"
   },
   "shareSelected": {
-    "message": "Deel geselecteerden"
+    "message": "Selectie delen"
   },
   "deleteSelected": {
     "message": "Verwijder geselecteerden"
@@ -440,10 +440,10 @@
     "message": "Object is bewerkt"
   },
   "sharedItem": {
-    "message": "Object is gedeeld"
+    "message": "Gedeeld object"
   },
   "sharedItems": {
-    "message": "Objecten zijn gedeeld"
+    "message": "Gedeelde objecten"
   },
   "deleteItem": {
     "message": "Object verwijderen"
@@ -491,7 +491,7 @@
     "message": "Weet u zeker dat u wilt afmelden?"
   },
   "logOut": {
-    "message": "Afmelden"
+    "message": "Uitloggen"
   },
   "ok": {
     "message": "Oké"
@@ -584,13 +584,13 @@
     "message": "Uw kluis is vergrendeld. Controleer uw hoofdwachtwoord om door te gaan."
   },
   "unlock": {
-    "message": "Ontgrendel"
+    "message": "Ontgrendelen"
   },
   "invalidMasterPassword": {
     "message": "Ongeldig hoofdwachtwoord"
   },
   "lockNow": {
-    "message": "Vergrendel nu"
+    "message": "Nu vergrendelen"
   },
   "noItemsInList": {
     "message": "Er zijn geen items om weer te geven."
@@ -771,14 +771,17 @@
   "warning": {
     "message": "Waarschuwing"
   },
-  "exportWarning": {
-    "message": "Deze export bevat niet-versleutelde gegevens in CSV-indeling. Deze dient niet te worden opgeslagen of over onveilige kanalen (zoals e-mail) verstuurd te worden. Verwijder het bestand zodra het niet meer nodig is."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Voer uw hoofdwachtwoord in om uw kluis-gegevens te exporteren."
   },
   "exportVault": {
     "message": "Kluis exporteren"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "Uw kluis-gegevens zijn geëxporteerd."
@@ -851,7 +854,7 @@
     "message": "Gelieve opnieuw aan te melden. Als u gebruik maakt van andere Bitwarden applicaties moet u hier ook opnieuw aanmelden."
   },
   "changeMasterPassword": {
-    "message": "Wijzig Hoofdwachtwoord"
+    "message": "Hoofdwachtwoord wijzigen"
   },
   "masterPasswordChanged": {
     "message": "Hoofdwachtwoord gewijzigd"
@@ -974,7 +977,7 @@
     "message": "Kies het import bestand"
   },
   "orCopyPasteFileContents": {
-    "message": "of kopieer en plak de inhoud van het import bestand"
+    "message": "of kopieer en plak de inhoud van het importbestand"
   },
   "instructionsFor": {
     "message": "Instructies voor $NAME$",
@@ -1285,16 +1288,16 @@
     "message": "Rapportages"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Verslag van niet-beveiligde websites"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Gebruikmaken van onbeveiligde websites met http:\/\/ -verbinding kan gevaarlijk zijn. Als de website het ondersteund, moet u deze altijd benaderen met behulp van beveiligde https:\/\/ -verbinding."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Niet-beveiligde websites gevonden"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "We vonden in uw kluis $COUNT$ items met onbeveiligde URIs. Als de website het ondersteund, moet u de URI wijzigen naar https:\/\/.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Geen items in uw kluis met niet-beveiligde URIs."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Verslag van niet-geactiveerde 2FA"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Verificatie met twee factoren (2FA) is een belangrijke instelling die bijdraagt aan de beveiliging van uw account. Als de website het ondersteund, zou twee-factor verificatie altijd ingeschakeld moeten zijn."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Aanmeldingen zonder 2FA gevonden"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "We vonden in uw kluis $COUNT$ website(s) die niet kunnen worden geconfigureerd met verificatie met twee factoren (volgens twofactorauth.org). Om deze accounts verder te beschermen, zou u verificatie met twee factoren moeten inschakelen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "In uw kluis zijn geen websites gevonden waarin een configuratie van verificatie met twee factoren ontbreekt."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Instructies"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Verslag van blootgestelde wachtwoorden"
   },
   "exposedPasswordsReportDesc": {
     "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Blootgestelde wachtwoorden gevonden"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "We vonden in uw kluis $COUNT$ wachtwoorden die bekend staan als 'gelekt' of gehackt. U zou deze moeten wijzigen in nieuwe wachtwoorden.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Geen items in uw kluis hebben wachtwoorden met wachtwoorden die bekend staan als 'gelekt' of gehackt."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Controleer blootgestelde wachtwoorden"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "$COUNT$ keer blootgesteld",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Verslag van zwakke wachtwoorden"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Zwakke wachtwoorden kunnen eenvoudig worden geraden door hackers en geautomatiseerde gereedschappen die worden gebruikt voor het kraken van wachtwoorden. De wachtwoordgenerator van Bitwarden kan u helpen bij het maken van sterke wachtwoorden."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Zwakke wachtwoorden gevonden"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "We vonden in uw kluis $COUNT$ wachtwoorden die niet sterk zijn. U zou deze moeten bijwerken naar sterkere wachtwoorden.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Geen items in uw kluis met zwakke wachtwoorden."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Verslag van dubbel gebruikte wachtwoorden"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Als een website of online dienst die u gebruikt wordt gecompromitteerd, dan kunnen hackers gemakkelijk toegang te krijgen tot meer van uw accounts. U zou voor elk account of dienst een uniek wachtwoord moeten gebruiken."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Dubbel gebruikte wachtwoorden gevonden"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "We vonden in uw kluis $COUNT$ wachtwoorden die dubbel worden gebruikt. U zou deze moeten veranderen tot unieke wachtwoorden.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "In uw kluis zijn geen aanmeldingen met hergebruikte wachtwoorden gevonden."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "$COUNT$ keer hergebruikt",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1492,7 +1495,7 @@
     "message": "Extra tweestapsaanmeldingsopties zoals YubiKey, FIDO U2F en Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Rapportage op wachtwoordhygiëne, gezondheid van uw account en gegevensinbreuk om uw kluis om veilig te houden."
   },
   "premiumSignUpTotp": {
     "message": "TOTP-verificatiecodegenerator (tweestapsaanmelding) voor aanmeldingsgegevens in uw kluis."
@@ -2157,7 +2160,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Item $ID$ gedeeld.",
+    "message": "Gedeeld item $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2674,7 +2677,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Zeer zwak",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2721,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free, as in 'Free beer'"
   }
 }

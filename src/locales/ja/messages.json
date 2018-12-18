@@ -771,14 +771,17 @@
   "warning": {
     "message": "注意"
   },
-  "exportWarning": {
-    "message": "暗号化していないデータを .csv 形式でエクスポートします。メールなどの安全でない手段で保管したり共有したりしないでください。使用した後はすぐに削除してください。"
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
   },
   "exportVault": {
     "message": "保管庫のエクスポート"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "エクスポートされました。"
@@ -1066,7 +1069,7 @@
     "message": "組織レベルで認証プロバイダを設定することで、組織のユーザーに二段階の認証を必要とします。"
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "二段階認証を有効にするとBitwardenアカウントから永久に閉め出されてしまうことがあります。リカバリーコードがあれば、通常の二段階認証プロバイダを使えなくなったとき(デバイスの紛失等)でもアカウントにアクセスできます。アカウントにアクセスできなくなってもBitwardenはサポート出来ないため、リカバリーコードを書き出すか印刷し安全な場所で保管しておくことを推奨します。"
+    "message": "二段階認証を有効にすると Bitwarden アカウントから永久に閉め出されてしまうことがあります。リカバリーコードがあれば、通常の二段階認証プロバイダを使えなくなったとき(デバイスの紛失等)でもアカウントにアクセスできます。アカウントにアクセスできなくなっても Bitwarden はサポート出来ないため、リカバリーコードを書き出すか印刷し安全な場所で保管しておくことを推奨します。"
   },
   "viewRecoveryCode": {
     "message": "リカバリーコードを確認"
@@ -1092,7 +1095,7 @@
     "message": "プレミアム会員専用"
   },
   "premiumRequiredDesc": {
-    "message": "この機能はプレミアムメンバー専用です。"
+    "message": "この機能はプレミアム会員専用です。"
   },
   "youHavePremiumAccess": {
     "message": "あなたはプレミアム会員です。"
@@ -1122,13 +1125,13 @@
     "message": "二段階認証アプリが必要ですか？以下からダウンロードして下さい。"
   },
   "iosDevices": {
-    "message": "iOSデバイス"
+    "message": "iOS デバイス"
   },
   "androidDevices": {
-    "message": "Androidデバイス"
+    "message": "Android デバイス"
   },
   "windowsDevices": {
-    "message": "Windowsデバイス"
+    "message": "Windows デバイス"
   },
   "twoStepAuthenticatorAppsRecommended": {
     "message": "これらのアプリがお勧めですが、他の認証アプリでも動作します。"
@@ -1152,7 +1155,7 @@
     "message": "二段階認証プロバイダが無効化されました。"
   },
   "twoFactorYubikeyAdd": {
-    "message": "あなたのアカウントに新しいYubiKeyを追加するには"
+    "message": "アカウントに新しい YubiKey を追加する"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "YubiKey をコンピューターの USB ポートに挿入してください。"
@@ -1161,16 +1164,16 @@
     "message": "最初の未入力の YubiKey 入力フィールドを選択してください。"
   },
   "twoFactorYubikeyTouchButton": {
-    "message": "YubiKeyのボタンにタッチします。"
+    "message": "YubiKey のボタンにタッチします。"
   },
   "twoFactorYubikeySaveForm": {
     "message": "フォームを保存します。"
   },
   "twoFactorYubikeyWarning": {
-    "message": "プラットフォームの制限によりYubiKeyはBitwardenのアプリケーションのすべてで使用できるわけではありません。他の二段階認証プロバイダを有効化しておくと、YubiKeyが使用できない場合でもアカウントにアクセスできます。サポートされるプラットフォーム:"
+    "message": "プラットフォームの制限により YubiKey は Bitwarden のアプリケーションのすべてで使用できるわけではありません。他の二段階認証プロバイダを有効化しておくと、YubiKey が使用できない場合でもアカウントにアクセスできます。対応プラットフォーム:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "ウェブ保管庫、デスクトップアプリ、コマンドラインツール、USBポートのあるデバイス上のブラウザ拡張機能ではYubiKeyを使用できます。"
+    "message": "ウェブ保管庫、デスクトップアプリ、コマンドラインツール、USBポートのあるデバイス上のブラウザ拡張機能では YubiKey を使用できます。"
   },
   "twoFactorYubikeySupportMobile": {
     "message": "NFCまたはUSBポートのあるデバイスのモバイルアプリではYubiKeyを使用できます。"
@@ -1333,7 +1336,7 @@
     "message": "Exposed Passwords Report"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "流出したパスワードとは、クラッカーによりダークウェブ上で公開または販売された既知の流出データに掲載されているパスワードのことです。"
   },
   "exposedPasswordsFound": {
     "message": "Exposed Passwords Found"
@@ -2710,7 +2713,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "暗号化キーの完全性を確保するため、先に指紋認証用フレーズを確認して下さい。",
+    "message": "暗号化キーの完全性を確保するため、先に指紋認証用フレーズを確認してください。",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
