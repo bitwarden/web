@@ -218,7 +218,7 @@
     "message": "Проверьте, не скомпрометирован ли пароль."
   },
   "passwordExposed": {
-    "message": "Этот пароль был найден в базах утечек $VALUE$ раз(а). Вы должны изменить его.",
+    "message": "Этот пароль был скомпрометирован $VALUE$ раз(а). Вы должны изменить его.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -771,14 +771,17 @@
   "warning": {
     "message": "Предупреждение"
   },
-  "exportWarning": {
-    "message": "Файл экспорта содержит ваши данные в открытом виде. Его не следует хранить или отправлять по небезопасным каналам (например, email). Удалите его сразу после использования."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Для экспорта данных из хранилища введите мастер-пароль."
   },
   "exportVault": {
     "message": "Экспорт хранилища"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "Данные вашего хранилища экспортированы."
@@ -1285,16 +1288,16 @@
     "message": "Отчеты"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Отчет о незащищенных сайтах"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Использование незащищенных веб-сайтов по схеме http:\/\/ может быть опасным. Если веб-сайт позволяет, вы всегда должны получать к нему доступ по схеме https:\/\/, чтобы ваше соединение было зашифровано."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Найдены незащищенные сайты"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Мы нашли $COUNT$ элемент(ов) в вашем хранилище с незащищенными URI. Вам следует изменить их схему URI на https:\/\/, если веб-сайт это позволяет.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "В вашем хранилище нет элементов с незащищеннми URI."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Отчет о неактивной 2ФА"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Двухфакторная аутентификация (2ФА) - это важный параметр безопасности, помогающий защитить ваши учетные записи. Если веб-сайт предлагает это, вы всегда должны включать двухфакторную аутентификацию."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Найдены логины без 2ФА"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "В вашем хранилище найдены $COUNT$ веб-сайт(ов) у которых может быть не настроена двухфакторная аутентификация (согласно twofactorauth.org). Для дополнительной защиты этих аккаунтов вы должны включить двухфакторную аутентификацию.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "В вашем хранилище не было найдено сайтов с ненастроенной двухфакторной аутентификацией."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Инструкции"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Отчет о скопрометированных паролях"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Скомпрометированные пароли - это пароли, обнаруженные в известных базах утечек, опубликованые или проданые в даркнете хакерами."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Найдены скомпрометированные пароли"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов), пароли которых были скомпрометированы. Вы должны задать для них новые пароли.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "В вашем хранилище нет скомпрометированных паролей."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Проверьте скомпрометированные пароли"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Скомпрометирован $COUNT$ раз(а)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Отчет о слабых паролях"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Слабые пароли могут быть легко подобраны хакерами и автоматизированными средствами, которые используются для взлома паролей. Генератор паролей Bitwarden может помочь вам создать надежные пароли."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Найдены слабые пароли"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов) с ненадежными паролями. Вы должны задать для них сильные пароли.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "В вашем хранилище нет слабых паролей."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Отчет о повторно использованных паролях"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Если используемый вами сервис взломан, повторное использование этого пароля в другом месте может позволить хакерам легко получить доступ к большому количеству других ваших аккаунтов. Вы должны использовать уникальный пароль для каждой учетной записи или сервиса."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Найдены повторно использованные пароли"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов) с повторно использованными паролями. Вы должны изменить их на уникальные.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "В вашем хранилище нет повторно использованных паролей."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Повторно использован $COUNT$ раз(а)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1486,13 +1489,13 @@
     "message": "Обновите свою учетную запись до Премиум и разблокируйте несколько великолепных дополнительных возможностей."
   },
   "premiumSignUpStorage": {
-    "message": "1 ГБ зашифрованного хранилища файлов."
+    "message": "1 ГБ зашифрованного хранилища для вложенных файлов."
   },
   "premiumSignUpTwoStep": {
     "message": "Дополнительные варианты двухфакторной аутентификации, такие как YubiKey, FIDO U2F и Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Гигиена паролей, здоровье учетной записи и отчеты об утечках данных для обеспечения безопасности вашего хранилища."
   },
   "premiumSignUpTotp": {
     "message": "Генератор кода подтверждения TOTP для входа в ваше хранилище."
@@ -2674,7 +2677,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Очень слабый",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2721,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Бесплатно",
     "description": "Free, as in 'Free beer'"
   }
 }
