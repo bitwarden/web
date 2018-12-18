@@ -771,14 +771,17 @@
   "warning": {
     "message": "Попередження"
   },
-  "exportWarning": {
-    "message": "При експорті ваші дані зберігаються в незашифрованому вигляді в форматі .csv. Вам не слід зберігати чи надсилати їх через незахищені канали (наприклад, е-поштою). Після використання негайно видаліть їх."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
   },
   "exportVault": {
     "message": "Експорт сховища"
+  },
+  "fileFormat": {
+    "message": "File Format"
   },
   "exportSuccess": {
     "message": "Дані сховища експортовано."
@@ -1285,16 +1288,16 @@
     "message": "Звіти"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Звіт про незахищені веб-сайти"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Використання незахищених веб-сайтів з протоколом http:\/\/ може бути небезпечним. Якщо веб-сайт дозволяє, вам слід завжди використовувати його з протоколом https:\/\/, щоб ваше з'єднання було зашифрованим."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Знайдено незахищені веб-сайти"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Ми знайшли $COUNT$ записів у вашому сховищі з незахищеними URL-адресами. Вам слід змінити їхні URL-схеми на https:\/\/, якщо вони це дозволяють.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,10 +1306,10 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "У вашому сховищі немає записів з незахищеними URL-адресами."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Звіт про неактивну двохетапну перевірку"
   },
   "inactive2faReportDesc": {
     "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
