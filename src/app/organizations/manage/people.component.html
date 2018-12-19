@@ -46,6 +46,9 @@
                         <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
                     </td>
                     <td>
+                        <i class="fa fa-lock" *ngIf="u.twoFactorEnabled" title="{{'userUsingTwoStep' | i18n}}"></i>
+                    </td>
+                    <td>
                         <span *ngIf="u.type === organizationUserType.Owner">{{'owner' | i18n}}</span>
                         <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
                         <span *ngIf="u.type === organizationUserType.Manager">{{'manager' | i18n}}</span>
