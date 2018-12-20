@@ -66,7 +66,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
-            this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
                 if (!this.organization.isAdmin) {
                     await this.syncService.fullSync(false);
@@ -111,6 +111,8 @@ export class VaultComponent implements OnInit, OnDestroy {
                         this.viewEvents(cipher[0]);
                     }
                 }
+
+                queryParamsSub.unsubscribe();
             });
         });
     }

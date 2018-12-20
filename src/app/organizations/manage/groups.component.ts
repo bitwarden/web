@@ -56,8 +56,9 @@ export class GroupsComponent implements OnInit {
                 return;
             }
             await this.load();
-            this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
                 this.searchText = qParams.search;
+                queryParamsSub.unsubscribe();
             });
         });
     }

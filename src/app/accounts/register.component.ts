@@ -33,7 +33,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     }
 
     ngOnInit() {
-        this.route.queryParams.subscribe((qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
@@ -44,6 +44,7 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.stateService.save('loginRedirect',
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
+            queryParamsSub.unsubscribe();
         });
     }
 }

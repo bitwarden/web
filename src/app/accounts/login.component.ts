@@ -26,7 +26,7 @@ export class LoginComponent extends BaseLoginComponent {
     }
 
     async ngOnInit() {
-        this.route.queryParams.subscribe(async (qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
@@ -37,6 +37,7 @@ export class LoginComponent extends BaseLoginComponent {
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             await super.ngOnInit();
+            queryParamsSub.unsubscribe();
         });
     }
 

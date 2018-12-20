@@ -92,10 +92,11 @@ export class CreateOrganizationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.queryParams.subscribe(async (qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
             if (qParams.plan === 'families' || qParams.plan === 'teams' || qParams.plan === 'enterprise') {
                 this.plan = qParams.plan;
             }
+            queryParamsSub.unsubscribe();
         });
     }
 

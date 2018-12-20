@@ -81,7 +81,7 @@ export class PeopleComponent implements OnInit {
             this.accessGroups = organization.useGroups;
             await this.load();
 
-            this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
                     const user = this.users.filter((u) => u.id === qParams.viewEvents);
@@ -89,6 +89,7 @@ export class PeopleComponent implements OnInit {
                         this.events(user[0]);
                     }
                 }
+                queryParamsSub.unsubscribe();
             });
         });
     }

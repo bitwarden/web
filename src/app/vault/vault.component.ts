@@ -87,7 +87,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
 
-        this.route.queryParams.subscribe(async (params) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async (params) => {
             await this.syncService.fullSync(false);
 
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
@@ -103,26 +103,25 @@ export class VaultComponent implements OnInit, OnDestroy {
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
                 await this.ciphersComponent.load();
-                return;
-            }
-
-            if (params.favorites) {
-                this.groupingsComponent.selectedFavorites = true;
-                await this.filterFavorites();
-            } else if (params.type) {
-                const t = parseInt(params.type, null);
-                this.groupingsComponent.selectedType = t;
-                await this.filterCipherType(t);
-            } else if (params.folderId) {
-                this.groupingsComponent.selectedFolder = true;
-                this.groupingsComponent.selectedFolderId = params.folderId;
-                await this.filterFolder(params.folderId);
-            } else if (params.collectionId) {
-                this.groupingsComponent.selectedCollectionId = params.collectionId;
-                await this.filterCollection(params.collectionId);
             } else {
-                this.groupingsComponent.selectedAll = true;
-                await this.ciphersComponent.load();
+                if (params.favorites) {
+                    this.groupingsComponent.selectedFavorites = true;
+                    await this.filterFavorites();
+                } else if (params.type) {
+                    const t = parseInt(params.type, null);
+                    this.groupingsComponent.selectedType = t;
+                    await this.filterCipherType(t);
+                } else if (params.folderId) {
+                    this.groupingsComponent.selectedFolder = true;
+                    this.groupingsComponent.selectedFolderId = params.folderId;
+                    await this.filterFolder(params.folderId);
+                } else if (params.collectionId) {
+                    this.groupingsComponent.selectedCollectionId = params.collectionId;
+                    await this.filterCollection(params.collectionId);
+                } else {
+                    this.groupingsComponent.selectedAll = true;
+                    await this.ciphersComponent.load();
+                }
             }
 
             this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
@@ -141,6 +140,8 @@ export class VaultComponent implements OnInit, OnDestroy {
                     }
                 });
             });
+
+            queryParamsSub.unsubscribe();
         });
     }
 
