@@ -772,7 +772,7 @@
     "message": "Попередження"
   },
   "exportWarningDesc": {
-    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "Експортовані дані вашого сховища знаходяться в незашифрованому вигляді. Вам не слід зберігати чи надсилати їх через незахищені канали (наприклад, е-поштою). Після використання негайно видаліть їх."
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
@@ -781,7 +781,7 @@
     "message": "Експорт сховища"
   },
   "fileFormat": {
-    "message": "File Format"
+    "message": "Формат файлу"
   },
   "exportSuccess": {
     "message": "Дані сховища експортовано."
@@ -1312,13 +1312,13 @@
     "message": "Звіт про неактивну двохетапну перевірку"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Двохетапна перевірка (2FA) - це важливе налаштування безпеки, що дозволяє захистити ваші облікові дані. Ви повинні завжди використовувати її на веб-сайтах, де вона пропонується."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Знайдено записи без двохетапної перевірки"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Ми знайшли $COUNT$ веб-сайтів у вашому сховищі, що можуть бути не налаштовані для двохетапної перевірки (за даними twofactorauth.org). Для захисту цих облікових записів вам слід активувати двохетапну перевірку.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1327,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "У вашому сховищі не знайдено веб-сайтів з неналаштованою двохетапною перевіркою."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Інструкції"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Звіт викритих паролів"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Викритими називаються паролі, які було знайдено у відомих витоках даних, що публікуються в загальнодоступних місцях або продаються на чорному ринку в інтернеті хакерами."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Знайдено викриті паролі"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "У вашому сховищі знайдено $COUNT$ записів з паролями, які було викрито у відомих витоках даних. Вам слід змінити їх з використанням нового пароля.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1351,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "У вашому сховищі не знайдено записів з паролями, що були викриті у відомих витоках даних."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Перевірка викритих паролів"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Викрито $COUNT$ разів",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1366,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Звіт про ненадійні паролі"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Ненадійні паролі можуть легко бути вгадані хакерами і автоматизованими засобами злому паролів. Генератор паролів Bitwarden може допомогти вам створити надійні паролі."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Знайдено ненадійні паролі"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "У вашому сховищі знайдено $COUNT$ записів з ненадійними паролями. Вам слід оновити їх з використанням надійніших паролів.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1384,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "У вашому сховищі немає ненадійних паролів."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Звіт повторюваних паролів"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Якщо використовуваний вами сервіс було скомпрометовано, повторне використання однакового пароля в інших місцях може дозволити хакерам легко отримати доступ до інших ваших облікових записів. Вам слід використовувати унікальний пароль для кожного сервісу чи облікового запису."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Знайдено повторювані паролі"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "У вашому сховищі знайдено $COUNT$ паролів з повторним використанням. Вам слід змінити їх на унікальні.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1405,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "У вашому сховищі не знайдено паролів з повторним використанням."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Повторюється $COUNT$ разів",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1495,7 +1495,7 @@
     "message": "Додаткові можливості двохетапної перевірки, наприклад, YubiKey, FIDO U2F та Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Гігієна паролів, здоров'я облікового запису, а також звіти про вразливості даних, щоб зберігати ваше сховище в безпеці."
   },
   "premiumSignUpTotp": {
     "message": "Генератор коду авторизації TOTP (2FA) для входу в сховище."
@@ -2032,6 +2032,9 @@
         "example": "20"
       }
     }
+  },
+  "userUsingTwoStep": {
+    "message": "This user is using two-step login to protect their account."
   },
   "userAccessAllItems": {
     "message": "Цей користувач має доступ і можливість змінювати всі записи."
@@ -2677,7 +2680,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Дуже слабкий",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2721,7 +2724,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Безплатно",
     "description": "Free, as in 'Free beer'"
   }
 }

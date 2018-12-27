@@ -772,7 +772,7 @@
     "message": "Ostrzeżenie"
   },
   "exportWarningDesc": {
-    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "Ten plik eksportu zawiera Twoje dane w niezaszyfrowanym formacie. Nie powinieneś go przechowywać ani przesyłać poprzez niezabezpieczone kanały (takie jak e-mail). Skasuj go natychmiast po użyciu."
   },
   "exportMasterPassword": {
     "message": "Wprowadź hasło główne, aby wyeksportować dane z sejfu."
@@ -781,7 +781,7 @@
     "message": "Eksportuj sejf"
   },
   "fileFormat": {
-    "message": "File Format"
+    "message": "Format pliku"
   },
   "exportSuccess": {
     "message": "Dane z sejfu zostały wyeksportowane."
@@ -1396,7 +1396,7 @@
     "message": "Znaleziono powtórzone hasła"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Znaleźliśmy $COUNT$ hasła(eł), które występują kilkukrotnie w Twoim sejfie. Należy je zmienić tak, aby były one unikalne.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1405,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "W Twoim sejfie nie znaleziono wielokrotnie używanych haseł."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Użyte $COUNT$ razy",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1495,7 +1495,7 @@
     "message": "Dodatkowe opcje dwustopniowego logowania, takie jak YubiKey, FIDO U2F i Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Higiena haseł, zdrowie konta i raporty dotyczące naruszenia danych, aby chronić Twój sejf."
   },
   "premiumSignUpTotp": {
     "message": "Generator kodów weryfikacyjnych TOTP (2FA) dla danych logowania w Twoim sejfie."
@@ -2032,6 +2032,9 @@
         "example": "20"
       }
     }
+  },
+  "userUsingTwoStep": {
+    "message": "This user is using two-step login to protect their account."
   },
   "userAccessAllItems": {
     "message": "Ten użytkownik może otwierać i modyfikować wszystkie elementy."

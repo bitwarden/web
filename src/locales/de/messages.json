@@ -772,7 +772,7 @@
     "message": "Warnung"
   },
   "exportWarningDesc": {
-    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "Dieser Export enthält ihre unverschlüsselten Daten im Csv-Format. Sie sollten ihn nicht speichern oder über unsichere Kanäle (z. B. E-Mail) versenden. Löschen sie ihn sofort nach seiner Verwendung."
   },
   "exportMasterPassword": {
     "message": "Geben Sie das Master-Passwort ein, um Ihre Tresordaten zu exportieren."
@@ -781,7 +781,7 @@
     "message": "Tresor exportieren"
   },
   "fileFormat": {
-    "message": "File Format"
+    "message": "Dateiformat"
   },
   "exportSuccess": {
     "message": "Ihre Daten wurden exportiert."
@@ -1288,16 +1288,16 @@
     "message": "Berichte"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Bericht über ungesicherte Websites"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Die Verwendung ungesicherter Websites mit dem Schema http:\/\/ kann gefährlich sein. Wenn die Website es erlaubt, sollten Sie immer über das Schema https:\/\/ darauf zugreifen, damit Ihre Verbindung verschlüsselt ist."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Ungesicherte Webseiten gefunden"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Wir haben $COUNT$ Elemente in Ihrem Tresor mit ungesicherten URIs gefunden. Sie sollten ihr URI-Schema auf https:\/\/ ändern, wenn die Website dies zulässt.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1306,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Es gibt keine Einträge in deinem Tresor die unsichere URIs benutzen."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "2FA Bericht inaktiv"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Zwei-Faktor-Authentifizierung (2FA) ist eine wichtige Sicherheitseinstellung die es dir hilft deine Accounts abzusichern. Wenn eine Webseite 2FA anbietet, solltest du es auch aktivieren."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Anmeldungen ohne 2FA gefunden"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Wir haben $COUNT$ Webseiten in deinem Tresor gefunden die 2FA anbieten, aber bei denen diese Funktion möglicherweise nicht aktiviert ist, um diese Accounts abzusichern, solltest du die Zwei-Schritte-Anmeldung aktivieren.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1327,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Es scheint in deinem Tresor keine Einträge zu geben, bei denen die Zwei-Schritte-Anmeldung fehlt."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Anleitung"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Bericht über bekannte Passwörter"
   },
   "exposedPasswordsReportDesc": {
     "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Es wurden bekannte Passwörter gefunden"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Wir haben $COUNT$ Einträge in deinem Tresor gefunden, die in einem oder mehreren Passwortdatenbanken auftauchen. Du solltest diese Passwörter so schnell wie möglich ändern.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1351,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Es scheint in deinem Tresor keine Passwörter zu geben, die in Passwortdatenbanken veröffnetlicht wurden."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Auf bekannte Passwörter prüfen"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "$COUNT$ bekannte Passwörter",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1366,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Bericht über schwache Passwörter"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Schwache Passwörter können von Angreifern leicht erraten werden, desshalb solltest du darauf achten solche Passwörter nicht zu nutzen. Der Passwortgenerator von Bitwarden kann dir helfen starke und sichhere Passwörter zu generieren."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Schwache Passwörter gefunden"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Wir haben $COUNT$ Einträge mit schwachen Passwörtern in deinem Tresor gefunden, du solltest diese zu sicheren Passwörtern ändern.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1384,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Keine Einträge in deinem Tresor haben schwache Passwörter."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Bericht über wiederverwendete Passwörter"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Wenn du Passwörter für mehrere Dienste benutzt und einer dieser Dienste komprommitiert wird, ist es für Angreifer deutlich einfacher Zugriff zu den anderen Accounts zu erlangen. Aus diesem Grund solltest du für jeden Dienst ein einzigartiges Passwort verwenden."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Wiederverwendete Passwörter gefunden"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Wir haben $COUNT$ Passwörter in deine Tresor gefunden, die mehrmals benutzt wurden. Du solltest diese ändern und jedes Passwort nur ein einziges Mal benutzen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1405,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "In deinem Tresor wurden keine Anmeldungen mit wiederbenutzten Passwörtern gefunden."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Bereits $COUNT$ verwendet",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1495,7 +1495,7 @@
     "message": "Zusätzliche Zwei-Faktor-Authentifizierungsmöglichkeiten wie z.B. YubiKey, FIDO U2F und Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Berichte über Kennworthygiene, Kontostatus und Datenschutzverletzungen, um Ihren Tresor sicher zu halten."
   },
   "premiumSignUpTotp": {
     "message": "TOTP Verifizierungscode-Generator (2FA) für Konten in Ihrem Tresor."
@@ -2032,6 +2032,9 @@
         "example": "20"
       }
     }
+  },
+  "userUsingTwoStep": {
+    "message": "This user is using two-step login to protect their account."
   },
   "userAccessAllItems": {
     "message": "Der Benutzer kann alle Einträge einsehen und verändern."
@@ -2677,7 +2680,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Sehr schwach",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2721,7 +2724,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Kostenlos",
     "description": "Free, as in 'Free beer'"
   }
 }
