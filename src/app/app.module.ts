@@ -167,6 +167,7 @@ import localeEs from '@angular/common/locales/es';
 import localeEt from '@angular/common/locales/et';
 import localeFr from '@angular/common/locales/fr';
 import localeIt from '@angular/common/locales/it';
+import localeJa from '@angular/common/locales/ja';
 import localeNb from '@angular/common/locales/nb';
 import localeNl from '@angular/common/locales/nl';
 import localePl from '@angular/common/locales/pl';
@@ -175,7 +176,9 @@ import localePtPt from '@angular/common/locales/pt-PT';
 import localeRu from '@angular/common/locales/ru';
 import localeSk from '@angular/common/locales/sk';
 import localeSv from '@angular/common/locales/sv';
+import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
+import localeZhTw from '@angular/common/locales/zh-Hant';
 
 registerLocaleData(localeCs, 'cs');
 registerLocaleData(localeDa, 'da');
@@ -184,6 +187,7 @@ registerLocaleData(localeEs, 'es');
 registerLocaleData(localeEt, 'et');
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeIt, 'it');
+registerLocaleData(localeJa, 'ja');
 registerLocaleData(localeNb, 'nb');
 registerLocaleData(localeNl, 'nl');
 registerLocaleData(localePl, 'pl');
@@ -192,7 +196,9 @@ registerLocaleData(localePtPt, 'pt-PT');
 registerLocaleData(localeRu, 'ru');
 registerLocaleData(localeSk, 'sk');
 registerLocaleData(localeSv, 'sv');
+registerLocaleData(localeUk, 'uk');
 registerLocaleData(localeZhCn, 'zh-CN');
+registerLocaleData(localeZhTw, 'zh-TW');
 
 @NgModule({
     imports: [
