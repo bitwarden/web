@@ -218,7 +218,7 @@
     "message": "Проверьте, не скомпрометирован ли пароль."
   },
   "passwordExposed": {
-    "message": "Этот пароль был найден в базах утечек $VALUE$ раз(а). Вы должны изменить его.",
+    "message": "Этот пароль был скомпрометирован $VALUE$ раз(а). Вы должны изменить его.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -771,14 +771,17 @@
   "warning": {
     "message": "Предупреждение"
   },
-  "exportWarning": {
-    "message": "Файл экспорта содержит ваши данные в открытом виде. Его не следует хранить или отправлять по небезопасным каналам (например, email). Удалите его сразу после использования."
+  "exportWarningDesc": {
+    "message": "Экспортируемый файл содержит данные вашего хранилища в незашифрованном формате. Его не следует хранить или отправлять по небезопасным каналам (например, по электронной почте). Удалите его сразу после использования."
   },
   "exportMasterPassword": {
     "message": "Для экспорта данных из хранилища введите мастер-пароль."
   },
   "exportVault": {
     "message": "Экспорт хранилища"
+  },
+  "fileFormat": {
+    "message": "Формат файла"
   },
   "exportSuccess": {
     "message": "Данные вашего хранилища экспортированы."
@@ -884,7 +887,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Установка слишком высоких итераций KDF может привести к снижению производительности при входе (и разблокировке) на устройствах с медленными процессорами. Мы рекомендуем увеличивать значение с шагом $INCREMENT$, а затем проверить все ваши устройства.",
+    "message": "Установка слишком высоких итераций KDF может привести к снижению производительности при входе (и разблокировке) на устройствах с медленными процессорами. Рекомендуется увеличить значение с шагом $INCREMENT$, а затем протестировать все ваши устройства.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -1086,16 +1089,16 @@
     "description": "Premium Membership"
   },
   "premiumMembership": {
-    "message": "Премиум-статус"
+    "message": "Премиум"
   },
   "premiumRequired": {
-    "message": "Необходим Премиум-статус"
+    "message": "Необходим Премиум"
   },
   "premiumRequiredDesc": {
-    "message": "Для использования этой функции требуется Премиум-статус."
+    "message": "Для использования этой функции требуется Премиум."
   },
   "youHavePremiumAccess": {
-    "message": "У вас есть Премиум-статус"
+    "message": "У вас есть Премиум"
   },
   "alreadyPremiumFromOrg": {
     "message": "У вас уже есть доступ к Премиум, так как вы являетесь членом организации."
@@ -1167,7 +1170,7 @@
     "message": "Сохранить форму."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Из-за ограничений платформы YubiKey нельзя использовать во всех приложениях Bitwarden. Вы должны включить другого провайдера двухфакторной аутентификации, чтобы иметь возможность получить доступ к своей учетной записи, когда YubiKey не может быть использован. Поддерживаемые платформы:"
+    "message": "Из-за ограничений платформы, YubiKey нельзя использовать во всех приложениях Bitwarden. Вы должны включить другого провайдера двухфакторной аутентификации, чтобы иметь возможность получить доступ к своей учетной записи, в случае, если использовать YubiKey не удастся. Поддерживаемые платформы:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Веб-хранилище, приложение для компьютера, CLI и все расширения браузера на устройстве с USB-портом, который может принимать ваш YubiKey."
@@ -1257,7 +1260,7 @@
     "message": "Сохранить форму."
   },
   "twoFactorU2fWarning": {
-    "message": "Из-за ограничений платформы FIDO U2F нельзя использовать во всех приложениях Bitwarden. Вы должны включить другого провайдера двухфакторной аутентификации, чтобы иметь возможность получить доступ к своей учетной записи, когда FIDO U2F не может быть использован. Поддерживаемые платформы:"
+    "message": "Из-за ограничений платформы, FIDO U2F нельзя использовать во всех приложениях Bitwarden. Вы должны включить другого провайдера двухфакторной аутентификации, чтобы иметь возможность получить доступ к своей учетной записи, в случае, если использовать FIDO U2F не удастся. Поддерживаемые платформы:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Веб-хранилище и расширения браузера на компьютере\/ноутбуке с браузером с поддержкой U2F (Chrome, Opera, Vivaldi или Firefox с включенным FIDO U2F)."
@@ -1285,16 +1288,16 @@
     "message": "Отчеты"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Отчет о незащищенных сайтах"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Использование незащищенных веб-сайтов по схеме http:\/\/ может быть опасным. Если веб-сайт позволяет, вы всегда должны получать к нему доступ по схеме https:\/\/, чтобы ваше соединение было зашифровано."
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "Найдены незащищенные сайты"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Мы нашли $COUNT$ элемент(ов) в вашем хранилище с незащищенными URI. Вам следует изменить их схему URI на https:\/\/, если веб-сайт это позволяет.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "В вашем хранилище нет элементов с незащищеннми URI."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Отчет о неактивной 2ФА"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Двухфакторная аутентификация (2ФА) - это важный параметр безопасности, помогающий защитить ваши учетные записи. Если веб-сайт предлагает это, вы всегда должны включать двухфакторную аутентификацию."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "Найдены логины без 2ФА"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "В вашем хранилище найдены $COUNT$ веб-сайт(ов) у которых может быть не настроена двухфакторная аутентификация (согласно twofactorauth.org). Для дополнительной защиты этих аккаунтов вы должны включить двухфакторную аутентификацию.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "В вашем хранилище не найдены сайты с ненастроенной двухфакторной аутентификацией."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Инструкции"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Отчет о скопрометированных паролях"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Скомпрометированные пароли - это пароли, обнаруженные в известных базах утечек, опубликованые или проданые в даркнете хакерами."
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "Найдены скомпрометированные пароли"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов), пароли которых были скомпрометированы. Вы должны задать для них новые пароли.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "В вашем хранилище нет скомпрометированных паролей."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "Проверьте скомпрометированные пароли"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Скомпрометирован $COUNT$ раз(а)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Отчет о слабых паролях"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Слабые пароли могут быть легко подобраны хакерами и автоматизированными средствами, которые используются для взлома паролей. Генератор паролей Bitwarden может помочь вам создать надежные пароли."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Найдены слабые пароли"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов) с ненадежными паролями. Вы должны задать для них сильные пароли.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "В вашем хранилище нет слабых паролей."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Отчет о повторно использованных паролях"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Если используемый вами сервис взломан, повторное использование этого пароля в другом месте может позволить хакерам легко получить доступ к большому количеству других ваших аккаунтов. Вы должны использовать уникальный пароль для каждой учетной записи или сервиса."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Найдены повторно использованные пароли"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов) с повторно использованными паролями. Вы должны изменить их на уникальные.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "В вашем хранилище нет повторно использованных паролей."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Повторно использован $COUNT$ раз(а)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1483,25 +1486,25 @@
     "message": "Вы обновились до Премиум."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Обновите свою учетную запись до Премиум и разблокируйте несколько великолепных дополнительных возможностей."
+    "message": "Обновите свою учетную запись до Премиум и разблокируйте великолепные дополнительные возможности."
   },
   "premiumSignUpStorage": {
-    "message": "1 ГБ зашифрованного хранилища файлов."
+    "message": "1 ГБ зашифрованного хранилища для вложенных файлов."
   },
   "premiumSignUpTwoStep": {
     "message": "Дополнительные варианты двухфакторной аутентификации, такие как YubiKey, FIDO U2F и Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Гигиена паролей, здоровье учетной записи и отчеты об утечках данных для обеспечения безопасности вашего хранилища."
   },
   "premiumSignUpTotp": {
-    "message": "Генератор кода подтверждения TOTP для входа в ваше хранилище."
+    "message": "TOTP-генератор кодов (2ФА) для логинов вашего хранилища."
   },
   "premiumSignUpSupport": {
-    "message": "Приоритетную поддержку."
+    "message": "Приоритетная поддержка."
   },
   "premiumSignUpFuture": {
-    "message": "Все будущие функции Премиум-статуса. Их будет больше!"
+    "message": "Все будущие функции Премиум. Их будет больше!"
   },
   "premiumPrice": {
     "message": "Всего лишь $PRICE$ \/в год!",
@@ -1738,7 +1741,7 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "Чтобы обновить свою учетную запись до Премиум-статуса, вам необходимо загрузить действительный файл лицензии."
+    "message": "Для обновления своей учетной записи до Премиум, необходимо загрузить действительный файл лицензии."
   },
   "uploadLicenseFileOrg": {
     "message": "Для создания организации размещенной на локальном хостинге, необходимо загрузить действительный файл лицензии."
@@ -1896,7 +1899,7 @@
     "message": "Локальный хостинг (опционально)"
   },
   "usersGetPremium": {
-    "message": "Пользователи получают доступ к возможностям Премиум-статуса"
+    "message": "Пользователи получают доступ к возможностям Премиум"
   },
   "controlAccessWithGroups": {
     "message": "Управление доступом пользователей с помощью групп"
@@ -1908,7 +1911,7 @@
     "message": "Отслеживание действий пользователя с журналами аудита"
   },
   "enforce2faDuo": {
-    "message": "Принудительная 2FA с Duo"
+    "message": "Принудительная 2ФА с Duo"
   },
   "priorityCustomerSupport": {
     "message": "Приоритетная поддержка"
@@ -2030,6 +2033,9 @@
       }
     }
   },
+  "userUsingTwoStep": {
+    "message": "Этот пользователь использует двухфакторную аутентификацию для защиты своей учетной записи."
+  },
   "userAccessAllItems": {
     "message": "Эта пользователь может иметь доступ и изменять все элементы."
   },
@@ -2118,7 +2124,7 @@
     "message": "Двухфакторная аутентификация выключена."
   },
   "recovered2fa": {
-    "message": "Аккаунт восстановлен после двухфакторной аутентификации."
+    "message": "Двухфакторная аутентификация аккаунта отключена."
   },
   "failedLogin": {
     "message": "Ошибка входа из-за неправильного пароля."
@@ -2674,7 +2680,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Очень слабый",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2718,7 +2724,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Бесплатно",
     "description": "Free, as in 'Free beer'"
   }
 }

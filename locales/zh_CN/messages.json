@@ -215,10 +215,10 @@
     "message": "生成密码"
   },
   "checkPassword": {
-    "message": "检查密码是否已经泄露。"
+    "message": "检查密码是否已经被公开。"
   },
   "passwordExposed": {
-    "message": "此密码已泄漏 $VALUE$ 次。请立即修改。",
+    "message": "此密码已被公开 $VALUE$ 次。请立即修改。",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -671,7 +671,7 @@
     "message": "两步验证选项"
   },
   "recoveryCodeDesc": {
-    "message": "不能访问您所有的两步登录验证应用？请使用您的恢复代码来禁用您账户中所有的两步登录。"
+    "message": "不能访问您所有的双重身份验证应用？请使用您的恢复代码来禁用您账户中所有的两步登录。"
   },
   "recoveryCodeTitle": {
     "message": "恢复代码"
@@ -771,7 +771,7 @@
   "warning": {
     "message": "警告"
   },
-  "exportWarning": {
+  "exportWarningDesc": {
     "message": "本次导出会将你的数据未经加密存为 .csv 文件。你不应该长期保存，或者通过不加密的方式传送这个文件（例如电子邮件）。请在使用完之后立即删除这个文件。"
   },
   "exportMasterPassword": {
@@ -779,6 +779,9 @@
   },
   "exportVault": {
     "message": "导出密码库"
+  },
+  "fileFormat": {
+    "message": "文件格式"
   },
   "exportSuccess": {
     "message": "已经导出您的密码库数据。"
@@ -1285,16 +1288,16 @@
     "message": "报告"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "不安全的网站报告"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "使用 http:\/\/ 网站是很危险的。如果网站可能，您应始终使用 https:\/\/ 访问它们，以便对您的连接进行加密。"
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "发现不安全的网站"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "我们在您的密码库中发现了 $COUNT$ 个项目带有不安全的 URI。如果可能，您应该将他们更改为 https:\/\/。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1303,19 +1306,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "密码库中的任何项目都没有不安全的 URI。"
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "未激活双重身份验证"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "双重身份验证 (2FA) 是有助于保护您的帐户的重要安全设置。如果网站提供，您应该始终启用双重身份验证。"
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "未使用双重身份验证登录"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "我们在您的密码库发现 $COUNT$ 个网站没有配置双重身份验证。为了保护这些账户，您因该启用双重身份验证。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1324,22 +1327,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "没有在您的密码库发现未使用双重身份验证的网站。"
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "说明"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "公开密码报告"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "公开密码是在已知数据泄露中被发现的密码，这些数据泄露是由黑客公开发布或在黑网上销售的。"
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "发现公开密码"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "我们在密码库发现 $COUNT$ 个项目的密码在已知数据泄露中被公开。您应该将它们更改为新密码。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1348,13 +1351,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "没有在密码库发现有密码在已知数据泄露中被公开。"
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "检查公开密码"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "泄漏 $COUNT$ 次",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1363,16 +1366,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "弱密码报告"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "弱密码很容易被黑客和用于破解密码的自动化工具猜中。Bitwarden 密码生成器可以帮助您创建强密码。"
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "找到弱密码"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "我们在您的密码库中发现了 $COUNT$ 个弱密码项目。您应该将它们改为更强的密码。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,19 +1384,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "没有在密码库中发现弱密码。"
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "重复使用的密码报告"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "如果您使用的服务受到威胁, 在其他地方重用相同的密码可以让黑客轻松访问您的更多在线帐户。您应该对每个帐户或服务使用唯一的密码。"
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "发现重复使用的密码"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "我们发现 $COUNT$ 个密码正在您的密码库中重复使用。您应该将它们更改为唯一值。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1402,10 +1405,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "您密码库中的密码没有被重复使用。"
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "重复使用了 $COUNT$ 次",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1492,7 +1495,7 @@
     "message": "其他两步登录选项，如 YubiKey、FIDO U2F 和 Duo。"
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "密码健康、账户体检以及数据泄露报告，保障您的密码库安全。"
   },
   "premiumSignUpTotp": {
     "message": "用于登录密码库的 TOTP 验证码（两步验证）生成器。"
@@ -1516,10 +1519,10 @@
     "message": "Addons"
   },
   "premiumAccess": {
-    "message": "Premium Access"
+    "message": "高级会员"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "message": "您可以为您的组织所有成员添加高级访问权限，只要 $PRICE$ \/ 每 $INTERVAL$ 。",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -2029,6 +2032,9 @@
         "example": "20"
       }
     }
+  },
+  "userUsingTwoStep": {
+    "message": "This user is using two-step login to protect their account."
   },
   "userAccessAllItems": {
     "message": "此用户可以访问和修改所有项目。"
@@ -2674,7 +2680,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "很弱",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2684,13 +2690,13 @@
     "message": "您选择的主密码较弱。您应该使用强密码（或密码短语）来正确保护您的 Bitwarden 账户。仍要使用此主密码吗？"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "更新我的帐户的加密密钥"
   },
   "rotateEncKeyTitle": {
-    "message": "Rotate Encryption Key"
+    "message": "更新加密密钥"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "确实要更新帐户的加密密钥吗？"
   },
   "attachmentsNeedFix": {
     "message": "此项目有需要修复的旧文件附件。"
@@ -2703,7 +2709,7 @@
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "需要先修复密码库中的旧文件附件，然后才能更新帐户的加密密钥。"
   },
   "yourAccountsFingerprint": {
     "message": "您的账户的指纹短语",
@@ -2718,7 +2724,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "免费",
     "description": "Free, as in 'Free beer'"
   }
 }

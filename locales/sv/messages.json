@@ -771,14 +771,17 @@
   "warning": {
     "message": "Varning"
   },
-  "exportWarning": {
-    "message": "Den här exporten innehåller din okrypterade data i .csv-format. Du bör inte lagra eller skicka filen över osäkra anslutningar (genom t.ex. mejl). Radera filen efter du är färdig med den."
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "exportMasterPassword": {
     "message": "Ange ditt huvudlösenord för att exportera datan i ditt valv."
   },
   "exportVault": {
     "message": "Exportera valv"
+  },
+  "fileFormat": {
+    "message": "Filformat"
   },
   "exportSuccess": {
     "message": "Din data har exporterats."
@@ -803,10 +806,10 @@
     "message": "Längd"
   },
   "numWords": {
-    "message": "Number of Words"
+    "message": "Antal ord"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "Ordseparator"
   },
   "passwordHistory": {
     "message": "Lösenordshistorik"
@@ -1254,7 +1257,7 @@
     "message": "Om säkerhetsnyckeln har en knapp, tryck på den."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Spara formuläret."
   },
   "twoFactorU2fWarning": {
     "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
@@ -2029,6 +2032,9 @@
         "example": "20"
       }
     }
+  },
+  "userUsingTwoStep": {
+    "message": "This user is using two-step login to protect their account."
   },
   "userAccessAllItems": {
     "message": "Denna användare kan komma åt och ändra alla objekt."
