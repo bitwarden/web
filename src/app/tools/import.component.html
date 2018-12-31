@@ -166,6 +166,10 @@
             "Export credentials" tab and choose "JSON" as the export type. Enter your vault's passphrase and click the "Export"
             button to save the JSON file.
         </ng-container>
+        <ng-container *ngIf="format === 'avastcsv'">
+            Open the Avast Passwords desktop application and navigate to "Settings" &rarr; "Import/export data". Select the
+            "Export" button for the "Export to CSV file" option to save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
