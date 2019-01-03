@@ -41,7 +41,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
         protected messagingService: MessagingService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService);
+            userService, collectionService, messagingService);
     }
 
     async ngOnInit() {
