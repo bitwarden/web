@@ -170,6 +170,10 @@
             Open the Avast Passwords desktop application and navigate to "Settings" &rarr; "Import/export data". Select the
             "Export" button for the "Export to CSV file" option to save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'fsecurefsk'">
+            Open the F-Secure KEY desktop application and navigate to "Settings" &rarr; "Export Passwords". Select the
+            "Export" button, enter your master password, and save the FSK file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
