@@ -74,7 +74,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         }
 
         this.platformUtilsService.eventTrack('Launched Login URI');
-        this.platformUtilsService.launchUri(uri.uri);
+        this.platformUtilsService.launchUri(uri.launchUri);
     }
 
     copy(value: string, typeI18nKey: string, aType: string) {
