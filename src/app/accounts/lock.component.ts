@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -18,7 +15,7 @@ import { LockComponent as BaseLockComponent } from 'jslib/angular/components/loc
     selector: 'app-lock',
     templateUrl: 'lock.component.html',
 })
-export class LockComponent extends BaseLockComponent implements OnInit {
+export class LockComponent extends BaseLockComponent {
     constructor(router: Router, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, messagingService: MessagingService,
         userService: UserService, cryptoService: CryptoService,
@@ -27,6 +24,7 @@ export class LockComponent extends BaseLockComponent implements OnInit {
     }
 
     async ngOnInit() {
+        await super.ngOnInit();
         const authed = await this.userService.isAuthenticated();
         if (!authed) {
             this.router.navigate(['/']);
