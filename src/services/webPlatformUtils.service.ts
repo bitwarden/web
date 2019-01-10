@@ -164,7 +164,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         if (win != null && (win as any).u2f != null) {
             return true;
         }
-        return (this.isChrome() || this.isOpera() || this.isVivaldi()) && !Utils.isMobileBrowser;
+        return this.isChrome() || ((this.isOpera() || this.isVivaldi()) && !Utils.isMobileBrowser);
     }
 
     supportsDuo(): boolean {
