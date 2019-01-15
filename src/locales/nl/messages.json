@@ -586,6 +586,15 @@
   "unlock": {
     "message": "Ontgrendelen"
   },
+  "loggedInAsEmail": {
+    "message": "Logged in as $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "Ongeldig hoofdwachtwoord"
   },
@@ -1066,7 +1075,7 @@
     "message": "Beveilig uw account door een extra stap te vereisen bij het aanmelden."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Vereis aanmelden in twee stappen voor de gebruikers van uw organisatie door aanbieders te configureren op organisatieniveau."
+    "message": "Vereis tweestapsverificatie voor de gebruikers van uw organisatie door aanbieders te configureren op organisatieniveau."
   },
   "twoStepLoginRecoveryWarning": {
     "message": "Door aanmelden in twee stappen in te schakelen, kunt u uw Bitwarden-account permanent blokkeren. Een herstelcode geeft u toegang tot uw account in het geval dat u uw normale tweestapsaanmeldingsaanbieder niet meer kunt gebruiken (bv. als u uw apparaat verliest). De Bitwarden klantenondersteuning kan u niet helpen als u de toegang tot uw account verliest. We raden u aan de herstelcode op te schrijven of af te drukken en op een veilige plaats te bewaren."
@@ -1336,7 +1345,7 @@
     "message": "Verslag van blootgestelde wachtwoorden"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Blootgestelde wachtwoorden zijn wachtwoorden die zijn ontdekt in bekende datalekken die publiekelijk werden vrijgegeven of door hackers op het dark web werden verkocht."
   },
   "exposedPasswordsFound": {
     "message": "Blootgestelde wachtwoorden gevonden"
