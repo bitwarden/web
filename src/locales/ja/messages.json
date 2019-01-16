@@ -586,6 +586,15 @@
   "unlock": {
     "message": "ロック解除"
   },
+  "loggedInAsEmail": {
+    "message": "Logged in as $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "マスターパスワードが間違っています"
   },
@@ -772,7 +781,7 @@
     "message": "注意"
   },
   "exportWarningDesc": {
-    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "このエクスポートデータは暗号化されていない形式の保管庫データを含んでいます。メールなどのセキュリティ保護されていない方法で共有したり保管したりしないでください。使用した後はすぐに削除してください。"
   },
   "exportMasterPassword": {
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
@@ -781,7 +790,7 @@
     "message": "保管庫のエクスポート"
   },
   "fileFormat": {
-    "message": "File Format"
+    "message": "ファイル形式"
   },
   "exportSuccess": {
     "message": "エクスポートされました。"
@@ -1288,16 +1297,16 @@
     "message": "レポート"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "非セキュアウェブサイト調査"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "http:\/\/方式のセキュリティ保護されていないウェブサイトは危険です。ウェブサイトが対応していれば、接続が暗号化されるhttps:\/\/方式を常時利用すべきです。"
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "セキュリティ保護されていないウェブサイトが見つかりました"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "セキュアでないURIが$COUNT$個のアイテムで見つかりました。ウェブサイトが対応しているならば、URIをhttps:\/\/形式に変更すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1306,19 +1315,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "セキュアでないURIを持つアイテムは見つかりませんでした。"
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "非アクティブ二段階認証調査"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "二段階認証(2FA)はアカウントをセキュアにするのを助ける重要なセキュリティ設定です。ウェブサイトが対応している場合、二段階認証を常時有効化すべきです。"
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "二段階認証を利用していないアイテムが見つかりました"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "保管庫内に二段階認証(ウェブサイトが対応しているかはtwofactorauth.orgによる情報)が設定されていない可能性がある$COUNT$個のウェブサイトが見つかりました。これらのアカウントをよりセキュアにするため、二段階認証を有効化すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1327,22 +1336,22 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "二段階認証が設定されていないアイテムは見つかりませんでした。"
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "使い方"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "流出パスワード調査"
   },
   "exposedPasswordsReportDesc": {
     "message": "流出したパスワードとは、クラッカーによりダークウェブ上で公開または販売された既知の流出データに掲載されているパスワードのことです。"
   },
   "exposedPasswordsFound": {
-    "message": "Exposed Passwords Found"
+    "message": "流出したパスワードが見つかりました"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "既知のデータ流出で公開されていたパスワードが $COUNT$ 個のアイテムで見つかりました。これらは新しいパスワードへ変更すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1351,13 +1360,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "既知のデータ流出で公開されているパスワードは見つかりませんでした。"
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "流出したパスワードを確認"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "流出 $COUNT$回",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1366,16 +1375,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "脆弱パスワード調査"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "脆弱なパスワードは、ハッカーによって簡単に推測することができ、また自動化されたツールでパスワードが解析されます。Bitwardenのパスワード生成ツールを使用すると、強力なパスワードを作成することができます。"
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "脆弱なパスワードが見つかりました"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "保管庫内に$COUNT$個の強力でないパスワードが見つかりました。もっと強力なパスワードへ更新すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1384,19 +1393,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "脆弱なパスワードは見つかりませんでした。"
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "再利用パスワード調査"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "あなたが使用するサービスのデータが流出し、同じパスワードを他でも利用していた場合、ハッカーは簡単に複数のオンラインアカウントへのアクセスが可能となります。すべてのアカウント・サービスでそれぞれ異なるパスワードを使用すべきです。"
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "再利用しているパスワードが見つかりました。"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "$COUNT$個の再利用しているパスワードが見つかりました。それぞれ異なるパスワードへ変更すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1405,10 +1414,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "再利用しているパスワードは見つかりませんでした。"
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "再利用 $COUNT$回",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1495,7 +1504,7 @@
     "message": "YubiKey、FIDO U2F、Duoなどの追加の2段階認証ログインオプション"
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "保管庫を安全に保つための、パスワードやアカウントの健全性、データ侵害に関するレポート"
   },
   "premiumSignUpTotp": {
     "message": "保管庫内での2段階認証コード生成"
@@ -2034,7 +2043,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "このユーザーはアカウントを保護するため二段階認証を利用しています。"
   },
   "userAccessAllItems": {
     "message": "全てのアイテムの読み取り・編集"
@@ -2680,7 +2689,7 @@
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "非常に脆弱",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2724,7 +2733,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "無料",
     "description": "Free, as in 'Free beer'"
   }
 }
