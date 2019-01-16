@@ -68,7 +68,7 @@
     "message": "Firma"
   },
   "ssn": {
-    "message": "Numer ubezpieczenia społecznego"
+    "message": "PESEL"
   },
   "passportNumber": {
     "message": "Numer paszportu"
@@ -155,7 +155,7 @@
     "message": "Tekst"
   },
   "cfTypeHidden": {
-    "message": "Ukryty"
+    "message": "Pole maskowane"
   },
   "cfTypeBoolean": {
     "message": "Wartość logiczna"
@@ -167,7 +167,7 @@
     "message": "Nieprzypisany"
   },
   "noneFolder": {
-    "message": "Brak folderu",
+    "message": "Nieprzypisane",
     "description": "This is the folder for uncategorized items"
   },
   "addFolder": {
@@ -177,14 +177,14 @@
     "message": "Edytuj folder"
   },
   "baseDomain": {
-    "message": "Domena podstawowa"
+    "message": "Domena nadrzędna"
   },
   "host": {
-    "message": "Serwer",
+    "message": "Nazwa domeny",
     "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
-    "message": "Dokładny"
+    "message": "Dokładnie"
   },
   "startsWith": {
     "message": "Zaczyna się od"
@@ -263,11 +263,11 @@
     "message": "Szukaj w ulubionych"
   },
   "searchType": {
-    "message": "Typ wyszukiwania",
+    "message": "Szukaj elementów wybranego rodzaju",
     "description": "Search item type"
   },
   "searchVault": {
-    "message": "Znajdź w sejfie"
+    "message": "Szukaj w sejfie"
   },
   "allItems": {
     "message": "Wszystkie elementy"
@@ -378,7 +378,7 @@
     "description": "Copy credit card number"
   },
   "copySecurityCode": {
-    "message": "Skopiuj kod zabezpieczający",
+    "message": "Skopiuj kod CVV\/CVC",
     "description": "Copy credit card security code (CVV)"
   },
   "copyUri": {
@@ -410,7 +410,7 @@
     "message": "Uruchom"
   },
   "newAttachment": {
-    "message": "Dodaj nowy załącznik"
+    "message": "Dodaj załącznik"
   },
   "deletedAttachment": {
     "message": "Usunięty załącznik"
@@ -586,6 +586,15 @@
   "unlock": {
     "message": "Odblokuj"
   },
+  "loggedInAsEmail": {
+    "message": "Logged in as $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "Nieprawidłowe hasło główne"
   },
@@ -593,7 +602,7 @@
     "message": "Zablokuj teraz"
   },
   "noItemsInList": {
-    "message": "Brak elementów do wyświetlenia."
+    "message": "Brak elementów."
   },
   "noCollectionsInList": {
     "message": "Brak kolekcji do wyświetlenia."
@@ -611,7 +620,7 @@
     "message": "Nowa organizacja"
   },
   "noOrganizationsList": {
-    "message": "Nie należysz do żadnych organizacji. Organizacje pozwalają na bezpieczne udostępnianie elementów innym użytkownikom."
+    "message": "Nie należysz do żadnej organizacji. Organizacje pozwalają na bezpieczne udostępnianie elementów innym użytkownikom."
   },
   "versionNumber": {
     "message": "Wersja $VERSION_NUMBER$",
@@ -662,7 +671,7 @@
     "message": "Dane logowania niedostępne"
   },
   "noTwoStepProviders": {
-    "message": "Dla tego konta aktywowano dwustopniowe logowanie, jednak ta przeglądarka nie wspiera żadnego ze skonfigurowanych dostawców dwustopniowej autoryzacji."
+    "message": "Dla tego konta aktywowano dwustopniowe logowanie, jednak ta przeglądarka nie wspiera żadnego ze skonfigurowanych mechanizmów dwustopniowej autoryzacji."
   },
   "noTwoStepProviders2": {
     "message": "Proszę użyć obsługiwanej przeglądarki (takiej jak Chrome) i\/lub dodać dodatkowych dostawców, którzy są lepiej wspierani przez przeglądarki internetowe (np. aplikacja uwierzytelniająca)."
@@ -671,7 +680,7 @@
     "message": "Opcje logowania dwustopniowego"
   },
   "recoveryCodeDesc": {
-    "message": "Utraciłeś dostęp do wszystkich swoich dostawców dwustopniowego logowania? Użyj kodów odzyskiwania, aby wyłączyć dwustopniowe logowanie na Twoim koncie."
+    "message": "Utraciłeś dostęp do wszystkich swoich mechanizmów dwustopniowego logowania? Użyj kodów odzyskiwania, aby wyłączyć dwustopniowe logowanie na Twoim koncie."
   },
   "recoveryCodeTitle": {
     "message": "Kod odzyskiwania"
@@ -719,10 +728,10 @@
     "message": "Organizacje"
   },
   "shareDesc": {
-    "message": "Wybierz organizację, której chcesz udostępnić ten element. Udostępnianie przenosi właścicielstwo elementu do organizacji. Nie będziesz już bezpośrednim właścicielem tej pozycji, gdy zostanie on udostępniony."
+    "message": "Wybierz organizację, której chcesz udostępnić ten element. Udostępnianie przenosi własność elementu do wybranej organizacji. Nie będziesz już bezpośrednim właścicielem tego elementu, gdy zostanie on udostępniony."
   },
   "shareManyDesc": {
-    "message": "Wybierz organizację, której chcesz udostępnić te elementy. Udostępnianie przenosi właścicielstwo elementów do organizacji. Nie będziesz już bezpośrednim właścicielem tych pozycji, gdy zostaną one udostępnione."
+    "message": "Wybierz organizację, której chcesz udostępnić te elementy. Udostępnianie przenosi własność elementów do wybranej organizacji. Nie będziesz już bezpośrednim właścicielem tych elementów, gdy zostaną one udostępnione."
   },
   "collectionsDesc": {
     "message": "Edytuj kolekcje zawierające ten element. Tylko użytkownicy organizacji posiadający dostęp do tych kolekcji będą mogli zobaczyć ten element."
@@ -800,7 +809,7 @@
     "message": "Unikaj niejednoznacznych znaków"
   },
   "regeneratePassword": {
-    "message": "Odtwórz hasło"
+    "message": "Wygeneruj hasło"
   },
   "length": {
     "message": "Długość"
@@ -815,7 +824,7 @@
     "message": "Historia haseł"
   },
   "noPasswordsInList": {
-    "message": "Brak haseł do wyświetlenia."
+    "message": "Brak haseł."
   },
   "clear": {
     "message": "Wyczyść"
@@ -833,7 +842,7 @@
     "message": "Kod"
   },
   "changeEmailDesc": {
-    "message": "Wysłaliśmy kod weryfikacyjny do $EMAIL$. Sprawdź pocztę i wprowadź kod, aby ukończyć proces zmiany adresu e-mail.",
+    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize your the email address change.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1008,7 +1017,7 @@
     "message": "Wyłącz ikony stron"
   },
   "disableIconsDesc": {
-    "message": "Ikony stron internetowych wstawiają charakterystyczny obrazek obok danych logowania w Twoim sejfie."
+    "message": "Możesz wyświetlać rozpoznawalną ikonę serwisu obok danych logowania w Twoim sejfie."
   },
   "enableGravatars": {
     "message": "Włącz Gravatary",
@@ -1089,19 +1098,19 @@
     "description": "Premium Membership"
   },
   "premiumMembership": {
-    "message": "Członkostwo premium"
+    "message": "Konto Premium"
   },
   "premiumRequired": {
-    "message": "Wymagane konto premium"
+    "message": "Wymagane konto Premium"
   },
   "premiumRequiredDesc": {
-    "message": "Członkostwo premium jest wymagane do korzystania z tej funkcji."
+    "message": "Musisz posiadać konto Premium, aby skorzystać z tej funkcji."
   },
   "youHavePremiumAccess": {
-    "message": "Masz dostęp do funkcji premium"
+    "message": "Masz dostęp do funkcji konta Premium"
   },
   "alreadyPremiumFromOrg": {
-    "message": "Posiadasz już dostęp do funkcji wersji premium dzięki organizacji, której jesteś członkiem."
+    "message": "Posiadasz już dostęp do funkcji konta Premium dzięki organizacji, której jesteś członkiem."
   },
   "manage": {
     "message": "Zarządzaj"
@@ -1479,23 +1488,23 @@
     "message": "Rozliczenia & licencje"
   },
   "goPremium": {
-    "message": "Przejdź na wersję Premium",
+    "message": "Przejdź na konto Premium",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "Włączono pakiet Premium."
+    "message": "Aktywowano konto Premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Zaktualizuj swoje konto do członkostwa premium i odblokuj fajne, dodatkowe funkcje."
+    "message": "Zaktualizuj swoje konto do konta Premium i odblokuj fajne, dodatkowe funkcje."
   },
   "premiumSignUpStorage": {
-    "message": "1 GB przestrzeni na zaszyfrowane pliki."
+    "message": "1 GB przestrzeni na zaszyfrowane załączniki."
   },
   "premiumSignUpTwoStep": {
     "message": "Dodatkowe opcje dwustopniowego logowania, takie jak YubiKey, FIDO U2F i Duo."
   },
   "premiumSignUpReports": {
-    "message": "Higiena haseł, zdrowie konta i raporty dotyczące naruszenia danych, aby chronić Twój sejf."
+    "message": "Raporty bezpieczeństwa haseł, stanu konta i dotyczące wykradzionych haseł, aby Twoje dane były bezpieczne."
   },
   "premiumSignUpTotp": {
     "message": "Generator kodów weryfikacyjnych TOTP (2FA) dla danych logowania w Twoim sejfie."
@@ -1504,7 +1513,7 @@
     "message": "Priorytetowe wsparcie klienta."
   },
   "premiumSignUpFuture": {
-    "message": "Wszystkie przyszłe funkcje premium. Więcej już wkrótce!"
+    "message": "Wszystkie przyszłe funkcje Premium. Więcej już wkrótce!"
   },
   "premiumPrice": {
     "message": "Wszystko to jedynie za $PRICE$ \/rok!",
@@ -1522,7 +1531,7 @@
     "message": "Dostęp premium"
   },
   "premiumAccessDesc": {
-    "message": "Możesz przyznać dostęp premium wszystkim użytkownikom w Twojej organizacji za $PRICE$ \/$INTERVAL$.",
+    "message": "Możesz przyznać konta Premium wszystkim użytkownikom w Twojej organizacji za $PRICE$ \/$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1726,7 +1735,7 @@
     "message": "Metoda płatności została zaktualizowana."
   },
   "purchasePremium": {
-    "message": "Kup Premium"
+    "message": "Zamów konto Premium"
   },
   "licenseFile": {
     "message": "Plik licencji"
@@ -1741,7 +1750,7 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "Aby zaktualizować swoje konto do wersji premium, musisz wgrać prawidłowy plik licencyjny."
+    "message": "Aby aktywować konto Premium, musisz wgrać prawidłowy plik licencyjny."
   },
   "uploadLicenseFileOrg": {
     "message": "Aby utworzyć organizację na własnym serwerze, musisz wgrać prawidłowy plik licencyjny."
@@ -1750,7 +1759,7 @@
     "message": "Adres e-mail przypisany do Twojego konta musi zostać zweryfikowany."
   },
   "newOrganizationDesc": {
-    "message": "Organizacje pozwalają Ci udostępniać części sejfu, a także zarządzać użytkownikami w jednostkach takich jak rodzina, mały zespół lub duża firma."
+    "message": "Organizacje pozwalają Ci udostępniać części sejfu, a także zarządzać użytkownikami w jednostkach takich jak rodzina, małe zespoły lub duże firmy."
   },
   "generalInformation": {
     "message": "Informacje ogólne"
@@ -1899,7 +1908,7 @@
     "message": "Hosting na własnym serwerze (opcjonalny)"
   },
   "usersGetPremium": {
-    "message": "Użytkownicy uzyskują dostęp do funkcji członkostwa premium"
+    "message": "Użytkownicy uzyskują dostęp do funkcji kont Premium"
   },
   "controlAccessWithGroups": {
     "message": "Kontroluj dostęp z użyciem grup użytkowników"
@@ -1989,7 +1998,7 @@
     "message": "Identyfikator zewnętrzny"
   },
   "externalIdGroupDesc": {
-    "message": "Zewnętrzny identyfikator jest używany do połączenia tej grupy z zewnętrznym systemem, takim jak katalog użytkowników."
+    "message": "Zewnętrzne id jest używane do połączenia tej grupy z zewnętrznym systemem, takim jak katalog użytkowników."
   },
   "accessControl": {
     "message": "Kontrola dostępu"
@@ -2615,28 +2624,28 @@
     "message": "Filtry"
   },
   "lockOptions": {
-    "message": "Opcje blokowania"
+    "message": "Czas automatycznego blokowania"
   },
   "lockOptionsDesc": {
     "message": "Wybierz, kiedy twój sejf się zablokuje. Odblokowanie sejfu będzie wymagało ponownego wprowadzenia hasła głównego."
   },
   "oneMinute": {
-    "message": "1 minuta"
+    "message": "po 1 minucie"
   },
   "fiveMinutes": {
-    "message": "5 minut"
+    "message": "po 5 minutach"
   },
   "fifteenMinutes": {
-    "message": "15 minut"
+    "message": "po 15 minutach"
   },
   "thirtyMinutes": {
-    "message": "30 minut"
+    "message": "po 30 minutach"
   },
   "oneHour": {
-    "message": "1 godzina"
+    "message": "po 1 godzinie"
   },
   "fourHours": {
-    "message": "4 godziny"
+    "message": "po 4 godzinach"
   },
   "onRefresh": {
     "message": "Po restarcie przeglądarki"
@@ -2662,7 +2671,7 @@
     "message": "Wybrano"
   },
   "ownership": {
-    "message": "Własność"
+    "message": "Właściciel"
   },
   "whoOwnsThisItem": {
     "message": "Kto jest właścicielem tego elementu?"
@@ -2712,15 +2721,15 @@
     "message": "W Twoim sejfie istnieją stare załączniki, które muszą zostać naprawione, zanim będziesz mógł zmienić klucz szyfrowania Twojego konta."
   },
   "yourAccountsFingerprint": {
-    "message": "Hasło szyfrujące dla Twojego konta",
+    "message": "Unikalny identyfikator dla Twojego konta",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "W celu zapewnienia integralności Twoich kluczy szyfrowania, sprawdź hasło szyfrujące, zanim przejdziesz dalej.",
+    "message": "W celu zapewnienia integralności Twoich kluczy szyfrowania, sprawdź unikalny identyfikator konta, zanim przejdziesz dalej.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Nie pytaj ponownie o weryfikację hasła szyfrującego",
+    "message": "Nie pytaj ponownie o weryfikację unikalnego identyfikatora konta",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
