@@ -578,13 +578,22 @@
     "message": "Der opstod en uventet fejl."
   },
   "emailAddress": {
-    "message": "E-mailadresse"
+    "message": "Emailadresse"
   },
   "yourVaultIsLocked": {
     "message": "Din boks er låst. Bekræft din hovedadgangskode for at fortsætte."
   },
   "unlock": {
     "message": "Lås op"
+  },
+  "loggedInAsEmail": {
+    "message": "Logged in as $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   },
   "invalidMasterPassword": {
     "message": "Ugyldig hovedadgangskode"
@@ -824,16 +833,16 @@
     "message": "Konto opdateret"
   },
   "changeEmail": {
-    "message": "Skift e-mail"
+    "message": "Skift email"
   },
   "newEmail": {
-    "message": "Ny e-mail"
+    "message": "Ny email"
   },
   "code": {
     "message": "Kode"
   },
   "changeEmailDesc": {
-    "message": "Vi har sendt en bekræftelseskode til $EMAIL$. Tjek venligst din e-mail for denne kode og indtast den nedenfor for at afslutte e-mailadresseændringen.",
+    "message": "Vi har sendt en bekræftelseskode til $EMAIL$. Tjek venligst din email for denne kode og indtast den nedenfor for at afslutte emailadresse-ændringen.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -845,7 +854,7 @@
     "message": "Ved at fortsætte vil du blive logget ud af din nuværende session, og du skal logge ind igen. Aktive sessioner på andre enheder kan fortsat forblive aktive i op til én time."
   },
   "emailChanged": {
-    "message": "E-mail ændret"
+    "message": "Email ændret"
   },
   "logBackIn": {
     "message": "Log venligst ind igen."
@@ -911,7 +920,7 @@
     "message": "Fjern godkendelsen fra sessioner"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Bekymret for om din konto er logget ind på en anden enhed? Fortsæt nedenfor for at fjerne godkendelsen for alle computere eller enheder, som du tidligere har brugt. Dette sikkerhedstrin anbefales, hvis du tidligere har brugt en offentlig computer eller ved et uheld har gemt dit kodeord på en enhed, der ikke er din. Dette trin fjerner også alle tidligere huskede to-trins-login sessioner."
+    "message": "Bekymret for om din konto er logget ind på en anden enhed? Fortsæt nedenfor for at fjerne godkendelsen for alle computere eller enheder, som du tidligere har brugt. Dette sikkerhedstrin anbefales, hvis du tidligere har brugt en offentlig pc eller ved et uheld har gemt dit kodeord på en enhed, der ikke er din. Dette trin fjerner også alle tidligere huskede to-trins-login sessioner."
   },
   "deauthorizeSessionsWarning": {
     "message": "Ved at fortsætte vil du også blive logget ud af din nuværende session, og du skal logge ind igen. Du bliver også bedt om to-trins login igen, hvis det er aktiveret. Aktive sessioner på andre enheder kan fortsat forblive aktive i op til én time."
@@ -1233,7 +1242,7 @@
     "message": "Indtast den 6-cifrede verifikationskode fra e-mailen"
   },
   "sendEmail": {
-    "message": "Send e-mail"
+    "message": "Send email"
   },
   "twoFactorU2fAdd": {
     "message": "Tilføj en FIDO U2F sikkerhedsnøgle til din konto"
@@ -2022,7 +2031,7 @@
     "message": "Inviter bruger"
   },
   "inviteUserDesc": {
-    "message": "Inviter en ny bruger til din organisation ved at indtaste e-mailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
+    "message": "Inviter en ny bruger til din organisation ved at indtaste emailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
   },
   "inviteMultipleEmailDesc": {
     "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med e-mailadresser.",
@@ -2070,7 +2079,7 @@
     "message": "Bruger"
   },
   "userDesc": {
-    "message": "En almindelig bruger med adgang til tildelte samlinger i din organisation."
+    "message": "En almindelig bruger med adgang til organisationens samlinger."
   },
   "manager": {
     "message": "Administrator"
@@ -2364,13 +2373,13 @@
     "message": "Slutdato"
   },
   "verifyEmail": {
-    "message": "Bekræft e-mail"
+    "message": "Bekræft email"
   },
   "verifyEmailDesc": {
     "message": "Bekræft din e-mailadresse for at låse op for adgangen til alle funktioner."
   },
   "verifyEmailFirst": {
-    "message": "Din kontos e-mailadresse skal først verificeres."
+    "message": "Din kontos emailadresse skal først verificeres."
   },
   "checkInboxForVerification": {
     "message": "Tjek din e-mail indbakke for et bekræftelseslink."
@@ -2397,7 +2406,7 @@
     "message": "Invitation accepteret"
   },
   "inviteAcceptedDesc": {
-    "message": "Du kan få adgang til denne organisation, når en administrator bekræfter dit medlemskab. Vi sender dig en e-mail, når dette sker."
+    "message": "Du kan få adgang til denne organisation, når en administrator bekræfter dit medlemskab. Vi sender dig en email, når dette sker."
   },
   "inviteAcceptFailed": {
     "message": "Kan ikke acceptere invitationen. Bed en organisations-administrator om at sende en ny invitation."
