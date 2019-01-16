@@ -29,7 +29,7 @@
     }
   },
   "newUri": {
-    "message": "Nova URI"
+    "message": "Novo URI"
   },
   "username": {
     "message": "Nome de Usuário"
@@ -68,7 +68,7 @@
     "message": "Empresa"
   },
   "ssn": {
-    "message": "Número de Segurança Social"
+    "message": "Cadastro de Pessoas Físicas (CPF)"
   },
   "passportNumber": {
     "message": "Número do Passaporte"
@@ -318,7 +318,7 @@
     "message": "Cidade \/ Localidade"
   },
   "stateProvince": {
-    "message": "Estado \/ Província"
+    "message": "Estado"
   },
   "zipPostalCode": {
     "message": "CEP \/ Código Postal"
@@ -449,10 +449,10 @@
     "message": "Excluir Item"
   },
   "deleteFolder": {
-    "message": "Excluir Pasta"
+    "message": "Excluir pasta"
   },
   "deleteAttachment": {
-    "message": "Excluir Anexo"
+    "message": "Excluir anexo"
   },
   "deleteItemConfirmation": {
     "message": "Você tem certeza que deseja excluir este item?"
@@ -491,10 +491,10 @@
     "message": "Você tem certeza que deseja sair?"
   },
   "logOut": {
-    "message": "Encerrar Sessão"
+    "message": "Encerrar sessão"
   },
   "ok": {
-    "message": "Ok"
+    "message": "OK"
   },
   "yes": {
     "message": "Sim"
@@ -506,10 +506,10 @@
     "message": "Inicie a sessão ou crie uma nova conta para acessar seu cofre seguro."
   },
   "createAccount": {
-    "message": "Criar Conta"
+    "message": "Criar conta"
   },
   "logIn": {
-    "message": "Iniciar Sessão"
+    "message": "Iniciar sessão"
   },
   "submit": {
     "message": "Enviar"
@@ -518,13 +518,13 @@
     "message": "Você usará o seu endereço de e-mail para a iniciar sessão."
   },
   "yourName": {
-    "message": "Seu Nome"
+    "message": "Seu nome"
   },
   "yourNameDesc": {
     "message": "Como devemos chamá-lo?"
   },
   "masterPass": {
-    "message": "Senha Mestra"
+    "message": "Senha mestra"
   },
   "masterPassDesc": {
     "message": "A senha mestra é a senha que você usa para acessar o seu cofre. É muito importante que você não esqueça sua senha mestra. Não há maneira de recuperar a senha caso você se esqueça."
@@ -533,19 +533,19 @@
     "message": "Uma dica de senha mestra pode ajudá-lo(a) a lembrar a senha caso você esqueça."
   },
   "reTypeMasterPass": {
-    "message": "Digite Novamente a Senha Mestra"
+    "message": "Digite novamente a senha mestra"
   },
   "masterPassHint": {
-    "message": "Dica da Senha Mestra (opcional)"
+    "message": "Dica da senha mestra (opcional)"
   },
   "masterPassHintLabel": {
-    "message": "Dica da Senha Mestra"
+    "message": "Dica da senha mestra"
   },
   "settings": {
     "message": "Configurações"
   },
   "passwordHint": {
-    "message": "Dica da Senha"
+    "message": "Dica da senha"
   },
   "enterEmailToGetHint": {
     "message": "Insira o seu endereço de e-mail para receber a dica da sua senha mestra."
@@ -578,7 +578,7 @@
     "message": "Ocorreu um erro inesperado."
   },
   "emailAddress": {
-    "message": "Endereço de E-mail"
+    "message": "Endereço de e-mail"
   },
   "yourVaultIsLocked": {
     "message": "O seu cofre está bloqueado. Verifique a sua senha mestra para continuar."
@@ -586,11 +586,20 @@
   "unlock": {
     "message": "Desbloquear"
   },
+  "loggedInAsEmail": {
+    "message": "Sessão iniciada como $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "Senha mestra inválida"
   },
   "lockNow": {
-    "message": "Bloquear Agora"
+    "message": "Bloquear agora"
   },
   "noItemsInList": {
     "message": "Não há itens para listar."
@@ -608,7 +617,7 @@
     "message": "Não há eventos para listar."
   },
   "newOrganization": {
-    "message": "Nova Organização"
+    "message": "Nova organização"
   },
   "noOrganizationsList": {
     "message": "Você não pertence a nenhuma organização. Organizações permitem-lhe compartilhar itens em segurança com outros usuários."
@@ -659,32 +668,32 @@
     "message": "Insira a sua chave de segurança na porta USB do seu computador. Se ele tiver um botão, toque nele."
   },
   "loginUnavailable": {
-    "message": "Sessão Indisponível"
+    "message": "Sessão indisponível"
   },
   "noTwoStepProviders": {
-    "message": "Esta conta tem a verificação em duas etapas ativada, no entanto, nenhum dos provedores de verificação em duas etapas configurados são suportados por este navegador web."
+    "message": "Esta conta tem a autenticação em duas etapas ativada. No entanto, nenhum dos provedores de autenticação em duas etapas configurados são suportados por este navegador web."
   },
   "noTwoStepProviders2": {
     "message": "Por favor utilize um navegador web suportado (tal como o Chrome) e\/ou inclua provedores adicionais que são melhor suportados entre navegadores web (tal como um aplicativo de autenticação)."
   },
   "twoStepOptions": {
-    "message": "Opções de Login em Duas Etapas"
+    "message": "Opções de login em duas etapas"
   },
   "recoveryCodeDesc": {
     "message": "Perdeu o acesso a todos os seus provedores de duas etapas? Utilize o seu código de recuperação para desativar todos os provedores de duas etapas da sua conta."
   },
   "recoveryCodeTitle": {
-    "message": "Código de Recuperação"
+    "message": "Código de recuperação"
   },
   "authenticatorAppTitle": {
-    "message": "Aplicativo de Autenticação"
+    "message": "Aplicativo de autenticação"
   },
   "authenticatorAppDesc": {
     "message": "Utilize um aplicativo de autenticação (tal como Authy ou Google Authenticator) para gerar códigos de verificação baseados no tempo.",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
-    "message": "Chave de Segurança YubiKey OTP"
+    "message": "Chave de segurança YubiKey OTP"
   },
   "yubiKeyDesc": {
     "message": "Utilize uma YubiKey para acessar a sua conta. Funciona com YubiKey 4, 4 Nano, 4C, e dispositivos NEO."
@@ -694,14 +703,14 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Verifique com o Duo Security para sua organização utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
+    "message": "Verifique com o Duo Security utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
     "message": "Utilize qualquer chave de segurança ativada por FIDO U2F para acessar a sua conta."
   },
   "u2fTitle": {
-    "message": "Chave de Segurança FIDO U2F"
+    "message": "Chave de segurança FIDO U2F"
   },
   "emailTitle": {
     "message": "E-mail"
@@ -763,7 +772,7 @@
     }
   },
   "verificationCodeTotp": {
-    "message": "Código de Verificação (TOTP)"
+    "message": "Código de verificação (TOTP)"
   },
   "copyVerificationCode": {
     "message": "Copiar Código de Verificação"
@@ -902,16 +911,16 @@
     "message": "As Configurações da Chave de Criptografia foram Alteradas"
   },
   "dangerZone": {
-    "message": "Zona de Perigo"
+    "message": "Zona de perigo"
   },
   "dangerZoneDesc": {
     "message": "Cuidado, essas ações não são reversíveis!"
   },
   "deauthorizeSessions": {
-    "message": "Desautorizar Sessões"
+    "message": "Desautorizar sessões"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Preocupado por ter iniciado a sessão em outro dispositivo? Prossiga abaixo para desautorizar todos os computadores e dispositivos que tenha usado. Esta medida de segurança é recomendada se usou um PC público ou guardou acidentalmente a sua senha num dispositivo que não lhe pertence. Esta ação também apagará todas as sessões anteriores registadas iniciadas com duas etapas."
+    "message": "Preocupado por ter sessão iniciada em outro dispositivo? Prossiga abaixo para desautorizar todos os computadores e dispositivos que tenha usado. Esta medida de segurança é recomendada se usou um PC público ou guardou acidentalmente a sua senha num dispositivo que não lhe pertence. Esta ação também apagará todas as sessões anteriores registadas iniciadas com duas etapas."
   },
   "deauthorizeSessionsWarning": {
     "message": "O processo também desconectará você da sua sessão atual, exigindo que você inicie a sessão novamente. Você também será solicitado a efetuar login em duas etapas novamente, se estiver ativado. Sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
@@ -1426,7 +1435,7 @@
     "message": "Verifique qualquer nome de usuário ou endereço de e-mail que você usa."
   },
   "checkBreaches": {
-    "message": "Verificar Violações"
+    "message": "Verificar Brechas"
   },
   "breachUsernameNotFound": {
     "message": "$USERNAME$ não foi encontrado em nenhuma violação de dados conhecida.",
@@ -1467,10 +1476,10 @@
     "message": "Usuários Afetados"
   },
   "breachOccurred": {
-    "message": "Ocorreu uma Violação"
+    "message": "Ocorreu uma Brecha"
   },
   "breachReported": {
-    "message": "Violação Reportada"
+    "message": "Brecha Reportada"
   },
   "reportError": {
     "message": "Ocorreu um erro ao tentar carregar o relatório. Tente novamente"
@@ -1768,7 +1777,7 @@
     "message": "Nome da Empresa"
   },
   "chooseYourPlan": {
-    "message": "Escolha Seu Plano"
+    "message": "Escolhe Seu Plano"
   },
   "users": {
     "message": "Usuários"
@@ -2475,7 +2484,7 @@
     "message": "Fizemos dois micro-depósitos em sua conta bancária (pode demorar de 1 a 2 dias úteis para aparecer). Insira esses valores para confirmar a conta bancária."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "O pagamento com uma conta bancária só está disponível para clientes nos Estados Unidos. Você será solicitado a confirmar sua conta bancária. Vamos fazer dois micro depósitos nos próximos 1-2 dias úteis. Insira esses valores na página de faturamento da organização para confirmar a conta bancária."
+    "message": "O pagamento com uma conta bancária só está disponível para clientes nos Estados Unidos. Você será solicitado a confirmar sua conta bancária. Vamos fazer dois micro-depósitos nos próximos 1-2 dias úteis. Insira esses valores na página de faturamento da organização para confirmar a conta bancária."
   },
   "verifyBankAccountFailureWarning": {
     "message": "A não verificação da conta bancária resultará em um pagamento não atendido e sua assinatura será desativada."
