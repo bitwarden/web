@@ -96,7 +96,9 @@ export class CreateOrganizationComponent implements OnInit {
             if (qParams.plan === 'families' || qParams.plan === 'teams' || qParams.plan === 'enterprise') {
                 this.plan = qParams.plan;
             }
-            queryParamsSub.unsubscribe();
+            if (queryParamsSub != null) {
+                queryParamsSub.unsubscribe();
+            }
         });
     }
 

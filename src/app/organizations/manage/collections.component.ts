@@ -56,7 +56,9 @@ export class CollectionsComponent implements OnInit {
             await this.load();
             const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
                 this.searchText = qParams.search;
-                queryParamsSub.unsubscribe();
+                if (queryParamsSub != null) {
+                    queryParamsSub.unsubscribe();
+                }
             });
         });
     }

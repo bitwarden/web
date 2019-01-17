@@ -141,7 +141,9 @@ export class VaultComponent implements OnInit, OnDestroy {
                 });
             });
 
-            queryParamsSub.unsubscribe();
+            if (queryParamsSub != null) {
+                queryParamsSub.unsubscribe();
+            }
         });
     }
 

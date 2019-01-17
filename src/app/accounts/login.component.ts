@@ -37,7 +37,9 @@ export class LoginComponent extends BaseLoginComponent {
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             await super.ngOnInit();
-            queryParamsSub.unsubscribe();
+            if (queryParamsSub != null) {
+                queryParamsSub.unsubscribe();
+            }
         });
     }
 

@@ -89,7 +89,9 @@ export class PeopleComponent implements OnInit {
                         this.events(user[0]);
                     }
                 }
-                queryParamsSub.unsubscribe();
+                if (queryParamsSub != null) {
+                    queryParamsSub.unsubscribe();
+                }
             });
         });
     }
