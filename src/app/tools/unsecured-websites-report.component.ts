@@ -36,7 +36,7 @@ export class UnsecuredWebsitesReportComponent extends CipherReportComponent impl
             if (c.type !== CipherType.Login || !c.login.hasUris) {
                 return false;
             }
-            return c.login.uris.find((u) => u.uri != null && u.uri.indexOf('http://') === 0) != null;
+            return c.login.uris.some((u) => u.uri != null && u.uri.indexOf('http://') === 0);
         });
         this.ciphers = unsecuredCiphers;
     }
