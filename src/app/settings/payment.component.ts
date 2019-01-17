@@ -26,8 +26,8 @@ export class PaymentComponent implements OnInit {
 
     card: any = {
         number: null,
-        exp_month: null,
-        exp_year: null,
+        exp_month: '',
+        exp_year: '',
         address_country: '',
         address_zip: null,
     };
@@ -59,7 +59,7 @@ export class PaymentComponent implements OnInit {
         this.btScript.async = true;
 
         this.cardExpMonthOptions = [
-            { name: '-- ' + i18nService.t('select') + ' --', value: null },
+            { name: '-- ' + i18nService.t('select') + ' --', value: '' },
             { name: '01 - ' + i18nService.t('january'), value: '01' },
             { name: '02 - ' + i18nService.t('february'), value: '02' },
             { name: '03 - ' + i18nService.t('march'), value: '03' },
@@ -75,7 +75,7 @@ export class PaymentComponent implements OnInit {
         ];
 
         this.cardExpYearOptions = [
-            { name: '-- ' + i18nService.t('select') + ' --', value: null },
+            { name: '-- ' + i18nService.t('select') + ' --', value: '' },
         ];
         const year = (new Date()).getFullYear();
         for (let i = year; i < (year + 15); i++) {
@@ -150,9 +150,10 @@ export class PaymentComponent implements OnInit {
                     reject(err.message);
                 });
             } else if (this.method === 'card' || this.method === 'bank') {
-                const createObj: any = this.method === 'card' ? (window as any).Stripe.card :
+                const isCard = this.method === 'card';
+                const createObj: any = isCard ? (window as any).Stripe.card :
                     (window as any).Stripe.bankAccount;
-                const sourceObj = this.method === 'card' ? this.card : this.bank;
+                const sourceObj = isCard ? this.card : this.bank;
                 createObj.createToken(sourceObj, (status: number, response: any) => {
                     if (status === 200 && response.id != null) {
                         resolve(response.id);
