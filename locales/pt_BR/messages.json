@@ -29,7 +29,7 @@
     }
   },
   "newUri": {
-    "message": "Nova URI"
+    "message": "Novo URI"
   },
   "username": {
     "message": "Nome de Usuário"
@@ -68,7 +68,7 @@
     "message": "Empresa"
   },
   "ssn": {
-    "message": "Número de Segurança Social"
+    "message": "Cadastro de Pessoas Físicas (CPF)"
   },
   "passportNumber": {
     "message": "Número do Passaporte"
@@ -303,7 +303,7 @@
     "message": "Nome do Meio"
   },
   "lastName": {
-    "message": "Último Nome"
+    "message": "Sobrenome"
   },
   "address1": {
     "message": "Endereço 1"
@@ -318,7 +318,7 @@
     "message": "Cidade \/ Localidade"
   },
   "stateProvince": {
-    "message": "Estado \/ Província"
+    "message": "Estado"
   },
   "zipPostalCode": {
     "message": "CEP \/ Código Postal"
@@ -586,6 +586,15 @@
   "unlock": {
     "message": "Desbloquear"
   },
+  "loggedInAsEmail": {
+    "message": "Sessão iniciada como $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "Senha mestra inválida"
   },
@@ -662,7 +671,7 @@
     "message": "Sessão Indisponível"
   },
   "noTwoStepProviders": {
-    "message": "Esta conta tem a verificação em duas etapas ativada, no entanto, nenhum dos provedores de verificação em duas etapas configurados são suportados por este navegador web."
+    "message": "Esta conta tem a autenticação em duas etapas ativada. No entanto, nenhum dos provedores de autenticação em duas etapas configurados são suportados por este navegador web."
   },
   "noTwoStepProviders2": {
     "message": "Por favor utilize um navegador web suportado (tal como o Chrome) e\/ou inclua provedores adicionais que são melhor suportados entre navegadores web (tal como um aplicativo de autenticação)."
@@ -694,7 +703,7 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Verifique com o Duo Security para sua organização utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
+    "message": "Verifique com o Duo Security utilizando o aplicativo Duo Mobile, SMS, chamada telefônica, ou chave de segurança U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
@@ -763,56 +772,56 @@
     }
   },
   "verificationCodeTotp": {
-    "message": "Código de Verificação (TOTP)"
+    "message": "Código de verificação (TOTP)"
   },
   "copyVerificationCode": {
-    "message": "Copiar Código de Verificação"
+    "message": "Copiar código de verificação"
   },
   "warning": {
     "message": "Aviso"
   },
   "exportWarningDesc": {
-    "message": "Esta exportação contém os dados do seu cofre em um formato não criptografado. Você não deve armazenar ou enviar o arquivo exportado por canais inseguros (como e-mail). Exclua imediatamente após terminar de usá-lo."
+    "message": "Esta exportação contém os dados do seu cofre em um formato não criptografado. Você não deve armazenar ou enviar o arquivo exportado por canais inseguros (como e-mail). Exclua o arquivo imediatamente após terminar de usá-lo."
   },
   "exportMasterPassword": {
     "message": "Insira a sua senha mestra para exportar os dados do seu cofre."
   },
   "exportVault": {
-    "message": "Exportar Cofre"
+    "message": "Exportar cofre"
   },
   "fileFormat": {
-    "message": "Formato do Arquivo"
+    "message": "Formato do arquivo"
   },
   "exportSuccess": {
     "message": "Os dados do seu cofre foram exportados."
   },
   "passwordGenerator": {
-    "message": "Gerador de Senha"
+    "message": "Gerador de senha"
   },
   "minNumbers": {
-    "message": "Números Mínimos"
+    "message": "Mínimo de Números"
   },
   "minSpecial": {
-    "message": "Especiais Mínimos",
+    "message": "Mínimo Especial",
     "description": "Minimum Special Characters"
   },
   "ambiguous": {
-    "message": "Evitar Caracteres Ambíguos"
+    "message": "Evitar caracteres ambíguos"
   },
   "regeneratePassword": {
-    "message": "Gerar Nova Senha"
+    "message": "Gerar nova senha"
   },
   "length": {
     "message": "Comprimento"
   },
   "numWords": {
-    "message": "Número de Palavras"
+    "message": "Número de palavras"
   },
   "wordSeparator": {
-    "message": "Separador de Palavra"
+    "message": "Separador de palavra"
   },
   "passwordHistory": {
-    "message": "Histórico de Senha"
+    "message": "Histórico de senha"
   },
   "noPasswordsInList": {
     "message": "Não existem senhas para listar."
@@ -821,13 +830,13 @@
     "message": "Limpar"
   },
   "accountUpdated": {
-    "message": "Conta Atualizada"
+    "message": "Conta atualizada"
   },
   "changeEmail": {
-    "message": "Alterar E-mail"
+    "message": "Alterar e-mail"
   },
   "newEmail": {
-    "message": "Novo E-mail"
+    "message": "Novo e-mail"
   },
   "code": {
     "message": "Código"
@@ -845,7 +854,7 @@
     "message": "O processo desconectará você da sessão atual, exigindo que você inicie a sessão novamente. As sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "emailChanged": {
-    "message": "E-mail Alterado"
+    "message": "E-mail alterado"
   },
   "logBackIn": {
     "message": "Por favor, reinicie a sessão."
@@ -854,7 +863,7 @@
     "message": "Por favor, reinicie a sessão. Se estiver usando outros aplicativos do Bitwarden, encerre a sessão e reinicie também."
   },
   "changeMasterPassword": {
-    "message": "Alterar Senha Mestra"
+    "message": "Alterar senha mestra"
   },
   "masterPasswordChanged": {
     "message": "Senha Mestra Alterada"
@@ -911,16 +920,16 @@
     "message": "Desautorizar Sessões"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Preocupado por ter iniciado a sessão em outro dispositivo? Prossiga abaixo para desautorizar todos os computadores e dispositivos que tenha usado. Esta medida de segurança é recomendada se usou um PC público ou guardou acidentalmente a sua senha num dispositivo que não lhe pertence. Esta ação também apagará todas as sessões anteriores registadas iniciadas com duas etapas."
+    "message": "Preocupado por ter iniciado a sessão em outro dispositivo? Prossiga abaixo para desautorizar todos os computadores e dispositivos que tenha usado. Esta medida de segurança é recomendada se usou um computador público ou guardou acidentalmente a sua senha num dispositivo que não lhe pertence. Esta ação também apagará todas as sessões anteriores registadas iniciadas com autenticação em duas etapas."
   },
   "deauthorizeSessionsWarning": {
     "message": "O processo também desconectará você da sua sessão atual, exigindo que você inicie a sessão novamente. Você também será solicitado a efetuar login em duas etapas novamente, se estiver ativado. Sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "sessionsDeauthorized": {
-    "message": "Todas as Sessões Desautorizadas"
+    "message": "Todas as sessões desautorizadas"
   },
   "purgeVault": {
-    "message": "Limpar o Cofre"
+    "message": "Limpar o cofre"
   },
   "purgedOrganizationVault": {
     "message": "Cofre da organização limpado."
@@ -938,7 +947,7 @@
     "message": "O seu cofre foi limpo."
   },
   "deleteAccount": {
-    "message": "Excluir a Conta"
+    "message": "Excluir a conta"
   },
   "deleteAccountDesc": {
     "message": "Prossiga abaixo para excluir a sua conta e todos os dados associados."
@@ -947,19 +956,19 @@
     "message": "A exclusão de sua conta é permanente. Não pode ser desfeito."
   },
   "accountDeleted": {
-    "message": "Conta Excluída"
+    "message": "Conta excluída"
   },
   "accountDeletedDesc": {
     "message": "A sua conta foi fechada e todos os dados associados foram excluídos."
   },
   "myAccount": {
-    "message": "Minha Conta"
+    "message": "Minha conta"
   },
   "tools": {
     "message": "Ferramentas"
   },
   "importData": {
-    "message": "Importar Dados"
+    "message": "Importar dados"
   },
   "importSuccess": {
     "message": "Os dados foram importados com sucesso para o seu cofre."
@@ -980,7 +989,7 @@
     "message": "ou copie\/cole o conteúdo do arquivo de importação"
   },
   "instructionsFor": {
-    "message": "$NAME$ Instruções",
+    "message": "$NAME$ instruções",
     "description": "The title for the import tool instructions.",
     "placeholders": {
       "name": {
@@ -1005,10 +1014,10 @@
     "message": "Altere o idioma usado pelo cofre web."
   },
   "disableIcons": {
-    "message": "Desabilitar Ícones dos Sites"
+    "message": "Desabilitar ícones dos sites"
   },
   "disableIconsDesc": {
-    "message": "O ícone do site fornece um ícone reconhecível ao lado de cada crendencial no seu cofre."
+    "message": "O ícone do site fornece um ícone reconhecível ao lado de cada credencial no seu cofre."
   },
   "enableGravatars": {
     "message": "Habilitar Gravatar",
@@ -1021,16 +1030,16 @@
     "message": "Padrão"
   },
   "domainRules": {
-    "message": "Regras de Domínio"
+    "message": "Regras de domínio"
   },
   "domainRulesDesc": {
     "message": "Se você tiver a mesma credencial em vários domínios de sites diferentes, poderá marcar o site como \"equivalente\". Domínios \"globais\" são aqueles já criados para você pelo Bitwarden."
   },
   "globalEqDomains": {
-    "message": "Domínios Equivalentes Globais"
+    "message": "Domínios equivalentes globais"
   },
   "customEqDomains": {
-    "message": "Domínios Equivalentes Personalizados"
+    "message": "Domínios equivalentes personalizados"
   },
   "exclude": {
     "message": "Excluir"
@@ -1042,7 +1051,7 @@
     "message": "Personalizar"
   },
   "newCustomDomain": {
-    "message": "Novo Domínio Personalizado"
+    "message": "Novo domínio personalizado"
   },
   "newCustomDomainDesc": {
     "message": "Digite uma lista de domínios separados por vírgulas. Apenas domínios \"base\" são permitidos. Não insira subdomínios. Por exemplo, digite \"google.com.br\" em vez de \"www.google.com.br\". Você também pode digitar \"androidapp:\/\/package.name\" para associar um aplicativo Android a outros domínios de site."
@@ -1426,7 +1435,7 @@
     "message": "Verifique qualquer nome de usuário ou endereço de e-mail que você usa."
   },
   "checkBreaches": {
-    "message": "Verificar Violações"
+    "message": "Verificar Brechas"
   },
   "breachUsernameNotFound": {
     "message": "$USERNAME$ não foi encontrado em nenhuma violação de dados conhecida.",
@@ -1467,10 +1476,10 @@
     "message": "Usuários Afetados"
   },
   "breachOccurred": {
-    "message": "Ocorreu uma Violação"
+    "message": "Ocorreu uma Brecha"
   },
   "breachReported": {
-    "message": "Violação Reportada"
+    "message": "Brecha Reportada"
   },
   "reportError": {
     "message": "Ocorreu um erro ao tentar carregar o relatório. Tente novamente"
@@ -2475,7 +2484,7 @@
     "message": "Fizemos dois micro-depósitos em sua conta bancária (pode demorar de 1 a 2 dias úteis para aparecer). Insira esses valores para confirmar a conta bancária."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "O pagamento com uma conta bancária só está disponível para clientes nos Estados Unidos. Você será solicitado a confirmar sua conta bancária. Vamos fazer dois micro depósitos nos próximos 1-2 dias úteis. Insira esses valores na página de faturamento da organização para confirmar a conta bancária."
+    "message": "O pagamento com uma conta bancária só está disponível para clientes nos Estados Unidos. Você será solicitado a confirmar sua conta bancária. Vamos fazer dois micro-depósitos nos próximos 1-2 dias úteis. Insira esses valores na página de faturamento da organização para confirmar a conta bancária."
   },
   "verifyBankAccountFailureWarning": {
     "message": "A não verificação da conta bancária resultará em um pagamento não atendido e sua assinatura será desativada."

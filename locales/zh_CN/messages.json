@@ -586,6 +586,15 @@
   "unlock": {
     "message": "解锁​​​​"
   },
+  "loggedInAsEmail": {
+    "message": "Logged in as $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "无效的主密码"
   },
@@ -694,7 +703,7 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "使用 Duo Mobile 应用、短信、电话或 U2F 安全密钥来和您组织的 Duo Security 进行验证。",
+    "message": "使用 Duo Security 的 Duo Mobile 应用、短信、电话或 U2F 安全密钥验证身份。",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
@@ -1045,7 +1054,7 @@
     "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "输入用逗号分隔的域列表。只能使用主域名。不要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用与其他网站域名关联。"
+    "message": "输入用逗号分隔的域列表。只能使用主域名。不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用程序与其他网站域名关联。"
   },
   "customDomainX": {
     "message": "自定义域名 $INDEX$",
@@ -1066,7 +1075,7 @@
     "message": "在登录时需要额外的步骤来保护您的帐户。"
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "在组织机构层面配置验证应用，使您组织的用户采用两步登录。"
+    "message": "在组织机构层面配置提供程序，使您组织的用户采用两步登录。"
   },
   "twoStepLoginRecoveryWarning": {
     "message": "启用两步登录可以永久锁定您的 Bitwarden 帐户。如果您无法正常使用两步登录验证应用（例如，您丢失了设备），则可以使用恢复代码访问您的帐户。 如果您无法访问您的帐户，Bitwarden 无法帮助您。我们建议您记下或打印恢复代码，并将其妥善保管。"
@@ -2034,7 +2043,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "此用户正在使用两步登录来保护他们的帐户。"
   },
   "userAccessAllItems": {
     "message": "此用户可以访问和修改所有项目。"

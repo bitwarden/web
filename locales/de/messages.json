@@ -586,6 +586,15 @@
   "unlock": {
     "message": "Entsperren"
   },
+  "loggedInAsEmail": {
+    "message": "Als $EMAIL$ angemeldet.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
   "invalidMasterPassword": {
     "message": "Ungültiges Master-Passwort"
   },
@@ -611,7 +620,7 @@
     "message": "Neue Organisation"
   },
   "noOrganizationsList": {
-    "message": "Sie gehören keiner Organisation an. Organisationen erlauben es Ihnen Passwörter sicher mit anderen zu teilen."
+    "message": "Du bist kein Mitglied einer Organisation. Organisationen erlauben es dir Passwörter sicher mit anderen Nutzern zu teilen."
   },
   "versionNumber": {
     "message": "Version $VERSION_NUMBER$",
@@ -662,7 +671,7 @@
     "message": "Anmeldung nicht verfügbar"
   },
   "noTwoStepProviders": {
-    "message": "Dieses Konto hat eine aktive Zwei-Faktor-Authentifizierung, allerdings wird keiner der konfigurierten Zwei-Faktor-Anbietern von diesem Browser unterstützt."
+    "message": "Dieses Konto hat eine aktive Zwei Faktor-Authentifizierung, allerdings wird keiner der konfigurierten Zwei Faktor-Anbieter von diesem Browser unterstützt."
   },
   "noTwoStepProviders2": {
     "message": "Bitte benutzen Sie einen unterstützten Browser (z. B. Chrome) und \/ oder fügen Sie zusätzliche Anbieter hinzu, die von mehr Browsern unterstützt werden (z. B. eine Authentifizierungs-App)."
@@ -694,7 +703,7 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Nutzen Sie Duo Security um sich mit der Duo Mobile App, SMS, per Anruf oder U2F Sicherheitsschlüssel Ihrer Organisation gegenüber zu verifizieren.",
+    "message": "Nutze Duo Security um dich mit der Duo Mobile App, SMS, per Anruf oder U2F Security Key bei deiner Organisation zu verifizieren.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
@@ -719,7 +728,7 @@
     "message": "Organisationen"
   },
   "shareDesc": {
-    "message": "Wählen Sie eine Organisation aus, für die Sie diesen Eintrag freigeben möchten. Die gemeinsame Nutzung überträgt das Eigentum an dem Eintrag auf diese Organisation. Sie sind dann nicht mehr der direkte Besitzer dieses Eintrags, sobald er geteilt wurde."
+    "message": "Wähle eine Organisation aus, für die du diesen Eintrag freigeben möchtest. Die gemeinsame Nutzung überträgt das Eigentum an dem Eintrag auf diese Organisation. Du bist dann nicht mehr der direkte Besitzer dieses Eintrags, sobald er geteilt wurde."
   },
   "shareManyDesc": {
     "message": "Wählen Sie eine Organisation aus, für die Sie diese Einträge freigeben möchten. Die gemeinsame Nutzung überträgt das Eigentum an den Einträgen auf diese Organisation. Sie sind dann nicht mehr der direkte Besitzer dieser Einträge, sobald sie geteilt wurden."
@@ -833,7 +842,7 @@
     "message": "Code"
   },
   "changeEmailDesc": {
-    "message": "Wir haben dir einen Bestätigungscode an $EMAIL$ gesendet. Bitte prüfe deine E-Mails und gebe den Code zur Bestätigung der E-Mail-Änderung unten ein.",
+    "message": "Wir haben Ihnen einen Bestätigungscode an $EMAIL$ gesendet. Bitte prüfen Sie Ihre E-Mails und geben Sie den Code zur Bestätigung der E-Mail-Änderung unten ein.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -2034,7 +2043,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "Dieser Benutzer hat seinen Account mit einer 2-Schritte Anmeldung geschützt."
   },
   "userAccessAllItems": {
     "message": "Der Benutzer kann alle Einträge einsehen und verändern."
