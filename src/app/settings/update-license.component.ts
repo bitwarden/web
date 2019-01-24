@@ -38,11 +38,16 @@ export class UpdateLicenseComponent {
             const fd = new FormData();
             fd.append('license', files[0]);
 
+            let updatePromise: Promise<any> = null;
             if (this.organizationId == null) {
-                this.formPromise = this.apiService.postAccountLicense(fd);
+                updatePromise = this.apiService.postAccountLicense(fd);
             } else {
-                this.formPromise = this.apiService.postOrganizationLicenseUpdate(this.organizationId, fd);
+                updatePromise = this.apiService.postOrganizationLicenseUpdate(this.organizationId, fd);
             }
+
+            this.formPromise = updatePromise.then(() => {
+                return this.apiService.refreshIdentityToken();
+            });
 
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Updated License' });

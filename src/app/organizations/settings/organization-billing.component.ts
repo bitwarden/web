@@ -14,6 +14,7 @@ import { OrganizationBillingResponse } from 'jslib/models/response/organizationB
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
@@ -48,7 +49,7 @@ export class OrganizationBillingComponent implements OnInit {
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private route: ActivatedRoute) {
+        private messagingService: MessagingService, private route: ActivatedRoute) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -159,10 +160,11 @@ export class OrganizationBillingComponent implements OnInit {
         } catch { }
     }
 
-    closeUpdateLicense(load: boolean) {
+    closeUpdateLicense(updated: boolean) {
         this.showUpdateLicense = false;
-        if (load) {
+        if (updated) {
             this.load();
+            this.messagingService.send('updatedOrgLicense');
         }
     }
 
