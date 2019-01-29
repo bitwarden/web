@@ -12,10 +12,12 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 })
 export class FrontendLayoutComponent implements OnInit, OnDestroy {
     version: string;
+    year: string = '2015';
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
     ngOnInit() {
+        this.year = new Date().getFullYear().toString();
         this.version = this.platformUtilsService.getApplicationVersion();
         document.body.classList.add('layout_frontend');
     }
