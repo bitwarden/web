@@ -59,8 +59,4 @@ export class AdjustPaymentComponent {
     cancel() {
         this.onCanceled.emit();
     }
-
-    get canChange() {
-        return this.currentType == null || this.currentType === PaymentMethodType.Card || this.organizationId != null;
-    }
 }
