@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <ng-container *ngIf="cipher.login.hasUris">
-                        <div class="row" appBoxRow *ngFor="let u of cipher.login.uris; let i = index">
+                        <div class="row" appBoxRow *ngFor="let u of cipher.login.uris; let i = index; trackBy:trackByFunction">
                             <div class="col-7 form-group">
                                 <label for="loginUri{{i}}">{{'uriPosition' | i18n : (i + 1)}}</label>
                                 <div class="input-group">
@@ -308,7 +308,7 @@
                 </div>
                 <h3 class="mt-4">{{'customFields' | i18n}}</h3>
                 <ng-container *ngIf="cipher.hasFields">
-                    <div class="row" appBoxRow *ngFor="let f of cipher.fields; let i = index">
+                    <div class="row" appBoxRow *ngFor="let f of cipher.fields; let i = index; trackBy:trackByFunction">
                         <div class="col-5 form-group">
                             <div class="d-flex">
                                 <label for="fieldName{{i}}">{{'name' | i18n}}</label>
