@@ -117,15 +117,51 @@
         <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null" (onAdjusted)="closePayment(true)" (onCanceled)="closePayment(false)"
             *ngIf="showAdjustPayment">
         </app-adjust-payment>
-        <h2 class="spaced-header">{{'charges' | i18n}}</h2>
-        <p *ngIf="!charges || !charges.length">{{'noCharges' | i18n}}</p>
-        <table class="table mb-2" *ngIf="charges && charges.length">
+        <h2 class="spaced-header">{{'invoices' | i18n}}</h2>
+        <p *ngIf="!invoices || !invoices.length">{{'noInvoices' | i18n}}</p>
+        <table class="table mb-2" *ngIf="invoices && invoices.length">
             <tbody>
-                <tr *ngFor="let c of charges">
-                    <td>{{c.createdDate | date:'mediumDate'}}</td>
-                    <td>{{c.paymentSource ? c.paymentSource.description : '-'}}</td>
-                    <td class="text-capitalize">{{c.status}}</td>
-                    <td [ngClass]="{'text-strike':c.refunded}" title="{{(c.refunded ? 'refunded' : '') | i18n}}">{{c.amount | currency:'$'}}</td>
+                <tr *ngFor="let i of invoices">
+                    <td>{{i.date | date:'mediumDate'}}</td>
+                    <td>
+                        <a href="{{i.pdfUrl}}" target="_blank" rel="noopener" class="mr-2" title="{{'downloadInvoice' | i18n}}">
+                            <i class="fa fa-file-pdf-o"></i></a>
+                        <a href="{{i.url}}" target="_blank" rel="noopener" title="{{'viewInvoice' | i18n}}">
+                            {{'invoiceNumber' | i18n : i.number}}</a>
+                    </td>
+                    <td>{{i.amount | currency:'$'}}</td>
+                    <td>
+                        <span *ngIf="i.paid">
+                            <i class="fa fa-check text-success"></i>
+                            {{'paid' | i18n}}
+                        </span>
+                        <span *ngIf="!i.paid">
+                            <i class="fa fa-exclamation-circle text-muted"></i>
+                            {{'unpaid' | i18n}}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 class="spaced-header">{{'transactions' | i18n}}</h2>
+        <p *ngIf="!transactions || !transactions.length">{{'noTransactions' | i18n}}</p>
+        <table class="table mb-2" *ngIf="transactions && transactions.length">
+            <tbody>
+                <tr *ngFor="let t of transactions">
+                    <td>{{t.createdDate | date:'mediumDate'}}</td>
+                    <td>
+                        <span *ngIf="t.type === transactionType.Charge">{{'chargeNoun' | i18n}}</span>
+                        <span *ngIf="t.type === transactionType.Refund">{{'chargeRefund' | i18n}}</span>
+                    </td>
+                    <td>
+                        <i class="fa fa-fw" 
+                            *ngIf="t.type === transactionType.Charge || t.type === transactionType.Refund"
+                            [ngClass]="{'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
+                                'fa-university': t.paymentMethodType === paymentMethodType.BankAccount,
+                                'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal}"></i>
+                        {{t.details}}
+                    </td>
+                    <td [ngClass]="{'text-strike': t.refunded}" title="{{(t.refunded ? 'refunded' : '') | i18n}}">{{t.amount | currency:'$'}}</td>
                 </tr>
             </tbody>
         </table>

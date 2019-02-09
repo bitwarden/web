@@ -20,6 +20,7 @@ import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 import { PlanType } from 'jslib/enums/planType';
+import { TransactionType } from 'jslib/enums/transactionType';
 
 @Component({
     selector: 'app-org-billing',
@@ -37,6 +38,7 @@ export class OrganizationBillingComponent implements OnInit {
     showUpdateLicense = false;
     billing: OrganizationBillingResponse;
     paymentMethodType = PaymentMethodType;
+    transactionType = TransactionType;
     selfHosted = false;
     verifyAmount1: number;
     verifyAmount2: number;
@@ -227,12 +229,16 @@ export class OrganizationBillingComponent implements OnInit {
         return this.billing != null ? this.billing.upcomingInvoice : null;
     }
 
-    get paymentSource() {
-        return this.billing != null ? this.billing.paymentSource : null;
+    get invoices() {
+        return this.billing != null ? this.billing.invoices : null;
     }
 
-    get charges() {
-        return this.billing != null ? this.billing.charges : null;
+    get transactions() {
+        return this.billing != null ? this.billing.transactions : null;
+    }
+
+    get paymentSource() {
+        return this.billing != null ? this.billing.paymentSource : null;
     }
 
     get storagePercentage() {

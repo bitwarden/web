@@ -15,6 +15,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+import { TransactionType } from 'jslib/enums/transactionType';
 
 @Component({
     selector: 'app-user-billing',
@@ -29,6 +30,7 @@ export class UserBillingComponent implements OnInit {
     showUpdateLicense = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
+    transactionType = TransactionType;
     selfHosted = false;
 
     cancelPromise: Promise<any>;
@@ -164,8 +166,12 @@ export class UserBillingComponent implements OnInit {
         return this.billing != null ? this.billing.paymentSource : null;
     }
 
-    get charges() {
-        return this.billing != null ? this.billing.charges : null;
+    get invoices() {
+        return this.billing != null ? this.billing.invoices : null;
+    }
+
+    get transactions() {
+        return this.billing != null ? this.billing.transactions : null;
     }
 
     get storagePercentage() {
