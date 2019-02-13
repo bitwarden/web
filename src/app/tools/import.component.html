@@ -178,6 +178,10 @@
             Open the Kaspersky Password Manager desktop application and navigate to "Settings" &rarr; "Import/Export". Locate
             the "Export to text file" section and select the "Export" button to save the TXT file.
         </ng-container>
+        <ng-container *ngIf="format === 'remembearcsv'">
+            Open the RememBear desktop application and navigate to "Settings" &rarr; "Account" &rarr; "Export".
+            Enter your master password and select the "Export Anyway" button to save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
