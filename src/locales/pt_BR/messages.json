@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Alterar Forma de Pagamento"
   },
-  "charges": {
-    "message": "Cobranças",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Nenhuma cobrança."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Quaisquer cobranças aparecerão no seu extrato como $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Contato com o Suporte ao Cliente"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Se você quiser alterar este método de pagamento, entre em contato com o suporte ao cliente."
   },
   "updatedPaymentMethod": {
     "message": "Atualizar forma de pagamento."
@@ -2474,8 +2493,21 @@
     "message": "Entre em contato com o suporte ao cliente se deseja alterar o seu plano. Por favor, verifique se você tem um método de pagamento ativo adicionado à conta.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Fatura"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Verificar Conta Bancária"

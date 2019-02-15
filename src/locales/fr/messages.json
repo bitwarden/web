@@ -47,7 +47,7 @@
     "message": "Champs personnalisés"
   },
   "cardholderName": {
-    "message": "Nom du détenteur de la carte"
+    "message": "Nom du titulaire de la carte"
   },
   "number": {
     "message": "Nombre"
@@ -59,7 +59,7 @@
     "message": "Expiration"
   },
   "securityCode": {
-    "message": "Code de sécurité (CVC)"
+    "message": "Cryptogramme visuel (CVV)"
   },
   "identityName": {
     "message": "Identité"
@@ -392,13 +392,13 @@
     "message": "Coffre"
   },
   "shareSelected": {
-    "message": "Partager la sélection"
+    "message": "Partager les éléments sélectionnés"
   },
   "deleteSelected": {
-    "message": "Supprimer la sélection"
+    "message": "Supprimer les éléments sélectionnés"
   },
   "moveSelected": {
-    "message": "Déplacer la sélection"
+    "message": "Déplacer les éléments sélectionnés"
   },
   "selectAll": {
     "message": "Tout sélectionner"
@@ -533,7 +533,7 @@
     "message": "Un indice de mot de passe maître peut vous aider à vous rappeler de votre mot de passe en cas d'oubli."
   },
   "reTypeMasterPass": {
-    "message": "Retapez votre mot de passe maître"
+    "message": "Saisir à nouveau le mot de passe maître"
   },
   "masterPassHint": {
     "message": "Indice du mot de passe maître (facultatif)"
@@ -587,7 +587,7 @@
     "message": "Déverrouiller"
   },
   "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+    "message": "Connecté en tant que $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -599,7 +599,7 @@
     "message": "Mot de passe maître invalide"
   },
   "lockNow": {
-    "message": "Vérrouiller maintenant"
+    "message": "Verrouiller maintenant"
   },
   "noItemsInList": {
     "message": "Aucun élément à afficher."
@@ -668,13 +668,13 @@
     "message": "Insérez votre clé de sécurité dans le port USB de votre ordinateur. Si elle dispose d'un bouton, appuyez dessus."
   },
   "loginUnavailable": {
-    "message": "Identifiant non disponible"
+    "message": "Connexion impossible"
   },
   "noTwoStepProviders": {
     "message": "Ce compte dispose d'une authentification en deux étapes, cependant aucun de vos services d'authentification en deux étapes n'est supporté par ce navigateur web."
   },
   "noTwoStepProviders2": {
-    "message": "Merci d'utiliser un navigateur web compatible (comme Chrome) et\/ou d'ajouter des services additionnels de double authentification qui sont mieux supportés par les navigateurs web (comme par exemple une application d'authentification)."
+    "message": "Merci d'utiliser un navigateur web compatible (comme Chrome) et\/ou d'ajouter des services additionnels d'identification en deux étapes qui sont mieux supportés par les navigateurs web (comme par exemple une application d'authentification)."
   },
   "twoStepOptions": {
     "message": "Options d'identification en deux étapes"
@@ -935,7 +935,7 @@
     "message": "Le coffre de l'organisation a été effacé."
   },
   "purgeVaultDesc": {
-    "message": "Poursuivez ci-dessous pour supprimer tous les éléments et dossiers de votre coffre. Les éléments qui appartiennent à une organisation avec laquelle vous partagez ne seront pas supprimés."
+    "message": "Poursuivez ci-dessous pour supprimer tous les éléments et dossiers de votre coffre. Les éléments qui appartiennent à une organisation dont vous êtes membre ne seront pas supprimés."
   },
   "purgeOrgVaultDesc": {
     "message": "Poursuivez ci-dessous pour supprimer tous les éléments du coffre de votre organisation."
@@ -1101,7 +1101,7 @@
     "message": "Adhésion Premium"
   },
   "premiumRequired": {
-    "message": "Version Premium requise"
+    "message": "Adhésion Premium requise"
   },
   "premiumRequiredDesc": {
     "message": "Une adhésion premium est requise pour utiliser cette fonctionnalité."
@@ -1128,7 +1128,7 @@
     "message": "Suivez ces étapes pour configurer la connexion en deux étapes avec une application d'authentification :"
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "Télécharger une application d'authentification multi facteurs"
+    "message": "Télécharger une application d'authentification en deux étapes"
   },
   "twoStepAuthenticatorNeedApp": {
     "message": "Besoin d'une application d'authentification en deux étapes ? Téléchargez l'une des applications suivantes"
@@ -1531,7 +1531,7 @@
     "message": "Accès premium"
   },
   "premiumAccessDesc": {
-    "message": "Vous pouvez ajouter un accès premium à tous les membres de votre organisation pour $PRICE$\/$INTERVAL$.",
+    "message": "Vous pouvez offrir un accès premium à tous les membres de votre organisation pour $PRICE$\/$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1607,7 +1607,7 @@
     "message": "Annuler l'abonnement"
   },
   "subscriptionCanceled": {
-    "message": "Votre abonnement a été annulé."
+    "message": "L'abonnement a été annulé."
   },
   "pendingCancellation": {
     "message": "Annulation en attente"
@@ -1628,7 +1628,7 @@
     "message": "Êtes-vous certain de vouloir annuler ? Vous perdrez l’accès à toutes les fonctionnalités de l’abonnement à la fin de ce cycle de facturation."
   },
   "canceledSubscription": {
-    "message": "Votre abonnement a été annulé."
+    "message": "L'abonnement a été annulé."
   },
   "neverExpires": {
     "message": "N'expire jamais"
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Changer de moyen de paiement"
   },
-  "charges": {
-    "message": "Frais",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Pas de frais."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Tous les frais apparaîtront sur votre relevé sous $STATEMENT_NAME$.",
@@ -1728,9 +1750,6 @@
   "contactSupport": {
     "message": "Contacter le support client"
   },
-  "contactSupportPaymentMethod": {
-    "message": "Si vous souhaitez changer ce moyen de paiement, contactez le support client."
-  },
   "updatedPaymentMethod": {
     "message": "Moyen de paiement mise à jour."
   },
@@ -1759,7 +1778,7 @@
     "message": "L'adresse e-mail de votre compte doit être vérifiée."
   },
   "newOrganizationDesc": {
-    "message": "Les organisations permettent de partager des parties de votre coffre-fort avec d'autres personnes ainsi que de gérer des utilisateurs pour une entité spécifique comme une famille, une petite équipe ou une grande entreprise."
+    "message": "Les organisations permettent de partager des parties de votre coffre avec d'autres personnes ainsi que de gérer des utilisateurs pour une entité spécifique comme une famille, une petite équipe ou une grande entreprise."
   },
   "generalInformation": {
     "message": "Informations générales"
@@ -1777,16 +1796,16 @@
     "message": "Nom de l'entreprise"
   },
   "chooseYourPlan": {
-    "message": "Choisissez votre plan"
+    "message": "Choisissez votre offre"
   },
   "users": {
     "message": "Utilisateurs"
   },
   "userSeats": {
-    "message": "Nombre de sièges utilisateurs"
+    "message": "Licences utilisateur"
   },
   "additionalUserSeats": {
-    "message": "Sièges d'utilisateurs supplémentaires"
+    "message": "Licences utilisateur supplémentaires"
   },
   "userSeatsDesc": {
     "message": "Nombre de licences utilisateur"
@@ -1986,7 +2005,7 @@
     "message": "Ajouter un groupe"
   },
   "editGroup": {
-    "message": "Éditer le groupe"
+    "message": "Modifier le groupe"
   },
   "deleteGroupConfirmation": {
     "message": "Êtes-vous sûr de vouloir supprimer ce groupe?"
@@ -2031,7 +2050,7 @@
     "message": "Inviter un utilisateur"
   },
   "inviteUserDesc": {
-    "message": "Invitez de nouveaux utilisateurs à votre organisation en entrant leur adresse e-mail de compte Bitwarden ci-dessous. S'ils n’ont pas déjà un compte Bitwarden, il leur sera demandé d'en créer un nouveau."
+    "message": "Invitez de nouveaux utilisateurs à votre organisation en entrant l'adresse e-mail de leur compte Bitwarden ci-dessous. S'ils n’ont pas déjà un compte Bitwarden, il leur sera demandé d'en créer un nouveau."
   },
   "inviteMultipleEmailDesc": {
     "message": "Vous pouvez inviter jusqu'à $COUNT$ utilisateurs à la fois en séparant les adresses e-mail par une virgule.",
@@ -2073,13 +2092,13 @@
     "message": "Administrateur"
   },
   "adminDesc": {
-    "message": " Les administrateurs peuvent voir et gérer tous les éléments, les collections et les utilisateurs de votre organisation."
+    "message": "Les administrateurs peuvent voir et gérer tous les éléments, les collections et les utilisateurs de votre organisation."
   },
   "user": {
     "message": "Utilisateur"
   },
   "userDesc": {
-    "message": "Un utilisateur normal avec accès aux collections de votre organisation."
+    "message": "Un utilisateur standard avec accès aux collections qui lui sont assignées dans votre organisation."
   },
   "manager": {
     "message": "Gestionnaire"
@@ -2325,7 +2344,7 @@
     "message": "Type d'utilisateur"
   },
   "groupAccess": {
-    "message": "Accès groupes"
+    "message": "Accès groupe"
   },
   "groupAccessUserDesc": {
     "message": "Modifier les groupes auxquels appartient cet utilisateur."
@@ -2364,7 +2383,7 @@
     "message": "Confirmer les utilisateurs"
   },
   "usersNeedConfirmed": {
-    "message": "Vous avez des utilisateurs qui ont accepté leur invitation mais ils doivent être confirmés. Les utilisateurs n'auront pas accès à l'organisation jusqu'à ce qu'ils soient confirmés."
+    "message": "Il y a des utilisateurs qui ont accepté leur invitation, mais qui doivent encore être confirmés. Les utilisateurs n'auront pas accès à l'organisation tant qu'ils n'auront pas été confirmés."
   },
   "startDate": {
     "message": "Date de début"
@@ -2406,7 +2425,7 @@
     "message": "Invitation acceptée"
   },
   "inviteAcceptedDesc": {
-    "message": "Vous pouvez accéder à cette organisation une fois qu’un administrateur aura confirmé votre adhésion. Nous vous enverrons un e-mail lorsque ce sera fait."
+    "message": "Vous pourrez accéder à cette organisation dès qu'un administrateur aura confirmé votre inscription. Nous vous enverrons un e-mail lorsque ce sera fait."
   },
   "inviteAcceptFailed": {
     "message": "Impossible d’accepter l’invitation. Demandez à un administrateur de l'organisation d’envoyer une nouvelle invitation."
@@ -2418,7 +2437,7 @@
     "message": "Si vous ne pouvez pas accéder à votre compte grâce à vos méthodes de connexion en deux étapes habituelles, vous pouvez utiliser votre code de récupération de connexion en deux étapes pour désactiver tous les fournisseurs en deux étapes sur votre compte."
   },
   "recoverAccountTwoStep": {
-    "message": "Récupérer votre compte d'authentification à deux étapes"
+    "message": "Récupération de connexion en deux étapes"
   },
   "twoStepRecoverDisabled": {
     "message": "L'authentification en deux étapes a été désactivée sur votre compte."
@@ -2442,7 +2461,7 @@
     "message": "Supprimer l'organisation"
   },
   "deleteOrganizationDesc": {
-    "message": "Poursuivez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs restent inchangés mais ils ne seront plus associés à cette organisation. "
+    "message": "Poursuivez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs individuels ne seront pas supprimés, mais ils ne seront plus associés à cette organisation. "
   },
   "deleteOrganizationWarning": {
     "message": "La suppression d'une organisation est définitive. Elle ne peut être annulée."
@@ -2474,8 +2493,21 @@
     "message": "Contactez le support client si vous souhaitez changer d'offre. Veuillez vous assurer que vous disposez d’un moyen de paiement actif sur votre compte.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Facture"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Vérifier le compte bancaire"
@@ -2525,14 +2557,14 @@
     "message": "Individuel (personnel)"
   },
   "enterInstallationId": {
-    "message": "Entrez votre id d’installation"
+    "message": "Saisissez l'identifiant de votre installation"
   },
   "addSeats": {
-    "message": "Ajouter des sièges",
+    "message": "Ajouter des licences",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Retirer les sièges",
+    "message": "Retirer des licences",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2545,10 +2577,10 @@
     }
   },
   "seatsToAdd": {
-    "message": "Sièges à ajouter"
+    "message": "Licences à ajouter"
   },
   "seatsToRemove": {
-    "message": "Sièges à enlever"
+    "message": "Licences à retirer"
   },
   "seatsAddNote": {
     "message": "L'ajout de licences utilisateur entraînera des ajustements sur vos totaux de facturation et facturera immédiatement le moyen de paiement enregistré. La première facturation sera calculée au prorata du reste du cycle de facturation en cours."
@@ -2593,13 +2625,13 @@
     "message": "Mettre à niveau"
   },
   "upgradeOrganization": {
-    "message": "Mettre à jour l'organisation"
+    "message": "Mettre à niveau l'organisation"
   },
   "upgradeOrganizationDesc": {
-    "message": "Cette fonctionnalité n'est pas disponible pour les organisations gratuites. Passez à une offre payante pour déverouiller plus de fonctionnalités."
+    "message": "Cette fonctionnalité n'est pas disponible pour les organisations gratuites. Passez à une offre payante pour débloquer plus de fonctionnalités."
   },
   "createOrganizationStep1": {
-    "message": "Créer une organisation: Étape 1"
+    "message": "Créer une organisation : Étape 1"
   },
   "createOrganizationCreatePersonalAccount": {
     "message": "Avant de créer votre organisation, vous devez d’abord créer un compte personnel gratuit."

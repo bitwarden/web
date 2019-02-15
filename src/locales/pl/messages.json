@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Zmień metodę płatności"
   },
-  "charges": {
-    "message": "Opłaty",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Brak opłat."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Wszelkie opłaty będą widoczne na wyciągu jako $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Skontaktuj się z działem obsługi klienta"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Skontaktuj się z działem obsługi klienta, jeśli chcesz zmienić tę metodę płatności."
   },
   "updatedPaymentMethod": {
     "message": "Metoda płatności została zaktualizowana."
@@ -2474,8 +2493,21 @@
     "message": "Jeśli chcesz zmienić swój plan, skontaktuj się z działem obsługi klienta. Upewnij się, że dodałeś do swojego konta aktywną formę płatności.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Faktura"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Weryfikuj konto bankowe"
