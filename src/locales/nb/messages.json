@@ -587,7 +587,7 @@
     "message": "Lås opp"
   },
   "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+    "message": "Logget på som $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Endre betalingsmetoden"
   },
-  "charges": {
-    "message": "Trekk",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Ingen trekk."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Ethvert trekk vil dukke opp i bankkontooppsummeringen din som $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Ta kontakt med kundestøtte"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Hvis du vil ta trekk ifra denne betalingsmetoden, vennligst kontakt kundestøtte."
   },
   "updatedPaymentMethod": {
     "message": "Oppdaterte betalingsmetoden."
@@ -2474,8 +2493,21 @@
     "message": "Kontakt kundestøtte dersom du vil endre funksjonsplanen din. Vennligst sørg for at du har en aktiv betalingsmetode lagt til i kontoen din.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Faktura"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Bekreft bankkontoen din"
