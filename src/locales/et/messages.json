@@ -1485,7 +1485,7 @@
     "message": "Raporti laadimisel ilmes viga. Proovi uuesti"
   },
   "billingAndLicensing": {
-    "message": "Maksmine & Litsentsid"
+    "message": "Maksmine & litsentsid"
   },
   "goPremium": {
     "message": "Hangi Premium",
@@ -1525,7 +1525,7 @@
     }
   },
   "addons": {
-    "message": "Lisad"
+    "message": "Täiendused"
   },
   "premiumAccess": {
     "message": "Premium ligipääs"
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Muuda makseviisi"
   },
-  "charges": {
-    "message": "Maksed",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Maksed puuduvad."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Mistahes maksed ilmuvad väljavõttes nimega $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Võta klienditoega ühendust"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Kui soovid maksemeetodit muuta, võta ühendust meie klienditoega."
   },
   "updatedPaymentMethod": {
     "message": "Maksemeetod on muudetud."
@@ -1890,7 +1909,7 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Lisa ja jaga piiramata kasutajatega"
+    "message": "Lisa ja jaga kirjeid piiramatul hulgal kasutajatega"
   },
   "createUnlimitedCollections": {
     "message": "Loo piiramatul hulgal kollektsioone"
@@ -2474,8 +2493,21 @@
     "message": "Oma paketi muutmiseks võta ühendust klienditoega. Veendu, et kontole on lisatud maksemeetod, mis on ka aktiivne.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Müügiarve"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Pangakonto verifitseerimine"
@@ -2493,7 +2525,7 @@
     "message": "Pangakonto on kinnitatud."
   },
   "bankAccount": {
-    "message": "Bank Account"
+    "message": "Pangakontoga"
   },
   "amountX": {
     "message": "Summa $COUNT$",
