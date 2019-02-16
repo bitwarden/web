@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Zmeniť spôsob platby"
   },
-  "charges": {
-    "message": "Poplatky",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Žiadne poplatky."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Platby s objavia na výpise z banky ako $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Kontaktujte zákaznícku podporu"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Ak chcete zmeniť platobnú metódu, prosím kontaktujte zákaznícku podporu."
   },
   "updatedPaymentMethod": {
     "message": "Aktualizovať spôsob platby."
@@ -2474,8 +2493,21 @@
     "message": "Ak by ste chceli zmeniť svoj plán, obráťte sa na zákaznícku podporu. Uistite sa prosím, že máte aktívnu platobnú metódu nastavenú pre tento účet.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Faktúra"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Overenie bankového účtu"

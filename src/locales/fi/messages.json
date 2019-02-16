@@ -527,10 +527,10 @@
     "message": "Pääsalasana"
   },
   "masterPassDesc": {
-    "message": "The master password is the password you use to access your vault. It is very important that you do not forget your master password. There is no way to recover the password in the event that you forget it."
+    "message": "Pääsalasanalla pääset käsiksi salasanaholviisi. On hyvin tärkeää, että muistat pääsalasanasi. Pääsalasanaa ei voida palauttaa mitenkään, jos satut unohtamaan sen."
   },
   "masterPassHintDesc": {
-    "message": "A master password hint can help you remember your password if you forget it."
+    "message": "Pääsalasanan vihje voi auttaa sinua muistamaan pääsalasanasi, jos satut unohtamaan sen."
   },
   "reTypeMasterPass": {
     "message": "Syötä pääsalasana uudelleen"
@@ -587,7 +587,7 @@
     "message": "Avaa"
   },
   "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+    "message": "Kirjautunut tilillä $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -605,7 +605,7 @@
     "message": "There are no items to list."
   },
   "noCollectionsInList": {
-    "message": "There are no collections to list."
+    "message": "Ei kokoelmia näytettäväksi."
   },
   "noGroupsInList": {
     "message": "There are no groups to list."
@@ -662,10 +662,10 @@
     "message": "Käytä toista menetelmää kaksivaiheiseen kirjautumiseen"
   },
   "insertYubiKey": {
-    "message": "Insert your YubiKey into your computer's USB port, then touch its button."
+    "message": "Kytke YubiKey-laitteesi tietokoneesi USB-porttiin ja paina sen nappia."
   },
   "insertU2f": {
-    "message": "Insert your security key into your computer's USB port. If it has a button, touch it."
+    "message": "Kytke todennuslaitteesi tietokoneesi USB-porttiin. Jos laitteessa on painike, paina sitä."
   },
   "loginUnavailable": {
     "message": "Kirjautuminen ei ole käytettävissä"
@@ -674,7 +674,7 @@
     "message": "This account has two-step login enabled, however, none of the configured two-step providers are supported by this web browser."
   },
   "noTwoStepProviders2": {
-    "message": "Please use a supported web browser (such as Chrome) and\/or add additional providers that are better supported across web browsers (such as an authenticator app)."
+    "message": "Käytä tuettua selainta (kuten Chromea) ja\/tai ota käyttöön paremmin tuettu todennusmenetelmä (kuten todennussovellus)."
   },
   "twoStepOptions": {
     "message": "Kaksivaiheisen kirjautumisen valinnat"
@@ -689,7 +689,7 @@
     "message": "Todennussovellus"
   },
   "authenticatorAppDesc": {
-    "message": "Use an authenticator app (such as Authy or Google Authenticator) to generate time-based verification codes.",
+    "message": "Käytä todennussovellusta (Kuten Authya tai Google Authenticatoria) luodaksesi aikarajallisia vahvistuskoodeja.",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
@@ -781,7 +781,7 @@
     "message": "Varoitus"
   },
   "exportWarningDesc": {
-    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "Tämä vienti sisältää holvisi tiedot salaamattomassa muodossa. Vietyä tiedostoa EI pidä säilyttää tai lähettää salaamattomana (kuten sähköpostitse). Poista tiedosto välittömästi, kun et enää tarvitse sitä."
   },
   "exportMasterPassword": {
     "message": "Syötä pääsalasanasi viedäksesi holvisi tiedot."
@@ -790,7 +790,7 @@
     "message": "Vie holvi"
   },
   "fileFormat": {
-    "message": "File Format"
+    "message": "Tiedostomuoto"
   },
   "exportSuccess": {
     "message": "Holvisi tiedot on viety."
@@ -827,7 +827,7 @@
     "message": "Ei salasanoja näytettäväksi."
   },
   "clear": {
-    "message": "Clear"
+    "message": "Tyhjennä"
   },
   "accountUpdated": {
     "message": "Tili päivitetty"
@@ -842,7 +842,7 @@
     "message": "Koodi"
   },
   "changeEmailDesc": {
-    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize the email address change.",
+    "message": "Olemme lähettäneet vahvistuskoodin osoitteeseen $EMAIL$. Tarkista sähköpostisi ja kirjoita saamasi koodi alapuolelle viimeistelläksesi sähköpostiosoitteen vaihtamisen.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -860,7 +860,7 @@
     "message": "Kirjaudu sisään uudelleen."
   },
   "logBackInOthersToo": {
-    "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
+    "message": "Kirjaudu uudelleen sisään. Jos käytät muita Bitwarden-sovelluksia, kirjaudu myös niistä ulos ja takaisin sisään."
   },
   "changeMasterPassword": {
     "message": "Vaihda pääsalasana"
@@ -884,7 +884,7 @@
     "message": "KDF-algoritmi"
   },
   "kdfIterations": {
-    "message": "KDF Iterations"
+    "message": "KDF-iteraatiot"
   },
   "kdfIterationsDesc": {
     "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
@@ -917,7 +917,7 @@
     "message": "Varovasti, näitä toimintoja ei voi perua!"
   },
   "deauthorizeSessions": {
-    "message": "Deauthorize Sessions"
+    "message": "Poista valtuutus istunnoilta"
   },
   "deauthorizeSessionsDesc": {
     "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public computer or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
@@ -926,7 +926,7 @@
     "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "sessionsDeauthorized": {
-    "message": "All Sessions Deauthorized"
+    "message": "Kaikkien istujentojen valtuudet poistettu"
   },
   "purgeVault": {
     "message": "Purge Vault"
@@ -1030,7 +1030,7 @@
     "message": "Oletus"
   },
   "domainRules": {
-    "message": "Domain Rules"
+    "message": "Verkkotunnusten säännöt"
   },
   "domainRulesDesc": {
     "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
@@ -1048,16 +1048,16 @@
     "message": "Include"
   },
   "customize": {
-    "message": "Customize"
+    "message": "Mukauta"
   },
   "newCustomDomain": {
-    "message": "New Custom Domain"
+    "message": "Uusi mukautettu verkkotunnus"
   },
   "newCustomDomainDesc": {
     "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
   },
   "customDomainX": {
-    "message": "Custom Domain $INDEX$",
+    "message": "Mukautettu verkkotunnus $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1081,7 +1081,7 @@
     "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
   },
   "viewRecoveryCode": {
-    "message": "View Recovery Code"
+    "message": "Näytä palautuskoodi"
   },
   "providers": {
     "message": "Palveluntarjoajat",
@@ -1167,7 +1167,7 @@
     "message": "Lisää uusi YubiKey tilillesi"
   },
   "twoFactorYubikeyPlugIn": {
-    "message": "Plug the YubiKey (NEO or 4 series) into your computer's USB port."
+    "message": "Aseta YubiKey tietokoneesi USB-porttiin."
   },
   "twoFactorYubikeySelectKey": {
     "message": "Select the first empty YubiKey input field below."
@@ -1215,7 +1215,7 @@
     "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
   },
   "yubikeysUpdated": {
-    "message": "YubiKeys updated"
+    "message": "YubiKeyt päivitetty"
   },
   "disableAllKeys": {
     "message": "Disable All Keys"
@@ -1375,13 +1375,13 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Heikkojen salasanojen raportti"
   },
   "weakPasswordsReportDesc": {
     "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "Heikkoja salasanoja löydetty"
   },
   "weakPasswordsFoundDesc": {
     "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
@@ -1637,7 +1637,7 @@
     "message": "Tila"
   },
   "nextCharge": {
-    "message": "Next Charge"
+    "message": "Seuraava veloitus"
   },
   "details": {
     "message": "Tiedot"
@@ -1655,13 +1655,13 @@
     "message": "Hallitse tilausta"
   },
   "storage": {
-    "message": "Storage"
+    "message": "Tallennustila"
   },
   "addStorage": {
-    "message": "Add Storage"
+    "message": "Lisää tallennustila"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "Poista tallennustila"
   },
   "subscriptionStorage": {
     "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Vaihda maksutapaa"
   },
-  "charges": {
-    "message": "Charges",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "No charges."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Ota yhteys asiakaspalveluun"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "If you would like to change from this payment method please contact customer support."
   },
   "updatedPaymentMethod": {
     "message": "Maksutapa päivitetty."
@@ -1771,13 +1790,13 @@
     "message": "Tämän tilin omistaa yritys."
   },
   "billingEmail": {
-    "message": "Billing Email"
+    "message": "Laskutussähköpostiosoite"
   },
   "businessName": {
     "message": "Yrityksen nimi"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "Valitse tilaus"
   },
   "users": {
     "message": "Käyttäjät"
@@ -1830,13 +1849,13 @@
     "message": "Tiimit"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "Yrityksille ja muille yhteisöille."
   },
   "planNameEnterprise": {
     "message": "Yritys"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "Yrityksille ja suurille organisaatioille."
   },
   "freeForever": {
     "message": "Ilmainen ikuisesti"
@@ -1872,7 +1891,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Limited to $COUNT$ collections",
+    "message": "Rajoitettu $COUNT$ kokoelmaan",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1947,10 +1966,10 @@
     "message": "Organisaatio luotu"
   },
   "organizationReadyToGo": {
-    "message": "Your new organization is ready to go!"
+    "message": "Uusi organisaatiosi on valmis käytettäväksi!"
   },
   "leave": {
-    "message": "Leave"
+    "message": "Poistu"
   },
   "leaveOrganizationConfirmation": {
     "message": "Haluatko varmasti poistua tästä organisaatiosta?"
@@ -1962,7 +1981,7 @@
     "message": "Oletuskokoelma"
   },
   "getHelp": {
-    "message": "Get Help"
+    "message": "Saa apua"
   },
   "getApps": {
     "message": "Hanki sovellukset"
@@ -2007,7 +2026,7 @@
     "message": "This group can access and modify all items."
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "Tällä ryhmällä on pääsy vain valittuihin kokoelmiin."
   },
   "readOnly": {
     "message": "Vain luku"
@@ -2052,7 +2071,7 @@
     "message": "Tällä käyttäjällä on pääsy vain valittuihin kokoelmiin."
   },
   "search": {
-    "message": "Search"
+    "message": "Hae"
   },
   "invited": {
     "message": "Kutsuttu"
@@ -2121,7 +2140,7 @@
     "message": "Verkkoholvi"
   },
   "loggedIn": {
-    "message": "Logged in."
+    "message": "Sisäänkirjautunut."
   },
   "changedPassword": {
     "message": "Vaihdettu tilin salasana."
@@ -2142,10 +2161,10 @@
     "message": "Sisäänkirjautumisyritys epäonnistui väärän kaksivaiheisen todennuksen takia."
   },
   "editedOrgSettings": {
-    "message": "Edited organization settings."
+    "message": "Muokattu organisaation asetuksia."
   },
   "createdItemId": {
-    "message": "Created item $ID$.",
+    "message": "Luotu kohde $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2154,7 +2173,7 @@
     }
   },
   "editedItemId": {
-    "message": "Edited item $ID$.",
+    "message": "Muokattu kohdetta $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2163,7 +2182,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Deleted item $ID$.",
+    "message": "Poistettu kohde $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2172,7 +2191,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Shared item $ID$.",
+    "message": "Jaettu kohde $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2181,7 +2200,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Created collection $ID$.",
+    "message": "Luotu kokoelma $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2190,7 +2209,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Edited collection $ID$.",
+    "message": "Muokattu kokoelmaa $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2199,7 +2218,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Deleted collection $ID$.",
+    "message": "Poistettu kokoelma $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2208,7 +2227,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Created group $ID$.",
+    "message": "Luotu ryhmä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2217,7 +2236,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Edited group $ID$.",
+    "message": "Muokattu ryhmää $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2262,7 +2281,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Edited collections for item $ID$.",
+    "message": "Muokattu kohteen $ID$ kokoelmia.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2280,7 +2299,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Confirmed user $ID$.",
+    "message": "Vahvistettu käyttäjä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2289,7 +2308,7 @@
     }
   },
   "editedUserId": {
-    "message": "Edited user $ID$.",
+    "message": "Muokattu käyttäjää $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2298,7 +2317,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "Muokattu käyttäjän $ID$ ryhmiä.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2349,7 +2368,7 @@
     "message": "Vahvista"
   },
   "confirmUser": {
-    "message": "Confirm User"
+    "message": "Vahvista käyttäjä"
   },
   "hasBeenConfirmed": {
     "message": "$USER$ on vahvistettu.",
@@ -2364,7 +2383,7 @@
     "message": "Vahvista käyttäjät"
   },
   "usersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
+    "message": "Sinulla on käyttäjiä, jotka ovat hyväksyneet kutsun, mutta heidän liittyminen tulee vielä vahvistaa. Käyttäjillä ei ole pääsyä organisaation, ennen kuin heidät on vahvistettu."
   },
   "startDate": {
     "message": "Aloituspäivä"
@@ -2379,7 +2398,7 @@
     "message": "Verify your account's email address to unlock access to all features."
   },
   "verifyEmailFirst": {
-    "message": "Your account's email address first must be verified."
+    "message": "Tilisi sähköpostiosoite tulee ensin vahvistaa."
   },
   "checkInboxForVerification": {
     "message": "Check your email inbox for a verification link."
@@ -2406,10 +2425,10 @@
     "message": "Kutsu hyväksytty"
   },
   "inviteAcceptedDesc": {
-    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Pääset tähän organisaation, kun ylläpitäjä vahvistaa jäsentyytesi. Lähetämme sinulle sähköpostia, kun jäsenyytesi on vahvistettu."
   },
   "inviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+    "message": "Kutsun hyväksyminen ei onnistu. Pyydä organisaation ylläpitäjää lähettämään uusi kutsu."
   },
   "rememberEmail": {
     "message": "Remember email"
@@ -2445,19 +2464,19 @@
     "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
   },
   "deleteOrganizationWarning": {
-    "message": "Deleting the organization is permanent. It cannot be undone."
+    "message": "Organisaation poistaminen on peruuttamaton toimenpide."
   },
   "organizationDeleted": {
     "message": "Organisaatio poistettu"
   },
   "organizationDeletedDesc": {
-    "message": "The organization and all associated data has been deleted."
+    "message": "Organisaatio ja kaikki siihen liittyvät tiedot on poistettu."
   },
   "organizationUpdated": {
     "message": "Organisaatio päivitetty"
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "Verotiedot"
   },
   "taxInformationDesc": {
     "message": "Please contact support to provide (or update) tax information for your invoices."
@@ -2467,15 +2486,28 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Change Plan",
+    "message": "Vaihda tilaus",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Lasku"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Vahvista pankkitili"
@@ -2536,7 +2568,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "Your subscription allows for a total of $COUNT$ users.",
+    "message": "Tilauksesi sallii yhteensä $COUNT$ käyttäjää.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2593,16 +2625,16 @@
     "message": "Upgrade"
   },
   "upgradeOrganization": {
-    "message": "Upgrade Organization"
+    "message": "Päivitä organisaatio"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "Tämä ominaisuus ei ole käytettävissä ilmaisorganisaatioille. Vaihda maksulliseen tilaukseen avataksesi enemmän ominaisuuksia."
   },
   "createOrganizationStep1": {
-    "message": "Create Organization: Step 1"
+    "message": "Luo organisaatio: vaihe 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "Ennen kuin voit luoda organisaation, sinun tulee luoda ilmainen henkilökohtainen tili."
   },
   "refunded": {
     "message": "Refunded"
@@ -2677,23 +2709,23 @@
     "message": "Kuka omistaa tämän kohteen?"
   },
   "strong": {
-    "message": "Strong",
+    "message": "Vahva",
     "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "Hyvä",
     "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Heikko",
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Erittäin heikko",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
-    "message": "Weak Master Password"
+    "message": "Heikko pääsalasana"
   },
   "weakMasterPasswordDesc": {
     "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
@@ -2714,7 +2746,7 @@
     "message": "This is an old file attachment the needs to be fixed. Click to learn more."
   },
   "fix": {
-    "message": "Fix",
+    "message": "Korjaa",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
@@ -2733,7 +2765,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Ilmainen",
     "description": "Free, as in 'Free beer'"
   }
 }

@@ -440,10 +440,10 @@
     "message": "Položka byla upravena"
   },
   "sharedItem": {
-    "message": "Položka byla sdílena"
+    "message": "Položka byla sdílena."
   },
   "sharedItems": {
-    "message": "Položky byly sdíleny"
+    "message": "Položky byly sdíleny."
   },
   "deleteItem": {
     "message": "Smazat položku"
@@ -494,7 +494,7 @@
     "message": "Odhlásit se"
   },
   "ok": {
-    "message": "Ok"
+    "message": "OK"
   },
   "yes": {
     "message": "Ano"
@@ -587,7 +587,7 @@
     "message": "Odemknout"
   },
   "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+    "message": "Přihlášen jako $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -728,10 +728,10 @@
     "message": "Organizace"
   },
   "shareDesc": {
-    "message": "Vyberte organizaci se kterou chcete sdílet tuto položku. Sdílením přenese vlastnictví položky na organizaci a již nadále nebudete přímým vlastníkem této položky."
+    "message": "Vyberte organizaci se kterou chcete tuto položku sdílet. Sdílením přenese vlastnictví položky na organizaci a již nadále nebudete přímým vlastníkem."
   },
   "shareManyDesc": {
-    "message": "Vyberte organizaci se kterou chcete sdílet tyto položky. Sdílením přenese vlastnictví položek na organizaci a již nadále nebudete přímým vlastníkem těchto položek."
+    "message": "Vyberte organizaci se kterou chcete tyto položky sdílet. Sdílením přenese vlastnictví položek na organizaci a již nadále nebudete přímým vlastníkem."
   },
   "collectionsDesc": {
     "message": "Upravit kolekce, ve kterých je tato položka sdílená. Pouze uživatelé organizace, kteří mají přístup k těmto kolekcím, budou moci tuto položku vidět."
@@ -806,7 +806,7 @@
     "description": "Minimum Special Characters"
   },
   "ambiguous": {
-    "message": "Nepoužít zaměnitelné znaky"
+    "message": "Použít nezaměnitelné znaky"
   },
   "regeneratePassword": {
     "message": "Vygenerovat další heslo"
@@ -860,7 +860,7 @@
     "message": "Přihlaste se prosím znovu."
   },
   "logBackInOthersToo": {
-    "message": "Přihlaste se prosím znovu. Používáte-li jiné aplikace Bitwarden, přihlašte se znovu i v nich."
+    "message": "Přihlaste se prosím znovu. Používáte-li jiné Bitwarden aplikace, přihlaste se znovu i v nich."
   },
   "changeMasterPassword": {
     "message": "Změnit hlavní heslo"
@@ -956,7 +956,7 @@
     "message": "Smazání účtu je trvalé. Tuto akci nelze vrátit zpět."
   },
   "accountDeleted": {
-    "message": "Účet byl smazán"
+    "message": "Účet byl smazán."
   },
   "accountDeletedDesc": {
     "message": "Váš účet byl uzavřen a všechna související data byla smazána."
@@ -1345,7 +1345,7 @@
     "message": "Hlášení o úniku hesel"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Uniklá hesla jsou hesla, která byla odhalena během známých úniků dat, zveřejněna nebo prodána hackery na dark webu."
   },
   "exposedPasswordsFound": {
     "message": "Nalezena uniklá hesla"
@@ -1488,7 +1488,7 @@
     "message": "Faktury a licence"
   },
   "goPremium": {
-    "message": "Pořiďte si prémiové členství",
+    "message": "Přejděte na Premium",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
@@ -1658,10 +1658,10 @@
     "message": "Úložiště"
   },
   "addStorage": {
-    "message": "Přidat úložiště"
+    "message": "Přidat uložiště"
   },
   "removeStorage": {
-    "message": "Odebrat úložiště"
+    "message": "Odebrat uložiště"
   },
   "subscriptionStorage": {
     "message": "Vaše předplatné zahrnuje celkem $MAX_STORAGE$ GB místa v šifrovaném úložišti. Aktuálně používáte $USED_STORAGE$.",
@@ -1677,7 +1677,7 @@
     }
   },
   "paymentMethod": {
-    "message": "Způsob Platby"
+    "message": "Způsob platby"
   },
   "noPaymentMethod": {
     "message": "No payment method on file."
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Změnit způsob platby"
   },
-  "charges": {
-    "message": "Platby",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Žádné platby."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": " Veškeré platby se na výpisu objeví jako $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Kontaktovat zákaznickou podporu"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "If you would like to change from this payment method please contact customer support."
   },
   "updatedPaymentMethod": {
     "message": "Platební metoda byla aktualizována"
@@ -1774,7 +1793,7 @@
     "message": "E-mailová adresa pro fakturaci"
   },
   "businessName": {
-    "message": "Název společnosti"
+    "message": "Název firmy"
   },
   "chooseYourPlan": {
     "message": "Vyberte plán"
@@ -1956,7 +1975,7 @@
     "message": "Opravdu chcete tuto organizaci opustit?"
   },
   "leftOrganization": {
-    "message": "Organizace byla opuštěna"
+    "message": "Organizace byla opuštěna."
   },
   "defaultCollection": {
     "message": "Výchozí kolekce"
@@ -2079,7 +2098,7 @@
     "message": "Uživatel"
   },
   "userDesc": {
-    "message": "A regular user with access to your organization's collections."
+    "message": "Běžný uživatel s přístupem k přiřazeným kolekcím vaší organizace."
   },
   "manager": {
     "message": "Správce"
@@ -2474,8 +2493,21 @@
     "message": "Pokud chcete změnit svůj plán, kontaktujte zákaznickou podporu. Ujistěte se prosím, zda máte k účtu přidán způsob platby.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Faktura"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Ověření bankovního účtu"

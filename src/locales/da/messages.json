@@ -578,7 +578,7 @@
     "message": "Der opstod en uventet fejl."
   },
   "emailAddress": {
-    "message": "Emailadresse"
+    "message": "E-mailadresse"
   },
   "yourVaultIsLocked": {
     "message": "Din boks er låst. Bekræft din hovedadgangskode for at fortsætte."
@@ -587,7 +587,7 @@
     "message": "Lås op"
   },
   "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+    "message": "Logget ind som $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -775,7 +775,7 @@
     "message": "Bekræftelseskode (TOTP)"
   },
   "copyVerificationCode": {
-    "message": "Kopiér verifikationskoden"
+    "message": "Kopiér bekræftelseskoden"
   },
   "warning": {
     "message": "Advarsel"
@@ -833,16 +833,16 @@
     "message": "Konto opdateret"
   },
   "changeEmail": {
-    "message": "Skift email"
+    "message": "Skift e-mail"
   },
   "newEmail": {
-    "message": "Ny email"
+    "message": "Ny e-mail"
   },
   "code": {
     "message": "Kode"
   },
   "changeEmailDesc": {
-    "message": "Vi har sendt en bekræftelseskode til $EMAIL$. Tjek venligst din email for denne kode og indtast den nedenfor for at afslutte emailadresse-ændringen.",
+    "message": "Vi har sendt en bekræftelseskode til $EMAIL$. Tjek venligst din e-mail for denne kode og indtast den nedenfor for at afslutte e-mailadresseændringen.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -854,7 +854,7 @@
     "message": "Ved at fortsætte vil du blive logget ud af din nuværende session, og du skal logge ind igen. Aktive sessioner på andre enheder kan fortsat forblive aktive i op til én time."
   },
   "emailChanged": {
-    "message": "Email ændret"
+    "message": "E-mail ændret"
   },
   "logBackIn": {
     "message": "Log venligst ind igen."
@@ -920,7 +920,7 @@
     "message": "Fjern godkendelsen fra sessioner"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Bekymret for om din konto er logget ind på en anden enhed? Fortsæt nedenfor for at fjerne godkendelsen for alle computere eller enheder, som du tidligere har brugt. Dette sikkerhedstrin anbefales, hvis du tidligere har brugt en offentlig pc eller ved et uheld har gemt dit kodeord på en enhed, der ikke er din. Dette trin fjerner også alle tidligere huskede to-trins-login sessioner."
+    "message": "Bekymret for om din konto er logget ind på en anden enhed? Fortsæt nedenfor for at fjerne godkendelsen for alle computere eller enheder, som du tidligere har brugt. Dette sikkerhedstrin anbefales, hvis du tidligere har brugt en offentlig computer eller ved et uheld har gemt dit kodeord på en enhed, der ikke er din. Dette trin fjerner også alle tidligere huskede to-trins-login sessioner."
   },
   "deauthorizeSessionsWarning": {
     "message": "Ved at fortsætte vil du også blive logget ud af din nuværende session, og du skal logge ind igen. Du bliver også bedt om to-trins login igen, hvis det er aktiveret. Aktive sessioner på andre enheder kan fortsat forblive aktive i op til én time."
@@ -989,7 +989,7 @@
     "message": "eller kopiér\/indsæt importfilens indhold"
   },
   "instructionsFor": {
-    "message": "$NAME$ Instruktioner",
+    "message": "$NAME$ instruktioner",
     "description": "The title for the import tool instructions.",
     "placeholders": {
       "name": {
@@ -1054,7 +1054,7 @@
     "message": "Nyt brugerdefineret domæne"
   },
   "newCustomDomainDesc": {
-    "message": "Indtast en liste over domæner adskilt af kommaer. Kun \"grund\"-domæner er tilladt. Indtast ikke underdomæner. F.eks. Indtast \"google.com\" i stedet for \"www.google.com\". Du kan også indtaste \"androidapp: \/\/package.name\" for at knytte en androidapp til andre website-domæner."
+    "message": "Indtast en liste over domæner adskilt af kommaer. Kun \"grund\"-domæner er tilladt. Indtast ikke underdomæner. F.eks. Indtast \"google.com\" i stedet for \"www.google.com\". Du kan også indtaste \"androidapp:\/\/package.name\" for at knytte en androidapp til andre website-domæner."
   },
   "customDomainX": {
     "message": "Brugerdefineret domæne $INDEX$",
@@ -1242,7 +1242,7 @@
     "message": "Indtast den 6-cifrede verifikationskode fra e-mailen"
   },
   "sendEmail": {
-    "message": "Send email"
+    "message": "Send e-mail"
   },
   "twoFactorU2fAdd": {
     "message": "Tilføj en FIDO U2F sikkerhedsnøgle til din konto"
@@ -1646,7 +1646,7 @@
     "message": "Download licens"
   },
   "updateLicense": {
-    "message": "Opdater licens"
+    "message": "Opdatér licens"
   },
   "updatedLicense": {
     "message": "Opdaterede licens"
@@ -1661,7 +1661,7 @@
     "message": "Tilføj lagerplads"
   },
   "removeStorage": {
-    "message": "Fjern lager"
+    "message": "Fjern lagerplads"
   },
   "subscriptionStorage": {
     "message": "Dit abonnement har i alt $MAX_STORAGE$ GB krypteret fillagring. Du bruger for øjeblikket $USED_STORAGE$.",
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Skift betalingsmetode"
   },
-  "charges": {
-    "message": "Omkostninger",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Ingen omkostninger."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Eventuelle omkostninger vises på din opgørelse som $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Kontakt kundesupport"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Hvis du vil skifte fra denne betalingsmetode, bedes du kontakte kundesupport."
   },
   "updatedPaymentMethod": {
     "message": "Betalingsmetode opdateret."
@@ -2028,10 +2047,10 @@
     "message": "Redigér bruger"
   },
   "inviteUser": {
-    "message": "Inviter bruger"
+    "message": "Invitér bruger"
   },
   "inviteUserDesc": {
-    "message": "Inviter en ny bruger til din organisation ved at indtaste emailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
+    "message": "Inviter en ny bruger til din organisation ved at indtaste e-mailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
   },
   "inviteMultipleEmailDesc": {
     "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med e-mailadresser.",
@@ -2079,7 +2098,7 @@
     "message": "Bruger"
   },
   "userDesc": {
-    "message": "En almindelig bruger med adgang til organisationens samlinger."
+    "message": "En almindelig bruger med adgang til tildelte samlinger i din organisation."
   },
   "manager": {
     "message": "Administrator"
@@ -2373,13 +2392,13 @@
     "message": "Slutdato"
   },
   "verifyEmail": {
-    "message": "Bekræft email"
+    "message": "Bekræft e-mail"
   },
   "verifyEmailDesc": {
     "message": "Bekræft din e-mailadresse for at låse op for adgangen til alle funktioner."
   },
   "verifyEmailFirst": {
-    "message": "Din kontos emailadresse skal først verificeres."
+    "message": "Din kontos e-mailadresse skal først verificeres."
   },
   "checkInboxForVerification": {
     "message": "Tjek din e-mail indbakke for et bekræftelseslink."
@@ -2391,7 +2410,7 @@
     "message": "Kan ikke bekræfte din e-mail. Prøv at sende en ny verifikations-email."
   },
   "updateBrowser": {
-    "message": "Opdater browser"
+    "message": "Opdatér browser"
   },
   "updateBrowserDesc": {
     "message": "Du bruger en ikke-understøttet webbrowser. Web-boksen fungerer muligvis ikke korrekt."
@@ -2406,7 +2425,7 @@
     "message": "Invitation accepteret"
   },
   "inviteAcceptedDesc": {
-    "message": "Du kan få adgang til denne organisation, når en administrator bekræfter dit medlemskab. Vi sender dig en email, når dette sker."
+    "message": "Du kan få adgang til denne organisation, når en administrator bekræfter dit medlemskab. Vi sender dig en e-mail, når dette sker."
   },
   "inviteAcceptFailed": {
     "message": "Kan ikke acceptere invitationen. Bed en organisations-administrator om at sende en ny invitation."
@@ -2474,8 +2493,21 @@
     "message": "Kontakt kundesupport, hvis du vil ændre dit abonnement. Sørg for, at du har en aktiv betalingsmetode tilføjet til kontoen.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Faktura"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Bekræft bankkonto"
@@ -2569,10 +2601,10 @@
     "message": "Nøgle opdateret"
   },
   "updateKeyTitle": {
-    "message": "Opdater nøgle"
+    "message": "Opdatér nøgle"
   },
   "updateEncryptionKey": {
-    "message": "Opdater Krypteringsnøgle"
+    "message": "Opdatér Krypteringsnøgle"
   },
   "updateEncryptionKeyShortDesc": {
     "message": "Du bruger i øjeblikket en forældet krypteringsmetode."
@@ -2593,7 +2625,7 @@
     "message": "Opgrader"
   },
   "upgradeOrganization": {
-    "message": "Opgrader organisation"
+    "message": "Opgradér organisation"
   },
   "upgradeOrganizationDesc": {
     "message": "Denne funktion er ikke tilgængelig for gratis organisationer. Skift til et betalt abonnement for at låse op for flere funktioner."

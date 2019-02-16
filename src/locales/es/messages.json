@@ -620,7 +620,7 @@
     "message": "Nueva organización"
   },
   "noOrganizationsList": {
-    "message": "No perteneces a ninguna orgnaización. Las organizaciones te permiten compartir elementos con otros usuarios de forma segura."
+    "message": "No perteneces a ninguna organización. Las organizaciones te permiten compartir elementos con otros usuarios de forma segura."
   },
   "versionNumber": {
     "message": "Versión $VERSION_NUMBER$",
@@ -781,7 +781,7 @@
     "message": "Advertencia"
   },
   "exportWarningDesc": {
-    "message": "Esta exportación contiene tus datos de la bóveda en un formato no cifrado. No deberías almacenar o enviar el archivo exportado por canales no seguros (como el correo electrónico). Elimínalo inmediatamente cuando termines de utilizarlo."
+    "message": "Esta exportación contiene los datos de tu caja fuerte en un formato no cifrado. No deberías almacenar o enviar el archivo exportado por canales no seguros (como el correo electrónico). Elimínalo inmediatamente cuando termines de utilizarlo."
   },
   "exportMasterPassword": {
     "message": "Introduce tu contraseña maestra para exportar la información de tu caja fuerte."
@@ -1306,7 +1306,7 @@
     "message": "Sitios web no seguros encontrados"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Hemos encontrado $COUNT$ elemento(s) en su bóveda con URIs no seguras. Si el sitio web lo permite debe cambiar su esquema URI a https:\/\/.",
+    "message": "Hemos encontrado $COUNT$ elemento(s) en su caja fuerte con URIs no seguras. Si el sitio web lo permite debe cambiar su esquema URI a https:\/\/.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1315,7 +1315,7 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No hay elementos en su bóveda con URIs no seguras."
+    "message": "No hay elementos en su caja fuerte con URIs no seguras."
   },
   "inactive2faReport": {
     "message": "Informe 2FA inactivo"
@@ -1327,7 +1327,7 @@
     "message": "Inicios de sesión sin 2FA encontrados"
   },
   "inactive2faFoundDesc": {
-    "message": "Hemos encontrado $COUNT$ sitio(s) web en su bóveda que no pueden ser configuradas con autenticación de dos factores (según twofactorauth.org). Para proteger estas cuentas, debe habilitar autenticación de dos factores.",
+    "message": "Hemos encontrado $COUNT$ sitio(s) web en su caja fuerte que no pueden ser configuradas con autenticación de dos factores (según twofactorauth.org). Para proteger estas cuentas, debe habilitar autenticación de dos factores.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1336,7 +1336,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "No se han encontrado sitios web en su bóveda sin una configuración de autenticación de dos factores."
+    "message": "No se han encontrado sitios web en su caja fuerte sin una configuración de autenticación de dos factores."
   },
   "instructions": {
     "message": "Instrucciones"
@@ -1351,7 +1351,7 @@
     "message": "Contraseñas expuestas encontradas"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "Hemos encontrado $COUNT$ elementos en su bóveda que tienen contraseñas que fueron expuestas en violaciones de datos conocidas. Debe cambiarlos para utilizar una contraseña nueva.",
+    "message": "Hemos encontrado $COUNT$ elementos en su caja fuerte que tienen contraseñas que fueron expuestas en violaciones de datos conocidas. Debe cambiarlos para utilizar una contraseña nueva.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1360,7 +1360,7 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No hay elementos en su bóveda que tengan contraseñas que hayan sido expuestas en violaciones de datos conocidas."
+    "message": "No hay elementos en su caja fuerte que tengan contraseñas que hayan sido expuestas en violaciones de datos conocidas."
   },
   "checkExposedPasswords": {
     "message": "Compruebe las contraseñas expuestas"
@@ -1384,7 +1384,7 @@
     "message": "Contraseñas débiles encontradas"
   },
   "weakPasswordsFoundDesc": {
-    "message": "Hemos encontrado $COUNT$ elemento(s) en su bóveda con contraseñas que no son fuertes. Se deben actualizar para usar contraseñas más fuertes.",
+    "message": "Hemos encontrado $COUNT$ elemento(s) en su caja fuerte con contraseñas que no son fuertes. Se deben actualizar para usar contraseñas más fuertes.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1393,7 +1393,7 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No hay elementos en su bóveda tienen contraseñas débiles."
+    "message": "No hay elementos en su caja fuerte que tengan contraseñas débiles."
   },
   "reusedPasswordsReport": {
     "message": "Informe de contraseñas reutilizadas"
@@ -1405,7 +1405,7 @@
     "message": "Contraseñas reutilizadas encontradas"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "Hemos encontrado $COUNT$ contraseña(s) que están siendo reutilizadas en su bóveda. Debe cambiarlas a un valor único.",
+    "message": "Hemos encontrado $COUNT$ contraseña(s) que están siendo reutilizadas en su caja fuerte. Debe cambiarlas a un valor único.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1414,7 +1414,7 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No hay inicios de sesión en su bóveda que tengan contraseñas que esten siendo reutilizadas."
+    "message": "No hay inicios de sesión en su caja fuerte que tengan contraseñas que esten siendo reutilizadas."
   },
   "reusedXTimes": {
     "message": "Reutilizada $COUNT$ vez\/veces",
@@ -1504,10 +1504,10 @@
     "message": "Opciones adicionales de inicio de sesión de dos pasos como YubiKey, Fido U2F y Duo."
   },
   "premiumSignUpReports": {
-    "message": "Higiene de contraseña, salud de la cuenta e informes de violaciones de datos para mantener su bóveda segura."
+    "message": "Higiene de contraseña, salud de la cuenta e informes de violaciones de datos para mantener su caja fuerte segura."
   },
   "premiumSignUpTotp": {
-    "message": "Generador de código de verificación TOTP (2FA) para iniciar sesión en su bóveda."
+    "message": "Generador de código de verificación TOTP (2FA) para iniciar sesión en su caja fuerte."
   },
   "premiumSignUpSupport": {
     "message": "Atención prioritaria al cliente."
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Cambiar Método de Pago"
   },
-  "charges": {
-    "message": "Cargos",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Sin cargos."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Cualquier cargo aparecerá en su estado de cuenta como $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Póngase en contacto con el servicio de atención al cliente"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Si deseas cambiar el método de pago, por favor, ponte en contacto con atención al cliente."
   },
   "updatedPaymentMethod": {
     "message": "Método de pago actualizado."
@@ -2394,7 +2413,7 @@
     "message": "Actualizar navegador"
   },
   "updateBrowserDesc": {
-    "message": "Está utilizando un navegador web no compatible. Es posible que la bóveda web no funcione correctamente."
+    "message": "Está utilizando un navegador web no compatible. Es posible que la caja fuerte web no funcione correctamente."
   },
   "joinOrganization": {
     "message": "Únete a la organización"
@@ -2474,8 +2493,21 @@
     "message": "Contacta con atención al cliente si deseas cambiar tu plan. Por favor, asegúrate de tener activo un método de pago en tu cuenta.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Factura"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Verificar cuenta bancaria"
@@ -2484,7 +2516,7 @@
     "message": "Hemos hecho dos pequeños cargos en tu cuenta bancaria (pueden tardar de 1 a 2 días laborables en aparecer). Introduce esas cantidades para verificar tu cuenta bancaria."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "El pago con cuenta bancaria solo está disponible para clientes en los Estados Unidos. Tendrás que verificar tu cuenta bancaria. Realizaremos dos pequeños cargos en los siguientes 1-2 días laborables. Introduce esas cantidades en la página de facturación de la organización para verificar la cuenta bancaria."
+    "message": "El pago con cuenta bancaria solo está disponible para clientes en los Estados Unidos. Tendrá que verificar su cuenta bancaria. Realizaremos dos pequeños cargos en los siguientes 1-2 días laborables. Introduzca esas cantidades en la página de facturación de la organización para verificar la cuenta bancaria."
   },
   "verifyBankAccountFailureWarning": {
     "message": "Si falla la verificación de la cuenta bancaria, como resultado se saltará el pago y tu suscripción será deshabilitada."
@@ -2718,7 +2750,7 @@
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "Hay archivos adjuntos antiguos en la bóveda que necesitan ser corregidos antes de poder rotar la clave de encriptación de su cuenta."
+    "message": "Hay archivos adjuntos antiguos en la caja fuerte que necesitan ser corregidos antes de poder rotar la clave de encriptación de su cuenta."
   },
   "yourAccountsFingerprint": {
     "message": "Frase de la huella digital de su cuenta",
