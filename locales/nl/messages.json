@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Betalingsmethode wijzigen"
   },
-  "charges": {
-    "message": "Kosten",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Geen kosten."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Eventuele kosten zullen op uw afschrift worden weergegeven als $STATEMENT_NAME$.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Neem contact op met de klantenservice"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Neem contact op met de klantenservice als u deze betaalmethode wilt wijzigen."
   },
   "updatedPaymentMethod": {
     "message": "Betalingsmethode bijgewerkt."
@@ -2474,8 +2493,21 @@
     "message": "Neem contact op met de klantenservice als u uw pakket wilt wijzigen. Zorg ervoor dat u een actieve betaalmethode aan het account hebt toegevoegd.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Factuur"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Verifieer bankrekening"

@@ -205,7 +205,7 @@
     "message": "Niemals"
   },
   "toggleVisibility": {
-    "message": "Sichtbarkeit umschalten"
+    "message": "Ein- \/ Ausblenden"
   },
   "toggleCollapse": {
     "message": "Sammlung ein- \/ ausklappen",
@@ -263,7 +263,7 @@
     "message": "Favoriten durchsuchen"
   },
   "searchType": {
-    "message": "Suche nach Elementtyp",
+    "message": "Suchmodus",
     "description": "Search item type"
   },
   "searchVault": {
@@ -410,7 +410,7 @@
     "message": "Starten"
   },
   "newAttachment": {
-    "message": "Anhang hinzufügen"
+    "message": "Neuen Anhang hinzufügen"
   },
   "deletedAttachment": {
     "message": "Gelöschter Anhang"
@@ -545,7 +545,7 @@
     "message": "Einstellungen"
   },
   "passwordHint": {
-    "message": "Passworthinweis"
+    "message": "Passwort-Hinweis"
   },
   "enterEmailToGetHint": {
     "message": "Geben Sie die E-Mail Adresse Ihres Kontos ein, um einen Hinweis auf ihr Master-Passwort zu erhalten."
@@ -620,7 +620,7 @@
     "message": "Neue Organisation"
   },
   "noOrganizationsList": {
-    "message": "Du bist kein Mitglied einer Organisation. Organisationen erlauben es dir Passwörter sicher mit anderen Nutzern zu teilen."
+    "message": "Sie gehören keiner Organisation an. Organisationen erlauben es Ihnen Passwörter sicher mit anderen zu teilen."
   },
   "versionNumber": {
     "message": "Version $VERSION_NUMBER$",
@@ -703,7 +703,7 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Nutze Duo Security um dich mit der Duo Mobile App, SMS, per Anruf oder U2F Security Key bei deiner Organisation zu verifizieren.",
+    "message": "Nutzen Sie Duo Security um sich mit der Duo Mobile App, SMS, per Anruf oder U2F Sicherheitsschlüssel Ihrer Organisation gegenüber zu verifizieren.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
@@ -809,7 +809,7 @@
     "message": "Mehrdeutige Zeichen vermeiden"
   },
   "regeneratePassword": {
-    "message": "Password neu generieren"
+    "message": "Passwort neu generieren"
   },
   "length": {
     "message": "Länge"
@@ -818,10 +818,10 @@
     "message": "Anzahl der Wörter"
   },
   "wordSeparator": {
-    "message": "Trennzeichen"
+    "message": "Worttrennzeichen"
   },
   "passwordHistory": {
-    "message": "Kennwort-Historie"
+    "message": "Passwortverlauf"
   },
   "noPasswordsInList": {
     "message": "Keine Passwörter vorhanden."
@@ -854,7 +854,7 @@
     "message": "Wenn Sie fortfahren, werden Sie aus Ihrer aktuellen Sitzung ausgeloggt. Aktive Sitzungen auf anderen Geräten können bis zu einer Stunde weiterhin verwendet werden."
   },
   "emailChanged": {
-    "message": "E-Mail geändert"
+    "message": "E-Mail-Adresse geändert"
   },
   "logBackIn": {
     "message": "Bitte melden Sie sich erneut an."
@@ -1254,7 +1254,7 @@
     "message": "Schlüssel erfassen"
   },
   "keyCompromised": {
-    "message": "Dieser Schlüssel ist kompromitiert."
+    "message": "Dieser Schlüssel ist bloßgestellt."
   },
   "twoFactorU2fGiveName": {
     "message": "Gib dem Sicherheitsschlüssel einen passenden Namen um ihn zu erkennen."
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "Zahlungsmethode ändern"
   },
-  "charges": {
-    "message": "Gebühren",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "Keine Gebühren."
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "Alle Gebühren werden auf Ihrem Kontoauszug als $STATEMENT_NAME$ angezeigt.",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "Kundenservice kontaktieren"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "Wenn Sie diese Zahlungsmethode wechseln möchten, wenden Sie sich bitte an den Kundendienst."
   },
   "updatedPaymentMethod": {
     "message": "Zahlungsart aktualisiert."
@@ -2467,15 +2486,28 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Abo ändern",
+    "message": "Abonnement ändern",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Kontaktieren Sie den Kundensupport, um Ihr Abo zu ändern. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu Ihrem Konto hinzugefügt haben.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "Rechnung"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "Bankkonto verifizieren"

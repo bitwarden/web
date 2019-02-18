@@ -587,7 +587,7 @@
     "message": "ロック解除"
   },
   "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+    "message": "$EMAIL$ としてログインしました",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1688,12 +1688,34 @@
   "changePaymentMethod": {
     "message": "お支払い方法の変更"
   },
-  "charges": {
-    "message": "料金",
-    "description": "Credit card charges\/payments."
+  "invoices": {
+    "message": "Invoices"
   },
-  "noCharges": {
-    "message": "料金はかかりません。"
+  "noInvoices": {
+    "message": "No invoices."
+  },
+  "paid": {
+    "message": "Paid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Unpaid",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transactions",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "No transactions."
+  },
+  "chargeNoun": {
+    "message": "Charge",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Refund",
+    "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
     "message": "料金は$STATEMENT_NAME$と明細に表示されます。",
@@ -1727,9 +1749,6 @@
   },
   "contactSupport": {
     "message": "カスタマーサポートに連絡"
-  },
-  "contactSupportPaymentMethod": {
-    "message": "現在のお支払い方法から変更を希望される場合、カスタマーサポートまでお問い合わせください。"
   },
   "updatedPaymentMethod": {
     "message": "お支払い方法を更新しました。"
@@ -2474,8 +2493,21 @@
     "message": "契約プランを変更したい場合はサポートまでご連絡ください。アカウントに有効なお支払い方法が登録されていることをご確認ください。",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
-  "invoice": {
-    "message": "請求書"
+  "invoiceNumber": {
+    "message": "Invoice #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "View Invoice"
+  },
+  "downloadInvoice": {
+    "message": "Download Invoice"
   },
   "verifyBankAccount": {
     "message": "銀行口座の認証"
