@@ -45,7 +45,7 @@ export class PremiumComponent implements OnInit {
         this.canAccessPremium = await this.userService.canAccessPremium();
         const premium = await this.tokenService.getPremium();
         if (premium) {
-            this.router.navigate(['/settings/billing']);
+            this.router.navigate(['/settings/subscription']);
             return;
         }
     }
@@ -95,7 +95,7 @@ export class PremiumComponent implements OnInit {
         this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
         this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
         this.messagingService.send('purchasedPremium');
-        this.router.navigate(['/settings/billing']);
+        this.router.navigate(['/settings/subscription']);
     }
 
     get additionalStorageTotal(): number {

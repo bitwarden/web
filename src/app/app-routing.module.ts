@@ -27,6 +27,7 @@ import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/pe
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
+import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
 import { SettingsComponent as OrgSettingsComponent } from './organizations/settings/settings.component';
 import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
@@ -62,6 +63,7 @@ import { PremiumComponent } from './settings/premium.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
 import { UserBillingComponent } from './settings/user-billing.component';
+import { UserSubscriptionComponent } from './settings/user-subscription.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
 import { ExportComponent } from './tools/export.component';
@@ -145,7 +147,12 @@ const routes: Routes = [
                     { path: 'domain-rules', component: DomainRulesComponent, data: { titleId: 'domainRules' } },
                     { path: 'two-factor', component: TwoFactorSetupComponent, data: { titleId: 'twoStepLogin' } },
                     { path: 'premium', component: PremiumComponent, data: { titleId: 'goPremium' } },
-                    { path: 'billing', component: UserBillingComponent, data: { titleId: 'billingAndLicensing' } },
+                    { path: 'billing', component: UserBillingComponent, data: { titleId: 'billing' } },
+                    {
+                        path: 'subscription',
+                        component: UserSubscriptionComponent,
+                        data: { titleId: 'premiumMembership' },
+                    },
                     { path: 'organizations', component: OrganizationsComponent, data: { titleId: 'organizations' } },
                     {
                         path: 'create-organization',
@@ -271,7 +278,12 @@ const routes: Routes = [
                     {
                         path: 'billing',
                         component: OrganizationBillingComponent,
-                        data: { titleId: 'billingAndLicensing' },
+                        data: { titleId: 'billing' },
+                    },
+                    {
+                        path: 'subscription',
+                        component: OrganizationSubscriptionComponent,
+                        data: { titleId: 'subscription' },
                     },
                 ],
             },

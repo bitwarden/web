@@ -7,8 +7,11 @@
                     <a routerLink="account" class="list-group-item" routerLinkActive="active">
                         {{'myOrganization' | i18n}}
                     </a>
+                    <a routerLink="subscription" class="list-group-item" routerLinkActive="active">
+                        {{'subscription' | i18n}}
+                    </a>
                     <a routerLink="billing" class="list-group-item" routerLinkActive="active">
-                        {{'billingAndLicensing' | i18n}}
+                        {{'billing' | i18n}}
                     </a>
                     <a routerLink="two-factor" class="list-group-item" routerLinkActive="active" *ngIf="access2fa">
                         {{'twoStepLogin' | i18n}}

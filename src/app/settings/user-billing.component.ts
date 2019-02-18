@@ -2,7 +2,6 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -11,11 +10,10 @@ import { BillingResponse } from 'jslib/models/response/billingResponse';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 import { TransactionType } from 'jslib/enums/transactionType';
+import { VerifyBankRequest } from 'jslib/models/request/verifyBankRequest';
 
 @Component({
     selector: 'app-user-billing',
@@ -24,24 +22,18 @@ import { TransactionType } from 'jslib/enums/transactionType';
 export class UserBillingComponent implements OnInit {
     loading = false;
     firstLoaded = false;
-    adjustStorageAdd = true;
-    showAdjustStorage = false;
     showAdjustPayment = false;
-    showUpdateLicense = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
     transactionType = TransactionType;
-    selfHosted = false;
+    organizationId: string;
+    verifyAmount1: number;
+    verifyAmount2: number;
 
-    cancelPromise: Promise<any>;
-    reinstatePromise: Promise<any>;
+    verifyBankPromise: Promise<any>;
 
-    constructor(private tokenService: TokenService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router) {
-        this.selfHosted = platformUtilsService.isSelfHost();
-    }
+    constructor(protected apiService: ApiService, protected i18nService: I18nService,
+        protected analytics: Angulartics2, protected toasterService: ToasterService) { }
 
     async ngOnInit() {
         await this.load();
@@ -52,91 +44,30 @@ export class UserBillingComponent implements OnInit {
         if (this.loading) {
             return;
         }
-
-        if (this.tokenService.getPremium()) {
-            this.loading = true;
-            this.billing = await this.apiService.getUserBilling();
+        this.loading = true;
+        if (this.organizationId != null) {
+            this.billing = await this.apiService.getOrganizationBilling(this.organizationId);
         } else {
-            this.router.navigate(['/settings/premium']);
-            return;
+            this.billing = await this.apiService.getUserBilling();
         }
-
         this.loading = false;
     }
 
-    async reinstate() {
+    async verifyBank() {
         if (this.loading) {
-            return;
-        }
-
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('reinstateConfirmation'),
-            this.i18nService.t('reinstateSubscription'), this.i18nService.t('yes'), this.i18nService.t('cancel'));
-        if (!confirmed) {
             return;
         }
 
         try {
-            this.reinstatePromise = this.apiService.postReinstatePremium();
-            await this.reinstatePromise;
-            this.analytics.eventTrack.next({ action: 'Reinstated Premium' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
+            const request = new VerifyBankRequest();
+            request.amount1 = this.verifyAmount1;
+            request.amount2 = this.verifyAmount2;
+            this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(this.organizationId, request);
+            await this.verifyBankPromise;
+            this.analytics.eventTrack.next({ action: 'Verified Bank Account' });
+            this.toasterService.popAsync('success', null, this.i18nService.t('verifiedBankAccount'));
             this.load();
         } catch { }
-    }
-
-    async cancel() {
-        if (this.loading) {
-            return;
-        }
-
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('cancelConfirmation'),
-            this.i18nService.t('cancelSubscription'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return;
-        }
-
-        try {
-            this.cancelPromise = this.apiService.postCancelPremium();
-            await this.cancelPromise;
-            this.analytics.eventTrack.next({ action: 'Canceled Premium' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
-            this.load();
-        } catch { }
-    }
-
-    downloadLicense() {
-        if (this.loading) {
-            return;
-        }
-
-        const licenseString = JSON.stringify(this.billing.license, null, 2);
-        this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_premium_license.json');
-    }
-
-    updateLicense() {
-        if (this.loading) {
-            return;
-        }
-        this.showUpdateLicense = true;
-    }
-
-    closeUpdateLicense(load: boolean) {
-        this.showUpdateLicense = false;
-        if (load) {
-            this.load();
-        }
-    }
-
-    adjustStorage(add: boolean) {
-        this.adjustStorageAdd = add;
-        this.showAdjustStorage = true;
-    }
-
-    closeStorage(load: boolean) {
-        this.showAdjustStorage = false;
-        if (load) {
-            this.load();
-        }
     }
 
     changePayment() {
@@ -150,18 +81,6 @@ export class UserBillingComponent implements OnInit {
         }
     }
 
-    get subscriptionMarkedForCancel() {
-        return this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate;
-    }
-
-    get subscription() {
-        return this.billing != null ? this.billing.subscription : null;
-    }
-
-    get nextInvoice() {
-        return this.billing != null ? this.billing.upcomingInvoice : null;
-    }
-
     get paymentSource() {
         return this.billing != null ? this.billing.paymentSource : null;
     }
@@ -172,14 +91,5 @@ export class UserBillingComponent implements OnInit {
 
     get transactions() {
         return this.billing != null ? this.billing.transactions : null;
-    }
-
-    get storagePercentage() {
-        return this.billing != null && this.billing.maxStorageGb ?
-            +(100 * (this.billing.storageGb / this.billing.maxStorageGb)).toFixed(2) : 0;
-    }
-
-    get storageProgressWidth() {
-        return this.storagePercentage < 5 ? 5 : 0;
     }
 }

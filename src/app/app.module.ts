@@ -57,6 +57,7 @@ import { AccountComponent as OrgAccountComponent } from './organizations/setting
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
+import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
 import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
@@ -116,6 +117,7 @@ import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.compone
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
+import { UserSubscriptionComponent } from './settings/user-subscription.component';
 import { VerifyEmailComponent } from './settings/verify-email.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
@@ -271,6 +273,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgAccountComponent,
         OrgAddEditComponent,
         OrganizationBillingComponent,
+        OrganizationSubscriptionComponent,
         OrgAttachmentsComponent,
         OrgCiphersComponent,
         OrgCollectionAddEditComponent,
@@ -334,6 +337,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         UpdateLicenseComponent,
         UserBillingComponent,
         UserLayoutComponent,
+        UserSubscriptionComponent,
         VaultComponent,
         VerifyEmailComponent,
         VerifyEmailTokenComponent,
