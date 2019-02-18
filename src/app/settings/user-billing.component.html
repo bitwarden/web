@@ -8,7 +8,9 @@
 </div>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading" title="{{'loading' | i18n}}"></i>
 <ng-container *ngIf="billing">
-    <h2>{{'paymentMethod' | i18n}}</h2>
+    <h2>{{(isCreditBalance ? 'accountCredit' : 'accountBalance') | i18n}}</h2>
+    <p>{{creditOrBalance | currency:'$'}}</p>
+    <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>
     <p *ngIf="!paymentSource">{{'noPaymentMethod' | i18n}}</p>
     <ng-container *ngIf="paymentSource">
         <app-callout type="warning" title="{{'verifyBankAccount' | i18n}}"

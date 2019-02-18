@@ -81,6 +81,14 @@ export class UserBillingComponent implements OnInit {
         }
     }
 
+    get isCreditBalance() {
+        return this.billing == null || this.billing.balance <= 0;
+    }
+
+    get creditOrBalance() {
+        return Math.abs(this.billing != null ? this.billing.balance : 0);
+    }
+
     get paymentSource() {
         return this.billing != null ? this.billing.paymentSource : null;
     }
