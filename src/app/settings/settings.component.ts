@@ -5,6 +5,7 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
@@ -17,9 +18,10 @@ const BroadcasterSubscriptionId = 'SettingsComponent';
 })
 export class SettingsComponent implements OnInit, OnDestroy {
     premium: boolean;
+    selfHosted: boolean;
 
     constructor(private tokenService: TokenService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone) { }
+        private ngZone: NgZone, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         this.broadcasterService.subscribe(BroadcasterSubscriptionId, async (message: any) => {
@@ -33,6 +35,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
             });
         });
 
+        this.selfHosted = await this.platformUtilsService.isSelfHost();
         await this.load();
     }
 
