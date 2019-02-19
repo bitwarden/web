@@ -1321,10 +1321,10 @@
     "message": "Sisselülitamata 2FA raport"
   },
   "inactive2faReportDesc": {
-    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust tõstev seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelist kinnitamist kasutada. "
+    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust tõstev seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelise kinnituse sisse lülitada."
   },
   "inactive2faFound": {
-    "message": "2FA-ta kontoandmed"
+    "message": "Kaheastmelise kinnituseta kontod"
   },
   "inactive2faFoundDesc": {
     "message": "Leidsime sinu hoidlast $COUNT$ veebilehte, kus kaheastmeline kinnitamine ei pruugi olla sisselülitatud (kontrolliks kasutatakse twofactorauth.org). Nende kontode paremaks kaitsmiseks soovitame kaheastmelise kinnitamise sisse lülitada.",
@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "Raporti laadimisel ilmes viga. Proovi uuesti"
   },
-  "billingAndLicensing": {
-    "message": "Maksmine & litsentsid"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "Hangi Premium",
@@ -1689,32 +1701,32 @@
     "message": "Muuda makseviisi"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Arved"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Arved puuduvad."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Makstud",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Tasumata",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Tehingud",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Tehingud puuduvad."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Makse",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Tagasimakse",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Arve #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2504,10 +2516,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Vaata arvet"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Laadi arve alla"
   },
   "verifyBankAccount": {
     "message": "Pangakonto verifitseerimine"

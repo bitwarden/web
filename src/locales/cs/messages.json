@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "Při pokosu o načtení hlášení došlo k chybě. Zkuste znovu"
   },
-  "billingAndLicensing": {
-    "message": "Faktury a licence"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "Přejděte na Premium",
@@ -1689,32 +1701,32 @@
     "message": "Změnit způsob platby"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Faktury"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Žádné faktury."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Zaplaceno",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Nezaplaceno",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Transakce",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Žádné transakce."
   },
   "chargeNoun": {
     "message": "Charge",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Vrátit peníze",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -1727,10 +1739,10 @@
     }
   },
   "gbStorageAdd": {
-    "message": "GB of Storage To Add"
+    "message": "BG místa k přidání"
   },
   "gbStorageRemove": {
-    "message": "GB of Storage To Remove"
+    "message": "GB místa pro odebrání"
   },
   "storageAddNote": {
     "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
@@ -1769,7 +1781,7 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "To upgrade your account to a premium membership you need to upload a valid license file."
+    "message": "Pro upgrade vašeho účtu na prémiový musíte zadat validní licenční soubor."
   },
   "uploadLicenseFileOrg": {
     "message": "Pro vytvoření organizace hostované na vlastní doméně, musíte nahrát platný licenční soubor."
@@ -1808,7 +1820,7 @@
     "message": "Další uživatelé"
   },
   "userSeatsDesc": {
-    "message": "# of user seats"
+    "message": "# uživatelských míst"
   },
   "userSeatsAdditionalDesc": {
     "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Faktura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2504,10 +2516,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Zobrazit fakturu"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Stáhnout fakturu"
   },
   "verifyBankAccount": {
     "message": "Ověření bankovního účtu"
@@ -2560,11 +2572,11 @@
     "message": "Zadejte ID instalace"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "Přidat uživatele",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "Odstranit uživatele",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2577,10 +2589,10 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "Uživatelé k přidání"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "Uživatelé k odebrání"
   },
   "seatsAddNote": {
     "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
