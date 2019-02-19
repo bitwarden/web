@@ -16,10 +16,9 @@ const Keys = {
 const StripeElementStyle = {
     base: {
         color: '#333333',
-        lineHeight: '21px',
         fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
             '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-        fontSize: '1rem',
+        fontSize: '14px',
         fontSmoothing: 'antialiased',
     },
     invalid: {

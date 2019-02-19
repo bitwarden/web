@@ -704,16 +704,23 @@ app-user-billing {
     }
 }
 
-.form-control.is-focused {
-    color: $input-focus-color;
-    background-color: $input-focus-bg;
-    border-color: $input-focus-border-color;
-    outline: 0;
-    box-shadow: $input-focus-box-shadow;
+.form-control.stripe-form-control {
+    padding-top: 0.55rem;
 
+    &.is-focused {
+        color: $input-focus-color;
+        background-color: $input-focus-bg;
+        border-color: $input-focus-border-color;
+        outline: 0;
+        box-shadow: $input-focus-box-shadow;
+    
+        &.is-invalid {
+            box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
+        }
+    }
+    
     &.is-invalid {
         border-color: $form-feedback-invalid-color;
-        box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
     }
 }
 
