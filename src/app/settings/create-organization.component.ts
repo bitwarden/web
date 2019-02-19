@@ -128,7 +128,7 @@ export class CreateOrganizationComponent implements OnInit {
                 } else {
                     return this.paymentComponent.createPaymentToken();
                 }
-            }).then((token: string) => {
+            }).then((tokenResult) => {
                 if (this.selfHosted) {
                     const fd = new FormData();
                     fd.append('license', files[0]);
@@ -145,7 +145,8 @@ export class CreateOrganizationComponent implements OnInit {
                     if (this.plan === 'free') {
                         request.planType = PlanType.Free;
                     } else {
-                        request.paymentToken = token;
+                        request.paymentToken = tokenResult[0];
+                        request.paymentMethodType = tokenResult[1];
                         request.businessName = this.ownedBusiness ? this.businessName : null;
                         request.additionalSeats = this.additionalSeats;
                         request.additionalStorageGb = this.additionalStorage;

@@ -76,9 +76,10 @@ export class PremiumComponent implements OnInit {
                     return this.finalizePremium();
                 });
             } else {
-                this.formPromise = this.paymentComponent.createPaymentToken().then((token) => {
+                this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
                     const fd = new FormData();
-                    fd.append('paymentToken', token);
+                    fd.append('paymentMethodType', result[1].toString());
+                    fd.append('paymentToken', result[0]);
                     fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
                     return this.apiService.postPremium(fd);
                 }).then(() => {

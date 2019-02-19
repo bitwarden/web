@@ -39,8 +39,9 @@ export class AdjustPaymentComponent {
     async submit() {
         try {
             const request = new PaymentRequest();
-            this.formPromise = this.paymentComponent.createPaymentToken().then((token) => {
-                request.paymentToken = token;
+            this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
+                request.paymentToken = result[0];
+                request.paymentMethodType = result[1];
                 if (this.organizationId == null) {
                     return this.apiService.postAccountPayment(request);
                 } else {

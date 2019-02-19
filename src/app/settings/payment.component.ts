@@ -4,6 +4,8 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 const Keys = {
@@ -149,20 +151,22 @@ export class PaymentComponent implements OnInit {
         }
     }
 
-    createPaymentToken(): Promise<string> {
+    createPaymentToken(): Promise<[string, PaymentMethodType]> {
         return new Promise((resolve, reject) => {
             if (this.method === 'paypal') {
                 this.btInstance.requestPaymentMethod().then((payload: any) => {
-                    resolve(payload.nonce);
+                    resolve([payload.nonce, PaymentMethodType.PayPal]);
                 }).catch((err: any) => {
                     reject(err.message);
                 });
             } else if (this.method === 'card' || this.method === 'bank') {
+                let type = PaymentMethodType.Card;
                 let sourceObj: any = null;
                 let createObj: any = null;
                 if (this.method === 'card') {
                     sourceObj = this.stripeCardNumberElement;
                 } else {
+                    type = PaymentMethodType.BankAccount;
                     sourceObj = 'bank_account';
                     createObj = this.bank;
                 }
@@ -170,7 +174,7 @@ export class PaymentComponent implements OnInit {
                     if (result.error) {
                         reject(result.error.message);
                     } else if (result.token && result.token.id != null) {
-                        resolve(result.token.id);
+                        resolve([result.token.id, type]);
                     } else {
                         reject();
                     }
