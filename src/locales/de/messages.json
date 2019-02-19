@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "Ein Fehler ist aufgetreten, während der Bericht geladen wurde. Versuchen Sie es erneut"
   },
-  "billingAndLicensing": {
-    "message": "Abrechnung & Lizenzierung"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "Zu Premium wechseln",
@@ -1689,32 +1701,32 @@
     "message": "Zahlungsmethode ändern"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Rechnungen"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Keine Rechnungen."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Bezahlt",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Unbezahlt",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Zahlungsvorgänge",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Keine Zahlungsvorgänge."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Gebühr",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Rückerstattung",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Rechnung #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2504,10 +2516,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Rechnung anzeigen"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Rechnung herunterladen"
   },
   "verifyBankAccount": {
     "message": "Bankkonto verifizieren"
