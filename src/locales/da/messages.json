@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "Der opstod en fejl under forsøget på at indlæse rapporten. Prøv igen"
   },
-  "billingAndLicensing": {
-    "message": "Fakturering & licensiering"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "Skift til Premium",
@@ -1689,32 +1701,32 @@
     "message": "Skift betalingsmetode"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Fakturaer"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Ingen fakturaer."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Betalt",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Ikke betalt",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Transaktioner",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Ingen transaktioner."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Betaling",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Tilbagebetaling",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Faktura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2504,10 +2516,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Vis faktura"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Download faktura"
   },
   "verifyBankAccount": {
     "message": "Bekræft bankkonto"
