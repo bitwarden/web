@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "加载报告时发生错误，请重试。"
   },
-  "billingAndLicensing": {
-    "message": "计费和许可"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "升级高级会员",
@@ -1689,32 +1701,32 @@
     "message": "更改支付方式"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "收据"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "无收据"
   },
   "paid": {
-    "message": "Paid",
+    "message": "已支付",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "未支付",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "交易",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "无交易"
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "费用",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "退款",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "收据 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2504,10 +2516,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "查看收据"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "下载收据"
   },
   "verifyBankAccount": {
     "message": "验证银行帐户"
