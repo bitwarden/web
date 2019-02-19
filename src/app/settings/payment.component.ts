@@ -23,8 +23,7 @@ const StripeElementStyle = {
         fontSmoothing: 'antialiased',
     },
     invalid: {
-        iconColor: '#dd4b39',
-        color: '#dd4b39',
+        color: '#333333',
     },
 };
 

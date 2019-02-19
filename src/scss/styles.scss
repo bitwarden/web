@@ -710,6 +710,11 @@ app-user-billing {
     border-color: $input-focus-border-color;
     outline: 0;
     box-shadow: $input-focus-box-shadow;
+
+    &.is-invalid {
+        border-color: $form-feedback-invalid-color;
+        box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
+    }
 }
 
 .org-nav {
