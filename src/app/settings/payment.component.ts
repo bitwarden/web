@@ -4,7 +4,6 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 const Keys = {
@@ -12,6 +11,27 @@ const Keys = {
     stripeLive: 'pk_live_bpN0P37nMxrMQkcaHXtAybJk',
     btSandbox: 'sandbox_r72q8jq6_9pnxkwm75f87sdc2',
     btProduction: 'production_qfbsv8kc_njj2zjtyngtjmbjd',
+};
+
+const StripeElementStyle = {
+    base: {
+        color: '#333333',
+        lineHeight: '21px',
+        fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
+            '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+        fontSize: '1rem',
+        fontSmoothing: 'antialiased',
+    },
+    invalid: {
+        iconColor: '#dd4b39',
+        color: '#dd4b39',
+    },
+};
+
+const StripeElementClasses = {
+    focus: 'is-focused',
+    empty: 'is-empty',
+    invalid: 'is-invalid',
 };
 
 @Component({
@@ -24,13 +44,6 @@ export class PaymentComponent implements OnInit {
     @Input() hideBank = false;
     @Input() hidePaypal = false;
 
-    card: any = {
-        number: null,
-        exp_month: '',
-        exp_year: '',
-        address_country: '',
-        address_zip: null,
-    };
     bank: any = {
         routing_number: null,
         account_number: null,
@@ -39,48 +52,29 @@ export class PaymentComponent implements OnInit {
         currency: 'USD',
         country: 'US',
     };
-    cardExpMonthOptions: any[];
-    cardExpYearOptions: any[];
 
-    private stripeScript: HTMLScriptElement;
     private btScript: HTMLScriptElement;
     private btInstance: any = null;
+    private stripeScript: HTMLScriptElement;
+    private stripe: any = null;
+    private stripeElements: any = null;
+    private stripeCardNumberElement: any = null;
+    private stripeCardExpiryElement: any = null;
+    private stripeCardCvcElement: any = null;
 
-    constructor(i18nService: I18nService, private platformUtilsService: PlatformUtilsService) {
+    constructor(private platformUtilsService: PlatformUtilsService) {
         this.stripeScript = window.document.createElement('script');
-        this.stripeScript.src = 'https://js.stripe.com/v2/';
+        this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            (window as any).Stripe.setPublishableKey(
+            this.stripe = (window as any).Stripe(
                 this.platformUtilsService.isDev() ? Keys.stripeTest : Keys.stripeLive);
+            this.stripeElements = this.stripe.elements();
+            this.setStripeElement();
         };
         this.btScript = window.document.createElement('script');
         this.btScript.src = 'scripts/dropin.js';
         this.btScript.async = true;
-
-        this.cardExpMonthOptions = [
-            { name: '-- ' + i18nService.t('select') + ' --', value: '' },
-            { name: '01 - ' + i18nService.t('january'), value: '01' },
-            { name: '02 - ' + i18nService.t('february'), value: '02' },
-            { name: '03 - ' + i18nService.t('march'), value: '03' },
-            { name: '04 - ' + i18nService.t('april'), value: '04' },
-            { name: '05 - ' + i18nService.t('may'), value: '05' },
-            { name: '06 - ' + i18nService.t('june'), value: '06' },
-            { name: '07 - ' + i18nService.t('july'), value: '07' },
-            { name: '08 - ' + i18nService.t('august'), value: '08' },
-            { name: '09 - ' + i18nService.t('september'), value: '09' },
-            { name: '10 - ' + i18nService.t('october'), value: '10' },
-            { name: '11 - ' + i18nService.t('november'), value: '11' },
-            { name: '12 - ' + i18nService.t('december'), value: '12' },
-        ];
-
-        this.cardExpYearOptions = [
-            { name: '-- ' + i18nService.t('select') + ' --', value: '' },
-        ];
-        const year = (new Date()).getFullYear();
-        for (let i = year; i < (year + 15); i++) {
-            this.cardExpYearOptions.push({ name: i.toString(), value: i.toString().slice(-2) });
-        }
     }
 
     ngOnInit() {
@@ -96,49 +90,65 @@ export class PaymentComponent implements OnInit {
 
     ngOnDestroy() {
         window.document.head.removeChild(this.stripeScript);
-        Array.from(window.document.querySelectorAll('iframe')).forEach((el) => {
-            if (el.src != null && el.src.indexOf('stripe') > -1) {
-                window.document.body.removeChild(el);
-            }
-        });
+        window.setTimeout(() => {
+            Array.from(window.document.querySelectorAll('iframe')).forEach((el) => {
+                if (el.src != null && el.src.indexOf('stripe') > -1) {
+                    try {
+                        window.document.body.removeChild(el);
+                    } catch { }
+                }
+            });
+        }, 200);
         if (!this.hidePaypal) {
             window.document.head.removeChild(this.btScript);
-            const btStylesheet = window.document.head.querySelector('#braintree-dropin-stylesheet');
-            if (btStylesheet != null) {
-                window.document.head.removeChild(btStylesheet);
-            }
+            window.setTimeout(() => {
+                Array.from(window.document.head.querySelectorAll('script')).forEach((el) => {
+                    if (el.src != null && el.src.indexOf('paypal') > -1) {
+                        try {
+                            window.document.head.removeChild(el);
+                        } catch { }
+                    }
+                });
+                const btStylesheet = window.document.head.querySelector('#braintree-dropin-stylesheet');
+                if (btStylesheet != null) {
+                    try {
+                        window.document.head.removeChild(btStylesheet);
+                    } catch { }
+                }
+            }, 200);
         }
     }
 
     changeMethod() {
-        if (this.method !== 'paypal') {
-            this.btInstance = null;
-            return;
-        }
+        this.btInstance = null;
 
-        window.setTimeout(() => {
-            (window as any).braintree.dropin.create({
-                authorization: this.platformUtilsService.isDev() ? Keys.btSandbox : Keys.btProduction,
-                container: '#bt-dropin-container',
-                paymentOptionPriority: ['paypal'],
-                paypal: {
-                    flow: 'vault',
-                    buttonStyle: {
-                        label: 'pay',
-                        size: 'medium',
-                        shape: 'pill',
-                        color: 'blue',
+        if (this.method === 'paypal') {
+            window.setTimeout(() => {
+                (window as any).braintree.dropin.create({
+                    authorization: this.platformUtilsService.isDev() ? Keys.btSandbox : Keys.btProduction,
+                    container: '#bt-dropin-container',
+                    paymentOptionPriority: ['paypal'],
+                    paypal: {
+                        flow: 'vault',
+                        buttonStyle: {
+                            label: 'pay',
+                            size: 'medium',
+                            shape: 'pill',
+                            color: 'blue',
+                        },
                     },
-                },
-            }, (createErr: any, instance: any) => {
-                if (createErr != null) {
-                    // tslint:disable-next-line
-                    console.error(createErr);
-                    return;
-                }
-                this.btInstance = instance;
-            });
-        }, 250);
+                }, (createErr: any, instance: any) => {
+                    if (createErr != null) {
+                        // tslint:disable-next-line
+                        console.error(createErr);
+                        return;
+                    }
+                    this.btInstance = instance;
+                });
+            }, 250);
+        } else {
+            this.setStripeElement();
+        }
     }
 
     createPaymentToken(): Promise<string> {
@@ -150,15 +160,19 @@ export class PaymentComponent implements OnInit {
                     reject(err.message);
                 });
             } else if (this.method === 'card' || this.method === 'bank') {
-                const isCard = this.method === 'card';
-                const createObj: any = isCard ? (window as any).Stripe.card :
-                    (window as any).Stripe.bankAccount;
-                const sourceObj = isCard ? this.card : this.bank;
-                createObj.createToken(sourceObj, (status: number, response: any) => {
-                    if (status === 200 && response.id != null) {
-                        resolve(response.id);
-                    } else if (response.error != null) {
-                        reject(response.error.message);
+                let sourceObj: any = null;
+                let createObj: any = null;
+                if (this.method === 'card') {
+                    sourceObj = this.stripeCardNumberElement;
+                } else {
+                    sourceObj = 'bank_account';
+                    createObj = this.bank;
+                }
+                this.stripe.createToken(sourceObj, createObj).then((result: any) => {
+                    if (result.error) {
+                        reject(result.error.message);
+                    } else if (result.token && result.token.id != null) {
+                        resolve(result.token.id);
                     } else {
                         reject();
                     }
@@ -167,7 +181,33 @@ export class PaymentComponent implements OnInit {
         });
     }
 
-    getCountry(): string {
-        return this.card.address_country;
+    private setStripeElement() {
+        window.setTimeout(() => {
+            if (this.method === 'card') {
+                if (this.stripeCardNumberElement == null) {
+                    this.stripeCardNumberElement = this.stripeElements.create('cardNumber', {
+                        style: StripeElementStyle,
+                        classes: StripeElementClasses,
+                        placeholder: '',
+                    });
+                }
+                if (this.stripeCardExpiryElement == null) {
+                    this.stripeCardExpiryElement = this.stripeElements.create('cardExpiry', {
+                        style: StripeElementStyle,
+                        classes: StripeElementClasses,
+                    });
+                }
+                if (this.stripeCardCvcElement == null) {
+                    this.stripeCardCvcElement = this.stripeElements.create('cardCvc', {
+                        style: StripeElementStyle,
+                        classes: StripeElementClasses,
+                        placeholder: '',
+                    });
+                }
+                this.stripeCardNumberElement.mount('#stripe-card-number-element');
+                this.stripeCardExpiryElement.mount('#stripe-card-expiry-element');
+                this.stripeCardCvcElement.mount('#stripe-card-cvc-element');
+            }
+        }, 50);
     }
 }

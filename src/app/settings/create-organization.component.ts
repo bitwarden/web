@@ -151,7 +151,6 @@ export class CreateOrganizationComponent implements OnInit {
                         request.additionalStorageGb = this.additionalStorage;
                         request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
                             this.premiumAccessAddon;
-                        request.country = this.paymentComponent.getCountry();
                         if (this.interval === 'month') {
                             request.planType = this.plans[this.plan].monthPlanType;
                         } else {
