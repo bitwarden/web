@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "Une erreur est survenue en essayant de charger le rapport. Réessayez"
   },
-  "billingAndLicensing": {
-    "message": "Facturation & Licences"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "Devenir Premium",
@@ -1689,17 +1701,17 @@
     "message": "Changer de moyen de paiement"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Factures"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Aucune facture."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Payée",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Due",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
@@ -1707,14 +1719,14 @@
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Aucune transaction."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Débit",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Remboursement",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Facture n°$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2504,10 +2516,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Afficher la facture"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Télécharger la facture"
   },
   "verifyBankAccount": {
     "message": "Vérifier le compte bancaire"

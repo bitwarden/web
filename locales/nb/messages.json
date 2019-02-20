@@ -1484,8 +1484,20 @@
   "reportError": {
     "message": "En feil oppstod under forsøk på å laste inn rapporten. Prøv igjen."
   },
-  "billingAndLicensing": {
-    "message": "Fakturering og lisensiering"
+  "billing": {
+    "message": "Billing"
+  },
+  "accountCredit": {
+    "message": "Account Credit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Account Balance",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Add Credit",
+    "description": "Add more credit to your account's balance."
   },
   "goPremium": {
     "message": "Oppgrader til Premium",
@@ -1689,13 +1701,13 @@
     "message": "Endre betalingsmetoden"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Fakturaer"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Ingen fakturaer."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Betalt",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
@@ -1703,18 +1715,18 @@
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Transaksjoner",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Ingen transaksjoner."
   },
   "chargeNoun": {
     "message": "Charge",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Refusjon",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2494,7 +2506,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Faktura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
