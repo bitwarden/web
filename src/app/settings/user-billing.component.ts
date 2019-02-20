@@ -23,6 +23,7 @@ export class UserBillingComponent implements OnInit {
     loading = false;
     firstLoaded = false;
     showAdjustPayment = false;
+    showAddCredit = false;
     billing: BillingResponse;
     paymentMethodType = PaymentMethodType;
     transactionType = TransactionType;
@@ -68,6 +69,17 @@ export class UserBillingComponent implements OnInit {
             this.toasterService.popAsync('success', null, this.i18nService.t('verifiedBankAccount'));
             this.load();
         } catch { }
+    }
+
+    addCredit() {
+        this.showAddCredit = true;
+    }
+
+    closeAddCredit(load: boolean) {
+        this.showAddCredit = false;
+        if (load) {
+            this.load();
+        }
     }
 
     changePayment() {

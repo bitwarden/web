@@ -10,6 +10,12 @@
 <ng-container *ngIf="billing">
     <h2>{{(isCreditBalance ? 'accountCredit' : 'accountBalance') | i18n}}</h2>
     <p>{{creditOrBalance | currency:'$'}}</p>
+    <button type="button" class="btn btn-outline-secondary" (click)="addCredit()" *ngIf="!showAddCredit">
+        {{'addCredit' | i18n}}
+    </button>
+    <app-add-credit [organizationId]="organizationId"
+        (onAdded)="closeAddCredit(true)" (onCanceled)="closeAddCredit(false)" *ngIf="showAddCredit">
+    </app-add-credit>
     <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>
     <p *ngIf="!paymentSource">{{'noPaymentMethod' | i18n}}</p>
     <ng-container *ngIf="paymentSource">

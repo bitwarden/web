@@ -8,12 +8,7 @@ import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
-const Keys = {
-    stripeTest: 'pk_test_KPoCfZXu7mznb9uSCPZ2JpTD',
-    stripeLive: 'pk_live_bpN0P37nMxrMQkcaHXtAybJk',
-    btSandbox: 'sandbox_r72q8jq6_9pnxkwm75f87sdc2',
-    btProduction: 'production_qfbsv8kc_njj2zjtyngtjmbjd',
-};
+import { WebConstants } from '../../services/webConstants';
 
 const StripeElementStyle = {
     base: {
@@ -67,8 +62,8 @@ export class PaymentComponent implements OnInit {
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(
-                this.platformUtilsService.isDev() ? Keys.stripeTest : Keys.stripeLive);
+            this.stripe = (window as any).Stripe(this.platformUtilsService.isDev() ?
+                WebConstants.stripeTestKey : WebConstants.stripeLiveKey);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
         };
@@ -125,7 +120,8 @@ export class PaymentComponent implements OnInit {
         if (this.method === 'paypal') {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
-                    authorization: this.platformUtilsService.isDev() ? Keys.btSandbox : Keys.btProduction,
+                    authorization: this.platformUtilsService.isDev() ?
+                        WebConstants.btSandboxKey : WebConstants.btProductionKey,
                     container: '#bt-dropin-container',
                     paymentOptionPriority: ['paypal'],
                     paypal: {

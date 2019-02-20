@@ -90,6 +90,7 @@ import { GroupingsComponent as OrgGroupingsComponent } from './organizations/vau
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
 import { AccountComponent } from './settings/account.component';
+import { AddCreditComponent } from './settings/add-credit.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';
 import { AdjustStorageComponent } from './settings/adjust-storage.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
@@ -224,6 +225,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     declarations: [
         AcceptOrganizationComponent,
         AccountComponent,
+        AddCreditComponent,
         AddEditComponent,
         AdjustPaymentComponent,
         AdjustSeatsComponent,
