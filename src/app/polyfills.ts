@@ -3,6 +3,11 @@ import 'core-js/es6';
 import 'core-js/es7/reflect';
 require('zone.js/dist/zone');
 
+// IE11 fix, ref: https://github.com/angular/angular/issues/24769
+if (!Element.prototype.matches && (Element.prototype as any).msMatchesSelector) {
+    Element.prototype.matches = (Element.prototype as any).msMatchesSelector;
+}
+
 if (process.env.ENV === 'production') {
     // Production
 } else {
