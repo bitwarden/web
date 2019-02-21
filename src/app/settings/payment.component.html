@@ -1,21 +1,26 @@
 <div class="mb-4 text-lg" *ngIf="showOptions">
     <div class="form-check form-check-inline mr-4">
-        <input class="form-check-input" type="radio" name="Method" id="method-card" value="card" [(ngModel)]="method" (change)="changeMethod()">
+        <input class="form-check-input" type="radio" name="Method" id="method-card" [value]="paymentMethodType.Card" [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-card">
             <i class="fa fa-fw fa-credit-card"></i> {{'creditCard' | i18n}}</label>
     </div>
     <div class="form-check form-check-inline mr-4" *ngIf="!hideBank">
-        <input class="form-check-input" type="radio" name="Method" id="method-bank" value="bank" [(ngModel)]="method" (change)="changeMethod()">
+        <input class="form-check-input" type="radio" name="Method" id="method-bank" [value]="paymentMethodType.BankAccount" [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-bank">
             <i class="fa fa-fw fa-university"></i> {{'bankAccount' | i18n}}</label>
     </div>
     <div class="form-check form-check-inline" *ngIf="!hidePaypal">
-        <input class="form-check-input" type="radio" name="Method" id="method-paypal" value="paypal" [(ngModel)]="method" (change)="changeMethod()">
+        <input class="form-check-input" type="radio" name="Method" id="method-paypal" [value]="paymentMethodType.PayPal" [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-paypal">
             <i class="fa fa-fw fa-paypal"></i> PayPal</label>
     </div>
+    <div class="form-check form-check-inline" *ngIf="!hideCredit">
+        <input class="form-check-input" type="radio" name="Method" id="method-credit" [value]="paymentMethodType.Credit" [(ngModel)]="method" (change)="changeMethod()">
+        <label class="form-check-label" for="method-credit">
+            <i class="fa fa-fw fa-dollar"></i> {{'accountCredit' | i18n}}</label>
+    </div>
 </div>
-<ng-container *ngIf="method === 'card'">
+<ng-container *ngIf="method === paymentMethodType.Card">
     <div class="row">
         <div class="form-group col-4">
             <label for="stripe-card-number-element">{{'number' | i18n}}</label>
@@ -39,13 +44,7 @@
         </div>
     </div>
 </ng-container>
-<ng-container *ngIf="method === 'paypal'">
-    <div class="mb-3">
-        <div id="bt-dropin-container" class="mb-1"></div>
-        <small class="text-muted">{{'paypalClickSubmit' | i18n}}</small>
-    </div>
-</ng-container>
-<ng-container *ngIf="method === 'bank'">
+<ng-container *ngIf="method === paymentMethodType.BankAccount">
     <app-callout type="warning" title="{{'verifyBankAccount' | i18n}}">
         {{'verifyBankAccountInitialDesc' | i18n}} {{'verifyBankAccountFailureWarning' | i18n}}
     </app-callout>
@@ -74,4 +73,15 @@
             </select>
         </div>
     </div>
+</ng-container>
+<ng-container *ngIf="method === paymentMethodType.PayPal">
+    <div class="mb-3">
+        <div id="bt-dropin-container" class="mb-1"></div>
+        <small class="text-muted">{{'paypalClickSubmit' | i18n}}</small>
+    </div>
+</ng-container>
+<ng-container *ngIf="method === paymentMethodType.Credit">
+    <app-callout type="note">
+        {{'makeSureEnoughCredit' | i18n}}
+    </app-callout>
 </ng-container>

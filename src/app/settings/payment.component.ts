@@ -35,9 +35,10 @@ const StripeElementClasses = {
 })
 export class PaymentComponent implements OnInit {
     @Input() showOptions = true;
-    @Input() method: 'card' | 'paypal' | 'bank' = 'card';
+    @Input() method = PaymentMethodType.Card;
     @Input() hideBank = false;
     @Input() hidePaypal = false;
+    @Input() hideCredit = false;
 
     bank: any = {
         routing_number: null,
@@ -47,6 +48,8 @@ export class PaymentComponent implements OnInit {
         currency: 'USD',
         country: 'US',
     };
+
+    paymentMethodType = PaymentMethodType;
 
     private btScript: HTMLScriptElement;
     private btInstance: any = null;
@@ -74,8 +77,9 @@ export class PaymentComponent implements OnInit {
 
     ngOnInit() {
         if (!this.showOptions) {
-            this.hidePaypal = this.method !== 'paypal';
-            this.hideBank = this.method !== 'bank';
+            this.hidePaypal = this.method !== PaymentMethodType.PayPal;
+            this.hideBank = this.method !== PaymentMethodType.BankAccount;
+            this.hideCredit = this.method !== PaymentMethodType.Credit;
         }
         window.document.head.appendChild(this.stripeScript);
         if (!this.hidePaypal) {
@@ -93,7 +97,7 @@ export class PaymentComponent implements OnInit {
                     } catch { }
                 }
             });
-        }, 200);
+        }, 500);
         if (!this.hidePaypal) {
             window.document.head.removeChild(this.btScript);
             window.setTimeout(() => {
@@ -110,14 +114,14 @@ export class PaymentComponent implements OnInit {
                         window.document.head.removeChild(btStylesheet);
                     } catch { }
                 }
-            }, 200);
+            }, 500);
         }
     }
 
     changeMethod() {
         this.btInstance = null;
 
-        if (this.method === 'paypal') {
+        if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
                     authorization: this.platformUtilsService.isDev() ?
@@ -149,20 +153,18 @@ export class PaymentComponent implements OnInit {
 
     createPaymentToken(): Promise<[string, PaymentMethodType]> {
         return new Promise((resolve, reject) => {
-            if (this.method === 'paypal') {
+            if (this.method === PaymentMethodType.PayPal) {
                 this.btInstance.requestPaymentMethod().then((payload: any) => {
-                    resolve([payload.nonce, PaymentMethodType.PayPal]);
+                    resolve([payload.nonce, this.method]);
                 }).catch((err: any) => {
                     reject(err.message);
                 });
-            } else if (this.method === 'card' || this.method === 'bank') {
-                let type = PaymentMethodType.Card;
+            } else if (this.method === PaymentMethodType.Card || this.method === PaymentMethodType.BankAccount) {
                 let sourceObj: any = null;
                 let createObj: any = null;
-                if (this.method === 'card') {
+                if (this.method === PaymentMethodType.Card) {
                     sourceObj = this.stripeCardNumberElement;
                 } else {
-                    type = PaymentMethodType.BankAccount;
                     sourceObj = 'bank_account';
                     createObj = this.bank;
                 }
@@ -170,7 +172,7 @@ export class PaymentComponent implements OnInit {
                     if (result.error) {
                         reject(result.error.message);
                     } else if (result.token && result.token.id != null) {
-                        resolve([result.token.id, type]);
+                        resolve([result.token.id, this.method]);
                     } else {
                         reject();
                     }
@@ -181,7 +183,7 @@ export class PaymentComponent implements OnInit {
 
     private setStripeElement() {
         window.setTimeout(() => {
-            if (this.method === 'card') {
+            if (this.method === PaymentMethodType.Card) {
                 if (this.stripeCardNumberElement == null) {
                     this.stripeCardNumberElement = this.stripeElements.create('cardNumber', {
                         style: StripeElementStyle,
