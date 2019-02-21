@@ -9,7 +9,7 @@
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading" title="{{'loading' | i18n}}"></i>
 <ng-container *ngIf="billing">
     <h2>{{(isCreditBalance ? 'accountCredit' : 'accountBalance') | i18n}}</h2>
-    <p><strong>{{creditOrBalance | currency:'$'}}</strong></p>
+    <p class="text-lg"><strong>{{creditOrBalance | currency:'$'}}</strong></p>
     <p>{{'creditAppliedDesc' | i18n}}</p>
     <button type="button" class="btn btn-outline-secondary" (click)="addCredit()" *ngIf="!showAddCredit">
         {{'addCredit' | i18n}}
