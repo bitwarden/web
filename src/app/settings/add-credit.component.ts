@@ -24,7 +24,7 @@ import { WebConstants } from '../../services/webConstants';
     templateUrl: 'add-credit.component.html',
 })
 export class AddCreditComponent implements OnInit {
-    @Input() creditAmount = '10.00';
+    @Input() creditAmount: string;
     @Input() showOptions = true;
     @Input() method = PaymentMethodType.PayPal;
     @Input() organizationId: string;
@@ -37,6 +37,7 @@ export class AddCreditComponent implements OnInit {
     ppButtonFormAction = WebConstants.paypal.buttonActionProduction;
     ppButtonBusinessId = WebConstants.paypal.businessIdProduction;
     ppButtonCustomField: string;
+    ppReturnUrl: string;
     ppLoading = false;
     subject: string;
     formPromise: Promise<any>;
@@ -52,17 +53,24 @@ export class AddCreditComponent implements OnInit {
 
     async ngOnInit() {
         if (this.organizationId != null) {
+            if (this.creditAmount == null) {
+                this.creditAmount = '20.00';
+            }
             this.ppButtonCustomField = 'organization_id:' + this.organizationId;
             const org = await this.userService.getOrganization(this.organizationId);
             if (org != null) {
                 this.subject = org.name;
             }
         } else {
+            if (this.creditAmount == null) {
+                this.creditAmount = '10.00';
+            }
             const userId = await this.userService.getUserId();
             this.subject = await this.userService.getEmail();
             this.ppButtonCustomField = 'user_id:' + userId;
         }
         this.ppButtonCustomField += ',account_credit:true';
+        this.ppReturnUrl = window.location.href;
     }
 
     async submit() {

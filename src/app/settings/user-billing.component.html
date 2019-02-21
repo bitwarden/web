@@ -1,10 +1,11 @@
-<div class="page-header">
+<div class="page-header d-flex">
     <h1>
         {{'billing' | i18n}}
-        <small>
-            <i class="fa fa-spinner fa-spin text-muted" *ngIf="firstLoaded && loading" title="{{'loading' | i18n}}"></i>
-        </small>
     </h1>
+    <button (click)="load()" class="btn btn-sm btn-outline-primary ml-auto" *ngIf="firstLoaded" [disabled]="loading">
+        <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loading}"></i>
+        {{'refresh' | i18n}}
+    </button>
 </div>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading" title="{{'loading' | i18n}}"></i>
 <ng-container *ngIf="billing">
