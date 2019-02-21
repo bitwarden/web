@@ -153,7 +153,9 @@ export class PaymentComponent implements OnInit {
 
     createPaymentToken(): Promise<[string, PaymentMethodType]> {
         return new Promise((resolve, reject) => {
-            if (this.method === PaymentMethodType.PayPal) {
+            if (this.method === PaymentMethodType.Credit) {
+                resolve([null, this.method]);
+            } else if (this.method === PaymentMethodType.PayPal) {
                 this.btInstance.requestPaymentMethod().then((payload: any) => {
                     resolve([payload.nonce, this.method]);
                 }).catch((err: any) => {
