@@ -15,17 +15,20 @@
             </div>
             -->
         </div>
-        <div class="row">
-            <div class="form-group col-4">
-                <label for="creditAmount">{{'amount' | i18n}}</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend"><span class="input-group-text">$USD</span></div>
-                    <input id="creditAmount" class="form-control" type="text" name="CreditAmount" [(ngModel)]="creditAmount"
-                        (blur)="formatAmount()" required>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-4">
+                    <label for="creditAmount">{{'amount' | i18n}}</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">$USD</span></div>
+                        <input id="creditAmount" class="form-control" type="text" name="CreditAmount" [(ngModel)]="creditAmount"
+                            (blur)="formatAmount()" required>
+                    </div>
                 </div>
             </div>
+            <small class="form-text text-muted">{{'creditDelayed' | i18n}}</small>
         </div>
-        <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading || ppLoading">
             <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
             <span>{{'submit' | i18n}}</span>
         </button>

@@ -37,6 +37,7 @@ export class AddCreditComponent implements OnInit {
     ppButtonFormAction = WebConstants.paypal.buttonActionProduction;
     ppButtonBusinessId = WebConstants.paypal.businessIdProduction;
     ppButtonCustomField: string;
+    ppLoading = false;
     subject: string;
     formPromise: Promise<any>;
 
@@ -71,6 +72,7 @@ export class AddCreditComponent implements OnInit {
 
         if (this.method === PaymentMethodType.PayPal) {
             this.ppButtonFormRef.nativeElement.submit();
+            this.ppLoading = true;
             return;
         }
         try {
