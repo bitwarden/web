@@ -9,10 +9,12 @@
                     <app-vault-icon [cipher]="c"></app-vault-icon>
                 </td>
                 <td (click)="checkCipher(c)" class="reduced-lh wrap">
-                    <a href="#" appStopClick appStopProp (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
-                    <i class="fa fa-share-alt" appStopProp *ngIf="!organization && c.organizationId" title="{{'shared' | i18n}}"></i>
+                    <a href="#" appStopClick appStopProp (click)="selectCipher(c)"
+                        title="{{'editItem' | i18n}}">{{c.name}}</a>
+                    <i class="fa fa-share-alt" appStopProp *ngIf="!organization && c.organizationId"
+                        title="{{'shared' | i18n}}"></i>
                     <ng-container *ngIf="c.hasAttachments">
-                        <i class="fa fa-paperclip" appStopProp  title="{{'attachments' | i18n}}"></i>
+                        <i class="fa fa-paperclip" appStopProp title="{{'attachments' | i18n}}"></i>
                         <i class="fa fa-exclamation-triangle text-warning" appStopProp *ngIf="showFixOldAttachments(c)"
                             title="{{'attachmentsNeedFix' | i18n}}"></i>
                     </ng-container>
@@ -21,12 +23,13 @@
                 </td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-cog fa-lg"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.type === cipherType.Login" (click)="copy(c.login.password, 'password', 'password')">
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.type === cipherType.Login"
+                                (click)="copy(c.login.password, 'password', 'password')">
                                 <i class="fa fa-fw fa-clipboard"></i>
                                 {{'copyPassword' | i18n}}
                             </a>
@@ -34,15 +37,18 @@
                                 <i class="fa fa-fw fa-paperclip"></i>
                                 {{'attachments' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="!organization && !c.organizationId" (click)="share(c)">
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="!organization && !c.organizationId"
+                                (click)="share(c)">
                                 <i class="fa fa-fw fa-share-alt"></i>
                                 {{'share' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId" (click)="collections(c)">
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId"
+                                (click)="collections(c)">
                                 <i class="fa fa-fw fa-cubes"></i>
                                 {{'collections' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId && accessEvents" (click)="events(c)">
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId && accessEvents"
+                                (click)="events(c)">
                                 <i class="fa fa-fw fa-file-text-o"></i>
                                 {{'eventLogs' | i18n}}
                             </a>

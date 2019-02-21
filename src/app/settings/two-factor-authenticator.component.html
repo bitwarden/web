@@ -10,7 +10,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)" *ngIf="!authed">
+            <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)"
+                *ngIf="!authed">
             </app-two-factor-verify>
             <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
                 <div class="modal-body">
@@ -32,15 +33,18 @@
                     <ul class="fa-ul">
                         <li>
                             <i class="fa-li fa fa-apple"></i>{{'iosDevices' | i18n}}:
-                            <a href="https://itunes.apple.com/us/app/authy/id494168017?mt=8" target="_blank" rel="noopener">Authy</a>
+                            <a href="https://itunes.apple.com/us/app/authy/id494168017?mt=8" target="_blank"
+                                rel="noopener">Authy</a>
                         </li>
                         <li>
                             <i class="fa-li fa fa-android"></i>{{'androidDevices' | i18n}}:
-                            <a href="https://play.google.com/store/apps/details?id=com.authy.authy" target="_blank" rel="noopener">Authy</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.authy.authy" target="_blank"
+                                rel="noopener">Authy</a>
                         </li>
                         <li>
                             <i class="fa-li fa fa-windows"></i>{{'windowsDevices' | i18n}}:
-                            <a href="https://www.microsoft.com/p/authenticator/9wzdncrfj3rj" target="_blank" rel="noopener">Microsoft Authenticator</a>
+                            <a href="https://www.microsoft.com/p/authenticator/9wzdncrfj3rj" target="_blank"
+                                rel="noopener">Microsoft Authenticator</a>
                         </li>
                     </ul>
                     <p>{{'twoStepAuthenticatorAppsRecommended' | i18n}}</p>
@@ -54,7 +58,8 @@
                     </p>
                     <ng-container *ngIf="!enabled">
                         <label for="token">3. {{'twoStepAuthenticatorEnterCode' | i18n}}</label>
-                        <input id="token" type="text" name="Token" class="form-control" [(ngModel)]="token" required appInputVerbatim>
+                        <input id="token" type="text" name="Token" class="form-control" [(ngModel)]="token" required
+                            appInputVerbatim>
                     </ng-container>
                 </div>
                 <div class="modal-footer">
@@ -63,7 +68,8 @@
                         <span *ngIf="!enabled">{{'enable' | i18n}}</span>
                         <span *ngIf="enabled">{{'disable' | i18n}}</span>
                     </button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        data-dismiss="modal">{{'close' | i18n}}</button>
                 </div>
             </form>
         </div>

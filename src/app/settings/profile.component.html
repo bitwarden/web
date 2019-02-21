@@ -14,7 +14,8 @@
             </div>
             <div class="form-group">
                 <label for="masterPasswordHint">{{'masterPassHintLabel' | i18n}}</label>
-                <input id="masterPasswordHint" class="form-control" type="text" name="MasterPasswordHint" [(ngModel)]="profile.masterPasswordHint">
+                <input id="masterPasswordHint" class="form-control" type="text" name="MasterPasswordHint"
+                    [(ngModel)]="profile.masterPasswordHint">
             </div>
         </div>
         <div class="col-6">
@@ -25,7 +26,8 @@
             <hr>
             <p *ngIf="fingerprint">
                 {{'yourAccountsFingerprint' | i18n}}:
-                <a href="https://help.bitwarden.com/article/fingerprint-phrase/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                <a href="https://help.bitwarden.com/article/fingerprint-phrase/" target="_blank" rel="noopener"
+                    title="{{'learnMore' | i18n}}">
                     <i class="fa fa-question-circle-o"></i></a><br>
                 <code>{{fingerprint}}</code>
             </p>

@@ -13,12 +13,13 @@
             <div class="modal-body" *ngIf="loading || !users">
                 <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
             </div>
-            <div class="modal-body" *ngIf="!loading && users && (users | search:searchText:'name':'email':'id') as searchedUsers">
+            <div class="modal-body"
+                *ngIf="!loading && users && (users | search:searchText:'name':'email':'id') as searchedUsers">
                 <div class="d-flex">
                     <div class="mr-3">
                         <label class="sr-only" for="search">{{'search' | i18n}}</label>
-                        <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}"
-                            name="SearchText" [(ngModel)]="searchText">
+                        <input type="search" class="form-control form-control-sm" id="search"
+                            placeholder="{{'search' | i18n}}" name="SearchText" [(ngModel)]="searchText">
                     </div>
                     <div class="btn-group btn-group-sm" role="group">
                         <button type="button" class="btn btn-outline-secondary" [ngClass]="{active: !showSelected}"
@@ -53,7 +54,8 @@
                             <tr *ngFor="let u of searchedUsers">
                                 <td class="table-list-checkbox" (click)="check(u)">
                                     <input type="checkbox" [(ngModel)]="u.checked" name="{{u.id.substr(0,8)}}_Checked"
-                                        [disabled]="entity === 'collection' && u.accessAll" (change)="selectedChanged(u)" appStopProp>
+                                        [disabled]="entity === 'collection' && u.accessAll"
+                                        (change)="selectedChanged(u)" appStopProp>
                                 </td>
                                 <td width="30" (click)="check(u)">
                                     <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true"
@@ -61,9 +63,11 @@
                                 </td>
                                 <td>
                                     {{u.email}}
-                                    <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited'
+                                    <span class="badge badge-secondary"
+                                        *ngIf="u.status === organizationUserStatusType.Invited">{{'invited'
                                         | i18n}}</span>
-                                    <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted'
+                                    <span class="badge badge-warning"
+                                        *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted'
                                         | i18n}}</span>
                                     <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
                                 </td>

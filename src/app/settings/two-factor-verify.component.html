@@ -2,8 +2,8 @@
     <div class="modal-body">
         <p>{{'twoStepLoginAuthDesc' | i18n}}</p>
         <label for="masterPassword">{{'masterPass' | i18n}}</label>
-        <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
-            appAutoFocus appInputVerbatim>
+        <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
+            [(ngModel)]="masterPassword" required appAutoFocus appInputVerbatim>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">

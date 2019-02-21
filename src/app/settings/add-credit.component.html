@@ -3,7 +3,8 @@
         <h3 class="card-body-header">{{'addCredit' | i18n}}</h3>
         <div class="mb-4 text-lg" *ngIf="showOptions">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="Method" id="credit-method-paypal" [value]="paymentMethodType.PayPal" [(ngModel)]="method" (change)="changeMethod()">
+                <input class="form-check-input" type="radio" name="Method" id="credit-method-paypal"
+                    [value]="paymentMethodType.PayPal" [(ngModel)]="method" (change)="changeMethod()">
                 <label class="form-check-label" for="credit-method-paypal">
                     <i class="fa fa-fw fa-paypal"></i> PayPal</label>
             </div>
@@ -21,8 +22,8 @@
                     <label for="creditAmount">{{'amount' | i18n}}</label>
                     <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text">$USD</span></div>
-                        <input id="creditAmount" class="form-control" type="text" name="CreditAmount" [(ngModel)]="creditAmount"
-                            (blur)="formatAmount()" required>
+                        <input id="creditAmount" class="form-control" type="text" name="CreditAmount"
+                            [(ngModel)]="creditAmount" (blur)="formatAmount()" required>
                     </div>
                 </div>
             </div>

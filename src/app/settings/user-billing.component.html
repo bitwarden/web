@@ -14,8 +14,8 @@
     <button type="button" class="btn btn-outline-secondary" (click)="addCredit()" *ngIf="!showAddCredit">
         {{'addCredit' | i18n}}
     </button>
-    <app-add-credit [organizationId]="organizationId"
-        (onAdded)="closeAddCredit(true)" (onCanceled)="closeAddCredit(false)" *ngIf="showAddCredit">
+    <app-add-credit [organizationId]="organizationId" (onAdded)="closeAddCredit(true)"
+        (onCanceled)="closeAddCredit(false)" *ngIf="showAddCredit">
     </app-add-credit>
     <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>
     <p *ngIf="!paymentSource">{{'noPaymentMethod' | i18n}}</p>
@@ -57,8 +57,9 @@
     <button type="button" class="btn btn-outline-secondary" (click)="changePayment()" *ngIf="!showAdjustPayment">
         {{(paymentSource ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}
     </button>
-    <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null" [organizationId]="organizationId"
-        (onAdjusted)="closePayment(true)" (onCanceled)="closePayment(false)" *ngIf="showAdjustPayment">
+    <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null"
+        [organizationId]="organizationId" (onAdjusted)="closePayment(true)" (onCanceled)="closePayment(false)"
+        *ngIf="showAdjustPayment">
     </app-adjust-payment>
     <h2 class="spaced-header">{{'invoices' | i18n}}</h2>
     <p *ngIf="!invoices || !invoices.length">{{'noInvoices' | i18n}}</p>
@@ -67,7 +68,8 @@
             <tr *ngFor="let i of invoices">
                 <td>{{i.date | date:'mediumDate'}}</td>
                 <td>
-                    <a href="{{i.pdfUrl}}" target="_blank" rel="noopener" class="mr-2" title="{{'downloadInvoice' | i18n}}">
+                    <a href="{{i.pdfUrl}}" target="_blank" rel="noopener" class="mr-2"
+                        title="{{'downloadInvoice' | i18n}}">
                         <i class="fa fa-file-pdf-o"></i></a>
                     <a href="{{i.url}}" target="_blank" rel="noopener" title="{{'viewInvoice' | i18n}}">
                         {{'invoiceNumber' | i18n : i.number}}</a>

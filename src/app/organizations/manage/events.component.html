@@ -3,15 +3,15 @@
     <div class="ml-auto d-flex">
         <div class="form-inline">
             <label class="sr-only" for="start">{{'startDate' | i18n}}</label>
-            <input type="datetime-local" class="form-control form-control-sm" id="start" placeholder="{{'startDate' | i18n}}" [(ngModel)]="start"
-                placeholder="YYYY-MM-DDTHH:MM">
+            <input type="datetime-local" class="form-control form-control-sm" id="start"
+                placeholder="{{'startDate' | i18n}}" [(ngModel)]="start" placeholder="YYYY-MM-DDTHH:MM">
             <span class="mx-2">-</span>
             <label class="sr-only" for="end">{{'endDate' | i18n}}</label>
-            <input type="datetime-local" class="form-control form-control-sm" id="end" placeholder="{{'endDate' | i18n}}" [(ngModel)]="end"
-                placeholder="YYYY-MM-DDTHH:MM">
+            <input type="datetime-local" class="form-control form-control-sm" id="end"
+                placeholder="{{'endDate' | i18n}}" [(ngModel)]="end" placeholder="YYYY-MM-DDTHH:MM">
         </div>
-        <button #refreshBtn [appApiAction]="refreshPromise" type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="loadEvents(true)"
-            [disabled]="loaded && refreshBtn.loading">
+        <button #refreshBtn [appApiAction]="refreshPromise" type="button" class="btn btn-sm btn-outline-primary ml-3"
+            (click)="loadEvents(true)" [disabled]="loaded && refreshBtn.loading">
             <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"></i>
             {{'refresh' | i18n}}
         </button>
@@ -44,8 +44,8 @@
             </tr>
         </tbody>
     </table>
-    <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit" (click)="loadEvents(false)"
-        [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
+    <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit"
+        (click)="loadEvents(false)" [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
         <span>{{'loadMore' | i18n}}</span>
     </button>

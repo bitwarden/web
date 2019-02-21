@@ -2,15 +2,18 @@
     <h1>{{'people' | i18n}}</h1>
     <div class="ml-auto d-flex">
         <div class="btn-group btn-group-sm" role="group">
-            <button type="button" class="btn btn-outline-secondary" [ngClass]="{active: status == null}" (click)="filter(null)">
+            <button type="button" class="btn btn-outline-secondary" [ngClass]="{active: status == null}"
+                (click)="filter(null)">
                 {{'all' | i18n}}
             </button>
-            <button type="button" class="btn btn-outline-secondary" [ngClass]="{active: status == organizationUserStatusType.Invited}"
+            <button type="button" class="btn btn-outline-secondary"
+                [ngClass]="{active: status == organizationUserStatusType.Invited}"
                 (click)="filter(organizationUserStatusType.Invited)">
                 {{'invited' | i18n}}
                 <span class="badge badge-pill badge-info" *ngIf="invitedCount">{{invitedCount}}</span>
             </button>
-            <button type="button" class="btn btn-outline-secondary" [ngClass]="{active: status == organizationUserStatusType.Accepted}"
+            <button type="button" class="btn btn-outline-secondary"
+                [ngClass]="{active: status == organizationUserStatusType.Accepted}"
                 (click)="filter(organizationUserStatusType.Accepted)">
                 {{'accepted' | i18n}}
                 <span class="badge badge-pill badge-warning" *ngIf="acceptedCount">{{acceptedCount}}</span>
@@ -18,7 +21,8 @@
         </div>
         <div class="ml-3">
             <label class="sr-only" for="search">{{'search' | i18n}}</label>
-            <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}" [(ngModel)]="searchText">
+            <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}"
+                [(ngModel)]="searchText">
         </div>
         <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="invite()">
             <i class="fa fa-plus fa-fw"></i>
@@ -37,12 +41,15 @@
             <tbody>
                 <tr *ngFor="let u of searchedUsers">
                     <td width="30">
-                        <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true" [fontSize]="14"></app-avatar>
+                        <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true"
+                            [fontSize]="14"></app-avatar>
                     </td>
                     <td>
                         <a href="#" appStopClick (click)="edit(u)">{{u.email}}</a>
-                        <span class="badge badge-secondary" *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
-                        <span class="badge badge-warning" *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
+                        <span class="badge badge-secondary"
+                            *ngIf="u.status === organizationUserStatusType.Invited">{{'invited' | i18n}}</span>
+                        <span class="badge badge-warning"
+                            *ngIf="u.status === organizationUserStatusType.Accepted">{{'accepted' | i18n}}</span>
                         <small class="text-muted d-block" *ngIf="u.name">{{u.name}}</small>
                     </td>
                     <td>
@@ -56,15 +63,18 @@
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-cog fa-lg"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#" appStopClick (click)="reinvite(u)" *ngIf="u.status === organizationUserStatusType.Invited">
+                                <a class="dropdown-item" href="#" appStopClick (click)="reinvite(u)"
+                                    *ngIf="u.status === organizationUserStatusType.Invited">
                                     <i class="fa fa-fw fa-envelope-o"></i>
                                     {{'resendInvitation' | i18n}}
                                 </a>
-                                <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(u)" *ngIf="u.status === organizationUserStatusType.Accepted">
+                                <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(u)"
+                                    *ngIf="u.status === organizationUserStatusType.Accepted">
                                     <i class="fa fa-fw fa-check"></i>
                                     {{'confirm' | i18n}}
                                 </a>
@@ -72,7 +82,8 @@
                                     <i class="fa fa-fw fa-sitemap"></i>
                                     {{'groups' | i18n}}
                                 </a>
-                                <a class="dropdown-item" href="#" appStopClick (click)="events(u)" *ngIf="accessEvents && u.status === organizationUserStatusType.Confirmed">
+                                <a class="dropdown-item" href="#" appStopClick (click)="events(u)"
+                                    *ngIf="accessEvents && u.status === organizationUserStatusType.Confirmed">
                                     <i class="fa fa-fw fa-file-text-o"></i>
                                     {{'eventLogs' | i18n}}
                                 </a>

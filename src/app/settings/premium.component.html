@@ -33,8 +33,8 @@
         </li>
     </ul>
     <p class="text-lg" [ngClass]="{'mb-0':!selfHosted}">{{'premiumPrice' | i18n : (premiumPrice | currency:'$')}}</p>
-    <a href="https://vault.bitwarden.com/#/settings/premium" target="_blank" rel="noopener" class="btn btn-outline-secondary"
-        *ngIf="selfHosted">
+    <a href="https://vault.bitwarden.com/#/settings/premium" target="_blank" rel="noopener"
+        class="btn btn-outline-secondary" *ngIf="selfHosted">
         {{'purchasePremium' | i18n}}
     </a>
 </app-callout>
@@ -57,9 +57,11 @@
     <div class="row">
         <div class="form-group col-6">
             <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
-            <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb" [(ngModel)]="additionalStorage"
-                min="0" max="99" step="1" placeholder="{{'additionalStorageGbDesc' | i18n}}">
-            <small class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGbPrice | currency:'$') : ('year' | i18n)}}</small>
+            <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb"
+                [(ngModel)]="additionalStorage" min="0" max="99" step="1"
+                placeholder="{{'additionalStorageGbDesc' | i18n}}">
+            <small
+                class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGbPrice | currency:'$') : ('year' | i18n)}}</small>
         </div>
     </div>
     <h2 class="spaced-header">{{'summary' | i18n}}</h2>

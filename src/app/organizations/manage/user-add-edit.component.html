@@ -24,28 +24,32 @@
                 </ng-container>
                 <h3>{{'userType' | i18n}}</h3>
                 <div class="form-check mt-2 form-check-block">
-                    <input class="form-check-input" type="radio" name="userType" id="userTypeUser" [value]="organizationUserType.User" [(ngModel)]="type">
+                    <input class="form-check-input" type="radio" name="userType" id="userTypeUser"
+                        [value]="organizationUserType.User" [(ngModel)]="type">
                     <label class="form-check-label" for="userTypeUser">
                         {{'user' | i18n}}
                         <small>{{'userDesc' | i18n}}</small>
                     </label>
                 </div>
                 <div class="form-check mt-2 form-check-block">
-                    <input class="form-check-input" type="radio" name="userType" id="userTypeManager" [value]="organizationUserType.Manager" [(ngModel)]="type">
+                    <input class="form-check-input" type="radio" name="userType" id="userTypeManager"
+                        [value]="organizationUserType.Manager" [(ngModel)]="type">
                     <label class="form-check-label" for="userTypeManager">
                         {{'manager' | i18n}}
                         <small>{{'managerDesc' | i18n}}</small>
                     </label>
                 </div>
                 <div class="form-check mt-2 form-check-block">
-                    <input class="form-check-input" type="radio" name="userType" id="userTypeAdmin" [value]="organizationUserType.Admin" [(ngModel)]="type">
+                    <input class="form-check-input" type="radio" name="userType" id="userTypeAdmin"
+                        [value]="organizationUserType.Admin" [(ngModel)]="type">
                     <label class="form-check-label" for="userTypeAdmin">
                         {{'admin' | i18n}}
                         <small>{{'adminDesc' | i18n}}</small>
                     </label>
                 </div>
                 <div class="form-check mt-2 form-check-block">
-                    <input class="form-check-input" type="radio" name="userType" id="userTypeOwner" [value]="organizationUserType.Owner" [(ngModel)]="type">
+                    <input class="form-check-input" type="radio" name="userType" id="userTypeOwner"
+                        [value]="organizationUserType.Owner" [(ngModel)]="type">
                     <label class="form-check-label" for="userTypeOwner">
                         {{'owner' | i18n}}
                         <small>{{'ownerDesc' | i18n}}</small>
@@ -66,13 +70,15 @@
                 </h3>
                 <div class="form-group" [ngClass]="{'mb-0': access !== 'selected'}">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="access" id="accessAll" value="all" [(ngModel)]="access">
+                        <input class="form-check-input" type="radio" name="access" id="accessAll" value="all"
+                            [(ngModel)]="access">
                         <label class="form-check-label" for="accessAll">
                             {{'userAccessAllItems' | i18n}}
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="access" id="accessSelected" value="selected" [(ngModel)]="access">
+                        <input class="form-check-input" type="radio" name="access" id="accessSelected" value="selected"
+                            [(ngModel)]="access">
                         <label class="form-check-label" for="accessSelected">
                             {{'userAccessSelectedCollections' | i18n}}
                         </label>
@@ -93,13 +99,15 @@
                         <tbody>
                             <tr *ngFor="let c of collections; let i = index">
                                 <td class="table-list-checkbox" (click)="check(c)">
-                                    <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked" appStopProp>
+                                    <input type="checkbox" [(ngModel)]="c.checked" name="Collection[{{i}}].Checked"
+                                        appStopProp>
                                 </td>
                                 <td (click)="check(c)">
                                     {{c.name}}
                                 </td>
                                 <td class="text-center">
-                                    <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly" [disabled]="!c.checked">
+                                    <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly"
+                                        [disabled]="!c.checked">
                                 </td>
                             </tr>
                         </tbody>
@@ -111,12 +119,15 @@
                     <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                     <span>{{'save' | i18n}}</span>
                 </button>
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'cancel' | i18n}}</button>
+                <button type="button" class="btn btn-outline-secondary"
+                    data-dismiss="modal">{{'cancel' | i18n}}</button>
                 <div class="ml-auto">
-                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}" *ngIf="editMode"
-                        [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
+                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger"
+                        title="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
+                        [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
-                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"
+                            title="{{'loading' | i18n}}"></i>
                     </button>
                 </div>
             </div>

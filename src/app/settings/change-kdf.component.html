@@ -4,8 +4,8 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="kdfMasterPassword">{{'masterPass' | i18n}}</label>
-                <input id="kdfMasterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword"
-                    required appInputVerbatim>
+                <input id="kdfMasterPassword" type="password" name="MasterPasswordHash" class="form-control"
+                    [(ngModel)]="masterPassword" required appInputVerbatim>
             </div>
         </div>
     </div>
@@ -13,7 +13,8 @@
         <div class="col-6">
             <div class="form-group mb-0">
                 <label for="kdf">{{'kdfAlgorithm' | i18n}}</label>
-                <a class="ml-auto" href="https://en.wikipedia.org/wiki/Key_derivation_function" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                <a class="ml-auto" href="https://en.wikipedia.org/wiki/Key_derivation_function" target="_blank"
+                    rel="noopener" title="{{'learnMore' | i18n}}">
                     <i class="fa fa-question-circle-o"></i>
                 </a>
                 <select id="kdf" name="Kdf" [(ngModel)]="kdf" class="form-control" required>
@@ -24,11 +25,12 @@
         <div class="col-6">
             <div class="form-group mb-0">
                 <label for="kdfIterations">{{'kdfIterations' | i18n}}</label>
-                <a class="ml-auto" href="https://en.wikipedia.org/wiki/PBKDF2" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                <a class="ml-auto" href="https://en.wikipedia.org/wiki/PBKDF2" target="_blank" rel="noopener"
+                    title="{{'learnMore' | i18n}}">
                     <i class="fa fa-question-circle-o"></i>
                 </a>
-                <input id="kdfIterations" type="number" min="5000" max="1000000" name="KdfIterations" class="form-control" [(ngModel)]="kdfIterations"
-                    required>
+                <input id="kdfIterations" type="number" min="5000" max="1000000" name="KdfIterations"
+                    class="form-control" [(ngModel)]="kdfIterations" required>
             </div>
         </div>
         <div class="col-12">

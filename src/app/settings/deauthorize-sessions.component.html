@@ -11,8 +11,8 @@
                 <p>{{'deauthorizeSessionsDesc' | i18n}}</p>
                 <app-callout type="warning">{{'deauthorizeSessionsWarning' | i18n}}</app-callout>
                 <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
-                    appAutoFocus appInputVerbatim>
+                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
+                    [(ngModel)]="masterPassword" required appAutoFocus appInputVerbatim>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">

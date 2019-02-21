@@ -11,8 +11,8 @@
         <div class="form-group d-flex" *ngFor="let d of custom; let i = index; trackBy: indexTrackBy">
             <div class="flex-fill">
                 <label for="customDomain_{{i}}" class="sr-only">{{'customDomainX' | i18n : (i + 1)}}</label>
-                <textarea class="form-control" name="CustomDomain[{{i}}]" id="customDomain_{{i}}" [(ngModel)]="custom[i]" placeholder="{{'ex' | i18n}} google.com, gmail.com"
-                    required></textarea>
+                <textarea class="form-control" name="CustomDomain[{{i}}]" id="customDomain_{{i}}"
+                    [(ngModel)]="custom[i]" placeholder="{{'ex' | i18n}} google.com, gmail.com" required></textarea>
             </div>
             <button type="button" class="btn btn-link text-danger ml-2" (click)="remove(i)" title="{{'remove' | i18n}}">
                 <i class="fa fa-minus-circle fa-lg"></i>
@@ -37,15 +37,18 @@
                 <td [ngClass]="{'table-list-strike': d.excluded}">{{d.domains}}</td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-cog fa-lg"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)" *ngIf="!d.excluded">
+                            <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)"
+                                *ngIf="!d.excluded">
                                 <i class="fa fa-fw fa-close"></i>
                                 {{'exclude' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)" *ngIf="d.excluded">
+                            <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)"
+                                *ngIf="d.excluded">
                                 <i class="fa fa-fw fa-plus"></i>
                                 {{'include' | i18n}}
                             </a>

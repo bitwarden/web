@@ -7,15 +7,19 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="email">{{'emailAddress' | i18n}}</label>
-                        <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email" required inputmode="email" appInputVerbatim="false">
+                        <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email" required
+                            inputmode="email" appInputVerbatim="false">
                     </div>
                     <div class="form-group">
                         <label for="masterPassword">{{'masterPass' | i18n}}</label>
                         <div class="d-flex">
-                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
-                                [(ngModel)]="masterPassword" required appInputVerbatim>
-                            <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
-                                <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}"
+                                name="MasterPassword" class="text-monospace form-control" [(ngModel)]="masterPassword"
+                                required appInputVerbatim>
+                            <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}"
+                                (click)="togglePassword()">
+                                <i class="fa fa-lg"
+                                    [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>
                         </div>
                         <small class="form-text">
@@ -23,7 +27,8 @@
                         </small>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberEmail" name="RememberEmail" [(ngModel)]="rememberEmail">
+                        <input type="checkbox" class="form-check-input" id="rememberEmail" name="RememberEmail"
+                            [(ngModel)]="rememberEmail">
                         <label class="form-check-label" for="rememberEmail">{{'rememberEmail' | i18n}}</label>
                     </div>
                     <hr>
@@ -34,7 +39,8 @@
                             </span>
                             <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                         </button>
-                        <a routerLink="/register" [queryParams]="{email: email}" class="btn btn-outline-secondary btn-block ml-2 mt-0">
+                        <a routerLink="/register" [queryParams]="{email: email}"
+                            class="btn btn-outline-secondary btn-block ml-2 mt-0">
                             <i class="fa fa-pencil-square-o"></i> {{'createAccount' | i18n}}
                         </a>
                     </div>

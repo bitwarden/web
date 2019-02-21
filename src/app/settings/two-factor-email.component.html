@@ -10,7 +10,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)" *ngIf="!authed">
+            <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)"
+                *ngIf="!authed">
             </app-two-factor-verify>
             <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
                 <div class="modal-body">
@@ -27,11 +28,13 @@
                         </p>
                         <div class="form-group">
                             <label for="email">1. {{'twoFactorEmailEnterEmail' | i18n}}</label>
-                            <input id="email" type="text" name="Email" class="form-control" [(ngModel)]="email" required inputmode="email" appInputVerbatim="false">
+                            <input id="email" type="text" name="Email" class="form-control" [(ngModel)]="email" required
+                                inputmode="email" appInputVerbatim="false">
                         </div>
                         <div class="mb-3 d-flex">
-                            <button #sendBtn type="button" class="btn btn-outline-primary btn-sm btn-submit align-self-start" (click)="sendEmail()" [appApiAction]="emailPromise"
-                                [disabled]="sendBtn.loading">
+                            <button #sendBtn type="button"
+                                class="btn btn-outline-primary btn-sm btn-submit align-self-start" (click)="sendEmail()"
+                                [appApiAction]="emailPromise" [disabled]="sendBtn.loading">
                                 <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                                 <span>{{'sendEmail' | i18n}}</span>
                             </button>
@@ -41,7 +44,8 @@
                         </div>
                         <div class="form-group">
                             <label for="token">2. {{'twoFactorEmailEnterCode' | i18n}}</label>
-                            <input id="token" type="text" name="Token" class="form-control" [(ngModel)]="token" required appInputVerbatim>
+                            <input id="token" type="text" name="Token" class="form-control" [(ngModel)]="token" required
+                                appInputVerbatim>
                         </div>
                     </ng-container>
                 </div>
@@ -51,7 +55,8 @@
                         <span *ngIf="!enabled">{{'enable' | i18n}}</span>
                         <span *ngIf="enabled">{{'disable' | i18n}}</span>
                     </button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        data-dismiss="modal">{{'close' | i18n}}</button>
                 </div>
             </form>
         </div>

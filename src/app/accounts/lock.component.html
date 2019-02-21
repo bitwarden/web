@@ -10,10 +10,13 @@
                     <div class="form-group">
                         <label for="masterPassword">{{'masterPass' | i18n}}</label>
                         <div class="d-flex">
-                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword" class="text-monospace form-control"
-                                [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
-                            <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
-                                <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}"
+                                name="MasterPassword" class="text-monospace form-control" [(ngModel)]="masterPassword"
+                                required appAutofocus appInputVerbatim>
+                            <button type="button" class="ml-1 btn btn-link" title="{{'toggleVisibility' | i18n}}"
+                                (click)="togglePassword()">
+                                <i class="fa fa-lg"
+                                    [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>
                         </div>
                         <small class="text-muted form-text">{{'loggedInAsEmail' | i18n : email}}</small>

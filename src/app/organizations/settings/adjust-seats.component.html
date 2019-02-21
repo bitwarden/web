@@ -4,8 +4,8 @@
         <div class="row">
             <div class="form-group col-6">
                 <label for="seatAdjustment">{{(add ? 'seatsToAdd' : 'seatsToRemove') | i18n}}</label>
-                <input id="seatAdjustment" class="form-control" type="number" name="SeatAdjustment" [(ngModel)]="seatAdjustment" min="0"
-                    step="1" required>
+                <input id="seatAdjustment" class="form-control" type="number" name="SeatAdjustment"
+                    [(ngModel)]="seatAdjustment" min="0" step="1" required>
             </div>
         </div>
         <div *ngIf="add" class="mb-3">

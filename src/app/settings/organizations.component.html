@@ -7,7 +7,8 @@
             <li *ngFor="let o of organizations">
                 <a [routerLink]="['/organizations', o.id]" class="text-body">
                     <i class="fa-li fa fa-caret-right"></i> {{o.name}}
-                    <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger" title="{{'organizationIsDisabled' | i18n}}"></i>
+                    <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger"
+                        title="{{'organizationIsDisabled' | i18n}}"></i>
                 </a>
             </li>
         </ul>
@@ -26,7 +27,8 @@
                 <i class="fa fa-spinner fa-spin text-muted" *ngIf="action.loading" title="{{'loading' | i18n}}"></i>
             </small>
         </h1>
-        <a href="#" routerLink="/settings/create-organization" class="btn btn-sm btn-outline-primary ml-auto" *ngIf="!loaded || (organizations && organizations.length)">
+        <a href="#" routerLink="/settings/create-organization" class="btn btn-sm btn-outline-primary ml-auto"
+            *ngIf="!loaded || (organizations && organizations.length)">
             <i class="fa fa-plus fa-fw"></i>
             {{'newOrganization' | i18n}}
         </a>
@@ -48,11 +50,13 @@
                     </td>
                     <td>
                         <a href="#" [routerLink]="['/organizations', o.id]">{{o.name}}</a>
-                        <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger" title="{{'organizationIsDisabled' | i18n}}"></i>
+                        <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger"
+                            title="{{'organizationIsDisabled' | i18n}}"></i>
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-cog fa-lg"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">

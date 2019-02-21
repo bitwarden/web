@@ -24,7 +24,8 @@
                                     <div *ngIf="showFixOldAttachments(a)" class="ml-2">
                                         <a href="https://help.bitwarden.com/article/attachments/#fixing-old-attachments"
                                             target="_blank" rel="noopener">
-                                            <i class="fa fa-exclamation-triangle text-warning" title="{{'attachmentFixDesc' | i18n}}"></i></a>
+                                            <i class="fa fa-exclamation-triangle text-warning"
+                                                title="{{'attachmentFixDesc' | i18n}}"></i></a>
                                         <button type="button" class="btn btn-outline-primary btn-sm m-0 py-0 px-2"
                                             (click)="reupload(a)" #reuploadBtn [appApiAction]="reuploadPromises[a.id]"
                                             [disabled]="reuploadBtn.loading">{{'fix' | i18n}}</button>
@@ -33,10 +34,12 @@
                                 <small>{{a.sizeName}}</small>
                             </td>
                             <td class="table-list-options">
-                                <button class="btn btn-outline-danger" type="button" appStopClick title="{{'delete' | i18n}}"
-                                    (click)="delete(a)" #deleteBtn [appApiAction]="deletePromises[a.id]" [disabled]="deleteBtn.loading">
+                                <button class="btn btn-outline-danger" type="button" appStopClick
+                                    title="{{'delete' | i18n}}" (click)="delete(a)" #deleteBtn
+                                    [appApiAction]="deletePromises[a.id]" [disabled]="deleteBtn.loading">
                                     <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
-                                    <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>
+                                    <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"
+                                        title="{{'loading' | i18n}}"></i>
                                 </button>
                             </td>
                         </tr>

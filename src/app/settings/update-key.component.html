@@ -9,12 +9,13 @@
             </div>
             <div class="modal-body">
                 <p>{{'updateEncryptionKeyShortDesc' | i18n}} {{'updateEncryptionKeyDesc' | i18n}}
-                    <a href="https://help.bitwarden.com/article/update-encryption-key/" target="_blank" rel="noopener">{{'learnMore' | i18n}}</a>
+                    <a href="https://help.bitwarden.com/article/update-encryption-key/" target="_blank"
+                        rel="noopener">{{'learnMore' | i18n}}</a>
                 </p>
                 <app-callout type="warning">{{'updateEncryptionKeyWarning' | i18n}}</app-callout>
                 <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control" [(ngModel)]="masterPassword" required
-                    appAutofocus appInputVerbatim>
+                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
+                    [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">

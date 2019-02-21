@@ -10,9 +10,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)" *ngIf="!authed">
+            <app-two-factor-verify [organizationId]="organizationId" [type]="type" (onAuthed)="auth($event)"
+                *ngIf="!authed">
             </app-two-factor-verify>
-            <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed" autocomplete="off">
+            <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed"
+                autocomplete="off">
                 <div class="modal-body">
                     <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle" *ngIf="enabled">
                         {{'twoStepLoginProviderEnabled' | i18n}}
@@ -36,11 +38,12 @@
                     <div class="row">
                         <div class="form-group col-6" *ngFor="let k of keys; let i = index">
                             <label for="key{{i + 1}}">{{'yubikeyX' | i18n : i + 1}}</label>
-                            <input id="key{{i + 1}}" type="password" name="Key{{i + 1}}" class="form-control" [(ngModel)]="k.key" *ngIf="!k.existingKey"
-                                appInputVerbatim autocomplete="new-password">
+                            <input id="key{{i + 1}}" type="password" name="Key{{i + 1}}" class="form-control"
+                                [(ngModel)]="k.key" *ngIf="!k.existingKey" appInputVerbatim autocomplete="new-password">
                             <div class="d-flex" *ngIf="k.existingKey">
                                 <span class="mr-2">{{k.existingKey}}</span>
-                                <button type="button" class="btn btn-link text-danger ml-auto" (click)="remove(k)" title="{{'remove' | i18n}}">
+                                <button type="button" class="btn btn-link text-danger ml-auto" (click)="remove(k)"
+                                    title="{{'remove' | i18n}}">
                                     <i class="fa fa-minus-circle fa-lg"></i>
                                 </button>
                             </div>
@@ -58,12 +61,14 @@
                         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                         <span>{{'save' | i18n}}</span>
                     </button>
-                    <button #disableBtn type="button" class="btn btn-outline-secondary btn-submit" [appApiAction]="disablePromise" [disabled]="disableBtn.loading"
-                        (click)="disable()" *ngIf="enabled">
+                    <button #disableBtn type="button" class="btn btn-outline-secondary btn-submit"
+                        [appApiAction]="disablePromise" [disabled]="disableBtn.loading" (click)="disable()"
+                        *ngIf="enabled">
                         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
                         <span>{{'disableAllKeys' | i18n}}</span>
                     </button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        data-dismiss="modal">{{'close' | i18n}}</button>
                 </div>
             </form>
         </div>

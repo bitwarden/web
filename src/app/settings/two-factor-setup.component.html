@@ -5,7 +5,8 @@
 <p *ngIf="organizationId">{{'twoStepLoginOrganizationDesc' | i18n}}</p>
 <app-callout type="warning" *ngIf="!organizationId">
     <p>{{'twoStepLoginRecoveryWarning' | i18n}}</p>
-    <button type="button" class="btn btn-outline-secondary" (click)="recoveryCode()">{{'viewRecoveryCode' | i18n}}</button>
+    <button type="button" class="btn btn-outline-secondary"
+        (click)="recoveryCode()">{{'viewRecoveryCode' | i18n}}</button>
 </app-callout>
 <h2 [ngClass]="{'mt-5':!organizationId}">
     {{'providers' | i18n}}
@@ -21,15 +22,18 @@
         <div class="mx-4">
             <h3 class="mb-0">
                 {{p.name}}
-                <i class="fa fa-check text-success fa-fw" *ngIf="p.enabled && canAccessPremium" title="{{'enabled' | i18n}}"></i>
-                <a href="#" appStopClick class="badge badge-primary" *ngIf="!canAccessPremium && p.premium" (click)="premiumRequired()">
+                <i class="fa fa-check text-success fa-fw" *ngIf="p.enabled && canAccessPremium"
+                    title="{{'enabled' | i18n}}"></i>
+                <a href="#" appStopClick class="badge badge-primary" *ngIf="!canAccessPremium && p.premium"
+                    (click)="premiumRequired()">
                     {{'premium' | i18n}}
                 </a>
             </h3>
             {{p.description}}
         </div>
         <div class="ml-auto">
-            <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!canAccessPremium && p.premium" (click)="manage(p.type)">
+            <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!canAccessPremium && p.premium"
+                (click)="manage(p.type)">
                 {{'manage' | i18n}}
             </button>
         </div>

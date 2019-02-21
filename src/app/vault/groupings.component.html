@@ -1,13 +1,14 @@
 <div class="card vault-filters">
     <div class="card-header d-flex">
         {{'filters' | i18n}}
-        <a class="ml-auto" href="https://help.bitwarden.com/article/searching-vault/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+        <a class="ml-auto" href="https://help.bitwarden.com/article/searching-vault/" target="_blank" rel="noopener"
+            title="{{'learnMore' | i18n}}">
             <i class="fa fa-question-circle-o"></i>
         </a>
     </div>
     <div class="card-body">
-        <input type="search" placeholder="{{searchPlaceholder || ('searchVault' | i18n)}}" id="search" class="form-control"
-            [(ngModel)]="searchText" (input)="searchTextChanged()" appAutofocus>
+        <input type="search" placeholder="{{searchPlaceholder || ('searchVault' | i18n)}}" id="search"
+            class="form-control" [(ngModel)]="searchText" (input)="searchTextChanged()" appAutofocus>
         <ul class="fa-ul card-ul">
             <li [ngClass]="{active: selectedAll}">
                 <a href="#" appStopClick (click)="selectAll()">
@@ -50,27 +51,33 @@
             <ng-container *ngIf="showFolders">
                 <h3 class="d-flex">
                     {{'folders' | i18n}}
-                    <a href="#" class="text-muted ml-auto" appStopClick (click)="addFolder()" title="{{'addFolder' | i18n}}">
+                    <a href="#" class="text-muted ml-auto" appStopClick (click)="addFolder()"
+                        title="{{'addFolder' | i18n}}">
                         <i class="fa fa-plus fa-fw"></i>
                     </a>
                 </h3>
                 <ul class="fa-ul card-ul carets">
                     <ng-template #recursiveFolders let-folders>
-                        <li *ngFor="let f of folders" [ngClass]="{active: selectedFolder && f.node.id === selectedFolderId}">
+                        <li *ngFor="let f of folders"
+                            [ngClass]="{active: selectedFolder && f.node.id === selectedFolderId}">
                             <div class="d-flex">
-                                <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}" [ngClass]="{'fa-caret-right': isCollapsed(f.node), 'fa-caret-down': !isCollapsed(f.node)}" (click)="collapse(f.node)"></i>
+                                <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
+                                    [ngClass]="{'fa-caret-right': isCollapsed(f.node), 'fa-caret-down': !isCollapsed(f.node)}"
+                                    (click)="collapse(f.node)"></i>
                                 <a href="#" appStopClick (click)="selectFolder(f.node)">{{f.node.name}}</a>
-                                <a href="#" class="text-muted ml-auto show-active" appStopClick (click)="editFolder(f.node)"
-                                    title="{{'editFolder' | i18n}}" *ngIf="f.node.id">
+                                <a href="#" class="text-muted ml-auto show-active" appStopClick
+                                    (click)="editFolder(f.node)" title="{{'editFolder' | i18n}}" *ngIf="f.node.id">
                                     <i class="fa fa-pencil fa-fw"></i>
                                 </a>
                             </div>
                             <ul class="fa-ul card-ul carets" *ngIf="f.children.length && !isCollapsed(f.node)">
-                                <ng-container *ngTemplateOutlet="recursiveFolders; context:{ $implicit: f.children }"></ng-container>
+                                <ng-container *ngTemplateOutlet="recursiveFolders; context:{ $implicit: f.children }">
+                                </ng-container>
                             </ul>
                         </li>
                     </ng-template>
-                    <ng-container *ngTemplateOutlet="recursiveFolders; context:{ $implicit: nestedFolders }"></ng-container>
+                    <ng-container *ngTemplateOutlet="recursiveFolders; context:{ $implicit: nestedFolders }">
+                    </ng-container>
                 </ul>
             </ng-container>
             <ng-container *ngIf="showCollections && collections && collections.length">
@@ -78,14 +85,19 @@
                 <ul class="fa-ul card-ul carets">
                     <ng-template #recursiveCollections let-collections>
                         <li *ngFor="let c of collections" [ngClass]="{active: c.node.id === selectedCollectionId}">
-                            <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}" [ngClass]="{'fa-caret-right': isCollapsed(c.node), 'fa-caret-down': !isCollapsed(c.node)}" (click)="collapse(c.node)"></i>
+                            <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
+                                [ngClass]="{'fa-caret-right': isCollapsed(c.node), 'fa-caret-down': !isCollapsed(c.node)}"
+                                (click)="collapse(c.node)"></i>
                             <a href="#" appStopClick (click)="selectCollection(c.node)">{{c.node.name}}</a>
                             <ul class="fa-ul card-ul carets" *ngIf="c.children.length && !isCollapsed(c.node)">
-                                <ng-container *ngTemplateOutlet="recursiveCollections; context:{ $implicit: c.children }"></ng-container>
+                                <ng-container
+                                    *ngTemplateOutlet="recursiveCollections; context:{ $implicit: c.children }">
+                                </ng-container>
                             </ul>
                         </li>
                     </ng-template>
-                    <ng-container *ngTemplateOutlet="recursiveCollections; context:{ $implicit: nestedCollections }"></ng-container>
+                    <ng-container *ngTemplateOutlet="recursiveCollections; context:{ $implicit: nestedCollections }">
+                    </ng-container>
                 </ul>
             </ng-container>
         </ng-container>

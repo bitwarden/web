@@ -1,7 +1,8 @@
 <div class="container page-content">
     <div class="row">
         <div class="col-3">
-            <app-org-vault-groupings [showFolders]="false" [showFavorites]="false" (onAllClicked)="clearGroupingFilters()" (onCipherTypeClicked)="filterCipherType($event)"
+            <app-org-vault-groupings [showFolders]="false" [showFavorites]="false"
+                (onAllClicked)="clearGroupingFilters()" (onCipherTypeClicked)="filterCipherType($event)"
                 (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)">
             </app-org-vault-groupings>
         </div>
@@ -10,14 +11,16 @@
                 <h1>
                     {{'vault' | i18n}}
                     <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
-                        <i *ngIf="actionSpinner.loading" class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+                        <i *ngIf="actionSpinner.loading" class="fa fa-spinner fa-spin text-muted"
+                            title="{{'loading' | i18n}}"></i>
                     </small>
                 </h1>
                 <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()">
                     <i class="fa fa-plus fa-fw"></i>{{'addItem' | i18n}}
                 </button>
             </div>
-            <app-org-vault-ciphers (onCipherClicked)="editCipher($event)" (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
+            <app-org-vault-ciphers (onCipherClicked)="editCipher($event)"
+                (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
                 (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)">
             </app-org-vault-ciphers>
         </div>

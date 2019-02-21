@@ -1,6 +1,7 @@
 <div class="modal fade">
     <div class="modal-dialog modal-lg">
-        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate autocomplete="off">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate
+            autocomplete="off">
             <div class="modal-header">
                 <h2 class="modal-title">{{title}}</h2>
                 <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
@@ -19,7 +20,8 @@
                 <div class="row">
                     <div class="col-6 form-group">
                         <label for="name">{{'name' | i18n}}</label>
-                        <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="cipher.name" required>
+                        <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="cipher.name"
+                            required>
                     </div>
                     <div class="col-6 form-group" *ngIf="!organization">
                         <label for="folder">{{'folder' | i18n}}</label>
@@ -34,10 +36,12 @@
                         <div class="col-6 form-group">
                             <label for="loginUsername">{{'username' | i18n}}</label>
                             <div class="input-group">
-                                <input id="loginUsername" class="form-control" type="text" name="Login.Username" [(ngModel)]="cipher.login.username" appInputVerbatim>
+                                <input id="loginUsername" class="form-control" type="text" name="Login.Username"
+                                    [(ngModel)]="cipher.login.username" appInputVerbatim>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" title="{{'copyUsername' | i18n}}" (click)="copy(cipher.login.username, 'username', 'Username')"
-                                        tabindex="-1">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        title="{{'copyUsername' | i18n}}"
+                                        (click)="copy(cipher.login.username, 'username', 'Username')" tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
                                 </div>
@@ -47,25 +51,33 @@
                             <div class="d-flex">
                                 <label for="loginPassword">{{'password' | i18n}}</label>
                                 <div class="ml-auto d-flex">
-                                    <a href="#" class="d-block mr-2" appStopClick title="{{'generatePassword' | i18n}}" (click)="generatePassword()">
+                                    <a href="#" class="d-block mr-2" appStopClick title="{{'generatePassword' | i18n}}"
+                                        (click)="generatePassword()">
                                         <i class="fa fa-lg fa-fw fa-refresh"></i>
                                     </a>
-                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick title="{{'checkPassword' | i18n}}" (click)="checkPassword()" [appApiAction]="checkPasswordPromise">
-                                        <i class="fa fa-lg fa-fw fa-check-circle" [hidden]="checkPasswordBtn.loading"></i>
-                                        <i class="fa fa-lg fa-fw fa-spinner fa-spin" [hidden]="!checkPasswordBtn.loading" title="{{'loading' | i18n}}"></i>
+                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick
+                                        title="{{'checkPassword' | i18n}}" (click)="checkPassword()"
+                                        [appApiAction]="checkPasswordPromise">
+                                        <i class="fa fa-lg fa-fw fa-check-circle"
+                                            [hidden]="checkPasswordBtn.loading"></i>
+                                        <i class="fa fa-lg fa-fw fa-spinner fa-spin"
+                                            [hidden]="!checkPasswordBtn.loading" title="{{'loading' | i18n}}"></i>
                                     </a>
                                 </div>
                             </div>
                             <div class="input-group">
-                                <input id="loginPassword" class="form-control text-monospace" type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
+                                <input id="loginPassword" class="form-control text-monospace"
+                                    type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
                                     [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
-                                        tabindex="-1">
-                                        <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()" tabindex="-1">
+                                        <i class="fa fa-lg"
+                                            [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" title="{{'copyPassword' | i18n}}" (click)="copy(cipher.login.password, 'password', 'Password')"
-                                        tabindex="-1">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        title="{{'copyPassword' | i18n}}"
+                                        (click)="copy(cipher.login.password, 'password', 'Password')" tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
                                 </div>
@@ -75,15 +87,20 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="loginTotp">{{'authenticatorKeyTotp' | i18n}}</label>
-                            <input id="loginTotp" type="text" name="Login.Totp" class="form-control text-monospace" [(ngModel)]="cipher.login.totp" appInputVerbatim>
+                            <input id="loginTotp" type="text" name="Login.Totp" class="form-control text-monospace"
+                                [(ngModel)]="cipher.login.totp" appInputVerbatim>
                         </div>
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
-                                <img src="../../images/totp-countdown.png" title="{{'verificationCodeTotp' | i18n}}" class="ml-2">
-                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()" *ngIf="!organization && !cipher.organizationId && !canAccessPremium">
+                                <img src="../../images/totp-countdown.png" title="{{'verificationCodeTotp' | i18n}}"
+                                    class="ml-2">
+                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()"
+                                    *ngIf="!organization && !cipher.organizationId && !canAccessPremium">
                                     {{'premium' | i18n}}
                                 </a>
-                                <a href="#" appStopClick class="badge badge-primary ml-3" (click)="upgradeOrganization()" *ngIf="(organization && !organization.useTotp) || (!organization && !canAccessPremium && cipher.organizationId && !cipher.organizationUseTotp)">
+                                <a href="#" appStopClick class="badge badge-primary ml-3"
+                                    (click)="upgradeOrganization()"
+                                    *ngIf="(organization && !organization.useTotp) || (!organization && !canAccessPremium && cipher.organizationId && !cipher.organizationUseTotp)">
                                     {{'upgrade' | i18n}}
                                 </a>
                             </div>
@@ -92,31 +109,38 @@
                                     <span class="totp-sec">{{totpSec}}</span>
                                     <svg>
                                         <g>
-                                            <circle class="totp-circle inner" r="12.6" cy="16" cx="16" [ngStyle]="{'stroke-dashoffset.px': totpDash}"></circle>
+                                            <circle class="totp-circle inner" r="12.6" cy="16" cx="16"
+                                                [ngStyle]="{'stroke-dashoffset.px': totpDash}"></circle>
                                             <circle class="totp-circle outer" r="14" cy="16" cx="16"></circle>
                                         </g>
                                     </svg>
                                 </span>
-                                <span class="totp-code mr-2" title="{{'verificationCodeTotp' | i18n}}">{{totpCodeFormatted}}</span>
-                                <button type="button" class="btn btn-link" title="{{'copyVerificationCode' | i18n}}" (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')">
+                                <span class="totp-code mr-2"
+                                    title="{{'verificationCodeTotp' | i18n}}">{{totpCodeFormatted}}</span>
+                                <button type="button" class="btn btn-link" title="{{'copyVerificationCode' | i18n}}"
+                                    (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')">
                                     <i class="fa fa-clipboard"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <ng-container *ngIf="cipher.login.hasUris">
-                        <div class="row" appBoxRow *ngFor="let u of cipher.login.uris; let i = index; trackBy:trackByFunction">
+                        <div class="row" appBoxRow
+                            *ngFor="let u of cipher.login.uris; let i = index; trackBy:trackByFunction">
                             <div class="col-7 form-group">
                                 <label for="loginUri{{i}}">{{'uriPosition' | i18n : (i + 1)}}</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="loginUri{{i}}" type="text" name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" placeholder="{{'ex' | i18n}} https://google.com"
-                                        appInputVerbatim>
+                                    <input class="form-control" id="loginUri{{i}}" type="text"
+                                        name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri"
+                                        placeholder="{{'ex' | i18n}} https://google.com" appInputVerbatim>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" title="{{'launch' | i18n}}" (click)="launch(u)" [disabled]="!u.canLaunch"
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'launch' | i18n}}" (click)="launch(u)" [disabled]="!u.canLaunch"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-share"></i>
                                         </button>
-                                        <button type="button" class="btn btn-outline-secondary" title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>
@@ -128,15 +152,19 @@
                                     <label for="loginUriMatch{{i}}">
                                         {{'matchDetection' | i18n}}
                                     </label>
-                                    <a class="ml-auto" href="https://help.bitwarden.com/article/uri-match-detection/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                                    <a class="ml-auto" href="https://help.bitwarden.com/article/uri-match-detection/"
+                                        target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
                                         <i class="fa fa-question-circle-o"></i>
                                     </a>
                                 </div>
                                 <div class="d-flex">
-                                    <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match" [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)">
-                                        <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}</option>
+                                    <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match"
+                                        [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)">
+                                        <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}
+                                        </option>
                                     </select>
-                                    <button type="button" class="btn btn-link text-danger ml-2" (click)="removeUri(u)" title="{{'remove' | i18n}}">
+                                    <button type="button" class="btn btn-link text-danger ml-2" (click)="removeUri(u)"
+                                        title="{{'remove' | i18n}}">
                                         <i class="fa fa-minus-circle fa-lg"></i>
                                     </button>
                                 </div>
@@ -152,11 +180,13 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="cardCardholderName">{{'cardholderName' | i18n}}</label>
-                            <input id="cardCardholderName" class="form-control" type="text" name="Card.CardCardholderName" [(ngModel)]="cipher.card.cardholderName">
+                            <input id="cardCardholderName" class="form-control" type="text"
+                                name="Card.CardCardholderName" [(ngModel)]="cipher.card.cardholderName">
                         </div>
                         <div class="col-6 form-group">
                             <label for="cardBrand">{{'brand' | i18n}}</label>
-                            <select id="cardBrand" class="form-control" name="Card.Brand" [(ngModel)]="cipher.card.brand">
+                            <select id="cardBrand" class="form-control" name="Card.Brand"
+                                [(ngModel)]="cipher.card.brand">
                                 <option *ngFor="let o of cardBrandOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -165,10 +195,12 @@
                         <div class="col-6 form-group">
                             <label for="cardNumber">{{'number' | i18n}}</label>
                             <div class="input-group">
-                                <input id="cardNumber" class="form-control" type="text" name="Card.Number" [(ngModel)]="cipher.card.number" appInputVerbatim>
+                                <input id="cardNumber" class="form-control" type="text" name="Card.Number"
+                                    [(ngModel)]="cipher.card.number" appInputVerbatim>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" title="{{'copyNumber' | i18n}}" (click)="copy(cipher.card.number, 'number', 'Number')"
-                                        tabindex="-1">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        title="{{'copyNumber' | i18n}}"
+                                        (click)="copy(cipher.card.number, 'number', 'Number')" tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
                                 </div>
@@ -176,28 +208,33 @@
                         </div>
                         <div class="col form-group">
                             <label for="cardExpMonth">{{'expirationMonth' | i18n}}</label>
-                            <select id="cardExpMonth" class="form-control" name="Card.ExpMonth" [(ngModel)]="cipher.card.expMonth">
+                            <select id="cardExpMonth" class="form-control" name="Card.ExpMonth"
+                                [(ngModel)]="cipher.card.expMonth">
                                 <option *ngFor="let o of cardExpMonthOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
                         <div class="col form-group">
                             <label for="cardExpYear">{{'expirationYear' | i18n}}</label>
-                            <input id="cardExpYear" class="form-control" type="text" name="Card.ExpYear" [(ngModel)]="cipher.card.expYear" placeholder="{{'ex' | i18n}} 2019">
+                            <input id="cardExpYear" class="form-control" type="text" name="Card.ExpYear"
+                                [(ngModel)]="cipher.card.expYear" placeholder="{{'ex' | i18n}} 2019">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="cardCode">{{'securityCode' | i18n}}</label>
                             <div class="input-group">
-                                <input id="cardCode" class="form-control text-monospace" type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code" [(ngModel)]="cipher.card.code"
-                                    appInputVerbatim autocomplete="new-password">
+                                <input id="cardCode" class="form-control text-monospace"
+                                    type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code"
+                                    [(ngModel)]="cipher.card.code" appInputVerbatim autocomplete="new-password">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
-                                        tabindex="-1">
-                                        <i class="fa fa-lg" [ngClass]="{'fa-eye': !showCardCode, 'fa-eye-slash': showCardCode}"></i>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()" tabindex="-1">
+                                        <i class="fa fa-lg"
+                                            [ngClass]="{'fa-eye': !showCardCode, 'fa-eye-slash': showCardCode}"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" title="{{'securityCode' | i18n}}" (click)="copy(cipher.card.code, 'securityCode', 'Security Code')"
-                                        tabindex="-1">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        title="{{'securityCode' | i18n}}"
+                                        (click)="copy(cipher.card.code, 'securityCode', 'Security Code')" tabindex="-1">
                                         <i class="fa fa-lg fa-clipboard"></i>
                                     </button>
                                 </div>
@@ -210,7 +247,8 @@
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idTitle">{{'title' | i18n}}</label>
-                            <select id="idTitle" class="form-control" name="Identity.Title" [(ngModel)]="cipher.identity.title">
+                            <select id="idTitle" class="form-control" name="Identity.Title"
+                                [(ngModel)]="cipher.identity.title">
                                 <option *ngFor="let o of identityTitleOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -218,93 +256,109 @@
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idFirstName">{{'firstName' | i18n}}</label>
-                            <input id="idFirstName" class="form-control" type="text" name="Identity.FirstName" [(ngModel)]="cipher.identity.firstName">
+                            <input id="idFirstName" class="form-control" type="text" name="Identity.FirstName"
+                                [(ngModel)]="cipher.identity.firstName">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idMiddleName">{{'middleName' | i18n}}</label>
-                            <input id="idMiddleName" class="form-control" type="text" name="Identity.MiddleName" [(ngModel)]="cipher.identity.middleName">
+                            <input id="idMiddleName" class="form-control" type="text" name="Identity.MiddleName"
+                                [(ngModel)]="cipher.identity.middleName">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idLastName">{{'lastName' | i18n}}</label>
-                            <input id="idLastName" class="form-control" type="text" name="Identity.LastName" [(ngModel)]="cipher.identity.lastName">
+                            <input id="idLastName" class="form-control" type="text" name="Identity.LastName"
+                                [(ngModel)]="cipher.identity.lastName">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idUsername">{{'username' | i18n}}</label>
-                            <input id="idUsername" class="form-control" type="text" name="Identity.Username" [(ngModel)]="cipher.identity.username" appInputVerbatim>
+                            <input id="idUsername" class="form-control" type="text" name="Identity.Username"
+                                [(ngModel)]="cipher.identity.username" appInputVerbatim>
                         </div>
                         <div class="col-4 form-group">
                             <label for="idCompany">{{'company' | i18n}}</label>
-                            <input id="idCompany" class="form-control" type="text" name="Identity.Company" [(ngModel)]="cipher.identity.company">
+                            <input id="idCompany" class="form-control" type="text" name="Identity.Company"
+                                [(ngModel)]="cipher.identity.company">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idSsn">{{'ssn' | i18n}}</label>
-                            <input id="idSsn" class="form-control" type="text" name="Identity.SSN" [(ngModel)]="cipher.identity.ssn" appInputVerbatim>
+                            <input id="idSsn" class="form-control" type="text" name="Identity.SSN"
+                                [(ngModel)]="cipher.identity.ssn" appInputVerbatim>
                         </div>
                         <div class="col-4 form-group">
                             <label for="idPassportNumber">{{'passportNumber' | i18n}}</label>
-                            <input id="idPassportNumber" class="form-control" type="text" name="Identity.PassportNumber" [(ngModel)]="cipher.identity.passportNumber"
-                                appInputVerbatim>
+                            <input id="idPassportNumber" class="form-control" type="text" name="Identity.PassportNumber"
+                                [(ngModel)]="cipher.identity.passportNumber" appInputVerbatim>
                         </div>
                         <div class="col-4 form-group">
                             <label for="idLicenseNumber">{{'licenseNumber' | i18n}}</label>
-                            <input id="idLicenseNumber" class="form-control" type="text" name="Identity.LicenseNumber" [(ngModel)]="cipher.identity.licenseNumber"
-                                appInputVerbatim>
+                            <input id="idLicenseNumber" class="form-control" type="text" name="Identity.LicenseNumber"
+                                [(ngModel)]="cipher.identity.licenseNumber" appInputVerbatim>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idEmail">{{'email' | i18n}}</label>
-                            <input id="idEmail" class="form-control" type="text" name="Identity.Email" [(ngModel)]="cipher.identity.email" appInputVerbatim>
+                            <input id="idEmail" class="form-control" type="text" name="Identity.Email"
+                                [(ngModel)]="cipher.identity.email" appInputVerbatim>
                         </div>
                         <div class="col-6 form-group">
                             <label for="idPhone">{{'phone' | i18n}}</label>
-                            <input id="idPhone" class="form-control" type="text" name="Identity.Phone" [(ngModel)]="cipher.identity.phone">
+                            <input id="idPhone" class="form-control" type="text" name="Identity.Phone"
+                                [(ngModel)]="cipher.identity.phone">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idAddress1">{{'address1' | i18n}}</label>
-                            <input id="idAddress1" class="form-control" type="text" name="Identity.Address1" [(ngModel)]="cipher.identity.address1">
+                            <input id="idAddress1" class="form-control" type="text" name="Identity.Address1"
+                                [(ngModel)]="cipher.identity.address1">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idAddress2">{{'address2' | i18n}}</label>
-                            <input id="idAddress2" class="form-control" type="text" name="Identity.Address2" [(ngModel)]="cipher.identity.address2">
+                            <input id="idAddress2" class="form-control" type="text" name="Identity.Address2"
+                                [(ngModel)]="cipher.identity.address2">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idAddress3">{{'address3' | i18n}}</label>
-                            <input id="idAddress3" class="form-control" type="text" name="Identity.Address3" [(ngModel)]="cipher.identity.address3">
+                            <input id="idAddress3" class="form-control" type="text" name="Identity.Address3"
+                                [(ngModel)]="cipher.identity.address3">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idCity">{{'cityTown' | i18n}}</label>
-                            <input id="idCity" class="form-control" type="text" name="Identity.City" [(ngModel)]="cipher.identity.city">
+                            <input id="idCity" class="form-control" type="text" name="Identity.City"
+                                [(ngModel)]="cipher.identity.city">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idState">{{'stateProvince' | i18n}}</label>
-                            <input id="idState" class="form-control" type="text" name="Identity.State" [(ngModel)]="cipher.identity.state">
+                            <input id="idState" class="form-control" type="text" name="Identity.State"
+                                [(ngModel)]="cipher.identity.state">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idPostalCode">{{'zipPostalCode' | i18n}}</label>
-                            <input id="idPostalCode" class="form-control" type="text" name="Identity.PostalCode" [(ngModel)]="cipher.identity.postalCode">
+                            <input id="idPostalCode" class="form-control" type="text" name="Identity.PostalCode"
+                                [(ngModel)]="cipher.identity.postalCode">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idCountry">{{'country' | i18n}}</label>
-                            <input id="idCountry" class="form-control" type="text" name="Identity.Country" [(ngModel)]="cipher.identity.country">
+                            <input id="idCountry" class="form-control" type="text" name="Identity.Country"
+                                [(ngModel)]="cipher.identity.country">
                         </div>
                     </div>
                 </ng-container>
                 <div class="form-group">
                     <label for="notes">{{'notes' | i18n}}</label>
-                    <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes" class="form-control"></textarea>
+                    <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes"
+                        class="form-control"></textarea>
                 </div>
                 <h3 class="mt-4">{{'customFields' | i18n}}</h3>
                 <ng-container *ngIf="cipher.hasFields">
@@ -312,43 +366,54 @@
                         <div class="col-5 form-group">
                             <div class="d-flex">
                                 <label for="fieldName{{i}}">{{'name' | i18n}}</label>
-                                <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                                <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/"
+                                    target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
                                     <i class="fa fa-question-circle-o"></i>
                                 </a>
                             </div>
-                            <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name" class="form-control" appInputVerbatim>
+                            <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
+                                class="form-control" appInputVerbatim>
                         </div>
                         <div class="col-7 form-group">
                             <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
                             <div class="d-flex align-items-center">
                                 <div class="input-group" *ngIf="f.type === fieldType.Text">
-                                    <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}" [(ngModel)]="f.value" appInputVerbatim>
+                                    <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
+                                        [(ngModel)]="f.value" appInputVerbatim>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>
                                     </div>
                                 </div>
                                 <div class="input-group" *ngIf="f.type === fieldType.Hidden">
-                                    <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}" name="Field.Value{{i}}" [(ngModel)]="f.value" class="form-control text-monospace"
-                                        appInputVerbatim autocomplete="new-password">
+                                    <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
+                                        name="Field.Value{{i}}" [(ngModel)]="f.value"
+                                        class="form-control text-monospace" appInputVerbatim
+                                        autocomplete="new-password">
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
                                             tabindex="-1">
-                                            <i class="fa fa-lg" [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
+                                            <i class="fa fa-lg"
+                                                [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
                                         </button>
-                                        <button type="button" class="btn btn-outline-secondary" title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>
                                     </div>
                                 </div>
                                 <div class="flex-fill">
-                                    <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox" [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean"
-                                        appTrueFalseValue trueValue="true" falseValue="false">
+                                    <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
+                                        [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
+                                        trueValue="true" falseValue="false">
                                 </div>
-                                <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)" title="{{'remove' | i18n}}">
+                                <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
+                                    title="{{'remove' | i18n}}">
                                     <i class="fa fa-minus-circle fa-lg"></i>
                                 </button>
                             </div>
@@ -371,8 +436,8 @@
                     <div class="row">
                         <div class="col-5">
                             <label for="organizationId">{{'whoOwnsThisItem' | i18n}}</label>
-                            <select id="organizationId" class="form-control" name="OrganizationId" [(ngModel)]="cipher.organizationId"
-                                (change)="organizationChanged()">
+                            <select id="organizationId" class="form-control" name="OrganizationId"
+                                [(ngModel)]="cipher.organizationId" (change)="organizationChanged()">
                                 <option *ngFor="let o of ownershipOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -385,7 +450,8 @@
                     </div>
                     <ng-container *ngIf="collections && collections.length">
                         <div class="form-check" *ngFor="let c of collections; let i = index">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="c.checked" id="collection-{{i}}" name="Collection[{{i}}].Checked">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="c.checked"
+                                id="collection-{{i}}" name="Collection[{{i}}].Checked">
                             <label class="form-check-label" for="collection-{{i}}">{{c.name}}</label>
                         </div>
                     </ng-container>
@@ -424,13 +490,16 @@
                     {{'cancel' | i18n}}
                 </button>
                 <div class="ml-auto" *ngIf="cipher">
-                    <button *ngIf="!organization" type="button" (click)="toggleFavorite()" class="btn btn-link" title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
+                    <button *ngIf="!organization" type="button" (click)="toggleFavorite()" class="btn btn-link"
+                        title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
                         <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"></i>
                     </button>
-                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger" title="{{'delete' | i18n}}" *ngIf="editMode"
-                        [disabled]="deleteBtn.loading" [appApiAction]="deletePromise">
+                    <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger"
+                        title="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
+                        [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
-                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"
+                            title="{{'loading' | i18n}}"></i>
                     </button>
                 </div>
             </div>
