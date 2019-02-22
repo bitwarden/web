@@ -101,13 +101,16 @@
                 </td>
                 <td>
                     <i class="fa fa-fw" *ngIf="t.type === transactionType.Charge || t.type === transactionType.Refund"
-                        [ngClass]="{'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
-                                'fa-university': t.paymentMethodType === paymentMethodType.BankAccount,
-                                'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal}"></i>
+                        [ngClass]="{
+                            'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
+                            'fa-university': t.paymentMethodType === paymentMethodType.BankAccount,
+                            'fa-bitcoin text-warning': t.paymentMethodType === paymentMethodType.BitPay,
+                            'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal
+                        }"></i>
                     {{t.details}}
                 </td>
-                <td [ngClass]="{'text-strike': t.refunded}" title="{{(t.refunded ? 'refunded' : '') | i18n}}">{{t.amount
-                    | currency:'$'}}</td>
+                <td [ngClass]="{'text-strike': t.refunded}" title="{{(t.refunded ? 'refunded' : '') | i18n}}">
+                    {{t.amount | currency:'$'}}</td>
             </tr>
         </tbody>
     </table>
