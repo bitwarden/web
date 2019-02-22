@@ -851,7 +851,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Si es procedeix, es tancarà la vostra sessió actual i haureu de tornar a iniciar-la. Les sessions d'altres dispositius poden continuar mantenint-se actives fins a una hora."
+    "message": "Si es procedeix, es tancarà la vostra sessió actual i l'haureu de tornar a iniciar. Les sessions d'altres dispositius poden mantenir-se actives fins a una hora."
   },
   "emailChanged": {
     "message": "El correu electrònic s'ha canviat"
@@ -923,7 +923,7 @@
     "message": "Voleu evitar que el vostre compte s'inicie en un altre dispositiu? Seguiu aquestes passes per desautoritzar tots els ordinadors o dispositius que hàgeu utilitzat prèviament. Aquest pas de seguretat es recomana si anteriorment heu utilitzat un ordinador públic o si heu guardat la contrasenya accidentalment en un dispositiu que no és vostre. Aquest pas també esborrarà totes les sessions d'inici de sessió en dues passes recordades prèviament."
   },
   "deauthorizeSessionsWarning": {
-    "message": "El procediment també tancarà la sessió actual, i l'heu de tornar a iniciar. També demanarà iniciar la sessió en dues passes, si està habilitada. Les sessions actives d'altres dispositius poden continuar mantenint-se actives fins a una hora."
+    "message": "El procediment també tancarà la sessió actual, i l'heu de tornar a iniciar. També demanarà iniciar la sessió en dues passes, si està habilitada. Les sessions actives d'altres dispositius poden mantenir-se actives fins a una hora."
   },
   "sessionsDeauthorized": {
     "message": "Totes les sessions estan desautoritzades"
@@ -1078,7 +1078,7 @@
     "message": "Demana un inici de sessió en dues passes per als usuaris de la vostra organització mitjançant la configuració de proveïdors a nivell de l'organització."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Si habiliteu l'inici de sessió en dues passes, pot bloquejar-vos de manera definitiva del compte de Bitwarden. Un codi de recuperació us permet accedir al vostre compte en cas que no pugueu utilitzar el proveïdor d'inici de sessió en dues passes (p. Ex. Perdreu el dispositiu). El suport Bitwarden no podrà ajudar-vos si perdeu l'accés al vostre compte. Us recomanem que escriviu o imprimiu el codi de recuperació i el mantingueu en un lloc segur."
+    "message": "Si habiliteu l'inici de sessió en dues passes, pot bloquejar-vos de manera definitiva el compte de Bitwarden. Un codi de recuperació us permet accedir al vostre compte en cas que no pugueu utilitzar el proveïdor d'inici de sessió en dues passes (p. Ex. Perdre el dispositiu). El suport de Bitwarden no podrà ajudar-vos si perdeu l'accés al vostre compte. Us recomanem que escriviu o imprimiu el codi de recuperació i el mantingueu en un lloc segur."
   },
   "viewRecoveryCode": {
     "message": "Mostra el codi de recuperació"
@@ -1476,10 +1476,10 @@
     "message": "Usuaris afectats"
   },
   "breachOccurred": {
-    "message": "S'ha produït una filtració"
+    "message": "La filtració es va produir el"
   },
   "breachReported": {
-    "message": "S'ha informat de la filtració"
+    "message": "Es va informar de la filtració el"
   },
   "reportError": {
     "message": "S'ha produït un error en intentar carregar l'informe. Torneu-ho a provar"
@@ -1498,6 +1498,19 @@
   "addCredit": {
     "message": "Afegeix crèdit",
     "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "Amount",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+  },
+  "creditAppliedDesc": {
+    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
   },
   "goPremium": {
     "message": "Fes-te Premium",
