@@ -14,7 +14,7 @@ export class RouterService {
     private currentUrl: string = undefined;
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute,
-        private titleService: Title, private i18nService: I18nService) {
+        private titleService: Title, i18nService: I18nService) {
         this.currentUrl = this.router.url;
         router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
@@ -54,5 +54,9 @@ export class RouterService {
 
     getPreviousUrl() {
         return this.previousUrl;
+    }
+
+    setPreviousUrl(url: string) {
+        this.previousUrl = url;
     }
 }

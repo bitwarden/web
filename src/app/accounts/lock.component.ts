@@ -36,9 +36,12 @@ export class LockComponent extends BaseLockComponent {
             this.router.navigate(['vault']);
         }
 
-        const previousUrl = this.routerService.getPreviousUrl();
-        if (previousUrl !== '/' && previousUrl.indexOf('lock') === -1) {
-            this.successRoute = previousUrl;
-        }
+        this.onSuccessfulSubmit = () => {
+            const previousUrl = this.routerService.getPreviousUrl();
+            if (previousUrl !== '/' && previousUrl.indexOf('lock') === -1) {
+                this.successRoute = previousUrl;
+            }
+            this.router.navigate([this.successRoute]);
+        };
     }
 }

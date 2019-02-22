@@ -111,6 +111,9 @@ export class AppComponent implements OnDestroy, OnInit {
                         this.notificationsService.updateConnection(false);
                         this.router.navigate(['lock']);
                         break;
+                    case 'lockedUrl':
+                        window.setTimeout(() => this.routerService.setPreviousUrl(message.url), 500);
+                        break;
                     case 'syncStarted':
                         break;
                     case 'syncCompleted':
