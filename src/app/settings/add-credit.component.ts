@@ -69,7 +69,7 @@ export class AddCreditComponent implements OnInit {
             this.subject = await this.userService.getEmail();
             this.ppButtonCustomField = 'user_id:' + userId;
         }
-        this.ppButtonCustomField += ',account_credit:true';
+        this.ppButtonCustomField += ',account_credit:1';
         this.ppReturnUrl = window.location.href;
     }
 
