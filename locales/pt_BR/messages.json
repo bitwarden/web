@@ -1485,19 +1485,32 @@
     "message": "Ocorreu um erro ao tentar carregar o relatório. Tente novamente"
   },
   "billing": {
-    "message": "Billing"
+    "message": "Cobrança"
   },
   "accountCredit": {
-    "message": "Account Credit",
+    "message": "Crédito",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
-    "message": "Account Balance",
+    "message": "Saldo da conta",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "Add Credit",
+    "message": "Adicionar crédito",
     "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "Amount",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+  },
+  "creditAppliedDesc": {
+    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
   },
   "goPremium": {
     "message": "Torne-se Premium",
@@ -1701,32 +1714,32 @@
     "message": "Alterar Forma de Pagamento"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Faturas"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Sem faturas."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Pago",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Por pagar",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Transações",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Sem transações."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Cobrança",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Reembolso",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -2506,7 +2519,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Fatura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2516,10 +2529,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Ver fatura"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Download da fatura"
   },
   "verifyBankAccount": {
     "message": "Verificar Conta Bancária"
