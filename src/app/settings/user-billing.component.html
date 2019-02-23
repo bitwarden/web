@@ -97,7 +97,7 @@
                 <td>{{t.createdDate | date:'mediumDate'}}</td>
                 <td>
                     <span *ngIf="t.type === transactionType.Charge">{{'chargeNoun' | i18n}}</span>
-                    <span *ngIf="t.type === transactionType.Refund">{{'chargeRefund' | i18n}}</span>
+                    <span *ngIf="t.type === transactionType.Refund">{{'refundNoun' | i18n}}</span>
                 </td>
                 <td>
                     <i class="fa fa-fw" *ngIf="t.type === transactionType.Charge || t.type === transactionType.Refund"
