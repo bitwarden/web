@@ -96,12 +96,13 @@
             <tr *ngFor="let t of transactions">
                 <td>{{t.createdDate | date:'mediumDate'}}</td>
                 <td>
-                    <span *ngIf="t.type === transactionType.Charge">{{'chargeNoun' | i18n}}</span>
+                    <span *ngIf="t.type === transactionType.Charge || t.type === transactionType.Credit">
+                        {{'chargeNoun' | i18n}}
+                    </span>
                     <span *ngIf="t.type === transactionType.Refund">{{'refundNoun' | i18n}}</span>
                 </td>
                 <td>
-                    <i class="fa fa-fw" *ngIf="t.type === transactionType.Charge || t.type === transactionType.Refund"
-                        [ngClass]="{
+                    <i class="fa fa-fw" *ngIf="t.paymentMethodType" [ngClass]="{
                             'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
                             'fa-university': t.paymentMethodType === paymentMethodType.BankAccount,
                             'fa-bitcoin text-warning': t.paymentMethodType === paymentMethodType.BitPay,
