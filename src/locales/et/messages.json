@@ -755,7 +755,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "Valisid $COUNT$ üksust. $SHAREABLE_COUNT$ üksust on jagatavad, $NONSHAREABLE_COUNT$ ei ole.",
+    "message": "Valisid $COUNT$ kirje(t). $SHAREABLE_COUNT$ kirje(t) on jagatavad, $NONSHAREABLE_COUNT$ ei ole.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -896,7 +896,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Seadistades KDF-i liiga pikaks, võib Bitwardenisse sisselogimisel (ja lahtilukustamisel) tekkida jõudlusprobleeme ja hangumisi. Seda eriti aeglasemate protsessoritega seadmetes. Soovitame kasutada pikkust ligikaudu $INCREMENT$ ja testida jõudlust kõikides seadmetes.",
+    "message": "Seadistades KDF-i liiga pikaks, võib Bitwardenisse sisselogimisel (ja lahtilukustamisel) tekkida jõudlusprobleeme ja hangumisi. Seda eriti aeglasemate protsessoritega seadmetes. Soovitame kasutada pikkust ligikaudu $INCREMENT$ ja testida jõudlust kõikides oma seadmetes.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -920,7 +920,7 @@
     "message": "Sessioonide tühistamine"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Muretsed, et sinu kontosse on võõra seadme alt sisse logitud? Allpool saad kõikidest kasutatud seadmetest välja logida. See valik võib olla kasulik näiteks juhtudel, kus oled kasutanud avalikku arvutit või salvestasid kogemata parooli seadmes, mis sinule ei kuulu. Samuti nullib see tegevus kõik varasemad kaheastmelise kinnitamise poolt meelde jäetud seadmed."
+    "message": "Muretsed, et sinu kontosse on võõra seadme alt sisse logitud? Allpool saad kõikidest seadmetest välja logida. See valik võib olla kasulik näiteks juhtudel, kus oled kasutanud avalikku arvutit või salvestasid kogemata parooli seadmes, mis ei kuulu sinule. Samuti nullib see tegevus kõik varasemad kaheastmelise kinnitamise poolt meelde jäetud seadmed."
   },
   "deauthorizeSessionsWarning": {
     "message": "Jätkatest logitakse sind ka käimasolevast sessioonist välja, mistõttu pead kontosse uuesti sisse logima. Lisaks võidakse küsida kaheastmelist kinnitust, kui see on sisse lülitatud. Teised kontoga ühendatud seadmed võivad jääda sisselogituks kuni üheks tunniks."
@@ -941,7 +941,7 @@
     "message": "Jätka allpool, et kõik organisatsiooni kirjed hoidlast likvideerida."
   },
   "purgeVaultWarning": {
-    "message": "Hoidla likvideerimine on alatine. Seda ei saa tagasi võtta."
+    "message": "Hoidla likvideerimine on ühekordne tegevus. Seda ei saa tagasi võtta."
   },
   "vaultPurged": {
     "message": "Hoidla on likvideeritud."
@@ -953,7 +953,7 @@
     "message": "Jätkates kustutatakse sinu konto ja kõik sellega seonduvad andmed."
   },
   "deleteAccountWarning": {
-    "message": "Konto kustutamine on alatine. Seda ei saa tagasi võtta."
+    "message": "Konto kustutamine on ühekordne tegevus. Seda ei saa tagasi võtta."
   },
   "accountDeleted": {
     "message": "Konto on kustutatud"
@@ -1496,21 +1496,21 @@
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "Lisa krediiti",
+    "message": "Krediidi lisamine",
     "description": "Add more credit to your account's balance."
   },
   "amount": {
-    "message": "Amount",
+    "message": "Summa",
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "Lisatav krediit ilmub nähtavale pärast makse kinnitamist. Mõned maksemeetodid võivad olla aeglasemad ning nende kinnitamine võib võtta natukene aega."
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "Veendu, et kontol on selle ostu tegemiseks piisavalt krediiti. Ebapiisava krediidi puhul võetakse puuduolev summa teiselt (vaike) maksemeetodilt. Kontole saab krediiti lisada \"Maksmine\" menüü alt."
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "Konto krediiti saab kasutada maksete tegemiseks. Uue arve laekumisel kasutatakse selle tasumiseks automaatselt kontol olevat krediiti."
   },
   "goPremium": {
     "message": "Hangi Premium",
@@ -2489,7 +2489,7 @@
     "message": "Jätkamaks organisatsiooni ja sellega seonduvate andmete kustutamist, liigu alla. Individuaalsed kasutajakontod säilitatakse, aga nad ei kuulu enam sellesse organisatsiooni. "
   },
   "deleteOrganizationWarning": {
-    "message": "Organisatsiooni kustutamine on alatine. Seda ei saa tagasi võtta."
+    "message": "Organisatsiooni kustutamine on ühekordne tegevus. Seda ei saa tagasi võtta."
   },
   "organizationDeleted": {
     "message": "Organisatsioon on kustutatud"
@@ -2653,7 +2653,7 @@
     "message": "Täienda organisatsiooni"
   },
   "upgradeOrganizationDesc": {
-    "message": "See funktsioon ei ole tasuta organisatsioonidele saadaval. Hangi tasuline versioon, et rohkem funktsioone saada."
+    "message": "See funktsioon ei ole \"tasuta\" litsentsi kasutatavatele organisatsioonidele saadaval. Hangi tasuline versioon, mis sisaldab rohkem funktsioone."
   },
   "createOrganizationStep1": {
     "message": "Organisatsiooni loomine: Samm 1"
@@ -2731,7 +2731,7 @@
     "message": "Omanik"
   },
   "whoOwnsThisItem": {
-    "message": "Kes seda üksust omab?"
+    "message": "Kes seda kirjet omab?"
   },
   "strong": {
     "message": "Tugev",
