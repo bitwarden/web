@@ -104,7 +104,8 @@
                 <td>
                     <i class="fa fa-fw" *ngIf="t.paymentMethodType" [ngClass]="{
                             'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
-                            'fa-university': t.paymentMethodType === paymentMethodType.BankAccount,
+                            'fa-university': t.paymentMethodType === paymentMethodType.BankAccount ||
+                                t.paymentMethodType === paymentMethodType.WireTransfer,
                             'fa-bitcoin text-warning': t.paymentMethodType === paymentMethodType.BitPay,
                             'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal
                         }"></i>
