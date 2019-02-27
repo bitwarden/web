@@ -287,4 +287,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             }
         }
     }
+
+    readFromClipboard(options?: any): Promise<string> {
+        throw new Error('Cannot read from clipboard on web.');
+    }
 }
