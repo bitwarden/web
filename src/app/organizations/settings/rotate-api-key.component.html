@@ -1,0 +1,48 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+            <div class="modal-header">
+                <h2 class="modal-title">{{'rotateApiKey' | i18n}}</h2>
+                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{'apiKeyRotateDesc' | i18n}}</p>
+                <ng-container *ngIf="!clientSecret">
+                    <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                    <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
+                        [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
+                </ng-container>
+                <app-callout type="warning" *ngIf="clientSecret">{{'apiKeyWarning' | i18n}}</app-callout>
+                <app-callout type="info" title="{{'oauth2ClientCredentials' | i18n}}" icon="fa-key"
+                    *ngIf="clientSecret">
+                    <p class="mb-1">
+                        <strong>client_id:</strong><br>
+                        <code>{{clientId}}</code>
+                    </p>
+                    <p class="mb-1">
+                        <strong>client_secret:</strong><br>
+                        <code>{{clientSecret}}</code>
+                    </p>
+                    <p class="mb-1">
+                        <strong>scope:</strong><br>
+                        <code>{{scope}}</code>
+                    </p>
+                    <p class="mb-0">
+                        <strong>grant_type:</strong><br>
+                        <code>client_credentials</code>
+                    </p>
+                </app-callout>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading"
+                    *ngIf="!clientSecret">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <span>{{'rotateApiKey' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>

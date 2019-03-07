@@ -55,9 +55,11 @@ import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/m
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
+import { ApiKeyComponent as OrgApiKeyComponent } from './organizations/settings/api-key.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
+import { RotateApiKeyComponent as OrgRotateApiKeyComponent } from './organizations/settings/rotate-api-key.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
 import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
@@ -274,6 +276,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OptionsComponent,
         OrgAccountComponent,
         OrgAddEditComponent,
+        OrgApiKeyComponent,
         OrganizationBillingComponent,
         OrganizationSubscriptionComponent,
         OrgAttachmentsComponent,
@@ -294,6 +297,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgManageComponent,
         OrgPeopleComponent,
         OrgReusedPasswordsReportComponent,
+        OrgRotateApiKeyComponent,
         OrgSettingComponent,
         OrgToolsComponent,
         OrgTwoFactorSetupComponent,
@@ -359,12 +363,14 @@ registerLocaleData(localeZhTw, 'zh-TW');
         FolderAddEditComponent,
         ModalComponent,
         OrgAddEditComponent,
+        OrgApiKeyComponent,
         OrgAttachmentsComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
         OrgEntityEventsComponent,
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
+        OrgRotateApiKeyComponent,
         OrgUserAddEditComponent,
         OrgUserConfirmComponent,
         OrgUserGroupsComponent,

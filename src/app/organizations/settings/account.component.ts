@@ -18,7 +18,9 @@ import { OrganizationResponse } from 'jslib/models/response/organizationResponse
 
 import { ModalComponent } from '../../modal.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
+import { ApiKeyComponent } from './api-key.component';
 import { DeleteOrganizationComponent } from './delete-organization.component';
+import { RotateApiKeyComponent } from './rotate-api-key.component';
 
 @Component({
     selector: 'app-org-account',
@@ -27,8 +29,11 @@ import { DeleteOrganizationComponent } from './delete-organization.component';
 export class AccountComponent {
     @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef }) deleteModalRef: ViewContainerRef;
     @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef }) purgeModalRef: ViewContainerRef;
+    @ViewChild('apiKeyTemplate', { read: ViewContainerRef }) apiKeyModalRef: ViewContainerRef;
+    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef }) rotateApiKeyModalRef: ViewContainerRef;
 
     loading = true;
+    canUseApi = false;
     org: OrganizationResponse;
     formPromise: Promise<any>;
 
@@ -45,6 +50,7 @@ export class AccountComponent {
             this.organizationId = params.organizationId;
             try {
                 this.org = await this.apiService.getOrganization(this.organizationId);
+                this.canUseApi = this.org.useApi;
             } catch { }
         });
         this.loading = false;
@@ -89,6 +95,36 @@ export class AccountComponent {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.purgeModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<PurgeVaultComponent>(PurgeVaultComponent, this.purgeModalRef);
+        childComponent.organizationId = this.organizationId;
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
+    }
+
+    viewApiKey() {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.apiKeyModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.apiKeyModalRef);
+        childComponent.organizationId = this.organizationId;
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
+    }
+
+    rotateApiKey() {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.rotateApiKeyModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<RotateApiKeyComponent>(RotateApiKeyComponent, this.rotateApiKeyModalRef);
         childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {

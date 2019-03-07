@@ -31,6 +31,19 @@
         <span>{{'save' | i18n}}</span>
     </button>
 </form>
+<ng-container *ngIf="canUseApi">
+    <div class="secondary-header border-0 mb-0">
+        <h1>{{'apiKey' | i18n}}</h1>
+    </div>
+    <p>
+        {{'apiKeyDesc' | i18n}}
+        <a href="https://docs.bitwarden.com" target="_blank" rel="noopener">
+            {{'learnMore' | i18n}}
+        </a>
+    </p>
+    <button type="button" class="btn btn-outline-secondary" (click)="viewApiKey()">{{'viewApiKey' | i18n}}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="rotateApiKey()">{{'rotateApiKey' | i18n}}</button>
+</ng-container>
 <div class="secondary-header border-0 mb-0">
     <h1>{{'taxInformation' | i18n}}</h1>
 </div>
@@ -51,3 +64,5 @@
 </div>
 <ng-template #deleteOrganizationTemplate></ng-template>
 <ng-template #purgeOrganizationTemplate></ng-template>
+<ng-template #apiKeyTemplate></ng-template>
+<ng-template #rotateApiKeyTemplate></ng-template>
