@@ -38,6 +38,7 @@ export class CollectionAddEditComponent implements OnInit {
     accessGroups: boolean = false;
     title: string;
     name: string;
+    externalId: string;
     groups: GroupResponse[] = [];
     formPromise: Promise<any>;
     deletePromise: Promise<any>;
@@ -65,6 +66,7 @@ export class CollectionAddEditComponent implements OnInit {
             try {
                 const collection = await this.apiService.getCollectionDetails(this.organizationId, this.collectionId);
                 this.name = await this.cryptoService.decryptToUtf8(new CipherString(collection.name), this.orgKey);
+                this.externalId = collection.externalId;
                 if (collection.groups != null && this.groups.length > 0) {
                     collection.groups.forEach((s) => {
                         const group = this.groups.filter((g) => !g.accessAll && g.id === s.id);
@@ -109,6 +111,7 @@ export class CollectionAddEditComponent implements OnInit {
 
         const request = new CollectionRequest();
         request.name = (await this.cryptoService.encrypt(this.name, this.orgKey)).encryptedString;
+        request.externalId = this.externalId;
         request.groups = this.groups.filter((g) => (g as any).checked && !g.accessAll)
             .map((g) => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly));
 

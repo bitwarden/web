@@ -15,6 +15,11 @@
                     <label for="name">{{'name' | i18n}}</label>
                     <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required>
                 </div>
+                <div class="form-group">
+                    <label for="externalId">{{'externalId' | i18n}}</label>
+                    <input id="externalId" class="form-control" type="text" name="ExternalId" [(ngModel)]="externalId">
+                    <small class="form-text text-muted">{{'externalIdDesc' | i18n}}</small>
+                </div>
                 <ng-container *ngIf="accessGroups">
                     <h3 class="mt-4 d-flex mb-0">
                         {{'groupAccess' | i18n}}
