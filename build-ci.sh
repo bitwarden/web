@@ -15,6 +15,11 @@ fi
 echo "Prod deploy: ${PROD_DEPLOY}"
 echo "Tag name: ${TAG_NAME}"
 
+if [ "${DOCKER_USERNAME}" != "" -a "${DOCKER_PASSWORD}" != "" ]
+then
+    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+fi
+
 chmod +x ./build.sh
 ./build.sh
 ./build.sh tag dev

@@ -19,7 +19,6 @@ init:
 - ps: Install-Product node $env:nodejs_version
 
 install:
-- sh: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - ps: choco install cloc --no-progress
 - ps: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
 - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
