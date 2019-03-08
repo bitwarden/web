@@ -15,9 +15,6 @@ fi
 echo "Prod deploy: ${PROD_DEPLOY}"
 echo "Tag name: ${TAG_NAME}"
 
-npm install
-npm run build:prod
-
 chmod +x ./build.sh
 ./build.sh
 ./build.sh tag dev
