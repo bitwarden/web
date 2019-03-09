@@ -407,7 +407,7 @@
     "message": "Скасувати вибір"
   },
   "launch": {
-    "message": "Запустити"
+    "message": "Перейти"
   },
   "newAttachment": {
     "message": "Додати нове вкладення"
@@ -632,7 +632,7 @@
     }
   },
   "enterVerificationCodeApp": {
-    "message": "Введіть 6-значних код підтвердження з програми авторизації."
+    "message": "Введіть 6-значний код підтвердження з програми авторизації."
   },
   "enterVerificationCodeEmail": {
     "message": "Введіть 6-значний код підтвердження, надісланий на $EMAIL$.",
@@ -659,7 +659,7 @@
     "message": "Надіслати код підтвердження ще раз"
   },
   "useAnotherTwoStepMethod": {
-    "message": "Використати інший спосіб двохетапної перевірки"
+    "message": "Інший спосіб двохетапної перевірки"
   },
   "insertYubiKey": {
     "message": "Вставте свій YubiKey в USB порт комп'ютера, потім торкніться цієї кнопки."
@@ -1856,7 +1856,7 @@
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "Для тестування чи спільного доступу для власних $COUNT$ інших користувачів.",
+    "message": "Для тестування чи особистого користування спільно з $COUNT$ іншим користувачем.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1865,16 +1865,16 @@
     }
   },
   "planNameFamilies": {
-    "message": "Родини"
+    "message": "Родина"
   },
   "planDescFamilies": {
-    "message": "Для особистого користування, для спільного доступу родини і друзів."
+    "message": "Для особистого користування спільно з родиною і друзями."
   },
   "planNameTeams": {
-    "message": "Команди"
+    "message": "Команда"
   },
   "planDescTeams": {
-    "message": "Для компаній та інших організацій команд."
+    "message": "Для компаній та інших командних організацій."
   },
   "planNameEnterprise": {
     "message": "Компанія"
@@ -1925,7 +1925,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Додавайте й спільно використовуйте з $COUNT$ користувачами",
+    "message": "Додавання й спільне користування з $COUNT$ користувачами",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1934,10 +1934,10 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Додавайте й спільно використовуйте з необмеженою кількістю користувачів"
+    "message": "Додавання й спільне користування з необмеженою кількістю користувачів"
   },
   "createUnlimitedCollections": {
-    "message": "Створюйте необмежені збірки"
+    "message": "Створення необмежених збірок"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ зашифрованого сховища файлів",
@@ -1955,13 +1955,13 @@
     "message": "Користувачі отримують доступ до можливостей Premium"
   },
   "controlAccessWithGroups": {
-    "message": "Контролюйте доступ користувачів за допомогою груп"
+    "message": "Контроль доступу користувачів за допомогою груп"
   },
   "syncUsersFromDirectory": {
-    "message": "Синхронізуйте користувачів і групи з каталогу"
+    "message": "Синхронізація користувачів і груп з каталогу"
   },
   "trackAuditLogs": {
-    "message": "Відстежуйте дії користувачів за допомогою журналів аудиту"
+    "message": "Відстеження дій користувачів з журналами аудиту"
   },
   "enforce2faDuo": {
     "message": "Вимагайте 2FA з використанням Duo"
@@ -2041,8 +2041,8 @@
   "externalId": {
     "message": "Зовнішній ID"
   },
-  "externalIdGroupDesc": {
-    "message": "Зовнішній ID використовується для зв'язку цієї групи із зовнішньою системою, наприклад, user directory."
+  "externalIdDesc": {
+    "message": "The external id can be used as a reference or to link this resource to an external system such as a user directory."
   },
   "accessControl": {
     "message": "Контроль доступу"
@@ -2792,5 +2792,27 @@
   "free": {
     "message": "Безплатно",
     "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "API Key"
+  },
+  "apiKeyDesc": {
+    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+  },
+  "apiKeyRotateDesc": {
+    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+  },
+  "apiKeyWarning": {
+    "message": "Your API key has full access to the organization. It should be kept secret."
+  },
+  "oauth2ClientCredentials": {
+    "message": "OAuth 2.0 Client Credentials",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "View API Key"
+  },
+  "rotateApiKey": {
+    "message": "Rotate API Key"
   }
 }

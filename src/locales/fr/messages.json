@@ -1378,7 +1378,7 @@
     "message": "Rapport sur les mots de passe faibles"
   },
   "weakPasswordsReportDesc": {
-    "message": "Les mots de passe faibles peuvent être facilement devinés par des pirates informatiques et des outils automatisés qui sont utilisés pour pirater les mots de passe. Le générateur de mots de passe Bitwarden peut vous aider à créer des mots de passe forts."
+    "message": "Les mots de passe faibles peuvent être facilement devinés par des pirates informatiques et des outils automatisés qui sont utilisés pour pirater les mots de passe. Le générateur de mots de passe de Bitwarden peut vous aider à créer des mots de passe forts."
   },
   "weakPasswordsFound": {
     "message": "Mots de passe faibles trouvés"
@@ -2041,8 +2041,8 @@
   "externalId": {
     "message": "Identifiant externe"
   },
-  "externalIdGroupDesc": {
-    "message": "L’identifiant externe est utilisé pour lier ce groupe à un système externe tel qu’un répertoire utilisateur."
+  "externalIdDesc": {
+    "message": "The external id can be used as a reference or to link this resource to an external system such as a user directory."
   },
   "accessControl": {
     "message": "Contrôle d’accès"
@@ -2792,5 +2792,27 @@
   "free": {
     "message": "Gratuit",
     "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "API Key"
+  },
+  "apiKeyDesc": {
+    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+  },
+  "apiKeyRotateDesc": {
+    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+  },
+  "apiKeyWarning": {
+    "message": "Your API key has full access to the organization. It should be kept secret."
+  },
+  "oauth2ClientCredentials": {
+    "message": "OAuth 2.0 Client Credentials",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "View API Key"
+  },
+  "rotateApiKey": {
+    "message": "Rotate API Key"
   }
 }
