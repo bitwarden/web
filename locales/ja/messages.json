@@ -1500,17 +1500,17 @@
     "description": "Add more credit to your account's balance."
   },
   "amount": {
-    "message": "Amount",
+    "message": "金額",
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "支払いが完全に処理された後、追加のクレジットがアカウントに表示されます。お支払い方法によっては、遅延したり他の方法よりも処理に時間が掛かることがあります。"
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "購入に使用できるだけのクレジットが登録されているか確認してください。使用可能なクレジットが不足している場合、差額にはデフォルトのお支払い方法が利用されます。「料金」ページから悪ントにクレジットを追加できます。"
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "アカウントに登録されたクレジットは購入に使用できます。使用可能なクレジットは、このアカウントへの請求に自動的に適用されます。"
   },
   "goPremium": {
     "message": "プレミアム版にアップグレード",
@@ -2041,8 +2041,8 @@
   "externalId": {
     "message": "外部ID"
   },
-  "externalIdGroupDesc": {
-    "message": "外部IDはこのグループをディレクトリサービスなどの外部システムにリンクするのに使われます。"
+  "externalIdDesc": {
+    "message": "The external id can be used as a reference or to link this resource to an external system such as a user directory."
   },
   "accessControl": {
     "message": "アクセスコントロール"
@@ -2792,5 +2792,27 @@
   "free": {
     "message": "無料",
     "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "API Key"
+  },
+  "apiKeyDesc": {
+    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+  },
+  "apiKeyRotateDesc": {
+    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+  },
+  "apiKeyWarning": {
+    "message": "Your API key has full access to the organization. It should be kept secret."
+  },
+  "oauth2ClientCredentials": {
+    "message": "OAuth 2.0 Client Credentials",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "View API Key"
+  },
+  "rotateApiKey": {
+    "message": "Rotate API Key"
   }
 }
