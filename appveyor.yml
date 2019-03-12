@@ -32,8 +32,8 @@ before_build:
 build_script:
 - sh: chmod +x ./build-ci.sh
 - sh: ./build-ci.sh
-- ps: npm install
-- ps: npm run build:prod
+- cmd: npm install
+- cmd: npm run build:prod
 
 after_build:
 - sh: docker logout
