@@ -26,6 +26,8 @@ install:
 before_build:
 - node --version
 - npm --version
+- cmd: set "GIT_PATH=C:\Program Files\Git\mingw64\libexec\git-core"
+- cmd: set "PATH=%GIT_PATH%;%PATH%"
 
 build_script:
 - sh: chmod +x ./build-ci.sh
