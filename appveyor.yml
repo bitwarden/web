@@ -7,31 +7,64 @@ branches:
     - l10n_master
     - gh-pages
 
-environment:
-  APPVEYOR_YML_DISABLE_PS_LINUX: true
-
 services:
 - docker
 
 stack: node 10
 
 init:
-- ps: Install-Product node 10
+- ps: |
+    if($isWindows) {
+      Install-Product node 10
+    }
 
 install:
-- ps: choco install cloc --no-progress
-- ps: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
-- ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
+- ps: |
+    $env:PACKAGE_VERSION = (Get-Content -Raw -Path .\package.json | ConvertFrom-Json).version
+    $env:PROD_DEPLOY = "false"
+    $env:TAG_NAME = ""
+    if($env:APPVEYOR_REPO_TAG -eq "true" -and $env:APPVEYOR_RE_BUILD -eq "True") {
+      $env:PROD_DEPLOY = "true"
+      $env:TAG_NAME = $env:APPVEYOR_REPO_TAG_NAME.TrimStart("v")
+      echo "This is a production deployment for ${env:TAG_NAME}."
+    }
+    if($isWindows) {
+      choco install cloc --no-progress
+      cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
+    }
 
 before_build:
 - node --version
 - npm --version
+- sh: |
+    if [ "${DOCKER_USERNAME}" != "" -a "${DOCKER_PASSWORD}" != "" ]
+    then
+      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    fi
 - cmd: set "GIT_PATH=C:\Program Files\Git\mingw64\libexec\git-core"
 - cmd: set "PATH=%GIT_PATH%;%PATH%"
 
 build_script:
-- sh: chmod +x ./build-ci.sh
-- sh: ./build-ci.sh
+- sh: chmod +x ./build.sh
+- ps: |
+    if($isLinux) {
+      ./build.sh
+      ./build.sh tag dev
+
+      if($env:PROD_DEPLOY -eq "true") {
+        ./build.sh tag beta
+        ./build.sh tag $env:TAG_NAME
+      }
+
+      docker images
+      ./build.sh push dev
+
+      if($env:PROD_DEPLOY -eq "true") {
+        ./build.sh push beta
+        ./build.sh push latest
+        ./build.sh push $env:TAG_NAME
+      }
+    }
 - cmd: npm install
 - cmd: npm run build:prod
 
