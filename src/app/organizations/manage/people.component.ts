@@ -242,7 +242,7 @@ export class PeopleComponent implements OnInit {
             }
 
             const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-            this.modal = this.groupsModalRef.createComponent(factory).instance;
+            this.modal = this.confirmModalRef.createComponent(factory).instance;
             const childComponent = this.modal.show<UserConfirmComponent>(
                 UserConfirmComponent, this.confirmModalRef);
 
