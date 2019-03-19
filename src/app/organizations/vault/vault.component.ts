@@ -90,7 +90,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
                 if (qParams == null) {
                     this.groupingsComponent.selectedAll = true;
-                    await this.ciphersComponent.load();
+                    await this.ciphersComponent.reload();
                 } else {
                     if (qParams.type) {
                         const t = parseInt(qParams.type, null);
@@ -101,7 +101,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                         await this.filterCollection(qParams.collectionId, true);
                     } else {
                         this.groupingsComponent.selectedAll = true;
-                        await this.ciphersComponent.load();
+                        await this.ciphersComponent.reload();
                     }
                 }
 
@@ -136,7 +136,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         const filter = (c: CipherView) => c.type === type;
         if (load) {
-            await this.ciphersComponent.load(filter);
+            await this.ciphersComponent.reload(filter);
         } else {
             await this.ciphersComponent.applyFilter(filter);
         }
@@ -156,7 +156,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             }
         };
         if (load) {
-            await this.ciphersComponent.load(filter);
+            await this.ciphersComponent.reload(filter);
         } else {
             await this.ciphersComponent.applyFilter(filter);
         }

@@ -39,6 +39,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService) {
         super(searchService);
+        this.pageSize = 150;
     }
 
     ngOnDestroy() {

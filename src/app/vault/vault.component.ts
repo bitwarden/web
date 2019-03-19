@@ -102,7 +102,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
-                await this.ciphersComponent.load();
+                await this.ciphersComponent.reload();
             } else {
                 if (params.favorites) {
                     this.groupingsComponent.selectedFavorites = true;
@@ -120,7 +120,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                     await this.filterCollection(params.collectionId);
                 } else {
                     this.groupingsComponent.selectedAll = true;
-                    await this.ciphersComponent.load();
+                    await this.ciphersComponent.reload();
                 }
             }
 
@@ -154,7 +154,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async clearGroupingFilters() {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
-        await this.ciphersComponent.load();
+        await this.ciphersComponent.reload();
         this.clearFilters();
         this.go();
     }
@@ -162,7 +162,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterFavorites() {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFavorites');
-        await this.ciphersComponent.load((c) => c.favorite);
+        await this.ciphersComponent.reload((c) => c.favorite);
         this.clearFilters();
         this.favorites = true;
         this.go();
@@ -171,7 +171,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterCipherType(type: CipherType) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
-        await this.ciphersComponent.load((c) => c.type === type);
+        await this.ciphersComponent.reload((c) => c.type === type);
         this.clearFilters();
         this.type = type;
         this.go();
@@ -181,7 +181,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.ciphersComponent.showAddNew = true;
         folderId = folderId === 'none' ? null : folderId;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFolder');
-        await this.ciphersComponent.load((c) => c.folderId === folderId);
+        await this.ciphersComponent.reload((c) => c.folderId === folderId);
         this.clearFilters();
         this.folderId = folderId == null ? 'none' : folderId;
         this.go();
@@ -190,7 +190,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterCollection(collectionId: string) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
-        await this.ciphersComponent.load((c) => c.collectionIds != null && c.collectionIds.indexOf(collectionId) > -1);
+        await this.ciphersComponent.reload((c) => c.collectionIds != null &&
+            c.collectionIds.indexOf(collectionId) > -1);
         this.clearFilters();
         this.collectionId = collectionId;
         this.go();

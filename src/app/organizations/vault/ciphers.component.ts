@@ -13,8 +13,6 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
 
-import { CipherData } from 'jslib/models/data/cipherData';
-import { Cipher } from 'jslib/models/domain/cipher';
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -59,7 +57,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
     }
 
-    search(timeout: number = null) {
+    async search(timeout: number = null) {
         if (!this.organization.isAdmin) {
             return super.search(timeout);
         }
@@ -73,6 +71,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         } else {
             this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText);
         }
+        await this.resetPaging();
     }
 
     checkCipher(c: CipherView) {
