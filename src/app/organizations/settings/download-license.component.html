@@ -1,0 +1,25 @@
+<form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <div class="card-body">
+        <h3 class="card-body-header">{{'downloadLicense' | i18n}}</h3>
+        <div class="row">
+            <div class="form-group col-6">
+                <div class="d-flex">
+                    <label for="installationId">{{'enterInstallationId' | i18n}}</label>
+                    <a class="ml-auto" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}"
+                        href="https://help.bitwarden.com/article/licensing-on-premise/#organization-account-sharing">
+                        <i class="fa fa-question-circle-o"></i>
+                    </a>
+                </div>
+                <input id="installationId" class="form-control" type="text" name="InstallationId"
+                    [(ngModel)]="installationId" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+            <span>{{'submit' | i18n}}</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">
+            {{'cancel' | i18n}}
+        </button>
+    </div>
+</form>

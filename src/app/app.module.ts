@@ -58,6 +58,7 @@ import { AccountComponent as OrgAccountComponent } from './organizations/setting
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
 import { ApiKeyComponent as OrgApiKeyComponent } from './organizations/settings/api-key.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
+import { DownloadLicenseComponent } from './organizations/settings/download-license.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
 import { RotateApiKeyComponent as OrgRotateApiKeyComponent } from './organizations/settings/rotate-api-key.component';
@@ -257,6 +258,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeleteAccountComponent,
         DeleteOrganizationComponent,
         DomainRulesComponent,
+        DownloadLicenseComponent,
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
