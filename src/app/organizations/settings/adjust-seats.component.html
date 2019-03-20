@@ -1,5 +1,7 @@
 <form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="card-body">
+        <button type="button" class="close" attr.aria-label="{{'cancel' | i18n}}" title="{{'cancel' | i18n}}"
+            (click)="cancel()"><span aria-hidden="true">&times;</span></button>
         <h3 class="card-body-header">{{(add ? 'addSeats' : 'removeSeats') | i18n}}</h3>
         <div class="row">
             <div class="form-group col-6">

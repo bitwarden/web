@@ -77,6 +77,8 @@
         </div>
         <div class="card mt-3" *ngIf="showUpdateLicense">
             <div class="card-body">
+                <button type="button" class="close" attr.aria-label="{{'cancel' | i18n}}" title="{{'cancel' | i18n}}"
+                    (click)="closeUpdateLicense(false)"><span aria-hidden="true">&times;</span></button>
                 <h3 class="card-body-header">{{'updateLicense' | i18n}}</h3>
                 <app-update-license [organizationId]="organizationId" (onUpdated)="closeUpdateLicense(true)"
                     (onCanceled)="closeUpdateLicense(false)"></app-update-license>

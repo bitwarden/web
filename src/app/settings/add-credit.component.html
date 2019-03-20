@@ -1,5 +1,7 @@
 <form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="card-body">
+        <button type="button" class="close" attr.aria-label="{{'cancel' | i18n}}" title="{{'cancel' | i18n}}"
+            (click)="cancel()"><span aria-hidden="true">&times;</span></button>
         <h3 class="card-body-header">{{'addCredit' | i18n}}</h3>
         <div class="mb-4 text-lg" *ngIf="showOptions">
             <div class="form-check form-check-inline">
