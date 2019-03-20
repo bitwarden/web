@@ -57,6 +57,7 @@ import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/m
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
 import { ApiKeyComponent as OrgApiKeyComponent } from './organizations/settings/api-key.component';
+import { ChangePlanComponent } from './organizations/settings/change-plan.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { DownloadLicenseComponent } from './organizations/settings/download-license.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
@@ -250,6 +251,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ChangeEmailComponent,
         ChangeKdfComponent,
         ChangePasswordComponent,
+        ChangePlanComponent,
         CiphersComponent,
         CollectionsComponent,
         ColorPasswordPipe,

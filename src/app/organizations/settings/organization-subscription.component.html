@@ -85,7 +85,7 @@
     </ng-container>
     <ng-container *ngIf="!selfHosted">
         <div class="d-flex">
-            <button type="button" class="btn btn-outline-secondary" (click)="changePlan()">
+            <button type="button" class="btn btn-outline-secondary" (click)="changePlan()" *ngIf="!showChangePlan">
                 {{'changeBillingPlan' | i18n}}
             </button>
             <button type="button" class="btn btn-outline-secondary ml-1" (click)="downloadLicense()"
@@ -99,6 +99,8 @@
                 <span>{{'cancelSubscription' | i18n}}</span>
             </button>
         </div>
+        <app-change-plan [organizationId]="organizationId" (onChanged)="closeChangePlan(true)"
+            (onCanceled)="closeChangePlan(false)" *ngIf="showChangePlan"></app-change-plan>
         <div class="mt-3" *ngIf="showDownloadLicense">
             <app-download-license [organizationId]="organizationId" (onDownloaded)="closeDownloadLicense()"
                 (onCanceled)="closeDownloadLicense()"></app-download-license>

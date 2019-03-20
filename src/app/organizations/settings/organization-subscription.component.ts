@@ -31,6 +31,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     showAdjustStorage = false;
     showUpdateLicense = false;
     showDownloadLicense = false;
+    showChangePlan = false;
     sub: OrganizationSubscriptionResponse;
     selfHosted = false;
 
@@ -102,11 +103,19 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     async changePlan() {
+        if (this.subscription == null) {
+            this.showChangePlan = !this.showChangePlan;
+            return;
+        }
         const contactSupport = await this.platformUtilsService.showDialog(this.i18nService.t('changeBillingPlanDesc'),
             this.i18nService.t('changeBillingPlan'), this.i18nService.t('contactSupport'), this.i18nService.t('close'));
         if (contactSupport) {
             this.platformUtilsService.launchUri('https://bitwarden.com/contact');
         }
+    }
+
+    closeChangePlan(changed: boolean) {
+        this.showChangePlan = false;
     }
 
     downloadLicense() {
