@@ -21,12 +21,16 @@ init:
 install:
 - ps: |
     $env:PACKAGE_VERSION = (Get-Content -Raw -Path .\package.json | ConvertFrom-Json).version
+    $env:PUSH_DOCKER = "false"
     $env:PROD_DEPLOY = "false"
     $env:TAG_NAME = ""
     if($env:APPVEYOR_REPO_TAG -eq "true" -and $env:APPVEYOR_RE_BUILD -eq "True") {
       $env:PROD_DEPLOY = "true"
       $env:TAG_NAME = $env:APPVEYOR_REPO_TAG_NAME.TrimStart("v")
       echo "This is a production deployment for ${env:TAG_NAME}."
+    }
+    if("${env:DOCKER_USERNAME}" -ne "" -and "${env:DOCKER_PASSWORD}" -ne "") {
+      $env:PUSH_DOCKER = "true"
     }
     if($isWindows) {
       choco install cloc --no-progress
@@ -37,7 +41,7 @@ before_build:
 - node --version
 - npm --version
 - sh: |
-    if [ "${DOCKER_USERNAME}" != "" -a "${DOCKER_PASSWORD}" != "" ]
+    if [ "${PUSH_DOCKER}" == "true" ]
     then
       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     fi
@@ -57,16 +61,23 @@ build_script:
       }
 
       docker images
-      ./build.sh push dev
+      
+      if($env:PUSH_DOCKER -eq "true") {
+        ./build.sh push dev
 
-      if($env:PROD_DEPLOY -eq "true") {
-        ./build.sh push beta
-        ./build.sh push latest
-        ./build.sh push $env:TAG_NAME
+        if($env:PROD_DEPLOY -eq "true") {
+          ./build.sh push beta
+          ./build.sh push latest
+          ./build.sh push $env:TAG_NAME
+        }
       }
     }
 - cmd: npm install
 - cmd: npm run build:prod
 
 after_build:
-- sh: docker logout
+- sh: |
+    if [ "${PUSH_DOCKER}" == "true" ]
+    then
+      docker logout
+    fi
