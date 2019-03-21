@@ -28,7 +28,7 @@ $h5-font-size: 1rem;
 $h6-font-size: 1rem;
 
 $small-font-size: 90%;
-$font-size-lg: 1.18rem;
+$font-size-lg: 1.15rem;
 $code-font-size: 100%;
 
 $navbar-padding-y: .75rem;
@@ -185,7 +185,7 @@ input, select, textarea {
 }
 
 .card-body-header {
-    font-size: $h3-font-size * 1.12;
+    font-size: $font-size-lg;
     @extend .mb-4
 }
 
@@ -213,6 +213,12 @@ input, select, textarea {
         &.carets {
             margin-left: 0.85em;
         }
+    }
+}
+
+.card-org-plans {
+    h2 {
+        font-size: $font-size-lg;
     }
 }
 

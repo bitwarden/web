@@ -102,7 +102,7 @@ export class PremiumComponent implements OnInit {
     }
 
     get additionalStorageTotal(): number {
-        return this.storageGbPrice * this.additionalStorage;
+        return this.storageGbPrice * Math.abs(this.additionalStorage || 0);
     }
 
     get total(): number {

@@ -106,6 +106,7 @@ import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.co
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { OptionsComponent } from './settings/options.component';
+import { OrganizationPlansComponent } from './settings/organization-plans.component';
 import { OrganizationsComponent } from './settings/organizations.component';
 import { PaymentComponent } from './settings/payment.component';
 import { PremiumComponent } from './settings/premium.component';
@@ -284,6 +285,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgAddEditComponent,
         OrgApiKeyComponent,
         OrganizationBillingComponent,
+        OrganizationPlansComponent,
         OrganizationSubscriptionComponent,
         OrgAttachmentsComponent,
         OrgCiphersComponent,
