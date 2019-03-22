@@ -515,7 +515,7 @@
     "message": "Kinnita"
   },
   "emailAddressDesc": {
-    "message": "Kasutad sisselogimiseks oma e-posti aadressi."
+    "message": "E-posti aadressi kasutatakse sisselogimiseks."
   },
   "yourName": {
     "message": "Sinu nimi"
@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "Makse sooritatakse kohe pärast tellimuse esitamist. Järgmine makse toimub aasta pärast. Tellimust on võimalik igal ajal tühistada."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "Sinu valitud pakett sisaldab 7 päevast prooviperioodi. Krediitkaardilt ei debiteerita raha enne, kui prooviperiood otsa lõpeb. Kirjas olev summa debiteeritakse iga $INTERVAL$. Tellimust on võimalik igal ajal tühistada.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1836,7 +1845,7 @@
     "message": "# kasutajaid"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Sinu pakett sisaldab $BASE_SEATS$ kasutajat. Soovi korral saad lisada kasutajaid juurde hinnaga $SEAT_PRICE$ kasutaja \/kuus.",
+    "message": "Sinu pakett sisaldab $BASE_SEATS$ kasutajat. Soovi korral saad lisada kasutajaid juurde hinnaga $SEAT_PRICE$ kasutaja \/ kuus.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "Uus organisatsioon on kasutamiseks valmis!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Lahku"
@@ -2659,7 +2671,7 @@
     "message": "Organisatsiooni loomine: Samm 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Enne organisatsiooni loomist pead esmalt registreerima tasuta personaalkonto."
+    "message": "Enne organisatsiooni loomist pead esmalt looma tasuta konto."
   },
   "refunded": {
     "message": "Tagasi makstud"
