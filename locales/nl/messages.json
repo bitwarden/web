@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "Uw betaalmethode wordt onmiddellijk in rekening gebracht en vervolgens jaarlijks op terugkerende basis. U kunt op elk moment annuleren."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "Uw pakket komt met een gratis proefperiode van 7 dagen. Er worden geen kosten in rekening gebracht op uw betaalmethode voor de proefperiode voorbij is. De betaling gebeurt op een terugkerende basis elk $INTERVAL$. U kunt op elk moment opzeggen.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "Uw nieuwe organisatie is klaar voor gebruik!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Verlaten"
@@ -2512,6 +2524,10 @@
   },
   "changeBillingPlan": {
     "message": "Pakket veranderen",
+    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanUpgrade": {
+    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
