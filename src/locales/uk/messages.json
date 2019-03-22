@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "З вас буде одразу стягнуто плату згідно з обраним способом, а потім так само кожного року. Ви можете скасувати це в будь-який час."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Оплата стягуватиметься автоматично кожен $INTERVAL$. Ви можете скасувати це в будь-який час.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "Ваша нова організація готова до використання!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Покинути"
