@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "El mètode de pagament es cobrarà de manera immediata i després de forma recurrent cada any. Podeu cancel·lar-ho en qualsevol moment."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. La facturació es farà de manera recurrent cada $INTERVAL$. Podeu cancel·lar-ho en qualsevol moment.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "La vostra organització nova està preparada per començar!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Abandona"

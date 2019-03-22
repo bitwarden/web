@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "Prostredníctvom vašej platobnej metódy bude okamžite zaplatená suma za tento rok a následne sa nastaví automatická ročná platba. Platbu môžete kedykoľvek zrušiť."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "Váš plán ponúka 7-dňovú skúšobnú dobu zadarmo. Z vašej karty nebude stiahnutý poplatok, kým sa neskončí skúšobná doba. Následne sa platba vykoná každý $INTERVAL$. Plán môžete kedykoľvek zrušiť.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "Vaša nová organizácia je pripravená!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Opustiť"

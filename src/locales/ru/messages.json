@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "Необходимая сумма с вашего метода оплаты будет списана немедленно, а затем с периодичностью каждый год. Можно отменить в любой момент."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "Ваш план включает семидневную бесплатную пробную версию. Ваш метод оплаты не будет использован до окончания пробной версии. Оплата будет осуществляться каждый $INTERVAL$. Вы можете отменить в любое время.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "Ваша новая организация готова к работе!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Покинуть"
