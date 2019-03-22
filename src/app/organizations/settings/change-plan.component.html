@@ -3,6 +3,7 @@
         <button type="button" class="close" attr.aria-label="{{'cancel' | i18n}}" title="{{'cancel' | i18n}}"
             (click)="cancel()"><span aria-hidden="true">&times;</span></button>
         <h2 class="card-body-header">{{'changeBillingPlan' | i18n}}</h2>
+        <p class="mb-0">{{'changeBillingPlanUpgrade' | i18n}}</p>
         <app-organization-plans [showFree]="false" [showCancel]="true" plan="families" [organizationId]="organizationId"
             (onCanceled)="cancel()">
         </app-organization-plans>
