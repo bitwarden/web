@@ -1610,12 +1610,21 @@
   "paymentChargedAnnually": {
     "message": "Din betalingsmetode vil bli trekt umiddelbart og deretter på en gjentakende basis hvert år. Du kan avbryte det til enhver tid."
   },
+  "paymentCharged": {
+    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
   "paymentChargedWithTrial": {
     "message": "Funksjonsplanen din kommer med en gratis 7-dagersprøveperiode. Din betalingsmetode vil ikke bli trekt før prøveperiode har utløpt. Regningstrekk vil skje på en gjentakende basis hver(t) $INTERVAL$. Du kan avbryte når som helst.",
     "placeholders": {
       "interval": {
         "content": "$1",
-        "example": "year"
+        "example": "month or year"
       }
     }
   },
@@ -1992,6 +2001,9 @@
   },
   "organizationReadyToGo": {
     "message": "Din nye organisasjon er klar til å begynne!"
+  },
+  "organizationUpgraded": {
+    "message": "Your organization has been upgraded."
   },
   "leave": {
     "message": "Forlat"
