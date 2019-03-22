@@ -22,6 +22,7 @@ import { PaymentComponent } from './payment.component';
 
 import { PlanType } from 'jslib/enums/planType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
+import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 
 @Component({
     selector: 'app-organization-plans',
@@ -110,7 +111,84 @@ export class OrganizationPlansComponent {
         }
 
         try {
-            this.formPromise = this.doSubmit(files);
+            const doSubmit = async () => {
+                let orgId: string = null;
+                if (this.createOrganization) {
+                    let tokenResult: [string, PaymentMethodType] = null;
+                    if (!this.selfHosted && this.plan !== 'free') {
+                        tokenResult = await this.paymentComponent.createPaymentToken();
+                    }
+                    const shareKey = await this.cryptoService.makeShareKey();
+                    const key = shareKey[0].encryptedString;
+                    const collection = await this.cryptoService.encrypt(
+                        this.i18nService.t('defaultCollection'), shareKey[1]);
+                    const collectionCt = collection.encryptedString;
+
+                    if (this.selfHosted) {
+                        const fd = new FormData();
+                        fd.append('license', files[0]);
+                        fd.append('key', key);
+                        fd.append('collectionName', collectionCt);
+                        const response = await this.apiService.postOrganizationLicense(fd);
+                        orgId = response.id;
+                    } else {
+                        const request = new OrganizationCreateRequest();
+                        request.key = key;
+                        request.collectionName = collectionCt;
+                        request.name = this.name;
+                        request.billingEmail = this.billingEmail;
+
+                        if (this.plan === 'free') {
+                            request.planType = PlanType.Free;
+                        } else {
+                            request.paymentToken = tokenResult[0];
+                            request.paymentMethodType = tokenResult[1];
+                            request.businessName = this.ownedBusiness ? this.businessName : null;
+                            request.additionalSeats = this.additionalSeats;
+                            request.additionalStorageGb = this.additionalStorage;
+                            request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                                this.premiumAccessAddon;
+                            if (this.interval === 'month') {
+                                request.planType = this.plans[this.plan].monthPlanType;
+                            } else {
+                                request.planType = this.plans[this.plan].annualPlanType;
+                            }
+                        }
+                        const response = await this.apiService.postOrganization(request);
+                        orgId = response.id;
+                    }
+                } else {
+                    const request = new OrganizationUpgradeRequest();
+                    request.businessName = this.ownedBusiness ? this.businessName : null;
+                    request.additionalSeats = this.additionalSeats;
+                    request.additionalStorageGb = this.additionalStorage;
+                    request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                        this.premiumAccessAddon;
+                    if (this.interval === 'month') {
+                        request.planType = this.plans[this.plan].monthPlanType;
+                    } else {
+                        request.planType = this.plans[this.plan].annualPlanType;
+                    }
+                    await this.apiService.postOrganizationUpgrade(this.organizationId, request);
+                    orgId = this.organizationId;
+                }
+
+                if (orgId != null) {
+                    await this.apiService.refreshIdentityToken();
+                    await this.syncService.fullSync(true);
+                    if (this.createOrganization) {
+                        this.analytics.eventTrack.next({ action: 'Created Organization' });
+                        this.toasterService.popAsync('success',
+                            this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
+                    } else {
+                        this.analytics.eventTrack.next({ action: 'Upgraded Organization' });
+                        this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpgraded'));
+                    }
+                    this.router.navigate(['/organizations/' + orgId]);
+                }
+            };
+
+            this.formPromise = doSubmit();
             await this.formPromise;
             this.onSuccess.emit();
         } catch { }
@@ -189,69 +267,5 @@ export class OrganizationPlansComponent {
 
     get createOrganization() {
         return this.organizationId == null;
-    }
-
-    private async doSubmit(files: FileList) {
-        let tokenResult: [string, PaymentMethodType] = null;
-        if (!this.selfHosted && this.plan !== 'free') {
-            tokenResult = await this.paymentComponent.createPaymentToken();
-        }
-
-        let orgId: string = null;
-        if (this.createOrganization) {
-            const shareKey = await this.cryptoService.makeShareKey();
-            const key = shareKey[0].encryptedString;
-            const collection = await this.cryptoService.encrypt(this.i18nService.t('defaultCollection'), shareKey[1]);
-            const collectionCt = collection.encryptedString;
-
-            if (this.selfHosted) {
-                const fd = new FormData();
-                fd.append('license', files[0]);
-                fd.append('key', key);
-                fd.append('collectionName', collectionCt);
-                const response = await this.apiService.postOrganizationLicense(fd);
-                orgId = response.id;
-            } else {
-                const request = new OrganizationCreateRequest();
-                request.key = key;
-                request.collectionName = collectionCt;
-                request.name = this.name;
-                request.billingEmail = this.billingEmail;
-
-                if (this.plan === 'free') {
-                    request.planType = PlanType.Free;
-                } else {
-                    request.paymentToken = tokenResult[0];
-                    request.paymentMethodType = tokenResult[1];
-                    request.businessName = this.ownedBusiness ? this.businessName : null;
-                    request.additionalSeats = this.additionalSeats;
-                    request.additionalStorageGb = this.additionalStorage;
-                    request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
-                        this.premiumAccessAddon;
-                    if (this.interval === 'month') {
-                        request.planType = this.plans[this.plan].monthPlanType;
-                    } else {
-                        request.planType = this.plans[this.plan].annualPlanType;
-                    }
-                }
-                const response = await this.apiService.postOrganization(request);
-                orgId = response.id;
-            }
-        } else {
-            // TODO
-            orgId = this.organizationId;
-        }
-
-        if (orgId != null) {
-            await this.apiService.refreshIdentityToken();
-            await this.syncService.fullSync(true);
-            this.analytics.eventTrack.next({
-                action: (this.createOrganization ? 'Created' : 'Upgraded') + ' Organization',
-            });
-            this.toasterService.popAsync('success',
-                this.i18nService.t(this.createOrganization ? 'organizationCreated' : ''), // TODO
-                this.i18nService.t('organizationReadyToGo'));
-            this.router.navigate(['/organizations/' + orgId]);
-        }
     }
 }
