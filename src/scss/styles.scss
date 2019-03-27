@@ -785,3 +785,15 @@ img.logo {
 .overflow-hidden {
     overflow: hidden;
 }
+
+.cdk-drag-preview {
+    z-index: $zindex-tooltip !important;
+    padding: $spacer / 2;
+    opacity: .8;
+    background-color: $white;
+    border-radius: $border-radius;
+}
+
+.cursor-move {
+    cursor: move;
+}
