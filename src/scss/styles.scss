@@ -788,12 +788,11 @@ img.logo {
 
 .cdk-drag-preview {
     z-index: $zindex-tooltip !important;
-    padding: $spacer / 2;
-    opacity: .8;
+    opacity: 0.8;
     background-color: $white;
     border-radius: $border-radius;
 }
 
 .cursor-move {
-    cursor: move;
+    cursor: move !important;
 }

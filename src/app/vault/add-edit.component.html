@@ -125,8 +125,7 @@
                         </div>
                     </div>
                     <ng-container *ngIf="cipher.login.hasUris">
-                        <div class="row" appBoxRow
-                            *ngFor="let u of cipher.login.uris; let i = index; trackBy:trackByFunction">
+                        <div class="row" *ngFor="let u of cipher.login.uris; let i = index; trackBy:trackByFunction">
                             <div class="col-7 form-group">
                                 <label for="loginUri{{i}}">{{'uriPosition' | i18n : (i + 1)}}</label>
                                 <div class="input-group">
@@ -361,71 +360,70 @@
                         class="form-control"></textarea>
                 </div>
                 <h3 class="mt-4">{{'customFields' | i18n}}</h3>
-                <ng-container *ngIf="cipher.hasFields">
-                    <div cdkDropList (cdkDropListDropped)="drop($event)">
-                        <div class="row" appBoxRow cdkDrag
-                            *ngFor="let f of cipher.fields; let i = index; trackBy:trackByFunction" >
-                            <div class="col-5 form-group">
-                                <div class="d-flex">
-                                    <label for="fieldName{{i}}">{{'name' | i18n}}</label>
-                                    <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/"
-                                        target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
-                                        <i class="fa fa-question-circle-o"></i>
-                                    </a>
-                                </div>
-                                <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
-                                    class="form-control" appInputVerbatim>
+                <div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="cipher.hasFields">
+                    <div class="row" cdkDrag *ngFor="let f of cipher.fields; let i = index; trackBy:trackByFunction">
+                        <div class="col-5 form-group">
+                            <div class="d-flex">
+                                <label for="fieldName{{i}}">{{'name' | i18n}}</label>
+                                <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/"
+                                    target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
+                                    <i class="fa fa-question-circle-o"></i>
+                                </a>
                             </div>
-                            <div class="col-7 form-group">
-                                <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
-                                <div class="d-flex align-items-center">
-                                    <div class="input-group" *ngIf="f.type === fieldType.Text">
-                                        <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
-                                            [(ngModel)]="f.value" appInputVerbatim>
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
-                                                tabindex="-1">
-                                                <i class="fa fa-lg fa-clipboard"></i>
-                                            </button>
-                                        </div>
+                            <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
+                                class="form-control" appInputVerbatim>
+                        </div>
+                        <div class="col-7 form-group">
+                            <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
+                            <div class="d-flex align-items-center">
+                                <div class="input-group" *ngIf="f.type === fieldType.Text">
+                                    <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
+                                        [(ngModel)]="f.value" appInputVerbatim>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg fa-clipboard"></i>
+                                        </button>
                                     </div>
-                                    <div class="input-group" *ngIf="f.type === fieldType.Hidden">
-                                        <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
-                                            name="Field.Value{{i}}" [(ngModel)]="f.value"
-                                            class="form-control text-monospace" appInputVerbatim
-                                            autocomplete="new-password">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
-                                                tabindex="-1">
-                                                <i class="fa fa-lg"
-                                                    [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
-                                                tabindex="-1">
-                                                <i class="fa fa-lg fa-clipboard"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
-                                            [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
-                                            trueValue="true" falseValue="false">
-                                    </div>
-                                    <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
-                                        title="{{'remove' | i18n}}">
-                                        <i class="fa fa-minus-circle fa-lg"></i>
-                                    </button>
-                                    <span class="text-muted cursor-move" title="{{'dragToSort' | i18n}}">
-                                        <i class="fa fa-bars"></i>
-                                    </span>
                                 </div>
+                                <div class="input-group" *ngIf="f.type === fieldType.Hidden">
+                                    <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
+                                        name="Field.Value{{i}}" [(ngModel)]="f.value"
+                                        class="form-control text-monospace" appInputVerbatim
+                                        autocomplete="new-password">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg"
+                                                [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}">
+                                            </i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                            tabindex="-1">
+                                            <i class="fa fa-lg fa-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex-fill">
+                                    <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
+                                        [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
+                                        trueValue="true" falseValue="false">
+                                </div>
+                                <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
+                                    title="{{'remove' | i18n}}">
+                                    <i class="fa fa-minus-circle fa-lg"></i>
+                                </button>
+                                <button type="button" class="btn btn-link text-muted cursor-move"
+                                    title="{{'dragToSort' | i18n}}">
+                                    <i class="fa fa-bars fa-lg"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </ng-container>
+                </div>
                 <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2">
                     <i class="fa fa-plus-circle fa-fw"></i> {{'newCustomField' | i18n}}
                 </a>
