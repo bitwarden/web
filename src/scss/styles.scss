@@ -407,8 +407,13 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .password-wrapper {
-    display: flex !important;
-    flex-wrap: wrap;
+    word-break: break-all;
+    white-space: pre-wrap;
+    min-width: 0;
+}
+
+.password-row {
+    min-width: 0;
 }
 
 .password-number {
