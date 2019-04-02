@@ -10,6 +10,8 @@ import {
 import { ModalComponent as BaseModalComponent } from 'jslib/angular/components/modal.component';
 import { Utils } from 'jslib/misc/utils';
 
+import { MessagingService } from 'jslib/abstractions/messaging.service';
+
 @Component({
     selector: 'app-modal',
     template: `<ng-template #container></ng-template>`,
@@ -17,8 +19,8 @@ import { Utils } from 'jslib/misc/utils';
 export class ModalComponent extends BaseModalComponent {
     el: any = null;
 
-    constructor(componentFactoryResolver: ComponentFactoryResolver) {
-        super(componentFactoryResolver);
+    constructor(componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService) {
+        super(componentFactoryResolver, messagingService);
     }
 
     ngOnDestroy() { /* Nothing */ }
@@ -37,18 +39,22 @@ export class ModalComponent extends BaseModalComponent {
 
             this.el.on('show.bs.modal', () => {
                 this.onShow.emit();
+                this.messagingService.send('modalShow');
             });
             this.el.on('shown.bs.modal', () => {
                 this.onShown.emit();
+                this.messagingService.send('modalShown');
                 if (!Utils.isMobileBrowser) {
                     this.el.find('*[appAutoFocus]').focus();
                 }
             });
             this.el.on('hide.bs.modal', () => {
                 this.onClose.emit();
+                this.messagingService.send('modalClose');
             });
             this.el.on('hidden.bs.modal', () => {
                 this.onClosed.emit();
+                this.messagingService.send('modalClosed');
                 if (this.parentContainer != null) {
                     this.parentContainer.clear();
                 }
