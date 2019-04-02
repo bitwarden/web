@@ -154,6 +154,7 @@ import { VaultComponent } from './vault/vault.component';
 
 import { IconComponent } from 'jslib/angular/components/icon.component';
 
+import { A11yTitleDirective } from 'jslib/angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib/angular/directives/api-action.directive';
 import { AutofocusDirective } from 'jslib/angular/directives/autofocus.directive';
 import { BlurClickDirective } from 'jslib/angular/directives/blur-click.directive';
@@ -232,6 +233,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DragDropModule,
     ],
     declarations: [
+        A11yTitleDirective,
         AcceptOrganizationComponent,
         AccountComponent,
         AddCreditComponent,
