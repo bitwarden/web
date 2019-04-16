@@ -43,4 +43,8 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
             this.modal = null;
         });
     }
+
+    lengthChanged() {
+        document.getElementById('length').focus();
+    }
 }
