@@ -103,7 +103,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     async changePlan() {
-        if (this.subscription == null) {
+        if (this.subscription == null && this.sub.planType === PlanType.Free) {
             this.showChangePlan = !this.showChangePlan;
             return;
         }
