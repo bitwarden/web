@@ -101,6 +101,9 @@ export class AppComponent implements OnDestroy, OnInit {
                     case 'unlocked':
                         this.notificationsService.updateConnection(false);
                         break;
+                    case 'authBlocked':
+                        this.router.navigate(['/']);
+                        break;
                     case 'logout':
                         this.logOut(!!message.expired);
                         break;
