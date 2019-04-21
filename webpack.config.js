@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const pjson = require('./package.json');
 
@@ -167,6 +168,13 @@ const config = {
                 },
             },
         },
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    safari10: true,
+                },
+            }),
+        ],
     },
     resolve: {
         extensions: ['.ts', '.js'],
