@@ -50,6 +50,12 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
+    launchCipher(c: CipherView) {
+        if ((c as any).login.uri) {
+            window.open((c as any).login.uri, "_blank");
+        }
+    }
+
     selectAll(select: boolean) {
         if (select) {
             this.selectAll(false);

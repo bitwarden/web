@@ -22,6 +22,12 @@
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
                 </td>
+                <td class="table-list-options pr-0">
+                    <button class="btn btn-link text-muted px-0" *ngIf="c.login.uri" (click)="launchCipher(c)"
+                        title="{{c.login.uri}}">
+                        <i class="fa fa-share"></i>
+                    </button>
+                </td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
