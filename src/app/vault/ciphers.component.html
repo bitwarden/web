@@ -22,13 +22,6 @@
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
                 </td>
-                <td class="table-list-options pr-0">
-                    <button type="button" class="btn btn-link text-muted px-0" *ngIf="c.login.launchUri"
-                        title="{{'launch' | i18n}}" (click)="launch(c.login)" [disabled]="!c.login.canLaunch"
-                        tabindex="-1">
-                        <i class="fa fa-share"></i>
-                    </button>
-                </td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -40,6 +33,11 @@
                                 (click)="copy(c.login.password, 'password', 'password')">
                                 <i class="fa fa-fw fa-clipboard"></i>
                                 {{'copyPassword' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick
+                                *ngIf="c.type === cipherType.Login && c.login.canLaunch" (click)="launch(c.login)">
+                                <i class="fa fa-fw fa-share"></i>
+                                {{'launch' | i18n}}
                             </a>
                             <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
                                 <i class="fa fa-fw fa-paperclip"></i>
