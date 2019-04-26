@@ -34,6 +34,11 @@
                                 <i class="fa fa-fw fa-clipboard"></i>
                                 {{'copyPassword' | i18n}}
                             </a>
+                            <a class="dropdown-item" href="#" appStopClick
+                                *ngIf="c.type === cipherType.Login && c.login.canLaunch" (click)="launch(c.login)">
+                                <i class="fa fa-fw fa-share"></i>
+                                {{'launch' | i18n}}
+                            </a>
                             <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
                                 <i class="fa fa-fw fa-paperclip"></i>
                                 {{'attachments' | i18n}}

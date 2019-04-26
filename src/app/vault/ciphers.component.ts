@@ -19,6 +19,7 @@ import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/componen
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
+import { LoginView } from 'jslib/models/view/loginView';
 
 const MaxCheckedCount = 500;
 
@@ -48,6 +49,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     checkCipher(c: CipherView, select?: boolean) {
         (c as any).checked = select == null ? !(c as any).checked : select;
+    }
+
+    launch(view: LoginView) {
+        if (!view.canLaunch) {
+            return;
+        }
+
+        this.platformUtilsService.eventTrack('Launched Login URI');
+        this.platformUtilsService.launchUri(view.launchUri);
     }
 
     selectAll(select: boolean) {
