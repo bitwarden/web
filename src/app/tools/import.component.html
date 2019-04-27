@@ -223,6 +223,10 @@
             Open the RememBear desktop application and navigate to "Settings" &rarr; "Account" &rarr; "Export".
             Enter your master password and select the "Export Anyway" button to save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'passwordwallettxt'">
+            Open the PasswordWallet desktop application and navigate to "File" &rarr; "Export" &rarr;
+            "Visible entries to text file". Enter your password and select the "Ok" button to save the TXT file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
