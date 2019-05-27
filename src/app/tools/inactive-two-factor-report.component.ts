@@ -87,7 +87,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
                 for (const serviceName in category) {
                     if (category.hasOwnProperty(serviceName)) {
                         const service = category[serviceName];
-                        if (service.tfa && service.url != null) {
+                        if (service.tfa && service.software && service.url != null) {
                             const hostname = Utils.getHostname(service.url);
                             if (hostname != null) {
                                 this.services.set(hostname, service.doc);
