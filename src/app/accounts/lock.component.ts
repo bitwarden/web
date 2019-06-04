@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CryptoService } from 'jslib/abstractions/crypto.service';
+import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { LockService } from 'jslib/abstractions/lock.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -22,9 +23,9 @@ export class LockComponent extends BaseLockComponent {
         platformUtilsService: PlatformUtilsService, messagingService: MessagingService,
         userService: UserService, cryptoService: CryptoService,
         storageService: StorageService, lockService: LockService,
-        private routerService: RouterService) {
+         environmentService: EnvironmentService, private routerService: RouterService) {
         super(router, i18nService, platformUtilsService, messagingService, userService, cryptoService,
-            storageService, lockService);
+            storageService, lockService, environmentService);
     }
 
     async ngOnInit() {

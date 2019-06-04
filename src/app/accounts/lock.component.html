@@ -19,7 +19,9 @@
                                     [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                             </button>
                         </div>
-                        <small class="text-muted form-text">{{'loggedInAsEmail' | i18n : email}}</small>
+                        <small class="text-muted form-text">
+                            {{'loggedInAsEmailOn' | i18n : email : webVaultHostname}}
+                        </small>
                     </div>
                     <hr>
                     <div class="d-flex">
