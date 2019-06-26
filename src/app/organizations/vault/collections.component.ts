@@ -24,6 +24,7 @@ export class CollectionsComponent extends BaseCollectionsComponent {
         i18nService: I18nService, cipherService: CipherService,
         private apiService: ApiService) {
         super(collectionService, platformUtilsService, i18nService, cipherService);
+        this.allowSelectNone = true;
     }
 
     protected async loadCipher() {
