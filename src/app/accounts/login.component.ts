@@ -19,9 +19,9 @@ import { LoginComponent as BaseLoginComponent } from 'jslib/angular/components/l
 export class LoginComponent extends BaseLoginComponent {
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, private route: ActivatedRoute,
-        storageService: StorageService, private stateService: StateService,
+        storageService: StorageService, stateService: StateService,
         platformUtilsService: PlatformUtilsService) {
-        super(authService, router, platformUtilsService, i18nService, storageService);
+        super(authService, router, platformUtilsService, i18nService, storageService, stateService);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 

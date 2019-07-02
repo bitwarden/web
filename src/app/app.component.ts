@@ -41,6 +41,7 @@ import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
 import { SettingsService } from 'jslib/abstractions/settings.service';
+import { StateService } from 'jslib/abstractions/state.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -81,7 +82,8 @@ export class AppComponent implements OnDestroy, OnInit {
         private lockService: LockService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
         private sanitizer: DomSanitizer, private searchService: SearchService,
-        private notificationsService: NotificationsService, private routerService: RouterService) { }
+        private notificationsService: NotificationsService, private routerService: RouterService,
+        private stateService: StateService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -183,6 +185,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.folderService.clear(userId),
             this.collectionService.clear(userId),
             this.passwordGenerationService.clear(),
+            this.stateService.purge(),
         ]);
 
         this.searchService.clearIndex();
