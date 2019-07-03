@@ -151,6 +151,9 @@
   "value": {
     "message": "Väärtus"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Tekst"
   },
@@ -407,7 +410,7 @@
     "message": "Tühista valik"
   },
   "launch": {
-    "message": "Käivita"
+    "message": "Ava"
   },
   "newAttachment": {
     "message": "Lisa uus manus"
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Lukusta lahti"
   },
-  "loggedInAsEmail": {
-    "message": "Sisse logitud kasutajaga $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -689,7 +696,7 @@
     "message": "Autentiseerimise rakendus"
   },
   "authenticatorAppDesc": {
-    "message": "Kausta autentiseerimise rakendust (näiteks Authy või Google Authenticator), et luua ajal baseeruvaid kinnituskoode.",
+    "message": "Kasuta autentiseerimise rakendust (näiteks Authy või Google Authenticator), et luua ajal baseeruvaid kinnituskoode.",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
@@ -737,7 +744,7 @@
     "message": "Muuda kollektsioone, millega seda kirjet jagatakse. Seda kirjet näevad üksnes organisatsiooni kasutajad, kes omavad nendele kollektsioonidele ligipääsu."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Oled kustutamiseks valinud $COUNT$ objekti. Oled kindel, et soovid kõik need objektid kustutada?",
+    "message": "Oled kustutamiseks valinud $COUNT$ kirjet. Oled kindel, et soovid kõik need kirjed kustutada?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -781,13 +788,13 @@
     "message": "Hoiatus"
   },
   "exportWarningDesc": {
-    "message": "Eksporditav fail sisaldab hoidla sisu, mis on krüpteeringuta. Seda faili ei tohiks kaua käidelda ning mitte mingil juhul ebaturvaliselt saata (näiteks e-postiga). Kustuta see koheselt pärast kasutamist."
+    "message": "Eksporditav on krüpteeringuta ja sisaldab hoidla sisu. Seda faili ei tohiks kaua käidelda ning mitte mingil juhul ebaturvaliselt saata (näiteks e-postiga). Kustuta see koheselt pärast kasutamist."
   },
   "exportMasterPassword": {
     "message": "Hoidlas olevate andmete eksportimiseks on vajalik ülemparooli sisestamine."
   },
   "exportVault": {
-    "message": "Ekspordi hoidla"
+    "message": "Hoidla sisu eksportimine"
   },
   "fileFormat": {
     "message": "Failivorming"
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Sõna eraldaja"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Paroolide ajalugu"
   },
@@ -827,7 +841,8 @@
     "message": "Puuduvad paroolid, mida kuvada."
   },
   "clear": {
-    "message": "Tühjenda"
+    "message": "Tühjenda",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Konto uuendatud"
@@ -920,7 +935,7 @@
     "message": "Sessioonide tühistamine"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Muretsed, et sinu kontosse on võõra seadme alt sisse logitud? Allpool saad kõikidest seadmetest välja logida. See valik võib olla kasulik näiteks juhtudel, kus oled kasutanud avalikku arvutit või salvestasid kogemata parooli seadmes, mis ei kuulu sinule. Samuti nullib see tegevus kõik varasemad kaheastmelise kinnitamise poolt meelde jäetud seadmed."
+    "message": "Muretsed, et sinu kontosse on võõra seadme alt sisse logitud? Kasuta allolevat valikut, et kõikidest seadmetest välja logida. See võib olla kasulik näiteks juhtudel, kus oled kasutanud avalikku arvutit või salvestasid kogemata parooli seadmes, mis ei kuulu sinule. Samuti nullib see tegevus kõik varasemad kaheastmelise kinnitamise poolt meelde jäetud seadmed."
   },
   "deauthorizeSessionsWarning": {
     "message": "Jätkatest logitakse sind ka käimasolevast sessioonist välja, mistõttu pead kontosse uuesti sisse logima. Lisaks võidakse küsida kaheastmelist kinnitust, kui see on sisse lülitatud. Teised kontoga ühendatud seadmed võivad jääda sisselogituks kuni üheks tunniks."
@@ -1278,7 +1293,7 @@
     "message": "Ootame, kuni puudutad turvavõtmel olevat nuppu"
   },
   "twoFactorU2fClickSave": {
-    "message": "Kliki all olevale \"Luba\" nupule, et kaheastmeline kinnitamine läbi selle turvavõtme sisse lülitada."
+    "message": "Kliki all olevale \"Salvesta\" nupule, et kaheastmeline kinnitamine läbi selle turvavõtme sisse lülitada."
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Turvavõtme lugemisel tekkis tõrge. Proovi uuesti."
@@ -1345,7 +1360,7 @@
     "message": "Lekkinud paroolide raport"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Lekkinud paroolid on paroolid, mis pärinevad andmeleketest. Neid paroole võidakse müüa tumeveebis ning nende kaudu võidakse ka sinu teistele kontodele ligi pääseda."
+    "message": "Lekkinud paroolid on paroolid, mis pärinevad andmeleketest. Neid paroole võidakse müüa tumeveebis ning samuti võidakse nende kaudu ligi pääseda sinu teistesse kontodesse."
   },
   "exposedPasswordsFound": {
     "message": "Avastatud on lekkinud paroole"
@@ -1378,7 +1393,7 @@
     "message": "Nõrkade paroolide raport"
   },
   "weakPasswordsReportDesc": {
-    "message": "Nõrgad paroolid on häkkerite poolt lihtsasti lahtimurtavad, sest selleks kasutatakse automatiseeritud tööriistu. Bitwardeni parooli genereerija aitab sul tugevaid paroole luua."
+    "message": "Nõrgad paroolid on häkkerite poolt vägagi lihtasti lahtimurtavad, sest selleks kasutatakse automatiseeritud tööriistu. Bitwardeni parooli genereerija aitab sul luua paroole, mida on märksa keerulisem lahti murda."
   },
   "weakPasswordsFound": {
     "message": "Avastatud on nõrku paroole"
@@ -1399,7 +1414,7 @@
     "message": "Korduvate paroolide raport"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Kui kasutatav teenus või veebileht langeb rünnaku ohvriks, võib sama parooli kasutamine anda häkkeritele ligipääsu sinu teistele onlain kontodele. Soovitame tungivalt igas teenuses või kasutajakontos unikaalset parooli kasutada."
+    "message": "Kui sinu poolt kasutatav teenus või veebileht langeb rünnaku ohvriks, võib samasuguse parooli kasutamine anda häkkeritele ligipääsu sinu teistesse kasutajakontodesse. Soovitame tungivalt igas teenuses või kasutajakontos unikaalset parooli kasutada."
   },
   "reusedPasswordsFound": {
     "message": "Leiti korduvalt kasutatud paroole"
@@ -2405,7 +2420,7 @@
     "message": "Kinnita"
   },
   "confirmUser": {
-    "message": "Kinnita kaustaja"
+    "message": "Kinnita kasutaja"
   },
   "hasBeenConfirmed": {
     "message": "Kasutaja $USER$ on kinnitatud.",
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "API võtme roteerimine"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
