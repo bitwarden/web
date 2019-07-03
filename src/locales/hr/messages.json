@@ -151,6 +151,9 @@
   "value": {
     "message": "Vrijednost"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Tekst"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Otključaj"
   },
-  "loggedInAsEmail": {
-    "message": "Prijavljen kao $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Razdjelitelj riječi"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Password History"
   },
@@ -827,7 +841,8 @@
     "message": "Nema lozinki na popisu."
   },
   "clear": {
-    "message": "Očisti"
+    "message": "Očisti",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Račun je ažuriran"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Rotiraj API ključ"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
