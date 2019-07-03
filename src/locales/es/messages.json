@@ -151,6 +151,9 @@
   "value": {
     "message": "Valor"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Texto"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Desbloquear"
   },
-  "loggedInAsEmail": {
-    "message": "Sesión iniciada como $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Separador de palabras"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Historial de contraseñas"
   },
@@ -827,7 +841,8 @@
     "message": "No hay contraseñas que listar."
   },
   "clear": {
-    "message": "Limpiar"
+    "message": "Limpiar",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Cuenta actualizada"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Rotar clave API"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

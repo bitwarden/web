@@ -151,6 +151,9 @@
   "value": {
     "message": "Wert"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Text"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Entsperren"
   },
-  "loggedInAsEmail": {
-    "message": "Als $EMAIL$ angemeldet.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Worttrennzeichen"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Passwortverlauf"
   },
@@ -827,7 +841,8 @@
     "message": "Keine Passwörter vorhanden."
   },
   "clear": {
-    "message": "Löschen"
+    "message": "Löschen",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Konto aktualisiert"
@@ -1496,7 +1511,7 @@
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "Guthaben aufladen",
+    "message": "Guthaben hinzufügen",
     "description": "Add more credit to your account's balance."
   },
   "amount": {
@@ -1717,10 +1732,10 @@
     "message": "Keine Zahlungsmethode hinterlegt."
   },
   "addPaymentMethod": {
-    "message": "Zahlungsart hinzufügen"
+    "message": "Zahlungsmethode hinzufügen"
   },
   "changePaymentMethod": {
-    "message": "Zahlungsart ändern"
+    "message": "Zahlungsmethode ändern"
   },
   "invoices": {
     "message": "Rechnungen"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "API-Schlüssel erneuern"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

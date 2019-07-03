@@ -151,6 +151,9 @@
   "value": {
     "message": "Hodnota"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Text"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Odemknout"
   },
-  "loggedInAsEmail": {
-    "message": "Přihlášen jako $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Oddělovač slov"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Historie hesel"
   },
@@ -827,7 +841,8 @@
     "message": "Nejsou k dispozici žádná hesla."
   },
   "clear": {
-    "message": "Vymazat"
+    "message": "Vymazat",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Účet byl aktualizován"
@@ -2810,7 +2825,7 @@
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API klíč"
   },
   "apiKeyDesc": {
     "message": "Your API key can be used to authenticate to the Bitwarden public API."
@@ -2826,9 +2841,12 @@
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "View API Key"
+    "message": "Zobrazit API klíč"
   },
   "rotateApiKey": {
-    "message": "Rotate API Key"
+    "message": "Změnit API klíč"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

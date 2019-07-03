@@ -151,6 +151,9 @@
   "value": {
     "message": "值"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "文字"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "解鎖"
   },
-  "loggedInAsEmail": {
-    "message": "已登入為 $EMAIL$",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -755,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "您選擇了 $COUNT$ 個項目。可分享 $SHAREABLE_COUNT$ 個項目，不可分享 $NONSHAREABLE_COUNT$ 個項目。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "文字分隔字元"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "密碼歷史記錄"
   },
@@ -827,7 +841,8 @@
     "message": "沒有密碼可顯示。"
   },
   "clear": {
-    "message": "清除"
+    "message": "清除",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "帳戶已更新"
@@ -914,7 +929,7 @@
     "message": "危險操作區"
   },
   "dangerZoneDesc": {
-    "message": "小心, 這些動作是無法挽回的！"
+    "message": "小心, 以下這些動作是無法復原的！"
   },
   "deauthorizeSessions": {
     "message": "取消登入階段"
@@ -932,13 +947,13 @@
     "message": "清除密碼庫"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "已清除組織的密碼庫。"
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "請在下方繼續刪除密碼庫當中的所有項目與資料夾。將不會刪除您分享給組織的項目。"
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "請在下方繼續刪除密碼庫當中的所有項目。"
   },
   "purgeVaultWarning": {
     "message": "清除密碼庫是永久性的。將無法被還原。"
@@ -950,10 +965,10 @@
     "message": "刪除帳戶"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "請在下方繼續刪除帳號，以及所有相關資料。"
   },
   "deleteAccountWarning": {
-    "message": "Deleting your account is permanent. It cannot be undone."
+    "message": "帳號刪除後就無法再回復。"
   },
   "accountDeleted": {
     "message": "帳戶已被刪除"
@@ -989,7 +1004,7 @@
     "message": "或複製貼上要匯入的檔案內容"
   },
   "instructionsFor": {
-    "message": "$NAME$ Instructions",
+    "message": "$NAME$ 匯入教學",
     "description": "The title for the import tool instructions.",
     "placeholders": {
       "name": {
@@ -1054,7 +1069,7 @@
     "message": "新增自訂網域"
   },
   "newCustomDomainDesc": {
-    "message": "輸入不同域名時以逗號分隔.只允許輸入域名。不能輸入子網域名稱。例如, 輸入 \"google. com\" 而不是 \"www.google.com\"。您還可以輸入 \"androidapp:\/\/package.name\" 將 android 應用程式 與其他網站域相關聯。"
+    "message": "輸入以逗號分隔的網域清單。只允許最基本的網域，請勿輸入子網域名稱。例如，輸入「google.com」即可，而非「www.google.com」。您也可以輸入「androidapp:\/\/package.name」來將 Android 應用程式與其他網域名稱關聯起來。"
   },
   "customDomainX": {
     "message": "自訂網域 $INDEX$",
@@ -1075,7 +1090,7 @@
     "message": "在登入時執行額外的步驟來保護您的帳戶。"
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "可透過組織等級的設定，要求所有使用者都必須開啟兩階段登入。"
   },
   "twoStepLoginRecoveryWarning": {
     "message": "啟用兩步驟登入可以永久鎖定您的 Bitwarden 帳戶。如果您無法正常使用兩步驟登入驗證應用程式（例如，您遺失了裝置），則可以使用復原碼造訪您的帳戶。 如果您失去造訪帳戶的權限，Bitwarden 便無法幫助您。所以我們建議您記下或列印復原碼，並將其妥善保管。"
@@ -1110,7 +1125,7 @@
     "message": "您有進階版存取權限"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "您透過加入的組織，已獲得收費功能。"
   },
   "manage": {
     "message": "管理"
@@ -1125,13 +1140,13 @@
     "message": "輸入您的主密碼以修改兩步驟登入設定。"
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "請依照下列步驟使用驗證器程式，設定兩階段登入:"
   },
   "twoStepAuthenticatorDownloadApp": {
     "message": "下載兩步驟登入應用程式"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "需要兩步驗證器APP？下載以下應用之一"
+    "message": "需要一套驗證器程式嗎？試試下列程式"
   },
   "iosDevices": {
     "message": "iOS 裝置"
@@ -1143,25 +1158,25 @@
     "message": "Windows 裝置"
   },
   "twoStepAuthenticatorAppsRecommended": {
-    "message": "These apps are recommended, however, other authenticator apps will also work."
+    "message": "推薦使用下列應用程式，但也可使用其他的驗證器。"
   },
   "twoStepAuthenticatorScanCode": {
-    "message": "使用您的兩步驟APP驗證掃描此QR-Code"
+    "message": "使用您的驗證器程式掃描此 QR Code"
   },
   "key": {
     "message": "金鑰"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the app"
+    "message": "請輸入應用程式產生的六位數驗證碼"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "若您需要加入其他裝置，請使用下列 QR Code 或金鑰加入驗證器程式。"
   },
   "twoStepDisableDesc": {
     "message": "您確定要停用兩步驟登入嗎?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "已停用兩階段登入提供者。"
   },
   "twoFactorYubikeyAdd": {
     "message": "新增 YubiKey 身分認證裝置至您的帳戶。"
@@ -1170,7 +1185,7 @@
     "message": "將 YubiKey 插入電腦的 USB 連接埠。"
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Select in the first empty YubiKey input field below."
+    "message": "於下方選擇第一個空白的 YubiKey 輸入欄位。"
   },
   "twoFactorYubikeyTouchButton": {
     "message": "按下 YubiKey 的按鈕。"
@@ -1179,13 +1194,13 @@
     "message": "儲存表單"
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "由於平台限制，無法於所有 Bitwarden 應用程式使用 YubiKeys。請開啟另一套兩階段登入供應者，以確保可在 YubiKeys 無法使用時還能存取帳號。支援的平台有:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "在包含可接受您的 YubiKey 的 USB 埠的電腦上的網頁密碼庫、桌面應用程式、命令行介面、所有瀏覽器擴充套件。"
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "支援 NFC 功能或擁有可接受您的 YubiKey 的 USB 埠的裝置上的行動應用程式。"
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1209,10 +1224,10 @@
     "message": "NFC 支援"
   },
   "twoFactorYubikeySupportsNfc": {
-    "message": "One of my keys supports NFC."
+    "message": "我有一把金鑰支援 NFC。"
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
+    "message": "若您有支援 NFC 的 YubiKey（例如 YubiKey NEO），行動裝置將在 NFC 感應到時提示您。"
   },
   "yubikeysUpdated": {
     "message": "YubiKeys 已更新"
@@ -1221,7 +1236,7 @@
     "message": "停用全部金鑰"
   },
   "twoFactorDuoDesc": {
-    "message": "Enter the Bitwarden application information from your Duo Admin panel."
+    "message": "請輸入來自您的 Duo 管理面板的 Bitwarden 應用程式資訊。"
   },
   "twoFactorDuoIntegrationKey": {
     "message": "整合金鑰"
@@ -1233,13 +1248,13 @@
     "message": "API 主機名稱"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "請依照下列步驟使用電子郵件，設定兩階段登入:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Enter the email that you wish to receive verification codes"
+    "message": "請輸入您想要用來收到驗證碼的電子郵件信箱"
   },
   "twoFactorEmailEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the email"
+    "message": "請輸入電子郵件中的六位數驗證碼"
   },
   "sendEmail": {
     "message": "傳送電子郵件"
@@ -1248,46 +1263,46 @@
     "message": "在您的帳戶中新增 FIDO U2F 安全金鑰"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "您確定要移除這把安全金鑰嗎？"
   },
   "readKey": {
     "message": "讀取金鑰"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "金鑰已洩漏。"
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "給安全鑰匙起一個友好的名稱，以方便識別。"
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+    "message": "請將安全鑰匙插入您電腦的 USB 埠，並按下「讀取鑰匙」按鈕。"
   },
   "twoFactorU2fTouchButton": {
-    "message": "If the security key has a button, touch it."
+    "message": "如果安全鑰匙有按鈕，請按下去。"
   },
   "twoFactorU2fSaveForm": {
     "message": "儲存表單"
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "由於平台限制，無法於所有 Bitwarden 應用程式使用 FIDO U2F。請開啟另一套兩階段登入供應者，以確保 FIDO U2F 無法使用時還能存取帳號。支援的平台有："
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "支援 U2F 的桌面\/筆記本電腦上的網頁密碼庫和啓用 U2F 的瀏覽器 (Chrome, Opera, Vivaldi, 或啓用了 FIDO U2F 的 Firefox)。"
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "等待您按下加密鑰匙上的按鈕"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "按下底下的「儲存」按鈕，啟用此加密鑰匙以用於兩步驟登入。"
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "讀取安全金鑰時發生問題。請重試。"
   },
   "twoFactorRecoveryYourCode": {
     "message": "您的 Bitwarden 兩步驟登入復原碼"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "您尚未啟用任何兩步驟登入提供者。等你啟用兩步驟登入提供者後，您可回來這裡取得復原碼。"
   },
   "printCode": {
     "message": "列印代碼",
@@ -1300,13 +1315,13 @@
     "message": "Unsecured Websites Report"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "使用 http:\/\/ 配置的不安全網站有風險。如果網站允許，您應永遠使用 https:\/\/ 配置存取此網站，這樣您的連線才是加密過的。"
   },
   "unsecuredWebsitesFound": {
-    "message": "Unsecured Websites Found"
+    "message": "發現不安全的網站"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "我們在您的密碼庫找到 $COUNT$ 個使用不安全網址的項目。如果網站允許，您應變更其網址配置至 https:\/\/。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1315,19 +1330,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "您的密碼庫沒有使用不安全網址的項目。"
   },
   "inactive2faReport": {
     "message": "Inactive 2FA Report"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "兩步驟驗證 (2FA) 是個協助保護您帳號的重要安全性設定。如果網站提供 2FA，您應永遠啟用。"
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "找到沒有 2FA 的登入資訊"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "我們在密碼庫找到 $COUNT$ 個可能未設定兩步驟驗證的網站（根據 twofactorauth.org）。若要更加保護這些帳號，您應啟用兩步驟驗證。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1336,7 +1351,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "未在您的密碼庫找到未設定兩步驟驗證的網站。"
   },
   "instructions": {
     "message": "說明"
@@ -1351,7 +1366,7 @@
     "message": "Exposed Passwords Found"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "我們在您的密碼庫找到 $COUNT$ 個密碼公開在已知資料洩漏中的項目。您應將這些變更成新密碼。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1360,13 +1375,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "未在您的密碼庫找到密碼公開在已知資料洩漏中的項目。"
   },
   "checkExposedPasswords": {
     "message": "Check Exposed Passwords"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "已公開 $COUNT$ 次",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1375,16 +1390,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "弱強度密碼報告"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "弱密碼可以輕易的被駭客和用於破解密碼的自動化工具猜中。Bitwarden 密碼生成器可以幫助您創建強密碼。"
   },
   "weakPasswordsFound": {
-    "message": "Weak Passwords Found"
+    "message": "發現不夠安全的密碼"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "我們在您的密碼庫中發現了 $COUNT$ 個使用弱密碼的項目。您應該將它們改為更強的密碼。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1393,16 +1408,16 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "您的密碼庫未有項目有脆弱密碼。"
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "密碼重複使用報告"
   },
   "reusedPasswordsReportDesc": {
     "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "發現密碼重複使用"
   },
   "reusedPasswordsFoundDesc": {
     "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
@@ -1414,10 +1429,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "未在您密碼庫中找到重複使用密碼的登入資訊。"
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "已重複使用 $COUNT$ 次",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1432,7 +1447,7 @@
     "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
   },
   "breachCheckUsernameEmail": {
-    "message": "Check any usernames or email addresses that you use."
+    "message": "請檢查您所用的使用者名稱或電子信箱位址。"
   },
   "checkBreaches": {
     "message": "檢查密碼外洩情況"
@@ -1464,7 +1479,7 @@
     }
   },
   "breachFound": {
-    "message": "Breached Accounts Found"
+    "message": "發現被洩漏的帳號資料"
   },
   "compromisedData": {
     "message": "遭洩漏的資料"
@@ -1482,7 +1497,7 @@
     "message": "已回報外洩"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "嘗試載入報告時發生錯誤。請重試。"
   },
   "billing": {
     "message": "帳單"
@@ -1650,13 +1665,13 @@
     "message": "The subscription has been marked for cancellation at the end of the current billing period."
   },
   "reinstateSubscription": {
-    "message": "Reinstate Subscription"
+    "message": "重新開始訂閱"
   },
   "reinstateConfirmation": {
     "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "已重新開始訂閱。"
   },
   "cancelConfirmation": {
     "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
@@ -1773,7 +1788,7 @@
     "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
   },
   "adjustedStorage": {
-    "message": "Adjusted $AMOUNT$ GB of storage.",
+    "message": "已調整 $AMOUNT$ GB 的儲存空間。",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1809,7 +1824,7 @@
     "message": "To create an on-premise hosted organization you need to upload a valid license file."
   },
   "accountEmailMustBeVerified": {
-    "message": "Your account's email address must be verified."
+    "message": "您必須驗證電子郵件。"
   },
   "newOrganizationDesc": {
     "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
@@ -1842,7 +1857,7 @@
     "message": "Additional User Seats"
   },
   "userSeatsDesc": {
-    "message": "# of user seats"
+    "message": "# 使用者數"
   },
   "userSeatsAdditionalDesc": {
     "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
@@ -1877,7 +1892,7 @@
     "message": "家庭"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "個人使用，與家人及朋友分享。"
   },
   "planNameTeams": {
     "message": "團隊"
@@ -1895,7 +1910,7 @@
     "message": "永遠免費"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "有 $COUNT$ 位使用者",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1916,7 +1931,7 @@
     }
   },
   "limitedUsers": {
-    "message": "Limited to $COUNT$ users (including you)",
+    "message": "限制 $COUNT$ 位使用者（包括您）",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1925,7 +1940,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Limited to $COUNT$ collections",
+    "message": "限制 $COUNT$ 個收藏",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1934,7 +1949,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Add and share with up to $COUNT$ users",
+    "message": "新增，並與最多 $COUNT$ 位使用者分享",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1943,10 +1958,10 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "新增，並與無限位使用者分享"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited collections"
+    "message": "建立無限收藏"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ 加密檔案儲存空間。",
@@ -1958,19 +1973,19 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "內部寄管（選用）"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "使用者取得了進階成員功能的存取權限"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "使用群組控制使用者存取"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "從目錄同步使用者及群組"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "使用稽核記錄追蹤使用者動作"
   },
   "enforce2faDuo": {
     "message": "強制使用 Duo 兩步驟驗證"
@@ -1979,7 +1994,7 @@
     "message": "優先客戶支援"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$ 天免費試用，隨時可取消",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2003,7 +2018,7 @@
     "message": "Your new organization is ready to go!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "您的組織已被升級。"
   },
   "leave": {
     "message": "離開"
@@ -2012,7 +2027,7 @@
     "message": "Are you sure you want to leave this organization?"
   },
   "leftOrganization": {
-    "message": "You have left the organization."
+    "message": "您已離開組織。"
   },
   "defaultCollection": {
     "message": "預設收藏"
@@ -2060,25 +2075,25 @@
     "message": "存取控制"
   },
   "groupAccessAllItems": {
-    "message": "This group can access and modify all items."
+    "message": "此群組可存取及修改所有項目。"
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "此群組只能存取選擇的收藏。"
   },
   "readOnly": {
     "message": "唯讀"
   },
   "newCollection": {
-    "message": "New Collection"
+    "message": "新增收藏"
   },
   "addCollection": {
-    "message": "Add Collection"
+    "message": "加入收藏"
   },
   "editCollection": {
     "message": "編輯收藏"
   },
   "deleteCollectionConfirmation": {
-    "message": "Are you sure you want to delete this collection?"
+    "message": "確定刪除此收藏？"
   },
   "editUser": {
     "message": "編輯使用者"
@@ -2099,13 +2114,13 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "此使用者正在使用兩步驟登入保護帳號。"
   },
   "userAccessAllItems": {
-    "message": "This user can access and modify all items."
+    "message": "此使用者可存取及修改所有項目。"
   },
   "userAccessSelectedCollections": {
-    "message": "This user can access only the selected collections."
+    "message": "此使用者只能存取選擇的收藏。"
   },
   "search": {
     "message": "搜尋"
@@ -2183,19 +2198,19 @@
     "message": "已變更帳戶密碼。"
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "已啟用 \/ 更新兩步驟登入。"
   },
   "disabled2fa": {
     "message": "已停用兩步驟登入。"
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "已從兩步驟登入復原帳號。"
   },
   "failedLogin": {
-    "message": "Login attempt failed with incorrect password."
+    "message": "登入失敗，密碼錯誤。"
   },
   "failedLogin2fa": {
-    "message": "Login attempt failed with incorrect two-step login."
+    "message": "登入失敗，兩步驟登入錯誤。"
   },
   "editedOrgSettings": {
     "message": "Edited organization settings."
@@ -2237,7 +2252,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Created collection $ID$.",
+    "message": "已建立收藏 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2246,7 +2261,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Edited collection $ID$.",
+    "message": "已編輯收藏 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2255,7 +2270,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Deleted collection $ID$.",
+    "message": "已刪除收藏 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2300,7 +2315,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Created attachment for item $ID$.",
+    "message": "已為項目 $ID$ 建立附件。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2309,7 +2324,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Deleted attachment for item $ID$.",
+    "message": "已為項目 $ID$ 刪除附件。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2318,7 +2333,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Edited collections for item $ID$.",
+    "message": "已為項目 $ID$ 編輯收藏。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2327,7 +2342,7 @@
     }
   },
   "invitedUserId": {
-    "message": "Invited user $ID$.",
+    "message": "使用者 $ID$ 無效。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2336,7 +2351,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Confirmed user $ID$.",
+    "message": "已確認使用者 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2354,7 +2369,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "已編輯使用者 $ID$ 的群組。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2384,16 +2399,16 @@
     "message": "群組存取"
   },
   "groupAccessUserDesc": {
-    "message": "Edit the groups that this user belongs to."
+    "message": "編輯此使用者所屬的群組。"
   },
   "invitedUsers": {
-    "message": "Invited user(s)."
+    "message": "已邀請使用者。"
   },
   "resendInvitation": {
     "message": "重新傳送邀請"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "$USER$ 已被重新邀請。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2408,7 +2423,7 @@
     "message": "確認使用者"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "$USER$ 已被確認。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2432,25 +2447,25 @@
     "message": "驗證電子郵件"
   },
   "verifyEmailDesc": {
-    "message": "Verify your account's email address to unlock access to all features."
+    "message": "驗證您的電子郵件位址以使用所有的功能。"
   },
   "verifyEmailFirst": {
     "message": "Your account's email address first must be verified."
   },
   "checkInboxForVerification": {
-    "message": "Check your email inbox for a verification link."
+    "message": "請檢查收件箱以取得驗證連結。"
   },
   "emailVerified": {
-    "message": "Your email has been verified."
+    "message": "您的電子信箱已經驗證。"
   },
   "emailVerifiedFailed": {
-    "message": "Unable to verify your email. Try sending a new verification email."
+    "message": "無法驗證電子信箱。請嘗試重寄一封驗證電子信件。"
   },
   "updateBrowser": {
     "message": "更新瀏覽器"
   },
   "updateBrowserDesc": {
-    "message": "You are using an unsupported web browser. The web vault may not function properly."
+    "message": "您正在使用未被支援的瀏覽器。網頁密碼庫可能會無法順利運作。"
   },
   "joinOrganization": {
     "message": "加入組織"
@@ -2477,19 +2492,19 @@
     "message": "Recover Account Two-Step Login"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "兩步驟登入已在您的帳號停用。"
   },
   "learnMore": {
     "message": "了解更多"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "請在下方輸入您的電子信箱位址以復原及刪除您的帳號。"
   },
   "deleteRecoverEmailSent": {
-    "message": "If your account exists, we've sent you an email with further instructions."
+    "message": "如果您的帳號存在，我們已寄送包含進一步指示的電子信件。"
   },
   "deleteRecoverConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
+    "message": "您已請求刪除您的 Bitwarden 帳號。點擊下方的按鈕確認。"
   },
   "myOrganization": {
     "message": "我的組織"
@@ -2535,7 +2550,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "收據 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2545,10 +2560,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "檢視收據"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "下載發票"
   },
   "verifyBankAccount": {
     "message": "驗證銀行帳戶"
@@ -2563,7 +2578,7 @@
     "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
   },
   "verifiedBankAccount": {
-    "message": "Bank account has been verified."
+    "message": "已驗證您的銀行帳號。"
   },
   "bankAccount": {
     "message": "銀行帳戶"
@@ -2609,7 +2624,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "Your subscription allows for a total of $COUNT$ users.",
+    "message": "您的訂閱當中包含 $COUNT$ 位使用者的授權。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2618,10 +2633,10 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "要新增的席位數"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "要移除的席位數"
   },
   "seatsAddNote": {
     "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
@@ -2630,7 +2645,7 @@
     "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "已調整為 $AMOUNT$ 個使用者席位。",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2648,7 +2663,7 @@
     "message": "更新加密金鑰"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "You are currently using an outdated encryption scheme."
+    "message": "您目前使用的是過時的加密方式。"
   },
   "updateEncryptionKeyDesc": {
     "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
@@ -2666,7 +2681,7 @@
     "message": "升級"
   },
   "upgradeOrganization": {
-    "message": "Upgrade Organization"
+    "message": "升級組織"
   },
   "upgradeOrganizationDesc": {
     "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
@@ -2681,7 +2696,7 @@
     "message": "已退款"
   },
   "nothingSelected": {
-    "message": "You have not selected anything."
+    "message": "您沒有選擇任何項目。"
   },
   "submitAgreePolicies": {
     "message": "一旦您按下「送出」，表示您同意以下條款：",
@@ -2732,7 +2747,7 @@
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "已停用組織。"
   },
   "licenseIsExpired": {
     "message": "授權已過期。"
@@ -2778,10 +2793,10 @@
     "message": "更新加密金鑰"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "確定更新帳號的加密金鑰？"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "此項目包含需要修復的舊檔案附件。"
   },
   "attachmentFixDesc": {
     "message": "This is an old file attachment the needs to be fixed. Click to learn more."
@@ -2802,18 +2817,18 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "請勿詢問再次驗證指紋片語",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "免費",
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API 金鑰"
   },
   "apiKeyDesc": {
-    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+    "message": "您的 API 金鑰可用來驗證 Bitwarden 公用 API。"
   },
   "apiKeyRotateDesc": {
     "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
@@ -2822,13 +2837,16 @@
     "message": "Your API key has full access to the organization. It should be kept secret."
   },
   "oauth2ClientCredentials": {
-    "message": "OAuth 2.0 Client Credentials",
+    "message": "OAuth 2.0 客戶端登入資訊",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "View API Key"
+    "message": "檢視 API 金鑰"
   },
   "rotateApiKey": {
-    "message": "Rotate API Key"
+    "message": "更新 API 金鑰"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

@@ -41,7 +41,7 @@
     "message": "Adgangssætning"
   },
   "notes": {
-    "message": "Noter"
+    "message": "Notater"
   },
   "customFields": {
     "message": "Brugerdefinerede felter"
@@ -150,6 +150,9 @@
   },
   "value": {
     "message": "Værdi"
+  },
+  "dragToSort": {
+    "message": "Drag to sort"
   },
   "cfTypeText": {
     "message": "Tekst"
@@ -288,7 +291,7 @@
     "message": "Identitet"
   },
   "typeSecureNote": {
-    "message": "Sikker note"
+    "message": "Sikret notat"
   },
   "folders": {
     "message": "Mapper"
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Lås op"
   },
-  "loggedInAsEmail": {
-    "message": "Logget ind som $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Ordseparator"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Adgangskodehistorik"
   },
@@ -827,7 +841,8 @@
     "message": "Der er ingen adgangskoder at vise."
   },
   "clear": {
-    "message": "Ryd"
+    "message": "Ryd",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Konto opdateret"
@@ -1520,7 +1535,7 @@
     "message": "Du har opgraderet til premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Opgrader din konto til et premium medlemskab og lås op for nogle fantastiske ekstra funktioner."
+    "message": "Opgradér din konto til et premium-medlemskab og lås op for nogle fantastiske ekstra funktioner."
   },
   "premiumSignUpStorage": {
     "message": "1 GB krypteret lager til vedhæftede filer."
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Rotér API-nøgle"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

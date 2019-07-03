@@ -151,6 +151,9 @@
   "value": {
     "message": "Hodnota"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Text"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Odomknúť"
   },
-  "loggedInAsEmail": {
-    "message": "Prihlásený ako $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Oddeľovač slov"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "História hesla"
   },
@@ -827,7 +841,8 @@
     "message": "Neboli nájdené žiadne heslá."
   },
   "clear": {
-    "message": "Vyčistiť"
+    "message": "Vyčistiť",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Účet bol Aktualizovaný"
@@ -1611,7 +1626,7 @@
     "message": "Prostredníctvom vašej platobnej metódy bude okamžite zaplatená suma za tento rok a následne sa nastaví automatická ročná platba. Platbu môžete kedykoľvek zrušiť."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Prostredníctvom vašej platobnej metódy bude okamžite zaplatená suma za toto obdobie a následne sa nastaví automatická $INTERVAL$ platba. Platbu môžete kedykoľvek zrušiť.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Obnoviť API kľúč"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
