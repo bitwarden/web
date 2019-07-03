@@ -151,6 +151,9 @@
   "value": {
     "message": "Arvo"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Teksti"
   },
@@ -464,7 +467,7 @@
     "message": "Kohteet poistettu"
   },
   "movedItems": {
-    "message": "Moved items"
+    "message": "Siirretyt kohteet"
   },
   "overwritePasswordConfirmation": {
     "message": "Haluatko varmasti korvata nykyisen salasanan?"
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Avaa"
   },
-  "loggedInAsEmail": {
-    "message": "Kirjautunut tilillä $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -602,19 +609,19 @@
     "message": "Lukitse nyt"
   },
   "noItemsInList": {
-    "message": "There are no items to list."
+    "message": "Ei näytettäviä kohteita."
   },
   "noCollectionsInList": {
     "message": "Ei kokoelmia näytettäväksi."
   },
   "noGroupsInList": {
-    "message": "There are no groups to list."
+    "message": "Ei näytettäviä ryhmiä."
   },
   "noUsersInList": {
-    "message": "There are no users to list."
+    "message": "Ei näytettäviä käyttäjiä."
   },
   "noEventsInList": {
-    "message": "There are no events to list."
+    "message": "Ei näytettäviä tapahtumia."
   },
   "newOrganization": {
     "message": "Uusi organisaatio"
@@ -680,7 +687,7 @@
     "message": "Kaksivaiheisen kirjautumisen valinnat"
   },
   "recoveryCodeDesc": {
-    "message": "Lost access to all of your two-factor providers? Use your recovery code to disable all two-factor providers from your account."
+    "message": "Etkö pysty käyttämään mitään kaksivaihemenetelmistäsi? Käytä palautuskoodiasi poistaaksesi käytöstä kaikki kaksivaiheisen todennuksen menetelmät tililtäsi."
   },
   "recoveryCodeTitle": {
     "message": "Palautuskoodi"
@@ -699,7 +706,7 @@
     "message": "Use a YubiKey to access your account. Works with YubiKey 4, 4 Nano, 4C, and NEO devices."
   },
   "duoDesc": {
-    "message": "Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "Vahvista kirjautumisesi Duo Securityn kautta käyttämällä Duo Mobile ‑sovellusta, tekstiviestiä, puhelua tai U2F-todennuslaitetta.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
@@ -707,7 +714,7 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
-    "message": "Use any FIDO U2F enabled security key to access your account."
+    "message": "Käytä mitä tahansa FIDO U2F ‑yhteensopivaa todennuslaitetta päästäksesi käsiksi tiliisi."
   },
   "u2fTitle": {
     "message": "FIDO U2F ‑todennuslaite"
@@ -737,7 +744,7 @@
     "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "Olet valinnut $COUNT$ poistettavaa kohdetta. Haluatko varmasti poistaa ne kaikki?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -746,7 +753,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "Valitse kansio johon siirtää $COUNT$ kohdetta.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Sanaerotin"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Salasanahistoria"
   },
@@ -827,7 +841,8 @@
     "message": "Ei salasanoja näytettäväksi."
   },
   "clear": {
-    "message": "Tyhjennä"
+    "message": "Tyhjennä",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Tili päivitetty"
@@ -851,7 +866,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Jatkaminen kirjaa sinut ulos nykyisestä istunnostasi ja joudut kirjautumaan uudelleen sisään. Aktiiviset istunnot toisilla laitteilla saattavat pysyä aktiivisina jopa tunnin."
   },
   "emailChanged": {
     "message": "Sähköpostiosoite vaihdettu"
@@ -887,7 +902,7 @@
     "message": "KDF-iteraatiot"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Korkeampi iteraatiomäärä saattaa vaikeuttaa raakaa laskentatehoa hyväksikäyttäviä hyökkäyksiä. Suosittelemme arvoksi vähintään $VALUE$.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -896,7 +911,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Muodostusfunktion iteraatiomäärän nostaminen liian korkeaksi saattaa hidastaa kirjautumista ja holvin avaamista hitaammilla laitteilla. Suosittelemme iteraatiomäärän nostamista $INCREMENT$:llä ja kokeilemista sen jälkeen kaikilla laitteillasi.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -905,7 +920,7 @@
     }
   },
   "changeKdf": {
-    "message": "Change KDF"
+    "message": "Vaihda avaimen muodostusfunktio"
   },
   "encKeySettingsChanged": {
     "message": "Salausavaimen asetukset muutettu"
@@ -941,16 +956,16 @@
     "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "Holvin tyhjennys on peruuttamaton toimenpide."
   },
   "vaultPurged": {
-    "message": "Your vault has been purged."
+    "message": "Holvisi tiedot on tyhjennetty."
   },
   "deleteAccount": {
     "message": "Poista tili"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "Jatka alla poistaaksesi tilisi ja kaiken liittyvän tiedon."
   },
   "deleteAccountWarning": {
     "message": "Tilin poistaminen on peruuttamaton toimenpide."
@@ -974,7 +989,7 @@
     "message": "Tietojen tuominen holviisi onnistui."
   },
   "importFormatError": {
-    "message": "Data is not formatted correctly. Please check your import file and try again."
+    "message": "Tiedot eivät ole muotoiltu oikein. Tarkista tuontitiedoston muoto ja yritä uudelleen."
   },
   "importNothingError": {
     "message": "Mitään ei tuotu."
@@ -986,7 +1001,7 @@
     "message": "Valitse tuontitiedosto"
   },
   "orCopyPasteFileContents": {
-    "message": "or copy\/paste the import file contents"
+    "message": "tai leikkaa\/liimaa tuontitiedoston sisältö"
   },
   "instructionsFor": {
     "message": "$NAME$-ohjeet",
@@ -1033,13 +1048,13 @@
     "message": "Verkkotunnusten säännöt"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "Jos kirjautumistietosi ovat samat useamman toimialueen (domain) välillä, voit merkata sivuston vertaiseksi toisen kanssa. Globaalit vertaistoimialueet ovat valmiiksi Bitwardenin luomia."
   },
   "globalEqDomains": {
-    "message": "Global Equivalent Domains"
+    "message": "Globaalit vertaistoimialueet"
   },
   "customEqDomains": {
-    "message": "Custom Equivalent Domains"
+    "message": "Omat vertaistoimialueet"
   },
   "exclude": {
     "message": "Exclude"
@@ -1066,7 +1081,7 @@
     }
   },
   "domainsUpdated": {
-    "message": "Domains updated"
+    "message": "Toimialueet päivitetty"
   },
   "twoStepLogin": {
     "message": "Kaksivaiheinen kirjautuminen"
@@ -1113,16 +1128,16 @@
     "message": "You already have access to premium features because of an organization you are a member of."
   },
   "manage": {
-    "message": "Manage"
+    "message": "Hallinnoi"
   },
   "disable": {
-    "message": "Disable"
+    "message": "Poista käytöstä"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "Tämä kaksivaihekirjautuminen on päällä tilillesi."
   },
   "twoStepLoginAuthDesc": {
-    "message": "Enter your master password to modify two-step login settings."
+    "message": "Kirjoita pääsalasanasi muokataksesi kaksivaihekirjautumisen asetuksia."
   },
   "twoStepAuthenticatorDesc": {
     "message": "Follow these steps to set up two-step login with an authenticator app:"
@@ -1146,22 +1161,22 @@
     "message": "These apps are recommended, however, other authenticator apps will also work."
   },
   "twoStepAuthenticatorScanCode": {
-    "message": "Scan this QR code with your authenticator app"
+    "message": "Skannaa tämä QR-koodi kaksivaiheisen todennuksen sovelluksellasi"
   },
   "key": {
     "message": "Avain"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Enter the resulting 6 digit verification code from the app"
+    "message": "Syötä kuusinumeroinen koodi sovelluksesta"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "Jos haluat lisätä todennuksen toiseen laitteeseen, löydät tarvittavan QR-koodin (tai avaimen) alta."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "Haluatko varmasti poistaa tämän kaksivaiheisen todennuksen toimittajan?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider disabled."
+    "message": "Valittu kaksivaiheinen todennus otettu pois käytöstä."
   },
   "twoFactorYubikeyAdd": {
     "message": "Lisää uusi YubiKey tilillesi"
@@ -1176,7 +1191,7 @@
     "message": "Kosketa YubiKeyn painiketta."
   },
   "twoFactorYubikeySaveForm": {
-    "message": "Save the form."
+    "message": "Tallenna lomake."
   },
   "twoFactorYubikeyWarning": {
     "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
@@ -1266,7 +1281,7 @@
     "message": "If the security key has a button, touch it."
   },
   "twoFactorU2fSaveForm": {
-    "message": "Save the form."
+    "message": "Tallenna lomake."
   },
   "twoFactorU2fWarning": {
     "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
@@ -1366,7 +1381,7 @@
     "message": "Check Exposed Passwords"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Paljastunut $COUNT$ kertaa",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2651,7 +2666,7 @@
     "message": "You are currently using an outdated encryption scheme."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "Olemme siirtyneet suurempiin salausavaimiin, jotka tarjoavat paremman turvallisuuden sekä pääsyn uudempiin toimintoihin. Salausavaimen päivitys on helppoa: syötä pääsalasanasi alle. Päivityksestä tulee myöhemmin pakollista."
   },
   "updateEncryptionKeyWarning": {
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
@@ -2769,7 +2784,7 @@
     "message": "Heikko pääsalasana"
   },
   "weakMasterPasswordDesc": {
-    "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
+    "message": "Valitsemasi pääsalasana on heikko. Sinun kannattaa käyttää vahvaa pääsalasanaa (tai ‑salalauseketta) suojataksesi Bitwarden-tilisi kunnolla. Haluatko varmasti käyttää tätä pääsalasanaa?"
   },
   "rotateAccountEncKey": {
     "message": "Also rotate my account's encryption key"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Kierrätä API-avain"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
