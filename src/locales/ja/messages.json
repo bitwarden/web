@@ -151,6 +151,9 @@
   "value": {
     "message": "値"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "テキスト"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "ロック解除"
   },
-  "loggedInAsEmail": {
-    "message": "$EMAIL$ としてログインしました",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "単語の区切り"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "パスワードの履歴"
   },
@@ -827,7 +841,8 @@
     "message": "表示するパスワードがありません"
   },
   "clear": {
-    "message": "消去する"
+    "message": "消去する",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "アカウントを更新しました"
@@ -2794,15 +2809,15 @@
     "message": "暗号化キーのローテーションを行う前に、保管庫内の古い添付ファイルを修正する必要があります。"
   },
   "yourAccountsFingerprint": {
-    "message": "アカウントの指紋認証用フレーズ",
+    "message": "アカウントのパスフレーズ",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "暗号化キーの完全性を確保するため、先に指紋認証用フレーズを確認してください。",
+    "message": "暗号化キーの完全性を確保するため、先にパスフレーズを確認してください。",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "今後指紋認証用フレーズを確認しない",
+    "message": "今後パスフレーズを確認しない",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Rotate API Key"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
