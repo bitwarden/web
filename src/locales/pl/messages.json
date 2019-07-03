@@ -151,6 +151,9 @@
   "value": {
     "message": "Wartość"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Tekst"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Odblokuj"
   },
-  "loggedInAsEmail": {
-    "message": "Zalogowany jako $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Separator wyrazów"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Historia haseł"
   },
@@ -827,7 +841,8 @@
     "message": "Brak haseł."
   },
   "clear": {
-    "message": "Wyczyść"
+    "message": "Wyczyść",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Konto zaktualizowane"
@@ -1017,7 +1032,7 @@
     "message": "Wyłącz ikony stron"
   },
   "disableIconsDesc": {
-    "message": "Możesz wyświetlać rozpoznawalną ikonę serwisu obok danych logowania w Twoim sejfie."
+    "message": "Wyświetlaj rozpoznawalną ikonę serwisu obok danych logowania w Twoim sejfie."
   },
   "enableGravatars": {
     "message": "Włącz Gravatary",
@@ -1611,7 +1626,7 @@
     "message": "Twoja płatność zostanie zrealizowana natychmiast i będzie powtarzana corocznie. Możesz zrezygnować w dowolnej chwili."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Twoja płatność zostanie zrealizowana natychmiast i będzie powtarzana co $INTERVAL$. Możesz zrezygnować w dowolnej chwili.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -2003,7 +2018,7 @@
     "message": "Twoja nowa organizacja jest gotowa!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "Twoja organizacja została zaktualizowana."
   },
   "leave": {
     "message": "Opuść"
@@ -2527,7 +2542,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "message": "Zaktualizuj plan dla swojej organizacji poprzez wprowadzenie informacji poniżej. Proszę upewnić się, że do konta została dodana aktywna metoda płatności.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Zmień klucz API"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
