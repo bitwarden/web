@@ -151,6 +151,9 @@
   "value": {
     "message": "Verdi"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Tekst"
   },
@@ -194,7 +197,7 @@
     "description": "A programming term, also known as 'RegEx'."
   },
   "matchDetection": {
-    "message": "Match-gjenkjenning",
+    "message": "Samsvar-gjenkjenning",
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Lås opp"
   },
-  "loggedInAsEmail": {
-    "message": "Logget på som $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Ordadskiller"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Passordhistorikk"
   },
@@ -827,7 +841,8 @@
     "message": "Det er ingen passord å liste opp."
   },
   "clear": {
-    "message": "Tøm"
+    "message": "Tøm",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Kontoen er oppdatert"
@@ -1485,7 +1500,7 @@
     "message": "En feil oppstod under forsøk på å laste inn rapporten. Prøv igjen."
   },
   "billing": {
-    "message": "Billing"
+    "message": "Fakturering"
   },
   "accountCredit": {
     "message": "Konto kreditt",
@@ -1504,13 +1519,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "Lagt til kreditt vil vises på kontoen din etter at betalingen er fullstendig behandlet. Noen betalingsmetoder er forsinket og kan ta lengre tid å behandle enn andre."
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "Vær sikker på at kontoen din har nok kreditt tilgjengelig for dette kjøpet. Hvis kontoen din ikke har nok kreditt tilgjengelig, vil standard betalingsmåten din bli brukt til forskjellen. Du kan legge til kreditt på kontoen din på Faktureringssiden."
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "Kontoens kreditt kan brukes til kjøp. Eventuell tilgjengelig kreditt vil automatisk bli brukt mot fakturaer generert for denne kontoen."
   },
   "goPremium": {
     "message": "Oppgrader til Premium",
@@ -1611,7 +1626,7 @@
     "message": "Din betalingsmetode vil bli trekt umiddelbart og deretter på en gjentakende basis hvert år. Du kan avbryte det til enhver tid."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Betalingsmåten din belastes umiddelbart og deretter hver gang $INTERVAL$. Du kan kansellere når som helst.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1733,7 +1748,7 @@
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Ikke betalt",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
@@ -1744,7 +1759,7 @@
     "message": "Ingen transaksjoner."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Trekk",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
@@ -2003,7 +2018,7 @@
     "message": "Din nye organisasjon er klar til å begynne!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "Din organisasjon har blitt oppgradert."
   },
   "leave": {
     "message": "Forlat"
@@ -2527,7 +2542,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "message": "Oppgrader din konto til en annen plan, gi informasjonen nedenfor. Sørg for at du har en aktiv betalingsmetode lagt til kontoen.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2545,10 +2560,10 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Se faktura"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Last ned faktura"
   },
   "verifyBankAccount": {
     "message": "Bekreft bankkontoen din"
@@ -2810,25 +2825,28 @@
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API-nøkkel"
   },
   "apiKeyDesc": {
-    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+    "message": "API-nøkkelen din kan brukes til å godkjenne til den offentlige API-en for Bitwarden."
   },
   "apiKeyRotateDesc": {
-    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+    "message": "Hvis du roterer API-nøkkel, blir den forrige nøkkelen ugyldig. Du kan rotere API-nøkkelen din hvis du mener at den nåværende nøkkelen ikke lenger er trygt å bruke."
   },
   "apiKeyWarning": {
-    "message": "Your API key has full access to the organization. It should be kept secret."
+    "message": "Din API-nøkkel har full tilgang til organisasjonen. Det bør holdes hemmelig."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 Client Credentials",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "View API Key"
+    "message": "Se API-nøkkel"
   },
   "rotateApiKey": {
-    "message": "Rotate API Key"
+    "message": "Roter API-nøkkel"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }
