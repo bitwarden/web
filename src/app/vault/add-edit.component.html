@@ -401,7 +401,8 @@
                                             </i>
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary"
-                                            title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
+                                            title="{{'copyValue' | i18n}}"
+                                            (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
                                             tabindex="-1">
                                             <i class="fa fa-lg fa-clipboard"></i>
                                         </button>

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
 import { CipherType } from 'jslib/enums/cipherType';
+import { EventType } from 'jslib/enums/eventType';
 
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
+import { EventService } from 'jslib/abstractions/event.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -39,9 +41,9 @@ export class AddEditComponent extends BaseAddEditComponent {
         auditService: AuditService, stateService: StateService,
         userService: UserService, collectionService: CollectionService,
         protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
-        protected messagingService: MessagingService) {
+        protected messagingService: MessagingService, eventService: EventService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, messagingService);
+            userService, collectionService, messagingService, eventService);
     }
 
     async ngOnInit() {
@@ -86,6 +88,16 @@ export class AddEditComponent extends BaseAddEditComponent {
         this.platformUtilsService.copyToClipboard(value, { window: window });
         this.platformUtilsService.showToast('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+
+        if (this.editMode) {
+            if (typeI18nKey === 'password') {
+                this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, this.cipherId);
+            } else if (typeI18nKey === 'securityCode') {
+                this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, this.cipherId);
+            } else if (aType === 'H_Field') {
+                this.eventService.collect(EventType.Cipher_ClientCopiedHiddenField, this.cipherId);
+            }
+        }
     }
 
     async generatePassword(): Promise<boolean> {
