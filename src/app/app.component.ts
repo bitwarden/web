@@ -33,6 +33,7 @@ import { AuthService } from 'jslib/abstractions/auth.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
+import { EventService } from 'jslib/abstractions/event.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { LockService } from 'jslib/abstractions/lock.service';
@@ -83,7 +84,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private cryptoService: CryptoService, private collectionService: CollectionService,
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
-        private stateService: StateService) { }
+        private stateService: StateService, private eventService: EventService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -173,9 +174,11 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     private async logOut(expired: boolean) {
+        await this.eventService.uploadEvents();
         const userId = await this.userService.getUserId();
 
         await Promise.all([
+            this.eventService.clearEvents(),
             this.syncService.setLastSync(new Date(0)),
             this.tokenService.clearToken(),
             this.cryptoService.clearKeys(),

@@ -62,6 +62,9 @@ export class EventService {
             case EventType.User_FailedLogIn2fa:
                 msg = this.i18nService.t('failedLogin2fa');
                 break;
+            case EventType.User_ClientExportedVault:
+                msg = this.i18nService.t('exportedVault');
+                break;
             // Cipher
             case EventType.Cipher_Created:
                 msg = this.i18nService.t('createdItemId', this.formatCipherId(ev, options));
@@ -80,6 +83,30 @@ export class EventService {
                 break;
             case EventType.Cipher_Shared:
                 msg = this.i18nService.t('sharedItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientViewed:
+                msg = this.i18nService.t('viewedItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientToggledPasswordVisible:
+                msg = this.i18nService.t('viewedPasswordItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientToggledHiddenFieldVisible:
+                msg = this.i18nService.t('viewedHiddenFieldItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientToggledCardCodeVisible:
+                msg = this.i18nService.t('viewedSecurityCodeItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientCopiedHiddenField:
+                msg = this.i18nService.t('copiedHiddenFieldItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientCopiedPassword:
+                msg = this.i18nService.t('copiedPasswordItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientCopiedCardCode:
+                msg = this.i18nService.t('copiedSecurityCodeItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_ClientAutofilled:
+                msg = this.i18nService.t('autofilledItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_UpdatedCollections:
                 msg = this.i18nService.t('editedCollectionsForItem', this.formatCipherId(ev, options));
