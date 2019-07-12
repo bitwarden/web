@@ -154,6 +154,11 @@ export class EventService {
             case EventType.Organization_PurgedVault:
                 msg = this.i18nService.t('purgedOrganizationVault');
                 break;
+            /*
+            case EventType.Organization_ClientExportedVault:
+                msg = this.i18nService.t('exportedOrganizationVault');
+                break;
+            */
             default:
                 break;
         }
