@@ -10,6 +10,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { EventService } from 'jslib/abstractions/event.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
@@ -17,6 +18,7 @@ import { SearchService } from 'jslib/abstractions/search.service';
 import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/components/ciphers.component';
 
 import { CipherType } from 'jslib/enums/cipherType';
+import { EventType } from 'jslib/enums/eventType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -37,7 +39,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
-        protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService) {
+        protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
+        protected eventService: EventService) {
         super(searchService);
         this.pageSize = 200;
     }
@@ -109,7 +112,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.actionPromise = null;
     }
 
-    copy(value: string, typeI18nKey: string, aType: string) {
+    copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
         if (value == null) {
             return;
         }
@@ -118,6 +121,12 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.platformUtilsService.copyToClipboard(value, { window: window });
         this.toasterService.popAsync('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+
+        if (typeI18nKey === 'password') {
+            this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, cipher.id);
+        } else if (typeI18nKey === 'securityCode') {
+            this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
+        }
     }
 
     protected deleteCipher(id: string) {
