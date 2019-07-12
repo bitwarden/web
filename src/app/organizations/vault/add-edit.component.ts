@@ -4,6 +4,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
+import { EventService } from 'jslib/abstractions/event.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -34,9 +35,11 @@ export class AddEditComponent extends BaseAddEditComponent {
         auditService: AuditService, stateService: StateService,
         userService: UserService, collectionService: CollectionService,
         totpService: TotpService, passwordGenerationService: PasswordGenerationService,
-        private apiService: ApiService, messagingService: MessagingService) {
+        private apiService: ApiService, messagingService: MessagingService,
+        eventService: EventService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, totpService, passwordGenerationService, messagingService);
+            userService, collectionService, totpService, passwordGenerationService, messagingService,
+            eventService);
     }
 
     protected loadCollections() {
