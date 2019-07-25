@@ -25,12 +25,16 @@ export class ModalComponent extends BaseModalComponent {
 
     ngOnDestroy() { /* Nothing */ }
 
-    show<T>(type: Type<T>, parentContainer: ViewContainerRef, fade: boolean = true): T {
+    show<T>(type: Type<T>, parentContainer: ViewContainerRef, fade: boolean = true,
+        setComponentParameters: (component: T) => void = null): T {
         this.parentContainer = parentContainer;
         this.fade = fade;
 
         const factory = this.componentFactoryResolver.resolveComponentFactory<T>(type);
         const componentRef = this.container.createComponent<T>(factory);
+        if (setComponentParameters != null) {
+            setComponentParameters(componentRef.instance);
+        }
 
         const modals = Array.from(document.querySelectorAll('.modal'));
         if (modals.length > 0) {
