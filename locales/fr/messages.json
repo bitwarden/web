@@ -151,6 +151,9 @@
   "value": {
     "message": "Valeur"
   },
+  "dragToSort": {
+    "message": "Glissez pour trier"
+  },
   "cfTypeText": {
     "message": "Texte"
   },
@@ -263,7 +266,7 @@
     "message": "Rechercher dans les favoris"
   },
   "searchType": {
-    "message": "Type de recherche",
+    "message": "Rechercher dans le type",
     "description": "Search item type"
   },
   "searchVault": {
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Déverrouiller"
   },
-  "loggedInAsEmail": {
-    "message": "Connecté en tant que $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Connecté en tant que $EMAIL$ sur $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Séparateur de mots"
   },
+  "capitalize": {
+    "message": "Mettre la première lettre en majuscule",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Inclure un Chiffre"
+  },
   "passwordHistory": {
     "message": "Historique des mots de passe"
   },
@@ -827,7 +841,8 @@
     "message": "Aucun mot de passe à afficher."
   },
   "clear": {
-    "message": "Effacer"
+    "message": "Effacer",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Compte mis à jour"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Faire pivoter la clé d'API"
+  },
+  "selectOneCollection": {
+    "message": "Vous devez sélectionner au moins une collection."
   }
 }

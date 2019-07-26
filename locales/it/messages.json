@@ -151,6 +151,9 @@
   "value": {
     "message": "Valore"
   },
+  "dragToSort": {
+    "message": "Trascina per ordinare"
+  },
   "cfTypeText": {
     "message": "Testo"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Sblocca"
   },
-  "loggedInAsEmail": {
-    "message": "Registrato come $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Accesso effettuato come $EMAIL$ su $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Separatore parole"
   },
+  "capitalize": {
+    "message": "Rendi maiuscolo",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Includi numero"
+  },
   "passwordHistory": {
     "message": "Cronologia delle password"
   },
@@ -827,7 +841,8 @@
     "message": "Non ci sono password da mostrare."
   },
   "clear": {
-    "message": "Elimina"
+    "message": "Elimina",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Account aggiornato"
@@ -2138,7 +2153,7 @@
     "message": "User normale con accesso alle collezioni della tua organizzazione."
   },
   "manager": {
-    "message": "Amministratore"
+    "message": "Manager"
   },
   "managerDesc": {
     "message": "I manager possono accedere e gestire le raccolte assegnate nella propria organizzazione."
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Ruota chiave API"
+  },
+  "selectOneCollection": {
+    "message": "Devi selezionare almeno una categoria."
   }
 }

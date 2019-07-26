@@ -151,6 +151,9 @@
   "value": {
     "message": "Érték"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Szöveg"
   },
@@ -164,7 +167,7 @@
     "message": "Eltávolít"
   },
   "unassigned": {
-    "message": "Nincs kijelölve"
+    "message": "Nincs hozzárendelve"
   },
   "noneFolder": {
     "message": "Nincs mappa",
@@ -180,7 +183,7 @@
     "message": "Alap domain"
   },
   "host": {
-    "message": "Hoszt",
+    "message": "Gazdagép",
     "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
@@ -208,7 +211,7 @@
     "message": "Láthatóság váltása"
   },
   "toggleCollapse": {
-    "message": "Toggle Collapse",
+    "message": "Összecsukás váltás",
     "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Feloldás"
   },
-  "loggedInAsEmail": {
-    "message": "$EMAIL$ email címmel bejelentkezve.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Word Separator"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Password History"
   },
@@ -827,7 +841,8 @@
     "message": "Nincsenek listázható jelszavak."
   },
   "clear": {
-    "message": "Törlés"
+    "message": "Törlés",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Account Updated"
@@ -1336,10 +1351,10 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Nem található egy weboldal sem a széfedben hiányzó kétfaktoros azonosítással."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Utasítások"
   },
   "exposedPasswordsReport": {
     "message": "Exposed Passwords Report"
@@ -1351,7 +1366,7 @@
     "message": "Exposed Passwords Found"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "$COUNT$ tétel található a széfedben, amelyek érintve voltak ismert adatszivárgásban. Meg kellene változtatnod ezeken a jelszavadat.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1360,13 +1375,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Nem található a széfedben adatszivárgásban érintett jelszó."
   },
   "checkExposedPasswords": {
     "message": "Check Exposed Passwords"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "$COUNT$ alkalommal szivárgott ki",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1378,13 +1393,13 @@
     "message": "Weak Passwords Report"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "A gyenge jelszavakat könnyen megfejthetik hackerek és jelszótöréshez használt eszközök. A Bitwarden jelszógenerátor segít erős jelszót készíteni."
   },
   "weakPasswordsFound": {
     "message": "Weak Passwords Found"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "$COUNT$ gyenge jelszót találtunk a széfedben. Célszerű lenne ezeket lecserélni erősebb jelszóra.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1393,19 +1408,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Nincsenek a széfedben gyenge jelszavak."
   },
   "reusedPasswordsReport": {
     "message": "Reused Passwords Report"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Ha egy olyan általad használt szolgáltatás kompromittálódik, amelynek jelszavát máshol is használod, akkor a hackerek könnyen hozzáférést nyerhetnek több online felhasználói fiókodhoz. Fontos, hogy egyedi jelszavakat használj minden felhasználói fiókhoz."
   },
   "reusedPasswordsFound": {
     "message": "Reused Passwords Found"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "$COUNT$ többször is használt jelszót találtunk a széfedben. Változtasd meg ezeket egyedi jelszavakra.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1414,10 +1429,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "Nincs a széfedben többször is használt jelszó."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "$COUNT$ alkalommal használt",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1429,16 +1444,16 @@
     "message": "Data Breach Report"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Breachnek hívják azokat az incidenseket, amelyek során honlapok adataihoz illegálisan férnek hozzá hackerek és az így megszerzett adatokat nyilvánosságra hozzák. Ellenőrizd a kompromittálódott adatok típusait (email cím, jelszó, hitelkártya adatok, stb.) és intézkedj, pl. cserélj jelszót!"
   },
   "breachCheckUsernameEmail": {
-    "message": "Check any usernames or email addresses that you use."
+    "message": "Ellenőrizd az összes felhasználói nevedet, vagy email címet."
   },
   "checkBreaches": {
     "message": "Check Breaches"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "$USERNAME$ érintett adatszivárgásban.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1451,7 +1466,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$ $COUNT$ alkalommal volt érintett online adatszivárgásban.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1467,10 +1482,10 @@
     "message": "Breached Accounts Found"
   },
   "compromisedData": {
-    "message": "Compromised data"
+    "message": "Sérült adatok"
   },
   "website": {
-    "message": "Website"
+    "message": "Honlap"
   },
   "affectedUsers": {
     "message": "Affected Users"
@@ -1482,66 +1497,66 @@
     "message": "Breach Reported"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "Hiba történt a jelentés betöltése közben. Próbáld újra!"
   },
   "billing": {
-    "message": "Billing"
+    "message": "Számlázás"
   },
   "accountCredit": {
-    "message": "Account Credit",
+    "message": "Felhasználói egyenleg",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
-    "message": "Account Balance",
+    "message": "Felhasználói egyenleg",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "Add Credit",
+    "message": "Egyenleg feltöltés",
     "description": "Add more credit to your account's balance."
   },
   "amount": {
-    "message": "Amount",
+    "message": "Mennyiség",
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "A feltöltött egyenleg meg fog jelenni a fiókodban, miután a fizetés sikeresen lezárul. Néhány fizetési mód hosszabb átfutást igényelhet."
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "Kérjük győződj meg róla, hogy elég egyenleged van ehhez a vásárláshoz. Ha nincs elég egyenleged, akkor az alapértelmezett fizetési mód lesz használva a különbség kiegyenlítésére. Egyenleget a Számlázás oldalon tölthetsz fel."
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "A felhasználói egyenleged felhasználható vásárlásra. A rendelkezésre álló egyenleg automatikusan ehhez a felhasználói fiókhoz generálódó számlák kiegyenlítésére kerül felhasználásra."
   },
   "goPremium": {
     "message": "Go Premium",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "Sikeresen prémiumra frissítettél."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Frissítsd a fiókodat prémium tagságra és oldj fel nagyszerű kiegészítő funkciókat!"
   },
   "premiumSignUpStorage": {
     "message": "1 GB of encrypted file storage."
   },
   "premiumSignUpTwoStep": {
-    "message": "Additional two-step login options such as YubiKey, FIDO U2F, and Duo."
+    "message": "Automatikus kétfaktoros azonosítási opciók, pl. YubiKey, FIDO U2F, és Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Jelszó higiénia, felhasználói fiók biztonsága, és adatszivárgási jelentések a széfed biztonsága érdekében."
   },
   "premiumSignUpTotp": {
-    "message": "TOTP verification code (2FA) generator for logins in your vault."
+    "message": "TOTP ellenőrző kód (2FA) generátor használata a széfedhez való bejelentkezéshez."
   },
   "premiumSignUpSupport": {
-    "message": "Priority customer support."
+    "message": "Kiemelt ügyfélszolgálati."
   },
   "premiumSignUpFuture": {
-    "message": "All future premium features. More coming soon!"
+    "message": "Minden jövőbeli prémium funkció. Hamarosan jön még több!"
   },
   "premiumPrice": {
-    "message": "All for just $PRICE$ \/year!",
+    "message": "Mindezt csupán évi $PRICE$ áron!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1572,10 +1587,10 @@
     "message": "Additional Storage (GB)"
   },
   "additionalStorageGbDesc": {
-    "message": "# of additional GB"
+    "message": "További # GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "Az előfizetői díjcsomagod $SIZE$ titkosított tárhelyet tartalmaz. További tárhellyel bővítheted $PRICE$ \/GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1592,26 +1607,26 @@
     }
   },
   "summary": {
-    "message": "Summary"
+    "message": "Összegzés"
   },
   "total": {
-    "message": "Total"
+    "message": "Összesen"
   },
   "year": {
-    "message": "year"
+    "message": "év"
   },
   "month": {
-    "message": "month"
+    "message": "hónap"
   },
   "monthAbbr": {
     "message": "mo.",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each year. You may cancel at any time."
+    "message": "A fizetési módod azonnal, ezt követően pedig évente meg lesz terhelve. Bármikor lemondhatod."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "A fizetési módod azonnal, ezt követően pedig $INTERVAL$ meg lesz terhelve. Bármikor lemondhatod.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1830,7 +1845,7 @@
     "message": "Business Name"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "Válassz díjcsomagot!"
   },
   "users": {
     "message": "Felhasználók"
@@ -2003,7 +2018,7 @@
     "message": "Your new organization is ready to go!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "A szervezeted frissítve lett."
   },
   "leave": {
     "message": "Kilép"
@@ -2516,26 +2531,26 @@
     "message": "Tax Information"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Kérjük lépj kapcsolatba a vevőszolgálattal a számláid adózási információiért, vagy azok frissítéséért."
   },
   "billingPlan": {
-    "message": "Plan",
+    "message": "Díjcsomag",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Change Plan",
+    "message": "Díjcsomag változtatás",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "message": "Frissítsd a fiókod másik díjcsomagra és add meg az alábbi információkat. Kérjük, győződj meg róla, hogy van aktív fizetési módod a fiókhoz.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "Lépj kapcsolatba az ügyfélszolgálattal, ha szeretnéd megváltoztatni a díjcsomagodat. Kérjük, győződj meg róla, hogy van aktív fizetési módod a fiókhoz.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "#$NUMBER$ számla",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2545,31 +2560,31 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Számla megtekintése"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Számla letöltése"
   },
   "verifyBankAccount": {
     "message": "Verify Bank Account"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "Két mikroterhelést végeztünk a bankszámládon (akár 1-2 napot is igénybe vehet, mire megjelenik bankszámládon). Add meg ezeket az összegeket a bankszámlád ellenőrzésére."
   },
   "verifyBankAccountInitialDesc": {
     "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "A bankszámla ellenőrzésének elmulasztása elmaradt fizetéshez és az előfizetés leállításához vezet."
   },
   "verifiedBankAccount": {
-    "message": "Bank account has been verified."
+    "message": "Bankszámla megerősítve."
   },
   "bankAccount": {
     "message": "Bank Account"
   },
   "amountX": {
-    "message": "Amount $COUNT$",
+    "message": "Összeg: $COUNT$",
     "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
     "placeholders": {
       "count": {
@@ -2609,7 +2624,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "Your subscription allows for a total of $COUNT$ users.",
+    "message": "Az előfizetésed összesen $COUNT$ felhasználót tesz lehetővé.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2624,13 +2639,13 @@
     "message": "Seats To Remove"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "A felhasználószám bővítése megjelenik a számlaösszesítőben és azonnal terheli a fizetési módodat. Az első díj az aktuális számlázási ciklus időarányos fennmaradó részére kerül számlázásra."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "A felhasználószám csökkentése megjelenik a számlaösszesítőben, amely a következő számlázott díjat fogja csökkenteni."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "Módosított felhasználószám $AMOUNT$.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2648,22 +2663,22 @@
     "message": "Update Encryption Key"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "You are currently using an outdated encryption scheme."
+    "message": "Elavult titkosítási sémát használsz."
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "Hosszabb titkosítókulcsokra váltottunk, amelyek jobb biztonságot adnak és hozzáférést biztosítanak új funkciókhoz. A titkosítókulcsod frissítése könnyű és gyors. Csak add meg a mesterjelszavad alább. Ez a frissítés kötelezővé válik."
   },
   "updateEncryptionKeyWarning": {
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   },
   "subscription": {
-    "message": "Subscription"
+    "message": "Előfizetés"
   },
   "loading": {
-    "message": "Loading"
+    "message": "Betöltés"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "Frissítés"
   },
   "upgradeOrganization": {
     "message": "Upgrade Organization"
@@ -2678,13 +2693,13 @@
     "message": "Before creating your organization, you first need to create a free personal account."
   },
   "refunded": {
-    "message": "Refunded"
+    "message": "Visszatérítve"
   },
   "nothingSelected": {
-    "message": "You have not selected anything."
+    "message": "Nem választottál semmit."
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "A jóváhagyás gombra kattintva elfogadod a következő irányelveket:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2694,37 +2709,37 @@
     "message": "Privacy Policy"
   },
   "filters": {
-    "message": "Filters"
+    "message": "Szűrők"
   },
   "lockOptions": {
     "message": "Lock Options"
   },
   "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+    "message": "Válaszd ki, hogy mikor legyen zárolva a széfed. A zárolt széf ismételt kinyitásához meg kell adni a mesterjelszót."
   },
   "oneMinute": {
-    "message": "1 minute"
+    "message": "1 perc"
   },
   "fiveMinutes": {
-    "message": "5 minutes"
+    "message": "5 perc"
   },
   "fifteenMinutes": {
-    "message": "15 minutes"
+    "message": "15 perc"
   },
   "thirtyMinutes": {
-    "message": "30 minutes"
+    "message": "30 perc"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 óra"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 óra"
   },
   "onRefresh": {
     "message": "On Browser Refresh"
   },
   "dateUpdated": {
-    "message": "Updated",
+    "message": "Frissítve",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
@@ -2738,27 +2753,27 @@
     "message": "License is expired."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Felhasználó frissítve"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Kiválasztva"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Tulajdonjog"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Kié ez a tétel?"
   },
   "strong": {
-    "message": "Strong",
+    "message": "Erős",
     "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "Jó",
     "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Gyenge",
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
@@ -2769,48 +2784,48 @@
     "message": "Weak Master Password"
   },
   "weakMasterPasswordDesc": {
-    "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
+    "message": "A választott mesterjelszó gyenge. Erős jelszót kell használnod a Bitwarden fiókod megfelelő védelme érdekében. Biztosan ezt a mesterjelszót szeretnéd használni?"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "A felhasználói fiókom titkosítókódját is cseréljük le"
   },
   "rotateEncKeyTitle": {
     "message": "Rotate Encryption Key"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "Biztosan szeretnéd lecserélni a fiókod titkosító kódját?"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "Ennek a tételnek túl régi csatolmányai vannak, amelyek frissítésre szorulnak."
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "Ez egy túl régi csatolmány, amely frissítésre szorul. Kattints ide, hogy többet megtudj róla."
   },
   "fix": {
-    "message": "Fix",
+    "message": "Javítás",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "Vannak a széfedben régi csatolmányok, amelyek frissítésre szorulnak, mielőtt lecserélhetnéd a felhasználói fiókod titkosító kódját."
   },
   "yourAccountsFingerprint": {
-    "message": "Your account's fingerprint phrase",
+    "message": "A fiókod ujjlenyomat mondata",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+    "message": "A titkosítási kulcs integritásának biztosítása érdekében kérjük, ellenőrizd a felhasználói ujjlenyomat mondatot, mielőtt továbbmész.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "Ne kérd újra az ujjlenyomat mondat ellenőrzését",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Ingyenes",
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API kulcs"
   },
   "apiKeyDesc": {
     "message": "Az API kulcsod használható azonosításhoz a Bitwarden publikus API-hoz."
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "API kulcs váltás"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

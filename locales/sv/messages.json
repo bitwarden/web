@@ -151,6 +151,9 @@
   "value": {
     "message": "Värde"
   },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
   "cfTypeText": {
     "message": "Text"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Lås upp"
   },
-  "loggedInAsEmail": {
-    "message": "Inloggad som $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -755,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "Du har valt $COUNT$ objekt. $SHAREABLE_COUNT$ objekt kan delas, $NONSHAREABLE_COUNT$ kan inte delas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Ordseparator"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Lösenordshistorik"
   },
@@ -827,7 +841,8 @@
     "message": "Det finns inga lösenord att lista."
   },
   "clear": {
-    "message": "Rensa"
+    "message": "Rensa",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Konto uppdaterat"
@@ -851,7 +866,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Om du fortsätter kommer du att loggas ut från din nuvarande session och du kommer behöver logga in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "emailChanged": {
     "message": "E-postadressen ändrades"
@@ -887,7 +902,7 @@
     "message": "KDF iterationer"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "Högre KDF-iterationer kan skydda ditt huvudlösenord från att \"brute-forcas\" av en angripare. Vi rekommenderar ett värde på $VALUE$ eller mer.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -896,7 +911,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "Om du sätter dina KDF-iterationer för högt kan det resultera i dålig prestanda när du loggar in (och låser upp) Bitwarden på enheter med långsammare processorer. Vi rekommenderar att du ökar värdet i steg om $INCREMENT$ och sedan testar alla dina enheter.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -923,7 +938,7 @@
     "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Om du fortsätter kommer även du att loggas ut från din nuvarande session och du kommer behöver logga in igen. Du kommer även att behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "sessionsDeauthorized": {
     "message": "Alla sessioner avauktoriserade"
@@ -950,7 +965,7 @@
     "message": "Ta bort konto"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "Fortsätt nedan för att radera ditt konto och all associerad data."
   },
   "deleteAccountWarning": {
     "message": "Borttagning av ditt konto är permanent. Det går inte att ångra."
@@ -1033,7 +1048,7 @@
     "message": "Domänregler"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "Om du har samma inloggningsinformation mellan flera olika webbdomäner kan du markera webbplatsen som \"likvärdig\". \"Globala\" domäner är de som redan skapats åt dig av Bitwarden."
   },
   "globalEqDomains": {
     "message": "Globala motsvarande domäner"
@@ -1119,7 +1134,7 @@
     "message": "Inaktivera"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "This two-step login provider is enabled on your account."
+    "message": "Den här tvåstegsverifierings-metoden är aktiverad på ditt konto."
   },
   "twoStepLoginAuthDesc": {
     "message": "Ange ditt huvudlösenord för att ändra på inställningar för tvåstegsverifiering."
@@ -1155,10 +1170,10 @@
     "message": "Ange den 6-siffriga verifieringskoden från appen"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
+    "message": "Om du skulle behöva lägga till det till en annan enhet har du QR-koden (eller nyckeln) som krävs utav din autentiserings-app nedan."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to disable this two-step login provider?"
+    "message": "Är du säker på att du vill inaktivera denna tvåstegsverifierings-metoden?"
   },
   "twoStepDisabled": {
     "message": "Tvåfaktorsautentisering leverantör inaktiverad."
@@ -1179,13 +1194,13 @@
     "message": "Spara formuläret."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "På grund av plattformsbegränsningar kan inte YubiKeys användas på alla Bitwarden-applikationer. Du bör aktivera ytterligare en tvåstegsverifierings-metod så att du kan komma åt ditt konto även när YubiKeys inte kan användas. Plattformar som stöds:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "Webbvalvet, desktop-applikationen, CLI och alla webbläsartillägg på en enhet med en USB-port som kan acceptera din YubiKey."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "Mobilappar på en enhet med NFC-stöd eller en USB-port som kan acceptera din YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1221,7 +1236,7 @@
     "message": "Inaktivera alla nycklar"
   },
   "twoFactorDuoDesc": {
-    "message": "Enter the Bitwarden application information from your Duo Admin panel."
+    "message": "Ange Bitwardens programinformation från din Duo Admin-panel."
   },
   "twoFactorDuoIntegrationKey": {
     "message": "Integrationsnyckel"
@@ -1248,16 +1263,16 @@
     "message": "Lägg till en FIDO U2F säkerhetsnyckel till ditt konto"
   },
   "removeU2fConfirmation": {
-    "message": "Are you sure you want to remove this security key?"
+    "message": "Är du säker på att du vill ta bort denna säkerhetsnyckel?"
   },
   "readKey": {
     "message": "Read Key"
   },
   "keyCompromised": {
-    "message": "Key is compromised."
+    "message": "Nyckeln är äventyrad."
   },
   "twoFactorU2fGiveName": {
-    "message": "Give the security key a friendly name to identify it."
+    "message": "Ge säkerhetsnyckeln ett namn för att kunna identifiera den."
   },
   "twoFactorU2fPlugInReadKey": {
     "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
@@ -1269,25 +1284,25 @@
     "message": "Spara formuläret."
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "På grund av plattformsbegränsningar kan inte FIDO U2F användas på alla Bitwarden-applikationer. Du bör aktivera ytterligare en tvåstegsverifierings-metod så att du kan komma åt ditt konto även när FIDO U2F inte kan användas. Plattformar som stöds:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Webbvalvet och webbläsartillägg på en stationär dator eller laptop med en U2F-aktiverad webbläsare (Chrome, Opera, Vivaldi eller Firefox med FIDO U2F aktiverat)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "Väntar på att du ska trycka på knappen på din säkerhetsnyckel"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Klicka på \"spara\"-knappen nedan för att aktivera den här säkerhetsnyckeln för tvåstegsverifiering."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Det gick inte att läsa säkerhetsnyckeln. Försök igen."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "Din återställningskod för tvåstegsverifiering"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
+    "message": "Du har inte aktiverat några tvåstegsverifierings-metoder ännu. Efter att du har aktiverat en tvåstegsverifierings-metod kan du återvända hit för att se din återställningskod."
   },
   "printCode": {
     "message": "Skriv ut kod",
@@ -1300,13 +1315,13 @@
     "message": "Unsecured Websites Report"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Att använda osäkra webbplatser med http:\/\/ systemet kan vara farligt. Om webbplatsen tillåter, bör du alltid komma åt den med https:\/\/ systemet så att anslutningen är krypterad."
   },
   "unsecuredWebsitesFound": {
     "message": "Unsecured Websites Found"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "Vi hittade $COUNT$ objekt i ditt valv med osäkra URI:er. Om webbplatsen tillåter det bör du ändra deras URI-schema till https:\/\/.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1315,19 +1330,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "Inga objekt i ditt valv har osäkra URI:er."
   },
   "inactive2faReport": {
     "message": "Inactive 2FA Report"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Tvåstegsverifiering (2FA) är en viktig säkerhetsinställning som hjälper dig att säkra dina konton. Om en webbplats erbjuder det så bör du alltid aktivera tvåstegsverifiering."
   },
   "inactive2faFound": {
     "message": "Logins Without 2FA Found"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "Vi hittade $COUNT$ webbplats(er) i ditt valv som kanske inte är konfigurerade med tvåstegsverifiering (enligt twofactorauth.org). För att ytterligare skydda dessa konton bör du aktivera tvåstegsverifiering.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1336,10 +1351,10 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "Inga webbplatser i ditt valv hittades utan konfigurerad tvåstegsverifiering."
   },
   "instructions": {
-    "message": "Instructions"
+    "message": "Instruktioner"
   },
   "exposedPasswordsReport": {
     "message": "Exposed Passwords Report"
@@ -1351,7 +1366,7 @@
     "message": "Exposed Passwords Found"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Vi hittade $COUNT$ objekt i ditt valv som har lösenord som har äventyrats i kända dataintrång. Du bör ändra dessa till att använda nya lösenord.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1360,13 +1375,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Inga objekt i ditt valv har lösenord som har äventyrats i kända dataintrång."
   },
   "checkExposedPasswords": {
     "message": "Check Exposed Passwords"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "Synlig $COUNT$ gång(er)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1378,13 +1393,13 @@
     "message": "Weak Passwords Report"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Svaga lösenord kan gissas enkelt av hackare och automatiserade verktyg som används för att knäcka lösenord. Bitwardens lösenordsgenerator kan hjälpa dig att skapa starka lösenord."
   },
   "weakPasswordsFound": {
     "message": "Weak Passwords Found"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Vi hittade $COUNT$ objekt i ditt valv med svaga lösenord. Du bör uppdatera dem till att använda starka lösenord.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1393,19 +1408,19 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your vault have weak passwords."
+    "message": "Inga objekt i ditt valv har svaga lösenord."
   },
   "reusedPasswordsReport": {
     "message": "Reused Passwords Report"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Om en tjänst som du använder äventyras, kan återanvända lösenord användas på andra ställen utav hackare för att de enkelt ska få tillgång till dina andra online-konton. Du bör använda ett unikt lösenord för varje konto eller tjänst."
   },
   "reusedPasswordsFound": {
     "message": "Reused Passwords Found"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Vi hittade $COUNT$ lösenord som återanvänds i ditt valv. Du bör ändra dem till ett unikt värde.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1414,10 +1429,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your vault have passwords that are being reused."
+    "message": "Inga inloggningar i ditt valv har lösenord som återanvänts."
   },
   "reusedXTimes": {
-    "message": "Reused $COUNT$ times",
+    "message": "Återanvänd $COUNT$ gånger",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1429,16 +1444,16 @@
     "message": "Data Breach Report"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Ett \"intrång\" är en incident där en webbplats data har på olagligt vis blivit stulen av hackare och sedan släppts för allmänheten. Gå igenom och granska typerna av data som äventyrats (e-postadresser, lösenord, kreditkort osv.) och ta lämpliga åtgärder såsom att ändra lösenord."
   },
   "breachCheckUsernameEmail": {
-    "message": "Check any usernames or email addresses that you use."
+    "message": "Kolla användarnamn eller e-postadresser som du använder."
   },
   "checkBreaches": {
     "message": "Check Breaches"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "$USERNAME$ hittades inte i något känt dataintrång.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1451,7 +1466,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "$USERNAME$ hittades i $COUNT$ olika dataintrång online.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1467,7 +1482,7 @@
     "message": "Breached Accounts Found"
   },
   "compromisedData": {
-    "message": "Compromised data"
+    "message": "Äventyrad data"
   },
   "website": {
     "message": "Webbsida"
@@ -1482,35 +1497,35 @@
     "message": "Breach Reported"
   },
   "reportError": {
-    "message": "An error occurred trying to load the report. Try again"
+    "message": "Ett fel inträffade när rapporten skulle läsas in. Försök igen"
   },
   "billing": {
-    "message": "Billing"
+    "message": "Betalningsinformation"
   },
   "accountCredit": {
-    "message": "Account Credit",
+    "message": "Kontokredit",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
-    "message": "Account Balance",
+    "message": "Kontosaldo",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "Add Credit",
+    "message": "Lägg till kredit",
     "description": "Add more credit to your account's balance."
   },
   "amount": {
-    "message": "Amount",
+    "message": "Belopp",
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "Tillagd kredit visas på ditt konto efter att betalningen har bearbetats fullständigt. Vissa betalningsmetoder är försenade och kan ta längre tid att behandla än andra."
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "Kontrollera att ditt konto har tillräckligt med kredit för detta köp. Om ditt konto inte har tillräckligt mycket tillgänglig kredit, kommer din standardbetalningsmetod på filen användas för skillnaden. Du kan lägga till kredit på ditt konto från faktureringssidan."
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "Kontots kredit kan användas för att göra inköp. Tillgänglig kredit tillämpas automatiskt mot fakturor genererade för det här kontot."
   },
   "goPremium": {
     "message": "Skaffa premium",
@@ -1520,7 +1535,7 @@
     "message": "Du har uppgraderat till premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Uppgradera ditt konto till ett premium-medlemskap och lås upp några riktigt bra extrafunktioner."
   },
   "premiumSignUpStorage": {
     "message": "1 GB lagring av krypterade filer."
@@ -1529,7 +1544,7 @@
     "message": "Ytterligare alternativ för tvåstegsverifiering såsom YubiKey, FIDO U2F och Duo."
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Lösenordshygien, kontohälsa och dataintrångsrapporter för att hålla ditt valv säkert."
   },
   "premiumSignUpTotp": {
     "message": "TOTP verifieringskod-generator (2FA) för inloggningar i ditt valv."
@@ -1575,7 +1590,7 @@
     "message": "# ytterligare GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "Ditt abonnemang kommer med $SIZE$ krypterad lagring. Du kan lägga till ytterliga lagring för $PRICE$ per GB \/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1611,7 +1626,7 @@
     "message": "Your payment method will be charged immediately and on a recurring basis each year. You may cancel at any time."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Din betalningsmetod kommer att debiteras omedelbart och sedan återkommande varje $INTERVAL$. Du kan upphäva när som helst.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1635,7 +1650,7 @@
     "message": "Kreditkort"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "Klicka på PayPal-knappen för att logga in i ditt PayPal-konto, tryck sedan på \"Skicka\"-knappen nedan för att fortsätta."
   },
   "cancelSubscription": {
     "message": "Avsluta prenumeration"
@@ -1647,19 +1662,19 @@
     "message": "Pending Cancellation"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "Abonnemanget har markerats för upphävning vid slutet av den nuvarande faktureringsperioden."
   },
   "reinstateSubscription": {
     "message": "Återuppta prenumeration"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "Är du säker att du vill ta bort den väntande upphävningsförfrågan och återinföra ditt abonnemang?"
   },
   "reinstated": {
     "message": "Prenumerationen har återupptagits."
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "Är du säker att du vill upphäva? Du kommer att förlora tillgång till alla funktioner som det här abonnemanget erbjuder i slutet av den här faktureringsperioden."
   },
   "canceledSubscription": {
     "message": "Prenumerationen har avbrutits."
@@ -1714,7 +1729,7 @@
     "message": "Betalningssätt"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "Ingen sparad betalningsmetod."
   },
   "addPaymentMethod": {
     "message": "Lägg till betalningssätt"
@@ -1723,36 +1738,36 @@
     "message": "Ändra betalningssätt"
   },
   "invoices": {
-    "message": "Invoices"
+    "message": "Fakturor"
   },
   "noInvoices": {
-    "message": "No invoices."
+    "message": "Inga fakturor."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Betald",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Obetald",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "Transactions",
+    "message": "Transaktioner",
     "description": "Payment\/credit transactions."
   },
   "noTransactions": {
-    "message": "No transactions."
+    "message": "Inga transaktioner."
   },
   "chargeNoun": {
-    "message": "Charge",
+    "message": "Debitering",
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Återbetalning",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "Debiteringar kommer att visas som $STATEMENT_NAME$ i din sammanställning.",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1767,10 +1782,10 @@
     "message": "GB lagring att ta bort"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Att lägga till lagringsutrymme kommer att resultera i justeringar på ditt totala debiteringsbelopp och omedelbart debitera din betalningsmetod. Den första debiteringen kommer att fördelas proportionellt för återstoden av den nuvarande faktureringscykeln."
   },
   "storageRemoveNote": {
-    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Att ta bort lagringsutrymme resulterar i justeringar på ditt totala debiteringsbelopp som kommer att läggas till som kredit mot din nästa debitering."
   },
   "adjustedStorage": {
     "message": "Justerade $AMOUNT$ GB lagringsutrymme.",
@@ -1845,7 +1860,7 @@
     "message": "# antal användarsäten"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Ditt abonnemang kommer med $BASE_SEATS$ användarsäten. Du kan lägga till ytterligare användare för $SEAT_PRICE$ per användare\/månad.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1958,22 +1973,22 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "On-premise hosting (frivilligt)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Användare får tillgång till premium medlemskapsfunktioner"
   },
   "controlAccessWithGroups": {
     "message": "Kontrollera användaråtkomst med grupper"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "Synkronisera användare och grupper från en katalog"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "Spåra användaråtgärder med granskningsloggar"
   },
   "enforce2faDuo": {
-    "message": "Enforce 2FA with Duo"
+    "message": "Kräv 2FA med Duo"
   },
   "priorityCustomerSupport": {
     "message": "Prioriterad kundsupport"
@@ -2003,7 +2018,7 @@
     "message": "Din nya organisation är redo att användas!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "Din organisation har uppgraderats."
   },
   "leave": {
     "message": "Lämna"
@@ -2054,7 +2069,7 @@
     "message": "Externt ID"
   },
   "externalIdDesc": {
-    "message": "The external id can be used as a reference or to link this resource to an external system such as a user directory."
+    "message": "Det externa id:t kan användas som referens eller för att länka denna resurs till ett externt system såsom en användarkatalog."
   },
   "accessControl": {
     "message": "Åtkomstkontroll"
@@ -2099,7 +2114,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "Denna användare använder tvåstegsverifiering för att skydda deras konto."
   },
   "userAccessAllItems": {
     "message": "Denna användare kan komma åt och ändra alla objekt."
@@ -2138,7 +2153,7 @@
     "message": "En vanlig användare med tillgång till organisationens samlingar."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Hanterare"
   },
   "managerDesc": {
     "message": "Managers can access and manage assigned collections in your organization."
@@ -2183,13 +2198,13 @@
     "message": "Ändrade kontolösenord."
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "Aktiverade\/uppdaterade tvåstegsverifiering."
   },
   "disabled2fa": {
     "message": "Inaktiverade tvåstegsverifiering."
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "Återställde konto från tvåstegsverifiering."
   },
   "failedLogin": {
     "message": "Inloggningsförsöket misslyckades med fel lösenord."
@@ -2471,7 +2486,7 @@
     "message": "Kom ihåg e-postadress"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "Om du inte kan komma åt ditt konto genom dina vanliga tvåstegsverifierings-metoder kan du använda din återställningskod för tvåstegsverifiering för att inaktivera alla tvåstegsverifierings-metoder på ditt konto."
   },
   "recoverAccountTwoStep": {
     "message": "Recover Account Two-Step Login"
@@ -2516,7 +2531,7 @@
     "message": "Skatteinformation"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "Vänligen kontakta support för att bidra (eller uppdatera) skatteinformation för dina fakturor."
   },
   "billingPlan": {
     "message": "Abonnemang",
@@ -2527,15 +2542,15 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "message": "Uppgradera ditt konto till ett annat abonnemang genom att ange informationen nedan. Vänligen säkerhetsställ att du har en aktiv betalningsmetod tillagd på kontot.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "Kontakta kundservice om du vill ändra ditt abonnemang. Vänligen säkerhetsställ att du har en aktiv betalningsmetod tillagd på kontot.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Faktura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2545,22 +2560,22 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Visa faktura"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Hämta faktura"
   },
   "verifyBankAccount": {
     "message": "Verifiera bankkonto"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "Vi har gjort två mikro-insättningar till ditt bankkonto (det kan ta 1-2 arbetsdagar innan det visas). Ange beloppen för att verifiera bankkontot."
   },
   "verifyBankAccountInitialDesc": {
     "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "Går det inte att verifiera bankkontot kommer det att resultera i en missad betalning och ditt abonnemang inaktiveras."
   },
   "verifiedBankAccount": {
     "message": "Bankkontot har verifierats."
@@ -2624,10 +2639,10 @@
     "message": "Säten att ta bort"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Att lägga till användarsäten kommer att resultera i justeringar på ditt totala debiteringsbelopp och omedelbart debitera din betalningsmetod. Den första debiteringen kommer att fördelas proportionellt för återstoden av den nuvarande faktureringscykeln."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Att ta bort användarsäten resulterar i justeringar på ditt totala debiteringsbelopp som kommer att läggas till som kredit mot din nästa debitering."
   },
   "adjustedSeats": {
     "message": "Justerade $AMOUNT$ användarsäten.",
@@ -2684,7 +2699,7 @@
     "message": "Du har inte valt något."
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "Genom att klicka på ”Skicka”-knappen, samtycker du till följande principer:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2738,27 +2753,27 @@
     "message": "Licensen har upphört att gälla."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Uppdaterade användare"
   },
   "selected": {
-    "message": "Selected"
+    "message": "Vald(a)"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Ägarskap"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Vem äger detta objekt?"
   },
   "strong": {
-    "message": "Strong",
+    "message": "Stark",
     "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "Bra",
     "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Svagt",
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
@@ -2769,66 +2784,69 @@
     "message": "Weak Master Password"
   },
   "weakMasterPasswordDesc": {
-    "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
+    "message": "Huvudlösenordet du har valt är svagt. Du bör använda ett starkt huvudlösenord (eller en lösenfras) för att skydda ditt Bitwarden-konto ordentligt. Är du säker på att du vill använda detta huvudlösenord?"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "Rotera även mitt kontos krypteringsnyckel"
   },
   "rotateEncKeyTitle": {
     "message": "Rotate Encryption Key"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "Är du säker att du vill rotera ditt kontos krypteringsnyckel?"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "Det här objektet har gamla bifogade filer som behöver fixas."
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "Det här är en gammal bifogad fil som behöver fixas. Klicka här för att läsa mer."
   },
   "fix": {
-    "message": "Fix",
+    "message": "Fixa",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "Det finns gamla bifogade filer i ditt valv som behöver fixas innan du kan rotera ditt kontos krypteringsnyckel."
   },
   "yourAccountsFingerprint": {
-    "message": "Your account's fingerprint phrase",
+    "message": "Ditt kontos fingeravtrycksfras",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+    "message": "För att verifiera integriteten av dina krypteringsnycklar vänligen verifiera användarens fingeravtrycksfras innan du fortsätter.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "Fråga inte efter verifiering av fingeravtrycksfrasen igen",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API-nyckel"
   },
   "apiKeyDesc": {
-    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+    "message": "Din API-nyckel kan användas för att autentisera mot Bitwardens publika API."
   },
   "apiKeyRotateDesc": {
-    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+    "message": "Genom att rotera API-nyckel ogiltigförklarar du den föregående nyckeln. Du kan rotera din API-nyckel om du tror att din nuvarande nyckel inte längre är säker att använda."
   },
   "apiKeyWarning": {
-    "message": "Your API key has full access to the organization. It should be kept secret."
+    "message": "Din API-nyckel har full tillgång till organisationen. Den bör hållas hemlig."
   },
   "oauth2ClientCredentials": {
-    "message": "OAuth 2.0 Client Credentials",
+    "message": "OAuth 2.0 Klientuppgifter",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "View API Key"
+    "message": "Visa API-nyckel"
   },
   "rotateApiKey": {
-    "message": "Rotate API Key"
+    "message": "Rotera API-nyckel"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

@@ -53,7 +53,7 @@
     "message": "Nummer"
   },
   "brand": {
-    "message": "Merk"
+    "message": "Soort"
   },
   "expiration": {
     "message": "Vervaldatum"
@@ -150,6 +150,9 @@
   },
   "value": {
     "message": "Waarde"
+  },
+  "dragToSort": {
+    "message": "Sleep om te sorteren"
   },
   "cfTypeText": {
     "message": "Tekst"
@@ -276,13 +279,13 @@
     "message": "Favorieten"
   },
   "types": {
-    "message": "Types"
+    "message": "Typen"
   },
   "typeLogin": {
     "message": "Aanmelden"
   },
   "typeCard": {
-    "message": "Kaart"
+    "message": "Creditkaart"
   },
   "typeIdentity": {
     "message": "Identiteit"
@@ -395,7 +398,7 @@
     "message": "Selectie delen"
   },
   "deleteSelected": {
-    "message": "Verwijder geselecteerden"
+    "message": "Selectie verwijderen"
   },
   "moveSelected": {
     "message": "Verplaats geselecteerden"
@@ -530,16 +533,16 @@
     "message": "Het hoofdwachtwoord is het wachtwoord waarmee u toegang krijgt tot uw beveiligde kluis. Het is erg belangrijk dat u het hoofdwachtwoord niet vergeet, want er is geen manier om het te herstellen."
   },
   "masterPassHintDesc": {
-    "message": "Een hoofdwachtwoordhint kan u helpen uw wachtwoord te herinneren als u hem vergeten bent."
+    "message": "Een hoofdwachtwoord-hint kan u helpen uw wachtwoord te herinneren als u hem vergeten bent."
   },
   "reTypeMasterPass": {
     "message": "Hoofdwachtwoord opnieuw invoeren"
   },
   "masterPassHint": {
-    "message": "Hoofdwachtwoordhint (optioneel)"
+    "message": "Hoofdwachtwoord-hint (optioneel)"
   },
   "masterPassHintLabel": {
-    "message": "Hoofdwachtwoord hint"
+    "message": "Hoofdwachtwoord-hint"
   },
   "settings": {
     "message": "Instellingen"
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Ontgrendelen"
   },
-  "loggedInAsEmail": {
-    "message": "Ingelogd als $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Ingelogd als $EMAIL$ op $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Woordscheidingsteken"
   },
+  "capitalize": {
+    "message": "Beginhoofdletters",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Nummer opnemen"
+  },
   "passwordHistory": {
     "message": "Wachtwoordgeschiedenis"
   },
@@ -827,7 +841,8 @@
     "message": "Er zijn geen wachtwoorden om weer te geven."
   },
   "clear": {
-    "message": "Wissen"
+    "message": "Wissen",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Account is bijgewerkt"
@@ -2527,7 +2542,7 @@
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "message": "Upgrade uw account naar een ander lidmaatschap door onderstaande informatie door te geven. Verzeker uzelf ervan dat er een actieve betaalmethode aan het account is gekoppeld.",
     "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2697,7 +2712,7 @@
     "message": "Filters"
   },
   "lockOptions": {
-    "message": "Vergrendelopties"
+    "message": "Vergrendelingsopties"
   },
   "lockOptionsDesc": {
     "message": "Kies wanneer uw kluis wordt vergrendeld. Een vergrendelde kluis vereist dat u uw hoofdwachtwoord opnieuw invoert om de kluis opnieuw te mogen gebruiken."
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "API-sleutel roteren"
+  },
+  "selectOneCollection": {
+    "message": "U moet ten minste één collectie selecteren."
   }
 }

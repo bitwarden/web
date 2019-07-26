@@ -151,6 +151,9 @@
   "value": {
     "message": "Значення"
   },
+  "dragToSort": {
+    "message": "Перетягніть, щоб відсортувати"
+  },
   "cfTypeText": {
     "message": "Текст"
   },
@@ -509,7 +512,7 @@
     "message": "Створити обліковий запис"
   },
   "logIn": {
-    "message": "Вхід"
+    "message": "Увійти"
   },
   "submit": {
     "message": "Відправити"
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Розблокувати"
   },
-  "loggedInAsEmail": {
-    "message": "Ви увійшли як $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Ви увійшли як $EMAIL$ на $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Розділювач слів"
   },
+  "capitalize": {
+    "message": "Великі літери",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Включити число"
+  },
   "passwordHistory": {
     "message": "Історія паролів"
   },
@@ -827,7 +841,8 @@
     "message": "Немає паролів для відображення."
   },
   "clear": {
-    "message": "Стерти"
+    "message": "Стерти",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Обліковий запис оновлено"
@@ -2794,7 +2809,7 @@
     "message": "У вашому сховищі є старі вкладені файли, які необхідно виправити перед тим, як повертати ключ шифрування облікового запису."
   },
   "yourAccountsFingerprint": {
-    "message": "Фраза відбитку пальця облікового запису",
+    "message": "Фраза відбитку вашого облікового запису",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Повернути ключ API"
+  },
+  "selectOneCollection": {
+    "message": "Ви повинні обрати принаймні одну збірку."
   }
 }

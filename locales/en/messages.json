@@ -589,12 +589,16 @@
   "unlock": {
     "message": "Unlock"
   },
-  "loggedInAsEmail": {
-    "message": "Logged in as $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -823,6 +827,13 @@
   "wordSeparator": {
     "message": "Word Separator"
   },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
   "passwordHistory": {
     "message": "Password History"
   },
@@ -830,7 +841,8 @@
     "message": "There are no passwords to list."
   },
   "clear": {
-    "message": "Clear"
+    "message": "Clear",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Account Updated"
@@ -2200,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Login attempt failed with incorrect two-step login."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Edited organization settings."
   },
@@ -2236,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2833,5 +2923,8 @@
   },
   "rotateApiKey": {
     "message": "Rotate API Key"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
   }
 }

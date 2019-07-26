@@ -151,6 +151,9 @@
   "value": {
     "message": "值"
   },
+  "dragToSort": {
+    "message": "拖动排序"
+  },
   "cfTypeText": {
     "message": "文本"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "解锁​​​​"
   },
-  "loggedInAsEmail": {
-    "message": "已登录为 $EMAIL$。",
+  "loggedInAsEmailOn": {
+    "message": "以 $EMAIL$ 在 $HOSTNAME$ 上登录。",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "单词分隔符"
   },
+  "capitalize": {
+    "message": "大写",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "包含数字"
+  },
   "passwordHistory": {
     "message": "密码历史记录"
   },
@@ -827,7 +841,8 @@
     "message": "没有要显示的项目。"
   },
   "clear": {
-    "message": "清除"
+    "message": "清除",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "帐户已更新"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "旋转 API 密钥"
+  },
+  "selectOneCollection": {
+    "message": "您必须选择至少一个收藏。"
   }
 }

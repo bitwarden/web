@@ -151,6 +151,9 @@
   "value": {
     "message": "Valor"
   },
+  "dragToSort": {
+    "message": "Arrossega per ordenar"
+  },
   "cfTypeText": {
     "message": "Text"
   },
@@ -586,12 +589,16 @@
   "unlock": {
     "message": "Desbloqueja"
   },
-  "loggedInAsEmail": {
-    "message": "S'ha iniciat la sessió com a $EMAIL$.",
+  "loggedInAsEmailOn": {
+    "message": "Heu iniciat sessió com a $EMAIL$ en $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
       }
     }
   },
@@ -820,6 +827,13 @@
   "wordSeparator": {
     "message": "Separador de paraules"
   },
+  "capitalize": {
+    "message": "Majúscules inicials",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Inclou número"
+  },
   "passwordHistory": {
     "message": "Historial de les contrasenyes"
   },
@@ -827,7 +841,8 @@
     "message": "No hi ha cap contrasenya a llistar."
   },
   "clear": {
-    "message": "Esborra"
+    "message": "Esborra",
+    "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
     "message": "Compte actualitzat"
@@ -2830,5 +2845,8 @@
   },
   "rotateApiKey": {
     "message": "Rota la clau de l'API"
+  },
+  "selectOneCollection": {
+    "message": "Heu d'escollir com a mínim una col·lecció."
   }
 }
