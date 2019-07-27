@@ -152,7 +152,7 @@
     "message": "Valor"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "Arraste para ordenar"
   },
   "cfTypeText": {
     "message": "Texto"
@@ -590,7 +590,7 @@
     "message": "Desbloquear"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "Sessão iniciada como $EMAIL$ em $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -828,11 +828,11 @@
     "message": "Separador de palavras"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "Capitalizar",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "Incluir número"
   },
   "passwordHistory": {
     "message": "Histórico de palavras-passe"
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Tentativa de início de sessão falhada com inicio de sessão de dois passos incorreto."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Definições de organização editadas."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2847,6 +2925,6 @@
     "message": "Rodar chave da API"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "Tem de selecionar pelo menos uma coleção."
   }
 }
