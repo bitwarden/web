@@ -1099,7 +1099,7 @@
     "message": "Vaata taaastamise koodi"
   },
   "providers": {
-    "message": "Pakkujad",
+    "message": "Teenused",
     "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
   },
   "enable": {
@@ -1134,7 +1134,7 @@
     "message": "Keela"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "See kaheastmelise kinnitamise pakkuja on sinu kontol sisse lülitatud."
+    "message": "See kaheastmelise kinnitamise teenus on sinu kontol sisse lülitatud."
   },
   "twoStepLoginAuthDesc": {
     "message": "Kaheastmelise kinnitamise seadete muutmiseks pead sisestama ülemparooli."
@@ -1173,10 +1173,10 @@
     "message": "Kui soovid lisada veel seadmeid, siis all on kuvatud QR kood (ehk võti), mida autentimisrakendusega kasutada saad."
   },
   "twoStepDisableDesc": {
-    "message": "Oled kindel, et soovid selle kaheastmelise kinnitamise teenuspakkuja välja lülitada?"
+    "message": "Oled kindel, et soovid selle kaheastmelise kinnitamise teenuse välja lülitada?"
   },
   "twoStepDisabled": {
-    "message": "Kaheastmelise sisselogimise pakkuja on keelatud."
+    "message": "Kaheastmelise sisselogimise teenus on keelatud."
   },
   "twoFactorYubikeyAdd": {
     "message": "Lisa oma kontole uus YubiKey"
@@ -1302,7 +1302,7 @@
     "message": "Bitwardeni kaheastmelise logimise varukood"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "Sa ei ole veel ühtegi kaheastmelise kinnituse teenuspakkujat sisse lülitanud. Tule siia lehele pärast kaheastmelise kinnitamise sisselülitamist tagasi. Siis näed siin ka varukoodi, millega saad kaheastmelist kinnitamist välja lülitada."
+    "message": "Sa ei ole veel ühtegi kaheastmelise kinnituse teenust sisse lülitanud. Tule siia lehele pärast kaheastmelise kinnitamise sisselülitamist tagasi. Siis näed siin ka varukoodi, millega saad hädakorral kaheastmelise kinnitamise välja lülitada."
   },
   "printCode": {
     "message": "Prindi kood",
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Sisselogimine nurjus vale kaheastmelise kinnituse tõttu."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Organisatsiooni seaded on muudetud."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
