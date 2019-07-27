@@ -152,7 +152,7 @@
     "message": "Hodnota"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "Přetáhnutím seřadíte"
   },
   "cfTypeText": {
     "message": "Text"
@@ -590,7 +590,7 @@
     "message": "Odemknout"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "Přihlášen jako $EMAIL$ na $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -762,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "Vybral jste položek $COUNT$. Sdílitelných položek je $SHAREABLE_COUNT$, $NONSHAREABLE_COUNT$ je nesdílitelných.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -828,11 +828,11 @@
     "message": "Oddělovač slov"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "Velká písmena na začátku slova",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "Zahrnout číslo"
   },
   "passwordHistory": {
     "message": "Historie hesel"
@@ -1366,7 +1366,7 @@
     "message": "Nalezena uniklá hesla"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "Našli jsme $COUNT$ položek ve vašem trezoru, která mají hesla, které byly odhaleny ve známých únicích dat. Měli byste je změnit tak, aby používaly nové heslo.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1375,7 +1375,7 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "Žádné položky v trezoru nemají hesla, která byla vystavena při známých únicích dat."
   },
   "checkExposedPasswords": {
     "message": "Zkontrolovat uniklá hesla"
@@ -1399,7 +1399,7 @@
     "message": "Nalezena slabá hesla"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "Našli jsme $COUNT$ položek se slabým heslem. Měli byste je aktualizovat a použit silnější hesla.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Pokus o přihlášení se nezdařil s nesprávným dvoufázovým přihlášením."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Nastavení organizace upraveno."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2610,7 +2688,7 @@
     "message": "Společnost (firma)"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Individuální (osobní)"
   },
   "enterInstallationId": {
     "message": "Zadejte ID instalace"
@@ -2642,10 +2720,10 @@
     "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
   },
   "seatsRemoveNote": {
-    "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Odebrání uživatelských míst bude mít za následek úpravy vašich fakturačních součtů, které budou účtovány jako kredity k vašemu dalšímu fakturačnímu poplatku."
   },
   "adjustedSeats": {
-    "message": "Adjusted $AMOUNT$ user seats.",
+    "message": "Upraveno $AMOUNT$ uživatelských míst.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2753,7 +2831,7 @@
     "message": "Licence vypršela."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Uživatelé byli aktualizováni"
   },
   "selected": {
     "message": "Vybrané"
@@ -2828,13 +2906,13 @@
     "message": "Klíč API"
   },
   "apiKeyDesc": {
-    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+    "message": "Váš klíč API může být použit pro ověření přístupu k veřejnému API Bitwarden."
   },
   "apiKeyRotateDesc": {
-    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+    "message": "Změna klíče API zruší platnost předchozího klíče. Klíč API můžete změnit, pokud se domníváte, že aktuální klíč již není bezpečný."
   },
   "apiKeyWarning": {
-    "message": "Your API key has full access to the organization. It should be kept secret."
+    "message": "Váš API klíč má plný přístup k organizaci. Měl by být uchován v tajnosti."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 Client Credentials",
@@ -2847,6 +2925,6 @@
     "message": "Změnit klíč API"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "Musíte vybrat alespoň jednu kolekci."
   }
 }
