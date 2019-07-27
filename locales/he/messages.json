@@ -1,6 +1,6 @@
 {
   "pageTitle": {
-    "message": "$APP_NAME$ Web Vault",
+    "message": "כספת רשת $APP_NAME$",
     "description": "The title of the website in the browser window.",
     "placeholders": {
       "app_name": {
@@ -152,7 +152,7 @@
     "message": "ערך"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "גרור כדי למיין"
   },
   "cfTypeText": {
     "message": "טקסט"
@@ -201,17 +201,17 @@
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
-    "message": "Default match detection",
+    "message": "ברירת מחדל לזיהוי התאמות",
     "description": "Default URI match detection for auto-fill."
   },
   "never": {
     "message": "לעולם לא"
   },
   "toggleVisibility": {
-    "message": "Toggle Visibility"
+    "message": "הצג או הסתר"
   },
   "toggleCollapse": {
-    "message": "Toggle Collapse",
+    "message": "הצג או קפל",
     "description": "Toggling an expand\/collapse state."
   },
   "generatePassword": {
@@ -434,7 +434,7 @@
     "message": "גודל הקובץ המירבי הוא 100 מגה."
   },
   "updateKey": {
-    "message": "You cannot use this feature until you update your encryption key."
+    "message": "לא ניתן להשתמש ביכולת זו עד שתעדכן את מפתח ההצפנה שלך."
   },
   "addedItem": {
     "message": "פריט שהתווסף"
@@ -551,10 +551,10 @@
     "message": "רמז לסיסמה"
   },
   "enterEmailToGetHint": {
-    "message": "Enter your account email address to receive your master password hint."
+    "message": "הכנס את כתובת האימייל שלך לקבלת רמז עבור הסיסמה הראשית."
   },
   "getMasterPasswordHint": {
-    "message": "Get master password hint"
+    "message": "הצג את הרמז לסיסמה הראשית"
   },
   "emailRequired": {
     "message": "נדרשת כתובת אימייל."
@@ -563,19 +563,19 @@
     "message": "כתובת אימייל לא תקינה."
   },
   "masterPassRequired": {
-    "message": "Master password is required."
+    "message": "יש להזין את הסיסמה הראשית."
   },
   "masterPassLength": {
-    "message": "Master password must be at least 8 characters long."
+    "message": "הסיסמה הראשית חייבת להיות לפחות באורך 8 תווים."
   },
   "masterPassDoesntMatch": {
-    "message": "Master password confirmation does not match."
+    "message": "שדה אימות סיסמה ראשית לא תואם."
   },
   "newAccountCreated": {
     "message": "החשבון החדש שלך נוצר בהצלחה! כעת ניתן להתחבר למערכת."
   },
   "masterPassSent": {
-    "message": "We've sent you an email with your master password hint."
+    "message": "שלחנו לך אימייל עם רמז לסיסמה הראשית."
   },
   "unexpectedError": {
     "message": "אירעה שגיאה לא צפויה."
@@ -584,13 +584,13 @@
     "message": "כתובת אימייל"
   },
   "yourVaultIsLocked": {
-    "message": "Your vault is locked. Verify your master password to continue."
+    "message": "הכספת שלך נעולה. הזן את הסיסמה הראשית שלך כדי להמשיך."
   },
   "unlock": {
-    "message": "בטל נעילה"
+    "message": "שחרר נעילה"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "מחובר כ $EMAIL$ באתר $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -603,7 +603,7 @@
     }
   },
   "invalidMasterPassword": {
-    "message": "Invalid master password"
+    "message": "סיסמה ראשית שגויה"
   },
   "lockNow": {
     "message": "נעל עכשיו"
@@ -639,10 +639,10 @@
     }
   },
   "enterVerificationCodeApp": {
-    "message": "Enter the 6 digit verification code from your authenticator app."
+    "message": "הכנס את קוד האימות בן 6 הספרות מאפליקציית האימות שלך."
   },
   "enterVerificationCodeEmail": {
-    "message": "Enter the 6 digit verification code that was emailed to $EMAIL$.",
+    "message": "הכנס את קוד האימות בן 6 הספרות שנשלח ל-$EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -666,28 +666,28 @@
     "message": "שלח שוב קוד אימות לאימייל"
   },
   "useAnotherTwoStepMethod": {
-    "message": "Use another two-step login method"
+    "message": "השתמש בשיטה אחרת עבור כניסה דו שלבית"
   },
   "insertYubiKey": {
-    "message": "Insert your YubiKey into your computer's USB port, then touch its button."
+    "message": "הכנס את ה-YubiKey אל כניסת ה-USB במחשבך, ואז גע בכפתור שלו."
   },
   "insertU2f": {
-    "message": "Insert your security key into your computer's USB port. If it has a button, touch it."
+    "message": "הכנס את מפתח האבטחה שלך אל כניסת ה-USB במחשבך. אם יש לו כפתור, לחץ עליו."
   },
   "loginUnavailable": {
-    "message": "Login Unavailable"
+    "message": "פרטי כניסה לא זמינים"
   },
   "noTwoStepProviders": {
-    "message": "This account has two-step login enabled, however, none of the configured two-step providers are supported by this web browser."
+    "message": "כניסה דו-שלבית פעילה בחשבון זה, אך אף אחד מספקי הכניסה הדו-שלבית לא נתמכים בדפדפן זה."
   },
   "noTwoStepProviders2": {
-    "message": "Please use a supported web browser (such as Chrome) and\/or add additional providers that are better supported across web browsers (such as an authenticator app)."
+    "message": "אנא השתמש בדפדפן נתמך (כמו לדוגמא Chrome) ו\\או הוסף ספק כניסה דו-שלבית הנתמך בדפדפן זה (כמו לדוגמא אפליקצית אימות)."
   },
   "twoStepOptions": {
-    "message": "Two-step Login Options"
+    "message": "אפשרויות כניסה דו שלבית"
   },
   "recoveryCodeDesc": {
-    "message": "Lost access to all of your two-factor providers? Use your recovery code to disable all two-factor providers from your account."
+    "message": "איבדת גישה לכל ספקי האימות הדו-שלבי שלך? השתמש בקוד האימות כדי לבטל את הספקים הקיימים מתוך החשבון שלך."
   },
   "recoveryCodeTitle": {
     "message": "קוד שחזור"
@@ -696,28 +696,28 @@
     "message": "אפליקציית אימות"
   },
   "authenticatorAppDesc": {
-    "message": "Use an authenticator app (such as Authy or Google Authenticator) to generate time-based verification codes.",
+    "message": "השתמש באפליקצית אימות (כמו לדוגמא Authy או Google Authenticator) לייצור סיסמאות אימות מבוססות זמן.",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
-    "message": "YubiKey OTP Security Key"
+    "message": "מפתח אבטחה OTP של YubiKey"
   },
   "yubiKeyDesc": {
-    "message": "Use a YubiKey to access your account. Works with YubiKey 4 series, 5 series, and NEO devices."
+    "message": "השתמש בYubiKey עבור גישה לחשבון שלך. עובד עם YubiKey מסדרה 4, סדרה 5, ומכשירי NEO."
   },
   "duoDesc": {
-    "message": "Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "בצע אימות מול Duo Security באמצעות אפליקצית Duo לפלאפון, SMS, שיחת טלפון, או מפתח אבטחה U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Verify with Duo Security for your organization using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "בצע אימות מול Duo Security עבור הארגון שלך באמצעות אפליקצית Duo לפלאפון, SMS, שיחת טלפון, או מפתח אבטחה U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
-    "message": "Use any FIDO U2F enabled security key to access your account."
+    "message": "השתמש בכל מפתח אבטחה התומך בFIDO U2F עבור גישה לחשבונך."
   },
   "u2fTitle": {
-    "message": "FIDO U2F Security Key"
+    "message": "מפתח אבטחה FIDO U2F"
   },
   "emailTitle": {
     "message": "אימייל"
@@ -735,16 +735,16 @@
     "message": "ארגונים"
   },
   "shareDesc": {
-    "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
+    "message": "בחר ארגון שאיתו תרצה לשתף פריט זה. השיתוף מעביר את הבעלות על הפריט לארגון. אתה לא תהיה הבעלים הישיר של הפריט לאחר השיתוף."
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "בחר ארגון שאיתו תרצה לשתף פריטים אלו. השיתוף מעביר את הבעלות על הפריטים לארגון. אתה לא תהיה הבעלים הישיר של הפריטים לאחר השיתוף."
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "ערוך את האוסף המשותף של פריט זה. רק משתמשים מורשים מתוך הארגון יוכלו לראות פריט זה."
   },
   "deleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to delete. Are you sure you want to delete all of these items?",
+    "message": "בחרת $COUNT$ פריט(ים) למחיקה. האם אתה בטוח שברצונך למחוק את כולם?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -753,7 +753,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Choose a folder that you would like to move the $COUNT$ selected item(s) to.",
+    "message": "בחר תיקיה שאליה תרצה להעביר את $COUNT$ הפריט(ים) שבחרת.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -762,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+    "message": "בחרת $COUNT$ פריט(ים). מתוכם ניתן לשתף $SHAREABLE_COUNT$, אך $NONSHAREABLE_COUNT$ לא ניתן לשתף.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -788,22 +788,22 @@
     "message": "אזהרה"
   },
   "exportWarningDesc": {
-    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "הקובץ מכיל את פרטי הכספת שלך בפורמט לא מוצפן. מומלץ להעביר את הקובץ רק בדרכים מוצפנות, ומאוד לא מומלץ לשמור או לשלוח את הקובץ הזה בדרכים לא מוצפנות (כדוגמת סתם אימייל). מחק את הקובץ מיד לאחר שסיימת את השימוש בו."
   },
   "exportMasterPassword": {
-    "message": "Enter your master password to export your vault data."
+    "message": "הזן את הסיסמה הראשית שלך עבור יצוא המידע מהכספת."
   },
   "exportVault": {
-    "message": "Export Vault"
+    "message": "יצוא כספת"
   },
   "fileFormat": {
     "message": "פורמט קובץ"
   },
   "exportSuccess": {
-    "message": "Your vault data has been exported."
+    "message": "הוצאת המידע מהכספת שלך הסתיימה."
   },
   "passwordGenerator": {
-    "message": "Password Generator"
+    "message": "יוצר הסיסמאות"
   },
   "minNumbers": {
     "message": "מינימום ספרות"
@@ -816,7 +816,7 @@
     "message": "המנע מאותיות ותווים דומים"
   },
   "regeneratePassword": {
-    "message": "Regenerate Password"
+    "message": "צור סיסמה חדשה"
   },
   "length": {
     "message": "אורך"
@@ -825,20 +825,20 @@
     "message": "מספר מילים"
   },
   "wordSeparator": {
-    "message": "Word Separator"
+    "message": "מפריד מילים"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "הפוך אותיות ראשונות לאותיות גדולות",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "כלול מספרים"
   },
   "passwordHistory": {
     "message": "היסטוריית סיסמאות"
   },
   "noPasswordsInList": {
-    "message": "There are no passwords to list."
+    "message": "אין סיסמאות להצגה ברשימה."
   },
   "clear": {
     "message": "נקה",
@@ -857,7 +857,7 @@
     "message": "קוד"
   },
   "changeEmailDesc": {
-    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize the email address change.",
+    "message": "שלחנו מייל אימות לכתובת $EMAIL$. אנא בדוק אם קיבלת את הקוד והזן אותו בתיבה בכדי לסיים את תהליך החלפת האימייל.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -866,34 +866,34 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "בכדי להמשיך הסשן הנוכחי ינותק, ותדרש להזין את פרטי הכניסה החדשים. כל הסשנים הפעילים במכשירים אחרים ישארו פעילים עד שעה ממועד הכניסה החדשה."
   },
   "emailChanged": {
-    "message": "דוא\"ל שונה"
+    "message": "כתובת האימייל שונתה"
   },
   "logBackIn": {
-    "message": "Please log back in."
+    "message": "אנא התחבר שוב."
   },
   "logBackInOthersToo": {
-    "message": "Please log back in. If you are using other Bitwarden applications log out and back in to those as well."
+    "message": "אנא התחבר שוב. אם אתה משתמש באפליקציות נוספות של Bitwarden, סגור את החיבור והתחבר שוב גם באפליקציות הללו."
   },
   "changeMasterPassword": {
-    "message": "Change Master Password"
+    "message": "החלף סיסמה ראשית"
   },
   "masterPasswordChanged": {
-    "message": "Master Password Changed"
+    "message": "הסיסמה הראשית הוחלפה"
   },
   "currentMasterPass": {
-    "message": "Current Master Password"
+    "message": "סיסמה ראשית נוכחית"
   },
   "newMasterPass": {
-    "message": "New Master Password"
+    "message": "סיסמה ראשית חדשה"
   },
   "confirmNewMasterPass": {
-    "message": "Confirm New Master Password"
+    "message": "אמת סיסמה ראשית חדשה"
   },
   "encKeySettings": {
-    "message": "Encryption Key Settings"
+    "message": "הגדרות מפתח הצפנה"
   },
   "kdfAlgorithm": {
     "message": "אלגוריתם KDF"
@@ -902,7 +902,7 @@
     "message": "איטרציות KDF"
   },
   "kdfIterationsDesc": {
-    "message": "Higher KDF iterations can help protect your master password from being brute forced by an attacker. We recommend a value of $VALUE$ or more.",
+    "message": "קביעת ערך גבוה עבור מספר האיטרציות של KDF עוזרת בהגנה על הסיסמה הראשית שלך מפני תקיפת Brute force (תְּקִיפָה כּוֹחָנִית). אנו ממליצים להשתמש בערך $VALUE$ או ערך גבוה יותר.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -911,7 +911,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Setting your KDF iterations too high could result in poor performance when logging into (and unlocking) Bitwarden on devices with slower CPUs. We recommend that you increase the value in increments of $INCREMENT$ and then test all of your devices.",
+    "message": "קביעת ערך גבוה מדי עבור מספר האיטרציות KDF עלול לגרום לבעיות ביצועים בזמן הכניסה (ובזמן ביטול הנעילה) לחשבון Bitwarden במכשירים בעלי מעבד חלש. אנו ממליצים שתעלה את הערך בקפיצות של $INCREMENT$ ובדוק את ההשפעה של הביצועים בכל המכשירים שלך.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -923,58 +923,58 @@
     "message": "שנה KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Encryption Key Settings Changed"
+    "message": "הגדרות מפתח ההצפנה השתנו"
   },
   "dangerZone": {
     "message": "אזור מסוכן"
   },
   "dangerZoneDesc": {
-    "message": "Careful, these actions are not reversible!"
+    "message": "זהירות, פעולות אלה לא ניתנות לביטול!"
   },
   "deauthorizeSessions": {
-    "message": "Deauthorize Sessions"
+    "message": "בטל הרשאות סשנים"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public computer or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+    "message": "מודאג אם השארת את החשבון שלך מחובר במכשיר אחר? המשך כאן להסרת ההרשאות של סשנים מכל המחשבים או המכשירים שהשתמשת בעבר. צעד אבטחה זה מומלץ אם השתמשת בעבר במחשב ציבורי או ששמרת את הסיסמה בטעות במכשיר שאינו שלך. כמו כן, צעד זה ינקה גם את כל הסיסמאות השמורות עבור סשנים שהשתמשו באימות דו-שלבי."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "בכדי להמשיך הסשן הנוכחי ינותק, ותדרש להזין את פרטי הכניסה החדשים וגם את פרטי האימות הדו-שלבי, אם הוא מאופשר. כל הסשנים הפעילים במכשירים אחרים ישארו פעילים עד שעה ממועד הכניסה החדשה."
   },
   "sessionsDeauthorized": {
-    "message": "All Sessions Deauthorized"
+    "message": "הוסרה ההרשאה מכל הסשנים"
   },
   "purgeVault": {
-    "message": "טיהור כספת"
+    "message": "מחק תוכן כספת"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization vault."
+    "message": "מחק תוכן כספת ארגונית."
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "המשך כאן בכדי למחוק את כל הפריטים והתיקיות שבכספת שלך. פריטים השייכים לארגון לא ימחקו."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's vault."
+    "message": "המשך להלן כדי למחוק את כל הפריטים מהכספת הארגונית."
   },
   "purgeVaultWarning": {
-    "message": "Purging your vault is permanent. It cannot be undone."
+    "message": "מחיקת תוכן הכספת היא סופית. פעולה זו היא בלתי הפיכה."
   },
   "vaultPurged": {
-    "message": "Your vault has been purged."
+    "message": "המידע בכספת נמחק."
   },
   "deleteAccount": {
     "message": "מחק חשבון"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all associated data."
+    "message": "המשך כאן בכדי למחוק את החשבון שלך וכל המידע המשויך אליו."
   },
   "deleteAccountWarning": {
-    "message": "Deleting your account is permanent. It cannot be undone."
+    "message": "מחיקת החשבון היא פעולה בלתי הפיכה."
   },
   "accountDeleted": {
     "message": "החשבון נמחק"
   },
   "accountDeletedDesc": {
-    "message": "Your account has been closed and all associated data has been deleted."
+    "message": "חשבונך נסגר וכל המידע המשויך אליו נמחק."
   },
   "myAccount": {
     "message": "החשבון שלי"
@@ -989,22 +989,22 @@
     "message": "נתונים יובאו בהצלחה אל תוך הכספת שלך."
   },
   "importFormatError": {
-    "message": "Data is not formatted correctly. Please check your import file and try again."
+    "message": "המידע לא מפורמט בצורה נכונה. אנא בדוק את הקובץ ונסה שוב."
   },
   "importNothingError": {
     "message": "לא יובא דבר."
   },
   "selectFormat": {
-    "message": "Select the format of the import file"
+    "message": "בחר את פורמט הקובץ לייבוא"
   },
   "selectImportFile": {
-    "message": "Select the import file"
+    "message": "בחר את הקובץ לייבוא"
   },
   "orCopyPasteFileContents": {
-    "message": "or copy\/paste the import file contents"
+    "message": "או העתק\\הדבק את תוכן הקובץ ליבוא"
   },
   "instructionsFor": {
-    "message": "$NAME$ Instructions",
+    "message": "הוראות עבור $NAME$",
     "description": "The title for the import tool instructions.",
     "placeholders": {
       "name": {
@@ -1017,7 +1017,7 @@
     "message": "אפשרויות"
   },
   "optionsDesc": {
-    "message": "Customize your web vault experience."
+    "message": "התאם אישית את חווית כספת הרשת שלך."
   },
   "optionsUpdated": {
     "message": "אפשרויות עודכנו"
@@ -1026,13 +1026,13 @@
     "message": "שפה"
   },
   "languageDesc": {
-    "message": "Change the language used by the web vault."
+    "message": "שנה את השפה של כספת הרשת."
   },
   "disableIcons": {
     "message": "בטל אייקונים של האתר"
   },
   "disableIconsDesc": {
-    "message": "Website Icons provide a recognizable image next to each login item in your vault."
+    "message": "יכולת הצג אייקונים-של-האתר מאפשרת הצגה של תמונה או אייקון מוכר ליד פרטי הכניסה שבכספת שלך."
   },
   "enableGravatars": {
     "message": "אפשר שימוש ב-Gravatar",
@@ -1045,22 +1045,22 @@
     "message": "ברירת מחדל"
   },
   "domainRules": {
-    "message": "Domain Rules"
+    "message": "כללי דומיין"
   },
   "domainRulesDesc": {
-    "message": "If you have the same login across multiple different website domains, you can mark the website as \"equivalent\". \"Global\" domains are ones already created for you by Bitwarden."
+    "message": "אם אתה משתמש באותם פרטי כניסה עבור אתרים שונים באותו דומיין, באפשרות לסמן את האתר כ\"שווה\". הערכים הרגילים שנוצרים על ידי Bitwarden מסומנים כדומיין \"גלובלי\"."
   },
   "globalEqDomains": {
-    "message": "Global Equivalent Domains"
+    "message": "דומיינים גלובליים שווים"
   },
   "customEqDomains": {
-    "message": "Custom Equivalent Domains"
+    "message": "דומיינים שווים מותאמים אישית"
   },
   "exclude": {
-    "message": "לא כולל"
+    "message": "אל תכלול"
   },
   "include": {
-    "message": "כולל"
+    "message": "כלול"
   },
   "customize": {
     "message": "התאם אישית"
@@ -1125,7 +1125,7 @@
     "message": "יש לך גישת פרימיום"
   },
   "alreadyPremiumFromOrg": {
-    "message": "כבר יש לך גישה ליכולות פרימיום בזכות ארגון שאתה חבר בו."
+    "message": "לארגון שאתה חבר בו, כבר יש גישת פרימיום, ולכן יש לך גישה ליכולות פרמיום."
   },
   "manage": {
     "message": "נהל"
@@ -1735,7 +1735,7 @@
     "message": "הוסף אמצעי תשלום"
   },
   "changePaymentMethod": {
-    "message": "שנה אמצאי תשלום"
+    "message": "שנה אמצעי תשלום"
   },
   "invoices": {
     "message": "חשבוניות"
@@ -1901,7 +1901,7 @@
     "message": "For businesses and other team organizations."
   },
   "planNameEnterprise": {
-    "message": "חברה"
+    "message": "ארגון"
   },
   "planDescEnterprise": {
     "message": "For businesses and other large organizations."
@@ -2021,13 +2021,13 @@
     "message": "הארגון שלך שודרג."
   },
   "leave": {
-    "message": "עזוב"
+    "message": "יציאה"
   },
   "leaveOrganizationConfirmation": {
-    "message": "האם אתה בטוח שברצונך לעזוב את הארגון הזה?"
+    "message": "האם אתה בטוח שברצונך לצאת מהארגון?"
   },
   "leftOrganization": {
-    "message": "עזבת את הארגון."
+    "message": "יצאת מהארגון."
   },
   "defaultCollection": {
     "message": "אוסף ברירת מחדל"
@@ -2036,7 +2036,7 @@
     "message": "קבל עזרה"
   },
   "getApps": {
-    "message": "הורידו את האפליקציות"
+    "message": "הורד את האפליקציות"
   },
   "loggedInAs": {
     "message": "מחובר בשם"
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Login attempt failed with incorrect two-step login."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Edited organization settings."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2444,22 +2522,22 @@
     "message": "תאריך סיום"
   },
   "verifyEmail": {
-    "message": "אימות דוא\"ל"
+    "message": "אמת כתובת אימייל"
   },
   "verifyEmailDesc": {
-    "message": "אמת את האימייל של החשבון שלך בכדי לאפשר גישה לכל היכולות."
+    "message": "אמת את האימייל שלך בכדי לאפשר גישה לכל היכולות."
   },
   "verifyEmailFirst": {
-    "message": "כתובת האימייל שלך חייבת להיות מאומתת קודם."
+    "message": "יש לאמת כתובת האימייל שלך."
   },
   "checkInboxForVerification": {
-    "message": "בדוק את האימייל שלך בשביל קוד אימות."
+    "message": "בדוק אם קיבלת את קוד האימות באימייל."
   },
   "emailVerified": {
-    "message": "הדוא\"ל שלך אומת."
+    "message": "כתובת האימייל שלך אומתה."
   },
   "emailVerifiedFailed": {
-    "message": "לא ניתן לאמת את הדוא\"ל שלך. נסה לשלוח מייל אימות חדש."
+    "message": "לא ניתן לאמת את האימייל שלך. נסה לשלוח מייל אימות חדש."
   },
   "updateBrowser": {
     "message": "עדכן דפדפן"
@@ -2471,16 +2549,16 @@
     "message": "הצטרף לארגון"
   },
   "joinOrganizationDesc": {
-    "message": "הוזמנת להצטרף לארגונים המצויינים למעלה. כדי לקבל את ההזמנה, עליך להתחבר או ליצור חשבון Bitwarden חדש."
+    "message": "הוזמנת להצטרף לארגון הרשום לעיל. בכדי להסכים, עליך להתחבר או ליצור חשבון Bitwarden חדש."
   },
   "inviteAccepted": {
     "message": "ההזמנה התקבלה"
   },
   "inviteAcceptedDesc": {
-    "message": "תהיה באפשרותך לקבל גישה לארגון זה ברגע שמנהל יאשר את החברות שלך. אנחנו נשלח לך מייל כשזה יקרה."
+    "message": "תוכל לקבל גישה לארגון זה כשאחד המנהלים יאשר את החברות שלך. נשלח לך מייל כשזה יקרה."
   },
   "inviteAcceptFailed": {
-    "message": "לא ניתן לקבל את ההזמנה. פנה למנהל הארגון בכדי שישלח הזמנה חדשה."
+    "message": "לא ניתן לקבל את ההזמנה. בקש ממנהל הארגון שישלח הזמנה חדשה."
   },
   "rememberEmail": {
     "message": "זכור אימייל"
@@ -2498,10 +2576,10 @@
     "message": "למידע נוסף"
   },
   "deleteRecoverDesc": {
-    "message": "הכנס את כתובת האימייל שלך למטה כדי לשחזר ולמחוק את החשבון שלך."
+    "message": "הזן את כתובת האימייל שלך כדי לשחזר ולמחוק את החשבון שלך."
   },
   "deleteRecoverEmailSent": {
-    "message": "אם החשבון שלך קיים, שלחנו אליך מייל עם הוראות נוספות."
+    "message": "אם החשבון שלך אכן קיים, שלחנו אליך מייל עם הוראות נוספות."
   },
   "deleteRecoverConfirmDesc": {
     "message": "ביקשת למחוק את חשבון ה-Bitwarden שלך. לחץ על הכפתור למטה בכדי לאשר זאת."
@@ -2516,7 +2594,7 @@
     "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
   },
   "deleteOrganizationWarning": {
-    "message": "מחיקת ארגון היא קבועה. לא ניתן לשחזר פעולה זו."
+    "message": "מחיקת ארגון היא סופית. לא ניתן לבטל פעולה זו."
   },
   "organizationDeleted": {
     "message": "הארגון נמחק"
@@ -2624,7 +2702,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
-    "message": "המנוי שלך מאפשר $COUNT$ משתמשים סך הכל.",
+    "message": "המנוי שלך מתיר עד $COUNT$ משתמשים.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2660,7 +2738,7 @@
     "message": "עדכן מפתח"
   },
   "updateEncryptionKey": {
-    "message": "עדכן מפתח מוצפן"
+    "message": "עדכן מפתח הצפנה"
   },
   "updateEncryptionKeyShortDesc": {
     "message": "You are currently using an outdated encryption scheme."
@@ -2672,7 +2750,7 @@
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   },
   "subscription": {
-    "message": "מינוי"
+    "message": "מנוי"
   },
   "loading": {
     "message": "טוען"
@@ -2750,13 +2828,13 @@
     "message": "הארגון הושבת."
   },
   "licenseIsExpired": {
-    "message": "הרישיון פג תוקף."
+    "message": "תוקף הרשיון הסתיים."
   },
   "updatedUsers": {
     "message": "משתמשים שעודכנו"
   },
   "selected": {
-    "message": "נבחרו"
+    "message": "נבחר\\ו"
   },
   "ownership": {
     "message": "בעלות"

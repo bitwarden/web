@@ -152,7 +152,7 @@
     "message": "Wert"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "Zum Sortieren ziehen"
   },
   "cfTypeText": {
     "message": "Text"
@@ -590,7 +590,7 @@
     "message": "Entsperren"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "Angemeldet als $EMAIL$ auf $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -828,11 +828,11 @@
     "message": "Worttrennzeichen"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "Großschreiben",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "Zahl hinzufügen"
   },
   "passwordHistory": {
     "message": "Passwortverlauf"
@@ -1116,7 +1116,7 @@
     "message": "Premium-Mitgliedschaft"
   },
   "premiumRequired": {
-    "message": "Premium-Mitgliedschaft benötigt"
+    "message": "Premium Mitgliedschaft benötigt"
   },
   "premiumRequiredDesc": {
     "message": "Für diese Funktion ist eine Premium-Mitgliedschaft notwendig."
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Anmeldeversuch mit falscher Zwei-Faktor-Anmeldung fehlgeschlagen."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Organisationseinstellungen bearbeitet."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2847,6 +2925,6 @@
     "message": "API-Schlüssel erneuern"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "Es muss mindestens eine Sammlung ausgewählt sein."
   }
 }
