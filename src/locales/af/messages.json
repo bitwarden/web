@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Login attempt failed with incorrect two-step login."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Edited organization settings."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2598,19 +2676,19 @@
     "description": "Bank account routing number"
   },
   "accountNumber": {
-    "message": "Account Number"
+    "message": "Rekeningnommer"
   },
   "accountHolderName": {
-    "message": "Account Holder Name"
+    "message": "Rekeninghouernaam"
   },
   "bankAccountType": {
-    "message": "Account Type"
+    "message": "Rekeningtipe"
   },
   "bankAccountTypeCompany": {
     "message": "Company (Business)"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Individueel (Persoonlik)"
   },
   "enterInstallationId": {
     "message": "Enter your installation id"
@@ -2672,25 +2750,25 @@
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   },
   "subscription": {
-    "message": "Subscription"
+    "message": "Intekening"
   },
   "loading": {
-    "message": "Loading"
+    "message": "Laai tans"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "Gradeer Op"
   },
   "upgradeOrganization": {
-    "message": "Upgrade Organization"
+    "message": "Gradeer Organisasie Op"
   },
   "upgradeOrganizationDesc": {
     "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
   },
   "createOrganizationStep1": {
-    "message": "Create Organization: Step 1"
+    "message": "Skep Organisasie: Stap 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "U moet eers ’n gratis persoonlike rekening skep voor u u organisasie skep."
   },
   "refunded": {
     "message": "Refunded"
@@ -2706,7 +2784,7 @@
     "message": "Terms of Service"
   },
   "privacyPolicy": {
-    "message": "Privacy Policy"
+    "message": "Privaatheidsbeleid"
   },
   "filters": {
     "message": "Filters"
@@ -2718,22 +2796,22 @@
     "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
   },
   "oneMinute": {
-    "message": "1 minute"
+    "message": "1 minuut"
   },
   "fiveMinutes": {
-    "message": "5 minutes"
+    "message": "5 minute"
   },
   "fifteenMinutes": {
-    "message": "15 minutes"
+    "message": "15 minute"
   },
   "thirtyMinutes": {
-    "message": "30 minutes"
+    "message": "30 minute"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 uur"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 uur"
   },
   "onRefresh": {
     "message": "On Browser Refresh"
@@ -2759,54 +2837,54 @@
     "message": "Selected"
   },
   "ownership": {
-    "message": "Ownership"
+    "message": "Eienaarskap"
   },
   "whoOwnsThisItem": {
-    "message": "Who owns this item?"
+    "message": "Wie besit hierdie item?"
   },
   "strong": {
-    "message": "Strong",
+    "message": "Sterk",
     "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "Goed",
     "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Swak",
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Baie Swak",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
-    "message": "Weak Master Password"
+    "message": "Swak Hoofwagwoord"
   },
   "weakMasterPasswordDesc": {
     "message": "The master password you have chosen is weak. You should use a strong master password (or a passphrase) to properly protect your Bitwarden account. Are you sure you want to use this master password?"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "Roteer ook my rekening se enrkipsiesleutel"
   },
   "rotateEncKeyTitle": {
-    "message": "Rotate Encryption Key"
+    "message": "Roteer Enkripsiesleutel"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "Is u seker u wil u rekening se enkripsiesleutel roteer?"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "Hierdie item het ou lêeraanhegsels wat herstel moet word."
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "Dit is ’n ou lêeraanhegsel wat herstel moet word. Klik om meer uit te vind."
   },
   "fix": {
-    "message": "Fix",
+    "message": "Herstel",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "Daar is ou lêeraanhegsels in u kluis wat herstel moet word alvorens u u rekening se enkripsiesleutel kan roteer."
   },
   "yourAccountsFingerprint": {
     "message": "Your account's fingerprint phrase",
@@ -2821,11 +2899,11 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API-sleutel"
   },
   "apiKeyDesc": {
     "message": "Your API key can be used to authenticate to the Bitwarden public API."
@@ -2847,6 +2925,6 @@
     "message": "Rotate API Key"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "U moet ten minste een versameling kies."
   }
 }
