@@ -152,7 +152,7 @@
     "message": "Valor"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "Arraste para ordenar"
   },
   "cfTypeText": {
     "message": "Texto"
@@ -590,7 +590,7 @@
     "message": "Desbloquear"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "Sessão iniciada como $EMAIL$ em $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -828,11 +828,11 @@
     "message": "Separador de palavras"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "Capitalizar",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "Incluir número"
   },
   "passwordHistory": {
     "message": "Histórico de palavras-passe"
@@ -1821,7 +1821,7 @@
     "message": "Para atualizar a sua conta para uma adesão premium precisa de carregar um ficheiro de licença válido."
   },
   "uploadLicenseFileOrg": {
-    "message": "Para criar uma organização em premissa alojada precisa de carregar um ficheiro de licença válido."
+    "message": "Para criar uma organização alojada nas suas premissas precisa de carregar um ficheiro de licença válido."
   },
   "accountEmailMustBeVerified": {
     "message": "O endereço de email da sua conta precisa de ser verificado."
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Tentativa de início de sessão falhada com inicio de sessão de dois passos incorreto."
   },
+  "exportedVault": {
+    "message": "Cofre exportado."
+  },
+  "exportedOrganizationVault": {
+    "message": "Cofre da organização exportado."
+  },
   "editedOrgSettings": {
     "message": "Definições de organização editadas."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Item $ID$ visto.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Palavra-passe vista para o item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Campo oculto visto para o item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Código de segurança visto para o item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Palavra-passe copiada para o item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Campo oculto copiado para o item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Código de segurança copiado para o item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Item $ID$ auto-preenchido.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -2847,6 +2925,6 @@
     "message": "Rodar chave da API"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "Tem de selecionar pelo menos uma coleção."
   }
 }

@@ -266,7 +266,7 @@
     "message": "Szukaj w ulubionych"
   },
   "searchType": {
-    "message": "Szukaj elementów wybranego rodzaju",
+    "message": "Szukaj według typu elementu",
     "description": "Search item type"
   },
   "searchVault": {
@@ -590,7 +590,7 @@
     "message": "Odblokuj"
   },
   "loggedInAsEmailOn": {
-    "message": "Zalogowano jako $EMAIL$ na $HOSTNAME$.",
+    "message": "Zalogowano jako $EMAIL$ do $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -828,7 +828,7 @@
     "message": "Separator wyrazów"
   },
   "capitalize": {
-    "message": "Duże litery",
+    "message": "Pierwsze duże litery wyrazu",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
@@ -2212,6 +2212,12 @@
   "failedLogin2fa": {
     "message": "Logowanie nie powiodło się z powodu nieprawidłowego logowania dwustopniowego."
   },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
   "editedOrgSettings": {
     "message": "Zmieniono ustawienia organizacji."
   },
@@ -2248,6 +2254,78 @@
       "id": {
         "content": "$1",
         "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
