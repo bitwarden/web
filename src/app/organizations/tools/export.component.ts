@@ -8,6 +8,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { ExportComponent as BaseExportComponent } from '../../tools/export.component';
+
 import { EventType } from 'jslib/enums/eventType';
 
 @Component({
