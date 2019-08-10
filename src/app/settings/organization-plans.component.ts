@@ -169,7 +169,10 @@ export class OrganizationPlansComponent {
                     } else {
                         request.planType = this.plans[this.plan].annualPlanType;
                     }
-                    await this.apiService.postOrganizationUpgrade(this.organizationId, request);
+                    const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
+                    if (!result.success && result.paymentIntentClientSecret != null) {
+                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+                    }
                     orgId = this.organizationId;
                 }
 

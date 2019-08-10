@@ -1,4 +1,4 @@
-<div class="mb-4 text-lg" *ngIf="showOptions">
+<div class="mb-4 text-lg" *ngIf="showOptions && showMethods">
     <div class="form-check form-check-inline mr-4">
         <input class="form-check-input" type="radio" name="Method" id="method-card" [value]="paymentMethodType.Card"
             [(ngModel)]="method" (change)="changeMethod()">
@@ -24,7 +24,7 @@
             <i class="fa fa-fw fa-dollar"></i> {{'accountCredit' | i18n}}</label>
     </div>
 </div>
-<ng-container *ngIf="method === paymentMethodType.Card">
+<ng-container *ngIf="showMethods && method === paymentMethodType.Card">
     <div class="row">
         <div class="form-group col-4">
             <label for="stripe-card-number-element">{{'number' | i18n}}</label>
@@ -50,7 +50,7 @@
         </div>
     </div>
 </ng-container>
-<ng-container *ngIf="method === paymentMethodType.BankAccount">
+<ng-container *ngIf="showMethods && method === paymentMethodType.BankAccount">
     <app-callout type="warning" title="{{'verifyBankAccount' | i18n}}">
         {{'verifyBankAccountInitialDesc' | i18n}} {{'verifyBankAccountFailureWarning' | i18n}}
     </app-callout>
@@ -81,13 +81,13 @@
         </div>
     </div>
 </ng-container>
-<ng-container *ngIf="method === paymentMethodType.PayPal">
+<ng-container *ngIf="showMethods && method === paymentMethodType.PayPal">
     <div class="mb-3">
         <div id="bt-dropin-container" class="mb-1"></div>
         <small class="text-muted">{{'paypalClickSubmit' | i18n}}</small>
     </div>
 </ng-container>
-<ng-container *ngIf="method === paymentMethodType.Credit">
+<ng-container *ngIf="showMethods && method === paymentMethodType.Credit">
     <app-callout type="note">
         {{'makeSureEnoughCredit' | i18n}}
     </app-callout>

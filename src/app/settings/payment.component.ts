@@ -6,6 +6,7 @@ import {
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
+import { ApiService } from 'jslib/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { WebConstants } from '../../services/webConstants';
@@ -34,6 +35,7 @@ const StripeElementClasses = {
     templateUrl: 'payment.component.html',
 })
 export class PaymentComponent implements OnInit {
+    @Input() showMethods = true;
     @Input() showOptions = true;
     @Input() method = PaymentMethodType.Card;
     @Input() hideBank = false;
@@ -60,7 +62,7 @@ export class PaymentComponent implements OnInit {
     private stripeCardExpiryElement: any = null;
     private stripeCardCvcElement: any = null;
 
-    constructor(private platformUtilsService: PlatformUtilsService) {
+    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
         this.stripeScript = window.document.createElement('script');
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
@@ -162,30 +164,60 @@ export class PaymentComponent implements OnInit {
                     reject(err.message);
                 });
             } else if (this.method === PaymentMethodType.Card || this.method === PaymentMethodType.BankAccount) {
-                let sourceObj: any = null;
-                let createObj: any = null;
                 if (this.method === PaymentMethodType.Card) {
-                    sourceObj = this.stripeCardNumberElement;
+                    this.apiService.postSetupPayment().then((clientSecret) =>
+                        this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement))
+                        .then((result: any) => {
+                            if (result.error) {
+                                reject(result.error.message);
+                            } else if (result.setupIntent && result.setupIntent.status === 'succeeded') {
+                                resolve([result.setupIntent.payment_method, this.method]);
+                            } else {
+                                reject();
+                            }
+                        });
                 } else {
-                    sourceObj = 'bank_account';
-                    createObj = this.bank;
+                    this.stripe.createToken('bank_account', this.bank).then((result: any) => {
+                        if (result.error) {
+                            reject(result.error.message);
+                        } else if (result.token && result.token.id != null) {
+                            resolve([result.token.id, this.method]);
+                        } else {
+                            reject();
+                        }
+                    });
                 }
-                this.stripe.createToken(sourceObj, createObj).then((result: any) => {
-                    if (result.error) {
-                        reject(result.error.message);
-                    } else if (result.token && result.token.id != null) {
-                        resolve([result.token.id, this.method]);
-                    } else {
-                        reject();
-                    }
-                });
             }
+        });
+    }
+
+    handleStripeCardPayment(clientSecret: string, successCallback: () => Promise<any>): Promise<any> {
+        return new Promise((resolve, reject) => {
+            if (this.showMethods && this.stripeCardNumberElement == null) {
+                reject();
+                return;
+            }
+            const handleCardPayment = () => this.showMethods ?
+                this.stripe.handleCardPayment(clientSecret, this.stripeCardNumberElement) :
+                this.stripe.handleCardPayment(clientSecret);
+            return handleCardPayment().then(async (result: any) => {
+                if (result.error) {
+                    reject(result.error.message);
+                } else if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+                    if (successCallback != null) {
+                        await successCallback();
+                    }
+                    resolve();
+                } else {
+                    reject();
+                }
+            });
         });
     }
 
     private setStripeElement() {
         window.setTimeout(() => {
-            if (this.method === PaymentMethodType.Card) {
+            if (this.showMethods && this.method === PaymentMethodType.Card) {
                 if (this.stripeCardNumberElement == null) {
                     this.stripeCardNumberElement = this.stripeElements.create('cardNumber', {
                         style: StripeElementStyle,

@@ -84,8 +84,13 @@ export class PremiumComponent implements OnInit {
                     }
                     fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
                     return this.apiService.postPremium(fd);
-                }).then(() => {
-                    return this.finalizePremium();
+                }).then((paymentResponse) => {
+                    if (!paymentResponse.success && paymentResponse.paymentIntentClientSecret != null) {
+                        return this.paymentComponent.handleStripeCardPayment(paymentResponse.paymentIntentClientSecret,
+                            () => this.finalizePremium());
+                    } else {
+                        return this.finalizePremium();
+                    }
                 });
             }
             await this.formPromise;

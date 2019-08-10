@@ -203,6 +203,9 @@
             <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
             <app-payment [hideCredit]="true"></app-payment>
         </ng-container>
+        <ng-container *ngIf="!createOrganization">
+            <app-payment [showMethods]="false"></app-payment>
+        </ng-container>
         <small class="text-muted font-italic mt-2 d-block" *ngIf="!createOrganization">
             {{'paymentCharged' | i18n : (interval | i18n) }}</small>
     </ng-container>
