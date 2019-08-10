@@ -6,6 +6,11 @@ import {
     ViewChild,
 } from '@angular/core';
 
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
+
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
@@ -34,7 +39,8 @@ export class AdjustSeatsComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+        private analytics: Angulartics2, private toasterService: ToasterService,
+        private router: Router, private activatedRoute: ActivatedRoute) { }
 
     async submit() {
         try {
@@ -60,7 +66,12 @@ export class AdjustSeatsComponent {
             this.analytics.eventTrack.next({ action: this.add ? 'Added Seats' : 'Removed Seats' });
             this.onAdjusted.emit(this.seatAdjustment);
             if (paymentFailed) {
-                // TODO: Go to billing page
+                this.toasterService.popAsync({
+                    body: this.i18nService.t('couldNotChargeCardPayInvoice'),
+                    type: 'warning',
+                    timeout: 10000,
+                });
+                this.router.navigate(['../billing'], { relativeTo: this.activatedRoute });
             } else {
                 this.toasterService.popAsync('success', null,
                     this.i18nService.t('adjustedSeats', request.seatAdjustment.toString()));
