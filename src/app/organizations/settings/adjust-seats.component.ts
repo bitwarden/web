@@ -3,6 +3,7 @@ import {
     EventEmitter,
     Input,
     Output,
+    ViewChild,
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
@@ -12,6 +13,8 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { SeatRequest } from 'jslib/models/request/seatRequest';
+
+import { PaymentComponent } from '../../settings/payment.component';
 
 @Component({
     selector: 'app-adjust-seats',
@@ -24,6 +27,8 @@ export class AdjustSeatsComponent {
     @Input() interval = 'year';
     @Output() onAdjusted = new EventEmitter<number>();
     @Output() onCanceled = new EventEmitter();
+
+    @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
 
     seatAdjustment = 0;
     formPromise: Promise<any>;
@@ -39,12 +44,27 @@ export class AdjustSeatsComponent {
                 request.seatAdjustment *= -1;
             }
 
-            this.formPromise = this.apiService.postOrganizationSeat(this.organizationId, request);
+            let paymentFailed = false;
+            const action = async () => {
+                const result = await this.apiService.postOrganizationSeat(this.organizationId, request);
+                if (result != null && result.paymentIntentClientSecret != null) {
+                    try {
+                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+                    } catch {
+                        paymentFailed = true;
+                    }
+                }
+            };
+            this.formPromise = action();
             await this.formPromise;
             this.analytics.eventTrack.next({ action: this.add ? 'Added Seats' : 'Removed Seats' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t('adjustedSeats', request.seatAdjustment.toString()));
             this.onAdjusted.emit(this.seatAdjustment);
+            if (paymentFailed) {
+                // TODO: Go to billing page
+            } else {
+                this.toasterService.popAsync('success', null,
+                    this.i18nService.t('adjustedSeats', request.seatAdjustment.toString()));
+            }
         } catch { }
     }
 

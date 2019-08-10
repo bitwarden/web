@@ -33,7 +33,7 @@ export class AdjustStorageComponent {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
 
     storageAdjustment = 0;
-    formPromise: Promise<PaymentResponse>;
+    formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService) { }
@@ -46,19 +46,33 @@ export class AdjustStorageComponent {
                 request.storageGbAdjustment *= -1;
             }
 
-            if (this.organizationId == null) {
-                this.formPromise = this.apiService.postAccountStorage(request);
-            } else {
-                this.formPromise = this.apiService.postOrganizationStorage(this.organizationId, request);
-            }
-            const result = await this.formPromise;
-            if (result != null && result.paymentIntentClientSecret != null) {
-                await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
-            }
+            let paymentFailed = false;
+            const action = async () => {
+                let response: Promise<PaymentResponse>;
+                if (this.organizationId == null) {
+                    response = this.formPromise = this.apiService.postAccountStorage(request);
+                } else {
+                    response = this.formPromise = this.apiService.postOrganizationStorage(this.organizationId, request);
+                }
+                const result = await response;
+                if (result != null && result.paymentIntentClientSecret != null) {
+                    try {
+                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+                    } catch {
+                        paymentFailed = true;
+                    }
+                }
+            };
+            this.formPromise = action();
+            await this.formPromise;
             this.analytics.eventTrack.next({ action: this.add ? 'Added Storage' : 'Removed Storage' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString()));
             this.onAdjusted.emit(this.storageAdjustment);
+            if (paymentFailed) {
+                // TOOD: go to billing page
+            } else {
+                this.toasterService.popAsync('success', null,
+                    this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString()));
+            }
         } catch { }
     }
 
