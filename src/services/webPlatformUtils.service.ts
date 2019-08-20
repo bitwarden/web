@@ -86,8 +86,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return 'UA-81915606-3';
     }
 
-    isViewOpen(): boolean {
-        return false;
+    isViewOpen(): Promise<boolean> {
+        return Promise.resolve(false);
     }
 
     lockTimeout(): number {
