@@ -232,6 +232,13 @@
             the QR code with your mobile device. Various CSV files will then be saved to your computer's
             downloads folder.
         </ng-container>
+        <ng-container *ngIf="format === 'securesafecsv'">
+            Export your SecureSafe password safe to a CSV file with a comma delimiter.
+        </ng-container>
+        <ng-container *ngIf="format === 'logmeoncecsv'">
+            Open the LogMeOnce browser extension, then navigate to "Open Menu" &rarr; "Export To" and
+            select "CSV File" to save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
