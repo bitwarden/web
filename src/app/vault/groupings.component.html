@@ -61,7 +61,7 @@
                         <li *ngFor="let f of folders"
                             [ngClass]="{active: selectedFolder && f.node.id === selectedFolderId}">
                             <div class="d-flex">
-                                <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
+                                <i *ngIf="f.children.length" class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
                                     [ngClass]="{'fa-caret-right': isCollapsed(f.node), 'fa-caret-down': !isCollapsed(f.node)}"
                                     (click)="collapse(f.node)"></i>
                                 <a href="#" appStopClick (click)="selectFolder(f.node)">{{f.node.name}}</a>
