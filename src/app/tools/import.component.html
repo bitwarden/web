@@ -239,6 +239,10 @@
             Open the LogMeOnce browser extension, then navigate to "Open Menu" &rarr; "Export To" and
             select "CSV File" to save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'blackberrycsv'">
+            Open the BlackBerry Password Keeper application, then navigate to "Settings" &rarr; "Import/Export".
+            Select "Export Passwords" and follow the instructions on screen to save the unencrypted CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
