@@ -75,7 +75,8 @@ export class UserBillingComponent implements OnInit {
 
     addCredit() {
         if (this.paymentSourceInApp) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'));
+            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
+                this.i18nService.t('addCredit'), null, null, 'warning');
             return;
         }
         this.showAddCredit = true;
@@ -90,7 +91,8 @@ export class UserBillingComponent implements OnInit {
 
     changePayment() {
         if (this.paymentSourceInApp) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'));
+            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
+                this.i18nService.t('changePaymentMethod'), null, null, 'warning');
             return;
         }
         this.showAdjustPayment = true;
