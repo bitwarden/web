@@ -10,6 +10,7 @@ import { BillingResponse } from 'jslib/models/response/billingResponse';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 import { TransactionType } from 'jslib/enums/transactionType';
@@ -34,7 +35,8 @@ export class UserBillingComponent implements OnInit {
     verifyBankPromise: Promise<any>;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected analytics: Angulartics2, protected toasterService: ToasterService) { }
+        protected analytics: Angulartics2, protected toasterService: ToasterService,
+        protected platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         await this.load();
@@ -72,6 +74,10 @@ export class UserBillingComponent implements OnInit {
     }
 
     addCredit() {
+        if (this.paymentSourceInApp) {
+            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'));
+            return;
+        }
         this.showAddCredit = true;
     }
 
@@ -83,6 +89,10 @@ export class UserBillingComponent implements OnInit {
     }
 
     changePayment() {
+        if (this.paymentSourceInApp) {
+            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'));
+            return;
+        }
         this.showAdjustPayment = true;
     }
 
@@ -103,6 +113,12 @@ export class UserBillingComponent implements OnInit {
 
     get paymentSource() {
         return this.billing != null ? this.billing.paymentSource : null;
+    }
+
+    get paymentSourceInApp() {
+        return this.paymentSource != null &&
+            (this.paymentSource.type === PaymentMethodType.AppleInApp ||
+                this.paymentSource.type === PaymentMethodType.GoogleInApp);
     }
 
     get invoices() {

@@ -9,6 +9,7 @@ import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { UserBillingComponent } from '../../settings/user-billing.component';
 
@@ -19,8 +20,8 @@ import { UserBillingComponent } from '../../settings/user-billing.component';
 export class OrganizationBillingComponent extends UserBillingComponent implements OnInit {
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
-        private route: ActivatedRoute) {
-        super(apiService, i18nService, analytics, toasterService);
+        private route: ActivatedRoute, platformUtilsService: PlatformUtilsService) {
+        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 
     async ngOnInit() {
