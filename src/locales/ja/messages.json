@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "ホスト",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "完全一致"
@@ -211,8 +211,8 @@
     "message": "表示切り替え"
   },
   "toggleCollapse": {
-    "message": "開く\/閉じる",
-    "description": "Toggling an expand\/collapse state."
+    "message": "開く/閉じる",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "パスワードの自動生成"
@@ -1069,7 +1069,7 @@
     "message": "新規カスタムドメイン"
   },
   "newCustomDomainDesc": {
-    "message": "コンマで区切ったドメインリストを入力します。サブドメインを除いて入力してください。例えば、\"www.google.com\"ではなく\"google.com\"を入力します。\"androidapp:\/\/package.name\"の形式で入力することでドメインとAndroidアプリを関連付けることもできます。"
+    "message": "コンマで区切ったドメインリストを入力します。サブドメインを除いて入力してください。例えば、\"www.google.com\"ではなく\"google.com\"を入力します。\"androidapp://package.name\"の形式で入力することでドメインとAndroidアプリを関連付けることもできます。"
   },
   "customDomainX": {
     "message": "カスタムドメイン $INDEX$",
@@ -1315,13 +1315,13 @@
     "message": "非セキュアウェブサイト調査"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "http:\/\/方式のセキュリティ保護されていないウェブサイトは危険です。ウェブサイトが対応していれば、接続が暗号化されるhttps:\/\/方式を常時利用すべきです。"
+    "message": "http://方式のセキュリティ保護されていないウェブサイトは危険です。ウェブサイトが対応していれば、接続が暗号化されるhttps://方式を常時利用すべきです。"
   },
   "unsecuredWebsitesFound": {
     "message": "セキュリティ保護されていないウェブサイトが見つかりました"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "セキュアでないURIが$COUNT$個のアイテムで見つかりました。ウェブサイトが対応しているならば、URIをhttps:\/\/形式に変更すべきです。",
+    "message": "セキュアでないURIが$COUNT$個のアイテムで見つかりました。ウェブサイトが対応しているならば、URIをhttps://形式に変更すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1571,7 +1571,7 @@
     "message": "プレミアムアクセス"
   },
   "premiumAccessDesc": {
-    "message": "$PRICE$\/$INTERVAL$で、あなたの組織のすべてのメンバーにプレミアム機能を付帯できます。",
+    "message": "$PRICE$/$INTERVAL$で、あなたの組織のすべてのメンバーにプレミアム機能を付帯できます。",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1590,7 @@
     "message": "# 追加容量(GB)"
   },
   "additionalStorageIntervalDesc": {
-    "message": "あなたのプランは$SIZE$の暗号化ファイルストレージを使用できます。1GBあたり$PRICE$\/$INTERVAL$でストレージ容量を追加できます。",
+    "message": "あなたのプランは$SIZE$の暗号化ファイルストレージを使用できます。1GBあたり$PRICE$/$INTERVAL$でストレージ容量を追加できます。",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1753,7 @@
   },
   "transactions": {
     "message": "取引",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "取引はありません"
@@ -2182,7 +2182,7 @@
   },
   "extension": {
     "message": "拡張機能",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "デスクトップ",
@@ -2198,7 +2198,7 @@
     "message": "パスワードの変更"
   },
   "enabledUpdated2fa": {
-    "message": "二段階認証の有効化\/更新"
+    "message": "二段階認証の有効化/更新"
   },
   "disabled2fa": {
     "message": "二段階認証の無効化"
@@ -2213,10 +2213,10 @@
     "message": "二段階認証時の誤りによるログインの失敗"
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "保管庫をエクスポートしました。"
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "組織の保管庫をエクスポートしました。"
   },
   "editedOrgSettings": {
     "message": "組織の設定の編集"
@@ -2258,7 +2258,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "アイテム $ID$ を表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2267,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "アイテム $ID$ のパスワードを表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2276,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "アイテム $ID$ の隠しフィールドを表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2285,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "アイテム $ID$ のセキュリティコードを表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2294,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "アイテム $ID$ のパスワードをコピーしました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2303,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "アイテム $ID$ の隠しフィールドをコピーしました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2312,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "アイテム $ID$ のセキュリティコードをコピーしました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2321,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "アイテム $ID$ を自動入力しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2613,19 +2613,19 @@
   },
   "billingPlan": {
     "message": "プラン",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "プラン変更",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "下記の情報を入力してアカウントを他のプランにアップグレードしてください。アカウントに有効な支払い方法が追加されていることを確認してください。",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "契約プランを変更したい場合はサポートまでご連絡ください。アカウントに有効なお支払い方法が登録されていることをご確認ください。",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "請求 #$NUMBER$",
@@ -2926,5 +2926,17 @@
   },
   "selectOneCollection": {
     "message": "最低でも一つのコレクションを選んでください。"
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "We were not able to charge your card. Please view and pay the unpaid invoice listed below."
+  },
+  "inAppPurchase": {
+    "message": "In-app Purchase"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "You cannot perform this action while using an in-app purchase payment method."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "You must manage your subscription from the store where your in-app purchase was made."
   }
 }
