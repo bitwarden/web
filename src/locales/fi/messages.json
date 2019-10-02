@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Isäntä",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Tarkka"
@@ -208,11 +208,11 @@
     "message": "Ei koskaan"
   },
   "toggleVisibility": {
-    "message": "Näytä\/piilota"
+    "message": "Näytä/piilota"
   },
   "toggleCollapse": {
     "message": "Toggle Collapse",
-    "description": "Toggling an expand\/collapse state."
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Luo salasana"
@@ -321,7 +321,7 @@
     "message": "Paikkakunta"
   },
   "stateProvince": {
-    "message": "Osavaltio\/maakunta"
+    "message": "Osavaltio/maakunta"
   },
   "zipPostalCode": {
     "message": "Postinumero"
@@ -398,10 +398,10 @@
     "message": "Jaa valinta"
   },
   "deleteSelected": {
-    "message": "Poista valittu\/valitut"
+    "message": "Poista valittu/valitut"
   },
   "moveSelected": {
-    "message": "Siirrä valittu\/valitut"
+    "message": "Siirrä valittu/valitut"
   },
   "selectAll": {
     "message": "Valitse kaikki"
@@ -681,7 +681,7 @@
     "message": "This account has two-step login enabled, however, none of the configured two-step providers are supported by this web browser."
   },
   "noTwoStepProviders2": {
-    "message": "Käytä tuettua selainta (kuten Chromea) ja\/tai ota käyttöön paremmin tuettu todennusmenetelmä (kuten todennussovellus)."
+    "message": "Käytä tuettua selainta (kuten Chromea) ja/tai ota käyttöön paremmin tuettu todennusmenetelmä (kuten todennussovellus)."
   },
   "twoStepOptions": {
     "message": "Kaksivaiheisen kirjautumisen valinnat"
@@ -832,7 +832,7 @@
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "Sisällytä numero"
   },
   "passwordHistory": {
     "message": "Salasanahistoria"
@@ -1001,7 +1001,7 @@
     "message": "Valitse tuontitiedosto"
   },
   "orCopyPasteFileContents": {
-    "message": "tai leikkaa\/liimaa tuontitiedoston sisältö"
+    "message": "tai leikkaa/liimaa tuontitiedoston sisältö"
   },
   "instructionsFor": {
     "message": "$NAME$-ohjeet",
@@ -1069,7 +1069,7 @@
     "message": "Uusi mukautettu verkkotunnus"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
+    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp://package.name\" to associate an android app with other website domains."
   },
   "customDomainX": {
     "message": "Mukautettu verkkotunnus $INDEX$",
@@ -1287,7 +1287,7 @@
     "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop\/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Web vault and browser extensions on a desktop/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorU2fWaiting": {
     "message": "Waiting for you to touch the button on your security key"
@@ -1315,13 +1315,13 @@
     "message": "Unsecured Websites Report"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:\/\/ scheme can be dangerous. If the website allows, you should always access it using the https:\/\/ scheme so that your connection is encrypted."
+    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme so that your connection is encrypted."
   },
   "unsecuredWebsitesFound": {
     "message": "Unsecured Websites Found"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:\/\/ if the website allows it.",
+    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:// if the website allows it.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1453,7 +1453,7 @@
     "message": "Check Breaches"
   },
   "breachUsernameNotFound": {
-    "message": "$USERNAME$ was not found in any known data breaches.",
+    "message": "Käyttäjätunnusta $USERNAME$ ei löytynyt yhdestäkään tunnetusta tietovuodosta.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1466,7 +1466,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ was found in $COUNT$ different data breaches online.",
+    "message": "Käyttäjätunnus $USERNAME$ löytyi $COUNT$ verkossa tapahtuneesta tietovuodosta.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1556,7 +1556,7 @@
     "message": "kaikki tulevat premium-ominaisuudet. Lisää tulossa pian!"
   },
   "premiumPrice": {
-    "message": "Kaikki tämä vain $PRICE$ \/ vuosi!",
+    "message": "Kaikki tämä vain $PRICE$ / vuosi!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1571,7 +1571,7 @@
     "message": "Premium Access"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "message": "You can add premium access to all members of your organization for $PRICE$ /$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1590,7 @@
     "message": "# of additional GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB \/$INTERVAL$.",
+    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB /$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1753,7 @@
   },
   "transactions": {
     "message": "Maksutapahtumat",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Ei maksutapahtumia."
@@ -1860,7 +1860,7 @@
     "message": "# of user seats"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user /month.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2114,7 +2114,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "Tämä käyttäjä käyttää kaksivaiheista kirjautumista tilinsä suojaamiseksi."
   },
   "userAccessAllItems": {
     "message": "Tämä käyttäjä voi käyttää ja muokata kaikkia tietueita."
@@ -2182,7 +2182,7 @@
   },
   "extension": {
     "message": "Laajennus",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Työpöytä",
@@ -2198,7 +2198,7 @@
     "message": "Vaihdettu tilin salasana."
   },
   "enabledUpdated2fa": {
-    "message": "Enabled\/updated two-step login."
+    "message": "Enabled/updated two-step login."
   },
   "disabled2fa": {
     "message": "Poistettu käytöstä kaksivaiheinen kirjautuminen."
@@ -2213,10 +2213,10 @@
     "message": "Sisäänkirjautumisyritys epäonnistui väärän kaksivaiheisen todennuksen takia."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Viety holvi."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Viety organisaatioholvi."
   },
   "editedOrgSettings": {
     "message": "Muokattu organisaation asetuksia."
@@ -2613,19 +2613,19 @@
   },
   "billingPlan": {
     "message": "Plan",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Vaihda tilaus",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Lasku #$NUMBER$",
@@ -2925,6 +2925,18 @@
     "message": "Kierrätä API-avain"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "Valitse vähintään yksi kokoelma."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "We were not able to charge your card. Please view and pay the unpaid invoice listed below."
+  },
+  "inAppPurchase": {
+    "message": "In-app Purchase"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "You cannot perform this action while using an in-app purchase payment method."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "You must manage your subscription from the store where your in-app purchase was made."
   }
 }

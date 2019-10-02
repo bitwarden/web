@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Servidor",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Exacta"
@@ -211,8 +211,8 @@
     "message": "Alternar visibilidad"
   },
   "toggleCollapse": {
-    "message": "Colapsar\/Expandir",
-    "description": "Toggling an expand\/collapse state."
+    "message": "Colapsar/Expandir",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Generar contraseña"
@@ -221,7 +221,7 @@
     "message": "Comprobar si la contraseña está comprometida."
   },
   "passwordExposed": {
-    "message": "Esta contraseña fue encontrada $VALUE$ vez\/veces en filtraciones de datos. Deberías cambiarla.",
+    "message": "Esta contraseña fue encontrada $VALUE$ vez/veces en filtraciones de datos. Deberías cambiarla.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -318,10 +318,10 @@
     "message": "Dirección 3"
   },
   "cityTown": {
-    "message": "Ciudad \/ Pueblo"
+    "message": "Ciudad / Pueblo"
   },
   "stateProvince": {
-    "message": "Estado \/ Provincia"
+    "message": "Estado / Provincia"
   },
   "zipPostalCode": {
     "message": "Código postal"
@@ -681,7 +681,7 @@
     "message": "Esta cuenta tiene autenticación en dos pasos habilitado, pero ninguno de lo métodos configurados es soportado por este navegador web."
   },
   "noTwoStepProviders2": {
-    "message": "Por favor, utiliza un navegador soportado (como Chrome) y\/o añade métodos de autenticación adicionales que tengan mejor soporte en diferentes navegadores web (como una aplicación de autenticación)."
+    "message": "Por favor, utiliza un navegador soportado (como Chrome) y/o añade métodos de autenticación adicionales que tengan mejor soporte en diferentes navegadores web (como una aplicación de autenticación)."
   },
   "twoStepOptions": {
     "message": "Opciones de la autenticación en dos pasos"
@@ -911,7 +911,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Establecer las iteraciones KDF con un valor muy alto, podría resultar en un rendimiento pobre al ingresar, y\/o desbloquear Bitwarden en dispositivos con CPUs lentos. Recomendamos que aumente el valor en incrementos de $INCREMENT$ y luego pruebe en todos sus dispositivos.",
+    "message": "Establecer las iteraciones KDF con un valor muy alto, podría resultar en un rendimiento pobre al ingresar, y/o desbloquear Bitwarden en dispositivos con CPUs lentos. Recomendamos que aumente el valor en incrementos de $INCREMENT$ y luego pruebe en todos sus dispositivos.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -1001,7 +1001,7 @@
     "message": "Seleccionar el fichero a importar"
   },
   "orCopyPasteFileContents": {
-    "message": "o copia\/pega el contenido del fichero a importar"
+    "message": "o copia/pega el contenido del fichero a importar"
   },
   "instructionsFor": {
     "message": "Instrucciones para $NAME$",
@@ -1069,7 +1069,7 @@
     "message": "Nuevo dominio personalizado"
   },
   "newCustomDomainDesc": {
-    "message": "Introduce una lista de dominios separados por comas. Solo se permiten dominios \"base\". No introduzcas subdominios. Por ejemplo, introduce \"google.com\" en vez de \"www.google.com\". También puedes introducir \"androidapp:\/\/package.name\" para asociar una aplicación de android con otros dominios web."
+    "message": "Introduce una lista de dominios separados por comas. Solo se permiten dominios \"base\". No introduzcas subdominios. Por ejemplo, introduce \"google.com\" en vez de \"www.google.com\". También puedes introducir \"androidapp://package.name\" para asociar una aplicación de android con otros dominios web."
   },
   "customDomainX": {
     "message": "Dominio personalizado $INDEX$",
@@ -1287,7 +1287,7 @@
     "message": "Debido a limitaciones de la plataforma, FIDO U2F no puede ser usado en todas las aplicaciones de Bitwarden. Deberías habilitar otro proveedor de inicio de sesión de dos pasos, para que puedas acceder a tu cuenta cuando FIDO U2F no pueda ser utilizado. Plataformas soportadas:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Caja fuerte web y extensiones de navegador en un escritorio\/portátil con un navegador compatible con U2F (Chrome, Opera, Vivaldi, o Firefox con FIDO U2F activado)."
+    "message": "Caja fuerte web y extensiones de navegador en un escritorio/portátil con un navegador compatible con U2F (Chrome, Opera, Vivaldi, o Firefox con FIDO U2F activado)."
   },
   "twoFactorU2fWaiting": {
     "message": "Esperando a que toques el botón de tu llave de seguridad"
@@ -1315,13 +1315,13 @@
     "message": "Informes de sitios web no seguros"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Usar sitios web no seguros con el esquema http:\/\/ puede ser peligroso. Si el sitio web lo permite, se debe acceder siempre usando el esquema https:\/\/ para que la conexión esté cifrada."
+    "message": "Usar sitios web no seguros con el esquema http:// puede ser peligroso. Si el sitio web lo permite, se debe acceder siempre usando el esquema https:// para que la conexión esté cifrada."
   },
   "unsecuredWebsitesFound": {
     "message": "Sitios web no seguros encontrados"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Hemos encontrado $COUNT$ elemento(s) en su caja fuerte con URIs no seguras. Si el sitio web lo permite debe cambiar su esquema URI a https:\/\/.",
+    "message": "Hemos encontrado $COUNT$ elemento(s) en su caja fuerte con URIs no seguras. Si el sitio web lo permite debe cambiar su esquema URI a https://.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,7 +1381,7 @@
     "message": "Compruebe las contraseñas expuestas"
   },
   "exposedXTimes": {
-    "message": "Expuestas $COUNT$ vez\/veces",
+    "message": "Expuestas $COUNT$ vez/veces",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1432,7 +1432,7 @@
     "message": "No hay inicios de sesión en su caja fuerte que tengan contraseñas que esten siendo reutilizadas."
   },
   "reusedXTimes": {
-    "message": "Reutilizada $COUNT$ vez\/veces",
+    "message": "Reutilizada $COUNT$ vez/veces",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1466,7 +1466,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "$USERNAME$ fue encontrado en $COUNT$ filtración\/es de datos en línea.",
+    "message": "$USERNAME$ fue encontrado en $COUNT$ filtración/es de datos en línea.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1556,7 +1556,7 @@
     "message": "Acceso a nuevas características premium en el futuro. ¡Hay más en camino!"
   },
   "premiumPrice": {
-    "message": "Todo por sólo $PRICE$ \/año!",
+    "message": "Todo por sólo $PRICE$ /año!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1571,7 +1571,7 @@
     "message": "Acceso Premium"
   },
   "premiumAccessDesc": {
-    "message": "Puede Agregar acceso premium a todos los miembros de su organización por $PRICE$ \/$INTERVAL$.",
+    "message": "Puede Agregar acceso premium a todos los miembros de su organización por $PRICE$ /$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1590,7 @@
     "message": "# de GB adicional"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Su plan viene con $SIZE$ de almacenamiento de archivos cifrados. Puede agregar almacenamiento adicional por $PRICE$ por GB\/$INTERVAL$.",
+    "message": "Su plan viene con $SIZE$ de almacenamiento de archivos cifrados. Puede agregar almacenamiento adicional por $PRICE$ por GB/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1753,7 @@
   },
   "transactions": {
     "message": "Transacciones",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Sin transacciones."
@@ -1860,7 +1860,7 @@
     "message": "# de puestos"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Tu plan viene con $BASE_SEATS$ puestos. Puedes añadir puestos adicionales por $SEAT_PRICE$ por usuario\/mes.",
+    "message": "Tu plan viene con $BASE_SEATS$ puestos. Puedes añadir puestos adicionales por $SEAT_PRICE$ por usuario/mes.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2182,7 +2182,7 @@
   },
   "extension": {
     "message": "Extensión",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Escritorio",
@@ -2198,7 +2198,7 @@
     "message": "Contraseña de la cuenta cambiada."
   },
   "enabledUpdated2fa": {
-    "message": "Autenticación en dos pasos habilitado\/actualizado."
+    "message": "Autenticación en dos pasos habilitado/actualizado."
   },
   "disabled2fa": {
     "message": "Autenticación en dos pasos deshabilitada."
@@ -2213,10 +2213,10 @@
     "message": "Intento de acceso fallido con autenticación en dos pasos incorrecta."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Caja fuerte exportada."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Caja fuerte de organización exportada."
   },
   "editedOrgSettings": {
     "message": "Ajustes de la organización editados."
@@ -2258,7 +2258,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "Elemento $ID$ visto.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2267,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Contraseña para el elemento $ID$ vista.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2276,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Campo oculto para el elemento $ID$ visto.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2285,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Código de seguridad para el elemento $ID$ visto.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2294,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "Contraseña para el elemento $ID$ copiada.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2303,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "Campo oculto para el elemento $ID$ copiado.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2312,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "Código de seguridad para el elemento $ID$ copiado.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2321,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Elemento $ID$ autorrellenado.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2613,19 +2613,19 @@
   },
   "billingPlan": {
     "message": "Plan",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Cambiar plan",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Actualiza tu cuenta a otro plan proporcionando la información de abajo. Por favor, asegúrate de que tienes un método de pago activo añadido a la cuenta.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Contacta con atención al cliente si deseas cambiar tu plan. Por favor, asegúrate de tener activo un método de pago en tu cuenta.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Factura $NUMBER$",
@@ -2926,5 +2926,17 @@
   },
   "selectOneCollection": {
     "message": "Debes seleccionar al menos una colección."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "No pudimos realizar el cobro a su tarjeta de crédito. Por favor, vea y pague la factura no pagada que se indica a continuación."
+  },
+  "inAppPurchase": {
+    "message": "Compra desde la aplicación"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "No puedes realizar esta acción mientras usas un método de pago de compra en la aplicación."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Debes administrar tu suscripción desde la tienda donde se hizo tu compra en la aplicación."
   }
 }
