@@ -243,6 +243,10 @@
             Open the BlackBerry Password Keeper application, then navigate to "Settings" &rarr; "Import/Export".
             Select "Export Passwords" and follow the instructions on screen to save the unencrypted CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'buttercupcsv'">
+            Open the Buttercup desktop application and unlock your vault. Right click on your vault's icon and
+            select "Export" to save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
