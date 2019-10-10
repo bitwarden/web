@@ -12,12 +12,18 @@
                 <td (click)="checkCipher(c)" class="reduced-lh wrap">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)"
                         title="{{'editItem' | i18n}}">{{c.name}}</a>
-                    <i class="fa fa-share-alt" appStopProp *ngIf="!organization && c.organizationId"
-                        title="{{'shared' | i18n}}"></i>
+                    <ng-container *ngIf="!organization && c.organizationId">
+                        <i class="fa fa-share-alt" appStopProp title="{{'shared' | i18n}}" aria-hidden="true"></i>
+                        <span class="sr-only">{{'shared' | i18n}}</span>
+                    </ng-container>
                     <ng-container *ngIf="c.hasAttachments">
-                        <i class="fa fa-paperclip" appStopProp title="{{'attachments' | i18n}}"></i>
-                        <i class="fa fa-exclamation-triangle text-warning" appStopProp *ngIf="showFixOldAttachments(c)"
-                            title="{{'attachmentsNeedFix' | i18n}}"></i>
+                        <i class="fa fa-paperclip" appStopProp title="{{'attachments' | i18n}}" aria-hidden="true"></i>
+                        <span class="sr-only">{{'attachments' | i18n}}</span>
+                        <ng-container *ngIf="showFixOldAttachments(c)">
+                            <i class="fa fa-exclamation-triangle text-warning" appStopProp
+                                title="{{'attachmentsNeedFix' | i18n}}" aria-hidden="true"></i>
+                            <span class="sr-only">{{'attachmentsNeedFix' | i18n}}</span>
+                        </ng-container>
                     </ng-container>
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
