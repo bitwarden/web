@@ -1,8 +1,8 @@
-<div class="modal fade">
-    <div class="modal-dialog modal-sm">
+<div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="moveSelectedTitle">
+    <div class="modal-dialog modal-sm" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
             <div class="modal-header">
-                <h2 class="modal-title">
+                <h2 class="modal-title" id="moveSelectedTitle">
                     {{'moveSelected' | i18n}}
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" appA11yTitle="{{'close' | i18n}}">
