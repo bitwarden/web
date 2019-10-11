@@ -43,8 +43,8 @@
                             <div class="d-flex" *ngIf="k.existingKey">
                                 <span class="mr-2">{{k.existingKey}}</span>
                                 <button type="button" class="btn btn-link text-danger ml-auto" (click)="remove(k)"
-                                    title="{{'remove' | i18n}}">
-                                    <i class="fa fa-minus-circle fa-lg"></i>
+                                    appA11yTitle="{{'remove' | i18n}}">
+                                    <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -58,13 +58,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                         <span>{{'save' | i18n}}</span>
                     </button>
                     <button #disableBtn type="button" class="btn btn-outline-secondary btn-submit"
                         [appApiAction]="disablePromise" [disabled]="disableBtn.loading" (click)="disable()"
                         *ngIf="enabled">
-                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                         <span>{{'disableAllKeys' | i18n}}</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary"

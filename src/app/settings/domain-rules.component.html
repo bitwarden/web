@@ -5,7 +5,8 @@
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <h2>{{'customEqDomains' | i18n}}</h2>
     <p *ngIf="loading">
-        <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+        <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span class="sr-only">{{'loading' | i18n}}</span>
     </p>
     <ng-container *ngIf="!loading">
         <div class="form-group d-flex" *ngFor="let d of custom; let i = index; trackBy: indexTrackBy">
@@ -14,8 +15,9 @@
                 <textarea class="form-control" name="CustomDomain[{{i}}]" id="customDomain_{{i}}"
                     [(ngModel)]="custom[i]" placeholder="{{'ex' | i18n}} google.com, gmail.com" required></textarea>
             </div>
-            <button type="button" class="btn btn-link text-danger ml-2" (click)="remove(i)" title="{{'remove' | i18n}}">
-                <i class="fa fa-minus-circle fa-lg"></i>
+            <button type="button" class="btn btn-link text-danger ml-2" (click)="remove(i)"
+                appA11yTitle="{{'remove' | i18n}}">
+                <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
             </button>
         </div>
         <button type="button" (click)="add()" class="btn btn-outline-secondary btn-sm mb-2">
@@ -24,12 +26,13 @@
         <small class="text-muted d-block mb-3">{{'newCustomDomainDesc' | i18n}}</small>
     </ng-container>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
     <h2 class="spaced-header">{{'globalEqDomains' | i18n}}</h2>
     <p *ngIf="loading">
-        <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+        <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span class="sr-only">{{'loading' | i18n}}</span>
     </p>
     <table class="table table-hover table-list" *ngIf="!loading && global.length > 0">
         <tbody>
@@ -63,7 +66,7 @@
         </tbody>
     </table>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
 </form>

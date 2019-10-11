@@ -30,13 +30,21 @@
                             <i class="fa-li fa fa-key"></i>
                             <strong *ngIf="!k.configured || !k.name">{{'u2fkeyX' | i18n : i + 1}}</strong>
                             <strong *ngIf="k.configured && k.name">{{k.name}}</strong>
-                            <i class="fa fa-fw"
-                                [ngClass]="{'fa-check text-success': !k.compromised, 'fa-exclamation-triangle text-warning': k.compromised}"
-                                *ngIf="k.configured && !removeKeyBtn.loading"
-                                title="{{(k.compromised ? 'keyCompromised' : 'enabled') | i18n}}"></i>
+                            <ng-container *ngIf="k.configured && !removeKeyBtn.loading">
+                                <ng-container *ngIf="k.compromised">
+                                    <i class="fa fa-fw fa-exclamation-triangle text-warning" aria-hidden="true"
+                                        title="{{'keyCompromised' | i18n}}"></i>
+                                    <span class="sr-only">{{'keyCompromised' | i18n}}</span>
+                                </ng-container>
+                                <ng-container *ngIf="!k.compromised">
+                                    <i class="fa fa-fw fa-check text-success" aria-hidden="true"
+                                        title="{{'enabled' | i18n}}"></i>
+                                    <span class="sr-only">{{'enabled' | i18n}}</span>
+                                </ng-container>
+                            </ng-container>
                             <ng-container *ngIf="keysConfiguredCount > 1 && k.configured">
                                 <i class="fa fa-spin fa-spinner text-muted fa-fw" title="{{'loading' | i18n}}"
-                                    *ngIf="removeKeyBtn.loading"></i>
+                                    *ngIf="removeKeyBtn.loading" aria-hidden="true"></i>
                                 -
                                 <a href="#" appStopClick (click)="remove(k)">{{'remove' | i18n}}</a>
                             </ng-container>
@@ -82,13 +90,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" [disabled]="form.loading || !u2fResponse">
-                        <i class="fa fa-spinner fa-spin" *ngIf="form.loading" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin" *ngIf="form.loading" title="{{'loading' | i18n}}"
+                            aria-hidden="true"></i>
                         <span *ngIf="!form.loading">{{'save' | i18n}}</span>
                     </button>
                     <button #disableBtn type="button" class="btn btn-outline-secondary btn-submit"
                         [appApiAction]="disablePromise" [disabled]="disableBtn.loading" (click)="disable()"
                         *ngIf="enabled">
-                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                         <span>{{'disableAllKeys' | i18n}}</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary"

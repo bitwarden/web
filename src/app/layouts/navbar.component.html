@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-primary" [ngClass]="{'bg-secondary-alt': selfHosted}">
     <div class="container">
-        <a class="navbar-brand" routerLink="/" title="{{'pageTitle' | i18n : 'Bitwarden'}}">
-            <i class="fa fa-shield"></i>
+        <a class="navbar-brand" routerLink="/" appA11yTitle="{{'pageTitle' | i18n : 'Bitwarden'}}">
+            <i class="fa fa-shield" aria-hidden="true"></i>
         </a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">

@@ -7,7 +7,10 @@
         {{'refresh' | i18n}}
     </button>
 </div>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading" title="{{'loading' | i18n}}"></i>
+<ng-container *ngIf="!firstLoaded && loading">
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <span class="sr-only">{{'loading' | i18n}}</span>
+</ng-container>
 <ng-container *ngIf="billing">
     <h2>{{(isCreditBalance ? 'accountCredit' : 'accountBalance') | i18n}}</h2>
     <p class="text-lg"><strong>{{creditOrBalance | currency:'$'}}</strong></p>
@@ -43,7 +46,7 @@
                         [(ngModel)]="verifyAmount2" min="1" max="99" step="1" required>
                 </div>
                 <button type="submit" class="btn btn-outline-primary btn-submit" [disabled]="verifyForm.loading">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'verifyBankAccount' | i18n}}</span>
                 </button>
             </form>
@@ -73,8 +76,8 @@
                 <td>{{i.date | date:'mediumDate'}}</td>
                 <td>
                     <a href="{{i.pdfUrl}}" target="_blank" rel="noopener" class="mr-2"
-                        title="{{'downloadInvoice' | i18n}}">
-                        <i class="fa fa-file-pdf-o"></i></a>
+                        appA11yTitle="{{'downloadInvoice' | i18n}}">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                     <a href="{{i.url}}" target="_blank" rel="noopener" title="{{'viewInvoice' | i18n}}">
                         {{'invoiceNumber' | i18n : i.number}}</a>
                 </td>

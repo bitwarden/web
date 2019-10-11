@@ -12,7 +12,10 @@
         </button>
     </div>
 </div>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="loading" title="{{'loading' | i18n}}"></i>
+<ng-container *ngIf="loading">
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <span class="sr-only">{{'loading' | i18n}}</span>
+</ng-container>
 <ng-container *ngIf="!loading && (groups | search:searchText:'name':'id') as searchedGroups">
     <p *ngIf="!searchedGroups.length">{{'noGroupsInList' | i18n}}</p>
     <table class="table table-hover table-list" *ngIf="searchedGroups.length">

@@ -8,7 +8,8 @@
                 </button>
             </div>
             <div class="modal-body" *ngIf="loading">
-                <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+                <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <span class="sr-only">{{'loading' | i18n}}</span>
             </div>
             <div class="modal-body" *ngIf="!loading">
                 <div class="form-group">
@@ -81,17 +82,17 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'save' | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary"
                     data-dismiss="modal">{{'cancel' | i18n}}</button>
                 <div class="ml-auto">
                     <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger"
-                        title="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
+                        appA11yTitle="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
                         [appApiAction]="deletePromise">
-                        <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
-                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"
+                        <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading" aria-hidden="true"></i>
+                        <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading" aria-hidden="true"
                             title="{{'loading' | i18n}}"></i>
                     </button>
                 </div>

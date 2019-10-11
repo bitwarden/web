@@ -1,6 +1,6 @@
 <form #form class="card" (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="card-body">
-        <button type="button" class="close" attr.aria-label="{{'cancel' | i18n}}" title="{{'cancel' | i18n}}"
+        <button type="button" class="close" attr.aria-label="{{'cancel' | i18n}}" appA11yTitle="{{'cancel' | i18n}}"
             (click)="cancel()"><span aria-hidden="true">&times;</span></button>
         <h3 class="card-body-header">{{(add ? 'addSeats' : 'removeSeats') | i18n}}</h3>
         <div class="row">
@@ -15,7 +15,7 @@
             | currency:'$'}} /{{interval | i18n}}
         </div>
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span>{{'submit' | i18n}}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" (click)="cancel()">

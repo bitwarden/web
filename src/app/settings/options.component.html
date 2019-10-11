@@ -20,8 +20,8 @@
                 <div class="d-flex">
                     <label for="locale">{{'language' | i18n}}</label>
                     <a class="ml-auto" href="https://help.bitwarden.com/article/localization/" target="_blank"
-                        rel="noopener" title="{{'learnMore' | i18n}}">
-                        <i class="fa fa-question-circle-o"></i>
+                        rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                     </a>
                 </div>
                 <select id="locale" name="Locale" [(ngModel)]="locale" class="form-control">
@@ -39,8 +39,8 @@
                 {{'disableIcons' | i18n}}
             </label>
             <a href="https://help.bitwarden.com/article/website-icons/" target="_blank" rel="noopener"
-                title="{{'learnMore' | i18n}}">
-                <i class="fa fa-question-circle-o"></i>
+                appA11yTitle="{{'learnMore' | i18n}}">
+                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
         </div>
         <small class="form-text text-muted">{{'disableIconsDesc' | i18n}}</small>
@@ -52,8 +52,8 @@
             <label class="form-check-label" for="enableGravatars">
                 {{'enableGravatars' | i18n}}
             </label>
-            <a href="https://gravatar.com/" target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
-                <i class="fa fa-question-circle-o"></i>
+            <a href="https://gravatar.com/" target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
+                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
         </div>
         <small class="form-text text-muted">{{'enableGravatarsDesc' | i18n}}</small>

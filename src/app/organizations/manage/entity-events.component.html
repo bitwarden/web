@@ -11,7 +11,8 @@
                 </button>
             </div>
             <div class="modal-body" *ngIf="!loaded">
-                <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+                <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <span class="sr-only">{{'loading' | i18n}}</span>
             </div>
             <div class="modal-body" *ngIf="loaded">
                 <div class="d-flex">
@@ -50,10 +51,12 @@
                         <tr *ngFor="let e of events">
                             <td>{{e.date | date:'medium'}}</td>
                             <td>
-                                <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"></i>
+                                <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{e.appName}}, {{e.ip}}</span>
                             </td>
                             <td *ngIf="showUser">
-                                <span title="{{e.userEmail}}">{{e.userName}}</span>
+                                <span appA11yTitle="{{e.userEmail}}">{{e.userName}}</span>
                             </td>
                             <td [innerHTML]="e.message"></td>
                         </tr>
@@ -61,7 +64,7 @@
                 </table>
                 <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit"
                     (click)="loadEvents(false)" [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'loadMore' | i18n}}</span>
                 </button>
             </div>

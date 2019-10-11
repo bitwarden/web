@@ -17,7 +17,10 @@
         </button>
     </div>
 </div>
-<i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded" title="{{'loading' | i18n}}"></i>
+<ng-container *ngIf="!loaded">
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <span class="sr-only">{{'loading' | i18n}}</span>
+</ng-container>
 <ng-container *ngIf="loaded">
     <p *ngIf="!events || !events.length">{{'noEventsInList' | i18n}}</p>
     <table class="table table-hover" *ngIf="events && events.length">
@@ -35,7 +38,8 @@
             <tr *ngFor="let e of events">
                 <td>{{e.date | date:'medium'}}</td>
                 <td>
-                    <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"></i>
+                    <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}" aria-hidden="true"></i>
+                    <span class="sr-only">{{e.appName}}, {{e.ip}}</span>
                 </td>
                 <td>
                     <span title="{{e.userEmail}}">{{e.userName}}</span>
@@ -46,7 +50,7 @@
     </table>
     <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit"
         (click)="loadEvents(false)" [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'loadMore' | i18n}}</span>
     </button>
 </ng-container>

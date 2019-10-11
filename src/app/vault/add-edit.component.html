@@ -40,9 +40,9 @@
                                     [(ngModel)]="cipher.login.username" appInputVerbatim>
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
-                                        title="{{'copyUsername' | i18n}}"
+                                        appA11yTitle="{{'copyUsername' | i18n}}"
                                         (click)="copy(cipher.login.username, 'username', 'Username')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard"></i>
+                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -51,16 +51,16 @@
                             <div class="d-flex">
                                 <label for="loginPassword">{{'password' | i18n}}</label>
                                 <div class="ml-auto d-flex">
-                                    <a href="#" class="d-block mr-2" appStopClick title="{{'generatePassword' | i18n}}"
-                                        (click)="generatePassword()">
-                                        <i class="fa fa-lg fa-fw fa-refresh"></i>
+                                    <a href="#" class="d-block mr-2" appStopClick
+                                        appA11yTitle="{{'generatePassword' | i18n}}" (click)="generatePassword()">
+                                        <i class="fa fa-lg fa-fw fa-refresh" aria-hidden="true"></i>
                                     </a>
                                     <a href="#" class="d-block" #checkPasswordBtn appStopClick
-                                        title="{{'checkPassword' | i18n}}" (click)="checkPassword()"
+                                        appA11yTitle="{{'checkPassword' | i18n}}" (click)="checkPassword()"
                                         [appApiAction]="checkPasswordPromise">
-                                        <i class="fa fa-lg fa-fw fa-check-circle"
-                                            [hidden]="checkPasswordBtn.loading"></i>
-                                        <i class="fa fa-lg fa-fw fa-spinner fa-spin"
+                                        <i class="fa fa-lg fa-fw fa-check-circle" [hidden]="checkPasswordBtn.loading"
+                                            aria-hidden="true"></i>
+                                        <i class="fa fa-lg fa-fw fa-spinner fa-spin" aria-hidden="true"
                                             [hidden]="!checkPasswordBtn.loading" title="{{'loading' | i18n}}"></i>
                                     </a>
                                 </div>
@@ -71,14 +71,15 @@
                                     [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
-                                        title="{{'toggleVisibility' | i18n}}" (click)="togglePassword()" tabindex="-1">
-                                        <i class="fa fa-lg"
+                                        appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg" aria-hidden="true"
                                             [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                                     </button>
                                     <button type="button" class="btn btn-outline-secondary"
-                                        title="{{'copyPassword' | i18n}}"
+                                        appA11yTitle="{{'copyPassword' | i18n}}"
                                         (click)="copy(cipher.login.password, 'password', 'Password')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard"></i>
+                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -117,9 +118,10 @@
                                 </span>
                                 <span class="totp-code mr-2"
                                     title="{{'verificationCodeTotp' | i18n}}">{{totpCodeFormatted}}</span>
-                                <button type="button" class="btn btn-link" title="{{'copyVerificationCode' | i18n}}"
+                                <button type="button" class="btn btn-link"
+                                    appA11yTitle="{{'copyVerificationCode' | i18n}}"
                                     (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')">
-                                    <i class="fa fa-clipboard"></i>
+                                    <i class="fa fa-clipboard" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -134,14 +136,14 @@
                                         placeholder="{{'ex' | i18n}} https://google.com" appInputVerbatim>
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
-                                            title="{{'launch' | i18n}}" (click)="launch(u)" [disabled]="!u.canLaunch"
-                                            tabindex="-1">
-                                            <i class="fa fa-lg fa-share"></i>
+                                            appA11yTitle="{{'launch' | i18n}}" (click)="launch(u)"
+                                            [disabled]="!u.canLaunch" tabindex="-1">
+                                            <i class="fa fa-lg fa-share" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary"
-                                            title="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
+                                            appA11yTitle="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
                                             tabindex="-1">
-                                            <i class="fa fa-lg fa-clipboard"></i>
+                                            <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -152,8 +154,8 @@
                                         {{'matchDetection' | i18n}}
                                     </label>
                                     <a class="ml-auto" href="https://help.bitwarden.com/article/uri-match-detection/"
-                                        target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
-                                        <i class="fa fa-question-circle-o"></i>
+                                        target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
+                                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <div class="d-flex">
@@ -163,8 +165,8 @@
                                         </option>
                                     </select>
                                     <button type="button" class="btn btn-link text-danger ml-2" (click)="removeUri(u)"
-                                        title="{{'remove' | i18n}}">
-                                        <i class="fa fa-minus-circle fa-lg"></i>
+                                        appA11yTitle="{{'remove' | i18n}}">
+                                        <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -198,9 +200,9 @@
                                     [(ngModel)]="cipher.card.number" appInputVerbatim>
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
-                                        title="{{'copyNumber' | i18n}}"
+                                        appA11yTitle="{{'copyNumber' | i18n}}"
                                         (click)="copy(cipher.card.number, 'number', 'Number')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard"></i>
+                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -227,14 +229,15 @@
                                     [(ngModel)]="cipher.card.code" appInputVerbatim autocomplete="new-password">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
-                                        title="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()" tabindex="-1">
-                                        <i class="fa fa-lg"
+                                        appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
+                                        tabindex="-1">
+                                        <i class="fa fa-lg" aria-hidden="true"
                                             [ngClass]="{'fa-eye': !showCardCode, 'fa-eye-slash': showCardCode}"></i>
                                     </button>
                                     <button type="button" class="btn btn-outline-secondary"
-                                        title="{{'securityCode' | i18n}}"
+                                        appA11yTitle="{{'securityCode' | i18n}}"
                                         (click)="copy(cipher.card.code, 'securityCode', 'Security Code')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard"></i>
+                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -366,8 +369,8 @@
                             <div class="d-flex">
                                 <label for="fieldName{{i}}">{{'name' | i18n}}</label>
                                 <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/"
-                                    target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
-                                    <i class="fa fa-question-circle-o"></i>
+                                    target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
+                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                                 </a>
                             </div>
                             <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
@@ -381,9 +384,9 @@
                                         [(ngModel)]="f.value" appInputVerbatim>
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
-                                            title="{{'copyValue' | i18n}}" (click)="copy(f.value, 'value', 'Field')"
-                                            tabindex="-1">
-                                            <i class="fa fa-lg fa-clipboard"></i>
+                                            appA11yTitle="{{'copyValue' | i18n}}"
+                                            (click)="copy(f.value, 'value', 'Field')" tabindex="-1">
+                                            <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -394,17 +397,17 @@
                                         autocomplete="new-password">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
-                                            title="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
+                                            appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
                                             tabindex="-1">
-                                            <i class="fa fa-lg"
+                                            <i class="fa fa-lg" aria-hidden="true"
                                                 [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}">
                                             </i>
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary"
-                                            title="{{'copyValue' | i18n}}"
+                                            appA11yTitle="{{'copyValue' | i18n}}"
                                             (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
                                             tabindex="-1">
-                                            <i class="fa fa-lg fa-clipboard"></i>
+                                            <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -414,12 +417,12 @@
                                         trueValue="true" falseValue="false">
                                 </div>
                                 <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
-                                    title="{{'remove' | i18n}}">
-                                    <i class="fa fa-minus-circle fa-lg"></i>
+                                    appA11yTitle="{{'remove' | i18n}}">
+                                    <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-link text-muted cursor-move"
-                                    title="{{'dragToSort' | i18n}}">
-                                    <i class="fa fa-bars fa-lg"></i>
+                                    appA11yTitle="{{'dragToSort' | i18n}}">
+                                    <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -488,7 +491,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'save' | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -496,15 +499,16 @@
                 </button>
                 <div class="ml-auto" *ngIf="cipher">
                     <button *ngIf="!organization" type="button" (click)="toggleFavorite()" class="btn btn-link"
-                        title="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
-                        <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"></i>
+                        appA11yTitle="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
+                        <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"
+                            aria-hidden="true"></i>
                     </button>
                     <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger"
-                        title="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
+                        appA11yTitle="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
                         [appApiAction]="deletePromise">
-                        <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading"></i>
+                        <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading" aria-hidden="true"></i>
                         <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"
-                            title="{{'loading' | i18n}}"></i>
+                            title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>

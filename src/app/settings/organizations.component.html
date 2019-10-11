@@ -1,14 +1,18 @@
 <ng-container *ngIf="vault">
     <p *ngIf="!loaded" class="text-muted">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span class="sr-only">{{'loading' | i18n}}</span>
     </p>
     <ng-container *ngIf="loaded">
         <ul class="fa-ul card-ul carets" *ngIf="organizations && organizations.length">
             <li *ngFor="let o of organizations">
                 <a [routerLink]="['/organizations', o.id]" class="text-body">
-                    <i class="fa-li fa fa-caret-right"></i> {{o.name}}
-                    <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger"
-                        title="{{'organizationIsDisabled' | i18n}}"></i>
+                    <i class="fa-li fa fa-caret-right" aria-hidden="true"></i> {{o.name}}
+                    <ng-container *ngIf="!o.enabled">
+                        <i class="fa fa-exclamation-triangle text-danger" title="{{'organizationIsDisabled' | i18n}}"
+                            aria-hidden="true"></i>
+                        <span class="sr-only">{{'organizationIsDisabled' | i18n}}</span>
+                    </ng-container>
                 </a>
             </li>
         </ul>
@@ -24,7 +28,10 @@
         <h1>
             {{'organizations' | i18n}}
             <small [appApiAction]="actionPromise" #action>
-                <i class="fa fa-spinner fa-spin text-muted" *ngIf="action.loading" title="{{'loading' | i18n}}"></i>
+                <ng-container *ngIf="action.loading">
+                    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    <span class="sr-only">{{'loading' | i18n}}</span>
+                </ng-container>
             </small>
         </h1>
         <a href="#" routerLink="/settings/create-organization" class="btn btn-sm btn-outline-primary ml-auto"
@@ -33,7 +40,10 @@
             {{'newOrganization' | i18n}}
         </a>
     </div>
-    <i class="fa fa-spinner fa-spin text-muted" *ngIf="!loaded" title="{{'loading' | i18n}}"></i>
+    <ng-container *ngIf="!loaded">
+        <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span class="sr-only">{{'loading' | i18n}}</span>
+    </ng-container>
     <ng-container *ngIf="loaded">
         <ng-container *ngIf="!organizations || !organizations.length">
             <p>{{'noOrganizationsList' | i18n}}</p>
@@ -50,8 +60,11 @@
                     </td>
                     <td>
                         <a href="#" [routerLink]="['/organizations', o.id]">{{o.name}}</a>
-                        <i *ngIf="!o.enabled" class="fa fa-exclamation-triangle text-danger"
-                            title="{{'organizationIsDisabled' | i18n}}"></i>
+                        <ng-container *ngIf="!o.enabled">
+                            <i class="fa fa-exclamation-triangle text-danger"
+                                title="{{'organizationIsDisabled' | i18n}}" aria-hidden="true"></i>
+                            <span class="sr-only">{{'organizationIsDisabled' | i18n}}</span>
+                        </ng-container>
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>

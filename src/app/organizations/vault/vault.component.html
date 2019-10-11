@@ -11,8 +11,11 @@
                 <h1>
                     {{'vault' | i18n}}
                     <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
-                        <i *ngIf="actionSpinner.loading" class="fa fa-spinner fa-spin text-muted"
-                            title="{{'loading' | i18n}}"></i>
+                        <ng-container *ngIf="actionSpinner.loading">
+                            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
+                                aria-hidden="true"></i>
+                            <span class="sr-only">{{'loading' | i18n}}</span>
+                        </ng-container>
                     </small>
                 </h1>
                 <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()">

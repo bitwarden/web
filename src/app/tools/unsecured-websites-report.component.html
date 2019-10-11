@@ -2,13 +2,15 @@
     <h1>
         {{'unsecuredWebsitesReport' | i18n}}
         <small *ngIf="hasLoaded && loading">
-            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+            <span class="sr-only">{{'loading' | i18n}}</span>
         </small>
     </h1>
 </div>
 <p>{{'unsecuredWebsitesReportDesc' | i18n}}</p>
 <div *ngIf="!hasLoaded && loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"></i>
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <span class="sr-only">{{'loading' | i18n}}</span>
 </div>
 <div class="mt-4" *ngIf="hasLoaded">
     <app-callout type="success" title="{{'goodNews' | i18n}}" *ngIf="!ciphers.length">
@@ -26,9 +28,15 @@
                     </td>
                     <td class="reduced-lh wrap">
                         <a href="#" appStopClick (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
-                        <i class="fa fa-share-alt" *ngIf="!organization && c.organizationId"
-                            title="{{'shared' | i18n}}"></i>
-                        <i class="fa fa-paperclip" title="{{'attachments' | i18n}}" *ngIf="c.hasAttachments"></i>
+                        <ng-container *ngIf="!organization && c.organizationId">
+                            <i class="fa fa-share-alt" appStopProp title="{{'shared' | i18n}}" aria-hidden="true"></i>
+                            <span class="sr-only">{{'shared' | i18n}}</span>
+                        </ng-container>
+                        <ng-container *ngIf="c.hasAttachments">
+                            <i class="fa fa-paperclip" appStopProp title="{{'attachments' | i18n}}"
+                                aria-hidden="true"></i>
+                            <span class="sr-only">{{'attachments' | i18n}}</span>
+                        </ng-container>
                         <br>
                         <small>{{c.subTitle}}</small>
                     </td>

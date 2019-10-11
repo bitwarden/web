@@ -54,7 +54,7 @@
                     <hr *ngIf="enabled">
                     <p class="text-center" [ngClass]="{'mb-0': enabled}">
                         <canvas id="qr"></canvas><br>
-                        <code title="{{'key' | i18n}}">{{key}}</code>
+                        <code appA11yTitle="{{'key' | i18n}}">{{key}}</code>
                     </p>
                     <ng-container *ngIf="!enabled">
                         <label for="token">3. {{'twoStepAuthenticatorEnterCode' | i18n}}</label>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"></i>
+                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                         <span *ngIf="!enabled">{{'enable' | i18n}}</span>
                         <span *ngIf="enabled">{{'disable' | i18n}}</span>
                     </button>

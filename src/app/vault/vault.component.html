@@ -12,8 +12,11 @@
                 <h1>
                     {{'myVault' | i18n}}
                     <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
-                        <i *ngIf="actionSpinner.loading" class="fa fa-spinner fa-spin text-muted"
-                            title="{{'loading' | i18n}}"></i>
+                        <ng-container *ngIf="actionSpinner.loading">
+                            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
+                                aria-hidden="true"></i>
+                            <span class="sr-only">{{'loading' | i18n}}</span>
+                        </ng-container>
                     </small>
                 </h1>
                 <div class="ml-auto d-flex">
@@ -96,8 +99,8 @@
                 <div class="card-header d-flex">
                     {{'organizations' | i18n}}
                     <a class="ml-auto" href="https://help.bitwarden.com/article/what-is-an-organization/"
-                        target="_blank" rel="noopener" title="{{'learnMore' | i18n}}">
-                        <i class="fa fa-question-circle-o"></i>
+                        target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                     </a>
                 </div>
                 <div class="card-body">
