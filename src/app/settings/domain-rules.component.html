@@ -21,7 +21,7 @@
             </button>
         </div>
         <button type="button" (click)="add()" class="btn btn-outline-secondary btn-sm mb-2">
-            <i class="fa fa-plus fa-fw"></i> {{'newCustomDomain' | i18n}}
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i> {{'newCustomDomain' | i18n}}
         </button>
         <small class="text-muted d-block mb-3">{{'newCustomDomainDesc' | i18n}}</small>
     </ng-container>
@@ -41,22 +41,22 @@
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-cog fa-lg"></i>
+                            aria-haspopup="true" aria-expanded="false" appA11yTitle="{{'options' | i18n}}">
+                            <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)"
                                 *ngIf="!d.excluded">
-                                <i class="fa fa-fw fa-close"></i>
+                                <i class="fa fa-fw fa-close" aria-hidden="true"></i>
                                 {{'exclude' | i18n}}
                             </a>
                             <a class="dropdown-item" href="#" appStopClick (click)="toggleExcluded(d)"
                                 *ngIf="d.excluded">
-                                <i class="fa fa-fw fa-plus"></i>
+                                <i class="fa fa-fw fa-plus" aria-hidden="true"></i>
                                 {{'include' | i18n}}
                             </a>
                             <a class="dropdown-item" href="#" appStopClick (click)="customize(d)">
-                                <i class="fa fa-fw fa-scissors"></i>
+                                <i class="fa fa-fw fa-scissors" aria-hidden="true"></i>
                                 {{'customize' | i18n}}
                             </a>
                         </div>

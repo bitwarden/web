@@ -19,7 +19,7 @@
         <p *ngIf="!organizations || !organizations.length">{{'noOrganizationsList' | i18n}}</p>
     </ng-container>
     <a href="#" routerLink="/settings/create-organization" class="btn btn-block btn-outline-primary">
-        <i class="fa fa-plus fa-fw"></i>
+        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
         {{'newOrganization' | i18n}}
     </a>
 </ng-container>
@@ -36,7 +36,7 @@
         </h1>
         <a href="#" routerLink="/settings/create-organization" class="btn btn-sm btn-outline-primary ml-auto"
             *ngIf="!loaded || (organizations && organizations.length)">
-            <i class="fa fa-plus fa-fw"></i>
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newOrganization' | i18n}}
         </a>
     </div>
@@ -48,7 +48,7 @@
         <ng-container *ngIf="!organizations || !organizations.length">
             <p>{{'noOrganizationsList' | i18n}}</p>
             <a href="#" routerLink="/settings/create-organization" class="btn btn-outline-primary">
-                <i class="fa fa-plus fa-fw"></i>
+                <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
                 {{'newOrganization' | i18n}}
             </a>
         </ng-container>
@@ -69,12 +69,13 @@
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-cog fa-lg"></i>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                appA11yTitle="{{'options' | i18n}}">
+                                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="leave(o)">
-                                    <i class="fa fa-fw fa-sign-out"></i>
+                                    <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
                                     {{'leave' | i18n}}
                                 </a>
                             </div>

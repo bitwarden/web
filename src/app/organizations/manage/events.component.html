@@ -12,7 +12,7 @@
         </div>
         <button #refreshBtn [appApiAction]="refreshPromise" type="button" class="btn btn-sm btn-outline-primary ml-3"
             (click)="loadEvents(true)" [disabled]="loaded && refreshBtn.loading">
-            <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"></i>
+            <i class="fa fa-refresh fa-fw" aria-hidden="true" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"></i>
             {{'refresh' | i18n}}
         </button>
     </div>

@@ -6,7 +6,7 @@
                     {{'userAccess' | i18n}}
                     <small>{{entityName}}</small>
                 </h2>
-                <button type="button" class="close" data-dismiss="modal" attr.aria-label="{{'close' | i18n}}">
+                <button type="button" class="close" data-dismiss="modal" appA11yTitle="{{'close' | i18n}}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -74,7 +74,8 @@
                                 </td>
                                 <td *ngIf="entity === 'collection'">
                                     <ng-container *ngIf="u.accessAll">
-                                        <i class="fa fa-th" title="{{'userAccessAllItems' | i18n}}"></i>
+                                        <i class="fa fa-th" title="{{'userAccessAllItems' | i18n}}"
+                                            aria-hidden="true"></i>
                                         <span class="sr-only">{{'userAccessAllItems' | i18n}}</span>
                                     </ng-container>
                                 </td>

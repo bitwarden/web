@@ -19,7 +19,7 @@
                     </small>
                 </h1>
                 <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()">
-                    <i class="fa fa-plus fa-fw"></i>{{'addItem' | i18n}}
+                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'addItem' | i18n}}
                 </button>
             </div>
             <app-org-vault-ciphers (onCipherClicked)="editCipher($event)"

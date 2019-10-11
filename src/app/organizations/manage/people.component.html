@@ -25,7 +25,7 @@
                 [(ngModel)]="searchText">
         </div>
         <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="invite()">
-            <i class="fa fa-plus fa-fw"></i>
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'inviteUser' | i18n}}
         </button>
     </div>
@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         <ng-container *ngIf="u.twoFactorEnabled">
-                            <i class="fa fa-lock" title="{{'userUsingTwoStep' | i18n}}"></i>
+                            <i class="fa fa-lock" title="{{'userUsingTwoStep' | i18n}}" aria-hidden="true"></i>
                             <span class="sr-only">{{'userUsingTwoStep' | i18n}}</span>
                         </ng-container>
                     </td>
@@ -70,31 +70,32 @@
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-cog fa-lg"></i>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                appA11yTitle="{{'options' | i18n}}">
+                                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#" appStopClick (click)="reinvite(u)"
                                     *ngIf="u.status === organizationUserStatusType.Invited">
-                                    <i class="fa fa-fw fa-envelope-o"></i>
+                                    <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
                                     {{'resendInvitation' | i18n}}
                                 </a>
                                 <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(u)"
                                     *ngIf="u.status === organizationUserStatusType.Accepted">
-                                    <i class="fa fa-fw fa-check"></i>
+                                    <i class="fa fa-fw fa-check" aria-hidden="true"></i>
                                     {{'confirm' | i18n}}
                                 </a>
                                 <a class="dropdown-item" href="#" appStopClick (click)="groups(u)" *ngIf="accessGroups">
-                                    <i class="fa fa-fw fa-sitemap"></i>
+                                    <i class="fa fa-fw fa-sitemap" aria-hidden="true"></i>
                                     {{'groups' | i18n}}
                                 </a>
                                 <a class="dropdown-item" href="#" appStopClick (click)="events(u)"
                                     *ngIf="accessEvents && u.status === organizationUserStatusType.Confirmed">
-                                    <i class="fa fa-fw fa-file-text-o"></i>
+                                    <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
                                     {{'eventLogs' | i18n}}
                                 </a>
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
-                                    <i class="fa fa-fw fa-remove"></i>
+                                    <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                                     {{'remove' | i18n}}
                                 </a>
                             </div>

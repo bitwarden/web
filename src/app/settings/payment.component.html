@@ -3,25 +3,25 @@
         <input class="form-check-input" type="radio" name="Method" id="method-card" [value]="paymentMethodType.Card"
             [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-card">
-            <i class="fa fa-fw fa-credit-card"></i> {{'creditCard' | i18n}}</label>
+            <i class="fa fa-fw fa-credit-card" aria-hidden="true"></i> {{'creditCard' | i18n}}</label>
     </div>
     <div class="form-check form-check-inline mr-4" *ngIf="!hideBank">
         <input class="form-check-input" type="radio" name="Method" id="method-bank"
             [value]="paymentMethodType.BankAccount" [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-bank">
-            <i class="fa fa-fw fa-university"></i> {{'bankAccount' | i18n}}</label>
+            <i class="fa fa-fw fa-university" aria-hidden="true"></i> {{'bankAccount' | i18n}}</label>
     </div>
     <div class="form-check form-check-inline" *ngIf="!hidePaypal">
         <input class="form-check-input" type="radio" name="Method" id="method-paypal" [value]="paymentMethodType.PayPal"
             [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-paypal">
-            <i class="fa fa-fw fa-paypal"></i> PayPal</label>
+            <i class="fa fa-fw fa-paypal" aria-hidden="true"></i> PayPal</label>
     </div>
     <div class="form-check form-check-inline" *ngIf="!hideCredit">
         <input class="form-check-input" type="radio" name="Method" id="method-credit" [value]="paymentMethodType.Credit"
             [(ngModel)]="method" (change)="changeMethod()">
         <label class="form-check-label" for="method-credit">
-            <i class="fa fa-fw fa-dollar"></i> {{'accountCredit' | i18n}}</label>
+            <i class="fa fa-fw fa-dollar" aria-hidden="true"></i> {{'accountCredit' | i18n}}</label>
     </div>
 </div>
 <ng-container *ngIf="showMethods && method === paymentMethodType.Card">

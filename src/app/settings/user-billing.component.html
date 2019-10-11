@@ -3,7 +3,7 @@
         {{'billing' | i18n}}
     </h1>
     <button (click)="load()" class="btn btn-sm btn-outline-primary ml-auto" *ngIf="firstLoaded" [disabled]="loading">
-        <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loading}"></i>
+        <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loading}" aria-hidden="true"></i>
         {{'refresh' | i18n}}
     </button>
 </div>
@@ -84,11 +84,11 @@
                 <td>{{i.amount | currency:'$'}}</td>
                 <td>
                     <span *ngIf="i.paid">
-                        <i class="fa fa-check text-success"></i>
+                        <i class="fa fa-check text-success" aria-hidden="true"></i>
                         {{'paid' | i18n}}
                     </span>
                     <span *ngIf="!i.paid">
-                        <i class="fa fa-exclamation-circle text-muted"></i>
+                        <i class="fa fa-exclamation-circle text-muted" aria-hidden="true"></i>
                         {{'unpaid' | i18n}}
                     </span>
                 </td>
@@ -108,7 +108,7 @@
                     <span *ngIf="t.type === transactionType.Refund">{{'refundNoun' | i18n}}</span>
                 </td>
                 <td>
-                    <i class="fa fa-fw" *ngIf="t.paymentMethodType" [ngClass]="{
+                    <i class="fa fa-fw" *ngIf="t.paymentMethodType" aria-hidden="true" [ngClass]="{
                             'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
                             'fa-university': t.paymentMethodType === paymentMethodType.BankAccount ||
                                 t.paymentMethodType === paymentMethodType.WireTransfer,

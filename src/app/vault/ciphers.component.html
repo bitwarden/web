@@ -31,43 +31,44 @@
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-cog fa-lg"></i>
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            appA11yTitle="{{'options' | i18n}}">
+                            <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <ng-container *ngIf="c.type === cipherType.Login">
                                 <a class="dropdown-item" href="#" appStopClick
                                     (click)="copy(c, c.login.password, 'password', 'password')">
-                                    <i class="fa fa-fw fa-clipboard"></i>
+                                    <i class="fa fa-fw fa-clipboard" aria-hidden="true"></i>
                                     {{'copyPassword' | i18n}}
                                 </a>
                                 <a class="dropdown-item" href="#" appStopClick *ngIf="c.login.canLaunch"
                                     (click)="launch(c.login.launchUri)">
-                                    <i class="fa fa-fw fa-share-square-o"></i>
+                                    <i class="fa fa-fw fa-share-square-o" aria-hidden="true"></i>
                                     {{'launch' | i18n}}
                                 </a>
                             </ng-container>
                             <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
-                                <i class="fa fa-fw fa-paperclip"></i>
+                                <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
                                 {{'attachments' | i18n}}
                             </a>
                             <a class="dropdown-item" href="#" appStopClick *ngIf="!organization && !c.organizationId"
                                 (click)="share(c)">
-                                <i class="fa fa-fw fa-share-alt"></i>
+                                <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
                                 {{'share' | i18n}}
                             </a>
                             <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId"
                                 (click)="collections(c)">
-                                <i class="fa fa-fw fa-cubes"></i>
+                                <i class="fa fa-fw fa-cubes" aria-hidden="true"></i>
                                 {{'collections' | i18n}}
                             </a>
                             <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId && accessEvents"
                                 (click)="events(c)">
-                                <i class="fa fa-fw fa-file-text-o"></i>
+                                <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
                                 {{'eventLogs' | i18n}}
                             </a>
                             <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
-                                <i class="fa fa-fw fa-trash-o"></i>
+                                <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
                                 {{'delete' | i18n}}
                             </a>
                         </div>

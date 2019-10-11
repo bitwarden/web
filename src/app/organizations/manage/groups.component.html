@@ -7,7 +7,7 @@
                 [(ngModel)]="searchText">
         </div>
         <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="add()">
-            <i class="fa fa-plus fa-fw"></i>
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newGroup' | i18n}}
         </button>
     </div>
@@ -27,16 +27,16 @@
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-cog fa-lg"></i>
+                            aria-haspopup="true" aria-expanded="false" appA11yTitle="{{'options' | i18n}}">
+                            <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#" appStopClick (click)="users(g)">
-                                <i class="fa fa-fw fa-users"></i>
+                                <i class="fa fa-fw fa-users" aria-hidden="true"></i>
                                 {{'users' | i18n}}
                             </a>
                             <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(g)">
-                                <i class="fa fa-fw fa-trash-o"></i>
+                                <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
                                 {{'delete' | i18n}}
                             </a>
                         </div>
