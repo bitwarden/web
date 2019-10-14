@@ -23,7 +23,7 @@
         <div class="mx-4">
             <h3 class="mb-0">
                 {{p.name}}
-                <ng-container *ngIf="p.enabled && canAccessPremium">
+                <ng-container *ngIf="p.enabled">
                     <i class="fa fa-check text-success fa-fw" title="{{'enabled' | i18n}}" aria-hidden="true"></i>
                     <span class="sr-only">{{'enabled' | i18n}}</span>
                 </ng-container>
