@@ -247,6 +247,10 @@
             Open the Buttercup desktop application and unlock your vault. Right click on your vault's icon and
             select "Export" to save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'codebookcsv'">
+            Open the Codebook desktop application and log in. Navigate to "File" &rarr; "Export all", then click
+            "Yes" on the dialog and save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
