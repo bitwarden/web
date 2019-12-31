@@ -270,8 +270,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             // Prevent scrolling to bottom of page in MS Edge.
             textarea.style.position = 'fixed';
             let copyEl = doc.body;
-            // For some reason copy command won't work in Firefox when modal is open if appending to body
-            if (this.isFirefox() && doc.body.classList.contains('modal-open')) {
+            // For some reason copy command won't work when modal is open if appending to body
+            if (doc.body.classList.contains('modal-open')) {
                 copyEl = doc.body.querySelector<HTMLElement>('.modal');
             }
             copyEl.appendChild(textarea);
