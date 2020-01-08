@@ -356,12 +356,6 @@ input[type="search"]::-webkit-search-cancel-button {
         }
     }
 
-    tr:hover {
-        td.table-list-options > .dropdown button, td.table-list-options > button {
-            visibility: visible;
-        }
-    }
-
     td {
         vertical-align: middle;
         
@@ -385,6 +379,7 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 76px;
         max-width: 76px;
         text-align: right;
+        height: 48px;
 
         &.wider {
             width: 100px;
@@ -393,18 +388,17 @@ input[type="search"]::-webkit-search-cancel-button {
 
         .btn {
             line-height: 1;
+            transition: initial;
         }
 
         .dropdown-menu {
             line-height: $line-height-base;
         }
-        
-        > .dropdown:not(.show) button {
-            visibility: hidden;
-        }
+    }
 
-        > button {
-            visibility: hidden;
+    tr:not(:hover) td.table-list-options {
+        > .dropdown:not(.show) button:not(:focus):not(:active), > button:not(:focus):not(:active) {
+            @extend .sr-only;
         }
     }
 
