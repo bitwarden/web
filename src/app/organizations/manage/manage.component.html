@@ -15,6 +15,10 @@
                         *ngIf="organization.isAdmin && accessGroups">
                         {{'groups' | i18n}}
                     </a>
+                    <a routerLink="policies" class="list-group-item" routerLinkActive="active"
+                        *ngIf="organization.isAdmin && accessPolicies">
+                        {{'policies' | i18n}}
+                    </a>
                     <a routerLink="events" class="list-group-item" routerLinkActive="active"
                         *ngIf="organization.isAdmin && accessEvents">
                         {{'eventLogs' | i18n}}
