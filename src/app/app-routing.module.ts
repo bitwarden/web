@@ -24,6 +24,7 @@ import { EventsComponent as OrgEventsComponent } from './organizations/manage/ev
 import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
+import { PoliciesComponent as OrgPoliciesComponent } from './organizations/manage/policies.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
@@ -264,6 +265,7 @@ const routes: Routes = [
                     { path: 'events', component: OrgEventsComponent, data: { titleId: 'eventLogs' } },
                     { path: 'groups', component: OrgGroupsComponent, data: { titleId: 'groups' } },
                     { path: 'people', component: OrgPeopleComponent, data: { titleId: 'people' } },
+                    { path: 'policies', component: OrgPoliciesComponent, data: { titleId: 'policies' } },
                 ],
             },
             {
