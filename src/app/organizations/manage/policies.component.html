@@ -9,10 +9,9 @@
     <tbody>
         <tr *ngFor="let p of policies">
             <td>
-                <a href="#">{{p.name}}</a>
-            </td>
-            <td class="table-list-options">
-
+                <a href="#" appStopClick (click)="edit(p)">{{p.name}}</a>
+                <span class="badge badge-success" *ngIf="p.enabled">{{'enabled' | i18n}}</span>
+                <small class="text-muted d-block">{{p.description}}</small>
             </td>
         </tr>
     </tbody>
