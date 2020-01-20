@@ -63,7 +63,7 @@ export class PolicyEditComponent implements OnInit {
         const request = new PolicyRequest();
         request.enabled = this.enabled;
         request.type = this.type;
-        request.data = '';
+        request.data = null;
         try {
             this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
             await this.formPromise;
