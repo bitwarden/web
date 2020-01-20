@@ -52,6 +52,7 @@ import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/gr
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
 import { PoliciesComponent as OrgPoliciesComponent } from './organizations/manage/policies.component';
+import { PolicyEditComponent as OrgPolicyEditComponent } from './organizations/manage/policy-edit.component';
 import { UserAddEditComponent as OrgUserAddEditComponent } from './organizations/manage/user-add-edit.component';
 import { UserConfirmComponent as OrgUserConfirmComponent } from './organizations/manage/user-confirm.component';
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
@@ -312,6 +313,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgManageCollectionsComponent,
         OrgManageComponent,
         OrgPeopleComponent,
+        OrgPolicyEditComponent,
         OrgPoliciesComponent,
         OrgReusedPasswordsReportComponent,
         OrgRotateApiKeyComponent,
@@ -388,6 +390,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgEntityEventsComponent,
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
+        OrgPolicyEditComponent,
         OrgRotateApiKeyComponent,
         OrgUserAddEditComponent,
         OrgUserConfirmComponent,

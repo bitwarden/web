@@ -10,8 +10,7 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
+import { PolicyType } from 'jslib/enums/policyType';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -20,20 +19,16 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { PolicyResponse } from 'jslib/models/response/policyResponse';
 
-import { Utils } from 'jslib/misc/utils';
-
 import { ModalComponent } from '../../modal.component';
-import { EntityUsersComponent } from './entity-users.component';
-import { GroupAddEditComponent } from './group-add-edit.component';
 
-import { PolicyType } from 'jslib/enums/policyType';
+import { PolicyEditComponent } from './policy-edit.component';
 
 @Component({
     selector: 'app-org-policies',
     templateUrl: 'policies.component.html',
 })
 export class PoliciesComponent implements OnInit {
-    @ViewChild('edit', { read: ViewContainerRef }) editModalRef: ViewContainerRef;
+    @ViewChild('editTemplate', { read: ViewContainerRef }) editModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -45,25 +40,24 @@ export class PoliciesComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private analytics: Angulartics2, private toasterService: ToasterService,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
         private router: Router) {
         this.policies = [
             {
                 name: 'Two-step Login',
-                description: 'vbxcvbxvcbxc',
+                description: 'Enforce two-step login options.',
                 type: PolicyType.TwoFactorAuthentication,
                 enabled: false,
             },
             {
                 name: 'Master Password',
-                description: 'vbxcvb',
+                description: 'Set requirements on master password strength.',
                 type: PolicyType.MasterPassword,
                 enabled: false,
             },
             {
                 name: 'Password Generator',
-                description: 'rye5tbfgdbfghj',
+                description: 'Limit the parameters of the password generator.',
                 type: PolicyType.PasswordGenerator,
                 enabled: false,
             },
@@ -92,5 +86,29 @@ export class PoliciesComponent implements OnInit {
             p.enabled = this.policiesEnabledMap.has(p.type) && this.policiesEnabledMap.get(p.type);
         });
         this.loading = false;
+    }
+
+    edit(p: any) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.editModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<PolicyEditComponent>(
+            PolicyEditComponent, this.editModalRef);
+
+        childComponent.name = p.name;
+        childComponent.description = p.description;
+        childComponent.type = p.type;
+        childComponent.organizationId = this.organizationId;
+        childComponent.onSavedPolicy.subscribe(() => {
+            this.modal.close();
+            this.load();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 }
