@@ -20,6 +20,15 @@ import { CipherReportComponent } from './cipher-report.component';
     templateUrl: 'weak-passwords-report.component.html',
 })
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
+
+    private static hasUsername(c: CipherView): boolean {
+        return c.login.username != null && c.login.username.trim() !== '';
+    }
+
+    private static getCacheKey(c: CipherView): string {
+        return c.login.password + '_____' + (WeakPasswordsReportComponent.hasUsername(c) ? c.login.username : '');
+    }
+
     passwordStrengthMap = new Map<string, [string, string]>();
 
     private passwordStrengthCache = new Map<string, number>();
@@ -43,8 +52,8 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
                 return;
             }
-            const hasUsername = c.login.username != null && c.login.username.trim() !== '';
-            const cacheKey = c.login.password + '_____' + (hasUsername ? c.login.username : '');
+            const hasUsername = WeakPasswordsReportComponent.hasUsername(c);
+            const cacheKey = WeakPasswordsReportComponent.getCacheKey(c);
             if (!this.passwordStrengthCache.has(cacheKey)) {
                 let userInput: string[] = [];
                 if (hasUsername) {
@@ -67,6 +76,10 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                 this.passwordStrengthMap.set(c.id, this.scoreKey(score));
                 weakPasswordCiphers.push(c);
             }
+        });
+        weakPasswordCiphers.sort((a, b) => {
+            return this.passwordStrengthCache.get(WeakPasswordsReportComponent.getCacheKey(a)) -
+                this.passwordStrengthCache.get(WeakPasswordsReportComponent.getCacheKey(b));
         });
         this.ciphers = weakPasswordCiphers;
     }
