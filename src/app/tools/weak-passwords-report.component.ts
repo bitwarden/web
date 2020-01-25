@@ -63,7 +63,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                 this.passwordStrengthCache.set(cacheKey, result.score);
             }
             const score = this.passwordStrengthCache.get(cacheKey);
-            if (score != null && score <= 3) {
+            if (score != null && score <= 2) {
                 this.passwordStrengthMap.set(c.id, this.scoreKey(score));
                 weakPasswordCiphers.push(c);
             }
