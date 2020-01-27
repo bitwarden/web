@@ -7,6 +7,8 @@
     "sub:pull": "git submodule foreach git pull",
     "postinstall": "npm run sub:init && gulp postinstall",
     "symlink:win": "rm -rf ./jslib && cmd /c mklink /J .\\jslib ..\\jslib",
+    "symlink:mac": "npm run symlink:lin",
+    "symlink:lin": "rm -rf ./jslib && ln -s ../jslib ./jslib",
     "build": "gulp prebuild && webpack",
     "build:watch": "gulp prebuild && webpack-dev-server",
     "build:prod": "gulp prebuild && cross-env NODE_ENV=production webpack",
