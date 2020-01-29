@@ -31,9 +31,26 @@ export class PolicyEditComponent implements OnInit {
     @Input() organizationId: string;
     @Output() onSavedPolicy = new EventEmitter();
 
+    policyType = PolicyType;
     loading = true;
     enabled = false;
     formPromise: Promise<any>;
+
+    // Master password
+
+    masterPassMinLength?: number;
+
+    // TODO
+
+    // Password generator
+
+    passGenMinLength?: number;
+    passGenMinNumbers?: number;
+    passGenMinSpecial?: number;
+    passGenUseNumbers?: boolean;
+    passGenUseSpecial?: boolean;
+    passGenUseUpper?: boolean;
+    passGenUseLower?: boolean;
 
     private policy: PolicyResponse;
 
@@ -49,7 +66,28 @@ export class PolicyEditComponent implements OnInit {
     async load() {
         try {
             this.policy = await this.apiService.getPolicy(this.organizationId, this.type);
-            this.enabled = this.policy.enabled;
+
+            if (this.policy != null) {
+                this.enabled = this.policy.enabled;
+                if (this.policy.data != null) {
+                    switch (this.type) {
+                        case PolicyType.PasswordGenerator:
+                            this.passGenMinLength = this.policy.data.minLength;
+                            this.passGenMinNumbers = this.policy.data.minNumbers;
+                            this.passGenMinSpecial = this.policy.data.minSpecial;
+                            this.passGenUseLower = this.policy.data.useLower;
+                            this.passGenUseUpper = this.policy.data.useUpper;
+                            this.passGenUseSpecial = this.policy.data.useSpecial;
+                            this.passGenUseNumbers = this.policy.data.useNumbers;
+                            break;
+                        case PolicyType.MasterPassword:
+                            this.masterPassMinLength = this.policy.data.minLength;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         } catch (e) {
             if (e.statusCode === 404) {
                 this.enabled = false;
@@ -64,6 +102,26 @@ export class PolicyEditComponent implements OnInit {
         request.enabled = this.enabled;
         request.type = this.type;
         request.data = null;
+        switch (this.type) {
+            case PolicyType.PasswordGenerator:
+                request.data = {
+                    minLength: this.passGenMinLength,
+                    minNumbers: this.passGenMinNumbers,
+                    minSpecial: this.passGenMinSpecial,
+                    useNumbers: this.passGenUseNumbers,
+                    useSpecial: this.passGenUseSpecial,
+                    useLower: this.passGenUseLower,
+                    useUpper: this.passGenUseUpper,
+                };
+                break;
+            case PolicyType.MasterPassword:
+                request.data = {
+                    minLength: this.masterPassMinLength,
+                };
+                break;
+            default:
+                break;
+        }
         try {
             this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
             await this.formPromise;

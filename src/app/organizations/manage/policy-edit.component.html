@@ -20,6 +20,50 @@
                         <label class="form-check-label" for="enabled">{{'enabled' | i18n}}</label>
                     </div>
                 </div>
+                <ng-container *ngIf="type === policyType.MasterPassword">
+                    <div class="form-group">
+                        <label for="masterPassMinLength">{{'minLength' | i18n}}</label>
+                        <input id="masterPassMinLength" class="form-control" type="number" name="MasterPassMinLength"
+                            [(ngModel)]="masterPassMinLength">
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="type === policyType.PasswordGenerator">
+                    <div class="form-group">
+                        <label for="passGenMinLength">{{'minLength' | i18n}}</label>
+                        <input id="passGenMinLength" class="form-control" type="number" name="PassGenMinLength"
+                            [(ngModel)]="passGenMinLength">
+                    </div>
+                    <div class="form-group">
+                        <label for="passGenMinNumbers">{{'minNumbers' | i18n}}</label>
+                        <input id="passGenMinNumbers" class="form-control" type="number" name="PassGenMinNumbers"
+                            [(ngModel)]="passGenMinNumbers">
+                    </div>
+                    <div class="form-group">
+                        <label for="passGenMinSpecial">{{'minSpecial' | i18n}}</label>
+                        <input id="passGenMinSpecial" class="form-control" type="number" name="PassGenMinSpecial"
+                            [(ngModel)]="passGenMinSpecial">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseNumbers"
+                            [(ngModel)]="passGenUseNumbers" name="PassGenUseNumbers">
+                        <label class="form-check-label" for="passGenUseNumbers">0-9</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseSpecial"
+                            [(ngModel)]="passGenUseSpecial" name="PassGenUseSpecial">
+                        <label class="form-check-label" for="passGenUseSpecial">!@#$%^&amp;*</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseLower"
+                            [(ngModel)]="passGenUseLower" name="PassGenUseLower">
+                        <label class="form-check-label" for="passGenUseLower">a-z</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseUpper"
+                            [(ngModel)]="passGenUseUpper" name="PassGenUseUpper">
+                        <label class="form-check-label" for="passGenUseUpper">A-Z</label>
+                    </div>
+                </ng-container>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
