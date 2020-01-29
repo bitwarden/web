@@ -41,6 +41,7 @@ import { ImportService } from 'jslib/services/import.service';
 import { LockService } from 'jslib/services/lock.service';
 import { NotificationsService } from 'jslib/services/notifications.service';
 import { PasswordGenerationService } from 'jslib/services/passwordGeneration.service';
+import { PolicyService } from 'jslib/services/policy.service';
 import { SearchService } from 'jslib/services/search.service';
 import { SettingsService } from 'jslib/services/settings.service';
 import { StateService } from 'jslib/services/state.service';
@@ -72,6 +73,7 @@ import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
 } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService as PolicyServiceAbstraction } from 'jslib/abstractions/policy.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
 import { SettingsService as SettingsServiceAbstraction } from 'jslib/abstractions/settings.service';
 import { StateService as StateServiceAbstraction } from 'jslib/abstractions/state.service';
@@ -105,10 +107,11 @@ const folderService = new FolderService(cryptoService, userService, apiService, 
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, platformUtilsService);
+const policyService = new PolicyService(userService, storageService);
 const lockService = new LockService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, null);
 const syncService = new SyncService(userService, apiService, settingsService,
-    folderService, cipherService, cryptoService, collectionService, storageService, messagingService,
+    folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService);
 const totpService = new TotpService(storageService, cryptoFunctionService);
@@ -211,6 +214,7 @@ export function initFactory(): Function {
         { provide: NotificationsServiceAbstraction, useValue: notificationsService },
         { provide: CryptoFunctionServiceAbstraction, useValue: cryptoFunctionService },
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
+        { provide: PolicyServiceAbstraction, useValue: policyService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,
