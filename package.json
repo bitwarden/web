@@ -4,7 +4,7 @@
   "scripts": {
     "sub:init": "git submodule update --init --recursive",
     "sub:update": "git submodule update --remote",
-    "sub:pull": "git submodule foreach git pull",
+    "sub:pull": "git submodule foreach git pull origin master",
     "postinstall": "npm run sub:init && gulp postinstall",
     "symlink:win": "rm -rf ./jslib && cmd /c mklink /J .\\jslib ..\\jslib",
     "symlink:mac": "npm run symlink:lin",
