@@ -33,6 +33,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
     @Output() onShareClicked = new EventEmitter<CipherView>();
     @Output() onCollectionsClicked = new EventEmitter<CipherView>();
+    @Output() onCloneClicked = new EventEmitter<CipherView>();
 
     cipherType = CipherType;
     actionPromise: Promise<any>;
@@ -89,6 +90,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     collections(c: CipherView) {
         this.onCollectionsClicked.emit(c);
+    }
+
+    clone(c: CipherView) {
+        this.onCloneClicked.emit(c);
     }
 
     async delete(c: CipherView): Promise<boolean> {

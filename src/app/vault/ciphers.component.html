@@ -52,6 +52,11 @@
                                 <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
                                 {{'attachments' | i18n}}
                             </a>
+                            <a class="dropdown-item" href="#" appStopClick
+                                *ngIf="(!organization && !c.organizationId) || organization" (click)="clone(c)">
+                                <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                                {{'clone' | i18n}}
+                            </a>
                             <a class="dropdown-item" href="#" appStopClick *ngIf="!organization && !c.organizationId"
                                 (click)="share(c)">
                                 <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>

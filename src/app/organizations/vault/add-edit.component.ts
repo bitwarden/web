@@ -70,7 +70,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         if (!this.organization.isAdmin) {
             return super.saveCipher(cipher);
         }
-        if (this.editMode) {
+        if (this.editMode && !this.cloneMode) {
             const request = new CipherRequest(cipher);
             return this.apiService.putCipherAdmin(this.cipherId, request);
         } else {
