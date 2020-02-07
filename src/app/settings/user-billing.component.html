@@ -54,6 +54,7 @@
         <p>
             <i class="fa fa-fw" [ngClass]="{'fa-credit-card': paymentSource.type === paymentMethodType.Card,
                     'fa-university': paymentSource.type === paymentMethodType.BankAccount,
+                    'fa-money': paymentSource.type === paymentMethodType.Check,
                     'fa-paypal text-primary': paymentSource.type === paymentMethodType.PayPal,
                     'fa-apple text-muted': paymentSource.type === paymentMethodType.AppleInApp,
                     'fa-google text-muted': paymentSource.type === paymentMethodType.GoogleInApp}"></i>
