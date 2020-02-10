@@ -366,6 +366,11 @@ export class VaultComponent implements OnInit, OnDestroy {
         return childComponent;
     }
 
+    cloneCipher(cipher: CipherView) {
+        const component = this.editCipher(cipher);
+        component.cloneMode = true;
+    }
+
     bulkDelete() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {

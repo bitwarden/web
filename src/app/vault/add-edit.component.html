@@ -439,7 +439,8 @@
                         </select>
                     </div>
                 </div>
-                <ng-container *ngIf="!editMode && !organization && ownershipOptions && ownershipOptions.length > 1">
+                <ng-container
+                    *ngIf="(!editMode || cloneMode) && !organization && ownershipOptions && ownershipOptions.length > 1">
                     <h3 class="mt-4">{{'ownership' | i18n}}</h3>
                     <div class="row">
                         <div class="col-5">
@@ -451,7 +452,7 @@
                         </div>
                     </div>
                 </ng-container>
-                <ng-container *ngIf="!editMode && cipher.organizationId">
+                <ng-container *ngIf="(!editMode || cloneMode) && cipher.organizationId">
                     <h3 class="mt-4">{{'collections' | i18n}}</h3>
                     <div *ngIf="!collections || !collections.length">
                         {{'noCollectionsInList' | i18n}}
@@ -504,7 +505,7 @@
                             aria-hidden="true"></i>
                     </button>
                     <button #deleteBtn type="button" (click)="delete()" class="btn btn-outline-danger"
-                        appA11yTitle="{{'delete' | i18n}}" *ngIf="editMode" [disabled]="deleteBtn.loading"
+                        appA11yTitle="{{'delete' | i18n}}" *ngIf="editMode && !cloneMode" [disabled]="deleteBtn.loading"
                         [appApiAction]="deletePromise">
                         <i class="fa fa-trash-o fa-lg fa-fw" [hidden]="deleteBtn.loading" aria-hidden="true"></i>
                         <i class="fa fa-spinner fa-spin fa-lg fa-fw" [hidden]="!deleteBtn.loading"

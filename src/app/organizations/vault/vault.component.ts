@@ -263,6 +263,18 @@ export class VaultComponent implements OnInit, OnDestroy {
         return childComponent;
     }
 
+    cloneCipher(cipher: CipherView) {
+        const component = this.editCipher(cipher);
+        component.cloneMode = true;
+        component.organizationId = this.organization.id;
+        if (this.organization.isAdmin) {
+            component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+        }
+        // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value
+        // in the add-edit componenet
+        component.collectionIds = cipher.collectionIds;
+    }
+
     async viewEvents(cipher: CipherView) {
         if (this.modal != null) {
             this.modal.close();
