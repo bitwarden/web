@@ -42,6 +42,17 @@ export class AddEditComponent extends BaseAddEditComponent {
             eventService);
     }
 
+    protected allowOwnershipAssignment() {
+        if (this.ownershipOptions != null && this.ownershipOptions.length > 1) {
+            if (this.organization != null) {
+                return this.cloneMode && this.organization.isAdmin;
+            } else {
+                return !this.editMode || this.cloneMode;
+            }
+        }
+        return false;
+    }
+
     protected loadCollections() {
         if (!this.organization.isAdmin) {
             return super.loadCollections();
@@ -67,7 +78,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected async saveCipher(cipher: Cipher) {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.isAdmin || cipher.organizationId == null) {
             return super.saveCipher(cipher);
         }
         if (this.editMode && !this.cloneMode) {

@@ -154,6 +154,10 @@ export class AddEditComponent extends BaseAddEditComponent {
         }
     }
 
+    protected allowOwnershipAssignment() {
+        return (!this.editMode || this.cloneMode) && this.ownershipOptions != null && this.ownershipOptions.length > 1;
+    }
+
     private async totpTick(intervalSeconds: number) {
         const epoch = Math.round(new Date().getTime() / 1000.0);
         const mod = epoch % intervalSeconds;
