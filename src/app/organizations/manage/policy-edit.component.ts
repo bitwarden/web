@@ -39,8 +39,11 @@ export class PolicyEditComponent implements OnInit {
     // Master password
 
     masterPassMinLength?: number;
-
-    // TODO
+    masterPassMinNumbers?: number;
+    masterPassMinSpecial?: number;
+    masterPassUseLower?: number;
+    masterPassUseUpper?: number;
+    masterPassMinComplexity?: number;
 
     // Password generator
 
@@ -82,6 +85,11 @@ export class PolicyEditComponent implements OnInit {
                             break;
                         case PolicyType.MasterPassword:
                             this.masterPassMinLength = this.policy.data.minLength;
+                            this.masterPassMinNumbers = this.policy.data.minNumbers;
+                            this.masterPassMinSpecial = this.policy.data.minSpecial;
+                            this.masterPassUseLower = this.policy.data.useLower;
+                            this.masterPassUseUpper = this.policy.data.useUpper;
+                            this.masterPassMinComplexity = this.policy.data.minComplexity;
                             break;
                         default:
                             break;
@@ -117,6 +125,11 @@ export class PolicyEditComponent implements OnInit {
             case PolicyType.MasterPassword:
                 request.data = {
                     minLength: this.masterPassMinLength,
+                    minNumbers: this.masterPassMinNumbers,
+                    minSpecial: this.masterPassMinSpecial,
+                    useLower: this.masterPassUseLower,
+                    useUpper: this.masterPassUseUpper,
+                    minComplexity: this.masterPassMinComplexity,
                 };
                 break;
             default:
