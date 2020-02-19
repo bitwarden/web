@@ -10,9 +10,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { PolicyType } from 'jslib/enums/policyType';
 
@@ -38,28 +36,27 @@ export class PolicyEditComponent implements OnInit {
 
     // Master password
 
-    masterPassMinLength?: number;
-    masterPassMinNumbers?: number;
-    masterPassMinSpecial?: number;
-    masterPassUseLower?: number;
-    masterPassUseUpper?: number;
     masterPassMinComplexity?: number;
+    masterPassMinLength?: number;
+    masterPassRequireUpper?: number;
+    masterPassRequireLower?: number;
+    masterPassRequireNumbers?: number;
+    masterPassRequireSpecial?: number;
 
     // Password generator
 
     passGenMinLength?: number;
-    passGenMinNumbers?: number;
-    passGenMinSpecial?: number;
-    passGenUseNumbers?: boolean;
-    passGenUseSpecial?: boolean;
     passGenUseUpper?: boolean;
     passGenUseLower?: boolean;
+    passGenUseNumbers?: boolean;
+    passGenUseSpecial?: boolean;
+    passGenMinNumbers?: number;
+    passGenMinSpecial?: number;
 
     private policy: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private collectionService: CollectionService, private platformUtilsService: PlatformUtilsService) { }
+        private analytics: Angulartics2, private toasterService: ToasterService) { }
 
     async ngOnInit() {
         await this.load();
@@ -76,20 +73,20 @@ export class PolicyEditComponent implements OnInit {
                     switch (this.type) {
                         case PolicyType.PasswordGenerator:
                             this.passGenMinLength = this.policy.data.minLength;
+                            this.passGenUseUpper = this.policy.data.useUpper;
+                            this.passGenUseLower = this.policy.data.useLower;
+                            this.passGenUseNumbers = this.policy.data.useNumbers;
+                            this.passGenUseSpecial = this.policy.data.useSpecial;
                             this.passGenMinNumbers = this.policy.data.minNumbers;
                             this.passGenMinSpecial = this.policy.data.minSpecial;
-                            this.passGenUseLower = this.policy.data.useLower;
-                            this.passGenUseUpper = this.policy.data.useUpper;
-                            this.passGenUseSpecial = this.policy.data.useSpecial;
-                            this.passGenUseNumbers = this.policy.data.useNumbers;
                             break;
                         case PolicyType.MasterPassword:
-                            this.masterPassMinLength = this.policy.data.minLength;
-                            this.masterPassMinNumbers = this.policy.data.minNumbers;
-                            this.masterPassMinSpecial = this.policy.data.minSpecial;
-                            this.masterPassUseLower = this.policy.data.useLower;
-                            this.masterPassUseUpper = this.policy.data.useUpper;
                             this.masterPassMinComplexity = this.policy.data.minComplexity;
+                            this.masterPassMinLength = this.policy.data.minLength;
+                            this.masterPassRequireUpper = this.policy.data.requireUpper;
+                            this.masterPassRequireLower = this.policy.data.requireLower;
+                            this.masterPassRequireNumbers = this.policy.data.requireNumbers;
+                            this.masterPassRequireSpecial = this.policy.data.requireSpecial;
                             break;
                         default:
                             break;
@@ -113,23 +110,23 @@ export class PolicyEditComponent implements OnInit {
         switch (this.type) {
             case PolicyType.PasswordGenerator:
                 request.data = {
-                    minLength: this.passGenMinLength,
-                    minNumbers: this.passGenMinNumbers,
-                    minSpecial: this.passGenMinSpecial,
+                    minLength: this.passGenMinLength || null,
+                    useUpper: this.passGenUseUpper,
+                    useLower: this.passGenUseLower,
                     useNumbers: this.passGenUseNumbers,
                     useSpecial: this.passGenUseSpecial,
-                    useLower: this.passGenUseLower,
-                    useUpper: this.passGenUseUpper,
+                    minNumbers: this.passGenMinNumbers || null,
+                    minSpecial: this.passGenMinSpecial || null,
                 };
                 break;
             case PolicyType.MasterPassword:
                 request.data = {
-                    minLength: this.masterPassMinLength,
-                    minNumbers: this.masterPassMinNumbers,
-                    minSpecial: this.masterPassMinSpecial,
-                    useLower: this.masterPassUseLower,
-                    useUpper: this.masterPassUseUpper,
-                    minComplexity: this.masterPassMinComplexity,
+                    minComplexity: this.masterPassMinComplexity || null,
+                    minLength: this.masterPassMinLength || null,
+                    requireUpper: this.masterPassRequireUpper,
+                    requireLower: this.masterPassRequireLower,
+                    requireNumbers: this.masterPassRequireNumbers,
+                    requireSpecial: this.masterPassRequireSpecial,
                 };
                 break;
             default:
