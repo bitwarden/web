@@ -55,44 +55,44 @@
                     </div>
                 </ng-container>
                 <ng-container *ngIf="type === policyType.PasswordGenerator">
-                    <div class="form-group">
-                        <label for="passGenMinLength">{{'minLength' | i18n}}</label>
-                        <input id="passGenMinLength" class="form-control" type="number" name="PassGenMinLength"
-                            [(ngModel)]="passGenMinLength">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="passGenUseUpper"
-                                [(ngModel)]="passGenUseUpper" name="PassGenUseUpper">
-                            <label class="form-check-label" for="passGenUseUpper">A-Z</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="passGenUseLower"
-                                [(ngModel)]="passGenUseLower" name="PassGenUseLower">
-                            <label class="form-check-label" for="passGenUseLower">a-z</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="passGenUseNumbers"
-                                [(ngModel)]="passGenUseNumbers" name="PassGenUseNumbers">
-                            <label class="form-check-label" for="passGenUseNumbers">0-9</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="passGenUseSpecial"
-                                [(ngModel)]="passGenUseSpecial" name="PassGenUseSpecial">
-                            <label class="form-check-label" for="passGenUseSpecial">!@#$%^&amp;*</label>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label for="passGenMinLength">{{'minLength' | i18n}}</label>
+                            <input id="passGenMinLength" class="form-control" type="number" name="PassGenMinLength"
+                                [(ngModel)]="passGenMinLength">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group mb-0">
+                        <div class="col-6 form-group">
                             <label for="passGenMinNumbers">{{'minNumbers' | i18n}}</label>
                             <input id="passGenMinNumbers" class="form-control" type="number" name="PassGenMinNumbers"
                                 [(ngModel)]="passGenMinNumbers">
                         </div>
-                        <div class="col-6 form-group mb-0">
+                        <div class="col-6 form-group">
                             <label for="passGenMinSpecial">{{'minSpecial' | i18n}}</label>
                             <input id="passGenMinSpecial" class="form-control" type="number" name="PassGenMinSpecial"
                                 [(ngModel)]="passGenMinSpecial">
                         </div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseUpper"
+                            [(ngModel)]="passGenUseUpper" name="PassGenUseUpper">
+                        <label class="form-check-label" for="passGenUseUpper">A-Z</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseLower"
+                            [(ngModel)]="passGenUseLower" name="PassGenUseLower">
+                        <label class="form-check-label" for="passGenUseLower">a-z</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseNumbers"
+                            [(ngModel)]="passGenUseNumbers" name="PassGenUseNumbers">
+                        <label class="form-check-label" for="passGenUseNumbers">0-9</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passGenUseSpecial"
+                            [(ngModel)]="passGenUseSpecial" name="PassGenUseSpecial">
+                        <label class="form-check-label" for="passGenUseSpecial">!@#$%^&amp;*</label>
                     </div>
                 </ng-container>
             </div>
