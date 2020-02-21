@@ -1,5 +1,4 @@
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
+import Swal, { SweetAlertIcon } from 'sweetalert2/src/sweetalert2.js';
 
 import { DeviceType } from 'jslib/enums/deviceType';
 
@@ -8,9 +7,6 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { Utils } from 'jslib/misc/utils';
-
-// Hack due to Angular 5.2 bug
-const swal: SweetAlert = _swal as any;
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
@@ -182,58 +178,42 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
-        const buttons = [confirmText == null ? this.i18nService.t('ok') : confirmText];
-        if (cancelText != null) {
-            buttons.unshift(cancelText);
-        }
-
-        const contentDiv = document.createElement('div');
+        let iconClasses = null;
         if (type != null) {
-            const icon = document.createElement('i');
-            icon.classList.add('swal-custom-icon');
+            // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
             switch (type) {
                 case 'success':
-                    icon.classList.add('fa', 'fa-check', 'text-success');
+                    iconClasses = 'fa-check text-success';
                     break;
                 case 'warning':
-                    icon.classList.add('fa', 'fa-warning', 'text-warning');
+                    iconClasses = 'fa-warning text-warning';
                     break;
                 case 'error':
-                    icon.classList.add('fa', 'fa-bolt', 'text-danger');
+                    iconClasses = 'fa-bolt text-danger';
                     break;
                 case 'info':
-                    icon.classList.add('fa', 'fa-info-circle', 'text-info');
+                    iconClasses = 'fa-info-circle text-info';
                     break;
                 default:
                     break;
             }
-            if (icon.classList.contains('fa')) {
-                contentDiv.appendChild(icon);
-            }
         }
 
-        if (title != null) {
-            const titleDiv = document.createElement('div');
-            titleDiv.classList.add('swal-title');
-            titleDiv.appendChild(document.createTextNode(title));
-            contentDiv.appendChild(titleDiv);
-        }
-
-        if (text != null) {
-            const textDiv = document.createElement('div');
-            textDiv.classList.add('swal-text');
-            textDiv.appendChild(document.createTextNode(text));
-            contentDiv.appendChild(textDiv);
-        }
-
-        const confirmed = buttons.length > 1 ? await swal({
-            content: { element: contentDiv },
-            buttons: buttons,
-        }) : await (swal as any)({
-            content: { element: contentDiv },
-            button: buttons[0],
+        const iconHtmlStr = iconClasses != null ? `<i class="swal-custom-icon fa ${iconClasses}"></i>` : undefined;
+        const confirmed = await Swal.fire({
+            heightAuto: false,
+            buttonsStyling: false,
+            icon: type as SweetAlertIcon, // required to be any of the SweetAlertIcons to output the iconHtml.
+            iconHtml: iconHtmlStr,
+            text: text,
+            title: title,
+            showCancelButton: (cancelText != null),
+            cancelButtonText: cancelText,
+            showConfirmButton: true,
+            confirmButtonText: confirmText == null ? this.i18nService.t('ok') : confirmText,
         });
-        return confirmed;
+
+        return confirmed.value;
     }
 
     eventTrack(action: string, label?: string, options?: any) {
