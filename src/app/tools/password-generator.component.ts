@@ -47,4 +47,12 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
     lengthChanged() {
         document.getElementById('length').focus();
     }
+
+    minNumberChanged() {
+        document.getElementById('min-number').focus();
+    }
+
+    minSpecialChanged() {
+        document.getElementById('min-special').focus();
+    }
 }

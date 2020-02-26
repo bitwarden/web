@@ -113,7 +113,7 @@ const lockService = new LockService(cipherService, folderService, collectionServ
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService);
+const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
 const totpService = new TotpService(storageService, cryptoFunctionService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
@@ -142,8 +142,8 @@ export function initFactory(): Function {
         }
         apiService.setUrls({
             base: isDev ? null : window.location.origin,
-            api: isDev ? 'http://localhost:4000' : null,
-            identity: isDev ? 'http://localhost:33656' : null,
+            api: isDev ? 'http://localhost:5000' : null,
+            identity: isDev ? 'http://localhost:33657' : null,
             events: isDev ? 'http://localhost:46273' : null,
 
             // Uncomment these (and comment out the above) if you want to target production

@@ -59,19 +59,19 @@
                         <div class="col-6 form-group">
                             <label for="passGenMinLength">{{'minLength' | i18n}}</label>
                             <input id="passGenMinLength" class="form-control" type="number" name="PassGenMinLength"
-                                [(ngModel)]="passGenMinLength">
+                                min="5" max="128" [(ngModel)]="passGenMinLength">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="passGenMinNumbers">{{'minNumbers' | i18n}}</label>
                             <input id="passGenMinNumbers" class="form-control" type="number" name="PassGenMinNumbers"
-                                [(ngModel)]="passGenMinNumbers">
+                                min="0" max="9" [(ngModel)]="passGenMinNumbers">
                         </div>
                         <div class="col-6 form-group">
                             <label for="passGenMinSpecial">{{'minSpecial' | i18n}}</label>
                             <input id="passGenMinSpecial" class="form-control" type="number" name="PassGenMinSpecial"
-                                [(ngModel)]="passGenMinSpecial">
+                                min="0" max="9" [(ngModel)]="passGenMinSpecial">
                         </div>
                     </div>
                     <div class="form-check">
