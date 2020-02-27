@@ -9,10 +9,12 @@ import {
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { TwoFactorProviders } from 'jslib/services/auth.service';
 
+import { PolicyType } from 'jslib/enums/policyType';
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 
 import { ModalComponent } from '../modal.component';
@@ -39,12 +41,14 @@ export class TwoFactorSetupComponent implements OnInit {
     organizationId: string;
     providers: any[] = [];
     canAccessPremium: boolean;
+    showPolicyWarning = false;
     loading = true;
 
     private modal: ModalComponent = null;
 
     constructor(protected apiService: ApiService, protected userService: UserService,
-        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService) { }
+        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService,
+        protected policyService: PolicyService) { }
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();
@@ -83,6 +87,7 @@ export class TwoFactorSetupComponent implements OnInit {
                 }
             });
         });
+        this.evaluatePolicies();
         this.loading = false;
     }
 
@@ -166,5 +171,15 @@ export class TwoFactorSetupComponent implements OnInit {
                 p.enabled = enabled;
             }
         });
+        this.evaluatePolicies();
+    }
+
+    private async evaluatePolicies() {
+        if (this.organizationId == null && this.providers.filter((p) => p.enabled).length === 1) {
+            const policies = await this.policyService.getAll(PolicyType.TwoFactorAuthentication);
+            this.showPolicyWarning = policies != null && policies.some((p) => p.enabled);
+        } else {
+            this.showPolicyWarning = false;
+        }
     }
 }
