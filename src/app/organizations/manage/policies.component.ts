@@ -44,20 +44,20 @@ export class PoliciesComponent implements OnInit {
         private router: Router) {
         this.policies = [
             {
-                name: 'Two-step Login',
-                description: 'Enforce two-step login options.',
+                name: i18nService.t('twoStepLogin'),
+                description: i18nService.t('twoStepLoginPolicyDesc'),
                 type: PolicyType.TwoFactorAuthentication,
                 enabled: false,
             },
             {
-                name: 'Master Password',
-                description: 'Set requirements on master password strength.',
+                name: i18nService.t('masterPass'),
+                description: i18nService.t('masterPassPolicyDesc'),
                 type: PolicyType.MasterPassword,
                 enabled: false,
             },
             {
-                name: 'Password Generator',
-                description: 'Limit the parameters of the password generator.',
+                name: i18nService.t('passwordGenerator'),
+                description: i18nService.t('passwordGeneratorPolicyDesc'),
                 type: PolicyType.PasswordGenerator,
                 enabled: false,
             },
