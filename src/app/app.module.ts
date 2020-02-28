@@ -19,7 +19,6 @@ import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
-import { CalloutComponent } from './components/callout.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
@@ -154,6 +153,7 @@ import { GroupingsComponent } from './vault/groupings.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
+import { CalloutComponent } from 'jslib/angular/components/callout.component';
 import { IconComponent } from 'jslib/angular/components/icon.component';
 
 import { A11yTitleDirective } from 'jslib/angular/directives/a11y-title.directive';
