@@ -1,6 +1,7 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 @import "~angular2-toaster/toaster";
+@import "~sweetalert2/src/sweetalert2.scss";
 
 #toast-container {
     &.toast-top-right {
@@ -86,41 +87,31 @@ $fa-font-path: "~font-awesome/fonts";
     }
 }
 
-// SweetAlert
+// SweetAlert2
 
-.swal-overlay {
+.swal2-container {
     background-color: rgba(0,0,0,.3);
 }
 
-.swal-modal {
+.swal2-popup {
+    padding: 0;
     background-color: $modal-content-bg;
     color: $body-color;
     border: $modal-content-border-width solid #9a9a9a;
     @include border-radius($modal-content-border-radius);
+    width: 34em; // slightly bigger than the hardcoded 478px in v1.
 
-    .swal-icon {
+    .swal2-icon {
         margin: 15px auto 0 auto;
+        width: auto;
+        height: auto;
+        border: none;
     }
 
-    .swal-content {
-        margin: 0;
-        padding: 15px 0;
+    .swal2-content {
+        padding-bottom: 15px;
         font-size: $font-size-base;
         border-bottom: $modal-footer-border-width solid $modal-footer-border-color;
-
-        .swal-text {
-            &:last-child {
-                margin-bottom: 0;
-            }
-            &:first-child {
-                margin-top: 0;
-            }
-        }
-
-        .swal-title, .swal-text {
-            padding-left: 0;
-            padding-right: 0;
-        }
     }
 
     i.swal-custom-icon {
@@ -129,36 +120,38 @@ $fa-font-path: "~font-awesome/fonts";
         font-size: 35px;
     }
 
-    .swal-title {
+    .swal2-title {
         padding: 10px 10px 15px 10px;
         margin: 0;
         font-size: $font-size-lg;
         color: $body-color;
     }
 
-    .swal-text {
+    .swal2-content {
         font-size: $font-size-base;
         color: $body-color;
     }
 
-    .swal-footer {
+    .swal2-actions {
         padding: 15px 10px 10px 10px;
         margin: 0;
         background-color: $input-bg;
         @include border-radius($modal-content-border-radius);
         display: flex; 
-        flex-direction: row-reverse;
-        justify-content: flex-end;
+        flex-direction: row;
+        justify-content: flex-start;
         font-size: $font-size-base;
 
-        button.swal-button {
+        button {
+            margin-left: 10px;
             @extend .btn;
 
-            &.swal-button--confirm {
+            &.swal2-confirm {
                 @extend .btn-primary;
+                font-weight: bold;
             }
-    
-            &.swal-button--cancel {
+
+            &.swal2-cancel {
                 @extend .btn-outline-secondary;
                 background-color: #ffffff;
             }

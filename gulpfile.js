@@ -30,17 +30,8 @@ function version(cb) {
     cb();
 }
 
-// ref: https://github.com/t4t5/sweetalert/issues/890
-function fixSweetAlert(cb) {
-    fs.writeFileSync(paths.node_modules + 'sweetalert/typings/sweetalert.d.ts',
-        'import swal, { SweetAlert } from "./core";export default swal;export as namespace swal;');
-    cb();
-}
-
 exports.clean = clean;
 exports.webfonts = gulp.series(clean, webfonts);
 exports.prebuild = gulp.series(clean, webfonts);
 exports.version = version;
 exports.postdist = version;
-exports.fixSweetAlert = fixSweetAlert;
-exports.postinstall = fixSweetAlert;
