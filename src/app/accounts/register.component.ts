@@ -10,10 +10,12 @@ import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { StateService } from 'jslib/abstractions/state.service';
 
 import { RegisterComponent as BaseRegisterComponent } from 'jslib/angular/components/register.component';
 
+import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordPolicyOptions';
 import { Policy } from 'jslib/models/domain/policy';
 
 import { PolicyData } from 'jslib/models/data/policyData';
@@ -27,12 +29,13 @@ export class RegisterComponent extends BaseRegisterComponent {
     showTerms = true;
 
     private policies: Policy[];
+    private enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, cryptoService: CryptoService,
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService,
-        passwordGenerationService: PasswordGenerationService) {
+        passwordGenerationService: PasswordGenerationService, private policyService: PolicyService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService);
         this.showTerms = !platformUtilsService.isSelfHost();
@@ -64,6 +67,10 @@ export class RegisterComponent extends BaseRegisterComponent {
                     this.policies = policiesData.map((p) => new Policy(p));
                 }
             } catch { }
+        }
+
+        if (this.policies != null) {
+            //this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
         }
     }
 }

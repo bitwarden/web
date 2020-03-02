@@ -84,7 +84,7 @@ export class ChangePasswordComponent implements OnInit {
             this.getPasswordStrengthUserInput());
 
         if (this.enforcedPolicyOptions != null &&
-            !(await this.policyService.evaluateMasterPassword(
+            !(this.policyService.evaluateMasterPassword(
                 strengthResult.score,
                 this.newMasterPassword,
                 this.enforcedPolicyOptions))) {
