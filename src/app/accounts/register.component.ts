@@ -14,6 +14,10 @@ import { StateService } from 'jslib/abstractions/state.service';
 
 import { RegisterComponent as BaseRegisterComponent } from 'jslib/angular/components/register.component';
 
+import { Policy } from 'jslib/models/domain/policy';
+
+import { PolicyData } from 'jslib/models/data/policyData';
+
 @Component({
     selector: 'app-register',
     templateUrl: 'register.component.html',
@@ -21,6 +25,8 @@ import { RegisterComponent as BaseRegisterComponent } from 'jslib/angular/compon
 export class RegisterComponent extends BaseRegisterComponent {
     showCreateOrgMessage = false;
     showTerms = true;
+
+    private policies: Policy[];
 
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, cryptoService: CryptoService,
@@ -32,7 +38,7 @@ export class RegisterComponent extends BaseRegisterComponent {
         this.showTerms = !platformUtilsService.isSelfHost();
     }
 
-    ngOnInit() {
+    async ngOnInit() {
         const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
@@ -48,5 +54,16 @@ export class RegisterComponent extends BaseRegisterComponent {
                 queryParamsSub.unsubscribe();
             }
         });
+        const invite = await this.stateService.get<any>('orgInvitation');
+        if (invite != null) {
+            try {
+                const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,
+                    invite.email, invite.organizationUserId);
+                if (policies.data != null) {
+                    const policiesData = policies.data.map((p) => new PolicyData(p));
+                    this.policies = policiesData.map((p) => new Policy(p));
+                }
+            } catch { }
+        }
     }
 }
