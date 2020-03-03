@@ -46,20 +46,16 @@ export class RegisterComponent extends BaseRegisterComponent {
             return '';
         }
 
+        let str: string;
         switch (this.enforcedPolicyOptions.minComplexity) {
             case 4:
-                return this.i18nService.t('strong') + ' (4)';
+                str = this.i18nService.t('strong');
             case 3:
-                return this.i18nService.t('good') + ' (3)';
-            case 2:
-                return this.i18nService.t('weak') + ' (2)';
-            case 1:
-                return this.i18nService.t('weak') + ' (1)';
-            case 0:
-                return this.i18nService.t('weak') + ' (0)';
+                str = this.i18nService.t('good');
             default:
-                return '';
+                str = this.i18nService.t('weak');
         }
+        return str + ' (' + this.enforcedPolicyOptions.minComplexity + ')';
     }
 
     async ngOnInit() {
