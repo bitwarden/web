@@ -29,7 +29,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     showTerms = true;
 
     private policies: Policy[];
-    private enforcedPolicyOptions: MasterPasswordPolicyOptions;
+    enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, cryptoService: CryptoService,
@@ -80,8 +80,8 @@ export class RegisterComponent extends BaseRegisterComponent {
             return;
         }
 
-        if (!(this.policyService.evaluateMasterPassword(this.masterPasswordScore, this.masterPassword,
-            this.enforcedPolicyOptions))) {
+        if (!this.policyService.evaluateMasterPassword(this.masterPasswordScore, this.masterPassword,
+            this.enforcedPolicyOptions)) {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
             return;

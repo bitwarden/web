@@ -30,14 +30,14 @@
                                 <li *ngIf="enforcedPolicyOptions?.minLength > 0">
                                     {{'policyInEffectMinLength' | i18n : enforcedPolicyOptions?.minLength.toString()}}
                                 </li>
-                                <li *ngIf="enforcedPolicyOptions?.requireUpper">{{'policyInEffectUppercase' | i18n}}
-                                </li>
-                                <li *ngIf="enforcedPolicyOptions?.requireLower">{{'policyInEffectLowercase' | i18n}}
-                                </li>
-                                <li *ngIf="enforcedPolicyOptions?.requireNumbers">{{'policyInEffectNumbers' | i18n}}
-                                </li>
-                                <li *ngIf="enforcedPolicyOptions?.requireSpecial">{{'policyInEffectSpecial' | i18n}}
-                                </li>
+                                <li *ngIf="enforcedPolicyOptions?.requireUpper">
+                                    {{'policyInEffectUppercase' | i18n}}</li>
+                                <li *ngIf="enforcedPolicyOptions?.requireLower">
+                                    {{'policyInEffectLowercase' | i18n}}</li>
+                                <li *ngIf="enforcedPolicyOptions?.requireNumbers">
+                                    {{'policyInEffectNumbers' | i18n}}</li>
+                                <li *ngIf="enforcedPolicyOptions?.requireSpecial">
+                                    {{'policyInEffectSpecial' | i18n : '!@#$%^&*'}}</li>
                             </ul>
                         </app-callout>
                         <label for="masterPassword">{{'masterPass' | i18n}}</label>

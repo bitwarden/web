@@ -3021,7 +3021,13 @@
     "message": "Contain one or more numbers"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters !@#$%^&*"
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
   },
   "masterPasswordPolicyRequirementsNotMet": {
     "message": "Your new master password does not meet the policy requirements."

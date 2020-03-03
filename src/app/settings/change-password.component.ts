@@ -84,10 +84,10 @@ export class ChangePasswordComponent implements OnInit {
             this.getPasswordStrengthUserInput());
 
         if (this.enforcedPolicyOptions != null &&
-            !(this.policyService.evaluateMasterPassword(
+            !this.policyService.evaluateMasterPassword(
                 strengthResult.score,
                 this.newMasterPassword,
-                this.enforcedPolicyOptions))) {
+                this.enforcedPolicyOptions)) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
             return;
