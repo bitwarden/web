@@ -69,13 +69,6 @@ export class RegisterComponent extends BaseRegisterComponent {
             } catch { }
         }
 
-        // this.enforcedPolicyOptions = new MasterPasswordPolicyOptions();
-        // this.enforcedPolicyOptions.minComplexity = 2;
-        // this.enforcedPolicyOptions.minLength = 10;
-        // this.enforcedPolicyOptions.requireUpper = true;
-        // this.enforcedPolicyOptions.requireLower = true;
-        // this.enforcedPolicyOptions.requireNumbers = true;
-        // this.enforcedPolicyOptions.requireSpecial = true;
         if (this.policies != null) {
             this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
         }
