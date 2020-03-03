@@ -33,6 +33,7 @@ export class PolicyEditComponent implements OnInit {
     loading = true;
     enabled = false;
     formPromise: Promise<any>;
+    passwordScores: any[];
 
     // Master password
 
@@ -56,7 +57,16 @@ export class PolicyEditComponent implements OnInit {
     private policy: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+        private analytics: Angulartics2, private toasterService: ToasterService) {
+        this.passwordScores = [
+            { name: '', value: null },
+            { name: i18nService.t('weak') + ' (0)', value: 0 },
+            { name: i18nService.t('weak') + ' (1)', value: 1 },
+            { name: i18nService.t('weak') + ' (2)', value: 2 },
+            { name: i18nService.t('good') + ' (3)', value: 3 },
+            { name: i18nService.t('strong') + ' (4)', value: 4 },
+        ];
+    }
 
     async ngOnInit() {
         await this.load();

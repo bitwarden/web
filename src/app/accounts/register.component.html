@@ -25,7 +25,7 @@
                             <p>{{'masterPasswordPolicyInEffect' | i18n}}</p>
                             <ul>
                                 <li *ngIf="enforcedPolicyOptions?.minComplexity > 0">
-                                    {{'policyInEffectMinComplexity' | i18n : enforcedPolicyOptions?.minComplexity.toString()}}
+                                    {{'policyInEffectMinComplexity' | i18n : getPasswordScoreAlertDisplay()}}
                                 </li>
                                 <li *ngIf="enforcedPolicyOptions?.minLength > 0">
                                     {{'policyInEffectMinLength' | i18n : enforcedPolicyOptions?.minLength.toString()}}

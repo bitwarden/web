@@ -27,9 +27,9 @@ import { PolicyData } from 'jslib/models/data/policyData';
 export class RegisterComponent extends BaseRegisterComponent {
     showCreateOrgMessage = false;
     showTerms = true;
+    enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
     private policies: Policy[];
-    enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, cryptoService: CryptoService,
@@ -39,6 +39,27 @@ export class RegisterComponent extends BaseRegisterComponent {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService);
         this.showTerms = !platformUtilsService.isSelfHost();
+    }
+
+    getPasswordScoreAlertDisplay() {
+        if (this.enforcedPolicyOptions == null) {
+            return '';
+        }
+
+        switch (this.enforcedPolicyOptions.minComplexity) {
+            case 4:
+                return this.i18nService.t('strong') + ' (4)';
+            case 3:
+                return this.i18nService.t('good') + ' (3)';
+            case 2:
+                return this.i18nService.t('weak') + ' (2)';
+            case 1:
+                return this.i18nService.t('weak') + ' (1)';
+            case 0:
+                return this.i18nService.t('weak') + ' (0)';
+            default:
+                return '';
+        }
     }
 
     async ngOnInit() {
