@@ -69,8 +69,31 @@ export class RegisterComponent extends BaseRegisterComponent {
             } catch { }
         }
 
+        // this.enforcedPolicyOptions = new MasterPasswordPolicyOptions();
+        // this.enforcedPolicyOptions.minComplexity = 2;
+        // this.enforcedPolicyOptions.minLength = 10;
+        // this.enforcedPolicyOptions.requireUpper = true;
+        // this.enforcedPolicyOptions.requireLower = true;
+        // this.enforcedPolicyOptions.requireNumbers = true;
+        // this.enforcedPolicyOptions.requireSpecial = true;
         if (this.policies != null) {
-            //this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
+            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
         }
+    }
+
+    async submit() {
+        if (this.enforcedPolicyOptions == null) {
+            super.submit();
+            return;
+        }
+
+        if (!(this.policyService.evaluateMasterPassword(this.masterPasswordScore, this.masterPassword,
+            this.enforcedPolicyOptions))) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
+            return;
+        }
+
+        super.submit();
     }
 }
