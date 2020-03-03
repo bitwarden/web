@@ -75,18 +75,14 @@ export class RegisterComponent extends BaseRegisterComponent {
     }
 
     async submit() {
-        if (this.enforcedPolicyOptions == null) {
-            super.submit();
-            return;
-        }
-
-        if (!this.policyService.evaluateMasterPassword(this.masterPasswordScore, this.masterPassword,
-            this.enforcedPolicyOptions)) {
+        if (this.enforcedPolicyOptions != null &&
+            !this.policyService.evaluateMasterPassword(this.masterPasswordScore, this.masterPassword,
+                this.enforcedPolicyOptions)) {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
             return;
         }
 
-        super.submit();
+        await super.submit();
     }
 }
