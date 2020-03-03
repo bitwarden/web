@@ -28,8 +28,10 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="masterPassMinComplexity">{{'minComplexityScore' | i18n}}</label>
-                            <input id="masterPassMinComplexity" class="form-control" type="number"
-                                name="MasterPassMinComplexity" [(ngModel)]="masterPassMinComplexity" min="0" max="4">
+                            <select id="masterPassMinComplexity" name="MasterPassMinComplexity"
+                                [(ngModel)]="masterPassMinComplexity" class="form-control">
+                                <option *ngFor="let o of passwordScores" [ngValue]="o.value">{{o.name}}</option>
+                            </select>
                         </div>
                         <div class="col-6 form-group">
                             <label for="masterPassMinLength">{{'minLength' | i18n}}</label>

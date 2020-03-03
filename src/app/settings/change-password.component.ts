@@ -56,6 +56,23 @@ export class ChangePasswordComponent implements OnInit {
         this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions();
     }
 
+    getPasswordScoreAlertDisplay() {
+        if (this.enforcedPolicyOptions == null) {
+            return '';
+        }
+
+        let str: string;
+        switch (this.enforcedPolicyOptions.minComplexity) {
+            case 4:
+                str = this.i18nService.t('strong');
+            case 3:
+                str = this.i18nService.t('good');
+            default:
+                str = this.i18nService.t('weak');
+        }
+        return str + ' (' + this.enforcedPolicyOptions.minComplexity + ')';
+    }
+
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
         if (!hasEncKey) {
