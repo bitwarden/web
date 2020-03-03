@@ -21,6 +21,25 @@
                         <small class="form-text text-muted">{{'yourNameDesc' | i18n}}</small>
                     </div>
                     <div class="form-group">
+                        <app-callout type="info" *ngIf="enforcedPolicyOptions">
+                            <p>{{'masterPasswordPolicyInEffect' | i18n}}</p>
+                            <ul>
+                                <li *ngIf="enforcedPolicyOptions?.minComplexity > 0">
+                                    {{'policyInEffectMinComplexity' | i18n : enforcedPolicyOptions?.minComplexity.toString()}}
+                                </li>
+                                <li *ngIf="enforcedPolicyOptions?.minLength > 0">
+                                    {{'policyInEffectMinLength' | i18n : enforcedPolicyOptions?.minLength.toString()}}
+                                </li>
+                                <li *ngIf="enforcedPolicyOptions?.requireUpper">
+                                    {{'policyInEffectUppercase' | i18n}}</li>
+                                <li *ngIf="enforcedPolicyOptions?.requireLower">
+                                    {{'policyInEffectLowercase' | i18n}}</li>
+                                <li *ngIf="enforcedPolicyOptions?.requireNumbers">
+                                    {{'policyInEffectNumbers' | i18n}}</li>
+                                <li *ngIf="enforcedPolicyOptions?.requireSpecial">
+                                    {{'policyInEffectSpecial' | i18n : '!@#$%^&*'}}</li>
+                            </ul>
+                        </app-callout>
                         <label for="masterPassword">{{'masterPass' | i18n}}</label>
                         <div class="d-flex">
                             <div class="w-100">

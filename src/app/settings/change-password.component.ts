@@ -14,10 +14,12 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherString } from 'jslib/models/domain/cipherString';
+import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordPolicyOptions';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
 import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
@@ -36,6 +38,7 @@ export class ChangePasswordComponent implements OnInit {
     formPromise: Promise<any>;
     masterPasswordScore: number;
     rotateEncKey = false;
+    enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
     private masterPasswordStrengthTimeout: any;
     private email: string;
@@ -45,10 +48,12 @@ export class ChangePasswordComponent implements OnInit {
         private cryptoService: CryptoService, private messagingService: MessagingService,
         private userService: UserService, private passwordGenerationService: PasswordGenerationService,
         private platformUtilsService: PlatformUtilsService, private folderService: FolderService,
-        private cipherService: CipherService, private syncService: SyncService) { }
+        private cipherService: CipherService, private syncService: SyncService,
+        private policyService: PolicyService) { }
 
     async ngOnInit() {
         this.email = await this.userService.getEmail();
+        this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions();
     }
 
     async submit() {
@@ -77,6 +82,17 @@ export class ChangePasswordComponent implements OnInit {
 
         const strengthResult = this.passwordGenerationService.passwordStrength(this.newMasterPassword,
             this.getPasswordStrengthUserInput());
+
+        if (this.enforcedPolicyOptions != null &&
+            !this.policyService.evaluateMasterPassword(
+                strengthResult.score,
+                this.newMasterPassword,
+                this.enforcedPolicyOptions)) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
+            return;
+        }
+
         if (strengthResult != null && strengthResult.score < 3) {
             const result = await this.platformUtilsService.showDialog(this.i18nService.t('weakMasterPasswordDesc'),
                 this.i18nService.t('weakMasterPassword'), this.i18nService.t('yes'), this.i18nService.t('no'),
