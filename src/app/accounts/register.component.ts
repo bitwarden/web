@@ -50,10 +50,13 @@ export class RegisterComponent extends BaseRegisterComponent {
         switch (this.enforcedPolicyOptions.minComplexity) {
             case 4:
                 str = this.i18nService.t('strong');
+                break;
             case 3:
                 str = this.i18nService.t('good');
+                break;
             default:
                 str = this.i18nService.t('weak');
+                break;
         }
         return str + ' (' + this.enforcedPolicyOptions.minComplexity + ')';
     }
