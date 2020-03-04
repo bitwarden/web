@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <app-callout type="info" *ngIf="enforcedPolicyOptions">
                             <p>{{'masterPasswordPolicyInEffect' | i18n}}</p>
-                            <ul>
+                            <ul class="mb-0">
                                 <li *ngIf="enforcedPolicyOptions?.minComplexity > 0">
                                     {{'policyInEffectMinComplexity' | i18n : getPasswordScoreAlertDisplay()}}
                                 </li>
