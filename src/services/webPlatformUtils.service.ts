@@ -178,7 +178,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
-        let iconClasses = null;
+        let iconClasses: string = null;
         if (type != null) {
             // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
             switch (type) {

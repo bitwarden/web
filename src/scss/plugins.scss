@@ -94,15 +94,19 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 .swal2-popup {
-    padding: 0;
+    padding: 15px 0 0;
     background-color: $modal-content-bg;
     color: $body-color;
     border: $modal-content-border-width solid #9a9a9a;
     @include border-radius($modal-content-border-radius);
     width: 34em; // slightly bigger than the hardcoded 478px in v1.
 
+    .swal2-header {
+        padding: 0 15px;
+    }
+
     .swal2-icon {
-        margin: 15px auto 0 auto;
+        margin: 0 auto;
         width: auto;
         height: auto;
         border: none;
@@ -121,7 +125,7 @@ $fa-font-path: "~font-awesome/fonts";
     }
 
     .swal2-title {
-        padding: 10px 10px 15px 10px;
+        padding: 10px 0 15px;
         margin: 0;
         font-size: $font-size-lg;
         color: $body-color;
@@ -130,10 +134,11 @@ $fa-font-path: "~font-awesome/fonts";
     .swal2-content {
         font-size: $font-size-base;
         color: $body-color;
+        padding: 0 15px 15px;
     }
 
     .swal2-actions {
-        padding: 15px 10px 10px 10px;
+        padding: 15px;
         margin: 0;
         background-color: $input-bg;
         @include border-radius($modal-content-border-radius);
@@ -143,7 +148,7 @@ $fa-font-path: "~font-awesome/fonts";
         font-size: $font-size-base;
 
         button {
-            margin-left: 10px;
+            margin-right: 10px;
             @extend .btn;
 
             &.swal2-confirm {
