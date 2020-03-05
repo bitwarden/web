@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Passwortgenerator"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "Mindestanzahl Ziffern"
   },
@@ -832,7 +835,7 @@
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Zahl hinzufügen"
+    "message": "Ziffer hinzufügen"
   },
   "passwordHistory": {
     "message": "Passwortverlauf"
@@ -2036,7 +2039,7 @@
     "message": "Hilfe erhalten"
   },
   "getApps": {
-    "message": "Laden Sie die Apps"
+    "message": "Die Apps erhalten"
   },
   "loggedInAs": {
     "message": "angemeldet als"
@@ -2046,6 +2049,12 @@
   },
   "people": {
     "message": "Leute"
+  },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
   },
   "groups": {
     "message": "Gruppen"
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Gruppe $ID$ erstellt.",
     "placeholders": {
@@ -2559,6 +2577,15 @@
   },
   "inviteAcceptFailed": {
     "message": "Einladung konnte nicht akzeptiert werden. Zum Erhalten einer neuen Einladung, setzen Sie sich mit einem Administrator der Organisation in Verbindung."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
   },
   "rememberEmail": {
     "message": "E-Mail-Adresse merken"
@@ -2938,5 +2965,71 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Sie müssen Ihr Abonnement im entsprechenden App Store verwalten, über dem Ihr In-App-Kauf getätigt wurde."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

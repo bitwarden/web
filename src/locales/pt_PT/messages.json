@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Gerador de palavras-passe"
   },
+  "minComplexityScore": {
+    "message": "Pontuação mínima de complexidade"
+  },
   "minNumbers": {
     "message": "Números mínimos"
   },
@@ -1200,7 +1203,7 @@
     "message": "Cofre web, aplicação para computador, CLI e todas as extensões de navegador num dispositivo com porta USB que pode aceitar a sua YubiKey."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Aplicações móveis num dispositivo com capacidades NFC ou porta USB que podem aceitar a sua YubiKey."
+    "message": "Aplicações móveis num dispositivo com capacidades NFC ou porta USB compatíveis com a sua YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Pessoas"
   },
+  "policies": {
+    "message": "Políticas"
+  },
+  "editPolicy": {
+    "message": "Editar Política"
+  },
   "groups": {
     "message": "Grupos"
   },
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Editou a política $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Grupo $ID$ criado.",
     "placeholders": {
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "Não foi possível aceitar o convite. Peça a um administrador da organização para enviar novo convite."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Não foi possível aceitar o convite. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Memorizar email"
   },
@@ -2620,7 +2647,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Atualize a sua conta para outro plano ao providenciar a informação abaixo. Por favor certifique-se de que tem um método de pagamento ativo adicionado à conta.",
+    "message": "Atualize a sua conta para outro plano fornecendo as informações abaixo. Por favor, certifique-se de que você tem um método de pagamento ativo adicionado na conta.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2928,15 +2955,81 @@
     "message": "Tem de selecionar pelo menos uma coleção."
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "We were not able to charge your card. Please view and pay the unpaid invoice listed below."
+    "message": "Não foi possível cobrar o seu cartão. Por favor, verifique e efetue o pagamento da fatura marcada como não paga na lista abaixo."
   },
   "inAppPurchase": {
-    "message": "In-app Purchase"
+    "message": "Compra na Aplicação"
   },
   "cannotPerformInAppPurchase": {
-    "message": "You cannot perform this action while using an in-app purchase payment method."
+    "message": "Não pode executar esta ação utilizando um método de pagamento dentro da aplicação."
   },
   "manageSubscriptionFromStore": {
-    "message": "You must manage your subscription from the store where your in-app purchase was made."
+    "message": "Você terá de gerir a sua subscrição na loja onde a sua compra foi efetuada."
+  },
+  "minLength": {
+    "message": "Comprimento Mínimo"
+  },
+  "clone": {
+    "message": "Clonar"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Defina os requisitos mínimos para a força da palavra-passe."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Exigir que os utilizadores definam a autenticação de dois passos nas suas contas pessoais."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Os membros da organização que não possuam a autenticação de dois passos ativa para sua conta pessoal, serão removidos da organização e receberão um e-mail notificando-os da mudança."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "Você é um membro de uma organização que exige que a autenticação de dois passos seja ativada na sua conta de utilizador. Se desativar todos os serviços de autenticação de dois passos, você será automaticamente removido dessas organizações."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Defina os requisitos mínimos para configuração do gerador de palavras-passe."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Uma ou mais políticas da organização estão a afetar as suas configurações do gerador."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Uma ou mais políticas da organização exigem que a sua palavra-passe mestra cumpra aos seguintes requisitos:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Pontuação mínima de complexidade de $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

@@ -266,7 +266,7 @@
     "message": "お気に入りの検索"
   },
   "searchType": {
-    "message": "検索の種類",
+    "message": "タイプの検索",
     "description": "Search item type"
   },
   "searchVault": {
@@ -291,7 +291,7 @@
     "message": "ID"
   },
   "typeSecureNote": {
-    "message": "セキュアメモ"
+    "message": "メモ"
   },
   "folders": {
     "message": "フォルダー"
@@ -805,8 +805,11 @@
   "passwordGenerator": {
     "message": "パスワード生成ツール"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
-    "message": "数字の最小数"
+    "message": "数字の最小個数"
   },
   "minSpecial": {
     "message": "記号の最小数",
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "メンバー"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "グループ"
   },
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "グループ「$ID$」の作成",
     "placeholders": {
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "招待を承諾出来ませんでした。組織の管理者に招待を再送信するように依頼してください。"
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "メールアドレスを保存"
   },
@@ -2573,7 +2600,7 @@
     "message": "二段階認証が無効化されました。"
   },
   "learnMore": {
-    "message": "さらに詳しく"
+    "message": "詳細"
   },
   "deleteRecoverDesc": {
     "message": "メールアドレスを入力してアカウントを削除します。"
@@ -2938,5 +2965,71 @@
   },
   "manageSubscriptionFromStore": {
     "message": "アプリ内購入したストアでサブスクリプションを管理してください。"
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

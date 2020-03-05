@@ -152,7 +152,7 @@
     "message": "Hodnota"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "Zoradiť presúvaním"
   },
   "cfTypeText": {
     "message": "Text"
@@ -590,7 +590,7 @@
     "message": "Odomknúť"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "Prihlásený ako $EMAIL$ na $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Generátor hesla"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "Minimum číslic"
   },
@@ -828,11 +831,11 @@
     "message": "Oddeľovač slov"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "Prvé písmeno veľkým",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "Zahrnúť číslo"
   },
   "passwordHistory": {
     "message": "História hesla"
@@ -2018,7 +2021,7 @@
     "message": "Vaša nová organizácia je pripravená!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "Vaša organizácia bola povýšená."
   },
   "leave": {
     "message": "Opustiť"
@@ -2046,6 +2049,12 @@
   },
   "people": {
     "message": "Ľudia"
+  },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
   },
   "groups": {
     "message": "Skupiny"
@@ -2213,10 +2222,10 @@
     "message": "Prihlásenie zlyhalo pre nesprávnu dvojstupňovú autorizáciu."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Trezor exportovaný."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Trezor organizácie bol exportovaný."
   },
   "editedOrgSettings": {
     "message": "Nastavenia organizácie upravené."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "Položka $ID$ zobrazená.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Zobrazené heslo položky $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Zobrazené skryté pole položky $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Zobrazený bezpečnostný kód položky $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "Skopírované heslo položky $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "Skopírované skryté pole položky $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "Skopírovaný bezpečnostný kód položky $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Automaticky vyplnené s položkou $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2559,6 +2577,15 @@
   },
   "inviteAcceptFailed": {
     "message": "Prijatie pozvánky zlyhalo. Požiadajte administrátora organizácie, aby vám poslal novú pozvánku."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
   },
   "rememberEmail": {
     "message": "Zapamätať si e-mail"
@@ -2925,18 +2952,84 @@
     "message": "Obnoviť API kľúč"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "Musíte vybrať aspoň jednu zbierku."
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "We were not able to charge your card. Please view and pay the unpaid invoice listed below."
+    "message": "Nepodarilo sa nám vykonať platbu pomocou vašej karty. Prosím pozrite si a zaplaťte neuhradenú faktúru nižšie."
   },
   "inAppPurchase": {
-    "message": "In-app Purchase"
+    "message": "Nákupy v aplikácii"
   },
   "cannotPerformInAppPurchase": {
-    "message": "You cannot perform this action while using an in-app purchase payment method."
+    "message": "Tato akcia sa nedá vykonať ak používate platbu pomocou nákupu v aplikácii."
   },
   "manageSubscriptionFromStore": {
-    "message": "You must manage your subscription from the store where your in-app purchase was made."
+    "message": "Predplatné musíte spravovať v obchode kde ste vykonali nákup cez aplikáciu."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }
