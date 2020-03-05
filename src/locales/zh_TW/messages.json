@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "密碼產生器"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "最少數字位數"
   },
@@ -1312,7 +1315,7 @@
     "message": "報告"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "回報不安全的網站"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "使用 http:// 配置的不安全網站有風險。如果網站允許，您應永遠使用 https:// 配置存取此網站，這樣您的連線才是加密過的。"
@@ -1503,7 +1506,7 @@
     "message": "帳單"
   },
   "accountCredit": {
-    "message": "帳戶信用",
+    "message": "帳戶餘額",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
@@ -1519,13 +1522,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "已加入的信用卡在交易處理完全後將會出現在你的帳號。部分付款方式較為緩慢，比其他方式花費更多時間處理。"
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "請確認你的帳號有足夠額度繳付此次購買，如果你的帳號額度不足，則會以你預設付款方式補足差額。你可以從帳單頁面新增額度到您的帳號。"
   },
   "creditAppliedDesc": {
-    "message": "您的帳戶信用額度可用於進行消費。任何可用的信用額度將自動支付此帳戶的帳單。"
+    "message": "您的帳戶餘額可用於進行消費。若有可用的餘額將自動支付此帳戶的帳單。"
   },
   "goPremium": {
     "message": "升級至進階版",
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "人員"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "群組"
   },
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "已建立群組 $ID$。",
     "placeholders": {
@@ -2559,6 +2577,15 @@
   },
   "inviteAcceptFailed": {
     "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
   },
   "rememberEmail": {
     "message": "記住電子郵件地址"
@@ -2909,10 +2936,10 @@
     "message": "您的 API 金鑰可用來驗證 Bitwarden 公用 API。"
   },
   "apiKeyRotateDesc": {
-    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+    "message": "更新 API 金鑰將使前一份金鑰失效。若您認為當前的金鑰不在安全，您可以更新您的 API 金鑰。"
   },
   "apiKeyWarning": {
-    "message": "Your API key has full access to the organization. It should be kept secret."
+    "message": "你的 API 金鑰對組織有完整存取權限，應要保密。"
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 客戶端登入資訊",
@@ -2928,15 +2955,81 @@
     "message": "您必須至少選擇一個收藏。"
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "We were not able to charge your card. Please view and pay the unpaid invoice listed below."
+    "message": "我們無法從您的卡片扣款。請查看並繳付以上尚未付清之款項。"
   },
   "inAppPurchase": {
     "message": "應用程式內購買"
   },
   "cannotPerformInAppPurchase": {
-    "message": "You cannot perform this action while using an in-app purchase payment method."
+    "message": "當你使用程式內購買的付款方式時，不能執行此項操作。"
   },
   "manageSubscriptionFromStore": {
-    "message": "You must manage your subscription from the store where your in-app purchase was made."
+    "message": "你必須從建立程式內購買的商店才能管理你的訂閱。"
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }
