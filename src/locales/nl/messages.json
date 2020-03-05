@@ -140,7 +140,7 @@
     "message": "Vervaljaar"
   },
   "authenticatorKeyTotp": {
-    "message": "Authenticatiesleutel (TOTP)"
+    "message": "Authenticatiecode (TOTP)"
   },
   "folder": {
     "message": "Map"
@@ -282,7 +282,7 @@
     "message": "Categorieën"
   },
   "typeLogin": {
-    "message": "Inloggen"
+    "message": "Login"
   },
   "typeCard": {
     "message": "Kaart"
@@ -675,7 +675,7 @@
     "message": "Steek je beveilingssleutel in de USB-poort van je computer. Als het een knop heeft, druk deze dan in."
   },
   "loginUnavailable": {
-    "message": "Inloggen niet beschikbaar"
+    "message": "Login niet beschikbaar"
   },
   "noTwoStepProviders": {
     "message": "Dit account heeft tweestapsaanmelding ingeschakeld, maar deze webbrowser ondersteunt geen van de geconfigureerde aanbieders."
@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Wachtwoordgenerator"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "Minimum aantal cijfers"
   },
@@ -816,7 +819,7 @@
     "message": "Dubbelzinnige tekens vermijden"
   },
   "regeneratePassword": {
-    "message": "Wachtwoord opnieuw genereren"
+    "message": "Opnieuw genereren"
   },
   "length": {
     "message": "Lengte"
@@ -835,7 +838,7 @@
     "message": "Cijfer toevoegen"
   },
   "passwordHistory": {
-    "message": "Wachtwoordgeschiedenis"
+    "message": "Geschiedenis"
   },
   "noPasswordsInList": {
     "message": "Er zijn geen wachtwoorden om weer te geven."
@@ -1312,7 +1315,7 @@
     "message": "Rapportages"
   },
   "unsecuredWebsitesReport": {
-    "message": "Overzicht van niet-beveiligde websites"
+    "message": "Niet-beveiligde websites"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "Onbeveiligde websites met http:// gebruiken kan gevaarlijk zijn. Als de website het ondersteunt, moet je deze altijd benaderen met behulp van https:// zodat je verbinding versleuteld is."
@@ -1333,7 +1336,7 @@
     "message": "Geen items in je kluis met onbeveiligde URIs."
   },
   "inactive2faReport": {
-    "message": "Overzicht van inactieve 2FA"
+    "message": "Tweestapsaanmelding"
   },
   "inactive2faReportDesc": {
     "message": "Tweestapsaanmelding (2FA) is een belangrijke instelling die bijdraagt aan de beveiliging van je accounts. Als de website het ondersteunt, zou je altijd tweestapsaanmelding moeten gebruiken."
@@ -1357,7 +1360,7 @@
     "message": "Instructies"
   },
   "exposedPasswordsReport": {
-    "message": "Overzicht van gelekte wachtwoorden"
+    "message": "Gelekte wachtwoorden"
   },
   "exposedPasswordsReportDesc": {
     "message": "Gelekte wachtwoorden zijn wachtwoorden die zijn ontdekt in bekende datalekken die publiekelijk zijn vrijgegeven of door hackers op het dark web worden verkocht."
@@ -1390,7 +1393,7 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Overzicht van zwakke wachtwoorden"
+    "message": "Zwakke wachtwoorden"
   },
   "weakPasswordsReportDesc": {
     "message": "Hackers en geautomatiseerde gereedschappen die wachtwoorden kraken kunnen zwakke wachtwoorden eenvoudig raden. De wachtwoordgenerator van Bitwarden helpt je bij het maken van sterke wachtwoorden."
@@ -1411,7 +1414,7 @@
     "message": "Er zijn geen items met zwakke wachtwoorden in je kluis gevonden."
   },
   "reusedPasswordsReport": {
-    "message": "Overzicht van dubbele wachtwoorden"
+    "message": "Dubbele wachtwoorden"
   },
   "reusedPasswordsReportDesc": {
     "message": "Als hackers wachtwoorden stelen bij een dienst die je gebruikt, kunnen zij met hetzelfde wachtwoord eenvoudig toegang krijgen tot meer van je online accounts. Je zou voor iedere dienst een uniek wachtwoord moeten gebruiken."
@@ -1441,7 +1444,7 @@
     }
   },
   "dataBreachReport": {
-    "message": "Overzicht van datalekken"
+    "message": "Datalekken"
   },
   "breachDesc": {
     "message": "Een \"datalek\" is een incident waarbij de gegevens van een website zijn gestolen door hackers en vervolgens openbaar zijn gemaakt. Controleer de soorten gegevens die zijn gelekt (e-mailadressen, wachtwoorden, creditcards, enz.) en neem passende maatregelen, zoals het wijzigen van wachtwoorden."
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Personen"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "Groepen"
   },
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Groep aangemaakt $ID$.",
     "placeholders": {
@@ -2559,6 +2577,15 @@
   },
   "inviteAcceptFailed": {
     "message": "De uitnodiging is niet geaccepteerd. Vraag een beheerder van de organisatie om een nieuwe uitnodiging te versturen."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
   },
   "rememberEmail": {
     "message": "Mijn e-mailadres onthouden"
@@ -2938,5 +2965,71 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Je moet je abonnement beheren vanuit de winkel waar je in-app aankoop is gemaakt."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }
