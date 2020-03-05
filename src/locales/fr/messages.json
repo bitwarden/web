@@ -50,7 +50,7 @@
     "message": "Nom du titulaire de la carte"
   },
   "number": {
-    "message": "Nombre"
+    "message": "Numéro"
   },
   "brand": {
     "message": "Réseau de paiement"
@@ -211,7 +211,7 @@
     "message": "Afficher/Masquer"
   },
   "toggleCollapse": {
-    "message": "Déplier ou replier",
+    "message": "Déplier/Replier",
     "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
@@ -260,7 +260,7 @@
     "message": "Rechercher dans la collection"
   },
   "searchFolder": {
-    "message": "Rechercher dans un dossier"
+    "message": "Rechercher dans le dossier"
   },
   "searchFavorites": {
     "message": "Rechercher dans les favoris"
@@ -410,7 +410,7 @@
     "message": "Tout désélectionner"
   },
   "launch": {
-    "message": "Démarrer"
+    "message": "Ouvrir"
   },
   "newAttachment": {
     "message": "Ajouter une nouvelle pièce jointe"
@@ -419,7 +419,7 @@
     "message": "Pièce jointe supprimée"
   },
   "deleteAttachmentConfirmation": {
-    "message": "Êtes-vous sûr⋅e de vouloir supprimer cette pièce jointe ?"
+    "message": "Êtes-vous sûr(e) de vouloir supprimer cette pièce jointe ?"
   },
   "attachmentSaved": {
     "message": "La pièce jointe a été enregistrée."
@@ -536,7 +536,7 @@
     "message": "Un indice de mot de passe maître peut vous aider à vous rappeler de votre mot de passe en cas d'oubli."
   },
   "reTypeMasterPass": {
-    "message": "Saisir à nouveau le mot de passe maître"
+    "message": "Saisissez à nouveau le mot de passe maître"
   },
   "masterPassHint": {
     "message": "Indice du mot de passe maître (facultatif)"
@@ -584,7 +584,7 @@
     "message": "Adresse e-mail"
   },
   "yourVaultIsLocked": {
-    "message": "Votre coffre est verrouillé. Vérifiez votre mot de passe maître pour continuer."
+    "message": "Votre coffre est verrouillé. Saisissez votre mot de passe maître pour continuer."
   },
   "unlock": {
     "message": "Déverrouiller"
@@ -706,7 +706,7 @@
     "message": "Utilisez une YubiKey pour accéder à votre compte. Fonctionne avec les YubiKey série 4, série 5 et NEO."
   },
   "duoDesc": {
-    "message": "Vérifier avec Duo Security via l'application Duo Mobile, un SMS, un appel vocal ou une clé de sécurité U2F.",
+    "message": "S'authentifier avec Duo Security via l'application Duo Mobile, un SMS, un appel téléphonique, ou une clé de sécurité U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
@@ -744,7 +744,7 @@
     "message": "Modifier les collections avec lesquelles cet élément est partagé. Seuls les utilisateurs de l'organisation avec un accès à ces collections pourront voir cet élément."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Vous avez sélectionné $COUNT$ élément(s) à supprimer. Êtes-vous sûr de vouloir supprimer tous ces éléments ?",
+    "message": "Vous avez sélectionné $COUNT$ élément(s) à supprimer. Êtes-vous sûr(e) de vouloir supprimer tous ces éléments ?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -804,6 +804,9 @@
   },
   "passwordGenerator": {
     "message": "Générateur de mot de passe"
+  },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
   },
   "minNumbers": {
     "message": "Nombre minimum de chiffres"
@@ -968,7 +971,7 @@
     "message": "Continuez ci-dessous pour supprimer votre compte et toutes les données associées."
   },
   "deleteAccountWarning": {
-    "message": "La suppression de votre compte est définitive. Elle ne peut être annulée."
+    "message": "La suppression de votre compte est définitive. Cette action ne peut pas être annulée."
   },
   "accountDeleted": {
     "message": "Compte supprimé"
@@ -1173,7 +1176,7 @@
     "message": "Dans le cas où vous devez l’ajouter à un autre appareil, voici le code QR (ou clé) requis par votre application d'authentification."
   },
   "twoStepDisableDesc": {
-    "message": "Êtes-vous certain de que vouloir désactiver ce fournisseur de connexion en deux étapes ?"
+    "message": "Êtes-vous sûr(e) de que vouloir désactiver ce fournisseur de connexion en deux étapes ?"
   },
   "twoStepDisabled": {
     "message": "Fournisseur de connexion en deux étapes désactivé."
@@ -1263,7 +1266,7 @@
     "message": "Ajouter une clé de sécurité FIDO U2F à votre compte"
   },
   "removeU2fConfirmation": {
-    "message": "Êtes-vous certain de vouloir retirer cette clé de sécurité ?"
+    "message": "Êtes-vous sûr(e) de vouloir supprimer cette clé de sécurité ?"
   },
   "readKey": {
     "message": "Lire la clé"
@@ -1535,7 +1538,7 @@
     "message": "Vous venez de passer à un compte Premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Mettre à niveau votre compte vers un abonnement premium et débloquez d'incroyables fonctionnalités supplémentaires."
+    "message": "Mettez à niveau votre compte vers un abonnement premium et débloquez d'incroyables fonctionnalités supplémentaires."
   },
   "premiumSignUpStorage": {
     "message": "1 Go de stockage de fichiers chiffrés."
@@ -1668,13 +1671,13 @@
     "message": "Rétablir l’abonnement"
   },
   "reinstateConfirmation": {
-    "message": "Êtes-vous sûr de vouloir retirer la demande d’annulation en attente et rétablir votre abonnement ?"
+    "message": "Êtes-vous sûr(e) de vouloir retirer la demande d’annulation en attente et rétablir votre abonnement ?"
   },
   "reinstated": {
     "message": "Votre abonnement a été rétabli."
   },
   "cancelConfirmation": {
-    "message": "Êtes-vous certain de vouloir annuler ? Vous perdrez l’accès à toutes les fonctionnalités de l’abonnement à la fin de ce cycle de facturation."
+    "message": "Êtes-vous sûr(e) de vouloir annuler ? Vous perdrez l’accès à toutes les fonctionnalités de l’abonnement à la fin de ce cycle de facturation."
   },
   "canceledSubscription": {
     "message": "L'abonnement a été annulé."
@@ -2024,7 +2027,7 @@
     "message": "Quitter"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Êtes-vous sûr de vouloir quitter cette organisation ?"
+    "message": "Êtes-vous sûr(e) de vouloir quitter cette organisation ?"
   },
   "leftOrganization": {
     "message": "Vous avez quitté l'organisation."
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Personnes"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "Groupes"
   },
@@ -2060,10 +2069,10 @@
     "message": "Modifier le groupe"
   },
   "deleteGroupConfirmation": {
-    "message": "Êtes-vous sûr de vouloir supprimer ce groupe?"
+    "message": "Êtes-vous sûr(e) de vouloir supprimer ce groupe?"
   },
   "removeUserConfirmation": {
-    "message": "Êtes-vous sûr de vouloir retirer cet utilisateur ?"
+    "message": "Êtes-vous sûr(e) de vouloir retirer cet utilisateur ?"
   },
   "externalId": {
     "message": "Identifiant externe"
@@ -2093,7 +2102,7 @@
     "message": "Modifier la collection"
   },
   "deleteCollectionConfirmation": {
-    "message": "Êtes-vous sûr de vouloir supprimer cette collection?"
+    "message": "Êtes-vous sûr(e) de vouloir supprimer cette collection?"
   },
   "editUser": {
     "message": "Modifier un utilisateur"
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Groupe $ID$ créé.",
     "placeholders": {
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "Impossible d’accepter l’invitation. Demandez à un administrateur de l'organisation d’envoyer une nouvelle invitation."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Se souvenir de l'e-mail"
   },
@@ -2594,7 +2621,7 @@
     "message": "Poursuivez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs individuels ne seront pas supprimés, mais ils ne seront plus associés à cette organisation. "
   },
   "deleteOrganizationWarning": {
-    "message": "La suppression d'une organisation est définitive. Elle ne peut être annulée."
+    "message": "La suppression d'une organisation est définitive. Cette action ne peut pas être annulée."
   },
   "organizationDeleted": {
     "message": "Organisation supprimée"
@@ -2862,16 +2889,16 @@
     "message": "Mot de passe maître faible"
   },
   "weakMasterPasswordDesc": {
-    "message": "Le mot de passe maître que vous avez choisi est faible. Vous devriez utiliser un mot de passe (ou une phrase de passe) fort(e) pour protéger correctement votre compte Bitwarden. Êtes-vous certain de vouloir utiliser ce mot de passe maître ?"
+    "message": "Le mot de passe maître que vous avez choisi est faible. Vous devriez utiliser un mot de passe (ou une phrase de passe) fort(e) pour protéger correctement votre compte Bitwarden. Êtes-vous sûr(e) de vouloir utiliser ce mot de passe maître ?"
   },
   "rotateAccountEncKey": {
-    "message": "Faire également pivoter la clé de chiffrement de mon compte"
+    "message": "Révoquer également la clé de chiffrement de mon compte"
   },
   "rotateEncKeyTitle": {
-    "message": "Faire pivoter la clé de chiffrement"
+    "message": "Révoquer la clé de chiffrement"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Êtes-vous sûr de vouloir modifier la clé de chiffrement de votre compte ?"
+    "message": "Êtes-vous sûr(e) de vouloir révoquer la clé de chiffrement de votre compte ?"
   },
   "attachmentsNeedFix": {
     "message": "Cet élément a d'anciennes pièces jointes qui doivent être réparées."
@@ -2884,18 +2911,18 @@
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "Il y a d'anciennes pièces jointes dans votre coffre qui doivent être réparées avant que vous ne puissiez faire pivoter la clé de chiffrement de votre compte."
+    "message": "Il y a d'anciennes pièces jointes dans votre coffre qui doivent être réparées avant que vous ne puissiez révoquer la clé de chiffrement de votre compte."
   },
   "yourAccountsFingerprint": {
     "message": "La phrase d'empreinte de votre compte",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "Pour assurer l'intégrité de vos clés de chiffrement, merci de vérifier la phrase d'empreinte de l'utilisateur avant de continuer.",
+    "message": "Pour assurer l'intégrité de vos clés de chiffrement, merci de saisir la phrase d'empreinte de l'utilisateur avant de continuer.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Ne plus me demander de vérifier de phrase d'empreinte",
+    "message": "Ne plus me demander de saisir la phrase d'empreinte",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -2909,7 +2936,7 @@
     "message": "Votre clé d'API peut être utilisée pour s'authentifier auprès de l'API publique Bitwarden."
   },
   "apiKeyRotateDesc": {
-    "message": "Faire pivoter la clé d'API invalidera la clé précédente. Vous pouvez faire pivoter votre clé d'API si vous pensez que la clé actuelle a été compromise."
+    "message": "Révoquer la clé d'API invalidera la clé précédente. Vous pouvez révoquer votre clé d'API si vous pensez que la clé actuelle a été compromise."
   },
   "apiKeyWarning": {
     "message": "Votre clé d'API a un accès complet à l'organisation. Elle doit être gardée secrète."
@@ -2922,7 +2949,7 @@
     "message": "Voir la clé d'API"
   },
   "rotateApiKey": {
-    "message": "Faire pivoter la clé d'API"
+    "message": "Révoquer la clé d'API"
   },
   "selectOneCollection": {
     "message": "Vous devez sélectionner au moins une collection."
@@ -2938,5 +2965,71 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Vous devez gérer votre abonnement à partir du magasin d’applications où votre achat intégré a été souscrit."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }
