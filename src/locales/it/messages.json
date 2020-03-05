@@ -68,7 +68,7 @@
     "message": "Azienda"
   },
   "ssn": {
-    "message": "Numero di previdenza sociale/Codice Fiscale"
+    "message": "Codice fiscale"
   },
   "passportNumber": {
     "message": "Numero di passaporto"
@@ -174,10 +174,10 @@
     "description": "This is the folder for uncategorized items"
   },
   "addFolder": {
-    "message": "Aggiungi Cartella"
+    "message": "Aggiungi cartella"
   },
   "editFolder": {
-    "message": "Modifica Cartella"
+    "message": "Modifica cartella"
   },
   "baseDomain": {
     "message": "Dominio di base"
@@ -208,14 +208,14 @@
     "message": "Mai"
   },
   "toggleVisibility": {
-    "message": "Mostra/Nascondi"
+    "message": "Attiva/disattiva visibilità"
   },
   "toggleCollapse": {
     "message": "Attiva/disattiva Collasso",
     "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
-    "message": "Genera Password"
+    "message": "Genera password"
   },
   "checkPassword": {
     "message": "Verifica se la password è stata esposta."
@@ -381,7 +381,7 @@
     "description": "Copy credit card number"
   },
   "copySecurityCode": {
-    "message": "Copia il codice di sicurezza",
+    "message": "Copia codice di sicurezza",
     "description": "Copy credit card security code (CVV)"
   },
   "copyUri": {
@@ -395,16 +395,16 @@
     "message": "Cassaforte"
   },
   "shareSelected": {
-    "message": "Condividi Selezionati"
+    "message": "Condividi selezionati"
   },
   "deleteSelected": {
-    "message": "Elimina Selezionati"
+    "message": "Elimina selezionati"
   },
   "moveSelected": {
     "message": "Sposta Selezionati"
   },
   "selectAll": {
-    "message": "Seleziona Tutto"
+    "message": "Seleziona tutto"
   },
   "unselectAll": {
     "message": "Deseleziona tutto"
@@ -413,7 +413,7 @@
     "message": "Avvia"
   },
   "newAttachment": {
-    "message": "Aggiungi Allegato"
+    "message": "Aggiungi allegato"
   },
   "deletedAttachment": {
     "message": "Elimina Allegato"
@@ -449,13 +449,13 @@
     "message": "Elementi condivisi"
   },
   "deleteItem": {
-    "message": "Elimina Elemento"
+    "message": "Elimina elemento"
   },
   "deleteFolder": {
-    "message": "Elimina Cartella"
+    "message": "Elimina cartella"
   },
   "deleteAttachment": {
-    "message": "Elimina Allegato"
+    "message": "Elimina allegato"
   },
   "deleteItemConfirmation": {
     "message": "Sei sicuro di voler eliminare questo elemento?"
@@ -548,7 +548,7 @@
     "message": "Impostazioni"
   },
   "passwordHint": {
-    "message": "Suggerimento Password"
+    "message": "Suggerimento password"
   },
   "enterEmailToGetHint": {
     "message": "Inserisci l'indirizzo email del tuo account per ricevere il suggerimento della password principale."
@@ -581,7 +581,7 @@
     "message": "Si è verificato un errore imprevisto."
   },
   "emailAddress": {
-    "message": "Indirizzo Email"
+    "message": "Indirizzo e-mail"
   },
   "yourVaultIsLocked": {
     "message": "La tua cassaforte è bloccata. Verifica la tua password principale per continuare."
@@ -606,7 +606,7 @@
     "message": "Password principale errata"
   },
   "lockNow": {
-    "message": "Blocca Ora"
+    "message": "Blocca"
   },
   "noItemsInList": {
     "message": "Non ci sono elementi da mostrare."
@@ -624,7 +624,7 @@
     "message": "Non ci sono eventi da visualizzare."
   },
   "newOrganization": {
-    "message": "Nuova Organizzazione"
+    "message": "Crea organizzazione"
   },
   "noOrganizationsList": {
     "message": "Tu non appartieni ad alcuna organizzazione. Le organizzazioni ti consentono di condividere oggetti in modo sicuro con altri utenti."
@@ -693,7 +693,7 @@
     "message": "Codice di Recupero"
   },
   "authenticatorAppTitle": {
-    "message": "Applicazione di Autenticazione"
+    "message": "App di autenticazione"
   },
   "authenticatorAppDesc": {
     "message": "Usa un'applicazione di autenticazione (come Authy o Google Authenticator) per generare codici di verifica a tempo.",
@@ -804,6 +804,9 @@
   },
   "passwordGenerator": {
     "message": "Generatore di password"
+  },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
   },
   "minNumbers": {
     "message": "Minimo di Numeri"
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Persone"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "Gruppi"
   },
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Gruppo $ID$ creato.",
     "placeholders": {
@@ -2559,6 +2577,15 @@
   },
   "inviteAcceptFailed": {
     "message": "Non è possibile accettare l'invito. Chiedi ad un amministratore di organizzazione di inviare un nuovo invito."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
   },
   "rememberEmail": {
     "message": "Ricorda email"
@@ -2938,5 +2965,71 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Devi gestire il tuo abbonamento dal negozio dove è stato effettuato l'acquisto in-app."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }
