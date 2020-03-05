@@ -2051,10 +2051,10 @@
     "message": "人員"
   },
   "policies": {
-    "message": "Policies"
+    "message": "原則"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "編輯原則"
   },
   "groups": {
     "message": "群組"
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "已編輯原則 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2973,10 +2973,10 @@
     "message": "Clone"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "設定對主控密碼強度的最低要求。"
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "要求使用者對個人帳號設定兩階段登入。"
   },
   "twoStepLoginPolicyWarning": {
     "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
@@ -2985,16 +2985,16 @@
     "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "指定密碼產生器設定的最低需求。"
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "密碼產生器設定受一組以上組織原則影響。"
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "有一組以上組織原則要求您的主控密碼須符合下列條件："
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "最小複雜度分數 $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "最小長度 $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "包含一個以上大寫字母"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "包含一個以上小寫字母"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "包含一個以上數字"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "包含一個以上特殊字元 $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,6 +3030,6 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "您的新主控密碼不符組織原則要求。"
   }
 }
