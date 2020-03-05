@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Gerador de senha"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "Mínimo de Números"
   },
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Pessoas"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "Grupos"
   },
@@ -2356,6 +2365,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Grupo criado $ID$.",
     "placeholders": {
@@ -2559,6 +2577,15 @@
   },
   "inviteAcceptFailed": {
     "message": "Não é possível aceitar o convite. Peça a um administrador da organização para enviar um novo convite."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
   },
   "rememberEmail": {
     "message": "Lembrar e-mail"
@@ -2928,7 +2955,7 @@
     "message": "Você deve selecionar pelo menos uma coleção."
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "Não foi possível faturar no seu cartão. Por favor, veja e pague a fatura pendente listada abaixo."
+    "message": "Não foi possível cobrar no seu cartão. Por favor, veja e pague a fatura pendente listada abaixo."
   },
   "inAppPurchase": {
     "message": "Compra no Aplicativo"
@@ -2938,5 +2965,71 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Você deve gerenciar sua assinatura na loja onde sua compra pelo aplicativo foi feita."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }
