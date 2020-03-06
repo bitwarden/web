@@ -806,7 +806,7 @@
     "message": "Създаване на пароли"
   },
   "minComplexityScore": {
-    "message": "Minimum Complexity Score"
+    "message": "Минимална сложност"
   },
   "minNumbers": {
     "message": "Минимален брой цифри"
@@ -2051,10 +2051,10 @@
     "message": "Хора"
   },
   "policies": {
-    "message": "Policies"
+    "message": "Политики"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "Редактиране на политика"
   },
   "groups": {
     "message": "Групи"
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "Редактирана политика № $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "Поканата не може да бъде приета. Помолете администратора на организацията да ви прати нова покана."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Поканата не може да бъде приета. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2967,34 +2967,34 @@
     "message": "Може да управлявате абонамента си от електронния магазин, от който сте го купили."
   },
   "minLength": {
-    "message": "Minimum Length"
+    "message": "Минимална дължина"
   },
   "clone": {
-    "message": "Clone"
+    "message": "Дублиране"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "Задаване на минимална сила на главната парола."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "Изискване от потребителите да включат двустепенно удостоверяване за личните си абонаменти."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "Членовете на организацията без двустепенно удостоверяване за личните си абонаменти ще бъдат отстранени от организацията. Те ще бъдат уведомени за това по електронната поща."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "Вие сте член на поне една организация, която изисква двустепенно удостоверяване и за личния абонамент. Ако изключите двустепенното удостоверяване, ще бъдете отстранени от тези организации."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "Задаване на минимална сила на генератора на пароли."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "Поне една политика на организация влияе на настройките на генерирането на паролите."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "Поне една политика на организация има следните изисквания към главната ви парола:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "Минимална сила от $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "Минимална дължина: $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "Поне една главна буква"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "Поне една малка буква"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "Поне една цифра"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "Поне един от следните специални знаци: $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,6 +3030,6 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "Паролата ви не отговаря на политиките."
   }
 }
