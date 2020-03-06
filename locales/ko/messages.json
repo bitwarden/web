@@ -152,7 +152,7 @@
     "message": "값"
   },
   "dragToSort": {
-    "message": "Drag to sort"
+    "message": "드래그하여 정렬"
   },
   "cfTypeText": {
     "message": "텍스트"
@@ -161,7 +161,7 @@
     "message": "숨김"
   },
   "cfTypeBoolean": {
-    "message": "참 \/ 거짓"
+    "message": "참 / 거짓"
   },
   "remove": {
     "message": "제거"
@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "호스트",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "정확히 일치"
@@ -212,7 +212,7 @@
   },
   "toggleCollapse": {
     "message": "Toggle Collapse",
-    "description": "Toggling an expand\/collapse state."
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "비밀번호 생성"
@@ -318,10 +318,10 @@
     "message": "주소 3"
   },
   "cityTown": {
-    "message": "읍 \/ 면 \/ 동"
+    "message": "읍 / 면 / 동"
   },
   "stateProvince": {
-    "message": "시 \/ 도"
+    "message": "시 / 도"
   },
   "zipPostalCode": {
     "message": "우편번호"
@@ -590,7 +590,7 @@
     "message": "잠금 해제"
   },
   "loggedInAsEmailOn": {
-    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "message": "$HOSTNAME$ 에 $EMAIL$ 로 로그인했습니다.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "비밀번호 생성기"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "숫자 최소 개수"
   },
@@ -828,11 +831,11 @@
     "message": "구분 기호"
   },
   "capitalize": {
-    "message": "Capitalize",
+    "message": "첫 글자를 대문자로",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Include Number"
+    "message": "숫자 추가"
   },
   "passwordHistory": {
     "message": "비밀번호 변경 기록"
@@ -1001,7 +1004,7 @@
     "message": "불러올 파일"
   },
   "orCopyPasteFileContents": {
-    "message": "또는 가져온 파일 내용 복사\/붙여넣기"
+    "message": "또는 가져온 파일 내용 복사/붙여넣기"
   },
   "instructionsFor": {
     "message": "$NAME$ 안내사항",
@@ -1069,7 +1072,7 @@
     "message": "새 사용자 지정 도메인"
   },
   "newCustomDomainDesc": {
-    "message": "도메인 목록을 쉼표(,)로 구분하여 입력하십시오. \"기본\" 도메인만 사용할 수 있습니다. 하위 도메인을 입력하지 마십시오. 예를 들면, \"www.google.com\" 대신 \"google.com\"을 입력합니다. Android 앱을 다른 웹 사이트 도메인과 연결하려면 \"androidapp:\/\/package.name\"을 입력하십시오."
+    "message": "도메인 목록을 쉼표(,)로 구분하여 입력하십시오. \"기본\" 도메인만 사용할 수 있습니다. 하위 도메인을 입력하지 마십시오. 예를 들면, \"www.google.com\" 대신 \"google.com\"을 입력합니다. Android 앱을 다른 웹 사이트 도메인과 연결하려면 \"androidapp://package.name\"을 입력하십시오."
   },
   "customDomainX": {
     "message": "사용자 정의 도메인 $INDEX$",
@@ -1287,7 +1290,7 @@
     "message": "플랫폼 제한으로 인해, 모든 Bitwawrden 애플리케이션에서 FIDO U2F를 사용할 수 없습니다. FIDO U2F를 사용할 수 없을 때 계정에 액세스할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "U2F 지원 브라우저가 있는 데스크탑\/랩탑의 웹 보관함 및 브라우저 확장 (FIDO U2F가 활성화된 Chrome, Opera, Vivaldi 또는 Firefox 사용)"
+    "message": "U2F 지원 브라우저가 있는 데스크탑/랩탑의 웹 보관함 및 브라우저 확장 (FIDO U2F가 활성화된 Chrome, Opera, Vivaldi 또는 Firefox 사용)"
   },
   "twoFactorU2fWaiting": {
     "message": "보안 키 버튼 터치를 기다리는 중"
@@ -1315,13 +1318,13 @@
     "message": "안전하지 않은 웹사이트들 보고서"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "http:\/\/ 스키마처럼 안전하지 않은 웹 사이트를 사용하는 것은 위험할 수 있습니다. 웹 사이트가 허용하는 경우 항상 https:\/\/ 스키마를 통해 액세스하여 연결이 암호화되도록 하십시오."
+    "message": "http:// 스키마처럼 안전하지 않은 웹 사이트를 사용하는 것은 위험할 수 있습니다. 웹 사이트가 허용하는 경우 항상 https:// 스키마를 통해 액세스하여 연결이 암호화되도록 하십시오."
   },
   "unsecuredWebsitesFound": {
     "message": "안전하지 않은 웹사이트가 발견됨"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "보관함에 안전하지 않은 URI를 가진 항목 $COUNT$개를 발견했습니다. 웹 사이트에서 허용하는 경우 URI 스키마를 https:\/\/로 변경하십시오.",
+    "message": "보관함에 안전하지 않은 URI를 가진 항목 $COUNT$개를 발견했습니다. 웹 사이트에서 허용하는 경우 URI 스키마를 https://로 변경하십시오.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# 의 추가 GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "귀하의 플랜은 $SIZE$의 암호화된 파일 저장소가 제공됩니다. GB \/ $INTERVAL$당 $PRICE$로 저장소용량을 추가할 수 있습니다.",
+    "message": "귀하의 플랜은 $SIZE$의 암호화된 파일 저장소가 제공됩니다. GB / $INTERVAL$당 $PRICE$로 저장소용량을 추가할 수 있습니다.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "거래내역",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "거래내역 없음."
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "인물"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "그룹"
   },
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "확장",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "데스크탑",
@@ -2198,7 +2207,7 @@
     "message": "계정 비밀번호가 변경됨."
   },
   "enabledUpdated2fa": {
-    "message": "2단계 로그인 활성화\/갱신됨."
+    "message": "2단계 로그인 활성화/갱신됨."
   },
   "disabled2fa": {
     "message": "2단계 로그인 비활성화됨."
@@ -2213,10 +2222,10 @@
     "message": "잘못된 2단계 로그인으로 로그인 시도가 실패했습니다."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "보관함을 내보냈습니다."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "조직 보관함을 내보냈습니다."
   },
   "editedOrgSettings": {
     "message": "조직 설정이 수정되었습니다."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "$ID$ 항목을 확인했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "$ID$ 항목의 비밀번호를 확인했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "$ID$ 항목의 숨겨진 필드를 확인했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "$ID$ 항목의 보안 코드를 확인했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "$ID$ 항목의 비밀번호를 복사했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "$ID$ 항목의 숨겨진 필드를 복사했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "$ID$ 항목의 보안 코드를 복사했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "$ID$ 항목을 자동으로 채웠습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "초대를 수락할 수 없습니다. 조직 관리자에게 새 초대장을 보내도록 요청하십시오."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "이메일 기억하기"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "플랜",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Change Plan",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "아래 정보를 제공하여 계정을 다른 플랜으로 업그레이드하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "플랜을 변경하려면 고객 지원팀에 문의하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "청구서 #$NUMBER$",
@@ -2925,6 +2952,84 @@
     "message": "API 키 교체"
   },
   "selectOneCollection": {
-    "message": "You must select at least one collection."
+    "message": "반드시 하나 이상의 모음을 선택해야 합니다."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "카드에 청구할 수 없습니다. 아래 목록에서 결제되지 않은 인보이스를 확인하고 결제해주세요."
+  },
+  "inAppPurchase": {
+    "message": "애플리케이션 내 구매"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "인 앱 결제 수단을 사용하고 있을 때에는 이 행동을 수행할 수 없습니다."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "인 앱 결제가 이루어진 스토어에서 구독을 관리해야 합니다."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

@@ -161,7 +161,7 @@
     "message": "Skryté"
   },
   "cfTypeBoolean": {
-    "message": "Ano\/Ne"
+    "message": "Ano/Ne"
   },
   "remove": {
     "message": "Smazat"
@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Host",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Přesně"
@@ -212,7 +212,7 @@
   },
   "toggleCollapse": {
     "message": "Přepnout sbalení",
-    "description": "Toggling an expand\/collapse state."
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Vygenerovat heslo"
@@ -321,7 +321,7 @@
     "message": "Město"
   },
   "stateProvince": {
-    "message": "Kraj \/ Provincie"
+    "message": "Kraj / Provincie"
   },
   "zipPostalCode": {
     "message": "PSČ"
@@ -762,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "Vybral jste položek $COUNT$. Sdílitelných položek je $SHAREABLE_COUNT$, $NONSHAREABLE_COUNT$ je nesdílitelných.",
+    "message": "Vybrali jste $COUNT$ položek. Sdílitelných položek je $SHAREABLE_COUNT$, $NONSHAREABLE_COUNT$ je nesdílitelných.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -804,6 +804,9 @@
   },
   "passwordGenerator": {
     "message": "Generátor hesla"
+  },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
   },
   "minNumbers": {
     "message": "Minimální počet čísel"
@@ -1069,7 +1072,7 @@
     "message": "Přidat vlastní doménu"
   },
   "newCustomDomainDesc": {
-    "message": "Zadejte seznam domén oddělených čárkou. Povolené jsou pouze „základní“ domény. Nezadávejte subdomény. Například zadejte „bitwarden.com“, nikoliv „vault.bitwarden.com“. Můžete také zadat „androidapp:\/\/package.name“ pokud chcete přiřadit Android aplikaci k ostatním webovým doménám."
+    "message": "Zadejte seznam domén oddělených čárkou. Povolené jsou pouze „základní“ domény. Nezadávejte subdomény. Například zadejte „bitwarden.com“, nikoliv „vault.bitwarden.com“. Můžete také zadat „androidapp://package.name“ pokud chcete přiřadit Android aplikaci k ostatním webovým doménám."
   },
   "customDomainX": {
     "message": "Vlastní doména $INDEX$",
@@ -1200,7 +1203,7 @@
     "message": "Webový trezor, aplikace, CLI a rozšíření pro prohlížeče na zařízeních s USB portem."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobilní aplikace na zařízeních s podporou NFC nebo USB portu."
+    "message": "Mobilní aplikace na zařízeních s podporou NFC nebo datového portu, která mohou přijmout váš YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1315,13 +1318,13 @@
     "message": "Hlášení o nezabezpečených webech"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Používání nezabezpečených http:\/\/ webových stránek může být nebezpečné. Pokud je to možné, přistupujte na web vždy jen přes zašifrované https:\/\/ připojení."
+    "message": "Používání nezabezpečených http:// webových stránek může být nebezpečné. Pokud je to možné, přistupujte na web vždy jen přes zašifrované https:// připojení."
   },
   "unsecuredWebsitesFound": {
     "message": "Nalezen nezabezpečený web"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Některé položky ($COUNT$) ve vašem trezoru používají nezabezpečené URI. Schémata URI by měla být změněna na https:\/\/, pokud to web umožňuje.",
+    "message": "Některé položky ($COUNT$) ve vašem trezoru používají nezabezpečené URI. Schémata URI by měla být změněna na https://, pokud to web umožňuje.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1366,7 +1369,7 @@
     "message": "Nalezena uniklá hesla"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "Našli jsme $COUNT$ položek ve vašem trezoru, která mají hesla, které byly odhaleny ve známých únicích dat. Měli byste je změnit tak, aby používaly nové heslo.",
+    "message": "V trezoru jsme našli položky ($COUNT$), jejichž hesla byla odhalena během známých úniků dat. Měli byste u nich použít nové heslo.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1375,7 +1378,7 @@
     }
   },
   "noExposedPasswords": {
-    "message": "Žádné položky v trezoru nemají hesla, která byla vystavena při známých únicích dat."
+    "message": "Žádné položky v trezoru nemají hesla, která byla odhalena během známých úniků dat."
   },
   "checkExposedPasswords": {
     "message": "Zkontrolovat uniklá hesla"
@@ -1420,7 +1423,7 @@
     "message": "Nalezena přepoužitá hesla"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
+    "message": "Našli jsme hesla ($COUNT$), která jsou ve vašem trezoru přepoužita. Doporučujeme je změnit, aby byly unikátní.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1519,13 +1522,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "Navýšený kredit se na vašem účtu objeví po úspěšném zpracování platby. Některé platební metody mají prodlevu a zpracování může trvat déle, než u jiných metod."
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "Ujistěte se, že je na vašem účtu dostatečný kredit pro uskutečnění tohoto nákupu. Nemáte-li na účtu dostatečný kredit, bude pro doplacení rozdílu použita vaše výchozí platební metoda. Kredit si můžete navýšit prostřednictvím stránky fakturace."
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "Pro nákupy bude použit kredit z vašeho účtu. Jakýkoliv dostupný kredit bude automaticky použit pro faktury vystavené pro tento účet."
   },
   "goPremium": {
     "message": "Přejděte na Premium",
@@ -1571,7 +1574,7 @@
     "message": "Prémiový přístup"
   },
   "premiumAccessDesc": {
-    "message": "Můžete přidat prémiový přístup všem členům vaší organizace za $PRICE$\/$INTERVAL$.",
+    "message": "Můžete přidat prémiový přístup všem členům vaší organizace za $PRICE$/$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# dalších GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Vybraný plán obsahuje $SIZE$ šifrovaného úložiště. Další prostor si můžete přikoupit za $PRICE$\/$INTERVAL$ za každý další 1 GB.",
+    "message": "Vybraný plán obsahuje $SIZE$ šifrovaného úložiště. Další prostor si můžete přikoupit za $PRICE$/$INTERVAL$ za každý další 1 GB.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1626,7 +1629,7 @@
     "message": "Částka bude stržena okamžitě a poté opakovaně každý rok. Plán můžete kdykoli zrušit."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Částka bude stržena okamžitě a poté opakovaně každý $INTERVAL$. Předplatné můžete kdykoli zrušit.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1729,7 +1732,7 @@
     "message": "Způsob platby"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "Žádné způsoby platby."
   },
   "addPaymentMethod": {
     "message": "Přidat platební metodu"
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "Transakce",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Žádné transakce."
@@ -1782,13 +1785,13 @@
     "message": "GB úložiště k odebrání"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Přidání úložiště bude mít za následek úpravy fakturačních součtů a okamžité dobití platební metody v souboru. První poplatek bude účtován pro zbytek aktuálního fakturačního cyklu."
   },
   "storageRemoveNote": {
-    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "Odstranění úložiště bude mít za následek úpravy vašich fakturačních součtů, které budou účtovány jako kredity k vašemu dalšímu fakturačnímu poplatku."
   },
   "adjustedStorage": {
-    "message": "Adjusted $AMOUNT$ GB of storage.",
+    "message": "Upraveno $AMOUNT$ GB úložiště.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1860,7 +1863,7 @@
     "message": "# uživatelů"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Váš plán obsahuje $BASE_SEATS$ uživatelských míst. Další místa můžete přidat za $SEAT_PRICE$ na uživatele a měsíc.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1873,7 +1876,7 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "How many user seats do you need? You can also add additional seats later if needed."
+    "message": "Kolik míst pro uživatele potřebujete? Další místa můžete také přidat později."
   },
   "planNameFree": {
     "message": "Zdarma",
@@ -2018,7 +2021,7 @@
     "message": "Vaše nová organizace je připravena!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "Vaše organizace byla povýšena."
   },
   "leave": {
     "message": "Opustit"
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Uživatelé"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "Skupiny"
   },
@@ -2069,7 +2078,7 @@
     "message": "Externí ID"
   },
   "externalIdDesc": {
-    "message": "The external id can be used as a reference or to link this resource to an external system such as a user directory."
+    "message": "Externí ID může být použito jako reference nebo k propojení tohoto zdroje s externím systémem, jako je adresář uživatelů."
   },
   "accessControl": {
     "message": "Správa přístupů"
@@ -2102,10 +2111,10 @@
     "message": "Pozvat uživatele"
   },
   "inviteUserDesc": {
-    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Pozvěte nového uživatele do vaší organizace zadáním e-mailové adresy jejich Bitwarden účtu. Pokud ještě nemají Bitwarden účet, budou vyzváni k vytvoření nového účtu."
   },
   "inviteMultipleEmailDesc": {
-    "message": "You can invite up to $COUNT$ users at a time by comma separating a list of email addresses.",
+    "message": "Najednou můžete pozvat až $COUNT$ uživatelů pomocí seznamu jejich e-mailových adres, oddělených čárkami.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2114,7 +2123,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "Tento uživatel používá pro ochranu svého účtu dvoufázové přihlášení."
   },
   "userAccessAllItems": {
     "message": "Tento uživatel může vidět a upravovat vše."
@@ -2138,7 +2147,7 @@
     "message": "Vlastník"
   },
   "ownerDesc": {
-    "message": "The highest access user that can manage all aspects of your organization."
+    "message": "Uživatel s nejvyšším přístupem, který může spravovat všechny aspekty vaší organizace."
   },
   "admin": {
     "message": "Administrátor"
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "Rozšíření",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Počítač",
@@ -2198,7 +2207,7 @@
     "message": "Heslo účtu bylo změněno"
   },
   "enabledUpdated2fa": {
-    "message": "Dvoufázové přihlášení bylo povoleno\/upraveno."
+    "message": "Dvoufázové přihlášení bylo povoleno/upraveno."
   },
   "disabled2fa": {
     "message": "Dvoufázové přihlášení bylo zakázáno"
@@ -2213,10 +2222,10 @@
     "message": "Pokus o přihlášení se nezdařil s nesprávným dvoufázovým přihlášením."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Trezor byl exportován."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Trezor organizace byl exportován."
   },
   "editedOrgSettings": {
     "message": "Nastavení organizace upraveno."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "Položka $ID$ byla zobrazena.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Heslo pro položku $ID$ bylo zobrazeno.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Skryté pole pro položku $ID$ bylo zobrazeno.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Bezpečnostní kód pro položku $ID$ byl zobrazen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "Heslo pro položku $ID$ bylo zkopírováno.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "Skryté pole pro položku $ID$ bylo zkopírováno.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "Bezpečnostní kód pro položku $ID$ byl zkopírován.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Automaticky vyplněná položka $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2531,7 +2549,7 @@
     "message": "E-mailová adresa vašeho účtu musí být ověřena."
   },
   "checkInboxForVerification": {
-    "message": "Check your email inbox for a verification link."
+    "message": "Zkontrolujte svůj e-mail, měli byste obdržet odkaz pro ověření."
   },
   "emailVerified": {
     "message": "Vaše e-mailová adresa byla ověřena"
@@ -2560,17 +2578,26 @@
   "inviteAcceptFailed": {
     "message": "Pozvánku nelze přijmout. Požádejte administrátora organizace o novou pozvánku."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Pamatovat si e-mail"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "Nemůžete-li přistoupit ke svému účtu pomocí běžné metody dvoufázového přihlášení, můžete použít váš kód pro obnovení dvoufázového přihlášení pro vypnutí všech dvoufázových ověření ve vašem účtu."
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "Obnovit dvoufázové přihlášení k účtu"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "Dvoufázové ověření na vašem účtu bylo vypnuto."
   },
   "learnMore": {
     "message": "Dozvědět se více"
@@ -2591,7 +2618,7 @@
     "message": "Smazat organizaci"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Pokračujte níže pro smazání této organizace a všech souvisejících dat. Jednotlivé uživatelské účty zůstanou zachovány, i když již nebudou přidruženy k této organizaci."
   },
   "deleteOrganizationWarning": {
     "message": "Smazání organizace je trvalé. Tuto akci nelze vrátit zpět."
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "Plán",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Změnit plán",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Pokud chcete změnit svůj plán, kontaktujte zákaznickou podporu. Ujistěte se prosím, zda máte k účtu přidán způsob platby.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Faktura #$NUMBER$",
@@ -2650,7 +2677,7 @@
     "message": "Provedli jsme dva mikro vklady na váš bankovní účet (může trvat 1 až 2 pracovní dny, než se zobrazí). Zadejte částky vkladů pro ověření vašeho bankovního účtu."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "Platba s bankovním účtem je k dispozici pouze zákazníkům ve Spojených státech. Budete vyzváni k ověření vašeho bankovního účtu. V následujících 1-2 pracovních dnech provedeme dva mikro-vklady. Zadejte tyto částky na fakturační stránce organizace pro ověření vašeho bankovního účtu."
   },
   "verifyBankAccountFailureWarning": {
     "message": "Neschopnost ověření vašeho bankovního účtu bude mít za následek zmeškání platby a zrušení vašeho předplatného."
@@ -2717,7 +2744,7 @@
     "message": "Uživatelé k odebrání"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "Přidání uživatelských míst bude mít za následek úpravy fakturačních součtů a okamžité dobití platební metody v souboru. První poplatek bude účtován pro zbytek aktuálního fakturačního cyklu."
   },
   "seatsRemoveNote": {
     "message": "Odebrání uživatelských míst bude mít za následek úpravy vašich fakturačních součtů, které budou účtovány jako kredity k vašemu dalšímu fakturačnímu poplatku."
@@ -2903,28 +2930,106 @@
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "Klíč API"
+    "message": "API klíč"
   },
   "apiKeyDesc": {
-    "message": "Váš klíč API může být použit pro ověření přístupu k veřejnému API Bitwarden."
+    "message": "Váš API klíč může být použit pro ověření přístupu k veřejnému Bitwarden API."
   },
   "apiKeyRotateDesc": {
-    "message": "Změna klíče API zruší platnost předchozího klíče. Klíč API můžete změnit, pokud se domníváte, že aktuální klíč již není bezpečný."
+    "message": "Změna API klíče zruší platnost předchozího klíče. API klíč můžete změnit, pokud se domníváte, že aktuální klíč již není bezpečný."
   },
   "apiKeyWarning": {
     "message": "Váš API klíč má plný přístup k organizaci. Měl by být uchován v tajnosti."
   },
   "oauth2ClientCredentials": {
-    "message": "OAuth 2.0 Client Credentials",
+    "message": "OAuth 2.0 klientské údaje",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "Zobrazit klíč API"
+    "message": "Zobrazit API klíč"
   },
   "rotateApiKey": {
-    "message": "Změnit klíč API"
+    "message": "Změnit API klíč"
   },
   "selectOneCollection": {
     "message": "Musíte vybrat alespoň jednu kolekci."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "Nepodařilo se nám strhnout platbu z vaší karty. Prohlédněte si a zaplaťte nezaplacenou fakturu uvedenou níže."
+  },
+  "inAppPurchase": {
+    "message": "Nákup v aplikaci"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "Tuto akci nelze provést při použití platební metody „nákup v aplikaci“."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Své předplatné musíte spravovat z obchodu, pomocí kterého byl nákup v aplikaci proveden."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

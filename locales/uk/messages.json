@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Вузол",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Точно"
@@ -211,8 +211,8 @@
     "message": "Перемкнути видимість"
   },
   "toggleCollapse": {
-    "message": "Згорнути\/розгорнути",
-    "description": "Toggling an expand\/collapse state."
+    "message": "Згорнути/розгорнути",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Генерувати пароль"
@@ -318,10 +318,10 @@
     "message": "Адреса 3"
   },
   "cityTown": {
-    "message": "Місто \/ Селище"
+    "message": "Місто / Селище"
   },
   "stateProvince": {
-    "message": "Штат \/ Область"
+    "message": "Штат / Область"
   },
   "zipPostalCode": {
     "message": "Поштовий індекс"
@@ -681,7 +681,7 @@
     "message": "Для цього облікового запису увімкнено двохетапну перевірку. Однак, жоден з налаштованих провайдерів двохетапної перевірки не підтримується цим веб-браузером."
   },
   "noTwoStepProviders2": {
-    "message": "Будь ласка, скористайтеся підтримуваним веб-браузером (наприклад, Chrome) та\/або іншими провайдерами, що краще підтримуються веб-браузерами (наприклад, програма авторизації)."
+    "message": "Будь ласка, скористайтеся підтримуваним веб-браузером (наприклад, Chrome) та/або іншими провайдерами, що краще підтримуються веб-браузерами (наприклад, програма авторизації)."
   },
   "twoStepOptions": {
     "message": "Налаштування двохетапної перевірки"
@@ -804,6 +804,9 @@
   },
   "passwordGenerator": {
     "message": "Генератор паролів"
+  },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
   },
   "minNumbers": {
     "message": "Мінімум цифр"
@@ -1069,7 +1072,7 @@
     "message": "Новий власний домен"
   },
   "newCustomDomainDesc": {
-    "message": "Введіть список доменів, розділених комами. Дозволяються лише \"основні\" домени. Не вводьте піддомени. Наприклад, вводьте \"google.com\" замість \"www.google.com\". Ви також можете ввести \"androidapp:\/\/package.name\", щоб асоціювати програму android з іншими доменами веб-сайту."
+    "message": "Введіть список доменів, розділених комами. Дозволяються лише \"основні\" домени. Не вводьте піддомени. Наприклад, вводьте \"google.com\" замість \"www.google.com\". Ви також можете ввести \"androidapp://package.name\", щоб асоціювати програму android з іншими доменами веб-сайту."
   },
   "customDomainX": {
     "message": "Власний домен $INDEX$",
@@ -1200,7 +1203,7 @@
     "message": "Веб-сховище, програма для комп'ютера, CLI, а також усі розширення браузера на пристроях, де можливо під'єднати YubiKey до USB."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Мобільні програми на пристроях з NFC або портом USB, до якого можна під'єднати ваш YubiKey."
+    "message": "Мобільні програми на пристроях з NFC, або порт даних, який може приймати YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1315,13 +1318,13 @@
     "message": "Звіт про незахищені веб-сайти"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Використання незахищених веб-сайтів з протоколом http:\/\/ може бути небезпечним. Якщо веб-сайт дозволяє, вам слід завжди використовувати його з протоколом https:\/\/, щоб ваше з'єднання було зашифрованим."
+    "message": "Використання незахищених веб-сайтів з протоколом http:// може бути небезпечним. Якщо веб-сайт дозволяє, вам слід завжди використовувати його з протоколом https://, щоб ваше з'єднання було зашифрованим."
   },
   "unsecuredWebsitesFound": {
     "message": "Знайдено незахищені веб-сайти"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Ми знайшли $COUNT$ записів у вашому сховищі з незахищеними URL-адресами. Вам слід змінити їхні URL-схеми на https:\/\/, якщо вони це дозволяють.",
+    "message": "Ми знайшли $COUNT$ записів у вашому сховищі з незахищеними URL-адресами. Вам слід змінити їхні URL-схеми на https://, якщо вони це дозволяють.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1556,7 +1559,7 @@
     "message": "Всі майбутні функції преміум статусу. Їх буде більше!"
   },
   "premiumPrice": {
-    "message": "Всього лише $PRICE$ \/ за рік!",
+    "message": "Всього лише $PRICE$ / за рік!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1571,7 +1574,7 @@
     "message": "Преміум-доступ"
   },
   "premiumAccessDesc": {
-    "message": "Ви можете додати преміум-доступ для всіх учасників вашої організації за $PRICE$ \/$INTERVAL$.",
+    "message": "Ви можете додати преміум-доступ для всіх учасників вашої організації за $PRICE$ /$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# додаткових ГБ"
   },
   "additionalStorageIntervalDesc": {
-    "message": "У ваш тарифний план включено зашифроване сховище файлів, розміром $SIZE$. Ви можете збільшити обсяг сховища по ціні $PRICE$ за ГБ \/$INTERVAL$.",
+    "message": "У ваш тарифний план включено зашифроване сховище файлів, розміром $SIZE$. Ви можете збільшити обсяг сховища по ціні $PRICE$ за ГБ /$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "Транзакції",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Немає транзакцій."
@@ -1821,7 +1824,7 @@
     "message": "Для оновлення вашого облікового запису до Premium, вам необхідно вивантажити дійсний файл ліцензії."
   },
   "uploadLicenseFileOrg": {
-    "message": "Для створення попередньо розміщеної організації вам необхідно вивантажити дійсний файл ліцензії."
+    "message": "Для створення організації, розміщеної на локальному хостингу, вам необхідно вивантажити дійсний файл ліцензії."
   },
   "accountEmailMustBeVerified": {
     "message": "Необхідно підтвердити адресу електронної пошти вашого облікового запису."
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Люди"
   },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
+  },
   "groups": {
     "message": "Групи"
   },
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "Розширення",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Комп'ютер",
@@ -2198,7 +2207,7 @@
     "message": "Пароль облікового запису змінено."
   },
   "enabledUpdated2fa": {
-    "message": "Двохетапну перевірку увімкнено\/оновлено."
+    "message": "Двохетапну перевірку увімкнено/оновлено."
   },
   "disabled2fa": {
     "message": "Двохетапну перевірку вимкнено."
@@ -2213,10 +2222,10 @@
     "message": "Не вдалося виконати вхід через невдалу двохетапну перевірку."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Експортовано сховище."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Експортовано сховище організації."
   },
   "editedOrgSettings": {
     "message": "Налаштування організації змінено."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "Переглянуто запис $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Переглянуто пароль для запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Переглянути приховане поле запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Переглянуто код безпеки запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "Скопійовано пароль запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "Скопійовано приховане поле запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "Скопійовано код безпеки запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Виконано автозаповнення запису $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "Не вдалося прийняти запрошення. Попросіть адміністратора організації надіслати вам нове."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Запам'ятати е-пошту"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "Тарифний план",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Змінити тарифний план",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Перейдіть на передплату вищого рівня, вказавши інформацію внизу. Переконайтеся, що у вашому обліковому записі є активний спосіб оплати.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "message": "Перейдіть на передплату вищого рівня, вказавши інформацію внизу. Переконайтеся, що ваш обліковий запис має актуальні дані про спосіб оплати.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Зв'яжіться зі службою підтримки клієнтів, якщо ви бажаєте змінити свій тарифний план. Будь ласка, переконайтеся, що у вас є активний спосіб оплати доданий до облікового запису.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Рахунок #$NUMBER$",
@@ -2814,7 +2841,7 @@
     "message": "4 години"
   },
   "onRefresh": {
-    "message": "Оновлення в браузері"
+    "message": "Перезавантаження сторінки"
   },
   "dateUpdated": {
     "message": "Оновлено",
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "Ви повинні обрати принаймні одну збірку."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "Нам не вдалося виконати оплату з вашої карти. Будь ласка, перегляньте і проведіть оплату за рахунком, вказаним внизу."
+  },
+  "inAppPurchase": {
+    "message": "Покупка в додатку"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "Ви не можете виконати цю дію під час використання способу оплати покупки в додатку."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Ви повинні керувати своєю передплатою з магазину, в якому виконали покупку в додатку."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

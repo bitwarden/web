@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "主机",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "精确"
@@ -212,7 +212,7 @@
   },
   "toggleCollapse": {
     "message": "切换折叠",
-    "description": "Toggling an expand\/collapse state."
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "生成密码"
@@ -318,10 +318,10 @@
     "message": "地址 3"
   },
   "cityTown": {
-    "message": "市 \/ 镇"
+    "message": "市 / 镇"
   },
   "stateProvince": {
-    "message": "州 \/ 省"
+    "message": "州 / 省"
   },
   "zipPostalCode": {
     "message": "邮政编码"
@@ -788,7 +788,7 @@
     "message": "警告"
   },
   "exportWarningDesc": {
-    "message": "本次导出会将你的数据未经加密存为 .csv 文件。你不应该长期保存，或者通过不加密的方式传送这个文件（例如电子邮件）。请在使用完之后立即删除这个文件。"
+    "message": "本次导出会将你的数据存为未经加密的文件。你不应该长期保存，或者通过不加密的方式传送这个文件（例如电子邮件）。请在使用完之后立即删除这个文件。"
   },
   "exportMasterPassword": {
     "message": "输入主密码来导出你的密码库。"
@@ -804,6 +804,9 @@
   },
   "passwordGenerator": {
     "message": "密码生成器"
+  },
+  "minComplexityScore": {
+    "message": "最小复杂度"
   },
   "minNumbers": {
     "message": "最小位数"
@@ -1069,7 +1072,7 @@
     "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "输入用逗号分隔的域列表。只能使用主域名。不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp:\/\/package.name\" 将 android 应用程序与其他网站域名关联。"
+    "message": "输入用逗号分隔的域列表。只能使用主域名。不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp://package.name\" 将 android 应用程序与其他网站域名关联。"
   },
   "customDomainX": {
     "message": "自定义域名 $INDEX$",
@@ -1287,7 +1290,7 @@
     "message": "由于平台限制，FIDO U2F 无法用于所有的 Bitwarden 应用。 您应启用另一个两步登录验证应用，以便在 FIDO U2F 不可用时，也能访问您的帐户。 支持的平台："
   },
   "twoFactorU2fSupportWeb": {
-    "message": "支持 U2F 的桌面 \/ 笔记本电脑上的网页密码库和浏览器扩展（Chrome，Opera，Vivaldi 或启用了FIDO U2F 的 Firefox）。"
+    "message": "支持 U2F 的桌面 / 笔记本电脑上的网页密码库和浏览器扩展（Chrome，Opera，Vivaldi 或启用了FIDO U2F 的 Firefox）。"
   },
   "twoFactorU2fWaiting": {
     "message": "请您按下安全密钥上的按钮"
@@ -1315,13 +1318,13 @@
     "message": "不安全的网站报告"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "使用 http:\/\/ 网站是很危险的。如果网站可能，您应始终使用 https:\/\/ 访问它们，以便对您的连接进行加密。"
+    "message": "使用 http:// 网站是很危险的。如果网站可能，您应始终使用 https:// 访问它们，以便对您的连接进行加密。"
   },
   "unsecuredWebsitesFound": {
     "message": "发现不安全的网站"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "我们在您的密码库中发现了 $COUNT$ 个项目带有不安全的 URI。如果可能，您应该将他们更改为 https:\/\/。",
+    "message": "我们在您的密码库中发现了 $COUNT$ 个项目带有不安全的 URI。如果可能，您应该将他们更改为 https://。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1571,7 +1574,7 @@
     "message": "高级会员"
   },
   "premiumAccessDesc": {
-    "message": "您可以为您的组织所有成员添加高级访问权限，只要 $PRICE$ \/ 每 $INTERVAL$ 。",
+    "message": "您可以为您的组织所有成员添加高级访问权限，只要 $PRICE$ / 每 $INTERVAL$ 。",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "交易",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "无交易"
@@ -1860,7 +1863,7 @@
     "message": "# 用户数"
   },
   "userSeatsAdditionalDesc": {
-    "message": "您的计划附带 $BASE_SEATS$ 个用户数。添加附加用户数的价格是 $SEAT_PRICE$ 每用户\/月。",
+    "message": "您的计划附带 $BASE_SEATS$ 个用户数。添加附加用户数的价格是 $SEAT_PRICE$ 每用户/月。",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "人"
   },
+  "policies": {
+    "message": "策略："
+  },
+  "editPolicy": {
+    "message": "编辑策略"
+  },
   "groups": {
     "message": "分组"
   },
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "扩展",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "桌面版应用",
@@ -2198,7 +2207,7 @@
     "message": "已更改帐户密码。"
   },
   "enabledUpdated2fa": {
-    "message": "已启用\/更新两步登录。"
+    "message": "已启用/更新两步登录。"
   },
   "disabled2fa": {
     "message": "已禁用两步登录。"
@@ -2213,10 +2222,10 @@
     "message": "登录失败，两步登录不正确。"
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "导出了密码库。"
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "导出了组织密码库。"
   },
   "editedOrgSettings": {
     "message": "已编辑组织设置。"
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "查看了项目 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "查看了项目 $ID$ 的密码。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "查看了项目 $ID$ 的隐藏字段。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "查看了项目 $ID$ 的安全代码。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "复制了项目 $ID$ 的密码。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "复制了项目 $ID$ 隐藏字段。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "复制项目 $ID$ 的安全代码。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "自动填充了项目 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "已编辑策略 $ID$。",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "无法接受邀请，请向组织管理员要求重新发送邀请。"
   },
+  "inviteAcceptFailedShort": {
+    "message": "无法接受邀请。 $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "记住电子邮件"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "计划",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "更改计划",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "为了将您的帐户升级到另一个计划，请提供以下信息。同时请确保您的账户中至少有一个有效的付款方式。",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "如果您想更改计划，请联系技术支持。请确保您已添加了有效的支付方式。",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "收据 #$NUMBER$",
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "您必须选择至少一个收藏。"
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "我们无法从您的卡中扣款。请查看并支付下面列出的未付收据。"
+  },
+  "inAppPurchase": {
+    "message": "应用内购买"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "使用应用内购买付款方法时，您不能执行此操作。"
+  },
+  "manageSubscriptionFromStore": {
+    "message": "您必须在进行应用内购买的商店中管理订阅。"
+  },
+  "minLength": {
+    "message": "最小长度"
+  },
+  "clone": {
+    "message": "克隆"
+  },
+  "masterPassPolicyDesc": {
+    "message": "设置主密码强度的最低要求。"
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "要求用户在个人帐户上设置两步登录。"
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "组织成员中个人账户未启用两步登录的将被从组织中删除，并将收到一封关于这一变化的电子邮件。"
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "您的组织要求您在您的个人账户上启用两步登录。 如果您禁用所有两步登录方式，您将自动被这些组织删除。"
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "设置密码生成器配置的最低要求。"
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "一个或多个组织策略正在影响您的生成器设置。"
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "一个或多个组织策略要求您的主密码满足以下要求："
+  },
+  "policyInEffectMinComplexity": {
+    "message": "最小复杂度为 $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "最小长度为 $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "至少包含一个大写字母"
+  },
+  "policyInEffectLowercase": {
+    "message": "至少包含一个小写字母"
+  },
+  "policyInEffectNumbers": {
+    "message": "至少包含一个数字"
+  },
+  "policyInEffectSpecial": {
+    "message": "至少包含一个下列特殊字符：$CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "您的新主密码不符合策略要求。"
   }
 }

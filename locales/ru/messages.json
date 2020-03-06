@@ -140,7 +140,7 @@
     "message": "Год"
   },
   "authenticatorKeyTotp": {
-    "message": "Ключ аутентификатора (TOTP)"
+    "message": "Ключ проверки подлинности (TOTP)"
   },
   "folder": {
     "message": "Папка"
@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Хост",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Точно"
@@ -211,8 +211,8 @@
     "message": "Изменить видимость"
   },
   "toggleCollapse": {
-    "message": "Свернуть\/Развернуть",
-    "description": "Toggling an expand\/collapse state."
+    "message": "Свернуть/Развернуть",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Сгенерировать пароль"
@@ -221,7 +221,7 @@
     "message": "Проверьте, не скомпрометирован ли пароль."
   },
   "passwordExposed": {
-    "message": "Этот пароль был скомпрометирован $VALUE$ раз(а). Вы должны изменить его.",
+    "message": "Этот пароль был скомпрометирован $VALUE$ раз(-а). Вы должны изменить его.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -318,10 +318,10 @@
     "message": "Строка адреса 3"
   },
   "cityTown": {
-    "message": "Город \/ Поселок"
+    "message": "Город / Поселок"
   },
   "stateProvince": {
-    "message": "Регион \/ Область"
+    "message": "Регион / Область"
   },
   "zipPostalCode": {
     "message": "Почтовый индекс"
@@ -355,7 +355,7 @@
     "message": "Поделиться"
   },
   "valueCopied": {
-    "message": "$VALUE$ скопирован(о)",
+    "message": "$VALUE$ скопирован(-о)",
     "description": "Value has been copied to the clipboard.",
     "placeholders": {
       "value": {
@@ -590,7 +590,7 @@
     "message": "Разблокировать"
   },
   "loggedInAsEmailOn": {
-    "message": "Выполнен вход как $EMAIL$ на $HOSTNAME$.",
+    "message": "Выполнен вход на $HOSTNAME$ как $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -681,7 +681,7 @@
     "message": "У этой учетной записи включена двухфакторная аутентификация, однако ни один из настроенных вариантов не поддерживается этим веб-браузером."
   },
   "noTwoStepProviders2": {
-    "message": "Используйте поддерживаемый веб-браузер (например, Chrome) и\/или добавьте дополнительные варианты аутентификации, которые поддерживаются в веб-браузерах (например, приложение-аутентификатор)."
+    "message": "Используйте поддерживаемый веб-браузер (например, Chrome) и/или добавьте дополнительные варианты аутентификации, которые поддерживаются в веб-браузерах (например, приложение-аутентификатор)."
   },
   "twoStepOptions": {
     "message": "Настройки двухфакторной аутентификации"
@@ -762,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "Вы выбрали $COUNT$ элемента(ов). $SHAREABLE_COUNT$ являются общими, $NONSHAREABLE_COUNT$ - нет.",
+    "message": "Вы выбрали $COUNT$ элемента(-ов). $SHAREABLE_COUNT$ являются общими, $NONSHAREABLE_COUNT$ - нет.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -804,6 +804,9 @@
   },
   "passwordGenerator": {
     "message": "Генератор паролей"
+  },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
   },
   "minNumbers": {
     "message": "Мин. кол-во цифр"
@@ -1001,7 +1004,7 @@
     "message": "Выберите файл импорта"
   },
   "orCopyPasteFileContents": {
-    "message": "или скопируйте\/вставьте содержимое файла импорта"
+    "message": "или скопируйте/вставьте содержимое файла импорта"
   },
   "instructionsFor": {
     "message": "Инструкции для $NAME$",
@@ -1069,7 +1072,7 @@
     "message": "Новый пользовательский домен"
   },
   "newCustomDomainDesc": {
-    "message": "Введите список доменов, разделенных запятыми. Допускаются только базовые домены. Не вводите субдомены. Например, вводите \"google.com\" вместо \"www.google.com\". Также вы можете ввести \"androidapp:\/\/package.name\", чтобы связать приложение Android с другими доменами веб-сайта."
+    "message": "Введите список доменов, разделенных запятыми. Допускаются только базовые домены. Не вводите субдомены. Например, вводите \"google.com\" вместо \"www.google.com\". Также вы можете ввести \"androidapp://package.name\", чтобы связать приложение Android с другими доменами веб-сайта."
   },
   "customDomainX": {
     "message": "Пользовательский домен $INDEX$",
@@ -1200,7 +1203,7 @@
     "message": "Веб-хранилище, приложение для компьютера, CLI и все расширения браузера на устройстве с USB-портом, который может принимать ваш YubiKey."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Мобильные приложения на устройстве с NFC или USB-портом, который может принимать ваш YubiKey."
+    "message": "Мобильные приложения на устройстве с NFC или USB-портом совместимыми с YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1287,7 +1290,7 @@
     "message": "Из-за ограничений платформы, FIDO U2F нельзя использовать во всех приложениях Bitwarden. Вы должны включить другого провайдера двухфакторной аутентификации, чтобы иметь возможность получить доступ к своей учетной записи, в случае, если использовать FIDO U2F не удастся. Поддерживаемые платформы:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Веб-хранилище и расширения браузера на компьютере\/ноутбуке с браузером с поддержкой U2F (Chrome, Opera, Vivaldi или Firefox с включенным FIDO U2F)."
+    "message": "Веб-хранилище и расширения браузера на компьютере/ноутбуке с браузером с поддержкой U2F (Chrome, Opera, Vivaldi или Firefox с включенным FIDO U2F)."
   },
   "twoFactorU2fWaiting": {
     "message": "В ожидании нажатия кнопки на ключе безопасности"
@@ -1315,13 +1318,13 @@
     "message": "Отчет о незащищенных сайтах"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Использование незащищенных веб-сайтов по схеме http:\/\/ может быть опасным. Если веб-сайт позволяет, вы всегда должны получать к нему доступ по схеме https:\/\/, чтобы ваше соединение было зашифровано."
+    "message": "Использование незащищенных веб-сайтов по схеме http:// может быть опасным. Если веб-сайт позволяет, вы всегда должны получать к нему доступ по схеме https://, чтобы ваше соединение было зашифровано."
   },
   "unsecuredWebsitesFound": {
     "message": "Найдены незащищенные сайты"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Мы нашли $COUNT$ элемент(ов) в вашем хранилище с незащищенными URI. Вам следует изменить их схему URI на https:\/\/, если веб-сайт это позволяет.",
+    "message": "Мы нашли $COUNT$ элемент(-ов) в вашем хранилище с незащищенными URI. Вам следует изменить их схему URI на https://, если веб-сайт это позволяет.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1342,7 +1345,7 @@
     "message": "Найдены логины без 2ФА"
   },
   "inactive2faFoundDesc": {
-    "message": "В вашем хранилище найдены $COUNT$ веб-сайт(ов) у которых может быть не настроена двухфакторная аутентификация (согласно twofactorauth.org). Для дополнительной защиты этих аккаунтов вы должны включить двухфакторную аутентификацию.",
+    "message": "В вашем хранилище найдены $COUNT$ веб-сайт(-ов) у которых может быть не настроена двухфакторная аутентификация (согласно twofactorauth.org). Для дополнительной защиты этих аккаунтов вы должны включить двухфакторную аутентификацию.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1366,7 +1369,7 @@
     "message": "Найдены скомпрометированные пароли"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов), пароли которых были скомпрометированы. Вы должны задать для них новые пароли.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(-ов), пароли которых были скомпрометированы. Вы должны задать для них новые пароли.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1381,7 +1384,7 @@
     "message": "Проверить скомпрометированные пароли"
   },
   "exposedXTimes": {
-    "message": "Скомпрометирован $COUNT$ раз(а)",
+    "message": "Скомпрометирован $COUNT$ раз(-а)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1399,7 +1402,7 @@
     "message": "Найдены слабые пароли"
   },
   "weakPasswordsFoundDesc": {
-    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов) с ненадежными паролями. Вы должны задать для них сильные пароли.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(-ов) с ненадежными паролями. Вы должны задать для них сильные пароли.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1420,7 +1423,7 @@
     "message": "Найдены повторно использованные пароли"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(ов) с повторно использованными паролями. Вы должны изменить их на уникальные.",
+    "message": "Мы нашли в вашем хранилище $COUNT$ элемент(-ов) с повторно использованными паролями. Вы должны изменить их на уникальные.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1432,7 +1435,7 @@
     "message": "В вашем хранилище нет повторно использованных паролей."
   },
   "reusedXTimes": {
-    "message": "Повторно использован $COUNT$ раз(а)",
+    "message": "Повторно использован $COUNT$ раз(-а)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1556,7 +1559,7 @@
     "message": "Все будущие функции Премиум. Их будет больше!"
   },
   "premiumPrice": {
-    "message": "Всего лишь $PRICE$ \/в год!",
+    "message": "Всего лишь $PRICE$ /в год!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1571,7 +1574,7 @@
     "message": "Премиум-доступ"
   },
   "premiumAccessDesc": {
-    "message": "Вы можете добавить премиум-доступ всем членам вашей организации за $PRICE$ \/$INTERVAL$.",
+    "message": "Вы можете добавить премиум-доступ всем членам вашей организации за $PRICE$ /$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# дополнительных ГБ"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Ваш план включает $SIZE$ зашифрованного файлового хранилища. Вы можете добавить дополнительное место по цене $PRICE$ за ГБ \/$INTERVAL$.",
+    "message": "Ваш план включает $SIZE$ зашифрованного файлового хранилища. Вы можете добавить дополнительное место по цене $PRICE$ за ГБ /$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "Транзакции",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Нет транзакций."
@@ -1860,7 +1863,7 @@
     "message": "# пользовательских лицензий"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Ваш план включает $BASE_SEATS$ пользовательских лицензий. Вы можете добавить дополнительных пользователей по $SEAT_PRICE$ за пользователя \/месяц.",
+    "message": "Ваш план включает $BASE_SEATS$ пользовательских лицензий. Вы можете добавить дополнительных пользователей по $SEAT_PRICE$ за пользователя /месяц.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2039,13 +2042,19 @@
     "message": "Получить приложения"
   },
   "loggedInAs": {
-    "message": "Вы вошли как"
+    "message": "Выполнен вход как"
   },
   "eventLogs": {
     "message": "Журнал событий"
   },
   "people": {
     "message": "Люди"
+  },
+  "policies": {
+    "message": "Policies"
+  },
+  "editPolicy": {
+    "message": "Edit Policy"
   },
   "groups": {
     "message": "Группы"
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "Расширение",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Компьютер",
@@ -2198,7 +2207,7 @@
     "message": "Изменен пароль учетной записи."
   },
   "enabledUpdated2fa": {
-    "message": "Двухфакторная аутентификация включена\/обновлена."
+    "message": "Двухфакторная аутентификация включена/обновлена."
   },
   "disabled2fa": {
     "message": "Двухфакторная аутентификация выключена."
@@ -2213,10 +2222,10 @@
     "message": "Ошибка входа из-за некорректной двухфакторной аутентификации."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Экспортированно хранилище."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Экспортированно хранилище организации."
   },
   "editedOrgSettings": {
     "message": "Настройки организации изменены."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "Просмотрен элемент $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Просмотрен пароль элемента $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Просмотрено скрытое поле элемента $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Просмотрен код безопасности элемента $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "Скопирован пароль элемента $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "Скопировано скрытое поле элемента $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "Скопирован код безопасности элемента $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Автоматически заполнен элемент $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Edited policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "Невозможно принять приглашение. Попросите администратора организации отправить новое приглашение."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Запомнить email"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "План",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Изменить план",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Обновите свой аккаунт до другого плана, предоставив информацию ниже. Пожалуйста, убедитесь, что в вашу учетную запись добавлен активный способ оплаты.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "message": "Обновите свой аккаунт до другого плана, предоставив информацию ниже. Пожалуйста, убедитесь, что в вашем аккаунте есть активный способ оплаты.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Если вы хотите изменить свой план, обратитесь в службу поддержки. Убедитесь, что у вас есть активный способ оплаты, добавленный в учетную запись.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Счет #$NUMBER$",
@@ -2790,7 +2817,7 @@
     "message": "Фильтры"
   },
   "lockOptions": {
-    "message": "Настройки блокировки"
+    "message": "Параметры блокировки"
   },
   "lockOptionsDesc": {
     "message": "Выберите условие блокировки вашего хранилища. Для его разблокировки потребуется повторно ввести мастер-пароль."
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "Необходимо выбрать хотя бы одну коллекцию."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "Мы не смогли списать деньги с вашей карты. Пожалуйста, просмотрите и оплатите неоплаченный счет, указанный ниже."
+  },
+  "inAppPurchase": {
+    "message": "Покупка в приложении"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "Вы не можете выполнить это действие при использовании оплаты из приложения."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Вы должны управлять своей подпиской в том ​​магазине, в котором была совершена покупка в приложении."
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Set minimum requirements for master password strength."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Require users to set up two-step login on their personal accounts."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Set minimum requirements for password generator configuration."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "One or more organization policies are affecting your generator settings."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require your master password to meet the following requirements:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum complexity score of $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum length of $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Contain one or more uppercase characters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Contain one or more lowercase characters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Contain one or more numbers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Contain one or more of the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Your new master password does not meet the policy requirements."
   }
 }

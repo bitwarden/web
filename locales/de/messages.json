@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Host",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Genau"
@@ -211,8 +211,8 @@
     "message": "Sichtbarkeit umschalten"
   },
   "toggleCollapse": {
-    "message": "Sammlung ein- \/ ausklappen",
-    "description": "Toggling an expand\/collapse state."
+    "message": "Sammlung ein- / ausklappen",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Passwort generieren"
@@ -419,7 +419,7 @@
     "message": "Gelöschter Anhang"
   },
   "deleteAttachmentConfirmation": {
-    "message": "Möchtest du diesen Anhang wirklich löschen?"
+    "message": "Möchten Sie diesen Anhang wirklich löschen?"
   },
   "attachmentSaved": {
     "message": "Der Anhang wurde gespeichert."
@@ -681,7 +681,7 @@
     "message": "Dieses Konto hat eine aktive Zwei Faktor-Authentifizierung, allerdings wird keiner der konfigurierten Zwei Faktor-Anbieter von diesem Browser unterstützt."
   },
   "noTwoStepProviders2": {
-    "message": "Bitte benutzen Sie einen unterstützten Browser (z. B. Chrome) und \/ oder fügen Sie zusätzliche Anbieter hinzu, die von mehr Browsern unterstützt werden (z. B. eine Authentifizierungs-App)."
+    "message": "Bitte benutzen Sie einen unterstützten Browser (z. B. Chrome) und / oder fügen Sie zusätzliche Anbieter hinzu, die von mehr Browsern unterstützt werden (z. B. eine Authentifizierungs-App)."
   },
   "twoStepOptions": {
     "message": "Optionen für Zwei-Faktor-Authentifizierung"
@@ -744,7 +744,7 @@
     "message": "Bearbeiten Sie die Sammlungen, mit denen dieser Eintrag geteilt wird. Nur Organisationsmitglieder mit Zugriff auf diese Sammlungen werden diesen Eintrag sehen können."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Sie haben $COUNT$ Eintrag\/Einträge zum Löschen ausgewählt. Sind Sie sicher, dass alle diese Einträge gelöscht werden sollen?",
+    "message": "Sie haben $COUNT$ Eintrag/Einträge zum Löschen ausgewählt. Sind Sie sicher, dass alle diese Einträge gelöscht werden sollen?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Passwortgenerator"
   },
+  "minComplexityScore": {
+    "message": "Kleinste Komplexitätsstufe"
+  },
   "minNumbers": {
     "message": "Mindestanzahl Ziffern"
   },
@@ -828,11 +831,11 @@
     "message": "Worttrennzeichen"
   },
   "capitalize": {
-    "message": "Großschreiben",
+    "message": "Wortanfänge großschreiben",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Zahl hinzufügen"
+    "message": "Ziffer hinzufügen"
   },
   "passwordHistory": {
     "message": "Passwortverlauf"
@@ -875,7 +878,7 @@
     "message": "Bitte melden Sie sich erneut an."
   },
   "logBackInOthersToo": {
-    "message": "Bitte melden Sie sich wieder an. Wenn Sie andere Bitwarden-Anwendungen verwenden, melden Sie sich auch dort neu an."
+    "message": "Bitte melden Sie sich wieder an. Wenn Sie andere Bitwarden-Anwendungen verwenden, melden Sie sich auch dort ab und wieder neu an."
   },
   "changeMasterPassword": {
     "message": "Master-Passwort ändern"
@@ -1032,7 +1035,7 @@
     "message": "Webseiten Icons deaktivieren"
   },
   "disableIconsDesc": {
-    "message": "Webseiten-Icons zeigen ein wiedererkennbares Bild neben jedem Eintrag in Ihrem Tresor."
+    "message": "Website-Icons zeigen ein wiedererkennbares Bild neben jedem Eintrag in Ihrem Tresor."
   },
   "enableGravatars": {
     "message": "Aktiviere Gravatare",
@@ -1069,7 +1072,7 @@
     "message": "Neue benutzerdefinierte Domäne"
   },
   "newCustomDomainDesc": {
-    "message": "Geben Sie eine mit Komma getrennte Liste von Domänen ein. Nur \"Basis\"-Domänen sind erlaubt. Geben Sie keine Sub-Domänen an. Geben Sie beispielsweise \"google.de\" anstelle von \"www.google.de\" an. Sie können auch \"androidapp:\/\/package.name\" eingeben, um Webseiten-Domänen einer Android-App zuzuordnen."
+    "message": "Geben Sie eine mit Komma getrennte Liste von Domänen ein. Nur \"Basis\"-Domänen sind erlaubt. Geben Sie keine Sub-Domänen an. Geben Sie beispielsweise \"google.de\" anstelle von \"www.google.de\" an. Sie können auch \"androidapp://package.name\" eingeben, um Webseiten-Domänen einer Android-App zuzuordnen."
   },
   "customDomainX": {
     "message": "$INDEX$ benutzerdefinierte Domänen",
@@ -1116,7 +1119,7 @@
     "message": "Premium-Mitgliedschaft"
   },
   "premiumRequired": {
-    "message": "Premium Mitgliedschaft benötigt"
+    "message": "Premium-Mitgliedschaft benötigt"
   },
   "premiumRequiredDesc": {
     "message": "Für diese Funktion ist eine Premium-Mitgliedschaft notwendig."
@@ -1287,7 +1290,7 @@
     "message": "Aufgrund von Plattformbeschränkungen kann FIDO U2F nicht mit allen Bitwarden-Anwendungen verwendet werden. Sie sollten einen anderen Zwei-Faktor-Authentifizierungsanbieter aktivieren, damit Sie auf Ihr Konto zugreifen können, wenn FIDO U2F nicht verwendet werden kann. Unterstützte Plattformen sind:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web-Tresor und Browser-Erweiterungen auf einem Desktop\/Laptop mit einem U2F fähigen Browser (Chrome, Opera, Vivaldi oder Firefox mit FIDO U2F aktiviert)."
+    "message": "Web-Tresor und Browser-Erweiterungen auf einem Desktop/Laptop mit einem U2F fähigen Browser (Chrome, Opera, Vivaldi oder Firefox mit FIDO U2F aktiviert)."
   },
   "twoFactorU2fWaiting": {
     "message": "Es wird darauf gewartet, dass Sie die Taste Ihres Sicherheitsschlüssels betätigen"
@@ -1312,16 +1315,16 @@
     "message": "Berichte"
   },
   "unsecuredWebsitesReport": {
-    "message": "Bericht über ungesicherte Webseiten"
+    "message": "Bericht über ungesicherte Websites"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Die Verwendung ungesicherter Webseiten mit dem http:\/\/ Präfix kann gefährlich sein. Wenn die Webseite es erlaubt, sollten Sie immer über das https:\/\/ Präfix darauf zugreifen, damit Ihre Verbindung verschlüsselt ist."
+    "message": "Die Verwendung ungesicherter Webseiten mit dem http:// Präfix kann gefährlich sein. Wenn die Webseite es erlaubt, sollten Sie immer über das https:// Präfix darauf zugreifen, damit Ihre Verbindung verschlüsselt ist."
   },
   "unsecuredWebsitesFound": {
     "message": "Ungesicherte Webseiten gefunden"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Wir haben $COUNT$ Elemente in Ihrem Tresor mit ungesicherten URIs gefunden. Sie sollten ihr URI-Präfix auf https:\/\/ ändern, wenn die Webseite dies zulässt.",
+    "message": "Wir haben $COUNT$ Elemente in Ihrem Tresor mit ungesicherten URIs gefunden. Sie sollten ihr URI-Präfix auf https:// ändern, wenn die Webseite dies zulässt.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1333,10 +1336,10 @@
     "message": "Es gibt keine Einträge in deinem Tresor die unsichere URIs benutzen."
   },
   "inactive2faReport": {
-    "message": "2FA Bericht inaktiv"
+    "message": "Bericht über inaktive 2FA"
   },
   "inactive2faReportDesc": {
-    "message": "Die Zwei-Faktor-Authentifizierung (2FA) ist eine wichtige Sicherheitseinstellung, die Ihnen bei der Absicherung Ihrer Konten hilft. Wenn eine Webseite 2FA anbietet, solltest Sie es immer aktivieren."
+    "message": "Die Zwei-Faktor-Authentifizierung (2FA) ist eine wichtige Sicherheitseinstellung, die Ihnen bei der Absicherung Ihrer Konten hilft. Wenn eine Webseite 2FA anbietet, sollten Sie es immer aktivieren."
   },
   "inactive2faFound": {
     "message": "Anmeldungen ohne 2FA gefunden"
@@ -1626,7 +1629,7 @@
     "message": "Ihre Zahlungsmethode wird sofort und jährlich wiederkehrend belastet. Sie können jederzeit kündigen."
   },
   "paymentCharged": {
-    "message": "Ihre Zahlungsmethode wird sofort belastet, und wiederkehrend am $INTERVAL$. Sie können jederzeit kündigen.",
+    "message": "Ihre Zahlungsmethode wird sofort belastet und darauf folgend einmal pro $INTERVAL$. Sie können jederzeit kündigen.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1635,7 +1638,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Ihr Abo beinhaltet eine kostenlose 7-Tage-Testversion. Ihre Karte wird nicht belastet, bis die Testversion beendet. Die Rechnung kommt wiederkehrend jeden\/jedes $INTERVAL$. Sie können jederzeit kündigen.",
+    "message": "Ihr Abo startet mit einer kostenlosen Probezeit von 7 Tagen. Ihre Karte wird nicht belastet, bis die Probezeit abgelaufen ist. Die Rechnung kommt wiederkehrend jeden/jedes $INTERVAL$. Sie können jederzeit kündigen.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "Zahlungsvorgänge",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Keine Zahlungsvorgänge."
@@ -1818,7 +1821,7 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "Um Ihr Konto zu einer Premium-Mitgliedschaft hoch zu stufen, müssen Sie eine gültige Lizenzdatei hochladen."
+    "message": "Um Ihr Konto zu einer Premium-Mitgliedschaft hochzustufen, müssen Sie eine gültige Lizenzdatei hochladen."
   },
   "uploadLicenseFileOrg": {
     "message": "Um eine vor Ort gehostete Organisation zu erstellen, müssen Sie eine gültige Lizenzdatei hochladen."
@@ -1860,7 +1863,7 @@
     "message": "Anzahl der Benutzerplätze"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Ihr Abo beinhaltet $BASE_SEATS$ Benutzerplätze. Sie können weitere Benutzer für $SEAT_PRICE$ pro Benutzer\/Monat hinzufügen.",
+    "message": "Ihr Abo beinhaltet $BASE_SEATS$ Benutzerplätze. Sie können weitere Benutzer für $SEAT_PRICE$ pro Benutzer/Monat hinzufügen.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1907,7 +1910,7 @@
     "message": "Für Unternehmen und andere große Organisationen."
   },
   "freeForever": {
-    "message": "Für immer kostenlos"
+    "message": "Dauerhaft kostenlos"
   },
   "includesXUsers": {
     "message": "beinhaltet $COUNT$ Benutzer",
@@ -2018,7 +2021,7 @@
     "message": "Ihre neue Organisation ist einsatzbereit!"
   },
   "organizationUpgraded": {
-    "message": "Ihre Organisation ist verbessert worden."
+    "message": "Ihr Organisations-Tarif wurde aktualisiert."
   },
   "leave": {
     "message": "Verlassen"
@@ -2036,7 +2039,7 @@
     "message": "Hilfe erhalten"
   },
   "getApps": {
-    "message": "Laden Sie die Apps"
+    "message": "Die Apps erhalten"
   },
   "loggedInAs": {
     "message": "angemeldet als"
@@ -2046,6 +2049,12 @@
   },
   "people": {
     "message": "Leute"
+  },
+  "policies": {
+    "message": "Richtlinien"
+  },
+  "editPolicy": {
+    "message": "Richtlinie bearbeiten"
   },
   "groups": {
     "message": "Gruppen"
@@ -2102,7 +2111,7 @@
     "message": "Benutzer einladen"
   },
   "inviteUserDesc": {
-    "message": "Laden Sie einen neuen Benutzer zu Ihrer Organisation ein, indem Sie deren Bitwarden-Konto-Email eintragen. Falls dieser noch kein Bitwarden-Konto besitzt, wird er\/sie zur Erstellung eines neuen Kontos aufgefordert."
+    "message": "Laden Sie einen neuen Benutzer zu Ihrer Organisation ein, indem Sie deren Bitwarden-Konto-Email eintragen. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
   },
   "inviteMultipleEmailDesc": {
     "message": "Sie können bis zu $COUNT$ Benutzer auf einmal einladen, indem Sie eine Liste von E-Mail-Adressen mit je einem Komma trennen.",
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "Erweiterung",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Desktop",
@@ -2198,7 +2207,7 @@
     "message": "Benutzerpasswort geändert."
   },
   "enabledUpdated2fa": {
-    "message": "Zwei-Faktor-Anmeldung aktiviert\/aktualisiert."
+    "message": "Zwei-Faktor-Anmeldung aktiviert/aktualisiert."
   },
   "disabled2fa": {
     "message": "Zwei-Faktor-Anmeldung deaktiviert."
@@ -2213,10 +2222,10 @@
     "message": "Anmeldeversuch mit falscher Zwei-Faktor-Anmeldung fehlgeschlagen."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Tresor exportiert."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Tresor der Organisation exportiert."
   },
   "editedOrgSettings": {
     "message": "Organisationseinstellungen bearbeitet."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "Eintrag $ID$ angesehen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Passwort für Element $ID$ kopiert.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Verstecktes Feld für Element $ID$ angesehen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Sicherheitscode für Element $ID$ angesehen.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "Passwort für Element $ID$ kopiert.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "Verstecktes Feld für Element $ID$ kopiert.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "Sicherheitscode für Element $ID$ kopiert.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Element $ID$ automatisch ausgefüllt.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Richtlinie für $ID$ bearbeitet.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "Einladung konnte nicht akzeptiert werden. Zum Erhalten einer neuen Einladung, setzen Sie sich mit einem Administrator der Organisation in Verbindung."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Einladung konnte nicht angenommen werden. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "E-Mail-Adresse merken"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "Abo",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Abonnement ändern",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Upgraden sie ihr Konto zu einem anderen Plan, dafür müssen sie folgende Informationen bereitstellen. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode auf ihren Konto hinzugefügt haben.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Kontaktieren Sie den Kundensupport, um Ihr Abo zu ändern. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu Ihrem Konto hinzugefügt haben.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Rechnung #$NUMBER$",
@@ -2777,7 +2804,7 @@
     "message": "Sie haben keine Auswahl getroffen."
   },
   "submitAgreePolicies": {
-    "message": "Durch Klicken des Absenden-Buttons, stimmen Sie den folgenden Bedingungen zu:",
+    "message": "Durch Klicken des Absenden-Buttons stimmen Sie den folgenden Bedingungen zu:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "Es muss mindestens eine Sammlung ausgewählt sein."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "Wir sind nicht in der Lage Ihre Kreditkarte zu belasten. Bitte bezahlen Sie den unten aufgelisteten noch nicht beglichenen Rechnungsbetrag."
+  },
+  "inAppPurchase": {
+    "message": "In-App-Kauf"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "Sie können diese Aktion nicht durchführen, wenn sie eine In-App-Kauf Zahlungsart nutzen."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Sie müssen Ihr Abonnement im entsprechenden App Store verwalten, über dem Ihr In-App-Kauf getätigt wurde."
+  },
+  "minLength": {
+    "message": "Mindestlänge"
+  },
+  "clone": {
+    "message": "Duplizieren"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Mindestanforderungen für die Stärke des Master-Passworts festlegen."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Benutzer müssen eine zweistufige Anmeldung für ihre persönlichen Konten einrichten."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organisationsmitglieder, die keine zweistufige Anmeldung für ihr persönliches Konto aktiviert haben, werden aus der Organisation entfernt und erhalten eine E-Mail, die sie über die Änderung benachrichtigt."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "Sie sind Mitglied einer Organisation, die eine zweistufige Anmeldung für Ihr Benutzerkonto erfordert. Wenn Sie alle Möglichkeiten zur zweistufigen Anmeldung deaktivieren, werden Sie automatisch aus diesen Organisationen entfernt."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Mindestanforderungen für die Passwortgenerator-Konfiguration festlegen."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Eine oder mehrere Organisationsrichtlinien beeinflussen Ihre Generator-Einstellungen."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Eine oder mehrere Organisationsrichtlinien erfordern, dass Ihr Master-Passwort die folgenden Anforderungen erfüllt:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimaler Komplexitätswert von $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Mindestlänge von $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Enthält ein oder mehrere Großbuchstaben"
+  },
+  "policyInEffectLowercase": {
+    "message": "Enthält ein oder mehrere Kleinbuchstaben"
+  },
+  "policyInEffectNumbers": {
+    "message": "Enthält eine oder mehrere Zahlen"
+  },
+  "policyInEffectSpecial": {
+    "message": "Enthält eines oder mehrere der folgenden Sonderzeichen $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Ihr neues Master-Passwort entspricht nicht den Anforderungen der Richtlinie."
   }
 }

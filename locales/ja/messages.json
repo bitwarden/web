@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "ホスト",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "完全一致"
@@ -211,8 +211,8 @@
     "message": "表示切り替え"
   },
   "toggleCollapse": {
-    "message": "開く\/閉じる",
-    "description": "Toggling an expand\/collapse state."
+    "message": "開く/閉じる",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "パスワードの自動生成"
@@ -266,7 +266,7 @@
     "message": "お気に入りの検索"
   },
   "searchType": {
-    "message": "検索の種類",
+    "message": "タイプの検索",
     "description": "Search item type"
   },
   "searchVault": {
@@ -291,7 +291,7 @@
     "message": "ID"
   },
   "typeSecureNote": {
-    "message": "セキュアメモ"
+    "message": "メモ"
   },
   "folders": {
     "message": "フォルダー"
@@ -805,8 +805,11 @@
   "passwordGenerator": {
     "message": "パスワード生成ツール"
   },
+  "minComplexityScore": {
+    "message": "最小複雑度"
+  },
   "minNumbers": {
-    "message": "数字の最小数"
+    "message": "数字の最小個数"
   },
   "minSpecial": {
     "message": "記号の最小数",
@@ -1069,7 +1072,7 @@
     "message": "新規カスタムドメイン"
   },
   "newCustomDomainDesc": {
-    "message": "コンマで区切ったドメインリストを入力します。サブドメインを除いて入力してください。例えば、\"www.google.com\"ではなく\"google.com\"を入力します。\"androidapp:\/\/package.name\"の形式で入力することでドメインとAndroidアプリを関連付けることもできます。"
+    "message": "コンマで区切ったドメインリストを入力します。サブドメインを除いて入力してください。例えば、\"www.google.com\"ではなく\"google.com\"を入力します。\"androidapp://package.name\"の形式で入力することでドメインとAndroidアプリを関連付けることもできます。"
   },
   "customDomainX": {
     "message": "カスタムドメイン $INDEX$",
@@ -1315,13 +1318,13 @@
     "message": "非セキュアウェブサイト調査"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "http:\/\/方式のセキュリティ保護されていないウェブサイトは危険です。ウェブサイトが対応していれば、接続が暗号化されるhttps:\/\/方式を常時利用すべきです。"
+    "message": "http://方式のセキュリティ保護されていないウェブサイトは危険です。ウェブサイトが対応していれば、接続が暗号化されるhttps://方式を常時利用すべきです。"
   },
   "unsecuredWebsitesFound": {
     "message": "セキュリティ保護されていないウェブサイトが見つかりました"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "セキュアでないURIが$COUNT$個のアイテムで見つかりました。ウェブサイトが対応しているならば、URIをhttps:\/\/形式に変更すべきです。",
+    "message": "セキュアでないURIが$COUNT$個のアイテムで見つかりました。ウェブサイトが対応しているならば、URIをhttps://形式に変更すべきです。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1571,7 +1574,7 @@
     "message": "プレミアムアクセス"
   },
   "premiumAccessDesc": {
-    "message": "$PRICE$\/$INTERVAL$で、あなたの組織のすべてのメンバーにプレミアム機能を付帯できます。",
+    "message": "$PRICE$/$INTERVAL$で、あなたの組織のすべてのメンバーにプレミアム機能を付帯できます。",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# 追加容量(GB)"
   },
   "additionalStorageIntervalDesc": {
-    "message": "あなたのプランは$SIZE$の暗号化ファイルストレージを使用できます。1GBあたり$PRICE$\/$INTERVAL$でストレージ容量を追加できます。",
+    "message": "あなたのプランは$SIZE$の暗号化ファイルストレージを使用できます。1GBあたり$PRICE$/$INTERVAL$でストレージ容量を追加できます。",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "取引",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "取引はありません"
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "メンバー"
   },
+  "policies": {
+    "message": "方針"
+  },
+  "editPolicy": {
+    "message": "方針を編集"
+  },
   "groups": {
     "message": "グループ"
   },
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "拡張機能",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "デスクトップ",
@@ -2198,7 +2207,7 @@
     "message": "パスワードの変更"
   },
   "enabledUpdated2fa": {
-    "message": "二段階認証の有効化\/更新"
+    "message": "二段階認証の有効化/更新"
   },
   "disabled2fa": {
     "message": "二段階認証の無効化"
@@ -2213,10 +2222,10 @@
     "message": "二段階認証時の誤りによるログインの失敗"
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "保管庫をエクスポートしました。"
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "組織の保管庫をエクスポートしました。"
   },
   "editedOrgSettings": {
     "message": "組織の設定の編集"
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "アイテム $ID$ を表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "アイテム $ID$ のパスワードを表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "アイテム $ID$ の隠しフィールドを表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "アイテム $ID$ のセキュリティコードを表示しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "アイテム $ID$ のパスワードをコピーしました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "アイテム $ID$ の隠しフィールドをコピーしました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "アイテム $ID$ のセキュリティコードをコピーしました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "アイテム $ID$ を自動入力しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "編集された方針：$ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "招待を承諾出来ませんでした。組織の管理者に招待を再送信するように依頼してください。"
   },
+  "inviteAcceptFailedShort": {
+    "message": "招待を受けることができません。$DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "メールアドレスを保存"
   },
@@ -2573,7 +2600,7 @@
     "message": "二段階認証が無効化されました。"
   },
   "learnMore": {
-    "message": "さらに詳しく"
+    "message": "詳細"
   },
   "deleteRecoverDesc": {
     "message": "メールアドレスを入力してアカウントを削除します。"
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "プラン",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "プラン変更",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "下記の情報を入力してアカウントを他のプランにアップグレードしてください。アカウントに有効な支払い方法が追加されていることを確認してください。",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "契約プランを変更したい場合はサポートまでご連絡ください。アカウントに有効なお支払い方法が登録されていることをご確認ください。",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "請求 #$NUMBER$",
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "最低でも一つのコレクションを選んでください。"
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "あなたのカードで決済することができませんでした。以下の未払いの請求書をご確認いただき、お支払いください。"
+  },
+  "inAppPurchase": {
+    "message": "アプリ内購入"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "アプリ内購入を使用している間はこのアクションはできません。"
+  },
+  "manageSubscriptionFromStore": {
+    "message": "アプリ内購入したストアでサブスクリプションを管理してください。"
+  },
+  "minLength": {
+    "message": "最小文字数"
+  },
+  "clone": {
+    "message": "複製"
+  },
+  "masterPassPolicyDesc": {
+    "message": "マスターパスワードの強度に最低要件を設定する。"
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "２段階認証の設定を要求する。"
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "２段階認証を有効にしないメンバーは組織から除外され、メールで通知されます。"
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "２段階認証を必要とする組織に入っています。２段階認証をすべて無効にすると、それらの組織からは自動的に除外されます。"
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "パスワード生成の最低要件を設定する。"
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "組織の要件がパスワード生成の設定に影響しています。"
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "組織が求めるマスターパスワードの要件は："
+  },
+  "policyInEffectMinComplexity": {
+    "message": "複雑度は最低$SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "長さは最低$LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "大文字が最低１つ必要"
+  },
+  "policyInEffectLowercase": {
+    "message": "小文字が最低１つ必要"
+  },
+  "policyInEffectNumbers": {
+    "message": "数字が最低１つ必要"
+  },
+  "policyInEffectSpecial": {
+    "message": "次の記号から１つ以上：$CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "新しいマスターパスワードは最低要件を満たしていません。"
   }
 }

@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "Amfitrió",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "Exacte"
@@ -211,8 +211,8 @@
     "message": "Commuta la visibilitat"
   },
   "toggleCollapse": {
-    "message": "Redueix\/Amplia",
-    "description": "Toggling an expand\/collapse state."
+    "message": "Redueix/Amplia",
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Genera contrasenya"
@@ -321,7 +321,7 @@
     "message": "Localitat"
   },
   "stateProvince": {
-    "message": "Estat \/ província"
+    "message": "Estat / província"
   },
   "zipPostalCode": {
     "message": "Codi postal"
@@ -355,7 +355,7 @@
     "message": "Comparteix"
   },
   "valueCopied": {
-    "message": "$VALUE$ copiat",
+    "message": "S'ha copiat $VALUE$",
     "description": "Value has been copied to the clipboard.",
     "placeholders": {
       "value": {
@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "Generador de contrasenyes"
   },
+  "minComplexityScore": {
+    "message": "Puntuació mínima de complexitat"
+  },
   "minNumbers": {
     "message": "Mínim de caràcters númerics"
   },
@@ -1001,7 +1004,7 @@
     "message": "Seleccioneu el fitxer d'importació"
   },
   "orCopyPasteFileContents": {
-    "message": "o copieu\/enganxeu el contingut dels fitxers d'importació"
+    "message": "o copieu/enganxeu el contingut dels fitxers d'importació"
   },
   "instructionsFor": {
     "message": "Instruccions de $NAME$",
@@ -1069,7 +1072,7 @@
     "message": "Nou domini personalitzat"
   },
   "newCustomDomainDesc": {
-    "message": "Introduïu una llista de dominis separats per comes. Només es permeten els dominis \"base\". No introduïu els subdominis. Per exemple, introduïu \"google.com\" en lloc de \"www.google.com\". També podeu introduir \"androidapp:\/\/package.name\" per associar una aplicació d'android amb altres dominis del lloc web."
+    "message": "Introduïu una llista de dominis separats per comes. Només es permeten els dominis \"base\". No introduïu els subdominis. Per exemple, introduïu \"google.com\" en lloc de \"www.google.com\". També podeu introduir \"androidapp://package.name\" per associar una aplicació d'android amb altres dominis del lloc web."
   },
   "customDomainX": {
     "message": "Domini personalitzat $INDEX$",
@@ -1287,7 +1290,7 @@
     "message": "A causa de les limitacions de la plataforma, FIDO U2F no es pot utilitzar en totes les aplicacions de Bitwarden. Heu d'habilitar un altre proveïdor d'inici de sessió en dues passes perquè pugueu accedir al vostre compte quan FIDO U2F no es puga utilitzar. Plataformes compatibles:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Caixa forta web i extensions de navegador en un escriptori\/portàtil amb un navegador compatible amb U2F (Chrome, Opera, Vivaldi, o Firefox amb FIDO U2F activat)."
+    "message": "Caixa forta web i extensions de navegador en un escriptori/portàtil amb un navegador compatible amb U2F (Chrome, Opera, Vivaldi, o Firefox amb FIDO U2F activat)."
   },
   "twoFactorU2fWaiting": {
     "message": "S'està esperant que toqueu el botó de la vostra clau de seguretat"
@@ -1315,13 +1318,13 @@
     "message": "Informe de llocs web no segurs"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "L'ús de llocs web no segurs amb l'esquema http:\/\/ pot ser perillós. Si el lloc web ho permet, sempre haureu d'accedir-hi mitjançant l'esquema https:\/\/ perquè la vostra connexió estiga xifrada."
+    "message": "L'ús de llocs web no segurs amb l'esquema http:// pot ser perillós. Si el lloc web ho permet, sempre haureu d'accedir-hi mitjançant l'esquema https:// perquè la vostra connexió estiga xifrada."
   },
   "unsecuredWebsitesFound": {
     "message": "S'han trobat llocs web no segurs"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Hem trobat $COUNT$ elements a la vostra caixa forta amb URI no segures. Heu de canviar el seu esquema URI a https:\/\/ si el lloc web ho permet.",
+    "message": "Hem trobat $COUNT$ elements a la vostra caixa forta amb URI no segures. Heu de canviar el seu esquema URI a https:// si el lloc web ho permet.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1556,7 +1559,7 @@
     "message": "Totes les funcions premium futures. Aviat, més!"
   },
   "premiumPrice": {
-    "message": "Tot per només $PRICE$ \/any!",
+    "message": "Tot per només $PRICE$ /any!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1571,7 +1574,7 @@
     "message": "Accés premium"
   },
   "premiumAccessDesc": {
-    "message": "Podeu afegir accés premium a tots els membres de la vostra organització per $PRICE$\/$INTERVAL$.\n \n",
+    "message": "Podeu afegir accés premium a tots els membres de la vostra organització per $PRICE$/$INTERVAL$.\n \n",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# de GB addicionals"
   },
   "additionalStorageIntervalDesc": {
-    "message": "El vostre pla inclou $SIZE$ d'emmagatzematge encriptat de fitxers. Podeu afegir un emmagatzematge addicional per a $PRICE$ per GB\/$INTERVAL$.",
+    "message": "El vostre pla inclou $SIZE$ d'emmagatzematge encriptat de fitxers. Podeu afegir un emmagatzematge addicional per a $PRICE$ per GB/$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "Transaccions",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "Cap transacció."
@@ -1860,7 +1863,7 @@
     "message": "# de reserves d'usuari"
   },
   "userSeatsAdditionalDesc": {
-    "message": "El vostre pla inclou reserves d'usuari de $BASE_SEATS$. Podeu afegir usuaris addicionals per $SEAT_PRICE$ per usuari\/mes.",
+    "message": "El vostre pla inclou reserves d'usuari de $BASE_SEATS$. Podeu afegir usuaris addicionals per $SEAT_PRICE$ per usuari/mes.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "Persones"
   },
+  "policies": {
+    "message": "Polítiques"
+  },
+  "editPolicy": {
+    "message": "Edita la política"
+  },
   "groups": {
     "message": "Grups"
   },
@@ -2156,7 +2165,7 @@
     "message": "Gestor"
   },
   "managerDesc": {
-    "message": "Els administradors poden accedir i gestionar les col·leccions assignades a la vostra organització."
+    "message": "Els gestors poden accedir i gestionar les col·leccions assignades a la vostra organització."
   },
   "all": {
     "message": "Tot"
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "Extensió",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "Escriptori",
@@ -2198,7 +2207,7 @@
     "message": "S'ha canviat la contrasenya del compte."
   },
   "enabledUpdated2fa": {
-    "message": "Inici de sessió en dues passes habilitat\/actualitzat."
+    "message": "Inici de sessió en dues passes habilitat/actualitzat."
   },
   "disabled2fa": {
     "message": "S'ha deshabilitat l'inici de sessió en dues passes."
@@ -2213,10 +2222,10 @@
     "message": "S'ha produït un error amb un inici de sessió en dues passes incorrecte."
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "Caixa forta exportada."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "Caixa forta de l’organització exportada."
   },
   "editedOrgSettings": {
     "message": "S'ha editat la configuració de l'organització."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "$ID$ de l'element vist.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Contrasenya visualitzada de l'article $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Camp ocult vist de l’element $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Codi de seguretat vist de l’element $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "S'ha copiat la contrasenya de l'element $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "S'ha copiat el camp ocult de l’element $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "S'ha copiat el codi de seguretat de l’element $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "Element $ID$ emplenat automàticament.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Política $ID$ editada.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "No es pot acceptar la invitació. Demaneu a l'administrador d'una organització que envie una invitació nova."
   },
+  "inviteAcceptFailedShort": {
+    "message": "No es pot acceptar la invitació. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Recorda el correu electronic"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "Pla",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "Canvi de pla",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Actualitzeu el compte a un altre pla proporcionant la informació següent. Assegureu-vos que heu afegit un mètode de pagament actiu al compte.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Poseu-vos en contacte amb l'assistència al client si voleu canviar el vostre pla. Assegureu-vos que heu afegit un mètode de pagament actiu al compte.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "Factura #$NUMBER$",
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "Heu d'escollir com a mínim una col·lecció."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "No hem pogut carregar la vostra targeta. Consulteu i pagueu la factura pendent que es mostra a continuació."
+  },
+  "inAppPurchase": {
+    "message": "Compra integrada a l'aplicació"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "No podeu realitzar aquesta acció mentre feu servir un mètode de pagament de compra a l’aplicació."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Heu de gestionar la vostra subscripció des de la botiga on s’ha realitzat la compra a l’aplicació."
+  },
+  "minLength": {
+    "message": "Longitud mínima"
+  },
+  "clone": {
+    "message": "Clona"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Estableix els requisits mínims per al nivell de seguretat de la contrasenya principal."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Requereix que els usuaris configuren l’inici de sessió en dues passes als seus comptes personals."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Els membres de l’organització que no tinguen activat l’inici de sessió en dues passes per al seu compte personal s'eliminaran de l’organització i rebran un correu electrònic que els notificarà sobre el canvi."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "Eres membre d’una organització que necessita l’inici de sessió en dues passes per estar habilitat al vostre compte d’usuari. Si desactiveu tots els proveïdors d’inici de sessió en dues passes, sereu eliminats automàticament d’aquestes organitzacions."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Estableix els requisits mínims per a la configuració del generador de contrasenya."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Una o més polítiques d’organització afecten la configuració del generador."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Una o més polítiques d’organització requereixen que la vostra contrasenya principal complisca els requisits següents:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Puntuació mínima de complexitat de $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Longitud mínima de $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Conté un o més caràcters en majúscula"
+  },
+  "policyInEffectLowercase": {
+    "message": "Conté un o més caràcters en minúscula"
+  },
+  "policyInEffectNumbers": {
+    "message": "Conté un o més números"
+  },
+  "policyInEffectSpecial": {
+    "message": "Conté un o més dels següents caràcters especials $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "La nova contrasenya principal no compleix els requisits de la política."
   }
 }

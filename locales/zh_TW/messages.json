@@ -184,7 +184,7 @@
   },
   "host": {
     "message": "主機",
-    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
     "message": "完全相符"
@@ -212,7 +212,7 @@
   },
   "toggleCollapse": {
     "message": "切換折疊",
-    "description": "Toggling an expand\/collapse state."
+    "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "產生密碼"
@@ -318,10 +318,10 @@
     "message": "地址 3"
   },
   "cityTown": {
-    "message": "市\/鎮"
+    "message": "市/鎮"
   },
   "stateProvince": {
-    "message": "州\/省"
+    "message": "州/省"
   },
   "zipPostalCode": {
     "message": "郵遞區號"
@@ -805,6 +805,9 @@
   "passwordGenerator": {
     "message": "密碼產生器"
   },
+  "minComplexityScore": {
+    "message": "Minimum Complexity Score"
+  },
   "minNumbers": {
     "message": "最少數字位數"
   },
@@ -1069,7 +1072,7 @@
     "message": "新增自訂網域"
   },
   "newCustomDomainDesc": {
-    "message": "輸入以逗號分隔的網域清單。只允許最基本的網域，請勿輸入子網域名稱。例如，輸入「google.com」即可，而非「www.google.com」。您也可以輸入「androidapp:\/\/package.name」來將 Android 應用程式與其他網域名稱關聯起來。"
+    "message": "輸入以逗號分隔的網域清單。只允許最基本的網域，請勿輸入子網域名稱。例如，輸入「google.com」即可，而非「www.google.com」。您也可以輸入「androidapp://package.name」來將 Android 應用程式與其他網域名稱關聯起來。"
   },
   "customDomainX": {
     "message": "自訂網域 $INDEX$",
@@ -1287,7 +1290,7 @@
     "message": "由於平台限制，無法於所有 Bitwarden 應用程式使用 FIDO U2F。請開啟另一套兩階段登入供應者，以確保 FIDO U2F 無法使用時還能存取帳號。支援的平台有："
   },
   "twoFactorU2fSupportWeb": {
-    "message": "支援 U2F 的桌面\/筆記本電腦上的網頁密碼庫和啓用 U2F 的瀏覽器 (Chrome, Opera, Vivaldi, 或啓用了 FIDO U2F 的 Firefox)。"
+    "message": "支援 U2F 的桌面/筆記本電腦上的網頁密碼庫和啓用 U2F 的瀏覽器 (Chrome, Opera, Vivaldi, 或啓用了 FIDO U2F 的 Firefox)。"
   },
   "twoFactorU2fWaiting": {
     "message": "等待您按下加密鑰匙上的按鈕"
@@ -1312,16 +1315,16 @@
     "message": "報告"
   },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "回報不安全的網站"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "使用 http:\/\/ 配置的不安全網站有風險。如果網站允許，您應永遠使用 https:\/\/ 配置存取此網站，這樣您的連線才是加密過的。"
+    "message": "使用 http:// 配置的不安全網站有風險。如果網站允許，您應永遠使用 https:// 配置存取此網站，這樣您的連線才是加密過的。"
   },
   "unsecuredWebsitesFound": {
     "message": "發現不安全的網站"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "我們在您的密碼庫找到 $COUNT$ 個使用不安全網址的項目。如果網站允許，您應變更其網址配置至 https:\/\/。",
+    "message": "我們在您的密碼庫找到 $COUNT$ 個使用不安全網址的項目。如果網站允許，您應變更其網址配置至 https://。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1503,7 +1506,7 @@
     "message": "帳單"
   },
   "accountCredit": {
-    "message": "帳戶信用",
+    "message": "帳戶餘額",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
@@ -1519,13 +1522,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "已加入的信用卡在交易處理完全後將會出現在你的帳號。部分付款方式較為緩慢，比其他方式花費更多時間處理。"
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "請確認你的帳號有足夠額度繳付此次購買，如果你的帳號額度不足，則會以你預設付款方式補足差額。你可以從帳單頁面新增額度到您的帳號。"
   },
   "creditAppliedDesc": {
-    "message": "您的帳戶信用額度可用於進行消費。任何可用的信用額度將自動支付此帳戶的帳單。"
+    "message": "您的帳戶餘額可用於進行消費。若有可用的餘額將自動支付此帳戶的帳單。"
   },
   "goPremium": {
     "message": "升級至進階版",
@@ -1571,7 +1574,7 @@
     "message": "Premium Access"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "message": "You can add premium access to all members of your organization for $PRICE$ /$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1590,7 +1593,7 @@
     "message": "# GB 附加儲存空間"
   },
   "additionalStorageIntervalDesc": {
-    "message": "您的方案擁有 $SIZE$ 的加密儲存空間。您也可以用每 GB $PRICE$ \/ $INTERVAL$ 購買額外的儲存空間。",
+    "message": "您的方案擁有 $SIZE$ 的加密儲存空間。您也可以用每 GB $PRICE$ / $INTERVAL$ 購買額外的儲存空間。",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1650,7 +1653,7 @@
     "message": "信用卡"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "點擊PayPal按鈕登入您的PayPal帳戶，然後點擊下面的Submit按鈕以繼續。"
   },
   "cancelSubscription": {
     "message": "取消訂閱"
@@ -1662,7 +1665,7 @@
     "message": "Pending Cancellation"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "訂閱在當期帳單周期结束時已標記為取消。"
   },
   "reinstateSubscription": {
     "message": "重新開始訂閱"
@@ -1674,7 +1677,7 @@
     "message": "已重新開始訂閱。"
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "您確定要取消訂閱嗎？當本期帳單到期後，您將無法使用所有的訂閱功能。"
   },
   "canceledSubscription": {
     "message": "The subscription has been canceled."
@@ -1753,7 +1756,7 @@
   },
   "transactions": {
     "message": "交易",
-    "description": "Payment\/credit transactions."
+    "description": "Payment/credit transactions."
   },
   "noTransactions": {
     "message": "無交易"
@@ -1767,7 +1770,7 @@
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "任何費用會在您的帳單上以 $STATEMENT_NAME$ 呈現。",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1860,7 +1863,7 @@
     "message": "# 使用者數"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user \/month.",
+    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user /month.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2047,6 +2050,12 @@
   "people": {
     "message": "人員"
   },
+  "policies": {
+    "message": "原則"
+  },
+  "editPolicy": {
+    "message": "編輯原則"
+  },
   "groups": {
     "message": "群組"
   },
@@ -2182,7 +2191,7 @@
   },
   "extension": {
     "message": "擴充套件",
-    "description": "Browser extension\/addon"
+    "description": "Browser extension/addon"
   },
   "desktop": {
     "message": "電腦版應用程式",
@@ -2198,7 +2207,7 @@
     "message": "已變更帳戶密碼。"
   },
   "enabledUpdated2fa": {
-    "message": "已啟用 \/ 更新兩步驟登入。"
+    "message": "已啟用 / 更新兩步驟登入。"
   },
   "disabled2fa": {
     "message": "已停用兩步驟登入。"
@@ -2213,10 +2222,10 @@
     "message": "登入失敗，兩步驟登入錯誤。"
   },
   "exportedVault": {
-    "message": "Exported vault."
+    "message": "匯出密碼庫"
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization vault."
+    "message": "匯出組織密碼庫"
   },
   "editedOrgSettings": {
     "message": "Edited organization settings."
@@ -2258,7 +2267,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Viewed item $ID$.",
+    "message": "查看了項目 $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2267,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "查看了項目 $ID$的密碼",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2276,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "查看了項目 $ID$的隱藏欄位",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "查看了項目$ID$的安全碼",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2303,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Copied password for item $ID$.",
+    "message": "複製了項目 $ID$的密碼",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2303,7 +2312,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Copied hidden field for item $ID$.",
+    "message": "複製了項目 $ID$的隱藏欄位",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2312,7 +2321,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Copied security code for item $ID$.",
+    "message": "複製了項目$ID$的安全碼",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2321,7 +2330,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Auto-filled item $ID$.",
+    "message": "自動填入了項目$ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2353,6 +2362,15 @@
       "id": {
         "content": "$1",
         "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "已編輯原則 $ID$。",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
       }
     }
   },
@@ -2560,6 +2578,15 @@
   "inviteAcceptFailed": {
     "message": "Unable to accept invitation. Ask an organization admin to send a new invitation."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "記住電子郵件地址"
   },
@@ -2613,19 +2640,19 @@
   },
   "billingPlan": {
     "message": "方案",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
     "message": "變更方案",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
     "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
-    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
     "message": "收據 #$NUMBER$",
@@ -2653,7 +2680,7 @@
     "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "驗證銀行帳戶失敗將會導致付款失效，而且您的訂閱將會被取消。"
   },
   "verifiedBankAccount": {
     "message": "已驗證您的銀行帳號。"
@@ -2909,10 +2936,10 @@
     "message": "您的 API 金鑰可用來驗證 Bitwarden 公用 API。"
   },
   "apiKeyRotateDesc": {
-    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+    "message": "更新 API 金鑰將使前一份金鑰失效。若您認為當前的金鑰不在安全，您可以更新您的 API 金鑰。"
   },
   "apiKeyWarning": {
-    "message": "Your API key has full access to the organization. It should be kept secret."
+    "message": "你的 API 金鑰對組織有完整存取權限，應要保密。"
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 客戶端登入資訊",
@@ -2926,5 +2953,83 @@
   },
   "selectOneCollection": {
     "message": "您必須至少選擇一個收藏。"
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "我們無法從您的卡片扣款。請查看並繳付以上尚未付清之款項。"
+  },
+  "inAppPurchase": {
+    "message": "應用程式內購買"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "當你使用程式內購買的付款方式時，不能執行此項操作。"
+  },
+  "manageSubscriptionFromStore": {
+    "message": "你必須從建立程式內購買的商店才能管理你的訂閱。"
+  },
+  "minLength": {
+    "message": "Minimum Length"
+  },
+  "clone": {
+    "message": "Clone"
+  },
+  "masterPassPolicyDesc": {
+    "message": "設定對主控密碼強度的最低要求。"
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "要求使用者對個人帳號設定兩階段登入。"
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "指定密碼產生器設定的最低需求。"
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "密碼產生器設定受一組以上組織原則影響。"
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "有一組以上組織原則要求您的主控密碼須符合下列條件："
+  },
+  "policyInEffectMinComplexity": {
+    "message": "最小複雜度分數 $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "最小長度 $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "包含一個以上大寫字母"
+  },
+  "policyInEffectLowercase": {
+    "message": "包含一個以上小寫字母"
+  },
+  "policyInEffectNumbers": {
+    "message": "包含一個以上數字"
+  },
+  "policyInEffectSpecial": {
+    "message": "包含一個以上特殊字元 $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "您的新主控密碼不符組織原則要求。"
   }
 }
