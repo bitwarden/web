@@ -806,7 +806,7 @@
     "message": "Passordgenerator"
   },
   "minComplexityScore": {
-    "message": "Minimum Complexity Score"
+    "message": "Minimumspoengsum for kompleksistet"
   },
   "minNumbers": {
     "message": "Minst antall numre"
@@ -816,7 +816,7 @@
     "description": "Minimum Special Characters"
   },
   "ambiguous": {
-    "message": "Unngå forvekslingsbare tegn"
+    "message": "Unngå tegn som kan forveksles"
   },
   "regeneratePassword": {
     "message": "Omgenerer et passord"
@@ -851,7 +851,7 @@
     "message": "Kontoen er oppdatert"
   },
   "changeEmail": {
-    "message": "Endre E-postadresse"
+    "message": "Endre e-postadresse"
   },
   "newEmail": {
     "message": "Ny E-postadresse"
@@ -1506,7 +1506,7 @@
     "message": "Fakturering"
   },
   "accountCredit": {
-    "message": "Konto kreditt",
+    "message": "Kontokreditt",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
@@ -2051,10 +2051,10 @@
     "message": "Personer"
   },
   "policies": {
-    "message": "Policies"
+    "message": "Vilkår"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "Endre vilkår"
   },
   "groups": {
     "message": "Grupper"
@@ -2276,7 +2276,7 @@
     }
   },
   "viewedPasswordItemId": {
-    "message": "Viewed password for item $ID$.",
+    "message": "Vist passordet for elementet $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2285,7 +2285,7 @@
     }
   },
   "viewedHiddenFieldItemId": {
-    "message": "Viewed hidden field for item $ID$.",
+    "message": "Vist skjult felt for elementet $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2294,7 +2294,7 @@
     }
   },
   "viewedSecurityCodeItemId": {
-    "message": "Viewed security code for item $ID$.",
+    "message": "Vist sikkerhetskoden for elementet $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "Endret vilkår $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "Klarte ikke å godkjenne invitasjonen. Spør en organisasjonsadmin om å sende en ny invitasjon."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Ikke i stand til å godta invitasjon. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2643,11 +2643,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Endre funksjonsplanen",
+    "message": "Endre abonnement",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Oppgrader din konto til en annen plan, gi informasjonen nedenfor. Sørg for at du har en aktiv betalingsmetode lagt til kontoen.",
+    "message": "Oppgrader kontoen din til et annet abonnement ved å fylle inn informasjonen nedenfor. Sørg for at du har en aktiv betalingsmetode lagt til kontoen.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2811,7 +2811,7 @@
     "message": "Tjenestevilkår"
   },
   "privacyPolicy": {
-    "message": "Personvernsretningslinjer"
+    "message": "Personvern"
   },
   "filters": {
     "message": "Filtre"
@@ -2970,31 +2970,31 @@
     "message": "Minimumslengde"
   },
   "clone": {
-    "message": "Clone"
+    "message": "Klon"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "Sett minimumskrav til hovedpassordets styrke."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "Krev at brukere konfigurere totrinns pålogging på sine personlige kontoer."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "Organisasjonsmedlemmer som ikke har to-trinns pålogging aktivert for sin personlige konto, vil bli fjernet fra organisasjonen og vil motta en e-post som melder dem om endringen."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "Du er medlem av minst én organisasjon, som krever to-trinns pålogging for å være aktivert på kontoen din. Hvis du deaktiverer alle leverandører av totrinns pålogging, blir du automatisk fjernet fra disse organisasjonene."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "Sett minimumskrav for konfigurasjon av passordgenerator."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "En eller flere av organisasjonens vilkår påvirker generatorinnstillingene dine."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "En eller flere av organisasjonens vilkår krever hovedpassordet ditt for å oppfylle følgende krav:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "Minimumspoengsum for kompleksistet er $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "Minimumslengde er $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "Inneholder ett eller flere store tegn"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "Inneholder ett eller flere små tegn"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "Inneholde ett eller flere tall"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "Inneholder ett eller flere av følgende spesialtegn $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,6 +3030,6 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "Det nye hovedpassordet ditt oppfyller ikke vilkårene."
   }
 }
