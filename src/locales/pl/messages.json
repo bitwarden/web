@@ -806,7 +806,7 @@
     "message": "Generator hasła"
   },
   "minComplexityScore": {
-    "message": "Minimum Complexity Score"
+    "message": "Minimalny poziom złożoności"
   },
   "minNumbers": {
     "message": "Minimalna liczba cyfr"
@@ -2051,10 +2051,10 @@
     "message": "Ludzie"
   },
   "policies": {
-    "message": "Policies"
+    "message": "Zasady"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "Edytuj zasady"
   },
   "groups": {
     "message": "Grupy"
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "Edytowana zasada: $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "Nie można zaakceptować zaproszenia. Poproś administratora organizacji o wysłanie nowego zaproszenia."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Nie można zaakceptować zaproszenia. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2715,7 +2715,7 @@
     "message": "Firmowe"
   },
   "bankAccountTypeIndividual": {
-    "message": "Indywidualne (Osobiste)"
+    "message": "Indywidualne (osobiste)"
   },
   "enterInstallationId": {
     "message": "Wpisz identyfikator instalacji"
@@ -2795,7 +2795,7 @@
     "message": "Utwórz organizację: Krok 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Zanim utworzysz swoją organizację, musisz najpierw utworzyć darmowe konto prywatne."
+    "message": "Zanim utworzysz swoją organizację, musisz najpierw utworzyć darmowe konto osobiste."
   },
   "refunded": {
     "message": "Zwrócono"
@@ -2970,31 +2970,31 @@
     "message": "Minimalna długość"
   },
   "clone": {
-    "message": "Clone"
+    "message": "Klonuj"
   },
   "masterPassPolicyDesc": {
     "message": "Ustaw minimalne wymagania dla hasła głównego."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "Wymagaj od użytkowników aktywowania logowania dwustopniowego na swoich kontach osobistych."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "Członkowie organizacji, którzy nie mają włączonego logowania dwustopniowego na swoim koncie osobistym, zostaną usunięci z organizacji i otrzymają wiadomość z powiadomieniem o zmianie."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "Jesteś członkiem organizacji, która wymaga logowania dwustopniowego na koncie użytkownika. Jeśli wyłączysz wszystkich dostawców logowania dwustopniowego, zostaniesz automatycznie usunięty z tych organizacji."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "Ustaw minimalne wymagania dla generatora hasła."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "Co najmniej jedna zasada organizacji wpływa na ustawienia generatora."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "Co najmniej jedna zasada organizacji wymaga, aby hasło główne spełniało następujące wymagania:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "Minimalny poziom złożoności wynosi $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "Minimalna długość wynosi $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "Zawiera co najmniej jedną wielką literę"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "Zawiera co najmniej jedną małą literę"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "Zawiera przynajmniej jedną cyfrę"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "Zawiera co najmniej jeden następujący znak specjalny $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,6 +3030,6 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "Nowe hasło główne nie spełnia wymaganych zasad."
   }
 }
