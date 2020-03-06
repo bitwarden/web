@@ -37,7 +37,7 @@ export class PolicyEditComponent implements OnInit {
 
     // Master password
 
-    masterPassMinComplexity?: number;
+    masterPassMinComplexity?: number = null;
     masterPassMinLength?: number;
     masterPassRequireUpper?: number;
     masterPassRequireLower?: number;
