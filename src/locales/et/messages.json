@@ -806,7 +806,7 @@
     "message": "Parooli genereerimine"
   },
   "minComplexityScore": {
-    "message": "Minimum Complexity Score"
+    "message": "Minimaalne keerulisuse skoor"
   },
   "minNumbers": {
     "message": "Vähim arv numbreid"
@@ -1131,7 +1131,7 @@
     "message": "Organisatsiooni kuulumise tõttu on sul juba juurdepääs premium funktsioonidele."
   },
   "manage": {
-    "message": "Haldamine"
+    "message": "Haldus"
   },
   "disable": {
     "message": "Keela"
@@ -2048,13 +2048,13 @@
     "message": "Sündmuste logid"
   },
   "people": {
-    "message": "Inimesed"
+    "message": "Liikmed"
   },
   "policies": {
-    "message": "Policies"
+    "message": "Poliitikad"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "Muuda poliitikat"
   },
   "groups": {
     "message": "Grupid"
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "Muutis poliitikat $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "Kutse vastuvõtmine nurjus. Palu organisatsiooni administraatoril uus kutse saata."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Kutset ei õnnestu vastu võtta. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2967,34 +2967,34 @@
     "message": "Saad oma tellimust hallata poest, kust äpi sisese ostu sooritasid."
   },
   "minLength": {
-    "message": "Minimum Length"
+    "message": "Minimaalne pikkus"
   },
   "clone": {
-    "message": "Clone"
+    "message": "Klooni"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "Määra minimaalsed ülemparooli tugevuse tingimused."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "Nõua, et kasutajad seadistaksid oma kontodes kaheastmelise kinnituse."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "Organisatsiooni liikmed, kel pole kaheastmeline kinnitamine sisse lülitatud, eemaldatakse organisatsioonist ning neile saadetakse sellekohane e-kiri."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "Kuulud organisatsiooni, mis nõuab kontol kaheastmelise kinnitamise sisselülitamist.\nKui lülitad välja kõik Kaheastmelise kinnitamise valikud, eemaldatakse sind organisatsioonist."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "Määra parooli genereerija konfiguratsiooni tingimused."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "Organisatsiooni seaded mõjutavad parooli genereerija sätteid."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "Üks või enam organisatsiooni eeskirja nõuavad, et ülemparool vastaks nendele nõudmistele:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "Minimaalne keerulisuse skoor peab olema $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "Minimaalne pikkus peab olema $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "Sisaldab üht või enamat suurtähte"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "Sisaldab üht või enamat väiketähte"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "Sisaldab üht või rohkem numbreid"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "Sisaldab üht või enamat järgnevatest märkidest: $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,6 +3030,6 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "Uus ülemparool ei vasta eeskirjades väljatoodud tingimustele."
   }
 }
