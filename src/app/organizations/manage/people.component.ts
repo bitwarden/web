@@ -121,6 +121,10 @@ export class PeopleComponent implements OnInit {
         }
     }
 
+    get allCount() {
+        return this.allUsers.length;
+    }
+
     get invitedCount() {
         return this.statusMap.has(OrganizationUserStatusType.Invited) ?
             this.statusMap.get(OrganizationUserStatusType.Invited).length : 0;
