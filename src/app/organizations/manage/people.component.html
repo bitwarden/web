@@ -5,6 +5,7 @@
             <button type="button" class="btn btn-outline-secondary" [ngClass]="{active: status == null}"
                 (click)="filter(null)">
                 {{'all' | i18n}}
+                <span class="badge badge-pill badge-info" *ngIf="allCount">{{allCount}}</span>
             </button>
             <button type="button" class="btn btn-outline-secondary"
                 [ngClass]="{active: status == organizationUserStatusType.Invited}"
