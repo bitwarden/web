@@ -34,6 +34,7 @@ export class PolicyEditComponent implements OnInit {
     enabled = false;
     formPromise: Promise<any>;
     passwordScores: any[];
+    defaultTypes: any[];
 
     // Master password
 
@@ -46,6 +47,7 @@ export class PolicyEditComponent implements OnInit {
 
     // Password generator
 
+    passGenDefaultType?: string;
     passGenMinLength?: number;
     passGenUseUpper?: boolean;
     passGenUseLower?: boolean;
@@ -53,6 +55,9 @@ export class PolicyEditComponent implements OnInit {
     passGenUseSpecial?: boolean;
     passGenMinNumbers?: number;
     passGenMinSpecial?: number;
+    passGenMinNumberWords?: number;
+    passGenCapitalize?: boolean;
+    passGenIncludeNumber?: boolean;
 
     private policy: PolicyResponse;
 
@@ -65,6 +70,11 @@ export class PolicyEditComponent implements OnInit {
             { name: i18nService.t('weak') + ' (2)', value: 2 },
             { name: i18nService.t('good') + ' (3)', value: 3 },
             { name: i18nService.t('strong') + ' (4)', value: 4 },
+        ];
+        this.defaultTypes = [
+            { name: i18nService.t('passwordGeneratorPolicyUserPreference'), value: '' },
+            { name: i18nService.t('password'), value: 'password' },
+            { name: i18nService.t('passphrase'), value: 'passphrase' },
         ];
     }
 
@@ -82,6 +92,8 @@ export class PolicyEditComponent implements OnInit {
                 if (this.policy.data != null) {
                     switch (this.type) {
                         case PolicyType.PasswordGenerator:
+                            this.passGenDefaultType = this.policy.data.defaultType == null
+                                ? '' : this.policy.data.defaultType;
                             this.passGenMinLength = this.policy.data.minLength;
                             this.passGenUseUpper = this.policy.data.useUpper;
                             this.passGenUseLower = this.policy.data.useLower;
@@ -89,6 +101,9 @@ export class PolicyEditComponent implements OnInit {
                             this.passGenUseSpecial = this.policy.data.useSpecial;
                             this.passGenMinNumbers = this.policy.data.minNumbers;
                             this.passGenMinSpecial = this.policy.data.minSpecial;
+                            this.passGenMinNumberWords = this.policy.data.minNumberWords;
+                            this.passGenCapitalize = this.policy.data.capitalize;
+                            this.passGenIncludeNumber = this.policy.data.includeNumber;
                             break;
                         case PolicyType.MasterPassword:
                             this.masterPassMinComplexity = this.policy.data.minComplexity;
@@ -120,6 +135,7 @@ export class PolicyEditComponent implements OnInit {
         switch (this.type) {
             case PolicyType.PasswordGenerator:
                 request.data = {
+                    defaultType: this.passGenDefaultType,
                     minLength: this.passGenMinLength || null,
                     useUpper: this.passGenUseUpper,
                     useLower: this.passGenUseLower,
@@ -127,6 +143,9 @@ export class PolicyEditComponent implements OnInit {
                     useSpecial: this.passGenUseSpecial,
                     minNumbers: this.passGenMinNumbers || null,
                     minSpecial: this.passGenMinSpecial || null,
+                    minNumberWords: this.passGenMinNumberWords || null,
+                    capitalize: this.passGenCapitalize,
+                    includeNumber: this.passGenIncludeNumber,
                 };
                 break;
             case PolicyType.MasterPassword:
