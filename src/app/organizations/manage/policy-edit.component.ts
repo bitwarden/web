@@ -72,7 +72,7 @@ export class PolicyEditComponent implements OnInit {
             { name: i18nService.t('strong') + ' (4)', value: 4 },
         ];
         this.defaultTypes = [
-            { name: i18nService.t('passwordGeneratorPolicyUserPreference'), value: '' },
+            { name: i18nService.t('userPreference'), value: null },
             { name: i18nService.t('password'), value: 'password' },
             { name: i18nService.t('passphrase'), value: 'passphrase' },
         ];
@@ -92,8 +92,7 @@ export class PolicyEditComponent implements OnInit {
                 if (this.policy.data != null) {
                     switch (this.type) {
                         case PolicyType.PasswordGenerator:
-                            this.passGenDefaultType = this.policy.data.defaultType == null
-                                ? '' : this.policy.data.defaultType;
+                            this.passGenDefaultType = this.policy.data.defaultType;
                             this.passGenMinLength = this.policy.data.minLength;
                             this.passGenUseUpper = this.policy.data.useUpper;
                             this.passGenUseLower = this.policy.data.useLower;

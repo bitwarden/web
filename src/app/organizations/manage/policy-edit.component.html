@@ -63,7 +63,7 @@
                 <ng-container *ngIf="type === policyType.PasswordGenerator">
                     <div class="row">
                         <div class="col-6 form-group  mb-0">
-                            <label for="passGenDefaultType">{{'passwordGeneratorPolicyDefaultType' | i18n}}</label>
+                            <label for="passGenDefaultType">{{'defaultType' | i18n}}</label>
                             <select id="passGenDefaultType" name="PassGenDefaultType" [(ngModel)]="passGenDefaultType"
                                 class="form-control">
                                 <option *ngFor="let o of defaultTypes" [ngValue]="o.value">{{o.name}}</option>
