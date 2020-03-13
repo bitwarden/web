@@ -1336,7 +1336,7 @@
     "message": "Geen items in je kluis met onbeveiligde URIs."
   },
   "inactive2faReport": {
-    "message": "Tweestapsaanmelding"
+    "message": "Niet-geactiveerde 2FA"
   },
   "inactive2faReportDesc": {
     "message": "Tweestapsaanmelding (2FA) is een belangrijke instelling die bijdraagt aan de beveiliging van je accounts. Als de website het ondersteunt, zou je altijd tweestapsaanmelding moeten gebruiken."
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Bewerk beleid $ID$.",
+    "message": "Bewerkt beleid $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "De uitnodiging is niet geaccepteerd. Vraag een beheerder van de organisatie om een nieuwe uitnodiging te versturen."
   },
   "inviteAcceptFailedShort": {
-    "message": "Kan de uitnodiging niet accepteren. $DESCRIPTION$",
+    "message": "Uitnodiging kan niet worden geaccepteerd. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2970,7 +2970,7 @@
     "message": "Minimale lengte"
   },
   "clone": {
-    "message": "Kopiëren"
+    "message": "Dupliceren"
   },
   "masterPassPolicyDesc": {
     "message": "Minimale eisen voor de sterkte van het hoofdwachtwoord instellen."
@@ -2979,19 +2979,19 @@
     "message": "Vereis tweestapsaanmelding op het persoonlijke account van gebruikers."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Verwijdert organisatieleden zonder tweestapsaanmelding op hun persoonlijke account uit de organisatie en stuurt hen een notificatie via e-mail."
+    "message": "Organisatieleden zonder tweestapsaanmelding op hun persoonlijke account worden verwijderd uit de organisatie en krijgen hiervan een notificatie via e-mail."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "Je bent lid van een organisatie die tweestapsaanmelding vereist op je persoonlijke account. Als je tweestapsaanmelding uitschakelt verlaat je automatisch deze organisaties."
+    "message": "Je bent lid van een organisatie die tweestapsaanmelding vereist op je persoonlijke account. Als je tweestapsaanmelding uitschakelt wordt je automatisch uit deze organisaties verwijderd."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Stel minimale vereisten in voor de configuratie van het wachtwoord generator."
+    "message": "Stel minimale vereisten in voor de configuratie van de wachtwoordgenerator."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "Een of meer beleidseisen van organisaties hebben invloed op de instellingen van je generator."
+    "message": "Een of meer organisatiebeleidseisen heeft invloed op de instellingen van je generator."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "Een of meer beleidseisen van organisaties stelt de volgende eisen aan je hoofdwachtwoord:"
+    "message": "Een of meer organisatiebeleidseisen stelt de volgende eisen aan je hoofdwachtwoord:"
   },
   "policyInEffectMinComplexity": {
     "message": "Minimale complexiteitsscore van $SCORE$",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Bevat een of meerdere hoofdletters"
+    "message": "Bevat een of meer hoofdletters"
   },
   "policyInEffectLowercase": {
-    "message": "Bevat een of meerdere kleine letters"
+    "message": "Bevat een of meer kleine letters"
   },
   "policyInEffectNumbers": {
-    "message": "Bevat een of meerdere getallen"
+    "message": "Bevat een of meer cijfers"
   },
   "policyInEffectSpecial": {
-    "message": "Bevat een of meerdere van de volgende speciale tekens $CHARS$",
+    "message": "Bevat een of meer van de volgende speciale tekens $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3031,5 +3031,14 @@
   },
   "masterPasswordPolicyRequirementsNotMet": {
     "message": "Je nieuwe hoofdwachtwoord voldoet niet aan de beleidseisen."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimum Number of Words"
+  },
+  "defaultType": {
+    "message": "Default Type"
+  },
+  "userPreference": {
+    "message": "User Preference"
   }
 }
