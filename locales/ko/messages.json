@@ -806,7 +806,7 @@
     "message": "비밀번호 생성기"
   },
   "minComplexityScore": {
-    "message": "Minimum Complexity Score"
+    "message": "최소 복잡도 점수"
   },
   "minNumbers": {
     "message": "숫자 최소 개수"
@@ -2051,10 +2051,10 @@
     "message": "인물"
   },
   "policies": {
-    "message": "Policies"
+    "message": "정책"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "정책 수정"
   },
   "groups": {
     "message": "그룹"
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "정책 $ID$을/를 수정했습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "초대를 수락할 수 없습니다. 조직 관리자에게 새 초대장을 보내도록 요청하십시오."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "초대를 수락할 수 없습니다. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2967,34 +2967,34 @@
     "message": "인 앱 결제가 이루어진 스토어에서 구독을 관리해야 합니다."
   },
   "minLength": {
-    "message": "Minimum Length"
+    "message": "최소 길이"
   },
   "clone": {
-    "message": "Clone"
+    "message": "복제"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "마스터 비밀번호 강도에 대한 최소 요구 사항을 설정해주세요."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "개인 계정에서 2단계 로그인을 요구합니다."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "2단계 로그인을 활성화하지 않은 단체 맴버는 단체에서 제거되며 변경 사항에 대한 이메일 알림을 받습니다."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "사용자 계정에 대해서 2단계 로그인을 요구하는 단체의 멤버입니다. 모든 2단계 로그인 수단을 비활성화한다면 단체에서 자동으로 제거됩니다."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "비밀번호 생성기 설정에 최소 요구 사항을 설정해주세요."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "하나 이상의 단체 정책이 생성기 설정에 영항을 미치고 있습니다."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "하나 이상의 단체 정책이 마스터 비밀번호가 다음 사항을 따르도록 요구합니다:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "최소 복잡도 점수 $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "최소 길이 $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "하나 이상의 대문자 포함"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "하나 이상의 소문자 포함"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "하나 이상의 숫자 포함"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "하나 이상의 특수문자 포함 $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,6 +3030,15 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "새 마스터 비밀번호가 정책 요구 사항을 따르지 않습니다."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimum Number of Words"
+  },
+  "defaultType": {
+    "message": "Default Type"
+  },
+  "userPreference": {
+    "message": "User Preference"
   }
 }
