@@ -1,6 +1,6 @@
 {
   "pageTitle": {
-    "message": "$APP_NAME$ sejf internetowy",
+    "message": "Sejf internetowy $APP_NAME$",
     "description": "The title of the website in the browser window.",
     "placeholders": {
       "app_name": {
@@ -53,10 +53,10 @@
     "message": "Numer"
   },
   "brand": {
-    "message": "Marka"
+    "message": "Wydawca"
   },
   "expiration": {
-    "message": "Wygaśnięcie"
+    "message": "Data wygaśnięcia"
   },
   "securityCode": {
     "message": "Kod zabezpieczający (CVV)"
@@ -68,7 +68,7 @@
     "message": "Firma"
   },
   "ssn": {
-    "message": "PESEL"
+    "message": "Numer PESEL"
   },
   "passportNumber": {
     "message": "Numer paszportu"
@@ -77,7 +77,7 @@
     "message": "Numer prawa jazdy"
   },
   "email": {
-    "message": "E-mail"
+    "message": "Adres e-mail"
   },
   "phone": {
     "message": "Telefon"
@@ -266,7 +266,7 @@
     "message": "Szukaj w ulubionych"
   },
   "searchType": {
-    "message": "Typ wyszukiwania",
+    "message": "Szukaj elementu",
     "description": "Search item type"
   },
   "searchVault": {
@@ -377,7 +377,7 @@
     "description": "Copy username to clipboard"
   },
   "copyNumber": {
-    "message": "Kopiuj numer",
+    "message": "Kopiuj numer karty",
     "description": "Copy credit card number"
   },
   "copySecurityCode": {
@@ -651,7 +651,7 @@
     }
   },
   "verificationCodeEmailSent": {
-    "message": "Kod weryfikacyjny został przesłany do $EMAIL$.",
+    "message": "Kod weryfikacyjny został wysłany na adres $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -720,10 +720,10 @@
     "message": "Klucz bezpieczeństwa FIDO U2F"
   },
   "emailTitle": {
-    "message": "E-mail"
+    "message": "Adres e-mail"
   },
   "emailDesc": {
-    "message": "Kody weryfikacyjne zostaną wysłane do Ciebie e-mailem."
+    "message": "Kody weryfikacyjne zostaną wysłane do Ciebie wiadomością e-mail."
   },
   "continue": {
     "message": "Kontynuuj"
@@ -854,7 +854,7 @@
     "message": "Zmień adres e-mail"
   },
   "newEmail": {
-    "message": "Nowy adres email"
+    "message": "Nowy adres e-mail"
   },
   "code": {
     "message": "Kod"
@@ -929,7 +929,7 @@
     "message": "Ustawienia klucza szyfrowania zostały zaktualizowane"
   },
   "dangerZone": {
-    "message": "Strefa niebezpieczeństwa"
+    "message": "Niebezpieczna strefa"
   },
   "dangerZoneDesc": {
     "message": "Uwaga - te operacje są nieodwracalne!"
@@ -1315,16 +1315,16 @@
     "message": "Raporty"
   },
   "unsecuredWebsitesReport": {
-    "message": "Raport nt. niezabezpieczonych stron"
+    "message": "Raport niezabezpieczonych stron"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Używanie niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
+    "message": "Korzystanie z niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
   },
   "unsecuredWebsitesFound": {
     "message": "Znaleziono niezabezpieczone strony"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Znaleźliśmy $COUNT$ elementów w Twoim sejfie, zawierających niezabezpieczone identyfikatory URI. Jeśli witryna to umożliwia, należy zmienić schemat identyfikatora URI na https://",
+    "message": "Znaleźliśmy elementy w Twoim sejfie zawierające niezabezpieczone adresy URI. Jeśli witryna to umożliwia, zmień schemat adresu na protokół HTTPS.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1336,10 +1336,10 @@
     "message": "Brak niezabezpieczonych elementów w Twoim sejfie."
   },
   "inactive2faReport": {
-    "message": "Raport nt. stron z nieaktywnym logowaniem dwustopniowym"
+    "message": "Raport stron z nieaktywnym logowaniem dwustopniowym"
   },
   "inactive2faReportDesc": {
-    "message": "Dwustopniowe logowanie (2FA) jest ważnym ustawieniem bezpieczeństwa, które pomaga chronić Twoje konto. Jeśli witryna to umożliwia, zawsze powinieneś aktywować dwustopniowe logowanie."
+    "message": "Logowanie dwustopniowe (2FA) jest ważnym ustawieniem bezpieczeństwa, które pomaga chronić Twoje konto. Jeśli witryna to umożliwia, zawsze powinieneś aktywować logowanie dwustopniowe."
   },
   "inactive2faFound": {
     "message": "Znaleziono elementy bez włączonej opcji dwustopniowego logowania"
@@ -1417,7 +1417,7 @@
     "message": "Raport identycznych haseł"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Jeśli używasz tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Powinieneś używać unikalnych haseł dla każdego z kont lub usług."
+    "message": "Jeśli korzystasz z tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Używaj unikalnych haseł dla każdego z kont lub usług."
   },
   "reusedPasswordsFound": {
     "message": "Znaleziono identyczne hasła"
@@ -1465,7 +1465,7 @@
     }
   },
   "goodNews": {
-    "message": "Dobre wieści",
+    "message": "Dobra wiadomość",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
@@ -1491,13 +1491,13 @@
     "message": "Strona"
   },
   "affectedUsers": {
-    "message": "Poszkodowani użytkownicy"
+    "message": "Liczba poszkodowanych użytkowników"
   },
   "breachOccurred": {
-    "message": "Wystąpiło naruszenie"
+    "message": "Data wystąpienia naruszenia"
   },
   "breachReported": {
-    "message": "Naruszenie zostało zgłoszone"
+    "message": "Data zgłoszenia naruszenia"
   },
   "reportError": {
     "message": "Wystąpił błąd podczas próby załadowania raportu. Spróbuj ponownie"
@@ -1525,7 +1525,7 @@
     "message": "Dodane środki pojawią się na twoim koncie po przetworzeniu płatności. Niektóre metody płatności mogą być przetwarzane dłużej niż inne."
   },
   "makeSureEnoughCredit": {
-    "message": "Upewnij się, że na twoim koncie jest wystarczająca ilość środków do dokonania tego zakupu. Jeśli na twoim koncie nie ma wystarczających środków, do opłacenia brakującej różnicy zostanie użyta twoja domyślna metoda płatności. Możesz też dodać środki do swojego konta na stronie Płatności."
+    "message": "Upewnij się, że na koncie jest wystarczająca ilość środków do dokonania tego zakupu. Jeśli na koncie nie ma wystarczających środków, do opłacenia brakującej różnicy zostanie użyta domyślna metoda płatności. Możesz też dodać środki do swojego konta na stronie Płatności."
   },
   "creditAppliedDesc": {
     "message": "Środki dodane do konta mogą zostać użyte do dokonywania płatności. Dostępne środki będą automatycznie wykorzystane do opłacenia faktur wygenerowanych dla tego konta."
@@ -1571,7 +1571,7 @@
     "message": "Dodatki"
   },
   "premiumAccess": {
-    "message": "Dostęp premium"
+    "message": "Konto Premium"
   },
   "premiumAccessDesc": {
     "message": "Możesz przyznać konta Premium wszystkim użytkownikom w Twojej organizacji za $PRICE$ /$INTERVAL$.",
@@ -1842,7 +1842,7 @@
     "message": "To konto jest własnością firmy."
   },
   "billingEmail": {
-    "message": "E-mail rozliczeniowy"
+    "message": "Adres rozliczeniowy"
   },
   "businessName": {
     "message": "Nazwa firmy"
@@ -2048,7 +2048,7 @@
     "message": "Dziennik zdarzeń"
   },
   "people": {
-    "message": "Ludzie"
+    "message": "Użytkownicy"
   },
   "policies": {
     "message": "Zasady"
@@ -2168,7 +2168,7 @@
     "message": "Menedżerowie mogą uzyskiwać dostęp do przypisanych kolekcji i zarządzać nimi w organizacji."
   },
   "all": {
-    "message": "Wszystkie"
+    "message": "Wszyscy"
   },
   "refresh": {
     "message": "Odśwież"
@@ -2540,7 +2540,7 @@
     "message": "Data zakończenia"
   },
   "verifyEmail": {
-    "message": "Weryfikuj adres e-mail"
+    "message": "Zweryfikuj adres e-mail"
   },
   "verifyEmailDesc": {
     "message": "Zweryfikuj swój adres e-mail, aby odblokować dostęp do wszystkich funkcji."
@@ -2588,7 +2588,7 @@
     }
   },
   "rememberEmail": {
-    "message": "Zapamiętaj e-mail"
+    "message": "Zapamiętaj adres e-mail"
   },
   "recoverAccountTwoStepDesc": {
     "message": "Jeśli nie możesz uzyskać dostępu do konta poprzez standardowe metody logowania dwustopniowego, skorzystaj z kodu odzyskiwania, aby wyłączyć wszystkich dostawców logowania dwustopniowego na swoim koncie."
@@ -2823,19 +2823,19 @@
     "message": "Wybierz, kiedy sejf się zablokuje. Odblokowanie sejfu będzie wymagało ponownego wpisania hasła głównego."
   },
   "oneMinute": {
-    "message": "po 1 minucie"
+    "message": "1 minuta"
   },
   "fiveMinutes": {
-    "message": "po 5 minutach"
+    "message": "5 minut"
   },
   "fifteenMinutes": {
-    "message": "po 15 minutach"
+    "message": "15 minut"
   },
   "thirtyMinutes": {
-    "message": "po 30 minutach"
+    "message": "30 minut"
   },
   "oneHour": {
-    "message": "po 1 godzinie"
+    "message": "1 godzina"
   },
   "fourHours": {
     "message": "po 4 godzinach"
@@ -2914,11 +2914,11 @@
     "message": "W Twoim sejfie istnieją stare załączniki, które muszą zostać naprawione, zanim będziesz mógł zmienić klucz szyfrowania Twojego konta."
   },
   "yourAccountsFingerprint": {
-    "message": "Unikalny identyfikator dla Twojego konta",
+    "message": "Unikalny identyfikator Twojego konta",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "W celu zapewnienia integralności Twoich kluczy szyfrowania, sprawdź unikalny identyfikator konta, zanim przejdziesz dalej.",
+    "message": "Aby zapewnić integralności kluczy szyfrowania, zweryfikuj unikalny identyfikator konta, zanim przejdziesz dalej.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
@@ -3018,7 +3018,7 @@
     "message": "Zawiera co najmniej jedną małą literę"
   },
   "policyInEffectNumbers": {
-    "message": "Zawiera przynajmniej jedną cyfrę"
+    "message": "Zawiera co najmniej jedną cyfrę"
   },
   "policyInEffectSpecial": {
     "message": "Zawiera co najmniej jeden następujący znak specjalny $CHARS$",
@@ -3031,5 +3031,14 @@
   },
   "masterPasswordPolicyRequirementsNotMet": {
     "message": "Nowe hasło główne nie spełnia wymaganych zasad."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimum Number of Words"
+  },
+  "defaultType": {
+    "message": "Default Type"
+  },
+  "userPreference": {
+    "message": "User Preference"
   }
 }
