@@ -140,7 +140,7 @@
     "message": "Lejárati év"
   },
   "authenticatorKeyTotp": {
-    "message": "Hitelesítő kulcs (egyszeri-idő alapú)"
+    "message": "Hitelesítő kulcs (egyszeri idő alapú)"
   },
   "folder": {
     "message": "Mappa"
@@ -164,7 +164,7 @@
     "message": "Logikai"
   },
   "remove": {
-    "message": "Eltávolít"
+    "message": "Eltávolítás"
   },
   "unassigned": {
     "message": "Nincs hozzárendelve"
@@ -183,7 +183,7 @@
     "message": "Alap domain"
   },
   "host": {
-    "message": "Gazdagép",
+    "message": "Hoszt",
     "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
@@ -197,7 +197,7 @@
     "description": "A programming term, also known as 'RegEx'."
   },
   "matchDetection": {
-    "message": "Találat érzékelés",
+    "message": "Találatfelismerés",
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
@@ -211,17 +211,17 @@
     "message": "Láthatóság váltása"
   },
   "toggleCollapse": {
-    "message": "Összezárás váltás",
+    "message": "Összecsukás/kinyitás",
     "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
     "message": "Jelszó generálása"
   },
   "checkPassword": {
-    "message": "A jelszóvédelmi állapot ellenőrzése."
+    "message": "Ellenőrizd, hogy kompromittálódott-e a jelszó."
   },
   "passwordExposed": {
-    "message": "Ez a jelszó már $VALUE$ alkalommal volt kitéve az adatszivárgásnak. Célszerű megváltoztatni.",
+    "message": "Ez a jelszó már $VALUE$ alkalommal ki volt téve adatszivárgásnak. Javasolt a megváltoztatása!",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -257,13 +257,13 @@
     "message": "Szerkesztés"
   },
   "searchCollection": {
-    "message": "Gyűjtemény keresése"
+    "message": "Keresés a gyűjteményben"
   },
   "searchFolder": {
     "message": "Mappa keresése"
   },
   "searchFavorites": {
-    "message": "Kedvencek keresése"
+    "message": "Keresés a kedvencek közt"
   },
   "searchType": {
     "message": "Típus keresése",
@@ -300,7 +300,7 @@
     "message": "Gyűjtemények"
   },
   "firstName": {
-    "message": "Személynév"
+    "message": "Keresztnév"
   },
   "middleName": {
     "message": "Középső név"
@@ -321,7 +321,7 @@
     "message": "Település"
   },
   "stateProvince": {
-    "message": "Állam/Megye"
+    "message": "Állam/megye"
   },
   "zipPostalCode": {
     "message": "Irányítószám"
@@ -330,10 +330,10 @@
     "message": "Ország"
   },
   "shared": {
-    "message": "Megosztott"
+    "message": "Megosztva"
   },
   "attachments": {
-    "message": "Mellékletek"
+    "message": "Csatolmányok"
   },
   "select": {
     "message": "Kijelölés"
@@ -355,7 +355,7 @@
     "message": "Megosztás"
   },
   "valueCopied": {
-    "message": "$VALUE$ másolásra került.",
+    "message": "$VALUE$ másolva",
     "description": "Value has been copied to the clipboard.",
     "placeholders": {
       "value": {
@@ -407,19 +407,19 @@
     "message": "Összes kijelölése"
   },
   "unselectAll": {
-    "message": "Összes kijelölés megszüntetése"
+    "message": "Kijelölés megszüntetése"
   },
   "launch": {
     "message": "Indítás"
   },
   "newAttachment": {
-    "message": "Új melléklet hozzáadása"
+    "message": "Melléklet hozzáadása"
   },
   "deletedAttachment": {
-    "message": "A melléklet törlésre került."
+    "message": "A melléklet törölve lett"
   },
   "deleteAttachmentConfirmation": {
-    "message": "Biztos törlésre kerüljön ez a melléklet?"
+    "message": "Biztos törölni akarod ezt a mellékletet?"
   },
   "attachmentSaved": {
     "message": "A melléklet mentésre került."
@@ -706,7 +706,7 @@
     "message": "YubiKey használata a fiók eléréséhez. Működik a YubiKey 4, 4 Nano, 4C, és NEO eszközökkel."
   },
   "duoDesc": {
-    "message": "Hitelesítés Duo Security-val, a Duo Mobile alkalmazás, SMS, telefonhívás vagy U2F biztonsági kulcs használatával.",
+    "message": "Hitelesítés Duo Securityval a Duo Mobile alkalmazáson keresztül, SMS-sel, telefonhívással vagy U2F biztonsági kulcs használatával.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
@@ -2009,7 +2009,7 @@
     "message": "Havi"
   },
   "annually": {
-    "message": "Éves"
+    "message": "Évente"
   },
   "basePrice": {
     "message": "Alapár"
@@ -2588,7 +2588,7 @@
     }
   },
   "rememberEmail": {
-    "message": "Emlékeztető email"
+    "message": "E-mail megjegyzése"
   },
   "recoverAccountTwoStepDesc": {
     "message": "Ha nem férünk hozzá a fiókhoz a normál kétlépcsős bejelentkezési módokkal, használhatjuk a kétlépcsős bejelentkezés helyreállító kódot a fiókra vonatkozó összes kétlépcsős szolgáltató kikapcsolásához."
@@ -2643,7 +2643,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Díjcsomag változtatás",
+    "message": "Díjcsomag változtatása",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -3031,5 +3031,14 @@
   },
   "masterPasswordPolicyRequirementsNotMet": {
     "message": "Az új mesterjelszó nem felel meg a szabály követelményeknek."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimum Number of Words"
+  },
+  "defaultType": {
+    "message": "Default Type"
+  },
+  "userPreference": {
+    "message": "User Preference"
   }
 }
