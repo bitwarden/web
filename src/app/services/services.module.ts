@@ -38,7 +38,6 @@ import { EventService as EventLoggingService } from 'jslib/services/event.servic
 import { ExportService } from 'jslib/services/export.service';
 import { FolderService } from 'jslib/services/folder.service';
 import { ImportService } from 'jslib/services/import.service';
-import { LockService } from 'jslib/services/lock.service';
 import { NotificationsService } from 'jslib/services/notifications.service';
 import { PasswordGenerationService } from 'jslib/services/passwordGeneration.service';
 import { PolicyService } from 'jslib/services/policy.service';
@@ -49,6 +48,7 @@ import { SyncService } from 'jslib/services/sync.service';
 import { TokenService } from 'jslib/services/token.service';
 import { TotpService } from 'jslib/services/totp.service';
 import { UserService } from 'jslib/services/user.service';
+import { VaultTimeoutService } from 'jslib/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib/services/webCryptoFunction.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib/abstractions/api.service';
@@ -65,7 +65,6 @@ import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/ex
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
-import { LockService as LockServiceAbstraction } from 'jslib/abstractions/lock.service';
 import { LogService as LogServiceAbstraction } from 'jslib/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/abstractions/notifications.service';
@@ -82,6 +81,7 @@ import { SyncService as SyncServiceAbstraction } from 'jslib/abstractions/sync.s
 import { TokenService as TokenServiceAbstraction } from 'jslib/abstractions/token.service';
 import { TotpService as TotpServiceAbstraction } from 'jslib/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.service';
+import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib/abstractions/vaultTimeout.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
@@ -108,8 +108,9 @@ const folderService = new FolderService(cryptoService, userService, apiService, 
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, platformUtilsService);
 const policyService = new PolicyService(userService, storageService);
-const lockService = new LockService(cipherService, folderService, collectionService,
-    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, null);
+const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
+    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, null,
+    async () => messagingService.send('logout', { expired: true }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
@@ -121,7 +122,7 @@ const authService = new AuthService(cryptoService, apiService,
 const exportService = new ExportService(folderService, cipherService, apiService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
 const notificationsService = new NotificationsService(userService, syncService, appIdService,
-    apiService, lockService, async () => messagingService.send('logout', { expired: true }));
+    apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }));
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
@@ -141,22 +142,22 @@ export function initFactory(): Function {
                 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
         }
         apiService.setUrls({
-            base: isDev ? null : window.location.origin,
-            api: isDev ? 'http://localhost:4000' : null,
-            identity: isDev ? 'http://localhost:33656' : null,
-            events: isDev ? 'http://localhost:46273' : null,
+            // base: isDev ? null : window.location.origin,
+            // api: isDev ? 'http://localhost:4000' : null,
+            // identity: isDev ? 'http://localhost:33656' : null,
+            // events: isDev ? 'http://localhost:46273' : null,
 
             // Uncomment these (and comment out the above) if you want to target production
             // servers for local development.
 
-            // base: null,
-            // api: 'https://api.bitwarden.com',
-            // identity: 'https://identity.bitwarden.com',
-            // events: 'https://events.bitwarden.com',
+            base: null,
+            api: 'https://api.bitwarden.com',
+            identity: 'https://identity.bitwarden.com',
+            events: 'https://events.bitwarden.com',
         });
         setTimeout(() => notificationsService.init(environmentService), 3000);
 
-        lockService.init(true);
+        vaultTimeoutService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
         await i18nService.init(locale);
         eventLoggingService.init(true);
@@ -205,7 +206,7 @@ export function initFactory(): Function {
         { provide: MessagingServiceAbstraction, useValue: messagingService },
         { provide: BroadcasterService, useValue: broadcasterService },
         { provide: SettingsServiceAbstraction, useValue: settingsService },
-        { provide: LockServiceAbstraction, useValue: lockService },
+        { provide: VaultTimeoutServiceAbstraction, useValue: vaultTimeoutService },
         { provide: StorageServiceAbstraction, useValue: storageService },
         { provide: StateServiceAbstraction, useValue: stateService },
         { provide: ExportServiceAbstraction, useValue: exportService },
