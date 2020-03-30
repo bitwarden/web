@@ -4,18 +4,18 @@ import {
     Router,
 } from '@angular/router';
 
-import { LockService } from 'jslib/abstractions/lock.service';
 import { UserService } from 'jslib/abstractions/user.service';
+import { VaultTimeoutService } from 'jslib/abstractions/vaultTimeout.service';
 
 @Injectable()
 export class UnauthGuardService implements CanActivate {
-    constructor(private lockService: LockService, private userService: UserService,
+    constructor(private vaultTimeoutService: VaultTimeoutService, private userService: UserService,
         private router: Router) { }
 
     async canActivate() {
         const isAuthed = await this.userService.isAuthenticated();
         if (isAuthed) {
-            const locked = await this.lockService.isLocked();
+            const locked = await this.vaultTimeoutService.isLocked();
             if (locked) {
                 this.router.navigate(['lock']);
             } else {
