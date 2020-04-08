@@ -73,7 +73,13 @@ export class EventService {
                 msg = this.i18nService.t('editedItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_Deleted:
+                msg = this.i18nService.t('permanentlyDeletedItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_SoftDeleted:
                 msg = this.i18nService.t('deletedItemId', this.formatCipherId(ev, options));
+                break;
+            case EventType.Cipher_Restored:
+                msg = this.i18nService.t('restoredItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_AttachmentCreated:
                 msg = this.i18nService.t('createdAttachmentForItem', this.formatCipherId(ev, options));

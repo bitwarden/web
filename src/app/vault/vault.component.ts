@@ -27,6 +27,7 @@ import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
 import { BulkDeleteComponent } from './bulk-delete.component';
 import { BulkMoveComponent } from './bulk-move.component';
+import { BulkRestoreComponent } from './bulk-restore.component';
 import { BulkShareComponent } from './bulk-share.component';
 import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
@@ -60,6 +61,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
     @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
     @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
+    @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef }) bulkRestoreModalRef: ViewContainerRef;
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
     @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
     @ViewChild('updateKeyTemplate', { read: ViewContainerRef }) updateKeyModalRef: ViewContainerRef;
@@ -72,6 +74,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     showBrowserOutdated = false;
     showUpdateKey = false;
     showPremiumCallout = false;
+    deleted: boolean = false;
 
     private modal: ModalComponent = null;
 
@@ -104,7 +107,10 @@ export class VaultComponent implements OnInit, OnDestroy {
                 this.groupingsComponent.selectedAll = true;
                 await this.ciphersComponent.reload();
             } else {
-                if (params.favorites) {
+                if (params.deleted) {
+                    this.groupingsComponent.selectedTrash = true;
+                    await this.filterDeleted();
+                } else if (params.favorites) {
                     this.groupingsComponent.selectedFavorites = true;
                     await this.filterFavorites();
                 } else if (params.type) {
@@ -165,6 +171,16 @@ export class VaultComponent implements OnInit, OnDestroy {
         await this.ciphersComponent.reload((c) => c.favorite);
         this.clearFilters();
         this.favorites = true;
+        this.go();
+    }
+
+    async filterDeleted() {
+        this.ciphersComponent.showAddNew = false;
+        this.ciphersComponent.deleted = true;
+        this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchTrash');
+        await this.ciphersComponent.reload(null, true);
+        this.clearFilters();
+        this.deleted = true;
         this.go();
     }
 
@@ -358,6 +374,10 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
+        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
@@ -387,8 +407,36 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
 
+        childComponent.permanent = this.deleted;
         childComponent.cipherIds = selectedIds;
         childComponent.onDeleted.subscribe(async () => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+    }
+
+    bulkRestore() {
+        const selectedIds = this.ciphersComponent.getSelectedIds();
+        if (selectedIds.length === 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected'));
+            return;
+        }
+
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.bulkRestoreModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<BulkRestoreComponent>(BulkRestoreComponent, this.bulkRestoreModalRef);
+
+        childComponent.cipherIds = selectedIds;
+        childComponent.onRestored.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
@@ -475,6 +523,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.collectionId = null;
         this.favorites = false;
         this.type = null;
+        this.deleted = false;
     }
 
     private go(queryParams: any = null) {
@@ -484,6 +533,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                 type: this.type,
                 folderId: this.folderId,
                 collectionId: this.collectionId,
+                deleted: this.deleted ? true : null,
             };
         }
 

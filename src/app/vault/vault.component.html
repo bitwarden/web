@@ -4,7 +4,8 @@
             <app-vault-groupings (onAllClicked)="clearGroupingFilters()" (onFavoritesClicked)="filterFavorites()"
                 (onCipherTypeClicked)="filterCipherType($event)" (onFolderClicked)="filterFolder($event.id)"
                 (onAddFolder)="addFolder()" (onEditFolder)="editFolder($event.id)"
-                (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)">
+                (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)"
+                (onTrashClicked)="filterDeleted()">
             </app-vault-groupings>
         </div>
         <div class="col-6">
@@ -27,17 +28,21 @@
                             <i class="fa fa-cog" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bulkActionsButton">
-                            <a class="dropdown-item" href="#" appStopClick (click)="bulkMove()">
+                            <a class="dropdown-item" href="#" appStopClick (click)="bulkMove()" *ngIf="!deleted">
                                 <i class="fa fa-fw fa-share" aria-hidden="true"></i>
                                 {{'moveSelected' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick (click)="bulkShare()">
+                            <a class="dropdown-item" href="#" appStopClick (click)="bulkShare()" *ngIf="!deleted">
                                 <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
                                 {{'shareSelected' | i18n}}
                             </a>
+                            <a class="dropdown-item" href="#" (click)="bulkRestore()" *ngIf="deleted">
+                                <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+                                {{'restoreSelected' | i18n}}
+                            </a>
                             <a class="dropdown-item text-danger" href="#" (click)="bulkDelete()">
                                 <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
-                                {{'deleteSelected' | i18n}}
+                                {{(deleted ? 'permanentlyDeleteSelected' : 'deleteSelected') | i18n}}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" appStopClick (click)="selectAll(true)">
@@ -50,7 +55,7 @@
                             </a>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addCipher()">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addCipher()" *ngIf="!deleted">
                         <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'addItem' | i18n}}
                     </button>
                 </div>
@@ -118,6 +123,7 @@
 <ng-template #share></ng-template>
 <ng-template #collections></ng-template>
 <ng-template #bulkDeleteTemplate></ng-template>
+<ng-template #bulkRestoreTemplate></ng-template>
 <ng-template #bulkMoveTemplate></ng-template>
 <ng-template #bulkShareTemplate></ng-template>
 <ng-template #updateKeyTemplate></ng-template>
