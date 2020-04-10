@@ -72,7 +72,7 @@
                                     type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
                                     [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password"
                                     [disabled]="cipher.isDeleted">
-                                <div class="input-group-append" *ngIf="!cipher.isDeleted">
+                                <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
                                         tabindex="-1">
@@ -88,11 +88,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="!cipher.isDeleted">
+                    <div class="row">
                         <div class="col-6 form-group">
                             <label for="loginTotp">{{'authenticatorKeyTotp' | i18n}}</label>
                             <input id="loginTotp" type="text" name="Login.Totp" class="form-control text-monospace"
-                                [(ngModel)]="cipher.login.totp" appInputVerbatim>
+                                [(ngModel)]="cipher.login.totp" appInputVerbatim [disabled]="cipher.isDeleted">
                         </div>
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
@@ -137,7 +137,7 @@
                                     <input class="form-control" id="loginUri{{i}}" type="text"
                                         name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" [disabled]="cipher.isDeleted"
                                         placeholder="{{'ex' | i18n}} https://google.com" appInputVerbatim>
-                                    <div class="input-group-append" *ngIf="!cipher.isDeleted">
+                                    <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'launch' | i18n}}" (click)="launch(u)"
                                             [disabled]="!u.canLaunch" tabindex="-1">
@@ -203,7 +203,7 @@
                             <div class="input-group">
                                 <input id="cardNumber" class="form-control" type="text" name="Card.Number"
                                     [(ngModel)]="cipher.card.number" appInputVerbatim [disabled]="cipher.isDeleted">
-                                <div class="input-group-append" *ngIf="!cipher.isDeleted">
+                                <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyNumber' | i18n}}"
                                         (click)="copy(cipher.card.number, 'number', 'Number')" tabindex="-1">
@@ -234,7 +234,7 @@
                                     type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code"
                                     [(ngModel)]="cipher.card.code" appInputVerbatim autocomplete="new-password"
                                     [disabled]="cipher.isDeleted">
-                                <div class="input-group-append" *ngIf="!cipher.isDeleted">
+                                <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
                                         tabindex="-1">
@@ -389,7 +389,7 @@
                                 <div class="input-group" *ngIf="f.type === fieldType.Text">
                                     <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
                                         [(ngModel)]="f.value" appInputVerbatim [disabled]="cipher.isDeleted">
-                                    <div class="input-group-append" *ngIf="!cipher.isDeleted">
+                                    <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'copyValue' | i18n}}"
                                             (click)="copy(f.value, 'value', 'Field')" tabindex="-1">
@@ -402,7 +402,7 @@
                                         name="Field.Value{{i}}" [(ngModel)]="f.value"
                                         class="form-control text-monospace" appInputVerbatim
                                         autocomplete="new-password" [disabled]="cipher.isDeleted">
-                                    <div class="input-group-append" *ngIf="!cipher.isDeleted">
+                                    <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
                                             tabindex="-1">
