@@ -12,13 +12,12 @@ import { CipherService } from 'jslib/abstractions/cipher.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
 @Component({
-    selector: 'app-vault-bulk-delete',
-    templateUrl: 'bulk-delete.component.html',
+    selector: 'app-vault-bulk-restore',
+    templateUrl: 'bulk-restore.component.html',
 })
-export class BulkDeleteComponent {
+export class BulkRestoreComponent {
     @Input() cipherIds: string[] = [];
-    @Input() permanent: boolean = false;
-    @Output() onDeleted = new EventEmitter();
+    @Output() onRestored = new EventEmitter();
 
     formPromise: Promise<any>;
 
@@ -26,12 +25,10 @@ export class BulkDeleteComponent {
         private toasterService: ToasterService, private i18nService: I18nService) { }
 
     async submit() {
-        this.formPromise = this.permanent ? this.cipherService.deleteManyWithServer(this.cipherIds) :
-            this.cipherService.softDeleteManyWithServer(this.cipherIds);
+        this.formPromise = this.cipherService.restoreManyWithServer(this.cipherIds);
         await this.formPromise;
-        this.onDeleted.emit();
-        this.analytics.eventTrack.next({ action: 'Bulk Deleted Items' });
-        this.toasterService.popAsync('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
-            : 'deletedItems'));
+        this.onRestored.emit();
+        this.analytics.eventTrack.next({ action: 'Bulk Restored Items' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('restoredItems'));
     }
 }

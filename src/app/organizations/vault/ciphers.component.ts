@@ -41,7 +41,7 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     async load(filter: (cipher: CipherView) => boolean = null) {
         if (!this.organization.isAdmin) {
-            await super.load(filter);
+            await super.load(filter, this.deleted);
             return;
         }
         this.accessEvents = this.organization.useEvents;
@@ -65,13 +65,19 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
         this.searchPending = false;
         let filteredCiphers = this.allCiphers;
-        if (this.filter != null) {
-            filteredCiphers = filteredCiphers.filter(this.filter);
-        }
+
         if (this.searchText == null || this.searchText.trim().length < 2) {
-            this.ciphers = filteredCiphers;
+            this.ciphers = filteredCiphers.filter((c) => {
+                if (c.isDeleted !== this.deleted) {
+                    return false;
+                }
+                return this.filter == null || this.filter(c);
+            });
         } else {
-            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText);
+            if (this.filter != null) {
+                filteredCiphers = filteredCiphers.filter(this.filter);
+            }
+            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText, this.deleted);
         }
         await this.resetPaging();
     }
@@ -86,9 +92,9 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     protected deleteCipher(id: string) {
         if (!this.organization.isAdmin) {
-            return super.deleteCipher(id);
+            return super.deleteCipher(id, this.deleted);
         }
-        return this.apiService.deleteCipherAdmin(id);
+        return this.deleted ? this.apiService.deleteCipherAdmin(id) : this.apiService.putDeleteCipherAdmin(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {

@@ -49,8 +49,9 @@ export class VaultComponent implements OnInit, OnDestroy {
     @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
 
     organization: Organization;
-    collectionId: string;
-    type: CipherType;
+    collectionId: string = null;
+    type: CipherType = null;
+    deleted: boolean = false;
 
     private modal: ModalComponent = null;
 
@@ -61,7 +62,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
+        const queryParams = this.route.parent.params.subscribe(async (params) => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
@@ -92,7 +93,10 @@ export class VaultComponent implements OnInit, OnDestroy {
                     this.groupingsComponent.selectedAll = true;
                     await this.ciphersComponent.reload();
                 } else {
-                    if (qParams.type) {
+                    if (qParams.deleted) {
+                        this.groupingsComponent.selectedTrash = true;
+                        await this.filterDeleted(true);
+                    } else if (qParams.type) {
                         const t = parseInt(qParams.type, null);
                         this.groupingsComponent.selectedType = t;
                         await this.filterCipherType(t, true);
@@ -116,6 +120,10 @@ export class VaultComponent implements OnInit, OnDestroy {
                     queryParamsSub.unsubscribe();
                 }
             });
+
+            if (queryParams != null) {
+                queryParams.unsubscribe();
+            }
         });
     }
 
@@ -125,6 +133,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async clearGroupingFilters() {
         this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.deleted = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
         await this.ciphersComponent.applyFilter();
         this.clearFilters();
@@ -133,6 +142,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async filterCipherType(type: CipherType, load = false) {
         this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.deleted = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         const filter = (c: CipherView) => c.type === type;
         if (load) {
@@ -147,6 +157,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async filterCollection(collectionId: string, load = false) {
         this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.deleted = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
         const filter = (c: CipherView) => {
             if (collectionId === 'unassigned') {
@@ -162,6 +173,20 @@ export class VaultComponent implements OnInit, OnDestroy {
         }
         this.clearFilters();
         this.collectionId = collectionId;
+        this.go();
+    }
+
+    async filterDeleted(load: boolean = false) {
+        this.ciphersComponent.showAddNew = false;
+        this.ciphersComponent.deleted = true;
+        this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchTrash');
+        if (load) {
+            await this.ciphersComponent.reload(null, true);
+        } else {
+            await this.ciphersComponent.applyFilter(null);
+        }
+        this.clearFilters();
+        this.deleted = true;
         this.go();
     }
 
@@ -255,6 +280,10 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
+        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
@@ -299,6 +328,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     private clearFilters() {
         this.collectionId = null;
         this.type = null;
+        this.deleted = false;
     }
 
     private go(queryParams: any = null) {
@@ -306,6 +336,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             queryParams = {
                 type: this.type,
                 collectionId: this.collectionId,
+                deleted: this.deleted ? true : null,
             };
         }
 

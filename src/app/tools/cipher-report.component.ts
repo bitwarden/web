@@ -62,6 +62,10 @@ export class CipherReportComponent {
             this.modal.close();
             await this.load();
         });
+        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.load();
+        });
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
