@@ -122,7 +122,7 @@ export class PeopleComponent implements OnInit {
     }
 
     get allCount() {
-        return this.allUsers.length;
+        return this.allUsers != null ? this.allUsers.length : 0;
     }
 
     get invitedCount() {
