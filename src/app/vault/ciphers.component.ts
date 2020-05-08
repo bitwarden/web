@@ -100,18 +100,43 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (this.actionPromise != null) {
             return;
         }
+        const permanent = c.isDeleted;
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteItemConfirmation'), this.i18nService.t('deleteItem'),
+            this.i18nService.t(permanent ? 'permanentlyDeleteItemConfirmation' : 'deleteItemConfirmation'),
+            this.i18nService.t(permanent ? 'permanentlyDeleteItem' : 'deleteItem'),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
         }
 
         try {
-            this.actionPromise = this.deleteCipher(c.id);
+            this.actionPromise = this.deleteCipher(c.id, permanent);
             await this.actionPromise;
             this.analytics.eventTrack.next({ action: 'Deleted Cipher' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedItem'));
+            this.toasterService.popAsync('success', null, this.i18nService.t(permanent ? 'permanentlyDeletedItem'
+                : 'deletedItem'));
+            this.refresh();
+        } catch { }
+        this.actionPromise = null;
+    }
+
+    async restore(c: CipherView): Promise<boolean> {
+        if (this.actionPromise != null || !c.isDeleted) {
+            return;
+        }
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('restoreItemConfirmation'),
+            this.i18nService.t('restoreItem'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        try {
+            this.actionPromise = this.cipherService.restoreWithServer(c.id);
+            await this.actionPromise;
+            this.analytics.eventTrack.next({ action: 'Restored Cipher' });
+            this.toasterService.popAsync('success', null, this.i18nService.t('restoredItem'));
             this.refresh();
         } catch { }
         this.actionPromise = null;
@@ -134,8 +159,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         }
     }
 
-    protected deleteCipher(id: string) {
-        return this.cipherService.deleteWithServer(id);
+    protected deleteCipher(id: string, permanent: boolean) {
+        return permanent ? this.cipherService.deleteWithServer(id) : this.cipherService.softDeleteWithServer(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {

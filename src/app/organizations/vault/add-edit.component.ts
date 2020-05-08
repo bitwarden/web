@@ -94,6 +94,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         if (!this.organization.isAdmin) {
             return super.deleteCipher();
         }
-        return this.apiService.deleteCipherAdmin(this.cipherId);
+        return this.cipher.isDeleted ? this.apiService.deleteCipherAdmin(this.cipherId)
+            : this.apiService.putDeleteCipherAdmin(this.cipherId);
     }
 }

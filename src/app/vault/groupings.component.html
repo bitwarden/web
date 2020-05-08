@@ -20,6 +20,11 @@
                     <i class="fa-li fa fa-fw fa-star"></i>{{'favorites' | i18n}}
                 </a>
             </li>
+            <li [ngClass]="{active: selectedTrash}" *ngIf="showTrash">
+                <a href="#" appStopClick (click)="selectTrash()">
+                    <i class="fa-li fa fa-fw fa-trash-o"></i>{{'trash' | i18n}}
+                </a>
+            </li>
         </ul>
         <h3>{{'types' | i18n}}</h3>
         <ul class="fa-ul card-ul">

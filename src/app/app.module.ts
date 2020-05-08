@@ -145,6 +145,7 @@ import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { BulkDeleteComponent } from './vault/bulk-delete.component';
 import { BulkMoveComponent } from './vault/bulk-move.component';
+import { BulkRestoreComponent } from './vault/bulk-restore.component';
 import { BulkShareComponent } from './vault/bulk-share.component';
 import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
@@ -257,6 +258,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BreachReportComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
+        BulkRestoreComponent,
         BulkShareComponent,
         CalloutComponent,
         ChangeEmailComponent,
@@ -375,6 +377,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AttachmentsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
+        BulkRestoreComponent,
         BulkShareComponent,
         CollectionsComponent,
         DeauthorizeSessionsComponent,
