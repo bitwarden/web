@@ -43,8 +43,8 @@ const moduleRules = [
             options: {
                 name: '[name].[ext]',
                 outputPath: 'images/',
-            }
-        }]
+            },
+        }],
     },
     {
         test: /\.scss$/,
@@ -53,10 +53,10 @@ const moduleRules = [
                 loader: MiniCssExtractPlugin.loader,
                 options: {
                     publicPath: '../',
-                }
+                },
             },
             'css-loader',
-            'sass-loader'
+            'sass-loader',
         ],
     },
     // Hide System.import warnings. ref: https://github.com/angular/angular/issues/21560
@@ -102,7 +102,7 @@ const plugins = [
     ]),
     new MiniCssExtractPlugin({
         filename: '[name].[hash].css',
-        chunkFilename: '[id].[hash].css'
+        chunkFilename: '[id].[hash].css',
     }),
     new webpack.DefinePlugin({
         'process.env': {
