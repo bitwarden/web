@@ -97,7 +97,5 @@ export class OptionsComponent implements OnInit {
             }
         }
         this.vaultTimeoutAction = newValue;
-        await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout != null ? this.vaultTimeout : null,
-            this.vaultTimeoutAction);
     }
 }
