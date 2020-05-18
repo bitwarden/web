@@ -1143,13 +1143,13 @@
     "message": "Kirjoita pääsalasanasi muokataksesi kaksivaihekirjautumisen asetuksia."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Follow these steps to set up two-step login with an authenticator app:"
+    "message": "Seuraa näitä vaiheita ottaaksesi kaksivaiheinen tunnistaminen käyttöön todennussovelluksella:"
   },
   "twoStepAuthenticatorDownloadApp": {
     "message": "Lataa kaksivaiheisen tunnistautumisen sovellus"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "Need a two-step authenticator app? Download one of the following"
+    "message": "Tarvitsetko kaksivaiheisen tunnistamisen todennussovelluksen? Lataa yksi seuraavista"
   },
   "iosDevices": {
     "message": "iOS-laitteet"
@@ -1188,7 +1188,7 @@
     "message": "Aseta YubiKey tietokoneesi USB-porttiin."
   },
   "twoFactorYubikeySelectKey": {
-    "message": "Select the first empty YubiKey input field below."
+    "message": "Valitse ensimmäinen tyhjä YubiKey kenttä alta."
   },
   "twoFactorYubikeyTouchButton": {
     "message": "Kosketa YubiKeyn painiketta."
@@ -1197,7 +1197,7 @@
     "message": "Tallenna lomake."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "Alustan rajoitusten vuoksi, YubiKey:tä ei pystytä käyttämään kaikissa Bitwarden sovelluksissa. Sinun tulisi ottaa käyttöön toinen kaksivaiheisen tunnistamisen tarjoaja, jotta voit käyttää tiliäsi, kun YubiKey:tä ei voida käyttää. Tuetut alustat:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
@@ -1593,7 +1593,7 @@
     "message": "# of additional GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB /$INTERVAL$.",
+    "message": "Tilaukseesi sisältyy $SIZE$ salattua tallennustilaa. Voit saada lisätilaa $PRICE$ per GB /$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -2639,7 +2639,7 @@
     "message": "Ota yhteys tukeen antaaksesi tai päivittääksesi laskutuksessa käytettävät verotiedot."
   },
   "billingPlan": {
-    "message": "Plan",
+    "message": "Tilaus",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
@@ -2783,7 +2783,7 @@
     "message": "Ladataan"
   },
   "upgrade": {
-    "message": "Upgrade"
+    "message": "Päivitä"
   },
   "upgradeOrganization": {
     "message": "Päivitä organisaatio"
@@ -2798,13 +2798,13 @@
     "message": "Ennen kuin voit luoda organisaation, sinun tulee luoda ilmainen henkilökohtainen tili."
   },
   "refunded": {
-    "message": "Refunded"
+    "message": "Hyvitetty"
   },
   "nothingSelected": {
     "message": "Et ole valinnut mitään."
   },
   "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
+    "message": "Klikkaamalla \"Lähetä\" painiketta, hyväksyt seuraavat ehdot:",
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
@@ -2816,11 +2816,11 @@
   "filters": {
     "message": "Suodattimet"
   },
-  "lockOptions": {
-    "message": "Lukitusvalinnat"
+  "vaultTimeout": {
+    "message": "Vault Timeout"
   },
-  "lockOptionsDesc": {
-    "message": "Valitse, milloin holvisi lukittuu. Sinun on syötettävä pääsalasanasi uudelleen avataksesi lukitun holvin."
+  "vaultTimeoutDesc": {
+    "message": "Choose when your vault will timeout and perform the selected action."
   },
   "oneMinute": {
     "message": "1 minuutti"
@@ -2858,7 +2858,7 @@
     "message": "Lisenssi on vanhentunut."
   },
   "updatedUsers": {
-    "message": "Updated users"
+    "message": "Päivitetyt käyttäjät"
   },
   "selected": {
     "message": "Valittu"
@@ -3040,5 +3040,106 @@
   },
   "userPreference": {
     "message": "Käyttäjän mieltymys"
+  },
+  "vaultTimeoutAction": {
+    "message": "Vault Timeout Action"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "A locked vault requires that you re-enter your master password to access it again."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "A logged out vault requires that you re-authenticate to access it again."
+  },
+  "lock": {
+    "message": "Lock",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Trash",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Search Trash"
+  },
+  "permanentlyDelete": {
+    "message": "Permanently Delete"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Permanently Delete Selected"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Permanently Delete Item"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Are you sure you want to permanently delete this item?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Permanently Deleted item"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Permanently Deleted items"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Permanently Deleted item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "restoreSelected": {
+    "message": "Restore Selected"
+  },
+  "restoreItem": {
+    "message": "Restore Item"
+  },
+  "restoredItem": {
+    "message": "Restored Item"
+  },
+  "restoredItems": {
+    "message": "Restored Items"
+  },
+  "restoreItemConfirmation": {
+    "message": "Are you sure you want to restore this item?"
+  },
+  "restoreItems": {
+    "message": "Restore items"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Restored item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Timeout Action Confirmation"
   }
 }
