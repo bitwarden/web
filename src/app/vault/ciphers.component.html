@@ -12,7 +12,7 @@
                 <td (click)="checkCipher(c)" class="reduced-lh wrap">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)"
                         title="{{'editItem' | i18n}}">{{c.name}}</a>
-                    <ng-container *ngIf="!organization && c.organizationId && !c.isDeleted">
+                    <ng-container *ngIf="!organization && c.organizationId">
                         <i class="fa fa-share-alt" appStopProp title="{{'shared' | i18n}}" aria-hidden="true"></i>
                         <span class="sr-only">{{'shared' | i18n}}</span>
                     </ng-container>

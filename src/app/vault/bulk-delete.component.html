@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{permanent ? 'permanentlyDeleteSelectedItemsDesc' : 'deleteSelectedItemsDesc' | i18n: cipherIds.length}}
+                {{(permanent ? 'permanentlyDeleteSelectedItemsDesc' : 'deleteSelectedItemsDesc') | i18n: cipherIds.length}}
             </div>
             <div class="modal-footer">
                 <button appAutoFocus type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">

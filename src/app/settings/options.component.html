@@ -26,7 +26,7 @@
         </div>
         <div class="form-check mt-2 form-check-block">
             <input class="form-check-input" type="radio" name="vaultTimeoutAction" id="vaultTimeoutActionLogOut"
-                value="logOut" [(ngModel)]="vaultTimeoutAction">
+                value="logOut" [(ngModel)]="vaultTimeoutAction" (ngModelChange)="vaultTimeoutActionChanged($event)">
             <label class="form-check-label" for="vaultTimeoutActionLogOut">
                 {{'logOut' | i18n}}
                 <small>{{'vaultTimeoutActionLogOutDesc' | i18n}}</small>
