@@ -806,7 +806,7 @@
     "message": "Generátor hesla"
   },
   "minComplexityScore": {
-    "message": "Minimum Complexity Score"
+    "message": "Minimálna úroveň zložitosti"
   },
   "minNumbers": {
     "message": "Minimum číslic"
@@ -2051,10 +2051,10 @@
     "message": "Ľudia"
   },
   "policies": {
-    "message": "Policies"
+    "message": "Pravidlá"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "Upraviť pravidlá"
   },
   "groups": {
     "message": "Skupiny"
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "Upravené pravidlo $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "Prijatie pozvánky zlyhalo. Požiadajte administrátora organizácie, aby vám poslal novú pozvánku."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Nepodarilo sa prijať pozvánku. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2816,11 +2816,11 @@
   "filters": {
     "message": "Filtre"
   },
-  "lockOptions": {
-    "message": "Možnosti uzamknutia"
+  "vaultTimeout": {
+    "message": "Vault Timeout"
   },
-  "lockOptionsDesc": {
-    "message": "Vyberte kedy sa trezor uzamkne. Uzamknutý trezor sa dá odomknúť opätovným zadaním hlavného hesla."
+  "vaultTimeoutDesc": {
+    "message": "Choose when your vault will timeout and perform the selected action."
   },
   "oneMinute": {
     "message": "1 minúta"
@@ -2967,34 +2967,34 @@
     "message": "Predplatné musíte spravovať v obchode kde ste vykonali nákup cez aplikáciu."
   },
   "minLength": {
-    "message": "Minimum Length"
+    "message": "Minimálna dĺžka"
   },
   "clone": {
-    "message": "Clone"
+    "message": "Klonovať"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "Nastavte minimálne požiadavky pre silu hlavného hesla."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "Požadujte dvojstupňové prihlásenie pre osobné účty."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "Členovia organizácie, ktorí nemajú zapnuté dvojstupňové prihlásenie budú odstranení z organizácie a obdržia email s informáciou o tejto zmene."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "Ste členom organizácie, ktorá požaduje dvojstupňové prihlásenie do vášho použivateľského účtu. Ak odstránite všetky formy dvojstupňového prihlasovania, budete s takýchto organizácii odstránený."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "Zvoľte minimálne požiadavky pre nastavenie generátora hesiel."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "Jedno alebo viac nastavení organizácie ovplyvňujú vaše nastavenia generátora."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "Jedno alebo viac pravidiel organizácie požadujú aby vaše hlavné heslo spĺňalo nasledujúce požiadavky:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "Minimálna úroveň zložitosti $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3003,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "Minimálna dĺžka $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3012,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "Obsahuje aspoň jedno veľké písmeno"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "Obsahuje aspoň jedno malé písmeno"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "Obsahuje aspoň jednu číslicu"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "Obsahuje aspoň jeden z následujúcich špeciálnych znakov $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,15 +3030,116 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "Vaše nové heslo nespĺňa pravidlá."
   },
   "minimumNumberOfWords": {
-    "message": "Minimum Number of Words"
+    "message": "Minimálny počet slov"
   },
   "defaultType": {
-    "message": "Default Type"
+    "message": "Východzí typ"
   },
   "userPreference": {
-    "message": "User Preference"
+    "message": "Nastaví používateľ"
+  },
+  "vaultTimeoutAction": {
+    "message": "Vault Timeout Action"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "A locked vault requires that you re-enter your master password to access it again."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "A logged out vault requires that you re-authenticate to access it again."
+  },
+  "lock": {
+    "message": "Lock",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Trash",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Search Trash"
+  },
+  "permanentlyDelete": {
+    "message": "Permanently Delete"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Permanently Delete Selected"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Permanently Delete Item"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Are you sure you want to permanently delete this item?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Permanently Deleted item"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Permanently Deleted items"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Permanently Deleted item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "restoreSelected": {
+    "message": "Restore Selected"
+  },
+  "restoreItem": {
+    "message": "Restore Item"
+  },
+  "restoredItem": {
+    "message": "Restored Item"
+  },
+  "restoredItems": {
+    "message": "Restored Items"
+  },
+  "restoreItemConfirmation": {
+    "message": "Are you sure you want to restore this item?"
+  },
+  "restoreItems": {
+    "message": "Restore items"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Restored item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Timeout Action Confirmation"
   }
 }
