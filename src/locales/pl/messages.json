@@ -180,10 +180,10 @@
     "message": "Edytuj folder"
   },
   "baseDomain": {
-    "message": "Domena nadrzędna"
+    "message": "Domena podstawowa"
   },
   "host": {
-    "message": "Domena",
+    "message": "Host",
     "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
   },
   "exact": {
@@ -678,7 +678,7 @@
     "message": "Logowanie jest niedostępne"
   },
   "noTwoStepProviders": {
-    "message": "Konto ma włączoną opcję logowania dwustopniowego, jednak ta przeglądarka nie wspiera żadnego ze skonfigurowanych mechanizmów autoryzacji dwustopniowej."
+    "message": "Konto posiada włączoną opcję logowania dwustopniowego, jednak ta przeglądarka nie wspiera żadnego ze skonfigurowanych mechanizmów autoryzacji dwustopniowej."
   },
   "noTwoStepProviders2": {
     "message": "Skorzystaj z obsługiwanej przeglądarki internetowej (takiej jak Chrome) i/lub dodaj dodatkowych dostawców, którzy są lepiej wspierani przez przeglądarki (np. aplikacja uwierzytelniająca)."
@@ -1525,7 +1525,7 @@
     "message": "Dodane środki pojawią się na twoim koncie po przetworzeniu płatności. Niektóre metody płatności mogą być przetwarzane dłużej niż inne."
   },
   "makeSureEnoughCredit": {
-    "message": "Upewnij się, że na koncie jest wystarczająca ilość środków do dokonania tego zakupu. Jeśli na koncie nie ma wystarczających środków, do opłacenia brakującej różnicy zostanie użyta domyślna metoda płatności. Możesz też dodać środki do swojego konta na stronie Płatności."
+    "message": "Upewnij się, że na koncie posiadasz wystarczająca ilość środków do dokonania tego zakupu. Jeśli na koncie nie ma wystarczających środków, do opłacenia brakującej różnicy zostanie użyta domyślna metoda płatności. Możesz też dodać środki do swojego konta na stronie Płatności."
   },
   "creditAppliedDesc": {
     "message": "Środki dodane do konta mogą zostać użyte do dokonywania płatności. Dostępne środki będą automatycznie wykorzystane do opłacenia faktur wygenerowanych dla tego konta."
@@ -2816,11 +2816,11 @@
   "filters": {
     "message": "Filtry"
   },
-  "lockOptions": {
-    "message": "Czas automatycznego blokowania"
+  "vaultTimeout": {
+    "message": "Vault Timeout"
   },
-  "lockOptionsDesc": {
-    "message": "Wybierz, kiedy sejf się zablokuje. Odblokowanie sejfu będzie wymagało ponownego wpisania hasła głównego."
+  "vaultTimeoutDesc": {
+    "message": "Choose when your vault will timeout and perform the selected action."
   },
   "oneMinute": {
     "message": "1 minuta"
@@ -2979,10 +2979,10 @@
     "message": "Wymagaj od użytkowników aktywowania logowania dwustopniowego na swoich kontach osobistych."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Członkowie organizacji, którzy nie mają włączonego logowania dwustopniowego na swoim koncie osobistym, zostaną usunięci z organizacji i otrzymają wiadomość z powiadomieniem o zmianie."
+    "message": "Członkowie organizacji, którzy nie posiadają włączonej opcji logowania dwustopniowego na swoim koncie osobistym, zostaną usunięci z organizacji i otrzymają wiadomość z powiadomieniem o zmianie."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "Jesteś członkiem organizacji, która wymaga logowania dwustopniowego na koncie użytkownika. Jeśli wyłączysz wszystkich dostawców logowania dwustopniowego, zostaniesz automatycznie usunięty z tych organizacji."
+    "message": "Jesteś członkiem organizacji, która wymaga włączonej opcji logowania dwustopniowego na koncie użytkownika. Jeśli wyłączysz wszystkich dostawców logowania dwustopniowego, zostaniesz automatycznie usunięty z tych organizacji."
   },
   "passwordGeneratorPolicyDesc": {
     "message": "Ustaw minimalne wymagania dla generatora hasła."
@@ -3040,5 +3040,106 @@
   },
   "userPreference": {
     "message": "Ustawienie użytkownika"
+  },
+  "vaultTimeoutAction": {
+    "message": "Vault Timeout Action"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "A locked vault requires that you re-enter your master password to access it again."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "A logged out vault requires that you re-authenticate to access it again."
+  },
+  "lock": {
+    "message": "Lock",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Trash",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Search Trash"
+  },
+  "permanentlyDelete": {
+    "message": "Permanently Delete"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Permanently Delete Selected"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Permanently Delete Item"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Are you sure you want to permanently delete this item?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Permanently Deleted item"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Permanently Deleted items"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Permanently Deleted item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "restoreSelected": {
+    "message": "Restore Selected"
+  },
+  "restoreItem": {
+    "message": "Restore Item"
+  },
+  "restoredItem": {
+    "message": "Restored Item"
+  },
+  "restoredItems": {
+    "message": "Restored Items"
+  },
+  "restoreItemConfirmation": {
+    "message": "Are you sure you want to restore this item?"
+  },
+  "restoreItems": {
+    "message": "Restore items"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Restored item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Timeout Action Confirmation"
   }
 }
