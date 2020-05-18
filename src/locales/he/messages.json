@@ -1324,7 +1324,7 @@
     "message": "נמצאו אתרים לא מאובטחים"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:// if the website allows it.",
+    "message": "מצאנו $COUNT$ פריטים בכספת שלך המכילים כתובות לא מאובטחות. אנו ממליצים לשנות את הכתובות לתחילית https:// אם האתר מאפשר זאת.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1333,19 +1333,19 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your vault have unsecured URIs."
+    "message": "לא נמצאו פריטים בכספת המכילים כתובות לא מאובטחות."
   },
   "inactive2faReport": {
     "message": "דוח 2FA לא פעילים"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "אימות דו-שלבי (2FA) היא הגדרת אבטחה חשובה שעוזרת לאבטח את החשבון שלך. אם האתר מאפשר זאת, מומלץ לאפשר את האימות הדו-שלבי."
   },
   "inactive2faFound": {
-    "message": "Logins Without 2FA Found"
+    "message": "נמצאו פרטי כניסות שלא פעילה בהן אופציית 2FA"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "מצאנו $COUNT$ אתר(ים) בכספת שלך שלא מוגדרים לעבוד עם אימות דו-שלבי (לפי twofactorauth.org). בכדי להגן על החשבונות הללו, עליך להפעיל את האימות הדו-שלבי עבורם.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1354,7 +1354,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
+    "message": "לא נמצאו אתרים ללא אימות דו-שלבי בכספת שלך."
   },
   "instructions": {
     "message": "הוראות"
@@ -1378,13 +1378,13 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your vault have passwords that have been exposed in known data breaches."
+    "message": "לא נמצאו פריטים בכספת שלך שנחשפו בפריצות ידועות."
   },
   "checkExposedPasswords": {
-    "message": "Check Exposed Passwords"
+    "message": "בדוק אם קיימות סיסמאות שנפרצו"
   },
   "exposedXTimes": {
-    "message": "Exposed $COUNT$ time(s)",
+    "message": "נחשף $COUNT$ פעמים",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1396,7 +1396,7 @@
     "message": "דו\"ח סיסמאות חלשות"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "סיסמאות חלשות קלות לניחוש על ידי האקרים וכלים אוטומטיים לפריצת סיסמאות. מחולל הסיסמאות של Bitwarden יכול לעזור לך ליצור סיסמאות חזקות."
   },
   "weakPasswordsFound": {
     "message": "נמצאו סיסמאות חלשות"
@@ -1417,7 +1417,7 @@
     "message": "דו\"ח סיסמאות משומשות"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "אם שירות שהשתמשת בו נפרץ, שימוש באותה הסיסמה במקום אחר מאפשר להאקרים לקבל גישה לחשבונות נוספים שלך בקלות רבה. מומלץ מאוד להשתמש בסיסמה יחודית עבור כל חשבון או שירות."
   },
   "reusedPasswordsFound": {
     "message": "נמצאו סיסמאות משומשות"
@@ -1447,10 +1447,10 @@
     "message": "דו\"ח פריצת אבטחה"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "אירוע \"דליפה\" הוא תקרית שבה המידע של האתר היה נגיש בצורה לא חוקית להאקרים והם הפיצו אותו באופן פומבי. עבור על המידע שנחשף (כתובות אימייל, סיסמאות, כרטיסי אשראי וכו') ובצע את הפעולות הנחוצות, לדוגמא - לשנות את הסיסמאות שפורסמו."
   },
   "breachCheckUsernameEmail": {
-    "message": "Check any usernames or email addresses that you use."
+    "message": "בדוק את כל שמות המשתמשים או כתובות המייל שאתה משתמש בהם."
   },
   "checkBreaches": {
     "message": "בדוק פריצות אבטחה"
@@ -1482,10 +1482,10 @@
     }
   },
   "breachFound": {
-    "message": "Breached Accounts Found"
+    "message": "נמצאו חשבונות שדלפו"
   },
   "compromisedData": {
-    "message": "Compromised data"
+    "message": "מידע שנחשף"
   },
   "website": {
     "message": "אתר"
@@ -1662,25 +1662,25 @@
     "message": "המנוי בוטל."
   },
   "pendingCancellation": {
-    "message": "Pending Cancellation"
+    "message": "בקשת ביטול ממתינה"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "המנוי סומן כמיועד לביטול בסיום תקופת החיוב הנוכחית."
   },
   "reinstateSubscription": {
-    "message": "Reinstate Subscription"
+    "message": "הפעל מחדש את המנוי"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "האם אתה בטוח שברצונך להסיר את בקשת הביטול הממתינה ולהפעיל מחדש את חשבונך?"
   },
   "reinstated": {
-    "message": "The subscription has been reinstated."
+    "message": "המנוי הופעל מחדש."
   },
   "cancelConfirmation": {
-    "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
+    "message": "האם אתה בטוח שברצונך לבטל? ביטול המנוי יגרום לאיבוד כל האפשרויות השמורות למנויים בסיום מחזור החיוב הנוכחי."
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "המנוי בוטל."
   },
   "neverExpires": {
     "message": "ללא תאריך תפוגה"
@@ -1716,7 +1716,7 @@
     "message": "הסר אחסון"
   },
   "subscriptionStorage": {
-    "message": "Your subscription has a total of $MAX_STORAGE$ GB of encrypted file storage. You are currently using $USED_STORAGE$.",
+    "message": "למנוי שלך יש סך הכל $MAX_STORAGE$ GB של מקום אחסון למידע מוצפן. כרגע בשימוש $USED_STORAGE$.",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -1732,7 +1732,7 @@
     "message": "אמצעי תשלום"
   },
   "noPaymentMethod": {
-    "message": "No payment method on file."
+    "message": "אין שיטת תשלום בקובץ."
   },
   "addPaymentMethod": {
     "message": "הוסף אמצעי תשלום"
@@ -1994,7 +1994,7 @@
     "message": "Enforce 2FA with Duo"
   },
   "priorityCustomerSupport": {
-    "message": "Priority customer support"
+    "message": "קדימות בתמיכה הטכנית"
   },
   "xDayFreeTrial": {
     "message": "$COUNT$ day free trial, cancel anytime",
@@ -2051,7 +2051,7 @@
     "message": "אנשים"
   },
   "policies": {
-    "message": "Policies"
+    "message": "מדיניות"
   },
   "editPolicy": {
     "message": "Edit Policy"
@@ -2210,7 +2210,7 @@
     "message": "Enabled/updated two-step login."
   },
   "disabled2fa": {
-    "message": "Disabled two-step login."
+    "message": "בטל כניסה דו שלבית."
   },
   "recovered2fa": {
     "message": "Recovered account from two-step login."
@@ -2231,7 +2231,7 @@
     "message": "Edited organization settings."
   },
   "createdItemId": {
-    "message": "Created item $ID$.",
+    "message": "פריט שנוצר $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2240,7 +2240,7 @@
     }
   },
   "editedItemId": {
-    "message": "Edited item $ID$.",
+    "message": "פריט שנערך $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2249,7 +2249,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Deleted item $ID$.",
+    "message": "פריט שנמחק $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2258,7 +2258,7 @@
     }
   },
   "sharedItemId": {
-    "message": "Shared item $ID$.",
+    "message": "פריט ששותף $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2339,7 +2339,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Created collection $ID$.",
+    "message": "אוסף שנוצר $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2348,7 +2348,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Edited collection $ID$.",
+    "message": "אוסף שנערך $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2357,7 +2357,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Deleted collection $ID$.",
+    "message": "אוסף שנמחק $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2366,7 +2366,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Edited policy $ID$.",
+    "message": "מדיניות שנערכה $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2375,7 +2375,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Created group $ID$.",
+    "message": "קבוצה שנוצרה $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2384,7 +2384,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Edited group $ID$.",
+    "message": "קבוצה שנערכה $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2393,7 +2393,7 @@
     }
   },
   "deletedGroupId": {
-    "message": "Deleted group $ID$.",
+    "message": "קבוצה שנמחקה $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2402,7 +2402,7 @@
     }
   },
   "removedUserId": {
-    "message": "Removed user $ID$.",
+    "message": "משתמש שהוסר $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2411,7 +2411,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Created attachment for item $ID$.",
+    "message": "נוצר קובץ מצורף עבור פריט $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2420,7 +2420,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Deleted attachment for item $ID$.",
+    "message": "נמחק קובץ מצורף של פריט $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2429,7 +2429,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Edited collections for item $ID$.",
+    "message": "אוספים שנערכו של פריט $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2438,7 +2438,7 @@
     }
   },
   "invitedUserId": {
-    "message": "Invited user $ID$.",
+    "message": "משתמש שהוזמן $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2447,7 +2447,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Confirmed user $ID$.",
+    "message": "משתמש שאישר $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2456,7 +2456,7 @@
     }
   },
   "editedUserId": {
-    "message": "Edited user $ID$.",
+    "message": "משתמש שנערך $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2465,7 +2465,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Edited groups for user $ID$.",
+    "message": "קבוצות שנערכו עבור משתמש $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2579,7 +2579,7 @@
     "message": "לא ניתן לקבל את ההזמנה. בקש ממנהל הארגון שישלח הזמנה חדשה."
   },
   "inviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "לא ניתן לאשר את ההזמנה. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2591,13 +2591,13 @@
     "message": "זכור אימייל"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
+    "message": "אם אין באפשרות לגשת לחשבונך דרך השיטות הדו-שלביות הרגילות, תוכל להשתמש בקוד לשחזור האימות הדו שלבי בכדי לבטל את כל ספקי האימות הדו שלבי בחשבונך."
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "שחזר כניסה דו שלבית לחשבון"
   },
   "twoStepRecoverDisabled": {
-    "message": "Two-step login has been disabled on your account."
+    "message": "כניסה דו שלבית בוטלה בחשבונך."
   },
   "learnMore": {
     "message": "למידע נוסף"
@@ -2618,7 +2618,7 @@
     "message": "מחק ארגון"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "המשך כאן כדי למחוק את הארגון הזה ואת כל המידע המשויך. משתמשים פרטיים ישארו, אך הם לא יהיו משוייכים לארגון זה יותר."
   },
   "deleteOrganizationWarning": {
     "message": "מחיקת ארגון היא סופית. לא ניתן לבטל פעולה זו."
@@ -2633,10 +2633,10 @@
     "message": "הארגון עודכן"
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "מידע מיסים"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "אנא צור קשר עם התמיכה כדי לספק (או לעדכן) את פרטי המס עבור הקבלות שלך."
   },
   "billingPlan": {
     "message": "תוכנית",
@@ -2651,7 +2651,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "צור קשר עם תמיכת הלקוחות אם ברצונך להחליף את התוכנית שלך. אנא וודא כי יש לך שיטת תשלום פעילה בחשבון.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2674,13 +2674,13 @@
     "message": "אמת חשבון בנק"
   },
   "verifyBankAccountDesc": {
-    "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
+    "message": "ביצענו 2 מיקרו-הפקדות לחשבון הבנק שלך (לפעמים לוקח 1-2 ימי עסקים עד שהם מופיעות). הכנס כאן את הסכומים כדי לוודא את פרטי חשבון הבנק שלך."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+    "message": "אופציית תשלום באמצעות חשבון בנק זמינה אך ורק ללקוחות תושבי ארצות הברית. תצטרך לאמת את פרטי החשבון. אנו נבצע 2 מיקרו-הפקדות בתוך 1-2 ימי עסקים. הזן את הסכומים בעמוד פרטי הארגון המשלם בכדי לאמת את חשבון הבנק."
   },
   "verifyBankAccountFailureWarning": {
-    "message": "Failure to verify the bank account will result in a missed payment and your subscription being disabled."
+    "message": "בעיות באימות פרטי החשבון עלולות להסתיים בתשלומים ש'התפספסו' ויכולות לגרום למנוי שלך, להתבטל."
   },
   "verifiedBankAccount": {
     "message": "חשבון בנק אומת."
@@ -2689,7 +2689,7 @@
     "message": "חשבון בנק"
   },
   "amountX": {
-    "message": "Amount $COUNT$",
+    "message": "סכום $COUNT$",
     "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
     "placeholders": {
       "count": {
@@ -2816,11 +2816,11 @@
   "filters": {
     "message": "מסננים"
   },
-  "lockOptions": {
-    "message": "אפשרויות נעילה"
+  "vaultTimeout": {
+    "message": "Vault Timeout"
   },
-  "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+  "vaultTimeoutDesc": {
+    "message": "Choose when your vault will timeout and perform the selected action."
   },
   "oneMinute": {
     "message": "דקה אחת"
@@ -2895,10 +2895,10 @@
     "message": "Also rotate my account's encryption key"
   },
   "rotateEncKeyTitle": {
-    "message": "Rotate Encryption Key"
+    "message": "החלף מפתח הצפנה"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Are you sure you want to rotate your account's encryption key?"
+    "message": "האם אתה בטוח שברצונך להחליף (לבצע רוטציה) של מפתח ההצפנה בחשבונך?"
   },
   "attachmentsNeedFix": {
     "message": "This item has old file attachments that need to be fixed."
@@ -2970,7 +2970,7 @@
     "message": "Minimum Length"
   },
   "clone": {
-    "message": "Clone"
+    "message": "שכפול"
   },
   "masterPassPolicyDesc": {
     "message": "Set minimum requirements for master password strength."
@@ -3033,12 +3033,113 @@
     "message": "Your new master password does not meet the policy requirements."
   },
   "minimumNumberOfWords": {
-    "message": "Minimum Number of Words"
+    "message": "מספר מינימאלי של מילים"
   },
   "defaultType": {
-    "message": "Default Type"
+    "message": "סוג ברירת מחדל"
   },
   "userPreference": {
-    "message": "User Preference"
+    "message": "העדפות משתמש"
+  },
+  "vaultTimeoutAction": {
+    "message": "Vault Timeout Action"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "A locked vault requires that you re-enter your master password to access it again."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "A logged out vault requires that you re-authenticate to access it again."
+  },
+  "lock": {
+    "message": "Lock",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Trash",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Search Trash"
+  },
+  "permanentlyDelete": {
+    "message": "Permanently Delete"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Permanently Delete Selected"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Permanently Delete Item"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Are you sure you want to permanently delete this item?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Permanently Deleted item"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Permanently Deleted items"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Permanently Deleted item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "restoreSelected": {
+    "message": "Restore Selected"
+  },
+  "restoreItem": {
+    "message": "Restore Item"
+  },
+  "restoredItem": {
+    "message": "Restored Item"
+  },
+  "restoredItems": {
+    "message": "Restored Items"
+  },
+  "restoreItemConfirmation": {
+    "message": "Are you sure you want to restore this item?"
+  },
+  "restoreItems": {
+    "message": "Restore items"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Restored item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Timeout Action Confirmation"
   }
 }
