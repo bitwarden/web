@@ -2249,7 +2249,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Deleted item $ID$.",
+    "message": "Sent item $ID$ to trash.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2816,11 +2816,11 @@
   "filters": {
     "message": "Filters"
   },
-  "lockOptions": {
-    "message": "Lock Options"
+  "vaultTimeout": {
+    "message": "Vault Timeout"
   },
-  "lockOptionsDesc": {
-    "message": "Choose when your vault locks. A locked vault requires that you re-enter your master password to access it again."
+  "vaultTimeoutDesc": {
+    "message": "Choose when your vault will timeout and perform the selected action."
   },
   "oneMinute": {
     "message": "1 minute"
@@ -3040,5 +3040,106 @@
   },
   "userPreference": {
     "message": "User Preference"
+  },
+  "vaultTimeoutAction": {
+    "message": "Vault Timeout Action"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "A locked vault requires that you re-enter your master password to access it again."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "A logged out vault requires that you re-authenticate to access it again."
+  },
+  "lock": {
+    "message": "Lock",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Trash",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Search Trash"
+  },
+  "permanentlyDelete": {
+    "message": "Permanently Delete"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Permanently Delete Selected"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Permanently Delete Item"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Are you sure you want to permanently delete this item?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Permanently Deleted item"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Permanently Deleted items"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Permanently Deleted item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "restoreSelected": {
+    "message": "Restore Selected"
+  },
+  "restoreItem": {
+    "message": "Restore Item"
+  },
+  "restoredItem": {
+    "message": "Restored Item"
+  },
+  "restoredItems": {
+    "message": "Restored Items"
+  },
+  "restoreItemConfirmation": {
+    "message": "Are you sure you want to restore this item?"
+  },
+  "restoreItems": {
+    "message": "Restore items"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Restored item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Timeout Action Confirmation"
   }
 }
