@@ -201,7 +201,7 @@
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
-    "message": "Vaikeseadistus",
+    "message": "Vaike sobivuse tuvastamine",
     "description": "Default URI match detection for auto-fill."
   },
   "never": {
@@ -590,7 +590,7 @@
     "message": "Lukusta lahti"
   },
   "loggedInAsEmailOn": {
-    "message": "Sisse logitud kontoga $EMAIL$ aadressil $HOSTNAME$.",
+    "message": "Sisse logitud kontosse $EMAIL$ aadressil $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1023,7 +1023,7 @@
     "message": "Erinevad Veebihoidla kohandamise valikud."
   },
   "optionsUpdated": {
-    "message": "Seadistus on uuendatud"
+    "message": "Muudatused on rakendatud"
   },
   "language": {
     "message": "Keel"
@@ -1339,7 +1339,7 @@
     "message": "Sisselülitamata 2FA raport"
   },
   "inactive2faReportDesc": {
-    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust tõstev seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelise kinnituse sisse lülitada."
+    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust lisav seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelise kinnituse sisse lülitada."
   },
   "inactive2faFound": {
     "message": "Kaheastmelise kinnituseta kontod"
@@ -1354,7 +1354,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "Hoidlast ei leitud veebilehti, kus kaheastmelise kinnitamise seadistus on välja lülitatud."
+    "message": "Hoidlast ei leitud kontosid, kus kaheastmelise kinnitamise seadistus on välja lülitatud."
   },
   "instructions": {
     "message": "Juhised"
@@ -1399,7 +1399,7 @@
     "message": "Nõrgad paroolid on häkkerite poolt vägagi lihtasti lahtimurtavad, sest selleks kasutatakse automatiseeritud tööriistu. Bitwardeni parooli genereerija aitab sul luua paroole, mida on märksa keerulisem lahti murda."
   },
   "weakPasswordsFound": {
-    "message": "Avastatud on nõrku paroole"
+    "message": "Avastatud on nõrgad paroolid"
   },
   "weakPasswordsFoundDesc": {
     "message": "Leidsime sinu hoidlast $COUNT$ kirjet, milledel on nõrgad paroolid. Soovitame tungivalt need paroolid tugevamate vastu välja vahetada.",
@@ -1450,7 +1450,7 @@
     "message": "Andmeleke on intsident, kus sinu kasutajakonto andmed on lekkinud või häkkerite poolt varastatud. Soovitame tungivalt üle kontrollida lekkinud andmed (e-posti aadress, paroolid, krediitkaardi andmed jne) ning võtta kasutusele meetmed nende turvamiseks. Näiteks paroolivahetus."
   },
   "breachCheckUsernameEmail": {
-    "message": "Kontrolli mistahes kasutajanimesid või e-posti aadresse, mida ma kasutan."
+    "message": "Kontrollitakse mistahes kasutajanimesid või e-posti aadresse, mida kontodes kasutatakse."
   },
   "checkBreaches": {
     "message": "Kontrolli lekkeid"
@@ -1465,7 +1465,7 @@
     }
   },
   "goodNews": {
-    "message": "Head uudised",
+    "message": "Head uudised!",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
@@ -2817,10 +2817,10 @@
     "message": "Filtrid"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Hoidla ajalõpp"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Vali aeg, peale mida sooritatakse allpool valitud tegevus."
   },
   "oneMinute": {
     "message": "1 minuti pärast"
@@ -2841,7 +2841,7 @@
     "message": "4 tunni pärast"
   },
   "onRefresh": {
-    "message": "Brauseri kinnipanekul"
+    "message": "Brauseri sulgemisel"
   },
   "dateUpdated": {
     "message": "Uuendatud",
@@ -3042,45 +3042,45 @@
     "message": "Kasutaja eelistus"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Sooritatav tegevus"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Lukustamine tähendab, et hoidlale ligi pääsemiseks nõutakse ülemparooli uuesti sisestamist."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Hoidlast väljalogimine nõuab taaskordseks ligipääsuks uuesti autentimist."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Lukusta",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Prügikast",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Otsi prügikastist"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Kustuta kirje jäädavalt"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Kustuta valitud jäädavalt"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Kustuta kirje jäädavalt"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Oled kindel, et soovid selle kirje jäädavalt kustutada?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Kirje on jäädavalt kustutatud"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Kirjed on jäädavalt kustutatud"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Oled valinud jäädavaks kustutamiseks $COUNT$ kirje(t). Oled kindel, et soovid need kirjed jäädavalt kustutada?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3089,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "$ID$ kirjet on jäädavalt kustutatud.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3098,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Taasta"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Taasta valitud"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Taasta kirje"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Kirje on taastatud"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Kirjed on taastatud"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Oled kindel, et soovid selle kirje taastada?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Taasta kirjed"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Oled taastamiseks valinud $COUNT$ kirje(t). Oled kindel, et soovid kõik need kirjed taastada?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3128,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Taastas kirje $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3137,9 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Väljalogimine tähendab, et hoidlale ei pääse enam ligi ning sisselogimiseks peab konto uuesti autentima. Oled kindel, et soovid seda valikut kasutada?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Ajalõpu tegevuse kinnitamine"
   }
 }
