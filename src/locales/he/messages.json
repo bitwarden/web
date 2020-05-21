@@ -461,10 +461,10 @@
     "message": "האם אתה בטוח שברצונך למחוק פריט זה?"
   },
   "deletedItem": {
-    "message": "פריט שנמחק"
+    "message": "הפריט נשלח לסל המחזור"
   },
   "deletedItems": {
-    "message": "פריטים שנמחקו"
+    "message": "הפריטים נשלחו לסל המחזור"
   },
   "movedItems": {
     "message": "פריטים שהועברו"
@@ -1522,13 +1522,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Added credit will appear on your account after the payment has been fully processed. Some payment methods are delayed and can take longer to process than others."
+    "message": "כרטיס האשראי שנוסף יופיע בחשבונך לאחר שהתשלום יעובד במלואו. יש שיטות תשלום שלוקחות יותר זמן מאחרות."
   },
   "makeSureEnoughCredit": {
-    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+    "message": "אנא ודא כי יש בחשבונך מספיק קרדיט עבור רכישה זו. אם בחשבונך אין די קרדיט, נשתמש בשיטת התשלום המועדפת בחשבונך כדי לגבות את הפער. באפשרותך להוסיף קרדיט לחשבונך דרך עמוד החיוב."
   },
   "creditAppliedDesc": {
-    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+    "message": "ניתן להשתמש בקרדיט שבחשבונך כדי לבצע רכישות. נשתמש בקרדיט הראשון הזמין עבור חשבוניות בחשבון זה."
   },
   "goPremium": {
     "message": "שדרג לפרימיום",
@@ -1538,7 +1538,7 @@
     "message": "שדרגת לפרימיום."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "שדרג את חשבונך לפרמיום כדי להשתמש ביכולות נהדרות נוספות."
   },
   "premiumSignUpStorage": {
     "message": "1 ג'יגה של מקום אחסון מוצפן עבור קבצים מצורפים."
@@ -1590,10 +1590,10 @@
     "message": "מקום אחסון נוסף (בג'יגה)"
   },
   "additionalStorageGbDesc": {
-    "message": "# of additional GB"
+    "message": "# של ג'יגה בייט נוספים"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Your plan comes with $SIZE$ of encrypted file storage. You can add additional storage for $PRICE$ per GB /$INTERVAL$.",
+    "message": "התוכנית שלך מגיע עם $SIZE$ של אחסון מוצפן. באפשרותך להוסיף מקום אחסון נוסף במחיר $PRICE$ עבור כל GB למשך $INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1626,10 +1626,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each year. You may cancel at any time."
+    "message": "אנו נגבה לפי שיטת התשלום שבחרת - באופן מיידי. החיובים הבאים יתחדשו פעם בשנה. באפשרותך לבטל בכל עת."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "אנו נגבה לפי שיטת התשלום שבחרת - באופן מיידי. החיובים הבאים יתחדשו פעם ב$INTERVAL$. באפשרותך לבטל בכל עת.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1638,7 +1638,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your payment method will not be charged until the trial has ended. Billing will occur on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "התוכנית שבחרת מגיעה עם 7 ימי נסיון חינמי. שיטת התשלום שבחרת לא תחויב עד לתום תקופת הנסיון. ביצוע החשבון יתבצע על בסיס מתחדש בכל $INTERVAL$. באפשרותך לבטל בכל עת.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1653,7 +1653,7 @@
     "message": "כרטיס אשראי"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "לחץ על כפתור PayPal בכדי להכנס לחשבון PayPal שלך, ואז לחץ על כפתור התשלום כדי להמשיך."
   },
   "cancelSubscription": {
     "message": "בטל מנוי"
@@ -1770,7 +1770,7 @@
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
-    "message": "Any charges will appear on your statement as $STATEMENT_NAME$.",
+    "message": "חיובים בחשבונך יופיעו כ$STATEMENT_NAME$.",
     "placeholders": {
       "statement_name": {
         "content": "$1",
@@ -1779,19 +1779,19 @@
     }
   },
   "gbStorageAdd": {
-    "message": "GB of Storage To Add"
+    "message": "כמות GB של אחסון להוספה"
   },
   "gbStorageRemove": {
-    "message": "GB of Storage To Remove"
+    "message": "כמות GB של אחסון להסרה"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "הוספת כמות מקום אחסון משנה את העלויות. פעולה זו מחוייבת באופן מיידי לפי שיטת החיוב שלך. בנוסף, החיוב הבא יכלול את ההפרש היחסי ממחזור החיוב הנוכחי."
   },
   "storageRemoveNote": {
-    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
+    "message": "הסרת כמות מקום אחסון משנה את העלויות. החיוב הבא יכלול את ההפרש היחסי ממחזור החיוב הנוכחי."
   },
   "adjustedStorage": {
-    "message": "Adjusted $AMOUNT$ GB of storage.",
+    "message": "כמות האחסון שהשתנתה היא $AMOUNT$ GB.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1812,7 +1812,7 @@
     "message": "קובץ רישיון"
   },
   "licenseFileDesc": {
-    "message": "Your license file will be named something like $FILE_NAME$",
+    "message": "שם קובץ הרשיון שלך יהיה דומה ל$FILE_NAME$",
     "placeholders": {
       "file_name": {
         "content": "$1",
@@ -1821,13 +1821,13 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "To upgrade your account to a premium membership you need to upload a valid license file."
+    "message": "כדי לשדרג את החשבון שלך לפרמיום עליך להעלות קובץ רשיון תקין."
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premises hosted organization you need to upload a valid license file."
+    "message": "ליצירת שרת on-premises בארגון לך עליך להעלות קובץ רשיון תקין."
   },
   "accountEmailMustBeVerified": {
-    "message": "Your account's email address must be verified."
+    "message": "יש לאמת את כתובת האימייל שלך."
   },
   "newOrganizationDesc": {
     "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
@@ -2054,7 +2054,7 @@
     "message": "מדיניות"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "ערוך מדיניות"
   },
   "groups": {
     "message": "קבוצות"
@@ -2084,10 +2084,10 @@
     "message": "בקרת גישה"
   },
   "groupAccessAllItems": {
-    "message": "This group can access and modify all items."
+    "message": "קבוצה זו יכולה לגשת ולשנות את כל הפריטים."
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "קבוצה זו יכולה רק לגשת לאוספים שנבחרו."
   },
   "readOnly": {
     "message": "קריאה בלבד"
@@ -2249,7 +2249,7 @@
     }
   },
   "deletedItemId": {
-    "message": "פריט שנמחק $ID$.",
+    "message": "פריט $ID$ נשלח לסל המחזור.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2546,7 +2546,7 @@
     "message": "אמת את האימייל שלך בכדי לאפשר גישה לכל היכולות."
   },
   "verifyEmailFirst": {
-    "message": "יש לאמת כתובת האימייל שלך."
+    "message": "ראשית יש לאמת את כתובת האימייל שלך."
   },
   "checkInboxForVerification": {
     "message": "בדוק אם קיבלת את קוד האימות באימייל."
@@ -2817,10 +2817,10 @@
     "message": "מסננים"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "משך זמן מירבי עבור חיבור לכספת"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "בחר כמה זמן יעבור כדי שהכספת תסגר לאחר חוסר פעילות ותבצע את הפעולה שנבחרה."
   },
   "oneMinute": {
     "message": "דקה אחת"
@@ -2967,7 +2967,7 @@
     "message": "עליך לנהל את המנוי מתוך החנות שבה ביצעת את הרכישות הפנימיות."
   },
   "minLength": {
-    "message": "Minimum Length"
+    "message": "אורך מינימלי"
   },
   "clone": {
     "message": "שכפול"
@@ -3042,45 +3042,45 @@
     "message": "העדפות משתמש"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "פעולה לביצוע בכספת בתום זמן החיבור"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "בכדי לקבל גישה לכספת נעולה, יש להזין את הסיסמה הראשית שוב."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "בכדי לקבל גישה לכספת שיצאו ממנה, יש לבצע אימות מחדש."
   },
   "lock": {
-    "message": "Lock",
+    "message": "נעילה",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "סל המחזור",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "חפש בסל המחזור"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "מחק לצמיתות"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "מחק לצמיתות פריטים שנבחרו"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "מחק לצמיתות פריט שנבחר"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "האם אתה בטוח שברצונך למחוק את הפריט הזה?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "פריט שנמחק לצמיתות"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "פריטים שנמחקו לצמיתות"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "בחרת $COUNT$ פריט(ים) למחיקה לצמיתות. האם אתה בטוח שברצונך למחוק את כולם?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3089,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "פריט שנמחק לצמיתות $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3098,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "שחזר"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "שחזר בחירה"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "שחזר פריט"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "פריט ששוחזר"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "פריטים ששוחזרו"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "האם אתה בטוח שברצונך לשחזר פריט זה?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "שחזר פריטים"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "בחרת $COUNT$ פריט(ים) לשחזור. האם אתה בטוח שברצונך לשחזר את כל הפריטים הללו?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3128,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "פריט ששוחזר $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3137,9 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "יציאה תגרום להסרת כל גישה שיש לך לכספת ודורשת אימות אונליין לאחר משך זמן מסויים. האם אתה בטוח שברצונך להשתמש באפשרות זו?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "אישור פעולת אימות לאחר חוסר פעילות"
   }
 }
