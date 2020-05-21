@@ -113,7 +113,7 @@ export class CollectionAddEditComponent implements OnInit {
         request.name = (await this.cryptoService.encrypt(this.name, this.orgKey)).encryptedString;
         request.externalId = this.externalId;
         request.groups = this.groups.filter((g) => (g as any).checked && !g.accessAll)
-            .map((g) => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly));
+            .map((g) => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly, !!(g as any).hidePasswords));
 
         try {
             if (this.editMode) {

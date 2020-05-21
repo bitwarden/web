@@ -78,6 +78,7 @@ export class EntityUsersComponent implements OnInit {
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
                         (user[0] as any).readOnly = s.readOnly;
+                        (user[0] as any).hidePasswords = s.hidePasswords;
                     }
                 });
             }
@@ -107,6 +108,7 @@ export class EntityUsersComponent implements OnInit {
         } else {
             if (this.entity === 'collection') {
                 (u as any).readOnly = false;
+                (u as any).hidePasswords = false;
             }
             this.selectedCount--;
         }
@@ -123,7 +125,7 @@ export class EntityUsersComponent implements OnInit {
                 this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
             } else {
                 const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
-                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly));
+                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords));
                 this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
             }
             await this.formPromise;

@@ -63,6 +63,7 @@ export class GroupAddEditComponent implements OnInit {
                         if (collection != null && collection.length > 0) {
                             (collection[0] as any).checked = true;
                             collection[0].readOnly = s.readOnly;
+                            collection[0].hidePasswords = s.hidePasswords;
                         }
                     });
                 }
@@ -99,7 +100,7 @@ export class GroupAddEditComponent implements OnInit {
         request.accessAll = this.access === 'all';
         if (!request.accessAll) {
             request.collections = this.collections.filter((c) => (c as any).checked)
-                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly));
+                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
         try {
