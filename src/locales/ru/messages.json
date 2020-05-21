@@ -461,7 +461,7 @@
     "message": "Вы действительно хотите удалить этот элемент?"
   },
   "deletedItem": {
-    "message": "Элемент удалён"
+    "message": "Элемент удален"
   },
   "deletedItems": {
     "message": "Элементы удалены"
@@ -2204,7 +2204,7 @@
     "message": "Вход выполнен."
   },
   "changedPassword": {
-    "message": "Изменён пароль аккаунта."
+    "message": "Изменен пароль аккаунта."
   },
   "enabledUpdated2fa": {
     "message": "Двухфакторная аутентификация включена/обновлена."
@@ -2249,7 +2249,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Удалён элемент $ID$.",
+    "message": "Удален элемент $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2573,7 +2573,7 @@
     "message": "Приглашение принято"
   },
   "inviteAcceptedDesc": {
-    "message": "Вы получите доступ к этой организации, как только администратор подтвердит ваше членство. Когда это произойдёт, мы отправим вам письмо."
+    "message": "Вы получите доступ к этой организации, как только администратор подтвердит ваше членство. Когда это произойдет, мы отправим вам email."
   },
   "inviteAcceptFailed": {
     "message": "Невозможно принять приглашение. Попросите администратора организации отправить новое приглашение."
@@ -2817,10 +2817,10 @@
     "message": "Фильтры"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Таймаут хранения"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Выберите время истечения хранилища и выполнения выбранного действия."
   },
   "oneMinute": {
     "message": "1 минута"
@@ -3042,45 +3042,45 @@
     "message": "Предпочтения пользователя"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Действие при таймауте"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Чтобы снова получить доступ к заблокированному хранилищу, нужно повторно ввести мастер-пароль."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Чтобы получить доступ к хранилищу после выхода из него требуется повторная авторизация."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Заблокировать",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Корзина",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Поиск в корзине"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Удалить окончательно"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Окончательно удалить выбранные"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Окончательно удалить элемент"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Вы действительно хотите окончательно удалить этот элемент?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Окончательно удалённый элемент"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Окончательно удалённые элементы"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Выбрано элементов для удаления: $COUNT$. Вы действительно хотите окончательно удалить все эти элементы?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3089,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Окончательно удалённый элемент $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3098,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Восстановить"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Восстановить выбранные"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Восстановить элемент"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Восстановленный элемент"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Восстановленные элементы"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Вы действительно хотите восстановить этот элемент?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Восстановить элементы"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Выбрано элементов для восстановления: $COUNT$. Вы действительно хотите восстановить все эти элементы?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3128,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Восстановленный элемент $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3137,9 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Выход из системы удалит доступ к хранилищу и потребует онлайн-аутентификацию по истечении периода ожидания. Вы действительно хотите использовать эту настройку?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Подтверждение действия таймаута"
   }
 }
