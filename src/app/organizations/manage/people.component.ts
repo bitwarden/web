@@ -19,6 +19,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
@@ -50,6 +51,7 @@ export class PeopleComponent implements OnInit {
     loading = true;
     organizationId: string;
     users: OrganizationUserUserDetailsResponse[];
+    pagedUsers: OrganizationUserUserDetailsResponse[];
     searchText: string;
     status: OrganizationUserStatusType = null;
     statusMap = new Map<OrganizationUserStatusType, OrganizationUserUserDetailsResponse[]>();
@@ -59,6 +61,10 @@ export class PeopleComponent implements OnInit {
     accessEvents = false;
     accessGroups = false;
 
+    protected didScroll = false;
+    protected pageSize = 100;
+
+    private pagedUsersCount = 0;
     private modal: ModalComponent = null;
     private allUsers: OrganizationUserUserDetailsResponse[];
 
@@ -67,7 +73,7 @@ export class PeopleComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private userService: UserService, private router: Router,
-        private storageService: StorageService) { }
+        private storageService: StorageService, private searchService: SearchService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -119,6 +125,23 @@ export class PeopleComponent implements OnInit {
         } else {
             this.users = this.allUsers;
         }
+        this.resetPaging();
+    }
+
+    loadMore() {
+        if (this.users.length <= this.pageSize) {
+            return;
+        }
+        const pagedLength = this.pagedUsers.length;
+        let pagedSize = this.pageSize;
+        if (pagedLength === 0 && this.pagedUsersCount > this.pageSize) {
+            pagedSize = this.pagedUsersCount;
+        }
+        if (this.users.length > pagedLength) {
+            this.pagedUsers = this.pagedUsers.concat(this.users.slice(pagedLength, pagedLength + pagedSize));
+        }
+        this.pagedUsersCount = this.pagedUsers.length;
+        this.didScroll = this.pagedUsers.length > this.pageSize;
     }
 
     get allCount() {
@@ -294,6 +317,23 @@ export class PeopleComponent implements OnInit {
         });
     }
 
+    async resetPaging() {
+        this.pagedUsers = [];
+        this.loadMore();
+    }
+
+    isSearching() {
+        return this.searchService.isSearchable(this.searchText);
+    }
+
+    isPaging() {
+        const searching = this.isSearching();
+        if (searching && this.didScroll) {
+            this.resetPaging();
+        }
+        return !searching && this.users.length > this.pageSize;
+    }
+
     private async doConfirmation(user: OrganizationUserUserDetailsResponse) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
@@ -313,6 +353,7 @@ export class PeopleComponent implements OnInit {
         let index = this.users.indexOf(user);
         if (index > -1) {
             this.users.splice(index, 1);
+            this.resetPaging();
         }
         if (this.statusMap.has(OrganizationUserStatusType.Accepted)) {
             index = this.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
