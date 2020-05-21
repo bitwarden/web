@@ -257,7 +257,7 @@
     "message": "Edytuj"
   },
   "searchCollection": {
-    "message": "Przeszukaj kolekcje"
+    "message": "Szukaj w kolekcji"
   },
   "searchFolder": {
     "message": "Szukaj w folderze"
@@ -419,7 +419,7 @@
     "message": "Załącznik został usunięty"
   },
   "deleteAttachmentConfirmation": {
-    "message": "Jesteś pewien, że chcesz usunąć ten załącznik?"
+    "message": "Czy na pewno chcesz usunąć ten załącznik?"
   },
   "attachmentSaved": {
     "message": "Załącznik został zapisany."
@@ -461,10 +461,10 @@
     "message": "Czy na pewno chcesz usunąć ten element?"
   },
   "deletedItem": {
-    "message": "Element został usunięty"
+    "message": "Element został przeniesiony do kosza"
   },
   "deletedItems": {
-    "message": "Element został usunięty"
+    "message": "Elementy zostały przeniesione do kosza"
   },
   "movedItems": {
     "message": "Przeniesione elementy"
@@ -744,7 +744,7 @@
     "message": "Edytuj kolekcje zawierające ten element. Tylko użytkownicy organizacji posiadający dostęp do tych kolekcji będą mogli zobaczyć ten element."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Wybrałeś $COUNT$ elementy(ów) do usunięcia. Czy na pewno chcesz je wszystkie usunąć?",
+    "message": "Wybrałeś elementy do usunięcia. Czy na pewno chcesz je wszystkie usunąć?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -753,7 +753,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "Wybierz folder, do którego chcesz przenieść $COUNT$ wybrane(ych) elementy(ów).",
+    "message": "Wybierz folder do którego chcesz przenieść zaznaczone elementy.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -762,7 +762,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "Zaznaczyłeś $COUNT$ elementy(ów). $SHAREABLE_COUNT$ elementy(ów) możesz udostępnić, $NONSHAREABLE_COUNT$ nie.",
+    "message": "Zaznaczone elementy: $COUNT$. Możliwe do udostępnienia: $SHAREABLE_COUNT$. Niemożliwe do udostępnienia: $NONSHAREABLE_COUNT$.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1266,7 +1266,7 @@
     "message": "Dodaj klucz bezpieczeństwa FIDO U2F do swojego konta"
   },
   "removeU2fConfirmation": {
-    "message": "Czy jesteś pewien, że chcesz usunąć ten klucz bezpieczeństwa?"
+    "message": "Czy na pewno chcesz usunąć ten klucz bezpieczeństwa?"
   },
   "readKey": {
     "message": "Odczytaj klucz"
@@ -1321,7 +1321,7 @@
     "message": "Korzystanie z niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
   },
   "unsecuredWebsitesFound": {
-    "message": "Znaleziono niezabezpieczone strony"
+    "message": "Znaleźliśmy niezabezpieczone strony"
   },
   "unsecuredWebsitesFoundDesc": {
     "message": "Znaleźliśmy elementy w Twoim sejfie zawierające niezabezpieczone adresy URI. Jeśli witryna to umożliwia, zmień schemat adresu na protokół HTTPS.",
@@ -1342,10 +1342,10 @@
     "message": "Logowanie dwustopniowe (2FA) jest ważnym ustawieniem bezpieczeństwa, które pomaga chronić Twoje konto. Jeśli witryna to umożliwia, zawsze powinieneś aktywować logowanie dwustopniowe."
   },
   "inactive2faFound": {
-    "message": "Znaleziono elementy bez włączonej opcji dwustopniowego logowania"
+    "message": "Znaleźliśmy elementy bez włączonej opcji logowania dwustopniowego"
   },
   "inactive2faFoundDesc": {
-    "message": "Znaleźliśmy $COUNT$ witryn(y) w Twoim sejfie, które mogą nie być skonfigurowane z wykorzystaniem logowania dwustopniowego (wg twofactorauth.org). Aby dodatkowo zabezpieczyć te konta, należy włączyć logowanie dwustopniowe.",
+    "message": "Znaleźliśmy witryny w sejfie, które mogą nie korzystać z opcji logowania dwustopniowego (według twofactorauth.org). Włącz logowanie dwustopniowe, aby dodatkowo zabezpieczyć te konta.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1354,7 +1354,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "W Twoim sejfie nie znaleziono stron z wyłączoną opcją dwustopniowego logowania."
+    "message": "Nie znaleźliśmy w sejfie stron z wyłączoną opcją logowania dwustopniowego."
   },
   "instructions": {
     "message": "Instrukcje"
@@ -1366,10 +1366,10 @@
     "message": "Ujawnione hasła to hasła odkryte w znanych wyciekach danych, które zostały publicznie wydane lub sprzedane w sieci przez hakerów."
   },
   "exposedPasswordsFound": {
-    "message": "Znaleziono ujawnione hasła"
+    "message": "Znaleźliśmy ujawnione hasła"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "Znaleźliśmy $COUNT$ elementów w sejfie, które zawierają ujawnione hasła w znanych wyciekach danych. Należy je zmienić.",
+    "message": "Znaleźliśmy elementy w sejfie, które zawierają ujawnione hasła w znanych wyciekach danych. Zmień te hasła.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1384,7 +1384,7 @@
     "message": "Sprawdź ujawnione hasła"
   },
   "exposedXTimes": {
-    "message": "Ujawniono $COUNT$ raz(y)",
+    "message": "Ujawnione $COUNT$ raz(y)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1399,10 +1399,10 @@
     "message": "Słabe hasła mogą być łatwo odgadnięte przez hakerów i zautomatyzowane narzędzia używane do łamania haseł. Generator haseł Bitwarden tworzy silne hasła."
   },
   "weakPasswordsFound": {
-    "message": "Znaleziono słabe hasła"
+    "message": "Znaleźliśmy słabe hasła"
   },
   "weakPasswordsFoundDesc": {
-    "message": "Znaleźliśmy $COUNT$ element(ów) w sejfie, które zawierają słabe hasła. Powinieneś zaktualizować je o silniejsze hasła.",
+    "message": "Znaleźliśmy elementy w sejfie, które zawierają słabe hasła. Zaktualizuj je na silniejsze hasła.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1420,10 +1420,10 @@
     "message": "Jeśli korzystasz z tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Używaj unikalnych haseł dla każdego z kont lub usług."
   },
   "reusedPasswordsFound": {
-    "message": "Znaleziono identyczne hasła"
+    "message": "Znaleźliśmy identyczne hasła"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "Znaleźliśmy $COUNT$ hasło(a), które powtarza(ją) się w sejfie. Należy je zmienić, aby były unikalne.",
+    "message": "Znaleźliśmy hasła ($COUNT$), które powtarzają się w sejfie. Zmień je, aby były unikalne.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1432,10 +1432,10 @@
     }
   },
   "noReusedPasswords": {
-    "message": "Nie znaleziono identycznych haseł w sejfie."
+    "message": "Nie znaleźliśmy identycznych haseł w sejfie."
   },
   "reusedXTimes": {
-    "message": "Użyte $COUNT$ razy",
+    "message": "Wykorzystane $COUNT$ razy",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1469,7 +1469,7 @@
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
-    "message": "Nazwa użytkownika $USERNAME$ została znaleziona w $COUNT$ wyciekach danych.",
+    "message": "Nazwa użytkownika $USERNAME$ została znaleziona w wyciekach danych.",
     "placeholders": {
       "username": {
         "content": "$1",
@@ -1482,7 +1482,7 @@
     }
   },
   "breachFound": {
-    "message": "Znaleziono naruszone konta"
+    "message": "Znaleźliśmy naruszone konta"
   },
   "compromisedData": {
     "message": "Wykradzione dane"
@@ -1638,7 +1638,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Płatność będzie realizowana co $INTERVAL$. Możesz zrezygnować z niej w dowolnej chwili.",
+    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Płatność będzie realizowana co $INTERVAL$. Możesz zrezygnować z niego w każdej chwili.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1934,7 +1934,7 @@
     }
   },
   "limitedUsers": {
-    "message": "Ograniczone do $COUNT$ użytkowników (wliczając Ciebie)",
+    "message": "Ograniczony do $COUNT$ użytkowników (łącznie z Tobą)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1943,7 +1943,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Ograniczone do $COUNT$ kolekcji",
+    "message": "Ograniczony do $COUNT$ kolekcji",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1964,7 +1964,7 @@
     "message": "Dodaj i udostępnij nieograniczonej liczbie użytkowników"
   },
   "createUnlimitedCollections": {
-    "message": "Stwórz nieograniczoną liczbę kolekcji"
+    "message": "Utwórz nieograniczoną liczbę kolekcji"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ szyfrowanej przestrzeni",
@@ -1997,7 +1997,7 @@
     "message": "Priorytetowe wsparcie klienta"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ dni bezpłatnego okresu testowego, z możliwością rezygnacji w każdym momencie",
+    "message": "$COUNT$-dniowy okres próbny z możliwością rezygnacji w każdej chwili",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2072,7 +2072,7 @@
     "message": "Czy na pewno chcesz usunąć tę grupę?"
   },
   "removeUserConfirmation": {
-    "message": "Czy jesteś pewien, że chcesz usunąć tego użytkownika?"
+    "message": "Czy na pewno chcesz usunąć tego użytkownika?"
   },
   "externalId": {
     "message": "Identyfikator zewnętrzny"
@@ -2114,7 +2114,7 @@
     "message": "Zaproś nowego użytkownika do Twojej organizacji poprzez wpisanie poniżej jego adresu e-mail. Jeśli nie posiada on jeszcze konta Bitwarden, zostanie poproszony o jego utworzenie."
   },
   "inviteMultipleEmailDesc": {
-    "message": "Możesz zaprosić do $COUNT$ użytkowników jednocześnie, wprowadzając ich adresy e-mail oddzielone przecinkiem.",
+    "message": "Możesz zaprosić do $COUNT$ użytkowników jednocześnie, wpisując ich adresy e-mail oddzielone przecinkiem.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2249,7 +2249,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Element $ID$ został usunięty.",
+    "message": "Element $ID$ został przeniesiony do kosza.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2817,10 +2817,10 @@
     "message": "Filtry"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Blokowanie sejfu"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Wybierz kiedy sejf zostanie zablokowany i wykonaj następującą akcję."
   },
   "oneMinute": {
     "message": "1 minuta"
@@ -2848,7 +2848,7 @@
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Hasło zostało zaktualizowane",
+    "message": "Aktualizacja hasła",
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
@@ -3042,45 +3042,45 @@
     "message": "Ustawienie użytkownika"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Sposób blokowania sejfu"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Po zablokowaniu sejfu, musisz ponownie wpisać hasło główne, aby uzyskać do niego dostęp."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Po wylogowaniu się z sejfu, musisz ponownie zalogować się, aby uzyskać do niego dostęp."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Zablokuj",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Kosz",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Szukaj w koszu"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Usuń trwale"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Usuń trwale zaznaczone"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Usuń trwale element"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Czy na pewno chcesz usunąć trwale ten element?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Element został trwale usunięty"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Elementy zostały trwale usunięte"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Wybrałeś elementy do trwałego usunięcia. Czy na pewno chcesz je wszystkie usunąć trwale?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3089,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Element $ID$ został trwale usunięty.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3098,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Przywróć"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Przywróć zaznaczone"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Przywróć element"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Element został przywrócony"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Elementy zostały przywrócone"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Czy na pewno chcesz przywrócić ten element?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Przywróć elementy"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Wybrałeś elementy do przywrócenia. Czy na pewno chcesz je wszystkie przywrócić?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3128,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Element $ID$ został przywrócony.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3137,9 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Po wylogowaniu się z sejfu musisz ponownie zalogować się, aby uzyskać do niego dostęp. Czy na pewno chcesz użyć tego ustawienia?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Potwierdzenie sposobu blokowania sejfu"
   }
 }

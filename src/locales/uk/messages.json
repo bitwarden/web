@@ -461,10 +461,10 @@
     "message": "Ви дійсно хочете видалити цей запис?"
   },
   "deletedItem": {
-    "message": "Запис видалено"
+    "message": "Запис перенесено до смітника"
   },
   "deletedItems": {
-    "message": "Записи видалено"
+    "message": "Записи перенесено до смітника"
   },
   "movedItems": {
     "message": "Записи переміщено"
@@ -2249,7 +2249,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Видалений елемент $ID$.",
+    "message": "Запис $ID$ перенесено до смітника.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2817,10 +2817,10 @@
     "message": "Фільтри"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Час очікування сховища"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Оберіть дію, яка виконається після завершення часу очікування вашого сховища."
   },
   "oneMinute": {
     "message": "1 хвилина"
@@ -3042,45 +3042,45 @@
     "message": "Користувацьке налаштування"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Дія після часу очікування сховища"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Щоб відновити доступ до заблокованого сховища, необхідно повторно ввести головний пароль."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Щоб відновити доступ до сховища після виходу, необхідно повторно авторизуватись."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Заблокувати",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Смітник",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Пошук у смітнику"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Остаточно видалити"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Остаточно видалити вибрані"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Остаточно видалити запис"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Ви дійсно хочете остаточно видалити цей запис?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Запис остаточно видалено"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Записи остаточно видалено"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Ви вибрали $COUNT$ записів для остаточного видалення. Ви справді хочете остаточно видалити всі ці записи?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3089,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Запис $ID$ остаточно видалено.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3098,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Відновити"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Відновити вибрані"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Відновити запис"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Запис відновлено"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Записи відновлено"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Ви дійсно хочете відновити цей запис?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Відновити записи"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Ви вибрали $COUNT$ записів для відновлення. Ви справді хочете відновити всі ці записи?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3128,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Запис $ID$ відновлено.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3137,9 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Вихід скасує всі права доступу до вашого сховища і вимагатиме авторизації після завершення часу очікування. Ви дійсно хочете використати цей параметр?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Підтвердження дії часу очікування"
   }
 }
