@@ -16,9 +16,11 @@
     <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
-<ng-container *ngIf="!loading && (collections | search:searchText:'name':'id') as searchedCollections">
+<ng-container
+    *ngIf="!loading && (isPaging() ? pagedCollections : collections | search:searchText:'name':'id') as searchedCollections">
     <p *ngIf="!searchedCollections.length">{{'noCollectionsInList' | i18n}}</p>
-    <table class="table table-hover table-list" *ngIf="searchedCollections.length">
+    <table class="table table-hover table-list" *ngIf="searchedCollections.length" infiniteScroll
+        [infiniteScrollDistance]="1" [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
         <tbody>
             <tr *ngFor="let c of searchedCollections">
                 <td>

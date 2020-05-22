@@ -35,13 +35,15 @@
     <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
-<ng-container *ngIf="!loading && (users | search:searchText:'name':'email':'id') as searchedUsers">
+<ng-container
+    *ngIf="!loading && (isPaging() ? pagedUsers : users | search:searchText:'name':'email':'id') as searchedUsers">
     <p *ngIf="!searchedUsers.length">{{'noUsersInList' | i18n}}</p>
     <ng-container *ngIf="searchedUsers.length">
         <app-callout type="info" title="{{'confirmUsers' | i18n}}" icon="fa-check-circle" *ngIf="showConfirmUsers">
             {{'usersNeedConfirmed' | i18n}}
         </app-callout>
-        <table class="table table-hover table-list">
+        <table class="table table-hover table-list" infiniteScroll [infiniteScrollDistance]="1"
+            [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
             <tbody>
                 <tr *ngFor="let u of searchedUsers">
                     <td width="30">
