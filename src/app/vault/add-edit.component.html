@@ -55,7 +55,7 @@
                                 <div class="ml-auto d-flex" *ngIf="!cipher.isDeleted">
                                     <a href="#" class="d-block mr-2" appStopClick
                                         appA11yTitle="{{'generatePassword' | i18n}}" (click)="generatePassword()"
-                                        *ngIf="cipher.showPassword">
+                                        *ngIf="cipher.viewPassword">
                                         <i class="fa fa-lg fa-fw fa-refresh" aria-hidden="true"></i>
                                     </a>
                                     <a href="#" class="d-block" #checkPasswordBtn appStopClick
@@ -72,18 +72,18 @@
                                 <input id="loginPassword" class="form-control text-monospace"
                                     type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
                                     [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password"
-                                    [disabled]="cipher.isDeleted || !cipher.showPassword">
+                                    [disabled]="cipher.isDeleted || !cipher.viewPassword">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
-                                        tabindex="-1" [disabled]="!cipher.showPassword">
+                                        tabindex="-1" [disabled]="!cipher.viewPassword">
                                         <i class="fa fa-lg" aria-hidden="true"
                                             [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                                     </button>
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyPassword' | i18n}}"
                                         (click)="copy(cipher.login.password, 'password', 'Password')" tabindex="-1"
-                                        [disabled]="!cipher.showPassword">
+                                        [disabled]="!cipher.viewPassword">
                                         <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                     </button>
                                 </div>
