@@ -73,6 +73,7 @@ export class CollectionAddEditComponent implements OnInit {
                         if (group != null && group.length > 0) {
                             (group[0] as any).checked = true;
                             (group[0] as any).readOnly = s.readOnly;
+                            (group[0] as any).hidePasswords = s.hidePasswords;
                         }
                     });
                 }
@@ -97,6 +98,7 @@ export class CollectionAddEditComponent implements OnInit {
         (g as any).checked = select == null ? !(g as any).checked : select;
         if (!(g as any).checked) {
             (g as any).readOnly = false;
+            (g as any).hidePasswords = false;
         }
     }
 
