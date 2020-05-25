@@ -188,7 +188,8 @@ input, select, textarea {
 }
 
 .container {
-    width: 980px;
+    min-width: 980px;
+    width: 90%;
     max-width: none !important;
     margin: 0 auto;
     padding: 0;
@@ -831,4 +832,13 @@ img.logo {
 
 .cursor-move {
     cursor: move !important;
+}
+
+.col-3 {
+    max-width: 240px;
+}
+
+.col-6 {
+    flex: 0 0 calc(100% - 500px);
+    max-width: none;
 }
