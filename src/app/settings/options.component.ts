@@ -25,6 +25,7 @@ export class OptionsComponent implements OnInit {
     vaultTimeoutAction: string = 'lock';
     disableIcons: boolean;
     enableGravatars: boolean;
+    enableUIScaling: boolean;
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
@@ -66,6 +67,7 @@ export class OptionsComponent implements OnInit {
         this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
+        this.enableUIScaling = await this.storageService.get<boolean>('enableUIScaling');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
     }
 
@@ -76,6 +78,8 @@ export class OptionsComponent implements OnInit {
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.save('enableGravatars', this.enableGravatars);
+        await this.storageService.save('enableUIScaling', this.enableUIScaling);
+        await this.stateService.save('enableUIScaling', this.enableUIScaling);
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         this.analytics.eventTrack.next({ action: 'Saved Options' });
         if (this.locale !== this.startingLocale) {

@@ -1,4 +1,4 @@
-<div class="container page-content">
+<div class="container page-content" [ngClass]="{'full-width': this.scaleUIWidth}">
     <div class="row">
         <div class="col-3">
             <app-org-vault-groupings [showFolders]="false" [showFavorites]="false" [showTrash]="true"

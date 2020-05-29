@@ -42,6 +42,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
+import { StorageService } from 'jslib/abstractions/storage.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
@@ -75,6 +76,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     showUpdateKey = false;
     showPremiumCallout = false;
     deleted: boolean = false;
+    scaleUIWidth: boolean = false;
 
     private modal: ModalComponent = null;
 
@@ -84,9 +86,11 @@ export class VaultComponent implements OnInit, OnDestroy {
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private broadcasterService: BroadcasterService, private storageService: StorageService,
+        private ngZone: NgZone) { }
 
     async ngOnInit() {
+        this.scaleUIWidth = await this.storageService.get<boolean>('enableUIScaling');
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
 
