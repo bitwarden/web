@@ -192,6 +192,10 @@ input, select, textarea {
     max-width: none !important;
     margin: 0 auto;
     padding: 0;
+    &.full-width {
+        min-width: 980px;
+        width: 90%;
+    }
 }
 
 .page-content {
