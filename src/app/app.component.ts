@@ -35,6 +35,7 @@ import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { NotificationsService } from 'jslib/abstractions/notifications.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
@@ -69,6 +70,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private lastActivity: number = null;
     private idleTimer: number = null;
     private isIdle = false;
+    private enableFullWidth = false;
 
     constructor(private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
         private broadcasterService: BroadcasterService, private userService: UserService,
@@ -83,7 +85,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
         private stateService: StateService, private eventService: EventService,
-        private policyService: PolicyService) { }
+        private policyService: PolicyService, private messagingService: MessagingService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -148,6 +150,10 @@ export class AppComponent implements OnDestroy, OnInit {
                             properties: { label: message.label },
                         });
                         break;
+                    case 'setFullWidth':
+                        this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
+                        this.setFullWidth();
+                        break;
                     default:
                         break;
                 }
@@ -166,6 +172,7 @@ export class AppComponent implements OnDestroy, OnInit {
                 }
             }
         });
+        this.messagingService.send('setFullWidth');
     }
 
     ngOnDestroy() {
@@ -260,6 +267,14 @@ export class AppComponent implements OnDestroy, OnInit {
             this.notificationsService.disconnectFromInactivity();
         } else {
             this.notificationsService.reconnectFromActivity();
+        }
+    }
+
+    private async setFullWidth() {
+        if (this.enableFullWidth) {
+            document.body.classList.add('full-width');
+        } else {
+            document.body.classList.remove('full-width');
         }
     }
 }
