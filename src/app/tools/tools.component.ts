@@ -5,7 +5,6 @@ import {
 
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
 
 @Component({
     selector: 'app-tools',
@@ -13,12 +12,10 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 })
 export class ToolsComponent implements OnInit {
     canAccessPremium = false;
-    scaleUIWidth: boolean = false;
 
-    constructor(private userService: UserService, private messagingService: MessagingService, private storageService: StorageService) { }
+    constructor(private userService: UserService, private messagingService: MessagingService) { }
 
     async ngOnInit() {
-        this.scaleUIWidth = await this.storageService.get<boolean>('enableUIScaling');
         this.canAccessPremium = await this.userService.canAccessPremium();
     }
 

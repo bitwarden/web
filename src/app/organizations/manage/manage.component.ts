@@ -5,7 +5,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from 'jslib/abstractions/user.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 
@@ -18,13 +17,11 @@ export class ManageComponent implements OnInit {
     accessPolicies = false;
     accessGroups = false;
     accessEvents = false;
-    scaleUIWidth: boolean = false;
 
-    constructor(private route: ActivatedRoute, private userService: UserService, private storageService: StorageService) { }
+    constructor(private route: ActivatedRoute, private userService: UserService) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
-            this.scaleUIWidth = await this.storageService.get<boolean>('enableUIScaling');
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.accessPolicies = this.organization.usePolicies;
             this.accessEvents = this.organization.useEvents;

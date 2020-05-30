@@ -19,7 +19,6 @@ import { SyncService } from 'jslib/abstractions/sync.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -53,7 +52,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     collectionId: string = null;
     type: CipherType = null;
     deleted: boolean = false;
-    scaleUIWidth: boolean = false;
 
     private modal: ModalComponent = null;
 
@@ -61,11 +59,10 @@ export class VaultComponent implements OnInit, OnDestroy {
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
         private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
-        private broadcasterService: BroadcasterService, private storageService: StorageService, private ngZone: NgZone) { }
+        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
         const queryParams = this.route.parent.params.subscribe(async (params) => {
-            this.scaleUIWidth = await this.storageService.get<boolean>('enableUIScaling');
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
