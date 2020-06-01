@@ -93,8 +93,8 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="loginTotp">{{'authenticatorKeyTotp' | i18n}}</label>
-                            <input id="loginTotp" type="text" name="Login.Totp" class="form-control text-monospace"
-                                [(ngModel)]="cipher.login.totp" appInputVerbatim [disabled]="cipher.isDeleted">
+                            <input id="loginTotp" type="{{cipher.viewPassword ? 'text' : 'password'}}" name="Login.Totp" class="form-control text-monospace"
+                                [(ngModel)]="cipher.login.totp" appInputVerbatim [disabled]="cipher.isDeleted || !cipher.viewPassword">
                         </div>
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
@@ -403,11 +403,11 @@
                                     <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
                                         name="Field.Value{{i}}" [(ngModel)]="f.value"
                                         class="form-control text-monospace" appInputVerbatim
-                                        autocomplete="new-password" [disabled]="cipher.isDeleted">
+                                        autocomplete="new-password" [disabled]="cipher.isDeleted || !cipher.viewPassword">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
-                                            tabindex="-1">
+                                            tabindex="-1" [disabled]="!cipher.viewPassword">
                                             <i class="fa fa-lg" aria-hidden="true"
                                                 [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}">
                                             </i>
@@ -415,7 +415,7 @@
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'copyValue' | i18n}}"
                                             (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
-                                            tabindex="-1">
+                                            tabindex="-1" [disabled]="!cipher.viewPassword">
                                             <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
                                         </button>
                                     </div>
