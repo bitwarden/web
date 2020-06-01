@@ -124,15 +124,10 @@ body {
         background-color: #ecf0f5;
     }
 
-    &.full-width {
+    &.full-width:not(.layout_frontend) {
         .container {
             min-width: 980px;
             width: 90%;
-            .row {
-                .col-5 {
-                    max-width: 416px;
-                }
-            }
         }
     }
 }
