@@ -7,6 +7,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
@@ -25,6 +26,7 @@ export class OptionsComponent implements OnInit {
     vaultTimeoutAction: string = 'lock';
     disableIcons: boolean;
     enableGravatars: boolean;
+    enableFullWidth: boolean;
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
@@ -34,7 +36,7 @@ export class OptionsComponent implements OnInit {
     constructor(private storageService: StorageService, private stateService: StateService,
         private analytics: Angulartics2, private i18nService: I18nService,
         private toasterService: ToasterService, private vaultTimeoutService: VaultTimeoutService,
-        private platformUtilsService: PlatformUtilsService) {
+        private platformUtilsService: PlatformUtilsService, private messagingService: MessagingService) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -66,6 +68,7 @@ export class OptionsComponent implements OnInit {
         this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
+        this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
     }
 
@@ -76,6 +79,9 @@ export class OptionsComponent implements OnInit {
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.save('enableGravatars', this.enableGravatars);
+        await this.storageService.save('enableFullWidth', this.enableFullWidth);
+        await this.stateService.save('enableFullWidth', this.enableFullWidth);
+        this.messagingService.send('setFullWidth');
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         this.analytics.eventTrack.next({ action: 'Saved Options' });
         if (this.locale !== this.startingLocale) {

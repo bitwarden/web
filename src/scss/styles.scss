@@ -123,6 +123,13 @@ body {
     &.layout_frontend {
         background-color: #ecf0f5;
     }
+
+    &.full-width:not(.layout_frontend) {
+        .container {
+            min-width: 980px;
+            width: 90%;
+        }
+    }
 }
 
 .page-header, .secondary-header {
