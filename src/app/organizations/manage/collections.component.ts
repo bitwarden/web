@@ -14,6 +14,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { CollectionData } from 'jslib/models/data/collectionData';
@@ -40,15 +41,20 @@ export class CollectionsComponent implements OnInit {
     loading = true;
     organizationId: string;
     collections: CollectionView[];
+    pagedCollections: CollectionView[];
     searchText: string;
 
+    protected didScroll = false;
+    protected pageSize = 100;
+
+    private pagedCollectionsCount = 0;
     private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private collectionService: CollectionService, private componentFactoryResolver: ComponentFactoryResolver,
         private analytics: Angulartics2, private toasterService: ToasterService,
         private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        private userService: UserService) { }
+        private userService: UserService, private searchService: SearchService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -74,7 +80,25 @@ export class CollectionsComponent implements OnInit {
         const collections = response.data.filter((c) => c.organizationId === this.organizationId).map((r) =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
+        this.resetPaging();
         this.loading = false;
+    }
+
+    loadMore() {
+        if (this.collections.length <= this.pageSize) {
+            return;
+        }
+        const pagedLength = this.pagedCollections.length;
+        let pagedSize = this.pageSize;
+        if (pagedLength === 0 && this.pagedCollectionsCount > this.pageSize) {
+            pagedSize = this.pagedCollectionsCount;
+        }
+        if (this.collections.length > pagedLength) {
+            this.pagedCollections =
+                this.pagedCollections.concat(this.collections.slice(pagedLength, pagedLength + pagedSize));
+        }
+        this.pagedCollectionsCount = this.pagedCollections.length;
+        this.didScroll = this.pagedCollections.length > this.pageSize;
     }
 
     edit(collection: CollectionView) {
@@ -147,10 +171,28 @@ export class CollectionsComponent implements OnInit {
         });
     }
 
+    async resetPaging() {
+        this.pagedCollections = [];
+        this.loadMore();
+    }
+
+    isSearching() {
+        return this.searchService.isSearchable(this.searchText);
+    }
+
+    isPaging() {
+        const searching = this.isSearching();
+        if (searching && this.didScroll) {
+            this.resetPaging();
+        }
+        return !searching && this.collections.length > this.pageSize;
+    }
+
     private removeCollection(collection: CollectionView) {
         const index = this.collections.indexOf(collection);
         if (index > -1) {
             this.collections.splice(index, 1);
+            this.resetPaging();
         }
     }
 }
