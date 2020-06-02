@@ -80,7 +80,6 @@ export class OptionsComponent implements OnInit {
         await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
-        await this.stateService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         this.analytics.eventTrack.next({ action: 'Saved Options' });

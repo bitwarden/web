@@ -69,7 +69,6 @@ export class AppComponent implements OnDestroy, OnInit {
     private lastActivity: number = null;
     private idleTimer: number = null;
     private isIdle = false;
-    private enableFullWidth = false;
 
     constructor(private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
         private broadcasterService: BroadcasterService, private userService: UserService,
@@ -170,6 +169,7 @@ export class AppComponent implements OnDestroy, OnInit {
                 }
             }
         });
+
         this.setFullWidth();
     }
 
@@ -269,8 +269,8 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     private async setFullWidth() {
-        this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
-        if (this.enableFullWidth) {
+        const enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
+        if (enableFullWidth) {
             document.body.classList.add('full-width');
         } else {
             document.body.classList.remove('full-width');
