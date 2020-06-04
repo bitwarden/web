@@ -27,6 +27,7 @@ import { PolicyData } from 'jslib/models/data/policyData';
 export class RegisterComponent extends BaseRegisterComponent {
     showCreateOrgMessage = false;
     showTerms = true;
+    layout = '';
     enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
     private policies: Policy[];
@@ -72,6 +73,9 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.showCreateOrgMessage = true;
                 this.stateService.save('loginRedirect',
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
+            }
+            if (qParams.layout != null) {
+                this.layout = qParams.layout;
             }
             if (queryParamsSub != null) {
                 queryParamsSub.unsubscribe();
