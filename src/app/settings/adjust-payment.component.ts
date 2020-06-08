@@ -33,6 +33,11 @@ export class AdjustPaymentComponent {
     paymentMethodType = PaymentMethodType;
     formPromise: Promise<any>;
 
+    address: any = {
+        country: 'US',
+        postal_code: null,
+    };
+
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService) { }
 
@@ -59,5 +64,17 @@ export class AdjustPaymentComponent {
 
     cancel() {
         this.onCanceled.emit();
+    }
+
+    changeCountry() {
+        if (this.address.country === 'US') {
+            this.paymentComponent.hideBank = !this.organizationId;
+        } else {
+            this.paymentComponent.hideBank = true;
+            if (this.paymentComponent.method === PaymentMethodType.BankAccount) {
+                this.paymentComponent.method = PaymentMethodType.Card;
+                this.paymentComponent.changeMethod();
+            }
+        }
     }
 }
