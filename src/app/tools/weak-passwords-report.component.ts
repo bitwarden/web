@@ -21,6 +21,8 @@ import { CipherReportComponent } from './cipher-report.component';
 })
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
     passwordStrengthMap = new Map<string, [string, string]>();
+    showAllCheckbox: boolean;
+    weakPasswordCount: number;
 
     private passwordStrengthCache = new Map<string, number>();
 
@@ -39,6 +41,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
+        this.weakPasswordCount = 0;
         allCiphers.forEach((c) => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
                 return;
@@ -63,9 +66,12 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                 this.passwordStrengthCache.set(cacheKey, result.score);
             }
             const score = this.passwordStrengthCache.get(cacheKey);
-            if (score != null && score <= 2) {
+            if (score != null && (score <= 2 || this.showAllCheckbox)) {
                 this.passwordStrengthMap.set(c.id, this.scoreKey(score));
                 weakPasswordCiphers.push(c);
+                if (score <= 2) {
+                    this.weakPasswordCount = ++this.weakPasswordCount;
+                }
             }
         });
         this.ciphers = weakPasswordCiphers;
