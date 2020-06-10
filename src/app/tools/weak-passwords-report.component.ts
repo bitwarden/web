@@ -20,7 +20,7 @@ import { CipherReportComponent } from './cipher-report.component';
     templateUrl: 'weak-passwords-report.component.html',
 })
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
-    passwordStrengthMap = new Map<string, [string, string]>();
+    passwordStrengthMap = new Map<string, [string, string, number]>();
     showAllCheckbox: boolean;
     weakPasswordCount: number;
 
@@ -67,7 +67,26 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             }
             const score = this.passwordStrengthCache.get(cacheKey);
             if (score != null && (score <= 2 || this.showAllCheckbox)) {
-                this.passwordStrengthMap.set(c.id, this.scoreKey(score));
+
+                let charSetSize = 0;
+                if (c.login.password.match(/[abcdefghijklmnopqrstuvwxyz]/g) != null) {
+                    charSetSize += 26;
+                }
+                if (c.login.password.match(/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/g) != null) {
+                    charSetSize += 26;
+                }
+                if (c.login.password.match(/\d/g) != null) {
+                    charSetSize += 10;
+                }
+                if (c.login.password.match(/[+,\/]/g) != null) {
+                    charSetSize += 3;
+                }
+                if (c.login.password.match(/[!"#$%&'()*-.:;<=>?@[\]^_\\`{|}~]/g) != null) {
+                    charSetSize += 29;
+                }
+                const passwordEntropy = Math.round(Math.log2(Math.pow(charSetSize, c.login.password.length)));
+
+                this.passwordStrengthMap.set(c.id, this.scoreKey(score, passwordEntropy));
                 weakPasswordCiphers.push(c);
                 if (score <= 2) {
                     this.weakPasswordCount = ++this.weakPasswordCount;
@@ -81,16 +100,16 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
         return this.cipherService.getAllDecrypted();
     }
 
-    private scoreKey(score: number): [string, string] {
+    private scoreKey(score: number, passwordEntropy: number): [string, string, number] {
         switch (score) {
             case 4:
-                return ['strong', 'success'];
+                return ['strong', 'success', passwordEntropy];
             case 3:
-                return ['good', 'primary'];
+                return ['good', 'primary', passwordEntropy];
             case 2:
-                return ['weak', 'warning'];
+                return ['weak', 'warning', passwordEntropy];
             default:
-                return ['veryWeak', 'danger'];
+                return ['veryWeak', 'danger', passwordEntropy];
         }
     }
 }
