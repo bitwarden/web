@@ -1,129 +1,149 @@
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
-    <div class="row">
-        <div class="col-7" *ngIf="layout">
-            <div class="mt-5">
-                <div *ngIf="layout === 'enterprise2'">
-                    <p>Companies globally trust Bitwarden for password management.</p>
-                    <p>Start your 7-day free trial!</p>
-                    <p>Quickly deploy your <b>organization</b></p>
-                    <p>Use Bitwarden across all platforms</p>
-                    <p>Collaborate and share securely</p>
-                    <p>"Bitwarden has become a popular choice among open-source software advocates. After using it for a
-                        few months, I can see why." - February 2020</p>
-                </div>
-                <div *ngIf="layout === 'enterprise3'">
-                    <p>Enterprise 3 layout</p>
-                </div>
-                <div *ngIf="layout === 'enterprise4'">
-                    <p>Enterprise 4 layout</p>
+<div class="layout" [ngClass]="['layout', layout]">
+    <header class="header" *ngIf="layout === 'enterprise2'">
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <img alt="Bitwarden" class="logo mb-2" src="../../images/register-layout/logo-horizontal-white.png">
                 </div>
             </div>
         </div>
-        <div [ngClass]="{'col-5': layout, 'col-12': !layout}">
-            <div class="row justify-content-md-center mt-5">
-                <div [ngClass]="{'col-5': !layout, 'col-12': layout}">
-                    <p class="lead text-center mb-4" *ngIf="!layout">{{'createAccount' | i18n}}</p>
-                    <div class="card d-block">
-                        <div class="card-body">
-                            <app-callout title="{{'createOrganizationStep1' | i18n}}" type="info" icon="fa-thumb-tack"
-                                *ngIf="showCreateOrgMessage">
-                                {{'createOrganizationCreatePersonalAccount' | i18n}}
-                            </app-callout>
-                            <div class="form-group">
-                                <label for="email">{{'emailAddress' | i18n}}</label>
-                                <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email"
-                                    required [appAutofocus]="email === ''" inputmode="email" appInputVerbatim="false">
-                                <small class="form-text text-muted">{{'emailAddressDesc' | i18n}}</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">{{'yourName' | i18n}}</label>
-                                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name"
-                                    [appAutofocus]="email !== ''">
-                                <small class="form-text text-muted">{{'yourNameDesc' | i18n}}</small>
-                            </div>
-                            <div class="form-group">
-                                <app-callout type="info" *ngIf="enforcedPolicyOptions">
-                                    {{'masterPasswordPolicyInEffect' | i18n}}
-                                    <ul class="mb-0">
-                                        <li *ngIf="enforcedPolicyOptions?.minComplexity > 0">
-                                            {{'policyInEffectMinComplexity' | i18n : getPasswordScoreAlertDisplay()}}
-                                        </li>
-                                        <li *ngIf="enforcedPolicyOptions?.minLength > 0">
-                                            {{'policyInEffectMinLength' | i18n : enforcedPolicyOptions?.minLength.toString()}}
-                                        </li>
-                                        <li *ngIf="enforcedPolicyOptions?.requireUpper">
-                                            {{'policyInEffectUppercase' | i18n}}</li>
-                                        <li *ngIf="enforcedPolicyOptions?.requireLower">
-                                            {{'policyInEffectLowercase' | i18n}}</li>
-                                        <li *ngIf="enforcedPolicyOptions?.requireNumbers">
-                                            {{'policyInEffectNumbers' | i18n}}</li>
-                                        <li *ngIf="enforcedPolicyOptions?.requireSpecial">
-                                            {{'policyInEffectSpecial' | i18n : '!@#$%^&*'}}</li>
-                                    </ul>
+    </header>
+    <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
+        <div class="row">
+            <div class="col-7" *ngIf="layout">
+                <div class="mt-5">
+                    <div *ngIf="layout === 'enterprise2'">
+                        <h2>Companies globally trust Bitwarden for password management.</h2>
+                        <p>Start your 7-day free trial!</p>
+                        <p class="highlight">Quickly deploy your <b>organization</b></p>
+                        <p>Use Bitwarden across all platforms</p>
+                        <p>Collaborate and share securely</p>
+                        <figure>
+                            <figcaption>
+                                <cite>
+                                    <img src="../../images/register-layout/wired-logo.png" alt="Wired">
+                                </cite>
+                            </figcaption>
+                            <blockquote>
+                                "Bitwarden has become a popular choice among open-source software advocates. After using it for a
+                                few months, I can see why." - February 2020
+                            </blockquote>
+                        </figure>
+                    </div>
+                    <div *ngIf="layout === 'enterprise3'">
+                        <p>Enterprise 3 layout</p>
+                    </div>
+                    <div *ngIf="layout === 'enterprise4'">
+                        <p>Enterprise 4 layout</p>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'col-5': layout, 'col-12': !layout}">
+                <div class="row justify-content-md-center mt-5">
+                    <div [ngClass]="{'col-5': !layout, 'col-12': layout}">
+                        <p class="lead text-center mb-4" *ngIf="!layout">{{'createAccount' | i18n}}</p>
+                        <div class="card d-block">
+                            <div class="card-body">
+                                <app-callout title="{{'createOrganizationStep1' | i18n}}" type="info" icon="fa-thumb-tack"
+                                    *ngIf="showCreateOrgMessage">
+                                    {{'createOrganizationCreatePersonalAccount' | i18n}}
                                 </app-callout>
-                                <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                                <div class="d-flex">
-                                    <div class="w-100">
-                                        <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}"
-                                            name="MasterPassword" class="text-monospace form-control mb-1"
-                                            [(ngModel)]="masterPassword" (input)="updatePasswordStrength()" required
-                                            appInputVerbatim>
-                                        <app-password-strength [score]="masterPasswordScore" [showText]="true">
-                                        </app-password-strength>
+                                <div class="form-group">
+                                    <label for="email">{{'emailAddress' | i18n}}</label>
+                                    <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email"
+                                        required [appAutofocus]="email === ''" inputmode="email" appInputVerbatim="false">
+                                    <small class="form-text text-muted">{{'emailAddressDesc' | i18n}}</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">{{'yourName' | i18n}}</label>
+                                    <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name"
+                                        [appAutofocus]="email !== ''">
+                                    <small class="form-text text-muted">{{'yourNameDesc' | i18n}}</small>
+                                </div>
+                                <div class="form-group">
+                                    <app-callout type="info" *ngIf="enforcedPolicyOptions">
+                                        {{'masterPasswordPolicyInEffect' | i18n}}
+                                        <ul class="mb-0">
+                                            <li *ngIf="enforcedPolicyOptions?.minComplexity > 0">
+                                                {{'policyInEffectMinComplexity' | i18n : getPasswordScoreAlertDisplay()}}
+                                            </li>
+                                            <li *ngIf="enforcedPolicyOptions?.minLength > 0">
+                                                {{'policyInEffectMinLength' | i18n : enforcedPolicyOptions?.minLength.toString()}}
+                                            </li>
+                                            <li *ngIf="enforcedPolicyOptions?.requireUpper">
+                                                {{'policyInEffectUppercase' | i18n}}</li>
+                                            <li *ngIf="enforcedPolicyOptions?.requireLower">
+                                                {{'policyInEffectLowercase' | i18n}}</li>
+                                            <li *ngIf="enforcedPolicyOptions?.requireNumbers">
+                                                {{'policyInEffectNumbers' | i18n}}</li>
+                                            <li *ngIf="enforcedPolicyOptions?.requireSpecial">
+                                                {{'policyInEffectSpecial' | i18n : '!@#$%^&*'}}</li>
+                                        </ul>
+                                    </app-callout>
+                                    <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}"
+                                                name="MasterPassword" class="text-monospace form-control mb-1"
+                                                [(ngModel)]="masterPassword" (input)="updatePasswordStrength()" required
+                                                appInputVerbatim>
+                                            <app-password-strength [score]="masterPasswordScore" [showText]="true">
+                                            </app-password-strength>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="ml-1 btn btn-link"
+                                                appA11yTitle="{{'toggleVisibility' | i18n}}"
+                                                (click)="togglePassword(false)">
+                                                <i class="fa fa-lg" aria-hidden="true"
+                                                    [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                            </button>
+                                            <div class="progress-bar invisible"></div>
+                                        </div>
                                     </div>
-                                    <div>
+                                    <small class="form-text text-muted">{{'masterPassDesc' | i18n}}</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="masterPasswordRetype">{{'reTypeMasterPass' | i18n}}</label>
+                                    <div class="d-flex">
+                                        <input id="masterPasswordRetype" type="{{showPassword ? 'text' : 'password'}}"
+                                            name="MasterPasswordRetype" class="text-monospace form-control"
+                                            [(ngModel)]="confirmMasterPassword" required appInputVerbatim>
                                         <button type="button" class="ml-1 btn btn-link"
-                                            appA11yTitle="{{'toggleVisibility' | i18n}}"
-                                            (click)="togglePassword(false)">
+                                            appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword(true)">
                                             <i class="fa fa-lg" aria-hidden="true"
                                                 [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                                         </button>
-                                        <div class="progress-bar invisible"></div>
                                     </div>
                                 </div>
-                                <small class="form-text text-muted">{{'masterPassDesc' | i18n}}</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="masterPasswordRetype">{{'reTypeMasterPass' | i18n}}</label>
-                                <div class="d-flex">
-                                    <input id="masterPasswordRetype" type="{{showPassword ? 'text' : 'password'}}"
-                                        name="MasterPasswordRetype" class="text-monospace form-control"
-                                        [(ngModel)]="confirmMasterPassword" required appInputVerbatim>
-                                    <button type="button" class="ml-1 btn btn-link"
-                                        appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword(true)">
-                                        <i class="fa fa-lg" aria-hidden="true"
-                                            [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
-                                    </button>
+                                <div class="form-group">
+                                    <label for="hint">{{'masterPassHint' | i18n}}</label>
+                                    <input id="hint" class="form-control" type="text" name="Hint" [(ngModel)]="hint">
+                                    <small class="form-text text-muted">{{'masterPassHintDesc' | i18n}}</small>
                                 </div>
+                                <hr>
+                                <div class="d-flex mb-2">
+                                    <button type="submit" class="btn btn-primary btn-block btn-submit"
+                                        [disabled]="form.loading">
+                                        <span>{{'submit' | i18n}}</span>
+                                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                    <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
+                                        {{'cancel' | i18n}}
+                                    </a>
+                                </div>
+                                <small class="text-muted" *ngIf="showTerms">
+                                    {{'submitAgreePolicies' | i18n}}
+                                    <a href="https://bitwarden.com/terms/" target="_blank"
+                                        rel="noopener">{{'termsOfService' | i18n}}</a>,
+                                    <a href="https://bitwarden.com/privacy/" target="_blank"
+                                        rel="noopener">{{'privacyPolicy' | i18n}}</a>
+                                </small>
                             </div>
-                            <div class="form-group">
-                                <label for="hint">{{'masterPassHint' | i18n}}</label>
-                                <input id="hint" class="form-control" type="text" name="Hint" [(ngModel)]="hint">
-                                <small class="form-text text-muted">{{'masterPassHintDesc' | i18n}}</small>
-                            </div>
-                            <hr>
-                            <div class="d-flex mb-2">
-                                <button type="submit" class="btn btn-primary btn-block btn-submit"
-                                    [disabled]="form.loading">
-                                    <span>{{'submit' | i18n}}</span>
-                                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"
-                                        aria-hidden="true"></i>
-                                </button>
-                                <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
-                                    {{'cancel' | i18n}}
-                                </a>
-                            </div>
-                            <small class="text-muted" *ngIf="showTerms">
-                                {{'submitAgreePolicies' | i18n}}
-                                <a href="https://bitwarden.com/terms/" target="_blank"
-                                    rel="noopener">{{'termsOfService' | i18n}}</a>,
-                                <a href="https://bitwarden.com/privacy/" target="_blank"
-                                    rel="noopener">{{'privacyPolicy' | i18n}}</a>
-                            </small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

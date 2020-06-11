@@ -1,0 +1,63 @@
+.layout {
+    &.enterprise2 {
+
+        header {
+            color: $secondary;
+            background-color: $primary;
+
+            &:before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                width: 100%;
+                height: 340px;
+                left: 0;
+                transform: skewY(-3deg);
+                background: $primary;
+            }
+
+            img.logo {
+                
+                margin: 12px 0 0;
+                width: 284px;
+                max-width: 284px;
+                height: auto;
+            }
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin: 100px 0 150px 0;
+        }
+
+        p {
+            margin: 20px 0 40px 0;
+            font-size: 1.4rem;
+
+            &:before {
+                content: "/";
+                padding-right: 12px;
+            }
+            &:not(.highlight) {
+                &:before {
+                    color: $primary-accent;
+                }
+            }
+
+            b {
+                &:after {
+                    content: "⟶";
+                    font-size: 2rem;
+                    padding-left: 6px;
+                }
+            }
+        }
+
+        blockquote {
+            margin: 20px 0 0 0;
+            font-size: 1.4rem;
+            padding-right: 40px;
+        }
+    }
+}
