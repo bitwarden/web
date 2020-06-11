@@ -148,6 +148,9 @@ export class AppComponent implements OnDestroy, OnInit {
                             properties: { label: message.label },
                         });
                         break;
+                    case 'setFullWidth':
+                        this.setFullWidth();
+                        break;
                     default:
                         break;
                 }
@@ -166,6 +169,8 @@ export class AppComponent implements OnDestroy, OnInit {
                 }
             }
         });
+
+        this.setFullWidth();
     }
 
     ngOnDestroy() {
@@ -260,6 +265,15 @@ export class AppComponent implements OnDestroy, OnInit {
             this.notificationsService.disconnectFromInactivity();
         } else {
             this.notificationsService.reconnectFromActivity();
+        }
+    }
+
+    private async setFullWidth() {
+        const enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
+        if (enableFullWidth) {
+            document.body.classList.add('full-width');
+        } else {
+            document.body.classList.remove('full-width');
         }
     }
 }
