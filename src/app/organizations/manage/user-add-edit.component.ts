@@ -67,6 +67,7 @@ export class UserAddEditComponent implements OnInit {
                         if (collection != null && collection.length > 0) {
                             (collection[0] as any).checked = true;
                             collection[0].readOnly = s.readOnly;
+                            collection[0].hidePasswords = s.hidePasswords;
                         }
                     });
                 }
@@ -100,7 +101,7 @@ export class UserAddEditComponent implements OnInit {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {
             collections = this.collections.filter((c) => (c as any).checked)
-                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly));
+                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
         try {
