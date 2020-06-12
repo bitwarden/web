@@ -17,6 +17,7 @@ import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
 @Component({
     selector: 'app-premium',
@@ -24,6 +25,7 @@ import { PaymentComponent } from './payment.component';
 })
 export class PremiumComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
 
     canAccessPremium = false;
     selfHosted = false;
@@ -76,6 +78,7 @@ export class PremiumComponent implements OnInit {
                     return this.finalizePremium();
                 });
             } else {
+                await this.taxInfoComponent.submitTaxInfo();
                 this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
                     const fd = new FormData();
                     fd.append('paymentMethodType', result[1].toString());

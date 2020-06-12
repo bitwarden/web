@@ -21,6 +21,8 @@ import { BitPayInvoiceRequest } from 'jslib/models/request/bitPayInvoiceRequest'
 
 import { WebConstants } from '../../services/webConstants';
 
+import { TaxInfoComponent } from './tax-info.component';
+
 @Component({
     selector: 'app-add-credit',
     templateUrl: 'add-credit.component.html',
@@ -34,6 +36,7 @@ export class AddCreditComponent implements OnInit {
     @Output() onCanceled = new EventEmitter();
 
     @ViewChild('ppButtonForm', { read: ElementRef }) ppButtonFormRef: ElementRef;
+    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
 
     paymentMethodType = PaymentMethodType;
     ppButtonFormAction = WebConstants.paypal.buttonActionProduction;
@@ -86,6 +89,7 @@ export class AddCreditComponent implements OnInit {
             return;
         }
 
+        await this.taxInfoComponent.submitTaxInfo();
         if (this.method === PaymentMethodType.PayPal) {
             this.ppButtonFormRef.nativeElement.submit();
             this.ppLoading = true;
