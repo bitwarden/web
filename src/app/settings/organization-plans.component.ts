@@ -19,6 +19,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
 import { PlanType } from 'jslib/enums/planType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
@@ -30,6 +31,7 @@ import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpg
 })
 export class OrganizationPlansComponent {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxComponent: TaxInfoComponent;
 
     @Input() organizationId: string;
     @Input() showFree = true;
@@ -153,6 +155,15 @@ export class OrganizationPlansComponent {
                             } else {
                                 request.planType = this.plans[this.plan].annualPlanType;
                             }
+                            request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+                            request.billingAddressCountry = this.taxComponent.taxInfo.country;
+                            if (this.taxComponent.taxInfo.includeTaxId) {
+                                request.taxIdNumber = this.taxComponent.taxInfo.taxId;
+                                request.billingAddressLine1 = this.taxComponent.taxInfo.line1;
+                                request.billingAddressLine2 = this.taxComponent.taxInfo.line2;
+                                request.billingAddressCity = this.taxComponent.taxInfo.city;
+                                request.billingAddressState = this.taxComponent.taxInfo.state;
+                            }
                         }
                         const response = await this.apiService.postOrganization(request);
                         orgId = response.id;
@@ -260,6 +271,16 @@ export class OrganizationPlansComponent {
             }
         }
         return 0;
+    }
+
+    changedCountry() {
+        this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
+        // Bank Account payments are only available for US customers
+        if (this.paymentComponent.hideBank &&
+            this.paymentComponent.method === PaymentMethodType.BankAccount) {
+            this.paymentComponent.method = PaymentMethodType.Card;
+            this.paymentComponent.changeMethod();
+        }
     }
 
     get total(): number {

@@ -115,6 +115,7 @@ import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TaxInfoComponent } from './settings/tax-info.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
 import { TwoFactorEmailComponent } from './settings/two-factor-email.component';
@@ -350,6 +351,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ShareComponent,
         StopClickDirective,
         StopPropDirective,
+        TaxInfoComponent,
         ToolsComponent,
         TrueFalseValueDirective,
         TwoFactorAuthenticatorComponent,

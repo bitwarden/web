@@ -17,6 +17,7 @@ import { PaymentRequest } from 'jslib/models/request/paymentRequest';
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
 @Component({
     selector: 'app-adjust-payment',
@@ -24,6 +25,7 @@ import { PaymentComponent } from './payment.component';
 })
 export class AdjustPaymentComponent {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
 
     @Input() currentType?: PaymentMethodType;
     @Input() organizationId: string;
@@ -33,17 +35,13 @@ export class AdjustPaymentComponent {
     paymentMethodType = PaymentMethodType;
     formPromise: Promise<any>;
 
-    address: any = {
-        country: 'US',
-        postal_code: null,
-    };
-
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService) { }
 
     async submit() {
         try {
             const request = new PaymentRequest();
+            await this.taxInfoComponent.submitTaxInfo();
             this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
                 request.paymentToken = result[0];
                 request.paymentMethodType = result[1];
@@ -67,7 +65,7 @@ export class AdjustPaymentComponent {
     }
 
     changeCountry() {
-        if (this.address.country === 'US') {
+        if (this.taxInfoComponent.taxInfo.country === 'US') {
             this.paymentComponent.hideBank = !this.organizationId;
         } else {
             this.paymentComponent.hideBank = true;

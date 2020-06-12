@@ -166,7 +166,7 @@ export class PaymentComponent implements OnInit {
             } else if (this.method === PaymentMethodType.Card || this.method === PaymentMethodType.BankAccount) {
                 if (this.method === PaymentMethodType.Card) {
                     this.apiService.postSetupPayment().then((clientSecret) =>
-                        this.stripe.confirmCardSetup(clientSecret, this.stripeCardNumberElement))
+                        this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement))
                         .then((result: any) => {
                             if (result.error) {
                                 reject(result.error.message);
@@ -198,8 +198,8 @@ export class PaymentComponent implements OnInit {
                 return;
             }
             const handleCardPayment = () => this.showMethods ?
-                this.stripe.confirmCardPayment(clientSecret, this.stripeCardNumberElement) :
-                this.stripe.confirmCardPayment(clientSecret);
+                this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement) :
+                this.stripe.handleCardSetup(clientSecret);
             return handleCardPayment().then(async (result: any) => {
                 if (result.error) {
                     reject(result.error.message);
