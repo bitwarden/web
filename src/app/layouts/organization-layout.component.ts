@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
 import { UserService } from 'jslib/abstractions/user.service';
+import { EnvironmentService } from 'jslib/abstractions/environment.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 
@@ -22,11 +23,20 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     organization: Organization;
 
     private organizationId: string;
+    private enterpriseUrl: string;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private broadcasterService: BroadcasterService, private environmentService: EnvironmentService,
+        private ngZone: NgZone) { }
 
     ngOnInit() {
+        this.enterpriseUrl = 'https://enterprise.bitwarden.com';
+        if (this.environmentService.enterpriseUrl != null) {
+            this.enterpriseUrl = this.environmentService.enterpriseUrl;
+        } else if (this.environmentService.baseUrl != null) {
+            this.enterpriseUrl = this.environmentService.baseUrl + '/enterprise';
+        }
+
         document.body.classList.remove('layout_frontend');
         this.route.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
