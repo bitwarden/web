@@ -38,6 +38,7 @@ export class AccountComponent {
     canUseApi = false;
     org: OrganizationResponse;
     formPromise: Promise<any>;
+    taxFormPromise: Promise<any>;
 
     private organizationId: string;
     private modal: ModalComponent = null;
@@ -74,8 +75,8 @@ export class AccountComponent {
     }
 
     async submitTaxInfo() {
-        this.formPromise = this.taxInfo.submitTaxInfo();
-        await this.formPromise;
+        this.taxFormPromise = this.taxInfo.submitTaxInfo();
+        await this.taxFormPromise;
         this.analytics.eventTrack.next({ action: 'Updated Organization Tax Info' });
         this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
     }
