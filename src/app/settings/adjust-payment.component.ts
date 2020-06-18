@@ -41,13 +41,20 @@ export class AdjustPaymentComponent {
     async submit() {
         try {
             const request = new PaymentRequest();
-            await this.taxInfoComponent.submitTaxInfo();
             this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
                 request.paymentToken = result[0];
                 request.paymentMethodType = result[1];
+                request.postalCode = this.taxInfoComponent.taxInfo.postalCode;
+                request.country = this.taxInfoComponent.taxInfo.country;
                 if (this.organizationId == null) {
                     return this.apiService.postAccountPayment(request);
                 } else {
+                    request.taxId = this.taxInfoComponent.taxInfo.taxId;
+                    request.state = this.taxInfoComponent.taxInfo.state;
+                    request.line1 = this.taxInfoComponent.taxInfo.line1;
+                    request.line2 = this.taxInfoComponent.taxInfo.line2;
+                    request.city = this.taxInfoComponent.taxInfo.city;
+                    request.state = this.taxInfoComponent.taxInfo.state;
                     return this.apiService.postOrganizationPayment(this.organizationId, request);
                 }
             });

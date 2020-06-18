@@ -78,7 +78,6 @@ export class PremiumComponent implements OnInit {
                     return this.finalizePremium();
                 });
             } else {
-                await this.taxInfoComponent.submitTaxInfo();
                 this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
                     const fd = new FormData();
                     fd.append('paymentMethodType', result[1].toString());
@@ -86,6 +85,8 @@ export class PremiumComponent implements OnInit {
                         fd.append('paymentToken', result[0]);
                     }
                     fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
+                    fd.append('country', this.taxInfoComponent.taxInfo.country);
+                    fd.append('postalCode', this.taxInfoComponent.taxInfo.postalCode);
                     return this.apiService.postPremium(fd);
                 }).then((paymentResponse) => {
                     if (!paymentResponse.success && paymentResponse.paymentIntentClientSecret != null) {
