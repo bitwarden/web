@@ -18,6 +18,7 @@ import { OrganizationResponse } from 'jslib/models/response/organizationResponse
 
 import { ModalComponent } from '../../modal.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
+import { TaxInfoComponent } from '../../settings/tax-info.component';
 import { ApiKeyComponent } from './api-key.component';
 import { DeleteOrganizationComponent } from './delete-organization.component';
 import { RotateApiKeyComponent } from './rotate-api-key.component';
@@ -31,11 +32,13 @@ export class AccountComponent {
     @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef }) purgeModalRef: ViewContainerRef;
     @ViewChild('apiKeyTemplate', { read: ViewContainerRef }) apiKeyModalRef: ViewContainerRef;
     @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     loading = true;
     canUseApi = false;
     org: OrganizationResponse;
     formPromise: Promise<any>;
+    taxFormPromise: Promise<any>;
 
     private organizationId: string;
     private modal: ModalComponent = null;
@@ -69,6 +72,13 @@ export class AccountComponent {
             this.analytics.eventTrack.next({ action: 'Updated Organization Settings' });
             this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpdated'));
         } catch { }
+    }
+
+    async submitTaxInfo() {
+        this.taxFormPromise = this.taxInfo.submitTaxInfo();
+        await this.taxFormPromise;
+        this.analytics.eventTrack.next({ action: 'Updated Organization Tax Info' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
     }
 
     deleteOrganization() {

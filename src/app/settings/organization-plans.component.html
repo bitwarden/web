@@ -202,6 +202,7 @@
             <small class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (interval | i18n) }}</small>
             <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
             <app-payment [hideCredit]="true"></app-payment>
+            <app-tax-info (onCountryChanged)="changedCountry()"></app-tax-info>
         </ng-container>
         <ng-container *ngIf="!createOrganization">
             <app-payment [showMethods]="false"></app-payment>

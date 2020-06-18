@@ -198,8 +198,8 @@ export class PaymentComponent implements OnInit {
                 return;
             }
             const handleCardPayment = () => this.showMethods ?
-                this.stripe.handleCardPayment(clientSecret, this.stripeCardNumberElement) :
-                this.stripe.handleCardPayment(clientSecret);
+                this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement) :
+                this.stripe.handleCardSetup(clientSecret);
             return handleCardPayment().then(async (result: any) => {
                 if (result.error) {
                     reject(result.error.message);

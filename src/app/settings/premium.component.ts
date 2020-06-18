@@ -17,6 +17,7 @@ import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
 @Component({
     selector: 'app-premium',
@@ -24,6 +25,7 @@ import { PaymentComponent } from './payment.component';
 })
 export class PremiumComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
 
     canAccessPremium = false;
     selfHosted = false;
@@ -83,6 +85,8 @@ export class PremiumComponent implements OnInit {
                         fd.append('paymentToken', result[0]);
                     }
                     fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
+                    fd.append('country', this.taxInfoComponent.taxInfo.country);
+                    fd.append('postalCode', this.taxInfoComponent.taxInfo.postalCode);
                     return this.apiService.postPremium(fd);
                 }).then((paymentResponse) => {
                     if (!paymentResponse.success && paymentResponse.paymentIntentClientSecret != null) {
