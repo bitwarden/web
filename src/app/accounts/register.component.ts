@@ -77,6 +77,9 @@ export class RegisterComponent extends BaseRegisterComponent {
             if (qParams.layout != null) {
                 this.layout = qParams.layout;
             }
+            if (qParams.reference != null) {
+                this.referenceId = qParams.reference;
+            }
             if (queryParamsSub != null) {
                 queryParamsSub.unsubscribe();
             }
@@ -95,6 +98,12 @@ export class RegisterComponent extends BaseRegisterComponent {
 
         if (this.policies != null) {
             this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
+        }
+
+        const referenceId = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
+        this.referenceId = this.referenceId || referenceId;
+        if (this.referenceId === '') {
+            this.referenceId = null;
         }
     }
 
