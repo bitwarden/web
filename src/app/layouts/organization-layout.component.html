@@ -1,56 +1,45 @@
 <app-navbar></app-navbar>
 <div class="org-nav" *ngIf="organization">
-    <div class="container d-flex">
-        <div class="d-flex flex-column">
-            <div class="my-auto d-flex align-items-center pl-1">
-                <app-avatar [data]="organization.name" size="45" [circle]="true"></app-avatar>
-                <div class="org-name ml-3">
-                    <span>{{organization.name}}</span>
-                    <small class="text-muted">{{'organization' | i18n}}</small>
-                </div>
-                <div class="ml-auto card border-danger text-danger bg-transparent" *ngIf="!organization.enabled">
-                    <div class="card-body py-2">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        {{'organizationIsDisabled' | i18n}}
-                    </div>
+    <div class="container d-flex flex-column">
+        <div class="my-auto d-flex align-items-center pl-1">
+            <app-avatar [data]="organization.name" size="45" [circle]="true"></app-avatar>
+            <div class="org-name ml-3">
+                <span>{{organization.name}}</span>
+                <small class="text-muted">{{'organization' | i18n}}</small>
+            </div>
+            <div class="ml-auto card border-danger text-danger bg-transparent" *ngIf="!organization.enabled">
+                <div class="card-body py-2">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{'organizationIsDisabled' | i18n}}
                 </div>
             </div>
-            <ul class="nav nav-tabs" *ngIf="organization.isManager">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="vault" routerLinkActive="active">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        {{'vault' | i18n}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="manage" routerLinkActive="active">
-                        <i class="fa fa-sliders" aria-hidden="true"></i>
-                        {{'manage' | i18n}}
-                    </a>
-                </li>
-                <li class="nav-item" *ngIf="organization.isAdmin">
-                    <a class="nav-link" routerLink="tools" routerLinkActive="active">
-                        <i class="fa fa-wrench" aria-hidden="true"></i>
-                        {{'tools' | i18n}}
-                    </a>
-                </li>
-                <li class="nav-item" *ngIf="organization.isOwner">
-                    <a class="nav-link" routerLink="settings" routerLinkActive="active">
-                        <i class="fa fa-cogs" aria-hidden="true"></i>
-                        {{'settings' | i18n}}
-                    </a>
-                </li>
-            </ul>
         </div>
-        <div class="ml-auto d-flex align-items-center">
-            <button class="btn btn-primary" (click)="goToEnterprisePortal()" #enterpriseBtn
-                [appApiAction]="enterpriseTokenPromise" *ngIf="organization.usePolicies">
-                <i class="fa fa-bank fa-fw" [hidden]="enterpriseBtn.loading" aria-hidden="true"></i>
-                <i class="fa fa-spinner fa-spin fa-fw" [hidden]="!enterpriseBtn.loading" title="{{'loading' | i18n}}"
-                    aria-hidden="true"></i>
-                Enterprise →
-            </button>
-        </div>
+        <ul class="nav nav-tabs" *ngIf="organization.isManager">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="vault" routerLinkActive="active">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    {{'vault' | i18n}}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="manage" routerLinkActive="active">
+                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                    {{'manage' | i18n}}
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="organization.isAdmin">
+                <a class="nav-link" routerLink="tools" routerLinkActive="active">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                    {{'tools' | i18n}}
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="organization.isOwner">
+                <a class="nav-link" routerLink="settings" routerLinkActive="active">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    {{'settings' | i18n}}
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 <router-outlet></router-outlet>
