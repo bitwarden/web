@@ -77,6 +77,14 @@ export class RegisterComponent extends BaseRegisterComponent {
             if (qParams.layout != null) {
                 this.layout = qParams.layout;
             }
+            if (qParams.reference != null) {
+                this.referenceId = qParams.reference;
+            } else {
+                this.referenceId = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
+            }
+            if (this.referenceId === '') {
+                this.referenceId = null;
+            }
             if (queryParamsSub != null) {
                 queryParamsSub.unsubscribe();
             }

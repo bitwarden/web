@@ -8,8 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
-import { UserService } from 'jslib/abstractions/user.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 
