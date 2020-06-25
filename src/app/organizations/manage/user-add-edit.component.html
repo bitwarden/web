@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="userAddEditTitle">
-    <div class="modal-dialog" [ngClass]="{'modal-lg': !editMode}" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title" id="userAddEditTitle">
@@ -23,7 +23,13 @@
                         <small class="text-muted">{{'inviteMultipleEmailDesc' | i18n : '20'}}</small>
                     </div>
                 </ng-container>
-                <h3>{{'userType' | i18n}}</h3>
+                <h3>
+                    {{'userType' | i18n}}
+                    <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                        href="https://bitwarden.com/help/article/user-types-access-control/#user-types">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                    </a>
+                </h3>
                 <div class="form-check mt-2 form-check-block">
                     <input class="form-check-input" type="radio" name="userType" id="userTypeUser"
                         [value]="organizationUserType.User" [(ngModel)]="type">
@@ -59,6 +65,10 @@
                 <h3 class="mt-4 d-flex">
                     <div class="mb-2">
                         {{'accessControl' | i18n}}
+                        <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                            href="https://bitwarden.com/help/article/user-types-access-control/#access-control">
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                        </a>
                     </div>
                     <div class="ml-auto" *ngIf="access === 'selected' && collections && collections.length">
                         <button type="button" (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
