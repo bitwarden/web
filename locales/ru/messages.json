@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "Использовать аватары с сайта gravatar.com."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "По умолчанию"
   },
@@ -2817,10 +2824,10 @@
     "message": "Фильтры"
   },
   "vaultTimeout": {
-    "message": "Таймаут хранения"
+    "message": "Таймаут хранилища"
   },
   "vaultTimeoutDesc": {
-    "message": "Выберите время истечения хранилища и выполнения выбранного действия."
+    "message": "Выберите таймаут для хранилища и действие, которое необходимо предпринять."
   },
   "oneMinute": {
     "message": "1 минута"
@@ -3042,13 +3049,13 @@
     "message": "Предпочтения пользователя"
   },
   "vaultTimeoutAction": {
-    "message": "Действие при таймауте"
+    "message": "Действие по таймауту хранилища"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Чтобы снова получить доступ к заблокированному хранилищу, нужно повторно ввести мастер-пароль."
+    "message": "Заблокированное хранилище потребует повторного ввода мастер-пароля для получения доступа к нему."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "Чтобы получить доступ к хранилищу после выхода из него требуется повторная авторизация."
+    "message": "Выход из хранилища потребует повторную аутентификацию для получения доступа к нему."
   },
   "lock": {
     "message": "Заблокировать",
@@ -3071,13 +3078,13 @@
     "message": "Окончательно удалить элемент"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Вы действительно хотите окончательно удалить этот элемент?"
+    "message": "Вы уверены, что хотите окончательно удалить этот элемент?"
   },
   "permanentlyDeletedItem": {
-    "message": "Окончательно удалённый элемент"
+    "message": "Элемент удален навсегда"
   },
   "permanentlyDeletedItems": {
-    "message": "Окончательно удалённые элементы"
+    "message": "Элементы удалены навсегда"
   },
   "permanentlyDeleteSelectedItemsDesc": {
     "message": "Выбрано элементов для удаления: $COUNT$. Вы действительно хотите окончательно удалить все эти элементы?",
@@ -3089,7 +3096,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Окончательно удалённый элемент $ID$.",
+    "message": "Элемент $ID$ удален навсегда.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3107,13 +3114,13 @@
     "message": "Восстановить элемент"
   },
   "restoredItem": {
-    "message": "Восстановленный элемент"
+    "message": "Элемент восстановлен"
   },
   "restoredItems": {
-    "message": "Восстановленные элементы"
+    "message": "Элементы восстановлены"
   },
   "restoreItemConfirmation": {
-    "message": "Вы действительно хотите восстановить этот элемент?"
+    "message": "Вы уверены, что хотите восстановить этот элемент?"
   },
   "restoreItems": {
     "message": "Восстановить элементы"
@@ -3128,7 +3135,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Восстановленный элемент $ID$.",
+    "message": "Элемент $ID$ восстановлен.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3144,24 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Выход из системы удалит доступ к хранилищу и потребует онлайн-аутентификацию по истечении периода ожидания. Вы действительно хотите использовать эту настройку?"
+    "message": "По истечении таймаута будет выполнен выход, что приведет к отмене всех прав доступа к вашему хранилищу и потребует онлайн-аутентификации. Вы уверены, что хотите использовать этот параметр?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Подтверждение действия таймаута"
+    "message": "Подтверждение действия по таймауту"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

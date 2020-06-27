@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "Use avatar images loaded from gravatar.com."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "Default"
   },
@@ -1833,10 +1840,10 @@
     "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
   },
   "generalInformation": {
-    "message": "General Information"
+    "message": "Algemene Inligting"
   },
   "organizationName": {
-    "message": "Organization Name"
+    "message": "Organisasienaam"
   },
   "accountOwnedBusiness": {
     "message": "This account is owned by a business."
@@ -1848,10 +1855,10 @@
     "message": "Business Name"
   },
   "chooseYourPlan": {
-    "message": "Choose Your Plan"
+    "message": "Kies U Plan"
   },
   "users": {
-    "message": "Users"
+    "message": "Gebruikers"
   },
   "userSeats": {
     "message": "User Seats"
@@ -1879,7 +1886,7 @@
     "message": "How many user seats do you need? You can also add additional seats later if needed."
   },
   "planNameFree": {
-    "message": "Free",
+    "message": "Gratis",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
@@ -1892,16 +1899,16 @@
     }
   },
   "planNameFamilies": {
-    "message": "Families"
+    "message": "Gesinne"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "Vir persoonlike gebruik om met vriende en familie te deel."
   },
   "planNameTeams": {
-    "message": "Teams"
+    "message": "Spanne"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "Vir sake- en ander spanorganisasies."
   },
   "planNameEnterprise": {
     "message": "Enterprise"
@@ -1910,10 +1917,10 @@
     "message": "For businesses and other large organizations."
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "Altyd Gratis"
   },
   "includesXUsers": {
-    "message": "includes $COUNT$ users",
+    "message": "sluit $COUNT$ gebruikers in",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1922,10 +1929,10 @@
     }
   },
   "additionalUsers": {
-    "message": "Additional Users"
+    "message": "Bykomende Gebruikers"
   },
   "costPerUser": {
-    "message": "$COST$ per user",
+    "message": "$COST$ per gebruiker",
     "placeholders": {
       "cost": {
         "content": "$1",
@@ -2006,76 +2013,76 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "Maandeliks"
   },
   "annually": {
-    "message": "Annually"
+    "message": "Jaarliks"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "Basisprys"
   },
   "organizationCreated": {
-    "message": "Organization Created"
+    "message": "Organisasie Geskep"
   },
   "organizationReadyToGo": {
-    "message": "Your new organization is ready to go!"
+    "message": "U nuwe organisasie is gereed vir gebruik!"
   },
   "organizationUpgraded": {
-    "message": "Your organization has been upgraded."
+    "message": "U organisasie is opgegradeer."
   },
   "leave": {
-    "message": "Leave"
+    "message": "Verlaat"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Are you sure you want to leave this organization?"
+    "message": "Is u seker u wil hierdie organisasie verlaat?"
   },
   "leftOrganization": {
-    "message": "You have left the organization."
+    "message": "U het die organisasie verlaat."
   },
   "defaultCollection": {
-    "message": "Default Collection"
+    "message": "Verstekversameling"
   },
   "getHelp": {
-    "message": "Get Help"
+    "message": "Kry Hulp"
   },
   "getApps": {
-    "message": "Get the Apps"
+    "message": "Kry die Toeps"
   },
   "loggedInAs": {
-    "message": "Logged in as"
+    "message": "Aangeteken as"
   },
   "eventLogs": {
     "message": "Event Logs"
   },
   "people": {
-    "message": "People"
+    "message": "Mense"
   },
   "policies": {
-    "message": "Policies"
+    "message": "Beleide"
   },
   "editPolicy": {
-    "message": "Edit Policy"
+    "message": "Wysig Beleid"
   },
   "groups": {
-    "message": "Groups"
+    "message": "Groepe"
   },
   "newGroup": {
-    "message": "New Group"
+    "message": "Nuwe Groep"
   },
   "addGroup": {
-    "message": "Add Group"
+    "message": "Voeg Groep Toe"
   },
   "editGroup": {
-    "message": "Edit Group"
+    "message": "Wysig Groep"
   },
   "deleteGroupConfirmation": {
-    "message": "Are you sure you want to delete this group?"
+    "message": "Is u seker u wil hierdie groep skrap?"
   },
   "removeUserConfirmation": {
-    "message": "Are you sure you want to remove this user?"
+    "message": "Is u seker u wil hierdie gebruiker verwyder?"
   },
   "externalId": {
-    "message": "External Id"
+    "message": "Eksterne ID"
   },
   "externalIdDesc": {
     "message": "The external id can be used as a reference or to link this resource to an external system such as a user directory."
@@ -2084,31 +2091,31 @@
     "message": "Access Control"
   },
   "groupAccessAllItems": {
-    "message": "This group can access and modify all items."
+    "message": "Hierdie groep het toegang tot alle items en kan dit wysig."
   },
   "groupAccessSelectedCollections": {
-    "message": "This group can access only the selected collections."
+    "message": "Hierdie groep het slegs toegang tot die gekose versamelings."
   },
   "readOnly": {
-    "message": "Read Only"
+    "message": "Leesalleen"
   },
   "newCollection": {
-    "message": "New Collection"
+    "message": "Nuwe Versameling"
   },
   "addCollection": {
-    "message": "Add Collection"
+    "message": "Voeg Versameling Toe"
   },
   "editCollection": {
-    "message": "Edit Collection"
+    "message": "Wysig Versameling"
   },
   "deleteCollectionConfirmation": {
-    "message": "Are you sure you want to delete this collection?"
+    "message": "Is u seker u wil hierdie versameling skrap?"
   },
   "editUser": {
-    "message": "Edit User"
+    "message": "Wysig Gebruiker"
   },
   "inviteUser": {
-    "message": "Invite User"
+    "message": "Nooi Gebruiker Uit"
   },
   "inviteUserDesc": {
     "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
@@ -2132,7 +2139,7 @@
     "message": "This user can access only the selected collections."
   },
   "search": {
-    "message": "Search"
+    "message": "Soek"
   },
   "invited": {
     "message": "Invited"
@@ -2156,55 +2163,55 @@
     "message": "Admins can access and manage all items, collections and users in your organization."
   },
   "user": {
-    "message": "User"
+    "message": "Gebruiker"
   },
   "userDesc": {
     "message": "A regular user with access to assigned collections in your organization."
   },
   "manager": {
-    "message": "Manager"
+    "message": "Bestuurder"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "Bestuurders bestuur en het toegang tot toegewysde versamelings in u organisasie."
   },
   "all": {
-    "message": "All"
+    "message": "Alle"
   },
   "refresh": {
-    "message": "Refresh"
+    "message": "Verfris"
   },
   "timestamp": {
-    "message": "Timestamp"
+    "message": "Tydstempel"
   },
   "event": {
-    "message": "Event"
+    "message": "Gebeurtenis"
   },
   "unknown": {
-    "message": "Unknown"
+    "message": "Onbekend"
   },
   "loadMore": {
-    "message": "Load More"
+    "message": "Laai Meer"
   },
   "mobile": {
-    "message": "Mobile",
+    "message": "Mobiel",
     "description": "Mobile app"
   },
   "extension": {
-    "message": "Extension",
+    "message": "Uitbreiding",
     "description": "Browser extension/addon"
   },
   "desktop": {
-    "message": "Desktop",
+    "message": "Werkskerm",
     "description": "Desktop app"
   },
   "webVault": {
-    "message": "Web Vault"
+    "message": "Webkluis"
   },
   "loggedIn": {
-    "message": "Logged in."
+    "message": "Aangeteken."
   },
   "changedPassword": {
-    "message": "Changed account password."
+    "message": "Rekeningwagwoord is verander."
   },
   "enabledUpdated2fa": {
     "message": "Enabled/updated two-step login."
@@ -2474,37 +2481,37 @@
     }
   },
   "device": {
-    "message": "Device"
+    "message": "Toestel"
   },
   "view": {
-    "message": "View"
+    "message": "Bekyk"
   },
   "invalidDateRange": {
-    "message": "Invalid date range."
+    "message": "Ongeldige datumbereik."
   },
   "errorOccurred": {
-    "message": "An error has occurred."
+    "message": "’n Fout het voorgekom."
   },
   "userAccess": {
-    "message": "User Access"
+    "message": "Gebruikertoegang"
   },
   "userType": {
-    "message": "User Type"
+    "message": "Gebruikertipe"
   },
   "groupAccess": {
-    "message": "Group Access"
+    "message": "Groeptoegang"
   },
   "groupAccessUserDesc": {
     "message": "Edit the groups that this user belongs to."
   },
   "invitedUsers": {
-    "message": "Invited user(s)."
+    "message": "Gebruiker(s) genooi."
   },
   "resendInvitation": {
     "message": "Resend Invitation"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "$USER$ is weer uitgenooi.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2516,10 +2523,10 @@
     "message": "Bevestig"
   },
   "confirmUser": {
-    "message": "Confirm User"
+    "message": "Bevestig Gebruiker"
   },
   "hasBeenConfirmed": {
-    "message": "$USER$ has been confirmed.",
+    "message": "$USER$ is bevestig.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2528,7 +2535,7 @@
     }
   },
   "confirmUsers": {
-    "message": "Confirm Users"
+    "message": "Bevestig Gebruikers"
   },
   "usersNeedConfirmed": {
     "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the organization until they are confirmed."
@@ -2558,7 +2565,7 @@
     "message": "Unable to verify your email. Try sending a new verification email."
   },
   "updateBrowser": {
-    "message": "Update Browser"
+    "message": "Werk Blaaier By"
   },
   "updateBrowserDesc": {
     "message": "You are using an unsupported web browser. The web vault may not function properly."
@@ -2570,7 +2577,7 @@
     "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
   },
   "inviteAccepted": {
-    "message": "Invitation Accepted"
+    "message": "Uitnodiging is Aanvaar"
   },
   "inviteAcceptedDesc": {
     "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
@@ -2612,31 +2619,31 @@
     "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
   },
   "myOrganization": {
-    "message": "My Organization"
+    "message": "My Organisasie"
   },
   "deleteOrganization": {
-    "message": "Delete Organization"
+    "message": "Skrap Organisasie"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Gaan hieronder voort om hierdie organisasie en alle verwante data te skrap. Individuele gebruikersrekeninge bly bestaan maar sal nie meer aan hierdie organisasie gekoppel wees nie. "
   },
   "deleteOrganizationWarning": {
-    "message": "Deleting the organization is permanent. It cannot be undone."
+    "message": "Skrap van die organisasie is permanent. Dit kan nie ontdaan word nie."
   },
   "organizationDeleted": {
-    "message": "Organization Deleted"
+    "message": "Organisasie Geskrap"
   },
   "organizationDeletedDesc": {
-    "message": "The organization and all associated data has been deleted."
+    "message": "Die organisasie en alle verwante data is geskrap."
   },
   "organizationUpdated": {
-    "message": "Organization updated"
+    "message": "Organisasie bygewerk"
   },
   "taxInformation": {
     "message": "Belastinginligting"
   },
   "taxInformationDesc": {
-    "message": "Please contact support to provide (or update) tax information for your invoices."
+    "message": "For customers within the US, ZIP code is required to satisfy sales tax requirements, for other countries you may optionally provide a tax identification number (VAT/GST) and/or address to appear on your invoices."
   },
   "billingPlan": {
     "message": "Pakket",
@@ -2808,7 +2815,7 @@
     "description": "A policy is something like Terms of Service, Privacy Policy, etc."
   },
   "termsOfService": {
-    "message": "Terms of Service"
+    "message": "Gebruiksvoorwaardes"
   },
   "privacyPolicy": {
     "message": "Privaatheidsbeleid"
@@ -2967,13 +2974,13 @@
     "message": "U moet u intekening bestuur vanuit die winkel waarin u toepgebonde aankoop gedoen is."
   },
   "minLength": {
-    "message": "Minimum Length"
+    "message": "Minimum lengte"
   },
   "clone": {
-    "message": "Clone"
+    "message": "Kloon"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "Stel minimum vereistes vir hoofwagwoordsterkte."
   },
   "twoStepLoginPolicyDesc": {
     "message": "Require users to set up two-step login on their personal accounts."
@@ -2985,16 +2992,16 @@
     "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "Stel minimum vereistes vir opstelling van wagwoordgenereerder."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "Een of meer organisasiebeleide beïnvloed u genereerderinstellings."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "Een of meer organisasiebeleide stel die volgende eise aan u hoofwagwoord:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "Minimum ingewikkeldheidstelling van $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3003,7 +3010,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "Minimum lengte van $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3012,16 +3019,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "Bevat een of meer hoofletterkarakters"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "Bevat een of meer kleinletterkarakters"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "Bevat een of meer syfers"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "Bevat een of meer van die volgende spesiale karakters $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3030,16 +3037,16 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "U nuwe hoofwagwoord voldoen nie aan die beleidsvereistes nie."
   },
   "minimumNumberOfWords": {
-    "message": "Minimum Number of Words"
+    "message": "Minimum Aantal Woorde"
   },
   "defaultType": {
-    "message": "Default Type"
+    "message": "Verstektipe"
   },
   "userPreference": {
-    "message": "User Preference"
+    "message": "Gebruikersvoorkeure"
   },
   "vaultTimeoutAction": {
     "message": "Vault Timeout Action"
@@ -3051,33 +3058,33 @@
     "message": "A logged out vault requires that you re-authenticate to access it again."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Vergrendel",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Asblik",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Deursoek Asblik"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Skrap Permanent"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Skrap Gekose Permanent"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Skrap Item Permanent"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Is u seker u wil hierdie item permanent skrap?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Permanent Geskrapte Item"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Permanent Geskrapte Items"
   },
   "permanentlyDeleteSelectedItemsDesc": {
     "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
@@ -3089,7 +3096,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Permanent Geskrapte Items $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3141,5 +3148,20 @@
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "Timeout Action Confirmation"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

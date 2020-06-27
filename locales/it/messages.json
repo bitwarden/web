@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "Usa immagine profilo caricata da gravatar.com."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "Predefinito"
   },
@@ -2817,10 +2824,10 @@
     "message": "Filtri"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Timeout Cassaforte"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Scegli quando la tua cassaforte andrà in timeout ed esegui l'azione selezionata."
   },
   "oneMinute": {
     "message": "1 minuto"
@@ -3042,45 +3049,45 @@
     "message": "Preferenze utente"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Azione Timeout Cassaforte"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Scegli quando bloccare la tua cassaforte. Una cassaforte bloccata richiede l'inserimento della password principale per potervi accedere."
+    "message": "Una cassaforte bloccata richiede l'inserimento della password principale per accedere nuovamente."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "La disconnessione dalla cassaforte richiede l'inserimento della password principale per accedere nuovamente."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Blocca",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Cestino",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Cerca nel cestino"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Elimina definitivamente"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Elimina definitivamente l'elemento selezionato"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Elimina definitivamente l'elemento"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Sei sicuro di voler eliminare definitivamente questo elemento?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Elimina definitivamente l'elemento"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Elimina definitivamente gli elementi"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Hai selezionato $COUNT$ elemento/i da eliminare definitivamente. Sei sicuro di voler eliminare definitivamente tutti gli elementi selezionati?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3096,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Elemento definitivamente eliminato $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3105,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Ripristina"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Ripristina selezionato"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Ripristina elemento"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Ripristina Elemento"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Elementi Ripristinati"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Sei sicuro di voler ripristinare questo elemento?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Ripristina elementi"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Hai selezionato $COUNT$ elemento/i da ripristinare. Sei sicuro di voler ripristinare tutti gli elementi selezionati?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3135,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Elemento ripristinato $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3144,24 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "La disconnessione rimuove tutti gli accessi alla tua cassaforte e richiede l'autenticazione online dopo il periodo di timeout. Sei sicuro di voler utilizzare questa impostazione?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Conferma Azione di Timeout"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

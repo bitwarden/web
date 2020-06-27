@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "Utilizar imagens de avatar carregadas a partir de gravatar.com."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "Predefinido"
   },
@@ -2817,10 +2824,10 @@
     "message": "Filtros"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Expiração do cofre"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Escolha quando o seu cofre irá expirar e realizar a ação selecionada."
   },
   "oneMinute": {
     "message": "1 minuto"
@@ -3042,13 +3049,13 @@
     "message": "Preferência do utilizador"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Ação de expiração do cofre"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Um cofre bloqueado requer que reintroduza a sua palavra-passe mestra para aceder novamente."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Um cofre com sessão terminada requer que se volte a autenticar para o poder aceder novamente."
   },
   "lock": {
     "message": "Bloquear",
@@ -3137,9 +3144,24 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Terminar sessão irá remover todos os acessos ao seu cofre e requer autenticação online após o período de espera. Tem a certeza de que pretende utilizar esta definição?"
+    "message": "Terminar sessão irá remover todos os acessos ao seu cofre e requer autenticação online após o período de expiração. Tem a certeza de que pretende utilizar esta definição?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Confirmação de expiração do cofre"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

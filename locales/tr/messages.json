@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "gravatar.com adresinden yüklenen avatarları kullanın."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "Varsayılan"
   },
@@ -2817,7 +2824,7 @@
     "message": "Filtreler"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Kasa Zaman Aşımı"
   },
   "vaultTimeoutDesc": {
     "message": "Choose when your vault will timeout and perform the selected action."
@@ -3042,7 +3049,7 @@
     "message": "Kullanıcı Tercihi"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Kasa Zaman Aşımı Eylemi"
   },
   "vaultTimeoutActionLockDesc": {
     "message": "A locked vault requires that you re-enter your master password to access it again."
@@ -3051,36 +3058,36 @@
     "message": "A logged out vault requires that you re-authenticate to access it again."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Kilitle",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Çöp Kutusu",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Çöplerde ara"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Kalıcı Olarak Sil"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Seçileni Kalıcı Olarak Sil"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Ögeyi Kalıcı Olarak Sil"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Bu ögeyi kalıcı olarak silmek istediğinize emin misiniz?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Kalıcı Olarak Silinmiş Öge"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Kalıcı Olarak Silinmiş Ögeler"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Silinmesi için $COUNT$ öge seçtiniz. Bu ögelerin tamamını kalıcı şekilde silmek istediğinizden emin misiniz?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3089,7 +3096,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Kalıcı Olarak Silinmiş Öge: $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3098,28 +3105,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Geri Yükle"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Seçilileri Geri Yükle"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Ögeyi Geri Yükle"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Geri yüklenmiş öge"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Geri yüklenmiş ögeler"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Bu ögeyi geri yüklemek istediğinizden emin misiniz?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Ögeleri geri yükle"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Geri yüklenmesi için $COUNT$ öge seçtiniz. Bu ögelerin tamamını geri yüklemek istediğinizden emin misiniz?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3128,7 +3135,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Geri yüklenmiş öge: $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3137,9 +3144,24 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Oturumu kapatmak kasanıza olan tüm erişiminizi kaldırır ve zaman aşımından sonra çevrimiçi kimlik doğrulaması gerektirir. Bu ayarı kullanmak istediğinizden emin misiniz?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Zaman Aşımı Eylem Onayı"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }
