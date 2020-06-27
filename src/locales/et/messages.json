@@ -10,16 +10,16 @@
     }
   },
   "whatTypeOfItem": {
-    "message": "Millist tüüpi kirje see on?"
+    "message": "Mis tüüpi kirje see on?"
   },
   "name": {
     "message": "Nimi"
   },
   "uri": {
-    "message": "URL"
+    "message": "URI"
   },
   "uriPosition": {
-    "message": "URL $POSITION$",
+    "message": "URI $POSITION$",
     "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
     "placeholders": {
       "position": {
@@ -29,7 +29,7 @@
     }
   },
   "newUri": {
-    "message": "Uus URL"
+    "message": "Uus URI"
   },
   "username": {
     "message": "Kasutajanimi"
@@ -50,13 +50,13 @@
     "message": "Kaardiomaniku nimi"
   },
   "number": {
-    "message": "Number"
+    "message": "Kaardi number"
   },
   "brand": {
     "message": "Väljastaja"
   },
   "expiration": {
-    "message": "Aegumine"
+    "message": "Aegumiskuupäev"
   },
   "securityCode": {
     "message": "Kaardi turvakood (CVV)"
@@ -385,7 +385,7 @@
     "description": "Copy credit card security code (CVV)"
   },
   "copyUri": {
-    "message": "Kopeeri URL",
+    "message": "Kopeeri URI",
     "description": "Copy URI to clipboard"
   },
   "myVault": {
@@ -395,7 +395,7 @@
     "message": "Hoidla"
   },
   "shareSelected": {
-    "message": "Jaga valituid"
+    "message": "Jaga valitud"
   },
   "deleteSelected": {
     "message": "Kustuta valitud"
@@ -452,7 +452,7 @@
     "message": "Kustuta kirje"
   },
   "deleteFolder": {
-    "message": "Kustuta Kaust"
+    "message": "Kustuta kaust"
   },
   "deleteAttachment": {
     "message": "Kustuta manus"
@@ -461,16 +461,16 @@
     "message": "Soovid tõesti selle kirje kustutada?"
   },
   "deletedItem": {
-    "message": "Kirje on kustutatud"
+    "message": "Kirje on prügikasti teisaldatud"
   },
   "deletedItems": {
-    "message": "Kirje on kustutatud"
+    "message": "Kirjed on prügikasti teisaldatud"
   },
   "movedItems": {
     "message": "Kirjed on teisaldatud"
   },
   "overwritePasswordConfirmation": {
-    "message": "Oled kindel, et soovid olemasolevat parooli üle kirjutada?"
+    "message": "Oled kindel, et soovid olemas olevat parooli üle kirjutada?"
   },
   "editedFolder": {
     "message": "Kaust on muudetud"
@@ -482,7 +482,7 @@
     "message": "Oled kindel, et soovid seda kausta kustutada?"
   },
   "deletedFolder": {
-    "message": "Kaust kustutatud"
+    "message": "Kaust on kustutatud"
   },
   "loggedOut": {
     "message": "Välja logitud"
@@ -687,7 +687,7 @@
     "message": "Kaheastmelise sisselogimise valikud"
   },
   "recoveryCodeDesc": {
-    "message": "Sul ei ole ligipääsu ühelegi kaheastmelise kinnitamise teenusele? Kasuta Taastamise koodi, et kaheastmeline kinnitamine oma kontol välja lülitada."
+    "message": "Sul ei ole ligipääsu ühelegi kaheastmelise kinnitamise teenusele? Kasuta taastamise koodi, et kaheastmeline kinnitamine oma kontol välja lülitada."
   },
   "recoveryCodeTitle": {
     "message": "Taastamise kood"
@@ -819,7 +819,7 @@
     "message": "Väldi ebamääraseid kirjamärke"
   },
   "regeneratePassword": {
-    "message": "Genereeri salasõna uuesti"
+    "message": "Genereeri parool uuesti"
   },
   "length": {
     "message": "Pikkus"
@@ -1029,7 +1029,7 @@
     "message": "Keel"
   },
   "languageDesc": {
-    "message": "Siin saad veebihoidla keelt muuta."
+    "message": "Siin saab veebihoidla keelt muuta."
   },
   "disableIcons": {
     "message": "Lülita veebisaidi ikoonid välja"
@@ -1043,6 +1043,13 @@
   },
   "enableGravatarsDesc": {
     "message": "Luba avatari pildid, mida laaditakse lehelt gravatar.com."
+  },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
   },
   "default": {
     "message": "Vaikimisi"
@@ -1568,7 +1575,7 @@
     }
   },
   "addons": {
-    "message": "Täiendused"
+    "message": "Lisad"
   },
   "premiumAccess": {
     "message": "Premium ligipääs"
@@ -1593,7 +1600,7 @@
     "message": "# lisa GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Sul on kasutada $SIZE$ krüpteeritud failiruumi Soovi korral saad osta lisaruumi hinnaga $PRICE$ GB /$INTERVAL$.",
+    "message": "Sul on kasutada $SIZE$ krüpteeritud failiruumi. Soovi korral saad osta lisaruumi hinnaga $PRICE$ GB /$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1638,7 +1645,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Sinu valitud pakett sisaldab 7 päevast prooviperioodi. Krediitkaardilt ei debiteerita raha enne, kui prooviperiood otsa lõpeb. Kirjas olev summa debiteeritakse iga $INTERVAL$. Tellimust on võimalik igal ajal tühistada.",
+    "message": "Valitud pakett sisaldab 7 päevast prooviperioodi. Krediitkaardilt ei debiteerita raha enne, kui prooviperiood otsa lõpeb. Välja toodud summa debiteeritakse iga $INTERVAL$. Tellimust on võimalik igal ajal tühistada.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1830,7 +1837,7 @@
     "message": "Vajalik on konto e-posti aadressi kinnitamine."
   },
   "newOrganizationDesc": {
-    "message": "Organisatsioonid võimaldavad sul hoidlat osaliselt või täielikult jagada. Lisaks saad kõiki kasutajaid liigitada näiteks perekonda, väikesesse meeskonda või suurde ettevõttesse."
+    "message": "Organisatsioonid võimaldavad hoidla sisu osaliselt või täielikult jagada. Lisaks on võimalik kõiki kasutajaid liigitada näiteks perekonda, väiksesse meeskonda või suurde ettevõttesse."
   },
   "generalInformation": {
     "message": "Üldine Informatsioon"
@@ -1848,7 +1855,7 @@
     "message": "Ettevõtte nimi"
   },
   "chooseYourPlan": {
-    "message": "Vali oma pakett"
+    "message": "Vali pakett"
   },
   "users": {
     "message": "Kasutajad"
@@ -1876,14 +1883,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "Palju kasutajaid sa vajad? Kasutajaid on hiljem võimalik juurde lisada."
+    "message": "Vali vajalik arv kasutajaid. Neid on võimalik iga kell juurde lisada või eemaldada."
   },
   "planNameFree": {
     "message": "Tasuta",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "Testimiseks ja isiklikuks kasutamiseks, et jagada $COUNT$ teise kasutajaga.",
+    "message": "Testimiseks ja isiklikuks kasutamiseks, jagamaks $COUNT$ teise kasutajaga.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1976,13 +1983,13 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "Ise majutamine (valikuline)"
+    "message": "Ise hostimise võimalus (valikuline)"
   },
   "usersGetPremium": {
-    "message": "Kasutajad saavad juurdepääsu premium funktsioonidele"
+    "message": "Liikmed saavad automaatse juurdepääsu premium funktsioonidele"
   },
   "controlAccessWithGroups": {
-    "message": "Halda gruppide abil kasutajate ligipääse"
+    "message": "Halda gruppide abil kasutajate ligipääsu õigusi"
   },
   "syncUsersFromDirectory": {
     "message": "Sünkroniseeri kasutajaid ja gruppe kataloogist"
@@ -1997,7 +2004,7 @@
     "message": "Kiirem klienditugi"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ päevane prooviversioon, tühistatav iga kell",
+    "message": "$COUNT$ päevane prooviversioon, mida saab iga kell tühistada",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3045,10 +3052,10 @@
     "message": "Sooritatav tegevus"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Lukustamine tähendab, et hoidlale ligi pääsemiseks nõutakse ülemparooli uuesti sisestamist."
+    "message": "Lukustamisel nõutakse hoidlale uuesti ligi pääsemiseks ülemparooli."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "Hoidlast väljalogimine nõuab taaskordseks ligipääsuks uuesti autentimist."
+    "message": "Väljalogimisel nõutakse hoidlale uuesti ligi pääsemiseks autentimist."
   },
   "lock": {
     "message": "Lukusta",
@@ -3141,5 +3148,20 @@
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "Ajalõpu tegevuse kinnitamine"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

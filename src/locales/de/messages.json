@@ -461,10 +461,10 @@
     "message": "Soll dieser Eintrag wirklich gelöscht werden?"
   },
   "deletedItem": {
-    "message": "Gelöschter Eintrag"
+    "message": "Eintrag in Papierkorb verschoben"
   },
   "deletedItems": {
-    "message": "Papierkorb"
+    "message": "In Papierkorb verschobene Einträge"
   },
   "movedItems": {
     "message": "Verschobene Einträge"
@@ -542,7 +542,7 @@
     "message": "Master-Passwort-Hinweis (optional)"
   },
   "masterPassHintLabel": {
-    "message": "Master Passwort Hinweis"
+    "message": "Master-Passwort-Hinweis"
   },
   "settings": {
     "message": "Einstellungen"
@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "Nutze Profilbilder von gravatar.com."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "Standard"
   },
@@ -1333,7 +1340,7 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "Es gibt keine Einträge in deinem Tresor die unsichere URIs benutzen."
+    "message": "Es gibt keine Einträge in Ihrem Tresor, die unsichere URIs benutzen."
   },
   "inactive2faReport": {
     "message": "Bericht über inaktive 2FA"
@@ -1402,7 +1409,7 @@
     "message": "Schwache Passwörter gefunden"
   },
   "weakPasswordsFoundDesc": {
-    "message": "Wir haben $COUNT$ Einträge mit schwachen Passwörtern in Ihrem Tresor gefunden, Sie sollten diese zu sicheren Passwörtern ändern.",
+    "message": "Wir haben $COUNT$ Einträge mit schwachen Passwörtern in Ihrem Tresor gefunden. Sie sollten diese aktualisieren und ein sicheres Passwort verwenden.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2249,7 +2256,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Eintrag $ID$ gelöscht.",
+    "message": "Eintrag $ID$ in Papierkorb verschoben.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3141,5 +3148,20 @@
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "Bestätigung der Timeout-Aktion"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

@@ -449,7 +449,7 @@
     "message": "Delte gjenstander"
   },
   "deleteItem": {
-    "message": "Slett gjenstanden"
+    "message": "Slett objektet"
   },
   "deleteFolder": {
     "message": "Slett mappen"
@@ -461,10 +461,10 @@
     "message": "Er du sikker på at du vil slette denne gjenstanden?"
   },
   "deletedItem": {
-    "message": "Slettet gjenstanden"
+    "message": "Slettet objektet"
   },
   "deletedItems": {
-    "message": "Slettet gjenstandene"
+    "message": "Slettet objektene"
   },
   "movedItems": {
     "message": "Flyttede gjenstander"
@@ -627,7 +627,7 @@
     "message": "Ny organisasjon"
   },
   "noOrganizationsList": {
-    "message": "Du tilhører ikke noen organisasjoner. Organisasjoner gjør det mulig for deg å sikkert dele gjenstander med andre brukere."
+    "message": "Du tilhører ikke noen organisasjoner. Organisasjoner gjør det mulig for deg å sikkert dele objekter med andre brukere."
   },
   "versionNumber": {
     "message": "Versjon $VERSION_NUMBER$",
@@ -735,13 +735,13 @@
     "message": "Organisasjoner"
   },
   "shareDesc": {
-    "message": "Velg en organisasjon som du ønsker å dele denne gjenstanden med. Deling overfører gjenstandens eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av denne gjenstanden når den først har blitt delt."
+    "message": "Velg en organisasjon som du ønsker å dele dette objektet med. Deling overfører objektets eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av dette objektet når det først har blitt delt."
   },
   "shareManyDesc": {
-    "message": "Velg en organisasjon som du ønsker å dele disse gjenstandene med. Deling overfører gjenstandenes eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av disse gjenstandene når den først har blitt delt."
+    "message": "Velg en organisasjon som du ønsker å dele disse objektene med. Deling overfører objektenes eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av disse objektene når de først har blitt delt."
   },
   "collectionsDesc": {
-    "message": "Rediger samlingene som denne gjenstanden blir delt med. Kun organisasjonsbrukere med tilgang til disse samlingene vil kunne se denne gjenstanden."
+    "message": "Rediger samlingene som dette objektet blir delt med. Kun organisasjonsbrukere med tilgang til disse samlingene vil kunne se dette objektet."
   },
   "deleteSelectedItemsDesc": {
     "message": "Du har valgt $COUNT$ gjenstand(er) som skal slettes. Er du sikker på du vil slette alle disse gjenstandene?",
@@ -953,10 +953,10 @@
     "message": "Tømte organisasjonens hvelv."
   },
   "purgeVaultDesc": {
-    "message": "Fortsett nedenfor for å slette alle gjenstander og mapper i ditt hvelv. Gjenstander som tilhører en organisasjon som du deler med, vil ikke bli slettet."
+    "message": "Fortsett nedenfor for å slette alle objektet og mapper i ditt hvelv. Objekter som tilhører en organisasjon som du deler med, vil ikke bli slettet."
   },
   "purgeOrgVaultDesc": {
-    "message": "Fortsett nedenfor for å slette alle gjenstandene i organisasjonens hvelv."
+    "message": "Fortsett nedenfor for å slette alle objektene i organisasjonens hvelv."
   },
   "purgeVaultWarning": {
     "message": "Å tømme hvelvet ditt er permanent. Det kan ikke bli angret på."
@@ -1035,7 +1035,7 @@
     "message": "Skru av nettstedsikoner"
   },
   "disableIconsDesc": {
-    "message": "Nettstedsikoner sørger for et gjenkjennelig bilde ved siden av hver innloggingsgjenstand i hvelvet ditt."
+    "message": "Nettstedsikoner sørger for et gjenkjennelig bilde ved siden av hvert innloggingsobjekt i hvelvet ditt."
   },
   "enableGravatars": {
     "message": "Skru på Gravatarer",
@@ -1043,6 +1043,13 @@
   },
   "enableGravatarsDesc": {
     "message": "Bruk avatarbilder som har blitt lastet inn fra gravatar.com."
+  },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
   },
   "default": {
     "message": "Standard"
@@ -2153,7 +2160,7 @@
     "message": "Admin"
   },
   "adminDesc": {
-    "message": "Administratorer kan få tilgang til og behandle alle gjenstander, samlinger og brukere i din organisasjon."
+    "message": "Administratorer kan få tilgang til og behandle alle objekter, samlinger og brukere i din organisasjon."
   },
   "user": {
     "message": "Bruker"
@@ -2249,7 +2256,7 @@
     }
   },
   "deletedItemId": {
-    "message": "Slettet $ID$-gjenstanden.",
+    "message": "Slettet $ID$-objektet.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3141,5 +3148,20 @@
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "Bekreftelse av handling ved pause"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }

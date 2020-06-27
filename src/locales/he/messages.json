@@ -1044,6 +1044,13 @@
   "enableGravatarsDesc": {
     "message": "שימוש בתמונות אווטאר שנטענו מהאתר gravatar.com."
   },
+  "enableFullWidth": {
+    "message": "Enable Full Width Layout",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Allow the web vault to expand the full width of the browser window."
+  },
   "default": {
     "message": "ברירת מחדל"
   },
@@ -1830,7 +1837,7 @@
     "message": "יש לאמת את כתובת האימייל שלך."
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "שימוש ב\"ארגון\" מאפשר לך לשתף חלקים מהכספת עם אחרים, כמו גם לנהל משתמשים עבור ישות כדוגמת משפחה, צוות קטן, או חברה גדולה."
   },
   "generalInformation": {
     "message": "מידע כללי"
@@ -1863,7 +1870,7 @@
     "message": "כמות כסאות משתמשים"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Your plan comes with $BASE_SEATS$ user seats. You can add additional users for $SEAT_PRICE$ per user /month.",
+    "message": "התוכנית שלך מגיעה עם $BASE_SEATS$ כסאות משתמשים. באפשרות להוסיף משתמשים נוספים בעלות של $SEAT_PRICE$ עבור כל משתמש לחודש אחד.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1876,14 +1883,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "How many user seats do you need? You can also add additional seats later if needed."
+    "message": "כמה כסאות משתמשים אתה צריך? אם יהיה צורך, באפשרותך להוסיף כסאות גם בשלב מאוחר יותר."
   },
   "planNameFree": {
     "message": "חינם",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "message": "עבור בדיקה או עבור משתמשים פרטיים עבור שיתוף עם $COUNT$ משתמשים אחרים.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1895,19 +1902,19 @@
     "message": "משפחות"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "שימוש פרטי - לשיתוף עם משפחה וחברים."
   },
   "planNameTeams": {
     "message": "צוותים"
   },
   "planDescTeams": {
-    "message": "For businesses and other team organizations."
+    "message": "לעסקים וקבוצות ארגוניות."
   },
   "planNameEnterprise": {
     "message": "ארגון"
   },
   "planDescEnterprise": {
-    "message": "For businesses and other large organizations."
+    "message": "לעסקים וארגונים גדולים."
   },
   "freeForever": {
     "message": "חינם לנצח"
@@ -1934,7 +1941,7 @@
     }
   },
   "limitedUsers": {
-    "message": "Limited to $COUNT$ users (including you)",
+    "message": "מוגבל ל$COUNT$ משתמשים (כולל אותך)",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1943,7 +1950,7 @@
     }
   },
   "limitedCollections": {
-    "message": "Limited to $COUNT$ collections",
+    "message": "מוגבל ל$COUNT$ אוספים",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1952,7 +1959,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "Add and share with up to $COUNT$ users",
+    "message": "הוסף ושתף עם עד $COUNT$ משתמשים",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1961,13 +1968,13 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Add and share with unlimited users"
+    "message": "הוסף ושתף עם כמות בלתי מוגבלת של משתמשים"
   },
   "createUnlimitedCollections": {
     "message": "צור מספר בלתי מוגבל של אוספים"
   },
   "gbEncryptedFileStorage": {
-    "message": "$SIZE$ encrypted file storage",
+    "message": "גודל קובץ מוצפן: $SIZE$",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1976,22 +1983,22 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "On-premise hosting (optional)"
+    "message": "אחסון שרת מקומי (אופציונאלי)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "משתמשים מקבלים גישה ליכולות פרמיום"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with groups"
+    "message": "שלוט על גישת משתמשים בעזרת קבוצות"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and groups from a directory"
+    "message": "סנכרן את המשתמשים והקבוצות מתוך Active Directory"
   },
   "trackAuditLogs": {
-    "message": "Track user actions with audit logs"
+    "message": "עקוב אחר פעולות המשתמשים בעזרת יומן ביקורת"
   },
   "enforce2faDuo": {
-    "message": "Enforce 2FA with Duo"
+    "message": "אכוף 2FA עם Dou"
   },
   "priorityCustomerSupport": {
     "message": "קדימות בתמיכה הטכנית"
@@ -2228,7 +2235,7 @@
     "message": "יצוא של תוכן הכספת הארגונית."
   },
   "editedOrgSettings": {
-    "message": "Edited organization settings."
+    "message": "הגדרות הארגון נערכו."
   },
   "createdItemId": {
     "message": "פריט שנוצר $ID$.",
@@ -3141,5 +3148,20 @@
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "אישור פעולת אימות לאחר חוסר פעילות"
+  },
+  "hidePasswords": {
+    "message": "Hide Passwords"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We require this information for calculating sales tax and financial reporting only."
+  },
+  "includeVAT": {
+    "message": "Include VAT/GST Information (optional)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "Tax information updated."
   }
 }
