@@ -56,12 +56,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
             });
         });
     }
+
     ngOnDestroy() {
         this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     }
+
     async load() {
         this.organization = await this.userService.getOrganization(this.organizationId);
     }
+
     async goToEnterprisePortal() {
         if (this.enterpriseTokenPromise != null) {
             return;
