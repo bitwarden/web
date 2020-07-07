@@ -71,7 +71,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
             const token = await this.enterpriseTokenPromise;
             if (token != null) {
                 const userId = await this.userService.getUserId();
-                this.platformUtilsService.launchUri('http://localhost:5001/login?userId=' + userId +
+                this.platformUtilsService.launchUri(this.enterpriseUrl + '/login?userId=' + userId +
                     '&token=' + (window as any).encodeURIComponent(token) + '&organizationId=' + this.organization.id);
             }
         } catch { }
