@@ -118,7 +118,7 @@ const passwordGenerationService = new PasswordGenerationService(cryptoService, s
 const totpService = new TotpService(storageService, cryptoFunctionService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
-    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService);
+    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService);
 const exportService = new ExportService(folderService, cipherService, apiService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
 const notificationsService = new NotificationsService(userService, syncService, appIdService,
