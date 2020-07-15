@@ -99,6 +99,8 @@ export class SsoComponent {
                 } else {
                     this.router.navigate([this.twoFactorRoute]);
                 }
+            } else if (response.resetMasterPassword) {
+                // TODO: launch reset master password flow
             } else {
                 const disableFavicon = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
                 await this.stateService.save(ConstantsService.disableFaviconKey, !!disableFavicon);
