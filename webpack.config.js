@@ -88,6 +88,11 @@ const plugins = [
         filename: 'u2f-connector.html',
         chunks: ['connectors/u2f'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/sso.html',
+        filename: 'sso-connector.html',
+        chunks: ['connectors/sso'],
+    }),
     new CopyWebpackPlugin([
         { from: './src/.nojekyll' },
         { from: './src/manifest.json' },
@@ -152,6 +157,7 @@ const config = {
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
         'connectors/duo': './src/connectors/duo.ts',
+        'connectors/sso': './src/connectors/sso.ts',
     },
     externals: {
         'u2f': 'u2f',

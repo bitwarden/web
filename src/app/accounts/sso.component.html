@@ -1,0 +1,31 @@
+<form (ngSubmit)="submit()" class="container" ngNativeValidate>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-5">
+            <img src="../../images/logo-dark@2x.png" class="logo mb-2" alt="Bitwarden">
+            <div class="card d-block mt-4">
+                <div class="card-body" *ngIf="loggingIn">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    Logging in, please wait...
+                </div>
+                <div class="card-body" *ngIf="!loggingIn">
+                    <p>Quickly log in using your organization's single sign-on portal. Please enter your organization's
+                        identifier to begin.</p>
+                    <div class="form-group">
+                        <label for="identifier">Organization Identifier</label>
+                        <input id="identifier" class="form-control" type="text" name="Identifier"
+                            [(ngModel)]="identifier" required>
+                    </div>
+                    <hr>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{'logIn' | i18n}}
+                        </button>
+                        <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
+                            {{'cancel' | i18n}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

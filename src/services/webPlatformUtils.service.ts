@@ -93,8 +93,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     launchUri(uri: string, options?: any): void {
         const a = document.createElement('a');
         a.href = uri;
-        a.target = '_blank';
-        a.rel = 'noreferrer noopener';
+        if (options == null || !options.sameWindow) {
+            a.target = '_blank';
+            a.rel = 'noreferrer noopener';
+        }
         a.classList.add('d-none');
         document.body.appendChild(a);
         a.click();
