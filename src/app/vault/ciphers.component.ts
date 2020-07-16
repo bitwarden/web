@@ -22,8 +22,6 @@ import { EventType } from 'jslib/enums/eventType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
-const MaxCheckedCount = 500;
-
 @Component({
     selector: 'app-vault-ciphers',
     templateUrl: 'ciphers.component.html',
@@ -57,27 +55,6 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     launch(uri: string) {
         this.platformUtilsService.eventTrack('Launched Login URI');
         this.platformUtilsService.launchUri(uri);
-    }
-
-    selectAll(select: boolean) {
-        if (select) {
-            this.selectAll(false);
-        }
-        const selectCount = select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
-        for (let i = 0; i < selectCount; i++) {
-            this.checkCipher(this.ciphers[i], select);
-        }
-    }
-
-    getSelected(): CipherView[] {
-        if (this.ciphers == null) {
-            return [];
-        }
-        return this.ciphers.filter((c) => !!(c as any).checked);
-    }
-
-    getSelectedIds(): string[] {
-        return this.getSelected().map((c) => c.id);
     }
 
     attachments(c: CipherView) {

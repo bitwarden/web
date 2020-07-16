@@ -39,7 +39,7 @@ export class CiphersComponent extends BaseCiphersComponent {
             cipherService, eventService);
     }
 
-    async load (filter: (cipher: CipherView) => boolean = null) {
+    async load(filter: (cipher: CipherView) => boolean = null) {
         if (!this.organization.isAdmin) {
             await super.load(filter, this.deleted);
             return;
@@ -50,7 +50,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         this.loaded = true;
     }
 
-    async applyFilter (filter: (cipher: CipherView) => boolean = null) {
+    async applyFilter(filter: (cipher: CipherView) => boolean = null) {
         if (this.organization.isAdmin) {
             await super.applyFilter(filter);
         } else {
@@ -59,7 +59,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
     }
 
-    async search (timeout: number = null) {
+    async search(timeout: number = null) {
         if (!this.organization.isAdmin) {
             return super.search(timeout);
         }
@@ -82,45 +82,22 @@ export class CiphersComponent extends BaseCiphersComponent {
         await this.resetPaging();
     }
 
-    checkCipher (c: CipherView, select?: boolean) {
+    checkCipher(c: CipherView, select?: boolean) {
         (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
-    events (c: CipherView) {
+    events(c: CipherView) {
         this.onEventsClicked.emit(c);
     }
 
-    protected deleteCipher (id: string) {
+    protected deleteCipher(id: string) {
         if (!this.organization.isAdmin) {
             return super.deleteCipher(id, this.deleted);
         }
         return this.deleted ? this.apiService.deleteCipherAdmin(id) : this.apiService.putDeleteCipherAdmin(id);
     }
 
-    protected showFixOldAttachments (c: CipherView) {
+    protected showFixOldAttachments(c: CipherView) {
         return this.organization.isAdmin && c.hasOldAttachments;
     }
-
-    MaxCheckedCount = 500;
-    selectAll (select: boolean) {
-        if (select) {
-            this.selectAll(false);
-        }
-        const selectCount = select && this.ciphers.length > this.MaxCheckedCount ? this.MaxCheckedCount : this.ciphers.length;
-        for (let i = 0; i < selectCount; i++) {
-            this.checkCipher(this.ciphers[i], select);
-        }
-    }
-
-    getSelected (): CipherView[] {
-        if (this.ciphers == null) {
-            return [];
-        }
-        return this.ciphers.filter((c) => !!(c as any).checked);
-    }
-
-    getSelectedIds (): string[] {
-        return this.getSelected().map((c) => c.id);
-    }
-
 }
