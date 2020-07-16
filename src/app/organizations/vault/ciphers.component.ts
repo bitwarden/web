@@ -19,10 +19,10 @@ import { CipherView } from 'jslib/models/view/cipherView';
 
 import { CiphersComponent as BaseCiphersComponent } from '../../vault/ciphers.component';
 
-@Component({
+@Component( {
     selector: 'app-org-vault-ciphers',
     templateUrl: '../../vault/ciphers.component.html',
-})
+} )
 export class CiphersComponent extends BaseCiphersComponent {
     @Output() onEventsClicked = new EventEmitter<CipherView>();
 
@@ -31,73 +31,96 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     protected allCiphers: CipherView[] = [];
 
-    constructor(searchService: SearchService, analytics: Angulartics2,
+    constructor( searchService: SearchService, analytics: Angulartics2,
         toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, cipherService: CipherService,
-        private apiService: ApiService, eventService: EventService) {
-        super(searchService, analytics, toasterService, i18nService, platformUtilsService,
-            cipherService, eventService);
+        private apiService: ApiService, eventService: EventService ) {
+        super( searchService, analytics, toasterService, i18nService, platformUtilsService,
+            cipherService, eventService );
     }
 
-    async load(filter: (cipher: CipherView) => boolean = null) {
-        if (!this.organization.isAdmin) {
-            await super.load(filter, this.deleted);
+    async load ( filter: ( cipher: CipherView ) => boolean = null ) {
+        if ( !this.organization.isAdmin ) {
+            await super.load( filter, this.deleted );
             return;
         }
         this.accessEvents = this.organization.useEvents;
-        this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
-        this.applyFilter(filter);
+        this.allCiphers = await this.cipherService.getAllFromApiForOrganization( this.organization.id );
+        this.applyFilter( filter );
         this.loaded = true;
     }
 
-    async applyFilter(filter: (cipher: CipherView) => boolean = null) {
-        if (this.organization.isAdmin) {
-            await super.applyFilter(filter);
+    async applyFilter ( filter: ( cipher: CipherView ) => boolean = null ) {
+        if ( this.organization.isAdmin ) {
+            await super.applyFilter( filter );
         } else {
-            const f = (c: CipherView) => c.organizationId === this.organization.id && (filter == null || filter(c));
-            await super.applyFilter(f);
+            const f = ( c: CipherView ) => c.organizationId === this.organization.id && ( filter == null || filter( c ) );
+            await super.applyFilter( f );
         }
     }
 
-    async search(timeout: number = null) {
-        if (!this.organization.isAdmin) {
-            return super.search(timeout);
+    async search ( timeout: number = null ) {
+        if ( !this.organization.isAdmin ) {
+            return super.search( timeout );
         }
         this.searchPending = false;
         let filteredCiphers = this.allCiphers;
 
-        if (this.searchText == null || this.searchText.trim().length < 2) {
-            this.ciphers = filteredCiphers.filter((c) => {
-                if (c.isDeleted !== this.deleted) {
+        if ( this.searchText == null || this.searchText.trim().length < 2 ) {
+            this.ciphers = filteredCiphers.filter( ( c ) => {
+                if ( c.isDeleted !== this.deleted ) {
                     return false;
                 }
-                return this.filter == null || this.filter(c);
-            });
+                return this.filter == null || this.filter( c );
+            } );
         } else {
-            if (this.filter != null) {
-                filteredCiphers = filteredCiphers.filter(this.filter);
+            if ( this.filter != null ) {
+                filteredCiphers = filteredCiphers.filter( this.filter );
             }
-            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText, this.deleted);
+            this.ciphers = this.searchService.searchCiphersBasic( filteredCiphers, this.searchText, this.deleted );
         }
         await this.resetPaging();
     }
 
-    checkCipher(c: CipherView) {
-        // do nothing
+    checkCipher ( c: CipherView, select?: boolean ) {
+        ( c as any ).checked = select == null ? !( c as any ).checked : select;
     }
 
-    events(c: CipherView) {
-        this.onEventsClicked.emit(c);
+    events ( c: CipherView ) {
+        this.onEventsClicked.emit( c );
     }
 
-    protected deleteCipher(id: string) {
-        if (!this.organization.isAdmin) {
-            return super.deleteCipher(id, this.deleted);
+    protected deleteCipher ( id: string ) {
+        if ( !this.organization.isAdmin ) {
+            return super.deleteCipher( id, this.deleted );
         }
-        return this.deleted ? this.apiService.deleteCipherAdmin(id) : this.apiService.putDeleteCipherAdmin(id);
+        return this.deleted ? this.apiService.deleteCipherAdmin( id ) : this.apiService.putDeleteCipherAdmin( id );
     }
 
-    protected showFixOldAttachments(c: CipherView) {
+    protected showFixOldAttachments ( c: CipherView ) {
         return this.organization.isAdmin && c.hasOldAttachments;
     }
+
+    MaxCheckedCount = 500;
+    selectAll ( select: boolean ) {
+        if ( select ) {
+            this.selectAll( false );
+        }
+        const selectCount = select && this.ciphers.length > this.MaxCheckedCount ? this.MaxCheckedCount : this.ciphers.length;
+        for ( let i = 0; i < selectCount; i++ ) {
+            this.checkCipher( this.ciphers[ i ], select );
+        }
+    }
+
+    getSelected (): CipherView[] {
+        if ( this.ciphers == null ) {
+            return [];
+        }
+        return this.ciphers.filter( ( c ) => !!( c as any ).checked );
+    }
+
+    getSelectedIds (): string[] {
+        return this.getSelected().map( ( c ) => c.id );
+    }
+
 }
