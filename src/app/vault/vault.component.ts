@@ -80,7 +80,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         private messagingService: MessagingService, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
-    async ngOnInit () {
+    async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
 
@@ -147,11 +147,11 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy () {
+    ngOnDestroy() {
         this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     }
 
-    async clearGroupingFilters () {
+    async clearGroupingFilters() {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
         await this.ciphersComponent.reload();
@@ -159,7 +159,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    async filterFavorites () {
+    async filterFavorites() {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFavorites');
         await this.ciphersComponent.reload((c) => c.favorite);
@@ -168,7 +168,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    async filterDeleted () {
+    async filterDeleted() {
         this.ciphersComponent.showAddNew = false;
         this.ciphersComponent.deleted = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchTrash');
@@ -178,7 +178,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    async filterCipherType (type: CipherType) {
+    async filterCipherType(type: CipherType) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         await this.ciphersComponent.reload((c) => c.type === type);
@@ -187,7 +187,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    async filterFolder (folderId: string) {
+    async filterFolder(folderId: string) {
         this.ciphersComponent.showAddNew = true;
         folderId = folderId === 'none' ? null : folderId;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFolder');
@@ -197,7 +197,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    async filterCollection (collectionId: string) {
+    async filterCollection(collectionId: string) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
         await this.ciphersComponent.reload((c) => c.collectionIds != null &&
@@ -207,12 +207,12 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    filterSearchText (searchText: string) {
+    filterSearchText(searchText: string) {
         this.ciphersComponent.searchText = searchText;
         this.ciphersComponent.search(200);
     }
 
-    async editCipherAttachments (cipher: CipherView) {
+    async editCipherAttachments(cipher: CipherView) {
         const canAccessPremium = await this.userService.canAccessPremium();
         if (cipher.organizationId == null && !canAccessPremium) {
             this.messagingService.send('premiumRequired');
@@ -248,7 +248,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    shareCipher (cipher: CipherView) {
+    shareCipher(cipher: CipherView) {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -268,7 +268,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    editCipherCollections (cipher: CipherView) {
+    editCipherCollections(cipher: CipherView) {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -288,7 +288,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    async addFolder () {
+    async addFolder() {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -309,7 +309,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    async editFolder (folderId: string) {
+    async editFolder(folderId: string) {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -336,7 +336,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    addCipher () {
+    addCipher() {
         const component = this.editCipher(null);
         component.type = this.type;
         component.folderId = this.folderId === 'none' ? null : this.folderId;
@@ -349,7 +349,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         }
     }
 
-    editCipher (cipher: CipherView) {
+    editCipher(cipher: CipherView) {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -380,12 +380,12 @@ export class VaultComponent implements OnInit, OnDestroy {
         return childComponent;
     }
 
-    cloneCipher (cipher: CipherView) {
+    cloneCipher(cipher: CipherView) {
         const component = this.editCipher(cipher);
         component.cloneMode = true;
     }
 
-    updateKey () {
+    updateKey() {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -399,7 +399,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    private clearFilters () {
+    private clearFilters() {
         this.folderId = null;
         this.collectionId = null;
         this.favorites = false;
@@ -407,7 +407,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.deleted = false;
     }
 
-    private go (queryParams: any = null) {
+    private go(queryParams: any = null) {
         if (queryParams == null) {
             queryParams = {
                 favorites: this.favorites ? true : null,
