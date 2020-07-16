@@ -82,10 +82,6 @@ export class CiphersComponent extends BaseCiphersComponent {
         await this.resetPaging();
     }
 
-    checkCipher(c: CipherView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
-    }
-
     events(c: CipherView) {
         this.onEventsClicked.emit(c);
     }
