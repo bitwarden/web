@@ -200,44 +200,45 @@ import localeSv from '@angular/common/locales/sv';
 import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
+import { BulkActionsComponent } from './vault/bulk-actions.component';
 
-registerLocaleData(localeCa, 'ca');
-registerLocaleData(localeCs, 'cs');
-registerLocaleData(localeDa, 'da');
-registerLocaleData(localeDe, 'de');
-registerLocaleData(localeEl, 'el');
-registerLocaleData(localeEnGb, 'en-GB');
-registerLocaleData(localeEs, 'es');
-registerLocaleData(localeEt, 'et');
-registerLocaleData(localeFr, 'fr');
-registerLocaleData(localeHe, 'he');
-registerLocaleData(localeIt, 'it');
-registerLocaleData(localeJa, 'ja');
-registerLocaleData(localeKo, 'ko');
-registerLocaleData(localeNb, 'nb');
-registerLocaleData(localeNl, 'nl');
-registerLocaleData(localePl, 'pl');
-registerLocaleData(localePtBr, 'pt-BR');
-registerLocaleData(localePtPt, 'pt-PT');
-registerLocaleData(localeRu, 'ru');
-registerLocaleData(localeSk, 'sk');
-registerLocaleData(localeSv, 'sv');
-registerLocaleData(localeUk, 'uk');
-registerLocaleData(localeZhCn, 'zh-CN');
-registerLocaleData(localeZhTw, 'zh-TW');
+registerLocaleData( localeCa, 'ca' );
+registerLocaleData( localeCs, 'cs' );
+registerLocaleData( localeDa, 'da' );
+registerLocaleData( localeDe, 'de' );
+registerLocaleData( localeEl, 'el' );
+registerLocaleData( localeEnGb, 'en-GB' );
+registerLocaleData( localeEs, 'es' );
+registerLocaleData( localeEt, 'et' );
+registerLocaleData( localeFr, 'fr' );
+registerLocaleData( localeHe, 'he' );
+registerLocaleData( localeIt, 'it' );
+registerLocaleData( localeJa, 'ja' );
+registerLocaleData( localeKo, 'ko' );
+registerLocaleData( localeNb, 'nb' );
+registerLocaleData( localeNl, 'nl' );
+registerLocaleData( localePl, 'pl' );
+registerLocaleData( localePtBr, 'pt-BR' );
+registerLocaleData( localePtPt, 'pt-PT' );
+registerLocaleData( localeRu, 'ru' );
+registerLocaleData( localeSk, 'sk' );
+registerLocaleData( localeSv, 'sv' );
+registerLocaleData( localeUk, 'uk' );
+registerLocaleData( localeZhCn, 'zh-CN' );
+registerLocaleData( localeZhTw, 'zh-TW' );
 
-@NgModule({
+@NgModule( {
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
         ServicesModule,
-        Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], {
+        Angulartics2Module.forRoot( [ Angulartics2GoogleAnalytics ], {
             pageTracking: {
                 clearQueryParams: true,
             },
-        }),
+        } ),
         ToasterModule.forRoot(),
         InfiniteScrollModule,
         DragDropModule,
@@ -259,6 +260,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BlurClickDirective,
         BoxRowDirective,
         BreachReportComponent,
+        BulkActionsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkRestoreComponent,
@@ -379,6 +381,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     entryComponents: [
         AddEditComponent,
         AttachmentsComponent,
+        BulkActionsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkRestoreComponent,
@@ -415,6 +418,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         UpdateKeyComponent,
     ],
     providers: [],
-    bootstrap: [AppComponent],
-})
+    bootstrap: [ AppComponent ],
+} )
 export class AppModule { }

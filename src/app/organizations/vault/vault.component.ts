@@ -33,8 +33,6 @@ import { AttachmentsComponent } from './attachments.component';
 import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { GroupingsComponent } from './groupings.component';
-import { ToasterService } from 'angular2-toaster';
-import { BulkDeleteComponent } from '../../vault/bulk-delete.component';
 
 const BroadcasterSubscriptionId = 'OrgVaultComponent';
 
@@ -61,7 +59,6 @@ export class VaultComponent implements OnInit, OnDestroy {
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
         private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
-        private toasterService: ToasterService,
         private broadcasterService: BroadcasterService, private ngZone: NgZone ) { }
 
     ngOnInit () {
@@ -275,15 +272,15 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher == null ? null : cipher.id;
-        childComponent.onSavedCipher.subscribe( async ( c: CipherView ) => {
+        childComponent.onSavedCipher.subscribe( async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         } );
-        childComponent.onDeletedCipher.subscribe( async ( c: CipherView ) => {
+        childComponent.onDeletedCipher.subscribe( async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         } );
-        childComponent.onRestoredCipher.subscribe( async ( c: CipherView ) => {
+        childComponent.onRestoredCipher.subscribe( async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         } );
@@ -348,38 +345,5 @@ export class VaultComponent implements OnInit, OnDestroy {
             queryParams: queryParams,
             replaceUrl: true,
         } );
-    }
-
-    @ViewChild( 'bulkDeleteTemplate', { read: ViewContainerRef } ) bulkDeleteModalRef: ViewContainerRef;
-    bulkDelete () {
-        const selectedIds = this.ciphersComponent.getSelectedIds();
-        if ( selectedIds.length === 0 ) {
-            this.toasterService.popAsync( 'error', this.i18nService.t( 'errorOccurred' ),
-                this.i18nService.t( 'nothingSelected' ) );
-            return;
-        }
-
-        if ( this.modal != null ) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory( ModalComponent );
-        this.modal = this.bulkDeleteModalRef.createComponent( factory ).instance;
-        const childComponent = this.modal.show<BulkDeleteComponent>( BulkDeleteComponent, this.bulkDeleteModalRef );
-
-        childComponent.permanent = this.deleted;
-        childComponent.cipherIds = selectedIds;
-        childComponent.onDeleted.subscribe( async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        } );
-
-        this.modal.onClosed.subscribe( () => {
-            this.modal = null;
-        } );
-    }
-
-    selectAll ( select: boolean ) {
-        this.ciphersComponent.selectAll( select );
     }
 }
