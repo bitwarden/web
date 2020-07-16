@@ -27,19 +27,19 @@
                             <i class="fa fa-cog" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bulkActionsButton">
-                            <a class="dropdown-item text-danger" href="#" (click)="bulkDelete()">
+                            <button class="dropdown-item text-danger" href="#" (click)="bulkDelete()">
                                 <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
                                 {{(deleted ? 'permanentlyDeleteSelected' : 'deleteSelected') | i18n}}
-                            </a>
+                            </button>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" appStopClick (click)="selectAll(true)">
+                            <button class="dropdown-item" href="#" appStopClick (click)="selectAll(true)">
                                 <i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i>
                                 {{'selectAll' | i18n}}
-                            </a>
-                            <a class="dropdown-item" href="#" appStopClick (click)="selectAll(false)">
+                            </button>
+                            <button class="dropdown-item" href="#" appStopClick (click)="selectAll(false)">
                                 <i class="fa fa-fw fa-minus-square-o" aria-hidden="true"></i>
                                 {{'unselectAll' | i18n}}
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()"
@@ -60,3 +60,4 @@
 <ng-template #cipherAddEdit></ng-template>
 <ng-template #collections></ng-template>
 <ng-template #eventsTemplate></ng-template>
+<ng-template #bulkDeleteTemplate></ng-template>
