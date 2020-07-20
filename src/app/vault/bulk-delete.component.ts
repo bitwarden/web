@@ -35,8 +35,8 @@ export class BulkDeleteComponent {
         }
         else {
             this.permanent
-                ? await this.apiService.deleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds))
-                : await this.apiService.putDeleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds))
+                ? await this.apiService.deleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds, this.organization.id))
+                : await this.apiService.putDeleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds, this.organization.id))
         }
 
         this.onDeleted.emit();
