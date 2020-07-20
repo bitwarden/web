@@ -19,7 +19,7 @@ import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordP
 import { Policy } from 'jslib/models/domain/policy';
 
 import { PolicyData } from 'jslib/models/data/policyData';
-import { ReferenceEventData } from 'jslib/models/domain/referenceEventData';
+import { ReferenceEventRequest } from 'jslib/models/request/referenceEventRequest';
 
 @Component({
     selector: 'app-register',
@@ -65,7 +65,7 @@ export class RegisterComponent extends BaseRegisterComponent {
 
     async ngOnInit() {
         const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
-            this.referenceData = new ReferenceEventData();
+            this.referenceData = new ReferenceEventRequest();
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
