@@ -21,7 +21,7 @@
                 </h1>
                 <div class="ml-auto d-flex">
                     <app-vault-bulk-actions [ciphersComponent]="ciphersComponent" [modal]="modal" [deleted]="deleted"
-                        [organizationMode]="true">
+                        [organization]="organization">
                     </app-vault-bulk-actions>
                     <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()"
                         *ngIf="!deleted">
@@ -41,4 +41,3 @@
 <ng-template #cipherAddEdit></ng-template>
 <ng-template #collections></ng-template>
 <ng-template #eventsTemplate></ng-template>
-<ng-template #bulkDeleteTemplate></ng-template>

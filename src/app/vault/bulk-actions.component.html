@@ -4,15 +4,15 @@
         <i class="fa fa-cog" aria-hidden="true"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bulkActionsButton">
-        <button class="dropdown-item" href="#" appStopClick (click)="bulkMove()" *ngIf="!deleted && !organizationMode">
+        <button class="dropdown-item" href="#" appStopClick (click)="bulkMove()" *ngIf="!deleted && !organization">
             <i class="fa fa-fw fa-share" aria-hidden="true"></i>
             {{'moveSelected' | i18n}}
         </button>
-        <button class="dropdown-item" href="#" appStopClick (click)="bulkShare()" *ngIf="!deleted && !organizationMode">
+        <button class="dropdown-item" href="#" appStopClick (click)="bulkShare()" *ngIf="!deleted && !organization">
             <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
             {{'shareSelected' | i18n}}
         </button>
-        <button class="dropdown-item" href="#" (click)="bulkRestore()" *ngIf="deleted && !organizationMode">
+        <button class="dropdown-item" href="#" (click)="bulkRestore()" *ngIf="deleted && !organization">
             <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
             {{'restoreSelected' | i18n}}
         </button>

@@ -9,6 +9,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { BulkMoveComponent } from './bulk-move.component';
 import { BulkShareComponent } from './bulk-share.component';
 import { BulkRestoreComponent } from './bulk-restore.component';
+import { Organization } from 'jslib/models/domain/organization';
 
 @Component({
     selector: 'app-vault-bulk-actions',
@@ -18,7 +19,7 @@ export class BulkActionsComponent {
     @Input() ciphersComponent: CiphersComponent;
     @Input() modal: ModalComponent;
     @Input() deleted: boolean;
-    @Input() organizationMode: boolean;
+    @Input() organization: Organization;
 
     @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
     @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef }) bulkRestoreModalRef: ViewContainerRef;
@@ -27,7 +28,7 @@ export class BulkActionsComponent {
 
     constructor(private toasterService: ToasterService, private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver) { }
 
-    bulkDelete () {
+    bulkDelete() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -45,6 +46,7 @@ export class BulkActionsComponent {
 
         childComponent.permanent = this.deleted;
         childComponent.cipherIds = selectedIds;
+        childComponent.organization = this.organization;
         childComponent.onDeleted.subscribe(async () => {
             this.modal.close();
             await this.ciphersComponent.refresh();
@@ -55,7 +57,7 @@ export class BulkActionsComponent {
         });
     }
 
-    bulkRestore () {
+    bulkRestore() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -82,7 +84,7 @@ export class BulkActionsComponent {
         });
     }
 
-    bulkShare () {
+    bulkShare() {
         const selectedCiphers = this.ciphersComponent.getSelected();
         if (selectedCiphers.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -109,7 +111,7 @@ export class BulkActionsComponent {
         });
     }
 
-    bulkMove () {
+    bulkMove() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -136,7 +138,7 @@ export class BulkActionsComponent {
         });
     }
 
-    selectAll (select: boolean) {
+    selectAll(select: boolean) {
         this.ciphersComponent.selectAll(select);
     }
 }
