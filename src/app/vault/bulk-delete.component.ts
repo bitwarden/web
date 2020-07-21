@@ -4,14 +4,12 @@ import {
     Input,
     Output,
 } from '@angular/core';
-
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
-
+import { ApiService } from 'jslib/abstractions';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { Organization } from 'jslib/models/domain/organization';
-import { ApiService } from 'jslib/abstractions';
 import { CipherBulkDeleteRequest } from 'jslib/models/request/cipherBulkDeleteRequest';
 
 @Component({
@@ -32,11 +30,12 @@ export class BulkDeleteComponent {
             this.permanent
                 ? await this.cipherService.deleteManyWithServer(this.cipherIds)
                 : await this.cipherService.softDeleteManyWithServer(this.cipherIds);
-        }
-        else {
+        } else {
             this.permanent
-                ? await this.apiService.deleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds, this.organization.id))
-                : await this.apiService.putDeleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds, this.organization.id))
+                ? await this.apiService
+                    .deleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds, this.organization.id))
+                : await this.apiService
+                    .putDeleteManyCiphersAdmin(new CipherBulkDeleteRequest(this.cipherIds, this.organization.id));
         }
 
         this.onDeleted.emit();

@@ -1,15 +1,15 @@
 import {
-    Component, ViewChild, ViewContainerRef, Input, ComponentFactoryResolver,
+    Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef,
 } from '@angular/core';
-import { ModalComponent } from '../modal.component';
-import { BulkDeleteComponent } from './bulk-delete.component';
-import { CiphersComponent } from './ciphers.component';
 import { ToasterService } from 'angular2-toaster';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { BulkMoveComponent } from './bulk-move.component';
-import { BulkShareComponent } from './bulk-share.component';
-import { BulkRestoreComponent } from './bulk-restore.component';
 import { Organization } from 'jslib/models/domain/organization';
+import { ModalComponent } from '../modal.component';
+import { BulkDeleteComponent } from './bulk-delete.component';
+import { BulkMoveComponent } from './bulk-move.component';
+import { BulkRestoreComponent } from './bulk-restore.component';
+import { BulkShareComponent } from './bulk-share.component';
+import { CiphersComponent } from './ciphers.component';
 
 @Component({
     selector: 'app-vault-bulk-actions',
@@ -26,7 +26,9 @@ export class BulkActionsComponent {
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
     @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
 
-    constructor(private toasterService: ToasterService, private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver) { }
+    constructor(private toasterService: ToasterService,
+        private i18nService: I18nService,
+        private componentFactoryResolver: ComponentFactoryResolver) { }
 
     bulkDelete() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
