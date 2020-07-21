@@ -19,6 +19,7 @@ import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordP
 import { Policy } from 'jslib/models/domain/policy';
 
 import { PolicyData } from 'jslib/models/data/policyData';
+import { ReferenceEventRequest } from 'jslib/models/request/referenceEventRequest';
 
 @Component({
     selector: 'app-register',
@@ -64,6 +65,7 @@ export class RegisterComponent extends BaseRegisterComponent {
 
     async ngOnInit() {
         const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
+            this.referenceData = new ReferenceEventRequest();
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
@@ -71,19 +73,20 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.stateService.save('loginRedirect', { route: '/settings/premium' });
             } else if (qParams.org != null) {
                 this.showCreateOrgMessage = true;
+                this.referenceData.flow = qParams.org;
                 this.stateService.save('loginRedirect',
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             if (qParams.layout != null) {
-                this.layout = qParams.layout;
+                this.layout = this.referenceData.layout = qParams.layout;
             }
             if (qParams.reference != null) {
-                this.referenceId = qParams.reference;
+                this.referenceData.id = qParams.reference;
             } else {
-                this.referenceId = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
+                this.referenceData.id = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
             }
-            if (this.referenceId === '') {
-                this.referenceId = null;
+            if (this.referenceData.id === '') {
+                this.referenceData.id = null;
             }
             if (queryParamsSub != null) {
                 queryParamsSub.unsubscribe();
