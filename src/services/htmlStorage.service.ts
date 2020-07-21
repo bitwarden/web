@@ -6,7 +6,8 @@ export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
         ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
         ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
-        ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey]);
+        ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
+        ConstantsService.ssoStateKey]);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
