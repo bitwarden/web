@@ -34,6 +34,7 @@ export class SsoComponent {
 
     protected twoFactorRoute = '2fa';
     protected successRoute = 'lock';
+    protected resetMasterPasswordRoute = 'reset-master-password';
 
     private redirectUri = window.location.origin + '/sso-connector.html';
 
@@ -92,15 +93,25 @@ export class SsoComponent {
         try {
             this.formPromise = this.authService.logInSso(code, codeVerifier, this.redirectUri);
             const response = await this.formPromise;
-            if (response.twoFactor) {
+            if (response.resetMasterPassword) {
+                // TODO Need a callback?
+                // TODO Need user info (user id, email, etc?)
+                this.platformUtilsService.eventTrack('SSO - routing to complete registration');
+                this.router.navigate([this.resetMasterPasswordRoute],
+                    {
+                        queryParams:
+                        {
+                            isCompleteRegistration: true,
+                            response: response,
+                        }
+                    });
+            } else if (response.twoFactor) {
                 this.platformUtilsService.eventTrack('SSO Logged In To Two-step');
                 if (this.onSuccessfulLoginTwoFactorNavigate != null) {
                     this.onSuccessfulLoginTwoFactorNavigate();
                 } else {
                     this.router.navigate([this.twoFactorRoute]);
                 }
-            } else if (response.resetMasterPassword) {
-                // TODO: launch reset master password flow
             } else {
                 const disableFavicon = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
                 await this.stateService.save(ConstantsService.disableFaviconKey, !!disableFavicon);

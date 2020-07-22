@@ -118,6 +118,6 @@ export class RegisterComponent extends BaseRegisterComponent {
             return;
         }
 
-        await super.submit();
+        return await super.submit();
     }
 }
