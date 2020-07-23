@@ -71,7 +71,7 @@
                             <div class="input-group">
                                 <input id="loginPassword" class="form-control text-monospace"
                                     type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
-                                    [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password"
+                                    [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="{{editMode ? 'off' : 'new-password'}}"
                                     [disabled]="cipher.isDeleted || !cipher.viewPassword">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
