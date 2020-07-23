@@ -31,6 +31,7 @@ export class SsoComponent {
     onSuccessfulLogin: () => Promise<any>;
     onSuccessfulLoginNavigate: () => Promise<any>;
     onSuccessfulLoginTwoFactorNavigate: () => Promise<any>;
+    onSuccessfulResetMasterPasswordNavigate: () => Promise<any>;
 
     protected twoFactorRoute = '2fa';
     protected successRoute = 'lock';
@@ -93,24 +94,31 @@ export class SsoComponent {
         try {
             this.formPromise = this.authService.logInSso(code, codeVerifier, this.redirectUri);
             const response = await this.formPromise;
-            if (response.resetMasterPassword) {
-                // TODO Need a callback?
-                // TODO Need user info (user id, email, etc?)
-                this.platformUtilsService.eventTrack('SSO - routing to complete registration');
-                this.router.navigate([this.resetMasterPasswordRoute],
-                    {
-                        queryParams:
-                        {
-                            isCompleteRegistration: true,
-                            response: response,
-                        }
-                    });
-            } else if (response.twoFactor) {
+            if (response.twoFactor) {
                 this.platformUtilsService.eventTrack('SSO Logged In To Two-step');
                 if (this.onSuccessfulLoginTwoFactorNavigate != null) {
                     this.onSuccessfulLoginTwoFactorNavigate();
                 } else {
-                    this.router.navigate([this.twoFactorRoute]);
+                    this.router.navigate([this.twoFactorRoute],
+                        {
+                            queryParams:
+                            {
+                                resetMasterPassword: response.resetMasterPassword,
+                            }
+                        });
+                }
+            } else if (response.resetMasterPassword) {
+                this.platformUtilsService.eventTrack('SSO - routing to complete registration');
+                if (this.onSuccessfulResetMasterPasswordNavigate != null) {
+                    this.onSuccessfulResetMasterPasswordNavigate();
+                } else {
+                    this.router.navigate([this.resetMasterPasswordRoute],
+                        {
+                            queryParams:
+                            {
+                                resetMasterPassword: true,
+                            }
+                        });
                 }
             } else {
                 const disableFavicon = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);

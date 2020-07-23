@@ -27,10 +27,7 @@ export class ResetMasterPasswordComponent extends BaseResetMasterPasswordCompone
     showTerms = true;
     onSuccessfulLogin: () => Promise<any>;
     onSuccessfulLoginNavigate: () => Promise<any>;
-    onSuccessfulLoginTwoFactorNavigate: () => Promise<any>;
-    response: AuthResult;
 
-    protected twoFactorRoute = '2fa';
     protected successRoute = 'lock';
 
     constructor(authService: AuthService, router: Router,
@@ -45,13 +42,8 @@ export class ResetMasterPasswordComponent extends BaseResetMasterPasswordCompone
 
     async ngOnInit() {
         const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
-            // User info needed? Email? etc
-            if (qParams.isCompleteRegistraion != null) {
-                this.isCompleteRegistration = qParams.isCompleteRegistraion;
-            }
-
-            if (qParams.response != null) {
-                this.response = qParams.response;
+            if (qParams.resetMasterPassword != null) {
+                this.resetMasterPassword = qParams.resetMasterPassword;
             }
 
             if (queryParamsSub != null) {
@@ -62,27 +54,18 @@ export class ResetMasterPasswordComponent extends BaseResetMasterPasswordCompone
 
     async submit() {
         if (await super.submit()) {
-            if (this.response.twoFactor) {
-                this.platformUtilsService.eventTrack('SSO Logged In To Two-step');
-                if (this.onSuccessfulLoginTwoFactorNavigate != null) {
-                    this.onSuccessfulLoginTwoFactorNavigate();
-                } else {
-                    this.router.navigate([this.twoFactorRoute]);
-                }
-            } else {
-                const disableFavicon = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
-                await this.stateService.save(ConstantsService.disableFaviconKey, !!disableFavicon);
-                if (this.onSuccessfulLogin != null) {
-                    this.onSuccessfulLogin();
-                }
-                this.platformUtilsService.eventTrack('SSO Logged In');
-                if (this.onSuccessfulLoginNavigate != null) {
-                    this.onSuccessfulLoginNavigate();
-                } else {
-                    this.router.navigate([this.successRoute]);
-                }
+            const disableFavicon = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
+            await this.stateService.save(ConstantsService.disableFaviconKey, !!disableFavicon);
+            if (this.onSuccessfulLogin != null) {
+                this.onSuccessfulLogin();
             }
-            return true;
+            this.platformUtilsService.eventTrack('SSO Logged In (from reset mater password');
+            if (this.onSuccessfulLoginNavigate != null) {
+                this.onSuccessfulLoginNavigate();
+            } else {
+                this.router.navigate([this.successRoute]);
+            }
         }
+        return true;
     }
 }
