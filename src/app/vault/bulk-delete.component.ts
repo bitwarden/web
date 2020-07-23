@@ -26,6 +26,7 @@ export class BulkDeleteComponent {
         private toasterService: ToasterService, private i18nService: I18nService) { }
 
     async submit() {
+        console.log("this is a test");
         this.formPromise = this.permanent ? this.cipherService.deleteManyWithServer(this.cipherIds) :
             this.cipherService.softDeleteManyWithServer(this.cipherIds);
         await this.formPromise;
