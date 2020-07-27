@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 
 import {
+    ActivatedRoute,
     Router,
 } from '@angular/router';
 
@@ -33,8 +34,21 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         userService: UserService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, folderService: FolderService,
         cipherService: CipherService, syncService: SyncService,
-        policyService: PolicyService, router: Router) {
+        policyService: PolicyService, router: Router, private route: ActivatedRoute) {
         super(apiService, i18nService, cryptoService, messagingService, userService, passwordGenerationService,
             platformUtilsService, folderService, cipherService, syncService, policyService, router);
+    }
+
+    async ngOnInit() {
+        const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
+            if (qParams.resetMasterPassword != null) {
+                this.isChangePasswordNoCompare = qParams.resetMasterPassword;
+            }
+
+            if (queryParamsSub != null) {
+                queryParamsSub.unsubscribe();
+            }
+        });
+        super.ngOnInit();
     }
 }
