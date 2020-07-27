@@ -81,7 +81,7 @@ export class GroupsComponent implements OnInit {
     }
 
     loadMore() {
-        if (this.groups.length <= this.pageSize) {
+        if (!this.groups || this.groups.length <= this.pageSize) {
             return;
         }
         const pagedLength = this.pagedGroups.length;
@@ -179,7 +179,7 @@ export class GroupsComponent implements OnInit {
         if (searching && this.didScroll) {
             this.resetPaging();
         }
-        return !searching && this.groups.length > this.pageSize;
+        return !searching && this.groups && this.groups.length > this.pageSize;
     }
 
     private removeGroup(group: GroupResponse) {
