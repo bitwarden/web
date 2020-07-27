@@ -39,7 +39,7 @@
                             <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
                                 <a class="dropdown-item" href="#" appStopClick
                                     (click)="copy(c, c.login.password, 'password', 'password')" *ngIf="c.viewPassword">
-                                    <i class="fa fa-fw fa-clipboard" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
                                     {{'copyPassword' | i18n}}
                                 </a>
                                 <a class="dropdown-item" href="#" appStopClick *ngIf="c.login.canLaunch"

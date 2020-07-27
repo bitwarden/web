@@ -44,7 +44,7 @@
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyUsername' | i18n}}"
                                         (click)="copy(cipher.login.username, 'username', 'Username')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                        <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                         appA11yTitle="{{'copyPassword' | i18n}}"
                                         (click)="copy(cipher.login.password, 'password', 'Password')" tabindex="-1"
                                         [disabled]="!cipher.viewPassword">
-                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                        <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                 <button type="button" class="btn btn-link"
                                     appA11yTitle="{{'copyVerificationCode' | i18n}}"
                                     (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')">
-                                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                                    <i class="fa fa-clone" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'copyUri' | i18n}}" (click)="copy(u.uri, 'uri', 'URI')"
                                             tabindex="-1">
-                                            <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyNumber' | i18n}}"
                                         (click)="copy(cipher.card.number, 'number', 'Number')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                        <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'securityCode' | i18n}}"
                                         (click)="copy(cipher.card.code, 'securityCode', 'Security Code')" tabindex="-1">
-                                        <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                        <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -395,7 +395,7 @@
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'copyValue' | i18n}}"
                                             (click)="copy(f.value, 'value', 'Field')" tabindex="-1">
-                                            <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -416,7 +416,7 @@
                                             appA11yTitle="{{'copyValue' | i18n}}"
                                             (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
                                             tabindex="-1" [disabled]="!cipher.viewPassword && !f.newField">
-                                            <i class="fa fa-lg fa-clipboard" aria-hidden="true"></i>
+                                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
