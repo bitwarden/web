@@ -129,7 +129,7 @@ export class PeopleComponent implements OnInit {
     }
 
     loadMore() {
-        if (!this.users || this.users.length <= this.pageSize) {
+        if (this.users.length <= this.pageSize) {
             return;
         }
         const pagedLength = this.pagedUsers.length;
@@ -331,7 +331,7 @@ export class PeopleComponent implements OnInit {
         if (searching && this.didScroll) {
             this.resetPaging();
         }
-        return !searching && this.users && this.users.length > this.pageSize;
+        return !searching && this.users.length > this.pageSize;
     }
 
     private async doConfirmation(user: OrganizationUserUserDetailsResponse) {

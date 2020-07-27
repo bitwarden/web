@@ -85,7 +85,7 @@ export class CollectionsComponent implements OnInit {
     }
 
     loadMore() {
-        if (!this.collections || this.collections.length <= this.pageSize) {
+        if (this.collections.length <= this.pageSize) {
             return;
         }
         const pagedLength = this.pagedCollections.length;
@@ -185,7 +185,7 @@ export class CollectionsComponent implements OnInit {
         if (searching && this.didScroll) {
             this.resetPaging();
         }
-        return !searching && this.collections && this.collections.length > this.pageSize;
+        return !searching && this.collections.length > this.pageSize;
     }
 
     private removeCollection(collection: CollectionView) {
