@@ -27,6 +27,7 @@ import { OrganizationCreateRequest } from 'jslib/models/request/organizationCrea
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { Plan } from 'jslib/models/staticStore/plan';
 import { ProductType } from 'jslib/enums/productType';
+import { pkcs12 } from 'node-forge';
 
 @Component({
     selector: 'app-organization-plans',
@@ -40,7 +41,6 @@ export class OrganizationPlansComponent implements OnInit {
     @Input() showFree = true;
     @Input() showCancel = false;
     @Input() product: ProductType = ProductType.Free;
-    testproduct: any = 1;
     @Input() plan: PlanType = PlanType.Free;
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
@@ -62,6 +62,7 @@ export class OrganizationPlansComponent implements OnInit {
     };
 
     plans: Plan[];
+
     get productTypes() {
         return ProductType;
     }
@@ -87,6 +88,11 @@ export class OrganizationPlansComponent implements OnInit {
         return validPlans;
     }
 
+    get validPlans() {
+        const test = this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product == this.product)
+        return test;
+    }
+
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -98,6 +104,10 @@ export class OrganizationPlansComponent implements OnInit {
 
     ngOnInit(): void {
         this.apiService.getPlans().then(plans => { this.plans = plans; })
+    }
+
+    productChanged() {
+        this.plan = this.plans.find(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product).type
     }
 
     async submit() {
@@ -224,28 +234,6 @@ export class OrganizationPlansComponent implements OnInit {
         this.plan = PlanType.TeamsMonthly;
     }
 
-    additionalStorageTotal(): number {
-        return Math.abs(this.additionalStorage || 0 * this.selectedPlan.additionalStoragePricePerGb)
-    }
-
-    seatTotal(): number {
-        if (!this.selectedPlan.hasAdditionalSeatsOption) {
-            return 0;
-        }
-
-    }
-
-    baseTotal(): number {
-        return this.selectedPlan.basePrice * Math.abs(this.additionalStorage || 0)
-    }
-
-    premiumAccessTotal(): number {
-        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
-            return this.selectedPlan.premiumAccessOptionCost;
-        }
-        return 0;
-    }
-
     changedCountry() {
         this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
         // Bank Account payments are only available for US customers
@@ -256,12 +244,37 @@ export class OrganizationPlansComponent implements OnInit {
         }
     }
 
-    get total(): number {
-        return this.baseTotal() + this.seatTotal() + this.additionalStorageTotal() +
-            this.premiumAccessTotal();
-    }
-
     get createOrganization() {
         return this.organizationId == null;
+    }
+
+    additionalStorageTotal(plan: Plan): number {
+        if (!plan.hasAdditionalStorageOption) {
+            return 0;
+        }
+
+        const monthlyTotal = plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
+        return plan.isAnnual
+            ? monthlyTotal * 12
+            : monthlyTotal
+    }
+
+    seatTotal(plan: Plan): number {
+        if (!plan.hasAdditionalSeatsOption) {
+            return 0;
+        }
+
+        const monthlyTotal = plan.seatPrice * Math.abs(this.additionalSeats || 0);
+        return plan.isAnnual
+            ? monthlyTotal * 12
+            : monthlyTotal;
+    }
+
+    get selectedPlanTotalPrice() {
+        let total = this.selectedPlan.basePrice;
+        if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) total += this.seatTotal(this.selectedPlan);
+        if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) total += this.additionalStorageTotal(this.selectedPlan);
+        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) total += this.selectedPlan.premiumAccessOptionCost;
+        return total;
     }
 }
