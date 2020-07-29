@@ -4,6 +4,7 @@ import {
     Input,
     Output,
     ViewChild,
+    OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -24,19 +25,23 @@ import { TaxInfoComponent } from './tax-info.component';
 import { PlanType } from 'jslib/enums/planType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
+import { Plan } from 'jslib/models/staticStore/plan';
+import { ProductType } from 'jslib/enums/productType';
 
 @Component({
     selector: 'app-organization-plans',
     templateUrl: 'organization-plans.component.html',
 })
-export class OrganizationPlansComponent {
+export class OrganizationPlansComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
     @ViewChild(TaxInfoComponent) taxComponent: TaxInfoComponent;
 
     @Input() organizationId: string;
     @Input() showFree = true;
     @Input() showCancel = false;
-    @Input() plan = 'free';
+    @Input() product: ProductType = ProductType.Free;
+    testproduct: any = 1;
+    @Input() plan: PlanType = PlanType.Free;
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
@@ -50,46 +55,37 @@ export class OrganizationPlansComponent {
     name: string;
     billingEmail: string;
     businessName: string;
-
     storageGb: any = {
         price: 0.33,
         monthlyPrice: 0.50,
         yearlyPrice: 4,
     };
 
-    plans: any = {
-        free: {
-            basePrice: 0,
-            noAdditionalSeats: true,
-            noPayment: true,
-        },
-        families: {
-            basePrice: 1,
-            annualBasePrice: 12,
-            baseSeats: 5,
-            noAdditionalSeats: true,
-            annualPlanType: PlanType.FamiliesAnnually,
-            canBuyPremiumAccessAddon: true,
-        },
-        teams: {
-            basePrice: 5,
-            annualBasePrice: 60,
-            monthlyBasePrice: 8,
-            baseSeats: 5,
-            seatPrice: 2,
-            annualSeatPrice: 24,
-            monthlySeatPrice: 2.5,
-            monthPlanType: PlanType.TeamsMonthly,
-            annualPlanType: PlanType.TeamsAnnually,
-        },
-        enterprise: {
-            seatPrice: 3,
-            annualSeatPrice: 36,
-            monthlySeatPrice: 4,
-            monthPlanType: PlanType.EnterpriseMonthly,
-            annualPlanType: PlanType.EnterpriseAnnually,
-        },
-    };
+    plans: Plan[];
+    get productTypes() {
+        return ProductType;
+    }
+
+    get selectedPlan() {
+        return this.plans.find(plan => plan.type == this.plan)
+    }
+
+    get validProductTypes() {
+        let validPlans = this.plans;
+
+        if (this.ownedBusiness) {
+            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
+        }
+
+        if (!this.showFree) {
+            validPlans = validPlans.filter(plan => plan.product != ProductType.Free)
+        }
+
+        validPlans = validPlans
+            .filter(plan => !plan.legacyYear && !plan.disabled && (plan.isAnnual || plan.product == this.productTypes.Free))
+
+        return validPlans;
+    }
 
     formPromise: Promise<any>;
 
@@ -98,6 +94,10 @@ export class OrganizationPlansComponent {
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
         private router: Router, private syncService: SyncService) {
         this.selfHosted = platformUtilsService.isSelfHost();
+    }
+
+    ngOnInit(): void {
+        this.apiService.getPlans().then(plans => { this.plans = plans; })
     }
 
     async submit() {
@@ -117,7 +117,7 @@ export class OrganizationPlansComponent {
                 let orgId: string = null;
                 if (this.createOrganization) {
                     let tokenResult: [string, PaymentMethodType] = null;
-                    if (!this.selfHosted && this.plan !== 'free') {
+                    if (!this.selfHosted && this.plan !== PlanType.Free) {
                         tokenResult = await this.paymentComponent.createPaymentToken();
                     }
                     const shareKey = await this.cryptoService.makeShareKey();
@@ -140,7 +140,7 @@ export class OrganizationPlansComponent {
                         request.name = this.name;
                         request.billingEmail = this.billingEmail;
 
-                        if (this.plan === 'free') {
+                        if (this.plan === PlanType.Free) {
                             request.planType = PlanType.Free;
                         } else {
                             request.paymentToken = tokenResult[0];
@@ -148,13 +148,9 @@ export class OrganizationPlansComponent {
                             request.businessName = this.ownedBusiness ? this.businessName : null;
                             request.additionalSeats = this.additionalSeats;
                             request.additionalStorageGb = this.additionalStorage;
-                            request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
                                 this.premiumAccessAddon;
-                            if (this.interval === 'month') {
-                                request.planType = this.plans[this.plan].monthPlanType;
-                            } else {
-                                request.planType = this.plans[this.plan].annualPlanType;
-                            }
+                            request.planType = this.selectedPlan.type;
                             request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
                             request.billingAddressCountry = this.taxComponent.taxInfo.country;
                             if (this.taxComponent.taxInfo.includeTaxId) {
@@ -173,13 +169,9 @@ export class OrganizationPlansComponent {
                     request.businessName = this.ownedBusiness ? this.businessName : null;
                     request.additionalSeats = this.additionalSeats;
                     request.additionalStorageGb = this.additionalStorage;
-                    request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                    request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
                         this.premiumAccessAddon;
-                    if (this.interval === 'month') {
-                        request.planType = this.plans[this.plan].monthPlanType;
-                    } else {
-                        request.planType = this.plans[this.plan].annualPlanType;
-                    }
+                    request.planType = this.selectedPlan.type;
                     const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
                     if (!result.success && result.paymentIntentClientSecret != null) {
                         await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
@@ -212,63 +204,44 @@ export class OrganizationPlansComponent {
         this.onCanceled.emit();
     }
 
-    changedPlan() {
-        if (!this.plans[this.plan].canBuyPremiumAccessAddon) {
+    changedProduct() {
+        if (!this.selectedPlan.hasPremiumAccessOption) {
             this.premiumAccessAddon = false;
         }
 
-        if (this.plans[this.plan].monthPlanType == null) {
-            this.interval = 'year';
-        }
-
-        if (this.plans[this.plan].noAdditionalSeats) {
+        if (!this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 0;
-        } else if (!this.additionalSeats && !this.plans[this.plan].baseSeats &&
-            !this.plans[this.plan].noAdditionalSeats) {
+        } else if (!this.additionalSeats && !this.selectedPlan.baseSeats &&
+            this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 1;
         }
     }
 
     changedOwnedBusiness() {
-        if (!this.ownedBusiness || this.plan === 'teams' || this.plan === 'enterprise') {
+        if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
             return;
         }
-        this.plan = 'teams';
+        this.plan = PlanType.TeamsMonthly;
     }
 
-    additionalStorageTotal(annual: boolean): number {
-        if (annual) {
-            return Math.abs(this.additionalStorage || 0) * this.storageGb.yearlyPrice;
-        } else {
-            return Math.abs(this.additionalStorage || 0) * this.storageGb.monthlyPrice;
-        }
+    additionalStorageTotal(): number {
+        return Math.abs(this.additionalStorage || 0 * this.selectedPlan.additionalStoragePricePerGb)
     }
 
-    seatTotal(annual: boolean): number {
-        if (this.plans[this.plan].noAdditionalSeats) {
+    seatTotal(): number {
+        if (!this.selectedPlan.hasAdditionalSeatsOption) {
             return 0;
         }
 
-        if (annual) {
-            return this.plans[this.plan].annualSeatPrice * Math.abs(this.additionalSeats || 0);
-        } else {
-            return this.plans[this.plan].monthlySeatPrice * Math.abs(this.additionalSeats || 0);
-        }
     }
 
-    baseTotal(annual: boolean): number {
-        if (annual) {
-            return Math.abs(this.plans[this.plan].annualBasePrice || 0);
-        } else {
-            return Math.abs(this.plans[this.plan].monthlyBasePrice || 0);
-        }
+    baseTotal(): number {
+        return this.selectedPlan.basePrice * Math.abs(this.additionalStorage || 0)
     }
 
-    premiumAccessTotal(annual: boolean): number {
-        if (this.plans[this.plan].canBuyPremiumAccessAddon && this.premiumAccessAddon) {
-            if (annual) {
-                return 40;
-            }
+    premiumAccessTotal(): number {
+        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
+            return this.selectedPlan.premiumAccessOptionCost;
         }
         return 0;
     }
@@ -284,9 +257,8 @@ export class OrganizationPlansComponent {
     }
 
     get total(): number {
-        const annual = this.interval === 'year';
-        return this.baseTotal(annual) + this.seatTotal(annual) + this.additionalStorageTotal(annual) +
-            this.premiumAccessTotal(annual);
+        return this.baseTotal() + this.seatTotal() + this.additionalStorageTotal() +
+            this.premiumAccessTotal();
     }
 
     get createOrganization() {

@@ -13,7 +13,7 @@
         </button>
     </form>
 </ng-container>
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!selfHosted">
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!selfHosted && this.plans">
     <h2 class="mt-5">{{'generalInformation' | i18n}}</h2>
     <div class="row" *ngIf="createOrganization">
         <div class="form-group col-6">
@@ -38,179 +38,160 @@
         </div>
     </div>
     <h2 class="mt-5">{{'chooseYourPlan' | i18n}}</h2>
-    <div class="form-check form-check-block" *ngIf="!ownedBusiness && showFree">
-        <input class="form-check-input" type="radio" name="PlanType" id="planFree" value="free" [(ngModel)]="plan"
-            (change)="changedPlan()">
-        <label class="form-check-label" for="planFree">
-            {{'planNameFree' | i18n}}
-            <small class="mb-1">{{'planDescFree' | i18n : '1'}}</small>
-            <small>• {{'limitedUsers' | i18n : '2'}}</small>
-            <small>• {{'limitedCollections' | i18n : '2'}}</small>
-            <span>{{'freeForever' | i18n}}</span>
+    <div *ngFor="let validProduct of validProductTypes" class="form-check form-check-block">
+        <input class="form-check-input" type="radio" name="testproduct" id="product{{validProduct.product}}"
+            [value]="validProduct.product">
+        <label class="form-check-label" for="product">
+            {{ validProduct.i18nNameItem | i18n}}
+            <small class="mb-1">{{ validProduct.i18nDescriptionItem | i18n : '1'}}</small>
+            <small *ngIf="validProduct.product == productTypes.Free">•
+                {{'limitedUsers' | i18n : validProduct.maxUsers }}</small>
+            <small *ngIf="validProduct.product != productTypes.Free && validProduct.maxUsers">•
+                {{'addShareLimitedUsers' | i18n : validProduct.maxUsers}}</small>
+            <small *ngIf="!validProduct.maxUsers">•
+                {{'addShareUnlimitedUsers' | i18n}}</small>
+            <small *ngIf="validProduct.maxCollections">•
+                {{'limitedCollections' | i18n : validProduct.maxCollections }}</small>
+            <small *ngIf="validProduct.maxAdditionalSeats">•
+                {{'addShareLimitedUsers' | i18n : validProduct.maxAdditionalSeats }}</small>
+            <small *ngIf="!validProduct.maxCollections">• {{'createUnlimitedCollections' | i18n}}</small>
+            <small *ngIf="validProduct.baseStorageGb">•
+                {{'gbEncryptedFileStorage' | i18n : validProduct.baseStorageGb + 'GB'}}</small>
+            <small *ngIf="validProduct.hasGroups">• {{'controlAccessWithGroups' | i18n}}</small>
+            <small *ngIf="validProduct.hasApi">• {{'trackAuditLogs' | i18n}}</small>
+            <small *ngIf="validProduct.hasDirectory">• {{'syncUsersFromDirectory' | i18n}}</small>
+            <small *ngIf="validProduct.hasSelfHost">• {{'onPremHostingOptional' | i18n}}</small>
+            <small *ngIf="validProduct.usersGetPremium">• {{'usersGetPremium' | i18n}}</small>
+            <small *ngIf="validProduct.hasSso">• sso blurb here</small>
+            <small *ngIf="validProduct.product != productTypes.Free">• {{'priorityCustomerSupport' | i18n}}</small>
+            <small *ngIf="validProduct.trialPeriodDays">• {{'xDayFreeTrial' | i18n : validProduct.trialPeriodDays }}
+            </small>
+            <span *ngIf="validProduct.product != productTypes.Free">
+                <ng-container *ngIf="validProduct.basePrice">
+                    {{validProduct.basePrice | currency:'$'}} /{{'month' | i18n}},
+                    {{'includesXUsers' | i18n : validProduct.baseSeats}}
+                    <ng-container *ngIf="validProduct.hasAdditionalSeatsOption">
+                        {{('additionalUsers' | i18n).toLowerCase()}}
+                        {{validProduct.seatPrice | currency:'$'}} /{{'month' | i18n}}
+                    </ng-container>
+                </ng-container>
+            </span>
+            <span *ngIf="!validProduct.basePrice && validProduct.hasAdditionalSeatsOption">
+                {{'costPerUser' | i18n : (validProduct.seatPrice | currency:'$')}} /{{'month' | i18n}}
+            </span>
+            <span *ngIf="validProduct.product == productTypes.Free">{{'freeForever' | i18n}}</span>
         </label>
     </div>
-    <div class="form-check form-check-block" *ngIf="!ownedBusiness">
-        <input class="form-check-input" type="radio" name="PlanType" id="planFamilies" value="families"
-            [(ngModel)]="plan" (change)="changedPlan()">
-        <label class="form-check-label" for="planFamilies">
-            {{'planNameFamilies' | i18n}}
-            <small class="mb-1">{{'planDescFamilies' | i18n}}</small>
-            <small>• {{'addShareLimitedUsers' | i18n : '5'}}</small>
-            <small>• {{'createUnlimitedCollections' | i18n}}</small>
-            <small>• {{'gbEncryptedFileStorage' | i18n : '1 GB'}}</small>
-            <small>• {{'onPremHostingOptional' | i18n}}</small>
-            <small>• {{'priorityCustomerSupport' | i18n}}</small>
-            <small>• {{'xDayFreeTrial' | i18n : '7'}}</small>
-            <span>{{1 | currency:'$'}} /{{'month' | i18n}}, {{'includesXUsers' | i18n : 5}}</span>
-        </label>
-    </div>
-    <div class="form-check form-check-block">
-        <input class="form-check-input" type="radio" name="PlanType" id="planTeams" value="teams" [(ngModel)]="plan"
-            (change)="changedPlan()">
-        <label class="form-check-label" for="planTeams">
-            {{'planNameTeams' | i18n}}
-            <small class="mb-1">{{'planDescTeams' | i18n}}</small>
-            <small>• {{'addShareUnlimitedUsers' | i18n}}</small>
-            <small>• {{'createUnlimitedCollections' | i18n}}</small>
-            <small>• {{'gbEncryptedFileStorage' | i18n : '1 GB'}}</small>
-            <small>• {{'priorityCustomerSupport' | i18n}}</small>
-            <small>• {{'xDayFreeTrial' | i18n : '7'}}</small>
-            <span>{{5 | currency:'$'}} /{{'month' | i18n}}, {{'includesXUsers' | i18n : 5}},
-                {{('additionalUsers' | i18n).toLowerCase()}}
-                {{2 | currency:'$'}} /{{'month' | i18n}}</span>
-        </label>
-    </div>
-    <div class="form-check form-check-block">
-        <input class="form-check-input" type="radio" name="PlanType" id="planEnterprise" value="enterprise"
-            [(ngModel)]="plan" (change)="changedPlan()">
-        <label class="form-check-label" for="planEnterprise">
-            {{'planNameEnterprise' | i18n}}
-            <small class="mb-1">{{'planDescEnterprise' | i18n}}</small>
-            <small>• {{'addShareUnlimitedUsers' | i18n}}</small>
-            <small>• {{'createUnlimitedCollections' | i18n}}</small>
-            <small>• {{'gbEncryptedFileStorage' | i18n : '1 GB'}}</small>
-            <small>• {{'controlAccessWithGroups' | i18n}}</small>
-            <small>• {{'trackAuditLogs' | i18n}}</small>
-            <small>• {{'syncUsersFromDirectory' | i18n}}</small>
-            <small>• {{'onPremHostingOptional' | i18n}}</small>
-            <small>• {{'usersGetPremium' | i18n}}</small>
-            <small>• {{'priorityCustomerSupport' | i18n}}</small>
-            <small>• {{'xDayFreeTrial' | i18n : '7'}}</small>
-            <span>{{'costPerUser' | i18n : (3 | currency:'$')}} /{{'month' | i18n}}</span>
-        </label>
-    </div>
-    <ng-container *ngIf="!plans[plan].noPayment">
-        <ng-container *ngIf="!plans[plan].noAdditionalSeats && !plans[plan].baseSeats">
-            <h2 class="mt-5">{{'users' | i18n}}</h2>
-            <div class="row">
-                <div class="col-6">
-                    <label for="additionalSeats">{{'userSeats' | i18n}}</label>
-                    <input id="additionalSeats" class="form-control" type="number" name="AdditionalSeats"
-                        [(ngModel)]="additionalSeats" min="1" max="100000" placeholder="{{'userSeatsDesc' | i18n}}"
-                        required>
-                    <small class="text-muted form-text">{{'userSeatsHowManyDesc' | i18n}}</small>
-                </div>
-            </div>
-        </ng-container>
-        <h2 class="mt-5">{{'addons' | i18n}}</h2>
-        <div class="row" *ngIf="!plans[plan].noAdditionalSeats && plans[plan].baseSeats">
-            <div class="form-group col-6">
-                <label for="additionalSeats">{{'additionalUserSeats' | i18n}}</label>
+    <ng-container *ngIf="selectedPlan.hasAdditionalSeatsOption && !selectedPlan.baseSeats">
+        <h2 class="mt-5">{{'users' | i18n}}</h2>
+        <div class="row">
+            <div class="col-6">
+                <label for="additionalSeats">{{'userSeats' | i18n}}</label>
                 <input id="additionalSeats" class="form-control" type="number" name="AdditionalSeats"
-                    [(ngModel)]="additionalSeats" min="0" max="100000" placeholder="{{'userSeatsDesc' | i18n}}">
-                <small
-                    class="text-muted form-text">{{'userSeatsAdditionalDesc' | i18n : plans[plan].baseSeats : (plans[plan].seatPrice | currency:'$')}}</small>
+                    [(ngModel)]="additionalSeats" min="1" max="100000" placeholder="{{'userSeatsDesc' | i18n}}"
+                    required>
+                <small class="text-muted form-text">{{'userSeatsHowManyDesc' | i18n}}</small>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-6">
-                <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
-                <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb"
-                    [(ngModel)]="additionalStorage" min="0" max="99" step="1"
-                    placeholder="{{'additionalStorageGbDesc' | i18n}}">
-                <small
-                    class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGb.price | currency:'$') : ('month' | i18n)}}</small>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-6" *ngIf="plans[plan].canBuyPremiumAccessAddon">
-                <div class="form-check">
-                    <input id="premiumAccess" class="form-check-input" type="checkbox" name="PremiumAccessAddon"
-                        [(ngModel)]="premiumAccessAddon">
-                    <label for="premiumAccess" class="form-check-label bold">{{'premiumAccess' | i18n}}</label>
-                </div>
-                <small
-                    class="text-muted form-text">{{'premiumAccessDesc' | i18n : (3.33 | currency:'$') : ('month' | i18n)}}</small>
-            </div>
-        </div>
-        <h2 class="spaced-header">{{'summary' | i18n}}</h2>
-        <div class="form-check form-check-block">
-            <input class="form-check-input" type="radio" name="BillingInterval" id="intervalAnnually" value="year"
-                [(ngModel)]="interval">
-            <label class="form-check-label" for="intervalAnnually">
-                {{'annually' | i18n}}
-                <small *ngIf="plans[plan].annualBasePrice">
-                    {{'basePrice' | i18n}}: {{plans[plan].basePrice | currency:'$'}} &times;12 {{'monthAbbr' | i18n}} =
-                    {{baseTotal(true) | currency:'$'}}
-                    /{{'year' | i18n}}
-                </small>
-                <small *ngIf="!plans[plan].noAdditionalSeats">
-                    <span *ngIf="plans[plan].baseSeats">{{'additionalUsers' | i18n}}:</span>
-                    <span *ngIf="!plans[plan].baseSeats">{{'users' | i18n}}:</span>
-                    {{additionalSeats || 0}} &times; {{plans[plan].seatPrice | currency:'$'}} &times;12
-                    {{'monthAbbr' | i18n}} = {{seatTotal(true)
-                    | currency:'$'}} /{{'year' | i18n}}
-                </small>
-                <small>
-                    {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} &times;
-                    {{storageGb.price | currency:'$'}} &times;12 {{'monthAbbr'
-                    | i18n}} = {{additionalStorageTotal(true) | currency:'$'}} /{{'year' | i18n}}
-                </small>
-                <small *ngIf="plans[plan].canBuyPremiumAccessAddon && premiumAccessAddon">
-                    {{'premiumAccess' | i18n}}:
-                    {{3.33 | currency:'$'}} &times;12 {{'monthAbbr' | i18n}} = {{40 | currency:'$'}} /{{'year' | i18n}}
-                </small>
-            </label>
-        </div>
-        <div class="form-check form-check-block" *ngIf="plans[plan].monthlySeatPrice">
-            <input class="form-check-input" type="radio" name="BillingInterval" id="intervalMonthly" value="month"
-                [(ngModel)]="interval">
-            <label class="form-check-label" for="intervalMonthly">
-                {{'monthly' | i18n}}
-                <small *ngIf="plans[plan].monthlyBasePrice">
-                    {{'basePrice' | i18n}}: {{baseTotal(false) | currency:'$'}} /{{'month' | i18n}}
-                </small>
-                <small *ngIf="!plans[plan].noAdditionalSeats">
-                    <span *ngIf="plans[plan].baseSeats">{{'additionalUsers' | i18n}}:</span>
-                    <span *ngIf="!plans[plan].baseSeats">{{'users' | i18n}}:</span>
-                    {{additionalSeats || 0}} &times; {{plans[plan].monthlySeatPrice | currency:'$'}} =
-                    {{seatTotal(false) | currency:'$'}} /{{'month'
-                    | i18n}}
-                </small>
-                <small>
-                    {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} &times;
-                    {{storageGb.monthlyPrice | currency:'$'}} = {{additionalStorageTotal(false)
-                    | currency:'$'}} /{{'month' | i18n}}
-                </small>
-            </label>
-        </div>
-        <hr class="my-3">
-        <div class="text-lg">
-            <strong>{{'total' | i18n}}:</strong> {{total | currency:'USD $'}} /{{interval | i18n}}
-        </div>
-        <ng-container *ngIf="createOrganization">
-            <small class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (interval | i18n) }}</small>
-            <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
-            <app-payment [hideCredit]="true"></app-payment>
-            <app-tax-info (onCountryChanged)="changedCountry()"></app-tax-info>
-        </ng-container>
-        <ng-container *ngIf="!createOrganization">
-            <app-payment [showMethods]="false"></app-payment>
-        </ng-container>
-        <small class="text-muted font-italic mt-2 d-block" *ngIf="!createOrganization">
-            {{'paymentCharged' | i18n : (interval | i18n) }}</small>
     </ng-container>
-    <div [ngClass]="{'mt-4': !createOrganization || plans[plan].noPayment}">
+    <h2 class="mt-5">{{'addons' | i18n}}</h2>
+    <div class="row" *ngIf="selectedPlan.hasAdditionalSeatsOption && selectedPlan.baseSeats">
+        <div class="form-group col-6">
+            <label for="additionalSeats">{{'additionalUserSeats' | i18n}}</label>
+            <input id="additionalSeats" class="form-control" type="number" name="AdditionalSeats"
+                [(ngModel)]="additionalSeats" min="0" max="100000" placeholder="{{'userSeatsDesc' | i18n}}">
+            <small
+                class="text-muted form-text">{{'userSeatsAdditionalDesc' | i18n : selectedPlan.baseSeats : (selectedPlan.seatPrice | currency:'$')}}</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
+            <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb"
+                [(ngModel)]="additionalStorage" min="0" max="99" step="1"
+                placeholder="{{'additionalStorageGbDesc' | i18n}}">
+            <small
+                class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGb.price | currency:'$') : ('month' | i18n)}}</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6" *ngIf="selectedPlan.hasPremiumAccessOption">
+            <div class="form-check">
+                <input id="premiumAccess" class="form-check-input" type="checkbox" name="PremiumAccessAddon"
+                    [(ngModel)]="premiumAccessAddon">
+                <label for="premiumAccess" class="form-check-label bold">{{'premiumAccess' | i18n}}</label>
+            </div>
+            <small
+                class="text-muted form-text">{{'premiumAccessDesc' | i18n : (3.33 | currency:'$') : ('month' | i18n)}}</small>
+        </div>
+    </div>
+    <h2 class="spaced-header">{{'summary' | i18n}}</h2>
+    <!-- <div class="form-check form-check-block"> -->
+    <!--     <input class="form-check-input" type="radio" name="BillingInterval" id="intervalAnnually" value="year" -->
+    <!--         [(ngModel)]="interval"> -->
+    <!--     <label class="form-check-label" for="intervalAnnually"> -->
+    <!--         {{'annually' | i18n}} -->
+    <!--         <small *ngIf="plans[plan].annualBasePrice"> -->
+    <!--             {{'basePrice' | i18n}}: {{plans[plan].basePrice | currency:'$'}} &times;12 {{'monthAbbr' | i18n}} = -->
+    <!--             {{baseTotal(true) | currency:'$'}} -->
+    <!--             /{{'year' | i18n}} -->
+    <!--         </small> -->
+    <!--         <small *ngIf="!plans[plan].noAdditionalSeats"> -->
+    <!--             <span *ngIf="plans[plan].baseSeats">{{'additionalUsers' | i18n}}:</span> -->
+    <!--             <span *ngIf="!plans[plan].baseSeats">{{'users' | i18n}}:</span> -->
+    <!--             {{additionalSeats || 0}} &times; {{plans[plan].seatPrice | currency:'$'}} &times;12 -->
+    <!--             {{'monthAbbr' | i18n}} = {{seatTotal(true) -->
+    <!--                 | currency:'$'}} /{{'year' | i18n}} -->
+    <!--         </small> -->
+    <!--         <small> -->
+    <!--             {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} &times; -->
+    <!--             {{storageGb.price | currency:'$'}} &times;12 {{'monthAbbr' -->
+    <!--                 | i18n}} = {{additionalStorageTotal(true) | currency:'$'}} /{{'year' | i18n}} -->
+    <!--         </small> -->
+    <!--         <small *ngIf="plans[plan].canBuyPremiumAccessAddon && premiumAccessAddon"> -->
+    <!--             {{'premiumAccess' | i18n}}: -->
+    <!--             {{3.33 | currency:'$'}} &times;12 {{'monthAbbr' | i18n}} = {{40 | currency:'$'}} /{{'year' | i18n}} -->
+    <!--         </small> -->
+    <!--     </label> -->
+    <!-- </div> -->
+    <!-- <div class="form-check form-check-block" *ngIf="plans[plan].monthlySeatPrice"> -->
+    <!--     <input class="form-check-input" type="radio" name="BillingInterval" id="intervalMonthly" value="month" -->
+    <!--         [(ngModel)]="interval"> -->
+    <!--     <label class="form-check-label" for="intervalMonthly"> -->
+    <!--         {{'monthly' | i18n}} -->
+    <!--         <small *ngIf="plans[plan].monthlyBasePrice"> -->
+    <!--             {{'basePrice' | i18n}}: {{baseTotal(false) | currency:'$'}} /{{'month' | i18n}} -->
+    <!--         </small> -->
+    <!--         <small *ngIf="!plans[plan].noAdditionalSeats"> -->
+    <!--             <span *ngIf="plans[plan].baseSeats">{{'additionalUsers' | i18n}}:</span> -->
+    <!--             <span *ngIf="!plans[plan].baseSeats">{{'users' | i18n}}:</span> -->
+    <!--             {{additionalSeats || 0}} &times; {{plans[plan].monthlySeatPrice | currency:'$'}} = -->
+    <!--             {{seatTotal(false) | currency:'$'}} /{{'month' -->
+    <!--                 | i18n}} -->
+    <!--         </small> -->
+    <!--         <small> -->
+    <!--             {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} &times; -->
+    <!--             {{storageGb.monthlyPrice | currency:'$'}} = {{additionalStorageTotal(false) -->
+    <!--                 | currency:'$'}} /{{'month' | i18n}} -->
+    <!--         </small> -->
+    <!--     </label> -->
+    <!-- </div> -->
+    <hr class="my-3">
+    <div class="text-lg">
+        <strong>{{'total' | i18n}}:</strong> {{total | currency:'USD $'}} /{{interval | i18n}}
+    </div>
+    <ng-container *ngIf="createOrganization">
+        <small class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (interval | i18n) }}</small>
+        <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
+        <app-payment [hideCredit]="true"></app-payment>
+        <app-tax-info (onCountryChanged)="changedCountry()"></app-tax-info>
+    </ng-container>
+    <ng-container *ngIf="!createOrganization">
+        <app-payment [showMethods]="false"></app-payment>
+    </ng-container>
+    <small class="text-muted font-italic mt-2 d-block" *ngIf="!createOrganization">
+        {{'paymentCharged' | i18n : (interval | i18n) }}</small>
+    <div [ngClass]="{'mt-4': !createOrganization }">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
             <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span>{{'submit' | i18n}}</span>
