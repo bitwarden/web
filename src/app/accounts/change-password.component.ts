@@ -19,6 +19,11 @@ import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
+import { CipherString } from 'jslib/models/domain/cipherString';
+import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
+
+import { SetPasswordRequest } from 'jslib/models/request/setPasswordRequest';
+
 import {
     ChangePasswordComponent as BaseChangePasswordComponent,
 } from 'jslib/angular/components/change-password.component';
@@ -28,6 +33,8 @@ import {
     templateUrl: 'change-password.component.html',
 })
 export class ChangePasswordComponent extends BaseChangePasswordComponent {
+    onSuccessfulChangePassword: () => Promise<any>;
+    successRoute = 'lock';
 
     constructor(apiService: ApiService, i18nService: I18nService,
         cryptoService: CryptoService, messagingService: MessagingService,
@@ -39,16 +46,23 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             platformUtilsService, folderService, cipherService, syncService, policyService, router);
     }
 
-    async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
-            if (qParams.resetMasterPassword != null) {
-                this.isChangePasswordNoCompare = qParams.resetMasterPassword;
-            }
+    async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
+        newEncKey: [SymmetricCryptoKey, CipherString]) {
+        const setRequest = new SetPasswordRequest();
+        setRequest.newMasterPasswordHash = newMasterPasswordHash;
+        setRequest.key = newEncKey[1].encryptedString;
 
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
+        try {
+            this.formPromise = this.apiService.setPassword(setRequest);
+            await this.formPromise;
+
+            if (this.onSuccessfulChangePassword != null) {
+                this.onSuccessfulChangePassword();
+            } else {
+                this.router.navigate([this.successRoute]);
             }
-        });
-        super.ngOnInit();
+        } catch {
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
+        }
     }
 }
