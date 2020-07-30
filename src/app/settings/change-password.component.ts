@@ -1,10 +1,6 @@
-import {
-    Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {
-    Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
