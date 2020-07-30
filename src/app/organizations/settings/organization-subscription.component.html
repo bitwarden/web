@@ -24,7 +24,7 @@
     </app-callout>
     <dl *ngIf="selfHosted">
         <dt>{{'billingPlan' | i18n}}</dt>
-        <dd>{{sub.plan}}</dd>
+        <dd>{{sub.plan.name}}</dd>
         <dt>{{'expiration' | i18n}}</dt>
         <dd *ngIf="sub.expiration">
             {{sub.expiration | date:'mediumDate'}}
@@ -39,7 +39,7 @@
         <div class="col-4">
             <dl>
                 <dt>{{'billingPlan' | i18n}}</dt>
-                <dd>{{sub.plan}}</dd>
+                <dd>{{sub.plan.name}}</dd>
                 <ng-container *ngIf="subscription">
                     <dt>{{'status' | i18n}}</dt>
                     <dd>
