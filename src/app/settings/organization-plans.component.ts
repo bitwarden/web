@@ -27,7 +27,6 @@ import { OrganizationCreateRequest } from 'jslib/models/request/organizationCrea
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { Plan } from 'jslib/models/staticStore/plan';
 import { ProductType } from 'jslib/enums/productType';
-import { pkcs12 } from 'node-forge';
 
 @Component({
     selector: 'app-organization-plans',
@@ -48,19 +47,11 @@ export class OrganizationPlansComponent implements OnInit {
     selfHosted = false;
     ownedBusiness = false;
     premiumAccessAddon = false;
-    storageGbPriceMonthly = 0.33;
     additionalStorage = 0;
     additionalSeats = 0;
-    interval = 'year';
     name: string;
     billingEmail: string;
     businessName: string;
-    storageGb: any = {
-        price: 0.33,
-        monthlyPrice: 0.50,
-        yearlyPrice: 4,
-    };
-
     plans: Plan[];
 
     get productTypes() {
@@ -150,7 +141,7 @@ export class OrganizationPlansComponent implements OnInit {
                         request.name = this.name;
                         request.billingEmail = this.billingEmail;
 
-                        if (this.plan === PlanType.Free) {
+                        if (this.selectedPlan.type === PlanType.Free) {
                             request.planType = PlanType.Free;
                         } else {
                             request.paymentToken = tokenResult[0];
@@ -215,6 +206,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     changedProduct() {
+        this.plan = this.validPlans[0].type;
         if (!this.selectedPlan.hasPremiumAccessOption) {
             this.premiumAccessAddon = false;
         }
@@ -271,7 +263,9 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlanTotalPrice() {
-        let total = this.selectedPlan.basePrice;
+        let total = this.selectedPlan.isAnnual
+            ? this.selectedPlan.basePrice * 12
+            : this.selectedPlan.basePrice;
         if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) total += this.seatTotal(this.selectedPlan);
         if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) total += this.additionalStorageTotal(this.selectedPlan);
         if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) total += this.selectedPlan.premiumAccessOptionCost;
