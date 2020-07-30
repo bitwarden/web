@@ -27,6 +27,8 @@ import { OrganizationCreateRequest } from 'jslib/models/request/organizationCrea
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { Plan } from 'jslib/models/staticStore/plan';
 import { ProductType } from 'jslib/enums/productType';
+import { ListResponse } from 'jslib/models/response';
+import { PlanResponse } from 'jslib/models/response/planResponse';
 
 @Component({
     selector: 'app-organization-plans',
@@ -94,7 +96,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.apiService.getPlans().then(plans => { this.plans = plans; })
+        this.apiService.getPlans().then(plans => { this.plans = plans.data; })
     }
 
     productChanged() {
@@ -268,7 +270,7 @@ export class OrganizationPlansComponent implements OnInit {
             : this.selectedPlan.basePrice;
         if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) total += this.seatTotal(this.selectedPlan);
         if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) total += this.additionalStorageTotal(this.selectedPlan);
-        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) total += this.selectedPlan.premiumAccessOptionCost;
+        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) total += this.selectedPlan.premiumAccessOptionPrice;
         return total;
     }
 }
