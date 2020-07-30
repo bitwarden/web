@@ -13,7 +13,6 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { TokenService } from 'jslib/abstractions/token.service';
 
 import { PlanType } from 'jslib/enums/planType';
 
@@ -38,10 +37,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
-    constructor(private tokenService: TokenService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private messagingService: MessagingService, private route: ActivatedRoute) {
+    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService, private analytics: Angulartics2,
+        private toasterService: ToasterService, private messagingService: MessagingService,
+        private route: ActivatedRoute) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -192,34 +191,20 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get billingInterval() {
-        const monthly = this.sub.planType === PlanType.EnterpriseMonthly ||
-            this.sub.planType === PlanType.TeamsMonthly;
+        const monthly = !this.sub.plan.isAnnual
         return monthly ? 'month' : 'year';
     }
 
     get storageGbPrice() {
-        return this.billingInterval === 'month' ? 0.5 : 4;
+        return this.sub.plan.isAnnual ? this.sub.plan.additionalStoragePricePerGb * 12 : this.sub.plan.additionalStoragePricePerGb;
     }
 
     get seatPrice() {
-        switch (this.sub.planType) {
-            case PlanType.EnterpriseMonthly:
-                return 4;
-            case PlanType.EnterpriseAnnually:
-                return 36;
-            case PlanType.TeamsMonthly:
-                return 2.5;
-            case PlanType.TeamsAnnually:
-                return 24;
-            default:
-                return 0;
-        }
+        return this.sub.plan.isAnnual ? this.sub.plan.seatPrice * 12 : this.sub.plan.seatPrice;
     }
 
     get canAdjustSeats() {
-        return this.sub.planType === PlanType.EnterpriseMonthly ||
-            this.sub.planType === PlanType.EnterpriseAnnually ||
-            this.sub.planType === PlanType.TeamsMonthly || this.sub.planType === PlanType.TeamsAnnually;
+        return this.sub.plan.hasAdditionalSeatsOption
     }
 
     get canDownloadLicense() {
