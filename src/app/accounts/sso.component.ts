@@ -14,7 +14,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 
-import { SsoComponent as BaseSsoComponent } from 'jslib/angular/components/sso.component'
+import { SsoComponent as BaseSsoComponent } from 'jslib/angular/components/sso.component';
 
 @Component({
     selector: 'app-sso',
