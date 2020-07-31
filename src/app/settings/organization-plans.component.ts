@@ -52,7 +52,23 @@ export class OrganizationPlansComponent implements OnInit {
     name: string;
     billingEmail: string;
     businessName: string;
-    plans: Plan[];
+
+    private plans: Plan[];
+
+    constructor(private apiService: ApiService, private i18nService: I18nService,
+        private analytics: Angulartics2, private toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
+        private router: Router, private syncService: SyncService) {
+        this.selfHosted = platformUtilsService.isSelfHost();
+    }
+
+    ngOnInit(): void {
+        this.apiService.getPlans().then((plans) => { this.plans = plans.data; });
+    }
+
+    get createOrganization() {
+        return this.organizationId == null;
+    }
 
     get productTypes() {
         return ProductType;
@@ -62,7 +78,7 @@ export class OrganizationPlansComponent implements OnInit {
         return this.plans.find((plan) => plan.type === this.plan);
     }
 
-    get validProductTypes() {
+    get selectableProducts() {
         let validPlans = this.plans;
 
         if (this.ownedBusiness) {
@@ -81,25 +97,83 @@ export class OrganizationPlansComponent implements OnInit {
         return validPlans;
     }
 
-    get validPlans() {
+    get selectablePlans() {
         return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
-    formPromise: Promise<any>;
+    additionalStorageTotal(plan: Plan): number {
+        if (!plan.hasAdditionalStorageOption) {
+            return 0;
+        }
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
-        this.selfHosted = platformUtilsService.isSelfHost();
+        const monthlyTotal = plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
+        return plan.isAnnual
+            ? monthlyTotal * 12
+            : monthlyTotal;
     }
 
-    ngOnInit(): void {
-        this.apiService.getPlans().then((plans) => { this.plans = plans.data; });
+    seatTotal(plan: Plan): number {
+        if (!plan.hasAdditionalSeatsOption) {
+            return 0;
+        }
+
+        const monthlyTotal = plan.seatPrice * Math.abs(this.additionalSeats || 0);
+        return plan.isAnnual
+            ? monthlyTotal * 12
+            : monthlyTotal;
     }
 
-    productChanged() {
-        this.plan = this.plans.find((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product).type;
+    get selectedPlanTotalPrice() {
+        let total = this.selectedPlan.isAnnual
+            ? this.selectedPlan.basePrice * 12
+            : this.selectedPlan.basePrice;
+        if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) {
+            total += this.seatTotal(this.selectedPlan);
+        }
+        if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) {
+            total += this.additionalStorageTotal(this.selectedPlan);
+        }
+        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
+            total += this.selectedPlan.premiumAccessOptionPrice;
+        }
+        return total;
+    }
+
+    changedProduct() {
+        this.plan = this.selectablePlans[0].type;
+        if (!this.selectedPlan.hasPremiumAccessOption) {
+            this.premiumAccessAddon = false;
+        }
+        if (!this.selectedPlan.hasAdditionalStorageOption) {
+            this.additionalStorage = 0;
+        }
+        if (!this.selectedPlan.hasAdditionalSeatsOption) {
+            this.additionalSeats = 0;
+        } else if (!this.additionalSeats && !this.selectedPlan.baseSeats &&
+            this.selectedPlan.hasAdditionalSeatsOption) {
+            this.additionalSeats = 1;
+        }
+    }
+
+    changedOwnedBusiness() {
+        if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
+            return;
+        }
+        this.plan = PlanType.TeamsMonthly;
+    }
+
+    changedCountry() {
+        this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
+        // Bank Account payments are only available for US customers
+        if (this.paymentComponent.hideBank &&
+            this.paymentComponent.method === PaymentMethodType.BankAccount) {
+            this.paymentComponent.method = PaymentMethodType.Card;
+            this.paymentComponent.changeMethod();
+        }
+    }
+
+    cancel() {
+        this.onCanceled.emit();
     }
 
     async submit() {
@@ -196,86 +270,10 @@ export class OrganizationPlansComponent implements OnInit {
                 }
             };
 
-            this.formPromise = doSubmit();
-            await this.formPromise;
+            const formPromise = doSubmit();
+            await formPromise;
             this.onSuccess.emit();
         } catch { }
     }
 
-    cancel() {
-        this.onCanceled.emit();
-    }
-
-    changedProduct() {
-        this.plan = this.validPlans[0].type;
-        if (!this.selectedPlan.hasPremiumAccessOption) {
-            this.premiumAccessAddon = false;
-        }
-
-        if (!this.selectedPlan.hasAdditionalSeatsOption) {
-            this.additionalSeats = 0;
-        } else if (!this.additionalSeats && !this.selectedPlan.baseSeats &&
-            this.selectedPlan.hasAdditionalSeatsOption) {
-            this.additionalSeats = 1;
-        }
-    }
-
-    changedOwnedBusiness() {
-        if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
-            return;
-        }
-        this.plan = PlanType.TeamsMonthly;
-    }
-
-    changedCountry() {
-        this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
-        // Bank Account payments are only available for US customers
-        if (this.paymentComponent.hideBank &&
-            this.paymentComponent.method === PaymentMethodType.BankAccount) {
-            this.paymentComponent.method = PaymentMethodType.Card;
-            this.paymentComponent.changeMethod();
-        }
-    }
-
-    get createOrganization() {
-        return this.organizationId == null;
-    }
-
-    additionalStorageTotal(plan: Plan): number {
-        if (!plan.hasAdditionalStorageOption) {
-            return 0;
-        }
-
-        const monthlyTotal = plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
-        return plan.isAnnual
-            ? monthlyTotal * 12
-            : monthlyTotal;
-    }
-
-    seatTotal(plan: Plan): number {
-        if (!plan.hasAdditionalSeatsOption) {
-            return 0;
-        }
-
-        const monthlyTotal = plan.seatPrice * Math.abs(this.additionalSeats || 0);
-        return plan.isAnnual
-            ? monthlyTotal * 12
-            : monthlyTotal;
-    }
-
-    get selectedPlanTotalPrice() {
-        let total = this.selectedPlan.isAnnual
-            ? this.selectedPlan.basePrice * 12
-            : this.selectedPlan.basePrice;
-        if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) {
-            total += this.seatTotal(this.selectedPlan);
-        }
-        if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) {
-            total += this.additionalStorageTotal(this.selectedPlan);
-        }
-        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
-            total += this.selectedPlan.premiumAccessOptionPrice;
-        }
-        return total;
-    }
 }
