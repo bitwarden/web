@@ -2,9 +2,9 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnInit,
     Output,
     ViewChild,
-    OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -23,12 +23,10 @@ import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
 import { PlanType } from 'jslib/enums/planType';
+import { ProductType } from 'jslib/enums/productType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { Plan } from 'jslib/models/staticStore/plan';
-import { ProductType } from 'jslib/enums/productType';
-import { ListResponse } from 'jslib/models/response';
-import { PlanResponse } from 'jslib/models/response/planResponse';
 
 @Component({
     selector: 'app-organization-plans',
@@ -61,29 +59,30 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlan() {
-        return this.plans.find(plan => plan.type == this.plan)
+        return this.plans.find((plan) => plan.type === this.plan);
     }
 
     get validProductTypes() {
         let validPlans = this.plans;
 
         if (this.ownedBusiness) {
-            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
+            validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
         }
 
         if (!this.showFree) {
-            validPlans = validPlans.filter(plan => plan.product != ProductType.Free)
+            validPlans = validPlans.filter((plan) => plan.product !== ProductType.Free);
         }
 
         validPlans = validPlans
-            .filter(plan => !plan.legacyYear && !plan.disabled && (plan.isAnnual || plan.product == this.productTypes.Free))
+            .filter((plan) => !plan.legacyYear
+                && !plan.disabled
+                && (plan.isAnnual || plan.product === this.productTypes.Free));
 
         return validPlans;
     }
 
     get validPlans() {
-        const test = this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product == this.product)
-        return test;
+        return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
     formPromise: Promise<any>;
@@ -96,11 +95,11 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.apiService.getPlans().then(plans => { this.plans = plans.data; })
+        this.apiService.getPlans().then((plans) => { this.plans = plans.data; });
     }
 
     productChanged() {
-        this.plan = this.plans.find(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product).type
+        this.plan = this.plans.find((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product).type;
     }
 
     async submit() {
@@ -250,7 +249,7 @@ export class OrganizationPlansComponent implements OnInit {
         const monthlyTotal = plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
         return plan.isAnnual
             ? monthlyTotal * 12
-            : monthlyTotal
+            : monthlyTotal;
     }
 
     seatTotal(plan: Plan): number {
@@ -268,9 +267,15 @@ export class OrganizationPlansComponent implements OnInit {
         let total = this.selectedPlan.isAnnual
             ? this.selectedPlan.basePrice * 12
             : this.selectedPlan.basePrice;
-        if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) total += this.seatTotal(this.selectedPlan);
-        if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) total += this.additionalStorageTotal(this.selectedPlan);
-        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) total += this.selectedPlan.premiumAccessOptionPrice;
+        if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) {
+            total += this.seatTotal(this.selectedPlan);
+        }
+        if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) {
+            total += this.additionalStorageTotal(this.selectedPlan);
+        }
+        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
+            total += this.selectedPlan.premiumAccessOptionPrice;
+        }
         return total;
     }
 }
