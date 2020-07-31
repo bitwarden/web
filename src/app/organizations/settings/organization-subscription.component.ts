@@ -191,20 +191,24 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get billingInterval() {
-        const monthly = !this.sub.plan.isAnnual
+        const monthly = !this.sub.plan.isAnnual;
         return monthly ? 'month' : 'year';
     }
 
     get storageGbPrice() {
-        return this.sub.plan.isAnnual ? this.sub.plan.additionalStoragePricePerGb * 12 : this.sub.plan.additionalStoragePricePerGb;
+        return this.sub.plan.isAnnual
+            ? this.sub.plan.additionalStoragePricePerGb * 12
+            : this.sub.plan.additionalStoragePricePerGb;
     }
 
     get seatPrice() {
-        return this.sub.plan.isAnnual ? this.sub.plan.seatPrice * 12 : this.sub.plan.seatPrice;
+        return this.sub.plan.isAnnual
+            ? this.sub.plan.seatPrice * 12
+            : this.sub.plan.seatPrice;
     }
 
     get canAdjustSeats() {
-        return this.sub.plan.hasAdditionalSeatsOption
+        return this.sub.plan.hasAdditionalSeatsOption;
     }
 
     get canDownloadLicense() {
