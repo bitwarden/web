@@ -85,7 +85,7 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
                 this.router.navigate([this.successRoute], {
                     queryParams: {
                         resetMasterPassword: this.resetMasterPassword,
-                    }
+                    },
                 });
             }
         }
