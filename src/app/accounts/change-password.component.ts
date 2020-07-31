@@ -29,7 +29,7 @@ import {
 } from 'jslib/angular/components/change-password.component';
 
 @Component({
-    selector: 'app-change-password',
+    selector: 'app-accounts-change-password',
     templateUrl: 'change-password.component.html',
 })
 export class ChangePasswordComponent extends BaseChangePasswordComponent {
