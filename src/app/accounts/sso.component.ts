@@ -30,5 +30,6 @@ export class SsoComponent extends BaseSsoComponent {
         super(authService, router, i18nService, route, storageService, stateService, platformUtilsService,
             apiService, cryptoFunctionService, passwordGenerationService);
         this.redirectUri = window.location.origin + '/sso-connector.html';
+        this.clientId = 'web';
     }
 }
