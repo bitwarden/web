@@ -123,7 +123,7 @@ export class OrganizationPlansComponent implements OnInit {
             : monthlyTotal;
     }
 
-    get selectedPlanTotalPrice() {
+    get subtotal() {
         let total = this.selectedPlan.isAnnual
             ? this.selectedPlan.basePrice * 12
             : this.selectedPlan.basePrice;
@@ -137,6 +137,15 @@ export class OrganizationPlansComponent implements OnInit {
             total += this.selectedPlan.premiumAccessOptionPrice;
         }
         return total;
+    }
+
+    // TODO: Wire up to chosen API
+    get salesTax() {
+        return 0;
+    }
+
+    get total() {
+        return this.subtotal + this.salesTax || 0;
     }
 
     changedProduct() {
