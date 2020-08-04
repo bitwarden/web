@@ -24,6 +24,8 @@ export class BulkDeleteComponent {
     @Input() organization: Organization;
     @Output() onDeleted = new EventEmitter();
 
+    formPromise: Promise<any>;
+
     constructor(private analytics: Angulartics2, private cipherService: CipherService,
         private toasterService: ToasterService, private i18nService: I18nService,
         private apiService: ApiService) { }
@@ -35,6 +37,8 @@ export class BulkDeleteComponent {
             await this.deleteCiphersAdmin();
         }
 
+        await this.formPromise;
+
         this.onDeleted.emit();
         this.analytics.eventTrack.next({ action: 'Bulk Deleted Items' });
         this.toasterService.popAsync('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
@@ -43,18 +47,18 @@ export class BulkDeleteComponent {
 
     private async deleteCiphers() {
         if (this.permanent) {
-            await this.cipherService.deleteManyWithServer(this.cipherIds);
+            this.formPromise = await this.cipherService.deleteManyWithServer(this.cipherIds);
         } else {
-            await this.cipherService.softDeleteManyWithServer(this.cipherIds);
+            this.formPromise = await this.cipherService.softDeleteManyWithServer(this.cipherIds);
         }
     }
 
     private async deleteCiphersAdmin() {
         const deleteRequest = new CipherBulkDeleteRequest(this.cipherIds, this.organization.id);
         if (this.permanent) {
-            await this.apiService.deleteManyCiphersAdmin(deleteRequest);
+            this.formPromise = await this.apiService.deleteManyCiphersAdmin(deleteRequest);
         } else {
-            await this.apiService.putDeleteManyCiphersAdmin(deleteRequest);
+            this.formPromise = await this.apiService.putDeleteManyCiphersAdmin(deleteRequest);
         }
     }
 }

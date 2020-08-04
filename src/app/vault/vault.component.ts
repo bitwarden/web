@@ -70,7 +70,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     showPremiumCallout = false;
     deleted: boolean = false;
 
-    private modal: ModalComponent = null;
+    modal: ModalComponent = null;
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
