@@ -82,10 +82,6 @@ export class CiphersComponent extends BaseCiphersComponent {
         await this.resetPaging();
     }
 
-    checkCipher(c: CipherView) {
-        // do nothing
-    }
-
     events(c: CipherView) {
         this.onEventsClicked.emit(c);
     }

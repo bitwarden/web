@@ -13,8 +13,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -25,10 +23,6 @@ import { OrganizationsComponent } from '../settings/organizations.component';
 import { UpdateKeyComponent } from '../settings/update-key.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
-import { BulkDeleteComponent } from './bulk-delete.component';
-import { BulkMoveComponent } from './bulk-move.component';
-import { BulkRestoreComponent } from './bulk-restore.component';
-import { BulkShareComponent } from './bulk-share.component';
 import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
@@ -76,15 +70,15 @@ export class VaultComponent implements OnInit, OnDestroy {
     showPremiumCallout = false;
     deleted: boolean = false;
 
-    private modal: ModalComponent = null;
+    modal: ModalComponent = null;
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
+        private ngZone: NgZone) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
@@ -389,119 +383,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     cloneCipher(cipher: CipherView) {
         const component = this.editCipher(cipher);
         component.cloneMode = true;
-    }
-
-    bulkDelete() {
-        const selectedIds = this.ciphersComponent.getSelectedIds();
-        if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
-
-        childComponent.permanent = this.deleted;
-        childComponent.cipherIds = selectedIds;
-        childComponent.onDeleted.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
-    }
-
-    bulkRestore() {
-        const selectedIds = this.ciphersComponent.getSelectedIds();
-        if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkRestoreModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkRestoreComponent>(BulkRestoreComponent, this.bulkRestoreModalRef);
-
-        childComponent.cipherIds = selectedIds;
-        childComponent.onRestored.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
-    }
-
-    bulkShare() {
-        const selectedCiphers = this.ciphersComponent.getSelected();
-        if (selectedCiphers.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkShareModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkShareComponent>(BulkShareComponent, this.bulkShareModalRef);
-
-        childComponent.ciphers = selectedCiphers;
-        childComponent.onShared.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
-        });
-    }
-
-    bulkMove() {
-        const selectedIds = this.ciphersComponent.getSelectedIds();
-        if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
-
-        childComponent.cipherIds = selectedIds;
-        childComponent.onMoved.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
-    }
-
-    selectAll(select: boolean) {
-        this.ciphersComponent.selectAll(select);
     }
 
     updateKey() {
