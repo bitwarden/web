@@ -1,5 +1,9 @@
 import {
-    Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef,
+    Component,
+    ComponentFactoryResolver,
+    Input,
+    ViewChild,
+    ViewContainerRef,
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { I18nService } from 'jslib/abstractions/i18n.service';

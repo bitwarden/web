@@ -77,8 +77,8 @@ export class VaultComponent implements OnInit, OnDestroy {
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
+        private ngZone: NgZone) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());

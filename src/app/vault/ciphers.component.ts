@@ -36,6 +36,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     cipherType = CipherType;
     actionPromise: Promise<any>;
 
+    private maxCheckedCount = 500;
+
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
@@ -46,10 +48,6 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     ngOnDestroy() {
         this.selectAll(false);
-    }
-
-    checkCipher(c: CipherView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
     }
 
     launch(uri: string) {
@@ -134,6 +132,33 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         } else if (typeI18nKey === 'securityCode') {
             this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
         }
+    }
+
+    selectAll(select: boolean) {
+        if (select) {
+            this.selectAll(false);
+        }
+        const selectCount = select && this.ciphers.length > this.maxCheckedCount
+            ? this.maxCheckedCount
+            : this.ciphers.length;
+        for (let i = 0; i < selectCount; i++) {
+            this.checkCipher(this.ciphers[i], select);
+        }
+    }
+
+    checkCipher(c: CipherView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
+    }
+
+    getSelected(): CipherView[] {
+        if (this.ciphers == null) {
+            return [];
+        }
+        return this.ciphers.filter((c) => !!(c as any).checked);
+    }
+
+    getSelectedIds(): string[] {
+        return this.getSelected().map((c) => c.id);
     }
 
     protected deleteCipher(id: string, permanent: boolean) {

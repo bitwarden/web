@@ -145,6 +145,7 @@ import { WeakPasswordsReportComponent } from './tools/weak-passwords-report.comp
 
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
+import { BulkActionsComponent } from './vault/bulk-actions.component';
 import { BulkDeleteComponent } from './vault/bulk-delete.component';
 import { BulkMoveComponent } from './vault/bulk-move.component';
 import { BulkRestoreComponent } from './vault/bulk-restore.component';
@@ -201,7 +202,6 @@ import localeSv from '@angular/common/locales/sv';
 import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
-import { BulkActionsComponent } from './vault/bulk-actions.component';
 
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
