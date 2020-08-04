@@ -272,15 +272,15 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher == null ? null : cipher.id;
-        childComponent.onSavedCipher.subscribe(async () => {
+        childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
-        childComponent.onDeletedCipher.subscribe(async () => {
+        childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
-        childComponent.onRestoredCipher.subscribe(async () => {
+        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
