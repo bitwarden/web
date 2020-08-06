@@ -24,9 +24,10 @@ import { TaxInfoComponent } from './tax-info.component';
 
 import { PlanType } from 'jslib/enums/planType';
 import { ProductType } from 'jslib/enums/productType';
+
+import { PlanResponse } from 'jslib/models/response/planResponse';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
-import { Plan } from 'jslib/models/staticStore/plan';
 
 @Component({
     selector: 'app-organization-plans',
@@ -53,7 +54,7 @@ export class OrganizationPlansComponent implements OnInit {
     billingEmail: string;
     businessName: string;
 
-    private plans: Plan[];
+    private plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
@@ -101,7 +102,7 @@ export class OrganizationPlansComponent implements OnInit {
         return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
-    additionalStorageTotal(plan: Plan): number {
+    additionalStorageTotal(plan: PlanResponse): number {
         if (!plan.hasAdditionalStorageOption) {
             return 0;
         }
@@ -112,7 +113,7 @@ export class OrganizationPlansComponent implements OnInit {
             : monthlyTotal;
     }
 
-    seatTotal(plan: Plan): number {
+    seatTotal(plan: PlanResponse): number {
         if (!plan.hasAdditionalSeatsOption) {
             return 0;
         }
