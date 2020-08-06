@@ -42,8 +42,8 @@
         <input class="form-check-input" type="radio" name="product" id="product{{selectableProduct.product}}"
             [value]="selectableProduct.product" [(ngModel)]="product" (change)="changedProduct()">
         <label class="form-check-label" for="product">
-            {{ selectableProduct.i18nNameItem | i18n}}
-            <small class="mb-1">{{ selectableProduct.i18nDescriptionItem | i18n : '1'}}</small>
+            {{ selectableProduct.nameLocalizationKey | i18n}}
+            <small class="mb-1">{{ selectableProduct.descriptionLocalizationKey | i18n : '1'}}</small>
             <small *ngIf="selectableProduct.product == productTypes.Free">•
                 {{'limitedUsers' | i18n : selectableProduct.maxUsers }}</small>
             <small *ngIf="selectableProduct.product != productTypes.Free && selectableProduct.maxUsers">•
