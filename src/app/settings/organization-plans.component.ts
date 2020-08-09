@@ -45,6 +45,7 @@ export class OrganizationPlansComponent implements OnInit {
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
+    loading = true;
     selfHosted = false;
     ownedBusiness = false;
     premiumAccessAddon = false;
@@ -63,8 +64,11 @@ export class OrganizationPlansComponent implements OnInit {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
-    ngOnInit(): void {
-        this.apiService.getPlans().then((plans) => { this.plans = plans.data; });
+    async ngOnInit() {
+        await this.apiService.getPlans().then((plans) => {
+            this.plans = plans.data;
+            this.loading = false;
+        });
     }
 
     get createOrganization() {
@@ -102,15 +106,26 @@ export class OrganizationPlansComponent implements OnInit {
         return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
+    additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
+        if (!selectedPlan.isAnnual) {
+            return selectedPlan.additionalStoragePricePerGb;
+        }
+        return selectedPlan.additionalStoragePricePerGb / 12;
+    }
+
+    seatPriceMonthly(selectedPlan: PlanResponse) {
+        if (!selectedPlan.isAnnual) {
+            return selectedPlan.seatPrice;
+        }
+        return selectedPlan.seatPrice / 12;
+    }
+
     additionalStorageTotal(plan: PlanResponse): number {
         if (!plan.hasAdditionalStorageOption) {
             return 0;
         }
 
-        const monthlyTotal = plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
-        return plan.isAnnual
-            ? monthlyTotal * 12
-            : monthlyTotal;
+        return plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
     }
 
     seatTotal(plan: PlanResponse): number {
@@ -118,16 +133,11 @@ export class OrganizationPlansComponent implements OnInit {
             return 0;
         }
 
-        const monthlyTotal = plan.seatPrice * Math.abs(this.additionalSeats || 0);
-        return plan.isAnnual
-            ? monthlyTotal * 12
-            : monthlyTotal;
+        return plan.seatPrice * Math.abs(this.additionalSeats || 0);
     }
 
     get subtotal() {
-        let total = this.selectedPlan.isAnnual
-            ? this.selectedPlan.basePrice * 12
-            : this.selectedPlan.basePrice;
+        let total = this.selectedPlan.basePrice;
         if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) {
             total += this.seatTotal(this.selectedPlan);
         }
