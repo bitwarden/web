@@ -1,3 +1,7 @@
+<ng-container *ngIf="loading">
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <span class="sr-only">{{'loading' | i18n}}</span>
+</ng-container>
 <ng-container *ngIf="createOrganization && selfHosted">
     <p>{{'uploadLicenseFileOrg' | i18n}}</p>
     <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
@@ -13,7 +17,8 @@
         </button>
     </form>
 </ng-container>
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!selfHosted && this.plans">
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate
+    *ngIf="!loading && !selfHosted && this.plans">
     <h2 class="mt-5">{{'generalInformation' | i18n}}</h2>
     <div class="row" *ngIf="createOrganization">
         <div class="form-group col-6">
@@ -69,16 +74,16 @@
             </small>
             <span *ngIf="selectableProduct.product != productTypes.Free">
                 <ng-container *ngIf="selectableProduct.basePrice">
-                    {{selectableProduct.basePrice | currency:'$'}} /{{'month' | i18n}},
+                    {{selectableProduct.basePrice / 12 | currency:'$'}} /{{'month' | i18n}},
                     {{'includesXUsers' | i18n : selectableProduct.baseSeats}}
                     <ng-container *ngIf="selectableProduct.hasAdditionalSeatsOption">
                         {{('additionalUsers' | i18n).toLowerCase()}}
-                        {{selectableProduct.seatPrice | currency:'$'}} /{{'month' | i18n}}
+                        {{selectableProduct.seatPrice  / 12| currency:'$'}} /{{'month' | i18n}}
                     </ng-container>
                 </ng-container>
             </span>
             <span *ngIf="!selectableProduct.basePrice && selectableProduct.hasAdditionalSeatsOption">
-                {{'costPerUser' | i18n : (selectableProduct.seatPrice | currency:'$')}} /{{'month' | i18n}}
+                {{'costPerUser' | i18n : (selectableProduct.seatPrice / 12 | currency:'$')}} /{{'month' | i18n}}
             </span>
             <span *ngIf="selectableProduct.product == productTypes.Free">{{'freeForever' | i18n}}</span>
         </label>
@@ -103,7 +108,7 @@
                 <input id="additionalSeats" class="form-control" type="number" name="AdditionalSeats"
                     [(ngModel)]="additionalSeats" min="0" max="100000" placeholder="{{'userSeatsDesc' | i18n}}">
                 <small
-                    class="text-muted form-text">{{'userSeatsAdditionalDesc' | i18n : selectedPlan.baseSeats : (selectedPlan.seatPrice | currency:'$')}}</small>
+                    class="text-muted form-text">{{'userSeatsAdditionalDesc' | i18n : selectedPlan.baseSeats : (seatPriceMonthly(selectedPlan) | currency:'$')}}</small>
             </div>
         </div>
         <div class="row">
@@ -113,7 +118,7 @@
                     [(ngModel)]="additionalStorage" min="0" max="99" step="1"
                     placeholder="{{'additionalStorageGbDesc' | i18n}}">
                 <small
-                    class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (selectedPlan.additionalStoragePricePerGb | currency:'$') : ('month' | i18n)}}</small>
+                    class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (additionalStoragePriceMonthly(selectedPlan) | currency:'$') : ('month' | i18n)}}</small>
             </div>
         </div>
         <div class="row">
@@ -135,28 +140,29 @@
                 <ng-container *ngIf="selectablePlan.isAnnual">
                     {{'annually' | i18n}}
                     <small *ngIf="selectablePlan.basePrice">
-                        {{'basePrice' | i18n}}: {{selectablePlan.basePrice | currency:'$'}} &times;12
+                        {{'basePrice' | i18n}}: {{selectablePlan.basePrice / 12 | currency:'$'}} &times;12
                         {{'monthAbbr' | i18n}}
                         =
-                        {{selectablePlan.basePrice * 12 | currency:'$'}}
+                        {{selectablePlan.basePrice | currency:'$'}}
                         /{{'year' | i18n}}
                     </small>
                     <small *ngIf="selectablePlan.hasAdditionalSeatsOption">
                         <span *ngIf="selectablePlan.baseSeats">{{'additionalUsers' | i18n}}:</span>
                         <span *ngIf="!selectablePlan.baseSeats">{{'users' | i18n}}:</span>
-                        {{additionalSeats || 0}} &times; {{selectablePlan.seatPrice | currency:'$'}} &times;12
+                        {{additionalSeats || 0}} &times; {{selectablePlan.seatPrice / 12 | currency:'$'}} &times;12
                         {{'monthAbbr' | i18n}} = {{seatTotal(selectablePlan)
                     | currency:'$'}} /{{'year' | i18n}}
                     </small>
                     <small *ngIf="selectablePlan.hasAdditionalStorageOption">
                         {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} &times;
-                        {{selectablePlan.additionalStoragePricePerGb | currency:'$'}} &times;12 {{'monthAbbr'
+                        {{selectablePlan.additionalStoragePricePerGb / 12 | currency:'$'}} &times;12 {{'monthAbbr'
                         | i18n}} = {{additionalStorageTotal(selectablePlan) | currency:'$'}}
                         /{{'year' | i18n}}
                     </small>
                     <small *ngIf="selectablePlan.hasPremiumAccessOption && premiumAccessAddon">
                         {{'premiumAccess' | i18n}}:
-                        {{selectablePlan.premiumAccessOptionCost | currency:'$'}} &times;12 {{'monthAbbr' | i18n}} =
+                        {{selectablePlan.premiumAccessOptionCost / 12 | currency:'$'}} &times;12 {{'monthAbbr' | i18n}}
+                        =
                         {{40 | currency:'$'}}
                         /{{'year' | i18n}}
                     </small>

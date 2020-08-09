@@ -196,15 +196,11 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get storageGbPrice() {
-        return this.sub.plan.isAnnual
-            ? this.sub.plan.additionalStoragePricePerGb * 12
-            : this.sub.plan.additionalStoragePricePerGb;
+        return this.sub.plan.additionalStoragePricePerGb;
     }
 
     get seatPrice() {
-        return this.sub.plan.isAnnual
-            ? this.sub.plan.seatPrice * 12
-            : this.sub.plan.seatPrice;
+        return this.sub.plan.seatPrice;
     }
 
     get canAdjustSeats() {
