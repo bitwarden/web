@@ -25,9 +25,9 @@ import { TaxInfoComponent } from './tax-info.component';
 import { PlanType } from 'jslib/enums/planType';
 import { ProductType } from 'jslib/enums/productType';
 
-import { PlanResponse } from 'jslib/models/response/planResponse';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
+import { PlanResponse } from 'jslib/models/response/planResponse';
 
 @Component({
     selector: 'app-organization-plans',
