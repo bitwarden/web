@@ -65,10 +65,9 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async ngOnInit() {
-        await this.apiService.getPlans().then((plans) => {
-            this.plans = plans.data;
-            this.loading = false;
-        });
+        const plans = await this.apiService.getPlans();
+        this.plans = plans.data;
+        this.loading = false;
     }
 
     get createOrganization() {
