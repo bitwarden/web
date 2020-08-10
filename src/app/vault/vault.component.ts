@@ -54,10 +54,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
     @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
     @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
-    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
-    @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef }) bulkRestoreModalRef: ViewContainerRef;
-    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
-    @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
     @ViewChild('updateKeyTemplate', { read: ViewContainerRef }) updateKeyModalRef: ViewContainerRef;
 
     favorites: boolean = false;
