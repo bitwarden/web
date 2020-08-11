@@ -53,7 +53,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     type: CipherType = null;
     deleted: boolean = false;
 
-    private modal: ModalComponent = null;
+    modal: ModalComponent = null;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
