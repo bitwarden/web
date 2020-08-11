@@ -50,34 +50,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.selectAll(false);
     }
 
-    checkCipher(c: CipherView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
-    }
-
     launch(uri: string) {
         this.platformUtilsService.eventTrack('Launched Login URI');
         this.platformUtilsService.launchUri(uri);
-    }
-
-    selectAll(select: boolean) {
-        if (select) {
-            this.selectAll(false);
-        }
-        const selectCount = select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
-        for (let i = 0; i < selectCount; i++) {
-            this.checkCipher(this.ciphers[i], select);
-        }
-    }
-
-    getSelected(): CipherView[] {
-        if (this.ciphers == null) {
-            return [];
-        }
-        return this.ciphers.filter((c) => !!(c as any).checked);
-    }
-
-    getSelectedIds(): string[] {
-        return this.getSelected().map((c) => c.id);
     }
 
     attachments(c: CipherView) {
@@ -157,6 +132,33 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         } else if (typeI18nKey === 'securityCode') {
             this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
         }
+    }
+
+    selectAll(select: boolean) {
+        if (select) {
+            this.selectAll(false);
+        }
+        const selectCount = select && this.ciphers.length > MaxCheckedCount
+            ? MaxCheckedCount
+            : this.ciphers.length;
+        for (let i = 0; i < selectCount; i++) {
+            this.checkCipher(this.ciphers[i], select);
+        }
+    }
+
+    checkCipher(c: CipherView, select?: boolean) {
+        (c as any).checked = select == null ? !(c as any).checked : select;
+    }
+
+    getSelected(): CipherView[] {
+        if (this.ciphers == null) {
+            return [];
+        }
+        return this.ciphers.filter((c) => !!(c as any).checked);
+    }
+
+    getSelectedIds(): string[] {
+        return this.getSelected().map((c) => c.id);
     }
 
     protected deleteCipher(id: string, permanent: boolean) {

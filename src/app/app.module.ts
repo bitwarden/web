@@ -146,6 +146,7 @@ import { WeakPasswordsReportComponent } from './tools/weak-passwords-report.comp
 
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
+import { BulkActionsComponent } from './vault/bulk-actions.component';
 import { BulkDeleteComponent } from './vault/bulk-delete.component';
 import { BulkMoveComponent } from './vault/bulk-move.component';
 import { BulkRestoreComponent } from './vault/bulk-restore.component';
@@ -262,6 +263,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BlurClickDirective,
         BoxRowDirective,
         BreachReportComponent,
+        BulkActionsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkRestoreComponent,
@@ -384,6 +386,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AccountsChangePasswordComponent,
         AddEditComponent,
         AttachmentsComponent,
+        BulkActionsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
         BulkRestoreComponent,

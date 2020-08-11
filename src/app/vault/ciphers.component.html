@@ -3,7 +3,7 @@
         [infiniteScrollDistance]="1" [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
         <tbody>
             <tr *ngFor="let c of filteredCiphers">
-                <td (click)="checkCipher(c)" class="table-list-checkbox" *ngIf="!organization">
+                <td (click)="checkCipher(c)" class="table-list-checkbox">
                     <input type="checkbox" [(ngModel)]="c.checked" appStopProp>
                 </td>
                 <td (click)="checkCipher(c)" class="table-list-icon">
@@ -58,9 +58,8 @@
                                 <i class="fa fa-fw fa-files-o" aria-hidden="true"></i>
                                 {{'clone' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick 
-                                *ngIf="!organization && !c.organizationId && !c.isDeleted"
-                                (click)="share(c)">
+                            <a class="dropdown-item" href="#" appStopClick
+                                *ngIf="!organization && !c.organizationId && !c.isDeleted" (click)="share(c)">
                                 <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
                                 {{'share' | i18n}}
                             </a>

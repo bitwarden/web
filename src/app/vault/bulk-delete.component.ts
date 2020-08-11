@@ -4,12 +4,15 @@ import {
     Input,
     Output,
 } from '@angular/core';
-
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
+import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+
+import { Organization } from 'jslib/models/domain/organization';
+import { CipherBulkDeleteRequest } from 'jslib/models/request/cipherBulkDeleteRequest';
 
 @Component({
     selector: 'app-vault-bulk-delete',
@@ -18,20 +21,44 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 export class BulkDeleteComponent {
     @Input() cipherIds: string[] = [];
     @Input() permanent: boolean = false;
+    @Input() organization: Organization;
     @Output() onDeleted = new EventEmitter();
 
     formPromise: Promise<any>;
 
     constructor(private analytics: Angulartics2, private cipherService: CipherService,
-        private toasterService: ToasterService, private i18nService: I18nService) { }
+        private toasterService: ToasterService, private i18nService: I18nService,
+        private apiService: ApiService) { }
 
     async submit() {
-        this.formPromise = this.permanent ? this.cipherService.deleteManyWithServer(this.cipherIds) :
-            this.cipherService.softDeleteManyWithServer(this.cipherIds);
+        if (!this.organization || !this.organization.isAdmin) {
+            await this.deleteCiphers();
+        } else {
+            await this.deleteCiphersAdmin();
+        }
+
         await this.formPromise;
+
         this.onDeleted.emit();
         this.analytics.eventTrack.next({ action: 'Bulk Deleted Items' });
         this.toasterService.popAsync('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
             : 'deletedItems'));
+    }
+
+    private async deleteCiphers() {
+        if (this.permanent) {
+            this.formPromise = await this.cipherService.deleteManyWithServer(this.cipherIds);
+        } else {
+            this.formPromise = await this.cipherService.softDeleteManyWithServer(this.cipherIds);
+        }
+    }
+
+    private async deleteCiphersAdmin() {
+        const deleteRequest = new CipherBulkDeleteRequest(this.cipherIds, this.organization.id);
+        if (this.permanent) {
+            this.formPromise = await this.apiService.deleteManyCiphersAdmin(deleteRequest);
+        } else {
+            this.formPromise = await this.apiService.putDeleteManyCiphersAdmin(deleteRequest);
+        }
     }
 }
