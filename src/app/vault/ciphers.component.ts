@@ -1,4 +1,4 @@
-import {
+Component,
     Component,
     EventEmitter,
     Input,
@@ -138,8 +138,13 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (select) {
             this.selectAll(false);
         }
+<<<<<<< HEAD
         const selectCount = select && this.ciphers.length > this.maxCheckedCount
             ? this.maxCheckedCount
+=======
+        const selectCount = select && this.ciphers.length > MaxCheckedCount
+            ? MaxCheckedCount
+>>>>>>> master
             : this.ciphers.length;
         for (let i = 0; i < selectCount; i++) {
             this.checkCipher(this.ciphers[i], select);
