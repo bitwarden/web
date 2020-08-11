@@ -55,7 +55,7 @@ export class OrganizationPlansComponent implements OnInit {
     billingEmail: string;
     businessName: string;
 
-    private plans: PlanResponse[];
+    plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
