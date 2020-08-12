@@ -198,6 +198,9 @@
             </label>
         </div>
         <hr class="my-3">
+        <div class="text-lg">
+            <strong>{{'total' | i18n}}:</strong> {{subtotal | currency:'USD $'}} /{{interval | i18n}}
+        </div>
         <ng-container *ngIf="createOrganization">
             <small
                 class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (selectedPlan.isAnnual ? 'year' : 'month' | i18n) }}</small>
@@ -212,14 +215,6 @@
             {{'paymentCharged' | i18n : (interval | i18n) }}</small>
     </div>
     <div class="mt-4">
-        <div id="price" class="my-4" *ngIf="total > 0">
-            <div class="text-muted text-sm">Plan price: {{ subtotal | currency: 'USD $' }}
-                <br />Estimated tax: {{ salesTax | currency: 'USD $' }}</div>
-            <hr class="my-1 col-3 ml-0">
-            <p class="text-lg"><strong>{{'total' | i18n}}:</strong>
-                {{total | currency:'USD $'}}/{{selectedPlan.isAnnual ? 'year' : 'month' | i18n}}</p>
-
-        </div>
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
             <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span>{{'submit' | i18n}}</span>

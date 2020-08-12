@@ -45,12 +45,12 @@ export class OrganizationPlansComponent implements OnInit {
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
-    loading = true;
-    selfHosted = false;
-    ownedBusiness = false;
-    premiumAccessAddon = false;
-    additionalStorage = 0;
-    additionalSeats = 0;
+    loading: boolean = true;
+    selfHosted: boolean = false;
+    ownedBusiness: boolean = false;
+    premiumAccessAddon: boolean = false;
+    additionalStorage: number = 0;
+    additionalSeats: number = 0;
     name: string;
     billingEmail: string;
     businessName: string;
@@ -136,26 +136,17 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get subtotal() {
-        let total = this.selectedPlan.basePrice;
+        let subTotal = this.selectedPlan.basePrice;
         if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) {
-            total += this.seatTotal(this.selectedPlan);
+            subTotal += this.seatTotal(this.selectedPlan);
         }
         if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) {
-            total += this.additionalStorageTotal(this.selectedPlan);
+            subTotal += this.additionalStorageTotal(this.selectedPlan);
         }
         if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
-            total += this.selectedPlan.premiumAccessOptionPrice;
+            subTotal += this.selectedPlan.premiumAccessOptionPrice;
         }
-        return total;
-    }
-
-    // TODO: Wire up to chosen API
-    get salesTax() {
-        return 0;
-    }
-
-    get total() {
-        return this.subtotal + this.salesTax || 0;
+        return subTotal;
     }
 
     changedProduct() {
