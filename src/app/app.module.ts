@@ -36,6 +36,7 @@ import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
 import { SsoComponent } from './accounts/sso.component';
+import { SsoCompleteComponent } from './accounts/sso-complete.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
@@ -355,6 +356,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SettingsComponent,
         ShareComponent,
         SsoComponent,
+        SsoCompleteComponent,
         StopClickDirective,
         StopPropDirective,
         TaxInfoComponent,

@@ -8,6 +8,7 @@ import {
 import { ApiService } from 'jslib/abstractions/api.service';
 import { AuthService } from 'jslib/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
+import { ConstantsService } from 'jslib/services/constants.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
@@ -30,6 +31,6 @@ export class SsoComponent extends BaseSsoComponent {
         super(authService, router, i18nService, route, storageService, stateService, platformUtilsService,
             apiService, cryptoFunctionService, passwordGenerationService);
         this.redirectUri = window.location.origin + '/sso-connector.html';
-        this.clientId = 'web';
+        this.clientId = ConstantsService.webClientId;
     }
 }
