@@ -42,7 +42,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         if (this.services.size > 0) {
             const allCiphers = await this.getAllCiphers();
             const inactive2faCiphers: CipherView[] = [];
-            const promises: Array<Promise<void>> = [];
+            const promises: Promise<void>[] = [];
             const docs = new Map<string, string>();
             allCiphers.forEach((c) => {
                 if (c.type !== CipherType.Login || (c.login.totp != null && c.login.totp !== '') || !c.login.hasUris) {
