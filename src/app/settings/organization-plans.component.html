@@ -140,7 +140,7 @@
                 <ng-container *ngIf="selectablePlan.isAnnual">
                     {{'annually' | i18n}}
                     <small *ngIf="selectablePlan.basePrice">
-                        {{'basePrice' | i18n}}: {{selectedPlanInterval | currency:'$'}} &times;12
+                        {{'basePrice' | i18n}}: {{ selectablePlan.basePrice / 12 | currency:'$'}} &times;12
                         {{'monthAbbr' | i18n}}
                         =
                         {{selectablePlan.basePrice | currency:'$'}}
