@@ -82,6 +82,12 @@ export class OrganizationPlansComponent implements OnInit {
         return this.plans.find((plan) => plan.type === this.plan);
     }
 
+    get selectedPlanInterval() {
+        return this.selectedPlan.isAnnual
+            ? 'year'
+            : 'month'
+    }
+
     get selectableProducts() {
         let validPlans = this.plans;
 
