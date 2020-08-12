@@ -85,7 +85,7 @@ export class OrganizationPlansComponent implements OnInit {
     get selectedPlanInterval() {
         return this.selectedPlan.isAnnual
             ? 'year'
-            : 'month'
+            : 'month';
     }
 
     get selectableProducts() {
