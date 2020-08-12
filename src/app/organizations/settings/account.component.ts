@@ -65,6 +65,7 @@ export class AccountComponent {
             request.name = this.org.name;
             request.businessName = this.org.businessName;
             request.billingEmail = this.org.billingEmail;
+            request.identifier = this.org.identifier;
             this.formPromise = this.apiService.putOrganization(this.organizationId, request).then(() => {
                 return this.syncService.fullSync(true);
             });
