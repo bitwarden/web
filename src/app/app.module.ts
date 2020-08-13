@@ -383,7 +383,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         WeakPasswordsReportComponent,
     ],
     entryComponents: [
-        AccountsChangePasswordComponent,
         AddEditComponent,
         AttachmentsComponent,
         BulkActionsComponent,
