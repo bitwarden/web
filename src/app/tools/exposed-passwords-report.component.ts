@@ -41,7 +41,7 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
         const exposedPasswordCiphers: CipherView[] = [];
-        const promises: Array<Promise<void>> = [];
+        const promises: Promise<void>[] = [];
         allCiphers.forEach((c) => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
                 return;

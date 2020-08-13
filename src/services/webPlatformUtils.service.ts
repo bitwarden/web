@@ -146,7 +146,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             } else {
                 a.target = '_blank';
             }
-            a.href = win.URL.createObjectURL(blob);
+            a.href = URL.createObjectURL(blob);
             a.style.position = 'fixed';
             win.document.body.appendChild(a);
             a.click();
