@@ -28,6 +28,7 @@ import { OrganizationLayoutComponent } from './layouts/organization-layout.compo
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
+import { ChangePasswordComponent as AccountsChangePasswordComponent } from './accounts/change-password.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
@@ -248,6 +249,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         A11yTitleDirective,
         AcceptOrganizationComponent,
         AccountComponent,
+        AccountsChangePasswordComponent,
         AddCreditComponent,
         AddEditComponent,
         AdjustPaymentComponent,

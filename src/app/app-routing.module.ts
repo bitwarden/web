@@ -9,6 +9,7 @@ import { OrganizationLayoutComponent } from './layouts/organization-layout.compo
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
+import { ChangePasswordComponent } from './accounts/change-password.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
@@ -104,6 +105,11 @@ const routes: Routes = [
                 path: 'sso', component: SsoComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'createAccount' }, // TODO
+            },
+            {
+                path: 'change-password', component: ChangePasswordComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'setMasterPassword' },
             },
             {
                 path: 'hint', component: HintComponent,
