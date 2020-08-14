@@ -40,13 +40,6 @@ export class SsoComponent extends BaseSsoComponent {
                     window.postMessage({ type: "AUTH_RESULT", code: qParams.code, state: qParams.state }, "*");
                 }
             }
-
-            if (qParams.state.endsWith(':clientId=browser')) {
-                this.redirectUri = qParams.redirectUri;
-                this.state = qParams.state;
-                this.clientId = qParams.clientId;
-                await this.storageService.save(ConstantsService.ssoStateKey, qParams.state);
-            }
         });
 
         super.ngOnInit();
