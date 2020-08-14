@@ -32,16 +32,4 @@ export class SsoComponent extends BaseSsoComponent {
         this.redirectUri = window.location.origin + '/sso-connector.html';
         this.clientId = 'web';
     }
-
-    async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
-            if (qParams.code != null && qParams.state != null) {
-                if (qParams.state.endsWith(':clientId=browser')) {
-                    window.postMessage({ type: "AUTH_RESULT", code: qParams.code, state: qParams.state }, "*");
-                }
-            }
-        });
-
-        super.ngOnInit();
-    }
 }

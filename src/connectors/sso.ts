@@ -4,7 +4,14 @@ require('./sso.scss');
 document.addEventListener('DOMContentLoaded', (event) => {
     const code = getQsParam('code');
     const state = getQsParam('state');
-    window.location.href = window.location.origin + '/#/sso?code=' + code + '&state=' + state;
+
+    if(state && state.endsWith(':clientId=browser'))
+    {
+        initiateBrowserSso(code, state);
+    }
+    else {
+        window.location.href = window.location.origin + '/#/sso?code=' + code + '&state=' + state;
+    }
 });
 
 function getQsParam(name: string) {
@@ -21,4 +28,13 @@ function getQsParam(name: string) {
     }
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function initiateBrowserSso(code: string, state: string)
+{
+    window.postMessage({ type: "AUTH_RESULT", code: code, state: state }, "*");
+
+    // Clean up the tab
+    var thisWindow = window.open("", "_self");
+    thisWindow.close();
 }
