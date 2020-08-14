@@ -1,4 +1,9 @@
-import { ComponentFactoryResolver, ViewChild, ViewContainerRef, Directive } from '@angular/core';
+import {
+    ComponentFactoryResolver,
+    ViewChild,
+    ViewContainerRef,
+    Directive,
+} from '@angular/core';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
