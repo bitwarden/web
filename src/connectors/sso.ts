@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const code = getQsParam('code');
     const state = getQsParam('state');
 
-    if(state && state.endsWith(':clientId=browser')) {
+    if (state && state.endsWith(':clientId=browser')) {
         initiateBrowserSso(code, state);
     }
     else {
@@ -30,9 +30,9 @@ function getQsParam(name: string) {
 }
 
 function initiateBrowserSso(code: string, state: string) {
-    window.postMessage({ command: "authResult", code: code, state: state }, "*");
+    window.postMessage({ command: 'authResult', code: code, state: state }, '*');
 
     // Clean up the tab
-    var thisWindow = window.open("", "_self");
+    const thisWindow = window.open('', '_self');
     thisWindow.close();
 }
