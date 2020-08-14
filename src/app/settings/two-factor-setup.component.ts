@@ -117,10 +117,10 @@ export class TwoFactorSetupComponent implements OnInit {
                     this.updateStatus(enabled, TwoFactorProviderType.Email);
                 });
                 break;
-            case TwoFactorProviderType.U2f:
+            case TwoFactorProviderType.WebAuthn:
                 const u2fComp = this.openModal(this.u2fModalRef, TwoFactorU2fComponent);
                 u2fComp.onUpdated.subscribe((enabled: boolean) => {
-                    this.updateStatus(enabled, TwoFactorProviderType.U2f);
+                    this.updateStatus(enabled, TwoFactorProviderType.WebAuthn);
                 });
                 break;
             default:

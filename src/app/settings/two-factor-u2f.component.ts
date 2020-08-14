@@ -28,35 +28,22 @@ import { TwoFactorBaseComponent } from './two-factor-base.component';
     selector: 'app-two-factor-u2f',
     templateUrl: 'two-factor-u2f.component.html',
 })
-export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnInit, OnDestroy {
-    type = TwoFactorProviderType.U2f;
+export class TwoFactorU2fComponent extends TwoFactorBaseComponent {
+    type = TwoFactorProviderType.WebAuthn;
     name: string;
     keys: any[];
     keyIdAvailable: number = null;
     keysConfiguredCount = 0;
     u2fError: boolean;
     u2fListening: boolean;
-    u2fResponse: string;
+    u2fResponse: PublicKeyCredential;
     challengePromise: Promise<ChallengeResponse>;
     formPromise: Promise<any>;
-
-    private u2fScript: HTMLScriptElement;
 
     constructor(apiService: ApiService, i18nService: I18nService,
         analytics: Angulartics2, toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private ngZone: NgZone) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService);
-        this.u2fScript = window.document.createElement('script');
-        this.u2fScript.src = 'scripts/u2f.js';
-        this.u2fScript.async = true;
-    }
-
-    ngOnInit() {
-        window.document.body.appendChild(this.u2fScript);
-    }
-
-    ngOnDestroy() {
-        window.document.body.removeChild(this.u2fScript);
     }
 
     auth(authResponse: any) {
@@ -76,7 +63,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
         request.name = this.name;
 
         return super.enable(async () => {
-            this.formPromise = this.apiService.putTwoFactorU2f(request);
+            this.formPromise = this.apiService.putTwoFactorWebAuthn(request);
             const response = await this.formPromise;
             await this.processResponse(response);
         });
@@ -115,7 +102,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
         const request = new PasswordVerificationRequest();
         request.masterPasswordHash = this.masterPasswordHash;
         try {
-            this.challengePromise = this.apiService.getTwoFactorU2fChallenge(request);
+            this.challengePromise = this.apiService.getTwoFactorWebAuthnChallenge(request);
             const challenge = await this.challengePromise;
             this.readDevice(challenge);
         } catch { }
@@ -125,21 +112,19 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
         // tslint:disable-next-line
         console.log('listening for key...');
         this.resetU2f(true);
-        (window as any).u2f.register(u2fChallenge.appId, [{
-            version: u2fChallenge.version,
-            challenge: u2fChallenge.challenge,
-        }], [], (data: any) => {
+
+        navigator.credentials.create({
+            publicKey: u2fChallenge
+        }).then((data: PublicKeyCredential) => {
             this.ngZone.run(() => {
                 this.u2fListening = false;
-                if (data.errorCode) {
-                    this.u2fError = true;
-                    // tslint:disable-next-line
-                    console.log('error: ' + data.errorCode);
-                    return;
-                }
-                this.u2fResponse = JSON.stringify(data);
+                console.log(data);
+                this.u2fResponse = data;
             });
-        }, 15);
+        }).catch((err) =>{
+            console.log(err);
+            debugger;
+        })
     }
 
     private resetU2f(listening = false) {
