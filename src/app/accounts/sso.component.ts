@@ -31,6 +31,25 @@ export class SsoComponent extends BaseSsoComponent {
         super(authService, router, i18nService, route, storageService, stateService, platformUtilsService,
             apiService, cryptoFunctionService, passwordGenerationService);
         this.redirectUri = window.location.origin + '/sso-connector.html';
-        this.clientId = ConstantsService.webClientId;
+        this.clientId = 'web';
+    }
+
+    async ngOnInit() {
+        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            if (qParams.code != null && qParams.state != null) {
+                if (qParams.state.endsWith(':clientId=browser')) {
+                    window.postMessage({ type: "AUTH_RESULT", code: qParams.code, state: qParams.state }, "*");
+                }
+            }
+
+            if (qParams.state.endsWith(':clientId=browser')) {
+                this.redirectUri = qParams.redirectUri;
+                this.state = qParams.state;
+                this.clientId = qParams.clientId;
+                await this.storageService.save(ConstantsService.ssoStateKey, qParams.state);
+            }
+        });
+
+        super.ngOnInit();
     }
 }
