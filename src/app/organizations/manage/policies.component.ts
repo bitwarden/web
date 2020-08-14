@@ -28,7 +28,7 @@ import { PolicyEditComponent } from './policy-edit.component';
     templateUrl: 'policies.component.html',
 })
 export class PoliciesComponent implements OnInit {
-    @ViewChild('editTemplate', { read: ViewContainerRef }) editModalRef: ViewContainerRef;
+    @ViewChild('editTemplate', { read: ViewContainerRef, static: true }) editModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;

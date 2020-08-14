@@ -24,8 +24,8 @@ import { TaxInfoComponent } from './tax-info.component';
     templateUrl: 'adjust-payment.component.html',
 })
 export class AdjustPaymentComponent {
-    @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
-    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
+    @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent, { static: true }) taxInfoComponent: TaxInfoComponent;
 
     @Input() currentType?: PaymentMethodType;
     @Input() organizationId: string;

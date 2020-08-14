@@ -41,12 +41,12 @@ const BroadcasterSubscriptionId = 'OrgVaultComponent';
     templateUrl: 'vault.component.html',
 })
 export class VaultComponent implements OnInit, OnDestroy {
-    @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
-    @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
-    @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
-    @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
-    @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
+    @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
+    @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
+    @ViewChild('attachments', { read: ViewContainerRef, static: true }) attachmentsModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef, static: true }) collectionsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
 
     organization: Organization;
     collectionId: string = null;

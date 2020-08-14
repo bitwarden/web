@@ -32,8 +32,8 @@ import { GroupAddEditComponent } from './group-add-edit.component';
     templateUrl: 'groups.component.html',
 })
 export class GroupsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef }) usersModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;

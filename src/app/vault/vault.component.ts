@@ -46,15 +46,15 @@ const BroadcasterSubscriptionId = 'VaultComponent';
     templateUrl: 'vault.component.html',
 })
 export class VaultComponent implements OnInit, OnDestroy {
-    @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
-    @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
-    @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
-    @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
-    @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
-    @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
-    @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
-    @ViewChild('updateKeyTemplate', { read: ViewContainerRef }) updateKeyModalRef: ViewContainerRef;
+    @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
+    @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
+    @ViewChild(OrganizationsComponent, { static: true }) organizationsComponent: OrganizationsComponent;
+    @ViewChild('attachments', { read: ViewContainerRef, static: true }) attachmentsModalRef: ViewContainerRef;
+    @ViewChild('folderAddEdit', { read: ViewContainerRef, static: true }) folderAddEditModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('share', { read: ViewContainerRef, static: true }) shareModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef, static: true }) collectionsModalRef: ViewContainerRef;
+    @ViewChild('updateKeyTemplate', { read: ViewContainerRef, static: true }) updateKeyModalRef: ViewContainerRef;
 
     favorites: boolean = false;
     type: CipherType = null;

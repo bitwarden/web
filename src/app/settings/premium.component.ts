@@ -24,8 +24,8 @@ import { TaxInfoComponent } from './tax-info.component';
     templateUrl: 'premium.component.html',
 })
 export class PremiumComponent implements OnInit {
-    @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
-    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
+    @ViewChild(PaymentComponent, { static: false }) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent, { static: false }) taxInfoComponent: TaxInfoComponent;
 
     canAccessPremium = false;
     selfHosted = false;

@@ -16,7 +16,7 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 export class CipherReportComponent {
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
 
     loading = false;
     hasLoaded = false;
