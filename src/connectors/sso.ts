@@ -30,7 +30,7 @@ function getQsParam(name: string) {
 }
 
 function initiateBrowserSso(code: string, state: string) {
-    window.postMessage({ type: "AUTH_RESULT", code: code, state: state }, "*");
+    window.postMessage({ command: "authResult", code: code, state: state }, "*");
 
     // Clean up the tab
     var thisWindow = window.open("", "_self");
