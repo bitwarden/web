@@ -17,7 +17,6 @@ import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
 import { SsoComponent } from './accounts/sso.component';
-import { SsoCompleteComponent } from './accounts/sso-complete.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
@@ -106,12 +105,6 @@ const routes: Routes = [
                 path: 'sso', component: SsoComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'createAccount' }, // TODO
-            },
-            { path: 'sso-complete', component: SsoCompleteComponent },
-            {
-                path: 'change-password', component: ChangePasswordComponent,
-                canActivate: [UnauthGuardService],
-                data: { titleId: 'setMasterPassword' },
             },
             {
                 path: 'change-password', component: ChangePasswordComponent,
