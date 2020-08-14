@@ -114,6 +114,11 @@ const routes: Routes = [
                 data: { titleId: 'setMasterPassword' },
             },
             {
+                path: 'change-password', component: ChangePasswordComponent,
+                canActivate: [UnauthGuardService],
+                data: { titleId: 'setMasterPassword' },
+            },
+            {
                 path: 'hint', component: HintComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'passwordHint' },
