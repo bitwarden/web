@@ -32,7 +32,7 @@ export class AccountComponent {
     @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
     @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
     @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
-    @ViewChild(TaxInfoComponent, { static: false }) taxInfo: TaxInfoComponent;
+    @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     loading = true;
     canUseApi = false;

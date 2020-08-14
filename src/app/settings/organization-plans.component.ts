@@ -34,8 +34,8 @@ import { PlanResponse } from 'jslib/models/response/planResponse';
     templateUrl: 'organization-plans.component.html',
 })
 export class OrganizationPlansComponent implements OnInit {
-    @ViewChild(PaymentComponent, { static: false }) paymentComponent: PaymentComponent;
-    @ViewChild(TaxInfoComponent, { static: false }) taxComponent: TaxInfoComponent;
+    @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxComponent: TaxInfoComponent;
 
     @Input() organizationId: string;
     @Input() showFree = true;

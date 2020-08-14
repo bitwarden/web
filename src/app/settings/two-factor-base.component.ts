@@ -1,7 +1,4 @@
-import {
-    EventEmitter,
-    Output,
-} from '@angular/core';
+import { EventEmitter, Output, Directive } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -13,6 +10,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 import { TwoFactorProviderRequest } from 'jslib/models/request/twoFactorProviderRequest';
 
+@Directive()
 export abstract class TwoFactorBaseComponent {
     @Output() onUpdated = new EventEmitter<boolean>();
 
