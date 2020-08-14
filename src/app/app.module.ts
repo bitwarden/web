@@ -355,7 +355,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SettingsComponent,
         ShareComponent,
         SsoComponent,
-        SsoCompleteComponent,
         StopClickDirective,
         StopPropDirective,
         TaxInfoComponent,
@@ -384,7 +383,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         WeakPasswordsReportComponent,
     ],
     entryComponents: [
-        AccountsChangePasswordComponent,
         AddEditComponent,
         AttachmentsComponent,
         BulkActionsComponent,
