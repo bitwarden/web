@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -24,9 +21,13 @@ export class ImportComponent implements OnInit {
     protected organizationId: string = null;
     protected successNavigate: any[] = ['vault'];
 
-    constructor(protected i18nService: I18nService, protected analytics: Angulartics2,
-        protected toasterService: ToasterService, protected importService: ImportService,
-        protected router: Router) { }
+    constructor(
+        protected i18nService: I18nService,
+        protected analytics: Angulartics2,
+        protected toasterService: ToasterService,
+        protected importService: ImportService,
+        protected router: Router
+    ) {}
 
     ngOnInit() {
         this.setImportOptions();
@@ -41,24 +42,34 @@ export class ImportComponent implements OnInit {
                 return 0;
             }
 
-            return this.i18nService.collator ? this.i18nService.collator.compare(a.name, b.name) :
-                a.name.localeCompare(b.name);
+            return this.i18nService.collator
+                ? this.i18nService.collator.compare(a.name, b.name)
+                : a.name.localeCompare(b.name);
         });
     }
 
     async submit() {
         const importer = this.importService.getImporter(this.format, this.organizationId != null);
         if (importer === null) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFormat'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('selectFormat')
+            );
             return;
         }
 
         const fileEl = document.getElementById('file') as HTMLInputElement;
         const files = fileEl.files;
-        if ((files == null || files.length === 0) && (this.fileContents == null || this.fileContents === '')) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFile'));
+        if (
+            (files == null || files.length === 0) &&
+            (this.fileContents == null || this.fileContents === '')
+        ) {
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('selectFile')
+            );
             return;
         }
 
@@ -69,17 +80,24 @@ export class ImportComponent implements OnInit {
                 if (content != null) {
                     fileContents = content;
                 }
-            } catch { }
+            } catch {}
         }
 
         if (fileContents == null || fileContents === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFile'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('selectFile')
+            );
             return;
         }
 
         try {
-            this.formPromise = this.importService.import(importer, fileContents, this.organizationId);
+            this.formPromise = this.importService.import(
+                importer,
+                fileContents,
+                this.organizationId
+            );
             const error = await this.formPromise;
             if (error != null) {
                 this.error(error);
@@ -91,7 +109,7 @@ export class ImportComponent implements OnInit {
             });
             this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
             this.router.navigate(this.successNavigate);
-        } catch { }
+        } catch {}
     }
 
     getFormatInstructionTitle() {
@@ -99,7 +117,9 @@ export class ImportComponent implements OnInit {
             return null;
         }
 
-        const results = this.featuredImportOptions.concat(this.importOptions).filter((o) => o.id === this.format);
+        const results = this.featuredImportOptions
+            .concat(this.importOptions)
+            .filter((o) => o.id === this.format);
         if (results.length > 0) {
             return this.i18nService.t('instructionsFor', results[0].name);
         }
@@ -107,10 +127,13 @@ export class ImportComponent implements OnInit {
     }
 
     protected setImportOptions() {
-        this.featuredImportOptions = [{
-            id: null,
-            name: '-- ' + this.i18nService.t('select') + ' --',
-        }, ...this.importService.featuredImportOptions];
+        this.featuredImportOptions = [
+            {
+                id: null,
+                name: '-- ' + this.i18nService.t('select') + ' --',
+            },
+            ...this.importService.featuredImportOptions,
+        ];
         this.importOptions = this.importService.regularImportOptions;
     }
 

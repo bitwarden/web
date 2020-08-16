@@ -13,8 +13,12 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 export class VerifyEmailComponent {
     actionPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService
+    ) {}
 
     async send() {
         if (this.actionPromise != null) {
@@ -23,9 +27,15 @@ export class VerifyEmailComponent {
         try {
             this.actionPromise = this.apiService.postAccountVerifyEmail();
             await this.actionPromise;
-            this.analytics.eventTrack.next({ action: 'Sent Verification Email' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('checkInboxForVerification'));
-        } catch { }
+            this.analytics.eventTrack.next({
+                action: 'Sent Verification Email',
+            });
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('checkInboxForVerification')
+            );
+        } catch {}
         this.actionPromise = null;
     }
 }

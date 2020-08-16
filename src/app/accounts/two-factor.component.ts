@@ -1,14 +1,6 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
@@ -31,15 +23,32 @@ import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib/angular/comp
     templateUrl: 'two-factor.component.html',
 })
 export class TwoFactorComponent extends BaseTwoFactorComponent {
-    @ViewChild('twoFactorOptions', { read: ViewContainerRef, static: true }) twoFactorOptionsModal: ViewContainerRef;
+    @ViewChild('twoFactorOptions', { read: ViewContainerRef, static: true })
+    twoFactorOptionsModal: ViewContainerRef;
 
-    constructor(authService: AuthService, router: Router,
-        i18nService: I18nService, apiService: ApiService,
-        platformUtilsService: PlatformUtilsService, stateService: StateService,
-        environmentService: EnvironmentService, private componentFactoryResolver: ComponentFactoryResolver,
-        storageService: StorageService, private route: ActivatedRoute) {
-        super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService,
-            stateService, storageService);
+    constructor(
+        authService: AuthService,
+        router: Router,
+        i18nService: I18nService,
+        apiService: ApiService,
+        platformUtilsService: PlatformUtilsService,
+        stateService: StateService,
+        environmentService: EnvironmentService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        storageService: StorageService,
+        private route: ActivatedRoute
+    ) {
+        super(
+            authService,
+            router,
+            i18nService,
+            apiService,
+            platformUtilsService,
+            window,
+            environmentService,
+            stateService,
+            storageService
+        );
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
@@ -59,8 +68,10 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     anotherMethod() {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         const modal = this.twoFactorOptionsModal.createComponent(factory).instance;
-        const childComponent = modal.show<TwoFactorOptionsComponent>(TwoFactorOptionsComponent,
-            this.twoFactorOptionsModal);
+        const childComponent = modal.show<TwoFactorOptionsComponent>(
+            TwoFactorOptionsComponent,
+            this.twoFactorOptionsModal
+        );
 
         childComponent.onProviderSelected.subscribe(async (provider: TwoFactorProviderType) => {
             modal.close();
@@ -75,11 +86,15 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     async goAfterLogIn() {
         const invite = await this.stateService.get<any>('orgInvitation');
         if (invite != null) {
-            this.router.navigate(['accept-organization'], { queryParams: invite });
+            this.router.navigate(['accept-organization'], {
+                queryParams: invite,
+            });
         } else {
             const loginRedirect = await this.stateService.get<any>('loginRedirect');
             if (loginRedirect != null) {
-                this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
+                this.router.navigate([loginRedirect.route], {
+                    queryParams: loginRedirect.qParams,
+                });
                 await this.stateService.remove('loginRedirect');
             } else {
                 this.router.navigate([this.successRoute], {

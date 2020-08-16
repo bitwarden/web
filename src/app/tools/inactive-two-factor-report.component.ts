@@ -1,8 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    OnInit,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -24,8 +20,12 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     services = new Map<string, string>();
     cipherDocs = new Map<string, string>();
 
-    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
-        messagingService: MessagingService, userService: UserService) {
+    constructor(
+        protected cipherService: CipherService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        userService: UserService
+    ) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
 
@@ -38,14 +38,18 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     async setCiphers() {
         try {
             await this.load2fa();
-        } catch { }
+        } catch {}
         if (this.services.size > 0) {
             const allCiphers = await this.getAllCiphers();
             const inactive2faCiphers: CipherView[] = [];
             const promises: Promise<void>[] = [];
             const docs = new Map<string, string>();
             allCiphers.forEach((c) => {
-                if (c.type !== CipherType.Login || (c.login.totp != null && c.login.totp !== '') || !c.login.hasUris) {
+                if (
+                    c.type !== CipherType.Login ||
+                    (c.login.totp != null && c.login.totp !== '') ||
+                    !c.login.hasUris
+                ) {
                     return;
                 }
                 for (let i = 0; i < c.login.uris.length; i++) {
@@ -82,9 +86,11 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         }
         const responseJson = await response.json();
         for (const categoryName in responseJson) {
+            // eslint-disable-next-line no-prototype-builtins
             if (responseJson.hasOwnProperty(categoryName)) {
                 const category = responseJson[categoryName];
                 for (const serviceName in category) {
+                    // eslint-disable-next-line no-prototype-builtins
                     if (category.hasOwnProperty(serviceName)) {
                         const service = category[serviceName];
                         if (service.tfa && service.software && service.url != null) {

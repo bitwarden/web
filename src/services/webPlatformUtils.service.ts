@@ -9,18 +9,21 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { Utils } from 'jslib/misc/utils';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
-    identityClientId: string = 'web';
+    identityClientId = 'web';
 
     private browserCache: DeviceType = null;
 
-    constructor(private i18nService: I18nService, private messagingService: MessagingService) { }
+    constructor(private i18nService: I18nService, private messagingService: MessagingService) {}
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
             return this.browserCache;
         }
 
-        if (navigator.userAgent.indexOf(' Firefox/') !== -1 || navigator.userAgent.indexOf(' Gecko/') !== -1) {
+        if (
+            navigator.userAgent.indexOf(' Firefox/') !== -1 ||
+            navigator.userAgent.indexOf(' Gecko/') !== -1
+        ) {
             this.browserCache = DeviceType.FirefoxBrowser;
         } else if (navigator.userAgent.indexOf(' OPR/') >= 0) {
             this.browserCache = DeviceType.OperaBrowser;
@@ -28,7 +31,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             this.browserCache = DeviceType.EdgeBrowser;
         } else if (navigator.userAgent.indexOf(' Vivaldi/') !== -1) {
             this.browserCache = DeviceType.VivaldiBrowser;
-        } else if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
+        } else if (
+            navigator.userAgent.indexOf(' Safari/') !== -1 &&
+            navigator.userAgent.indexOf('Chrome') === -1
+        ) {
             this.browserCache = DeviceType.SafariBrowser;
         } else if ((window as any).chrome && navigator.userAgent.indexOf(' Chrome/') !== -1) {
             this.browserCache = DeviceType.ChromeBrowser;
@@ -169,8 +175,12 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return true;
     }
 
-    showToast(type: 'error' | 'success' | 'warning' | 'info', title: string, text: string | string[],
-        options?: any): void {
+    showToast(
+        type: 'error' | 'success' | 'warning' | 'info',
+        title: string,
+        text: string | string[],
+        options?: any
+    ): void {
         this.messagingService.send('showToast', {
             text: text,
             title: title,
@@ -179,7 +189,13 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
     }
 
-    async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
+    async showDialog(
+        text: string,
+        title?: string,
+        confirmText?: string,
+        cancelText?: string,
+        type?: string
+    ) {
         let iconClasses: string = null;
         if (type != null) {
             // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
@@ -201,7 +217,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             }
         }
 
-        const iconHtmlStr = iconClasses != null ? `<i class="swal-custom-icon fa ${iconClasses}"></i>` : undefined;
+        const iconHtmlStr =
+            iconClasses != null ? `<i class="swal-custom-icon fa ${iconClasses}"></i>` : undefined;
         const confirmed = await Swal.fire({
             heightAuto: false,
             buttonsStyling: false,
@@ -209,7 +226,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             iconHtml: iconHtmlStr,
             text: text,
             title: title,
-            showCancelButton: (cancelText != null),
+            showCancelButton: cancelText != null,
             cancelButtonText: cancelText,
             showConfirmButton: true,
             confirmButtonText: confirmText == null ? this.i18nService.t('ok') : confirmText,

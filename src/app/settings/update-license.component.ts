@@ -1,9 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -22,15 +17,22 @@ export class UpdateLicenseComponent {
 
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService
+    ) {}
 
     async submit() {
         const fileEl = document.getElementById('file') as HTMLInputElement;
         const files = fileEl.files;
         if (files == null || files.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFile'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('selectFile')
+            );
             return;
         }
 
@@ -42,7 +44,10 @@ export class UpdateLicenseComponent {
             if (this.organizationId == null) {
                 updatePromise = this.apiService.postAccountLicense(fd);
             } else {
-                updatePromise = this.apiService.postOrganizationLicenseUpdate(this.organizationId, fd);
+                updatePromise = this.apiService.postOrganizationLicenseUpdate(
+                    this.organizationId,
+                    fd
+                );
             }
 
             this.formPromise = updatePromise.then(() => {
@@ -53,7 +58,7 @@ export class UpdateLicenseComponent {
             this.analytics.eventTrack.next({ action: 'Updated License' });
             this.toasterService.popAsync('success', null, this.i18nService.t('updatedLicense'));
             this.onUpdated.emit();
-        } catch { }
+        } catch {}
     }
 
     cancel() {

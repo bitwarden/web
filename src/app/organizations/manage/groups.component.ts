@@ -5,10 +5,7 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -32,8 +29,10 @@ import { GroupAddEditComponent } from './group-add-edit.component';
     templateUrl: 'groups.component.html',
 })
 export class GroupsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true })
+    addEditModalRef: ViewContainerRef;
+    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true })
+    usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -47,11 +46,18 @@ export class GroupsComponent implements OnInit {
     private pagedGroupsCount = 0;
     private modal: ModalComponent = null;
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private router: Router, private searchService: SearchService) { }
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private i18nService: I18nService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private platformUtilsService: PlatformUtilsService,
+        private userService: UserService,
+        private router: Router,
+        private searchService: SearchService
+    ) {}
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -90,7 +96,9 @@ export class GroupsComponent implements OnInit {
             pagedSize = this.pagedGroupsCount;
         }
         if (this.groups.length > pagedLength) {
-            this.pagedGroups = this.pagedGroups.concat(this.groups.slice(pagedLength, pagedLength + pagedSize));
+            this.pagedGroups = this.pagedGroups.concat(
+                this.groups.slice(pagedLength, pagedLength + pagedSize)
+            );
         }
         this.pagedGroupsCount = this.pagedGroups.length;
         this.didScroll = this.pagedGroups.length > this.pageSize;
@@ -104,7 +112,9 @@ export class GroupsComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.addEditModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<GroupAddEditComponent>(
-            GroupAddEditComponent, this.addEditModalRef);
+            GroupAddEditComponent,
+            this.addEditModalRef
+        );
 
         childComponent.organizationId = this.organizationId;
         childComponent.groupId = group != null ? group.id : null;
@@ -128,8 +138,12 @@ export class GroupsComponent implements OnInit {
 
     async delete(group: GroupResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteGroupConfirmation'), group.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('deleteGroupConfirmation'),
+            group.name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -137,9 +151,13 @@ export class GroupsComponent implements OnInit {
         try {
             await this.apiService.deleteGroup(this.organizationId, group.id);
             this.analytics.eventTrack.next({ action: 'Deleted Group' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', group.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('deletedGroupId', group.name)
+            );
             this.removeGroup(group);
-        } catch { }
+        } catch {}
     }
 
     users(group: GroupResponse) {
@@ -150,7 +168,9 @@ export class GroupsComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.usersModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<EntityUsersComponent>(
-            EntityUsersComponent, this.usersModalRef);
+            EntityUsersComponent,
+            this.usersModalRef
+        );
 
         childComponent.organizationId = this.organizationId;
         childComponent.entity = 'group';

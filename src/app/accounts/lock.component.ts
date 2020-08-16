@@ -21,14 +21,33 @@ import { LockComponent as BaseLockComponent } from 'jslib/angular/components/loc
     templateUrl: 'lock.component.html',
 })
 export class LockComponent extends BaseLockComponent {
-    constructor(router: Router, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, messagingService: MessagingService,
-        userService: UserService, cryptoService: CryptoService,
-        storageService: StorageService, vaultTimeoutService: VaultTimeoutService,
-        environmentService: EnvironmentService, private routerService: RouterService,
-        stateService: StateService, apiService: ApiService) {
-        super(router, i18nService, platformUtilsService, messagingService, userService, cryptoService,
-            storageService, vaultTimeoutService, environmentService, stateService, apiService);
+    constructor(
+        router: Router,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        messagingService: MessagingService,
+        userService: UserService,
+        cryptoService: CryptoService,
+        storageService: StorageService,
+        vaultTimeoutService: VaultTimeoutService,
+        environmentService: EnvironmentService,
+        private routerService: RouterService,
+        stateService: StateService,
+        apiService: ApiService
+    ) {
+        super(
+            router,
+            i18nService,
+            platformUtilsService,
+            messagingService,
+            userService,
+            cryptoService,
+            storageService,
+            vaultTimeoutService,
+            environmentService,
+            stateService,
+            apiService
+        );
     }
 
     async ngOnInit() {

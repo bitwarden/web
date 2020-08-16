@@ -1,8 +1,4 @@
-import {
-    APP_INITIALIZER,
-    LOCALE_ID,
-    NgModule,
-} from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 
 import { ToasterModule } from 'angular2-toaster';
 
@@ -52,7 +48,6 @@ import { VaultTimeoutService } from 'jslib/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib/services/webCryptoFunction.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib/abstractions/api.service';
-import { AppIdService as AppIdServiceAbstraction } from 'jslib/abstractions/appId.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib/abstractions/auth.service';
 import { CipherService as CipherServiceAbstraction } from 'jslib/abstractions/cipher.service';
@@ -65,12 +60,9 @@ import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/ex
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
-import { LogService as LogServiceAbstraction } from 'jslib/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/abstractions/notifications.service';
-import {
-    PasswordGenerationService as PasswordGenerationServiceAbstraction,
-} from 'jslib/abstractions/passwordGeneration.service';
+import { PasswordGenerationService as PasswordGenerationServiceAbstraction } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService as PolicyServiceAbstraction } from 'jslib/abstractions/policy.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
@@ -90,58 +82,140 @@ const messagingService = new BroadcasterMessagingService(broadcasterService);
 const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
-const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
-    platformUtilsService);
-const cryptoService = new CryptoService(storageService,
-    platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService);
+const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(
+    window,
+    platformUtilsService
+);
+const cryptoService = new CryptoService(
+    storageService,
+    platformUtilsService.isDev() ? storageService : secureStorageService,
+    cryptoFunctionService
+);
 const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
-const apiService = new ApiService(tokenService, platformUtilsService,
-    async (expired: boolean) => messagingService.send('logout', { expired: expired }));
+const apiService = new ApiService(tokenService, platformUtilsService, async (expired: boolean) =>
+    messagingService.send('logout', { expired: expired })
+);
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
-const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, () => searchService);
-const folderService = new FolderService(cryptoService, userService, apiService, storageService,
-    i18nService, cipherService);
-const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
+const cipherService = new CipherService(
+    cryptoService,
+    userService,
+    settingsService,
+    apiService,
+    storageService,
+    i18nService,
+    () => searchService
+);
+const folderService = new FolderService(
+    cryptoService,
+    userService,
+    apiService,
+    storageService,
+    i18nService,
+    cipherService
+);
+const collectionService = new CollectionService(
+    cryptoService,
+    userService,
+    storageService,
+    i18nService
+);
 searchService = new SearchService(cipherService, platformUtilsService);
 const policyService = new PolicyService(userService, storageService);
-const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
-    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    null, async () => messagingService.send('logout', { expired: false }));
-const syncService = new SyncService(userService, apiService, settingsService,
-    folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
+const vaultTimeoutService = new VaultTimeoutService(
+    cipherService,
+    folderService,
+    collectionService,
+    cryptoService,
+    platformUtilsService,
+    storageService,
+    messagingService,
+    searchService,
+    userService,
+    tokenService,
+    null,
+    async () => messagingService.send('logout', { expired: false })
+);
+const syncService = new SyncService(
+    userService,
+    apiService,
+    settingsService,
+    folderService,
+    cipherService,
+    cryptoService,
+    collectionService,
+    storageService,
+    messagingService,
+    policyService,
+    async (expired: boolean) => messagingService.send('logout', { expired: expired })
+);
+const passwordGenerationService = new PasswordGenerationService(
+    cryptoService,
+    storageService,
+    policyService
+);
 const totpService = new TotpService(storageService, cryptoFunctionService);
 const containerService = new ContainerService(cryptoService);
-const authService = new AuthService(cryptoService, apiService,
-    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService);
+const authService = new AuthService(
+    cryptoService,
+    apiService,
+    userService,
+    tokenService,
+    appIdService,
+    i18nService,
+    platformUtilsService,
+    messagingService,
+    vaultTimeoutService
+);
 const exportService = new ExportService(folderService, cipherService, apiService);
-const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
-const notificationsService = new NotificationsService(userService, syncService, appIdService,
-    apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }));
+const importService = new ImportService(
+    cipherService,
+    folderService,
+    apiService,
+    i18nService,
+    collectionService
+);
+const notificationsService = new NotificationsService(
+    userService,
+    syncService,
+    appIdService,
+    apiService,
+    vaultTimeoutService,
+    async () => messagingService.send('logout', { expired: true })
+);
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
-const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
+const eventLoggingService = new EventLoggingService(
+    storageService,
+    apiService,
+    userService,
+    cipherService
+);
 
-const analytics = new Analytics(window, () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
-    platformUtilsService, storageService, appIdService);
+new Analytics(
+    window,
+    () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
+    platformUtilsService,
+    storageService,
+    appIdService
+);
 containerService.attachToWindow(window);
 
-export function initFactory(): Function {
+export function initFactory(): () => void {
     return async () => {
         await (storageService as HtmlStorageService).init();
         const isDev = platformUtilsService.isDev();
         if (!isDev && platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
-            environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
-                'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
-            environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :
-                'https://enterprise.bitwarden.com'; // window.location.origin + '/enterprise';
+            environmentService.notificationsUrl = isDev
+                ? 'http://localhost:61840'
+                : 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
+            environmentService.enterpriseUrl = isDev
+                ? 'http://localhost:52313'
+                : 'https://enterprise.bitwarden.com'; // window.location.origin + '/enterprise';
         }
         apiService.setUrls({
             base: isDev ? null : window.location.origin,
@@ -171,16 +245,16 @@ export function initFactory(): Function {
             theme = 'light';
         }
         htmlEl.classList.add('theme_' + theme);
-        stateService.save(ConstantsService.disableFaviconKey,
-            await storageService.get<boolean>(ConstantsService.disableFaviconKey));
+        stateService.save(
+            ConstantsService.disableFaviconKey,
+            await storageService.get<boolean>(ConstantsService.disableFaviconKey)
+        );
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
     };
 }
 
 @NgModule({
-    imports: [
-        ToasterModule,
-    ],
+    imports: [ToasterModule],
     declarations: [],
     providers: [
         ValidationService,
@@ -195,28 +269,49 @@ export function initFactory(): Function {
         { provide: CipherServiceAbstraction, useValue: cipherService },
         { provide: FolderServiceAbstraction, useValue: folderService },
         { provide: CollectionServiceAbstraction, useValue: collectionService },
-        { provide: EnvironmentServiceAbstraction, useValue: environmentService },
+        {
+            provide: EnvironmentServiceAbstraction,
+            useValue: environmentService,
+        },
         { provide: TotpServiceAbstraction, useValue: totpService },
         { provide: TokenServiceAbstraction, useValue: tokenService },
         { provide: I18nServiceAbstraction, useValue: i18nService },
         { provide: CryptoServiceAbstraction, useValue: cryptoService },
-        { provide: PlatformUtilsServiceAbstraction, useValue: platformUtilsService },
-        { provide: PasswordGenerationServiceAbstraction, useValue: passwordGenerationService },
+        {
+            provide: PlatformUtilsServiceAbstraction,
+            useValue: platformUtilsService,
+        },
+        {
+            provide: PasswordGenerationServiceAbstraction,
+            useValue: passwordGenerationService,
+        },
         { provide: ApiServiceAbstraction, useValue: apiService },
         { provide: SyncServiceAbstraction, useValue: syncService },
         { provide: UserServiceAbstraction, useValue: userService },
         { provide: MessagingServiceAbstraction, useValue: messagingService },
         { provide: BroadcasterService, useValue: broadcasterService },
         { provide: SettingsServiceAbstraction, useValue: settingsService },
-        { provide: VaultTimeoutServiceAbstraction, useValue: vaultTimeoutService },
+        {
+            provide: VaultTimeoutServiceAbstraction,
+            useValue: vaultTimeoutService,
+        },
         { provide: StorageServiceAbstraction, useValue: storageService },
         { provide: StateServiceAbstraction, useValue: stateService },
         { provide: ExportServiceAbstraction, useValue: exportService },
         { provide: SearchServiceAbstraction, useValue: searchService },
         { provide: ImportServiceAbstraction, useValue: importService },
-        { provide: NotificationsServiceAbstraction, useValue: notificationsService },
-        { provide: CryptoFunctionServiceAbstraction, useValue: cryptoFunctionService },
-        { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
+        {
+            provide: NotificationsServiceAbstraction,
+            useValue: notificationsService,
+        },
+        {
+            provide: CryptoFunctionServiceAbstraction,
+            useValue: cryptoFunctionService,
+        },
+        {
+            provide: EventLoggingServiceAbstraction,
+            useValue: eventLoggingService,
+        },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         {
             provide: APP_INITIALIZER,
@@ -231,5 +326,4 @@ export function initFactory(): Function {
         },
     ],
 })
-export class ServicesModule {
-}
+export class ServicesModule {}

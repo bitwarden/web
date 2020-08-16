@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -36,7 +30,7 @@ export class UserAddEditComponent implements OnInit {
     @Output() onDeletedUser = new EventEmitter();
 
     loading = true;
-    editMode: boolean = false;
+    editMode = false;
     title: string;
     emails: string;
     type: OrganizationUserType = OrganizationUserType.User;
@@ -46,9 +40,14 @@ export class UserAddEditComponent implements OnInit {
     deletePromise: Promise<any>;
     organizationUserType = OrganizationUserType;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private collectionService: CollectionService, private platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private collectionService: CollectionService,
+        private platformUtilsService: PlatformUtilsService
+    ) {}
 
     async ngOnInit() {
         this.editMode = this.loading = this.organizationUserId != null;
@@ -58,7 +57,10 @@ export class UserAddEditComponent implements OnInit {
             this.editMode = true;
             this.title = this.i18nService.t('editUser');
             try {
-                const user = await this.apiService.getOrganizationUser(this.organizationId, this.organizationUserId);
+                const user = await this.apiService.getOrganizationUser(
+                    this.organizationId,
+                    this.organizationUserId
+                );
                 this.access = user.accessAll ? 'all' : 'selected';
                 this.type = user.type;
                 if (user.collections != null && this.collections != null) {
@@ -71,7 +73,7 @@ export class UserAddEditComponent implements OnInit {
                         }
                     });
                 }
-            } catch { }
+            } catch {}
         } else {
             this.title = this.i18nService.t('inviteUser');
         }
@@ -81,8 +83,9 @@ export class UserAddEditComponent implements OnInit {
 
     async loadCollections() {
         const response = await this.apiService.getCollections(this.organizationId);
-        const collections = response.data.map((r) =>
-            new Collection(new CollectionData(r as CollectionDetailsResponse)));
+        const collections = response.data.map(
+            (r) => new Collection(new CollectionData(r as CollectionDetailsResponse))
+        );
         this.collections = await this.collectionService.decryptMany(collections);
     }
 
@@ -100,7 +103,8 @@ export class UserAddEditComponent implements OnInit {
     async submit() {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {
-            collections = this.collections.filter((c) => (c as any).checked)
+            collections = this.collections
+                .filter((c) => (c as any).checked)
                 .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
@@ -110,22 +114,33 @@ export class UserAddEditComponent implements OnInit {
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
                 request.collections = collections;
-                this.formPromise = this.apiService.putOrganizationUser(this.organizationId, this.organizationUserId,
-                    request);
+                this.formPromise = this.apiService.putOrganizationUser(
+                    this.organizationId,
+                    this.organizationUserId,
+                    request
+                );
             } else {
                 const request = new OrganizationUserInviteRequest();
                 request.emails = this.emails.trim().split(/\s*,\s*/);
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
                 request.collections = collections;
-                this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
+                this.formPromise = this.apiService.postOrganizationUserInvite(
+                    this.organizationId,
+                    request
+                );
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited User' : 'Invited User' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
+            this.analytics.eventTrack.next({
+                action: this.editMode ? 'Edited User' : 'Invited User',
+            });
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name)
+            );
             this.onSavedUser.emit();
-        } catch { }
+        } catch {}
     }
 
     async delete() {
@@ -134,18 +149,29 @@ export class UserAddEditComponent implements OnInit {
         }
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), this.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('removeUserConfirmation'),
+            this.name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
 
         try {
-            this.deletePromise = this.apiService.deleteOrganizationUser(this.organizationId, this.organizationUserId);
+            this.deletePromise = this.apiService.deleteOrganizationUser(
+                this.organizationId,
+                this.organizationUserId
+            );
             await this.deletePromise;
             this.analytics.eventTrack.next({ action: 'Deleted User' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('removedUserId', this.name)
+            );
             this.onDeletedUser.emit();
-        } catch { }
+        } catch {}
     }
 }

@@ -18,7 +18,7 @@ const moduleRules = [
     {
         test: /\.ts$/,
         enforce: 'pre',
-        loader: 'tslint-loader',
+        loader: 'eslint-loader',
     },
     {
         test: /\.(html)$/,

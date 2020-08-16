@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -23,7 +20,7 @@ import { Utils } from 'jslib/misc/utils';
 })
 export class OptionsComponent implements OnInit {
     vaultTimeout: number = null;
-    vaultTimeoutAction: string = 'lock';
+    vaultTimeoutAction = 'lock';
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
@@ -33,10 +30,16 @@ export class OptionsComponent implements OnInit {
 
     private startingLocale: string;
 
-    constructor(private storageService: StorageService, private stateService: StateService,
-        private analytics: Angulartics2, private i18nService: I18nService,
-        private toasterService: ToasterService, private vaultTimeoutService: VaultTimeoutService,
-        private platformUtilsService: PlatformUtilsService, private messagingService: MessagingService) {
+    constructor(
+        private storageService: StorageService,
+        private stateService: StateService,
+        private analytics: Angulartics2,
+        private i18nService: I18nService,
+        private toasterService: ToasterService,
+        private vaultTimeoutService: VaultTimeoutService,
+        private platformUtilsService: PlatformUtilsService,
+        private messagingService: MessagingService
+    ) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -47,34 +50,48 @@ export class OptionsComponent implements OnInit {
             { name: i18nService.t('onRefresh'), value: -1 },
         ];
         if (this.platformUtilsService.isDev()) {
-            this.vaultTimeouts.push({ name: i18nService.t('never'), value: null });
+            this.vaultTimeouts.push({
+                name: i18nService.t('never'),
+                value: null,
+            });
         }
 
         const localeOptions: any[] = [];
         i18nService.supportedTranslationLocales.forEach((locale) => {
             let name = locale;
             if (i18nService.localeNames.has(locale)) {
-                name += (' - ' + i18nService.localeNames.get(locale));
+                name += ' - ' + i18nService.localeNames.get(locale);
             }
             localeOptions.push({ name: name, value: locale });
         });
         localeOptions.sort(Utils.getSortFunction(i18nService, 'name'));
-        localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
+        localeOptions.splice(0, 0, {
+            name: i18nService.t('default'),
+            value: null,
+        });
         this.localeOptions = localeOptions;
     }
 
     async ngOnInit() {
         this.vaultTimeout = await this.storageService.get<number>(ConstantsService.vaultTimeoutKey);
-        this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
-        this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
+        this.vaultTimeoutAction = await this.storageService.get<string>(
+            ConstantsService.vaultTimeoutActionKey
+        );
+        this.disableIcons = await this.storageService.get<boolean>(
+            ConstantsService.disableFaviconKey
+        );
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
-        this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
+        this.locale = this.startingLocale = await this.storageService.get<string>(
+            ConstantsService.localeKey
+        );
     }
 
     async submit() {
-        await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout != null ? this.vaultTimeout : null,
-            this.vaultTimeoutAction);
+        await this.vaultTimeoutService.setVaultTimeoutOptions(
+            this.vaultTimeout != null ? this.vaultTimeout : null,
+            this.vaultTimeoutAction
+        );
         await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.storageService.save('enableGravatars', this.enableGravatars);
@@ -95,7 +112,10 @@ export class OptionsComponent implements OnInit {
             const confirmed = await this.platformUtilsService.showDialog(
                 this.i18nService.t('vaultTimeoutLogOutConfirmation'),
                 this.i18nService.t('vaultTimeoutLogOutConfirmationTitle'),
-                this.i18nService.t('yes'), this.i18nService.t('cancel'), 'warning');
+                this.i18nService.t('yes'),
+                this.i18nService.t('cancel'),
+                'warning'
+            );
             if (!confirmed) {
                 this.vaultTimeoutAction = 'lock';
                 return;

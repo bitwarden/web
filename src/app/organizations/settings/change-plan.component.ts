@@ -1,9 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
@@ -19,13 +14,16 @@ export class ChangePlanComponent {
 
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService
+    ) {}
 
     async submit() {
         try {
             this.platformUtilsService.eventTrack('Changed Plan');
             this.onChanged.emit();
-        } catch { }
+        } catch {}
     }
 
     cancel() {

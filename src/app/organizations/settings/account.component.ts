@@ -1,9 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -28,10 +23,20 @@ import { RotateApiKeyComponent } from './rotate-api-key.component';
     templateUrl: 'account.component.html',
 })
 export class AccountComponent {
-    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
-    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
-    @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
-    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild('deleteOrganizationTemplate', {
+        read: ViewContainerRef,
+        static: true,
+    })
+    deleteModalRef: ViewContainerRef;
+    @ViewChild('purgeOrganizationTemplate', {
+        read: ViewContainerRef,
+        static: true,
+    })
+    purgeModalRef: ViewContainerRef;
+    @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true })
+    apiKeyModalRef: ViewContainerRef;
+    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true })
+    rotateApiKeyModalRef: ViewContainerRef;
     @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     loading = true;
@@ -43,10 +48,15 @@ export class AccountComponent {
     private organizationId: string;
     private modal: ModalComponent = null;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver,
-        private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private route: ActivatedRoute, private syncService: SyncService) { }
+    constructor(
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private route: ActivatedRoute,
+        private syncService: SyncService
+    ) {}
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -54,7 +64,7 @@ export class AccountComponent {
             try {
                 this.org = await this.apiService.getOrganization(this.organizationId);
                 this.canUseApi = this.org.useApi;
-            } catch { }
+            } catch {}
         });
         this.loading = false;
     }
@@ -66,19 +76,29 @@ export class AccountComponent {
             request.businessName = this.org.businessName;
             request.billingEmail = this.org.billingEmail;
             request.identifier = this.org.identifier;
-            this.formPromise = this.apiService.putOrganization(this.organizationId, request).then(() => {
-                return this.syncService.fullSync(true);
-            });
+            this.formPromise = this.apiService
+                .putOrganization(this.organizationId, request)
+                .then(() => {
+                    return this.syncService.fullSync(true);
+                });
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Updated Organization Settings' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpdated'));
-        } catch { }
+            this.analytics.eventTrack.next({
+                action: 'Updated Organization Settings',
+            });
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('organizationUpdated')
+            );
+        } catch {}
     }
 
     async submitTaxInfo() {
         this.taxFormPromise = this.taxInfo.submitTaxInfo();
         await this.taxFormPromise;
-        this.analytics.eventTrack.next({ action: 'Updated Organization Tax Info' });
+        this.analytics.eventTrack.next({
+            action: 'Updated Organization Tax Info',
+        });
         this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
     }
 
@@ -90,7 +110,9 @@ export class AccountComponent {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.deleteModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<DeleteOrganizationComponent>(
-            DeleteOrganizationComponent, this.deleteModalRef);
+            DeleteOrganizationComponent,
+            this.deleteModalRef
+        );
         childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {
@@ -105,7 +127,10 @@ export class AccountComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.purgeModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<PurgeVaultComponent>(PurgeVaultComponent, this.purgeModalRef);
+        const childComponent = this.modal.show<PurgeVaultComponent>(
+            PurgeVaultComponent,
+            this.purgeModalRef
+        );
         childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {
@@ -120,7 +145,10 @@ export class AccountComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.apiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.apiKeyModalRef);
+        const childComponent = this.modal.show<ApiKeyComponent>(
+            ApiKeyComponent,
+            this.apiKeyModalRef
+        );
         childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {
@@ -135,7 +163,10 @@ export class AccountComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.rotateApiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<RotateApiKeyComponent>(RotateApiKeyComponent, this.rotateApiKeyModalRef);
+        const childComponent = this.modal.show<RotateApiKeyComponent>(
+            RotateApiKeyComponent,
+            this.rotateApiKeyModalRef
+        );
         childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {

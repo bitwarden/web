@@ -30,16 +30,35 @@ export class AddEditComponent extends BaseAddEditComponent {
     organization: Organization;
     originalCipher: Cipher = null;
 
-    constructor(cipherService: CipherService, folderService: FolderService,
-        i18nService: I18nService, platformUtilsService: PlatformUtilsService,
-        auditService: AuditService, stateService: StateService,
-        userService: UserService, collectionService: CollectionService,
-        totpService: TotpService, passwordGenerationService: PasswordGenerationService,
-        private apiService: ApiService, messagingService: MessagingService,
-        eventService: EventService) {
-        super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService);
+    constructor(
+        cipherService: CipherService,
+        folderService: FolderService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        auditService: AuditService,
+        stateService: StateService,
+        userService: UserService,
+        collectionService: CollectionService,
+        totpService: TotpService,
+        passwordGenerationService: PasswordGenerationService,
+        private apiService: ApiService,
+        messagingService: MessagingService,
+        eventService: EventService
+    ) {
+        super(
+            cipherService,
+            folderService,
+            i18nService,
+            platformUtilsService,
+            auditService,
+            stateService,
+            userService,
+            collectionService,
+            totpService,
+            passwordGenerationService,
+            messagingService,
+            eventService
+        );
     }
 
     protected allowOwnershipAssignment() {
@@ -94,7 +113,8 @@ export class AddEditComponent extends BaseAddEditComponent {
         if (!this.organization.isAdmin) {
             return super.deleteCipher();
         }
-        return this.cipher.isDeleted ? this.apiService.deleteCipherAdmin(this.cipherId)
+        return this.cipher.isDeleted
+            ? this.apiService.deleteCipherAdmin(this.cipherId)
             : this.apiService.putDeleteCipherAdmin(this.cipherId);
     }
 }

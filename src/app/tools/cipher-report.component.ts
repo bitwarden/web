@@ -1,9 +1,4 @@
-import {
-    ComponentFactoryResolver,
-    Directive,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import { ComponentFactoryResolver, Directive, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -18,7 +13,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 @Directive()
 export class CipherReportComponent {
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true })
+    cipherAddEditModalRef: ViewContainerRef;
 
     loading = false;
     hasLoaded = false;
@@ -27,8 +23,12 @@ export class CipherReportComponent {
 
     private modal: ModalComponent = null;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver, protected userService: UserService,
-        protected messagingService: MessagingService, public requiresPaid: boolean) { }
+    constructor(
+        private componentFactoryResolver: ComponentFactoryResolver,
+        protected userService: UserService,
+        protected messagingService: MessagingService,
+        public requiresPaid: boolean
+    ) {}
 
     async load() {
         this.loading = true;
@@ -46,10 +46,16 @@ export class CipherReportComponent {
         this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
         let childComponent: OrgAddEditComponent | AddEditComponent;
         if (this.organization != null) {
-            childComponent = this.modal.show<OrgAddEditComponent>(OrgAddEditComponent, this.cipherAddEditModalRef);
+            childComponent = this.modal.show<OrgAddEditComponent>(
+                OrgAddEditComponent,
+                this.cipherAddEditModalRef
+            );
             (childComponent as OrgAddEditComponent).organization = this.organization;
         } else {
-            childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
+            childComponent = this.modal.show<AddEditComponent>(
+                AddEditComponent,
+                this.cipherAddEditModalRef
+            );
         }
 
         childComponent.cipherId = cipher == null ? null : cipher.id;
@@ -81,7 +87,9 @@ export class CipherReportComponent {
             // TODO: Maybe we want to just make sure they are not on a free plan? Just compare useTotp for now
             // since all paid plans include useTotp
             if (this.requiresPaid && !this.organization.useTotp) {
-                this.messagingService.send('upgradeOrganization', { organizationId: this.organization.id });
+                this.messagingService.send('upgradeOrganization', {
+                    organizationId: this.organization.id,
+                });
                 return false;
             }
         } else {

@@ -20,9 +20,13 @@ import { CollectionsComponent as BaseCollectionsComponent } from '../../vault/co
 export class CollectionsComponent extends BaseCollectionsComponent {
     organization: Organization;
 
-    constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, cipherService: CipherService,
-        private apiService: ApiService) {
+    constructor(
+        collectionService: CollectionService,
+        platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService,
+        cipherService: CipherService,
+        private apiService: ApiService
+    ) {
         super(collectionService, platformUtilsService, i18nService, cipherService);
         this.allowSelectNone = true;
     }

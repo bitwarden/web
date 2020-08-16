@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -61,8 +55,12 @@ export class PolicyEditComponent implements OnInit {
 
     private policy: PolicyResponse;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) {
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService
+    ) {
         this.passwordScores = [
             { name: '-- ' + i18nService.t('select') + ' --', value: null },
             { name: i18nService.t('weak') + ' (0)', value: 0 },
@@ -164,8 +162,12 @@ export class PolicyEditComponent implements OnInit {
             this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Edited Policy' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('editedPolicyId', this.name)
+            );
             this.onSavedPolicy.emit();
-        } catch { }
+        } catch {}
     }
 }

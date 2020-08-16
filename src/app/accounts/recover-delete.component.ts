@@ -17,10 +17,13 @@ export class RecoverDeleteComponent {
     email: string;
     formPromise: Promise<any>;
 
-    constructor(private router: Router, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService) {
-    }
+    constructor(
+        private router: Router,
+        private apiService: ApiService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private i18nService: I18nService
+    ) {}
 
     async submit() {
         try {
@@ -28,9 +31,15 @@ export class RecoverDeleteComponent {
             request.email = this.email.trim().toLowerCase();
             this.formPromise = this.apiService.postAccountRecoverDelete(request);
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Started Delete Recovery' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deleteRecoverEmailSent'));
+            this.analytics.eventTrack.next({
+                action: 'Started Delete Recovery',
+            });
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('deleteRecoverEmailSent')
+            );
             this.router.navigate(['/']);
-        } catch { }
+        } catch {}
     }
 }

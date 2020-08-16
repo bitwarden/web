@@ -22,9 +22,14 @@ import { GroupingsComponent as BaseGroupingsComponent } from '../../vault/groupi
 export class GroupingsComponent extends BaseGroupingsComponent {
     organization: Organization;
 
-    constructor(collectionService: CollectionService, folderService: FolderService,
-        storageService: StorageService, userService: UserService,
-        private apiService: ApiService, private i18nService: I18nService) {
+    constructor(
+        collectionService: CollectionService,
+        folderService: FolderService,
+        storageService: StorageService,
+        userService: UserService,
+        private apiService: ApiService,
+        private i18nService: I18nService
+    ) {
         super(collectionService, folderService, storageService, userService);
     }
 
@@ -36,8 +41,9 @@ export class GroupingsComponent extends BaseGroupingsComponent {
 
         const collections = await this.apiService.getCollections(this.organization.id);
         if (collections != null && collections.data != null && collections.data.length) {
-            const collectionDomains = collections.data.map((r) =>
-                new Collection(new CollectionData(r as CollectionDetailsResponse)));
+            const collectionDomains = collections.data.map(
+                (r) => new Collection(new CollectionData(r as CollectionDetailsResponse))
+            );
             this.collections = await this.collectionService.decryptMany(collectionDomains);
         } else {
             this.collections = [];

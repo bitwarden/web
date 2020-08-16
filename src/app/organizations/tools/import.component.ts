@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -17,9 +14,14 @@ import { ImportComponent as BaseImportComponent } from '../../tools/import.compo
     templateUrl: '../../tools/import.component.html',
 })
 export class ImportComponent extends BaseImportComponent {
-    constructor(i18nService: I18nService, analytics: Angulartics2,
-        toasterService: ToasterService, importService: ImportService,
-        router: Router, private route: ActivatedRoute) {
+    constructor(
+        i18nService: I18nService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        importService: ImportService,
+        router: Router,
+        private route: ActivatedRoute
+    ) {
         super(i18nService, analytics, toasterService, importService, router);
     }
 

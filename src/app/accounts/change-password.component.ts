@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -21,9 +18,7 @@ import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
 import { SetPasswordRequest } from 'jslib/models/request/setPasswordRequest';
 
-import {
-    ChangePasswordComponent as BaseChangePasswordComponent,
-} from 'jslib/angular/components/change-password.component';
+import { ChangePasswordComponent as BaseChangePasswordComponent } from 'jslib/angular/components/change-password.component';
 
 @Component({
     selector: 'app-accounts-change-password',
@@ -33,18 +28,42 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     onSuccessfulChangePassword: () => Promise<any>;
     successRoute = 'lock';
 
-    constructor(apiService: ApiService, i18nService: I18nService,
-        cryptoService: CryptoService, messagingService: MessagingService,
-        userService: UserService, passwordGenerationService: PasswordGenerationService,
-        platformUtilsService: PlatformUtilsService, folderService: FolderService,
-        cipherService: CipherService, syncService: SyncService,
-        policyService: PolicyService, router: Router, private route: ActivatedRoute) {
-        super(apiService, i18nService, cryptoService, messagingService, userService, passwordGenerationService,
-            platformUtilsService, folderService, cipherService, syncService, policyService, router);
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        cryptoService: CryptoService,
+        messagingService: MessagingService,
+        userService: UserService,
+        passwordGenerationService: PasswordGenerationService,
+        platformUtilsService: PlatformUtilsService,
+        folderService: FolderService,
+        cipherService: CipherService,
+        syncService: SyncService,
+        policyService: PolicyService,
+        router: Router,
+        private route: ActivatedRoute
+    ) {
+        super(
+            apiService,
+            i18nService,
+            cryptoService,
+            messagingService,
+            userService,
+            passwordGenerationService,
+            platformUtilsService,
+            folderService,
+            cipherService,
+            syncService,
+            policyService,
+            router
+        );
     }
 
-    async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
-        newEncKey: [SymmetricCryptoKey, CipherString]) {
+    async performSubmitActions(
+        newMasterPasswordHash: string,
+        newKey: SymmetricCryptoKey,
+        newEncKey: [SymmetricCryptoKey, CipherString]
+    ) {
         const setRequest = new SetPasswordRequest();
         setRequest.newMasterPasswordHash = newMasterPasswordHash;
         setRequest.key = newEncKey[1].encryptedString;

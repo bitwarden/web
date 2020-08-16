@@ -1,9 +1,4 @@
-import {
-    Component,
-    NgZone,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -42,9 +37,14 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
 
     private u2fScript: HTMLScriptElement;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
-        analytics: Angulartics2, toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private ngZone: NgZone) {
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService,
+        private ngZone: NgZone
+    ) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService);
         this.u2fScript = window.document.createElement('script');
         this.u2fScript.src = 'scripts/u2f.js';
@@ -92,8 +92,12 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
         }
         const name = key.name != null ? key.name : this.i18nService.t('u2fkeyX', key.id);
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeU2fConfirmation'), name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('removeU2fConfirmation'),
+            name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return;
         }
@@ -105,7 +109,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
             const response = await key.removePromise;
             key.removePromise = null;
             await this.processResponse(response);
-        } catch { }
+        } catch {}
     }
 
     async readKey() {
@@ -118,28 +122,36 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
             this.challengePromise = this.apiService.getTwoFactorU2fChallenge(request);
             const challenge = await this.challengePromise;
             this.readDevice(challenge);
-        } catch { }
+        } catch {}
     }
 
     private readDevice(u2fChallenge: ChallengeResponse) {
         // tslint:disable-next-line
         console.log('listening for key...');
         this.resetU2f(true);
-        (window as any).u2f.register(u2fChallenge.appId, [{
-            version: u2fChallenge.version,
-            challenge: u2fChallenge.challenge,
-        }], [], (data: any) => {
-            this.ngZone.run(() => {
-                this.u2fListening = false;
-                if (data.errorCode) {
-                    this.u2fError = true;
-                    // tslint:disable-next-line
-                    console.log('error: ' + data.errorCode);
-                    return;
-                }
-                this.u2fResponse = JSON.stringify(data);
-            });
-        }, 15);
+        (window as any).u2f.register(
+            u2fChallenge.appId,
+            [
+                {
+                    version: u2fChallenge.version,
+                    challenge: u2fChallenge.challenge,
+                },
+            ],
+            [],
+            (data: any) => {
+                this.ngZone.run(() => {
+                    this.u2fListening = false;
+                    if (data.errorCode) {
+                        this.u2fError = true;
+                        // tslint:disable-next-line
+                        console.log('error: ' + data.errorCode);
+                        return;
+                    }
+                    this.u2fResponse = JSON.stringify(data);
+                });
+            },
+            15
+        );
     }
 
     private resetU2f(listening = false) {
@@ -160,7 +172,8 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
                 if (key.length > 0) {
                     this.keysConfiguredCount++;
                     this.keys.push({
-                        id: i, name: key[0].name,
+                        id: i,
+                        name: key[0].name,
                         configured: true,
                         compromised: key[0].compromised,
                         removePromise: null,
@@ -168,7 +181,13 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
                     continue;
                 }
             }
-            this.keys.push({ id: i, name: null, configured: false, compromised: false, removePromise: null });
+            this.keys.push({
+                id: i,
+                name: null,
+                configured: false,
+                compromised: false,
+                removePromise: null,
+            });
             if (this.keyIdAvailable == null) {
                 this.keyIdAvailable = i;
             }

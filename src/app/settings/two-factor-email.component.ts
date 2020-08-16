@@ -28,9 +28,14 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
     formPromise: Promise<any>;
     emailPromise: Promise<any>;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
-        analytics: Angulartics2, toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private userService: UserService) {
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService,
+        private userService: UserService
+    ) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 
@@ -53,7 +58,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
             this.emailPromise = this.apiService.postTwoFactorEmailSetup(request);
             await this.emailPromise;
             this.sentEmail = this.email;
-        } catch { }
+        } catch {}
     }
 
     protected enable() {

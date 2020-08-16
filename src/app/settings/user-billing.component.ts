@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -34,9 +31,13 @@ export class UserBillingComponent implements OnInit {
 
     verifyBankPromise: Promise<any>;
 
-    constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected analytics: Angulartics2, protected toasterService: ToasterService,
-        protected platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        protected apiService: ApiService,
+        protected i18nService: I18nService,
+        protected analytics: Angulartics2,
+        protected toasterService: ToasterService,
+        protected platformUtilsService: PlatformUtilsService
+    ) {}
 
     async ngOnInit() {
         await this.load();
@@ -65,18 +66,30 @@ export class UserBillingComponent implements OnInit {
             const request = new VerifyBankRequest();
             request.amount1 = this.verifyAmount1;
             request.amount2 = this.verifyAmount2;
-            this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(this.organizationId, request);
+            this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(
+                this.organizationId,
+                request
+            );
             await this.verifyBankPromise;
             this.analytics.eventTrack.next({ action: 'Verified Bank Account' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('verifiedBankAccount'));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('verifiedBankAccount')
+            );
             this.load();
-        } catch { }
+        } catch {}
     }
 
     addCredit() {
         if (this.paymentSourceInApp) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
-                this.i18nService.t('addCredit'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t('cannotPerformInAppPurchase'),
+                this.i18nService.t('addCredit'),
+                null,
+                null,
+                'warning'
+            );
             return;
         }
         this.showAddCredit = true;
@@ -91,8 +104,13 @@ export class UserBillingComponent implements OnInit {
 
     changePayment() {
         if (this.paymentSourceInApp) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
-                this.i18nService.t('changePaymentMethod'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t('cannotPerformInAppPurchase'),
+                this.i18nService.t('changePaymentMethod'),
+                null,
+                null,
+                'warning'
+            );
             return;
         }
         this.showAdjustPayment = true;
@@ -118,9 +136,11 @@ export class UserBillingComponent implements OnInit {
     }
 
     get paymentSourceInApp() {
-        return this.paymentSource != null &&
+        return (
+            this.paymentSource != null &&
             (this.paymentSource.type === PaymentMethodType.AppleInApp ||
-                this.paymentSource.type === PaymentMethodType.GoogleInApp);
+                this.paymentSource.type === PaymentMethodType.GoogleInApp)
+        );
     }
 
     get invoices() {

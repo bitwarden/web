@@ -25,26 +25,39 @@ export class ApiKeyComponent {
     clientSecret: string;
     scope: string;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private router: Router) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService,
+        private router: Router
+    ) {}
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPassRequired')
+            );
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        request.masterPasswordHash = await this.cryptoService.hashPassword(
+            this.masterPassword,
+            null
+        );
         try {
             this.formPromise = this.apiService.postOrganizationApiKey(this.organizationId, request);
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = 'organization.' + this.organizationId;
             this.scope = 'api.organization';
-            this.analytics.eventTrack.next({ action: 'Viewed Organization API Key' });
-        } catch { }
+            this.analytics.eventTrack.next({
+                action: 'Viewed Organization API Key',
+            });
+        } catch {}
     }
 }

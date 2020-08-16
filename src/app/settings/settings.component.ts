@@ -1,9 +1,4 @@
-import {
-    Component,
-    NgZone,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TokenService } from 'jslib/abstractions/token.service';
@@ -20,8 +15,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
     premium: boolean;
     selfHosted: boolean;
 
-    constructor(private tokenService: TokenService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone, private platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        private tokenService: TokenService,
+        private broadcasterService: BroadcasterService,
+        private ngZone: NgZone,
+        private platformUtilsService: PlatformUtilsService
+    ) {}
 
     async ngOnInit() {
         this.broadcasterService.subscribe(BroadcasterSubscriptionId, async (message: any) => {

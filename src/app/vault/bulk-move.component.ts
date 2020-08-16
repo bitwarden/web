@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -27,9 +21,13 @@ export class BulkMoveComponent implements OnInit {
     folders: FolderView[] = [];
     formPromise: Promise<any>;
 
-    constructor(private analytics: Angulartics2, private cipherService: CipherService,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private folderService: FolderService) { }
+    constructor(
+        private analytics: Angulartics2,
+        private cipherService: CipherService,
+        private toasterService: ToasterService,
+        private i18nService: I18nService,
+        private folderService: FolderService
+    ) {}
 
     async ngOnInit() {
         this.folders = await this.folderService.getAllDecrypted();

@@ -24,9 +24,13 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
     host: string;
     formPromise: Promise<any>;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
-        analytics: Angulartics2, toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService) {
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService
+    ) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 
@@ -52,7 +56,10 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
 
         return super.enable(async () => {
             if (this.organizationId != null) {
-                this.formPromise = this.apiService.putTwoFactorOrganizationDuo(this.organizationId, request);
+                this.formPromise = this.apiService.putTwoFactorOrganizationDuo(
+                    this.organizationId,
+                    request
+                );
             } else {
                 this.formPromise = this.apiService.putTwoFactorDuo(request);
             }

@@ -1,8 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    OnInit,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -22,9 +18,13 @@ import { CipherReportComponent } from './cipher-report.component';
 export class ExposedPasswordsReportComponent extends CipherReportComponent implements OnInit {
     exposedPasswordMap = new Map<string, number>();
 
-    constructor(protected cipherService: CipherService, protected auditService: AuditService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
-        userService: UserService) {
+    constructor(
+        protected cipherService: CipherService,
+        protected auditService: AuditService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        userService: UserService
+    ) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
 
@@ -43,15 +43,21 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
         const exposedPasswordCiphers: CipherView[] = [];
         const promises: Promise<void>[] = [];
         allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+            if (
+                c.type !== CipherType.Login ||
+                c.login.password == null ||
+                c.login.password === ''
+            ) {
                 return;
             }
-            const promise = this.auditService.passwordLeaked(c.login.password).then((exposedCount) => {
-                if (exposedCount > 0) {
-                    exposedPasswordCiphers.push(c);
-                    this.exposedPasswordMap.set(c.id, exposedCount);
-                }
-            });
+            const promise = this.auditService
+                .passwordLeaked(c.login.password)
+                .then((exposedCount) => {
+                    if (exposedCount > 0) {
+                        exposedPasswordCiphers.push(c);
+                        this.exposedPasswordMap.set(c.id, exposedCount);
+                    }
+                });
             promises.push(promise);
         });
         await Promise.all(promises);

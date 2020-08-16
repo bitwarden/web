@@ -9,8 +9,6 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { ExportComponent as BaseExportComponent } from '../../tools/export.component';
 
-import { EventType } from 'jslib/enums/eventType';
-
 @Component({
     selector: 'app-org-export',
     templateUrl: '../../tools/export.component.html',
@@ -18,9 +16,14 @@ import { EventType } from 'jslib/enums/eventType';
 export class ExportComponent extends BaseExportComponent {
     organizationId: string;
 
-    constructor(cryptoService: CryptoService, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, exportService: ExportService,
-        eventService: EventService, private route: ActivatedRoute) {
+    constructor(
+        cryptoService: CryptoService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        exportService: ExportService,
+        eventService: EventService,
+        private route: ActivatedRoute
+    ) {
         super(cryptoService, i18nService, platformUtilsService, exportService, eventService);
     }
 

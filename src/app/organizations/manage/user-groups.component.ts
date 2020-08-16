@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -31,8 +25,12 @@ export class UserGroupsComponent implements OnInit {
     groups: GroupResponse[] = [];
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService
+    ) {}
 
     async ngOnInit() {
         const groupsResponse = await this.apiService.getGroups(this.organizationId);
@@ -42,7 +40,9 @@ export class UserGroupsComponent implements OnInit {
 
         try {
             const userGroups = await this.apiService.getOrganizationUserGroups(
-                this.organizationId, this.organizationUserId);
+                this.organizationId,
+                this.organizationUserId
+            );
             if (userGroups != null && this.groups != null) {
                 userGroups.forEach((ug) => {
                     const group = this.groups.filter((g) => g.id === ug);
@@ -51,7 +51,7 @@ export class UserGroupsComponent implements OnInit {
                     }
                 });
             }
-        } catch { }
+        } catch {}
 
         this.loading = false;
     }
@@ -72,12 +72,19 @@ export class UserGroupsComponent implements OnInit {
         request.groupIds = this.groups.filter((g) => (g as any).checked).map((g) => g.id);
 
         try {
-            this.formPromise = this.apiService.putOrganizationUserGroups(this.organizationId, this.organizationUserId,
-                request);
+            this.formPromise = this.apiService.putOrganizationUserGroups(
+                this.organizationId,
+                this.organizationUserId,
+                request
+            );
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Edited User Groups' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('editedGroupsForUser', this.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('editedGroupsForUser', this.name)
+            );
             this.onSavedUser.emit();
-        } catch { }
+        } catch {}
     }
 }

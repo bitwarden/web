@@ -1,7 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -11,19 +8,28 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
-import {
-    WeakPasswordsReportComponent as BaseWeakPasswordsReportComponent,
-} from '../../tools/weak-passwords-report.component';
+import { WeakPasswordsReportComponent as BaseWeakPasswordsReportComponent } from '../../tools/weak-passwords-report.component';
 
 @Component({
     selector: 'app-weak-passwords-report',
     templateUrl: '../../tools/weak-passwords-report.component.html',
 })
 export class WeakPasswordsReportComponent extends BaseWeakPasswordsReportComponent {
-    constructor(cipherService: CipherService, passwordGenerationService: PasswordGenerationService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
-        userService: UserService, private route: ActivatedRoute) {
-        super(cipherService, passwordGenerationService, componentFactoryResolver, messagingService, userService);
+    constructor(
+        cipherService: CipherService,
+        passwordGenerationService: PasswordGenerationService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        userService: UserService,
+        private route: ActivatedRoute
+    ) {
+        super(
+            cipherService,
+            passwordGenerationService,
+            componentFactoryResolver,
+            messagingService,
+            userService
+        );
     }
 
     async ngOnInit() {

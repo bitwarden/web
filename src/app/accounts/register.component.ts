@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { AuthService } from 'jslib/abstractions/auth.service';
@@ -33,13 +30,28 @@ export class RegisterComponent extends BaseRegisterComponent {
 
     private policies: Policy[];
 
-    constructor(authService: AuthService, router: Router,
-        i18nService: I18nService, cryptoService: CryptoService,
-        apiService: ApiService, private route: ActivatedRoute,
-        stateService: StateService, platformUtilsService: PlatformUtilsService,
-        passwordGenerationService: PasswordGenerationService, private policyService: PolicyService) {
-        super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
-            passwordGenerationService);
+    constructor(
+        authService: AuthService,
+        router: Router,
+        i18nService: I18nService,
+        cryptoService: CryptoService,
+        apiService: ApiService,
+        private route: ActivatedRoute,
+        stateService: StateService,
+        platformUtilsService: PlatformUtilsService,
+        passwordGenerationService: PasswordGenerationService,
+        private policyService: PolicyService
+    ) {
+        super(
+            authService,
+            router,
+            i18nService,
+            cryptoService,
+            apiService,
+            stateService,
+            platformUtilsService,
+            passwordGenerationService
+        );
         this.showTerms = !platformUtilsService.isSelfHost();
     }
 
@@ -70,12 +82,16 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.email = qParams.email;
             }
             if (qParams.premium != null) {
-                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+                this.stateService.save('loginRedirect', {
+                    route: '/settings/premium',
+                });
             } else if (qParams.org != null) {
                 this.showCreateOrgMessage = true;
                 this.referenceData.flow = qParams.org;
-                this.stateService.save('loginRedirect',
-                    { route: '/settings/create-organization', qParams: { plan: qParams.org } });
+                this.stateService.save('loginRedirect', {
+                    route: '/settings/create-organization',
+                    qParams: { plan: qParams.org },
+                });
             }
             if (qParams.layout != null) {
                 this.layout = this.referenceData.layout = qParams.layout;
@@ -83,7 +99,11 @@ export class RegisterComponent extends BaseRegisterComponent {
             if (qParams.reference != null) {
                 this.referenceData.id = qParams.reference;
             } else {
-                this.referenceData.id = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
+                this.referenceData.id = ('; ' + document.cookie)
+                    .split('; reference=')
+                    .pop()
+                    .split(';')
+                    .shift();
             }
             if (this.referenceData.id === '') {
                 this.referenceData.id = null;
@@ -95,26 +115,40 @@ export class RegisterComponent extends BaseRegisterComponent {
         const invite = await this.stateService.get<any>('orgInvitation');
         if (invite != null) {
             try {
-                const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,
-                    invite.email, invite.organizationUserId);
+                const policies = await this.apiService.getPoliciesByToken(
+                    invite.organizationId,
+                    invite.token,
+                    invite.email,
+                    invite.organizationUserId
+                );
                 if (policies.data != null) {
                     const policiesData = policies.data.map((p) => new PolicyData(p));
                     this.policies = policiesData.map((p) => new Policy(p));
                 }
-            } catch { }
+            } catch {}
         }
 
         if (this.policies != null) {
-            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
+            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(
+                this.policies
+            );
         }
     }
 
     async submit() {
-        if (this.enforcedPolicyOptions != null &&
-            !this.policyService.evaluateMasterPassword(this.masterPasswordScore, this.masterPassword,
-                this.enforcedPolicyOptions)) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
+        if (
+            this.enforcedPolicyOptions != null &&
+            !this.policyService.evaluateMasterPassword(
+                this.masterPasswordScore,
+                this.masterPassword,
+                this.enforcedPolicyOptions
+            )
+        ) {
+            this.platformUtilsService.showToast(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPasswordPolicyRequirementsNotMet')
+            );
             return;
         }
 

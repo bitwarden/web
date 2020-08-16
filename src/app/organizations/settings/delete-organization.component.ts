@@ -20,26 +20,40 @@ export class DeleteOrganizationComponent {
     masterPassword: string;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private router: Router) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService,
+        private router: Router
+    ) {}
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPassRequired')
+            );
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        request.masterPasswordHash = await this.cryptoService.hashPassword(
+            this.masterPassword,
+            null
+        );
         try {
             this.formPromise = this.apiService.deleteOrganization(this.organizationId, request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Deleted Organization' });
-            this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),
-                this.i18nService.t('organizationDeletedDesc'));
+            this.toasterService.popAsync(
+                'success',
+                this.i18nService.t('organizationDeleted'),
+                this.i18nService.t('organizationDeletedDesc')
+            );
             this.router.navigate(['/']);
-        } catch { }
+        } catch {}
     }
 }

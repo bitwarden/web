@@ -1,15 +1,6 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -35,14 +26,20 @@ export class AdjustStorageComponent {
     @Output() onAdjusted = new EventEmitter<number>();
     @Output() onCanceled = new EventEmitter();
 
-    @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
+    @ViewChild(PaymentComponent, { static: true })
+    paymentComponent: PaymentComponent;
 
     storageAdjustment = 0;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {}
 
     async submit() {
         try {
@@ -58,12 +55,18 @@ export class AdjustStorageComponent {
                 if (this.organizationId == null) {
                     response = this.formPromise = this.apiService.postAccountStorage(request);
                 } else {
-                    response = this.formPromise = this.apiService.postOrganizationStorage(this.organizationId, request);
+                    response = this.formPromise = this.apiService.postOrganizationStorage(
+                        this.organizationId,
+                        request
+                    );
                 }
                 const result = await response;
                 if (result != null && result.paymentIntentClientSecret != null) {
                     try {
-                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+                        await this.paymentComponent.handleStripeCardPayment(
+                            result.paymentIntentClientSecret,
+                            null
+                        );
                     } catch {
                         paymentFailed = true;
                     }
@@ -71,7 +74,9 @@ export class AdjustStorageComponent {
             };
             this.formPromise = action();
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.add ? 'Added Storage' : 'Removed Storage' });
+            this.analytics.eventTrack.next({
+                action: this.add ? 'Added Storage' : 'Removed Storage',
+            });
             this.onAdjusted.emit(this.storageAdjustment);
             if (paymentFailed) {
                 this.toasterService.popAsync({
@@ -79,12 +84,17 @@ export class AdjustStorageComponent {
                     type: 'warning',
                     timeout: 10000,
                 });
-                this.router.navigate(['../billing'], { relativeTo: this.activatedRoute });
+                this.router.navigate(['../billing'], {
+                    relativeTo: this.activatedRoute,
+                });
             } else {
-                this.toasterService.popAsync('success', null,
-                    this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString()));
+                this.toasterService.popAsync(
+                    'success',
+                    null,
+                    this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString())
+                );
             }
-        } catch { }
+        } catch {}
     }
 
     cancel() {

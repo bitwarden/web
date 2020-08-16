@@ -1,11 +1,6 @@
 import * as jq from 'jquery';
 
-import {
-    Component,
-    ComponentFactoryResolver,
-    Type,
-    ViewContainerRef,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, Type, ViewContainerRef } from '@angular/core';
 
 import { ModalComponent as BaseModalComponent } from 'jslib/angular/components/modal.component';
 import { Utils } from 'jslib/misc/utils';
@@ -19,14 +14,23 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 export class ModalComponent extends BaseModalComponent {
     el: any = null;
 
-    constructor(componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService) {
+    constructor(
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService
+    ) {
         super(componentFactoryResolver, messagingService);
     }
 
-    ngOnDestroy() { /* Nothing */ }
+    ngOnDestroy() {
+        /* Nothing */
+    }
 
-    show<T>(type: Type<T>, parentContainer: ViewContainerRef, fade: boolean = true,
-        setComponentParameters: (component: T) => void = null): T {
+    show<T>(
+        type: Type<T>,
+        parentContainer: ViewContainerRef,
+        fade = true,
+        setComponentParameters: (component: T) => void = null
+    ): T {
         this.parentContainer = parentContainer;
         this.fade = fade;
 

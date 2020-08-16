@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function getQsParam(name: string) {
     const url = window.location.href;
+    // eslint-disable-next-line no-useless-escape
     name = name.replace(/[\[\]]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);

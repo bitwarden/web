@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { AuthService } from 'jslib/abstractions/auth.service';
@@ -20,14 +17,30 @@ import { SsoComponent as BaseSsoComponent } from 'jslib/angular/components/sso.c
     templateUrl: 'sso.component.html',
 })
 export class SsoComponent extends BaseSsoComponent {
-    constructor(authService: AuthService, router: Router,
-        i18nService: I18nService, route: ActivatedRoute,
-        storageService: StorageService, stateService: StateService,
-        platformUtilsService: PlatformUtilsService, apiService: ApiService,
+    constructor(
+        authService: AuthService,
+        router: Router,
+        i18nService: I18nService,
+        route: ActivatedRoute,
+        storageService: StorageService,
+        stateService: StateService,
+        platformUtilsService: PlatformUtilsService,
+        apiService: ApiService,
         cryptoFunctionService: CryptoFunctionService,
-        passwordGenerationService: PasswordGenerationService) {
-        super(authService, router, i18nService, route, storageService, stateService, platformUtilsService,
-            apiService, cryptoFunctionService, passwordGenerationService);
+        passwordGenerationService: PasswordGenerationService
+    ) {
+        super(
+            authService,
+            router,
+            i18nService,
+            route,
+            storageService,
+            stateService,
+            platformUtilsService,
+            apiService,
+            cryptoFunctionService,
+            passwordGenerationService
+        );
         this.redirectUri = window.location.origin + '/sso-connector.html';
         this.clientId = 'web';
     }

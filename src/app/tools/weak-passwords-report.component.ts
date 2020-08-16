@@ -1,8 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    OnInit,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -24,9 +20,13 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
 
     private passwordStrengthCache = new Map<string, number>();
 
-    constructor(protected cipherService: CipherService, protected passwordGenerationService: PasswordGenerationService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
-        userService: UserService) {
+    constructor(
+        protected cipherService: CipherService,
+        protected passwordGenerationService: PasswordGenerationService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        userService: UserService
+    ) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
 
@@ -40,7 +40,11 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
         allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+            if (
+                c.type !== CipherType.Login ||
+                c.login.password == null ||
+                c.login.password === ''
+            ) {
                 return;
             }
             const hasUsername = c.login.username != null && c.login.username.trim() !== '';
@@ -50,16 +54,27 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                 if (hasUsername) {
                     const atPosition = c.login.username.indexOf('@');
                     if (atPosition > -1) {
-                        userInput = userInput.concat(
-                            c.login.username.substr(0, atPosition).trim().toLowerCase().split(/[^A-Za-z0-9]/))
+                        userInput = userInput
+                            .concat(
+                                c.login.username
+                                    .substr(0, atPosition)
+                                    .trim()
+                                    .toLowerCase()
+                                    .split(/[^A-Za-z0-9]/)
+                            )
                             .filter((i) => i.length >= 3);
                     } else {
-                        userInput = c.login.username.trim().toLowerCase().split(/[^A-Za-z0-9]/)
+                        userInput = c.login.username
+                            .trim()
+                            .toLowerCase()
+                            .split(/[^A-Za-z0-9]/)
                             .filter((i) => i.length >= 3);
                     }
                 }
-                const result = this.passwordGenerationService.passwordStrength(c.login.password,
-                    userInput.length > 0 ? userInput : null);
+                const result = this.passwordGenerationService.passwordStrength(
+                    c.login.password,
+                    userInput.length > 0 ? userInput : null
+                );
                 this.passwordStrengthCache.set(cacheKey, result.score);
             }
             const score = this.passwordStrengthCache.get(cacheKey);

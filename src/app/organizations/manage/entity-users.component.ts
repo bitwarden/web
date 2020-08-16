@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -41,8 +35,12 @@ export class EntityUsersComponent implements OnInit {
 
     private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService
+    ) {}
 
     async ngOnInit() {
         await this.loadUsers();
@@ -59,9 +57,14 @@ export class EntityUsersComponent implements OnInit {
 
     async loadUsers() {
         const users = await this.apiService.getOrganizationUsers(this.organizationId);
-        this.allUsers = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
+        this.allUsers = users.data
+            .map((r) => r)
+            .sort(Utils.getSortFunction(this.i18nService, 'email'));
         if (this.entity === 'group') {
-            const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
+            const response = await this.apiService.getGroupUsers(
+                this.organizationId,
+                this.entityId
+            );
             if (response != null && users.data.length > 0) {
                 response.forEach((s) => {
                     const user = users.data.filter((u) => u.id === s);
@@ -71,7 +74,10 @@ export class EntityUsersComponent implements OnInit {
                 });
             }
         } else if (this.entity === 'collection') {
-            const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
+            const response = await this.apiService.getCollectionUsers(
+                this.organizationId,
+                this.entityId
+            );
             if (response != null && users.data.length > 0) {
                 response.forEach((s) => {
                     const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
@@ -122,11 +128,27 @@ export class EntityUsersComponent implements OnInit {
         try {
             if (this.entity === 'group') {
                 const selections = this.users.filter((u) => (u as any).checked).map((u) => u.id);
-                this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
+                this.formPromise = this.apiService.putGroupUsers(
+                    this.organizationId,
+                    this.entityId,
+                    selections
+                );
             } else {
-                const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
-                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords));
-                this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
+                const selections = this.users
+                    .filter((u) => (u as any).checked && !u.accessAll)
+                    .map(
+                        (u) =>
+                            new SelectionReadOnlyRequest(
+                                u.id,
+                                !!(u as any).readOnly,
+                                !!(u as any).hidePasswords
+                            )
+                    );
+                this.formPromise = this.apiService.putCollectionUsers(
+                    this.organizationId,
+                    this.entityId,
+                    selections
+                );
             }
             await this.formPromise;
             this.analytics.eventTrack.next({
@@ -134,6 +156,6 @@ export class EntityUsersComponent implements OnInit {
             });
             this.toasterService.popAsync('success', null, this.i18nService.t('updatedUsers'));
             this.onEditedUsers.emit();
-        } catch { }
+        } catch {}
     }
 }

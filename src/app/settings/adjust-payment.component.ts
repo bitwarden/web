@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -24,8 +18,10 @@ import { TaxInfoComponent } from './tax-info.component';
     templateUrl: 'adjust-payment.component.html',
 })
 export class AdjustPaymentComponent {
-    @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
-    @ViewChild(TaxInfoComponent, { static: true }) taxInfoComponent: TaxInfoComponent;
+    @ViewChild(PaymentComponent, { static: true })
+    paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent, { static: true })
+    taxInfoComponent: TaxInfoComponent;
 
     @Input() currentType?: PaymentMethodType;
     @Input() organizationId: string;
@@ -35,8 +31,12 @@ export class AdjustPaymentComponent {
     paymentMethodType = PaymentMethodType;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService
+    ) {}
 
     async submit() {
         try {
@@ -60,11 +60,16 @@ export class AdjustPaymentComponent {
             });
             await this.formPromise;
             this.analytics.eventTrack.next({
-                action: this.currentType == null ? 'Added Payment Method' : 'Changed Payment Method',
+                action:
+                    this.currentType == null ? 'Added Payment Method' : 'Changed Payment Method',
             });
-            this.toasterService.popAsync('success', null, this.i18nService.t('updatedPaymentMethod'));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('updatedPaymentMethod')
+            );
             this.onAdjusted.emit();
-        } catch { }
+        } catch {}
     }
 
     cancel() {

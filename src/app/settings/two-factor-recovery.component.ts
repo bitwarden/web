@@ -16,20 +16,27 @@ export class TwoFactorRecoveryComponent {
     authed: boolean;
     twoFactorProviderType = TwoFactorProviderType;
 
-    constructor(private i18nService: I18nService) { }
+    constructor(private i18nService: I18nService) {}
 
-    auth(authResponse: any) {
+    auth(authResponse: any): void {
         this.authed = true;
         this.processResponse(authResponse.response);
     }
 
     print() {
         const w = window.open();
-        w.document.write('<div style="font-size: 18px; text-align: center;">' +
-            '<p>' + this.i18nService.t('twoFactorRecoveryYourCode') + ':</p>' +
-            '<code style="font-family: Menlo, Monaco, Consolas, \'Courier New\', monospace;">' +
-            this.code + '</code></div>' +
-            '<p style="text-align: center;">' + new Date() + '</p>');
+        w.document.write(
+            '<div style="font-size: 18px; text-align: center;">' +
+                '<p>' +
+                this.i18nService.t('twoFactorRecoveryYourCode') +
+                ':</p>' +
+                '<code style="font-family: Menlo, Monaco, Consolas, \'Courier New\', monospace;">' +
+                this.code +
+                '</code></div>' +
+                '<p style="text-align: center;">' +
+                new Date() +
+                '</p>'
+        );
         w.print();
         w.close();
     }
@@ -38,7 +45,10 @@ export class TwoFactorRecoveryComponent {
         if (s == null) {
             return null;
         }
-        return s.replace(/(.{4})/g, '$1 ').trim().toUpperCase();
+        return s
+            .replace(/(.{4})/g, '$1 ')
+            .trim()
+            .toUpperCase();
     }
 
     private processResponse(response: TwoFactorRecoverResponse) {

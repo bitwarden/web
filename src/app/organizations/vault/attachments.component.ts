@@ -22,9 +22,14 @@ import { AttachmentsComponent as BaseAttachmentsComponent } from '../../vault/at
 export class AttachmentsComponent extends BaseAttachmentsComponent {
     organization: Organization;
 
-    constructor(cipherService: CipherService, i18nService: I18nService,
-        cryptoService: CryptoService, userService: UserService,
-        platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
+    constructor(
+        cipherService: CipherService,
+        i18nService: I18nService,
+        cryptoService: CryptoService,
+        userService: UserService,
+        platformUtilsService: PlatformUtilsService,
+        private apiService: ApiService
+    ) {
         super(cipherService, i18nService, cryptoService, userService, platformUtilsService);
     }
 
@@ -43,7 +48,11 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
     }
 
     protected saveCipherAttachment(file: File) {
-        return this.cipherService.saveAttachmentWithServer(this.cipherDomain, file, this.organization.isAdmin);
+        return this.cipherService.saveAttachmentWithServer(
+            this.cipherDomain,
+            file,
+            this.organization.isAdmin
+        );
     }
 
     protected deleteCipherAttachment(attachmentId: string) {

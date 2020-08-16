@@ -14,8 +14,11 @@ export class ToolsComponent {
     organization: Organization;
     accessReports = false;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
-        private messagingService: MessagingService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private messagingService: MessagingService
+    ) {}
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {
@@ -27,6 +30,8 @@ export class ToolsComponent {
     }
 
     upgradeOrganization() {
-        this.messagingService.send('upgradeOrganization', { organizationId: this.organization.id });
+        this.messagingService.send('upgradeOrganization', {
+            organizationId: this.organization.id,
+        });
     }
 }

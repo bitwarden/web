@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnDestroy,
-} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
@@ -18,9 +15,13 @@ import { ShareComponent as BaseShareComponent } from 'jslib/angular/components/s
     templateUrl: 'share.component.html',
 })
 export class ShareComponent extends BaseShareComponent implements OnDestroy {
-    constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, userService: UserService,
-        cipherService: CipherService) {
+    constructor(
+        collectionService: CollectionService,
+        platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService,
+        userService: UserService,
+        cipherService: CipherService
+    ) {
         super(collectionService, platformUtilsService, i18nService, userService, cipherService);
     }
 

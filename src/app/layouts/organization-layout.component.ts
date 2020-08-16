@@ -1,9 +1,4 @@
-import {
-    Component,
-    NgZone,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,10 +23,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     private organizationId: string;
     private enterpriseUrl: string;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone,
-        private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private environmentService: EnvironmentService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private broadcasterService: BroadcasterService,
+        private ngZone: NgZone,
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
+        private environmentService: EnvironmentService
+    ) {}
 
     ngOnInit() {
         this.enterpriseUrl = 'https://enterprise.bitwarden.com';
@@ -74,10 +74,17 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
             const token = await this.enterpriseTokenPromise;
             if (token != null) {
                 const userId = await this.userService.getUserId();
-                this.platformUtilsService.launchUri(this.enterpriseUrl + '/login?userId=' + userId +
-                    '&token=' + (window as any).encodeURIComponent(token) + '&organizationId=' + this.organization.id);
+                this.platformUtilsService.launchUri(
+                    this.enterpriseUrl +
+                        '/login?userId=' +
+                        userId +
+                        '&token=' +
+                        (window as any).encodeURIComponent(token) +
+                        '&organizationId=' +
+                        this.organization.id
+                );
             }
-        } catch { }
+        } catch {}
         this.enterpriseTokenPromise = null;
     }
 }

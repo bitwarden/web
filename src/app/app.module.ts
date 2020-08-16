@@ -41,9 +41,7 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
-import {
-    CollectionAddEditComponent as OrgCollectionAddEditComponent,
-} from './organizations/manage/collection-add-edit.component';
+import { CollectionAddEditComponent as OrgCollectionAddEditComponent } from './organizations/manage/collection-add-edit.component';
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
 import { EntityEventsComponent as OrgEntityEventsComponent } from './organizations/manage/entity-events.component';
 import { EntityUsersComponent as OrgEntityUsersComponent } from './organizations/manage/entity-users.component';
@@ -68,28 +66,16 @@ import { OrganizationBillingComponent } from './organizations/settings/organizat
 import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
 import { RotateApiKeyComponent as OrgRotateApiKeyComponent } from './organizations/settings/rotate-api-key.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
-import {
-    TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
-} from './organizations/settings/two-factor-setup.component';
+import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from './organizations/settings/two-factor-setup.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
-import {
-    ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
-} from './organizations/tools/exposed-passwords-report.component';
+import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from './organizations/tools/exposed-passwords-report.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
-import {
-    InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
-} from './organizations/tools/inactive-two-factor-report.component';
-import {
-    ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent,
-} from './organizations/tools/reused-passwords-report.component';
+import { InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent } from './organizations/tools/inactive-two-factor-report.component';
+import { ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent } from './organizations/tools/reused-passwords-report.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
-import {
-    UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent,
-} from './organizations/tools/unsecured-websites-report.component';
-import {
-    WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
-} from './organizations/tools/weak-passwords-report.component';
+import { UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent } from './organizations/tools/unsecured-websites-report.component';
+import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from './organizations/tools/weak-passwords-report.component';
 
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
 import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
@@ -424,4 +410,4 @@ registerLocaleData(localeZhTw, 'zh-TW');
     providers: [],
     bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

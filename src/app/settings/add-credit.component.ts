@@ -33,7 +33,8 @@ export class AddCreditComponent implements OnInit {
     @Output() onAdded = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
-    @ViewChild('ppButtonForm', { read: ElementRef, static: true }) ppButtonFormRef: ElementRef;
+    @ViewChild('ppButtonForm', { read: ElementRef, static: true })
+    ppButtonFormRef: ElementRef;
 
     paymentMethodType = PaymentMethodType;
     ppButtonFormAction = WebConstants.paypal.buttonActionProduction;
@@ -48,9 +49,13 @@ export class AddCreditComponent implements OnInit {
     private name: string;
     private email: string;
 
-    constructor(private userService: UserService, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService) {
+    constructor(
+        private userService: UserService,
+        private apiService: ApiService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private platformUtilsService: PlatformUtilsService
+    ) {
         if (platformUtilsService.isDev()) {
             this.ppButtonFormAction = WebConstants.paypal.buttonActionSandbox;
             this.ppButtonBusinessId = WebConstants.paypal.businessIdSandbox;
@@ -104,7 +109,7 @@ export class AddCreditComponent implements OnInit {
                 this.formPromise = this.apiService.postBitPayInvoice(req);
                 const bitPayUrl: string = await this.formPromise;
                 this.platformUtilsService.launchUri(bitPayUrl);
-            } catch { }
+            } catch {}
             return;
         }
         try {
@@ -112,7 +117,7 @@ export class AddCreditComponent implements OnInit {
                 action: 'Added Credit',
             });
             this.onAdded.emit();
-        } catch { }
+        } catch {}
     }
 
     cancel() {
@@ -125,11 +130,12 @@ export class AddCreditComponent implements OnInit {
                 const floatAmount = Math.abs(parseFloat(this.creditAmount));
                 if (floatAmount > 0) {
                     this.creditAmount = parseFloat((Math.round(floatAmount * 100) / 100).toString())
-                        .toFixed(2).toString();
+                        .toFixed(2)
+                        .toString();
                     return;
                 }
             }
-        } catch { }
+        } catch {}
         this.creditAmount = '';
     }
 
@@ -137,7 +143,7 @@ export class AddCreditComponent implements OnInit {
         if (this.creditAmount != null && this.creditAmount !== '') {
             try {
                 return parseFloat(this.creditAmount);
-            } catch { }
+            } catch {}
         }
         return null;
     }

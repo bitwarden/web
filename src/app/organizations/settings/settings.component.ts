@@ -12,8 +12,11 @@ export class SettingsComponent {
     access2fa = false;
     selfHosted: boolean;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private platformUtilsService: PlatformUtilsService
+    ) {}
 
     ngOnInit() {
         this.route.parent.params.subscribe(async (params) => {

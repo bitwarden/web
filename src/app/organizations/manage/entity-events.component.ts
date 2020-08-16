@@ -1,8 +1,4 @@
-import {
-    Component,
-    Input,
-    OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -37,8 +33,12 @@ export class EntityEventsComponent implements OnInit {
     private orgUsersUserIdMap = new Map<string, any>();
     private orgUsersIdMap = new Map<string, any>();
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private eventService: EventService, private toasterService: ToasterService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private eventService: EventService,
+        private toasterService: ToasterService
+    ) {}
 
     async ngOnInit() {
         const defaultDates = this.eventService.getDefaultDateFilters();
@@ -53,7 +53,10 @@ export class EntityEventsComponent implements OnInit {
             response.data.forEach((u) => {
                 const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
                 this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
-                this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
+                this.orgUsersUserIdMap.set(u.userId, {
+                    name: name,
+                    email: u.email,
+                });
             });
         }
         await this.loadEvents(true);
@@ -69,8 +72,11 @@ export class EntityEventsComponent implements OnInit {
         try {
             dates = this.eventService.formatDateFilters(this.start, this.end);
         } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('invalidDateRange'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('invalidDateRange')
+            );
             return;
         }
 
@@ -79,11 +85,20 @@ export class EntityEventsComponent implements OnInit {
         try {
             let promise: Promise<any>;
             if (this.entity === 'user') {
-                promise = this.apiService.getEventsOrganizationUser(this.organizationId, this.entityId,
-                    dates[0], dates[1], clearExisting ? null : this.continuationToken);
+                promise = this.apiService.getEventsOrganizationUser(
+                    this.organizationId,
+                    this.entityId,
+                    dates[0],
+                    dates[1],
+                    clearExisting ? null : this.continuationToken
+                );
             } else {
-                promise = this.apiService.getEventsCipher(this.entityId,
-                    dates[0], dates[1], clearExisting ? null : this.continuationToken);
+                promise = this.apiService.getEventsCipher(
+                    this.entityId,
+                    dates[0],
+                    dates[1],
+                    clearExisting ? null : this.continuationToken
+                );
             }
             if (clearExisting) {
                 this.refreshPromise = promise;
@@ -91,20 +106,23 @@ export class EntityEventsComponent implements OnInit {
                 this.morePromise = promise;
             }
             response = await promise;
-        } catch { }
+        } catch {}
 
         this.continuationToken = response.continuationToken;
         const events = response.data.map((r) => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = this.eventService.getEventInfo(r);
-            const user = this.showUser && userId != null && this.orgUsersUserIdMap.has(userId) ?
-                this.orgUsersUserIdMap.get(userId) : null;
+            const user =
+                this.showUser && userId != null && this.orgUsersUserIdMap.has(userId)
+                    ? this.orgUsersUserIdMap.get(userId)
+                    : null;
             return {
                 message: eventInfo.message,
                 appIcon: eventInfo.appIcon,
                 appName: eventInfo.appName,
                 userId: userId,
-                userName: user != null ? user.name : this.showUser ? this.i18nService.t('unknown') : null,
+                userName:
+                    user != null ? user.name : this.showUser ? this.i18nService.t('unknown') : null,
                 userEmail: user != null ? user.email : this.showUser ? '' : null,
                 date: r.date,
                 ip: r.ipAddress,

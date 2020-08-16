@@ -5,10 +5,7 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { PolicyType } from 'jslib/enums/policyType';
 
@@ -28,7 +25,8 @@ import { PolicyEditComponent } from './policy-edit.component';
     templateUrl: 'policies.component.html',
 })
 export class PoliciesComponent implements OnInit {
-    @ViewChild('editTemplate', { read: ViewContainerRef, static: true }) editModalRef: ViewContainerRef;
+    @ViewChild('editTemplate', { read: ViewContainerRef, static: true })
+    editModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -38,10 +36,15 @@ export class PoliciesComponent implements OnInit {
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private router: Router) {
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private i18nService: I18nService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private platformUtilsService: PlatformUtilsService,
+        private userService: UserService,
+        private router: Router
+    ) {
         this.policies = [
             {
                 name: i18nService.t('twoStepLogin'),
@@ -96,7 +99,9 @@ export class PoliciesComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.editModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<PolicyEditComponent>(
-            PolicyEditComponent, this.editModalRef);
+            PolicyEditComponent,
+            this.editModalRef
+        );
 
         childComponent.name = p.name;
         childComponent.description = p.description;

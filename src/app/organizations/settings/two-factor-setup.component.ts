@@ -1,7 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
@@ -19,9 +16,14 @@ import { TwoFactorSetupComponent as BaseTwoFactorSetupComponent } from '../../se
     templateUrl: '../../settings/two-factor-setup.component.html',
 })
 export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
-    constructor(apiService: ApiService, userService: UserService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
-        policyService: PolicyService, private route: ActivatedRoute) {
+    constructor(
+        apiService: ApiService,
+        userService: UserService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        policyService: PolicyService,
+        private route: ActivatedRoute
+    ) {
         super(apiService, userService, componentFactoryResolver, messagingService, policyService);
     }
 

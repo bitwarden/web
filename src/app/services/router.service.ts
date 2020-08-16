@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import {
-    ActivatedRoute,
-    NavigationEnd,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
@@ -13,8 +9,12 @@ export class RouterService {
     private previousUrl: string = undefined;
     private currentUrl: string = undefined;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute,
-        private titleService: Title, i18nService: I18nService) {
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private titleService: Title,
+        i18nService: I18nService
+    ) {
         this.currentUrl = this.router.url;
         router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
@@ -44,7 +44,7 @@ export class RouterService {
                 if (titleId != null || rawTitle != null) {
                     const newTitle = rawTitle != null ? rawTitle : i18nService.t(titleId);
                     if (newTitle != null && newTitle !== '') {
-                        title = (newTitle + ' | ' + title);
+                        title = newTitle + ' | ' + title;
                     }
                 }
                 this.titleService.setTitle(title);

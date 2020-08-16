@@ -1,8 +1,4 @@
-import {
-    Component,
-    Input,
-    OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -25,13 +21,18 @@ export class OrganizationsComponent implements OnInit {
     @Input() vault = false;
 
     organizations: Organization[];
-    loaded: boolean = false;
+    loaded = false;
     actionPromise: Promise<any>;
 
-    constructor(private userService: UserService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private syncService: SyncService) { }
+    constructor(
+        private userService: UserService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private apiService: ApiService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private syncService: SyncService
+    ) {}
 
     async ngOnInit() {
         if (!this.vault) {
@@ -48,8 +49,12 @@ export class OrganizationsComponent implements OnInit {
 
     async leave(org: Organization) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('leaveOrganizationConfirmation'), org.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('leaveOrganizationConfirmation'),
+            org.name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -62,6 +67,6 @@ export class OrganizationsComponent implements OnInit {
             this.analytics.eventTrack.next({ action: 'Left Organization' });
             this.toasterService.popAsync('success', null, this.i18nService.t('leftOrganization'));
             await this.load();
-        } catch { }
+        } catch {}
     }
 }

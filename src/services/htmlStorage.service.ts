@@ -3,14 +3,28 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 import { ConstantsService } from 'jslib/services';
 
 export class HtmlStorageService implements StorageService {
-    private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
-        ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
-        ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
-        ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
-        ConstantsService.ssoStateKey]);
-    private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
+    private localStorageKeys = new Set([
+        'appId',
+        'anonymousAppId',
+        'rememberedEmail',
+        'passwordGenerationOptions',
+        ConstantsService.disableFaviconKey,
+        'rememberEmail',
+        'enableGravatars',
+        'enableFullWidth',
+        ConstantsService.localeKey,
+        ConstantsService.autoConfirmFingerprints,
+        ConstantsService.vaultTimeoutKey,
+        ConstantsService.vaultTimeoutActionKey,
+        ConstantsService.ssoCodeVerifierKey,
+        ConstantsService.ssoStateKey,
+    ]);
+    private localStorageStartsWithKeys = [
+        'twoFactorToken_',
+        ConstantsService.collapsedGroupingsKey + '_',
+    ];
 
-    constructor(private platformUtilsService: PlatformUtilsService) { }
+    constructor(private platformUtilsService: PlatformUtilsService) {}
 
     async init() {
         // LockOption -> VaultTimeout (uses the same legacy string value for backwards compat)

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from 'jslib/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
@@ -20,16 +17,29 @@ import { LoginComponent as BaseLoginComponent } from 'jslib/angular/components/l
     templateUrl: 'login.component.html',
 })
 export class LoginComponent extends BaseLoginComponent {
-    constructor(authService: AuthService, router: Router,
-        i18nService: I18nService, private route: ActivatedRoute,
-        storageService: StorageService, stateService: StateService,
-        platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
-        passwordGenerationService: PasswordGenerationService, cryptoFunctionService: CryptoFunctionService) {
-        super(authService, router,
-            platformUtilsService, i18nService,
-            stateService, environmentService,
-            passwordGenerationService, cryptoFunctionService,
-            storageService);
+    constructor(
+        authService: AuthService,
+        router: Router,
+        i18nService: I18nService,
+        private route: ActivatedRoute,
+        storageService: StorageService,
+        stateService: StateService,
+        platformUtilsService: PlatformUtilsService,
+        environmentService: EnvironmentService,
+        passwordGenerationService: PasswordGenerationService,
+        cryptoFunctionService: CryptoFunctionService
+    ) {
+        super(
+            authService,
+            router,
+            platformUtilsService,
+            i18nService,
+            stateService,
+            environmentService,
+            passwordGenerationService,
+            cryptoFunctionService,
+            storageService
+        );
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
@@ -39,10 +49,14 @@ export class LoginComponent extends BaseLoginComponent {
                 this.email = qParams.email;
             }
             if (qParams.premium != null) {
-                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+                this.stateService.save('loginRedirect', {
+                    route: '/settings/premium',
+                });
             } else if (qParams.org != null) {
-                this.stateService.save('loginRedirect',
-                    { route: '/settings/create-organization', qParams: { plan: qParams.org } });
+                this.stateService.save('loginRedirect', {
+                    route: '/settings/create-organization',
+                    qParams: { plan: qParams.org },
+                });
             }
             await super.ngOnInit();
             if (queryParamsSub != null) {
@@ -54,11 +68,15 @@ export class LoginComponent extends BaseLoginComponent {
     async goAfterLogIn() {
         const invite = await this.stateService.get<any>('orgInvitation');
         if (invite != null) {
-            this.router.navigate(['accept-organization'], { queryParams: invite });
+            this.router.navigate(['accept-organization'], {
+                queryParams: invite,
+            });
         } else {
             const loginRedirect = await this.stateService.get<any>('loginRedirect');
             if (loginRedirect != null) {
-                this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
+                this.router.navigate([loginRedirect.route], {
+                    queryParams: loginRedirect.qParams,
+                });
                 await this.stateService.remove('loginRedirect');
             } else {
                 this.router.navigate([this.successRoute]);

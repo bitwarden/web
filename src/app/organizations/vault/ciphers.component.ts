@@ -1,8 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -31,12 +27,25 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     protected allCiphers: CipherView[] = [];
 
-    constructor(searchService: SearchService, analytics: Angulartics2,
-        toasterService: ToasterService, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, cipherService: CipherService,
-        private apiService: ApiService, eventService: EventService) {
-        super(searchService, analytics, toasterService, i18nService, platformUtilsService,
-            cipherService, eventService);
+    constructor(
+        searchService: SearchService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        cipherService: CipherService,
+        private apiService: ApiService,
+        eventService: EventService
+    ) {
+        super(
+            searchService,
+            analytics,
+            toasterService,
+            i18nService,
+            platformUtilsService,
+            cipherService,
+            eventService
+        );
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
@@ -45,7 +54,9 @@ export class CiphersComponent extends BaseCiphersComponent {
             return;
         }
         this.accessEvents = this.organization.useEvents;
-        this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
+        this.allCiphers = await this.cipherService.getAllFromApiForOrganization(
+            this.organization.id
+        );
         this.applyFilter(filter);
         this.loaded = true;
     }
@@ -54,7 +65,8 @@ export class CiphersComponent extends BaseCiphersComponent {
         if (this.organization.isAdmin) {
             await super.applyFilter(filter);
         } else {
-            const f = (c: CipherView) => c.organizationId === this.organization.id && (filter == null || filter(c));
+            const f = (c: CipherView) =>
+                c.organizationId === this.organization.id && (filter == null || filter(c));
             await super.applyFilter(f);
         }
     }
@@ -77,7 +89,11 @@ export class CiphersComponent extends BaseCiphersComponent {
             if (this.filter != null) {
                 filteredCiphers = filteredCiphers.filter(this.filter);
             }
-            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText, this.deleted);
+            this.ciphers = this.searchService.searchCiphersBasic(
+                filteredCiphers,
+                this.searchText,
+                this.deleted
+            );
         }
         await this.resetPaging();
     }
@@ -90,7 +106,9 @@ export class CiphersComponent extends BaseCiphersComponent {
         if (!this.organization.isAdmin) {
             return super.deleteCipher(id, this.deleted);
         }
-        return this.deleted ? this.apiService.deleteCipherAdmin(id) : this.apiService.putDeleteCipherAdmin(id);
+        return this.deleted
+            ? this.apiService.deleteCipherAdmin(id)
+            : this.apiService.putDeleteCipherAdmin(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {

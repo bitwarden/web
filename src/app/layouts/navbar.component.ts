@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
@@ -16,8 +13,11 @@ export class NavbarComponent implements OnInit {
     name: string;
     email: string;
 
-    constructor(private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
-        private tokenService: TokenService) {
+    constructor(
+        private messagingService: MessagingService,
+        private platformUtilsService: PlatformUtilsService,
+        private tokenService: TokenService
+    ) {
         this.selfHosted = this.platformUtilsService.isSelfHost();
     }
 

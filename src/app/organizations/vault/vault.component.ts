@@ -8,10 +8,7 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -41,25 +38,38 @@ const BroadcasterSubscriptionId = 'OrgVaultComponent';
     templateUrl: 'vault.component.html',
 })
 export class VaultComponent implements OnInit, OnDestroy {
-    @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
-    @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
-    @ViewChild('attachments', { read: ViewContainerRef, static: true }) attachmentsModalRef: ViewContainerRef;
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
-    @ViewChild('collections', { read: ViewContainerRef, static: true }) collectionsModalRef: ViewContainerRef;
-    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
+    @ViewChild(GroupingsComponent, { static: true })
+    groupingsComponent: GroupingsComponent;
+    @ViewChild(CiphersComponent, { static: true })
+    ciphersComponent: CiphersComponent;
+    @ViewChild('attachments', { read: ViewContainerRef, static: true })
+    attachmentsModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true })
+    cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef, static: true })
+    collectionsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true })
+    eventsModalRef: ViewContainerRef;
 
     organization: Organization;
     collectionId: string = null;
     type: CipherType = null;
-    deleted: boolean = false;
+    deleted = false;
 
     modal: ModalComponent = null;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
-        private router: Router, private changeDetectorRef: ChangeDetectorRef,
-        private syncService: SyncService, private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+    constructor(
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private router: Router,
+        private changeDetectorRef: ChangeDetectorRef,
+        private syncService: SyncService,
+        private i18nService: I18nService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private messagingService: MessagingService,
+        private broadcasterService: BroadcasterService,
+        private ngZone: NgZone
+    ) {}
 
     ngOnInit() {
         const queryParams = this.route.parent.params.subscribe(async (params) => {
@@ -68,7 +78,8 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.ciphersComponent.organization = this.organization;
 
             const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
-                this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
+                this.ciphersComponent.searchText = this.groupingsComponent.searchText =
+                    qParams.search;
                 if (!this.organization.isAdmin) {
                     await this.syncService.fullSync(false);
                     this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
@@ -110,7 +121,9 @@ export class VaultComponent implements OnInit, OnDestroy {
                 }
 
                 if (qParams.viewEvents != null) {
-                    const cipher = this.ciphersComponent.ciphers.filter((c) => c.id === qParams.viewEvents);
+                    const cipher = this.ciphersComponent.ciphers.filter(
+                        (c) => c.id === qParams.viewEvents
+                    );
                     if (cipher.length > 0) {
                         this.viewEvents(cipher[0]);
                     }
@@ -176,7 +189,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.go();
     }
 
-    async filterDeleted(load: boolean = false) {
+    async filterDeleted(load = false) {
         this.ciphersComponent.showAddNew = false;
         this.ciphersComponent.deleted = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchTrash');
@@ -197,7 +210,9 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     editCipherAttachments(cipher: CipherView) {
         if (this.organization.maxStorageGb == null || this.organization.maxStorageGb === 0) {
-            this.messagingService.send('upgradeOrganization', { organizationId: cipher.organizationId });
+            this.messagingService.send('upgradeOrganization', {
+                organizationId: cipher.organizationId,
+            });
             return;
         }
 
@@ -207,13 +222,16 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.attachmentsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AttachmentsComponent>(AttachmentsComponent, this.attachmentsModalRef);
+        const childComponent = this.modal.show<AttachmentsComponent>(
+            AttachmentsComponent,
+            this.attachmentsModalRef
+        );
 
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher.id;
         let madeAttachmentChanges = false;
-        childComponent.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
-        childComponent.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
+        childComponent.onUploadedAttachment.subscribe(() => (madeAttachmentChanges = true));
+        childComponent.onDeletedAttachment.subscribe(() => (madeAttachmentChanges = true));
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
@@ -231,11 +249,16 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.collectionsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
+        const childComponent = this.modal.show<CollectionsComponent>(
+            CollectionsComponent,
+            this.collectionsModalRef
+        );
 
         if (this.organization.isAdmin) {
             childComponent.collectionIds = cipher.collectionIds;
-            childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+            childComponent.collections = this.groupingsComponent.collections.filter(
+                (c) => !c.readOnly
+            );
         }
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher.id;
@@ -268,7 +291,10 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
+        const childComponent = this.modal.show<AddEditComponent>(
+            AddEditComponent,
+            this.cipherAddEditModalRef
+        );
 
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher == null ? null : cipher.id;
@@ -312,7 +338,9 @@ export class VaultComponent implements OnInit, OnDestroy {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.eventsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<EntityEventsComponent>(
-            EntityEventsComponent, this.eventsModalRef);
+            EntityEventsComponent,
+            this.eventsModalRef
+        );
 
         childComponent.name = cipher.name;
         childComponent.organizationId = this.organization.id;

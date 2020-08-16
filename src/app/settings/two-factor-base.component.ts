@@ -1,8 +1,4 @@
-import {
-    Directive,
-    EventEmitter,
-    Output,
-} from '@angular/core';
+import { Directive, EventEmitter, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -26,9 +22,13 @@ export abstract class TwoFactorBaseComponent {
 
     protected masterPasswordHash: string;
 
-    constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected analytics: Angulartics2, protected toasterService: ToasterService,
-        protected platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        protected apiService: ApiService,
+        protected i18nService: I18nService,
+        protected analytics: Angulartics2,
+        protected toasterService: ToasterService,
+        protected platformUtilsService: PlatformUtilsService
+    ) {}
 
     protected auth(authResponse: any) {
         this.masterPasswordHash = authResponse.masterPasswordHash;
@@ -42,12 +42,17 @@ export abstract class TwoFactorBaseComponent {
                 action: 'Enabled Two-step ' + TwoFactorProviderType[this.type].toString(),
             });
             this.onUpdated.emit(true);
-        } catch { }
+        } catch {}
     }
 
     protected async disable(promise: Promise<any>) {
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('twoStepDisableDesc'),
-            this.i18nService.t('disable'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('twoStepDisableDesc'),
+            this.i18nService.t('disable'),
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return;
         }
@@ -57,7 +62,10 @@ export abstract class TwoFactorBaseComponent {
             request.masterPasswordHash = this.masterPasswordHash;
             request.type = this.type;
             if (this.organizationId != null) {
-                promise = this.apiService.putTwoFactorOrganizationDisable(this.organizationId, request);
+                promise = this.apiService.putTwoFactorOrganizationDisable(
+                    this.organizationId,
+                    request
+                );
             } else {
                 promise = this.apiService.putTwoFactorDisable(request);
             }
@@ -68,6 +76,6 @@ export abstract class TwoFactorBaseComponent {
             });
             this.toasterService.popAsync('success', null, this.i18nService.t('twoStepDisabled'));
             this.onUpdated.emit(false);
-        } catch { }
+        } catch {}
     }
 }

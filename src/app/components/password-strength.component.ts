@@ -1,8 +1,4 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
@@ -18,7 +14,7 @@ export class PasswordStrengthComponent implements OnChanges {
     color = 'bg-danger';
     text: string;
 
-    constructor(private i18nService: I18nService) { }
+    constructor(private i18nService: I18nService) {}
 
     ngOnChanges(): void {
         this.scoreWidth = this.score == null ? 0 : (this.score + 1) * 20;

@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
+import { Toast, ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
@@ -28,11 +25,17 @@ export class UpdateKeyComponent {
     masterPassword: string;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private messagingService: MessagingService,
-        private syncService: SyncService, private folderService: FolderService,
-        private cipherService: CipherService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService,
+        private messagingService: MessagingService,
+        private syncService: SyncService,
+        private folderService: FolderService,
+        private cipherService: CipherService
+    ) {}
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
@@ -41,8 +44,11 @@ export class UpdateKeyComponent {
         }
 
         if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPassRequired')
+            );
             return;
         }
 
@@ -60,7 +66,7 @@ export class UpdateKeyComponent {
             };
             this.toasterService.popAsync(toast);
             this.messagingService.send('logout');
-        } catch { }
+        } catch {}
     }
 
     private async makeRequest(): Promise<UpdateKeyRequest> {
@@ -74,7 +80,10 @@ export class UpdateKeyComponent {
         const request = new UpdateKeyRequest();
         request.privateKey = encPrivateKey != null ? encPrivateKey.encryptedString : null;
         request.key = encKey[1].encryptedString;
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        request.masterPasswordHash = await this.cryptoService.hashPassword(
+            this.masterPassword,
+            null
+        );
 
         await this.syncService.fullSync(true);
 

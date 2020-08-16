@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -13,7 +10,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 export class ToolsComponent implements OnInit {
     canAccessPremium = false;
 
-    constructor(private userService: UserService, private messagingService: MessagingService) { }
+    constructor(private userService: UserService, private messagingService: MessagingService) {}
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();

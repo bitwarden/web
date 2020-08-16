@@ -4,9 +4,6 @@ import { ModalComponent } from 'jslib/angular/components/modal.component';
 
 @NgModule({
     imports: [],
-    declarations: [
-        ModalComponent,
-    ],
+    declarations: [ModalComponent],
 })
-export class DummyModule {
-}
+export class DummyModule {}

@@ -36,14 +36,32 @@ export class AddEditComponent extends BaseAddEditComponent {
 
     protected totpInterval: number;
 
-    constructor(cipherService: CipherService, folderService: FolderService,
-        i18nService: I18nService, platformUtilsService: PlatformUtilsService,
-        auditService: AuditService, stateService: StateService,
-        userService: UserService, collectionService: CollectionService,
-        protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
-        protected messagingService: MessagingService, eventService: EventService) {
-        super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, messagingService, eventService);
+    constructor(
+        cipherService: CipherService,
+        folderService: FolderService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        auditService: AuditService,
+        stateService: StateService,
+        userService: UserService,
+        collectionService: CollectionService,
+        protected totpService: TotpService,
+        protected passwordGenerationService: PasswordGenerationService,
+        protected messagingService: MessagingService,
+        eventService: EventService
+    ) {
+        super(
+            cipherService,
+            folderService,
+            i18nService,
+            platformUtilsService,
+            auditService,
+            stateService,
+            userService,
+            collectionService,
+            messagingService,
+            eventService
+        );
     }
 
     async ngOnInit() {
@@ -54,8 +72,11 @@ export class AddEditComponent extends BaseAddEditComponent {
         this.cleanUp();
 
         this.canAccessPremium = await this.userService.canAccessPremium();
-        if (this.cipher.type === CipherType.Login && this.cipher.login.totp &&
-            (this.cipher.organizationUseTotp || this.canAccessPremium)) {
+        if (
+            this.cipher.type === CipherType.Login &&
+            this.cipher.login.totp &&
+            (this.cipher.organizationUseTotp || this.canAccessPremium)
+        ) {
             await this.totpUpdateCode();
             const interval = this.totpService.getTimeInterval(this.cipher.login.totp);
             await this.totpTick(interval);
@@ -86,12 +107,18 @@ export class AddEditComponent extends BaseAddEditComponent {
 
         this.platformUtilsService.eventTrack('Copied ' + aType);
         this.platformUtilsService.copyToClipboard(value, { window: window });
-        this.platformUtilsService.showToast('info', null,
-            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+        this.platformUtilsService.showToast(
+            'info',
+            null,
+            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey))
+        );
 
         if (this.editMode) {
             if (typeI18nKey === 'password') {
-                this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, this.cipherId);
+                this.eventService.collect(
+                    EventType.Cipher_ClientToggledHiddenFieldVisible,
+                    this.cipherId
+                );
             } else if (typeI18nKey === 'securityCode') {
                 this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, this.cipherId);
             } else if (aType === 'H_Field') {
@@ -104,7 +131,9 @@ export class AddEditComponent extends BaseAddEditComponent {
         const confirmed = await super.generatePassword();
         if (confirmed) {
             const options = (await this.passwordGenerationService.getOptions())[0];
-            this.cipher.login.password = await this.passwordGenerationService.generatePassword(options);
+            this.cipher.login.password = await this.passwordGenerationService.generatePassword(
+                options
+            );
         }
         return confirmed;
     }
@@ -117,7 +146,9 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     upgradeOrganization() {
-        this.messagingService.send('upgradeOrganization', { organizationId: this.cipher.organizationId });
+        this.messagingService.send('upgradeOrganization', {
+            organizationId: this.cipher.organizationId,
+        });
     }
 
     viewHistory() {
@@ -131,7 +162,11 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected async totpUpdateCode() {
-        if (this.cipher == null || this.cipher.type !== CipherType.Login || this.cipher.login.totp == null) {
+        if (
+            this.cipher == null ||
+            this.cipher.type !== CipherType.Login ||
+            this.cipher.login.totp == null
+        ) {
             if (this.totpInterval) {
                 window.clearInterval(this.totpInterval);
             }
@@ -142,7 +177,8 @@ export class AddEditComponent extends BaseAddEditComponent {
         if (this.totpCode != null) {
             if (this.totpCode.length > 4) {
                 const half = Math.floor(this.totpCode.length / 2);
-                this.totpCodeFormatted = this.totpCode.substring(0, half) + ' ' + this.totpCode.substring(half);
+                this.totpCodeFormatted =
+                    this.totpCode.substring(0, half) + ' ' + this.totpCode.substring(half);
             } else {
                 this.totpCodeFormatted = this.totpCode;
             }
@@ -155,7 +191,11 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected allowOwnershipAssignment() {
-        return (!this.editMode || this.cloneMode) && this.ownershipOptions != null && this.ownershipOptions.length > 1;
+        return (
+            (!this.editMode || this.cloneMode) &&
+            this.ownershipOptions != null &&
+            this.ownershipOptions.length > 1
+        );
     }
 
     private async totpTick(intervalSeconds: number) {
@@ -163,7 +203,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         const mod = epoch % intervalSeconds;
 
         this.totpSec = intervalSeconds - mod;
-        this.totpDash = +(Math.round((((78.6 / intervalSeconds) * mod) + 'e+2') as any) + 'e-2');
+        this.totpDash = +(Math.round(((78.6 / intervalSeconds) * mod + 'e+2') as any) + 'e-2');
         this.totpLow = this.totpSec <= 7;
         if (mod === 0) {
             await this.totpUpdateCode();

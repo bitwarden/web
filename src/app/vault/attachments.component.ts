@@ -15,9 +15,13 @@ import { AttachmentsComponent as BaseAttachmentsComponent } from 'jslib/angular/
     templateUrl: 'attachments.component.html',
 })
 export class AttachmentsComponent extends BaseAttachmentsComponent {
-    constructor(cipherService: CipherService, i18nService: I18nService,
-        cryptoService: CryptoService, userService: UserService,
-        platformUtilsService: PlatformUtilsService) {
+    constructor(
+        cipherService: CipherService,
+        i18nService: I18nService,
+        cryptoService: CryptoService,
+        userService: UserService,
+        platformUtilsService: PlatformUtilsService
+    ) {
         super(cipherService, i18nService, cryptoService, userService, platformUtilsService, window);
     }
 

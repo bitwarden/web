@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -18,9 +15,14 @@ import { UserBillingComponent } from '../../settings/user-billing.component';
     templateUrl: '../../settings/user-billing.component.html',
 })
 export class OrganizationBillingComponent extends UserBillingComponent implements OnInit {
-    constructor(apiService: ApiService, i18nService: I18nService,
-        analytics: Angulartics2, toasterService: ToasterService,
-        private route: ActivatedRoute, platformUtilsService: PlatformUtilsService) {
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        private route: ActivatedRoute,
+        platformUtilsService: PlatformUtilsService
+    ) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 

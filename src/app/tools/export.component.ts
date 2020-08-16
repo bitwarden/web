@@ -13,10 +13,21 @@ import { ExportComponent as BaseExportComponent } from 'jslib/angular/components
     templateUrl: 'export.component.html',
 })
 export class ExportComponent extends BaseExportComponent {
-    constructor(cryptoService: CryptoService, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, exportService: ExportService,
-        eventService: EventService) {
-        super(cryptoService, i18nService, platformUtilsService, exportService, eventService, window);
+    constructor(
+        cryptoService: CryptoService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        exportService: ExportService,
+        eventService: EventService
+    ) {
+        super(
+            cryptoService,
+            i18nService,
+            platformUtilsService,
+            exportService,
+            eventService,
+            window
+        );
     }
 
     protected saved() {

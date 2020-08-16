@@ -29,20 +29,29 @@ export class BulkActionsComponent {
     @Input() deleted: boolean;
     @Input() organization: Organization;
 
-    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef, static: true }) bulkDeleteModalRef: ViewContainerRef;
-    @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef, static: true }) bulkRestoreModalRef: ViewContainerRef;
-    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef, static: true }) bulkMoveModalRef: ViewContainerRef;
-    @ViewChild('bulkShareTemplate', { read: ViewContainerRef, static: true }) bulkShareModalRef: ViewContainerRef;
+    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef, static: true })
+    bulkDeleteModalRef: ViewContainerRef;
+    @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef, static: true })
+    bulkRestoreModalRef: ViewContainerRef;
+    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef, static: true })
+    bulkMoveModalRef: ViewContainerRef;
+    @ViewChild('bulkShareTemplate', { read: ViewContainerRef, static: true })
+    bulkShareModalRef: ViewContainerRef;
 
-    constructor(private toasterService: ToasterService,
+    constructor(
+        private toasterService: ToasterService,
         private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver) { }
+        private componentFactoryResolver: ComponentFactoryResolver
+    ) {}
 
     bulkDelete() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected')
+            );
             return;
         }
 
@@ -52,7 +61,10 @@ export class BulkActionsComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
+        const childComponent = this.modal.show<BulkDeleteComponent>(
+            BulkDeleteComponent,
+            this.bulkDeleteModalRef
+        );
 
         childComponent.permanent = this.deleted;
         childComponent.cipherIds = selectedIds;
@@ -70,8 +82,11 @@ export class BulkActionsComponent {
     bulkRestore() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected')
+            );
             return;
         }
 
@@ -81,7 +96,10 @@ export class BulkActionsComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.bulkRestoreModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkRestoreComponent>(BulkRestoreComponent, this.bulkRestoreModalRef);
+        const childComponent = this.modal.show<BulkRestoreComponent>(
+            BulkRestoreComponent,
+            this.bulkRestoreModalRef
+        );
 
         childComponent.cipherIds = selectedIds;
         childComponent.onRestored.subscribe(async () => {
@@ -97,8 +115,11 @@ export class BulkActionsComponent {
     bulkShare() {
         const selectedCiphers = this.ciphersComponent.getSelected();
         if (selectedCiphers.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected')
+            );
             return;
         }
 
@@ -108,7 +129,10 @@ export class BulkActionsComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.bulkShareModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkShareComponent>(BulkShareComponent, this.bulkShareModalRef);
+        const childComponent = this.modal.show<BulkShareComponent>(
+            BulkShareComponent,
+            this.bulkShareModalRef
+        );
 
         childComponent.ciphers = selectedCiphers;
         childComponent.onShared.subscribe(async () => {
@@ -124,8 +148,11 @@ export class BulkActionsComponent {
     bulkMove() {
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('nothingSelected')
+            );
             return;
         }
 
@@ -135,7 +162,10 @@ export class BulkActionsComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
+        const childComponent = this.modal.show<BulkMoveComponent>(
+            BulkMoveComponent,
+            this.bulkMoveModalRef
+        );
 
         childComponent.cipherIds = selectedIds;
         childComponent.onMoved.subscribe(async () => {

@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -38,21 +32,29 @@ export class UserConfirmComponent implements OnInit {
 
     private publicKey: Uint8Array = null;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private storageService: StorageService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService,
+        private storageService: StorageService
+    ) {}
 
     async ngOnInit() {
         try {
             const publicKeyResponse = await this.apiService.getUserPublicKey(this.userId);
             if (publicKeyResponse != null) {
                 this.publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
-                const fingerprint = await this.cryptoService.getFingerprint(this.userId, this.publicKey.buffer);
+                const fingerprint = await this.cryptoService.getFingerprint(
+                    this.userId,
+                    this.publicKey.buffer
+                );
                 if (fingerprint != null) {
                     this.fingerprint = fingerprint.join('-');
                 }
             }
-        } catch { }
+        } catch {}
         this.loading = false;
     }
 
@@ -69,9 +71,13 @@ export class UserConfirmComponent implements OnInit {
             this.formPromise = this.doConfirmation();
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Confirmed User' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('hasBeenConfirmed', this.name)
+            );
             this.onConfirmedUser.emit();
-        } catch { }
+        } catch {}
     }
 
     private async doConfirmation() {
@@ -79,6 +85,10 @@ export class UserConfirmComponent implements OnInit {
         const key = await this.cryptoService.rsaEncrypt(orgKey.key, this.publicKey.buffer);
         const request = new OrganizationUserConfirmRequest();
         request.key = key.encryptedString;
-        await this.apiService.postOrganizationUserConfirm(this.organizationId, this.organizationUserId, request);
+        await this.apiService.postOrganizationUserConfirm(
+            this.organizationId,
+            this.organizationUserId,
+            request
+        );
     }
 }

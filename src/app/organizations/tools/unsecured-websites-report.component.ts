@@ -1,16 +1,11 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-import {
-    UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent,
-} from '../../tools/unsecured-websites-report.component';
+import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent } from '../../tools/unsecured-websites-report.component';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
@@ -19,9 +14,13 @@ import { CipherView } from 'jslib/models/view/cipherView';
     templateUrl: '../../tools/unsecured-websites-report.component.html',
 })
 export class UnsecuredWebsitesReportComponent extends BaseUnsecuredWebsitesReportComponent {
-    constructor(cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
-        messagingService: MessagingService, userService: UserService,
-        private route: ActivatedRoute) {
+    constructor(
+        cipherService: CipherService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        userService: UserService,
+        private route: ActivatedRoute
+    ) {
         super(cipherService, componentFactoryResolver, messagingService, userService);
     }
 

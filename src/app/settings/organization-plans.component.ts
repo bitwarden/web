@@ -1,11 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -45,22 +38,28 @@ export class OrganizationPlansComponent implements OnInit {
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
-    loading: boolean = true;
-    selfHosted: boolean = false;
-    ownedBusiness: boolean = false;
-    premiumAccessAddon: boolean = false;
-    additionalStorage: number = 0;
-    additionalSeats: number = 0;
+    loading = true;
+    selfHosted = false;
+    ownedBusiness = false;
+    premiumAccessAddon = false;
+    additionalStorage = 0;
+    additionalSeats = 0;
     name: string;
     billingEmail: string;
     businessName: string;
 
     plans: PlanResponse[];
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private router: Router,
+        private syncService: SyncService
+    ) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -83,9 +82,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlanInterval() {
-        return this.selectedPlan.isAnnual
-            ? 'year'
-            : 'month';
+        return this.selectedPlan.isAnnual ? 'year' : 'month';
     }
 
     get selectableProducts() {
@@ -99,16 +96,20 @@ export class OrganizationPlansComponent implements OnInit {
             validPlans = validPlans.filter((plan) => plan.product !== ProductType.Free);
         }
 
-        validPlans = validPlans
-            .filter((plan) => !plan.legacyYear
-                && !plan.disabled
-                && (plan.isAnnual || plan.product === this.productTypes.Free));
+        validPlans = validPlans.filter(
+            (plan) =>
+                !plan.legacyYear &&
+                !plan.disabled &&
+                (plan.isAnnual || plan.product === this.productTypes.Free)
+        );
 
         return validPlans;
     }
 
     get selectablePlans() {
-        return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
+        return this.plans.filter(
+            (plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product
+        );
     }
 
     additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
@@ -165,8 +166,11 @@ export class OrganizationPlansComponent implements OnInit {
         }
         if (!this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 0;
-        } else if (!this.additionalSeats && !this.selectedPlan.baseSeats &&
-            this.selectedPlan.hasAdditionalSeatsOption) {
+        } else if (
+            !this.additionalSeats &&
+            !this.selectedPlan.baseSeats &&
+            this.selectedPlan.hasAdditionalSeatsOption
+        ) {
             this.additionalSeats = 1;
         }
     }
@@ -181,8 +185,10 @@ export class OrganizationPlansComponent implements OnInit {
     changedCountry() {
         this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
         // Bank Account payments are only available for US customers
-        if (this.paymentComponent.hideBank &&
-            this.paymentComponent.method === PaymentMethodType.BankAccount) {
+        if (
+            this.paymentComponent.hideBank &&
+            this.paymentComponent.method === PaymentMethodType.BankAccount
+        ) {
             this.paymentComponent.method = PaymentMethodType.Card;
             this.paymentComponent.changeMethod();
         }
@@ -198,8 +204,11 @@ export class OrganizationPlansComponent implements OnInit {
             const fileEl = document.getElementById('file') as HTMLInputElement;
             files = fileEl.files;
             if (files == null || files.length === 0) {
-                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                    this.i18nService.t('selectFile'));
+                this.toasterService.popAsync(
+                    'error',
+                    this.i18nService.t('errorOccurred'),
+                    this.i18nService.t('selectFile')
+                );
                 return;
             }
         }
@@ -215,7 +224,9 @@ export class OrganizationPlansComponent implements OnInit {
                     const shareKey = await this.cryptoService.makeShareKey();
                     const key = shareKey[0].encryptedString;
                     const collection = await this.cryptoService.encrypt(
-                        this.i18nService.t('defaultCollection'), shareKey[1]);
+                        this.i18nService.t('defaultCollection'),
+                        shareKey[1]
+                    );
                     const collectionCt = collection.encryptedString;
 
                     if (this.selfHosted) {
@@ -240,8 +251,8 @@ export class OrganizationPlansComponent implements OnInit {
                             request.businessName = this.ownedBusiness ? this.businessName : null;
                             request.additionalSeats = this.additionalSeats;
                             request.additionalStorageGb = this.additionalStorage;
-                            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
-                                this.premiumAccessAddon;
+                            request.premiumAccessAddon =
+                                this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon;
                             request.planType = this.selectedPlan.type;
                             request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
                             request.billingAddressCountry = this.taxComponent.taxInfo.country;
@@ -261,12 +272,18 @@ export class OrganizationPlansComponent implements OnInit {
                     request.businessName = this.ownedBusiness ? this.businessName : null;
                     request.additionalSeats = this.additionalSeats;
                     request.additionalStorageGb = this.additionalStorage;
-                    request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
-                        this.premiumAccessAddon;
+                    request.premiumAccessAddon =
+                        this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon;
                     request.planType = this.selectedPlan.type;
-                    const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
+                    const result = await this.apiService.postOrganizationUpgrade(
+                        this.organizationId,
+                        request
+                    );
                     if (!result.success && result.paymentIntentClientSecret != null) {
-                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+                        await this.paymentComponent.handleStripeCardPayment(
+                            result.paymentIntentClientSecret,
+                            null
+                        );
                     }
                     orgId = this.organizationId;
                 }
@@ -275,12 +292,23 @@ export class OrganizationPlansComponent implements OnInit {
                     await this.apiService.refreshIdentityToken();
                     await this.syncService.fullSync(true);
                     if (this.createOrganization) {
-                        this.analytics.eventTrack.next({ action: 'Created Organization' });
-                        this.toasterService.popAsync('success',
-                            this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
+                        this.analytics.eventTrack.next({
+                            action: 'Created Organization',
+                        });
+                        this.toasterService.popAsync(
+                            'success',
+                            this.i18nService.t('organizationCreated'),
+                            this.i18nService.t('organizationReadyToGo')
+                        );
                     } else {
-                        this.analytics.eventTrack.next({ action: 'Upgraded Organization' });
-                        this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpgraded'));
+                        this.analytics.eventTrack.next({
+                            action: 'Upgraded Organization',
+                        });
+                        this.toasterService.popAsync(
+                            'success',
+                            null,
+                            this.i18nService.t('organizationUpgraded')
+                        );
                     }
                     this.router.navigate(['/organizations/' + orgId]);
                 }
@@ -289,7 +317,6 @@ export class OrganizationPlansComponent implements OnInit {
             const formPromise = doSubmit();
             await formPromise;
             this.onSuccess.emit();
-        } catch { }
+        } catch {}
     }
-
 }

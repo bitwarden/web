@@ -1,9 +1,4 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-    OnInit,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
@@ -13,7 +8,8 @@ import { Utils } from 'jslib/misc/utils';
 
 @Component({
     selector: 'app-avatar',
-    template: '<img [src]="sanitizer.bypassSecurityTrustResourceUrl(src)" title="{{data}}" ' +
+    template:
+        '<img [src]="sanitizer.bypassSecurityTrustResourceUrl(src)" title="{{data}}" ' +
         '[ngClass]="{\'rounded-circle\': circle}">',
 })
 export class AvatarComponent implements OnChanges, OnInit {
@@ -29,8 +25,11 @@ export class AvatarComponent implements OnChanges, OnInit {
 
     src: string;
 
-    constructor(public sanitizer: DomSanitizer, private cryptoFunctionService: CryptoFunctionService,
-        private stateService: StateService) { }
+    constructor(
+        public sanitizer: DomSanitizer,
+        private cryptoFunctionService: CryptoFunctionService,
+        private stateService: StateService
+    ) {}
 
     ngOnInit() {
         if (!this.dynamic) {
@@ -47,9 +46,13 @@ export class AvatarComponent implements OnChanges, OnInit {
     private async generate() {
         const enableGravatars = await this.stateService.get<boolean>('enableGravatars');
         if (enableGravatars && this.email != null) {
-            const hashBytes = await this.cryptoFunctionService.hash(this.email.toLowerCase().trim(), 'md5');
+            const hashBytes = await this.cryptoFunctionService.hash(
+                this.email.toLowerCase().trim(),
+                'md5'
+            );
             const hash = Utils.fromBufferToHex(hashBytes).toLowerCase();
-            this.src = 'https://www.gravatar.com/avatar/' + hash + '?s=' + this.size + '&r=pg&d=retro';
+            this.src =
+                'https://www.gravatar.com/avatar/' + hash + '?s=' + this.size + '&r=pg&d=retro';
         } else {
             let chars: string = null;
             const upperData = this.data.toUpperCase();
@@ -80,7 +83,7 @@ export class AvatarComponent implements OnChanges, OnInit {
         let color = '#';
         for (let i = 0; i < 3; i++) {
             // tslint:disable-next-line
-            const value = (hash >> (i * 8)) & 0xFF;
+            const value = (hash >> (i * 8)) & 0xff;
             color += ('00' + value.toString(16)).substr(-2);
         }
         return color;
@@ -118,8 +121,11 @@ export class AvatarComponent implements OnChanges, OnInit {
         textTag.setAttribute('dy', '0.35em');
         textTag.setAttribute('pointer-events', 'auto');
         textTag.setAttribute('fill', this.textColor);
-        textTag.setAttribute('font-family', '"Open Sans","Helvetica Neue",Helvetica,Arial,' +
-            'sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"');
+        textTag.setAttribute(
+            'font-family',
+            '"Open Sans","Helvetica Neue",Helvetica,Arial,' +
+                'sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"'
+        );
         textTag.textContent = character;
         textTag.style.fontWeight = this.fontWeight.toString();
         textTag.style.fontSize = this.fontSize + 'px';

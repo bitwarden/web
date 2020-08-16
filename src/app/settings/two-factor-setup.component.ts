@@ -31,12 +31,21 @@ import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
     templateUrl: 'two-factor-setup.component.html',
 })
 export class TwoFactorSetupComponent implements OnInit {
-    @ViewChild('recoveryTemplate', { read: ViewContainerRef, static: true }) recoveryModalRef: ViewContainerRef;
-    @ViewChild('authenticatorTemplate', { read: ViewContainerRef, static: true }) authenticatorModalRef: ViewContainerRef;
-    @ViewChild('yubikeyTemplate', { read: ViewContainerRef, static: true }) yubikeyModalRef: ViewContainerRef;
-    @ViewChild('u2fTemplate', { read: ViewContainerRef, static: true }) u2fModalRef: ViewContainerRef;
-    @ViewChild('duoTemplate', { read: ViewContainerRef, static: true }) duoModalRef: ViewContainerRef;
-    @ViewChild('emailTemplate', { read: ViewContainerRef, static: true }) emailModalRef: ViewContainerRef;
+    @ViewChild('recoveryTemplate', { read: ViewContainerRef, static: true })
+    recoveryModalRef: ViewContainerRef;
+    @ViewChild('authenticatorTemplate', {
+        read: ViewContainerRef,
+        static: true,
+    })
+    authenticatorModalRef: ViewContainerRef;
+    @ViewChild('yubikeyTemplate', { read: ViewContainerRef, static: true })
+    yubikeyModalRef: ViewContainerRef;
+    @ViewChild('u2fTemplate', { read: ViewContainerRef, static: true })
+    u2fModalRef: ViewContainerRef;
+    @ViewChild('duoTemplate', { read: ViewContainerRef, static: true })
+    duoModalRef: ViewContainerRef;
+    @ViewChild('emailTemplate', { read: ViewContainerRef, static: true })
+    emailModalRef: ViewContainerRef;
 
     organizationId: string;
     providers: any[] = [];
@@ -46,14 +55,19 @@ export class TwoFactorSetupComponent implements OnInit {
 
     private modal: ModalComponent = null;
 
-    constructor(protected apiService: ApiService, protected userService: UserService,
-        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService,
-        protected policyService: PolicyService) { }
+    constructor(
+        protected apiService: ApiService,
+        protected userService: UserService,
+        protected componentFactoryResolver: ComponentFactoryResolver,
+        protected messagingService: MessagingService,
+        protected policyService: PolicyService
+    ) {}
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();
 
         for (const key in TwoFactorProviders) {
+            // eslint-disable-next-line no-prototype-builtins
             if (!TwoFactorProviders.hasOwnProperty(key)) {
                 continue;
             }
@@ -94,7 +108,10 @@ export class TwoFactorSetupComponent implements OnInit {
     manage(type: TwoFactorProviderType) {
         switch (type) {
             case TwoFactorProviderType.Authenticator:
-                const authComp = this.openModal(this.authenticatorModalRef, TwoFactorAuthenticatorComponent);
+                const authComp = this.openModal(
+                    this.authenticatorModalRef,
+                    TwoFactorAuthenticatorComponent
+                );
                 authComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Authenticator);
                 });

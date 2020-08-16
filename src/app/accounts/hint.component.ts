@@ -12,8 +12,12 @@ import { HintComponent as BaseHintComponent } from 'jslib/angular/components/hin
     templateUrl: 'hint.component.html',
 })
 export class HintComponent extends BaseHintComponent {
-    constructor(router: Router, i18nService: I18nService,
-        apiService: ApiService, platformUtilsService: PlatformUtilsService) {
+    constructor(
+        router: Router,
+        i18nService: I18nService,
+        apiService: ApiService,
+        platformUtilsService: PlatformUtilsService
+    ) {
         super(router, i18nService, apiService, platformUtilsService);
     }
 }

@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnDestroy,
-} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
@@ -17,8 +14,12 @@ import { CollectionsComponent as BaseCollectionsComponent } from 'jslib/angular/
     templateUrl: 'collections.component.html',
 })
 export class CollectionsComponent extends BaseCollectionsComponent implements OnDestroy {
-    constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, cipherService: CipherService) {
+    constructor(
+        collectionService: CollectionService,
+        platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService,
+        cipherService: CipherService
+    ) {
         super(collectionService, platformUtilsService, i18nService, cipherService);
     }
 

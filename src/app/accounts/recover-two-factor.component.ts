@@ -21,10 +21,15 @@ export class RecoverTwoFactorComponent {
     recoveryCode: string;
     formPromise: Promise<any>;
 
-    constructor(private router: Router, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService, private cryptoService: CryptoService,
-        private authService: AuthService) { }
+    constructor(
+        private router: Router,
+        private apiService: ApiService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private i18nService: I18nService,
+        private cryptoService: CryptoService,
+        private authService: AuthService
+    ) {}
 
     async submit() {
         try {
@@ -32,12 +37,19 @@ export class RecoverTwoFactorComponent {
             request.recoveryCode = this.recoveryCode.replace(/\s/g, '').toLowerCase();
             request.email = this.email.trim().toLowerCase();
             const key = await this.authService.makePreloginKey(this.masterPassword, request.email);
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
+            request.masterPasswordHash = await this.cryptoService.hashPassword(
+                this.masterPassword,
+                key
+            );
             this.formPromise = this.apiService.postTwoFactorRecover(request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Recovered 2FA' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('twoStepRecoverDisabled'));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('twoStepRecoverDisabled')
+            );
             this.router.navigate(['/']);
-        } catch { }
+        } catch {}
     }
 }

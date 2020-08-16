@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -27,13 +24,16 @@ export class ChangeKdfComponent implements OnInit {
     kdfOptions: any[] = [];
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private messagingService: MessagingService,
-        private userService: UserService) {
-        this.kdfOptions = [
-            { name: 'PBKDF2 SHA-256', value: KdfType.PBKDF2_SHA256 },
-        ];
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService,
+        private messagingService: MessagingService,
+        private userService: UserService
+    ) {
+        this.kdfOptions = [{ name: 'PBKDF2 SHA-256', value: KdfType.PBKDF2_SHA256 }];
     }
 
     async ngOnInit() {
@@ -51,19 +51,33 @@ export class ChangeKdfComponent implements OnInit {
         const request = new KdfRequest();
         request.kdf = this.kdf;
         request.kdfIterations = this.kdfIterations;
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        request.masterPasswordHash = await this.cryptoService.hashPassword(
+            this.masterPassword,
+            null
+        );
         const email = await this.userService.getEmail();
-        const newKey = await this.cryptoService.makeKey(this.masterPassword, email, this.kdf, this.kdfIterations);
-        request.newMasterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, newKey);
+        const newKey = await this.cryptoService.makeKey(
+            this.masterPassword,
+            email,
+            this.kdf,
+            this.kdfIterations
+        );
+        request.newMasterPasswordHash = await this.cryptoService.hashPassword(
+            this.masterPassword,
+            newKey
+        );
         const newEncKey = await this.cryptoService.remakeEncKey(newKey);
         request.key = newEncKey[1].encryptedString;
         try {
             this.formPromise = this.apiService.postAccountKdf(request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Changed KDF' });
-            this.toasterService.popAsync('success', this.i18nService.t('encKeySettingsChanged'),
-                this.i18nService.t('logBackIn'));
+            this.toasterService.popAsync(
+                'success',
+                this.i18nService.t('encKeySettingsChanged'),
+                this.i18nService.t('logBackIn')
+            );
             this.messagingService.send('logout');
-        } catch { }
+        } catch {}
     }
 }

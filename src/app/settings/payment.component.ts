@@ -1,8 +1,4 @@
-import {
-    Component,
-    Input,
-    OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
@@ -14,7 +10,8 @@ import { WebConstants } from '../../services/webConstants';
 const StripeElementStyle = {
     base: {
         color: '#333333',
-        fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
+        fontFamily:
+            '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
             '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
         fontSize: '14px',
         fontSmoothing: 'antialiased',
@@ -62,13 +59,19 @@ export class PaymentComponent implements OnInit {
     private stripeCardExpiryElement: any = null;
     private stripeCardCvcElement: any = null;
 
-    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
+    constructor(
+        private platformUtilsService: PlatformUtilsService,
+        private apiService: ApiService
+    ) {
         this.stripeScript = window.document.createElement('script');
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(this.platformUtilsService.isDev() ?
-                WebConstants.stripeTestKey : WebConstants.stripeLiveKey);
+            this.stripe = (window as any).Stripe(
+                this.platformUtilsService.isDev()
+                    ? WebConstants.stripeTestKey
+                    : WebConstants.stripeLiveKey
+            );
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
         };
@@ -96,7 +99,7 @@ export class PaymentComponent implements OnInit {
                 if (el.src != null && el.src.indexOf('stripe') > -1) {
                     try {
                         window.document.body.removeChild(el);
-                    } catch { }
+                    } catch {}
                 }
             });
         }, 500);
@@ -107,14 +110,16 @@ export class PaymentComponent implements OnInit {
                     if (el.src != null && el.src.indexOf('paypal') > -1) {
                         try {
                             window.document.head.removeChild(el);
-                        } catch { }
+                        } catch {}
                     }
                 });
-                const btStylesheet = window.document.head.querySelector('#braintree-dropin-stylesheet');
+                const btStylesheet = window.document.head.querySelector(
+                    '#braintree-dropin-stylesheet'
+                );
                 if (btStylesheet != null) {
                     try {
                         window.document.head.removeChild(btStylesheet);
-                    } catch { }
+                    } catch {}
                 }
             }, 500);
         }
@@ -125,28 +130,32 @@ export class PaymentComponent implements OnInit {
 
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
-                (window as any).braintree.dropin.create({
-                    authorization: this.platformUtilsService.isDev() ?
-                        WebConstants.btSandboxKey : WebConstants.btProductionKey,
-                    container: '#bt-dropin-container',
-                    paymentOptionPriority: ['paypal'],
-                    paypal: {
-                        flow: 'vault',
-                        buttonStyle: {
-                            label: 'pay',
-                            size: 'medium',
-                            shape: 'pill',
-                            color: 'blue',
+                (window as any).braintree.dropin.create(
+                    {
+                        authorization: this.platformUtilsService.isDev()
+                            ? WebConstants.btSandboxKey
+                            : WebConstants.btProductionKey,
+                        container: '#bt-dropin-container',
+                        paymentOptionPriority: ['paypal'],
+                        paypal: {
+                            flow: 'vault',
+                            buttonStyle: {
+                                label: 'pay',
+                                size: 'medium',
+                                shape: 'pill',
+                                color: 'blue',
+                            },
                         },
                     },
-                }, (createErr: any, instance: any) => {
-                    if (createErr != null) {
-                        // tslint:disable-next-line
-                        console.error(createErr);
-                        return;
+                    (createErr: any, instance: any) => {
+                        if (createErr != null) {
+                            // tslint:disable-next-line
+                            console.error(createErr);
+                            return;
+                        }
+                        this.btInstance = instance;
                     }
-                    this.btInstance = instance;
-                });
+                );
             }, 250);
         } else {
             this.setStripeElement();
@@ -158,19 +167,31 @@ export class PaymentComponent implements OnInit {
             if (this.method === PaymentMethodType.Credit) {
                 resolve([null, this.method]);
             } else if (this.method === PaymentMethodType.PayPal) {
-                this.btInstance.requestPaymentMethod().then((payload: any) => {
-                    resolve([payload.nonce, this.method]);
-                }).catch((err: any) => {
-                    reject(err.message);
-                });
-            } else if (this.method === PaymentMethodType.Card || this.method === PaymentMethodType.BankAccount) {
+                this.btInstance
+                    .requestPaymentMethod()
+                    .then((payload: any) => {
+                        resolve([payload.nonce, this.method]);
+                    })
+                    .catch((err: any) => {
+                        reject(err.message);
+                    });
+            } else if (
+                this.method === PaymentMethodType.Card ||
+                this.method === PaymentMethodType.BankAccount
+            ) {
                 if (this.method === PaymentMethodType.Card) {
-                    this.apiService.postSetupPayment().then((clientSecret) =>
-                        this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement))
+                    this.apiService
+                        .postSetupPayment()
+                        .then((clientSecret) =>
+                            this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement)
+                        )
                         .then((result: any) => {
                             if (result.error) {
                                 reject(result.error.message);
-                            } else if (result.setupIntent && result.setupIntent.status === 'succeeded') {
+                            } else if (
+                                result.setupIntent &&
+                                result.setupIntent.status === 'succeeded'
+                            ) {
                                 resolve([result.setupIntent.payment_method, this.method]);
                             } else {
                                 reject();
@@ -191,15 +212,19 @@ export class PaymentComponent implements OnInit {
         });
     }
 
-    handleStripeCardPayment(clientSecret: string, successCallback: () => Promise<any>): Promise<any> {
+    handleStripeCardPayment(
+        clientSecret: string,
+        successCallback: () => Promise<any>
+    ): Promise<any> {
         return new Promise((resolve, reject) => {
             if (this.showMethods && this.stripeCardNumberElement == null) {
                 reject();
                 return;
             }
-            const handleCardPayment = () => this.showMethods ?
-                this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement) :
-                this.stripe.handleCardSetup(clientSecret);
+            const handleCardPayment = () =>
+                this.showMethods
+                    ? this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement)
+                    : this.stripe.handleCardSetup(clientSecret);
             return handleCardPayment().then(async (result: any) => {
                 if (result.error) {
                     reject(result.error.message);

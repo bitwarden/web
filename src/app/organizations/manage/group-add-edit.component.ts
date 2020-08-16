@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -32,7 +26,7 @@ export class GroupAddEditComponent implements OnInit {
     @Output() onDeletedGroup = new EventEmitter();
 
     loading = true;
-    editMode: boolean = false;
+    editMode = false;
     title: string;
     name: string;
     externalId: string;
@@ -41,9 +35,14 @@ export class GroupAddEditComponent implements OnInit {
     formPromise: Promise<any>;
     deletePromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private collectionService: CollectionService, private platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private collectionService: CollectionService,
+        private platformUtilsService: PlatformUtilsService
+    ) {}
 
     async ngOnInit() {
         this.editMode = this.loading = this.groupId != null;
@@ -53,7 +52,10 @@ export class GroupAddEditComponent implements OnInit {
             this.editMode = true;
             this.title = this.i18nService.t('editGroup');
             try {
-                const group = await this.apiService.getGroupDetails(this.organizationId, this.groupId);
+                const group = await this.apiService.getGroupDetails(
+                    this.organizationId,
+                    this.groupId
+                );
                 this.access = group.accessAll ? 'all' : 'selected';
                 this.name = group.name;
                 this.externalId = group.externalId;
@@ -67,7 +69,7 @@ export class GroupAddEditComponent implements OnInit {
                         }
                     });
                 }
-            } catch { }
+            } catch {}
         } else {
             this.title = this.i18nService.t('addGroup');
         }
@@ -77,8 +79,9 @@ export class GroupAddEditComponent implements OnInit {
 
     async loadCollections() {
         const response = await this.apiService.getCollections(this.organizationId);
-        const collections = response.data.map((r) =>
-            new Collection(new CollectionData(r as CollectionDetailsResponse)));
+        const collections = response.data.map(
+            (r) => new Collection(new CollectionData(r as CollectionDetailsResponse))
+        );
         this.collections = await this.collectionService.decryptMany(collections);
     }
 
@@ -99,22 +102,32 @@ export class GroupAddEditComponent implements OnInit {
         request.externalId = this.externalId;
         request.accessAll = this.access === 'all';
         if (!request.accessAll) {
-            request.collections = this.collections.filter((c) => (c as any).checked)
+            request.collections = this.collections
+                .filter((c) => (c as any).checked)
                 .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
         try {
             if (this.editMode) {
-                this.formPromise = this.apiService.putGroup(this.organizationId, this.groupId, request);
+                this.formPromise = this.apiService.putGroup(
+                    this.organizationId,
+                    this.groupId,
+                    request
+                );
             } else {
                 this.formPromise = this.apiService.postGroup(this.organizationId, request);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited Group' : 'Created Group' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t(this.editMode ? 'editedGroupId' : 'createdGroupId', this.name));
+            this.analytics.eventTrack.next({
+                action: this.editMode ? 'Edited Group' : 'Created Group',
+            });
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t(this.editMode ? 'editedGroupId' : 'createdGroupId', this.name)
+            );
             this.onSavedGroup.emit();
-        } catch { }
+        } catch {}
     }
 
     async delete() {
@@ -123,8 +136,12 @@ export class GroupAddEditComponent implements OnInit {
         }
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteGroupConfirmation'), this.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('deleteGroupConfirmation'),
+            this.name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -133,8 +150,12 @@ export class GroupAddEditComponent implements OnInit {
             this.deletePromise = this.apiService.deleteGroup(this.organizationId, this.groupId);
             await this.deletePromise;
             this.analytics.eventTrack.next({ action: 'Deleted Group' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', this.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('deletedGroupId', this.name)
+            );
             this.onDeletedGroup.emit();
-        } catch { }
+        } catch {}
     }
 }

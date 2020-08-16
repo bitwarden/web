@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -37,10 +34,15 @@ export class OrganizationSubscriptionComponent implements OnInit {
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private messagingService: MessagingService,
-        private route: ActivatedRoute) {
+    constructor(
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private messagingService: MessagingService,
+        private route: ActivatedRoute
+    ) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -66,8 +68,12 @@ export class OrganizationSubscriptionComponent implements OnInit {
             return;
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('reinstateConfirmation'),
-            this.i18nService.t('reinstateSubscription'), this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('reinstateConfirmation'),
+            this.i18nService.t('reinstateSubscription'),
+            this.i18nService.t('yes'),
+            this.i18nService.t('cancel')
+        );
         if (!confirmed) {
             return;
         }
@@ -78,7 +84,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
             this.analytics.eventTrack.next({ action: 'Reinstated Plan' });
             this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
             this.load();
-        } catch { }
+        } catch {}
     }
 
     async cancel() {
@@ -86,8 +92,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
             return;
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('cancelConfirmation'),
-            this.i18nService.t('cancelSubscription'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('cancelConfirmation'),
+            this.i18nService.t('cancelSubscription'),
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return;
         }
@@ -96,9 +107,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
             this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
             this.analytics.eventTrack.next({ action: 'Canceled Plan' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('canceledSubscription')
+            );
             this.load();
-        } catch { }
+        } catch {}
     }
 
     async changePlan() {
@@ -106,14 +121,18 @@ export class OrganizationSubscriptionComponent implements OnInit {
             this.showChangePlan = !this.showChangePlan;
             return;
         }
-        const contactSupport = await this.platformUtilsService.showDialog(this.i18nService.t('changeBillingPlanDesc'),
-            this.i18nService.t('changeBillingPlan'), this.i18nService.t('contactSupport'), this.i18nService.t('close'));
+        const contactSupport = await this.platformUtilsService.showDialog(
+            this.i18nService.t('changeBillingPlanDesc'),
+            this.i18nService.t('changeBillingPlan'),
+            this.i18nService.t('contactSupport'),
+            this.i18nService.t('close')
+        );
         if (contactSupport) {
             this.platformUtilsService.launchUri('https://bitwarden.com/contact');
         }
     }
 
-    closeChangePlan(changed: boolean) {
+    closeChangePlan() {
         this.showChangePlan = false;
     }
 
@@ -165,12 +184,19 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get isExpired() {
-        return this.sub != null && this.sub.expiration != null &&
-            new Date(this.sub.expiration) < new Date();
+        return (
+            this.sub != null &&
+            this.sub.expiration != null &&
+            new Date(this.sub.expiration) < new Date()
+        );
     }
 
     get subscriptionMarkedForCancel() {
-        return this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate;
+        return (
+            this.subscription != null &&
+            !this.subscription.cancelled &&
+            this.subscription.cancelAtEndDate
+        );
     }
 
     get subscription() {
@@ -182,8 +208,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get storagePercentage() {
-        return this.sub != null && this.sub.maxStorageGb ?
-            +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2) : 0;
+        return this.sub != null && this.sub.maxStorageGb
+            ? +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2)
+            : 0;
     }
 
     get storageProgressWidth() {
@@ -208,7 +235,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get canDownloadLicense() {
-        return (this.sub.planType !== PlanType.Free && this.subscription == null) ||
-            (this.subscription != null && !this.subscription.cancelled);
+        return (
+            (this.sub.planType !== PlanType.Free && this.subscription == null) ||
+            (this.subscription != null && !this.subscription.cancelled)
+        );
     }
 }

@@ -9,7 +9,7 @@ import { EventResponse } from 'jslib/models/response/eventResponse';
 
 @Injectable()
 export class EventService {
-    constructor(private i18nService: I18nService) { }
+    constructor(private i18nService: I18nService) {}
 
     getDefaultDateFilters() {
         const d = new Date();
@@ -73,7 +73,10 @@ export class EventService {
                 msg = this.i18nService.t('editedItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_Deleted:
-                msg = this.i18nService.t('permanentlyDeletedItemId', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'permanentlyDeletedItemId',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_SoftDeleted:
                 msg = this.i18nService.t('deletedItemId', this.formatCipherId(ev, options));
@@ -82,10 +85,16 @@ export class EventService {
                 msg = this.i18nService.t('restoredItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_AttachmentCreated:
-                msg = this.i18nService.t('createdAttachmentForItem', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'createdAttachmentForItem',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_AttachmentDeleted:
-                msg = this.i18nService.t('deletedAttachmentForItem', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'deletedAttachmentForItem',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_Shared:
                 msg = this.i18nService.t('sharedItemId', this.formatCipherId(ev, options));
@@ -97,25 +106,40 @@ export class EventService {
                 msg = this.i18nService.t('viewedPasswordItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_ClientToggledHiddenFieldVisible:
-                msg = this.i18nService.t('viewedHiddenFieldItemId', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'viewedHiddenFieldItemId',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_ClientToggledCardCodeVisible:
-                msg = this.i18nService.t('viewedSecurityCodeItemId', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'viewedSecurityCodeItemId',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_ClientCopiedHiddenField:
-                msg = this.i18nService.t('copiedHiddenFieldItemId', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'copiedHiddenFieldItemId',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_ClientCopiedPassword:
                 msg = this.i18nService.t('copiedPasswordItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_ClientCopiedCardCode:
-                msg = this.i18nService.t('copiedSecurityCodeItemId', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'copiedSecurityCodeItemId',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             case EventType.Cipher_ClientAutofilled:
                 msg = this.i18nService.t('autofilledItemId', this.formatCipherId(ev, options));
                 break;
             case EventType.Cipher_UpdatedCollections:
-                msg = this.i18nService.t('editedCollectionsForItem', this.formatCipherId(ev, options));
+                msg = this.i18nService.t(
+                    'editedCollectionsForItem',
+                    this.formatCipherId(ev, options)
+                );
                 break;
             // Collection
             case EventType.Collection_Created:
@@ -212,7 +236,10 @@ export class EventService {
             case DeviceType.IEBrowser:
                 return ['fa-globe', this.i18nService.t('webVault') + ' - IE'];
             case DeviceType.UnknownBrowser:
-                return ['fa-globe', this.i18nService.t('webVault') + ' - ' + this.i18nService.t('unknown')];
+                return [
+                    'fa-globe',
+                    this.i18nService.t('webVault') + ' - ' + this.i18nService.t('unknown'),
+                ];
             default:
                 return ['fa-globe', this.i18nService.t('unknown')];
         }
@@ -224,30 +251,50 @@ export class EventService {
             return '<code>' + shortId + '</code>';
         }
         const a = this.makeAnchor(shortId);
-        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/vault?search=' + shortId +
-            '&viewEvents=' + ev.cipherId);
+        a.setAttribute(
+            'href',
+            '#/organizations/' +
+                ev.organizationId +
+                '/vault?search=' +
+                shortId +
+                '&viewEvents=' +
+                ev.cipherId
+        );
         return a.outerHTML;
     }
 
     private formatGroupId(ev: EventResponse) {
         const shortId = this.getShortId(ev.groupId);
         const a = this.makeAnchor(shortId);
-        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/groups?search=' + shortId);
+        a.setAttribute(
+            'href',
+            '#/organizations/' + ev.organizationId + '/manage/groups?search=' + shortId
+        );
         return a.outerHTML;
     }
 
     private formatCollectionId(ev: EventResponse) {
         const shortId = this.getShortId(ev.collectionId);
         const a = this.makeAnchor(shortId);
-        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/collections?search=' + shortId);
+        a.setAttribute(
+            'href',
+            '#/organizations/' + ev.organizationId + '/manage/collections?search=' + shortId
+        );
         return a.outerHTML;
     }
 
     private formatOrgUserId(ev: EventResponse) {
         const shortId = this.getShortId(ev.organizationUserId);
         const a = this.makeAnchor(shortId);
-        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/people?search=' + shortId +
-            '&viewEvents=' + ev.organizationUserId);
+        a.setAttribute(
+            'href',
+            '#/organizations/' +
+                ev.organizationId +
+                '/manage/people?search=' +
+                shortId +
+                '&viewEvents=' +
+                ev.organizationUserId
+        );
         return a.outerHTML;
     }
 
@@ -263,11 +310,17 @@ export class EventService {
     }
 
     private toDateTimeLocalString(date: Date) {
-        return date.getFullYear() +
-            '-' + this.pad(date.getMonth() + 1) +
-            '-' + this.pad(date.getDate()) +
-            'T' + this.pad(date.getHours()) +
-            ':' + this.pad(date.getMinutes());
+        return (
+            date.getFullYear() +
+            '-' +
+            this.pad(date.getMonth() + 1) +
+            '-' +
+            this.pad(date.getDate()) +
+            'T' +
+            this.pad(date.getHours()) +
+            ':' +
+            this.pad(date.getMinutes())
+        );
     }
 
     private pad(num: number) {

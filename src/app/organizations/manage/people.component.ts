@@ -5,10 +5,7 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -43,10 +40,14 @@ import { UserGroupsComponent } from './user-groups.component';
     templateUrl: 'people.component.html',
 })
 export class PeopleComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
-    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
-    @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true })
+    addEditModalRef: ViewContainerRef;
+    @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true })
+    groupsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true })
+    eventsModalRef: ViewContainerRef;
+    @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true })
+    confirmModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -68,19 +69,29 @@ export class PeopleComponent implements OnInit {
     private modal: ModalComponent = null;
     private allUsers: OrganizationUserUserDetailsResponse[];
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private userService: UserService, private router: Router,
-        private storageService: StorageService, private searchService: SearchService) { }
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private i18nService: I18nService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private platformUtilsService: PlatformUtilsService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService,
+        private userService: UserService,
+        private router: Router,
+        private storageService: StorageService,
+        private searchService: SearchService
+    ) {}
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
             if (!organization.isAdmin) {
-                this.router.navigate(['../collections'], { relativeTo: this.route });
+                this.router.navigate(['../collections'], {
+                    relativeTo: this.route,
+                });
                 return;
             }
             this.accessEvents = organization.useEvents;
@@ -91,7 +102,10 @@ export class PeopleComponent implements OnInit {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
                     const user = this.users.filter((u) => u.id === qParams.viewEvents);
-                    if (user.length > 0 && user[0].status === OrganizationUserStatusType.Confirmed) {
+                    if (
+                        user.length > 0 &&
+                        user[0].status === OrganizationUserStatusType.Confirmed
+                    ) {
                         this.events(user[0]);
                     }
                 }
@@ -138,7 +152,9 @@ export class PeopleComponent implements OnInit {
             pagedSize = this.pagedUsersCount;
         }
         if (this.users.length > pagedLength) {
-            this.pagedUsers = this.pagedUsers.concat(this.users.slice(pagedLength, pagedLength + pagedSize));
+            this.pagedUsers = this.pagedUsers.concat(
+                this.users.slice(pagedLength, pagedLength + pagedSize)
+            );
         }
         this.pagedUsersCount = this.pagedUsers.length;
         this.didScroll = this.pagedUsers.length > this.pageSize;
@@ -149,23 +165,32 @@ export class PeopleComponent implements OnInit {
     }
 
     get invitedCount() {
-        return this.statusMap.has(OrganizationUserStatusType.Invited) ?
-            this.statusMap.get(OrganizationUserStatusType.Invited).length : 0;
+        return this.statusMap.has(OrganizationUserStatusType.Invited)
+            ? this.statusMap.get(OrganizationUserStatusType.Invited).length
+            : 0;
     }
 
     get acceptedCount() {
-        return this.statusMap.has(OrganizationUserStatusType.Accepted) ?
-            this.statusMap.get(OrganizationUserStatusType.Accepted).length : 0;
+        return this.statusMap.has(OrganizationUserStatusType.Accepted)
+            ? this.statusMap.get(OrganizationUserStatusType.Accepted).length
+            : 0;
     }
 
     get confirmedCount() {
-        return this.statusMap.has(OrganizationUserStatusType.Confirmed) ?
-            this.statusMap.get(OrganizationUserStatusType.Confirmed).length : 0;
+        return this.statusMap.has(OrganizationUserStatusType.Confirmed)
+            ? this.statusMap.get(OrganizationUserStatusType.Confirmed).length
+            : 0;
     }
 
     get showConfirmUsers(): boolean {
-        return this.allUsers != null && this.statusMap != null && this.allUsers.length > 1 &&
-            this.confirmedCount > 0 && this.confirmedCount < 3 && this.acceptedCount > 0;
+        return (
+            this.allUsers != null &&
+            this.statusMap != null &&
+            this.allUsers.length > 1 &&
+            this.confirmedCount > 0 &&
+            this.confirmedCount < 3 &&
+            this.acceptedCount > 0
+        );
     }
 
     edit(user: OrganizationUserUserDetailsResponse) {
@@ -176,7 +201,9 @@ export class PeopleComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.addEditModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<UserAddEditComponent>(
-            UserAddEditComponent, this.addEditModalRef);
+            UserAddEditComponent,
+            this.addEditModalRef
+        );
 
         childComponent.name = user != null ? user.name || user.email : null;
         childComponent.organizationId = this.organizationId;
@@ -207,7 +234,9 @@ export class PeopleComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.groupsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<UserGroupsComponent>(
-            UserGroupsComponent, this.groupsModalRef);
+            UserGroupsComponent,
+            this.groupsModalRef
+        );
 
         childComponent.name = user != null ? user.name || user.email : null;
         childComponent.organizationId = this.organizationId;
@@ -223,8 +252,12 @@ export class PeopleComponent implements OnInit {
 
     async remove(user: OrganizationUserUserDetailsResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), user.name || user.email,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('removeUserConfirmation'),
+            user.name || user.email,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -232,19 +265,30 @@ export class PeopleComponent implements OnInit {
         try {
             await this.apiService.deleteOrganizationUser(this.organizationId, user.id);
             this.analytics.eventTrack.next({ action: 'Deleted User' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('removedUserId', user.name || user.email)
+            );
             this.removeUser(user);
-        } catch { }
+        } catch {}
     }
 
     async reinvite(user: OrganizationUserUserDetailsResponse) {
         if (this.actionPromise != null) {
             return;
         }
-        this.actionPromise = this.apiService.postOrganizationUserReinvite(this.organizationId, user.id);
+        this.actionPromise = this.apiService.postOrganizationUserReinvite(
+            this.organizationId,
+            user.id
+        );
         await this.actionPromise;
         this.analytics.eventTrack.next({ action: 'Reinvited User' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+        this.toasterService.popAsync(
+            'success',
+            null,
+            this.i18nService.t('hasBeenReinvited', user.name || user.email)
+        );
         this.actionPromise = null;
     }
 
@@ -262,7 +306,9 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+        const autoConfirm = await this.storageService.get<boolean>(
+            ConstantsService.autoConfirmFingerprints
+        );
         if (autoConfirm == null || !autoConfirm) {
             if (this.modal != null) {
                 this.modal.close();
@@ -271,7 +317,9 @@ export class PeopleComponent implements OnInit {
             const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
             this.modal = this.confirmModalRef.createComponent(factory).instance;
             const childComponent = this.modal.show<UserConfirmComponent>(
-                UserConfirmComponent, this.confirmModalRef);
+                UserConfirmComponent,
+                this.confirmModalRef
+            );
 
             childComponent.name = user != null ? user.name || user.email : null;
             childComponent.organizationId = this.organizationId;
@@ -292,7 +340,11 @@ export class PeopleComponent implements OnInit {
         await this.actionPromise;
         updateUser(this);
         this.analytics.eventTrack.next({ action: 'Confirmed User' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
+        this.toasterService.popAsync(
+            'success',
+            null,
+            this.i18nService.t('hasBeenConfirmed', user.name || user.email)
+        );
         this.actionPromise = null;
     }
 
@@ -304,7 +356,9 @@ export class PeopleComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.eventsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<EntityEventsComponent>(
-            EntityEventsComponent, this.eventsModalRef);
+            EntityEventsComponent,
+            this.eventsModalRef
+        );
 
         childComponent.name = user.name || user.email;
         childComponent.organizationId = this.organizationId;
@@ -340,9 +394,13 @@ export class PeopleComponent implements OnInit {
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
         try {
             // tslint:disable-next-line
-            console.log('User\'s fingerprint: ' +
-                (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
-        } catch { }
+            console.log(
+                "User's fingerprint: " +
+                    (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join(
+                        '-'
+                    )
+            );
+        } catch {}
         const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
         const request = new OrganizationUserConfirmRequest();
         request.key = key.encryptedString;

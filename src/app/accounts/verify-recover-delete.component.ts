@@ -1,11 +1,5 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -26,10 +20,14 @@ export class VerifyRecoverDeleteComponent implements OnInit {
     private userId: string;
     private token: string;
 
-    constructor(private router: Router, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService, private route: ActivatedRoute) {
-    }
+    constructor(
+        private router: Router,
+        private apiService: ApiService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private i18nService: I18nService,
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         let fired = false;
@@ -54,9 +52,12 @@ export class VerifyRecoverDeleteComponent implements OnInit {
             this.formPromise = this.apiService.postAccountRecoverDeleteToken(request);
             await this.formPromise;
             this.analytics.eventTrack.next({ action: 'Recovered Delete' });
-            this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
-                this.i18nService.t('accountDeletedDesc'));
+            this.toasterService.popAsync(
+                'success',
+                this.i18nService.t('accountDeleted'),
+                this.i18nService.t('accountDeletedDesc')
+            );
             this.router.navigate(['/']);
-        } catch { }
+        } catch {}
     }
 }

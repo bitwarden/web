@@ -1,8 +1,4 @@
-import {
-    Component,
-    OnInit,
-    ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -35,11 +31,18 @@ export class PremiumComponent implements OnInit {
 
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private tokenService: TokenService,
-        private router: Router, private messagingService: MessagingService,
-        private syncService: SyncService, private userService: UserService) {
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService,
+        private tokenService: TokenService,
+        private router: Router,
+        private messagingService: MessagingService,
+        private syncService: SyncService,
+        private userService: UserService
+    ) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -58,8 +61,11 @@ export class PremiumComponent implements OnInit {
             const fileEl = document.getElementById('file') as HTMLInputElement;
             files = fileEl.files;
             if (files == null || files.length === 0) {
-                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                    this.i18nService.t('selectFile'));
+                this.toasterService.popAsync(
+                    'error',
+                    this.i18nService.t('errorOccurred'),
+                    this.i18nService.t('selectFile')
+                );
                 return;
             }
         }
@@ -67,8 +73,11 @@ export class PremiumComponent implements OnInit {
         try {
             if (this.selfHosted) {
                 if (!this.tokenService.getEmailVerified()) {
-                    this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                        this.i18nService.t('verifyEmailFirst'));
+                    this.toasterService.popAsync(
+                        'error',
+                        this.i18nService.t('errorOccurred'),
+                        this.i18nService.t('verifyEmailFirst')
+                    );
                     return;
                 }
 
@@ -78,27 +87,35 @@ export class PremiumComponent implements OnInit {
                     return this.finalizePremium();
                 });
             } else {
-                this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
-                    const fd = new FormData();
-                    fd.append('paymentMethodType', result[1].toString());
-                    if (result[0] != null) {
-                        fd.append('paymentToken', result[0]);
-                    }
-                    fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
-                    fd.append('country', this.taxInfoComponent.taxInfo.country);
-                    fd.append('postalCode', this.taxInfoComponent.taxInfo.postalCode);
-                    return this.apiService.postPremium(fd);
-                }).then((paymentResponse) => {
-                    if (!paymentResponse.success && paymentResponse.paymentIntentClientSecret != null) {
-                        return this.paymentComponent.handleStripeCardPayment(paymentResponse.paymentIntentClientSecret,
-                            () => this.finalizePremium());
-                    } else {
-                        return this.finalizePremium();
-                    }
-                });
+                this.formPromise = this.paymentComponent
+                    .createPaymentToken()
+                    .then((result) => {
+                        const fd = new FormData();
+                        fd.append('paymentMethodType', result[1].toString());
+                        if (result[0] != null) {
+                            fd.append('paymentToken', result[0]);
+                        }
+                        fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
+                        fd.append('country', this.taxInfoComponent.taxInfo.country);
+                        fd.append('postalCode', this.taxInfoComponent.taxInfo.postalCode);
+                        return this.apiService.postPremium(fd);
+                    })
+                    .then((paymentResponse) => {
+                        if (
+                            !paymentResponse.success &&
+                            paymentResponse.paymentIntentClientSecret != null
+                        ) {
+                            return this.paymentComponent.handleStripeCardPayment(
+                                paymentResponse.paymentIntentClientSecret,
+                                () => this.finalizePremium()
+                            );
+                        } else {
+                            return this.finalizePremium();
+                        }
+                    });
             }
             await this.formPromise;
-        } catch { }
+        } catch {}
     }
 
     async finalizePremium() {

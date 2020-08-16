@@ -1,9 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -29,19 +24,28 @@ export class TwoFactorVerifyComponent {
 
     private masterPasswordHash: string;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private toasterService: ToasterService,
+        private cryptoService: CryptoService
+    ) {}
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('masterPassRequired')
+            );
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = this.masterPasswordHash =
-            await this.cryptoService.hashPassword(this.masterPassword, null);
+        request.masterPasswordHash = this.masterPasswordHash = await this.cryptoService.hashPassword(
+            this.masterPassword,
+            null
+        );
 
         try {
             switch (this.type) {
@@ -51,7 +55,10 @@ export class TwoFactorVerifyComponent {
                 case TwoFactorProviderType.Duo:
                 case TwoFactorProviderType.OrganizationDuo:
                     if (this.organizationId != null) {
-                        this.formPromise = this.apiService.getTwoFactorOrganizationDuo(this.organizationId, request);
+                        this.formPromise = this.apiService.getTwoFactorOrganizationDuo(
+                            this.organizationId,
+                            request
+                        );
                     } else {
                         this.formPromise = this.apiService.getTwoFactorDuo(request);
                     }
@@ -75,6 +82,6 @@ export class TwoFactorVerifyComponent {
                 response: response,
                 masterPasswordHash: this.masterPasswordHash,
             });
-        } catch { }
+        } catch {}
     }
 }

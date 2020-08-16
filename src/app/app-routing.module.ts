@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-    RouterModule,
-    Routes,
-} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
@@ -32,28 +29,16 @@ import { AccountComponent as OrgAccountComponent } from './organizations/setting
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
 import { SettingsComponent as OrgSettingsComponent } from './organizations/settings/settings.component';
-import {
-    TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
-} from './organizations/settings/two-factor-setup.component';
+import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from './organizations/settings/two-factor-setup.component';
 
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
-import {
-    ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
-} from './organizations/tools/exposed-passwords-report.component';
+import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from './organizations/tools/exposed-passwords-report.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
-import {
-    InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
-} from './organizations/tools/inactive-two-factor-report.component';
-import {
-    ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent,
-} from './organizations/tools/reused-passwords-report.component';
+import { InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent } from './organizations/tools/inactive-two-factor-report.component';
+import { ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent } from './organizations/tools/reused-passwords-report.component';
 import { ToolsComponent as OrgToolsComponent } from './organizations/tools/tools.component';
-import {
-    UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent,
-} from './organizations/tools/unsecured-websites-report.component';
-import {
-    WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
-} from './organizations/tools/weak-passwords-report.component';
+import { UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent } from './organizations/tools/unsecured-websites-report.component';
+import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from './organizations/tools/weak-passwords-report.component';
 
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
@@ -94,25 +79,38 @@ const routes: Routes = [
         path: '',
         component: FrontendLayoutComponent,
         children: [
-            { path: '', pathMatch: 'full', component: LoginComponent, canActivate: [UnauthGuardService] },
-            { path: '2fa', component: TwoFactorComponent, canActivate: [UnauthGuardService] },
             {
-                path: 'register', component: RegisterComponent,
+                path: '',
+                pathMatch: 'full',
+                component: LoginComponent,
+                canActivate: [UnauthGuardService],
+            },
+            {
+                path: '2fa',
+                component: TwoFactorComponent,
+                canActivate: [UnauthGuardService],
+            },
+            {
+                path: 'register',
+                component: RegisterComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'createAccount' },
             },
             {
-                path: 'sso', component: SsoComponent,
+                path: 'sso',
+                component: SsoComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'createAccount' }, // TODO
             },
             {
-                path: 'change-password', component: ChangePasswordComponent,
+                path: 'change-password',
+                component: ChangePasswordComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'setMasterPassword' },
             },
             {
-                path: 'hint', component: HintComponent,
+                path: 'hint',
+                component: HintComponent,
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'passwordHint' },
             },
@@ -149,24 +147,56 @@ const routes: Routes = [
         component: UserLayoutComponent,
         canActivate: [AuthGuardService],
         children: [
-            { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
+            {
+                path: 'vault',
+                component: VaultComponent,
+                data: { titleId: 'myVault' },
+            },
             {
                 path: 'settings',
                 component: SettingsComponent,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
-                    { path: 'account', component: AccountComponent, data: { titleId: 'myAccount' } },
-                    { path: 'options', component: OptionsComponent, data: { titleId: 'options' } },
-                    { path: 'domain-rules', component: DomainRulesComponent, data: { titleId: 'domainRules' } },
-                    { path: 'two-factor', component: TwoFactorSetupComponent, data: { titleId: 'twoStepLogin' } },
-                    { path: 'premium', component: PremiumComponent, data: { titleId: 'goPremium' } },
-                    { path: 'billing', component: UserBillingComponent, data: { titleId: 'billing' } },
+                    {
+                        path: 'account',
+                        component: AccountComponent,
+                        data: { titleId: 'myAccount' },
+                    },
+                    {
+                        path: 'options',
+                        component: OptionsComponent,
+                        data: { titleId: 'options' },
+                    },
+                    {
+                        path: 'domain-rules',
+                        component: DomainRulesComponent,
+                        data: { titleId: 'domainRules' },
+                    },
+                    {
+                        path: 'two-factor',
+                        component: TwoFactorSetupComponent,
+                        data: { titleId: 'twoStepLogin' },
+                    },
+                    {
+                        path: 'premium',
+                        component: PremiumComponent,
+                        data: { titleId: 'goPremium' },
+                    },
+                    {
+                        path: 'billing',
+                        component: UserBillingComponent,
+                        data: { titleId: 'billing' },
+                    },
                     {
                         path: 'subscription',
                         component: UserSubscriptionComponent,
                         data: { titleId: 'premiumMembership' },
                     },
-                    { path: 'organizations', component: OrganizationsComponent, data: { titleId: 'organizations' } },
+                    {
+                        path: 'organizations',
+                        component: OrganizationsComponent,
+                        data: { titleId: 'organizations' },
+                    },
                     {
                         path: 'create-organization',
                         component: CreateOrganizationComponent,
@@ -180,14 +210,26 @@ const routes: Routes = [
                 canActivate: [AuthGuardService],
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'generator' },
-                    { path: 'import', component: ImportComponent, data: { titleId: 'importData' } },
-                    { path: 'export', component: ExportComponent, data: { titleId: 'exportVault' } },
+                    {
+                        path: 'import',
+                        component: ImportComponent,
+                        data: { titleId: 'importData' },
+                    },
+                    {
+                        path: 'export',
+                        component: ExportComponent,
+                        data: { titleId: 'exportVault' },
+                    },
                     {
                         path: 'generator',
                         component: PasswordGeneratorComponent,
                         data: { titleId: 'passwordGenerator' },
                     },
-                    { path: 'breach-report', component: BreachReportComponent, data: { titleId: 'dataBreachReport' } },
+                    {
+                        path: 'breach-report',
+                        component: BreachReportComponent,
+                        data: { titleId: 'dataBreachReport' },
+                    },
                     {
                         path: 'reused-passwords-report',
                         component: ReusedPasswordsReportComponent,
@@ -223,16 +265,30 @@ const routes: Routes = [
         canActivate: [AuthGuardService, OrganizationGuardService],
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'vault' },
-            { path: 'vault', component: OrgVaultComponent, data: { titleId: 'vault' } },
+            {
+                path: 'vault',
+                component: OrgVaultComponent,
+                data: { titleId: 'vault' },
+            },
             {
                 path: 'tools',
                 component: OrgToolsComponent,
                 canActivate: [OrganizationTypeGuardService],
-                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
+                data: {
+                    allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin],
+                },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'import' },
-                    { path: 'import', component: OrgImportComponent, data: { titleId: 'importData' } },
-                    { path: 'export', component: OrgExportComponent, data: { titleId: 'exportVault' } },
+                    {
+                        path: 'import',
+                        component: OrgImportComponent,
+                        data: { titleId: 'importData' },
+                    },
+                    {
+                        path: 'export',
+                        component: OrgExportComponent,
+                        data: { titleId: 'exportVault' },
+                    },
                     {
                         path: 'exposed-passwords-report',
                         component: OrgExposedPasswordsReportComponent,
@@ -273,11 +329,31 @@ const routes: Routes = [
                 },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'people' },
-                    { path: 'collections', component: OrgManageCollectionsComponent, data: { titleId: 'collections' } },
-                    { path: 'events', component: OrgEventsComponent, data: { titleId: 'eventLogs' } },
-                    { path: 'groups', component: OrgGroupsComponent, data: { titleId: 'groups' } },
-                    { path: 'people', component: OrgPeopleComponent, data: { titleId: 'people' } },
-                    { path: 'policies', component: OrgPoliciesComponent, data: { titleId: 'policies' } },
+                    {
+                        path: 'collections',
+                        component: OrgManageCollectionsComponent,
+                        data: { titleId: 'collections' },
+                    },
+                    {
+                        path: 'events',
+                        component: OrgEventsComponent,
+                        data: { titleId: 'eventLogs' },
+                    },
+                    {
+                        path: 'groups',
+                        component: OrgGroupsComponent,
+                        data: { titleId: 'groups' },
+                    },
+                    {
+                        path: 'people',
+                        component: OrgPeopleComponent,
+                        data: { titleId: 'people' },
+                    },
+                    {
+                        path: 'policies',
+                        component: OrgPoliciesComponent,
+                        data: { titleId: 'policies' },
+                    },
                 ],
             },
             {
@@ -287,8 +363,16 @@ const routes: Routes = [
                 data: { allowedTypes: [OrganizationUserType.Owner] },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
-                    { path: 'account', component: OrgAccountComponent, data: { titleId: 'myOrganization' } },
-                    { path: 'two-factor', component: OrgTwoFactorSetupComponent, data: { titleId: 'twoStepLogin' } },
+                    {
+                        path: 'account',
+                        component: OrgAccountComponent,
+                        data: { titleId: 'myOrganization' },
+                    },
+                    {
+                        path: 'two-factor',
+                        component: OrgTwoFactorSetupComponent,
+                        data: { titleId: 'twoStepLogin' },
+                    },
                     {
                         path: 'billing',
                         component: OrganizationBillingComponent,
@@ -307,10 +391,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {
-        useHash: true,
-        /*enableTracing: true,*/
-    })],
+    imports: [
+        RouterModule.forRoot(routes, {
+            useHash: true,
+            /*enableTracing: true,*/
+        }),
+    ],
     exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

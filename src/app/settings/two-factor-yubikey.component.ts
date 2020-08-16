@@ -26,9 +26,13 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     formPromise: Promise<any>;
     disablePromise: Promise<any>;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
-        analytics: Angulartics2, toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService) {
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        analytics: Angulartics2,
+        toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService
+    ) {
         super(apiService, i18nService, analytics, toasterService, platformUtilsService);
     }
 

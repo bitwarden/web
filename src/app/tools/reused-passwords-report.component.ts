@@ -1,8 +1,4 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    OnInit,
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -21,8 +17,12 @@ import { CipherReportComponent } from './cipher-report.component';
 export class ReusedPasswordsReportComponent extends CipherReportComponent implements OnInit {
     passwordUseMap: Map<string, number>;
 
-    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
-        messagingService: MessagingService, userService: UserService) {
+    constructor(
+        protected cipherService: CipherService,
+        componentFactoryResolver: ComponentFactoryResolver,
+        messagingService: MessagingService,
+        userService: UserService
+    ) {
         super(componentFactoryResolver, userService, messagingService, true);
     }
 
@@ -37,18 +37,28 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
         const ciphersWithPasswords: CipherView[] = [];
         this.passwordUseMap = new Map<string, number>();
         allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+            if (
+                c.type !== CipherType.Login ||
+                c.login.password == null ||
+                c.login.password === ''
+            ) {
                 return;
             }
             ciphersWithPasswords.push(c);
             if (this.passwordUseMap.has(c.login.password)) {
-                this.passwordUseMap.set(c.login.password, this.passwordUseMap.get(c.login.password) + 1);
+                this.passwordUseMap.set(
+                    c.login.password,
+                    this.passwordUseMap.get(c.login.password) + 1
+                );
             } else {
                 this.passwordUseMap.set(c.login.password, 1);
             }
         });
-        const reusedPasswordCiphers = ciphersWithPasswords.filter((c) =>
-            this.passwordUseMap.has(c.login.password) && this.passwordUseMap.get(c.login.password) > 1);
+        const reusedPasswordCiphers = ciphersWithPasswords.filter(
+            (c) =>
+                this.passwordUseMap.has(c.login.password) &&
+                this.passwordUseMap.get(c.login.password) > 1
+        );
         this.ciphers = reusedPasswordCiphers;
     }
 

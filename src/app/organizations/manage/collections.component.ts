@@ -35,8 +35,10 @@ import { EntityUsersComponent } from './entity-users.component';
     templateUrl: 'collections.component.html',
 })
 export class CollectionsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true })
+    addEditModalRef: ViewContainerRef;
+    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true })
+    usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -50,11 +52,18 @@ export class CollectionsComponent implements OnInit {
     private pagedCollectionsCount = 0;
     private modal: ModalComponent = null;
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private collectionService: CollectionService, private componentFactoryResolver: ComponentFactoryResolver,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        private userService: UserService, private searchService: SearchService) { }
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private collectionService: CollectionService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private userService: UserService,
+        private searchService: SearchService
+    ) {}
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -77,8 +86,9 @@ export class CollectionsComponent implements OnInit {
         } else {
             response = await this.apiService.getUserCollections();
         }
-        const collections = response.data.filter((c) => c.organizationId === this.organizationId).map((r) =>
-            new Collection(new CollectionData(r as CollectionDetailsResponse)));
+        const collections = response.data
+            .filter((c) => c.organizationId === this.organizationId)
+            .map((r) => new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
         this.resetPaging();
         this.loading = false;
@@ -94,8 +104,9 @@ export class CollectionsComponent implements OnInit {
             pagedSize = this.pagedCollectionsCount;
         }
         if (this.collections.length > pagedLength) {
-            this.pagedCollections =
-                this.pagedCollections.concat(this.collections.slice(pagedLength, pagedLength + pagedSize));
+            this.pagedCollections = this.pagedCollections.concat(
+                this.collections.slice(pagedLength, pagedLength + pagedSize)
+            );
         }
         this.pagedCollectionsCount = this.pagedCollections.length;
         this.didScroll = this.pagedCollections.length > this.pageSize;
@@ -109,7 +120,9 @@ export class CollectionsComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.addEditModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<CollectionAddEditComponent>(
-            CollectionAddEditComponent, this.addEditModalRef);
+            CollectionAddEditComponent,
+            this.addEditModalRef
+        );
 
         childComponent.organizationId = this.organizationId;
         childComponent.collectionId = collection != null ? collection.id : null;
@@ -133,8 +146,12 @@ export class CollectionsComponent implements OnInit {
 
     async delete(collection: CollectionView) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteCollectionConfirmation'), collection.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('deleteCollectionConfirmation'),
+            collection.name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -142,9 +159,13 @@ export class CollectionsComponent implements OnInit {
         try {
             await this.apiService.deleteCollection(this.organizationId, collection.id);
             this.analytics.eventTrack.next({ action: 'Deleted Collection' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', collection.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('deletedCollectionId', collection.name)
+            );
             this.removeCollection(collection);
-        } catch { }
+        } catch {}
     }
 
     users(collection: CollectionView) {
@@ -155,7 +176,9 @@ export class CollectionsComponent implements OnInit {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.usersModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<EntityUsersComponent>(
-            EntityUsersComponent, this.usersModalRef);
+            EntityUsersComponent,
+            this.usersModalRef
+        );
 
         childComponent.organizationId = this.organizationId;
         childComponent.entity = 'collection';

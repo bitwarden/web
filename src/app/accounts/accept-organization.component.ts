@@ -1,16 +1,7 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
+import { Toast, ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -30,10 +21,15 @@ export class AcceptOrganizationComponent implements OnInit {
     email: string;
     actionPromise: Promise<any>;
 
-    constructor(private router: Router, private toasterService: ToasterService,
-        private i18nService: I18nService, private route: ActivatedRoute,
-        private apiService: ApiService, private userService: UserService,
-        private stateService: StateService) { }
+    constructor(
+        private router: Router,
+        private toasterService: ToasterService,
+        private i18nService: I18nService,
+        private route: ActivatedRoute,
+        private apiService: ApiService,
+        private userService: UserService,
+        private stateService: StateService
+    ) {}
 
     ngOnInit() {
         let fired = false;
@@ -43,7 +39,10 @@ export class AcceptOrganizationComponent implements OnInit {
             }
             fired = true;
             await this.stateService.remove('orgInvitation');
-            let error = qParams.organizationId == null || qParams.organizationUserId == null || qParams.token == null;
+            let error =
+                qParams.organizationId == null ||
+                qParams.organizationUserId == null ||
+                qParams.token == null;
             let errorMessage: string = null;
             if (!error) {
                 this.authed = await this.userService.isAuthenticated();
@@ -51,8 +50,11 @@ export class AcceptOrganizationComponent implements OnInit {
                     const request = new OrganizationUserAcceptRequest();
                     request.token = qParams.token;
                     try {
-                        this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
-                            qParams.organizationUserId, request);
+                        this.actionPromise = this.apiService.postOrganizationUserAccept(
+                            qParams.organizationId,
+                            qParams.organizationUserId,
+                            request
+                        );
                         await this.actionPromise;
                         const toast: Toast = {
                             type: 'success',
@@ -81,8 +83,10 @@ export class AcceptOrganizationComponent implements OnInit {
                 const toast: Toast = {
                     type: 'error',
                     title: null,
-                    body: errorMessage != null ? this.i18nService.t('inviteAcceptFailedShort', errorMessage) :
-                        this.i18nService.t('inviteAcceptFailed'),
+                    body:
+                        errorMessage != null
+                            ? this.i18nService.t('inviteAcceptFailedShort', errorMessage)
+                            : this.i18nService.t('inviteAcceptFailed'),
                     timeout: 10000,
                 };
                 this.toasterService.popAsync(toast);

@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -38,10 +32,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     cipherType = CipherType;
     actionPromise: Promise<any>;
 
-    constructor(searchService: SearchService, protected analytics: Angulartics2,
-        protected toasterService: ToasterService, protected i18nService: I18nService,
-        protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
-        protected eventService: EventService) {
+    constructor(
+        searchService: SearchService,
+        protected analytics: Angulartics2,
+        protected toasterService: ToasterService,
+        protected i18nService: I18nService,
+        protected platformUtilsService: PlatformUtilsService,
+        protected cipherService: CipherService,
+        protected eventService: EventService
+    ) {
         super(searchService);
         this.pageSize = 200;
     }
@@ -77,9 +76,14 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         }
         const permanent = c.isDeleted;
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t(permanent ? 'permanentlyDeleteItemConfirmation' : 'deleteItemConfirmation'),
+            this.i18nService.t(
+                permanent ? 'permanentlyDeleteItemConfirmation' : 'deleteItemConfirmation'
+            ),
             this.i18nService.t(permanent ? 'permanentlyDeleteItem' : 'deleteItem'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -88,10 +92,13 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             this.actionPromise = this.deleteCipher(c.id, permanent);
             await this.actionPromise;
             this.analytics.eventTrack.next({ action: 'Deleted Cipher' });
-            this.toasterService.popAsync('success', null, this.i18nService.t(permanent ? 'permanentlyDeletedItem'
-                : 'deletedItem'));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t(permanent ? 'permanentlyDeletedItem' : 'deletedItem')
+            );
             this.refresh();
-        } catch { }
+        } catch {}
         this.actionPromise = null;
     }
 
@@ -102,7 +109,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         const confirmed = await this.platformUtilsService.showDialog(
             this.i18nService.t('restoreItemConfirmation'),
             this.i18nService.t('restoreItem'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -113,7 +123,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             this.analytics.eventTrack.next({ action: 'Restored Cipher' });
             this.toasterService.popAsync('success', null, this.i18nService.t('restoredItem'));
             this.refresh();
-        } catch { }
+        } catch {}
         this.actionPromise = null;
     }
 
@@ -122,10 +132,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             return;
         }
 
-        this.analytics.eventTrack.next({ action: 'Copied ' + aType.toLowerCase() + ' from listing.' });
+        this.analytics.eventTrack.next({
+            action: 'Copied ' + aType.toLowerCase() + ' from listing.',
+        });
         this.platformUtilsService.copyToClipboard(value, { window: window });
-        this.toasterService.popAsync('info', null,
-            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+        this.toasterService.popAsync(
+            'info',
+            null,
+            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey))
+        );
 
         if (typeI18nKey === 'password') {
             this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, cipher.id);
@@ -138,9 +153,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (select) {
             this.selectAll(false);
         }
-        const selectCount = select && this.ciphers.length > MaxCheckedCount
-            ? MaxCheckedCount
-            : this.ciphers.length;
+        const selectCount =
+            select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
         for (let i = 0; i < selectCount; i++) {
             this.checkCipher(this.ciphers[i], select);
         }
@@ -162,7 +176,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     protected deleteCipher(id: string, permanent: boolean) {
-        return permanent ? this.cipherService.deleteWithServer(id) : this.cipherService.softDeleteWithServer(id);
+        return permanent
+            ? this.cipherService.deleteWithServer(id)
+            : this.cipherService.softDeleteWithServer(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {

@@ -1,9 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -21,8 +16,12 @@ export class BulkRestoreComponent {
 
     formPromise: Promise<any>;
 
-    constructor(private analytics: Angulartics2, private cipherService: CipherService,
-        private toasterService: ToasterService, private i18nService: I18nService) { }
+    constructor(
+        private analytics: Angulartics2,
+        private cipherService: CipherService,
+        private toasterService: ToasterService,
+        private i18nService: I18nService
+    ) {}
 
     async submit() {
         this.formPromise = this.cipherService.restoreManyWithServer(this.cipherIds);

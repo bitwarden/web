@@ -1,15 +1,6 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -33,14 +24,20 @@ export class AdjustSeatsComponent {
     @Output() onAdjusted = new EventEmitter<number>();
     @Output() onCanceled = new EventEmitter();
 
-    @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
+    @ViewChild(PaymentComponent, { static: true })
+    paymentComponent: PaymentComponent;
 
     seatAdjustment = 0;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {}
 
     async submit() {
         try {
@@ -52,10 +49,16 @@ export class AdjustSeatsComponent {
 
             let paymentFailed = false;
             const action = async () => {
-                const result = await this.apiService.postOrganizationSeat(this.organizationId, request);
+                const result = await this.apiService.postOrganizationSeat(
+                    this.organizationId,
+                    request
+                );
                 if (result != null && result.paymentIntentClientSecret != null) {
                     try {
-                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+                        await this.paymentComponent.handleStripeCardPayment(
+                            result.paymentIntentClientSecret,
+                            null
+                        );
                     } catch {
                         paymentFailed = true;
                     }
@@ -63,7 +66,9 @@ export class AdjustSeatsComponent {
             };
             this.formPromise = action();
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.add ? 'Added Seats' : 'Removed Seats' });
+            this.analytics.eventTrack.next({
+                action: this.add ? 'Added Seats' : 'Removed Seats',
+            });
             this.onAdjusted.emit(this.seatAdjustment);
             if (paymentFailed) {
                 this.toasterService.popAsync({
@@ -71,12 +76,17 @@ export class AdjustSeatsComponent {
                     type: 'warning',
                     timeout: 10000,
                 });
-                this.router.navigate(['../billing'], { relativeTo: this.activatedRoute });
+                this.router.navigate(['../billing'], {
+                    relativeTo: this.activatedRoute,
+                });
             } else {
-                this.toasterService.popAsync('success', null,
-                    this.i18nService.t('adjustedSeats', request.seatAdjustment.toString()));
+                this.toasterService.popAsync(
+                    'success',
+                    null,
+                    this.i18nService.t('adjustedSeats', request.seatAdjustment.toString())
+                );
             }
-        } catch { }
+        } catch {}
     }
 
     cancel() {

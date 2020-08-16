@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
@@ -33,10 +30,15 @@ export class EventsComponent implements OnInit {
     private orgUsersUserIdMap = new Map<string, any>();
     private orgUsersIdMap = new Map<string, any>();
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private eventService: EventService, private i18nService: I18nService,
-        private toasterService: ToasterService, private userService: UserService,
-        private router: Router) { }
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private eventService: EventService,
+        private i18nService: I18nService,
+        private toasterService: ToasterService,
+        private userService: UserService,
+        private router: Router
+    ) {}
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -58,7 +60,10 @@ export class EventsComponent implements OnInit {
         response.data.forEach((u) => {
             const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
             this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
-            this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
+            this.orgUsersUserIdMap.set(u.userId, {
+                name: name,
+                email: u.email,
+            });
         });
         await this.loadEvents(true);
         this.loaded = true;
@@ -73,30 +78,39 @@ export class EventsComponent implements OnInit {
         try {
             dates = this.eventService.formatDateFilters(this.start, this.end);
         } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('invalidDateRange'));
+            this.toasterService.popAsync(
+                'error',
+                this.i18nService.t('errorOccurred'),
+                this.i18nService.t('invalidDateRange')
+            );
             return;
         }
 
         this.loading = true;
         let response: ListResponse<EventResponse>;
         try {
-            const promise = this.apiService.getEventsOrganization(this.organizationId, dates[0], dates[1],
-                clearExisting ? null : this.continuationToken);
+            const promise = this.apiService.getEventsOrganization(
+                this.organizationId,
+                dates[0],
+                dates[1],
+                clearExisting ? null : this.continuationToken
+            );
             if (clearExisting) {
                 this.refreshPromise = promise;
             } else {
                 this.morePromise = promise;
             }
             response = await promise;
-        } catch { }
+        } catch {}
 
         this.continuationToken = response.continuationToken;
         const events = response.data.map((r) => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = this.eventService.getEventInfo(r);
-            const user = userId != null && this.orgUsersUserIdMap.has(userId) ?
-                this.orgUsersUserIdMap.get(userId) : null;
+            const user =
+                userId != null && this.orgUsersUserIdMap.has(userId)
+                    ? this.orgUsersUserIdMap.get(userId)
+                    : null;
             return {
                 message: eventInfo.message,
                 appIcon: eventInfo.appIcon,

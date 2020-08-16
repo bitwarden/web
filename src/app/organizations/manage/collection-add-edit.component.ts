@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
@@ -34,8 +28,8 @@ export class CollectionAddEditComponent implements OnInit {
     @Output() onDeletedCollection = new EventEmitter();
 
     loading = true;
-    editMode: boolean = false;
-    accessGroups: boolean = false;
+    editMode = false;
+    accessGroups = false;
     title: string;
     name: string;
     externalId: string;
@@ -45,10 +39,15 @@ export class CollectionAddEditComponent implements OnInit {
 
     private orgKey: SymmetricCryptoKey;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private userService: UserService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private analytics: Angulartics2,
+        private toasterService: ToasterService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private userService: UserService
+    ) {}
 
     async ngOnInit() {
         const organization = await this.userService.getOrganization(this.organizationId);
@@ -56,7 +55,9 @@ export class CollectionAddEditComponent implements OnInit {
         this.editMode = this.loading = this.collectionId != null;
         if (this.accessGroups) {
             const groupsResponse = await this.apiService.getGroups(this.organizationId);
-            this.groups = groupsResponse.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
+            this.groups = groupsResponse.data
+                .map((r) => r)
+                .sort(Utils.getSortFunction(this.i18nService, 'name'));
         }
         this.orgKey = await this.cryptoService.getOrgKey(this.organizationId);
 
@@ -64,8 +65,14 @@ export class CollectionAddEditComponent implements OnInit {
             this.editMode = true;
             this.title = this.i18nService.t('editCollection');
             try {
-                const collection = await this.apiService.getCollectionDetails(this.organizationId, this.collectionId);
-                this.name = await this.cryptoService.decryptToUtf8(new CipherString(collection.name), this.orgKey);
+                const collection = await this.apiService.getCollectionDetails(
+                    this.organizationId,
+                    this.collectionId
+                );
+                this.name = await this.cryptoService.decryptToUtf8(
+                    new CipherString(collection.name),
+                    this.orgKey
+                );
                 this.externalId = collection.externalId;
                 if (collection.groups != null && this.groups.length > 0) {
                     collection.groups.forEach((s) => {
@@ -77,7 +84,7 @@ export class CollectionAddEditComponent implements OnInit {
                         }
                     });
                 }
-            } catch { }
+            } catch {}
         } else {
             this.title = this.i18nService.t('addCollection');
         }
@@ -114,21 +121,41 @@ export class CollectionAddEditComponent implements OnInit {
         const request = new CollectionRequest();
         request.name = (await this.cryptoService.encrypt(this.name, this.orgKey)).encryptedString;
         request.externalId = this.externalId;
-        request.groups = this.groups.filter((g) => (g as any).checked && !g.accessAll)
-            .map((g) => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly, !!(g as any).hidePasswords));
+        request.groups = this.groups
+            .filter((g) => (g as any).checked && !g.accessAll)
+            .map(
+                (g) =>
+                    new SelectionReadOnlyRequest(
+                        g.id,
+                        !!(g as any).readOnly,
+                        !!(g as any).hidePasswords
+                    )
+            );
 
         try {
             if (this.editMode) {
-                this.formPromise = this.apiService.putCollection(this.organizationId, this.collectionId, request);
+                this.formPromise = this.apiService.putCollection(
+                    this.organizationId,
+                    this.collectionId,
+                    request
+                );
             } else {
                 this.formPromise = this.apiService.postCollection(this.organizationId, request);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited Collection' : 'Created Collection' });
-            this.toasterService.popAsync('success', null,
-                this.i18nService.t(this.editMode ? 'editedCollectionId' : 'createdCollectionId', this.name));
+            this.analytics.eventTrack.next({
+                action: this.editMode ? 'Edited Collection' : 'Created Collection',
+            });
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t(
+                    this.editMode ? 'editedCollectionId' : 'createdCollectionId',
+                    this.name
+                )
+            );
             this.onSavedCollection.emit();
-        } catch { }
+        } catch {}
     }
 
     async delete() {
@@ -137,18 +164,29 @@ export class CollectionAddEditComponent implements OnInit {
         }
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteCollectionConfirmation'), this.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('deleteCollectionConfirmation'),
+            this.name,
+            this.i18nService.t('yes'),
+            this.i18nService.t('no'),
+            'warning'
+        );
         if (!confirmed) {
             return false;
         }
 
         try {
-            this.deletePromise = this.apiService.deleteCollection(this.organizationId, this.collectionId);
+            this.deletePromise = this.apiService.deleteCollection(
+                this.organizationId,
+                this.collectionId
+            );
             await this.deletePromise;
             this.analytics.eventTrack.next({ action: 'Deleted Collection' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', this.name));
+            this.toasterService.popAsync(
+                'success',
+                null,
+                this.i18nService.t('deletedCollectionId', this.name)
+            );
             this.onDeletedCollection.emit();
-        } catch { }
+        } catch {}
     }
 }
