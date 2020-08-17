@@ -108,7 +108,6 @@ const routes: Routes = [
             },
             {
                 path: 'change-password', component: ChangePasswordComponent,
-                canActivate: [UnauthGuardService],
                 data: { titleId: 'setMasterPassword' },
             },
             {
