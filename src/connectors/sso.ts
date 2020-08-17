@@ -1,4 +1,4 @@
-﻿// tslint:disable-next-line
+﻿// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('./sso.scss');
 
 document.addEventListener('DOMContentLoaded', (event) => {

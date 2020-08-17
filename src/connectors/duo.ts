@@ -1,6 +1,6 @@
 ﻿import * as DuoWebSDK from 'duo_web_sdk';
 
-// tslint:disable-next-line
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('./duo.scss');
 
 document.addEventListener('DOMContentLoaded', (event) => {

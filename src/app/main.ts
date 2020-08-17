@@ -5,7 +5,7 @@ import 'bootstrap';
 import 'jquery';
 import 'popper.js';
 
-// tslint:disable-next-line
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('../scss/styles.scss');
 
 import { AppModule } from './app.module';
