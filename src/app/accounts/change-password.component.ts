@@ -19,19 +19,25 @@ import { UserService } from 'jslib/abstractions/user.service';
 import { CipherString } from 'jslib/models/domain/cipherString';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
+import { KeysRequest } from 'jslib/models/request/keysRequest';
 import { SetPasswordRequest } from 'jslib/models/request/setPasswordRequest';
 
 import {
     ChangePasswordComponent as BaseChangePasswordComponent,
 } from 'jslib/angular/components/change-password.component';
 
+import { KdfType } from 'jslib/enums/kdfType';
+
 @Component({
     selector: 'app-accounts-change-password',
     templateUrl: 'change-password.component.html',
 })
 export class ChangePasswordComponent extends BaseChangePasswordComponent {
+    showPassword: boolean = false;
+    hint: string = '';
+
     onSuccessfulChangePassword: () => Promise<any>;
-    successRoute = 'lock';
+    successRoute = 'vault';
 
     constructor(apiService: ApiService, i18nService: I18nService,
         cryptoService: CryptoService, messagingService: MessagingService,
@@ -43,15 +49,35 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             platformUtilsService, folderService, cipherService, syncService, policyService, router);
     }
 
-    async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
-        newEncKey: [SymmetricCryptoKey, CipherString]) {
-        const setRequest = new SetPasswordRequest();
-        setRequest.newMasterPasswordHash = newMasterPasswordHash;
-        setRequest.key = newEncKey[1].encryptedString;
+    async setupSubmitActions() {
+        this.kdf = KdfType.PBKDF2_SHA256;
+        const useLowerKdf = this.platformUtilsService.isEdge() || this.platformUtilsService.isIE();
+        this.kdfIterations = useLowerKdf ? 10000 : 100000;
+        return true;
+    }
+
+    async performSubmitActions(masterPasswordHash: string, key: SymmetricCryptoKey,
+        encKey: [SymmetricCryptoKey, CipherString]) {
+        const request = new SetPasswordRequest();
+        request.masterPasswordHash = masterPasswordHash;
+        request.key = encKey[1].encryptedString;
+        request.masterPasswordHint = this.hint;
+        request.kdf = this.kdf;
+        request.kdfIterations = this.kdfIterations;
+
+        const keys = await this.cryptoService.makeKeyPair(encKey[0]);
+        request.keys = new KeysRequest(keys[0], keys[1].encryptedString);
 
         try {
-            this.formPromise = this.apiService.setPassword(setRequest);
+            this.formPromise = this.apiService.setPassword(request);
             await this.formPromise;
+
+            await this.userService.setInformation(await this.userService.getUserId(), await this.userService.getEmail(),
+                this.kdf, this.kdfIterations);
+            await this.cryptoService.setKey(key);
+            await this.cryptoService.setKeyHash(masterPasswordHash);
+            await this.cryptoService.setEncKey(encKey[1].encryptedString);
+            await this.cryptoService.setEncPrivateKey(keys[1].encryptedString);
 
             if (this.onSuccessfulChangePassword != null) {
                 this.onSuccessfulChangePassword();
@@ -61,5 +87,11 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         } catch {
             this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
         }
+    }
+
+    togglePassword(confirmField: boolean) {
+        this.platformUtilsService.eventTrack('Toggled Master Password on Set Password');
+        this.showPassword = !this.showPassword;
+        document.getElementById(confirmField ? 'masterPasswordRetype' : 'masterPassword').focus();
     }
 }

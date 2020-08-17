@@ -79,6 +79,16 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         }
     }
 
+    async submit() {
+        const hasEncKey = await this.cryptoService.hasEncKey();
+        if (!hasEncKey) {
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('updateKey'));
+            return;
+        }
+
+        await super.submit();
+    }
+
     async setupSubmitActions() {
         if (this.currentMasterPassword == null || this.currentMasterPassword === '') {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
@@ -90,7 +100,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             await this.syncService.fullSync(true);
         }
 
-        super.setupSubmitActions();
+        return super.setupSubmitActions();
     }
 
     async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
