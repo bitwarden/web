@@ -1,5 +1,6 @@
 import {
     ComponentFactoryResolver,
+    Directive,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
@@ -15,8 +16,9 @@ import { AddEditComponent } from '../vault/add-edit.component';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
+@Directive()
 export class CipherReportComponent {
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
 
     loading = false;
     hasLoaded = false;

@@ -1,4 +1,5 @@
 import {
+    Directive,
     EventEmitter,
     Output,
 } from '@angular/core';
@@ -13,6 +14,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 import { TwoFactorProviderRequest } from 'jslib/models/request/twoFactorProviderRequest';
 
+@Directive()
 export abstract class TwoFactorBaseComponent {
     @Output() onUpdated = new EventEmitter<boolean>();
 

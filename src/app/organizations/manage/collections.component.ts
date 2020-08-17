@@ -35,8 +35,8 @@ import { EntityUsersComponent } from './entity-users.component';
     templateUrl: 'collections.component.html',
 })
 export class CollectionsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef }) usersModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;

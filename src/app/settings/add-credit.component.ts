@@ -33,7 +33,7 @@ export class AddCreditComponent implements OnInit {
     @Output() onAdded = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
-    @ViewChild('ppButtonForm', { read: ElementRef }) ppButtonFormRef: ElementRef;
+    @ViewChild('ppButtonForm', { read: ElementRef, static: true }) ppButtonFormRef: ElementRef;
 
     paymentMethodType = PaymentMethodType;
     ppButtonFormAction = WebConstants.paypal.buttonActionProduction;

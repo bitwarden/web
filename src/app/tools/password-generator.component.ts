@@ -21,7 +21,7 @@ import { PasswordGeneratorHistoryComponent } from './password-generator-history.
     templateUrl: 'password-generator.component.html',
 })
 export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
-    @ViewChild('historyTemplate', { read: ViewContainerRef }) historyModalRef: ViewContainerRef;
+    @ViewChild('historyTemplate', { read: ViewContainerRef, static: true }) historyModalRef: ViewContainerRef;
 
     private modal: ModalComponent = null;
 

@@ -28,10 +28,10 @@ import { RotateApiKeyComponent } from './rotate-api-key.component';
     templateUrl: 'account.component.html',
 })
 export class AccountComponent {
-    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef }) deleteModalRef: ViewContainerRef;
-    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef }) purgeModalRef: ViewContainerRef;
-    @ViewChild('apiKeyTemplate', { read: ViewContainerRef }) apiKeyModalRef: ViewContainerRef;
-    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
+    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
+    @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
+    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
     @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     loading = true;

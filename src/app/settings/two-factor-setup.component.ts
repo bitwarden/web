@@ -31,12 +31,12 @@ import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
     templateUrl: 'two-factor-setup.component.html',
 })
 export class TwoFactorSetupComponent implements OnInit {
-    @ViewChild('recoveryTemplate', { read: ViewContainerRef }) recoveryModalRef: ViewContainerRef;
-    @ViewChild('authenticatorTemplate', { read: ViewContainerRef }) authenticatorModalRef: ViewContainerRef;
-    @ViewChild('yubikeyTemplate', { read: ViewContainerRef }) yubikeyModalRef: ViewContainerRef;
-    @ViewChild('u2fTemplate', { read: ViewContainerRef }) u2fModalRef: ViewContainerRef;
-    @ViewChild('duoTemplate', { read: ViewContainerRef }) duoModalRef: ViewContainerRef;
-    @ViewChild('emailTemplate', { read: ViewContainerRef }) emailModalRef: ViewContainerRef;
+    @ViewChild('recoveryTemplate', { read: ViewContainerRef, static: true }) recoveryModalRef: ViewContainerRef;
+    @ViewChild('authenticatorTemplate', { read: ViewContainerRef, static: true }) authenticatorModalRef: ViewContainerRef;
+    @ViewChild('yubikeyTemplate', { read: ViewContainerRef, static: true }) yubikeyModalRef: ViewContainerRef;
+    @ViewChild('u2fTemplate', { read: ViewContainerRef, static: true }) u2fModalRef: ViewContainerRef;
+    @ViewChild('duoTemplate', { read: ViewContainerRef, static: true }) duoModalRef: ViewContainerRef;
+    @ViewChild('emailTemplate', { read: ViewContainerRef, static: true }) emailModalRef: ViewContainerRef;
 
     organizationId: string;
     providers: any[] = [];

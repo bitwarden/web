@@ -29,10 +29,10 @@ export class BulkActionsComponent {
     @Input() deleted: boolean;
     @Input() organization: Organization;
 
-    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
-    @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef }) bulkRestoreModalRef: ViewContainerRef;
-    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
-    @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
+    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef, static: true }) bulkDeleteModalRef: ViewContainerRef;
+    @ViewChild('bulkRestoreTemplate', { read: ViewContainerRef, static: true }) bulkRestoreModalRef: ViewContainerRef;
+    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef, static: true }) bulkMoveModalRef: ViewContainerRef;
+    @ViewChild('bulkShareTemplate', { read: ViewContainerRef, static: true }) bulkShareModalRef: ViewContainerRef;
 
     constructor(private toasterService: ToasterService,
         private i18nService: I18nService,

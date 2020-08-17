@@ -43,10 +43,10 @@ import { UserGroupsComponent } from './user-groups.component';
     templateUrl: 'people.component.html',
 })
 export class PeopleComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
-    @ViewChild('groupsTemplate', { read: ViewContainerRef }) groupsModalRef: ViewContainerRef;
-    @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
-    @ViewChild('confirmTemplate', { read: ViewContainerRef }) confirmModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
+    @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;

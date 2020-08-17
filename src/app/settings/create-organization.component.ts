@@ -12,7 +12,7 @@ import { OrganizationPlansComponent } from './organization-plans.component';
     templateUrl: 'create-organization.component.html',
 })
 export class CreateOrganizationComponent implements OnInit {
-    @ViewChild(OrganizationPlansComponent) orgPlansComponent: OrganizationPlansComponent;
+    @ViewChild(OrganizationPlansComponent, { static: true }) orgPlansComponent: OrganizationPlansComponent;
 
     constructor(private route: ActivatedRoute) { }
 
