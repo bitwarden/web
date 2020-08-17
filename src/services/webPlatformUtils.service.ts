@@ -279,7 +279,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
                 // Security exception may be thrown by some browsers.
                 doc.execCommand('copy');
             } catch (e) {
-                // tslint:disable-next-line
+                // eslint-disable-next-line no-console
                 console.warn('Copy to clipboard failed.', e);
             } finally {
                 copyEl.removeChild(textarea);

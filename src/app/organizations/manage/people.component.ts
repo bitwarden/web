@@ -393,7 +393,7 @@ export class PeopleComponent implements OnInit {
         const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
         try {
-            // tslint:disable-next-line
+            // eslint-disable-next-line no-console
             console.log(
                 "User's fingerprint: " +
                     (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join(

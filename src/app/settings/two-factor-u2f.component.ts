@@ -126,7 +126,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
     }
 
     private readDevice(u2fChallenge: ChallengeResponse) {
-        // tslint:disable-next-line
+        // eslint-disable-next-line no-console
         console.log('listening for key...');
         this.resetU2f(true);
         (window as any).u2f.register(
@@ -143,7 +143,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent implements OnI
                     this.u2fListening = false;
                     if (data.errorCode) {
                         this.u2fError = true;
-                        // tslint:disable-next-line
+                        // eslint-disable-next-line no-console
                         console.log('error: ' + data.errorCode);
                         return;
                     }

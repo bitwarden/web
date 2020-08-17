@@ -149,7 +149,7 @@ export class PaymentComponent implements OnInit {
                     },
                     (createErr: any, instance: any) => {
                         if (createErr != null) {
-                            // tslint:disable-next-line
+                            // eslint-disable-next-line no-console
                             console.error(createErr);
                             return;
                         }
