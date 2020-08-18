@@ -109,6 +109,7 @@ import { CreateOrganizationComponent } from './settings/create-organization.comp
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
+import { LinkSsoComponent } from './settings/link-sso.component';
 import { OptionsComponent } from './settings/options.component';
 import { OrganizationPlansComponent } from './settings/organization-plans.component';
 import { OrganizationsComponent } from './settings/organizations.component';
@@ -295,6 +296,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ImportComponent,
         InactiveTwoFactorReportComponent,
         InputVerbatimDirective,
+        LinkSsoComponent,
         LockComponent,
         LoginComponent,
         ModalComponent,

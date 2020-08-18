@@ -74,6 +74,9 @@
                                 <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
+                                <ng-container *ngIf="o.useSso">
+                                    <app-link-sso [organization]="o"></app-link-sso>
+                                </ng-container>
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="leave(o)">
                                     <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
                                     {{'leave' | i18n}}
