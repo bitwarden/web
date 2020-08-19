@@ -1,4 +1,6 @@
-﻿// tslint:disable-next-line
+﻿import { stat } from 'fs';
+
+// tslint:disable-next-line
 require('./sso.scss');
 
 document.addEventListener('DOMContentLoaded', (event) => {
