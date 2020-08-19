@@ -1,4 +1,5 @@
 import {
+    AfterContentInit,
     Component,
     Input,
 } from '@angular/core';
@@ -21,7 +22,7 @@ import { Organization } from 'jslib/models/domain/organization';
     selector: 'app-link-sso',
     templateUrl: 'link-sso.component.html',
 })
-export class LinkSsoComponent extends SsoComponent {
+export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
     @Input() organization: Organization;
 
     constructor(platformUtilsService: PlatformUtilsService, i18nService: I18nService,
@@ -34,5 +35,13 @@ export class LinkSsoComponent extends SsoComponent {
             storageService, stateService,
             platformUtilsService, apiService,
             cryptoFunctionService, passwordGenerationService);
+
+        this.returnUri = '/settings/organizations';
+        this.redirectUri = window.location.origin + '/sso-connector.html';
+        this.clientId = 'web';
+    }
+
+    async ngAfterContentInit() {
+        this.identifier = this.organization.identifier;
     }
 }
