@@ -104,7 +104,7 @@ const routes: Routes = [
             {
                 path: 'sso', component: SsoComponent,
                 canActivate: [UnauthGuardService],
-                data: { titleId: 'createAccount' }, // TODO
+                data: { titleId: 'enterpriseSingleSignOn' },
             },
             {
                 path: 'set-password', component: SetPasswordComponent,
