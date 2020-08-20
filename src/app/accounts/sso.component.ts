@@ -15,6 +15,8 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 
 import { SsoComponent as BaseSsoComponent } from 'jslib/angular/components/sso.component';
 
+const IdentifierStorageKey = 'ssoOrgIdentifier';
+
 @Component({
     selector: 'app-sso',
     templateUrl: 'sso.component.html',
@@ -30,5 +32,27 @@ export class SsoComponent extends BaseSsoComponent {
             apiService, cryptoFunctionService, passwordGenerationService);
         this.redirectUri = window.location.origin + '/sso-connector.html';
         this.clientId = 'web';
+    }
+
+    async ngOnInit() {
+        super.ngOnInit();
+        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            if (qParams.identifier != null) {
+                this.identifier = qParams.identifier;
+            } else {
+                const storedIdentifier = await this.storageService.get<string>(IdentifierStorageKey);
+                if (storedIdentifier != null) {
+                    this.identifier = storedIdentifier;
+                }
+            }
+            if (queryParamsSub != null) {
+                queryParamsSub.unsubscribe();
+            }
+        });
+    }
+
+    async submit() {
+        await this.storageService.save(IdentifierStorageKey, this.identifier);
+        super.submit();
     }
 }
