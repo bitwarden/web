@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             window.location.href = window.location.origin + '/#/sso?code=' + code + '&state=' + state;
         }
     }
-
 });
 
 function getQsParam(name: string) {
