@@ -54,6 +54,8 @@ export class OrganizationPlansComponent implements OnInit {
     name: string;
     billingEmail: string;
     businessName: string;
+    productTypes = ProductType;
+    formPromise: Promise<any>;
 
     plans: PlanResponse[];
 
@@ -72,10 +74,6 @@ export class OrganizationPlansComponent implements OnInit {
 
     get createOrganization() {
         return this.organizationId == null;
-    }
-
-    get productTypes() {
-        return ProductType;
     }
 
     get selectedPlan() {
@@ -286,8 +284,8 @@ export class OrganizationPlansComponent implements OnInit {
                 }
             };
 
-            const formPromise = doSubmit();
-            await formPromise;
+            this.formPromise = doSubmit();
+            await this.formPromise;
             this.onSuccess.emit();
         } catch { }
     }
