@@ -24,6 +24,7 @@ import { Organization } from 'jslib/models/domain/organization';
 })
 export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
     @Input() organization: Organization;
+    returnUri: string = '/settings/organizations'
 
     constructor(platformUtilsService: PlatformUtilsService, i18nService: I18nService,
         apiService: ApiService, authService: AuthService,
@@ -43,6 +44,5 @@ export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
 
     async ngAfterContentInit() {
         this.identifier = this.organization.identifier;
-        this.linkLoggedInUser = true;
     }
 }
