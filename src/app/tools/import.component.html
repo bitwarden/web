@@ -233,6 +233,9 @@
             Once syncing of your data is complete, the download icon in the top right corner will turn pink. Click
             the download icon and save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'yoticsv'">
+            From the Yoti browser extension, click on "Settings", then "Export Saved Logins" and save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
