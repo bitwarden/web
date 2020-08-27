@@ -35,6 +35,7 @@ export class OrganizationsComponent implements OnInit {
 
     async ngOnInit() {
         if (!this.vault) {
+            await this.syncService.fullSync(true);
             await this.load();
         }
     }
@@ -44,6 +45,25 @@ export class OrganizationsComponent implements OnInit {
         orgs.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.organizations = orgs;
         this.loaded = true;
+    }
+
+    async unlinkSso(org: Organization) {
+        const confirmed = await this.platformUtilsService.showDialog(
+            'Are you sure you want to unlink SSO for this organization?', org.name,
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        try {
+            this.actionPromise = this.apiService.deleteSsoUser(org.id).then(() => {
+                return this.syncService.fullSync(true);
+            });
+            await this.actionPromise;
+            this.analytics.eventTrack.next({ action: 'Unlinked SSO' });
+            this.toasterService.popAsync('success', null, 'Unlinked SSO');
+            await this.load();
+        } catch { }
     }
 
     async leave(org: Organization) {
