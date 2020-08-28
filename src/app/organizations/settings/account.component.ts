@@ -11,6 +11,7 @@ import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { OrganizationUpdateRequest } from 'jslib/models/request/organizationUpdateRequest';
@@ -34,6 +35,7 @@ export class AccountComponent {
     @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
     @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
+    selfHosted = false;
     loading = true;
     canUseApi = false;
     org: OrganizationResponse;
@@ -46,9 +48,11 @@ export class AccountComponent {
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
         private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private route: ActivatedRoute, private syncService: SyncService) { }
+        private route: ActivatedRoute, private syncService: SyncService,
+        private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
+        this.selfHosted = this.platformUtilsService.isSelfHost();
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             try {
