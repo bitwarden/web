@@ -5,10 +5,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
@@ -37,23 +34,10 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
         i18nService: I18nService, apiService: ApiService,
         platformUtilsService: PlatformUtilsService, stateService: StateService,
         environmentService: EnvironmentService, private componentFactoryResolver: ComponentFactoryResolver,
-        storageService: StorageService, private route: ActivatedRoute) {
+        storageService: StorageService) {
         super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService,
             stateService, storageService);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
-    }
-
-    async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
-            if (qParams.resetMasterPassword != null) {
-                this.resetMasterPassword = qParams.resetMasterPassword;
-            }
-
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
-        });
-        super.ngOnInit();
     }
 
     anotherMethod() {
@@ -82,11 +66,7 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
                 this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
                 await this.stateService.remove('loginRedirect');
             } else {
-                this.router.navigate([this.successRoute], {
-                    queryParams: {
-                        resetMasterPassword: this.resetMasterPassword,
-                    },
-                });
+                this.router.navigate([this.successRoute]);
             }
         }
     }
