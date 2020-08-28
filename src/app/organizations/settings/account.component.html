@@ -10,17 +10,18 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">{{'organizationName' | i18n}}</label>
-                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="org.name">
+                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="org.name"
+                    [disabled]="selfHosted">
             </div>
             <div class="form-group">
                 <label for="billingEmail">{{'billingEmail' | i18n}}</label>
                 <input id="billingEmail" class="form-control" type="text" name="BillingEmail"
-                    [(ngModel)]="org.billingEmail">
+                    [(ngModel)]="org.billingEmail" [disabled]="selfHosted">
             </div>
             <div class="form-group">
                 <label for="businessName">{{'businessName' | i18n}}</label>
                 <input id="businessName" class="form-control" type="text" name="BusinessName"
-                    [(ngModel)]="org.businessName">
+                    [(ngModel)]="org.businessName" [disabled]="selfHosted">
             </div>
             <div class="form-group">
                 <label for="identifier">{{'identifier' | i18n}}</label>
