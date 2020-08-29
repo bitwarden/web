@@ -88,7 +88,7 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent {
         request.id = key.id;
         request.masterPasswordHash = this.masterPasswordHash;
         try {
-            key.removePromise = this.apiService.deleteTwoFactorU2f(request);
+            key.removePromise = this.apiService.deleteTwoFactorWebAuthn(request);
             const response = await key.removePromise;
             key.removePromise = null;
             await this.processResponse(response);
@@ -118,12 +118,14 @@ export class TwoFactorU2fComponent extends TwoFactorBaseComponent {
         }).then((data: PublicKeyCredential) => {
             this.ngZone.run(() => {
                 this.u2fListening = false;
-                console.log(data);
                 this.u2fResponse = data;
             });
-        }).catch((err) =>{
-            console.log(err);
-            debugger;
+        }).catch((err) => {
+            // tslint:disable-next-line
+            console.error(err);
+            this.resetU2f(false);
+            // TODO: Should we display the actual error?
+            this.u2fError = true;
         })
     }
 
