@@ -1,4 +1,5 @@
 ﻿import * as DuoWebSDK from 'duo_web_sdk';
+import { getQsParam } from './common';
 
 // tslint:disable-next-line
 require('./duo.scss');
@@ -26,22 +27,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         frameElement.style.height = window.innerHeight + 'px';
     }
 });
-
-function getQsParam(name: string) {
-    const url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    const results = regex.exec(url);
-
-    if (!results) {
-        return null;
-    }
-    if (!results[2]) {
-        return '';
-    }
-
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
 
 function invokeCSCode(data: string) {
     try {
