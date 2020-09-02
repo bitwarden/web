@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <h2 class="modal-title" id="2faU2fTitle">
                     {{'twoStepLogin' | i18n}}
-                    <small>FIDO U2F</small>
+                    <small>{{'webAuthnTitle' | i18n}}</small>
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" appA11yTitle="{{'close' | i18n}}">
                     <span aria-hidden="true">&times;</span>
@@ -24,7 +24,7 @@
                             <li>{{'twoFactorU2fSupportWeb' | i18n}}</li>
                         </ul>
                     </app-callout>
-                    <img src="../../images/two-factor/4.png" class="float-right ml-5" alt="">
+                    <img src="../../images/two-factor/7.png" class="float-right ml-5" alt="">
                     <ul class="fa-ul">
                         <li *ngFor="let k of keys; let i = index" #removeKeyBtn [appApiAction]="k.removePromise">
                             <i class="fa-li fa fa-key"></i>
