@@ -89,7 +89,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectableProducts() {
-        let validPlans = this.plans;
+        let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
 
         if (this.ownedBusiness) {
             validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
