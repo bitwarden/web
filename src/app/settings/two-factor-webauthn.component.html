@@ -19,16 +19,16 @@
                         {{'twoStepLoginProviderEnabled' | i18n}}
                     </app-callout>
                     <app-callout type="warning">
-                        <p>{{'twoFactorU2fWarning' | i18n}}</p>
+                        <p>{{'twoFactorWebAuthnWarning' | i18n}}</p>
                         <ul class="mb-0">
-                            <li>{{'twoFactorU2fSupportWeb' | i18n}}</li>
+                            <li>{{'twoFactorWebAuthnSupportWeb' | i18n}}</li>
                         </ul>
                     </app-callout>
                     <img src="../../images/two-factor/7.png" class="float-right ml-5" alt="">
                     <ul class="fa-ul">
                         <li *ngFor="let k of keys; let i = index" #removeKeyBtn [appApiAction]="k.removePromise">
                             <i class="fa-li fa fa-key"></i>
-                            <strong *ngIf="!k.configured || !k.name">{{'u2fkeyX' | i18n : i + 1}}</strong>
+                            <strong *ngIf="!k.configured || !k.name">{{'webAuthnkeyX' | i18n : i + 1}}</strong>
                             <strong *ngIf="k.configured && k.name">{{k.name}}</strong>
                             <ng-container *ngIf="k.configured && !removeKeyBtn.loading">
                                 <ng-container *ngIf="k.compromised">
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                     <hr>
-                    <p>{{'twoFactorU2fAdd' | i18n}}:</p>
+                    <p>{{'twoFactorWebAuthnAdd' | i18n}}:</p>
                     <ol>
                         <li>{{'twoFactorU2fGiveName' | i18n}}</li>
                         <li>{{'twoFactorU2fPlugInReadKey' | i18n}}</li>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <button type="button" (click)="readKey()" class="btn btn-outline-secondary mr-2"
-                        [disabled]="readKeyBtn.loading || u2fListening || !keyIdAvailable" #readKeyBtn
+                        [disabled]="readKeyBtn.loading || webAuthnListening || !keyIdAvailable" #readKeyBtn
                         [appApiAction]="challengePromise">
                         {{'readKey' | i18n}}
                     </button>
@@ -74,22 +74,22 @@
                         <i class="fa fa-spinner fa-spin text-muted" aria-hidden="true"></i>
                     </ng-container>
                     <ng-container *ngIf="!readKeyBtn.loading">
-                        <ng-container *ngIf="u2fListening">
+                        <ng-container *ngIf="webAuthnListening">
                             <i class="fa fa-spinner fa-spin text-muted" aria-hidden="true"></i>
                             {{'twoFactorU2fWaiting' | i18n}}...
                         </ng-container>
-                        <ng-container *ngIf="u2fResponse">
+                        <ng-container *ngIf="webAuthnResponse">
                             <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
                             {{'twoFactorU2fClickSave' | i18n}}
                         </ng-container>
-                        <ng-container *ngIf="u2fError">
+                        <ng-container *ngIf="webAuthnError">
                             <i class="fa fa-warning text-danger" aria-hidden="true"></i>
                             {{'twoFactorU2fProblemReadingTryAgain' | i18n}}
                         </ng-container>
                     </ng-container>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="form.loading || !u2fResponse">
+                    <button type="submit" class="btn btn-primary" [disabled]="form.loading || !webAuthnResponse">
                         <i class="fa fa-spinner fa-spin" *ngIf="form.loading" title="{{'loading' | i18n}}"
                             aria-hidden="true"></i>
                         <span *ngIf="!form.loading">{{'save' | i18n}}</span>

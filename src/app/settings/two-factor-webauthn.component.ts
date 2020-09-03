@@ -32,9 +32,9 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
     keys: any[];
     keyIdAvailable: number = null;
     keysConfiguredCount = 0;
-    u2fError: boolean;
-    u2fListening: boolean;
-    u2fResponse: PublicKeyCredential;
+    webAuthnError: boolean;
+    webAuthnListening: boolean;
+    webAuthnResponse: PublicKeyCredential;
     challengePromise: Promise<ChallengeResponse>;
     formPromise: Promise<any>;
 
@@ -50,13 +50,13 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
     }
 
     submit() {
-        if (this.u2fResponse == null || this.keyIdAvailable == null) {
+        if (this.webAuthnResponse == null || this.keyIdAvailable == null) {
             // Should never happen.
             return Promise.reject();
         }
         const request = new UpdateTwoFactorWebAuthnRequest();
         request.masterPasswordHash = this.masterPasswordHash;
-        request.deviceResponse = this.u2fResponse;
+        request.deviceResponse = this.webAuthnResponse;
         request.id = this.keyIdAvailable;
         request.name = this.name;
 
@@ -75,7 +75,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (this.keysConfiguredCount <= 1 || key.removePromise != null) {
             return;
         }
-        const name = key.name != null ? key.name : this.i18nService.t('u2fkeyX', key.id);
+        const name = key.name != null ? key.name : this.i18nService.t('webAuthnkeyX', key.id);
         const confirmed = await this.platformUtilsService.showDialog(
             this.i18nService.t('removeU2fConfirmation'), name,
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
@@ -106,35 +106,35 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         } catch { }
     }
 
-    private readDevice(u2fChallenge: ChallengeResponse) {
+    private readDevice(webAuthnChallenge: ChallengeResponse) {
         // tslint:disable-next-line
         console.log('listening for key...');
-        this.resetU2f(true);
+        this.resetWebAuthn(true);
 
         navigator.credentials.create({
-            publicKey: u2fChallenge
+            publicKey: webAuthnChallenge
         }).then((data: PublicKeyCredential) => {
             this.ngZone.run(() => {
-                this.u2fListening = false;
-                this.u2fResponse = data;
+                this.webAuthnListening = false;
+                this.webAuthnResponse = data;
             });
         }).catch((err) => {
             // tslint:disable-next-line
             console.error(err);
-            this.resetU2f(false);
+            this.resetWebAuthn(false);
             // TODO: Should we display the actual error?
-            this.u2fError = true;
+            this.webAuthnError = true;
         })
     }
 
-    private resetU2f(listening = false) {
-        this.u2fResponse = null;
-        this.u2fError = false;
-        this.u2fListening = listening;
+    private resetWebAuthn(listening = false) {
+        this.webAuthnResponse = null;
+        this.webAuthnError = false;
+        this.webAuthnListening = listening;
     }
 
     private processResponse(response: TwoFactorWebAuthnResponse) {
-        this.resetU2f();
+        this.resetWebAuthn();
         this.keys = [];
         this.keyIdAvailable = null;
         this.name = null;

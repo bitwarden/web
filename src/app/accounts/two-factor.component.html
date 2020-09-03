@@ -34,12 +34,12 @@
                         </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.WebAuthn">
-                        <p class="text-center" *ngIf="!u2fReady">
+                        <p class="text-center" *ngIf="!webAuthnReady">
                             <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
                                 aria-hidden="true"></i>
                             <span class="sr-only">{{'loading' | i18n}}</span>
                         </p>
-                        <ng-container *ngIf="u2fReady">
+                        <ng-container *ngIf="webAuthnReady">
                             <p class="text-center">{{'insertU2f' | i18n}}</p>
                             <img src="../../images/u2fkey.jpg" alt="" class="rounded img-fluid mb-3">
                         </ng-container>
