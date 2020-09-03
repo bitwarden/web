@@ -141,7 +141,7 @@ export function initFactory(): Function {
             environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
                 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
             environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :
-                'https://enterprise.bitwarden.com'; // window.location.origin + '/enterprise';
+                'https://portal.bitwarden.com'; // window.location.origin + '/portal';
         }
         apiService.setUrls({
             base: isDev ? null : window.location.origin,

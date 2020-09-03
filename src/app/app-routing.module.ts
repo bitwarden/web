@@ -9,13 +9,13 @@ import { OrganizationLayoutComponent } from './layouts/organization-layout.compo
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
-import { ChangePasswordComponent } from './accounts/change-password.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
@@ -104,10 +104,10 @@ const routes: Routes = [
             {
                 path: 'sso', component: SsoComponent,
                 canActivate: [UnauthGuardService],
-                data: { titleId: 'createAccount' }, // TODO
+                data: { titleId: 'enterpriseSingleSignOn' },
             },
             {
-                path: 'change-password', component: ChangePasswordComponent,
+                path: 'set-password', component: SetPasswordComponent,
                 data: { titleId: 'setMasterPassword' },
             },
             {

@@ -28,13 +28,13 @@ import { OrganizationLayoutComponent } from './layouts/organization-layout.compo
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
-import { ChangePasswordComponent as AccountsChangePasswordComponent } from './accounts/change-password.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
@@ -109,6 +109,7 @@ import { CreateOrganizationComponent } from './settings/create-organization.comp
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
+import { LinkSsoComponent } from './settings/link-sso.component';
 import { OptionsComponent } from './settings/options.component';
 import { OrganizationPlansComponent } from './settings/organization-plans.component';
 import { OrganizationsComponent } from './settings/organizations.component';
@@ -250,7 +251,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         A11yTitleDirective,
         AcceptOrganizationComponent,
         AccountComponent,
-        AccountsChangePasswordComponent,
+        SetPasswordComponent,
         AddCreditComponent,
         AddEditComponent,
         AdjustPaymentComponent,
@@ -296,6 +297,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ImportComponent,
         InactiveTwoFactorReportComponent,
         InputVerbatimDirective,
+        LinkSsoComponent,
         LockComponent,
         LoginComponent,
         ModalComponent,

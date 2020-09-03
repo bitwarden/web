@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Router } from '@angular/router';
-
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -34,14 +32,14 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     rotateEncKey = false;
     currentMasterPassword: string;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
+    constructor(i18nService: I18nService,
         cryptoService: CryptoService, messagingService: MessagingService,
         userService: UserService, passwordGenerationService: PasswordGenerationService,
-        platformUtilsService: PlatformUtilsService, folderService: FolderService,
-        cipherService: CipherService, syncService: SyncService,
-        policyService: PolicyService, router: Router) {
-        super(apiService, i18nService, cryptoService, messagingService, userService, passwordGenerationService,
-            platformUtilsService, folderService, cipherService, syncService, policyService, router);
+        platformUtilsService: PlatformUtilsService, policyService: PolicyService,
+        private folderService: FolderService, private cipherService: CipherService,
+        private syncService: SyncService, private apiService: ApiService, ) {
+        super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
+            platformUtilsService, policyService);
     }
 
     async rotateEncKeyClicked() {

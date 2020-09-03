@@ -54,6 +54,8 @@ export class OrganizationPlansComponent implements OnInit {
     name: string;
     billingEmail: string;
     businessName: string;
+    productTypes = ProductType;
+    formPromise: Promise<any>;
 
     plans: PlanResponse[];
 
@@ -65,17 +67,15 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async ngOnInit() {
-        const plans = await this.apiService.getPlans();
-        this.plans = plans.data;
+        if (!this.selfHosted) {
+            const plans = await this.apiService.getPlans();
+            this.plans = plans.data;
+        }
         this.loading = false;
     }
 
     get createOrganization() {
         return this.organizationId == null;
-    }
-
-    get productTypes() {
-        return ProductType;
     }
 
     get selectedPlan() {
@@ -89,7 +89,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectableProducts() {
-        let validPlans = this.plans;
+        let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
 
         if (this.ownedBusiness) {
             validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
@@ -286,8 +286,8 @@ export class OrganizationPlansComponent implements OnInit {
                 }
             };
 
-            const formPromise = doSubmit();
-            await formPromise;
+            this.formPromise = doSubmit();
+            await this.formPromise;
             this.onSuccess.emit();
         } catch { }
     }

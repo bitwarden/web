@@ -34,11 +34,11 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         private environmentService: EnvironmentService) { }
 
     ngOnInit() {
-        this.enterpriseUrl = 'https://enterprise.bitwarden.com';
+        this.enterpriseUrl = 'https://portal.bitwarden.com';
         if (this.environmentService.enterpriseUrl != null) {
             this.enterpriseUrl = this.environmentService.enterpriseUrl;
         } else if (this.environmentService.baseUrl != null) {
-            this.enterpriseUrl = this.environmentService.baseUrl + '/enterprise';
+            this.enterpriseUrl = this.environmentService.baseUrl + '/portal';
         }
 
         document.body.classList.remove('layout_frontend');

@@ -74,6 +74,17 @@
                                 <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
+                                <ng-container *ngIf="o.useSso && o.identifier">
+                                    <a *ngIf="o.ssoBound; else linkSso" class="dropdown-item" href="#" appStopClick
+                                        (click)="unlinkSso(o)">
+                                        <i class="fa fa-fw fa-chain-broken" aria-hidden="true"></i>
+                                        Unlink SSO
+                                    </a>
+                                    <ng-template #linkSso>
+                                        <app-link-sso [organization]="o">
+                                        </app-link-sso>
+                                    </ng-template>
+                                </ng-container>
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="leave(o)">
                                     <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
                                     {{'leave' | i18n}}
