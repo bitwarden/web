@@ -8,7 +8,7 @@
                     <span>{{organization.name}}</span>
                     <small class="text-muted">{{'organization' | i18n}}</small>
                 </div>
-                <div class="ml-auto card border-danger text-danger bg-transparent" *ngIf="!organization.enabled">
+                <div class="ml-3 card border-danger text-danger bg-transparent" *ngIf="!organization.enabled">
                     <div class="card-body py-2">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                         {{'organizationIsDisabled' | i18n}}
