@@ -1045,11 +1045,11 @@
     "message": "Použiť avatar obrázky načítané z gravatar.com."
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "Zapnúť vzhľad na celú šírku strany",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "Povoliť webovému trezoru roztiahnúť sa na celú šírku okna."
   },
   "default": {
     "message": "Predvolené"
@@ -2824,10 +2824,10 @@
     "message": "Filtre"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Časový limit pre trezor"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Vyberte kedy vyprší časový limit trezora a vykoná sa zvolená akcia."
   },
   "oneMinute": {
     "message": "1 minúta"
@@ -3049,45 +3049,45 @@
     "message": "Nastaví používateľ"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Akcia pri vypršaní času pre trezor"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Uzamknutý trezor sa dá odomknúť opätovným zadaním hlavného hesla."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Odlhásený trezor bude vyžadovať opätovné prihlásenie aby ste k nemu mohli pristupovať."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Uzamknúť",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Kôš",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Hľadať v koši"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Natrvalo Odstrániť"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Natrvalo odstrániť vybrané položky"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Natrvalo odstrániť položku"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Naozaj chcete natrvalo odstrániť túto položku?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Položka natrvalo odstránená"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Položky natrvalo odstránené"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Vybrali ste $COUNT$ položiek na trvalé odstránenie. Ste si istý, že chcete natrvalo odstrániť všetky tieto položky?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3096,7 +3096,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Položka $ID$ natrvalo odstránená.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3105,28 +3105,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Obnoviť"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Obnoviť zvolené"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Obnoviť položku"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Obnovená položka"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Obnovené položky"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Naozaj chcete obnoviť tieto položky?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Obnoviť položky"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Vybrali ste $COUNT$ položiek na obnovenie. Ste si istý, že chcete obnoviť všetky tieto položky?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3135,7 +3135,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Položka $ID$ obnovená.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3144,24 +3144,61 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Odhlásenie bude vyžadovať online prihlásenie po vypršaní časového limitu. Naozaj chcete použiť toto nastavenie?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Potvrdenie akcie pre vypršaný časový limit"
   },
   "hidePasswords": {
-    "message": "Hide Passwords"
+    "message": "Skryť heslá"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "Tieto informácie potrebujeme iba pre výpočet dane a pre finančné reporty."
   },
   "includeVAT": {
-    "message": "Include VAT/GST Information (optional)"
+    "message": "Zahrnúť informáciu o DPH (voliteľné)"
   },
   "taxIdNumber": {
-    "message": "VAT/GST Tax ID"
+    "message": "Číslo ID pre DPH"
   },
   "taxInfoUpdated": {
-    "message": "Tax information updated."
+    "message": "Daňové informácie aktualizované."
+  },
+  "setMasterPassword": {
+    "message": "Set Master Password"
+  },
+  "ssoCompleteRegistration": {
+    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+  },
+  "identifier": {
+    "message": "Identifier"
+  },
+  "organizationIdentifier": {
+    "message": "Organization Identifier"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Enterprise Single Sign-On"
+  },
+  "businessPortal": {
+    "message": "Business Portal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "All Teams features, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Enterprise Policies"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO Validation Failed"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organization Identifier is required."
   }
 }
