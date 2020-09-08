@@ -330,7 +330,7 @@
     "message": "国家"
   },
   "shared": {
-    "message": "已分享"
+    "message": "已共享"
   },
   "attachments": {
     "message": "附件"
@@ -352,7 +352,7 @@
     "message": "其他"
   },
   "share": {
-    "message": "分享"
+    "message": "共享"
   },
   "valueCopied": {
     "message": "$VALUE$ 已复制",
@@ -395,7 +395,7 @@
     "message": "密码库"
   },
   "shareSelected": {
-    "message": "分享所选"
+    "message": "共享所选"
   },
   "deleteSelected": {
     "message": "删除所选"
@@ -1322,7 +1322,7 @@
     "message": "报告"
   },
   "unsecuredWebsitesReport": {
-    "message": "不安全的网站报告"
+    "message": "不安全网站报告"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "使用带 http:// 的不安全网站是很危险的。如果网站允许，您应始终使用带 https:// 的加密连接来访问它们。"
@@ -1421,7 +1421,7 @@
     "message": "没有在密码库中发现弱密码。"
   },
   "reusedPasswordsReport": {
-    "message": "重复使用的密码报告"
+    "message": "重复使用密码报告"
   },
   "reusedPasswordsReportDesc": {
     "message": "如果您使用的服务被盗，在其他地方重复使用相同的密码可以让黑客轻松访问您的更多在线帐户。您应该对每个帐户或服务使用不同的密码。"
@@ -1861,16 +1861,16 @@
     "message": "用户"
   },
   "userSeats": {
-    "message": "用户数"
+    "message": "用户席位"
   },
   "additionalUserSeats": {
-    "message": "附加用户数"
+    "message": "附加用户席位"
   },
   "userSeatsDesc": {
-    "message": "# 用户数"
+    "message": "# 用户席位"
   },
   "userSeatsAdditionalDesc": {
-    "message": "您的计划包含 $BASE_SEATS$ 个用户数。添加附加用户数的价格是 $SEAT_PRICE$ 每用户/月。",
+    "message": "您的计划包含 $BASE_SEATS$ 个用户席位。添加附加用户的价格是 $SEAT_PRICE$ 每用户/月。",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1883,7 +1883,7 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "您需要多少个用户数？您也可以在需要的时候添加附加用户数。"
+    "message": "您需要多少个用户席位？您也可以在以后需要的时候添加附加席位。"
   },
   "planNameFree": {
     "message": "免费",
@@ -1902,7 +1902,7 @@
     "message": "家庭"
   },
   "planDescFamilies": {
-    "message": "适用于个人使用，与家人和朋友分享。"
+    "message": "适用于个人使用，与家人和朋友共享。"
   },
   "planNameTeams": {
     "message": "团队"
@@ -2728,11 +2728,11 @@
     "message": "输入您的安装 ID"
   },
   "addSeats": {
-    "message": "添加用户数",
+    "message": "添加席位",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "删除用户数",
+    "message": "移除席位",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2745,19 +2745,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "用户数已添加"
+    "message": "要添加的席位数"
   },
   "seatsToRemove": {
-    "message": "用户数已删除"
+    "message": "要移除的席位数"
   },
   "seatsAddNote": {
-    "message": "添加用户数将会调整账单金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前结算周期的剩余时间按比例分配。"
+    "message": "添加用户席位将会调整账单总金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前结算周期的剩余时间按比例分配。"
   },
   "seatsRemoveNote": {
-    "message": "删除用户数将会调整账单金额。这笔费用将按比例计入下一次结算周期。"
+    "message": "移除用户席位将对您的帐单总金额进行调整，并按比例计入下一笔帐单费用。"
   },
   "adjustedSeats": {
-    "message": "调整了 $AMOUNT$ 个用户数。",
+    "message": "调整了 $AMOUNT$ 个用户席位。",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -3163,5 +3163,42 @@
   },
   "taxInfoUpdated": {
     "message": "税务信息已更新。"
+  },
+  "setMasterPassword": {
+    "message": "Set Master Password"
+  },
+  "ssoCompleteRegistration": {
+    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+  },
+  "identifier": {
+    "message": "Identifier"
+  },
+  "organizationIdentifier": {
+    "message": "Organization Identifier"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Enterprise Single Sign-On"
+  },
+  "businessPortal": {
+    "message": "Business Portal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "All Teams features, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Enterprise Policies"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO Validation Failed"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organization Identifier is required."
   }
 }

@@ -1045,11 +1045,11 @@
     "message": "Käytä avatar-profiilikuvia gravatar.com-palvelusta."
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "Käytä täysileveää asettelua",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "Anna web-holvin laajentua koko selainikkunan leveydelle."
   },
   "default": {
     "message": "Oletus"
@@ -1207,7 +1207,7 @@
     "message": "Alustan rajoitusten vuoksi, YubiKey:tä ei pystytä käyttämään kaikissa Bitwarden sovelluksissa. Sinun tulisi ottaa käyttöön toinen kaksivaiheisen tunnistamisen tarjoaja, jotta voit käyttää tiliäsi, kun YubiKey:tä ei voida käyttää. Tuetut alustat:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
+    "message": "Web-holvi, työpöytäsovellus, CLI ja kaikki selainlaajennukset laitteessa, jossa on YubiKeyn hyväksyvä USB-portti."
   },
   "twoFactorYubikeySupportMobile": {
     "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
@@ -1306,7 +1306,7 @@
     "message": "Click the \"Save\" button below to enable this security key for two-step login."
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "There was a problem reading the security key. Try again."
+    "message": "Turva avaimen lukemisessa tapahtui virhe, yritä uudelleen."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Your Bitwarden two-step login recovery code"
@@ -1633,10 +1633,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each year. You may cancel at any time."
+    "message": "Maksutapasi veloitetaan välittömästi ja sitten toistuvasti vuosittain. Voit peruuttaa milloin tahansa."
   },
   "paymentCharged": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Maksutapasi veloitetaan välittömästi ja sitten toistuvasti joka $INTERVAL$. Voit peruuttaa koska tahansa.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1660,7 +1660,7 @@
     "message": "Luottokortti"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "Paina PayPal painiketta kirjautuaksesi PayPal tilillesi. Paina sitten Lähetä painiketta jatkaaksesi."
   },
   "cancelSubscription": {
     "message": "Peruuta tilaus"
@@ -1986,7 +1986,7 @@
     "message": "Ylläpidä omilla palvelimilla (valinnainen)"
   },
   "usersGetPremium": {
-    "message": "Users get access to premium membership features"
+    "message": "Users get access to Premium Features"
   },
   "controlAccessWithGroups": {
     "message": "Hallitse käyttäjien oikeuksia ryhmillä"
@@ -3150,10 +3150,10 @@
     "message": "Aikakatkaisun toiminnon vahvistus"
   },
   "hidePasswords": {
-    "message": "Hide Passwords"
+    "message": "Piilota salasanat"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "Nämä tiedot tarvitaan ainoastaan liikevaihtoveroa ja talous raportointia varten."
   },
   "includeVAT": {
     "message": "Include VAT/GST Information (optional)"
@@ -3162,6 +3162,43 @@
     "message": "VAT/GST Tax ID"
   },
   "taxInfoUpdated": {
-    "message": "Tax information updated."
+    "message": "Vero tiedot päivitetty."
+  },
+  "setMasterPassword": {
+    "message": "Set Master Password"
+  },
+  "ssoCompleteRegistration": {
+    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+  },
+  "identifier": {
+    "message": "Identifier"
+  },
+  "organizationIdentifier": {
+    "message": "Organization Identifier"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Enterprise Single Sign-On"
+  },
+  "businessPortal": {
+    "message": "Business Portal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "All Teams features, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Enterprise Policies"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO Validation Failed"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organization Identifier is required."
   }
 }

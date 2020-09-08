@@ -461,7 +461,7 @@
     "message": "確定要刪除此項目嗎?"
   },
   "deletedItem": {
-    "message": "已刪除項目"
+    "message": "已刪除此項目"
   },
   "deletedItems": {
     "message": "已刪除項目"
@@ -1045,11 +1045,11 @@
     "message": "載入 gravatar.com 上的頭像圖片。"
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "啟用全寬度版面配置",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "允許將網頁版密碼庫完全展開至瀏覽器視窗寬度。"
   },
   "default": {
     "message": "預設"
@@ -1575,7 +1575,7 @@
     }
   },
   "addons": {
-    "message": "Addons"
+    "message": "附加項目"
   },
   "premiumAccess": {
     "message": "Premium Access"
@@ -1666,7 +1666,7 @@
     "message": "取消訂閱"
   },
   "subscriptionCanceled": {
-    "message": "The subscription has been canceled."
+    "message": "訂閱已被取消"
   },
   "pendingCancellation": {
     "message": "Pending Cancellation"
@@ -1678,7 +1678,7 @@
     "message": "重新開始訂閱"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "您是否要移除待處理的取消要求，重新開始您的訂閱？"
   },
   "reinstated": {
     "message": "已重新開始訂閱。"
@@ -1792,7 +1792,7 @@
     "message": "GB of Storage To Remove"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "增添存儲空間將會調整帳單總額，並立即透過您的支付方式進行扣款程序。第一期費用將按照當前帳單週期的剩餘數依比例分配。"
   },
   "storageRemoveNote": {
     "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
@@ -2751,7 +2751,7 @@
     "message": "要移除的席位數"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "增添用戶數將會調整帳單總額，並立即透過您的支付方式進行扣款程序。第一期費用將按照當前帳單週期的剩餘數依比例分配。"
   },
   "seatsRemoveNote": {
     "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
@@ -2778,7 +2778,7 @@
     "message": "您目前使用的是過時的加密方式。"
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "我們已經採用更強大的加密金鑰，而此金鑰提供了更強的安全機制及更新功能。更新您的加密金鑰非常簡單快速，僅需要輸入您的主密碼。此次更新最終將強制執行。"
   },
   "updateEncryptionKeyWarning": {
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
@@ -2824,10 +2824,10 @@
     "message": "篩選器"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "密碼庫逾時"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "選擇密碼庫多久之後才會逾時並執行選取動作。"
   },
   "oneMinute": {
     "message": "1 分鐘"
@@ -2986,10 +2986,10 @@
     "message": "要求使用者對個人帳號設定兩階段登入。"
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "會從組織移除個人帳戶未啟用兩步驟登入的成員，成員會收到一封通知這項變更的電子信件。"
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "您是組織成員，而組織要求您的使用者帳戶需要啟用兩步驟登入。如果停用所有兩步驟登入提供者，您就會被自動踢出這些組織。"
   },
   "passwordGeneratorPolicyDesc": {
     "message": "指定密碼產生器設定的最低需求。"
@@ -3049,7 +3049,7 @@
     "message": "使用者偏好設定"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "密碼庫逾時動作"
   },
   "vaultTimeoutActionLockDesc": {
     "message": "鎖定密碼庫後需要重新輸入主密碼才能再次存取。"
@@ -3144,10 +3144,10 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "選擇登出將會在密碼庫逾時後移除所有密碼庫存取權，重新認證時需要連線網路。確定要登出嗎？"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "逾時動作確認"
   },
   "hidePasswords": {
     "message": "隱藏密碼"
@@ -3163,5 +3163,42 @@
   },
   "taxInfoUpdated": {
     "message": "已更新稅務資訊。"
+  },
+  "setMasterPassword": {
+    "message": "Set Master Password"
+  },
+  "ssoCompleteRegistration": {
+    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+  },
+  "identifier": {
+    "message": "Identifier"
+  },
+  "organizationIdentifier": {
+    "message": "Organization Identifier"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Enterprise Single Sign-On"
+  },
+  "businessPortal": {
+    "message": "Business Portal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "All Teams features, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Enterprise Policies"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO Validation Failed"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organization Identifier is required."
   }
 }
