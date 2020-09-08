@@ -9,6 +9,7 @@ export class HtmlStorageService implements StorageService {
         ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
         ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
+    private sessionMemoryStorage = new Map<string, string>()
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
@@ -31,7 +32,7 @@ export class HtmlStorageService implements StorageService {
         if (this.isLocalStorage(key)) {
             json = window.localStorage.getItem(key);
         } else {
-            json = window.sessionStorage.getItem(key);
+            json = this.sessionMemoryStorage.get(key);
         }
         if (json != null) {
             const obj = JSON.parse(json);
@@ -49,7 +50,7 @@ export class HtmlStorageService implements StorageService {
         if (this.isLocalStorage(key)) {
             window.localStorage.setItem(key, json);
         } else {
-            window.sessionStorage.setItem(key, json);
+            this.sessionMemoryStorage.set(key, json);
         }
         return Promise.resolve();
     }
@@ -58,7 +59,7 @@ export class HtmlStorageService implements StorageService {
         if (this.isLocalStorage(key)) {
             window.localStorage.removeItem(key);
         } else {
-            window.sessionStorage.removeItem(key);
+            this.sessionMemoryStorage.delete(key);
         }
         return Promise.resolve();
     }
