@@ -35,6 +35,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     viewingPasswordHistory = false;
 
     protected totpInterval: number;
+    protected cipherCollectionNames: string[];
 
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
@@ -63,6 +64,11 @@ export class AddEditComponent extends BaseAddEditComponent {
             this.totpInterval = window.setInterval(async () => {
                 await this.totpTick(interval);
             }, 1000);
+        }
+        if (this.cipher.collectionIds?.length > 0 && this.cipher.organizationId) {
+            this.getCipherCollectionNames().then(collectionNames => {
+                this.cipherCollectionNames = collectionNames;
+            })
         }
     }
 
@@ -168,5 +174,15 @@ export class AddEditComponent extends BaseAddEditComponent {
         if (mod === 0) {
             await this.totpUpdateCode();
         }
+    }
+
+    private async getCipherCollectionNames(): Promise<string[]> {
+        const collectionNames: string[] = [];
+        for (const id of this.cipher.collectionIds) {
+            const collection = await this.collectionService.get(id);
+            const name = await collection.name.decrypt(this.cipher.organizationId)
+            collectionNames.push(name)
+        }
+        return collectionNames.sort()
     }
 }

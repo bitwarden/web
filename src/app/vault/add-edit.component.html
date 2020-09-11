@@ -476,6 +476,10 @@
                 </ng-container>
                 <ng-container *ngIf="editMode">
                     <div class="small text-muted mt-4">
+                        <div *ngIf="cipherCollectionNames.length > 0">
+                            <b class="font-weight-semibold">Collections: </b>
+                            <span>{{cipherCollectionNames.join(", ")}}</span>
+                        </div>
                         <div>
                             <b class="font-weight-semibold">{{'dateUpdated' | i18n}}:</b>
                             {{cipher.revisionDate | date:'medium'}}
