@@ -58,10 +58,10 @@ function start() {
     }
 
     stopWebAuthn = false
-    initU2f(json);
+    initWebAuthn(json);
 }
 
-function initU2f(obj: any) {
+function initWebAuthn(obj: any) {
     if (stopWebAuthn) {
         return;
     }

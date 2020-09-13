@@ -59,9 +59,6 @@ export class TwoFactorVerifyComponent {
                 case TwoFactorProviderType.Email:
                     this.formPromise = this.apiService.getTwoFactorEmail(request);
                     break;
-                case TwoFactorProviderType.U2f:
-                    this.formPromise = this.apiService.getTwoFactorU2f(request);
-                    break;
                 case TwoFactorProviderType.WebAuthn:
                     this.formPromise = this.apiService.getTwoFactorWebAuthn(request);
                     break;

@@ -13,7 +13,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 
 import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerificationRequest';
-import { UpdateTwoFactorU2fDeleteRequest } from 'jslib/models/request/updateTwoFactorU2fDeleteRequest';
+import { UpdateTwoFactorWebAuthnDeleteRequest } from 'jslib/models/request/updateTwoFactorWebAuthnDeleteRequest';
 import { UpdateTwoFactorWebAuthnRequest } from 'jslib/models/request/updateTwoFactorWebAuthnRequest';
 import {
     ChallengeResponse,
@@ -82,7 +82,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (!confirmed) {
             return;
         }
-        const request = new UpdateTwoFactorU2fDeleteRequest();
+        const request = new UpdateTwoFactorWebAuthnDeleteRequest();
         request.id = key.id;
         request.masterPasswordHash = this.masterPasswordHash;
         try {
