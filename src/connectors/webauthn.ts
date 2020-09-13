@@ -138,6 +138,8 @@ function b64Decode(str: string) {
     }).join(''));
 }
 
+// From https://github.com/abergs/fido2-net-lib/blob/b487a1d47373ea18cd752b4988f7262035b7b54e/Demo/wwwroot/js/helpers.js#L34
+// License: https://github.com/abergs/fido2-net-lib/blob/master/LICENSE.txt
 function coerceToBase64Url(thing: any) {
     // Array or ArrayBuffer to Uint8Array
     if (Array.isArray(thing)) {
