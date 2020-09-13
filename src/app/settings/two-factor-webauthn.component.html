@@ -41,6 +41,9 @@
                                         title="{{'enabled' | i18n}}"></i>
                                     <span class="sr-only">{{'enabled' | i18n}}</span>
                                 </ng-container>
+                                <ng-container *ngIf="k.migrated">
+                                    <span>{{'webAuthnMigrated' | i18n}}</span>
+                                </ng-container>
                             </ng-container>
                             <ng-container *ngIf="keysConfiguredCount > 1 && k.configured">
                                 <i class="fa fa-spin fa-spinner text-muted fa-fw" title="{{'loading' | i18n}}"

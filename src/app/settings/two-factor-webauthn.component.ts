@@ -148,6 +148,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
                         id: i, name: key[0].name,
                         configured: true,
                         compromised: key[0].compromised,
+                        migrated: key[0].migrated,
                         removePromise: null,
                     });
                     continue;
