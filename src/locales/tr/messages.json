@@ -968,7 +968,7 @@
     "message": "Hesabı Sil"
   },
   "deleteAccountDesc": {
-    "message": "Hesabınızı ve tüm ilişkili verileri silmek için aşağıdan devam edin."
+    "message": "Hesabınızı ve ilişkili tüm verileri silmek için aşağıya devam edin."
   },
   "deleteAccountWarning": {
     "message": "Hesabınızı silmek kalıcıdır. Geri alınamaz."
@@ -1045,11 +1045,11 @@
     "message": "gravatar.com adresinden yüklenen avatarları kullanın."
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "Tam Genişlik Düzenini Etkinleştir",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "Web kasasının tarayıcı penceresini tam genişliğinde kullanmasına izin verin."
   },
   "default": {
     "message": "Varsayılan"
@@ -1079,7 +1079,7 @@
     "message": "Yeni Özel Alan Adı"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp://package.name\" to associate an android app with other website domains."
+    "message": "Virgülle ayrılmış alan adları listesi giriniz. Sadece ana alan adlarına izin verilmektedir. Alt alan adları girmeyiniz. Örneğin, \"www.google.com\" yerine \"google.com\" giriniz. Bir android uygulamasını diğer web sitesi alan adları ile eşleştirmek için \"androiduygulaması://paket.ismi\" girebilirsiniz."
   },
   "customDomainX": {
     "message": "Özel Alan Adı: $INDEX$",
@@ -2625,7 +2625,7 @@
     "message": "Organizasyonu Sil"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Bu organizasyonu ve ilişkili tüm verileri silmek için aşağıya devam ediniz. Kişisel kullanıcı hesapları kalacak, fakat bu organizasyon ile ilişkisi kesilecektir. "
   },
   "deleteOrganizationWarning": {
     "message": "Organizasyonu silmek kalıcıdır. Bu işlem geri alınamaz."
@@ -2634,7 +2634,7 @@
     "message": "Organizasyon Silindi"
   },
   "organizationDeletedDesc": {
-    "message": "Organizasyon ve ona bağlı tüm veriler silindi."
+    "message": "Organizasyon ve ilişkili tüm veriler silindi."
   },
   "organizationUpdated": {
     "message": "Organizayson Güncellendi"
@@ -2827,7 +2827,7 @@
     "message": "Kasa Zaman Aşımı"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Kasanızın zaman aşımına uğrayıp seçilen eylemi uygulayacağı zamanı seçin."
   },
   "oneMinute": {
     "message": "1 dakika"
@@ -3052,10 +3052,10 @@
     "message": "Kasa Zaman Aşımı Eylemi"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Kilitli bir kasaya tekrar erişebilmeniz için ana parolanızı tekrar girmeniz gerekir."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Çıkış yapılmış bir kasaya tekrardan erişmek için yeniden kimlik doğrulaması gerekir."
   },
   "lock": {
     "message": "Kilitle",
@@ -3150,55 +3150,61 @@
     "message": "Zaman Aşımı Eylem Onayı"
   },
   "hidePasswords": {
-    "message": "Hide Passwords"
+    "message": "Parolaları Gizle"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "Bu bilgiyi sadece satış vergisi hesaplama ve mali raporlama için istiyoruz."
   },
   "includeVAT": {
-    "message": "Include VAT/GST Information (optional)"
+    "message": "KDV Bilgisi Ekle (opsiyonel)"
   },
   "taxIdNumber": {
-    "message": "VAT/GST Tax ID"
+    "message": "KDV Vergi Kimlik Numarası"
   },
   "taxInfoUpdated": {
-    "message": "Tax information updated."
+    "message": "Vergi bilgileriniz güncellendi."
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "Ana Parolayı Belirle"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+    "message": "Tek Oturum Açma (SSO) ile oturum açmayı tamamlamak için lütfen kasanıza erişebilmek ve onu korumak için bir ana parola ayarlayın."
   },
   "identifier": {
-    "message": "Identifier"
+    "message": "Tanımlayıcı"
   },
   "organizationIdentifier": {
-    "message": "Organization Identifier"
+    "message": "Organizasyon Tanımlayıcı"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+    "message": "Kuruluşunuzun tek oturum açma (SSO) portalını kullanarak oturum açın. Başlamak için lütfen kuruluşunuzun tanımlayıcısını girin."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise Single Sign-On"
+    "message": "Kurumsal Tek Oturum Açma"
   },
   "businessPortal": {
-    "message": "Business Portal",
+    "message": "Şirket Portalı",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "All Teams features, plus:"
+    "message": "Tüm Takımlar özellikleri, artı:"
   },
   "includeSsoAuthentication": {
-    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+    "message": "SAML2.0 ve OpenID Connect ile Tek Oturum Açma (SSO) Doğrulaması"
   },
   "includeEnterprisePolicies": {
-    "message": "Enterprise Policies"
+    "message": "Kurumsal İlkeler"
   },
   "ssoValidationFailed": {
-    "message": "SSO Validation Failed"
+    "message": "Tek Oturum Açma (SSO) Doğrulaması Başarısız Oldu"
   },
   "ssoIdentifierRequired": {
-    "message": "Organization Identifier is required."
+    "message": "Organizasyon Tanımlayıcısı gereklidir."
+  },
+  "unlinkSso": {
+    "message": "Unlink SSO"
+  },
+  "linkSso": {
+    "message": "Link SSO"
   }
 }
