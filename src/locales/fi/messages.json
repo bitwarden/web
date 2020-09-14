@@ -1237,7 +1237,7 @@
     "message": "Yksi avaimistani tukee NFC:tä."
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "If one of your YubiKeys supports NFC (such as a YubiKey NEO), you will be prompted on mobile devices whenever NFC availability is detected."
+    "message": "Jos joku YubiKey:stäsi tukee NFC:tä (kuten YubiKey NEO), kehote näytetään mobiililaitteissa silloin kun NFC saatavuus on havaittu."
   },
   "yubikeysUpdated": {
     "message": "YubiKeyt päivitetty"
@@ -1258,7 +1258,7 @@
     "message": "API Hostname"
   },
   "twoFactorEmailDesc": {
-    "message": "Follow these steps to set up two-step login with email:"
+    "message": "Seuraa näitä vaiheita ottaaksesi kaksivaiheinen tunnistautuminen käyttöön sähköpostilla:"
   },
   "twoFactorEmailEnterEmail": {
     "message": "Syötä sähköpostiosoite, johon haluat vastaanottaa vahvistuskoodit"
@@ -1294,22 +1294,22 @@
     "message": "Tallenna lomake."
   },
   "twoFactorU2fWarning": {
-    "message": "Due to platform limitations, FIDO U2F cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when FIDO U2F cannot be used. Supported platforms:"
+    "message": "Alustakohtaisten rajoitusten vuoksi, FIDO U2F:ää ei pystytä käyttämään kaikissa Bitwarden sovelluksissa. Sinun tulee ottaa käyttöön toinen kaksivaiheisen tunnistautumisen tapa, jotta voit käyttää tiliäsi, kun FIDO U2F ei ole saatavilla. Tuetut alustat:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Web vault and browser extensions on a desktop/laptop with a U2F enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorU2fWaiting": {
-    "message": "Waiting for you to touch the button on your security key"
+    "message": "Odotetaan, että kosketat turva-avaimessa olevaa painiketta"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to enable this security key for two-step login."
+    "message": "Napsauta alla olevaa \"Tallenna\" painiketta ottaaksesi käyttöön tämän turva-avaimen kaksivaiheiseen kirjautumiseen."
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Turva avaimen lukemisessa tapahtui virhe, yritä uudelleen."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Your Bitwarden two-step login recovery code"
+    "message": "Bitwarden kaksivaiheisen kirjautumisesi palautuskoodi"
   },
   "twoFactorRecoveryNoCode": {
     "message": "You have not enabled any two-step login providers yet. After you have enabled a two-step login provider you can check back here for your recovery code."
@@ -1325,7 +1325,7 @@
     "message": "Unsecured Websites Report"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme so that your connection is encrypted."
+    "message": "Suojaamattomien sivustojen käyttäminen http:// -protokollalla voi olla vaarallista. Jos sivusto sallii, sinun pitäisi aina käyttää sitä https:// -protokollan avulla, jotta yhteytesi on salattu."
   },
   "unsecuredWebsitesFound": {
     "message": "Unsecured Websites Found"
@@ -1554,7 +1554,7 @@
     "message": "lisävaihtoehtoja kaksivaiheiselle kirjautumiselle, kuten YubiKey, FIDO U2F ja Duo"
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
+    "message": "Salasanahygienia-, tiliturvallisuus- ja tietovuotoraportit pitävät holvisi turvassa."
   },
   "premiumSignUpTotp": {
     "message": "TOTP-vahvistuskoodigeneraattorin (2FA) holvisi käyttäjätunnuksille"
@@ -1672,7 +1672,7 @@
     "message": "Odottaa peruutusta"
   },
   "subscriptionPendingCanceled": {
-    "message": "The subscription has been marked for cancellation at the end of the current billing period."
+    "message": "Tilaus on merkitty peruuntuvaksi kuluvan laskutusajan lopussa."
   },
   "reinstateSubscription": {
     "message": "Reinstate Subscription"
@@ -1986,7 +1986,7 @@
     "message": "Ylläpidä omilla palvelimilla (valinnainen)"
   },
   "usersGetPremium": {
-    "message": "Users get access to Premium Features"
+    "message": "Käyttäjät saavat pääsyn Premium-ominaisuuksiin"
   },
   "controlAccessWithGroups": {
     "message": "Hallitse käyttäjien oikeuksia ryhmillä"
@@ -3159,46 +3159,52 @@
     "message": "Include VAT/GST Information (optional)"
   },
   "taxIdNumber": {
-    "message": "VAT/GST Tax ID"
+    "message": "ALV/GST -verotunniste"
   },
   "taxInfoUpdated": {
     "message": "Vero tiedot päivitetty."
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "Aseta Pääsalasana"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+    "message": "Sisäänkirjautuaksesi kertakirjauksen avulla [SSO], ole hyvä ja määritä pääsalasana holvillesi."
   },
   "identifier": {
-    "message": "Identifier"
+    "message": "Tunniste"
   },
   "organizationIdentifier": {
-    "message": "Organization Identifier"
+    "message": "Organisaation Tunniste"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+    "message": "Kirjaudu sisään käyttäen organisaatiosi kertakirjausta [SSO]. Ole hyvä ja syötä organisaatiosi tunniste aloittaaksesi."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise Single Sign-On"
+    "message": "Yrityksen kertakirjautuminen [SSO]"
   },
   "businessPortal": {
-    "message": "Business Portal",
+    "message": "Yritys sisäänkäynti",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
     "message": "All Teams features, plus:"
   },
   "includeSsoAuthentication": {
-    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+    "message": "Kertakirjaus todennus [SSO], SAML2.0:n ja OpenID yhteyden kautta"
   },
   "includeEnterprisePolicies": {
-    "message": "Enterprise Policies"
+    "message": "Yritys tason menettelyt"
   },
   "ssoValidationFailed": {
-    "message": "SSO Validation Failed"
+    "message": "Kertakirjaus [SSO] todentaminen epäonnistui"
   },
   "ssoIdentifierRequired": {
-    "message": "Organization Identifier is required."
+    "message": "Organisaatio tunnistautuminen vaaditaan."
+  },
+  "unlinkSso": {
+    "message": "Unlink SSO"
+  },
+  "linkSso": {
+    "message": "Link SSO"
   }
 }

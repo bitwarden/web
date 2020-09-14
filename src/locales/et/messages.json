@@ -530,7 +530,7 @@
     "message": "Ülemparool"
   },
   "masterPassDesc": {
-    "message": "Ülemparool on parool, millega pääsed oma kontole ligi. On äärmiselt tähtis, et ülemparool ei ununeks. Selle parooli taastamine ei ole mingil moel võimalik."
+    "message": "Ülemparooliga pääsed oma kontole ligi. On äärmiselt tähtis, et ülemparool ei ununeks. Selle parooli taastamine ei ole mingil moel võimalik."
   },
   "masterPassHintDesc": {
     "message": "Vihje võib abiks olla olukorras, kui oled ülemparooli unustanud."
@@ -1331,7 +1331,7 @@
     "message": "Leiti ebaturvalisi veebilehti"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Leidsime sinu hoidlast $COUNT$ ebaturvalist veebilehte. Kui veebilehed seda võimaldavad, soovitame tungivalt need https:// URL-ideks muuta ",
+    "message": "Leidsime hoidlast $COUNT$ ebaturvalist veebilehte.\nKui võimalik, soovitame nende veebilehtede alguse tungivalt https:// -ks muuta. ",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2595,7 +2595,7 @@
     }
   },
   "rememberEmail": {
-    "message": "Mäleta e-posti aadressi"
+    "message": "Pea e-posti aadressi meeles"
   },
   "recoverAccountTwoStepDesc": {
     "message": "Kui sa ei pääse oma kontole ühegi kaheastmeliste kinnitamise meetodi abiga ligi, saad selle välja lülitada. Selleks kasuta kaheastmelise kinnitamise tühistamise koodi."
@@ -2802,7 +2802,7 @@
     "message": "Organisatsiooni loomine: Samm 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Enne organisatsiooni loomist pead esmalt looma tasuta konto."
+    "message": "Enne organisatsiooni loomist pead registreerima tasuta konto."
   },
   "refunded": {
     "message": "Tagasi makstud"
@@ -3193,12 +3193,18 @@
     "message": "SSO autentimine läbi SAML2.0 ja OpenID Connect-i"
   },
   "includeEnterprisePolicies": {
-    "message": "Ettevõtte poliitikad"
+    "message": "Ettevõtte poliitikate rakendamine"
   },
   "ssoValidationFailed": {
     "message": "SSO kinnitamine nurjus"
   },
   "ssoIdentifierRequired": {
     "message": "Nõutud on organisatsioon identifikaator."
+  },
+  "unlinkSso": {
+    "message": "Unlink SSO"
+  },
+  "linkSso": {
+    "message": "Link SSO"
   }
 }

@@ -1135,7 +1135,7 @@
     "message": "您拥有高级访问权限"
   },
   "alreadyPremiumFromOrg": {
-    "message": "由于您所属的组织，您已经拥有高级版功能权限。"
+    "message": "由于您是其所属组织的成员，您已经拥有高级会员功能权限。"
   },
   "manage": {
     "message": "管理"
@@ -1959,7 +1959,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "添加并与 $COUNT$ 位用户共享",
+    "message": "添加并最多与 $COUNT$ 位用户共享",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1971,7 +1971,7 @@
     "message": "添加并与无限的用户共享"
   },
   "createUnlimitedCollections": {
-    "message": "创建无限集合"
+    "message": "创建无限个集合"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ 加密文件存储",
@@ -1983,7 +1983,7 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "内部托管（可选）"
+    "message": "本地托管（可选）"
   },
   "usersGetPremium": {
     "message": "用户拥有高级会员功能权限"
@@ -1992,7 +1992,7 @@
     "message": "使用群组控制用户访问权限"
   },
   "syncUsersFromDirectory": {
-    "message": "从目录中同步用户和组"
+    "message": "使用目录同步用户和群组"
   },
   "trackAuditLogs": {
     "message": "使用审核日志跟踪用户操作"
@@ -2538,7 +2538,7 @@
     "message": "确认用户"
   },
   "usersNeedConfirmed": {
-    "message": "您的用户已经接受了他们的邀请，但仍需要确认。用户在确认之前将无法访问该组织。"
+    "message": "您的用户已经接受了发给他们的邀请，但仍需要被确认。用户在被确认之前将无法访问组织。"
   },
   "startDate": {
     "message": "开始日期"
@@ -2859,7 +2859,7 @@
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "组织被禁用。"
+    "message": "组织已被禁用。"
   },
   "licenseIsExpired": {
     "message": "授权已过期"
@@ -2946,7 +2946,7 @@
     "message": "轮换 API 密钥将使前一个密钥无效。如果你认为当前密钥不再安全，你可以轮换您的 API 密钥。"
   },
   "apiKeyWarning": {
-    "message": "您的 API 密钥可以完全访问该组织。请保密存放。"
+    "message": "您的 API 密钥拥有组织的全部访问权限。请将其存放在安全的地方。"
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 客户端证书",
@@ -3183,11 +3183,11 @@
     "message": "企业单点登录（SSO）"
   },
   "businessPortal": {
-    "message": "商业门户",
+    "message": "业务门户",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "所有团队功能，包括："
+    "message": "包含所有团队版功能"
   },
   "includeSsoAuthentication": {
     "message": "通过 SAML2.0 和 OpenID 连接进行 SSO 身份验证"
@@ -3200,5 +3200,11 @@
   },
   "ssoIdentifierRequired": {
     "message": "需要组织标识符。"
+  },
+  "unlinkSso": {
+    "message": "Unlink SSO"
+  },
+  "linkSso": {
+    "message": "Link SSO"
   }
 }
