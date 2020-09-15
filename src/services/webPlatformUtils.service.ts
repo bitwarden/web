@@ -24,7 +24,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             this.browserCache = DeviceType.FirefoxBrowser;
         } else if (navigator.userAgent.indexOf(' OPR/') >= 0) {
             this.browserCache = DeviceType.OperaBrowser;
-        } else if (navigator.userAgent.indexOf(' Edge/') !== -1) {
+        } else if (navigator.userAgent.indexOf(' Edg/') !== -1) {
             this.browserCache = DeviceType.EdgeBrowser;
         } else if (navigator.userAgent.indexOf(' Vivaldi/') !== -1) {
             this.browserCache = DeviceType.VivaldiBrowser;
