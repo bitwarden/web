@@ -3001,7 +3001,7 @@
     "message": "Поне една политика на организация има следните изисквания към главната ви парола:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Минимална сила от $SCORE$",
+    "message": "Минимална сложност от $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3165,40 +3165,46 @@
     "message": "Данъчната информация е обновена."
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "Задаване на главна парола"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+    "message": "За да завършите настройките за еднократна идентификация, трябва да зададете главна парола за трезора."
   },
   "identifier": {
-    "message": "Identifier"
+    "message": "Идентификатор"
   },
   "organizationIdentifier": {
-    "message": "Organization Identifier"
+    "message": "Идентификатор на организация"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+    "message": "Вписване чрез портала на организацията ви за еднократна идентификация. За да продължите, въведете идентификатора на организацията."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise Single Sign-On"
+    "message": "Еднократна идентификация (SSO)"
   },
   "businessPortal": {
-    "message": "Business Portal",
+    "message": "Бизнес портал",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "All Teams features, plus:"
+    "message": "Всички възможности в екип плюс:"
   },
   "includeSsoAuthentication": {
-    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+    "message": "Еднократна идентификация чрез SAML2.0 и OpenID Connect"
   },
   "includeEnterprisePolicies": {
-    "message": "Enterprise Policies"
+    "message": "Политики на бизнеса"
   },
   "ssoValidationFailed": {
-    "message": "SSO Validation Failed"
+    "message": "Неуспешна еднократна идентификация"
   },
   "ssoIdentifierRequired": {
-    "message": "Organization Identifier is required."
+    "message": "Идентификаторът на организация е задължителен."
+  },
+  "unlinkSso": {
+    "message": "Прекъсване на еднократна идентификация"
+  },
+  "linkSso": {
+    "message": "Свързване на еднократна идентификация"
   }
 }
