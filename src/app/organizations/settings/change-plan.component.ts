@@ -22,7 +22,7 @@ export class ChangePlanComponent {
 
     formPromise: Promise<any>;
     defaultUpgradePlan: PlanType = PlanType.FamiliesAnnually;
-    defaultUpgradeProduct: ProductType = ProductType.Families
+    defaultUpgradeProduct: ProductType = ProductType.Families;
 
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService) { }
 
