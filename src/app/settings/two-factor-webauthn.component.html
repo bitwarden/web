@@ -31,16 +31,6 @@
                             <strong *ngIf="!k.configured || !k.name">{{'webAuthnkeyX' | i18n : i + 1}}</strong>
                             <strong *ngIf="k.configured && k.name">{{k.name}}</strong>
                             <ng-container *ngIf="k.configured && !removeKeyBtn.loading">
-                                <ng-container *ngIf="k.compromised">
-                                    <i class="fa fa-fw fa-exclamation-triangle text-warning" aria-hidden="true"
-                                        title="{{'keyCompromised' | i18n}}"></i>
-                                    <span class="sr-only">{{'keyCompromised' | i18n}}</span>
-                                </ng-container>
-                                <ng-container *ngIf="!k.compromised">
-                                    <i class="fa fa-fw fa-check text-success" aria-hidden="true"
-                                        title="{{'enabled' | i18n}}"></i>
-                                    <span class="sr-only">{{'enabled' | i18n}}</span>
-                                </ng-container>
                                 <ng-container *ngIf="k.migrated">
                                     <span>{{'webAuthnMigrated' | i18n}}</span>
                                 </ng-container>
