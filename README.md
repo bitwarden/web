@@ -22,16 +22,13 @@
 ## Build/Run
 
 ### Requirements
-
 - [Node.js](https://nodejs.org) v8.11 or greater
 
 ### Run the app
-
 ```
 npm install
 npm run build:watch
 ```
-
 You can now access the web vault in your browser at `https://localhost:8080`. You can adjust your API endpoint settings in `src/app/services/services.module.ts` by altering the `apiService.setUrls` call. For example:
 
 ```typescript
@@ -56,5 +53,4 @@ await apiService.setUrls({
 ## Contribute
 
 Code contributions are welcome! Please commit any pull requests against the `master` branch.
-
 Security audits and feedback are welcome. Please open an issue or email us privately if the report is sensitive in nature. You can read our security policy in the [`SECURITY.md`](SECURITY.md) file.
