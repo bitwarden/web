@@ -25,6 +25,9 @@
 
 - [Node.js](https://nodejs.org) v8.11 or greater
 
+-New version [Node.js] (https://nodejs.org) 11.10.0.
+
+
 ### Run the app
 
 ```
