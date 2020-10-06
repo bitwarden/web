@@ -12,8 +12,8 @@
                 <div class="row" *ngIf="!editMode">
                     <div class="col-6 form-group">
                         <label for="type">{{'whatTypeOfItem' | i18n}}</label>
-                        <select id="type" name="Type" [(ngModel)]="cipher.type" class="form-control" 
-                            [disabled]="cipher.isDeleted">
+                        <select id="type" name="Type" [(ngModel)]="cipher.type" class="form-control"
+                            [disabled]="cipher.isDeleted" appAutofocus>
                             <option *ngFor="let o of typeOptions" [ngValue]="o.value">{{o.name}}</option>
                         </select>
                     </div>

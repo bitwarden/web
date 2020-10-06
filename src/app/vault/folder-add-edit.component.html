@@ -9,7 +9,8 @@
             </div>
             <div class="modal-body">
                 <label for="name">{{'name' | i18n}}</label>
-                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="folder.name" required>
+                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="folder.name" required
+                    appAutofocus>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
