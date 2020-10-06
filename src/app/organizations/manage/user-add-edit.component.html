@@ -19,7 +19,8 @@
                     <p>{{'inviteUserDesc' | i18n}}</p>
                     <div class="form-group mb-4">
                         <label for="emails">{{'email' | i18n}}</label>
-                        <input id="emails" class="form-control" type="text" name="Emails" [(ngModel)]="emails" required>
+                        <input id="emails" class="form-control" type="text" name="Emails" [(ngModel)]="emails" required
+                            appAutoFocus>
                         <small class="text-muted">{{'inviteMultipleEmailDesc' | i18n : '20'}}</small>
                     </div>
                 </ng-container>
