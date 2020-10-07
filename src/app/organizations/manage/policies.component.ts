@@ -66,6 +66,12 @@ export class PoliciesComponent implements OnInit {
                 type: PolicyType.PasswordGenerator,
                 enabled: false,
             },
+            {
+                name: i18nService.t('onlyOrg'),
+                description: i18nService.t('onlyOrgDesc'),
+                type: PolicyType.OnlyOrg,
+                enabled: false,
+            },
         ];
     }
 
