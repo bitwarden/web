@@ -659,13 +659,15 @@ app-user-billing {
     }
 }
 
+$callout-bg: #fafafa;
 .callout {
+
     padding: $alert-padding-y $alert-padding-x;
     margin-bottom: $alert-margin-bottom;
     border: 1px solid $card-border-color;
     border-left-width: 5px;
     border-radius: $card-inner-border-radius;
-    background-color: #fafafa;
+    background-color: $callout-bg;
 
     .callout-heading {
         margin-top: 0;
@@ -713,6 +715,23 @@ app-user-billing {
 
         .callout-heading {
             color: $warning;
+        }
+    }
+}
+
+button.deprecationWarning {
+    border: 0;
+    margin-bottom: 1rem;
+    text-align: inherit;
+
+    &:focus {
+        outline: none;
+    }
+
+    * > .callout {
+        margin-bottom: 0;
+        &:hover {
+            background-color: darken($color: $callout-bg, $amount: 3%);
         }
     }
 }
