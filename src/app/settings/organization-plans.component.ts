@@ -17,6 +17,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { PaymentComponent } from './payment.component';
@@ -28,6 +29,7 @@ import { ProductType } from 'jslib/enums/productType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { PlanResponse } from 'jslib/models/response/planResponse';
+import { PolicyType } from 'jslib/enums/policyType';
 
 @Component({
     selector: 'app-organization-plans',
@@ -56,13 +58,15 @@ export class OrganizationPlansComponent implements OnInit {
     businessName: string;
     productTypes = ProductType;
     formPromise: Promise<any>;
+    onlyOrgPolicyBlock: boolean = false;
 
     plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
+        private router: Router, private syncService: SyncService,
+        private policyService: PolicyService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -200,6 +204,17 @@ export class OrganizationPlansComponent implements OnInit {
             if (files == null || files.length === 0) {
                 this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                     this.i18nService.t('selectFile'));
+                return;
+            }
+        }
+
+        if (this.onlyOrgPolicyBlock) {
+            return;
+        }
+        else {
+            const policies = await this.policyService.getAll(PolicyType.OnlyOrg);
+            this.onlyOrgPolicyBlock = policies.filter(policy => policy.enabled).length > 0;
+            if (this.onlyOrgPolicyBlock) {
                 return;
             }
         }

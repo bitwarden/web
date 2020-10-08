@@ -35,13 +35,14 @@ export class PoliciesComponent implements OnInit {
     organizationId: string;
     policies: any[];
 
+    // Remove when removing deprecation warning
+    enterpriseTokenPromise: Promise<any>;
+    private enterpriseUrl: string;
+
     private modal: ModalComponent = null;
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
-    // Remove when removing deprecation warning
-    enterpriseTokenPromise: Promise<any>;
-    private enterpriseUrl: string;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
