@@ -24,12 +24,12 @@ import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
 import { PlanType } from 'jslib/enums/planType';
+import { PolicyType } from 'jslib/enums/policyType';
 import { ProductType } from 'jslib/enums/productType';
 
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { PlanResponse } from 'jslib/models/response/planResponse';
-import { PolicyType } from 'jslib/enums/policyType';
 
 @Component({
     selector: 'app-organization-plans',
@@ -197,6 +197,16 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async submit() {
+        if (this.onlyOrgPolicyBlock) {
+            return;
+        } else {
+            const policies = await this.policyService.getAll(PolicyType.OnlyOrg);
+            this.onlyOrgPolicyBlock = policies.filter(policy => policy.enabled).length > 0;
+            if (this.onlyOrgPolicyBlock) {
+                return;
+            }
+        }
+
         let files: FileList = null;
         if (this.createOrganization && this.selfHosted) {
             const fileEl = document.getElementById('file') as HTMLInputElement;
@@ -204,17 +214,6 @@ export class OrganizationPlansComponent implements OnInit {
             if (files == null || files.length === 0) {
                 this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                     this.i18nService.t('selectFile'));
-                return;
-            }
-        }
-
-        if (this.onlyOrgPolicyBlock) {
-            return;
-        }
-        else {
-            const policies = await this.policyService.getAll(PolicyType.OnlyOrg);
-            this.onlyOrgPolicyBlock = policies.filter(policy => policy.enabled).length > 0;
-            if (this.onlyOrgPolicyBlock) {
                 return;
             }
         }

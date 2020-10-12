@@ -659,7 +659,6 @@ app-user-billing {
     }
 }
 
-$callout-bg: #fafafa;
 .callout {
 
     padding: $alert-padding-y $alert-padding-x;
@@ -667,7 +666,7 @@ $callout-bg: #fafafa;
     border: 1px solid $card-border-color;
     border-left-width: 5px;
     border-radius: $card-inner-border-radius;
-    background-color: $callout-bg;
+    background-color: #fafafa;
 
     .callout-heading {
         margin-top: 0;
@@ -715,23 +714,6 @@ $callout-bg: #fafafa;
 
         .callout-heading {
             color: $warning;
-        }
-    }
-}
-
-button.deprecationWarning {
-    border: 0;
-    margin-bottom: 1rem;
-    text-align: inherit;
-
-    &:focus {
-        outline: none;
-    }
-
-    * > .callout {
-        margin-bottom: 0;
-        &:hover {
-            background-color: darken($color: $callout-bg, $amount: 3%);
         }
     }
 }

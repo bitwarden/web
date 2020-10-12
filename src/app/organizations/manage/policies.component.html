@@ -1,6 +1,8 @@
-<button class="p-0 deprecationWarning" (click)="goToEnterprisePortal()">
-    <app-callout [type]="'warning'">{{'webPoliciesDeprecationWarning' | i18n}}</app-callout>
-</button>
+<app-callout [type]="'warning'">
+    <p>{{'webPoliciesDeprecationWarning' | i18n}}</p>
+    <button type="button" class="btn btn-outline-secondary"
+        (click)="goToEnterprisePortal()">{{'businessPortal' | i18n}}</button>
+</app-callout>
 <div class="page-header d-flex">
     <h1>{{'policies' | i18n}}</h1>
 </div>
