@@ -155,7 +155,12 @@ export class PoliciesComponent implements OnInit {
 
     private updatePolicyVisibility(organization: Organization) {
         if (organization.useSso) {
-
+            this.policies.push({
+                name: this.i18nService.t('requireSsoAuthentication'),
+                description: this.i18nService.t('requireSsoAuthenticationPolicyDesc'),
+                type: PolicyType.RequireSso,
+                enabled: false,
+            });
         }
     }
 }

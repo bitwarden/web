@@ -27,6 +27,7 @@ export class PolicyEditComponent implements OnInit {
     @Input() description: string;
     @Input() type: PolicyType;
     @Input() organizationId: string;
+    @Input() policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
     @Output() onSavedPolicy = new EventEmitter();
 
     policyType = PolicyType;
@@ -123,6 +124,28 @@ export class PolicyEditComponent implements OnInit {
             } else {
                 throw e;
             }
+        }
+    }
+
+    async prevalidate() {
+        switch (this.type) {
+            case PolicyType.SsoAuthentication:
+                if (!this.enabled) { // Don't need prevalidation checks if not enabling
+                    this.submit();
+                    return;
+                }
+                // Have OnlyOrg policy enabled?
+                if (this.policiesEnabledMap.has(PolicyType.OnlyOrg)
+                    && this.policiesEnabledMap.get(PolicyType.OnlyOrg)) {
+                    this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoAuthenticationPolicyReqError'));
+                    return;
+                }
+                // Can Prevalidate for SSO use?
+                this.submit();
+                break;
+
+            default:
+                this.submit();
         }
     }
 
