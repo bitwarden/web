@@ -23,6 +23,7 @@ import { PolicyResponse } from 'jslib/models/response/policyResponse';
 import { ModalComponent } from '../../modal.component';
 
 import { PolicyEditComponent } from './policy-edit.component';
+import { Organization } from 'jslib/models/domain/organization';
 
 @Component({
     selector: 'app-org-policies',
@@ -84,6 +85,7 @@ export class PoliciesComponent implements OnInit {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
+            this.updatePolicyVisibility(organization);
             await this.load();
         });
 
@@ -122,6 +124,7 @@ export class PoliciesComponent implements OnInit {
         childComponent.description = p.description;
         childComponent.type = p.type;
         childComponent.organizationId = this.organizationId;
+        childComponent.policiesEnabledMap = this.policiesEnabledMap;
         childComponent.onSavedPolicy.subscribe(() => {
             this.modal.close();
             this.load();
@@ -148,5 +151,11 @@ export class PoliciesComponent implements OnInit {
             }
         } catch { }
         this.enterpriseTokenPromise = null;
+    }
+
+    private updatePolicyVisibility(organization: Organization) {
+        if (organization.useSso) {
+
+        }
     }
 }
