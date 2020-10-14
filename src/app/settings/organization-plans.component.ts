@@ -201,7 +201,7 @@ export class OrganizationPlansComponent implements OnInit {
             return;
         } else {
             const policies = await this.policyService.getAll(PolicyType.OnlyOrg);
-            this.onlyOrgPolicyBlock = policies.filter(policy => policy.enabled).length > 0;
+            this.onlyOrgPolicyBlock = policies.some(policy => policy.enabled);
             if (this.onlyOrgPolicyBlock) {
                 return;
             }
