@@ -13,6 +13,7 @@ import {
 import { PolicyType } from 'jslib/enums/policyType';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { EnvironmentService } from 'jslib/abstractions';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -34,14 +35,19 @@ export class PoliciesComponent implements OnInit {
     organizationId: string;
     policies: any[];
 
+    // Remove when removing deprecation warning
+    enterpriseTokenPromise: Promise<any>;
+    private enterpriseUrl: string;
+
     private modal: ModalComponent = null;
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
+
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private router: Router) {
+        private router: Router, private environmentService: EnvironmentService) {
         this.policies = [
             {
                 name: i18nService.t('twoStepLogin'),
@@ -61,6 +67,12 @@ export class PoliciesComponent implements OnInit {
                 type: PolicyType.PasswordGenerator,
                 enabled: false,
             },
+            {
+                name: i18nService.t('onlyOrg'),
+                description: i18nService.t('onlyOrgDesc'),
+                type: PolicyType.OnlyOrg,
+                enabled: false,
+            },
         ];
     }
 
@@ -74,6 +86,14 @@ export class PoliciesComponent implements OnInit {
             }
             await this.load();
         });
+
+        // Remove when removing deprecation warning
+        this.enterpriseUrl = 'https://portal.bitwarden.com';
+        if (this.environmentService.enterpriseUrl != null) {
+            this.enterpriseUrl = this.environmentService.enterpriseUrl;
+        } else if (this.environmentService.baseUrl != null) {
+            this.enterpriseUrl = this.environmentService.baseUrl + '/portal';
+        }
     }
 
     async load() {
@@ -110,5 +130,23 @@ export class PoliciesComponent implements OnInit {
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
+    }
+
+
+    // Remove when removing deprecation warning
+    async goToEnterprisePortal() {
+        if (this.enterpriseTokenPromise != null) {
+            return;
+        }
+        try {
+            this.enterpriseTokenPromise = this.apiService.getEnterprisePortalSignInToken();
+            const token = await this.enterpriseTokenPromise;
+            if (token != null) {
+                const userId = await this.userService.getUserId();
+                this.platformUtilsService.launchUri(this.enterpriseUrl + '/login?userId=' + userId +
+                    '&token=' + (window as any).encodeURIComponent(token) + '&organizationId=' + this.organizationId);
+            }
+        } catch { }
+        this.enterpriseTokenPromise = null;
     }
 }
