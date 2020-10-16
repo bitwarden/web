@@ -17,12 +17,14 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
 import { PlanType } from 'jslib/enums/planType';
+import { PolicyType } from 'jslib/enums/policyType';
 import { ProductType } from 'jslib/enums/productType';
 
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
@@ -56,13 +58,15 @@ export class OrganizationPlansComponent implements OnInit {
     businessName: string;
     productTypes = ProductType;
     formPromise: Promise<any>;
+    onlyOrgPolicyBlock: boolean = false;
 
     plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
+        private router: Router, private syncService: SyncService,
+        private policyService: PolicyService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -193,6 +197,16 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async submit() {
+        if (this.onlyOrgPolicyBlock) {
+            return;
+        } else {
+            const policies = await this.policyService.getAll(PolicyType.OnlyOrg);
+            this.onlyOrgPolicyBlock = policies.some(policy => policy.enabled);
+            if (this.onlyOrgPolicyBlock) {
+                return;
+            }
+        }
+
         let files: FileList = null;
         if (this.createOrganization && this.selfHosted) {
             const fileEl = document.getElementById('file') as HTMLInputElement;
