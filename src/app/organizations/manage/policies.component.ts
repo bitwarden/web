@@ -34,6 +34,7 @@ export class PoliciesComponent implements OnInit {
 
     loading = true;
     organizationId: string;
+    orgIdentifier: string;
     policies: any[];
 
     // Remove when removing deprecation warning
@@ -85,6 +86,7 @@ export class PoliciesComponent implements OnInit {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
+            this.orgIdentifier = organization.identifier;
             this.updatePolicyVisibility(organization);
             await this.load();
         });
@@ -125,6 +127,7 @@ export class PoliciesComponent implements OnInit {
         childComponent.type = p.type;
         childComponent.organizationId = this.organizationId;
         childComponent.policiesEnabledMap = this.policiesEnabledMap;
+        childComponent.orgIdentifier = this.orgIdentifier;
         childComponent.onSavedPolicy.subscribe(() => {
             this.modal.close();
             this.load();
@@ -156,8 +159,8 @@ export class PoliciesComponent implements OnInit {
     private updatePolicyVisibility(organization: Organization) {
         if (organization.useSso) {
             this.policies.push({
-                name: this.i18nService.t('requireSsoAuthentication'),
-                description: this.i18nService.t('requireSsoAuthenticationPolicyDesc'),
+                name: this.i18nService.t('requireSso'),
+                description: this.i18nService.t('requireSsoPolicyDesc'),
                 type: PolicyType.RequireSso,
                 enabled: false,
             });
