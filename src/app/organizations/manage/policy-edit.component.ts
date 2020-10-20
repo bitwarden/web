@@ -184,14 +184,12 @@ export class PolicyEditComponent implements OnInit {
                 if (!(this.policiesEnabledMap.has(PolicyType.OnlyOrg)
                     && this.policiesEnabledMap.get(PolicyType.OnlyOrg))) {
                     this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoPolicyReqError'));
-                    this.enabled = false;
                     return false;
                 }
                 // Can Prevalidate for SSO use?
                 if (this.orgIdentifier == null || this.orgIdentifier === '') {
                     this.toasterService.popAsync('error', this.i18nService.t('ssoValidationFailed'),
                         this.i18nService.t('ssoIdentifierRequired'));
-                    this.enabled = false;
                     return false;
                 }
 
