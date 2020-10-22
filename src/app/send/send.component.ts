@@ -13,6 +13,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { ToasterService } from 'angular2-toaster';
+
 import { SendType } from 'jslib/enums/sendType';
 
 import { SendView } from 'jslib/models/view/sendView';
@@ -45,11 +47,14 @@ const BroadcasterSubscriptionId = 'SendComponent';
 export class SendComponent implements OnInit, OnDestroy {
     @ViewChild('sendAddEdit', { read: ViewContainerRef, static: true }) sendAddEditModalRef: ViewContainerRef;
 
+    sendType = SendType;
+    loading = true;
     expired: boolean = false;
     type: SendType = null;
     sends: SendView[] = [];
 
     modal: ModalComponent = null;
+    actionPromise: any;
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
@@ -57,7 +62,8 @@ export class SendComponent implements OnInit, OnDestroy {
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone, private apiService: ApiService) { }
+        private ngZone: NgZone, private apiService: ApiService,
+        private toasterService: ToasterService) { }
 
     async ngOnInit() {
         const queryParamsSub = this.route.queryParams.subscribe(async (params) => {
@@ -71,21 +77,29 @@ export class SendComponent implements OnInit, OnDestroy {
                 queryParamsSub.unsubscribe();
             }
 
-            const userId = await this.userService.getUserId();
-            const sends = await this.apiService.getSends();
-            if (sends != null && sends.data != null) {
-                for (const res of sends.data) {
-                    const data = new SendData(res, userId);
-                    const send = new Send(data);
-                    const view = await send.decrypt();
-                    this.sends.push(view);
-                }
-            }
+            await this.load();
         });
     }
 
     ngOnDestroy() {
         this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
+    }
+
+    async load() {
+        this.loading = true;
+        const userId = await this.userService.getUserId();
+        const sends = await this.apiService.getSends();
+        const sendsArr: SendView[] = [];
+        if (sends != null && sends.data != null) {
+            for (const res of sends.data) {
+                const data = new SendData(res, userId);
+                const send = new Send(data);
+                const view = await send.decrypt();
+                sendsArr.push(view);
+            }
+        }
+        this.sends = sendsArr;
+        this.loading = false;
     }
 
     addSend() {
@@ -106,9 +120,11 @@ export class SendComponent implements OnInit, OnDestroy {
         childComponent.sendId = send == null ? null : send.id;
         childComponent.onSavedSend.subscribe(async (s: SendView) => {
             this.modal.close();
+            await this.load();
         });
         childComponent.onDeletedSend.subscribe(async (s: SendView) => {
             this.modal.close();
+            await this.load();
         });
 
         this.modal.onClosed.subscribe(() => {
@@ -116,5 +132,46 @@ export class SendComponent implements OnInit, OnDestroy {
         });
 
         return childComponent;
+    }
+
+    async removePassword(s: SendView): Promise<boolean> {
+        if (this.actionPromise != null || s.password == null) {
+            return;
+        }
+        const confirmed = await this.platformUtilsService.showDialog('Are you sure you want to remove the password?',
+            this.i18nService.t('permanentlyDeleteItem'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        try {
+            this.actionPromise = this.apiService.putSendRemovePassword(s.id);
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, 'Removed password.');
+            await this.load();
+        } catch { }
+        this.actionPromise = null;
+    }
+
+    async delete(s: SendView): Promise<boolean> {
+        if (this.actionPromise != null) {
+            return;
+        }
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('permanentlyDeleteItemConfirmation'),
+            this.i18nService.t('permanentlyDeleteItem'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        try {
+            this.actionPromise = this.apiService.deleteSend(s.id);
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('permanentlyDeletedItem'));
+            await this.load();
+        } catch { }
+        this.actionPromise = null;
     }
 }
