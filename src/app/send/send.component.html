@@ -1,0 +1,30 @@
+<div class="container page-content">
+    <div class="row">
+        <div class="col-3">
+            <!--Filters-->
+        </div>
+        <div class="col-9">
+            <div class="page-header d-flex">
+                <h1>
+                    Send
+                </h1>
+                <div class="ml-auto d-flex">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()">
+                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>New Send
+                    </button>
+                </div>
+            </div>
+            <!--Listing Table-->
+            <table class="table table-hover table-list" *ngIf="sends && sends.length">
+                <tbody>
+                    <tr *ngFor="let s of sends">
+                        <td>
+                            <a href="#" appStopClick (click)="editSend(s)">{{s.name}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #sendAddEdit></ng-template>
