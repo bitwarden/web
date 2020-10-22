@@ -98,6 +98,10 @@ import { CollectionsComponent as OrgCollectionsComponent } from './organizations
 import { GroupingsComponent as OrgGroupingsComponent } from './organizations/vault/groupings.component';
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
+import { AccessComponent } from './send/access.component';
+import { AddEditComponent as SendAddEditComponent } from './send/add-edit.component';
+import { SendComponent } from './send/send.component';
+
 import { AccountComponent } from './settings/account.component';
 import { AddCreditComponent } from './settings/add-credit.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';
@@ -179,7 +183,10 @@ import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
-import { registerLocaleData } from '@angular/common';
+import {
+    registerLocaleData,
+    DatePipe,
+} from '@angular/common';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
 import localeDa from '@angular/common/locales/da';
@@ -252,6 +259,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     declarations: [
         A11yTitleDirective,
+        AccessComponent,
         AcceptOrganizationComponent,
         AccountComponent,
         SetPasswordComponent,
@@ -358,6 +366,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SearchCiphersPipe,
         SearchPipe,
         SelectCopyDirective,
+        SendAddEditComponent,
+        SendComponent,
         SettingsComponent,
         ShareComponent,
         SsoComponent,
@@ -417,6 +427,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgUserGroupsComponent,
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
+        SendAddEditComponent,
         ShareComponent,
         TwoFactorAuthenticatorComponent,
         TwoFactorDuoComponent,
@@ -427,7 +438,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],
-    providers: [],
+    providers: [DatePipe],
     bootstrap: [AppComponent],
 })
 export class AppModule { }

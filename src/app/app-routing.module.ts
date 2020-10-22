@@ -57,6 +57,9 @@ import {
 
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
+import { AccessComponent } from './send/access.component';
+import { SendComponent } from './send/send.component';
+
 import { AccountComponent } from './settings/account.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
@@ -141,6 +144,11 @@ const routes: Routes = [
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'deleteAccount' },
             },
+            {
+                path: 'access-send/:sendId',
+                component: AccessComponent,
+                data: { titleId: 'myVault' },
+            },
         ],
     },
     {
@@ -149,6 +157,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         children: [
             { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
+            { path: 'send', component: SendComponent, data: { titleId: 'myVault' } },
             {
                 path: 'settings',
                 component: SettingsComponent,
