@@ -127,7 +127,6 @@ export class PoliciesComponent implements OnInit {
         childComponent.type = p.type;
         childComponent.organizationId = this.organizationId;
         childComponent.policiesEnabledMap = this.policiesEnabledMap;
-        childComponent.orgIdentifier = this.orgIdentifier;
         childComponent.onSavedPolicy.subscribe(() => {
             this.modal.close();
             this.load();

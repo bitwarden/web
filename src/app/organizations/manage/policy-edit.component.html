@@ -21,12 +21,8 @@
                     icon="fa-warning">
                     {{'onlyOrgPolicyWarning' | i18n}}
                 </app-callout>
-                <app-callout type="info" title="{{'prerequisites' | i18n}}" *ngIf="type === policyType.RequireSso">
-                    {{'requireSsoCalloutMessage' | i18n}}
-                    <ul class="mb-0">
-                        <li>{{'requireSsoPolicyReq' | i18n}}</li>
-                        <li>{{'requireSsoConfigReq' | i18n}}</li>
-                    </ul>
+                <app-callout type="tip" title="{{'prerequisite' | i18n}}" *ngIf="type === policyType.RequireSso">
+                    {{'requireSsoPolicyReq' | i18n}}
                 </app-callout>
                 <div class="form-group">
                     <div class="form-check">

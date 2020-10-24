@@ -28,7 +28,6 @@ export class PolicyEditComponent implements OnInit {
     @Input() type: PolicyType;
     @Input() organizationId: string;
     @Input() policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
-    @Input() orgIdentifier: string;
     @Output() onSavedPolicy = new EventEmitter();
 
     policyType = PolicyType;
@@ -129,8 +128,7 @@ export class PolicyEditComponent implements OnInit {
     }
 
     async submit() {
-        this.formPromise = this.preValidate();
-        if (await this.formPromise) {
+        if (this.preValidate()) {
             const request = new PolicyRequest();
             request.enabled = this.enabled;
             request.type = this.type;
@@ -174,7 +172,7 @@ export class PolicyEditComponent implements OnInit {
         }
     }
 
-    private async preValidate(): Promise<boolean> {
+    private preValidate(): boolean {
         switch (this.type) {
             case PolicyType.RequireSso:
                 if (!this.enabled) { // Don't need prevalidation checks if submitting to disable
@@ -186,14 +184,7 @@ export class PolicyEditComponent implements OnInit {
                     this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoPolicyReqError'));
                     return false;
                 }
-                // Can Prevalidate for SSO use?
-                if (this.orgIdentifier == null || this.orgIdentifier === '') {
-                    this.toasterService.popAsync('error', this.i18nService.t('ssoValidationFailed'),
-                        this.i18nService.t('ssoIdentifierRequired'));
-                    return false;
-                }
-
-                return await this.apiService.preValidateSso(this.orgIdentifier);
+                return true;
 
             default:
                 return true;
