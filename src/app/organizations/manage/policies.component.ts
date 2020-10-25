@@ -23,7 +23,6 @@ import { PolicyResponse } from 'jslib/models/response/policyResponse';
 import { ModalComponent } from '../../modal.component';
 
 import { PolicyEditComponent } from './policy-edit.component';
-import { Organization } from 'jslib/models/domain/organization';
 
 @Component({
     selector: 'app-org-policies',
@@ -34,7 +33,6 @@ export class PoliciesComponent implements OnInit {
 
     loading = true;
     organizationId: string;
-    orgIdentifier: string;
     policies: any[];
 
     // Remove when removing deprecation warning
@@ -49,34 +47,7 @@ export class PoliciesComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private router: Router, private environmentService: EnvironmentService) {
-        this.policies = [
-            {
-                name: i18nService.t('twoStepLogin'),
-                description: i18nService.t('twoStepLoginPolicyDesc'),
-                type: PolicyType.TwoFactorAuthentication,
-                enabled: false,
-            },
-            {
-                name: i18nService.t('masterPass'),
-                description: i18nService.t('masterPassPolicyDesc'),
-                type: PolicyType.MasterPassword,
-                enabled: false,
-            },
-            {
-                name: i18nService.t('passwordGenerator'),
-                description: i18nService.t('passwordGeneratorPolicyDesc'),
-                type: PolicyType.PasswordGenerator,
-                enabled: false,
-            },
-            {
-                name: i18nService.t('onlyOrg'),
-                description: i18nService.t('onlyOrgDesc'),
-                type: PolicyType.OnlyOrg,
-                enabled: false,
-            },
-        ];
-    }
+        private router: Router, private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
@@ -86,8 +57,43 @@ export class PoliciesComponent implements OnInit {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
-            this.orgIdentifier = organization.identifier;
-            this.updatePolicyVisibility(organization);
+            this.policies = [
+                {
+                    name: this.i18nService.t('twoStepLogin'),
+                    description: this.i18nService.t('twoStepLoginPolicyDesc'),
+                    type: PolicyType.TwoFactorAuthentication,
+                    enabled: false,
+                    display: true,
+                },
+                {
+                    name: this.i18nService.t('masterPass'),
+                    description: this.i18nService.t('masterPassPolicyDesc'),
+                    type: PolicyType.MasterPassword,
+                    enabled: false,
+                    display: true,
+                },
+                {
+                    name: this.i18nService.t('passwordGenerator'),
+                    description: this.i18nService.t('passwordGeneratorPolicyDesc'),
+                    type: PolicyType.PasswordGenerator,
+                    enabled: false,
+                    display: true,
+                },
+                {
+                    name: this.i18nService.t('onlyOrg'),
+                    description: this.i18nService.t('onlyOrgDesc'),
+                    type: PolicyType.OnlyOrg,
+                    enabled: false,
+                    display: true,
+                },
+                {
+                    name: this.i18nService.t('requireSso'),
+                    description: this.i18nService.t('requireSsoPolicyDesc'),
+                    type: PolicyType.RequireSso,
+                    enabled: false,
+                    display: organization.useSso,
+                },
+            ];
             await this.load();
         });
 
@@ -153,16 +159,5 @@ export class PoliciesComponent implements OnInit {
             }
         } catch { }
         this.enterpriseTokenPromise = null;
-    }
-
-    private updatePolicyVisibility(organization: Organization) {
-        if (organization.useSso) {
-            this.policies.push({
-                name: this.i18nService.t('requireSso'),
-                description: this.i18nService.t('requireSsoPolicyDesc'),
-                type: PolicyType.RequireSso,
-                enabled: false,
-            });
-        }
     }
 }
