@@ -178,9 +178,9 @@ export class PolicyEditComponent implements OnInit {
                 if (!this.enabled) { // Don't need prevalidation checks if submitting to disable
                     return true;
                 }
-                // Have OnlyOrg policy enabled?
-                if (!(this.policiesEnabledMap.has(PolicyType.OnlyOrg)
-                    && this.policiesEnabledMap.get(PolicyType.OnlyOrg))) {
+                // Have SingleOrg policy enabled?
+                if (!(this.policiesEnabledMap.has(PolicyType.SingleOrg)
+                    && this.policiesEnabledMap.get(PolicyType.SingleOrg))) {
                     this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoPolicyReqError'));
                     return false;
                 }
