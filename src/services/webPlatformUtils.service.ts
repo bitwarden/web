@@ -1,4 +1,4 @@
-import Swal, { SweetAlertIcon } from 'sweetalert2/src/sweetalert2.js';
+import Swal, { SweetAlertIcon } from 'sweetalert2/dist/sweetalert2.js';
 
 import { DeviceType } from 'jslib/enums/deviceType';
 
