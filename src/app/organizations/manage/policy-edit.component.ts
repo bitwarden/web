@@ -27,6 +27,7 @@ export class PolicyEditComponent implements OnInit {
     @Input() description: string;
     @Input() type: PolicyType;
     @Input() organizationId: string;
+    @Input() policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
     @Output() onSavedPolicy = new EventEmitter();
 
     policyType = PolicyType;
@@ -127,45 +128,66 @@ export class PolicyEditComponent implements OnInit {
     }
 
     async submit() {
-        const request = new PolicyRequest();
-        request.enabled = this.enabled;
-        request.type = this.type;
-        request.data = null;
-        switch (this.type) {
-            case PolicyType.PasswordGenerator:
-                request.data = {
-                    defaultType: this.passGenDefaultType,
-                    minLength: this.passGenMinLength || null,
-                    useUpper: this.passGenUseUpper,
-                    useLower: this.passGenUseLower,
-                    useNumbers: this.passGenUseNumbers,
-                    useSpecial: this.passGenUseSpecial,
-                    minNumbers: this.passGenMinNumbers || null,
-                    minSpecial: this.passGenMinSpecial || null,
-                    minNumberWords: this.passGenMinNumberWords || null,
-                    capitalize: this.passGenCapitalize,
-                    includeNumber: this.passGenIncludeNumber,
-                };
-                break;
-            case PolicyType.MasterPassword:
-                request.data = {
-                    minComplexity: this.masterPassMinComplexity || null,
-                    minLength: this.masterPassMinLength || null,
-                    requireUpper: this.masterPassRequireUpper,
-                    requireLower: this.masterPassRequireLower,
-                    requireNumbers: this.masterPassRequireNumbers,
-                    requireSpecial: this.masterPassRequireSpecial,
-                };
-                break;
-            default:
-                break;
+        if (this.preValidate()) {
+            const request = new PolicyRequest();
+            request.enabled = this.enabled;
+            request.type = this.type;
+            request.data = null;
+            switch (this.type) {
+                case PolicyType.PasswordGenerator:
+                    request.data = {
+                        defaultType: this.passGenDefaultType,
+                        minLength: this.passGenMinLength || null,
+                        useUpper: this.passGenUseUpper,
+                        useLower: this.passGenUseLower,
+                        useNumbers: this.passGenUseNumbers,
+                        useSpecial: this.passGenUseSpecial,
+                        minNumbers: this.passGenMinNumbers || null,
+                        minSpecial: this.passGenMinSpecial || null,
+                        minNumberWords: this.passGenMinNumberWords || null,
+                        capitalize: this.passGenCapitalize,
+                        includeNumber: this.passGenIncludeNumber,
+                    };
+                    break;
+                case PolicyType.MasterPassword:
+                    request.data = {
+                        minComplexity: this.masterPassMinComplexity || null,
+                        minLength: this.masterPassMinLength || null,
+                        requireUpper: this.masterPassRequireUpper,
+                        requireLower: this.masterPassRequireLower,
+                        requireNumbers: this.masterPassRequireNumbers,
+                        requireSpecial: this.masterPassRequireSpecial,
+                    };
+                    break;
+                default:
+                    break;
+            }
+            try {
+                this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
+                await this.formPromise;
+                this.analytics.eventTrack.next({ action: 'Edited Policy' });
+                this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.name));
+                this.onSavedPolicy.emit();
+            } catch { }
         }
-        try {
-            this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
-            await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Edited Policy' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.name));
-            this.onSavedPolicy.emit();
-        } catch { }
+    }
+
+    private preValidate(): boolean {
+        switch (this.type) {
+            case PolicyType.RequireSso:
+                if (!this.enabled) { // Don't need prevalidation checks if submitting to disable
+                    return true;
+                }
+                // Have OnlyOrg policy enabled?
+                if (!(this.policiesEnabledMap.has(PolicyType.OnlyOrg)
+                    && this.policiesEnabledMap.get(PolicyType.OnlyOrg))) {
+                    this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoPolicyReqError'));
+                    return false;
+                }
+                return true;
+
+            default:
+                return true;
+        }
     }
 }
