@@ -80,9 +80,9 @@ export class PoliciesComponent implements OnInit {
                     display: true,
                 },
                 {
-                    name: this.i18nService.t('onlyOrg'),
-                    description: this.i18nService.t('onlyOrgDesc'),
-                    type: PolicyType.OnlyOrg,
+                    name: this.i18nService.t('singleOrg'),
+                    description: this.i18nService.t('singleOrgDesc'),
+                    type: PolicyType.SingleOrg,
                     enabled: false,
                     display: true,
                 },
