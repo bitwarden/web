@@ -58,7 +58,7 @@ export class OrganizationPlansComponent implements OnInit {
     businessName: string;
     productTypes = ProductType;
     formPromise: Promise<any>;
-    onlyOrgPolicyBlock: boolean = false;
+    singleOrgPolicyBlock: boolean = false;
 
     plans: PlanResponse[];
 
@@ -197,12 +197,12 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async submit() {
-        if (this.onlyOrgPolicyBlock) {
+        if (this.singleOrgPolicyBlock) {
             return;
         } else {
-            const policies = await this.policyService.getAll(PolicyType.OnlyOrg);
-            this.onlyOrgPolicyBlock = policies.some(policy => policy.enabled);
-            if (this.onlyOrgPolicyBlock) {
+            const policies = await this.policyService.getAll(PolicyType.SingleOrg);
+            this.singleOrgPolicyBlock = policies.some(policy => policy.enabled);
+            if (this.singleOrgPolicyBlock) {
                 return;
             }
         }
