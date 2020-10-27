@@ -39,6 +39,7 @@ export class AccessComponent implements OnInit {
     passwordRequired = false;
     formPromise: Promise<SendAccessResponse>;
     password: string;
+    showText = false;
 
     private id: string;
     private key: string;
@@ -49,6 +50,13 @@ export class AccessComponent implements OnInit {
         private route: ActivatedRoute, private cryptoService: CryptoService,
         private cryptoFunctionService: CryptoFunctionService) {
         // TODO
+    }
+
+    get sendText() {
+        if (this.send == null || this.send.text == null) {
+            return null;
+        }
+        return this.showText ? this.send.text.text : this.send.text.maskedText;
     }
 
     ngOnInit() {
@@ -99,6 +107,19 @@ export class AccessComponent implements OnInit {
         this.downloading = false;
     }
 
+    selectText() {
+        (document.getElementById('text') as HTMLInputElement).select();
+    }
+
+    copyText() {
+        this.platformUtilsService.copyToClipboard(this.send.text.text);
+        this.platformUtilsService.showToast('success', null, 'Copied!');
+    }
+
+    toggleText() {
+        this.showText = !this.showText;
+    }
+
     private async load() {
         const accessRequest = new SendAccessRequest();
         if (this.password != null) {
@@ -106,13 +127,19 @@ export class AccessComponent implements OnInit {
             accessRequest.password = Utils.fromBufferToB64(passwordHash);
         }
         try {
-            this.formPromise = this.apiService.postSendAccess(this.id, accessRequest);
-            const sendResponse = await this.formPromise;
+            let sendResponse: SendAccessResponse = null;
+            if (this.loading) {
+                sendResponse = await this.apiService.postSendAccess(this.id, accessRequest);
+            } else {
+                this.formPromise = this.apiService.postSendAccess(this.id, accessRequest);
+                sendResponse = await this.formPromise;
+            }
             this.passwordRequired = false;
             const sendAccess = new SendAccess(sendResponse);
             const keyArray = Utils.fromUrlB64ToArray(this.key);
             this.decKey = new SymmetricCryptoKey(keyArray.buffer);
             this.send = await sendAccess.decrypt(this.decKey);
+            this.showText = this.send.text != null ? !this.send.text.hidden : true;
         } catch (e) {
             if (e instanceof ErrorResponse) {
                 if (e.statusCode === 401) {

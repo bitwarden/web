@@ -30,7 +30,12 @@
                             [(ngModel)]="deletionDate" required>
                     </div>
                     <div class="col-6 form-group">
-                        <label for="expirationDate">Expiration Date</label>
+                        <div class="d-flex">
+                            <label for="expirationDate">Expiration Date</label>
+                            <a href="#" appStopClick (click)="clearExpiration()" class="ml-auto">
+                                Clear
+                            </a>
+                        </div>
                         <input id="expirationDate" class="form-control" type="datetime-local" name="ExpirationDate"
                             [(ngModel)]="expirationDate">
                     </div>
@@ -78,7 +83,7 @@
                             {{send.file.fileName}} ({{send.file.sizeName}})
                         </div>
                         <div *ngIf="!editMode">
-                            <label for="file" class="sr-only">{{'file' | i18n}}</label>
+                            <label for="file">{{'file' | i18n}}</label>
                             <input type="file" id="file" class="form-control-file" name="file" required>
                             <small class="form-text text-muted">{{'maxFileSize' | i18n}}</small>
                         </div>

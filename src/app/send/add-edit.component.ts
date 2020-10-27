@@ -104,6 +104,8 @@ export class AddEditComponent {
                 this.send.type = this.type == null ? SendType.File : this.type;
                 this.send.file = new SendFileView();
                 this.send.text = new SendTextView();
+                this.send.deletionDate = new Date();
+                this.send.deletionDate.setDate(this.send.deletionDate.getDate() + 7);
             }
         }
 
@@ -161,6 +163,31 @@ export class AddEditComponent {
         } catch { }
 
         return false;
+    }
+
+    clearExpiration() {
+        this.expirationDate = null;
+    }
+
+    async delete(): Promise<void> {
+        if (this.deletePromise != null) {
+            return;
+        }
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('permanentlyDeleteItemConfirmation'),
+            this.i18nService.t('permanentlyDeleteItem'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+            this.deletePromise = this.apiService.deleteSend(this.send.id);
+            await this.deletePromise;
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('permanentlyDeletedItem'));
+            await this.load();
+            this.onDeletedSend.emit(this.send);
+        } catch { }
     }
 
     protected async loadSend(): Promise<Send> {

@@ -25,6 +25,7 @@ import { ModalComponent } from '../modal.component';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
+import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
@@ -63,7 +64,7 @@ export class SendComponent implements OnInit, OnDestroy {
         private messagingService: MessagingService, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
         private ngZone: NgZone, private apiService: ApiService,
-        private toasterService: ToasterService) { }
+        private toasterService: ToasterService, private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
         const queryParamsSub = this.route.queryParams.subscribe(async (params) => {
@@ -156,7 +157,7 @@ export class SendComponent implements OnInit, OnDestroy {
 
     async delete(s: SendView): Promise<boolean> {
         if (this.actionPromise != null) {
-            return;
+            return false;
         }
         const confirmed = await this.platformUtilsService.showDialog(
             this.i18nService.t('permanentlyDeleteItemConfirmation'),
@@ -173,5 +174,16 @@ export class SendComponent implements OnInit, OnDestroy {
             await this.load();
         } catch { }
         this.actionPromise = null;
+        return true;
+    }
+
+    copy(s: SendView) {
+        let webVaultUrl = this.environmentService.getWebVaultUrl();
+        if (webVaultUrl == null) {
+            webVaultUrl = 'https://vault.bitwarden.com';
+        }
+        const link = webVaultUrl + '/#/access-send/' + s.id + '/?key=' + s.urlB64Key;
+        this.platformUtilsService.copyToClipboard(link);
+        this.toasterService.popAsync('success', null, 'Copied.');
     }
 }

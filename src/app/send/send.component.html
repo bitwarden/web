@@ -1,7 +1,36 @@
 <div class="container page-content">
     <div class="row">
-        <div class="col-3">
-            <!--Filters-->
+        <div class="col-3 groupings">
+            <div class="card vault-filters">
+                <div class="card-header d-flex">
+                    {{'filters' | i18n}}
+                </div>
+                <div class="card-body">
+                    <input type="search" placeholder="{{searchPlaceholder || 'Search sends'}}" id="search"
+                        class="form-control" [(ngModel)]="searchText" (input)="searchTextChanged()" autocomplete="off"
+                        appAutofocus>
+                    <ul class="fa-ul card-ul">
+                        <li [ngClass]="{active: selectedAll}">
+                            <a href="#" appStopClick (click)="selectAll()">
+                                <i class="fa-li fa fa-fw fa-th"></i>All Sends
+                            </a>
+                        </li>
+                    </ul>
+                    <h3>{{'types' | i18n}}</h3>
+                    <ul class="fa-ul card-ul">
+                        <li [ngClass]="{active: selectedType === sendType.Text}">
+                            <a href="#" appStopClick (click)="selectType(sendType.Text)">
+                                <i class="fa-li fa fa-fw fa-file-text-o"></i>Text
+                            </a>
+                        </li>
+                        <li [ngClass]="{active: selectedType === sendType.File}">
+                            <a href="#" appStopClick (click)="selectType(sendType.File)">
+                                <i class="fa-li fa fa-fw fa-file-o"></i>File
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-9">
             <div class="page-header d-flex">
@@ -48,6 +77,10 @@
                                     <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
+                                        <i class="fa fa-fw fa-copy" aria-hidden="true"></i>
+                                        Copy Link
+                                    </a>
                                     <a class="dropdown-item" href="#" appStopClick (click)="removePassword(s)"
                                         *ngIf="s.password">
                                         <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
