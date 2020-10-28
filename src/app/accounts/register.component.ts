@@ -30,6 +30,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     showTerms = true;
     layout = '';
     enforcedPolicyOptions: MasterPasswordPolicyOptions;
+    acceptPolicies: boolean = false;
 
     private policies: Policy[];
 
@@ -115,6 +116,12 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.enforcedPolicyOptions)) {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
+            return;
+        }
+
+        if (!this.acceptPolicies && this.showTerms) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('acceptPoliciesError'));
             return;
         }
 
