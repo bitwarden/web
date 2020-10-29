@@ -60,13 +60,11 @@ import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/m
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
-import { ApiKeyComponent as OrgApiKeyComponent } from './organizations/settings/api-key.component';
 import { ChangePlanComponent } from './organizations/settings/change-plan.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { DownloadLicenseComponent } from './organizations/settings/download-license.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
-import { RotateApiKeyComponent as OrgRotateApiKeyComponent } from './organizations/settings/rotate-api-key.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
 import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
@@ -102,6 +100,7 @@ import { AccountComponent } from './settings/account.component';
 import { AddCreditComponent } from './settings/add-credit.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';
 import { AdjustStorageComponent } from './settings/adjust-storage.component';
+import { ApiKeyComponent } from './settings/api-key.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangeKdfComponent } from './settings/change-kdf.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
@@ -261,6 +260,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AdjustSeatsComponent,
         AdjustStorageComponent,
         ApiActionDirective,
+        ApiKeyComponent,
         AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
@@ -308,7 +308,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OptionsComponent,
         OrgAccountComponent,
         OrgAddEditComponent,
-        OrgApiKeyComponent,
         OrganizationBillingComponent,
         OrganizationPlansComponent,
         OrganizationSubscriptionComponent,
@@ -332,7 +331,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgPolicyEditComponent,
         OrgPoliciesComponent,
         OrgReusedPasswordsReportComponent,
-        OrgRotateApiKeyComponent,
         OrgSettingComponent,
         OrgToolsComponent,
         OrgTwoFactorSetupComponent,
@@ -390,6 +388,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     entryComponents: [
         AddEditComponent,
+        ApiKeyComponent,
         AttachmentsComponent,
         BulkActionsComponent,
         BulkDeleteComponent,
@@ -403,7 +402,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         FolderAddEditComponent,
         ModalComponent,
         OrgAddEditComponent,
-        OrgApiKeyComponent,
         OrgAttachmentsComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
@@ -411,7 +409,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
         OrgPolicyEditComponent,
-        OrgRotateApiKeyComponent,
         OrgUserAddEditComponent,
         OrgUserConfirmComponent,
         OrgUserGroupsComponent,
