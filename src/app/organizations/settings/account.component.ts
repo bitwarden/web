@@ -18,11 +18,10 @@ import { OrganizationUpdateRequest } from 'jslib/models/request/organizationUpda
 import { OrganizationResponse } from 'jslib/models/response/organizationResponse';
 
 import { ModalComponent } from '../../modal.component';
+import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
-import { ApiKeyComponent } from './api-key.component';
 import { DeleteOrganizationComponent } from './delete-organization.component';
-import { RotateApiKeyComponent } from './rotate-api-key.component';
 
 @Component({
     selector: 'app-org-account',
@@ -125,7 +124,11 @@ export class AccountComponent {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.apiKeyModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.apiKeyModalRef);
-        childComponent.organizationId = this.organizationId;
+        childComponent.keyType = 'organization';
+        childComponent.entityId = this.organizationId;
+        childComponent.postKey = this.apiService.postOrganizationApiKey;
+        childComponent.scope = 'api.organization';
+        childComponent.grantType = 'client_credentials';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
@@ -139,8 +142,13 @@ export class AccountComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.rotateApiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<RotateApiKeyComponent>(RotateApiKeyComponent, this.rotateApiKeyModalRef);
-        childComponent.organizationId = this.organizationId;
+        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.rotateApiKeyModalRef);
+        childComponent.keyType = 'organization';
+        childComponent.isRotation = true;
+        childComponent.entityId = this.organizationId;
+        childComponent.postKey = this.apiService.postOrganizationRotateApiKey;
+        childComponent.scope = 'api.organization';
+        childComponent.grantType = 'client_credentials';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
