@@ -14,6 +14,17 @@
     <h1>{{'encKeySettings' | i18n}}</h1>
 </div>
 <app-change-kdf></app-change-kdf>
+<div class="secondary-header border-0 mb-0">
+    <h1>{{'apiKey' | i18n}}</h1>
+</div>
+<p>
+    {{'apiKeyDesc' | i18n}}
+    <a href="https://docs.bitwarden.com" target="_blank" rel="noopener">
+        {{'learnMore' | i18n}}
+    </a>
+</p>
+<button type="button" class="btn btn-outline-secondary" (click)="viewApiKey()">{{'viewApiKey' | i18n}}</button>
+<button type="button" class="btn btn-outline-secondary" (click)="rotateApiKey()">{{'rotateApiKey' | i18n}}</button>
 <div class="secondary-header text-danger border-0 mb-0">
     <h1>{{'dangerZone' | i18n}}</h1>
 </div>
@@ -30,3 +41,5 @@
 <ng-template #deauthorizeSessionsTemplate></ng-template>
 <ng-template #purgeVaultTemplate></ng-template>
 <ng-template #deleteAccountTemplate></ng-template>
+<ng-template #viewApiKey></ng-template>
+<ng-template #rotateApiKey></ng-template>
