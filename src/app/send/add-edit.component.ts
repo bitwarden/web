@@ -201,23 +201,22 @@ export class AddEditComponent {
         const send = new Send();
         send.id = this.send.id;
         send.type = this.send.type;
-        if (this.password != null) {
-            const passwordHash = await this.cryptoFunctionService.hash(this.password, 'sha256');
-            send.password = Utils.fromBufferToB64(passwordHash);
-        }
         send.disabled = this.send.disabled;
         if (this.send.key == null) {
-            const keyPasswordBytes = await this.cryptoFunctionService.randomBytes(16);
-            const key2 = await this.cryptoFunctionService.pbkdf2(keyPasswordBytes, 'bitwarden-send', 'sha512', 1);
-            const key = await this.cryptoFunctionService.randomBytes(64);
-            this.send.key = new SymmetricCryptoKey(key);
+            this.send.key = await this.cryptoFunctionService.randomBytes(16);
+            this.send.cryptoKey = await this.cryptoService.makeSendKey(this.send.key);
         }
-        send.key = await this.cryptoService.encrypt(this.send.key.key, null);
-        send.name = await this.cryptoService.encrypt(this.send.name, this.send.key);
-        send.notes = await this.cryptoService.encrypt(this.send.notes, this.send.key);
+        if (this.password != null) {
+            const passwordHash = await this.cryptoFunctionService.pbkdf2(this.password,
+                this.send.key, 'sha256', 100000);
+            send.password = Utils.fromBufferToB64(passwordHash);
+        }
+        send.key = await this.cryptoService.encrypt(this.send.key, null);
+        send.name = await this.cryptoService.encrypt(this.send.name, this.send.cryptoKey);
+        send.notes = await this.cryptoService.encrypt(this.send.notes, this.send.cryptoKey);
         if (send.type === SendType.Text) {
             send.text = new SendText();
-            send.text.text = await this.cryptoService.encrypt(this.send.text.text, this.send.key);
+            send.text.text = await this.cryptoService.encrypt(this.send.text.text, this.send.cryptoKey);
             send.text.hidden = this.send.text.hidden;
         } else if (send.type === SendType.File) {
             send.file = new SendFile();
@@ -276,9 +275,9 @@ export class AddEditComponent {
             reader.readAsArrayBuffer(file);
             reader.onload = async (evt) => {
                 try {
-                    send.file.fileName = await this.cryptoService.encrypt(file.name, this.send.key);
+                    send.file.fileName = await this.cryptoService.encrypt(file.name, this.send.cryptoKey);
                     const fileData = await this.cryptoService.encryptToBytes(evt.target.result as ArrayBuffer,
-                        this.send.key);
+                        this.send.cryptoKey);
                     resolve(fileData);
                 } catch (e) {
                     reject(e);

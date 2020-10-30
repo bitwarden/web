@@ -121,9 +121,10 @@ export class AccessComponent implements OnInit {
     }
 
     private async load() {
+        const keyArray = Utils.fromUrlB64ToArray(this.key);
         const accessRequest = new SendAccessRequest();
         if (this.password != null) {
-            const passwordHash = await this.cryptoFunctionService.hash(this.password, 'sha256');
+            const passwordHash = await this.cryptoFunctionService.pbkdf2(this.password, keyArray, 'sha256', 100000);
             accessRequest.password = Utils.fromBufferToB64(passwordHash);
         }
         try {
@@ -136,7 +137,6 @@ export class AccessComponent implements OnInit {
             }
             this.passwordRequired = false;
             const sendAccess = new SendAccess(sendResponse);
-            const keyArray = Utils.fromUrlB64ToArray(this.key);
             this.decKey = new SymmetricCryptoKey(keyArray.buffer);
             this.send = await sendAccess.decrypt(this.decKey);
             this.showText = this.send.text != null ? !this.send.text.hidden : true;
