@@ -117,6 +117,7 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
             return;
         }
+        this.verifyPasswordhint();
 
         await super.submit();
     }
