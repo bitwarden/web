@@ -182,7 +182,7 @@ export class SendComponent implements OnInit, OnDestroy {
         if (webVaultUrl == null) {
             webVaultUrl = 'https://vault.bitwarden.com';
         }
-        const link = webVaultUrl + '/#/access-send/' + s.accessId + '/?key=' + s.urlB64Key;
+        const link = webVaultUrl + '/#/send/' + s.accessId + '/' + s.urlB64Key;
         this.platformUtilsService.copyToClipboard(link);
         this.toasterService.popAsync('success', null, 'Copied.');
     }

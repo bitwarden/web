@@ -60,22 +60,13 @@ export class AccessComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.params.subscribe((params) => {
+        this.route.params.subscribe(async (params) => {
             this.id = params.sendId;
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
-                if (qParams.key != null) {
-                    this.key = qParams.key;
-                }
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
-
-                if (this.key == null || this.id == null) {
-                    return;
-                }
-
-                await this.load();
-            });
+            this.key = params.key;
+            if (this.key == null || this.id == null) {
+                return;
+            }
+            await this.load();
         });
     }
 

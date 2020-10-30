@@ -122,7 +122,7 @@ export class AddEditComponent {
             if (webVaultUrl == null) {
                 webVaultUrl = 'https://vault.bitwarden.com';
             }
-            this.link = webVaultUrl + '/#/access-send/' + this.send.accessId + '/?key=' + this.send.urlB64Key;
+            this.link = webVaultUrl + '/#/send/' + this.send.accessId + '/' + this.send.urlB64Key;
         }
     }
 

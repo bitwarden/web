@@ -145,7 +145,7 @@ const routes: Routes = [
                 data: { titleId: 'deleteAccount' },
             },
             {
-                path: 'access-send/:sendId',
+                path: 'send/:sendId/:key',
                 component: AccessComponent,
                 data: { titleId: 'myVault' },
             },
@@ -157,7 +157,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         children: [
             { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
-            { path: 'send', component: SendComponent, data: { titleId: 'myVault' } },
+            { path: 'sends', component: SendComponent, data: { titleId: 'myVault' } },
             {
                 path: 'settings',
                 component: SettingsComponent,
