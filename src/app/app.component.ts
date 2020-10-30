@@ -1,5 +1,5 @@
 import * as jq from 'jquery';
-import Swal from 'sweetalert2/src/sweetalert2.js';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import {
     BodyOutputType,

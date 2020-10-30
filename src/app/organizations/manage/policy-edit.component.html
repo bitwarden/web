@@ -17,9 +17,12 @@
                     title="{{'warning' | i18n}}" icon="fa-warning">
                     {{'twoStepLoginPolicyWarning' | i18n}}
                 </app-callout>
-                <app-callout type="warning" *ngIf="type === policyType.OnlyOrg"
-                    title="{{'warning' | i18n}}" icon="fa-warning">
-                    {{'onlyOrgPolicyWarning' | i18n}}
+                <app-callout type="warning" *ngIf="type === policyType.SingleOrg" title="{{'warning' | i18n}}"
+                    icon="fa-warning">
+                    {{'singleOrgPolicyWarning' | i18n}}
+                </app-callout>
+                <app-callout type="tip" title="{{'prerequisite' | i18n}}" *ngIf="type === policyType.RequireSso">
+                    {{'requireSsoPolicyReq' | i18n}}
                 </app-callout>
                 <div class="form-group">
                     <div class="form-check">

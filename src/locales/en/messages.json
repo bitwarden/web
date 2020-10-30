@@ -3210,16 +3210,31 @@
   "webPoliciesDeprecationWarning": {
     "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
   },
-  "onlyOrg": {
-    "message": "Only Organization"
+  "singleOrg": {
+    "message": "Single Organization"
   },
-  "onlyOrgDesc": {
+  "singleOrgDesc": {
     "message": "Restrict users from being able to join any other organizations."
   },
-  "onlyOrgBlockCreateMessage": {
+  "singleOrgBlockCreateMessage": {
     "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
   },
-  "onlyOrgPolicyWarning": {
+  "singleOrgPolicyWarning": {
     "message": "Organization members who are already a member of another organization will be removed from your organization."
+  },
+  "requireSso": {
+    "message": "Single Sign-On Authentication"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Require users to log in with the Enterprise Single Sign-On method."
+  },
+  "prerequisite": {
+    "message": "Prerequisite"
+  },
+  "requireSsoPolicyReq": {
+    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Single Organization policy not enabled."
   }
 }

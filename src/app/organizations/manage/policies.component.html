@@ -13,7 +13,7 @@
 <table class="table table-hover table-list" *ngIf="!loading">
     <tbody>
         <tr *ngFor="let p of policies">
-            <td>
+            <td *ngIf="p.display">
                 <a href="#" appStopClick (click)="edit(p)">{{p.name}}</a>
                 <span class="badge badge-success" *ngIf="p.enabled">{{'enabled' | i18n}}</span>
                 <small class="text-muted d-block">{{p.description}}</small>
