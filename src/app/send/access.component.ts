@@ -137,7 +137,7 @@ export class AccessComponent implements OnInit {
             }
             this.passwordRequired = false;
             const sendAccess = new SendAccess(sendResponse);
-            this.decKey = new SymmetricCryptoKey(keyArray.buffer);
+            this.decKey = await this.cryptoService.makeSendKey(keyArray);
             this.send = await sendAccess.decrypt(this.decKey);
             this.showText = this.send.text != null ? !this.send.text.hidden : true;
         } catch (e) {
