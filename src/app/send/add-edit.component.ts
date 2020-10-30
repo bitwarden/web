@@ -122,7 +122,7 @@ export class AddEditComponent {
             if (webVaultUrl == null) {
                 webVaultUrl = 'https://vault.bitwarden.com';
             }
-            this.link = webVaultUrl + '/#/access-send/' + this.send.id + '/?key=' + this.send.urlB64Key;
+            this.link = webVaultUrl + '/#/access-send/' + this.send.accessId + '/?key=' + this.send.urlB64Key;
         }
     }
 
@@ -207,6 +207,8 @@ export class AddEditComponent {
         }
         send.disabled = this.send.disabled;
         if (this.send.key == null) {
+            const keyPasswordBytes = await this.cryptoFunctionService.randomBytes(16);
+            const key2 = await this.cryptoFunctionService.pbkdf2(keyPasswordBytes, 'bitwarden-send', 'sha512', 1);
             const key = await this.cryptoFunctionService.randomBytes(64);
             this.send.key = new SymmetricCryptoKey(key);
         }
