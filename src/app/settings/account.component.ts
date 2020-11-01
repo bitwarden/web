@@ -22,8 +22,8 @@ export class AccountComponent {
     @ViewChild('deauthorizeSessionsTemplate', { read: ViewContainerRef, static: true }) deauthModalRef: ViewContainerRef;
     @ViewChild('purgeVaultTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
     @ViewChild('deleteAccountTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
-    @ViewChild('viewApiKeyTemplate', { read: ViewContainerRef, static: true }) viewApiKeyModalRef: ViewContainerRef;
-    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild('viewUserApiKeyTemplate', { read: ViewContainerRef, static: true }) viewUserApiKeyModalRef: ViewContainerRef;
+    @ViewChild('rotateUserApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateUserApiKeyModalRef: ViewContainerRef;
 
     private modal: ModalComponent = null;
 
@@ -72,17 +72,17 @@ export class AccountComponent {
         });
     }
 
-    async viewApiKey() {
+    async viewUserApiKey() {
         if (this.modal != null) {
             this.modal.close();
         }
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.viewApiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.viewApiKeyModalRef);
+        this.modal = this.viewUserApiKeyModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.viewUserApiKeyModalRef);
         childComponent.keyType = 'user';
         childComponent.entityId = await this.userService.getUserId();
-        childComponent.postKey = this.apiService.postUserApiKey;
+        childComponent.postKey = this.apiService.postUserApiKey.bind(this.apiService);
         childComponent.scope = 'api';
         childComponent.grantType = 'hybrid';
 
@@ -91,18 +91,18 @@ export class AccountComponent {
         });
     }
 
-    async rotateApiKey() {
+    async rotateUserApiKey() {
         if (this.modal != null) {
             this.modal.close();
         }
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.rotateApiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.rotateApiKeyModalRef);
+        this.modal = this.rotateUserApiKeyModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.rotateUserApiKeyModalRef);
         childComponent.keyType = 'user';
         childComponent.isRotation = true;
         childComponent.entityId = await this.userService.getUserId();
-        childComponent.postKey = this.apiService.postUserRotateApiKey;
+        childComponent.postKey = this.apiService.postUserRotateApiKey.bind(this.apiService);
         childComponent.scope = 'api';
         childComponent.grantType = 'hybrid';
 

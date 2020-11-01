@@ -126,7 +126,7 @@ export class AccountComponent {
         const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.apiKeyModalRef);
         childComponent.keyType = 'organization';
         childComponent.entityId = this.organizationId;
-        childComponent.postKey = this.apiService.postOrganizationApiKey;
+        childComponent.postKey = this.apiService.postOrganizationApiKey.bind(this.apiService);
         childComponent.scope = 'api.organization';
         childComponent.grantType = 'client_credentials';
 
@@ -146,7 +146,7 @@ export class AccountComponent {
         childComponent.keyType = 'organization';
         childComponent.isRotation = true;
         childComponent.entityId = this.organizationId;
-        childComponent.postKey = this.apiService.postOrganizationRotateApiKey;
+        childComponent.postKey = this.apiService.postOrganizationRotateApiKey.bind(this.apiService);
         childComponent.scope = 'api.organization';
         childComponent.grantType = 'client_credentials';
 
