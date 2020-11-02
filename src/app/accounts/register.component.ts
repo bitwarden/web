@@ -27,10 +27,8 @@ import { ReferenceEventRequest } from 'jslib/models/request/referenceEventReques
 })
 export class RegisterComponent extends BaseRegisterComponent {
     showCreateOrgMessage = false;
-    showTerms = true;
     layout = '';
     enforcedPolicyOptions: MasterPasswordPolicyOptions;
-    acceptPolicies: boolean = false;
 
     private policies: Policy[];
 
@@ -41,7 +39,6 @@ export class RegisterComponent extends BaseRegisterComponent {
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService);
-        this.showTerms = !platformUtilsService.isSelfHost();
     }
 
     getPasswordScoreAlertDisplay() {
@@ -116,12 +113,6 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.enforcedPolicyOptions)) {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
-            return;
-        }
-
-        if (!this.acceptPolicies && this.showTerms) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('acceptPoliciesError'));
             return;
         }
 
