@@ -202,6 +202,7 @@ export class AddEditComponent {
         send.id = this.send.id;
         send.type = this.send.type;
         send.disabled = this.send.disabled;
+        send.maxAccessCount = this.send.maxAccessCount;
         if (this.send.key == null) {
             this.send.key = await this.cryptoFunctionService.randomBytes(16);
             this.send.cryptoKey = await this.cryptoService.makeSendKey(this.send.key);
