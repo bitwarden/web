@@ -147,7 +147,7 @@ const routes: Routes = [
             {
                 path: 'send/:sendId/:key',
                 component: AccessComponent,
-                data: { titleId: 'myVault' },
+                data: { title: 'Bitwarden Send' },
             },
         ],
     },
@@ -157,7 +157,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         children: [
             { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
-            { path: 'sends', component: SendComponent, data: { titleId: 'myVault' } },
+            { path: 'sends', component: SendComponent, data: { title: 'Send' } },
             {
                 path: 'settings',
                 component: SettingsComponent,

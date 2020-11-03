@@ -11,26 +11,15 @@ import { Component } from '@angular/core';
 import { SendType } from 'jslib/enums/sendType';
 
 import { ApiService } from 'jslib/abstractions/api.service';
-import { AuditService } from 'jslib/abstractions/audit.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
-import { EventService } from 'jslib/abstractions/event.service';
-import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { TotpService } from 'jslib/abstractions/totp.service';
-import { UserService } from 'jslib/abstractions/user.service';
 
 import { SendView } from 'jslib/models/view/sendView';
 import { SendFileView } from 'jslib/models/view/sendFileView';
 import { SendTextView } from 'jslib/models/view/sendTextView';
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
 import { Send } from 'jslib/models/domain/send';
 import { SendFile } from 'jslib/models/domain/sendFile';
@@ -67,18 +56,13 @@ export class AddEditComponent {
     sendType = SendType;
     typeOptions: any[];
 
-    constructor(cipherService: CipherService, folderService: FolderService,
-        private i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
-        auditService: AuditService, stateService: StateService,
-        userService: UserService, collectionService: CollectionService,
-        protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
-        protected messagingService: MessagingService, eventService: EventService,
-        protected apiService: ApiService, private cryptoService: CryptoService,
+    constructor(private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
+        private apiService: ApiService, private cryptoService: CryptoService,
         private cryptoFunctionService: CryptoFunctionService, private environmentService: EnvironmentService,
         private datePipe: DatePipe) {
         this.typeOptions = [
-            { name: i18nService.t('file'), value: SendType.File },
-            { name: 'Text', value: SendType.Text },
+            { name: i18nService.t('sendTypeFile'), value: SendType.File },
+            { name: i18nService.t('sendTypeText'), value: SendType.Text },
         ];
     }
 
@@ -90,9 +74,9 @@ export class AddEditComponent {
         this.editMode = this.sendId != null;
         if (this.editMode) {
             this.editMode = true;
-            this.title = this.i18nService.t('editItem');
+            this.title = this.i18nService.t('editSend');
         } else {
-            this.title = this.i18nService.t('addItem');
+            this.title = this.i18nService.t('createSend');
         }
 
         if (this.send == null) {
@@ -157,7 +141,7 @@ export class AddEditComponent {
             await this.formPromise;
             this.send.id = encSend[0].id;
             this.platformUtilsService.showToast('success', null,
-                this.i18nService.t(this.editMode ? 'editedSend' : 'addedSend'));
+                this.i18nService.t(this.editMode ? 'editedSend' : 'createdSend'));
             this.onSavedSend.emit(this.send);
             return true;
         } catch { }
@@ -174,8 +158,8 @@ export class AddEditComponent {
             return;
         }
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('permanentlyDeleteItemConfirmation'),
-            this.i18nService.t('permanentlyDeleteItem'),
+            this.i18nService.t('deleteSendConfirmation'),
+            this.i18nService.t('deleteSend'),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return;
@@ -184,7 +168,7 @@ export class AddEditComponent {
         try {
             this.deletePromise = this.apiService.deleteSend(this.send.id);
             await this.deletePromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('permanentlyDeletedItem'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedSend'));
             await this.load();
             this.onDeletedSend.emit(this.send);
         } catch { }

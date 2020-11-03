@@ -6,13 +6,13 @@
                     {{'filters' | i18n}}
                 </div>
                 <div class="card-body">
-                    <input type="search" placeholder="{{searchPlaceholder || 'Search sends'}}" id="search"
+                    <input type="search" placeholder="{{searchPlaceholder || ('searchSends' | i18n)}}" id="search"
                         class="form-control" [(ngModel)]="searchText" (input)="searchTextChanged()" autocomplete="off"
                         appAutofocus>
                     <ul class="fa-ul card-ul">
                         <li [ngClass]="{active: selectedAll}">
                             <a href="#" appStopClick (click)="selectAll()">
-                                <i class="fa-li fa fa-fw fa-th"></i>All Sends
+                                <i class="fa-li fa fa-fw fa-th"></i>{{'allSends' | i18n}}
                             </a>
                         </li>
                     </ul>
@@ -20,12 +20,12 @@
                     <ul class="fa-ul card-ul">
                         <li [ngClass]="{active: selectedType === sendType.Text}">
                             <a href="#" appStopClick (click)="selectType(sendType.Text)">
-                                <i class="fa-li fa fa-fw fa-file-text-o"></i>Text
+                                <i class="fa-li fa fa-fw fa-file-text-o"></i>{{'sendTypeText' | i18n}}
                             </a>
                         </li>
                         <li [ngClass]="{active: selectedType === sendType.File}">
                             <a href="#" appStopClick (click)="selectType(sendType.File)">
-                                <i class="fa-li fa fa-fw fa-file-o"></i>File
+                                <i class="fa-li fa fa-fw fa-file-o"></i>{{'sendTypeFile' | i18n}}
                             </a>
                         </li>
                     </ul>
@@ -46,7 +46,7 @@
                 </h1>
                 <div class="ml-auto d-flex">
                     <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()">
-                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>New Send
+                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'createSend' | i18n}}
                     </button>
                 </div>
             </div>
@@ -79,12 +79,12 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
                                         <i class="fa fa-fw fa-copy" aria-hidden="true"></i>
-                                        Copy Link
+                                        {{'copySendLink' | i18n}}
                                     </a>
                                     <a class="dropdown-item" href="#" appStopClick (click)="removePassword(s)"
                                         *ngIf="s.password">
                                         <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
-                                        Remove Password
+                                        {{'removePassword' | i18n}}
                                     </a>
                                     <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(s)">
                                         <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
