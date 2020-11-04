@@ -85,6 +85,9 @@ export class AccountComponent {
         childComponent.postKey = this.apiService.postUserApiKey.bind(this.apiService);
         childComponent.scope = 'api';
         childComponent.grantType = 'client_credentials';
+        childComponent.apiKeyTitle = 'apiKey';
+        childComponent.apiKeyWarning = 'userApiKeyWarning';
+        childComponent.apiKeyDescription = 'userApiKeyDesc';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
@@ -105,6 +108,9 @@ export class AccountComponent {
         childComponent.postKey = this.apiService.postUserRotateApiKey.bind(this.apiService);
         childComponent.scope = 'api';
         childComponent.grantType = 'client_credentials';
+        childComponent.apiKeyTitle = 'apiKey';
+        childComponent.apiKeyWarning = 'userApiKeyWarning';
+        childComponent.apiKeyDescription = 'apiKeyRotateDesc';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;

@@ -2,19 +2,19 @@
     <div class="modal-dialog" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
-                <h2 class="modal-title" id="apiKeyTitle">{{'apiKey' | i18n}}</h2>
+                <h2 class="modal-title" id="apiKeyTitle">{{apiKeyTitle | i18n}}</h2>
                 <button type="button" class="close" data-dismiss="modal" appA11yTitle="{{'close' | i18n}}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{'apiKeyDesc' | i18n}}</p>
+                <p>{{apiKeyDescription | i18n}}</p>
                 <ng-container *ngIf="!clientSecret">
                     <label for="masterPassword">{{'masterPass' | i18n}}</label>
                     <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
                         [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
                 </ng-container>
-                <app-callout type="warning" *ngIf="clientSecret">{{'apiKeyWarning' | i18n}}</app-callout>
+                <app-callout type="warning" *ngIf="clientSecret">{{apiKeyWarning | i18n}}</app-callout>
                 <app-callout type="info" title="{{'oauth2ClientCredentials' | i18n}}" icon="fa-key"
                     *ngIf="clientSecret">
                     <p class="mb-1">

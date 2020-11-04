@@ -21,6 +21,9 @@ export class ApiKeyComponent {
     entityId: string;
     scope: string;
     grantType: string;
+    apiKeyTitle: string;
+    apiKeyWarning: string;
+    apiKeyDescription: string;
 
     masterPassword: string;
     formPromise: Promise<ApiKeyResponse>;

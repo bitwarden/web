@@ -129,6 +129,9 @@ export class AccountComponent {
         childComponent.postKey = this.apiService.postOrganizationApiKey.bind(this.apiService);
         childComponent.scope = 'api.organization';
         childComponent.grantType = 'client_credentials';
+        childComponent.apiKeyTitle = 'apiKey';
+        childComponent.apiKeyWarning = 'apiKeyWarning';
+        childComponent.apiKeyDescription = 'apiKeyDesc';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
@@ -149,6 +152,9 @@ export class AccountComponent {
         childComponent.postKey = this.apiService.postOrganizationRotateApiKey.bind(this.apiService);
         childComponent.scope = 'api.organization';
         childComponent.grantType = 'client_credentials';
+        childComponent.apiKeyTitle = 'apiKey';
+        childComponent.apiKeyWarning = 'apiKeyWarning';
+        childComponent.apiKeyDescription = 'apiKeyRotateDesc';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
