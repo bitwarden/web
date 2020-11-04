@@ -1,17 +1,10 @@
 import {
-    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
-    NgZone,
-    OnDestroy,
     OnInit,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -24,13 +17,9 @@ import { AddEditComponent } from './add-edit.component';
 import { ModalComponent } from '../modal.component';
 
 import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
-import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
@@ -39,13 +28,11 @@ import { SendData } from 'jslib/models/data/sendData';
 
 import { Send } from 'jslib/models/domain/send';
 
-const BroadcasterSubscriptionId = 'SendComponent';
-
 @Component({
     selector: 'app-send',
     templateUrl: 'send.component.html',
 })
-export class SendComponent implements OnInit, OnDestroy {
+export class SendComponent implements OnInit {
     @ViewChild('sendAddEdit', { read: ViewContainerRef, static: true }) sendAddEditModalRef: ViewContainerRef;
 
     sendType = SendType;
@@ -57,33 +44,13 @@ export class SendComponent implements OnInit, OnDestroy {
     modal: ModalComponent = null;
     actionPromise: any;
 
-    constructor(private syncService: SyncService, private route: ActivatedRoute,
-        private router: Router, private changeDetectorRef: ChangeDetectorRef,
+    constructor(private apiService: ApiService, private userService: UserService,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private tokenService: TokenService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone, private apiService: ApiService,
         private toasterService: ToasterService, private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async (params) => {
-            this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
-                this.ngZone.run(async () => {
-                    // TODO
-                });
-            });
-
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
-
-            await this.load();
-        });
-    }
-
-    ngOnDestroy() {
-        this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
+        await this.load();
     }
 
     async load() {
@@ -139,8 +106,8 @@ export class SendComponent implements OnInit, OnDestroy {
         if (this.actionPromise != null || s.password == null) {
             return;
         }
-        const confirmed = await this.platformUtilsService.showDialog('Are you sure you want to remove the password?',
-            this.i18nService.t('permanentlyDeleteItem'),
+        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('removePasswordConfirmation'),
+            this.i18nService.t('removePassword'),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
@@ -149,7 +116,7 @@ export class SendComponent implements OnInit, OnDestroy {
         try {
             this.actionPromise = this.apiService.putSendRemovePassword(s.id);
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, 'Removed password.');
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedPassword'));
             await this.load();
         } catch { }
         this.actionPromise = null;
@@ -160,8 +127,8 @@ export class SendComponent implements OnInit, OnDestroy {
             return false;
         }
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('permanentlyDeleteItemConfirmation'),
-            this.i18nService.t('permanentlyDeleteItem'),
+            this.i18nService.t('deleteSendConfirmation'),
+            this.i18nService.t('deleteSend'),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
@@ -170,7 +137,7 @@ export class SendComponent implements OnInit, OnDestroy {
         try {
             this.actionPromise = this.apiService.deleteSend(s.id);
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('permanentlyDeletedItem'));
+            this.toasterService.popAsync('success', null, this.i18nService.t('deletedSend'));
             await this.load();
         } catch { }
         this.actionPromise = null;
@@ -184,6 +151,6 @@ export class SendComponent implements OnInit, OnDestroy {
         }
         const link = webVaultUrl + '/#/send/' + s.accessId + '/' + s.urlB64Key;
         this.platformUtilsService.copyToClipboard(link);
-        this.toasterService.popAsync('success', null, 'Copied.');
+        this.toasterService.popAsync('success', null, this.i18nService.t('valueCopied', this.i18nService.t('sendLink')));
     }
 }
