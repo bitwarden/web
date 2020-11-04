@@ -84,7 +84,7 @@ export class AccountComponent {
         childComponent.entityId = await this.userService.getUserId();
         childComponent.postKey = this.apiService.postUserApiKey.bind(this.apiService);
         childComponent.scope = 'api';
-        childComponent.grantType = 'hybrid';
+        childComponent.grantType = 'client_credentials';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
@@ -104,7 +104,7 @@ export class AccountComponent {
         childComponent.entityId = await this.userService.getUserId();
         childComponent.postKey = this.apiService.postUserRotateApiKey.bind(this.apiService);
         childComponent.scope = 'api';
-        childComponent.grantType = 'hybrid';
+        childComponent.grantType = 'client_credentials';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
