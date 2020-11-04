@@ -107,7 +107,7 @@ export class AccessComponent implements OnInit {
         this.showText = !this.showText;
     }
 
-    private async load() {
+    async load() {
         const keyArray = Utils.fromUrlB64ToArray(this.key);
         const accessRequest = new SendAccessRequest();
         if (this.password != null) {

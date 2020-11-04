@@ -36,6 +36,10 @@ export class SendComponent implements OnInit {
     expired: boolean = false;
     type: SendType = null;
     sends: SendView[] = [];
+    searchText: string;
+    selectedType: SendType;
+    selectedAll: boolean;
+    searchPlaceholder: string;
 
     modal: ModalComponent = null;
     actionPromise: any;
@@ -148,5 +152,17 @@ export class SendComponent implements OnInit {
         this.platformUtilsService.copyToClipboard(link);
         this.platformUtilsService.showToast('success', null,
             this.i18nService.t('valueCopied', this.i18nService.t('sendLink')));
+    }
+
+    searchTextChanged() {
+        // TODO
+    }
+
+    selectAll() {
+        // TODO
+    }
+
+    selectType(type: SendType) {
+        // TODO
     }
 }
