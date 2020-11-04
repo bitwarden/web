@@ -99,7 +99,8 @@ export class AccessComponent implements OnInit {
 
     copyText() {
         this.platformUtilsService.copyToClipboard(this.send.text.text);
-        this.platformUtilsService.showToast('success', null, 'Copied!');
+        this.platformUtilsService.showToast('success', null,
+            this.i18nService.t('valueCopied', this.i18nService.t('sendTypeText')));
     }
 
     toggleText() {

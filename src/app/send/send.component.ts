@@ -6,8 +6,6 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { SendType } from 'jslib/enums/sendType';
 
 import { SendView } from 'jslib/models/view/sendView';
@@ -21,8 +19,6 @@ import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
-
-import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
 import { SendData } from 'jslib/models/data/sendData';
 
@@ -46,8 +42,7 @@ export class SendComponent implements OnInit {
 
     constructor(private apiService: ApiService, private userService: UserService,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
-        private toasterService: ToasterService, private environmentService: EnvironmentService) { }
+        private platformUtilsService: PlatformUtilsService, private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
         await this.load();
@@ -116,7 +111,7 @@ export class SendComponent implements OnInit {
         try {
             this.actionPromise = this.apiService.putSendRemovePassword(s.id);
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedPassword'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedPassword'));
             await this.load();
         } catch { }
         this.actionPromise = null;
@@ -137,7 +132,7 @@ export class SendComponent implements OnInit {
         try {
             this.actionPromise = this.apiService.deleteSend(s.id);
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedSend'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedSend'));
             await this.load();
         } catch { }
         this.actionPromise = null;
@@ -151,6 +146,7 @@ export class SendComponent implements OnInit {
         }
         const link = webVaultUrl + '/#/send/' + s.accessId + '/' + s.urlB64Key;
         this.platformUtilsService.copyToClipboard(link);
-        this.toasterService.popAsync('success', null, this.i18nService.t('valueCopied', this.i18nService.t('sendLink')));
+        this.platformUtilsService.showToast('success', null,
+            this.i18nService.t('valueCopied', this.i18nService.t('sendLink')));
     }
 }
