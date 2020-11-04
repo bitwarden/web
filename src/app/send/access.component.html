@@ -9,8 +9,8 @@
                     <span class="sr-only">{{'loading' | i18n}}</span>
                 </div>
                 <div class="card-body" *ngIf="!loading && passwordRequired">
-                    <p>This Send is protected with a password. Please type the password below to continue.</p>
-                    <p>Don't know the password? Ask the Sender for the password needed to access this Send.</p>
+                    <p>{{'sendProtectedPassword' | i18n}}</p>
+                    <p>{{'sendProtectedPasswordDontKnow' | i18n}}</p>
                     <div class="form-group">
                         <label for="password">{{'password' | i18n}}</label>
                         <input id="password" type="password" name="Password" class="text-monospace form-control"
@@ -30,8 +30,7 @@
                     <hr>
                     <!-- Text -->
                     <ng-container *ngIf="send.type === sendType.Text">
-                        <app-callout *ngIf="send.text.hidden" type="tip">This send is hidden by default. You can toggle
-                            its visibility using the button below.</app-callout>
+                        <app-callout *ngIf="send.text.hidden" type="tip">{{'sendHiddenByDefault' | i18n}}</app-callout>
                         <div class="form-group">
                             <textarea id="text" rows="8" name="Text" [(ngModel)]="sendText" class="form-control"
                                 readonly (click)="selectText()"></textarea>
@@ -40,10 +39,10 @@
                             *ngIf="send.text.hidden">
                             <i class="fa fa-lg" aria-hidden="true"
                                 [ngClass]="{'fa-eye': !showText, 'fa-eye-slash': showText}"></i>
-                            Toggle visibility
+                            {{'toggleVisibility' | i18n}}
                         </button>
                         <button class="btn btn-block btn-link" type="button" (click)="copyText()">
-                            <i class="fa fa-copy" aria-hidden="true"></i> Copy to clipboard
+                            <i class="fa fa-copy" aria-hidden="true"></i> {{'copyValue' | i18n}}
                         </button>
                     </ng-container>
                     <!-- File -->
@@ -51,7 +50,7 @@
                         <p>{{send.file.fileName}}</p>
                         <button class="btn btn-primary btn-block" type="button" (click)="download()">
                             <i class="fa fa-download" aria-hidden="true"></i>
-                            Download file ({{send.file.sizeName}})</button>
+                            {{'downloadFile' | i18n}} ({{send.file.sizeName}})</button>
                     </ng-container>
                 </div>
             </div>

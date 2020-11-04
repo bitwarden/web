@@ -3,10 +3,7 @@ import {
     OnInit,
 } from '@angular/core';
 
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -45,11 +42,9 @@ export class AccessComponent implements OnInit {
     private key: string;
     private decKey: SymmetricCryptoKey;
 
-    constructor(router: Router, private i18nService: I18nService,
+    constructor(private i18nService: I18nService, private cryptoFunctionService: CryptoFunctionService,
         private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private route: ActivatedRoute, private cryptoService: CryptoService,
-        private cryptoFunctionService: CryptoFunctionService) {
-        // TODO
+        private route: ActivatedRoute, private cryptoService: CryptoService) {
     }
 
     get sendText() {
