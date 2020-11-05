@@ -32,17 +32,24 @@ export class SendComponent implements OnInit {
     @ViewChild('sendAddEdit', { read: ViewContainerRef, static: true }) sendAddEditModalRef: ViewContainerRef;
 
     sendType = SendType;
+    loaded = false;
     loading = true;
+    refreshing = false;
     expired: boolean = false;
     type: SendType = null;
     sends: SendView[] = [];
+    filteredSends: SendView[] = [];
     searchText: string;
     selectedType: SendType;
     selectedAll: boolean;
     searchPlaceholder: string;
+    filter: (cipher: SendView) => boolean;
+    searchPending = false;
 
     modal: ModalComponent = null;
     actionPromise: any;
+
+    private searchTimeout: any;
 
     constructor(private apiService: ApiService, private userService: UserService,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
@@ -51,8 +58,7 @@ export class SendComponent implements OnInit {
     async ngOnInit() {
         await this.load();
     }
-
-    async load() {
+    async load(filter: (send: SendView) => boolean = null) {
         this.loading = true;
         const userId = await this.userService.getUserId();
         const sends = await this.apiService.getSends();
@@ -66,7 +72,45 @@ export class SendComponent implements OnInit {
             }
         }
         this.sends = sendsArr;
+        this.selectAll();
         this.loading = false;
+        this.loaded = true;
+    }
+
+    async reload(filter: (send: SendView) => boolean = null) {
+        this.loaded = false;
+        this.sends = [];
+        await this.load(filter);
+    }
+
+    async refresh() {
+        try {
+            this.refreshing = true;
+            await this.reload(this.filter);
+        } finally {
+            this.refreshing = false;
+        }
+    }
+
+    async applyFilter(filter: (send: SendView) => boolean = null) {
+        this.filter = filter;
+        await this.search(null);
+    }
+
+    async search(timeout: number = null) {
+        this.searchPending = false;
+        if (this.searchTimeout != null) {
+            clearTimeout(this.searchTimeout);
+        }
+        if (timeout == null) {
+            this.filteredSends = this.sends.filter((s) => this.filter == null || this.filter(s));
+            return;
+        }
+        this.searchPending = true;
+        this.searchTimeout = setTimeout(async () => {
+            this.filteredSends = this.sends.filter((s) => this.filter == null || this.filter(s));
+            this.searchPending = false;
+        }, timeout);
     }
 
     addSend() {
@@ -155,14 +199,23 @@ export class SendComponent implements OnInit {
     }
 
     searchTextChanged() {
-        // TODO
+        this.search(200);
     }
 
     selectAll() {
-        // TODO
+        this.clearSelections();
+        this.selectedAll = true;
+        this.applyFilter(null);
     }
 
     selectType(type: SendType) {
-        // TODO
+        this.clearSelections();
+        this.selectedType = type;
+        this.applyFilter((s) => s.type === type);
+    }
+
+    clearSelections() {
+        this.selectedAll = false;
+        this.selectedType = null;
     }
 }
