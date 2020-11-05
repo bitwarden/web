@@ -51,9 +51,9 @@
                 </div>
             </div>
             <!--Listing Table-->
-            <table class="table table-hover table-list" *ngIf="sends && sends.length">
+            <table class="table table-hover table-list" *ngIf="filteredSends && filteredSends.length">
                 <tbody>
-                    <tr *ngFor="let s of sends">
+                    <tr *ngFor="let s of filteredSends">
                         <td class="table-list-icon">
                             <div class="icon" aria-hidden="true">
                                 <i class="fa fa-fw fa-lg fa-file-o" *ngIf="s.type == sendType.File"></i>
@@ -96,6 +96,17 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="no-items" *ngIf="filteredSends && !filteredSends.length">
+                <ng-container *ngIf="!loaded">
+                    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    <span class="sr-only">{{'loading' | i18n}}</span>
+                </ng-container>
+                <ng-container *ngIf="loaded">
+                    <p>{{'noSendsInList' | i18n}}</p>
+                    <button (click)="addSend()" class="btn btn-outline-primary">
+                        <i class="fa fa-plus fa-fw"></i>{{'createSend' | i18n}}</button>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>
