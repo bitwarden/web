@@ -37,6 +37,9 @@
   "password": {
     "message": "סיסמה"
   },
+  "newPassword": {
+    "message": "New Password"
+  },
   "passphrase": {
     "message": "משפט סיסמה"
   },
@@ -1045,11 +1048,11 @@
     "message": "שימוש בתמונות אווטאר שנטענו מהאתר gravatar.com."
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "אפשר תצוגה ברוחב מלא",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "אפשר לחלון הכספת לגדול לרוחב חלון הדפדפן."
   },
   "default": {
     "message": "ברירת מחדל"
@@ -1986,13 +1989,13 @@
     "message": "אחסון שרת מקומי (אופציונאלי)"
   },
   "usersGetPremium": {
-    "message": "משתמשים מקבלים גישה ליכולות פרמיום"
+    "message": "המשתמשים יקבלו גישה ליכולות פרימיום"
   },
   "controlAccessWithGroups": {
     "message": "שלוט על גישת משתמשים בעזרת קבוצות"
   },
   "syncUsersFromDirectory": {
-    "message": "סנכרן את המשתמשים והקבוצות מתוך Active Directory"
+    "message": "סנכרן את המשתמשים והקבוצות עם Active Directory"
   },
   "trackAuditLogs": {
     "message": "עקוב אחר פעולות המשתמשים בעזרת יומן ביקורת"
@@ -2004,7 +2007,7 @@
     "message": "קדימות בתמיכה הטכנית"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ day free trial, cancel anytime",
+    "message": "$COUNT$ ימי נסיון, ניתן לבטל תמיד",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2118,10 +2121,10 @@
     "message": "הזמן משתמש"
   },
   "inviteUserDesc": {
-    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "הזמן משתמש חדש לארגון שלך על ידי הזנת כתובת האימייל שלהם שמשמשת אותם בחשבון Bitwarden. אם אין להם חשבון Bitwarden, הם יתבקשו ליצור חשבון."
   },
   "inviteMultipleEmailDesc": {
-    "message": "You can invite up to $COUNT$ users at a time by comma separating a list of email addresses.",
+    "message": "באפשרותך להזמין עד $COUNT$ משתמשים בכל פעם על ידי הפרדת הכתובות בעזרת פסיק.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2130,13 +2133,13 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "This user is using two-step login to protect their account."
+    "message": "משתמש זה הפעיל כניסה דו שלבית כדי להגן על חשבונו."
   },
   "userAccessAllItems": {
-    "message": "This user can access and modify all items."
+    "message": "משתמש זה יכול לגשת ולשנות את כל הפריטים."
   },
   "userAccessSelectedCollections": {
-    "message": "This user can access only the selected collections."
+    "message": "משתמש זה יכול לגשת רק לאוספים נבחרים."
   },
   "search": {
     "message": "חיפוש"
@@ -2154,25 +2157,25 @@
     "message": "בעלים"
   },
   "ownerDesc": {
-    "message": "The highest access user that can manage all aspects of your organization."
+    "message": "החשבון בעל ההרשאות הגבוהות ביותר שיכול לנהל את כל ההיבטים של הארגון."
   },
   "admin": {
     "message": "מנהל"
   },
   "adminDesc": {
-    "message": "Admins can access and manage all items, collections and users in your organization."
+    "message": "מנהלים יכולים לגשת ולנהל את כל הפריטים, האוספים והמשתמשים שבארגונך."
   },
   "user": {
     "message": "משתמש"
   },
   "userDesc": {
-    "message": "A regular user with access to assigned collections in your organization."
+    "message": "משתמש רגיל עם גישה לאוספים נבחרים בארגון שלך."
   },
   "manager": {
     "message": "מנהל"
   },
   "managerDesc": {
-    "message": "Managers can access and manage assigned collections in your organization."
+    "message": "מנהלים יכולים לגשת ולנהל אוספים נבחרים בארגונך."
   },
   "all": {
     "message": "הכל"
@@ -2211,22 +2214,22 @@
     "message": "מחובר."
   },
   "changedPassword": {
-    "message": "Changed account password."
+    "message": "סיסמת החשבון שונתה."
   },
   "enabledUpdated2fa": {
-    "message": "Enabled/updated two-step login."
+    "message": "כניסה דו שלבית הופעלה\\עודכנה."
   },
   "disabled2fa": {
     "message": "בטל כניסה דו שלבית."
   },
   "recovered2fa": {
-    "message": "Recovered account from two-step login."
+    "message": "חשבון שוחזר מכניסה דו שלבית."
   },
   "failedLogin": {
-    "message": "Login attempt failed with incorrect password."
+    "message": "נסיון כניסה נכשל עם סיסמה שגויה."
   },
   "failedLogin2fa": {
-    "message": "Login attempt failed with incorrect two-step login."
+    "message": "נסיונות כניסה עם אימות דו שלבי נכשלו."
   },
   "exportedVault": {
     "message": "יצוא כספת."
@@ -2643,7 +2646,7 @@
     "message": "מידע מיסים"
   },
   "taxInformationDesc": {
-    "message": "אנא צור קשר עם התמיכה כדי לספק (או לעדכן) את פרטי המס עבור הקבלות שלך."
+    "message": "עבור לקוחות בתוך ארצות הברית, יש לכתוב מיקוד לצורך דיווח מיסוי. עבור לקוחות ממדינות אחרות ניתן למלא מספר זיהוי מס (VAT/GST) ו\\או כתובת שתופיע על הקבלות שלך."
   },
   "billingPlan": {
     "message": "תוכנית",
@@ -2781,7 +2784,7 @@
     "message": "התחלנו להשתמש במפתחות הצפנה גדולים יותר בכדי לספק אבטחה טובה יותר ולאפשר גישה ליכולות חדשות. תהליך עדכון מפתחות האבטחה שלך הוא קל ומהיר. פשוט הזן את הסיסמה הראשית שלך. שים לב שעדכון זה יהפוך להכרחי בסופו של דבר."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "לאחר עדכון מפתחות ההצפנה שלך, תתבקש לצאת ולהכנס שוב בכל אפליקציות Bitwarden שאתה משתמש בהן (האפליקציה לפלאפון או ההרחבה לדפדפן). אם לא תצא ותכנס שוב (פעולת הכניסה מורידה את המפתח החדש), יתכן שתתקל במידע שגוי. אנו ננסה לגרום ליציאה אוטומטית, אך יתכן שהדבר לא יקרה מיידית."
   },
   "subscription": {
     "message": "מנוי"
@@ -2796,13 +2799,13 @@
     "message": "שדרג ארגון"
   },
   "upgradeOrganizationDesc": {
-    "message": "This feature is not available for free organizations. Switch to a paid plan to unlock more features."
+    "message": "תכונה זו לא זמינה בתוכנית החינמיית עבור ארגונים. עבור לתוכנית בתשלום בכדי להשתמש בתכונות נוספות."
   },
   "createOrganizationStep1": {
     "message": "יצירת ארגון: צעד 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Before creating your organization, you first need to create a free personal account."
+    "message": "לפני יצירת הארגון, עליך ליצור חשבון אישי חינמי."
   },
   "refunded": {
     "message": "זוכה"
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "לא בחרת כלום."
   },
-  "submitAgreePolicies": {
-    "message": "By clicking the \"Submit\" button, you agree to the following policies:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "By checking this box you agree to the following:"
+  },
+  "acceptPoliciesError": {
+    "message": "Terms of Service and Privacy Policy have not been acknowledged."
   },
   "termsOfService": {
     "message": "תנאי שירות"
@@ -2899,7 +2904,7 @@
     "message": "הסיסמה הראשית שבחרת חלשה מאוד. עליך לבחור סיסמה חזקה יותר (או להשתמש במשפט במקום מילה אחת) בכדי לאבטח את החשבון שלך. האם אתה בטוח שברצונך להשתמש בסיסמה ראשית זו?"
   },
   "rotateAccountEncKey": {
-    "message": "Also rotate my account's encryption key"
+    "message": "כמו כן החלף את מפתח ההצפנה של החשבון שלי"
   },
   "rotateEncKeyTitle": {
     "message": "החלף מפתח הצפנה"
@@ -2908,28 +2913,28 @@
     "message": "האם אתה בטוח שברצונך להחליף (לבצע רוטציה) של מפתח ההצפנה בחשבונך?"
   },
   "attachmentsNeedFix": {
-    "message": "This item has old file attachments that need to be fixed."
+    "message": "לפריט זה יש קובץ מצורף שצריך תיקון."
   },
   "attachmentFixDesc": {
-    "message": "This is an old file attachment the needs to be fixed. Click to learn more."
+    "message": "קובץ מצורף זה צריך לעבור תיקון. לחץ כאן כדי לגלות עוד פרטים."
   },
   "fix": {
     "message": "תקן",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "בכספת שלך קיים קובץ מצורף ישן שצריך לעבור תיקון לפני שתוכל להחליף את מפתחות ההצפנה של החשבון שלך."
   },
   "yourAccountsFingerprint": {
     "message": "הסיסמה של טביעת האצבעות בחשבון שלך",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "To ensure the integrity of your encryption keys, please verify the user's fingerprint phrase before continuing.",
+    "message": "בכדי לוודא את תקינות מפתחות ההצפנה שלך, אנא ודא את משפט טביעת האצבע לפני שתמשיך.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "אל תבקש ממני לאמת את משפט טביעת האצבע יותר",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -2940,13 +2945,19 @@
     "message": "מפתח API"
   },
   "apiKeyDesc": {
-    "message": "Your API key can be used to authenticate to the Bitwarden public API."
+    "message": "מפתח הAPI שלך יכול לשמש עבור אימות מול הAPI הפומבי של Bitwarden."
   },
   "apiKeyRotateDesc": {
-    "message": "Rotating the API key will invalidate the previous key. You can rotate your API key if you believe that the current key is no longer safe to use."
+    "message": "רוטציית מפתח הAPI הופכת את המפתח הקודם ללא תקין. באפשרותך לבצע רוטציה של מפתח הAPI אם אתה מאמין שהמפתח הנוכחי לא בטוח לשימוש."
   },
   "apiKeyWarning": {
-    "message": "Your API key has full access to the organization. It should be kept secret."
+    "message": "למפתח הAPI שלך יש גישה מלאה לארגון שלך. מומלץ מאוד לשמור אותו בסוד."
+  },
+  "userApiKeyDesc": {
+    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+  },
+  "userApiKeyWarning": {
+    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
   },
   "oauth2ClientCredentials": {
     "message": "אישורי לקוח OAuth 2.0",
@@ -2980,28 +2991,28 @@
     "message": "שכפול"
   },
   "masterPassPolicyDesc": {
-    "message": "Set minimum requirements for master password strength."
+    "message": "קבע דרישות מינימום עבור חוזק הסיסמה הראשית."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Require users to set up two-step login on their personal accounts."
+    "message": "דרוש מהמשתמשים להגדיר כניסה דו-שלבית בחשבונות האישיים שלהם."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "חברי ארגון ללא הגדרת כניסה דו-שלבית יוסרו מהארגון ויקבלו אימייל המסביר את השינוי."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "הינך חבר בארגון המחייב כניסה דו-שלבית מוגדרת בחשבונך. אם תבטל את כל הספקים המאפשרים כניסה דו-שלבית, תוסר אוטומטית מהארגון."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Set minimum requirements for password generator configuration."
+    "message": "הגדר דרישות מינימום במחולל הסיסמאות."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "One or more organization policies are affecting your generator settings."
+    "message": "מדיניות ארגונית אחת או יותר משפיעה על הגדרות המחולל שלך."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require your master password to meet the following requirements:"
+    "message": "אחד או יותר מכללי מדיניות הארגון דורשים שסיסמתך הראשית תעמוד בדרישות הבאות:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum complexity score of $SCORE$",
+    "message": "ניקוד מורכבות הסיסמה צריך להיות לפחות $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3010,7 +3021,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimum length of $LENGTH$",
+    "message": "אורך מינימלי של $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3019,16 +3030,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Contain one or more uppercase characters"
+    "message": "מכילה אות גדולה אחת או יותר"
   },
   "policyInEffectLowercase": {
-    "message": "Contain one or more lowercase characters"
+    "message": "מכילה אות קטנה אחת או יותר"
   },
   "policyInEffectNumbers": {
-    "message": "Contain one or more numbers"
+    "message": "מכילה ספרה אחת או יותר"
   },
   "policyInEffectSpecial": {
-    "message": "Contain one or more of the following special characters $CHARS$",
+    "message": "מכילה תו אחד או יותר מהתווים הבאים: $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3037,7 +3048,7 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Your new master password does not meet the policy requirements."
+    "message": "הסיסמה הראשית החדשה שלך לא עומדת בדרישות המדיניות."
   },
   "minimumNumberOfWords": {
     "message": "מספר מינימאלי של מילים"
@@ -3150,61 +3161,190 @@
     "message": "אישור פעולת אימות לאחר חוסר פעילות"
   },
   "hidePasswords": {
-    "message": "Hide Passwords"
+    "message": "הסתר סיסמאות"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "אנו מבקשים מידע זה בכדי לחשב את עלויות המיסים והדוחות הכספיים שלנו בלבד."
   },
   "includeVAT": {
-    "message": "Include VAT/GST Information (optional)"
+    "message": "כלול נתוני מעמ/VAT/GST (אופציונאלי)"
   },
   "taxIdNumber": {
-    "message": "VAT/GST Tax ID"
+    "message": "מזהה מיסוי מעמ/VAT/GST"
   },
   "taxInfoUpdated": {
-    "message": "Tax information updated."
+    "message": "מידע מיסוי עודכן."
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "קבע סיסמה ראשית"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+    "message": "כדי להשלים את הכניסה עם SSO, נא להגדיר סיסמה ראשית כדי לגשת ולהגן על הכספת שלך."
   },
   "identifier": {
-    "message": "Identifier"
+    "message": "מזהה"
   },
   "organizationIdentifier": {
-    "message": "Organization Identifier"
+    "message": "מזהה ארגוני"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+    "message": "הכנס באמצעות פורטל ההזדהות האחודה (SSO) הארגוני שלך. אנא הזן את המזהה הארגוני שלך כדי להתחיל."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise Single Sign-On"
+    "message": "כניסה ארגונית אחודה"
   },
   "businessPortal": {
-    "message": "Business Portal",
+    "message": "פורטל עסקי",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "All Teams features, plus:"
+    "message": "כל התכונות הקיימות ב\"צוות\", ובנוסף:"
   },
   "includeSsoAuthentication": {
-    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+    "message": "אימות SSO דרך SAML2.0 וOpenID Connect"
   },
   "includeEnterprisePolicies": {
-    "message": "Enterprise Policies"
+    "message": "מדיניות ארגונית"
   },
   "ssoValidationFailed": {
-    "message": "SSO Validation Failed"
+    "message": "אימות SSO נכשל"
   },
   "ssoIdentifierRequired": {
-    "message": "Organization Identifier is required."
+    "message": "מזהה הארגון נחוץ."
   },
   "unlinkSso": {
-    "message": "Unlink SSO"
+    "message": "נתק SSO"
   },
   "linkSso": {
-    "message": "Link SSO"
+    "message": "חבר SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+  },
+  "singleOrg": {
+    "message": "Single Organization"
+  },
+  "singleOrgDesc": {
+    "message": "Restrict users from being able to join any other organizations."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+  },
+  "requireSso": {
+    "message": "Single Sign-On Authentication"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Require users to log in with the Enterprise Single Sign-On method."
+  },
+  "prerequisite": {
+    "message": "Prerequisite"
+  },
+  "requireSsoPolicyReq": {
+    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Single Organization policy not enabled."
+  },
+  "requireSsoExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "sendTypeFile": {
+    "message": "File"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Create New Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Edit Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Created Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Edited Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Deleted Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Delete Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Are you sure you want to delete this Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "What type of Send is this?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Deletion Date"
+  },
+  "expirationDate": {
+    "message": "Expiration Date"
+  },
+  "maxAccessCount": {
+    "message": "Maximum Access Count"
+  },
+  "currentAccessCount": {
+    "message": "Current Access Count"
+  },
+  "disabled": {
+    "message": "Disabled"
+  },
+  "sendLink": {
+    "message": "Send Link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Copy Send Link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Remove Password"
+  },
+  "removedPassword": {
+    "message": "Removed Password"
+  },
+  "removePasswordConfirmation": {
+    "message": "Are you sure you want to remove the password?"
+  },
+  "allSends": {
+    "message": "All Sends"
+  },
+  "searchSends": {
+    "message": "Search Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Download File"
+  },
+  "noSendsInList": {
+    "message": "There are no Sends to list.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
