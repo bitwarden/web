@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
-import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
@@ -17,17 +15,23 @@ import { ApiKeyResponse } from 'jslib/models/response/apiKeyResponse';
     templateUrl: 'api-key.component.html',
 })
 export class ApiKeyComponent {
-    organizationId: string;
+    keyType: string;
+    isRotation: boolean;
+    postKey: (entityId: string, request: PasswordVerificationRequest) => Promise<ApiKeyResponse>;
+    entityId: string;
+    scope: string;
+    grantType: string;
+    apiKeyTitle: string;
+    apiKeyWarning: string;
+    apiKeyDescription: string;
 
     masterPassword: string;
     formPromise: Promise<ApiKeyResponse>;
     clientId: string;
     clientSecret: string;
-    scope: string;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private router: Router) { }
+    constructor(private i18nService: I18nService, private analytics: Angulartics2,
+        private toasterService: ToasterService, private cryptoService: CryptoService) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -39,12 +43,11 @@ export class ApiKeyComponent {
         const request = new PasswordVerificationRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.apiService.postOrganizationApiKey(this.organizationId, request);
+            this.formPromise = this.postKey(this.entityId, request);
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
-            this.clientId = 'organization.' + this.organizationId;
-            this.scope = 'api.organization';
-            this.analytics.eventTrack.next({ action: 'Viewed Organization API Key' });
+            this.clientId = `${this.keyType}.${this.entityId}`;
+            this.analytics.eventTrack.next({ action: `Viewed ${this.keyType} API Key` });
         } catch { }
     }
 }
