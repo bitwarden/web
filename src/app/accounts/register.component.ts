@@ -27,7 +27,6 @@ import { ReferenceEventRequest } from 'jslib/models/request/referenceEventReques
 })
 export class RegisterComponent extends BaseRegisterComponent {
     showCreateOrgMessage = false;
-    showTerms = true;
     layout = '';
     enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
@@ -40,7 +39,6 @@ export class RegisterComponent extends BaseRegisterComponent {
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService);
-        this.showTerms = !platformUtilsService.isSelfHost();
     }
 
     getPasswordScoreAlertDisplay() {
