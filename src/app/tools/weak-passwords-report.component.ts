@@ -40,7 +40,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
         allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
             const hasUsername = c.login.username != null && c.login.username.trim() !== '';
