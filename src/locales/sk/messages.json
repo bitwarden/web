@@ -38,7 +38,7 @@
     "message": "Heslo"
   },
   "newPassword": {
-    "message": "New Password"
+    "message": "Nové heslo"
   },
   "passphrase": {
     "message": "Heslo"
@@ -2814,10 +2814,10 @@
     "message": "Nič ste nevybrali."
   },
   "acceptPolicies": {
-    "message": "By checking this box you agree to the following:"
+    "message": "Označením tohto políčka súhlasíte s nasledovným:"
   },
   "acceptPoliciesError": {
-    "message": "Terms of Service and Privacy Policy have not been acknowledged."
+    "message": "Neboli akceptované Podmienky používania a zásady Ochrany osobných údajov."
   },
   "termsOfService": {
     "message": "Podmienky používania"
@@ -2945,7 +2945,7 @@
     "message": "API kľúč"
   },
   "apiKeyDesc": {
-    "message": "API kľúč možno použiť na autentifikáciu pre použitie verejného Bitwarden API."
+    "message": "Váš API kľúč je možné použiť na autentifikáciu do verejného API Bitwardenu."
   },
   "apiKeyRotateDesc": {
     "message": "Obnovením kľúča API zneplatníte predchádzajúci API kľúč. API kľúč môžete obnoviť ak si myslíte že súčasný kľúč už nie je bezpečný."
@@ -2954,10 +2954,10 @@
     "message": "API kľúč má plný prístup k organizácii. To by by ste ho udržať v bezpečí."
   },
   "userApiKeyDesc": {
-    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+    "message": "Váš API kľúč je možné použiť na autentifikáciu v API Bitwardenu."
   },
   "userApiKeyWarning": {
-    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
+    "message": "Váš API kľúč je alternatívnym autentifikačným mechanizmom. Mali by ste si ho udržať v tajnosti."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 klientské poverenia",
@@ -2997,7 +2997,7 @@
     "message": "Požadujte dvojstupňové prihlásenie pre osobné účty."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Členovia organizácie, ktorí nemajú zapnuté dvojstupňové prihlásenie budú odstranení z organizácie a obdržia email s informáciou o tejto zmene."
+    "message": "Členovia organizácie, ktorí nie su vlastníci alebo administratori a ktorí nemajú zapnuté dvojstupňové prihlásenie budú odstranení z organizácie a obdržia email s informáciou o tejto zmene."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Ste členom organizácie, ktorá požaduje dvojstupňové prihlásenie do vášho použivateľského účtu. Ak odstránite všetky formy dvojstupňového prihlasovania, budete s takýchto organizácii odstránený."
@@ -3219,19 +3219,19 @@
     "message": "Prepojiť SSO"
   },
   "webPoliciesDeprecationWarning": {
-    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+    "message": "Konfigurácia pravidiel bola presunutá a táto stránka bude čoskoro zrušená. Ak chcete radšej konfigurovať pravidlá v Portáli spoločnosti, kliknite, prosím, na tlačidlo nižšie."
   },
   "singleOrg": {
-    "message": "Single Organization"
+    "message": "Jedna organizácia"
   },
   "singleOrgDesc": {
-    "message": "Restrict users from being able to join any other organizations."
+    "message": "Zakázať používateľom stať sa členmi inej organizácie."
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+    "message": "Váša súčasná organizácia má pravidlo, ktoré vám nedovoľuje pripojiť sa k viac než jednej organizácii. Kontaktujte, prosím, administrátorov vašej organizácie alebo sa prihláste prostredníctvom iného Bitwarden účtu."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "Členovia organizácie, ktorí nie sú vlastníkmi alebo administrátormi a už sú členmi inej organizácie, budú odstránení z vašej organizácie."
   },
   "requireSso": {
     "message": "Single Sign-On Authentication"
@@ -3240,111 +3240,111 @@
     "message": "Require users to log in with the Enterprise Single Sign-On method."
   },
   "prerequisite": {
-    "message": "Prerequisite"
+    "message": "Predpoklad"
   },
   "requireSsoPolicyReq": {
-    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+    "message": "Pravidlá spoločnosti o jednej organizácii musia byť povolené pred aktivovaním tohto pravidla."
   },
   "requireSsoPolicyReqError": {
-    "message": "Single Organization policy not enabled."
+    "message": "Pravidlo jednej organizácie nie je povolené."
   },
   "requireSsoExemption": {
     "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "Súbor"
   },
   "sendTypeText": {
     "message": "Text"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "Vytvoriť nový Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Edit Send",
+    "message": "Upraviť Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Created Send",
+    "message": "Send vytvorený",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Edited Send",
+    "message": "Send upravený",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Deleted Send",
+    "message": "Send zmazaný",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Delete Send",
+    "message": "Zmazať Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Are you sure you want to delete this Send?",
+    "message": "Naozaj chcete odstrániť tento Send?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "What type of Send is this?",
+    "message": "Aký typ Send to je?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Deletion Date"
+    "message": "Dátum vymazania"
   },
   "expirationDate": {
-    "message": "Expiration Date"
+    "message": "Dátum exspirácie"
   },
   "maxAccessCount": {
-    "message": "Maximum Access Count"
+    "message": "Maximálny počet prístupov"
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Súčasný počet prístupov"
   },
   "disabled": {
-    "message": "Disabled"
+    "message": "Vypnuté"
   },
   "sendLink": {
-    "message": "Send Link",
+    "message": "Odkaz na Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copy Send Link",
+    "message": "Kopírovať odkaz na Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
-    "message": "Remove Password"
+    "message": "Odstrániť Heslo"
   },
   "removedPassword": {
-    "message": "Removed Password"
+    "message": "Heslo odstránené"
   },
   "removePasswordConfirmation": {
-    "message": "Are you sure you want to remove the password?"
+    "message": "Naozaj chcete odstrániť heslo?"
   },
   "allSends": {
-    "message": "All Sends"
+    "message": "Všetky Sendy"
   },
   "searchSends": {
-    "message": "Search Sends",
+    "message": "Hľadať Sendy",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "message": "Tento Send je chránený heslom. Pre pokračovanie zadajte prosím heslo.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "message": "Neviete heslo? Požiadajte odosielateľa o heslo potrebné k prístupu k tomuto Sendu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "message": "Tento Send je normálne skrytý. Tlačidlom nižšie môžete prepnúť jeho viditeľnosť.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
-    "message": "Download File"
+    "message": "Stiahnuť súbor"
   },
   "noSendsInList": {
-    "message": "There are no Sends to list.",
+    "message": "Neexistujú žiadne Sendy na zobrazenie.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
