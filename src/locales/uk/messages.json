@@ -38,7 +38,7 @@
     "message": "Пароль"
   },
   "newPassword": {
-    "message": "New Password"
+    "message": "Новий пароль"
   },
   "passphrase": {
     "message": "Парольна фраза"
@@ -2814,10 +2814,10 @@
     "message": "Ви нічого не обрали."
   },
   "acceptPolicies": {
-    "message": "By checking this box you agree to the following:"
+    "message": "Позначивши цей прапорець, ви погоджуєтеся з:"
   },
   "acceptPoliciesError": {
-    "message": "Terms of Service and Privacy Policy have not been acknowledged."
+    "message": "Умови користування та політика приватності не погоджені."
   },
   "termsOfService": {
     "message": "Умови користування"
@@ -2954,10 +2954,10 @@
     "message": "Ваш ключ API має повний доступ до організації. Він повинен зберігатися в секреті."
   },
   "userApiKeyDesc": {
-    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+    "message": "Ваш ключ API може бути використаний для авторизації в Bitwarden CLI."
   },
   "userApiKeyWarning": {
-    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
+    "message": "Ваш ключ API є альтернативним засобом перевірки. Його слід зберігати в таємниці."
   },
   "oauth2ClientCredentials": {
     "message": "Облікові дані клієнта OAuth 2.0",
@@ -2997,7 +2997,7 @@
     "message": "Зобов'язувати користувачів встановлювати двоетапну перевірку в їхніх особистих облікових записах."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Учасники організації, в яких не увімкнено двоетапну перевірку для їхніх особистих облікових записів, будуть вилучені з організації та отримають поштове повідомлення про зміну."
+    "message": "Учасники організації, які не є власниками, чи адміністратори, в яких не увімкнено двоетапну перевірку для їхніх особистих облікових записів, будуть вилучені з організації та проінформовані поштовим повідомленням."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Ви включені до організації, яка зобов'язує використання двоетапної перевірки у вашому обліковому записі. Якщо ви вимкнете всі способи двоетапної перевірки, вас буде автоматично вилучено з цієї організації."
@@ -3219,132 +3219,132 @@
     "message": "Під'єднати SSO"
   },
   "webPoliciesDeprecationWarning": {
-    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+    "message": "Конфігурацію політик було переміщено і ця сторінка невдовзі стане застарілою. Натисніть нижче для використання нової сторінки політик бізнес-порталу."
   },
   "singleOrg": {
-    "message": "Single Organization"
+    "message": "Єдина організація"
   },
   "singleOrgDesc": {
-    "message": "Restrict users from being able to join any other organizations."
+    "message": "Заборонити користувачам приєднуватися до будь-яких інших організацій."
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+    "message": "Ваша організація має політику, що не дозволяє вам приєднуватися до більш, ніж однієї організації. Будь ласка, зв'яжіться з адміністратором вашої організації, або увійдіть з іншим обліковим записом Bitwarden."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "Учасники організації, які не є власниками чи адміністраторами, але вже є учасниками іншої організації, будуть вилучені з вашої організації."
   },
   "requireSso": {
-    "message": "Single Sign-On Authentication"
+    "message": "Авторизація через єдиний вхід (SSO)"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require users to log in with the Enterprise Single Sign-On method."
+    "message": "Вимагати від користувачів входити в систему через єдиний вхід (SSO) компанії."
   },
   "prerequisite": {
-    "message": "Prerequisite"
+    "message": "Передумови"
   },
   "requireSsoPolicyReq": {
-    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+    "message": "Для активації цієї політики необхідно увімкнути політику єдиної організації компанії."
   },
   "requireSsoPolicyReqError": {
-    "message": "Single Organization policy not enabled."
+    "message": "Політику єдиної організації компанії не увімкнено."
   },
   "requireSsoExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Власники організації та адміністратори звільняються від дотримання цієї політики."
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "Файл"
   },
   "sendTypeText": {
-    "message": "Text"
+    "message": "Текст"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "Створити нове відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Edit Send",
+    "message": "Змінити відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Created Send",
+    "message": "Відправлення створено",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Edited Send",
+    "message": "Відправлення змінено",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Deleted Send",
+    "message": "Відправлення видалено",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Delete Send",
+    "message": "Видалити відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Are you sure you want to delete this Send?",
+    "message": "Ви дійсно хочете видалити це відправлення?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "What type of Send is this?",
+    "message": "Який це тип відправлення?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Deletion Date"
+    "message": "Дата видалення"
   },
   "expirationDate": {
-    "message": "Expiration Date"
+    "message": "Термін дії"
   },
   "maxAccessCount": {
-    "message": "Maximum Access Count"
+    "message": "Максимальна кількість доступів"
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Поточна кількість доступів"
   },
   "disabled": {
-    "message": "Disabled"
+    "message": "Вимкнено"
   },
   "sendLink": {
-    "message": "Send Link",
+    "message": "Надіслати посилання",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copy Send Link",
+    "message": "Копіювати посилання відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
-    "message": "Remove Password"
+    "message": "Вилучити пароль"
   },
   "removedPassword": {
-    "message": "Removed Password"
+    "message": "Пароль вилучено"
   },
   "removePasswordConfirmation": {
-    "message": "Are you sure you want to remove the password?"
+    "message": "Ви дійсно хочете вилучити пароль?"
   },
   "allSends": {
-    "message": "All Sends"
+    "message": "Усі відправлення"
   },
   "searchSends": {
-    "message": "Search Sends",
+    "message": "Пошук відправлень",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "message": "Це відправлення захищено паролем. Введіть пароль внизу для продовження.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "message": "Не знаєте пароль? Попросіть його у відправника для отримання доступу.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "message": "Це відправлення типово приховане. Ви можете змінити його видимість кнопкою нижче.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
-    "message": "Download File"
+    "message": "Завантажити файл"
   },
   "noSendsInList": {
-    "message": "There are no Sends to list.",
+    "message": "У списку немає відправлень.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
