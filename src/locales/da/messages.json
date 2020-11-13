@@ -38,7 +38,7 @@
     "message": "Adgangskode"
   },
   "newPassword": {
-    "message": "New Password"
+    "message": "Ny adgangskode"
   },
   "passphrase": {
     "message": "Adgangssætning"
@@ -2814,10 +2814,10 @@
     "message": "Du har ikke valgt noget."
   },
   "acceptPolicies": {
-    "message": "By checking this box you agree to the following:"
+    "message": "Ved at markere dette felt accepterer du følgende:"
   },
   "acceptPoliciesError": {
-    "message": "Terms of Service and Privacy Policy have not been acknowledged."
+    "message": "Servicevilkår og fortrolighedspolitik er ikke blevet bekræftet."
   },
   "termsOfService": {
     "message": "Servicevilkår"
@@ -2954,10 +2954,10 @@
     "message": "Din API-nøgle har fuld adgang til organisationen. Den skal holdes hemmelig."
   },
   "userApiKeyDesc": {
-    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+    "message": "Din API-nøgle kan bruges til godkendelse i Bitwarden-CLI."
   },
   "userApiKeyWarning": {
-    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
+    "message": "Din API-nøgle er en alternativ godkendelsesmekanisme. Den bør holdes hemmelig."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 legitimationsoplysninger",
@@ -2997,7 +2997,7 @@
     "message": "Kræv at brugerne konfigurerer to-trins-login på deres personlige konti."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organisationsmedlemmer, der ikke har to-trins login aktiveret på deres personlige konto, fjernes fra organisationen og vil modtage en e-mail, der giver dem besked om ændringen."
+    "message": "Organisationsmedlemmer, der ikke er ejere eller administratorer og ikke har to-trins login aktiveret på deres personlige konto, fjernes fra organisationen og modtager en e-mail med besked om ændringen."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Du er medlem af en organisation, der kræver at to-trins login er aktiveret på din brugerkonto. Hvis du deaktiverer alle to-trins login-udbydere, fjernes du automatisk fra disse organisationer."
@@ -3219,132 +3219,132 @@
     "message": "Tilknyt SSO"
   },
   "webPoliciesDeprecationWarning": {
-    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+    "message": "Politikkonfiguration er flyttet, og denne side vil snart blive udfaset. Klik nedenfor for at bruge siden Politikker i forretningsportalen i stedet."
   },
   "singleOrg": {
-    "message": "Single Organization"
+    "message": "Enkel organisation"
   },
   "singleOrgDesc": {
-    "message": "Restrict users from being able to join any other organizations."
+    "message": "Begræns brugere fra at kunne deltage i andre organisationer."
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+    "message": "Din nuværende organisation har en politik, der ikke tillader dig at deltage i mere end en organisation. Kontakt din organisations administratorer, eller tilmeld dig fra en anden Bitwarden-konto."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "Organisationsmedlemmer, der ikke er ejere eller administratorer og allerede er medlem af en anden organisation, fjernes fra din organisation."
   },
   "requireSso": {
-    "message": "Single Sign-On Authentication"
+    "message": "Single Sign-On autentificering"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require users to log in with the Enterprise Single Sign-On method."
+    "message": "Kræv at brugerne logger ind med Virksomheds Single Sign-On-metoden."
   },
   "prerequisite": {
-    "message": "Prerequisite"
+    "message": "Forudsætning"
   },
   "requireSsoPolicyReq": {
-    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+    "message": "Enkel organisations virksomhedspolitikken skal aktiveres, før denne politik aktiveres."
   },
   "requireSsoPolicyReqError": {
-    "message": "Single Organization policy not enabled."
+    "message": "Enkelt organisationspolitik er ikke aktiveret."
   },
   "requireSsoExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Organisationsejere og administratorer er undtaget fra denne politik."
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "Fil"
   },
   "sendTypeText": {
-    "message": "Text"
+    "message": "Tekst"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "Opret ny Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Edit Send",
+    "message": "Redigér Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Created Send",
+    "message": "Send oprettet",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Edited Send",
+    "message": "Send opdateret",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Deleted Send",
+    "message": "Send slettet",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Delete Send",
+    "message": "Slet Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Are you sure you want to delete this Send?",
+    "message": "Er du sikker på, at du vil slette denne Send?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "What type of Send is this?",
+    "message": "Hvilken type Send er denne?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Deletion Date"
+    "message": "Sletningsdato"
   },
   "expirationDate": {
-    "message": "Expiration Date"
+    "message": "Udløbsdato"
   },
   "maxAccessCount": {
-    "message": "Maximum Access Count"
+    "message": "Maksimal antal tilgange"
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Aktuelt antal tilgange"
   },
   "disabled": {
-    "message": "Disabled"
+    "message": "Deaktiveret"
   },
   "sendLink": {
-    "message": "Send Link",
+    "message": "Send link",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copy Send Link",
+    "message": "Kopiér Send link",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
-    "message": "Remove Password"
+    "message": "Fjern adgangskode"
   },
   "removedPassword": {
-    "message": "Removed Password"
+    "message": "Adgangskode fjernet"
   },
   "removePasswordConfirmation": {
-    "message": "Are you sure you want to remove the password?"
+    "message": "Er du sikker på, at du vil fjerne adgangskoden?"
   },
   "allSends": {
-    "message": "All Sends"
+    "message": "Alle Send"
   },
   "searchSends": {
-    "message": "Search Sends",
+    "message": "Søg Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "message": "Denne Send er beskyttet med en adgangskode. Indtast adgangskoden nedenfor for at fortsætte.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "message": "Kender du ikke adgangskoden? Bed afsenderen om den nødvendige adgangskode for at få adgang til denne Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "message": "Denne Send er som standard skjult. Du kan skifte synlighed ved hjælp af knappen nedenfor.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
-    "message": "Download File"
+    "message": "Download fil"
   },
   "noSendsInList": {
-    "message": "There are no Sends to list.",
+    "message": "Der er ingen Send at vise.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
