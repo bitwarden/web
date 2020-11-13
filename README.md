@@ -23,9 +23,11 @@
 
 ### Requirements
 
-- [Node.js](https://nodejs.org) v8.11 or greater
+- [Node.js](https://nodejs.org) v8.11-v13.9.0
 
 ### Run the app
+
+For local development, run the app with:
 
 ```
 npm install
@@ -39,6 +41,7 @@ await apiService.setUrls({
     base: isDev ? null : window.location.origin,
     api: isDev ? 'http://mylocalapi' : null,
     identity: isDev ? 'http://mylocalidentity' : null,
+    events: isDev ? 'http://mylocalevents' : null,
 });
 ```
 
@@ -49,7 +52,15 @@ await apiService.setUrls({
     base: null,
     api: 'https://api.bitwarden.com',
     identity: 'https://identity.bitwarden.com',
+    events: 'https://events.bitwarden.com',
 });
+```
+
+And note to run the app with:
+
+```
+npm install
+npm run build:prod:watch
 ```
 
 
