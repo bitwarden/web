@@ -37,6 +37,9 @@
   "password": {
     "message": "Passwort"
   },
+  "newPassword": {
+    "message": "Neues Passwort"
+  },
   "passphrase": {
     "message": "Passphrase"
   },
@@ -831,7 +834,7 @@
     "message": "Worttrennzeichen"
   },
   "capitalize": {
-    "message": "Wortanfänge großschreiben",
+    "message": "Großschreiben",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "Sie haben keine Auswahl getroffen."
   },
-  "submitAgreePolicies": {
-    "message": "Durch Klicken des Absenden-Buttons stimmen Sie den folgenden Bedingungen zu:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Durch Anwählen dieses Kästchens erklären Sie sich mit folgendem einverstanden:"
+  },
+  "acceptPoliciesError": {
+    "message": "Die Nutzungsbedingungen und Datenschutzerklärung wurden nicht akzeptiert."
   },
   "termsOfService": {
     "message": "Allgemeine Geschäftsbedingungen"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "Ihr API-Schlüssel hat vollen Zugriff auf die Organisation. Er sollte geheim gehalten werden."
+  },
+  "userApiKeyDesc": {
+    "message": "Ihr API-Schlüssel kann zur Authentifizierung im Bitwarden CLI verwendet werden."
+  },
+  "userApiKeyWarning": {
+    "message": "Ihr API-Schlüssel ist ein alternativer Authentifizierungsmechanismus. Er sollte geheim gehalten werden."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 Client Anmeldeinformationen",
@@ -3202,9 +3213,138 @@
     "message": "Unternehmenskennung ist erforderlich."
   },
   "unlinkSso": {
-    "message": "Unlink SSO"
+    "message": "SSO aufheben"
   },
   "linkSso": {
-    "message": "Link SSO"
+    "message": "SSO verknüpfen"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Die Richtlinien-Konfiguration wurde verschoben und diese Seite wird bald nicht mehr aktualisiert. Benutzen Sie stattdessen über den Link die Richtlinien-Seite des Unternehmensportal."
+  },
+  "singleOrg": {
+    "message": "Einzelne Organisation"
+  },
+  "singleOrgDesc": {
+    "message": "Usern verbieten, anderen Organisationen beizutreten."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Ihre aktuelle Organisation hat eine Richtlinie, die es Ihnen nicht erlaubt, mehr als einer Organisation beizutreten. Bitte kontaktieren Sie die Administratoren Ihrer Organisation oder melden Sie sich mit einem anderen Bitwarden-Konto an."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Organisationsmitglieder, die nicht Eigentümer oder Administratoren sind und bereits Mitglied einer anderen Organisation sind, werden aus Ihrer Organisation entfernt."
+  },
+  "requireSso": {
+    "message": "Single Sign-On Authentifizierung"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Benutzer müssen sich per Enterprise Single Sign-On anmelden."
+  },
+  "prerequisite": {
+    "message": "Voraussetzung"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Die Unternehmensrichtlinie für eine einzelne Organisation muss aktiviert sein, bevor diese Richtlinie aktiviert werden kann."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Richtlinie für eine einzelne Organisation nicht aktiviert."
+  },
+  "requireSsoExemption": {
+    "message": "Organisationseigentümer und Administratoren sind von der Durchsetzung dieser Richtlinie ausgenommen."
+  },
+  "sendTypeFile": {
+    "message": "Datei"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Neues Send erstellen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Send bearbeiten",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send erstellt",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Bearbeitetes Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Gelöschtes Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Send löschen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Sind Sie sicher, dass Sie dieses Send löschen möchten?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Welche Art von Send ist das?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Löschdatum"
+  },
+  "expirationDate": {
+    "message": "Ablaufdatum"
+  },
+  "maxAccessCount": {
+    "message": "Maximale Zugriffsanzahl"
+  },
+  "currentAccessCount": {
+    "message": "Aktuelle Zugriffsanzahl"
+  },
+  "disabled": {
+    "message": "Deaktiviert"
+  },
+  "sendLink": {
+    "message": "Send Link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Send Link kopieren",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Passwort entfernen"
+  },
+  "removedPassword": {
+    "message": "Passwort entfernt"
+  },
+  "removePasswordConfirmation": {
+    "message": "Sind Sie sicher, dass Sie das Passwort entfernen möchten?"
+  },
+  "allSends": {
+    "message": "Alle Sends"
+  },
+  "searchSends": {
+    "message": "Sends suchen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Dieses Send ist mit einem Passwort geschützt. Bitte geben Sie unten das Passwort ein, um fortzufahren.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Kennen Sie das Passwort nicht? Fragen Sie den Absender nach dem benötigten Passwort, um auf dieses Send zuzugreifen.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Dieses Send ist standardmäßig ausgeblendet. Sie können die Sichtbarkeit mit dem Button unten umschalten.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Datei herunterladen"
+  },
+  "noSendsInList": {
+    "message": "Es gibt keine Sends aufzulisten.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

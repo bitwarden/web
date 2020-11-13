@@ -37,6 +37,9 @@
   "password": {
     "message": "Пароль"
   },
+  "newPassword": {
+    "message": "Новый пароль"
+  },
   "passphrase": {
     "message": "Парольная фраза"
   },
@@ -1986,7 +1989,7 @@
     "message": "Локальный хостинг (опционально)"
   },
   "usersGetPremium": {
-    "message": "Пользователи получают доступ к возможностям Премиум-статуса"
+    "message": "Пользователи получают доступ к возможностям Премиум"
   },
   "controlAccessWithGroups": {
     "message": "Управление доступом пользователей с помощью групп"
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "Вы ничего не выбрали."
   },
-  "submitAgreePolicies": {
-    "message": "Нажимая кнопку 'Подтвердить', вы принимаете следующие правила:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Устанавливая этот флажок, вы соглашаетесь со следующим:"
+  },
+  "acceptPoliciesError": {
+    "message": "Условия предоставления услуг и Политика конфиденциальности не были подтверждены."
   },
   "termsOfService": {
     "message": "Условия использования"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "Ваш ключ API имеет полный доступ к организации. Это должно храниться в секрете."
+  },
+  "userApiKeyDesc": {
+    "message": "Ваш ключ API может быть использован для аутентификации в Bitwarden CLI."
+  },
+  "userApiKeyWarning": {
+    "message": "Ваш ключ API является альтернативным механизмом аутентификации. Он должен храниться в секрете."
   },
   "oauth2ClientCredentials": {
     "message": "Учетные данные клиента OAuth 2.0",
@@ -3206,5 +3217,134 @@
   },
   "linkSso": {
     "message": "Подключить SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Настройка политики была перемещена, и вскоре эта страница станет недоступной. Нажмите ниже, чтобы использовать вместо нее страницу политик для бизнес-портала."
+  },
+  "singleOrg": {
+    "message": "Одна организация"
+  },
+  "singleOrgDesc": {
+    "message": "Запретить пользователям присоединяться к другим организациям."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Политика вашей текущей организации не позволяет вам присоединиться к более чем одной организации. Пожалуйста, свяжитесь с администраторами вашей организации или авторизуйтесь под другим аккаунтом Bitwarden."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Члены организации, которые не являются владельцами или администраторами и уже входят в другую организацию, будут удалены из вашей организации."
+  },
+  "requireSso": {
+    "message": "Авторизация по единому входу"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Требовать от пользователей авторизацию с помощью единого корпоративного входа."
+  },
+  "prerequisite": {
+    "message": "Предварительное условие"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Перед активацией этой политики необходимо активировать корпоративную политику 'Одна организация'."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Не включена политика 'Одна организация'."
+  },
+  "requireSsoExemption": {
+    "message": "Владельцы и администраторы организации не подпадают под действие этой политики."
+  },
+  "sendTypeFile": {
+    "message": "Файл"
+  },
+  "sendTypeText": {
+    "message": "Текст"
+  },
+  "createSend": {
+    "message": "Создать новую Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Изменить Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Созданная Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Измененная отправка",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Удаленная Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Удалить Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Вы действительно хотите удалить Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Выберите тип Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Дата удаления"
+  },
+  "expirationDate": {
+    "message": "Дата истечения"
+  },
+  "maxAccessCount": {
+    "message": "Максимальное количество доступов"
+  },
+  "currentAccessCount": {
+    "message": "Текущее количество доступов"
+  },
+  "disabled": {
+    "message": "Отключено"
+  },
+  "sendLink": {
+    "message": "Ссылка на Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Скопировать ссылку на Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Удалить пароль"
+  },
+  "removedPassword": {
+    "message": "Пароль удален"
+  },
+  "removePasswordConfirmation": {
+    "message": "Вы уверены, что хотите удалить пароль?"
+  },
+  "allSends": {
+    "message": "Все Sends"
+  },
+  "searchSends": {
+    "message": "Поиск Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Эта Send защищена паролем. Введите пароль ниже, чтобы продолжить.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Не знаете пароль? Запросите его у отправителя, для доступа к этой Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Эта Send по умолчанию скрыта. Вы можете переключить ее видимость с помощью расположенной ниже кнопки.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Скачать файл"
+  },
+  "noSendsInList": {
+    "message": "В списке нет Sends.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

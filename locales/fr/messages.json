@@ -37,6 +37,9 @@
   "password": {
     "message": "Mot de passe"
   },
+  "newPassword": {
+    "message": "Nouveau mot de passe"
+  },
   "passphrase": {
     "message": "Phrase de passe"
   },
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "Vous n'avez rien sélectionné."
   },
-  "submitAgreePolicies": {
-    "message": "En cliquant sur le bouton « Soumettre », vous acceptez les politiques suivantes :",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "En cochant cette case, vous acceptez les éléments suivants :"
+  },
+  "acceptPoliciesError": {
+    "message": "Les conditions d'utilisation et la politique de confidentialité n'ont pas été acceptées."
   },
   "termsOfService": {
     "message": "Conditions d'utilisation"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "Votre clé d'API a un accès complet à l'organisation. Elle doit être gardée secrète."
+  },
+  "userApiKeyDesc": {
+    "message": "Votre clé API peut être utilisée pour vous authentifier dans le CLI de Bitwarden."
+  },
+  "userApiKeyWarning": {
+    "message": "Votre clé API est un mécanisme d'authentification alternatif. Elle doit être gardée secrète."
   },
   "oauth2ClientCredentials": {
     "message": "Identifiants du client OAuth 2.0",
@@ -3187,7 +3198,7 @@
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "Toutes les fonctionnalités de Teams, plus :"
+    "message": "Toutes les fonctionnalités d'équipes, plus :"
   },
   "includeSsoAuthentication": {
     "message": "Authentification SSO via SAML2.0 et OpenID Connect"
@@ -3206,5 +3217,134 @@
   },
   "linkSso": {
     "message": "Lier SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "La configuration de la politique a été déplacée et cette page sera bientôt obsolète. Veuillez cliquer ci-dessous pour utiliser la page des règles du Portail Affaires à la place."
+  },
+  "singleOrg": {
+    "message": "Organisation Unique"
+  },
+  "singleOrgDesc": {
+    "message": "Empêcher les utilisateurs de pouvoir rejoindre d'autres organisations."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Votre organisation actuelle a une politique qui ne vous permet pas de rejoindre plus d'une organisation. Veuillez contacter les administrateurs de votre organisation ou vous inscrire à partir d'un compte Bitwarden différent."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Les membres de l'organisation qui ne sont ni Propriétaires ni Administrateurs et qui sont déjà membres d'une autre organisation seront retirés de votre organisation."
+  },
+  "requireSso": {
+    "message": "Authentification par Authentification Unique"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Exiger que les utilisateurs se connectent avec la méthode du Portail de Connexion Unique."
+  },
+  "prerequisite": {
+    "message": "Prérequis"
+  },
+  "requireSsoPolicyReq": {
+    "message": "La Politique d'Entreprise d'Organisation Unique doit être activée avant d'activer cette politique."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "La Politique d'Organisation Unique n'est pas activée."
+  },
+  "requireSsoExemption": {
+    "message": "Les propriétaires et les administrateurs de l'organisation sont exonérés de l'application de cette politique."
+  },
+  "sendTypeFile": {
+    "message": "Fichier"
+  },
+  "sendTypeText": {
+    "message": "Texte"
+  },
+  "createSend": {
+    "message": "Créer un Nouvel Envoi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Modifier l'Envoi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Envoi créé",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Envoi édité",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Envoi supprimé",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Supprimer l'Envoi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Êtes-vous sûr de vouloir supprimer cet Envoi ?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "De quel type d'Envoi s'agit-il?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Date de suppression"
+  },
+  "expirationDate": {
+    "message": "Date d'expiration"
+  },
+  "maxAccessCount": {
+    "message": "Nombre Maximum d'Accès"
+  },
+  "currentAccessCount": {
+    "message": "Nombre d'Accès Actuels"
+  },
+  "disabled": {
+    "message": "Désactivé"
+  },
+  "sendLink": {
+    "message": "Envoyez le Lien",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Copier le Lien d'Envoi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Supprimer le Mot de Passe"
+  },
+  "removedPassword": {
+    "message": "Mot de Passe supprimé"
+  },
+  "removePasswordConfirmation": {
+    "message": "Êtes-vous sûr(e) de vouloir supprimer le Mot de Passe ?"
+  },
+  "allSends": {
+    "message": "Tous les Envois"
+  },
+  "searchSends": {
+    "message": "Rechercher les Envois",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Cet Envoi est protégé par un Mot de Passe. Veuillez entrer le Mot de Passe ci-dessous pour continuer.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Vous ne connaissez pas le Mot de Passe ? Demandez à l'Expéditeur le Mot de Passe nécessaire pour accéder à cet Envoi.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Cet Envoi est masqué par défaut. Vous pouvez changer sa visibilité en utilisant le bouton ci-dessous.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Télécharger le Fichier"
+  },
+  "noSendsInList": {
+    "message": "Il n'y a aucun Envoi à afficher.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
