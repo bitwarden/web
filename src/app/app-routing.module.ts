@@ -157,7 +157,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         children: [
             { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
-            // { path: 'sends', component: SendComponent, data: { title: 'Send' } },
+            { path: 'sends', component: SendComponent, data: { title: 'Send' } },
             {
                 path: 'settings',
                 component: SettingsComponent,
