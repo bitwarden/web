@@ -18,11 +18,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
-
-import { SendData } from 'jslib/models/data/sendData';
-
-import { Send } from 'jslib/models/domain/send';
+import { SendService } from 'jslib/abstractions/send.service';
 
 @Component({
     selector: 'app-send',
@@ -51,7 +47,7 @@ export class SendComponent implements OnInit {
 
     private searchTimeout: any;
 
-    constructor(private apiService: ApiService, private userService: UserService,
+    constructor(private apiService: ApiService, private sendService: SendService,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService, private environmentService: EnvironmentService) { }
 
@@ -60,18 +56,8 @@ export class SendComponent implements OnInit {
     }
     async load(filter: (send: SendView) => boolean = null) {
         this.loading = true;
-        const userId = await this.userService.getUserId();
-        const sends = await this.apiService.getSends();
-        const sendsArr: SendView[] = [];
-        if (sends != null && sends.data != null) {
-            for (const res of sends.data) {
-                const data = new SendData(res, userId);
-                const send = new Send(data);
-                const view = await send.decrypt();
-                sendsArr.push(view);
-            }
-        }
-        this.sends = sendsArr;
+        const sends = await this.sendService.getAllDecrypted();
+        this.sends = sends;
         this.selectAll();
         this.loading = false;
         this.loaded = true;
