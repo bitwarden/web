@@ -13,9 +13,9 @@
     </div>
 </div>
 
-<table class="table table-hover table-list mb-0" *ngIf="emergencyContacts && emergencyContacts.length">
+<table class="table table-hover table-list mb-0" *ngIf="trustedContacts && trustedContacts.length">
     <tbody>
-        <tr *ngFor="let c of emergencyContacts; let i = index">
+        <tr *ngFor="let c of trustedContacts; let i = index">
             <td width="30">
                 <app-avatar [data]="c.name || c.email" [email]="c.email" size="25" [circle]="true"
                     [fontSize]="14"></app-avatar>
@@ -81,9 +81,9 @@
     <h2>{{'desegnatedEmergencyContacts' | i18n}}</h2>
 </div>
 
-<table class="table table-hover table-list mb-0" *ngIf="emergencyGrantees && emergencyGrantees.length">
+<table class="table table-hover table-list mb-0" *ngIf="grantedContacts && grantedContacts.length">
     <tbody>
-        <tr *ngFor="let c of emergencyGrantees; let i = index">
+        <tr *ngFor="let c of grantedContacts; let i = index">
             <td width="30">
                 <app-avatar [data]="c.name || c.email" [email]="c.email" size="25" [circle]="true"
                     [fontSize]="14"></app-avatar>

@@ -1,5 +1,4 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
@@ -7,7 +6,6 @@ import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
-import { UserService } from 'jslib/abstractions/user.service';
 import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
 import { EmergencyAccessType } from 'jslib/enums/emergencyAccessType';
 import { Utils } from 'jslib/misc/utils';
@@ -29,8 +27,8 @@ export class EmergencyAccessComponent implements OnInit {
     @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true}) takeoverModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
-    emergencyContacts: EmergencyAccessGranteeDetailsResponse[];
-    emergencyGrantees: EmergencyAccessGrantorDetailsResponse[];
+    trustedContacts: EmergencyAccessGranteeDetailsResponse[];
+    grantedContacts: EmergencyAccessGrantorDetailsResponse[];
     emergencyAccessType = EmergencyAccessType;
     emergencyAccessStatusType = EmergencyAccessStatusType;
     actionPromise: Promise<any>;
@@ -41,7 +39,6 @@ export class EmergencyAccessComponent implements OnInit {
         private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private userService: UserService, private router: Router,
         private storageService: StorageService) { }
 
     async ngOnInit() {
@@ -49,8 +46,8 @@ export class EmergencyAccessComponent implements OnInit {
     }
 
     async load() {
-        this.emergencyContacts = (await this.apiService.getEmergencyAccessTrusted()).data;
-        this.emergencyGrantees = (await this.apiService.getEmergencyAccessGranted()).data;
+        this.trustedContacts = (await this.apiService.getEmergencyAccessTrusted()).data;
+        this.grantedContacts = (await this.apiService.getEmergencyAccessGranted()).data;
     }
 
     edit(details: EmergencyAccessGranteeDetailsResponse) {
@@ -65,11 +62,11 @@ export class EmergencyAccessComponent implements OnInit {
 
         childComponent.name = details != null ? details.name || details.email : null;
         childComponent.emergencyAccessId = details != null ? details.id : null;
-        childComponent.onSavedUser.subscribe(() => {
+        childComponent.onSaved.subscribe(() => {
             this.modal.close();
             this.load();
         });
-        childComponent.onDeletedUser.subscribe(() => {
+        childComponent.onDeleted.subscribe(() => {
             this.modal.close();
             this.remove(details);
         });
@@ -116,7 +113,7 @@ export class EmergencyAccessComponent implements OnInit {
             childComponent.name = contact != null ? contact.name || contact.email : null;
             childComponent.emergencyAccessId = contact.id;
             childComponent.userId = contact != null ? contact.granteeId : null;
-            childComponent.onConfirmedUser.subscribe(async () => {
+            childComponent.onConfirmed.subscribe(async () => {
                 this.modal.close();
 
                 await this.doConfirmation(contact);
@@ -138,22 +135,22 @@ export class EmergencyAccessComponent implements OnInit {
         this.actionPromise = null;
     }
 
-    async remove(user: EmergencyAccessGranteeDetailsResponse | EmergencyAccessGrantorDetailsResponse) {
+    async remove(details: EmergencyAccessGranteeDetailsResponse | EmergencyAccessGrantorDetailsResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), user.name || user.email,
+            this.i18nService.t('removeUserConfirmation'), details.name || details.email,
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
         }
 
         try {
-            await this.apiService.deleteEmergencyAccess(user.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
+            await this.apiService.deleteEmergencyAccess(details.id);
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', details.name || details.email));
 
-            if (user instanceof EmergencyAccessGranteeDetailsResponse) {
-                this.removeGrantee(user);
+            if (details instanceof EmergencyAccessGranteeDetailsResponse) {
+                this.removeGrantee(details);
             } else {
-                this.removeGrantor(user);
+                this.removeGrantor(details);
             }
         } catch { }
     }
@@ -229,35 +226,35 @@ export class EmergencyAccessComponent implements OnInit {
         });
     }
 
-    private removeGrantee(user: EmergencyAccessGranteeDetailsResponse) {
-        const index = this.emergencyContacts.indexOf(user);
+    private removeGrantee(details: EmergencyAccessGranteeDetailsResponse) {
+        const index = this.trustedContacts.indexOf(details);
         if (index > -1) {
-            this.emergencyContacts.splice(index, 1);
+            this.trustedContacts.splice(index, 1);
         }
     }
 
-    private removeGrantor(user: EmergencyAccessGrantorDetailsResponse) {
-        const index = this.emergencyGrantees.indexOf(user);
+    private removeGrantor(details: EmergencyAccessGrantorDetailsResponse) {
+        const index = this.grantedContacts.indexOf(details);
         if (index > -1) {
-            this.emergencyGrantees.splice(index, 1);
+            this.grantedContacts.splice(index, 1);
         }
     }
 
     // Encrypt the master password hash using the grantees public key, and send it to bitwarden for escrow.
-    private async doConfirmation(user: EmergencyAccessGranteeDetailsResponse) {
+    private async doConfirmation(details: EmergencyAccessGranteeDetailsResponse) {
         const encKey = await this.cryptoService.getEncKey();
-        const publicKeyResponse = await this.apiService.getUserPublicKey(user.granteeId);
+        const publicKeyResponse = await this.apiService.getUserPublicKey(details.granteeId);
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
         try {
             // tslint:disable-next-line
             console.log('User\'s fingerprint: ' +
-                (await this.cryptoService.getFingerprint(user.granteeId, publicKey.buffer)).join('-'));
+                (await this.cryptoService.getFingerprint(details.granteeId, publicKey.buffer)).join('-'));
         } catch { }
 
         const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
         const request = new EmergencyAccessConfirmRequest();
         request.key = encryptedKey.encryptedString;
-        await this.apiService.postEmergencyAccessConfirm(user.id, request);
+        await this.apiService.postEmergencyAccessConfirm(details.id, request);
     }
 }

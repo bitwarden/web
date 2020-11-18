@@ -2,13 +2,13 @@ import {
     Component,
     ComponentFactoryResolver,
     OnInit,
+    ViewChild,
+    ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService, CryptoService } from 'jslib/abstractions';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
 import { CipherData } from 'jslib/models/data';
 import { Cipher, SymmetricCryptoKey } from 'jslib/models/domain';
 import { EmergencyAccessViewResponse } from 'jslib/models/response/emergencyAccessResponse';
@@ -16,22 +16,23 @@ import { EmergencyAccessViewResponse } from 'jslib/models/response/emergencyAcce
 import { CipherView } from 'jslib/models/view/cipherView';
 import { ModalComponent } from '../modal.component';
 
-import { CipherReportComponent } from '../tools/cipher-report.component';
 import { EmergencyAddEditComponent } from './emergency-add-edit.component';
 
 @Component({
     selector: 'emergency-access-view',
     templateUrl: 'emergency-access-view.component.html',
 })
-export class EmergencyAccessViewComponent extends CipherReportComponent implements OnInit {
-    exposedPasswordMap = new Map<string, number>();
-    id: string;
-    response: EmergencyAccessViewResponse;
+export class EmergencyAccessViewComponent implements OnInit {
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
 
-    constructor(protected cipherService: CipherService, private cryptoService: CryptoService, componentFactoryResolver: ComponentFactoryResolver,
-        messagingService: MessagingService, userService: UserService, private router: Router, private route: ActivatedRoute, private apiService: ApiService) {
-        super(componentFactoryResolver, userService, messagingService, true);
-    }
+    id: string;
+    ciphers: CipherView[] = [];
+
+    private modal: ModalComponent = null;
+
+    constructor(private cipherService: CipherService, private cryptoService: CryptoService,
+        private componentFactoryResolver: ComponentFactoryResolver, private router: Router,
+        private route: ActivatedRoute, private apiService: ApiService) { }
 
     ngOnInit() {
         this.route.params.subscribe((qParams) => {
@@ -56,21 +57,6 @@ export class EmergencyAccessViewComponent extends CipherReportComponent implemen
 
         childComponent.cipherId = cipher == null ? null : cipher.id;
         childComponent.cipher = cipher;
-        if (this.organization != null) {
-            childComponent.organizationId = this.organization.id;
-        }
-        childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.load();
-        });
-        childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.load();
-        });
-        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.load();
-        });
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
@@ -80,21 +66,15 @@ export class EmergencyAccessViewComponent extends CipherReportComponent implemen
     }
 
     async load() {
-        this.response = await this.apiService.postEmergencyAccessView(this.id);
-        super.load();
+        const response = await this.apiService.postEmergencyAccessView(this.id);
+        this.ciphers = await this.getAllCiphers(response);
     }
 
-    async setCiphers() {
-        const allCiphers = await this.getAllCiphers();
-
-        this.ciphers = allCiphers;
-    }
-
-    protected async getAllCiphers(): Promise<CipherView[]> {
-        const ciphers = this.response.ciphers;
+    protected async getAllCiphers(response: EmergencyAccessViewResponse): Promise<CipherView[]> {
+        const ciphers = response.ciphers;
 
         const decCiphers: CipherView[] = [];
-        const oldKeyBuffer = await this.cryptoService.rsaDecrypt(this.response.keyEncrypted);
+        const oldKeyBuffer = await this.cryptoService.rsaDecrypt(response.keyEncrypted);
         const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
 
         const promises: any[] = [];

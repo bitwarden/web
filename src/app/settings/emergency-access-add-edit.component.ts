@@ -10,7 +10,6 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { EmergencyAccessType } from 'jslib/enums/emergencyAccessType';
 import { EmergencyAccessInviteRequest } from 'jslib/models/request/emergencyAccessInviteRequest';
@@ -23,8 +22,8 @@ import { EmergencyAccessUpdateRequest } from 'jslib/models/request/emergencyAcce
 export class EmergencyAccessAddEditComponent implements OnInit {
     @Input() name: string;
     @Input() emergencyAccessId: string;
-    @Output() onSavedUser = new EventEmitter();
-    @Output() onDeletedUser = new EventEmitter();
+    @Output() onSaved = new EventEmitter();
+    @Output() onDeleted = new EventEmitter();
 
     loading = true;
     editMode: boolean = false;
@@ -33,14 +32,13 @@ export class EmergencyAccessAddEditComponent implements OnInit {
     type: EmergencyAccessType = EmergencyAccessType.View;
 
     formPromise: Promise<any>;
-    deletePromise: Promise<any>;
 
     emergencyAccessType = EmergencyAccessType;
     waitTimes: { name: string; value: number; }[];
     waitTime: number;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService) { }
+        private toasterService: ToasterService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.emergencyAccessId != null;
@@ -58,9 +56,9 @@ export class EmergencyAccessAddEditComponent implements OnInit {
             this.editMode = true;
             this.title = this.i18nService.t('editEmergencyContact');
             try {
-                const user = await this.apiService.getEmergencyAccess(this.emergencyAccessId);
-                this.type = user.type;
-                this.waitTime = user.waitTimeDays;
+                const emergencyAccess = await this.apiService.getEmergencyAccess(this.emergencyAccessId);
+                this.type = emergencyAccess.type;
+                this.waitTime = emergencyAccess.waitTimeDays;
             } catch { }
         } else {
             this.title = this.i18nService.t('inviteEmergencyContact');
@@ -90,11 +88,11 @@ export class EmergencyAccessAddEditComponent implements OnInit {
             await this.formPromise;
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
-            this.onSavedUser.emit();
+            this.onSaved.emit();
         } catch { }
     }
 
     async delete() {
-        this.onDeletedUser.emit();
+        this.onDeleted.emit();
     }
 }

@@ -22,14 +22,11 @@ export class EmergencyAccessConfirmComponent implements OnInit {
     @Input() name: string;
     @Input() userId: string;
     @Input() emergencyAccessId: string;
-    @Output() onConfirmedUser = new EventEmitter();
+    @Output() onConfirmed = new EventEmitter();
 
     dontAskAgain = false;
     loading = true;
     fingerprint: string;
-    formPromise: Promise<any>;
-
-    private publicKey: Uint8Array = null;
 
     constructor(private apiService: ApiService, private cryptoService: CryptoService,
         private storageService: StorageService) { }
@@ -38,8 +35,8 @@ export class EmergencyAccessConfirmComponent implements OnInit {
         try {
             const publicKeyResponse = await this.apiService.getUserPublicKey(this.userId);
             if (publicKeyResponse != null) {
-                this.publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
-                const fingerprint = await this.cryptoService.getFingerprint(this.userId, this.publicKey.buffer);
+                const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
+                const fingerprint = await this.cryptoService.getFingerprint(this.userId, publicKey.buffer);
                 if (fingerprint != null) {
                     this.fingerprint = fingerprint.join('-');
                 }
@@ -58,7 +55,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
         }
 
         try {
-            this.onConfirmedUser.emit();
+            this.onConfirmed.emit();
         } catch { }
     }
 }

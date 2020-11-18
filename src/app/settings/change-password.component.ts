@@ -163,12 +163,16 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
         await this.apiService.postAccountKey(request);
 
+        await this.updateEmergencyAccesses(encKey[0]);
+    }
+
+    private async updateEmergencyAccesses(encKey: SymmetricCryptoKey) {
         const emergencyAccess = await this.apiService.getEmergencyAccessTrusted();
         const allowedStatuses = [
             EmergencyAccessStatusType.Confirmed,
             EmergencyAccessStatusType.RecoveryInitiated,
             EmergencyAccessStatusType.RecoveryApproved,
-        ]
+        ];
 
         const filteredAccesses = emergencyAccess.data.filter(d => allowedStatuses.includes(d.status));
 
@@ -176,7 +180,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             const publicKeyResponse = await this.apiService.getUserPublicKey(details.granteeId);
             const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
-            const encryptedKey = await this.cryptoService.rsaEncrypt(encKey[0].key, publicKey.buffer);
+            const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
 
             const updateRequest = new EmergencyAccessUpdateRequest();
             updateRequest.type = details.type;
