@@ -27,6 +27,7 @@ import { NavbarComponent } from './layouts/navbar.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptEmergencyComponent } from './accounts/accept-emergency.component';
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
@@ -112,6 +113,9 @@ import { CreateOrganizationComponent } from './settings/create-organization.comp
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
+import { EmergencyAccessAddEditComponent } from './settings/emergency-access-add-edit.component';
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { EmergencyAccessConfirmComponent } from './settings/emergency-access-confirm.component';
 import { LinkSsoComponent } from './settings/link-sso.component';
 import { OptionsComponent } from './settings/options.component';
 import { OrganizationPlansComponent } from './settings/organization-plans.component';
@@ -212,6 +216,9 @@ import localeSv from '@angular/common/locales/sv';
 import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
+import { EmergencyAccessTakeoverComponent } from './settings/emergency-access-takeover.component';
+import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+import { EmergencyAddEditComponent } from './settings/emergency-add-edit.component';
 
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
@@ -258,6 +265,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     declarations: [
         A11yTitleDirective,
+        AcceptEmergencyComponent,
         AccessComponent,
         AcceptOrganizationComponent,
         AccountComponent,
@@ -295,6 +303,12 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeleteOrganizationComponent,
         DomainRulesComponent,
         DownloadLicenseComponent,
+        EmergencyAccessAddEditComponent,
+        EmergencyAccessComponent,
+        EmergencyAccessConfirmComponent,
+        EmergencyAccessTakeoverComponent,
+        EmergencyAccessViewComponent,
+        EmergencyAddEditComponent,
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
@@ -409,6 +423,10 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeauthorizeSessionsComponent,
         DeleteAccountComponent,
         DeleteOrganizationComponent,
+        EmergencyAccessAddEditComponent,
+        EmergencyAccessConfirmComponent,
+        EmergencyAccessTakeoverComponent,
+        EmergencyAddEditComponent,
         FolderAddEditComponent,
         ModalComponent,
         OrgAddEditComponent,

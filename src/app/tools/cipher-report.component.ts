@@ -25,9 +25,9 @@ export class CipherReportComponent {
     ciphers: CipherView[] = [];
     organization: Organization;
 
-    private modal: ModalComponent = null;
+    protected modal: ModalComponent = null;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver, protected userService: UserService,
+    constructor(protected componentFactoryResolver: ComponentFactoryResolver, protected userService: UserService,
         protected messagingService: MessagingService, public requiresPaid: boolean) { }
 
     async load() {

@@ -15,11 +15,14 @@ import { UserService } from 'jslib/abstractions/user.service';
 import {
     ChangePasswordComponent as BaseChangePasswordComponent,
 } from 'jslib/angular/components/change-password.component';
+import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
+import { Utils } from 'jslib/misc/utils';
 
 import { CipherString } from 'jslib/models/domain/cipherString';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
 import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
+import { EmergencyAccessUpdateRequest } from 'jslib/models/request/emergencyAccessUpdateRequest';
 import { FolderWithIdRequest } from 'jslib/models/request/folderWithIdRequest';
 import { PasswordRequest } from 'jslib/models/request/passwordRequest';
 import { UpdateKeyRequest } from 'jslib/models/request/updateKeyRequest';
@@ -159,5 +162,28 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         }
 
         await this.apiService.postAccountKey(request);
+
+        const emergencyAccess = await this.apiService.getEmergencyAccessTrusted();
+        const allowedStatuses = [
+            EmergencyAccessStatusType.Confirmed,
+            EmergencyAccessStatusType.RecoveryInitiated,
+            EmergencyAccessStatusType.RecoveryApproved,
+        ]
+
+        const filteredAccesses = emergencyAccess.data.filter(d => allowedStatuses.includes(d.status));
+
+        for (const details of filteredAccesses) {
+            const publicKeyResponse = await this.apiService.getUserPublicKey(details.granteeId);
+            const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
+
+            const encryptedKey = await this.cryptoService.rsaEncrypt(encKey[0].key, publicKey.buffer);
+
+            const updateRequest = new EmergencyAccessUpdateRequest();
+            updateRequest.type = details.type;
+            updateRequest.waitTimeDays = details.waitTimeDays;
+            updateRequest.keyEncrypted = encryptedKey.encryptedString;
+
+            await this.apiService.putEmergencyAccess(details.id, updateRequest);
+        }
     }
 }
