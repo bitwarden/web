@@ -93,6 +93,13 @@ export class PoliciesComponent implements OnInit {
                     enabled: false,
                     display: organization.useSso,
                 },
+                {
+                    name: this.i18nService.t('personalOwnership'),
+                    description: this.i18nService.t('personalOwnershipPolicyDesc'),
+                    type: PolicyType.PersonalOwnership,
+                    enabled: false,
+                    display: true,
+                },
             ];
             await this.load();
         });
