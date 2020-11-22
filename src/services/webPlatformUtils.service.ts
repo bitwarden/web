@@ -281,4 +281,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     authenticateBiometric() {
         return Promise.resolve(false);
     }
+
+    supportsSecureStorage() {
+        return true;
+    }
 }
