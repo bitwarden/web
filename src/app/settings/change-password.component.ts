@@ -15,6 +15,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 import {
     ChangePasswordComponent as BaseChangePasswordComponent,
 } from 'jslib/angular/components/change-password.component';
+
 import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
 import { Utils } from 'jslib/misc/utils';
 
