@@ -283,6 +283,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     supportsSecureStorage() {
-        return true;
+        return false;
     }
 }
