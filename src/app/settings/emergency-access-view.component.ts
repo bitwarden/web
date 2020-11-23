@@ -6,14 +6,16 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, CryptoService } from 'jslib/abstractions';
 
+import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
+import { CryptoService } from 'jslib/abstractions/crypto.service';
+
 import { CipherData } from 'jslib/models/data';
 import { Cipher, SymmetricCryptoKey } from 'jslib/models/domain';
 import { EmergencyAccessViewResponse } from 'jslib/models/response/emergencyAccessResponse';
-
 import { CipherView } from 'jslib/models/view/cipherView';
+
 import { ModalComponent } from '../modal.component';
 
 import { EmergencyAddEditComponent } from './emergency-add-edit.component';

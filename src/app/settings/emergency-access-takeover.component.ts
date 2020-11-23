@@ -36,9 +36,9 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
 
     formPromise: Promise<any>;
 
-    constructor(i18nService: I18nService,
-        cryptoService: CryptoService, messagingService: MessagingService,
-        userService: UserService, passwordGenerationService: PasswordGenerationService,
+    constructor(i18nService: I18nService, cryptoService: CryptoService,
+        messagingService: MessagingService, userService: UserService,
+        passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private apiService: ApiService, private toasterService: ToasterService) {
         super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
