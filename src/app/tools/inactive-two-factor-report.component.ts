@@ -45,7 +45,8 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
             const promises: Promise<void>[] = [];
             const docs = new Map<string, string>();
             allCiphers.forEach((c) => {
-                if (c.type !== CipherType.Login || (c.login.totp != null && c.login.totp !== '') || !c.login.hasUris) {
+                if (c.type !== CipherType.Login || (c.login.totp != null && c.login.totp !== '') || !c.login.hasUris ||
+                    c.isDeleted) {
                     return;
                 }
                 for (let i = 0; i < c.login.uris.length; i++) {

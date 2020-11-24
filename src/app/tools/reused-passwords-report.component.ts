@@ -37,7 +37,7 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
         const ciphersWithPasswords: CipherView[] = [];
         this.passwordUseMap = new Map<string, number>();
         allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
             ciphersWithPasswords.push(c);

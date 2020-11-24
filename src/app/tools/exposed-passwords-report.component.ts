@@ -43,7 +43,7 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
         const exposedPasswordCiphers: CipherView[] = [];
         const promises: Promise<void>[] = [];
         allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
             const promise = this.auditService.passwordLeaked(c.login.password).then((exposedCount) => {
