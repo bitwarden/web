@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const code = getQsParam('code');
     const state = getQsParam('state');
 
-    if (state != null && state.endsWith(':clientId=browser')) {
+    if (state != null && state.includes(':clientId=browser')) {
         initiateBrowserSso(code, state);
     } else {
         window.location.href = window.location.origin + '/#/sso?code=' + code + '&state=' + state;
