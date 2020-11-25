@@ -37,6 +37,10 @@ function getQsParam(name: string) {
 
 function initiateBrowserSso(code: string, state: string) {
     window.postMessage({ command: 'authResult', code: code, state: state }, '*');
+    let handOffMessage = ('; ' + document.cookie).split('; ssoHandOffMessage=').pop().split(';').shift();
+    document.cookie = 'ssoHandOffMessage=;SameSite=strict;max-age=0'
+    document.getElementById('content').innerHTML =
+        `<p>${handOffMessage}</p>`;
 }
 
 function extractFromRegex(s: string, regexString: string) {
