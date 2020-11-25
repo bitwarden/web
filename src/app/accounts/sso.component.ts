@@ -53,6 +53,9 @@ export class SsoComponent extends BaseSsoComponent {
 
     async submit() {
         await this.storageService.save(IdentifierStorageKey, this.identifier);
+        if (this.clientId === 'browser') {
+            document.cookie = `ssoHandOffMessage = ${this.i18nService.t('ssoHandOff')}`
+        }
         super.submit();
     }
 }

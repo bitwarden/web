@@ -37,8 +37,9 @@ function getQsParam(name: string) {
 
 function initiateBrowserSso(code: string, state: string) {
     window.postMessage({ command: 'authResult', code: code, state: state }, '*');
-    document.getElementById('content').innerHTML = '<p>Successfully passed off authentication to the extension.</p>' +
-        '<p>You may now close this tab and return to the extension.</p>';
+    let handOffMessage = ('; ' + document.cookie).split('; ssoHandOffMessage=').pop().split(';').shift();
+    document.getElementById('content').innerHTML =
+        `<p>${handOffMessage}</p>`;
 }
 
 function extractFromRegex(s: string, regexString: string) {
