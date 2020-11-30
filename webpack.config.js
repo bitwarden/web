@@ -179,6 +179,7 @@ const config = {
                 terserOptions: {
                     safari10: true,
                 },
+                sourceMap: true,
             }),
         ],
     },
