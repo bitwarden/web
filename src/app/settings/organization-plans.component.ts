@@ -159,6 +159,16 @@ export class OrganizationPlansComponent implements OnInit {
         return subTotal;
     }
 
+    get taxCharges() {
+        return this.taxComponent && this.taxComponent.taxRate ?
+            (this.taxComponent.taxRate / 100) * this.subtotal :
+            0;
+    }
+
+    get total() {
+        return this.subtotal + this.taxCharges || 0;
+    }
+
     changedProduct() {
         this.plan = this.selectablePlans[0].type;
         if (!this.selectedPlan.hasPremiumAccessOption) {
@@ -278,6 +288,9 @@ export class OrganizationPlansComponent implements OnInit {
                     request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
                         this.premiumAccessAddon;
                     request.planType = this.selectedPlan.type;
+                    request.billingAddressCountry = this.taxComponent.taxInfo.country;
+                    request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+
                     const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
                     if (!result.success && result.paymentIntentClientSecret != null) {
                         await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
