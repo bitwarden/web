@@ -75,6 +75,7 @@ export class EmergencyAccessComponent implements OnInit {
 
         childComponent.name = details != null ? details.name || details.email : null;
         childComponent.emergencyAccessId = details != null ? details.id : null;
+        childComponent.readOnly = !this.canAccessPremium;
         childComponent.onSaved.subscribe(() => {
             this.modal.close();
             this.load();

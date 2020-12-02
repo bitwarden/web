@@ -26,6 +26,7 @@ export class EmergencyAccessAddEditComponent implements OnInit {
     @Output() onDeleted = new EventEmitter();
 
     loading = true;
+    readOnly: boolean = false;
     editMode: boolean = false;
     title: string;
     email: string;
