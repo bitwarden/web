@@ -38,7 +38,7 @@
     "message": "Κωδικός"
   },
   "newPassword": {
-    "message": "New Password"
+    "message": "Νέος Κωδικός"
   },
   "passphrase": {
     "message": "Συνθηματικό"
@@ -2814,10 +2814,10 @@
     "message": "Δεν έχετε επιλέξει τίποτα."
   },
   "acceptPolicies": {
-    "message": "By checking this box you agree to the following:"
+    "message": "Επιλέγοντας αυτό το πλαίσιο, συμφωνείτε με τα εξής:"
   },
   "acceptPoliciesError": {
-    "message": "Terms of Service and Privacy Policy have not been acknowledged."
+    "message": "Οι Όροι Παροχής Υπηρεσιών και η Πολιτική Απορρήτου δεν έχουν αναγνωριστεί."
   },
   "termsOfService": {
     "message": "Όροι Χρήσης"
@@ -2954,10 +2954,10 @@
     "message": "Το κλειδί API έχει πλήρη πρόσβαση στον οργανισμό. Πρέπει να το κρατήσετε μυστικό."
   },
   "userApiKeyDesc": {
-    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+    "message": "Το κλειδί API σας μπορεί να χρησιμοποιηθεί για έλεγχο ταυτότητας στο Bitwarden CLI."
   },
   "userApiKeyWarning": {
-    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
+    "message": "Το κλειδί API σας είναι ένας εναλλακτικός μηχανισμός ελέγχου ταυτότητας. Θα πρέπει να κρατηθεί μυστικό."
   },
   "oauth2ClientCredentials": {
     "message": "Πιστοποιητικά πελάτη OAuth 2.0",
@@ -3176,175 +3176,178 @@
     "message": "Τα φορολογικά στοιχεία ενημερώθηκαν."
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "Ορισμός Κύριου Κωδικού"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+    "message": "Για να ολοκληρώσετε τη σύνδεση με SSO, ορίστε έναν κύριο κωδικό πρόσβασης για πρόσβαση και προστασία του vault σας."
   },
   "identifier": {
-    "message": "Identifier"
+    "message": "Αναγνωριστικό"
   },
   "organizationIdentifier": {
-    "message": "Organization Identifier"
+    "message": "Αναγνωριστικό οργανισμού"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+    "message": "Συνδεθείτε χρησιμοποιώντας την πύλη μεμονωμένης σύνδεσης του οργανισμού σας. Εισάγετε το αναγνωριστικό του οργανισμού σας για να ξεκινήσετε."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise Single Sign-On"
+    "message": "Ενιαία είσοδος για επιχειρήσεις"
+  },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
   },
   "businessPortal": {
-    "message": "Business Portal",
+    "message": "Επιχειρηματική πύλη",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "All Teams features, plus:"
+    "message": "Όλα τα χαρακτηριστικά του Teams, συν:"
   },
   "includeSsoAuthentication": {
-    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+    "message": "Έλεγχος ταυτότητας SSO μέσω SAML2.0 και OpenID Connect"
   },
   "includeEnterprisePolicies": {
-    "message": "Enterprise Policies"
+    "message": "Επιχειρηματικές πολιτικές"
   },
   "ssoValidationFailed": {
-    "message": "SSO Validation Failed"
+    "message": "Η επικύρωση SSO απέτυχε"
   },
   "ssoIdentifierRequired": {
-    "message": "Organization Identifier is required."
+    "message": "Απαιτείται αναγνωριστικό οργανισμού."
   },
   "unlinkSso": {
-    "message": "Unlink SSO"
+    "message": "Αποσύνδεση SSO"
   },
   "linkSso": {
-    "message": "Link SSO"
+    "message": "Σύνδεσμος SSO"
   },
   "webPoliciesDeprecationWarning": {
-    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+    "message": "Η διαμόρφωση πολιτικής μετακινήθηκε και σύντομα αυτή η σελίδα θα καταργηθεί. Κάντε κλικ παρακάτω για να χρησιμοποιήσετε τη σελίδα πολιτικών Business Portal."
   },
   "singleOrg": {
-    "message": "Single Organization"
+    "message": "Ενιαίος οργανισμός"
   },
   "singleOrgDesc": {
-    "message": "Restrict users from being able to join any other organizations."
+    "message": "Περιορίστε τους χρήστες να μην μπορούν να συμμετάσχουν σε άλλους οργανισμούς."
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+    "message": "Ο τρέχων οργανισμός σας έχει μια πολιτική που δεν σας επιτρέπει να συμμετάσχετε σε περισσότερους από έναν οργανισμούς. Επικοινωνήστε με τους διαχειριστές του οργανισμού σας ή εγγραφείτε από διαφορετικό λογαριασμό Bitwarden."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "Τα μέλη του οργανισμού που δεν είναι κάτοχοι ή διαχειριστές και είναι ήδη μέλη άλλου οργανισμού θα αφαιρεθούν από τον οργανισμό σας."
   },
   "requireSso": {
-    "message": "Single Sign-On Authentication"
+    "message": "Έλεγχος ταυτότητας μεμονωμένης σύνδεσης"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require users to log in with the Enterprise Single Sign-On method."
+    "message": "Απαιτήστε από τους χρήστες να συνδεθούν με τη μέθοδο Enterprise Single Sign-On."
   },
   "prerequisite": {
-    "message": "Prerequisite"
+    "message": "Προαπαιτούμενο"
   },
   "requireSsoPolicyReq": {
-    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+    "message": "Απαιτήστε από τους χρήστες να συνδεθούν με τη μέθοδο Enterprise Single Sign-On."
   },
   "requireSsoPolicyReqError": {
-    "message": "Single Organization policy not enabled."
+    "message": "Η πολιτική ενός οργανισμού δεν ενεργοποιήθηκε."
   },
   "requireSsoExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Οι κάτοχοι και οι διαχειριστές του οργανισμού εξαιρούνται από την εφαρμογή αυτής της πολιτικής."
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "Αρχείο"
   },
   "sendTypeText": {
-    "message": "Text"
+    "message": "Κείμενο"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "Δημιουργία Νέου Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Edit Send",
+    "message": "Επεξεργασία Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Created Send",
+    "message": "Το Send Δημιουργήθηκε",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Edited Send",
+    "message": "Το Send Επεξεργάστηκε",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Deleted Send",
+    "message": "Το Send Διαγράφηκε",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Delete Send",
+    "message": "Διαγραφή Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Are you sure you want to delete this Send?",
+    "message": "Είστε βέβαιοι ότι θέλετε να διαγράψετε το Send;",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "What type of Send is this?",
+    "message": "Τι είδους Send είναι αυτό;",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Deletion Date"
+    "message": "Ημερομηνία διαγραφής"
   },
   "expirationDate": {
-    "message": "Expiration Date"
+    "message": "Ημερομηνία Λήξης"
   },
   "maxAccessCount": {
-    "message": "Maximum Access Count"
+    "message": "Μέγιστος Αριθμός Πρόσβασης"
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Τρέχων Αριθμός Πρόσβασης"
   },
   "disabled": {
-    "message": "Disabled"
+    "message": "Απενεργοποιημένο"
   },
   "sendLink": {
-    "message": "Send Link",
+    "message": "Αποστολή Συνδέσμου",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copy Send Link",
+    "message": "Αντιγραφή Συνδέσμου Αποστολής",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
-    "message": "Remove Password"
+    "message": "Αφαίρεση κωδικού"
   },
   "removedPassword": {
-    "message": "Removed Password"
+    "message": "Καταργήθηκε κωδικός πρόσβασης"
   },
   "removePasswordConfirmation": {
-    "message": "Are you sure you want to remove the password?"
+    "message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε τον κωδικό πρόσβασης;"
   },
   "allSends": {
-    "message": "All Sends"
+    "message": "Όλα τα Sends"
   },
   "searchSends": {
-    "message": "Search Sends",
+    "message": "Αναζήτηση Sends",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "message": "Αυτό το Send προστατεύεται με κωδικό πρόσβασης. Πληκτρολογήστε τον κωδικό πρόσβασης παρακάτω για να συνεχίσετε.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "message": "Δεν γνωρίζετε τον κωδικό; Ζητήστε από τον αποστολέα τον κωδικό που απαιτείται για την πρόσβαση σε αυτό το Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "message": "Αυτό το send είναι κρυμμένο από προεπιλογή. Μπορείτε να αλλάξετε την ορατότητά του χρησιμοποιώντας το παρακάτω κουμπί.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
-    "message": "Download File"
+    "message": "Λήψη Αρχείου"
   },
   "noSendsInList": {
-    "message": "There are no Sends to list.",
+    "message": "Δεν υπάρχουν Sends στη λίστα.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

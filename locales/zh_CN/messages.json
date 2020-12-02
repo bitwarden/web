@@ -2954,7 +2954,7 @@
     "message": "您的 API 密钥拥有组织的全部访问权限。请将其存放在安全的地方。"
   },
   "userApiKeyDesc": {
-    "message": "您的 API 密钥可以用来验证 Bitwarden CLI。"
+    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份验证。"
   },
   "userApiKeyWarning": {
     "message": "您的 API 密钥是另一套等效的身份验证机制。请严格保密。"
@@ -3193,6 +3193,9 @@
   "enterpriseSingleSignOn": {
     "message": "企业单点登录（SSO）"
   },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
+  },
   "businessPortal": {
     "message": "业务门户",
     "description": "The web portal used by business organizations for configuring certain features."
@@ -3222,13 +3225,13 @@
     "message": "策略配置已转移，此页面很快将废弃。请改用下方的业务门户策略页面。"
   },
   "singleOrg": {
-    "message": "单个组织"
+    "message": "单一组织"
   },
   "singleOrgDesc": {
     "message": "限制用户加入任何其他组织。"
   },
   "singleOrgBlockCreateMessage": {
-    "message": "您当前的组织有策略禁止您加入多个组织。 请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
+    "message": "您当前的组织策略禁止您加入多个组织。 请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
   },
   "singleOrgPolicyWarning": {
     "message": "非所有者或管理员并且已是其他组织成员的组织成员将从您的组织中移除。"
@@ -3243,10 +3246,10 @@
     "message": "先决条件"
   },
   "requireSsoPolicyReq": {
-    "message": "启用此策略前，需先启用“单个组织”企业策略。"
+    "message": "启用此策略前，需先启用单一组织企业策略。"
   },
   "requireSsoPolicyReqError": {
-    "message": "“单个组织”策略未启用。"
+    "message": "单一组织策略未启用。"
   },
   "requireSsoExemption": {
     "message": "组织的所有者和管理员豁免此策略。"
@@ -3337,7 +3340,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "此 Send 默认隐藏。使用下方的按钮可以切换。",
+    "message": "此 Send 默认隐藏。您可使用下方的按钮切换其可见性。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
