@@ -4,9 +4,14 @@
 <p>{{'emergencyAccessDesc' | i18n}}</p>
 
 <div class="page-header d-flex">
-    <h2>{{'trustedEmergencyContacts' | i18n}}</h2>
+    <h2>
+        {{'trustedEmergencyContacts' | i18n}}
+        <a href="#" appStopClick class="badge badge-primary" *ngIf="!canAccessPremium" (click)="premiumRequired()">
+            {{'premium' | i18n}}
+        </a>
+    </h2>
     <div class="ml-auto d-flex">
-        <button class="btn btn-sm btn-outline-primary ml-3" type="button" (click)="invite()">
+        <button class="btn btn-sm btn-outline-primary ml-3" type="button" (click)="invite()" [disabled]="!canAccessPremium">
             <i aria-hidden="true" class="fa fa-plus fa-fw"></i>
             {{'addEmergencyContact' |i18n}}
         </button>

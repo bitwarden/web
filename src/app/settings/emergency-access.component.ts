@@ -4,8 +4,11 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
+import { UserService } from 'jslib/abstractions/user.service';
+
 import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
 import { EmergencyAccessType } from 'jslib/enums/emergencyAccessType';
 import { Utils } from 'jslib/misc/utils';
@@ -27,6 +30,7 @@ export class EmergencyAccessComponent implements OnInit {
     @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true}) takeoverModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
+    canAccessPremium: boolean;
     trustedContacts: EmergencyAccessGranteeDetailsResponse[];
     grantedContacts: EmergencyAccessGrantorDetailsResponse[];
     emergencyAccessType = EmergencyAccessType;
@@ -39,15 +43,24 @@ export class EmergencyAccessComponent implements OnInit {
         private componentFactoryResolver: ComponentFactoryResolver,
         private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private storageService: StorageService) { }
+        private storageService: StorageService, private userService: UserService,
+        private messagingService: MessagingService) { }
 
     async ngOnInit() {
+        this.canAccessPremium = await this.userService.canAccessPremium();
         this.load();
     }
 
     async load() {
         this.trustedContacts = (await this.apiService.getEmergencyAccessTrusted()).data;
         this.grantedContacts = (await this.apiService.getEmergencyAccessGranted()).data;
+    }
+
+    async premiumRequired() {
+        if (!this.canAccessPremium) {
+            this.messagingService.send('premiumRequired');
+            return;
+        }
     }
 
     edit(details: EmergencyAccessGranteeDetailsResponse) {
