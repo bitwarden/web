@@ -69,7 +69,11 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
                 this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
                 await this.stateService.remove('loginRedirect');
             } else {
-                this.router.navigate([this.successRoute]);
+                this.router.navigate([this.successRoute], {
+                    queryParams: {
+                        identifier: this.identifier,
+                    },
+                });
             }
         }
     }
