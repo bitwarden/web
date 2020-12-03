@@ -211,10 +211,10 @@
         <app-tax-info (onCountryChanged)="changedCountry()"></app-tax-info>
         <div id="price" class="my-4">
             <div class="text-muted text-sm">
-                Plan price: {{ subtotal | currency: 'USD $' }}
+                {{ 'planPrice' | i18n }}: {{ subtotal | currency: 'USD $' }}
                 <br />
                 <ng-container>
-                    Estimated tax: {{ taxCharges | currency: 'USD $' }}
+                    {{ 'estimatedTax' | i18n }}: {{ taxCharges | currency: 'USD $' }}
                 </ng-container>
             </div>
             <hr class="my-1 col-3 ml-0">

@@ -87,7 +87,7 @@ export class TaxInfoComponent {
     }
 
     get taxRate() {
-        if (this.taxRates) {
+        if (this.taxRates != null) {
             const localTaxRate = this.taxRates.find(x =>
                 x.country === this.taxInfo.country &&
                 x.postalCode === this.taxInfo.postalCode

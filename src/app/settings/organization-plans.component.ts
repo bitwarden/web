@@ -160,7 +160,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get taxCharges() {
-        return this.taxComponent && this.taxComponent.taxRate ?
+        return this.taxComponent != null && this.taxComponent.taxRate != null ?
             (this.taxComponent.taxRate / 100) * this.subtotal :
             0;
     }
