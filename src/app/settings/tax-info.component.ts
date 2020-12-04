@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { OrganizationTaxInfoUpdateRequest } from 'jslib/models/request/organizationTaxInfoUpdateRequest';
 import { TaxInfoUpdateRequest } from 'jslib/models/request/taxInfoUpdateRequest';
+import { TaxRateResponse } from 'jslib/models/response/taxRateResponse';
 
 @Component({
     selector: 'app-tax-info',
@@ -27,6 +28,8 @@ export class TaxInfoComponent {
         country: 'US',
         includeTaxId: false,
     };
+
+    taxRates: TaxRateResponse[];
 
     private pristine: any = {
         taxId: null,
@@ -77,7 +80,20 @@ export class TaxInfoComponent {
                 this.onCountryChanged.emit();
             }
         });
+
+        const taxRates = await this.apiService.getTaxRates();
+        this.taxRates = taxRates.data;
         this.loading = false;
+    }
+
+    get taxRate() {
+        if (this.taxRates != null) {
+            const localTaxRate = this.taxRates.find(x =>
+                x.country === this.taxInfo.country &&
+                x.postalCode === this.taxInfo.postalCode
+            );
+            return localTaxRate?.rate ?? null;
+        }
     }
 
     getTaxInfoRequest(): TaxInfoUpdateRequest {
