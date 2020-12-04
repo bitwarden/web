@@ -166,7 +166,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get total() {
-        return this.subtotal + this.taxCharges || 0;
+        return (this.subtotal + this.taxCharges) || 0;
     }
 
     changedProduct() {
