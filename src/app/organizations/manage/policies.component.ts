@@ -4,7 +4,6 @@ import {
     OnInit,
     ViewChild,
     ViewContainerRef,
-    AfterViewInit,
 } from '@angular/core';
 import {
     ActivatedRoute,
