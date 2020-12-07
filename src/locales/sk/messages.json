@@ -917,7 +917,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Nastavenie KDF iterácií príliš vysoko môže viesť k spomalení pri prihlasovaní sa do Bitwarden (a pri odomykaní) v zariadeniach s pomalším procesorom. Odporúčame zvýšiť hodnotu v prírastkoch po $INCREMENT$ a potom testovať na všetkých vašich zariadeniach.",
+    "message": "Ak nastavíte KDF iterácie príliš vysoko, môže to viesť k zníženému výkonu pri prihlasovaní do Bitwardenu (a pri jeho odomykaní) na zariadeniach s pomalšimi procesormi. Odporúčame navyšovať túto hodnotu po $INCREMENT$ inkrementoch a následne otestovať na všetkých vašich zariadeniach.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -3000,7 +3000,7 @@
     "message": "Členovia organizácie, ktorí nie su vlastníci alebo administratori a ktorí nemajú zapnuté dvojstupňové prihlásenie budú odstranení z organizácie a obdržia email s informáciou o tejto zmene."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "Ste členom organizácie, ktorá požaduje dvojstupňové prihlásenie do vášho použivateľského účtu. Ak odstránite všetky formy dvojstupňového prihlasovania, budete s takýchto organizácii odstránený."
+    "message": "Ste členom organizácie, ktorá vyžaduje dvojstupňové prihlásenie do vášho použivateľského účtu. Ak zakážete všetky formy dvojstupňového prihlasovania, budete automaticky odstránený z týchto organizácií."
   },
   "passwordGeneratorPolicyDesc": {
     "message": "Zvoľte minimálne požiadavky pre nastavenie generátora hesiel."
@@ -3188,10 +3188,13 @@
     "message": "Identifikátor organizácie"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Prihláste sa prostredníctvom prihlasovacieho portálu (SSO) vašej organizácie. Najskôr zadajte identifikátor vašej organizácie."
+    "message": "Prihláste sa prostredníctvom jednotného prihlasovania (SSO) vašej organizácie. Najskôr zadajte identifikátor vašej organizácie."
   },
   "enterpriseSingleSignOn": {
     "message": "Prihlásenie cez prihlasovací formulár spoločnosti (SSO)"
+  },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
   },
   "businessPortal": {
     "message": "Portál spoločnosti",
@@ -3234,10 +3237,10 @@
     "message": "Členovia organizácie, ktorí nie sú vlastníkmi alebo administrátormi a už sú členmi inej organizácie, budú odstránení z vašej organizácie."
   },
   "requireSso": {
-    "message": "Single Sign-On Authentication"
+    "message": "Overovanie prostredníctvom jednotného prihlasovania (SSO)"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require users to log in with the Enterprise Single Sign-On method."
+    "message": "Vyžadovať od používateľov prihlásenie prostredníctvom jednotného prihlasovania (SSO) spoločnosti."
   },
   "prerequisite": {
     "message": "Predpoklad"
@@ -3249,7 +3252,7 @@
     "message": "Pravidlo jednej organizácie nie je povolené."
   },
   "requireSsoExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Vlastníci a administrátori organizácie sú vyňatí z uplatnenia tohto pravidla."
   },
   "sendTypeFile": {
     "message": "Súbor"
