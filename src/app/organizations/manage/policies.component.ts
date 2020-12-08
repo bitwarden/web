@@ -93,8 +93,37 @@ export class PoliciesComponent implements OnInit {
                     enabled: false,
                     display: organization.useSso,
                 },
+                {
+                    name: this.i18nService.t('personalOwnership'),
+                    description: this.i18nService.t('personalOwnershipPolicyDesc'),
+                    type: PolicyType.PersonalOwnership,
+                    enabled: false,
+                    display: true,
+                },
             ];
             await this.load();
+
+            // Handle policies component launch from Event message
+            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+                if (qParams.policyId != null) {
+                    const policyIdFromEvents: string = qParams.policyId;
+                    for (const orgPolicy of this.orgPolicies) {
+                        if (orgPolicy.id === policyIdFromEvents) {
+                            for (let i = 0; i < this.policies.length; i++) {
+                                if (this.policies[i].type === orgPolicy.type) {
+                                    this.edit(this.policies[i]);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                if (queryParamsSub != null) {
+                    queryParamsSub.unsubscribe();
+                }
+            });
         });
 
         // Remove when removing deprecation warning

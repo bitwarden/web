@@ -165,6 +165,11 @@ export class EventService {
                 msg = this.i18nService.t('exportedOrganizationVault');
                 break;
             */
+            // Policies
+            case EventType.Policy_Updated:
+                msg = this.i18nService.t('modifiedPolicy', this.formatPolicyId(ev));
+                break;
+
             default:
                 break;
         }
@@ -248,6 +253,13 @@ export class EventService {
         const a = this.makeAnchor(shortId);
         a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/people?search=' + shortId +
             '&viewEvents=' + ev.organizationUserId);
+        return a.outerHTML;
+    }
+
+    private formatPolicyId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.policyId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/policies?policyId=' + ev.policyId);
         return a.outerHTML;
     }
 
