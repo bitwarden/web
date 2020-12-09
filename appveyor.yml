@@ -24,6 +24,7 @@ install:
     $env:PUSH_DOCKER = "false"
     $env:PROD_DEPLOY = "false"
     $env:TAG_NAME = ""
+    git submodule update --init --recursive
     if($env:APPVEYOR_REPO_TAG -eq "true" -and $env:APPVEYOR_RE_BUILD -eq "True") {
       $env:PROD_DEPLOY = "true"
       $env:TAG_NAME = $env:APPVEYOR_REPO_TAG_NAME.TrimStart("v")
