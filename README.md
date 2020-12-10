@@ -23,7 +23,7 @@
 
 ### Requirements
 
-- [Node.js](https://nodejs.org) v8.11-v13.9.0
+- [Node.js](https://nodejs.org) v8.11 or greater
 
 ### Run the app
 
