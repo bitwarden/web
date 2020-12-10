@@ -27,6 +27,8 @@
 
 ### Run the app
 
+For local development, run the app with:
+
 ```
 npm install
 npm run build:watch
@@ -39,6 +41,7 @@ await apiService.setUrls({
     base: isDev ? null : window.location.origin,
     api: isDev ? 'http://mylocalapi' : null,
     identity: isDev ? 'http://mylocalidentity' : null,
+    events: isDev ? 'http://mylocalevents' : null,
 });
 ```
 
@@ -49,9 +52,31 @@ await apiService.setUrls({
     base: null,
     api: 'https://api.bitwarden.com',
     identity: 'https://identity.bitwarden.com',
+    events: 'https://events.bitwarden.com',
 });
 ```
 
+And note to run the app with:
+
+```
+npm install
+npm run build:prod:watch
+```
+
+## Common Issues:
+
+### CORS
+
+If you run the frontend and receive a notification after attempting to login that says:
+```
+An error has occurred.
+NetworkError when attempting to fetch resource.
+```
+And in the console:
+```
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://api.bitwarden.com/accounts/prelogin. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
+```
+This means that you are having a CORS header issue. This can be mitigated by using a CORS header changing extension in your browser such as [this one.](https://mybrowseraddon.com/access-control-allow-origin.html)
 
 ## Contribute
 
