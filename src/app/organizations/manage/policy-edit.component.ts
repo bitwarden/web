@@ -186,6 +186,18 @@ export class PolicyEditComponent implements OnInit {
                 }
                 return true;
 
+            case PolicyType.SingleOrg:
+                if (this.enabled) { // Don't need prevalidation checks if submitting to enable
+                    return true;
+                }
+                // If RequireSso Policy is enabled prevent submittal
+                if (this.policiesEnabledMap.has(PolicyType.RequireSso)
+                    && this.policiesEnabledMap.get(PolicyType.RequireSso)) {
+                    this.toasterService.popAsync('error', null, this.i18nService.t('disableRequireSsoError'));
+                    return false;
+                }
+                return true;
+
             default:
                 return true;
         }
