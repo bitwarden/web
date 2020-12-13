@@ -47,7 +47,11 @@
                                     <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
                                     {{'copyPassword' | i18n}}
                                 </a>
-                                <a class="dropdown-item" href="#" appStopClick *ngIf="c.login.canLaunch"
+                                <a class="dropdown-item" href="#" appStopClick (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
+                                    *ngIf="c.login.hasTotp && c.viewPassword">
+                                    <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                                    {{'copyVerificationCode' | i18n}}
+                                </a> <a class="dropdown-item" href="#" appStopClick *ngIf="c.login.canLaunch"
                                     (click)="launch(c.login.launchUri)">
                                     <i class="fa fa-fw fa-share-square-o" aria-hidden="true"></i>
                                     {{'launch' | i18n}}
