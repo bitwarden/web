@@ -30,6 +30,7 @@ import { AuditService } from 'jslib/services/audit.service';
 import { AuthService } from 'jslib/services/auth.service';
 import { CipherService } from 'jslib/services/cipher.service';
 import { CollectionService } from 'jslib/services/collection.service';
+import { ConsoleLogService } from 'jslib/services/consoleLog.service';
 import { ConstantsService } from 'jslib/services/constants.service';
 import { ContainerService } from 'jslib/services/container.service';
 import { CryptoService } from 'jslib/services/crypto.service';
@@ -84,7 +85,6 @@ import { TokenService as TokenServiceAbstraction } from 'jslib/abstractions/toke
 import { TotpService as TotpServiceAbstraction } from 'jslib/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib/abstractions/vaultTimeout.service';
-import { ConsoleLogService } from 'jslib/services/consoleLog.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
