@@ -10,7 +10,7 @@ export class HtmlStorageService implements StorageService {
         ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
     private memoryStorageStartsWithKeys = ['ciphers_', 'folders_', 'collections_', 'settings_', 'lastSync_'];
-    private memoryStorage = new Map<string, string>()
+    private memoryStorage = new Map<string, string>();
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
