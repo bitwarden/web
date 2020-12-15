@@ -37,6 +37,9 @@
   "password": {
     "message": "Password"
   },
+  "newPassword": {
+    "message": "Nuova Password"
+  },
   "passphrase": {
     "message": "Frase segreta"
   },
@@ -703,7 +706,7 @@
     "message": "Chiave di Sicurezza YubiKey OTP"
   },
   "yubiKeyDesc": {
-    "message": "Usa YubiKey per accedere al tuo account. Compatibile con YubiKey 4, 4 Nano, 4C, e dispositivi NEO."
+    "message": "Utilizzate una YubiKey per accedere al vostro conto. Funziona con dispositivi YubiKey serie 4, serie 5 e NEO."
   },
   "duoDesc": {
     "message": "Verifica con Duo Security usando l'applicazione Duo Mobile, SMS, chiamata telefonica, o chiave di sicurezza U2F.",
@@ -2810,12 +2813,14 @@
   "nothingSelected": {
     "message": "Non hai selezionato nulla."
   },
-  "submitAgreePolicies": {
-    "message": "Cliccando sul pulsante \"Invia\", accetti i seguenti criteri:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Selezionando la casella accetti quanto segue:"
+  },
+  "acceptPoliciesError": {
+    "message": "I Termini di Servizio e l'Informativa sulla Privacy non sono stati accettati."
   },
   "termsOfService": {
-    "message": "Codizioni di servizio"
+    "message": "Termini del servizio"
   },
   "privacyPolicy": {
     "message": "Informativa sulla privacy"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "La tua chiave API ha pieno accesso all'organizzazione. Dovrebbe essere tenuta segreta."
+  },
+  "userApiKeyDesc": {
+    "message": "Puoi utilizzare la tua chiave API per autenticarti nella CLI di Bitwarden."
+  },
+  "userApiKeyWarning": {
+    "message": "La tua chiave API è la tua autenticazione alternativa e dovrebbe rimanere segreta."
   },
   "oauth2ClientCredentials": {
     "message": "Credenziali client OAuth 2.0",
@@ -3182,6 +3193,9 @@
   "enterpriseSingleSignOn": {
     "message": "Accesso con il portale dell'organizzazione Single Sign-On"
   },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
+  },
   "businessPortal": {
     "message": "Portale aziendale",
     "description": "The web portal used by business organizations for configuring certain features."
@@ -3206,5 +3220,134 @@
   },
   "linkSso": {
     "message": "Collega SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "La configurazione delle policy è stata spostata, e questa pagina sarà presto deprecata. Per favore, clicca sotto per utilizzare la configurazione delle policy del portale aziendale."
+  },
+  "singleOrg": {
+    "message": "Organizzazione unica"
+  },
+  "singleOrgDesc": {
+    "message": "Impedisci agli utenti di unirsi dalle altre organizzazioni."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "La tua attuale organizzazione ha una policy che non ti permette di unirti ad altre organizzazioni. Per favore, contatta gli amministratori della tua organizzazione o registrati da un altro account Bitwarden."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "I membri dell'organizzazione che non sono proprietari o amministratori e sono già membri di un'altra organizzazione saranno rimossi dalla tua organizzazione."
+  },
+  "requireSso": {
+    "message": "Autenticazione Single Sign-On"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Richiedi agli utenti di accedere con Enterprise Single Sign-On."
+  },
+  "prerequisite": {
+    "message": "Prerequisito"
+  },
+  "requireSsoPolicyReq": {
+    "message": "La policy aziendale per l'organizzazione unica deve essere abilitata prima di attivare questa policy."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "La policy dell'organizzazione unica non è abilitata."
+  },
+  "requireSsoExemption": {
+    "message": "I proprietari e gli amministratori dell'organizzazione sono esenti dall'applicazione di questa policy."
+  },
+  "sendTypeFile": {
+    "message": "File"
+  },
+  "sendTypeText": {
+    "message": "Testo"
+  },
+  "createSend": {
+    "message": "Crea Nuovo Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Modifica Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send Creato",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send modificato",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send eliminato",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Elimina Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Sei sicuro di eliminare questo Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Di quale tipo di Send si tratta?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Data di eliminazione"
+  },
+  "expirationDate": {
+    "message": "Data di scadenza"
+  },
+  "maxAccessCount": {
+    "message": "Numero massimo di accessi"
+  },
+  "currentAccessCount": {
+    "message": "Conteggio accessi corrente"
+  },
+  "disabled": {
+    "message": "Disattivo"
+  },
+  "sendLink": {
+    "message": "Send Link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Copia Send Link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Rimuovi Password"
+  },
+  "removedPassword": {
+    "message": "Password Rimossa"
+  },
+  "removePasswordConfirmation": {
+    "message": "Sei sicuro di voler rimuovere la password?"
+  },
+  "allSends": {
+    "message": "Tutti i Send"
+  },
+  "searchSends": {
+    "message": "Cerca Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Il Send è protetto da password. Per favore, digita la password sotto per continuare.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Non conosci la password? Chiedi al Sender la password necessaria per l'accesso a questo Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Questo Send è nascosto per impostazione predefinita. È possibile modificarne la visibilità utilizzando il pulsante in basso.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Scarica File"
+  },
+  "noSendsInList": {
+    "message": "Non ci sono Sends da elencare.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

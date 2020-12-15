@@ -37,6 +37,9 @@
   "password": {
     "message": "Hasło"
   },
+  "newPassword": {
+    "message": "Nowe hasło"
+  },
   "passphrase": {
     "message": "Hasło wyrazowe"
   },
@@ -1255,7 +1258,7 @@
     "message": "Tajny klucz"
   },
   "twoFactorDuoApiHostname": {
-    "message": "Nazwa domeny API"
+    "message": "Nazwa domeny interfejsu API"
   },
   "twoFactorEmailDesc": {
     "message": "Wykonaj poniższe kroki, aby aktywować logowanie dwustopniowe przez adres e-mail:"
@@ -2802,7 +2805,7 @@
     "message": "Utwórz organizację: Krok 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Zanim utworzysz swoją organizację, musisz najpierw utworzyć darmowe konto osobiste."
+    "message": "Zanim utworzysz swoją organizację, musisz utworzyć darmowe konto osobiste."
   },
   "refunded": {
     "message": "Zwrócono"
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "Nie zaznaczyłeś żadnych elementów."
   },
-  "submitAgreePolicies": {
-    "message": "Klikając przycisk \"Wyślij\", zgadzasz się na następujące zasady:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Zaznaczając tę opcję, akceptujesz:"
+  },
+  "acceptPoliciesError": {
+    "message": "Nie zaakceptowałeś regulaminu i polityki prywatności."
   },
   "termsOfService": {
     "message": "Regulamin"
@@ -2937,26 +2942,32 @@
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "Klucz API"
+    "message": "Klucz interfejsu API"
   },
   "apiKeyDesc": {
-    "message": "Twój klucz API może służyć do uwierzytelniania do publicznego API Bitwarden."
+    "message": "Twój klucz interfejsu API może zostać użyty do uwierzytelnienia dostępu do publicznego interfejsu API Bitwarden."
   },
   "apiKeyRotateDesc": {
-    "message": "Zmiana klucza API spowoduje unieważnienie poprzedniego klucza. Możesz zmienić klucz API, jeśli uważasz, że obecny klucz przestał być bezpieczny."
+    "message": "Zmiana klucza interfejsu API spowoduje unieważnienie poprzedniego klucza. Możesz zmienić klucz interfejsu, jeśli uważasz, że obecny klucz przestał być bezpieczny."
   },
   "apiKeyWarning": {
-    "message": "Twój klucz API umożliwia pełny dostęp do organizacji, dlatego powinien być dobrze strzeżony."
+    "message": "Twój klucz interfejsu API umożliwia pełny dostęp do organizacji, dlatego powinien być dobrze strzeżony."
+  },
+  "userApiKeyDesc": {
+    "message": "Twój klucz interfejsu API może zostać użyty do uwierzytelnienia dostępu do wiersza poleceń Bitwarden."
+  },
+  "userApiKeyWarning": {
+    "message": "Twój klucz interfejsu API jest alternatywną metodą uwierzytelnienia. Powinien być dobrze strzeżony."
   },
   "oauth2ClientCredentials": {
     "message": "Dane uwierzytelniające OAuth 2.0",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "Wyświetl klucz API"
+    "message": "Wyświetl klucz interfejsu API"
   },
   "rotateApiKey": {
-    "message": "Zmień klucz API"
+    "message": "Zmień klucz interfejsu API"
   },
   "selectOneCollection": {
     "message": "Musisz wybrać co najmniej jedną kolekcję."
@@ -2986,7 +2997,7 @@
     "message": "Wymagaj od użytkowników aktywowania logowania dwustopniowego na swoich kontach osobistych."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Członkowie organizacji, którzy nie posiadają włączonej opcji logowania dwustopniowego na swoim koncie osobistym, zostaną usunięci z organizacji i otrzymają wiadomość z powiadomieniem o zmianie."
+    "message": "Członkowie organizacji, którzy nie są właścicielami lub administratorami i nie posiadają włączonej opcji logowania dwustopniowego na swoim koncie osobistym, zostaną usunięci z organizacji i otrzymają wiadomość z powiadomieniem o zmianie."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Jesteś członkiem organizacji, która wymaga włączonej opcji logowania dwustopniowego na koncie użytkownika. Jeśli wyłączysz wszystkich dostawców logowania dwustopniowego, zostaniesz automatycznie usunięty z tych organizacji."
@@ -3180,7 +3191,10 @@
     "message": "Zaloguj się za pomocą logowania jednokrotnego SSO swojej organizacji. Aby rozpocząć, wpisz swój identyfikator organizacji."
   },
   "enterpriseSingleSignOn": {
-    "message": "Logowanie jednokrotne przedsiębiorstwa"
+    "message": "Logowanie jednokrotne"
+  },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
   },
   "businessPortal": {
     "message": "Portal biznesowy",
@@ -3206,5 +3220,134 @@
   },
   "linkSso": {
     "message": "Połącz logowanie jednokrotne SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Miejsce konfiguracji zasady zostało przeniesione i ta strona zostanie wkrótce wycofana. Kliknij poniżej, aby przejść do zasad przedsiębiorstwa."
+  },
+  "singleOrg": {
+    "message": "Pojedyncza organizacja"
+  },
+  "singleOrgDesc": {
+    "message": "Zablokuj użytkownikom możliwość dołączania do innych organizacji."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Twoja obecna organizacja posiada zasady, które nie pozwalają na dołączanie do więcej niż jednej organizacji. Skontaktuj się z administratorami swojej organizacji lub zarejestruj się z innego konta Bitwarden."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Członkowie organizacji, którzy nie są właścicielami lub administratorami i są już członkami innej organizacji zostaną usunięci z Twojej organizacji."
+  },
+  "requireSso": {
+    "message": "Uwierzytelnianie logowaniem jednokrotnym"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Wymagaj używania przez użytkowników logowania jednokrotnego."
+  },
+  "prerequisite": {
+    "message": "Wymaganie wstępne"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Najpierw musisz włączyć politykę pojedynczej organizacji."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Polityka pojedynczej organizacji nie jest włączona."
+  },
+  "requireSsoExemption": {
+    "message": "Właściciele i administratorzy organizacji są zwolnieni z przestrzegania wymagań polityki."
+  },
+  "sendTypeFile": {
+    "message": "Plik"
+  },
+  "sendTypeText": {
+    "message": "Tekst"
+  },
+  "createSend": {
+    "message": "Utwórz nową wysyłkę",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Edytuj wysyłkę",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Wysyłka została utworzona",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Wysyłka została zaktualizowana",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Wysyłka została usunięta",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Usuń wysyłkę",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Czy na pewno chcesz usunąć tę wysyłkę?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Jakie typu jest to wysyłka?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Data usunięcia"
+  },
+  "expirationDate": {
+    "message": "Data wygaśnięcia"
+  },
+  "maxAccessCount": {
+    "message": "Maksymalna liczba dostępów"
+  },
+  "currentAccessCount": {
+    "message": "Obecna liczba dostępów"
+  },
+  "disabled": {
+    "message": "Wyłączone"
+  },
+  "sendLink": {
+    "message": "Link wysyłki",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Kopiuj link wysyłki",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Usuń hasło"
+  },
+  "removedPassword": {
+    "message": "Hasło zostało usunięte"
+  },
+  "removePasswordConfirmation": {
+    "message": "Czy na pewno chcesz usunąć hasło?"
+  },
+  "allSends": {
+    "message": "Wszystkie wysyłki"
+  },
+  "searchSends": {
+    "message": "Szukaj w wysyłkach",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Wysyłka jest chroniona hasłem. Wpisz hasło, aby kontynuować.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Nie znasz hasła? Poproś nadawcę o hasło, aby uzyskać dostęp do wysyłki.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Ta wysyłka jest domyślnie ukryta. Możesz zmienić jej widoczność za pomocą przycisku.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Pobierz plik"
+  },
+  "noSendsInList": {
+    "message": "Brak wysyłek do wyświetlenia.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

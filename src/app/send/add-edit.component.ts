@@ -11,25 +11,18 @@ import { Component } from '@angular/core';
 import { SendType } from 'jslib/enums/sendType';
 
 import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SendService } from 'jslib/abstractions/send.service';
 
 import { SendView } from 'jslib/models/view/sendView';
 import { SendFileView } from 'jslib/models/view/sendFileView';
 import { SendTextView } from 'jslib/models/view/sendTextView';
 
 import { Send } from 'jslib/models/domain/send';
-import { SendFile } from 'jslib/models/domain/sendFile';
-import { SendText } from 'jslib/models/domain/sendText';
 
 import { SendData } from 'jslib/models/data/sendData';
-
-import { SendRequest } from 'jslib/models/request/sendRequest';
-
-import { Utils } from 'jslib/misc/utils';
 
 @Component({
     selector: 'app-send-add-edit',
@@ -57,9 +50,8 @@ export class AddEditComponent {
     typeOptions: any[];
 
     constructor(private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        private apiService: ApiService, private cryptoService: CryptoService,
-        private cryptoFunctionService: CryptoFunctionService, private environmentService: EnvironmentService,
-        private datePipe: DatePipe) {
+        private apiService: ApiService, private environmentService: EnvironmentService,
+        private datePipe: DatePipe, private sendService: SendService) {
         this.typeOptions = [
             { name: i18nService.t('sendTypeFile'), value: SendType.File },
             { name: i18nService.t('sendTypeText'), value: SendType.Text },
@@ -137,7 +129,7 @@ export class AddEditComponent {
 
         const encSend = await this.encryptSend(file);
         try {
-            this.formPromise = this.saveSend(encSend);
+            this.formPromise = this.sendService.saveWithServer(encSend);
             await this.formPromise;
             this.send.id = encSend[0].id;
             this.platformUtilsService.showToast('success', null,
@@ -181,96 +173,20 @@ export class AddEditComponent {
     }
 
     protected async encryptSend(file: File): Promise<[Send, ArrayBuffer]> {
-        let fileData: ArrayBuffer = null;
-        const send = new Send();
-        send.id = this.send.id;
-        send.type = this.send.type;
-        send.disabled = this.send.disabled;
-        send.maxAccessCount = this.send.maxAccessCount;
-        if (this.send.key == null) {
-            this.send.key = await this.cryptoFunctionService.randomBytes(16);
-            this.send.cryptoKey = await this.cryptoService.makeSendKey(this.send.key);
-        }
-        if (this.password != null) {
-            const passwordHash = await this.cryptoFunctionService.pbkdf2(this.password,
-                this.send.key, 'sha256', 100000);
-            send.password = Utils.fromBufferToB64(passwordHash);
-        }
-        send.key = await this.cryptoService.encrypt(this.send.key, null);
-        send.name = await this.cryptoService.encrypt(this.send.name, this.send.cryptoKey);
-        send.notes = await this.cryptoService.encrypt(this.send.notes, this.send.cryptoKey);
-        if (send.type === SendType.Text) {
-            send.text = new SendText();
-            send.text.text = await this.cryptoService.encrypt(this.send.text.text, this.send.cryptoKey);
-            send.text.hidden = this.send.text.hidden;
-        } else if (send.type === SendType.File) {
-            send.file = new SendFile();
-            if (file != null) {
-                fileData = await this.parseFile(send, file);
-            }
-        }
+        const sendData = await this.sendService.encrypt(this.send, file, this.password, null);
 
         // Parse dates
         try {
-            send.deletionDate = this.deletionDate == null ? null : new Date(this.deletionDate);
+            sendData[0].deletionDate = this.deletionDate == null ? null : new Date(this.deletionDate);
         } catch {
-            send.deletionDate = null;
+            sendData[0].deletionDate = null;
         }
         try {
-            send.expirationDate = this.expirationDate == null ? null : new Date(this.expirationDate);
+            sendData[0].expirationDate = this.expirationDate == null ? null : new Date(this.expirationDate);
         } catch {
-            send.expirationDate = null;
+            sendData[0].expirationDate = null;
         }
 
-        return [send, fileData];
-    }
-
-    protected async saveSend(sendData: [Send, ArrayBuffer]) {
-        const request = new SendRequest(sendData[0]);
-        if (sendData[0].id == null) {
-            if (sendData[0].type === SendType.Text) {
-                await this.apiService.postSend(request);
-            } else {
-                const fd = new FormData();
-                try {
-                    const blob = new Blob([sendData[1]], { type: 'application/octet-stream' });
-                    fd.append('model', JSON.stringify(request));
-                    fd.append('data', blob, sendData[0].file.fileName.encryptedString);
-                } catch (e) {
-                    if (Utils.isNode && !Utils.isBrowser) {
-                        fd.append('model', JSON.stringify(request));
-                        fd.append('data', Buffer.from(sendData[1]) as any, {
-                            filepath: sendData[0].file.fileName.encryptedString,
-                            contentType: 'application/octet-stream',
-                        } as any);
-                    } else {
-                        throw e;
-                    }
-                }
-                await this.apiService.postSendFile(fd);
-            }
-        } else {
-            await this.apiService.putSend(sendData[0].id, request);
-        }
-    }
-
-    private parseFile(send: Send, file: File): Promise<ArrayBuffer> {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsArrayBuffer(file);
-            reader.onload = async (evt) => {
-                try {
-                    send.file.fileName = await this.cryptoService.encrypt(file.name, this.send.cryptoKey);
-                    const fileData = await this.cryptoService.encryptToBytes(evt.target.result as ArrayBuffer,
-                        this.send.cryptoKey);
-                    resolve(fileData);
-                } catch (e) {
-                    reject(e);
-                }
-            };
-            reader.onerror = (evt) => {
-                reject('Error reading file.');
-            };
-        });
+        return sendData;
     }
 }

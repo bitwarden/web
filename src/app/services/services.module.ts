@@ -30,6 +30,7 @@ import { AuditService } from 'jslib/services/audit.service';
 import { AuthService } from 'jslib/services/auth.service';
 import { CipherService } from 'jslib/services/cipher.service';
 import { CollectionService } from 'jslib/services/collection.service';
+import { ConsoleLogService } from 'jslib/services/consoleLog.service';
 import { ConstantsService } from 'jslib/services/constants.service';
 import { ContainerService } from 'jslib/services/container.service';
 import { CryptoService } from 'jslib/services/crypto.service';
@@ -42,6 +43,7 @@ import { NotificationsService } from 'jslib/services/notifications.service';
 import { PasswordGenerationService } from 'jslib/services/passwordGeneration.service';
 import { PolicyService } from 'jslib/services/policy.service';
 import { SearchService } from 'jslib/services/search.service';
+import { SendService } from 'jslib/services/send.service';
 import { SettingsService } from 'jslib/services/settings.service';
 import { StateService } from 'jslib/services/state.service';
 import { SyncService } from 'jslib/services/sync.service';
@@ -74,6 +76,7 @@ import {
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService as PolicyServiceAbstraction } from 'jslib/abstractions/policy.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
+import { SendService as SendServiceAbstraction } from 'jslib/abstractions/send.service';
 import { SettingsService as SettingsServiceAbstraction } from 'jslib/abstractions/settings.service';
 import { StateService as StateServiceAbstraction } from 'jslib/abstractions/state.service';
 import { StorageService as StorageServiceAbstraction } from 'jslib/abstractions/storage.service';
@@ -92,8 +95,10 @@ const storageService: StorageServiceAbstraction = new HtmlStorageService(platfor
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
+const consoleLogService = new ConsoleLogService(false);
 const cryptoService = new CryptoService(storageService,
-    platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService);
+    platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService, platformUtilsService,
+    consoleLogService);
 const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
 const apiService = new ApiService(tokenService, platformUtilsService,
@@ -106,23 +111,26 @@ const cipherService = new CipherService(cryptoService, userService, settingsServ
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
-searchService = new SearchService(cipherService);
+searchService = new SearchService(cipherService, consoleLogService);
 const policyService = new PolicyService(userService, storageService);
+const sendService = new SendService(cryptoService, userService, apiService, storageService,
+    i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
     null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    async (expired: boolean) => messagingService.send('logout', { expired: expired }));
+    sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
 const totpService = new TotpService(storageService, cryptoFunctionService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
-    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService);
+    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
+    consoleLogService);
 const exportService = new ExportService(folderService, cipherService, apiService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
 const notificationsService = new NotificationsService(userService, syncService, appIdService,
-    apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }));
+    apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
@@ -218,6 +226,7 @@ export function initFactory(): Function {
         { provide: CryptoFunctionServiceAbstraction, useValue: cryptoFunctionService },
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
+        { provide: SendServiceAbstraction, useValue: sendService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,

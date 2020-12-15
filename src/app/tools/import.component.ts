@@ -47,7 +47,7 @@ export class ImportComponent implements OnInit {
     }
 
     async submit() {
-        const importer = this.importService.getImporter(this.format, this.organizationId != null);
+        const importer = this.importService.getImporter(this.format, this.organizationId);
         if (importer === null) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFormat'));

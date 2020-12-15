@@ -37,6 +37,9 @@
   "password": {
     "message": "Jelszó"
   },
+  "newPassword": {
+    "message": "Új jelszó"
+  },
   "passphrase": {
     "message": "Kulcskifejezés"
   },
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "Nincs kiválasztva semmi."
   },
-  "submitAgreePolicies": {
-    "message": "A \"Beküldés\" gombra kattintva elfogadjuk a következő szabályokat:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "A doboz bejelölésével elfogadjuk a következőket:"
+  },
+  "acceptPoliciesError": {
+    "message": "A szolgáltatási feltételeket és az adatvédelmi irányelveket nem vették figyelembe."
   },
   "termsOfService": {
     "message": "Felhasználási feltételek"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "Az API kulcs teljes hozzáférést biztosít a szervezethez. Célszerű titokban tartani."
+  },
+  "userApiKeyDesc": {
+    "message": "Az API kulcs használható a Bitwarden CLI hitelesítéséhez."
+  },
+  "userApiKeyWarning": {
+    "message": "API kulcs alternatív hitelesítési mechanizmus. Célszerű titokban tartani."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 ügyfél hitelesítések",
@@ -3182,6 +3193,9 @@
   "enterpriseSingleSignOn": {
     "message": "Vállalati önálló bejelentkezés"
   },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
+  },
   "businessPortal": {
     "message": "Üzleti portál",
     "description": "The web portal used by business organizations for configuring certain features."
@@ -3206,5 +3220,134 @@
   },
   "linkSso": {
     "message": "SSO csatolása"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Az irányelv konfiguráció áthelyezésre került és ez az oldal hamarosan megszűnik. Kattintsunk az alábbi hivatkozásra, ha inkább az Üzleti portál irányelv oldalát szeretnénk használni."
+  },
+  "singleOrg": {
+    "message": "Önálló szervezet"
+  },
+  "singleOrgDesc": {
+    "message": "Korlátozza a felhasználókat más szervezetekhez csatlakozásban."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Jelenlegi szervezetének van olyan irányelve, amely nem engedélyezi, hogy több szervezethez csatlakozzunk. Lépjünk kapcsolatba szervezetünk adminisztrátorával vagy regisztráljunk egy másik Bitwarden fiókból."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "A szervezet azon tagjait, akik nem tulajdonosok vagy rendszergazdák, és már egy másik szervezet tagjai, eltávolítjáara kerülnek a szervezetből."
+  },
+  "requireSso": {
+    "message": "Egyszeri bejelentkezés hitelesítése"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "A felhasználóknál az Vállalati egyszeri vejelentkezés hitelesítési mód megkövetelése."
+  },
+  "prerequisite": {
+    "message": "Előfeltétel"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Az irányelv bekapcsolása előtt engedélyezni kell az Önálló szervezet vállalati irányelvét."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Az Önálló szervezet irányelv nem engedélyezett."
+  },
+  "requireSsoExemption": {
+    "message": "A szervezet tulajdonosai és adminisztrátorai mentesülnek az irányelv végrehajtása alól."
+  },
+  "sendTypeFile": {
+    "message": "Fájl"
+  },
+  "sendTypeText": {
+    "message": "Szöveg"
+  },
+  "createSend": {
+    "message": "Új küldés létrehozása",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Küldés szerkesztése",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "A küldés létrejött.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "A küldés szerkesztésre került.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "A küldés törlésre került.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Küldés törlése",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Biztosan törlésre kerüljön ez a küldés?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Milyen típusú ez a küldés?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Törlési dátum"
+  },
+  "expirationDate": {
+    "message": "Lejárati dátum"
+  },
+  "maxAccessCount": {
+    "message": "Maximális elérési szám"
+  },
+  "currentAccessCount": {
+    "message": "Aktuális elérési szám"
+  },
+  "disabled": {
+    "message": "Letiltva"
+  },
+  "sendLink": {
+    "message": "Hivatkozás küldése",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Hivatkozás küldés másolása",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Jelszó eltávolítása"
+  },
+  "removedPassword": {
+    "message": "A jelszó eltávolításra került."
+  },
+  "removePasswordConfirmation": {
+    "message": "Biztosan eltávolításra kerüljön ez a jelszó?"
+  },
+  "allSends": {
+    "message": "Összes küldés"
+  },
+  "searchSends": {
+    "message": "Küldés keresése",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "A küldés jelszóval védett. A folytatáshoz lentebb meg kell adni a jelszót.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Nem ismerjük a jelszót? Kérdezzünk rá a küldőnél a küldés elérésére szükséges jelszóért.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Ez a küldés alapértelmezésben rejtett. Az alábbi gombbal átváltható a láthatósága.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Fájl letöltése"
+  },
+  "noSendsInList": {
+    "message": "A listában nincs küldés.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

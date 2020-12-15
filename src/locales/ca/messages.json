@@ -37,6 +37,9 @@
   "password": {
     "message": "Contrasenya"
   },
+  "newPassword": {
+    "message": "Nova contrasenya"
+  },
   "passphrase": {
     "message": "Frase de pas"
   },
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "No heu seleccionat res."
   },
-  "submitAgreePolicies": {
-    "message": "Fent clic al botó \"Envia\", accepteu les polítiques següents:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Si activeu aquesta casella, indiqueu que esteu d’acord amb el següent:"
+  },
+  "acceptPoliciesError": {
+    "message": "No s’han reconegut les condicions del servei i la declaració de privadesa."
   },
   "termsOfService": {
     "message": "Condicions del servei"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "La clau de l'API té accés total a l'organització. S'ha de mantenir en secret."
+  },
+  "userApiKeyDesc": {
+    "message": "La vostra clau API es pot utilitzar per autenticar-se al CLI de Bitwarden."
+  },
+  "userApiKeyWarning": {
+    "message": "La vostra clau API és un mecanisme d'autenticació alternatiu. S’ha de mantenir en secret."
   },
   "oauth2ClientCredentials": {
     "message": "Credencials de client OAuth 2.0",
@@ -3182,6 +3193,9 @@
   "enterpriseSingleSignOn": {
     "message": "Inici de sessió únic d'empresa"
   },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
+  },
   "businessPortal": {
     "message": "Portal empresarial",
     "description": "The web portal used by business organizations for configuring certain features."
@@ -3206,5 +3220,134 @@
   },
   "linkSso": {
     "message": "Enllaça SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "La configuració de la política s'ha desplaçat i aquesta pàgina quedarà obsoleta aviat. Feu clic a continuació per utilitzar la pàgina de polítiques del portal empresarial."
+  },
+  "singleOrg": {
+    "message": "Organització única"
+  },
+  "singleOrgDesc": {
+    "message": "Restringeix els usuaris perquè no puguen unir-se a qualsevol altra organització."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "La vostra organització actual té una política que no us permet unir-vos a més d'una organització. Poseu-vos en contacte amb els administradors de la vostra organització o registreu-vos des d’un altre compte de Bitwarden."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Els membres que no siguen propietaris ni administradors i que ja siguen membres d'una altra organització se suprimiran de la vostra organització."
+  },
+  "requireSso": {
+    "message": "Autenticació d'inici de sessió únic"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Sol·liciteu als usuaris que inicien la sessió amb el mètode d’inici de sessió únic de l’empresa."
+  },
+  "prerequisite": {
+    "message": "Requisit previ"
+  },
+  "requireSsoPolicyReq": {
+    "message": "La política empresarial d'una organització única s'ha d'activar abans d'activar aquesta política."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "La política d'una única organització no està habilitada."
+  },
+  "requireSsoExemption": {
+    "message": "Els propietaris i administradors d’organitzacions estan exempts de fer complir aquesta política."
+  },
+  "sendTypeFile": {
+    "message": "Fitxer"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Crea un nou Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Edita Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send creat",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send editat",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send suprimit",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Suprimeix el Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Esteu segur que voleu suprimir aquest Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Quin tipus de Send és aquest?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Data de supressió"
+  },
+  "expirationDate": {
+    "message": "Data de venciment"
+  },
+  "maxAccessCount": {
+    "message": "Recompte màxim d'accés"
+  },
+  "currentAccessCount": {
+    "message": "Recompte d’accés actual"
+  },
+  "disabled": {
+    "message": "Deshabilitat"
+  },
+  "sendLink": {
+    "message": "Enllaç Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Copia l'enllaç Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Suprimeix la contrasenya"
+  },
+  "removedPassword": {
+    "message": "Contrasenya suprimida"
+  },
+  "removePasswordConfirmation": {
+    "message": "Esteu segur que voleu suprimir la contrasenya?"
+  },
+  "allSends": {
+    "message": "Tots els Send"
+  },
+  "searchSends": {
+    "message": "Cerca Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Aquest Send està protegit amb una contrasenya. Escriviu la contrasenya següent per continuar.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "No sabeu la contrasenya? Demaneu al remitent la contrasenya necessària per accedir a aquest Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Aquest Send està ocult per defecte. Podeu canviar la seua visibilitat mitjançant el botó següent.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Baixa el fitxer"
+  },
+  "noSendsInList": {
+    "message": "No hi ha cap Send a llistar.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

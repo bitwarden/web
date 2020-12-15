@@ -37,6 +37,9 @@
   "password": {
     "message": "密碼"
   },
+  "newPassword": {
+    "message": "新密碼"
+  },
   "passphrase": {
     "message": "密碼短語"
   },
@@ -2810,9 +2813,11 @@
   "nothingSelected": {
     "message": "您沒有選擇任何項目。"
   },
-  "submitAgreePolicies": {
-    "message": "一旦您按下「送出」，表示您同意以下條款：",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "點擊此選取框，代表您同意下列項目:"
+  },
+  "acceptPoliciesError": {
+    "message": "尚未接受服務條款與隱私權保護政策。"
   },
   "termsOfService": {
     "message": "服務條款"
@@ -2947,6 +2952,12 @@
   },
   "apiKeyWarning": {
     "message": "你的 API 金鑰對組織有完整存取權限，應要保密。"
+  },
+  "userApiKeyDesc": {
+    "message": "您的 API 金鑰可用於 Bitwarden CLI 當中進行驗證。"
+  },
+  "userApiKeyWarning": {
+    "message": "您的 API 金鑰是另一種驗證身分的方式，請保存好不要公開。"
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 客戶端登入資訊",
@@ -3182,6 +3193,9 @@
   "enterpriseSingleSignOn": {
     "message": "Enterprise Single Sign-On"
   },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
+  },
   "businessPortal": {
     "message": "Business Portal",
     "description": "The web portal used by business organizations for configuring certain features."
@@ -3206,5 +3220,134 @@
   },
   "linkSso": {
     "message": "連結 SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+  },
+  "singleOrg": {
+    "message": "單一組織"
+  },
+  "singleOrgDesc": {
+    "message": "Restrict users from being able to join any other organizations."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+  },
+  "requireSso": {
+    "message": "單一登入驗證"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "要求使用者以企業單一登入方法登入。"
+  },
+  "prerequisite": {
+    "message": "先決條件"
+  },
+  "requireSsoPolicyReq": {
+    "message": "必須先開啟單一組織企業政策，才能再開啟此政策。"
+  },
+  "requireSsoPolicyReqError": {
+    "message": "未開啟單一組織政策。"
+  },
+  "requireSsoExemption": {
+    "message": "組織擁有者與管理員，不受此政策的執行影響。"
+  },
+  "sendTypeFile": {
+    "message": "檔案"
+  },
+  "sendTypeText": {
+    "message": "文字"
+  },
+  "createSend": {
+    "message": "Create New Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Edit Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Created Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Edited Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Deleted Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Delete Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Are you sure you want to delete this Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "What type of Send is this?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "刪除日期"
+  },
+  "expirationDate": {
+    "message": "到期日"
+  },
+  "maxAccessCount": {
+    "message": "最大存取次數"
+  },
+  "currentAccessCount": {
+    "message": "目前已存取次數"
+  },
+  "disabled": {
+    "message": "已停用"
+  },
+  "sendLink": {
+    "message": "傳送連結",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "複製傳送連結",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "移除密碼"
+  },
+  "removedPassword": {
+    "message": "已移除密碼"
+  },
+  "removePasswordConfirmation": {
+    "message": "您確定要移除密碼嗎？"
+  },
+  "allSends": {
+    "message": "All Sends"
+  },
+  "searchSends": {
+    "message": "Search Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "下載檔案"
+  },
+  "noSendsInList": {
+    "message": "There are no Sends to list.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
