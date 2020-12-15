@@ -11,9 +11,10 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { TotpService } from 'jslib/abstractions/index';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
+import { TotpService } from 'jslib/abstractions/totp.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -35,9 +36,9 @@ export class CiphersComponent extends BaseCiphersComponent {
     constructor(searchService: SearchService, analytics: Angulartics2,
         toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, cipherService: CipherService,
-        private apiService: ApiService, eventService: EventService, totpService: TotpService) {
+        private apiService: ApiService, eventService: EventService, totpService: TotpService, userService: UserService) {
         super(searchService, analytics, toasterService, i18nService, platformUtilsService,
-            cipherService, eventService, totpService);
+            cipherService, eventService, totpService, userService);
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {

@@ -12,9 +12,10 @@ import { Angulartics2 } from 'angulartics2';
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { TotpService } from 'jslib/abstractions/index';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
+import { TotpService } from 'jslib/abstractions/totp.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/components/ciphers.component';
 
@@ -38,13 +39,18 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     cipherType = CipherType;
     actionPromise: Promise<any>;
+    userHasPremiumAccess = false;
 
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
-        protected eventService: EventService, protected totpService: TotpService) {
+        protected eventService: EventService, protected totpService: TotpService, protected userService: UserService) {
         super(searchService);
         this.pageSize = 200;
+    }
+
+    async ngOnInit() {
+        this.userHasPremiumAccess = await this.userService.canAccessPremium();
     }
 
     ngOnDestroy() {
@@ -119,7 +125,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (value == null) {
+        if (value == null || !this.displayTotpCopyButton(cipher)) {
             return;
         } else if (value === cipher.login.totp) {
             value = await this.totpService.getCode(value);
@@ -162,6 +168,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     getSelectedIds(): string[] {
         return this.getSelected().map((c) => c.id);
+    }
+
+    displayTotpCopyButton(cipher: CipherView) {
+        return (cipher?.login?.hasTotp ?? false) &&
+            (cipher.organizationUseTotp || this.userHasPremiumAccess);
     }
 
     protected deleteCipher(id: string, permanent: boolean) {
