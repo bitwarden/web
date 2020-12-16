@@ -493,7 +493,7 @@
                         <div class="ml-3" *ngIf="viewingPasswordHistory">
                             <div *ngFor="let ph of cipher.passwordHistory">
                                 {{ph.lastUsedDate | date:'short'}} -
-                                <span class="text-monospace ml-2">{{ph.password}}</span>
+                                <span class="password-wrapper text-monospace ml-2">{{ph.password}}</span>
                             </div>
                         </div>
                     </div>
