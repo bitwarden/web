@@ -285,4 +285,12 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     supportsSecureStorage() {
         return false;
     }
+
+    getDefaultSystemTheme() {
+        return null as 'light' | 'dark';
+    }
+
+    onDefaultSystemThemeChange() {
+        /* noop */
+    }
 }
