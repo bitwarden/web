@@ -175,7 +175,8 @@ export class PolicyEditComponent implements OnInit {
     private preValidate(): boolean {
         switch (this.type) {
             case PolicyType.RequireSso:
-                if (!this.enabled) { // Don't need prevalidation checks if submitting to disable
+                // Don't need prevalidation checks if submitting to disable
+                if (!this.enabled) {
                     return true;
                 }
                 // Have SingleOrg policy enabled?
@@ -187,7 +188,8 @@ export class PolicyEditComponent implements OnInit {
                 return true;
 
             case PolicyType.SingleOrg:
-                if (this.enabled) { // Don't need prevalidation checks if submitting to enable
+                // Don't need prevalidation checks if submitting to enable
+                if (this.enabled) {
                     return true;
                 }
                 // If RequireSso Policy is enabled prevent submittal
