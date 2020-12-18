@@ -126,3 +126,48 @@ jobs:
       - name: Log out of docker
         if: github.ref == 'refs/heads/master' || github.event_name == 'release'
         run: docker logout
+
+    windows:
+      runs-on: windows-latest
+      steps:
+        - name: Set up NuGet
+          uses: nuget/setup-nuget@v1
+          with:
+            nuget-version: 'latest'
+
+       - name: Set up MSBuild
+         uses: microsoft/setup-msbuild@v1
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: Print environment
+        run: |
+          nuget help
+          msbuild -version
+          dotnet --info
+          node --version
+          npm --version
+          Write-Output "GitHub ref: $env:GITHUB_REF"
+          Write-Output "GitHub event: $env:GITHUB_EVENT"
+        shell: pwsh
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_EVENT: ${{ github.event_name }}
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Restore
+        run: msbuild /t:restore
+        shell: pwsh
+
+      - name: Build solution
+        run: msbuild bitwarden-server.sln /p:Configuration=Debug /verbosity:minimal
+        shell: pwsh
+
+      - name: Test solution
+        run: dotnet test .\test\Core.Test\Core.Test.csproj --configuration Debug --no-build
+        shell: pwsh
