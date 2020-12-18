@@ -160,14 +160,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Restore
-        run: msbuild /t:restore
-        shell: pwsh
+      - name: npm install
+        run: npm install
 
-      - name: Build solution
-        run: msbuild bitwarden-server.sln /p:Configuration=Debug /verbosity:minimal
-        shell: pwsh
+      - name: npm build
+        run: npm run build:prod
 
-      - name: Test solution
-        run: dotnet test .\test\Core.Test\Core.Test.csproj --configuration Debug --no-build
-        shell: pwsh
