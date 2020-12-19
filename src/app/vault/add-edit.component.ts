@@ -178,8 +178,8 @@ export class AddEditComponent extends BaseAddEditComponent {
 
     private async getCipherCollectionNames(): Promise<string[]> {
         const collectionNames: string[] = [];
-        for (const id of this.cipher.collectionIds) {
-            const collection = await this.collectionService.get(id);
+        const cipherCollections = await this.collectionService.getManyByCipherId(this.cipherId);
+        for (const collection of cipherCollections) {
             const name = await collection.name.decrypt(this.cipher.organizationId)
             collectionNames.push(name)
         }
