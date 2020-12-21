@@ -73,6 +73,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
             const result = await this.platformUtilsService.showDialog(
                 this.i18nService.t('updateEncryptionKeyWarning') + ' ' +
+                this.i18nService.t('updateEncryptionKeyExportWarning') + ' ' +
                 this.i18nService.t('rotateEncKeyConfirmation'), this.i18nService.t('rotateEncKeyTitle'),
                 this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
             if (!result) {

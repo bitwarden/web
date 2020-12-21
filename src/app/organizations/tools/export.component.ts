@@ -16,8 +16,6 @@ import { EventType } from 'jslib/enums/eventType';
     templateUrl: '../../tools/export.component.html',
 })
 export class ExportComponent extends BaseExportComponent {
-    organizationId: string;
-
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         eventService: EventService, private route: ActivatedRoute) {

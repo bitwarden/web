@@ -2954,10 +2954,10 @@
     "message": "Votre clé d'API a un accès complet à l'organisation. Elle doit être gardée secrète."
   },
   "userApiKeyDesc": {
-    "message": "Votre clé API peut être utilisée pour vous authentifier dans le CLI de Bitwarden."
+    "message": "Votre clé d'API peut être utilisée pour vous authentifier dans l'interface ligne de commande (CLI) de Bitwarden."
   },
   "userApiKeyWarning": {
-    "message": "Votre clé API est un mécanisme d'authentification alternatif. Elle doit être gardée secrète."
+    "message": "Votre clé d'API est un mécanisme d'authentification alternatif. Elle doit être gardée secrète."
   },
   "oauth2ClientCredentials": {
     "message": "Identifiants du client OAuth 2.0",
@@ -3191,7 +3191,10 @@
     "message": "Connectez-vous en utilisant le portail de connexion unique de votre organisation. Veuillez entrer l'identifiant de votre organisation pour commencer."
   },
   "enterpriseSingleSignOn": {
-    "message": "Portail de connexion unique d'entreprise"
+    "message": "Portail de connexion unique d'entreprise (Single Sign-On)"
+  },
+  "ssoHandOff": {
+    "message": "You may now close this tab and continue in the extension."
   },
   "businessPortal": {
     "message": "Portail d'entreprise",
@@ -3219,7 +3222,7 @@
     "message": "Lier SSO"
   },
   "webPoliciesDeprecationWarning": {
-    "message": "La configuration de la politique a été déplacée et cette page sera bientôt obsolète. Veuillez cliquer ci-dessous pour utiliser la page des règles du Portail Affaires à la place."
+    "message": "La configuration des politiques a été déplacée et cette page sera bientôt obsolète. Veuillez cliquer ci-dessous pour utiliser la page des politiques du portail d'entreprise à la place."
   },
   "singleOrg": {
     "message": "Organisation Unique"
@@ -3231,22 +3234,22 @@
     "message": "Votre organisation actuelle a une politique qui ne vous permet pas de rejoindre plus d'une organisation. Veuillez contacter les administrateurs de votre organisation ou vous inscrire à partir d'un compte Bitwarden différent."
   },
   "singleOrgPolicyWarning": {
-    "message": "Les membres de l'organisation qui ne sont ni Propriétaires ni Administrateurs et qui sont déjà membres d'une autre organisation seront retirés de votre organisation."
+    "message": "Les membres de l'organisation qui ne sont ni propriétaires ni administrateurs et qui sont déjà membres d'une autre organisation seront retirés de votre organisation."
   },
   "requireSso": {
-    "message": "Authentification par Authentification Unique"
+    "message": "Authentification par Connexion Unique (Single Sign-On)"
   },
   "requireSsoPolicyDesc": {
-    "message": "Exiger que les utilisateurs se connectent avec la méthode du Portail de Connexion Unique."
+    "message": "Exiger que les utilisateurs se connectent avec la méthode du portail de connexion unique d'entreprise."
   },
   "prerequisite": {
     "message": "Prérequis"
   },
   "requireSsoPolicyReq": {
-    "message": "La Politique d'Entreprise d'Organisation Unique doit être activée avant d'activer cette politique."
+    "message": "La politique d'entreprise \"Organisation Unique\" doit être activée avant d'activer cette politique."
   },
   "requireSsoPolicyReqError": {
-    "message": "La Politique d'Organisation Unique n'est pas activée."
+    "message": "La politique \"Organisation Unique\" n'est pas activée."
   },
   "requireSsoExemption": {
     "message": "Les propriétaires et les administrateurs de l'organisation sont exonérés de l'application de cette politique."
@@ -3258,35 +3261,35 @@
     "message": "Texte"
   },
   "createSend": {
-    "message": "Créer un Nouvel Envoi",
+    "message": "Créer un nouveau Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Modifier l'Envoi",
+    "message": "Modifier le Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Envoi créé",
+    "message": "Send créé",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Envoi édité",
+    "message": "Send modifié",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Envoi supprimé",
+    "message": "Send supprimé",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Supprimer l'Envoi",
+    "message": "Supprimer le Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Êtes-vous sûr de vouloir supprimer cet Envoi ?",
+    "message": "Êtes-vous sûr de vouloir supprimer ce Send ?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "De quel type d'Envoi s'agit-il?",
+    "message": "De quel type de Send s'agit-il ?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
@@ -3296,55 +3299,55 @@
     "message": "Date d'expiration"
   },
   "maxAccessCount": {
-    "message": "Nombre Maximum d'Accès"
+    "message": "Nombre maximum d'accès"
   },
   "currentAccessCount": {
-    "message": "Nombre d'Accès Actuels"
+    "message": "Nombre d'accès actuel"
   },
   "disabled": {
     "message": "Désactivé"
   },
   "sendLink": {
-    "message": "Envoyez le Lien",
+    "message": "Lien du Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copier le Lien d'Envoi",
+    "message": "Copier le lien du Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
-    "message": "Supprimer le Mot de Passe"
+    "message": "Supprimer le mot de passe"
   },
   "removedPassword": {
-    "message": "Mot de Passe supprimé"
+    "message": "Mot de passe supprimé"
   },
   "removePasswordConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer le Mot de Passe ?"
+    "message": "Êtes-vous sûr(e) de vouloir supprimer le mot de passe ?"
   },
   "allSends": {
-    "message": "Tous les Envois"
+    "message": "Tous les Sends"
   },
   "searchSends": {
-    "message": "Rechercher les Envois",
+    "message": "Rechercher dans les Sends",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "Cet Envoi est protégé par un Mot de Passe. Veuillez entrer le Mot de Passe ci-dessous pour continuer.",
+    "message": "Ce Send est protégé par un mot de passe. Veuillez saisir le mot de passe ci-dessous pour continuer.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Vous ne connaissez pas le Mot de Passe ? Demandez à l'Expéditeur le Mot de Passe nécessaire pour accéder à cet Envoi.",
+    "message": "Vous ne connaissez pas le mot de passe ? Demandez à l'expéditeur le mot de passe nécessaire pour accéder à ce Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "Cet Envoi est masqué par défaut. Vous pouvez changer sa visibilité en utilisant le bouton ci-dessous.",
+    "message": "Ce Send est masqué par défaut. Vous pouvez changer sa visibilité en utilisant le bouton ci-dessous.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
-    "message": "Télécharger le Fichier"
+    "message": "Télécharger le fichier"
   },
   "noSendsInList": {
-    "message": "Il n'y a aucun Envoi à afficher.",
+    "message": "Il n'y a aucun Send à afficher.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

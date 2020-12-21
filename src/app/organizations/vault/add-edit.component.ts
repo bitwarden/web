@@ -10,6 +10,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -36,14 +37,14 @@ export class AddEditComponent extends BaseAddEditComponent {
         userService: UserService, collectionService: CollectionService,
         totpService: TotpService, passwordGenerationService: PasswordGenerationService,
         private apiService: ApiService, messagingService: MessagingService,
-        eventService: EventService) {
+        eventService: EventService, policyService: PolicyService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
             userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService);
+            eventService, policyService);
     }
 
     protected allowOwnershipAssignment() {
-        if (this.ownershipOptions != null && this.ownershipOptions.length > 1) {
+        if (this.ownershipOptions != null && (this.ownershipOptions.length > 1 || !this.allowPersonal)) {
             if (this.organization != null) {
                 return this.cloneMode && this.organization.isAdmin;
             } else {

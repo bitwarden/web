@@ -153,6 +153,8 @@ export class EventService {
             case EventType.OrganizationUser_UpdatedGroups:
                 msg = this.i18nService.t('editedGroupsForUser', this.formatOrgUserId(ev));
                 break;
+            case EventType.OrganizationUser_UnlinkedSso:
+                msg = this.i18nService.t('unlinkedSsoUser', this.formatOrgUserId(ev))
             // Org
             case EventType.Organization_Updated:
                 msg = this.i18nService.t('editedOrgSettings');
@@ -165,6 +167,11 @@ export class EventService {
                 msg = this.i18nService.t('exportedOrganizationVault');
                 break;
             */
+            // Policies
+            case EventType.Policy_Updated:
+                msg = this.i18nService.t('modifiedPolicy', this.formatPolicyId(ev));
+                break;
+
             default:
                 break;
         }
@@ -248,6 +255,13 @@ export class EventService {
         const a = this.makeAnchor(shortId);
         a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/people?search=' + shortId +
             '&viewEvents=' + ev.organizationUserId);
+        return a.outerHTML;
+    }
+
+    private formatPolicyId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.policyId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/organizations/' + ev.organizationId + '/manage/policies?policyId=' + ev.policyId);
         return a.outerHTML;
     }
 

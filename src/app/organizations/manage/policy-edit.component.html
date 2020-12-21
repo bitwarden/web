@@ -29,6 +29,9 @@
                         {{'requireSsoExemption' | i18n}}
                     </app-callout>
                 </ng-container>
+                <app-callout type="warning" *ngIf="type === policyType.PersonalOwnership">
+                    {{'personalOwnershipExemption' | i18n}}
+                </app-callout>
                 <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="enabled" [(ngModel)]="enabled"
