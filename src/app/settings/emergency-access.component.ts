@@ -73,8 +73,8 @@ export class EmergencyAccessComponent implements OnInit {
         const childComponent = this.modal.show<EmergencyAccessAddEditComponent>(
             EmergencyAccessAddEditComponent, this.addEditModalRef);
 
-        childComponent.name = details != null ? details.name || details.email : null;
-        childComponent.emergencyAccessId = details != null ? details.id : null;
+        childComponent.name = details?.name ?? details?.email;
+        childComponent.emergencyAccessId = details?.id;
         childComponent.readOnly = !this.canAccessPremium;
         childComponent.onSaved.subscribe(() => {
             this.modal.close();
@@ -124,9 +124,9 @@ export class EmergencyAccessComponent implements OnInit {
             const childComponent = this.modal.show<EmergencyAccessConfirmComponent>(
                 EmergencyAccessConfirmComponent, this.confirmModalRef);
 
-            childComponent.name = contact != null ? contact.name || contact.email : null;
+            childComponent.name = contact?.name ?? contact?.email;
             childComponent.emergencyAccessId = contact.id;
-            childComponent.userId = contact != null ? contact.granteeId : null;
+            childComponent.userId = contact?.granteeId;
             childComponent.onConfirmed.subscribe(async () => {
                 this.modal.close();
 
