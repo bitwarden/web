@@ -9,6 +9,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -30,14 +31,14 @@ export class EmergencyAddEditComponent extends BaseAddEditComponent {
         auditService: AuditService, stateService: StateService,
         userService: UserService, collectionService: CollectionService,
         totpService: TotpService, passwordGenerationService: PasswordGenerationService,
-        messagingService: MessagingService, eventService: EventService) {
+        messagingService: MessagingService, eventService: EventService, policyService: PolicyService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
             userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService);
+            eventService, policyService);
     }
 
     async load() {
-        this.title = this.i18nService.t('viewItem')
+        this.title = this.i18nService.t('viewItem');
     }
 
     protected async loadCipher() {
