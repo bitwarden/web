@@ -1,7 +1,12 @@
 <div class="page-header">
     <h1>{{'emergencyAccess' | i18n}}</h1>
 </div>
-<p>{{'emergencyAccessDesc' | i18n}}</p>
+<p>
+    {{'emergencyAccessDesc' | i18n}}
+    <a href="https://help.bitwarden.com/article/fingerprint-phrase/" target="_blank" rel="noopener">
+        {{'learnMore' | i18n}}.
+    </a>
+</p>
 
 <div class="page-header d-flex">
     <h2>
@@ -82,8 +87,10 @@
     </tbody>
 </table>
 
+<p *ngIf="!trustedContacts || !trustedContacts.length">{{'noTrustedContacts' | i18n}}</p>
+
 <div class="page-header spaced-header">
-    <h2>{{'desegnatedEmergencyContacts' | i18n}}</h2>
+    <h2>{{'designatedEmergencyContacts' | i18n}}</h2>
 </div>
 
 <table class="table table-hover table-list mb-0" *ngIf="grantedContacts && grantedContacts.length">
@@ -144,6 +151,8 @@
         </tr>
     </tbody>
 </table>
+
+<p *ngIf="!grantedContacts || !grantedContacts.length">{{'noGrantedAccess' | i18n}}</p>
 
 <ng-template #addEdit></ng-template>
 <ng-template #takeoverTemplate></ng-template>
