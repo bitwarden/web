@@ -1,0 +1,159 @@
+<div class="page-header">
+    <h1>{{'emergencyAccess' | i18n}}</h1>
+</div>
+<p>
+    {{'emergencyAccessDesc' | i18n}}
+    <a href="https://help.bitwarden.com/article/fingerprint-phrase/" target="_blank" rel="noopener">
+        {{'learnMore' | i18n}}.
+    </a>
+</p>
+
+<div class="page-header d-flex">
+    <h2>
+        {{'trustedEmergencyContacts' | i18n}}
+        <a href="#" appStopClick class="badge badge-primary" *ngIf="!canAccessPremium" (click)="premiumRequired()">
+            {{'premium' | i18n}}
+        </a>
+    </h2>
+    <div class="ml-auto d-flex">
+        <button class="btn btn-sm btn-outline-primary ml-3" type="button" (click)="invite()" [disabled]="!canAccessPremium">
+            <i aria-hidden="true" class="fa fa-plus fa-fw"></i>
+            {{'addEmergencyContact' |i18n}}
+        </button>
+    </div>
+</div>
+
+<table class="table table-hover table-list mb-0" *ngIf="trustedContacts && trustedContacts.length">
+    <tbody>
+        <tr *ngFor="let c of trustedContacts; let i = index">
+            <td width="30">
+                <app-avatar [data]="c.name || c.email" [email]="c.email" size="25" [circle]="true"
+                    [fontSize]="14"></app-avatar>
+            </td>
+            <td>
+                <a href="#" appStopClick (click)="edit(c)">{{c.email}}</a>
+                <span class="badge badge-secondary"
+                    *ngIf="c.status === emergencyAccessStatusType.Invited">{{'invited' | i18n}}</span>
+                <span class="badge badge-warning"
+                    *ngIf="c.status === emergencyAccessStatusType.Accepted">{{'accepted' | i18n}}</span>
+                <span class="badge badge-warning"
+                    *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated">{{'emergencyAccessRecoveryInitiated' | i18n}}</span>
+                <span class="badge badge-success"
+                    *ngIf="c.status === emergencyAccessStatusType.RecoveryApproved">{{'emergencyAccessRecoveryApproved' | i18n}}</span>
+                
+                <span class="badge badge-primary"
+                    *ngIf="c.type === emergencyAccessType.View">{{'view' | i18n}}</span>
+                <span class="badge badge-primary"
+                    *ngIf="c.type === emergencyAccessType.Takeover">{{'takeover' | i18n}}</span>
+
+                <small class="text-muted d-block" *ngIf="c.name">{{c.name}}</small>
+            </td>
+            <td class="table-list-options">
+                <div class="dropdown" appListDropdown>
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        appA11yTitle="{{'options' | i18n}}">
+                        <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#" appStopClick (click)="reinvite(c)"
+                            *ngIf="c.status === emergencyAccessStatusType.Invited">
+                            <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+                            {{'resendInvitation' | i18n}}
+                        </a>
+                        <a class="dropdown-item text-success" href="#" appStopClick (click)="confirm(c)"
+                            *ngIf="c.status === emergencyAccessStatusType.Accepted">
+                            <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+                            {{'confirm' | i18n}}
+                        </a>
+                        <a class="dropdown-item text-success" href="#" appStopClick (click)="approve(c)"
+                            *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated">
+                            <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+                            {{'approve' | i18n}}
+                        </a>
+                        <a class="dropdown-item text-warning" href="#" appStopClick (click)="reject(c)"
+                            *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated || c.status === emergencyAccessStatusType.RecoveryApproved">
+                            <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                            {{'reject' | i18n}}
+                        </a>
+                        <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(c)">
+                            <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                            {{'remove' | i18n}}
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p *ngIf="!trustedContacts || !trustedContacts.length">{{'noTrustedContacts' | i18n}}</p>
+
+<div class="page-header spaced-header">
+    <h2>{{'designatedEmergencyContacts' | i18n}}</h2>
+</div>
+
+<table class="table table-hover table-list mb-0" *ngIf="grantedContacts && grantedContacts.length">
+    <tbody>
+        <tr *ngFor="let c of grantedContacts; let i = index">
+            <td width="30">
+                <app-avatar [data]="c.name || c.email" [email]="c.email" size="25" [circle]="true"
+                    [fontSize]="14"></app-avatar>
+            </td>
+            <td>
+                <span>{{c.email}}</span>
+                <span class="badge badge-secondary"
+                    *ngIf="c.status === emergencyAccessStatusType.Invited">{{'invited' | i18n}}</span>
+                <span class="badge badge-warning"
+                    *ngIf="c.status === emergencyAccessStatusType.Accepted">{{'accepted' | i18n}}</span>
+                <span class="badge badge-warning"
+                    *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated">{{'emergencyAccessRecoveryInitiated' | i18n}}</span>
+                <span class="badge badge-success"
+                    *ngIf="c.status === emergencyAccessStatusType.RecoveryApproved">{{'emergencyAccessRecoveryApproved' | i18n}}</span>
+                
+                <span class="badge badge-primary"
+                    *ngIf="c.type === emergencyAccessType.View">{{'view' | i18n}}</span>
+                <span class="badge badge-primary"
+                    *ngIf="c.type === emergencyAccessType.Takeover">{{'takeover' | i18n}}</span>
+
+                <small class="text-muted d-block" *ngIf="c.name">{{c.name}}</small>
+            </td>
+            <td class="table-list-options">
+                <div class="dropdown" appListDropdown>
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        appA11yTitle="{{'options' | i18n}}">
+                        <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#" appStopClick (click)="requestAccess(c)"
+                            *ngIf="c.status === emergencyAccessStatusType.Confirmed">
+                            <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+                            {{'requestAccess' | i18n}}
+                        </a>
+                        <a class="dropdown-item" href="#" appStopClick (click)="takeover(c)"
+                            *ngIf="c.status === emergencyAccessStatusType.RecoveryApproved && c.type === emergencyAccessType.Takeover">
+                            <i class="fa fa-fw fa-key" aria-hidden="true"></i>
+                            {{'takeover' | i18n}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="c.id"
+                            *ngIf="c.status === emergencyAccessStatusType.RecoveryApproved && c.type === emergencyAccessType.View">
+                            <i class="fa fa-fw fa-eye" aria-hidden="true"></i>
+                            {{'view' | i18n}}
+                        </a>
+                        <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(c)">
+                            <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                            {{'remove' | i18n}}
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p *ngIf="!grantedContacts || !grantedContacts.length">{{'noGrantedAccess' | i18n}}</p>
+
+<ng-template #addEdit></ng-template>
+<ng-template #takeoverTemplate></ng-template>
+<ng-template #confirmTemplate></ng-template>
