@@ -24,7 +24,7 @@ import { Organization } from 'jslib/models/domain/organization';
 })
 export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
     @Input() organization: Organization;
-    returnUri: string = '/settings/organizations'
+    returnUri: string = '/settings/organizations';
 
     constructor(platformUtilsService: PlatformUtilsService, i18nService: I18nService,
         apiService: ApiService, authService: AuthService,

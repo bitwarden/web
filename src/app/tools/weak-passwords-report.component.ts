@@ -75,6 +75,11 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
         return this.cipherService.getAllDecrypted();
     }
 
+    protected canManageCipher(c: CipherView): boolean {
+        // this will only ever be false from the org view;
+        return true;
+    }
+
     private scoreKey(score: number): [string, string] {
         switch (score) {
             case 4:

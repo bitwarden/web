@@ -29,7 +29,7 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     }
 
     async loadCollections() {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.manageAllCollections) {
             await super.loadCollections(this.organization.id);
             return;
         }

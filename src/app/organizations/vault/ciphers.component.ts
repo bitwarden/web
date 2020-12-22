@@ -40,7 +40,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.canManageAllCollections) {
             await super.load(filter, this.deleted);
             return;
         }
@@ -51,7 +51,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async applyFilter(filter: (cipher: CipherView) => boolean = null) {
-        if (this.organization.isAdmin) {
+        if (this.organization.canManageAllCollections) {
             await super.applyFilter(filter);
         } else {
             const f = (c: CipherView) => c.organizationId === this.organization.id && (filter == null || filter(c));
@@ -60,7 +60,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async search(timeout: number = null) {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.canManageAllCollections) {
             return super.search(timeout);
         }
         this.searchPending = false;
@@ -87,13 +87,13 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     protected deleteCipher(id: string) {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.canManageAllCollections) {
             return super.deleteCipher(id, this.deleted);
         }
         return this.deleted ? this.apiService.deleteCipherAdmin(id) : this.apiService.putDeleteCipherAdmin(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {
-        return this.organization.isAdmin && c.hasOldAttachments;
+        return this.organization.canManageAllCollections && c.hasOldAttachments;
     }
 }

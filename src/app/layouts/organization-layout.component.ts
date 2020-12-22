@@ -80,4 +80,53 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         } catch { }
         this.enterpriseTokenPromise = null;
     }
+
+    get showMenuBar() {
+        return this.showManageTab || this.showToolsTab || this.organization.isOwner;
+    }
+
+    get showManageTab(): boolean {
+        return this.organization.canManageUsers ||
+            this.organization.canManageAssignedCollections ||
+            this.organization.canManageAllCollections ||
+            this.organization.canManageGroups ||
+            this.organization.canManagePolicies ||
+            this.organization.canAccessEventLogs;
+    }
+
+    get showToolsTab(): boolean {
+        return this.organization.canAccessImportExport || this.organization.canAccessReports;
+    }
+
+    get showEnterprisePortalButton(): boolean {
+        return this.organization.useBusinessPortal && this.organization.canAccessBusinessPortal;
+    }
+
+    get toolsRoute(): string {
+        return this.organization.canAccessImportExport ?
+            'tools/import' :
+            'tools/exposed-passwords-report';
+    }
+
+    get manageRoute(): string {
+        let route: string;
+        switch (true) {
+            case this.organization.canManageUsers:
+                route = 'manage/people';
+                break;
+            case this.organization.canManageAssignedCollections || this.organization.canManageAllCollections:
+                route = 'manage/collections';
+                break;
+            case this.organization.manageGroups:
+                route = 'manage/groups';
+                break;
+            case this.organization.canManagePolicies:
+                route = 'manage/policies';
+                break;
+            case this.organization.canAccessEventLogs:
+                route = 'manage/events';
+                break;
+        }
+        return route;
+    }
 }

@@ -55,4 +55,9 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
     protected getAllCiphers(): Promise<CipherView[]> {
         return this.cipherService.getAllDecrypted();
     }
+
+    protected canManageCipher(c: CipherView): boolean {
+        // this will only ever be false from an organization view
+        return true;
+    }
 }

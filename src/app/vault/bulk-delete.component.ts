@@ -31,7 +31,7 @@ export class BulkDeleteComponent {
         private apiService: ApiService) { }
 
     async submit() {
-        if (!this.organization || !this.organization.isAdmin) {
+        if (!this.organization || !this.organization.canManageAllCollections) {
             await this.deleteCiphers();
         } else {
             await this.deleteCiphersAdmin();

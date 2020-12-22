@@ -24,11 +24,13 @@ import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 
+import { PermissionsInterface } from 'jslib/models/interfaces/permissions';
+
 @Component({
     selector: 'app-user-add-edit',
     templateUrl: 'user-add-edit.component.html',
 })
-export class UserAddEditComponent implements OnInit {
+export class UserAddEditComponent implements OnInit, PermissionsInterface {
     @Input() name: string;
     @Input() organizationUserId: string;
     @Input() organizationId: string;
@@ -40,11 +42,25 @@ export class UserAddEditComponent implements OnInit {
     title: string;
     emails: string;
     type: OrganizationUserType = OrganizationUserType.User;
+    accessBusinessPortal: boolean;
+    accessEventLogs: boolean;
+    accessImportExport: boolean;
+    accessReports: boolean;
+    manageAllCollections: boolean;
+    manageAssignedCollections: boolean;
+    manageGroups: boolean;
+    managePolicies: boolean;
+    manageUsers: boolean;
+    showCustom = false;
     access: 'all' | 'selected' = 'selected';
     collections: CollectionView[] = [];
     formPromise: Promise<any>;
     deletePromise: Promise<any>;
     organizationUserType = OrganizationUserType;
+
+    get customUserTypeSelected(): boolean {
+        return this.type === OrganizationUserType.Custom;
+    }
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
@@ -61,6 +77,17 @@ export class UserAddEditComponent implements OnInit {
                 const user = await this.apiService.getOrganizationUser(this.organizationId, this.organizationUserId);
                 this.access = user.accessAll ? 'all' : 'selected';
                 this.type = user.type;
+                if (user.type === OrganizationUserType.Custom) {
+                    this.accessBusinessPortal = user.accessBusinessPortal;
+                    this.accessEventLogs = user.accessEventLogs;
+                    this.accessImportExport = user.accessImportExport;
+                    this.accessReports = user.accessReports;
+                    this.manageAllCollections = user.manageAllCollections;
+                    this.manageAssignedCollections = user.manageAssignedCollections;
+                    this.manageGroups = user.manageGroups;
+                    this.managePolicies = user.managePolicies;
+                    this.manageUsers = user.manageUsers;
+                }
                 if (user.collections != null && this.collections != null) {
                     user.collections.forEach((s) => {
                         const collection = this.collections.filter((c) => c.id === s.id);
@@ -97,6 +124,37 @@ export class UserAddEditComponent implements OnInit {
         this.collections.forEach((c) => this.check(c, select));
     }
 
+    setRequestPermissions<T extends PermissionsInterface>(o: T, clearPermissions: boolean): T {
+        o.accessBusinessPortal = clearPermissions ?
+            false :
+            this.accessBusinessPortal;
+        o.accessEventLogs = this.accessEventLogs = clearPermissions ?
+            false :
+            this.accessEventLogs;
+        o.accessImportExport = clearPermissions ?
+            false :
+            this.accessImportExport;
+        o.accessReports = clearPermissions ?
+            false :
+            this.accessReports;
+        o.manageAllCollections = clearPermissions ?
+            false :
+            this.manageAllCollections;
+        o.manageAssignedCollections = clearPermissions ?
+            false :
+            this.manageAssignedCollections;
+        o.manageGroups = clearPermissions ?
+            false :
+            this.manageGroups;
+        o.managePolicies = clearPermissions ?
+            false :
+            this.managePolicies;
+        o.manageUsers = clearPermissions ?
+            false :
+            this.manageUsers;
+        return o;
+    }
+
     async submit() {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {
@@ -106,17 +164,19 @@ export class UserAddEditComponent implements OnInit {
 
         try {
             if (this.editMode) {
-                const request = new OrganizationUserUpdateRequest();
+                let request = new OrganizationUserUpdateRequest();
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
                 request.collections = collections;
+                request = this.setRequestPermissions(request, request.type !== OrganizationUserType.Custom);
                 this.formPromise = this.apiService.putOrganizationUser(this.organizationId, this.organizationUserId,
                     request);
             } else {
-                const request = new OrganizationUserInviteRequest();
+                let request = new OrganizationUserInviteRequest();
                 request.emails = this.emails.trim().split(/\s*,\s*/);
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
+                request = this.setRequestPermissions(request, request.type !== OrganizationUserType.Custom);
                 request.collections = collections;
                 this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }
@@ -148,4 +208,5 @@ export class UserAddEditComponent implements OnInit {
             this.onDeletedUser.emit();
         } catch { }
     }
+
 }
