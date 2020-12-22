@@ -22,6 +22,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
     @Input() name: string;
     @Input() userId: string;
     @Input() emergencyAccessId: string;
+    @Input() formPromise: Promise<any>;
     @Output() onConfirmed = new EventEmitter();
 
     dontAskAgain = false;

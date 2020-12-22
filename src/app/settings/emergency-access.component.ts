@@ -130,7 +130,9 @@ export class EmergencyAccessComponent implements OnInit {
             childComponent.onConfirmed.subscribe(async () => {
                 this.modal.close();
 
-                await this.doConfirmation(contact);
+                childComponent.formPromise = this.doConfirmation(contact);
+                await childComponent.formPromise;
+
                 updateUser();
                 this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', contact.name || contact.email));
             });
