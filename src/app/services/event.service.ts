@@ -154,7 +154,7 @@ export class EventService {
                 msg = this.i18nService.t('editedGroupsForUser', this.formatOrgUserId(ev));
                 break;
             case EventType.OrganizationUser_UnlinkedSso:
-                msg = this.i18nService.t('unlinkedSsoUser', this.formatOrgUserId(ev))
+                msg = this.i18nService.t('unlinkedSsoUser', this.formatOrgUserId(ev));
             // Org
             case EventType.Organization_Updated:
                 msg = this.i18nService.t('editedOrgSettings');
