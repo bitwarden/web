@@ -19,7 +19,7 @@
                                 <i class="fa fa-spinner fa-lg fa-fw fa-spin" *ngIf="a.downloading"
                                     aria-hidden="true"></i>
                             </td>
-                            <td>
+                            <td class="wrap">
                                 <div class="d-flex">
                                     <a href="#" appStopClick (click)="download(a)">{{a.fileName}}</a>
                                     <div *ngIf="showFixOldAttachments(a)" class="ml-2">

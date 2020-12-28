@@ -3,9 +3,6 @@
         <h1>{{'exportVault' | i18n}}</h1>
     </div>
     <p>{{'exportMasterPassword' | i18n}}</p>
-    <app-callout type="warning" *ngIf="!encryptedFormat">{{'exportWarningDesc' | i18n}}</app-callout>
-    <app-callout type="warning" *ngIf="encryptedFormat && !organizationId">{{'encExportWarningDesc' | i18n}}
-    </app-callout>
     <div class="row">
         <div class="form-group col-6">
             <label for="format">{{'fileFormat' | i18n}}</label>

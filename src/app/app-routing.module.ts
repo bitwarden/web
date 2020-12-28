@@ -8,6 +8,7 @@ import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptEmergencyComponent } from './accounts/accept-emergency.component';
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
@@ -92,6 +93,9 @@ import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 
 import { Permissions } from 'jslib/enums/permissions';
 
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+
 const routes: Routes = [
     {
         path: '',
@@ -124,6 +128,11 @@ const routes: Routes = [
                 path: 'accept-organization',
                 component: AcceptOrganizationComponent,
                 data: { titleId: 'joinOrganization' },
+            },
+            {
+                path: 'accept-emergency',
+                component: AcceptEmergencyComponent,
+                data: { titleId: 'acceptEmergency' },
             },
             { path: 'recover', pathMatch: 'full', redirectTo: 'recover-2fa' },
             {
@@ -179,6 +188,21 @@ const routes: Routes = [
                         path: 'create-organization',
                         component: CreateOrganizationComponent,
                         data: { titleId: 'newOrganization' },
+                    },
+                    {
+                        path: 'emergency-access',
+                        children: [
+                            {
+                                path: '',
+                                component: EmergencyAccessComponent,
+                                data: { titleId: 'emergencyAccess'},
+                            },
+                            {
+                                path: ':id',
+                                component: EmergencyAccessViewComponent,
+                                data: { titleId: 'emergencyAccess'},
+                            },
+                        ],
                     },
                 ],
             },

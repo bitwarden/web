@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body" *ngIf="cipher">
-                <div class="row" *ngIf="!editMode">
+                <div class="row" *ngIf="!editMode && !viewOnly">
                     <div class="col-6 form-group">
                         <label for="type">{{'whatTypeOfItem' | i18n}}</label>
                         <select id="type" name="Type" [(ngModel)]="cipher.type" class="form-control"
@@ -22,12 +22,12 @@
                     <div class="col-6 form-group">
                         <label for="name">{{'name' | i18n}}</label>
                         <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="cipher.name"
-                            required [disabled]="cipher.isDeleted">
+                            required [disabled]="cipher.isDeleted || viewOnly">
                     </div>
                     <div class="col-6 form-group" *ngIf="!organization">
                         <label for="folder">{{'folder' | i18n}}</label>
                         <select id="folder" name="FolderId" [(ngModel)]="cipher.folderId" class="form-control" 
-                            [disabled]="cipher.isDeleted">
+                            [disabled]="cipher.isDeleted || viewOnly">
                             <option *ngFor="let f of folders" [ngValue]="f.id">{{f.name}}</option>
                         </select>
                     </div>
@@ -39,7 +39,7 @@
                             <label for="loginUsername">{{'username' | i18n}}</label>
                             <div class="input-group">
                                 <input id="loginUsername" class="form-control" type="text" name="Login.Username"
-                                    [(ngModel)]="cipher.login.username" appInputVerbatim [disabled]="cipher.isDeleted">
+                                    [(ngModel)]="cipher.login.username" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                                 <div class="input-group-append" *ngIf="!cipher.isDeleted">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyUsername' | i18n}}"
@@ -52,7 +52,7 @@
                         <div class="col-6 form-group">
                             <div class="d-flex">
                                 <label for="loginPassword">{{'password' | i18n}}</label>
-                                <div class="ml-auto d-flex" *ngIf="!cipher.isDeleted">
+                                <div class="ml-auto d-flex" *ngIf="!cipher.isDeleted && !viewOnly">
                                     <a href="#" class="d-block mr-2" appStopClick
                                         appA11yTitle="{{'generatePassword' | i18n}}" (click)="generatePassword()"
                                         *ngIf="cipher.viewPassword">
@@ -72,7 +72,7 @@
                                 <input id="loginPassword" class="form-control text-monospace"
                                     type="{{showPassword ? 'text' : 'password'}}" name="Login.Password"
                                     [(ngModel)]="cipher.login.password" appInputVerbatim autocomplete="new-password"
-                                    [disabled]="cipher.isDeleted || !cipher.viewPassword">
+                                    [disabled]="cipher.isDeleted || !cipher.viewPassword || viewOnly">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword()"
@@ -94,7 +94,7 @@
                         <div class="col-6 form-group">
                             <label for="loginTotp">{{'authenticatorKeyTotp' | i18n}}</label>
                             <input id="loginTotp" type="{{cipher.viewPassword ? 'text' : 'password'}}" name="Login.Totp" class="form-control text-monospace"
-                                [(ngModel)]="cipher.login.totp" appInputVerbatim [disabled]="cipher.isDeleted || !cipher.viewPassword">
+                                [(ngModel)]="cipher.login.totp" appInputVerbatim [disabled]="cipher.isDeleted || !cipher.viewPassword || viewOnly">
                         </div>
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
@@ -137,7 +137,7 @@
                                 <label for="loginUri{{i}}">{{'uriPosition' | i18n : (i + 1)}}</label>
                                 <div class="input-group">
                                     <input class="form-control" id="loginUri{{i}}" type="text"
-                                        name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" [disabled]="cipher.isDeleted"
+                                        name="Login.Uris[{{i}}].Uri" [(ngModel)]="u.uri" [disabled]="cipher.isDeleted || viewOnly"
                                         placeholder="{{'ex' | i18n}} https://google.com" appInputVerbatim>
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
@@ -166,19 +166,19 @@
                                 <div class="d-flex">
                                     <select class="form-control" id="loginUriMatch{{i}}" name="Login.Uris[{{i}}].Match"
                                         [(ngModel)]="u.match" (change)="loginUriMatchChanged(u)" 
-                                        [disabled]="cipher.isDeleted">
+                                        [disabled]="cipher.isDeleted || viewOnly">
                                         <option *ngFor="let o of uriMatchOptions" [ngValue]="o.value">{{o.name}}
                                         </option>
                                     </select>
                                     <button type="button" class="btn btn-link text-danger ml-2" (click)="removeUri(u)"
-                                        appA11yTitle="{{'remove' | i18n}}" *ngIf="!cipher.isDeleted">
+                                        appA11yTitle="{{'remove' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
                                         <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </ng-container>
-                    <a href="#" appStopClick (click)="addUri()" class="d-inline-block mb-3" *ngIf="!cipher.isDeleted">
+                    <a href="#" appStopClick (click)="addUri()" class="d-inline-block mb-3" *ngIf="!cipher.isDeleted && !viewOnly">
                         <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{'newUri' | i18n}}
                     </a>
                 </ng-container>
@@ -189,12 +189,12 @@
                             <label for="cardCardholderName">{{'cardholderName' | i18n}}</label>
                             <input id="cardCardholderName" class="form-control" type="text"
                                 name="Card.CardCardholderName" [(ngModel)]="cipher.card.cardholderName"
-                                [disabled]="cipher.isDeleted">
+                                [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-6 form-group">
                             <label for="cardBrand">{{'brand' | i18n}}</label>
                             <select id="cardBrand" class="form-control" name="Card.Brand"
-                                [(ngModel)]="cipher.card.brand" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.card.brand" [disabled]="cipher.isDeleted || viewOnly">
                                 <option *ngFor="let o of cardBrandOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -204,7 +204,7 @@
                             <label for="cardNumber">{{'number' | i18n}}</label>
                             <div class="input-group">
                                 <input id="cardNumber" class="form-control" type="text" name="Card.Number"
-                                    [(ngModel)]="cipher.card.number" appInputVerbatim [disabled]="cipher.isDeleted">
+                                    [(ngModel)]="cipher.card.number" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyNumber' | i18n}}"
@@ -217,7 +217,7 @@
                         <div class="col form-group">
                             <label for="cardExpMonth">{{'expirationMonth' | i18n}}</label>
                             <select id="cardExpMonth" class="form-control" name="Card.ExpMonth"
-                                [(ngModel)]="cipher.card.expMonth" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.card.expMonth" [disabled]="cipher.isDeleted || viewOnly">
                                 <option *ngFor="let o of cardExpMonthOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -225,7 +225,7 @@
                             <label for="cardExpYear">{{'expirationYear' | i18n}}</label>
                             <input id="cardExpYear" class="form-control" type="text" name="Card.ExpYear"
                                 [(ngModel)]="cipher.card.expYear" placeholder="{{'ex' | i18n}} 2019" 
-                                [disabled]="cipher.isDeleted">
+                                [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
@@ -235,7 +235,7 @@
                                 <input id="cardCode" class="form-control text-monospace"
                                     type="{{showCardCode ? 'text' : 'password'}}" name="Card.Code"
                                     [(ngModel)]="cipher.card.code" appInputVerbatim autocomplete="new-password"
-                                    [disabled]="cipher.isDeleted">
+                                    [disabled]="cipher.isDeleted || viewOnly">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()"
@@ -259,7 +259,7 @@
                         <div class="col-4 form-group">
                             <label for="idTitle">{{'title' | i18n}}</label>
                             <select id="idTitle" class="form-control" name="Identity.Title"
-                                [(ngModel)]="cipher.identity.title" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.title" [disabled]="cipher.isDeleted || viewOnly">
                                 <option *ngFor="let o of identityTitleOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -268,107 +268,107 @@
                         <div class="col-4 form-group">
                             <label for="idFirstName">{{'firstName' | i18n}}</label>
                             <input id="idFirstName" class="form-control" type="text" name="Identity.FirstName"
-                                [(ngModel)]="cipher.identity.firstName" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.firstName" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idMiddleName">{{'middleName' | i18n}}</label>
                             <input id="idMiddleName" class="form-control" type="text" name="Identity.MiddleName"
-                                [(ngModel)]="cipher.identity.middleName" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.middleName" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idLastName">{{'lastName' | i18n}}</label>
                             <input id="idLastName" class="form-control" type="text" name="Identity.LastName"
-                                [(ngModel)]="cipher.identity.lastName" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.lastName" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idUsername">{{'username' | i18n}}</label>
                             <input id="idUsername" class="form-control" type="text" name="Identity.Username"
-                                [(ngModel)]="cipher.identity.username" appInputVerbatim [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.username" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idCompany">{{'company' | i18n}}</label>
                             <input id="idCompany" class="form-control" type="text" name="Identity.Company"
-                                [(ngModel)]="cipher.identity.company" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.company" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4 form-group">
                             <label for="idSsn">{{'ssn' | i18n}}</label>
                             <input id="idSsn" class="form-control" type="text" name="Identity.SSN"
-                                [(ngModel)]="cipher.identity.ssn" appInputVerbatim [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.ssn" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idPassportNumber">{{'passportNumber' | i18n}}</label>
                             <input id="idPassportNumber" class="form-control" type="text" name="Identity.PassportNumber"
-                                [(ngModel)]="cipher.identity.passportNumber" appInputVerbatim [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.passportNumber" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-4 form-group">
                             <label for="idLicenseNumber">{{'licenseNumber' | i18n}}</label>
                             <input id="idLicenseNumber" class="form-control" type="text" name="Identity.LicenseNumber"
-                                [(ngModel)]="cipher.identity.licenseNumber" appInputVerbatim [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.licenseNumber" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idEmail">{{'email' | i18n}}</label>
                             <input id="idEmail" class="form-control" type="text" name="Identity.Email"
-                                [(ngModel)]="cipher.identity.email" appInputVerbatim [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.email" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idPhone">{{'phone' | i18n}}</label>
                             <input id="idPhone" class="form-control" type="text" name="Identity.Phone"
-                                [(ngModel)]="cipher.identity.phone" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.phone" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idAddress1">{{'address1' | i18n}}</label>
                             <input id="idAddress1" class="form-control" type="text" name="Identity.Address1"
-                                [(ngModel)]="cipher.identity.address1" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.address1" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idAddress2">{{'address2' | i18n}}</label>
                             <input id="idAddress2" class="form-control" type="text" name="Identity.Address2"
-                                [(ngModel)]="cipher.identity.address2" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.address2" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idAddress3">{{'address3' | i18n}}</label>
                             <input id="idAddress3" class="form-control" type="text" name="Identity.Address3"
-                                [(ngModel)]="cipher.identity.address3" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.address3" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idCity">{{'cityTown' | i18n}}</label>
                             <input id="idCity" class="form-control" type="text" name="Identity.City"
-                                [(ngModel)]="cipher.identity.city" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.city" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idState">{{'stateProvince' | i18n}}</label>
                             <input id="idState" class="form-control" type="text" name="Identity.State"
-                                [(ngModel)]="cipher.identity.state" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.state" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-6 form-group">
                             <label for="idPostalCode">{{'zipPostalCode' | i18n}}</label>
                             <input id="idPostalCode" class="form-control" type="text" name="Identity.PostalCode"
-                                [(ngModel)]="cipher.identity.postalCode" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.postalCode" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="idCountry">{{'country' | i18n}}</label>
                             <input id="idCountry" class="form-control" type="text" name="Identity.Country"
-                                [(ngModel)]="cipher.identity.country" [disabled]="cipher.isDeleted">
+                                [(ngModel)]="cipher.identity.country" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                 </ng-container>
                 <div class="form-group">
                     <label for="notes">{{'notes' | i18n}}</label>
-                    <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes" [disabled]="cipher.isDeleted"
+                    <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes" [disabled]="cipher.isDeleted || viewOnly"
                         class="form-control"></textarea>
                 </div>
                 <h3 class="mt-4">{{'customFields' | i18n}}</h3>
@@ -383,14 +383,14 @@
                                 </a>
                             </div>
                             <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
-                                class="form-control" appInputVerbatim [disabled]="cipher.isDeleted">
+                                class="form-control" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                         <div class="col-7 form-group">
                             <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
                             <div class="d-flex align-items-center">
                                 <div class="input-group" *ngIf="f.type === fieldType.Text">
                                     <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
-                                        [(ngModel)]="f.value" appInputVerbatim [disabled]="cipher.isDeleted">
+                                        [(ngModel)]="f.value" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'copyValue' | i18n}}"
@@ -403,7 +403,7 @@
                                     <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
                                         name="Field.Value{{i}}" [(ngModel)]="f.value"
                                         class="form-control text-monospace" appInputVerbatim
-                                        autocomplete="new-password" [disabled]="cipher.isDeleted || (!cipher.viewPassword && !f.newField)">
+                                        autocomplete="new-password" [disabled]="cipher.isDeleted || viewOnly || (!cipher.viewPassword && !f.newField)">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary"
                                             appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
@@ -423,24 +423,24 @@
                                 <div class="flex-fill">
                                     <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
                                         [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
-                                        trueValue="true" falseValue="false" [disabled]="cipher.isDeleted">
+                                        trueValue="true" falseValue="false" [disabled]="cipher.isDeleted || viewOnly">
                                 </div>
                                 <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
-                                    appA11yTitle="{{'remove' | i18n}}" *ngIf="!cipher.isDeleted">
+                                    appA11yTitle="{{'remove' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
                                     <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-link text-muted cursor-move"
-                                    appA11yTitle="{{'dragToSort' | i18n}}" *ngIf="!cipher.isDeleted">
+                                    appA11yTitle="{{'dragToSort' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
                                     <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2" *ngIf="!cipher.isDeleted">
+                <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2" *ngIf="!cipher.isDeleted && !viewOnly">
                     <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{'newCustomField' | i18n}}
                 </a>
-                <div class="row" *ngIf="!cipher.isDeleted">
+                <div class="row" *ngIf="!cipher.isDeleted && !viewOnly">
                     <div class="col-5">
                         <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
                         <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
@@ -455,7 +455,7 @@
                             <label for="organizationId">{{'whoOwnsThisItem' | i18n}}</label>
                             <select id="organizationId" class="form-control" name="OrganizationId"
                                 [(ngModel)]="cipher.organizationId" (change)="organizationChanged()"
-                                [disabled]="cipher.isDeleted">
+                                [disabled]="cipher.isDeleted || viewOnly">
                                 <option *ngFor="let o of ownershipOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
@@ -469,7 +469,7 @@
                     <ng-container *ngIf="collections && collections.length">
                         <div class="form-check" *ngFor="let c of collections; let i = index">
                             <input class="form-check-input" type="checkbox" [(ngModel)]="c.checked"
-                                id="collection-{{i}}" name="Collection[{{i}}].Checked" [disabled]="cipher.isDeleted">
+                                id="collection-{{i}}" name="Collection[{{i}}].Checked" [disabled]="cipher.isDeleted || viewOnly">
                             <label class="form-check-label" for="collection-{{i}}">{{c.name}}</label>
                         </div>
                     </ng-container>
@@ -493,21 +493,21 @@
                         <div class="ml-3" *ngIf="viewingPasswordHistory">
                             <div *ngFor="let ph of cipher.passwordHistory">
                                 {{ph.lastUsedDate | date:'short'}} -
-                                <span class="text-monospace ml-2">{{ph.password}}</span>
+                                <span class="password-wrapper text-monospace ml-2">{{ph.password}}</span>
                             </div>
                         </div>
                     </div>
                 </ng-container>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading" *ngIf="!viewOnly">
                     <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{(cipher?.isDeleted ? 'restore' : 'save') | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                    {{'cancel' | i18n}}
+                    {{(viewOnly ? 'close' : 'cancel') | i18n}}
                 </button>
-                <div class="ml-auto" *ngIf="cipher">
+                <div class="ml-auto" *ngIf="cipher && !viewOnly">
                     <button *ngIf="!organization && !cipher.isDeleted" type="button" (click)="toggleFavorite()" class="btn btn-link"
                         appA11yTitle="{{(cipher.favorite ? 'unfavorite' : 'favorite') | i18n}}">
                         <i class="fa fa-lg" [ngClass]="{'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite}"
