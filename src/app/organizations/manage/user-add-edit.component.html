@@ -79,22 +79,15 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="font-weight-bold mb-0">Manager Permissions</label>
-                                <hr class="my-0 mr-2"/>
+                                <hr class="my-0 mr-2" />
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="manageAssignedCollections" id="manageAssignedCollections" 
-                                            [(ngModel)]="manageAssignedCollections">
-                                        <label class="form-check-label font-weight-normal" for="manageAssignedCollections">
+                                        <input class="form-check-input" type="checkbox" name="manageAssignedCollections"
+                                            id="manageAssignedCollections"
+                                            [(ngModel)]="permissions.manageAssignedCollections">
+                                        <label class="form-check-label font-weight-normal"
+                                            for="manageAssignedCollections">
                                             {{'manageAssignedCollections' | i18n}}
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-0">
-                                    <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="viewUsers" id="viewUsers" 
-                                            [(ngModel)]="viewUsers">
-                                        <label class="form-check-label font-weight-normal" for="viewUsers">
-                                            {{'viewUsers' | i18n}}
                                         </label>
                                     </div>
                                 </div>
@@ -103,11 +96,11 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="font-weight-bold mb-0">Admin Permissions</label>
-                                <hr class="my-0 mr-2"/>
+                                <hr class="my-0 mr-2" />
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="accessBusinessPortal" id="accessBusinessPortal" 
-                                            [(ngModel)]="accessBusinessPortal">
+                                        <input class="form-check-input" type="checkbox" name="accessBusinessPortal"
+                                            id="accessBusinessPortal" [(ngModel)]="permissions.accessBusinessPortal">
                                         <label class="form-check-label font-weight-normal" for="accessBusinessPortal">
                                             {{'accessBusinessPortal' | i18n}}
                                         </label>
@@ -115,8 +108,8 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="accessEventLogs" id="accessEventLogs" 
-                                            [(ngModel)]="accessEventLogs">
+                                        <input class="form-check-input" type="checkbox" name="accessEventLogs"
+                                            id="accessEventLogs" [(ngModel)]="permissions.accessEventLogs">
                                         <label class="form-check-label font-weight-normal" for="accessEventLogs">
                                             {{'accessEventLogs' | i18n}}
                                         </label>
@@ -124,8 +117,8 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="accessImportExport" id="accessImportExport" 
-                                            [(ngModel)]="accessImportExport">
+                                        <input class="form-check-input" type="checkbox" name="accessImportExport"
+                                            id="accessImportExport" [(ngModel)]="permissions.accessImportExport">
                                         <label class="form-check-label font-weight-normal" for="accessImportExport">
                                             {{'accessImportExport' | i18n}}
                                         </label>
@@ -133,8 +126,8 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="accessReports" id="accessReports" 
-                                            [(ngModel)]="accessReports">
+                                        <input class="form-check-input" type="checkbox" name="accessReports"
+                                            id="accessReports" [(ngModel)]="permissions.accessReports">
                                         <label class="form-check-label font-weight-normal" for="accessReports">
                                             {{'accessReports' | i18n}}
                                         </label>
@@ -142,8 +135,8 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="manageAllCollections" id="manageAllCollections" 
-                                            [(ngModel)]="manageAllCollections">
+                                        <input class="form-check-input" type="checkbox" name="manageAllCollections"
+                                            id="manageAllCollections" [(ngModel)]="permissions.manageAllCollections">
                                         <label class="form-check-label font-weight-normal" for="manageAllCollections">
                                             {{'manageAllCollections' | i18n}}
                                         </label>
@@ -151,8 +144,8 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="manageGroups" id="manageGroups" 
-                                            [(ngModel)]="manageGroups">
+                                        <input class="form-check-input" type="checkbox" name="manageGroups"
+                                            id="manageGroups" [(ngModel)]="permissions.manageGroups">
                                         <label class="form-check-label font-weight-normal" for="manageGroups">
                                             {{'manageGroups' | i18n}}
                                         </label>
@@ -160,8 +153,17 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="managePolicies" id="managePolicies" 
-                                            [(ngModel)]="managePolicies">
+                                        <input class="form-check-input" type="checkbox" name="manageSso"
+                                            id="managePolicies" [(ngModel)]="permissions.manageSso">
+                                        <label class="form-check-label font-weight-normal" for="manageSso">
+                                            {{'manageSso' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="managePolicies"
+                                            id="managePolicies" [(ngModel)]="permissions.managePolicies">
                                         <label class="form-check-label font-weight-normal" for="managePolicies">
                                             {{'managePolicies' | i18n}}
                                         </label>
@@ -169,8 +171,8 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="manageUsers" id="manageUsers" 
-                                            [(ngModel)]="manageUsers">
+                                        <input class="form-check-input" type="checkbox" name="manageUsers"
+                                            id="manageUsers" [(ngModel)]="permissions.manageUsers">
                                         <label class="form-check-label font-weight-normal" for="manageUsers">
                                             {{'manageUsers' | i18n}}
                                         </label>

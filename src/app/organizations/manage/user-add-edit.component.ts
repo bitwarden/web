@@ -23,14 +23,13 @@ import { CollectionDetailsResponse } from 'jslib/models/response/collectionRespo
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
-
-import { PermissionsInterface } from 'jslib/models/interfaces/permissions';
+import { PermissionsApi } from 'jslib/models/api/permissionsApi';
 
 @Component({
     selector: 'app-user-add-edit',
     templateUrl: 'user-add-edit.component.html',
 })
-export class UserAddEditComponent implements OnInit, PermissionsInterface {
+export class UserAddEditComponent implements OnInit {
     @Input() name: string;
     @Input() organizationUserId: string;
     @Input() organizationId: string;
@@ -42,15 +41,7 @@ export class UserAddEditComponent implements OnInit, PermissionsInterface {
     title: string;
     emails: string;
     type: OrganizationUserType = OrganizationUserType.User;
-    accessBusinessPortal: boolean;
-    accessEventLogs: boolean;
-    accessImportExport: boolean;
-    accessReports: boolean;
-    manageAllCollections: boolean;
-    manageAssignedCollections: boolean;
-    manageGroups: boolean;
-    managePolicies: boolean;
-    manageUsers: boolean;
+    permissions = new PermissionsApi();
     showCustom = false;
     access: 'all' | 'selected' = 'selected';
     collections: CollectionView[] = [];
@@ -78,15 +69,7 @@ export class UserAddEditComponent implements OnInit, PermissionsInterface {
                 this.access = user.accessAll ? 'all' : 'selected';
                 this.type = user.type;
                 if (user.type === OrganizationUserType.Custom) {
-                    this.accessBusinessPortal = user.accessBusinessPortal;
-                    this.accessEventLogs = user.accessEventLogs;
-                    this.accessImportExport = user.accessImportExport;
-                    this.accessReports = user.accessReports;
-                    this.manageAllCollections = user.manageAllCollections;
-                    this.manageAssignedCollections = user.manageAssignedCollections;
-                    this.manageGroups = user.manageGroups;
-                    this.managePolicies = user.managePolicies;
-                    this.manageUsers = user.manageUsers;
+                    this.permissions = user.permissions;
                 }
                 if (user.collections != null && this.collections != null) {
                     user.collections.forEach((s) => {
@@ -124,35 +107,38 @@ export class UserAddEditComponent implements OnInit, PermissionsInterface {
         this.collections.forEach((c) => this.check(c, select));
     }
 
-    setRequestPermissions<T extends PermissionsInterface>(o: T, clearPermissions: boolean): T {
-        o.accessBusinessPortal = clearPermissions ?
+    setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
+        p.accessBusinessPortal = clearPermissions ?
             false :
-            this.accessBusinessPortal;
-        o.accessEventLogs = this.accessEventLogs = clearPermissions ?
+            this.permissions.accessBusinessPortal;
+        p.accessEventLogs = this.permissions.accessEventLogs = clearPermissions ?
             false :
-            this.accessEventLogs;
-        o.accessImportExport = clearPermissions ?
+            this.permissions.accessEventLogs;
+        p.accessImportExport = clearPermissions ?
             false :
-            this.accessImportExport;
-        o.accessReports = clearPermissions ?
+            this.permissions.accessImportExport;
+        p.accessReports = clearPermissions ?
             false :
-            this.accessReports;
-        o.manageAllCollections = clearPermissions ?
+            this.permissions.accessReports;
+        p.manageAllCollections = clearPermissions ?
             false :
-            this.manageAllCollections;
-        o.manageAssignedCollections = clearPermissions ?
+            this.permissions.manageAllCollections;
+        p.manageAssignedCollections = clearPermissions ?
             false :
-            this.manageAssignedCollections;
-        o.manageGroups = clearPermissions ?
+            this.permissions.manageAssignedCollections;
+        p.manageGroups = clearPermissions ?
             false :
-            this.manageGroups;
-        o.managePolicies = clearPermissions ?
+            this.permissions.manageGroups;
+        p.manageSso = clearPermissions ?
             false :
-            this.managePolicies;
-        o.manageUsers = clearPermissions ?
+            this.permissions.manageSso;
+        p.managePolicies = clearPermissions ?
             false :
-            this.manageUsers;
-        return o;
+            this.permissions.managePolicies;
+        p.manageUsers = clearPermissions ?
+            false :
+            this.permissions.manageUsers;
+        return p;
     }
 
     async submit() {
@@ -164,19 +150,19 @@ export class UserAddEditComponent implements OnInit, PermissionsInterface {
 
         try {
             if (this.editMode) {
-                let request = new OrganizationUserUpdateRequest();
+                const request = new OrganizationUserUpdateRequest();
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
                 request.collections = collections;
-                request = this.setRequestPermissions(request, request.type !== OrganizationUserType.Custom);
+                request.permissions = this.setRequestPermissions(request.permissions ?? new PermissionsApi(), request.type !== OrganizationUserType.Custom);
                 this.formPromise = this.apiService.putOrganizationUser(this.organizationId, this.organizationUserId,
                     request);
             } else {
-                let request = new OrganizationUserInviteRequest();
+                const request = new OrganizationUserInviteRequest();
                 request.emails = this.emails.trim().split(/\s*,\s*/);
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
-                request = this.setRequestPermissions(request, request.type !== OrganizationUserType.Custom);
+                request.permissions = this.setRequestPermissions(request.permissions ?? new PermissionsApi(), request.type !== OrganizationUserType.Custom);
                 request.collections = collections;
                 this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }

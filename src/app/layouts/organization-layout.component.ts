@@ -117,7 +117,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
             case this.organization.canManageAssignedCollections || this.organization.canManageAllCollections:
                 route = 'manage/collections';
                 break;
-            case this.organization.manageGroups:
+            case this.organization.canManageGroups:
                 route = 'manage/groups';
                 break;
             case this.organization.canManagePolicies:
