@@ -143,7 +143,7 @@ export class SendComponent implements OnInit {
         }
 
         try {
-            this.actionPromise = this.apiService.putSendRemovePassword(s.id);
+            this.actionPromise = this.sendService.removePasswordWithServer(s.id);
             await this.actionPromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t('removedPassword'));
             await this.load();
@@ -164,7 +164,7 @@ export class SendComponent implements OnInit {
         }
 
         try {
-            this.actionPromise = this.apiService.deleteSend(s.id);
+            this.actionPromise = this.sendService.deleteWithServer(s.id);
             await this.actionPromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedSend'));
             await this.load();
