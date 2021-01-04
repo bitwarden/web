@@ -25,6 +25,12 @@
                         </button>
                     </div>
                 </div>
+                <div class="card-body" *ngIf="!loading && unavailable">
+                    {{'sendAccessUnavailable' | i18n}}
+                </div>
+                <div class="card-body" *ngIf="!loading && error">
+                    {{'unexpectedError' | i18n}}
+                </div>
                 <div class="card-body" *ngIf="!loading && !passwordRequired && send">
                     <p class="text-center"><b>{{send.name}}</b></p>
                     <hr>
@@ -33,7 +39,7 @@
                         <app-callout *ngIf="send.text.hidden" type="tip">{{'sendHiddenByDefault' | i18n}}</app-callout>
                         <div class="form-group">
                             <textarea id="text" rows="8" name="Text" [(ngModel)]="sendText" class="form-control"
-                                readonly (click)="selectText()"></textarea>
+                                readonly></textarea>
                         </div>
                         <button class="btn btn-block btn-link" type="button" (click)="toggleText()"
                             *ngIf="send.text.hidden">
