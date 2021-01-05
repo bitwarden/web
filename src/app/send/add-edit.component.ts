@@ -48,14 +48,30 @@ export class AddEditComponent {
     deletePromise: Promise<any>;
     sendType = SendType;
     typeOptions: any[];
+    deletionDateOptions: any[];
+    expirationDateOptions: any[];
+    deletionDateSelect = 168;
+    expirationDateSelect: number = null;
 
     constructor(private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        private apiService: ApiService, private environmentService: EnvironmentService,
-        private datePipe: DatePipe, private sendService: SendService) {
+        private environmentService: EnvironmentService, private datePipe: DatePipe,
+        private sendService: SendService) {
         this.typeOptions = [
             { name: i18nService.t('sendTypeFile'), value: SendType.File },
             { name: i18nService.t('sendTypeText'), value: SendType.Text },
         ];
+        this.deletionDateOptions = this.expirationDateOptions = [
+            { name: i18nService.t('oneHour'), value: 1 },
+            { name: i18nService.t('oneDay'), value: 24 },
+            { name: i18nService.t('days', '2'), value: 48 },
+            { name: i18nService.t('days', '3'), value: 72 },
+            { name: i18nService.t('days', '7'), value: 168 },
+            { name: i18nService.t('days', '30'), value: 720 },
+            { name: i18nService.t('custom'), value: 0 },
+        ];
+        this.expirationDateOptions = [
+            { name: i18nService.t('never'), value: null }
+        ].concat([...this.deletionDateOptions]);
     }
 
     async ngOnInit() {
@@ -88,10 +104,8 @@ export class AddEditComponent {
         this.hasPassword = this.send.password != null && this.send.password.trim() !== '';
 
         // Parse dates
-        this.deletionDate = this.send.deletionDate == null ? null :
-            this.datePipe.transform(this.send.deletionDate, 'yyyy-MM-ddTHH:mm');
-        this.expirationDate = this.send.expirationDate == null ? null :
-            this.datePipe.transform(this.send.expirationDate, 'yyyy-MM-ddTHH:mm');
+        this.deletionDate = this.dateToString(this.send.deletionDate);
+        this.expirationDate = this.dateToString(this.send.expirationDate);
 
         if (this.editMode) {
             let webVaultUrl = this.environmentService.getWebVaultUrl();
@@ -127,6 +141,20 @@ export class AddEditComponent {
             }
         }
 
+        if (!this.editMode) {
+            const now = new Date();
+            if (this.deletionDateSelect > 0) {
+                const d = new Date();
+                d.setHours(now.getHours() + this.deletionDateSelect);
+                this.deletionDate = this.dateToString(d);
+            }
+            if (this.expirationDateSelect != null && this.expirationDateSelect > 0) {
+                const d = new Date();
+                d.setHours(now.getHours() + this.expirationDateSelect);
+                this.expirationDate = this.dateToString(d);
+            }
+        }
+
         const encSend = await this.encryptSend(file);
         try {
             this.formPromise = this.sendService.saveWithServer(encSend);
@@ -158,7 +186,7 @@ export class AddEditComponent {
         }
 
         try {
-            this.deletePromise = this.apiService.deleteSend(this.send.id);
+            this.deletePromise = this.sendService.deleteWithServer(this.send.id);
             await this.deletePromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedSend'));
             await this.load();
@@ -167,9 +195,7 @@ export class AddEditComponent {
     }
 
     protected async loadSend(): Promise<Send> {
-        const response = await this.apiService.getSend(this.sendId);
-        const data = new SendData(response);
-        return new Send(data);
+        return this.sendService.get(this.sendId);
     }
 
     protected async encryptSend(file: File): Promise<[Send, ArrayBuffer]> {
@@ -188,5 +214,9 @@ export class AddEditComponent {
         }
 
         return sendData;
+    }
+
+    protected dateToString(d: Date) {
+        return d == null ? null : this.datePipe.transform(d, 'yyyy-MM-ddTHH:mm');
     }
 }
