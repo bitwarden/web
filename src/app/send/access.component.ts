@@ -37,6 +37,8 @@ export class AccessComponent implements OnInit {
     formPromise: Promise<SendAccessResponse>;
     password: string;
     showText = false;
+    unavailable = false;
+    error = false;
 
     private id: string;
     private key: string;
@@ -93,10 +95,6 @@ export class AccessComponent implements OnInit {
         this.downloading = false;
     }
 
-    selectText() {
-        (document.getElementById('text') as HTMLInputElement).select();
-    }
-
     copyText() {
         this.platformUtilsService.copyToClipboard(this.send.text.text);
         this.platformUtilsService.showToast('success', null,
@@ -108,6 +106,8 @@ export class AccessComponent implements OnInit {
     }
 
     async load() {
+        this.unavailable = false;
+        this.error = false;
         const keyArray = Utils.fromUrlB64ToArray(this.key);
         const accessRequest = new SendAccessRequest();
         if (this.password != null) {
@@ -131,6 +131,10 @@ export class AccessComponent implements OnInit {
             if (e instanceof ErrorResponse) {
                 if (e.statusCode === 401) {
                     this.passwordRequired = true;
+                } else if (e.statusCode === 404) {
+                    this.unavailable = true;
+                } else {
+                    this.error = true;
                 }
             }
         }

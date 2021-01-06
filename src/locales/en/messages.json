@@ -3348,8 +3348,21 @@
   "removePasswordConfirmation": {
     "message": "Are you sure you want to remove the password?"
   },
+  "disableThisSend": {
+    "message": "Disable this Send so that no one can access it.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "allSends": {
     "message": "All Sends"
+  },
+  "maxAccessCountReached": {
+    "message": "Max access count reached"
+  },
+  "pendingDeletion": {
+    "message": "Pending deletion"
+  },
+  "expired": {
+    "message": "Expired"
   },
   "searchSends": {
     "message": "Search Sends",
@@ -3369,6 +3382,10 @@
   },
   "downloadFile": {
     "message": "Download File"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
     "message": "There are no Sends to list.",
@@ -3426,10 +3443,10 @@
     "message": "Time required before automatically granting access."
   },
   "oneDay": {
-    "message": "1 Day"
+    "message": "1 day"
   },
   "days": {
-    "message": "$DAYS$ Days",
+    "message": "$DAYS$ days",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3581,5 +3598,8 @@
   },
   "disableRequireSsoError": {
     "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "custom": {
+    "message": "Custom"
   }
 }
