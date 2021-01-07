@@ -10,19 +10,18 @@ import { Component } from '@angular/core';
 
 import { SendType } from 'jslib/enums/sendType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SendService } from 'jslib/abstractions/send.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { SendView } from 'jslib/models/view/sendView';
 import { SendFileView } from 'jslib/models/view/sendFileView';
 import { SendTextView } from 'jslib/models/view/sendTextView';
 
 import { Send } from 'jslib/models/domain/send';
-
-import { SendData } from 'jslib/models/data/sendData';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 
 @Component({
     selector: 'app-send-add-edit',
@@ -52,10 +51,13 @@ export class AddEditComponent {
     expirationDateOptions: any[];
     deletionDateSelect = 168;
     expirationDateSelect: number = null;
+    canAccessPremium = true;
+    premiumRequiredAlertShown = false;
 
     constructor(private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
         private environmentService: EnvironmentService, private datePipe: DatePipe,
-        private sendService: SendService) {
+        private sendService: SendService, private userService: UserService,
+        private messagingService: MessagingService) {
         this.typeOptions = [
             { name: i18nService.t('sendTypeFile'), value: SendType.File },
             { name: i18nService.t('sendTypeText'), value: SendType.Text },
@@ -85,6 +87,11 @@ export class AddEditComponent {
             this.title = this.i18nService.t('editSend');
         } else {
             this.title = this.i18nService.t('createSend');
+        }
+
+        this.canAccessPremium = await this.userService.canAccessPremium();
+        if (!this.canAccessPremium) {
+            this.type = SendType.Text;
         }
 
         if (this.send == null) {
@@ -192,6 +199,13 @@ export class AddEditComponent {
             await this.load();
             this.onDeletedSend.emit(this.send);
         } catch { }
+    }
+
+    typeChanged() {
+        if (!this.canAccessPremium && this.send.type == SendType.File && !this.premiumRequiredAlertShown) {
+            this.premiumRequiredAlertShown = true;
+            this.messagingService.send('premiumRequired');
+        }
     }
 
     protected async loadSend(): Promise<Send> {
