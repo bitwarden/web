@@ -12,6 +12,7 @@ import { SendType } from 'jslib/enums/sendType';
 
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SendService } from 'jslib/abstractions/send.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -21,7 +22,6 @@ import { SendFileView } from 'jslib/models/view/sendFileView';
 import { SendTextView } from 'jslib/models/view/sendTextView';
 
 import { Send } from 'jslib/models/domain/send';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
 
 @Component({
     selector: 'app-send-add-edit',
