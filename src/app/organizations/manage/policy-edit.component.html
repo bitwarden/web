@@ -36,7 +36,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="enabled" [(ngModel)]="enabled"
                             name="Enabled">
-                        <label class="form-check-label" for="enabled">{{'enabled' | i18n}}</label>
+                        <label class="form-check-label" for="enabled">{{getCheckboxDesc()}}</label>
                     </div>
                 </div>
                 <ng-container *ngIf="type === policyType.MasterPassword">
