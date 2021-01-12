@@ -69,7 +69,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
             const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
-                if (!this.organization.isAdmin) {
+                if (!this.organization.canManageAllCollections) {
                     await this.syncService.fullSync(false);
                     this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
                         this.ngZone.run(async () => {
@@ -233,7 +233,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.modal = this.collectionsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
 
-        if (this.organization.isAdmin) {
+        if (this.organization.canManageAllCollections) {
             childComponent.collectionIds = cipher.collectionIds;
             childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
         }
@@ -253,7 +253,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = this.editCipher(null);
         component.organizationId = this.organization.id;
         component.type = this.type;
-        if (this.organization.isAdmin) {
+        if (this.organization.canManageAllCollections) {
             component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
         }
         if (this.collectionId != null) {
@@ -296,7 +296,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = this.editCipher(cipher);
         component.cloneMode = true;
         component.organizationId = this.organization.id;
-        if (this.organization.isAdmin) {
+        if (this.organization.canManageAllCollections) {
             component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
         }
         // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value

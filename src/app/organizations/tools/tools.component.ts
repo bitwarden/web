@@ -13,6 +13,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 export class ToolsComponent {
     organization: Organization;
     accessReports = false;
+    loading = true;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
         private messagingService: MessagingService) { }
@@ -23,6 +24,7 @@ export class ToolsComponent {
             // TODO: Maybe we want to just make sure they are not on a free plan? Just compare useTotp for now
             // since all paid plans include useTotp
             this.accessReports = this.organization.useTotp;
+            this.loading = false;
         });
     }
 

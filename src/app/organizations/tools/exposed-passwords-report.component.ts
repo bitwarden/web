@@ -14,12 +14,15 @@ import {
 } from '../../tools/exposed-passwords-report.component';
 
 import { CipherView } from 'jslib/models/view/cipherView';
+import { Cipher } from 'jslib/models/domain/cipher';
 
 @Component({
     selector: 'app-exposed-passwords-report',
     templateUrl: '../../tools/exposed-passwords-report.component.html',
 })
 export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportComponent {
+    manageableCiphers: Cipher[];
+
     constructor(cipherService: CipherService, auditService: AuditService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
         userService: UserService, private route: ActivatedRoute) {
@@ -29,11 +32,16 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
     ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organization = await this.userService.getOrganization(params.organizationId);
+            this.manageableCiphers = await this.cipherService.getAll();
             super.ngOnInit();
         });
     }
 
     getAllCiphers(): Promise<CipherView[]> {
         return this.cipherService.getAllFromApiForOrganization(this.organization.id);
+    }
+
+    canManageCipher(c: CipherView): boolean {
+        return this.manageableCiphers.some(x => x.id === c.id);
     }
 }

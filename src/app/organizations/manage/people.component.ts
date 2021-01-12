@@ -79,7 +79,7 @@ export class PeopleComponent implements OnInit {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
-            if (!organization.isAdmin) {
+            if (!organization.canManageUsers) {
                 this.router.navigate(['../collections'], { relativeTo: this.route });
                 return;
             }

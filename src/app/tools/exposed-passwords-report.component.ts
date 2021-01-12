@@ -61,4 +61,9 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
     protected getAllCiphers(): Promise<CipherView[]> {
         return this.cipherService.getAllDecrypted();
     }
+
+    protected canManageCipher(c: CipherView): boolean {
+        // this will only ever be false from the org view;
+        return true;
+    }
 }

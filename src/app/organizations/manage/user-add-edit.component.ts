@@ -23,6 +23,7 @@ import { CollectionDetailsResponse } from 'jslib/models/response/collectionRespo
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+import { PermissionsApi } from 'jslib/models/api/permissionsApi';
 
 @Component({
     selector: 'app-user-add-edit',
@@ -40,11 +41,17 @@ export class UserAddEditComponent implements OnInit {
     title: string;
     emails: string;
     type: OrganizationUserType = OrganizationUserType.User;
+    permissions = new PermissionsApi();
+    showCustom = false;
     access: 'all' | 'selected' = 'selected';
     collections: CollectionView[] = [];
     formPromise: Promise<any>;
     deletePromise: Promise<any>;
     organizationUserType = OrganizationUserType;
+
+    get customUserTypeSelected(): boolean {
+        return this.type === OrganizationUserType.Custom;
+    }
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
@@ -61,6 +68,9 @@ export class UserAddEditComponent implements OnInit {
                 const user = await this.apiService.getOrganizationUser(this.organizationId, this.organizationUserId);
                 this.access = user.accessAll ? 'all' : 'selected';
                 this.type = user.type;
+                if (user.type === OrganizationUserType.Custom) {
+                    this.permissions = user.permissions;
+                }
                 if (user.collections != null && this.collections != null) {
                     user.collections.forEach((s) => {
                         const collection = this.collections.filter((c) => c.id === s.id);
@@ -97,6 +107,40 @@ export class UserAddEditComponent implements OnInit {
         this.collections.forEach((c) => this.check(c, select));
     }
 
+    setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
+        p.accessBusinessPortal = clearPermissions ?
+            false :
+            this.permissions.accessBusinessPortal;
+        p.accessEventLogs = this.permissions.accessEventLogs = clearPermissions ?
+            false :
+            this.permissions.accessEventLogs;
+        p.accessImportExport = clearPermissions ?
+            false :
+            this.permissions.accessImportExport;
+        p.accessReports = clearPermissions ?
+            false :
+            this.permissions.accessReports;
+        p.manageAllCollections = clearPermissions ?
+            false :
+            this.permissions.manageAllCollections;
+        p.manageAssignedCollections = clearPermissions ?
+            false :
+            this.permissions.manageAssignedCollections;
+        p.manageGroups = clearPermissions ?
+            false :
+            this.permissions.manageGroups;
+        p.manageSso = clearPermissions ?
+            false :
+            this.permissions.manageSso;
+        p.managePolicies = clearPermissions ?
+            false :
+            this.permissions.managePolicies;
+        p.manageUsers = clearPermissions ?
+            false :
+            this.permissions.manageUsers;
+        return p;
+    }
+
     async submit() {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {
@@ -110,6 +154,7 @@ export class UserAddEditComponent implements OnInit {
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
                 request.collections = collections;
+                request.permissions = this.setRequestPermissions(request.permissions ?? new PermissionsApi(), request.type !== OrganizationUserType.Custom);
                 this.formPromise = this.apiService.putOrganizationUser(this.organizationId, this.organizationUserId,
                     request);
             } else {
@@ -117,6 +162,7 @@ export class UserAddEditComponent implements OnInit {
                 request.emails = this.emails.trim().split(/\s*,\s*/);
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
+                request.permissions = this.setRequestPermissions(request.permissions ?? new PermissionsApi(), request.type !== OrganizationUserType.Custom);
                 request.collections = collections;
                 this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }
@@ -148,4 +194,5 @@ export class UserAddEditComponent implements OnInit {
             this.onDeletedUser.emit();
         } catch { }
     }
+
 }
