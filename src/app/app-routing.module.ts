@@ -282,7 +282,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'exportVault',
-                            permissions: [Permissions.AccessImportExport]
+                            permissions: [Permissions.AccessImportExport],
                         },
                     },
                     {
@@ -343,7 +343,7 @@ const routes: Routes = [
                         Permissions.AccessEventLogs,
                         Permissions.ManageGroups,
                         Permissions.ManageUsers,
-                        Permissions.ManagePolicies
+                        Permissions.ManagePolicies,
                     ],
                 },
                 children: [
@@ -358,7 +358,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'collections',
-                            permissions: [Permissions.ManageAssignedCollections, Permissions.ManageAllCollections]
+                            permissions: [Permissions.ManageAssignedCollections, Permissions.ManageAllCollections],
                         },
                     },
                     {
@@ -367,7 +367,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'eventLogs',
-                            permissions: [Permissions.AccessEventLogs]
+                            permissions: [Permissions.AccessEventLogs],
                         },
                     },
                     {
@@ -376,7 +376,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'groups',
-                            permissions: [Permissions.ManageGroups]
+                            permissions: [Permissions.ManageGroups],
                         },
                     },
                     {
@@ -385,7 +385,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'people',
-                            permissions: [Permissions.ManageUsers]
+                            permissions: [Permissions.ManageUsers],
                         },
                     },
                     {
@@ -394,7 +394,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'policies',
-                            permissions: [Permissions.ManagePolicies]
+                            permissions: [Permissions.ManagePolicies],
                         },
                     },
                 ],
