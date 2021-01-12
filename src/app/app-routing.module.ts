@@ -93,8 +93,8 @@ import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 
 import { Permissions } from 'jslib/enums/permissions';
 
-import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
 
 const routes: Routes = [
     {
@@ -265,7 +265,7 @@ const routes: Routes = [
                     {
                         path: '',
                         pathMatch: 'full',
-                        redirectTo: 'import'
+                        redirectTo: 'import',
                     },
                     {
                         path: 'import',
@@ -274,7 +274,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'importData',
                             permissions: [Permissions.AccessImportExport],
-                        }
+                        },
                     },
                     {
                         path: 'export',
@@ -283,7 +283,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'exportVault',
                             permissions: [Permissions.AccessImportExport]
-                        }
+                        },
                     },
                     {
                         path: 'exposed-passwords-report',
@@ -291,7 +291,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'exposedPasswordsReport',
-                            permissions: [Permissions.AccessReports]
+                            permissions: [Permissions.AccessReports],
                         },
                     },
                     {
@@ -300,7 +300,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'inactive2faReport',
-                            permissions: [Permissions.AccessReports]
+                            permissions: [Permissions.AccessReports],
                         },
                     },
                     {
@@ -309,7 +309,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'reusedPasswordsReport',
-                            permissions: [Permissions.AccessReports]
+                            permissions: [Permissions.AccessReports],
                         },
                     },
                     {
@@ -318,7 +318,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'unsecuredWebsitesReport',
-                            permissions: [Permissions.AccessReports]
+                            permissions: [Permissions.AccessReports],
                         },
                     },
                     {
@@ -327,7 +327,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'weakPasswordsReport',
-                            permissions: [Permissions.AccessReports]
+                            permissions: [Permissions.AccessReports],
                         },
                     },
                 ],
@@ -344,13 +344,13 @@ const routes: Routes = [
                         Permissions.ManageGroups,
                         Permissions.ManageUsers,
                         Permissions.ManagePolicies
-                    ]
+                    ],
                 },
                 children: [
                     {
                         path: '',
                         pathMatch: 'full',
-                        redirectTo: 'people'
+                        redirectTo: 'people',
                     },
                     {
                         path: 'collections',
@@ -359,7 +359,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'collections',
                             permissions: [Permissions.ManageAssignedCollections, Permissions.ManageAllCollections]
-                        }
+                        },
                     },
                     {
                         path: 'events',
@@ -368,7 +368,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'eventLogs',
                             permissions: [Permissions.AccessEventLogs]
-                        }
+                        },
                     },
                     {
                         path: 'groups',
@@ -377,7 +377,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'groups',
                             permissions: [Permissions.ManageGroups]
-                        }
+                        },
                     },
                     {
                         path: 'people',
@@ -386,7 +386,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'people',
                             permissions: [Permissions.ManageUsers]
-                        }
+                        },
                     },
                     {
                         path: 'policies',
@@ -395,7 +395,7 @@ const routes: Routes = [
                         data: {
                             titleId: 'policies',
                             permissions: [Permissions.ManagePolicies]
-                        }
+                        },
                     },
                 ],
             },
@@ -428,7 +428,7 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes, {
         useHash: true,
-        paramsInheritanceStrategy: 'always'
+        paramsInheritanceStrategy: 'always',
         /*enableTracing: true,*/
     })],
     exports: [RouterModule],

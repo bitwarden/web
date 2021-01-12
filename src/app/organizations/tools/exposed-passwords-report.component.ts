@@ -29,7 +29,7 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
         super(cipherService, auditService, componentFactoryResolver, messagingService, userService);
     }
 
-    async ngOnInit() {
+    ngOnInit() {
         this.route.parent.parent.params.subscribe(async (params) => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.manageableCiphers = await this.cipherService.getAll();

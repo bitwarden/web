@@ -43,10 +43,10 @@
             </ul>
         </div>
         <div class="ml-auto d-flex align-items-center">
-            <button class="btn btn-primary" (click)="goToEnterprisePortal()" #enterpriseBtn
-                [appApiAction]="enterpriseTokenPromise" *ngIf="showEnterprisePortalButton">
-                <i class="fa fa-bank fa-fw" [hidden]="enterpriseBtn.loading" aria-hidden="true"></i>
-                <i class="fa fa-spinner fa-spin fa-fw" [hidden]="!enterpriseBtn.loading" title="{{'loading' | i18n}}"
+            <button class="btn btn-primary" (click)="goToBusinessPortal()" #businessBtn
+                [appApiAction]="businessTokenPromise" *ngIf="showBusinessPortalButton">
+                <i class="fa fa-bank fa-fw" [hidden]="businessBtn.loading" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin fa-fw" [hidden]="!businessBtn.loading" title="{{'loading' | i18n}}"
                     aria-hidden="true"></i>
                 {{'businessPortal' | i18n}} →
             </button>
