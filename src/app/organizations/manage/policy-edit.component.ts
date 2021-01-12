@@ -172,7 +172,7 @@ export class PolicyEditComponent implements OnInit {
         }
     }
 
-    getCheckboxDesc(): string {
+    get checkboxDesc(): string {
         return this.type === PolicyType.PersonalOwnership ? this.i18nService.t('personalOwnershipCheckboxDesc') :
             this.i18nService.t('enabled');
     }
