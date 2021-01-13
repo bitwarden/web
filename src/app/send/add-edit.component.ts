@@ -17,9 +17,9 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SendService } from 'jslib/abstractions/send.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-import { SendView } from 'jslib/models/view/sendView';
 import { SendFileView } from 'jslib/models/view/sendFileView';
 import { SendTextView } from 'jslib/models/view/sendTextView';
+import { SendView } from 'jslib/models/view/sendView';
 
 import { Send } from 'jslib/models/domain/send';
 
@@ -72,7 +72,7 @@ export class AddEditComponent {
             { name: i18nService.t('custom'), value: 0 },
         ];
         this.expirationDateOptions = [
-            { name: i18nService.t('never'), value: null }
+            { name: i18nService.t('never'), value: null },
         ].concat([...this.deletionDateOptions]);
     }
 
@@ -202,7 +202,7 @@ export class AddEditComponent {
     }
 
     typeChanged() {
-        if (!this.canAccessPremium && this.send.type == SendType.File && !this.premiumRequiredAlertShown) {
+        if (!this.canAccessPremium && this.send.type === SendType.File && !this.premiumRequiredAlertShown) {
             this.premiumRequiredAlertShown = true;
             this.messagingService.send('premiumRequired');
         }

@@ -177,7 +177,7 @@ export class EmergencyAccessComponent implements OnInit {
             details.name || details.email,
             this.i18nService.t('requestAccess'),
             this.i18nService.t('no'),
-            'warning'
+            'warning',
         );
 
         if (!confirmed) {
@@ -198,7 +198,7 @@ export class EmergencyAccessComponent implements OnInit {
             details.name || details.email,
             this.i18nService.t('approve'),
             this.i18nService.t('no'),
-            'warning'
+            'warning',
         );
 
         if (!confirmed) {
