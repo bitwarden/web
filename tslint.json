@@ -57,9 +57,15 @@
     "trailing-comma": [
       true,
       {
-        "multiline": "always",
+        "multiline": {
+          "objects": "always",
+          "arrays": "always",
+          "functions": "ignore",
+          "typeLiterals": "ignore"
+        },
         "singleline": "never"
       }
-    ]
+    ],
+    "arrow-parens": false
   }
 }

@@ -41,7 +41,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         userService: UserService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private folderService: FolderService, private cipherService: CipherService,
-        private syncService: SyncService, private apiService: ApiService, ) {
+        private syncService: SyncService, private apiService: ApiService ) {
         super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
             platformUtilsService, policyService);
     }
