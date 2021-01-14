@@ -1,4 +1,4 @@
-<app-callout [type]="'warning'">
+<app-callout *ngIf="userCanAccessBusinessPortal" [type]="'warning'">
     <p>{{'webPoliciesDeprecationWarning' | i18n}}</p>
     <button type="button" class="btn btn-outline-secondary"
         (click)="goToEnterprisePortal()">{{'businessPortal' | i18n}}</button>

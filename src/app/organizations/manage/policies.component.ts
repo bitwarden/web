@@ -37,12 +37,13 @@ export class PoliciesComponent implements OnInit {
 
     // Remove when removing deprecation warning
     enterpriseTokenPromise: Promise<any>;
+    userCanAccessBusinessPortal = false;
+
     private enterpriseUrl: string;
 
     private modal: ModalComponent = null;
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
-
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
@@ -57,6 +58,7 @@ export class PoliciesComponent implements OnInit {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
+            this.userCanAccessBusinessPortal = organization.canAccessBusinessPortal;
             this.policies = [
                 {
                     name: this.i18nService.t('twoStepLogin'),
