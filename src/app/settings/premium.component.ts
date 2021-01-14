@@ -114,7 +114,17 @@ export class PremiumComponent implements OnInit {
         return this.storageGbPrice * Math.abs(this.additionalStorage || 0);
     }
 
+    get subtotal(): number {
+        return this.premiumPrice + this.additionalStorageTotal;
+    }
+
+    get taxCharges(): number {
+        return this.taxInfoComponent != null && this.taxInfoComponent.taxRate != null ?
+            (this.taxInfoComponent.taxRate / 100) * this.subtotal :
+            0;
+    }
+
     get total(): number {
-        return this.additionalStorageTotal + this.premiumPrice;
+        return (this.subtotal + this.taxCharges) || 0;
     }
 }
