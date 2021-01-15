@@ -74,6 +74,9 @@ export class OrganizationPlansComponent implements OnInit {
         if (!this.selfHosted) {
             const plans = await this.apiService.getPlans();
             this.plans = plans.data;
+            if (this.product === ProductType.Enterprise || this.product === ProductType.Teams) {
+                this.ownedBusiness = true;
+            }
         }
         this.loading = false;
     }
@@ -189,7 +192,8 @@ export class OrganizationPlansComponent implements OnInit {
         if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
             return;
         }
-        this.plan = PlanType.TeamsMonthly;
+        this.product = ProductType.Teams;
+        this.plan = PlanType.TeamsAnnually;
     }
 
     changedCountry() {
