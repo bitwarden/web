@@ -153,11 +153,11 @@ const routes: Routes = [
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'deleteAccount' },
             },
-            {
+            /*{
                 path: 'send/:sendId/:key',
                 component: AccessComponent,
                 data: { title: 'Bitwarden Send' },
-            },
+            },*/
         ],
     },
     {
