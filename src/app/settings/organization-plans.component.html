@@ -229,7 +229,7 @@
             <app-payment [showMethods]="false"></app-payment>
         </ng-container>
         <small class="text-muted font-italic mt-2 d-block" *ngIf="!createOrganization">
-            {{'paymentCharged' | i18n : (interval | i18n) }}</small>
+            {{'paymentCharged' | i18n : (selectedPlanInterval | i18n) }}</small>
     </div>
     <div *ngIf="singleOrgPolicyBlock" class="mt-4">
         <app-callout [type]="'error'">{{'singleOrgBlockCreateMessage' | i18n}}</app-callout>
