@@ -1,6 +1,7 @@
 import {
     Component,
     ComponentFactoryResolver,
+    NgZone,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -19,6 +20,10 @@ import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SendService } from 'jslib/abstractions/send.service';
+
+import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+
+const BroadcasterSubscriptionId = 'SendComponent';
 
 @Component({
     selector: 'app-send',
@@ -49,11 +54,29 @@ export class SendComponent implements OnInit {
 
     constructor(private apiService: ApiService, private sendService: SendService,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private platformUtilsService: PlatformUtilsService, private environmentService: EnvironmentService) { }
+        private platformUtilsService: PlatformUtilsService, private environmentService: EnvironmentService,
+        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     async ngOnInit() {
+        this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
+            this.ngZone.run(async () => {
+                switch (message.command) {
+                    case 'syncCompleted':
+                        if (message.successfully) {
+                            await this.load();
+                        }
+                        break;
+                }
+            });
+        });
+
         await this.load();
     }
+
+    ngOnDestroy() {
+        this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
+    }
+
     async load(filter: (send: SendView) => boolean = null) {
         this.loading = true;
         const sends = await this.sendService.getAllDecrypted();
