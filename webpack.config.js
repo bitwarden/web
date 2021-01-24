@@ -99,6 +99,8 @@ const plugins = [
         { from: './src/favicon.ico' },
         { from: './src/browserconfig.xml' },
         { from: './src/app-id.json' },
+        { from: './src/404.html' },
+        { from: './src/404.css' },
         { from: './src/images', to: 'images' },
         { from: './src/locales', to: 'locales' },
         { from: './src/scripts', to: 'scripts' },
