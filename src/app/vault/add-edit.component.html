@@ -57,12 +57,12 @@
                             <div class="d-flex">
                                 <label for="loginPassword">{{'password' | i18n}}</label>
                                 <div class="ml-auto d-flex" *ngIf="!cipher.isDeleted && !viewOnly">
-                                    <a href="#" class="d-block mr-2" appStopClick
+                                    <a href="#" class="d-block mr-2 fa-icon-above-input" appStopClick
                                         appA11yTitle="{{'generatePassword' | i18n}}" (click)="generatePassword()"
                                         *ngIf="cipher.viewPassword">
                                         <i class="fa fa-lg fa-fw fa-refresh" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#" class="d-block" #checkPasswordBtn appStopClick
+                                    <a href="#" class="d-block fa-icon-above-input" #checkPasswordBtn appStopClick
                                         appA11yTitle="{{'checkPassword' | i18n}}" (click)="checkPassword()"
                                         [appApiAction]="checkPasswordPromise">
                                         <i class="fa fa-lg fa-fw fa-check-circle" [hidden]="checkPasswordBtn.loading"

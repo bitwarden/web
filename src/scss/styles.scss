@@ -315,6 +315,16 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 }
 
+.btn-link {
+    &:focus,
+    &.focus {
+        outline-color: -webkit-focus-ring-color;
+        outline-offset: 1px;
+        outline-style: auto;
+        outline-width: 1px;
+    }
+}
+
 .btn-outline-secondary {
     color: $text-muted;
 
@@ -324,6 +334,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
     &:disabled {
         opacity: 1;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($primary), $primary, 15%), .5);
     }
 }
 
@@ -350,6 +365,17 @@ input[type="search"]::-webkit-search-cancel-button {
             visibility: hidden;
         }
     }
+}
+
+.list-group-item {
+    &:focus,
+    &.focus {
+        z-index: 100;
+    }
+}
+
+.fa-icon-above-input {
+    height: 1.5em;
 }
 
 .table.table-list {
