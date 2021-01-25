@@ -62,7 +62,7 @@
     "message": "Erääntymisaika"
   },
   "securityCode": {
-    "message": "Turvakoodi (CVV)"
+    "message": "Turvakoodi (CVC/CVV)"
   },
   "identityName": {
     "message": "Henkilöllisyyden nimi"
@@ -348,7 +348,7 @@
     "message": "Muokkaa kohdetta"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Näytä kohde"
   },
   "ex": {
     "message": "esim.",
@@ -419,16 +419,16 @@
     "message": "Avaa"
   },
   "newAttachment": {
-    "message": "Lisää uusi liite"
+    "message": "Lisää uusi tiedostoliite"
   },
   "deletedAttachment": {
-    "message": "Poistettiin liite"
+    "message": "Poistettiin tiedostoliite"
   },
   "deleteAttachmentConfirmation": {
     "message": "Haluatko varmasti poistaa liitteen?"
   },
   "attachmentSaved": {
-    "message": "Liite on tallennettiin."
+    "message": "Tiedostoliite tallennettiin."
   },
   "file": {
     "message": "Tiedosto"
@@ -461,7 +461,7 @@
     "message": "Poista kansio"
   },
   "deleteAttachment": {
-    "message": "Poista liite"
+    "message": "Poista tiedostoliite"
   },
   "deleteItemConfirmation": {
     "message": "Haluatko varmasti siirtää kohteen roskakoriin?"
@@ -675,10 +675,10 @@
     "message": "Käytä eri kaksivaiheisen kirjautumisen todennusmenetelmää"
   },
   "insertYubiKey": {
-    "message": "Kytke YubiKey-todennuslaitteesi tietokoneesi USB-porttiin ja paina sen painiketta."
+    "message": "Kytke YubiKey-todennuslaitteesi tietokoneen USB-porttiin ja paina sen painiketta."
   },
   "insertU2f": {
-    "message": "Kytke todennuslaitteesi tietokoneesi USB-porttiin ja jos laitteessa on painike, paina sitä."
+    "message": "Kytke todennuslaitteesi tietokoneen USB-porttiin ja jos laitteessa on painike, paina sitä."
   },
   "loginUnavailable": {
     "message": "Kirjautuminen ei ole käytettävissä"
@@ -794,13 +794,13 @@
     "message": "Varoitus"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Vahvista holvin vienti"
   },
   "exportWarningDesc": {
     "message": "Tämä vienti sisältää holvisi tiedot salaamattomassa muodossa. Sinun ei tulisi säilyttää tai lähettää vietyä tiedostoa suojaamattomien kanavien (kuten sähköpostin) välityksellä. Poista se välittömästi kun sille ei enää ole käyttöä."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Tämä vienti salaa tietosi käyttäjätilisi salausavaimella. Jos joskus uudistat tilisi salausavaimen, on teitojen vienti tehtävä uudelleen, koska et voi enää purkaa nyt viedyn tiedoston salausta."
   },
   "exportMasterPassword": {
     "message": "Syötä pääsalasanasi viedäksesi holvisi tiedot."
@@ -1195,7 +1195,7 @@
     "message": "Jos sinun on lisättävä tai siirrettävä todennus toiseen laitteeseen, löydät alta todennussovelluksesi tarvitseman QR-koodin (tai avaimen)."
   },
   "twoStepDisableDesc": {
-    "message": "Haluatko varmasti poistaa tämän kaksivaiheisen kirjautumisen todennusmenetelmän?"
+    "message": "Haluatko varmasti poistaa kaksivaiheisen kirjautumisen todennusmenetelmän käytöstä?"
   },
   "twoStepDisabled": {
     "message": "Kaksivaiheisen kirjautumisen todennusmenetelmä on poistettu käytöstä."
@@ -1560,7 +1560,7 @@
     "message": "Päivitä tilisi Premium-jäsenyyteen ja avaa joitakin hienoja lisätoimintoja."
   },
   "premiumSignUpStorage": {
-    "message": "1 Gt salattua tallennustilaa liitetiedostoille."
+    "message": "1 Gt salattua tallennustilaa tiedostoliitteille."
   },
   "premiumSignUpTwoStep": {
     "message": "Muita kaksivaiheisen kirjautumisen todennusmenetelmiä kuten YubiKey, FIDO U2F ja Duo Security."
@@ -1669,7 +1669,7 @@
     "message": "Maksutiedot"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Laskutustiedot"
   },
   "creditCard": {
     "message": "Maksukortti"
@@ -2433,7 +2433,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Luotiin liite kohteelle $ID$.",
+    "message": "Luotiin tiedostoliite kohteelle $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2442,7 +2442,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Poistettiin kohteen $ID$ liite.",
+    "message": "Poistettiin kohteen $ID$ tiedostoliite.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2937,17 +2937,17 @@
     "message": "Haluatko varmasti kierrättää tilisi salausavaimen?"
   },
   "attachmentsNeedFix": {
-    "message": "Kohteella on vanhoja liitetiedostoja, jotka on korjattava."
+    "message": "Kohteella on vanhoja tiedostoliitteitä, jotka on korjattava."
   },
   "attachmentFixDesc": {
-    "message": "Vanha liitetiedosto, joka on korjattava. Klikkaa lukeaksesi lisää."
+    "message": "Vanha tiedostoliite, joka on korjattava. Klikkaa lukeaksesi lisää."
   },
   "fix": {
     "message": "Korjaa",
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "Holvissasi on vanhoja liitetidostoja, jotka on korjattava, ennen kuin voit kierrättää tilisi salausavaimen."
+    "message": "Holvissasi on vanhoja tiedostoliitteitä, jotka on korjattava ennen kuin voit uudistaa tilisi salausavaimen."
   },
   "yourAccountsFingerprint": {
     "message": "Tilisi tunnistelauseke",
@@ -3033,7 +3033,7 @@
     "message": "Yksi tai useampi organisaatiokäytäntö vaikuttaa generaattorisi asetuksiin."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "Yksi tai useampi organisaation käytäntö edellyttää, että pääsalasanasi täyttää seuraavat vaatimukset:"
+    "message": "Yksi tai useampi organisaatiokäytäntö edellyttää, että pääsalasanasi täyttää seuraavat vaatimukset:"
   },
   "policyInEffectMinComplexity": {
     "message": "Monimutkaisuuden vähimmäispistemäärä on $SCORE$",
@@ -3072,7 +3072,7 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "Uusi pääsalasanasi ei täytä käytännön vaatimuksia."
+    "message": "Uusi pääsalasanasi ei täytä käytännön määrittämiä vaatimuksia."
   },
   "minimumNumberOfWords": {
     "message": "Sanojen vähimmäismäärä"
@@ -3122,7 +3122,7 @@
     "message": "Poistettiin kohteet pysyvästi"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "Olet valinnut $COUNT$ kohdetta pysyvästi poistettavaksi. Haluatko varmasti poistaa kaikki nämä kohteet pysyvästi?",
+    "message": "Olet valinnut $COUNT$ kohdetta pysyvästi poistettavaksi. Haluatko varmasti poistaa ne kaikki pysyvästi?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3309,7 +3309,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Haluatko varmasti poistaa tämän Sendin?",
+    "message": "Haluatko varmasti poistaa Sendin?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
@@ -3379,10 +3379,10 @@
     "message": "Max access count reached"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Odottaa poistoa"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Vanhentunut"
   },
   "searchSends": {
     "message": "Hae Sendeistä",
@@ -3424,7 +3424,7 @@
     "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Lisää hätäyhteystieto"
   },
   "designatedEmergencyContacts": {
     "message": "Designated as emergency contact"
@@ -3433,40 +3433,40 @@
     "message": "You have not been designated as an emergency contact for anyone yet."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Kutsu hätäyhteystieto"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Muokkaa hätäyhteystietoa"
   },
   "inviteEmergencyContactDesc": {
     "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Hätäkäyttö aloitettu"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Hätäkäyttö sallittu"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Voi tarkastella kaikkia holvisi kohteita."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Haltuunotto"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Voi palauttaa tilisi luomalla uuden pääsalasanan."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Odotusaika"
   },
   "waitTimeDesc": {
     "message": "Time required before automatically granting access."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 päivä"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ päivää",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,7 +3475,7 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Kutsuttu käyttäjä."
   },
   "acceptEmergencyAccess": {
     "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
@@ -3496,7 +3496,7 @@
     "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Pyydä käyttöoikeutta"
   },
   "requestAccessConfirmation": {
     "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
@@ -3517,10 +3517,10 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Salli"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Hylkää"
   },
   "approveAccessConfirmation": {
     "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
@@ -3536,10 +3536,10 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Hätäkäyttö sallittu."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Hätäkäyttö kielletty"
   },
   "passwordResetFor": {
     "message": "Password reset for $USER$. You can now login using the new password.",
@@ -3575,16 +3575,16 @@
     "message": "Plan price"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Arvioitu vero"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Mukautettu"
   },
   "customDesc": {
     "message": "Allows more granular control of user permissions for advanced configurations."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Käyttöoikeudet"
   },
   "accessBusinessPortal": {
     "message": "Access Business Portal"
@@ -3605,16 +3605,16 @@
     "message": "Manage Assigned Collections"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Hallitse ryhmiä"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Hallitse käytäntöjä"
   },
   "manageSso": {
     "message": "Manage SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Käyttäjien hallinta"
   },
   "disableRequireSsoError": {
     "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
