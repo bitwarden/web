@@ -348,7 +348,7 @@
     "message": "Editare articol"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Afișare articol"
   },
   "ex": {
     "message": "ex.",
@@ -794,13 +794,13 @@
     "message": "Avertisment"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Confirmare export seif"
   },
   "exportWarningDesc": {
     "message": "Acest export conține datele dvs. din seif în format necriptat. Nu ar trebui să stocați sau să trimiteți fișierul pe canale nesecurizate (cum ar fi e-mail). Ștergeți-l imediat după ce nu îl mai folosiți."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Acest export criptează datele folosind cheia de criptare a contului. Dacă schimbați vreodată cheia de criptare a contului, ar trebui să o exportați din nou, deoarece nu veți putea decripta acest fișier exportat."
   },
   "exportMasterPassword": {
     "message": "Introducere parolă principală pentru exportarea datelor seifului."
@@ -1669,7 +1669,7 @@
     "message": "Informații de plată"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Informații de facturare"
   },
   "creditCard": {
     "message": "Card de credit"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "SSO deconectat pentru utilizatorul $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "După actualizarea cheii de criptare, trebuie să vă reconectați în toate aplicațiile Bitwarden pe care le utilizați în prezent (cum ar fi aplicația mobilă sau extensiile browserului). Faptul de a nu vă deconecta și reconecta (care descarcă noua cheie de criptare) poate duce la corupția datelor. Vom încerca să vă deconectăm automat, însă ar putea fi întârziat."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Orice export criptat pe care l-ați salvat va deveni, de asemenea, nevalid."
   },
   "subscription": {
     "message": "Abonament"
@@ -3320,32 +3320,32 @@
     "message": "Data ștergerii"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Send-ul va fi șters definitiv la data și ora specificate.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Data expirării"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Dacă este setat, accesul la acest Send va expira la data și ora specificate.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Număr maxim de accesări"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Dacă este setată, utilizatorii nu vor mai putea accesa acest Send după atingerea numărului maxim de acces.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Număr actual de accesări"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Opțional, este necesară o parolă pentru ca utilizatorii să acceseze acest Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Note private despre acest Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Sigur doriți să eliminați parola?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Dezactivați acest Send astfel încât nimeni să nu îl poată accesa.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Toate Send-urile"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "S-a atins numărul maxim de acces"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Ștergere în așteptare"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Expirat"
   },
   "searchSends": {
     "message": "Căutare în Send",
@@ -3404,7 +3404,7 @@
     "message": "Descărcare fișier"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Send-ul pe care încercați să-l accesați nu există sau nu mai este disponibil.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Acces de urgență"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Acordă și gestionează accesul de urgență contactelor de încredere. Contactele de încredere pot solicita accesul fie la vizualizarea fie la preluarea controlului contului dvs. în caz de urgență. Vizitați-ne pagina de ajutor pentru detalii privind modul cum funcționează schimbul zero de cunoștințe."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Contacte de urgență de încredere"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Nu ați adăugat încă niciun contact de urgență, invitați un contact de încredere pentru a începe."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Adăugați un contact de urgență"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Desemnat ca contact de urgență"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Nu ați fost încă desemnat drept contact de urgență pentru nimeni."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Invitați contactul de urgență"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Editați contactul de urgență"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Invitați un nou contact de urgență introducând adresa de e-mail a contului Bitwarden de mai jos. Dacă nu au deja un cont Bitwarden, li se va solicita să creeze un cont nou."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Acces de urgență inițiat"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Acces de urgență aprobat"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Poate vizualiza toate articolele din seiful dvs."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Preluare"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Vă poate reseta contul cu o nouă parolă principală."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Timp de așteptare"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Timp necesar înainte de acordarea automată a accesului."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 zi"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ zile",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Utilizator invitat."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Ați fost invitat să deveniți un contact de urgență pentru utilizatorul listat mai sus. Pentru a accepta invitația, trebuie să vă conectați sau să creați un cont Bitwarden nou."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Invitația nu poate fi acceptată. Solicitați utilizatorului să trimită o nouă invitație."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Invitația nu poate fi acceptată. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Puteți accesa opțiunile de urgență pentru acest utilizator după confirmarea identității dvs. Vă vom trimite un e-mail atunci când se întâmplă acest lucru."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Solicitare de acces"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Sunteți sigur că doriți să solicitați acces de urgență? Vi se va oferi acces după $WAITTIME$ zi(le) sau ori de câte ori utilizatorul aprobă manual solicitarea.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Acces de urgență solicitat pentru $USER$. Vă vom notifica prin e-mail când este posibil să continuați.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Autorizez"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Declin"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Confirmați aprobarea accesului de urgență? Acest lucru va permite lui $USER$ să $ACTION$ contul dvs.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Acces de urgență aprobat."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Acces de urgență respins"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "S-a resetat parola pentru $USER$. Vă puteți conecta acum cu noua parolă.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Proprietate personală"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Solicită utilizatorilor să salveze articolele din seif într-o organizație prin eliminarea opțiunii de proprietate personală."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Proprietarii și administratorii organizației sunt exceptați de la aplicarea acestei politici."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Datorită unei politici pentru întreprinderi, vă este restricționată salvarea de articole în seiful dvs. personal. Schimbați opțiunea de proprietate la o organizație și alegeți dintre colecțiile disponibile."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Politica $ID$ a fost editată.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Prețul planului"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Taxa estimată"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Personalizat"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Permite mai mult control granular al permisiunilor utilizatorilor pentru configurații avansate."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Permisiuni"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Acces la portalul de afaceri"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Acces la jurnalele de evenimente"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Acces la import/export"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Acces la rapoarte"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Gestionați toate colecțiile"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Gestionați colecțiile alocate"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Gestionați grupurile"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Gestionați politicile"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Gestionați SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Gestionați utilizatorii"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Politica de autentificare la conectare unică (SSO) trebuie dezactivată manual înainte ca această politică să poată fi dezactivată."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "O politică de organizație vă afectează opțiunile de proprietate."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Dezactivează proprietatea personală pentru utilizatorii organizației"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Când Send-ul este accesat, ascundeți textul în mod implicit",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

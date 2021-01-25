@@ -348,7 +348,7 @@
     "message": "Editar elemento"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Ver elemento"
   },
   "ex": {
     "message": "ej.",
@@ -794,13 +794,13 @@
     "message": "Advertencia"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Confirmar la exportación de la bóveda"
   },
   "exportWarningDesc": {
     "message": "Esta exportación contiene los datos de tu caja fuerte en un formato no cifrado. No deberías almacenar o enviar el archivo exportado por canales no seguros (como el correo electrónico). Elimínalo inmediatamente cuando termines de utilizarlo."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Esta exportación encripta tus datos usando la clave de cifrado de tu cuenta. Si alguna vez cambias la clave de cifrado de tu cuenta debes volver a exportar, ya que no podrás descifrar este archivo de exportación."
   },
   "exportMasterPassword": {
     "message": "Introduce tu contraseña maestra para exportar la información de tu caja fuerte."
@@ -1669,7 +1669,7 @@
     "message": "Información de pago"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Información de Facturación"
   },
   "creditCard": {
     "message": "Tarjeta de crédito"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "SSO desvinculado para el usuario $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Una vez actualices tu clave de cifrado, será necesario que cierres sesión y vuelvas a identificarte en todas las aplicaciones de Bitwarden que estés utilizando (como la aplicación móvil o la extensión de navegador). Si la reautenticación falla (la cual descargaría la nueva clave de cifrad) puede producirse corrupción de datos. Intentaremos cerrar tu sesión automáticamente, pero puede tardar un tiempo."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Cualquier exportación cifrada que hayas guardado también será inválida."
   },
   "subscription": {
     "message": "Suscripción"
@@ -3320,32 +3320,32 @@
     "message": "Fecha de eliminación"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "El envío se eliminará permanentemente en la fecha y hora especificadas.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Fecha de Expiración"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Si se establece, el acceso a este envío caducará en la fecha y hora especificadas.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Número máximo de accesos"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Si se establece, los usuarios ya no podrán acceder a este envío una vez que se alcance el número máximo de accesos.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Número de accesos actuales"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Opcionalmente se requiere una contraseña para que los usuarios accedan a este Envío.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Notas privadas sobre este Envío.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "¿Está seguro que desea eliminar la contraseña?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Deshabilita este envío para que nadie pueda acceder a él.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Todos los Sends"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Número máximo de accesos alcanzado"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Borrado pendiente"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Caducado"
   },
   "searchSends": {
     "message": "Buscar Sends",
@@ -3404,7 +3404,7 @@
     "message": "Descargar archivo"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "El envío al que está intentando acceder no existe o ya no está disponible.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,13 +3412,13 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Acceso de emergencia"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Conceder y administrar el acceso de emergencia para los contactos de confianza. Los contactos de confianza pueden solicitar acceso a Ver o Tomar su cuenta en caso de emergencia. Visite nuestra página de ayuda para obtener más información y detalles sobre cómo funciona el intercambio de conocimiento cero."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Contactos de emergencia confiables"
   },
   "noTrustedContacts": {
     "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."

@@ -348,7 +348,7 @@
     "message": "Уреди ставку"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Види ставку"
   },
   "ex": {
     "message": "нпр.",
@@ -590,7 +590,7 @@
     "message": "Имејл"
   },
   "yourVaultIsLocked": {
-    "message": "Сеф је блокиран. Проверити главну лозинку за наставак."
+    "message": "Сеф је блокиран. Унесите главну лозинку за наставак."
   },
   "unlock": {
     "message": "Откључај"
@@ -788,19 +788,19 @@
     "message": "Једнократни код"
   },
   "copyVerificationCode": {
-    "message": "Копирај Верификациони код"
+    "message": "Копирај верификациони код"
   },
   "warning": {
     "message": "Упозорење"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Потврдите извоз сефа"
   },
   "exportWarningDesc": {
     "message": "Овај извоз садржи податке сефа у нешифрираном формату. Не бисте смели да сачувате или шаљете извезену датотеку преко несигурних канала (као што је имејл). Избришите датотеку одмах након што завршите са коришћењем."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Овај извоз шифрује податке користећи кључ за шифровање вашег налога. Ако икада промените кључ за шифровање свог налога, требало би да поново извезете, јер нећете моћи да дешифрујете овај извоз."
   },
   "exportMasterPassword": {
     "message": "Унети главну лозинку за извоз сефа."
@@ -893,7 +893,7 @@
     "message": "Молимо вас да се поново пријавите. Ако користите друге Bitwarden апликације, одјавите се и вратите се и на њих."
   },
   "changeMasterPassword": {
-    "message": "Промени Главну Лозинку"
+    "message": "Промени главну лозинку"
   },
   "masterPasswordChanged": {
     "message": "Главна Лозинка промењена"
@@ -1669,7 +1669,7 @@
     "message": "Информације о плаћању"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Информације за обрачун"
   },
   "creditCard": {
     "message": "Кредитна Картица"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "Отповезај SSO за $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Након ажурирања кључа за шифровање, мораћете да се одјавите и вратите у све Bitwarden апликације које тренутно користите (као што су мобилна апликација или додаци прегледача). Ако се не одјавите и поново пријавите (чиме се преузима ваш нови кључ за шифровање), може доћи до оштећења података. Покушаћемо аутоматски да се одјавимо, али може доћи до одлагања."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Сваки шифровани извоз који сте сачували такође ће постати неважећи."
   },
   "subscription": {
     "message": "Претплата"
@@ -2880,7 +2880,7 @@
     "message": "На освежавању прегледача"
   },
   "dateUpdated": {
-    "message": "Ажурирано",
+    "message": "Промењено",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
@@ -3320,32 +3320,32 @@
     "message": "Датум брисања"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "„The Send“ ће бити трајно избрисан наведеног датума и времена.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Датум истека"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Ако је постављено, приступ овом „Send“истиче на наведени датум и време.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Максималан број приступа"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Ако је постављено, корисници више неће моћи да приступе овом „send“ када се достигне максимални број приступа.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Тренутни број приступа"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Опционално захтевајте лозинку за приступ корисницима „Send“-у.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Приватне белешке о овом „Send“.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Да ли сте сигурни да желите уклонити лозинку?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Онемогућите овај „Send“ да нико не би могао да му приступи.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Све „Send“"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Достигнут максималан број приступа"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Брисање на чекању"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Истекло"
   },
   "searchSends": {
     "message": "Тражи „Send“",
@@ -3404,7 +3404,7 @@
     "message": "Преузми датотеку"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "„Send“ које покушавате да приступите не постоји или више није доступан.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Хитан приступ"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Одобрите и управљајте приступ хитним случајевима за поуздане контакте. Поуздани контакти могу затражити приступ приказу или преузимању вашег налога у случају нужде. Посетите нашу страницу за помоћ за више информација и детаља о томе како функционише дељење."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Поуздани контакти за хитне случајеве"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Још нисте додали ниједан контакт за хитне случајеве, позовите поузданог контакта да би започели."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Додати хитан контакт"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Одређен као контакт за хитне случајеве"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Још нисте одређени за контакт за хитне случајеве."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Позовите хитни контакт"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Уредити хитан контакт"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Позовите хитног контакта тако што ћете доле унети имејл његовог Bitwarden налога. Ако немају Bitwarden налог, биће затражено да креирају нови налог."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Покренут хитни приступ"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Одобрен приступ у хитним случајевима"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Може да прегледа све ставке у Вашем сефу."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Преузми"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Може да ресетује налог помоћу нове главне лозинке."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Време чекања"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Потребно време пре аутоматског одобравања приступа."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 дан"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ дана",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Позван корисник."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Позвани сте да будете хитан контакт за наведеног корисника. Да бисте прихватили позивницу, потребно је да се пријавите или направите нови Bitwarden налог."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Није могуће прихватити позивницу. Замолите корисника да пошаље нови позив."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Није могуће прихватити позивницу. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Опцијама за хитне случајеве за овог корисника можете приступити након потврде идентитета. Послаћемо вам имејл када се то догоди."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Захтевај приступ"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Да ли сте сигурни да желите да затражите приступ у хитним случајевима? Приступ ће вам бити омогућен након $WAITTIME$ дана или кад год корисник ручно одобри захтев.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Захтев за хитни приступ за $USER$. Обавестићемо вас имејлом када буде могуће наставити.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Одобри"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Одбиј"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Да ли сте сигурни да желите да одобрите хитни приступ? Ово ће омогућити $USER$ да $ACTION$ ваш рачун.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Одобрен приступ у хитним случајевима."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Одбијен хитни приступ"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Ресетовање лозинке за $USER$. Сада се можете пријавити помоћу нове лозинке.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Лично власништво"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Захтевајте од корисника да сачувају ставке сефа у организацији уклањањем могућности личног власништва."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Власници и администратори организација изузети су ове политике."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Због смерница за предузећа, ограничено вам је чување предмета у вашем личном трезору. Промените опцију власништва у организацију и изаберите из доступних колекција."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Политика $ID$ промењена.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Цена плана"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Процењен ПДВ"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Прилагођен"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Омогућава детаљнију контролу корисничких дозвола за напредне конфигурације."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Дозволе"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Приступите пословном порталу"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Приступе извештаја догађаја"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Приступ Увоз/Извоз"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Приступ извештаја"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Управљање свим колекцијама"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Управљање додељеним колекцијама"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Управљање групама"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Управљање политикама"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Управљај SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Управљај корисницима"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Морате ручно да онемогућите аутентификацију јединствене пријаве пре него што ова политика може да се онемогући."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Политика организације утичу на ваше могућности власништва."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Онемогућите лично власништво за кориснике организације"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "На притуп „Send“-а, сакриј текст по дефаулту",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

@@ -348,7 +348,7 @@
     "message": "編輯項目"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "檢視項目"
   },
   "ex": {
     "message": "例如",
@@ -794,13 +794,13 @@
     "message": "警告"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "確認匯出密碼庫"
   },
   "exportWarningDesc": {
     "message": "您的密碼將匯出成未加密的. csv 檔案。您不應將它存放或經由未經加密的方式傳送（例如電子郵件）。用完後請立即將它刪除。"
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "將使用您帳號的加密金鑰來加密匯出資料，若您更新了帳號的加密金鑰，請重新匯出，才有辦法解密匯出的檔案。"
   },
   "exportMasterPassword": {
     "message": "輸入您的主密碼以匯出密碼庫資料。"
@@ -1669,7 +1669,7 @@
     "message": "付款資訊"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "帳單資訊"
   },
   "creditCard": {
     "message": "信用卡"
@@ -1735,7 +1735,7 @@
     "message": "增加儲存空間"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "減少儲存空間"
   },
   "subscriptionStorage": {
     "message": "您的訂閱方案包含 $MAX_STORAGE$ GB 的加密檔案儲存空間，目前已用 $USED_STORAGE$。",
@@ -1879,7 +1879,7 @@
     "message": "使用者數量"
   },
   "additionalUserSeats": {
-    "message": "Additional User Seats"
+    "message": "額外使用者席位"
   },
   "userSeatsDesc": {
     "message": "# 使用者數"
@@ -2752,11 +2752,11 @@
     "message": "Enter your installation id"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "新增席位",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "移除席位",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -3200,10 +3200,10 @@
     "message": "已更新稅務資訊。"
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "設定主密碼"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+    "message": "請設定用來保護密碼庫的主控密碼以完成 SSO 登入。"
   },
   "identifier": {
     "message": "Identifier"
@@ -3215,13 +3215,13 @@
     "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise Single Sign-On"
+    "message": "企業單一登入（SSO）"
   },
   "ssoHandOff": {
     "message": "您現在可以關閉此分頁，並且回到擴充套件繼續。"
   },
   "businessPortal": {
-    "message": "Business Portal",
+    "message": "企業入口網站",
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
@@ -3379,7 +3379,7 @@
     "message": "Max access count reached"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "等待刪除中"
   },
   "expired": {
     "message": "Expired"
@@ -3418,55 +3418,55 @@
     "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "信任的緊急聯絡人"
   },
   "noTrustedContacts": {
     "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "新增緊急聯絡人"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "已指定為緊急聯絡人"
   },
   "noGrantedAccess": {
     "message": "You have not been designated as an emergency contact for anyone yet."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "邀請緊急聯絡人"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "編輯緊急聯絡人"
   },
   "inviteEmergencyContactDesc": {
     "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "已發動緊急存取"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "已確認緊急存取"
   },
   "viewDesc": {
     "message": "Can view all items in your own vault."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "接管"
   },
   "takeoverDesc": {
     "message": "Can reset your account with a new master password."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "等候時間"
   },
   "waitTimeDesc": {
     "message": "Time required before automatically granting access."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 天"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ 天",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,7 +3475,7 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "已邀請使用者。"
   },
   "acceptEmergencyAccess": {
     "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
@@ -3496,7 +3496,7 @@
     "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "要求存取"
   },
   "requestAccessConfirmation": {
     "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
@@ -3517,10 +3517,10 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "核准"
   },
   "reject": {
-    "message": "Reject"
+    "message": "拒絕"
   },
   "approveAccessConfirmation": {
     "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
@@ -3536,10 +3536,10 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "已核准緊急存取。"
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "已拒絕緊急存取"
   },
   "passwordResetFor": {
     "message": "Password reset for $USER$. You can now login using the new password.",
@@ -3551,7 +3551,7 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "個人擁有權"
   },
   "personalOwnershipPolicyDesc": {
     "message": "Require users to save vault items to an organization by removing the personal ownership option."
@@ -3572,31 +3572,31 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "方案價格"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "估計稅額"
   },
   "custom": {
-    "message": "Custom"
+    "message": "自訂"
   },
   "customDesc": {
     "message": "Allows more granular control of user permissions for advanced configurations."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "權限"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "存取企業入口網站"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "存取事件紀錄"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "存取匯入/匯出"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "存取報告"
   },
   "manageAllCollections": {
     "message": "Manage All Collections"
@@ -3605,13 +3605,13 @@
     "message": "Manage Assigned Collections"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "管理群組"
   },
   "managePolicies": {
     "message": "Manage Policies"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "管理 SSO"
   },
   "manageUsers": {
     "message": "Manage Users"

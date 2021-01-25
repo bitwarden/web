@@ -348,7 +348,7 @@
     "message": "Elem szerkesztése"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Elem megtekintése"
   },
   "ex": {
     "message": "Példa:",
@@ -794,13 +794,13 @@
     "message": "Figyelmeztetés"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Széf export megerősítése"
   },
   "exportWarningDesc": {
     "message": "Ez az exportálás titkosítás nélkül tartalmazza a széfadatokat.Nem célszerű az exportált fájlt nem biztonságos csatornákon tárolni és továbbküldeni (például emailben). A felhasználás után erősen ajánlott a törlés."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Ez az exportálás titkosítja az adatokat a fiók titkosítási kulcsával. Ha valaha a fiók forgatási kulcsa más lesz, akkor újra exportálni kell, mert nem lehet visszafejteni ezt az exportálási fájlt."
   },
   "exportMasterPassword": {
     "message": "A mesterjelszó megadása a széfadatok exportálásához."
@@ -1669,7 +1669,7 @@
     "message": "Fizetési információ"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Számlázási adatok"
   },
   "creditCard": {
     "message": "Hitelkártya"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "SSO szétkapcsolva $ID$ felhasználónál.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "A titkosítási kulcs frissítése után ki kell jelentkezni és vissza kell jelentkezni az összes jelenleg használt Bitwarden alkalmazásba (például a mobilalkalmazás vagy a böngésző bővítmények). A kijelentkezés és a bejelentkezés elmulasztása (amely letölti az új titkosítási kulcsot) adatvesztést okozhat. Megkíséreljük az automatikusan kijelentkeztetést, azonban ez késhet."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Az el nem mentett titkosított exportok szintén érvénytelenné válnak."
   },
   "subscription": {
     "message": "Előfizetés"
@@ -3320,32 +3320,32 @@
     "message": "Törlési dátum"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "A Send véglegesen törölve lesz a meghatározott időpontban.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Lejárati dátum"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Amennyiben be van állítva, a hozzáférés ehhez a Küldéshez lejár a meghatározott időpontban.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Maximális elérési szám"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Amennyiben be van állítva, a Küldés elérhetetlen lesz, amint elérik a meghatározott hozzáférések számát.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Aktuális elérési szám"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Opcionálissan egy jelszó kérhető a felhasználóktól a Küldés eléréséhez.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Személyes megjegyzések erről a Küldésről.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Biztosan eltávolításra kerüljön ez a jelszó?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "A Küldés letiltásával mindenki hozzáférése megvonható.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Összes küldés"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "A maximális hozzáférések száma elérésre került."
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Függőben lévő törlés"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Lejárt"
   },
   "searchSends": {
     "message": "Küldés keresése",
@@ -3404,7 +3404,7 @@
     "message": "Fájl letöltése"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Az elérendő küldés nem létezik vagy már nem elérhető.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Sürgősségi hozzáférés"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Sürgősségi hozzáférés kezelése és megadása megbízható kapcsolatoknál. A megbízható kapcsolatok sürgősségi helyzet esetén hozzáférést kérhetnek a fiókhoz vagy azt átvehetik. A súgó oldalon további információkat és kezdőknek szóló megosztási munkákat kapunk."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Megbízható sürgősségi kapcsolatok"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Még nem adták hozzá sürgősségi kapcsolatokat, hívjunk meg megbízható kapcsolatokat az induláshoz."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Sürgősségi kapcsolat hozzáadása"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Sürgősségi kapcsolatnak kinevezve"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Még senki nem nevezett ki sürgősségi kapcsolatként."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Sürgősségi kapcsolat meghívása"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Sürgősségi kapcsolat szerkesztése"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Új felhasználó meghívása sürgősségi kapcsolatként a Bitwarden fiók email címének megadásával. Ha még nem rendelkezik Bitwarden-fiókkal, felkérjük új fiók létrehozására."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "A sürgősségi hozzáférés kezdeményezésre került."
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "A sürgősségi hozzáférés jóváhagyásra került."
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "A széf valamennyi elemét láthatja."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Átvétel"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Visszaállíthatja a fiók egy új mesterjelszóval."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Várakozási idő"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Szükséges idő az automatikus hozzáférés megadásáig."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 nap"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ nap",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Meghívott felhasználó."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Meghívást érkezett a fenti személytől sürgősségi kapcsolat tekintetében. A meghívás elfogadásához be kell jelentkezni vagy új Bitwarden fiókot kell létrehozni."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "A meghívást nem lehet elfogadni. Kérjük meg a felhasználót új meghívó elküldésére."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "A meghívást nem lehet elfogadni. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "A felhasználó vészhelyzeti beállításai az azonosítás megerősítése után érhető el. Egy email kerül kiküldésre, ha ez megtörténik."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Hozzáférés kérése"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Biztosan sürgősségi hozzáférést szeretnénk kérni? Hozzáférést kapunk $WAITTIME$ nap múlva vagy amikor a felhasználó manuálisan jóváhagyja a kérést.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Sürgősségi hozzáférést kértek $USER$ részére. Emailben értesítés érkezik, ha lehetséges a folytatás.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Jóváhagyás"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Elutasítás"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Biztosan jóváhagyásra kerüljön a sürgősségi hozzáférés? Ez lehetővé teszi, hogy $USER$ számára $ACTION$ végrehajtására a fiókban.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "A vészhelyzeti hozzáférés jóváhagyásra került."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "A vészhelyzeti hozzáférés elutasításra került."
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "A jelszó alaphelyzetbe került $USER$ részére. Most az új jelszóval lehet bejelentkezni.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Személyes tulajdon"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "A személyes tulajdon opciójának eltávolításával megkövetelhetjük a felhasználóktól, hogy széfelemeket mentsenek a egy szervezethez."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "A szervezet tulajdonosai és adminisztrátorai mentesek az irányelv végrehajtása alól."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Egy vállalati házirend miatt korlátozásra került az elemek személyes tárolóba történő mentése. Módosítsuk a Tulajdon opciót egy szervezetre és válasszunk az elérhető gyűjtemények közül."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "$ID$ szabály módosításra került.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Csomagár"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Becsült adó"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Egyedi"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "A fejlett konfigurációk felhasználói engedélyeinek részletesebb ellenőrzését teszi lehetővé."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Jogosultságok"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Üzleti portál elérése"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Eseménynapló elérése"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Exportálás/importálás elérése"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Elérési jelentések"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Összes gyűjtemény kezelése"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Hozzárendelt gyűjtemények kezelése"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Csoportok kezelése"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Szabályok kezelése"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "SSO kezelése"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Felhasználók kezelése"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Manuálisan le kell tiltani az egyszeri bejelentkezés hitelesítési házirendjét mielőtt ez a házirend letiltásra kerülhet."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "A szervezeti házirend befolyásolja a tulajdonosi opciókat."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "A szervezeti felhasználók személyes tulajdon letiltása"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "A Küldés elérésekor alapértelmezés szerint a szöveg elrejtése",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

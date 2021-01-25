@@ -348,7 +348,7 @@
     "message": "编辑项目"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "查看项目"
   },
   "ex": {
     "message": "例如",
@@ -794,13 +794,13 @@
     "message": "警告"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "确认导出密码库"
   },
   "exportWarningDesc": {
     "message": "导出的密码库数据包含未加密格式。您不应该通过不安全的渠道（例如电子邮件）来存储或发送导出的文件。用完后请立即将其删除。"
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "此导出将使用您账户的加密密钥来加密您的数据。 如果您曾经轮换过账户的加密密钥，您应将其重新导出，否则您将无法解密导出的文件。"
   },
   "exportMasterPassword": {
     "message": "输入主密码来导出你的密码库数据。"
@@ -1669,7 +1669,7 @@
     "message": "支付信息"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "账单信息"
   },
   "creditCard": {
     "message": "信用卡"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "为用户 $ID$ 取消链接 SSO。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "更新加密密钥后，您需要登出所有正在使用的 Bitwarden 应用（比如手机版应用或者浏览器扩展）后重新登录。登出失败或者重新登录失败（下载新的加密密钥）可能会导致数据损坏。我们会尝试自动为您登出，但是，可能会有所延迟。"
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "您保存的任何已加密导出也将变为无效。"
   },
   "subscription": {
     "message": "订阅"
@@ -3309,7 +3309,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "确定删除此 Send？",
+    "message": "确定要删除此 Send 吗？",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
@@ -3320,32 +3320,32 @@
     "message": "删除日期"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "此 Send 将在指定的日期和时间后被永久删除。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "到期日期"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "如果设置了，此 Send 的访问将在指定的日期和时间后过期。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "最大访问次数"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "如果设置了，达到最大访问次数后用户将无法访问此 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "当前访问次数"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "可选，用户需要提供密码才能访问此 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "关于此 Send 的私密备注。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "确定移除此密码？"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "禁用此 Send 则没有人能访问它。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "所有 Send"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "已达最大访问次数"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "等待删除"
   },
   "expired": {
-    "message": "Expired"
+    "message": "已过期"
   },
   "searchSends": {
     "message": "搜索 Send",
@@ -3404,7 +3404,7 @@
     "message": "下载文件"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "您尝试访问的 Send 不存在或不再可用。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "紧急访问"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "授予和管理受信任联系人的紧急访问权限。受信任的联系人可以在紧急情况下请求获取查看或接管您账户的权限。查阅我们的帮助页面以了解更多关于零知识共享的工作原理和细节。"
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "可信的紧急联系人"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "您尚未添加任何紧急联系人，请邀请可信的联系人以开始。"
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "添加紧急联系人"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "已指定为紧急联系人"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "您尚未被任何人指定为紧急联系人。"
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "邀请紧急联系人"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "编辑紧急联系人"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "通过在下面输入他们的 Bitwarden 帐户电子邮件地址来邀请新的紧急联系人。 如果他们还没有 Bitwarden 帐户，将提示创建一个新帐户。"
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "紧急访问已发起"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "紧急访问已批准"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "可以查看您拥有的密码库中的所有项目。"
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "接管"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "可以使用新的主密码重置您的帐户。"
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "等待时间"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "自动授予访问权限之前的等待时间。"
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 天"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ 天",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "已邀请用户。"
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "您已被邀请成为上面所列用户的紧急联系人。要接受邀请，您需要登录或创建一个新的 Bitwarden 帐户。"
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "无法接受邀请。请用户发送新的邀请。"
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "无法接受邀请。$DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "身份确认后，您可以访问该用户的紧急选项。当发生这种情况时，我们会向您发送一封电子邮件。"
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "请求访问权限"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "您确定要申请紧急访问吗？这将在 $WAITTIME$ 天后或当用户手动批准请求时获得访问权限。",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "来自 $USER$ 的紧急访问请求。我们将通过电子邮件通知您何时可以继续。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "批准"
   },
   "reject": {
-    "message": "Reject"
+    "message": "拒绝"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "您确定要批准紧急访问吗？这将允许 $USER$  $ACTION$ 您的帐户。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "紧急访问已批准。"
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "紧急访问已拒绝"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "$USER$ 的密码已重置。您现在可以使用新密码登录了。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "个人所有权"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "要求用户通过移除个人所有权选项将密码库项目保存到组织。"
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "组织的所有者和管理员豁免此策略。"
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "由于企业策略，您被限制为保存项目到您的个人密码库。将所有权选项更改为组织，并从可用的集合中选择。"
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "策略 $ID$ 已修改。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "计划价格"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "预计税额"
   },
   "custom": {
-    "message": "Custom"
+    "message": "自定义"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "高级配置允许对用户权限进行更多的粒度控制。"
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "权限"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "访问业务门户"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "访问事件日志"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "访问导入/导出"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "访问报告"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "管理所有集合"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "管理已分配的集合"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "管理群组"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "管理策略"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "管理 SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "管理用户"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "您必须手动禁用单点登录认证策略，然后才能禁用此政策。"
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "组织策略正在影响您的所有权选项。"
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "为组织用户禁用个人所有权"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "访问 Send 时，默认将隐藏文本",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

@@ -348,7 +348,7 @@
     "message": "Επεξεργασία Στοιχείου"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Προβολή Στοιχείου"
   },
   "ex": {
     "message": "πχ.",
@@ -794,13 +794,13 @@
     "message": "Προειδοποίηση"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Επιβεβαίωση εξαγωγής Vault"
   },
   "exportWarningDesc": {
     "message": "Αυτή η εξαγωγή περιέχει τα δεδομένα σε μη κρυπτογραφημένη μορφή. Δεν πρέπει να αποθηκεύετε ή να στείλετε το εξαγόμενο αρχείο μέσω μη ασφαλών τρόπων (όπως μέσω email). Διαγράψτε το αμέσως μόλις τελειώσετε με τη χρήση του."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Αυτή η εξαγωγή κρυπτογραφεί τα δεδομένα σας χρησιμοποιώντας το κλειδί κρυπτογράφησης του λογαριασμού σας. Εάν ποτέ περιστρέψετε το κλειδί κρυπτογράφησης του λογαριασμού σας, θα πρέπει να κάνετε εξαγωγή ξανά, καθώς δεν θα μπορείτε να αποκρυπτογραφήσετε αυτό το αρχείο εξαγωγής."
   },
   "exportMasterPassword": {
     "message": "Πληκτρολογήστε τον κύριο κωδικό για εξαγωγή των δεδομένων vault."
@@ -1669,7 +1669,7 @@
     "message": "Πληροφορίες Πληρωμής"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Πληροφορίες Χρέωσης"
   },
   "creditCard": {
     "message": "Πιστωτική Κάρτα"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "Αποσυνδεδεμένο SSO για το χρήστη $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Μετά την ενημέρωση του κλειδιού κρυπτογράφησης, πρέπει να αποσυνδεθείτε και να επιστρέψετε σε όλες τις εφαρμογές Bitwarden που χρησιμοποιείτε αυτήν τη στιγμή (όπως η εφαρμογή για κινητά ή οι επεκτάσεις του προγράμματος περιήγησης). Η αποτυχία αποσύνδεσης και επαναφοράς (στην οποία γίνεται λήψη του νέου κλειδιού κρυπτογράφησης) ενδέχεται να προκαλέσει καταστροφή δεδομένων. Θα προσπαθήσουμε να αποσυνδεθείτε αυτόματα, ωστόσο αυτό μπορεί να καθυστερήσει."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Οποιεσδήποτε κρυπτογραφημένες εξαγωγές που έχετε αποθηκεύσει θα είναι επίσης άκυρες."
   },
   "subscription": {
     "message": "Συνδρομή"
@@ -3320,32 +3320,32 @@
     "message": "Ημερομηνία διαγραφής"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Το Send θα διαγραφεί οριστικά την καθορισμένη ημερομηνία και ώρα.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Ημερομηνία Λήξης"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Εάν οριστεί, η πρόσβαση σε αυτό το Send θα λήξει την καθορισμένη ημερομηνία και ώρα.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Μέγιστος Αριθμός Πρόσβασης"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Εάν οριστεί, οι χρήστες δεν θα μπορούν πλέον να έχουν πρόσβαση σε αυτό το send μόλις επιτευχθεί ο μέγιστος αριθμός πρόσβασης.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Τρέχων Αριθμός Πρόσβασης"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Προαιρετικά απαιτείται κωδικός πρόσβασης για τους χρήστες για να έχουν πρόσβαση σε αυτό το Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Ιδιωτικές σημειώσεις σχετικά με αυτό το Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε τον κωδικό πρόσβασης;"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Απενεργοποιήστε αυτό το Send έτσι ώστε κανείς να μην μπορεί να έχει πρόσβαση σε αυτό.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Όλα τα Sends"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Φτάσατε στον μέγιστο αριθμό πρόσβασης"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Εκκρεμεί διαγραφή"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Έληξε"
   },
   "searchSends": {
     "message": "Αναζήτηση Sends",
@@ -3404,7 +3404,7 @@
     "message": "Λήψη Αρχείου"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Το Send που προσπαθείτε να αποκτήσετε πρόσβαση, δεν υπάρχει ή δεν είναι πλέον διαθέσιμο.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Πρόσβαση Έκτακτης Ανάγκης"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Εκχώρηση και διαχείριση πρόσβασης έκτακτης ανάγκης για αξιόπιστες επαφές. Οι επαφές εμπίστευσης μπορούν να ζητήσουν πρόσβαση είτε στην Προβολή είτε στην ανάληψη του λογαριασμού σας σε περίπτωση έκτακτης ανάγκης. Επισκεφθείτε τη σελίδα βοήθειας μας για περισσότερες πληροφορίες και λεπτομέρειες σχετικά με το πώς λειτουργεί o μηδενικός διαμοιρασμός πληροφοριών."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Έμπιστες επαφές έκτακτης ανάγκης"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Δεν έχετε προσθέσει ακόμη επαφές έκτακτης ανάγκης, προσκαλέστε μια αξιόπιστη επαφή για να ξεκινήσετε."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Προσθήκη επαφής έκτακτης ανάγκης"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Χαρακτηρίστηκε ως επαφή έκτακτης ανάγκης"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Δεν έχετε ορίσει ως επαφή έκτακτης ανάγκης για κανέναν ακόμα."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Πρόσκληση επαφής έκτακτης ανάγκης"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Επεξεργασία επαφής έκτακτης ανάγκης"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Προσκαλέστε μια νέα επαφή έκτακτης ανάγκης, εισάγοντας την διεύθυνση email τους, του λογαριασμού Bitwarden, παρακάτω. Εάν δεν έχουν ήδη λογαριασμό Bitwarden, θα τους ζητηθεί να δημιουργήσουν ένα νέο λογαριασμό."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Έναρξη Πρόσβασης Έκτακτης Ανάγκης"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Εγκεκριμένη Πρόσβαση Έκτακτης Ανάγκης"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Μπορείτε να δείτε όλα τα στοιχεία, στο δικό σας vault."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Ανάληψη"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Μπορείτε να επαναφέρετε το λογαριασμό σας με ένα νέο κύριο κωδικό πρόσβασης."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Χρόνος Αναμονής"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Χρόνος που απαιτείται πριν από την αυτόματη χορήγηση πρόσβασης."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 ημέρα"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ ημέρες",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Προσκεκλημένος χρήστης."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Έχετε προσκληθεί να γίνετε μια επαφή έκτακτης ανάγκης για τον χρήστη που αναφέρεται παραπάνω. Για να αποδεχτείτε την πρόσκληση, πρέπει να συνδεθείτε ή να δημιουργήσετε ένα νέο λογαριασμό Bitwarden."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Αδυναμία αποδοχής πρόσκλησης. Ζητήστε από τον χρήστη να στείλει μια νέα πρόσκληση."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Δεν είναι δυνατή η αποδοχή πρόσκλησης. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Μπορείτε να αποκτήσετε πρόσβαση στις επιλογές έκτακτης ανάγκης για αυτόν τον χρήστη μετά την επιβεβαίωση της ταυτότητας σας. Θα σας στείλουμε ένα email όταν συμβεί αυτό."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Αίτηση Πρόσβασης"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Είστε βέβαιοι ότι θέλετε να ζητήσετε πρόσβαση έκτακτης ανάγκης? Θα σας δοθεί η πρόσβαση μετά από $WAITTIME$ ημέρα(ες) ή όποτε ο χρήστης εγκρίνει χειροκίνητα το αίτημα.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Ζητήθηκε πρόσβαση έκτακτης ανάγκης για το $USER$. Θα σας ειδοποιήσουμε με email όταν είναι εφικτό να συνεχίσετε.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Έγκριση"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Απόρριψη"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Είστε βέβαιοι ότι θέλετε να εγκρίνετε την πρόσβαση έκτακτης ανάγκης? Αυτό θα επιτρέψει στο $USER$ να $ACTION$ το λογαριασμό σας.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Η πρόσβαση έκτακτης ανάγκης εγκρίθηκε."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Η πρόσβαση έκτακτης ανάγκης απορρίφθηκε"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Επαναφορά κωδικού πρόσβασης για το $USER$. Τώρα μπορείτε να συνδεθείτε χρησιμοποιώντας το νέο κωδικό πρόσβασης.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Προσωπική Ιδιοκτησία"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Απαιτείται από τους χρήστες να αποθηκεύσουν στοιχεία vault σε έναν οργανισμό, αφαιρώντας την επιλογή προσωπικής ιδιοκτησίας."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Οι κάτοχοι και οι διαχειριστές του οργανισμού εξαιρούνται από την εφαρμογή αυτής της πολιτικής."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Λόγω μιας Πολιτικής Επιχειρήσεων, δεν επιτρέπεται η αποθήκευση στοιχείων στο προσωπικό σας vault. Αλλάξτε την επιλογή Ιδιοκτησίας σε έναν οργανισμό και επιλέξτε από τις διαθέσιμες Συλλογές."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Τροποποιημένη πολιτική $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Τιμή Πακέτου"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Εκτιμώμενος φόρος"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Προσαρμοσμένο"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Επιτρέπει πιο κοκκώδη έλεγχο, των δικαιωμάτων χρήστη για προηγμένες ρυθμίσεις."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Άδειες"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Πρόσβαση Στην Επιχειρηματική Πύλη"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Αρχείο Καταγραφής Πρόσβασης"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Πρόσβαση Εισαγωγή/Εξαγωγή"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Αναφορές Πρόσβασης"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Διαχείριση Όλων Των Συλλογών"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Διαχείριση Αντιστοιχισμένων Συλλογών"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Διαχείριση Ομάδων"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Διαχείριση Πολιτικών"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Διαχείριση SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Διαχείριση Χρηστών"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Πρέπει να απενεργοποιήσετε χειροκίνητα την πολιτική ελέγχου ταυτότητας μιας σύνδεσης πριν αυτή η πολιτική μπορεί να απενεργοποιηθεί."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Μια πολιτική οργάνωσης επηρεάζει τις επιλογές ιδιοκτησίας σας."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Απενεργοποίηση προσωπικής ιδιοκτησίας για χρήστες οργανισμού"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Κατά την πρόσβαση στην αποστολή, απόκρυψη του κειμένου από προεπιλογή",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
