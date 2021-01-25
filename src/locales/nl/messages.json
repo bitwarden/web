@@ -348,7 +348,7 @@
     "message": "Item bewerken"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Item weergeven"
   },
   "ex": {
     "message": "bijv.",
@@ -794,13 +794,13 @@
     "message": "Waarschuwing"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Kluisexport bevestigen"
   },
   "exportWarningDesc": {
     "message": "Deze export bevat jouw kluisgegevens in een niet-versleutelde opmaak. Je moet het geëxporteerde bestand niet opslaan of verzenden over onbeveiligde kanalen (zoals e-mail). Verwijder het exportbestand direct na gebruik."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Deze export versleutelt je gegevens met de encryptiesleutel van je account. Als je je encryptiesleutel verandert moet je opnieuw exporteren, omdat je deze export dan niet meer kunt ontcijferen."
   },
   "exportMasterPassword": {
     "message": "Voer je hoofdwachtwoord in om de kluisgegevens te exporteren."
@@ -1669,7 +1669,7 @@
     "message": "Betaalgegevens"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Factureringsgegevens"
   },
   "creditCard": {
     "message": "Creditcard"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "SSO ontkoppeld voor gebruiker $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Na het bijwerken van je encryptiesleutel moet je je afmelden en weer aanmelden bij alle Bitwarden-applicaties die je gebruikt (zoals de mobiele app of browserextensies). Als je niet opnieuw inlogt (wat je nieuwe encryptiesleutel downloadt), kan dit gegevensbeschadiging tot gevolg hebben. We proberen je automatisch uit te loggen, maar het kan zijn dat dit met enige vertraging gebeurt."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Elke versleutelde export die je hebt bewaard wordt onbruikbaar."
   },
   "subscription": {
     "message": "Abonnement"
@@ -3320,32 +3320,32 @@
     "message": "Verwijderingsdatum"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Deze Send wordt definitief verwijderd op de aangegeven datum en tijd.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Vervaldatum"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Als dit is ingesteld verloopt deze Send op een specifieke datum en tijd.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Maximum toegangsaantal"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Als dit is ingesteld kunnen gebruikers deze Send niet meer benaderen zodra het maximale aantal toegang is bereikt.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Huidige toegangsaantal"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Vereis een wachtwoord voor gebruikers om deze Send te benaderen (optioneel).",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Privénotities over deze Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Weet je zeker dat je dit wachtwoord wilt verwijderen?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Schakel deze Send uit zodat niemand 'm kan benaderen.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Alle Sends"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Maximum aantal keren benaderd"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Wordt verwijderd"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Verlopen"
   },
   "searchSends": {
     "message": "Sends zoeken",
@@ -3404,7 +3404,7 @@
     "message": "Bestand downloaden"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "De Send die je probeert te benaderen bestaat niet of is niet langer beschikbaar.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Noodtoegang"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Verleen en beheer noodtoegang voor vertrouwde contacten. Vertrouwde contacten kunnen toegang vragen tot het bekijken of overnemen van je account in noodgevallen. Bezoek onze helppagina voor meer informatie en details over de werking van \"zero knowledge sharing\"."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Vertrouwde noodcontacten"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Je hebt nog geen noodcontacten, nodig een vertrouwde contactpersoon uit om te beginnen."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Noodcontact toevoegen"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Aangewezen als noodcontact"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Je bent nog door niemand aangewezen als noodcontact."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Noodcontact uitnodigen"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Noodcontact bewerken"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Nodig een nieuw noodcontact uit door hieronder het e-mailadres van hun Bitwarden-e-mailadres in te vullen. Als ze nog geen Bitwarden-account hebben, krijgen ze de mogelijkheid direct een account aan te maken."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Noodtoegang geïnitieerd"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Noodtoegang goedgekeurd"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Kan alle items in je eigen kluis bekijken."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Overnemen"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Kan je een nieuw hoofdwachtwoord instellen op je account."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Wachttijd"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Verstreken tijd voor het automatisch verlenen van toegang."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 dag"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ dagen",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Uitgenodigde gebruiker."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Je bent uitgenodigd als noodcontact voor bovenstaande gebruiker. Om de uitnodiging te accepteren, moet je inloggen of een nieuw Bitwarden-account aanmaken."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Kon de uitnodiging niet accepteren. Vraag de gebruiker om een nieuwe uitnodiging te versturen."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Kon de uitnodiging niet accepteren. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Je kunt de instellingen voor noodtoegang van deze gebruiker benaderen zodraje identiteit is bevestigd. We sturen je een e-mail wanneer dat is gebeurd."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Toegang vragen"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Weet je zeker dat je noodtoegang wilt vragen? Je krijgt toegang na $WAITTIME$ dag(en) of zodra de gebruiker de aanvraag handmatig goedkeurt.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Noodtoegang aangevraagd voor $USER$. We brengen je per e-mail op de hoogte wanneer je verder kunt.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Goedkeuren"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Afwijzen"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Weet u zeker dat u toegang tot noodgevallen wilt goedkeuren? Hiermee kan $USER$ op je account $ACTION$.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Noodtoegang goedgekeurd."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Noodtoegang afgewezen"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Wachtwoord opnieuw ingesteld voor $USER$. Je kunt nu inloggen met het nieuwe wachtwoord.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Persoonlijk eigendom"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Verplicht gebruikers kluisitems op te slaan in een organisatie door de persoonlijke eigendomsoptie te verwijderen."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Eigenaren en beheerders van de organisatie zijn vrijgesteld van de handhaving van dit beleid."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Wegens bedrijfsbeleid mag je geen wachtwoorden opslaan in je persoonlijke kluis. Verander het eigenaarschap naar een organisatie en kies uit een van de beschikbare collecties."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Bewerkt beleid $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Prijs"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Geschatte belasting"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Aangepast"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Maakt een fijnmazige controle van gebruikersrechten voor geavanceerde configuraties mogelijk."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Rechten"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Business Portaal"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Eventlogs"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Importeren/exporteren"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Rapporten"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Alle verbindingen beheren"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Toegewezen collecties beheren"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Groepen beheren"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Beleid beheren"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "SSO beheren"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Gebruikers beheren"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Je moet handmatig het Single Sign-On-verificatiebeleid uitschakelen voordat je dit beleid kunt uitgeschakeld."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Een organisatiebeleid heeft invloed op je eigendomsopties."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Schakel persoonlijke eigendom uit voor organisatiegebruikers"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Verberg de tekst standaard bij het gebruiken van de Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
