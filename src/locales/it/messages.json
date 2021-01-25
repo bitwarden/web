@@ -348,7 +348,7 @@
     "message": "Modifica Elemento"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Visualizza elemento"
   },
   "ex": {
     "message": "es.",
@@ -794,13 +794,13 @@
     "message": "Attenzione"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Conferma esportazione della Cassaforte"
   },
   "exportWarningDesc": {
     "message": "Questa esportazione contiene i dati della cassaforte in un formato non criptato. Non archiviare o inviare il file esportato su canali non protetti (come la posta elettronica). Eliminalo immediatamente dopo aver finito di usarlo."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Questa esportazione cifra i tuoi dati utilizzando la chiave di crittografia del tuo account. Se cambi la chiave di crittografia del tuo account, non sarai più in grado di decifrare il file esportato e sarà necessario eseguire nuovo export."
   },
   "exportMasterPassword": {
     "message": "Inserisci la tua password principale per esportare i dati della tua cassaforte."
@@ -1669,7 +1669,7 @@
     "message": "Informazioni sul pagamento"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Dati di fatturazione"
   },
   "creditCard": {
     "message": "Carta di credito"
@@ -2073,10 +2073,10 @@
     "message": "Persone"
   },
   "policies": {
-    "message": "Politiche"
+    "message": "Policy"
   },
   "editPolicy": {
-    "message": "Modifica politica"
+    "message": "Modifica policy"
   },
   "groups": {
     "message": "Gruppi"
@@ -2388,7 +2388,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Politica $ID$ modificata.",
+    "message": "Policy $ID$ modificata.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "SSO scollegato per l'utente $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Dopo aver aggiornato la chiave di crittografia, verrà richiesto di disconnettersi e connettersi in tutte le applicazioni Bitwarden che stai utilizzando (come l'applicazione mobile o l'estensione del browser). Non effettuando la disconnessione e la riconnessione (per scaricare la nuova chiave di crittografia) potrà risultare in dati corrotti, Cercheremo di disconnetterti automaticamente, ma potrà esserci un ritardo."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Anche le esportazioni cifrate che hai salvato non saranno più valide."
   },
   "subscription": {
     "message": "Abbonamento"
@@ -3030,7 +3030,7 @@
     "message": "Imposta i requisiti minimi per la configurazione del generatore di password."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "Una o più politiche dell'organizzazione stanno influenzando le impostazioni del tuo generatore."
+    "message": "Una o più policy dell'organizzazione controllano le impostazioni del tuo generatore."
   },
   "masterPasswordPolicyInEffect": {
     "message": "La password principale deve avere i seguenti requisiti, stabiliti da una o più regole dell'organizzazione:"
@@ -3320,32 +3320,32 @@
     "message": "Data di eliminazione"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Il Send sarà definitivamente eliminato alla data e all'ora specificate.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Data di scadenza"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Se impostato, l'accesso a questo Send scadrà alla data e all'ora specificate.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Numero massimo di accessi"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Se impostato, gli utenti non saranno più in grado di accedere a questo Send una volta raggiunto il numero massimo di accessi.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Conteggio accessi corrente"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Facoltativamente, richiedi una password agli utenti per accedere al Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Note private sul Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Sei sicuro di voler rimuovere la password?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Disabilità il Send per renderlo inaccessibile.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Tutti i Send"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Numero massimo di accessi raggiunto"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "In attesa di eliminazione"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Scaduto"
   },
   "searchSends": {
     "message": "Cerca Send",
@@ -3404,7 +3404,7 @@
     "message": "Scarica File"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Il Send a cui stai provando ad accedere non esiste o non è più disponibile.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Accesso di Emergenza"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Concedi e gestisci l'accesso di emergenza per un contatto fidato. I contatti fidati possono richiede di ereditare l'account o accedere in sola lettura in caso di emergenza. Visita la nostra pagina di aiuto per maggiori informazioni e dettagli."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Contatti di emergenza fidati"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Non hai ancora aggiunto nessun contatto di emergenza, invita un contatto fidato per iniziare."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Aggiungi contatto di emergenza"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Designato come contatto di emergenza"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Non sei ancora stato designato come contatto di emergenza."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Invita contatto di emergenza"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Modifica contatto di emergenza"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Invita un nuovo contatto di emergenza digitando il suo account email di Bitwarden. Se non ha ancora un account Bitwarden, gli verrà chiesto di crearne uno nuovo."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Accesso di emergenza avviato"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Accesso di emergenza approvato"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Può vedere tutti gli elementi nella cassaforte."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Entra in possesso"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Puoi reimpostare il tuo account con una nuova password principale."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Tempo di attesa"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Tempo richiesto prima di concedere l'accesso automatico."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 giorno"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ giorni",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Utente invitato."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Sei stato designato come contatto di emergenza per l'utente indicato sopra. Per accettare l'invito, accedi alla tua cassaforte o crea un nuovo utente Bitwarden."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Non è possibile accettare l'invito. Chiedi all'utente di inviare un nuovo invito."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Non è possibile accettare l'invito. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Puoi accedere alle opzioni di emergenza per questo utente dopo aver confermato la tua identità. A breve riceverai un'email di conferma."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Richiedi l'accesso"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Sei sicuro di voler richiedere l'accesso di emergenza? Ti sarà possibile accedere dopo $WAITTIME$ giorno/i o ogniqualvolta l'utente approva la richiesta.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Accesso di emergenza richiesto per $USER$. Verrai notificato via mail quando sarà possibile proseguire.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Approva"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Rifiuta"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Sei sicuro di voler approvare l'accesso di emergenza? Questo consentirà a $USER$ di $ACTION$ il tuo account.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Accesso di emergenza approvato."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Accesso di emergenza rifiutato"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Password reimpostata per $USER$. Ora puoi effettuare il login utilizzando la nuova password.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Poprietà personale"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Richiede agli utenti di salvare gli elementi della cassaforte in un'organizzazione rimuovendo l'opzione di proprietà personale."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "I proprietari e gli amministratori dell'organizzazione sono esenti dall'applicazione di questa policy."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "A causa di una policy aziendale, non è possibile salvare elementi nella tua cassaforte personale. Cambia l'opzione proprietà in un'organizzazione e scegli tra le raccolte disponibili."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Policy modificata $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Costo del piano"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Tasse stimate"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Personalizzato"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Consente un controllo più granulare delle autorizzazioni utente per le configurazioni avanzate."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Autorizzazioni"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Accedi al portale aziendale"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Accedi ai log degli eventi"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Accedi ad Import/Export"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Accedi ai report"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Gestisci tutte le raccolte"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Gestisci le raccolte assegnate"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Gestisci i gruppi"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Gestisci le policy"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Gestisci SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Gestione utenti"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Devi disabilitare manualmente la policy relativa all'autenticazione SSO prima di disabilitare questa policy."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Una policy dell'organizzazione controlla le opzioni di proprietà."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Disabilita la proprietà personale per gli utenti dell'organizzazione"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Quando si accede al Send, nascondi il testo di default",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
