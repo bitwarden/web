@@ -348,7 +348,7 @@
     "message": "Edytuj element"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Zobacz element"
   },
   "ex": {
     "message": "np.",
@@ -794,13 +794,13 @@
     "message": "Ostrzeżenie"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Potwierdź eksportowanie sejfu"
   },
   "exportWarningDesc": {
     "message": "Plik zawiera dane sejfu w niezaszyfrowanym formacie. Nie powinieneś go przechowywać, ani przesyłać poprzez niezabezpieczone kanały (takie jak poczta e-mail). Skasuj go natychmiast po użyciu."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Dane eksportu zostaną zaszyfrowane za pomocą klucza szyfrowania konta. Jeśli kiedykolwiek zmienisz ten klucz, wyeksportuj dane ponownie, ponieważ nie będziesz w stanie odszyfrować tego pliku."
   },
   "exportMasterPassword": {
     "message": "Wpisz hasło główne, aby wyeksportować dane z sejfu."
@@ -1112,7 +1112,7 @@
     "message": "Zabezpiecz swoje konto poprzez wymóg wykonania dodatkowego kroku podczas logowania."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Wymuś logowanie dwustopniowe dla użytkowników w Twojej organizacji, poprzez skonfigurowanie dostawców na poziomie organizacji."
+    "message": "Wymagaj logowania dwustopniowego dla użytkowników w Twojej organizacji, poprzez skonfigurowanie dostawców na poziomie organizacji."
   },
   "twoStepLoginRecoveryWarning": {
     "message": "Włączenie logowania dwustopniowego można trwale zablokować konto Bitwarden. Kod odzyskiwania pozwala na dostęp do konta w przypadku, gdy nie będziesz mógł skorzystać ze standardowego dostawcy logowania dwustopniowego (np. w przypadku utraty urządzenia). Pomoc techniczna Bitwarden nie będzie w stanie Ci pomóc, jeśli stracisz dostęp do swojego konta. Zalecamy zapisanie lub wydrukowanie kodu odzyskiwania i przechowywanie go w bezpiecznym miejscu."
@@ -1219,7 +1219,7 @@
     "message": "Z powodu ograniczeń platformy, klucze YubiKey nie mogą być używane we wszystkich aplikacjach Bitwarden. Musisz włączyć inną metodę logowania dwustopniowego, aby zachować dostęp do konta w pozostałych sytuacjach. Wspierane platformy:"
   },
   "twoFactorYubikeySupportUsb": {
-    "message": "Sejf internetowy, aplikacja komputerowa, wiersz poleceń i rozszerzenia dla wszystkich przeglądarek na urządzeniu posiadającym port USB akceptujący Twój klucz YubiKey."
+    "message": "Sejf internetowy, aplikacja desktopowa, wiersz poleceń i rozszerzenia dla wszystkich przeglądarek na urządzeniu posiadającym port USB akceptujący Twój klucz YubiKey."
   },
   "twoFactorYubikeySupportMobile": {
     "message": "Aplikacje mobilne na urządzeniach obsługujących NFC lub posiadające port USB, który akceptuje klucz YubiKey."
@@ -1669,7 +1669,7 @@
     "message": "Informacje o płatności"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Informacje o płatności"
   },
   "creditCard": {
     "message": "Karta płatnicza"
@@ -1684,7 +1684,7 @@
     "message": "Subskrypcja została anulowana."
   },
   "pendingCancellation": {
-    "message": "W oczekiwaniu na anulowanie"
+    "message": "Oczekiwanie na anulowanie"
   },
   "subscriptionPendingCanceled": {
     "message": "Subskrypcja została oznaczona do anulowania na koniec obecnego okresu rozliczeniowego."
@@ -1693,7 +1693,7 @@
     "message": "Przywróć subskrypcję"
   },
   "reinstateConfirmation": {
-    "message": "Czy na pewno chcesz wycofać anulowanie subskrypcji i przywrócić ją?"
+    "message": "Czy na pewno chcesz cofnąć anulowanie subskrypcji i przywrócić ją?"
   },
   "reinstated": {
     "message": "Subskrypcja została przywrócona."
@@ -2013,7 +2013,7 @@
     "message": "Śledź działania użytkowników dzięki dziennikom audytu"
   },
   "enforce2faDuo": {
-    "message": "Wymuś logowanie dwustopniowe poprzez Duo"
+    "message": "Wymagaj logowania dwustopniowego poprzez Duo"
   },
   "priorityCustomerSupport": {
     "message": "Priorytetowe wsparcie klienta"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "Odłącz logowanie jednokrotne SSO dla użytkownika %$ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2954,7 +2954,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "Aby zapewnić integralności kluczy szyfrowania, zweryfikuj unikalny identyfikator użytkownika, zanim przejdziesz dalej.",
+    "message": "Aby zapewnić integralność kluczy szyfrowania, zweryfikuj unikalny identyfikator użytkownika, zanim przejdziesz dalej.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
@@ -2969,7 +2969,7 @@
     "message": "Klucz interfejsu API"
   },
   "apiKeyDesc": {
-    "message": "Twój klucz interfejsu API może zostać użyty do uwierzytelnienia dostępu do publicznego interfejsu API Bitwarden."
+    "message": "Twój klucz interfejsu API może zostać użyty do uwierzytelniania dostępu do publicznego interfejsu API Bitwarden."
   },
   "apiKeyRotateDesc": {
     "message": "Zmiana klucza interfejsu API spowoduje unieważnienie poprzedniego klucza. Możesz zmienić klucz interfejsu, jeśli uważasz, że obecny klucz przestał być bezpieczny."
@@ -2978,10 +2978,10 @@
     "message": "Twój klucz interfejsu API umożliwia pełny dostęp do organizacji, dlatego powinien być dobrze strzeżony."
   },
   "userApiKeyDesc": {
-    "message": "Twój klucz interfejsu API może zostać użyty do uwierzytelnienia dostępu do wiersza poleceń Bitwarden."
+    "message": "Twój klucz interfejsu API może zostać użyty do uwierzytelniania dostępu do wiersza poleceń Bitwarden."
   },
   "userApiKeyWarning": {
-    "message": "Twój klucz interfejsu API jest alternatywną metodą uwierzytelnienia. Powinien być dobrze strzeżony."
+    "message": "Twój klucz interfejsu API jest alternatywną metodą uwierzytelniania. Powinien być dobrze strzeżony."
   },
   "oauth2ClientCredentials": {
     "message": "Dane uwierzytelniające OAuth 2.0",
@@ -3320,7 +3320,7 @@
     "message": "Data usunięcia"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Wysyłka zostanie trwale usunięta w określonym czasie.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
@@ -3345,7 +3345,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Prywatne notatki o tej wysyłce.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Czy na pewno chcesz usunąć hasło?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Wyłącz tę wysyłkę, aby nikt nie miał do niej dostępu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Wszystkie wysyłki"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Maksymalna liczba dostępów została osiągnięta"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Oczekiwanie na usunięcie"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Wygasła"
   },
   "searchSends": {
     "message": "Szukaj w wysyłkach",
@@ -3404,7 +3404,7 @@
     "message": "Pobierz plik"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Wysyłka nie istnieje lub nie jest już dostępna.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Dostęp awaryjny"
   },
   "emergencyAccessDesc": {
     "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Zaufane kontakty awaryjne"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Nie dodałeś nikogo jako kontakt awaryjny. Aby rozpocząć, zaproś zaufany kontakt."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Dodaj kontakt awaryjny"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Wyznaczone kontakty awaryjne"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Nie zostałeś ustawiony jako kontakt awaryjny dla kogokolwiek."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Zaproś kontakt awaryjny"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Edytuj kontakt awaryjny"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Zaproś nowy kontakt awaryjny poprzez wprowadzenie jego adresu e-mail poniżej. Jeśli nie posiada on jeszcze konta Bitwarden, zostanie poproszony o jego utworzenie."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Dostęp awaryjny został zainicjowany"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Dostęp awaryjny został zatwierdzony"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Może zobaczyć wszystkie elementy w Twoim sejfie."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Przejęte"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Może zresetować Twoje konto za pomocą nowego hasła głównego."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Oczekiwanie"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Czas wymagany do automatycznego przyznania dostępu."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 dzień"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ dni",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Użytkownik został zaproszony."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Zostałeś zaproszony przez poniższego użytkownika do zostania jego kontaktem awaryjnym. Aby zaakceptować zaproszenie, musisz się zalogować lub utworzyć nowe konto Bitwarden."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Nie można zaakceptować zaproszenia. Poproś użytkownika o wysłanie nowego zaproszenia."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Nie można zaakceptować zaproszenia. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3496,7 +3496,7 @@
     "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Poproś o dostęp"
   },
   "requestAccessConfirmation": {
     "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Poprosiłeś o dostęp awaryjny dla użytkownika $USER$. Po otrzymaniu dostępu, dostaniesz wiadomość e-mail.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Zatwierdź"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Odrzuć"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Czy na pewno chcesz zatwierdzić dostęp awaryjny? Użytkownik $USER$ uzyska uprawnienie do Twojego konta ($ACTION$).",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Dostęp awaryjny został zatwierdzony."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Dostęp awaryjny został odrzucony"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Zresetowałeś hasło użytkownika $USER$. Możesz zalogować się za pomocą nowego hasła.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Własność osobista"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Wymagaj od użytkowników zapisywanie elementów do kolekcji organizacji, usuwając opcję własności elementów."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Właściciele i administratorzy organizacji są zwolnieni z przestrzegania wymagań zasad."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Ze względu na zasadę przedsiębiorstwa nie możesz zapisywać elementów w osobistym sejfie. Zmień właściciela elementu na organizację i wybierz jedną z dostępnych kolekcji."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Zasada $ID$ została zaktualizowana.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Cena planu"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Podatek"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Niestandardowy"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Umożliwia zaawansowaną kontrolę uprawnień użytkownika."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Uprawnienia"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Dostęp do portalu biznesowego"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Dostęp do dziennika zdarzeń"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Dostęp do importu i eksportu"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Dostęp do raportów"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Zarządzaj wszystkimi kolekcjami"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Zarządzaj przypisanymi kolekcjami"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Zarządzaj grupami"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Zarządzaj zasadami"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Zarządzaj logowaniem jednokrotnym SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Zarządzaj użytkownikami"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Musisz wyłączyć zasadę uwierzytelniania logowaniem jednokrotnym przed wyłączeniem tej zasady."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Zasada organizacji ma wpływ na opcję własności elementów."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Wyłącz opcję własności osobistej dla użytkowników organizacji"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Ukryj tekst podczas dostępu do wysyłki",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

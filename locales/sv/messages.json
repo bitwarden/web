@@ -348,7 +348,7 @@
     "message": "Redigera objekt"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Visa objekt"
   },
   "ex": {
     "message": "t.ex.",
@@ -794,13 +794,13 @@
     "message": "Varning"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Bekräfta export av valv"
   },
   "exportWarningDesc": {
     "message": "Denna export innehåller ditt valv i ett okrypterat format. Du bör inte lagra eller skicka den exporterade filen över osäkra kanaler (t.ex. e-post). Radera den omedelbart när du är färdig med den."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Denna export krypterar dina data med kontots krypteringsnyckel. Om du någonsin roterar kontots krypteringsnyckel bör du exportera igen eftersom du inte kommer att kunna dekryptera denna exportfil."
   },
   "exportMasterPassword": {
     "message": "Ange ditt huvudlösenord för att exportera ditt valv."
@@ -1669,7 +1669,7 @@
     "message": "Betalningsinformation"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Faktureringsuppgifter"
   },
   "creditCard": {
     "message": "Kreditkort"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "Olänkad SSO för användare $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Efter att ha uppdaterat din krypteringsnyckel, måste du logga ut och in igen i alla Bitwarden-program som du använder (t.ex. mobilappen och webbläsartillägget). Att inte logga ut och in igen (vilket hämtar din nya krypteringsnyckel) kan resultera i datakorruption. Vi kommer försöka logga ut dig automatiskt, men det kan vara fördröjt."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Alla krypterade exporter som du har sparat kommer också bli ogiltiga."
   },
   "subscription": {
     "message": "Abonnemang"
@@ -3320,32 +3320,32 @@
     "message": "Raderingsdatum"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Försändelsen kommer att raderas permanent på den angivna tiden, det angivna datumet.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Utgångsdatum"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Om angivet kommer åtkomst till denna försändelse upphöra på det angivna datumet, den angivna tiden.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Maximalt antal åtkomster"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Om angivet kommer användare inte längre komma åt denna försändelse när den maximala antalet åtkomster har uppnåtts.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Nuvarande antal åtkomster"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Kräv ett lösenord från användare innan de kommer åt denna försändelse.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Egna anteckningar om denna försändelse.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Är du säker på att du vill ta bort lösenordet?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Inaktivera denna försändelse så att ingen kan komma åt den.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Alla försändelser"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Det maximala antalet åtkomster har uppnåtts"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Väntar på radering"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Utgången"
   },
   "searchSends": {
     "message": "Sök försändelser",
@@ -3404,7 +3404,7 @@
     "message": "Ladda ner fil"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Försändelsen du försöker komma åt finns inte eller är inte längre tillgänglig.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Åtkomst i nödsituationer"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Bevilja och hantera åtkomst för betrodda kontakter i nödsituationer. Betrodda kontakter kan begära att antingen visa eller ta över ditt konto vid en nödsituation. Besök vår hjälpsida för mer information och information om hur delning utan kännedom fungerar."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Betrodda nödkontakter"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Du har inte lagt till några nödkontakter än, bjud in en betrodd kontakt för att komma igång."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Lägg till nödkontakt"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Utsedd till nödkontakt"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Du har inte utsetts till någon annans nödkontakt än."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Bjud in nödkontakt"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Redigera nödkontakt"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Bjud in en nödkontakt genom att ange e-postadressen som tillhör deras Bitwarden-konto nedan. Om de inte redan har ett Bitwarden-konto kommer de uppmanas att skapa ett."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Nödåtkomst initierad"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Nödåtkomst godkänd"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Kan visa alla objekt i ditt valv."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Ta över"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Kan återställa ditt konto med ett nytt huvudlösenord."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Väntetid"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Tid som krävs innan åtkomst beviljas automatiskt."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 dag"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ dagar",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,16 +3475,16 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Bjöd in användare."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Du har blivit inbjuden att bli nödkontakt åt användaren ovan. För att acceptera inbjudan måste du logga in eller skapa ett nytt Bitwarden-konto."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Det gick inte att acceptera inbjudan. Be användaren att skicka en ny inbjudan."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Det gick inte att acceptera inbjudan. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3493,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Du kan komma åt nödalternativen för den här användaren efter att din identitet har bekräftats. Vi skickar dig ett e-postmeddelande när det händer."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Begär åtkomst"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Är du säker på att du vill begära nödåtkomst? Du kommer att få åtkomst efter $WAITTIME$ dag(ar) eller när användaren manuellt godkänner begäran.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3508,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Nödåtkomst begärd för $USER$. Vi meddelar dig via e-post när det är möjligt att fortsätta.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3517,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Godkänn"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Neka"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Är du säker på att du vill godkänna nödåtkomst? Detta tillåter $USER$ att $ACTION$ ditt konto.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3536,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Nödåtkomst godkänd."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Nödåtkomst nekad"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Lösenordet för $USER$ återställdes. Du kan nu logga in med det nya lösenordet.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3551,19 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Personligt ägarskap"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Kräv att användare sparar objekt till en organisation genom att ta bort det personliga ägarskapsalternativet."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Organisationens ägare och administratörer är undantagna från denna policy."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "På grund av en av företagets policyer är du begränsad från att spara objekt till ditt personliga valv. Ändra ägarskap till en organisation och välj från tillgängliga samlingar."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Ändrade policyn $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3572,61 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Abonnemangets pris"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Uppskattad moms"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Anpassad"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Tillåter mer detaljerad kontroll av användarbehörigheter för avancerade konfigurationer."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Behörigheter"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Åtkomst till företagsportalen"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Åtkomst till händelseloggar"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Åtkomst till import/export"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Åtkomst till rapporter"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Hantera alla samlingar"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Hantera tilldelade samlingar"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Hantera grupper"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Hantera policyer"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Hantera SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Hantera användare"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Du måste inaktivera policyn \"Autentisering med Single Sign-On\" manuellt innan denna policy kan inaktiveras."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "En organisationspolicy påverkar dina ägarskapsalternativ."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Inaktivera personligt ägarskap för organisationens användare"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Dölj texten som standard när försändelsen öppnas",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

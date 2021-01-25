@@ -348,7 +348,7 @@
     "message": "Змінити запис"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "Перегляд запису"
   },
   "ex": {
     "message": "зразок",
@@ -794,13 +794,13 @@
     "message": "Попередження"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "Підтвердити експорт сховища"
   },
   "exportWarningDesc": {
     "message": "Експортовані дані вашого сховища знаходяться в незашифрованому вигляді. Вам не слід зберігати чи надсилати їх через незахищені канали (наприклад, е-поштою). Після використання негайно видаліть їх."
   },
   "encExportWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Цей експорт шифрує ваші дані за допомогою ключа шифрування облікового запису. Якщо ви коли-небудь оновите ключ шифрування облікового запису, ви повинні виконати експорт знову, оскільки не зможете розшифрувати цей файл експорту."
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
@@ -1669,7 +1669,7 @@
     "message": "Інформація про оплату"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Платіжна інформація"
   },
   "creditCard": {
     "message": "Кредитна карта"
@@ -2496,7 +2496,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "Незв'язаний SSO для користувача $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2808,7 +2808,7 @@
     "message": "Після оновлення вашого ключа шифрування вам необхідно вийти з системи і потім виконати повторний вхід у всіх програмах Bitwarden, які ви використовуєте. Збій при виході та повторному вході може призвести до пошкодження даних. Ми спробуємо завершити ваші сеанси автоматично, однак, цей процес може відбутися із затримкою."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Будь-які зашифровані експортування, які ви зберегли, також стануть недійсними."
   },
   "subscription": {
     "message": "Передплата"
@@ -3320,32 +3320,32 @@
     "message": "Дата видалення"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Відправлення буде остаточно видалено у вказаний час.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Термін дії"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Якщо встановлено, термін дії цього відправлення завершиться у вказаний час.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Максимальна кількість доступів"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Якщо встановлено, користувачі більше не зможуть отримати доступ до цього відправлення після досягнення максимальної кількості доступів.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Поточна кількість доступів"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "За бажанням вимагати пароль в користувачів для доступу до цього відправлення.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Особисті нотатки про це відправлення.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3369,20 +3369,20 @@
     "message": "Ви дійсно хочете вилучити пароль?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Деактивувати це відправлення для скасування доступу до нього.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Усі відправлення"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Досягнуто максимальну кількість доступів"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "Очікується видалення"
   },
   "expired": {
-    "message": "Expired"
+    "message": "Термін дії завершився"
   },
   "searchSends": {
     "message": "Пошук відправлень",
@@ -3404,7 +3404,7 @@
     "message": "Завантажити файл"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Відправлення, до якого ви намагаєтесь отримати доступ, не існує, або більше недоступне.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,61 +3412,61 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Екстрений доступ"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Надавайте екстрений доступ довіреним контактам і керуйте ним. Довірені контакти можуть отримати доступ для перегляду чи привласнення вашого облікового запису в екстрених ситуаціях. Відвідайте нашу сторінку допомоги для детального ознайомлення про те, як працює спільний доступ нульового рівня."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Довірені екстрені контакти"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Ви ще не додали жодного екстреного контакту. Запросіть довірений контакт, щоб почати."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "Додати екстрений контакт"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Визначено як екстрений контакт"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Ви ще не були призначені екстреним контактом для когось."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "Запросити екстрений контакт"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "Редагувати екстрений контакт"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Запросіть новий екстрений контакт, ввівши нижче адресу е-пошти його облікового запису Bitwarden. Якщо користувач ще не має облікового запису Bitwarden, йому буде запропоновано зареєструватися."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Emergency Access Initiated"
+    "message": "Ініційовано екстрений доступ"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Emergency Access Approved"
+    "message": "Екстрений доступ схвалено"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "Може переглядати усі записи у вашому сховищі."
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "Передача власності"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "Може скидати пароль вашого облікового запису."
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "Час очікування"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Час, після якого автоматично надається доступ."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 день"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ днів",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3475,7 +3475,7 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "Запрошений користувач."
   },
   "acceptEmergencyAccess": {
     "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
