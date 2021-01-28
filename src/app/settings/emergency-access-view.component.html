@@ -23,9 +23,25 @@
                         <br>
                         <small>{{c.subTitle}}</small>
                     </td>
+                    <td class="table-list-options">
+                        <div class="dropdown" appListDropdown *ngIf="c.hasAttachments">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                appA11yTitle="{{'options' | i18n}}">
+                                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" appStopClick (click)="viewAttachments(c)">
+                                    <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
+                                    {{'attachments' | i18n}}
+                                </a>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </ng-container>
 </div>
 <ng-template #cipherAddEdit></ng-template>
+<ng-template #attachments></ng-template>
