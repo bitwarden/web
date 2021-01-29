@@ -146,6 +146,7 @@ export function initFactory(): Function {
         if (!isDev && platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
+            environmentService.webVaultUrl = isDev ? 'https://localhost:8080' : null;
             environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
                 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
             environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :
