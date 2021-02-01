@@ -35,7 +35,7 @@
                                 </div>
                                 <small>{{a.sizeName}}</small>
                             </td>
-                            <td class="table-list-options">
+                            <td class="table-list-options" *ngIf="!viewOnly">
                                 <button class="btn btn-outline-danger" type="button" appStopClick
                                     appA11yTitle="{{'delete' | i18n}}" (click)="delete(a)" #deleteBtn
                                     [appApiAction]="deletePromises[a.id]" [disabled]="deleteBtn.loading">
@@ -48,13 +48,15 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3>{{'newAttachment' | i18n}}</h3>
-                <label for="file" class="sr-only">{{'file' | i18n}}</label>
-                <input type="file" id="file" class="form-control-file" name="file" required>
-                <small class="form-text text-muted">{{'maxFileSize' | i18n}}</small>
+                <div *ngIf="!viewOnly">
+                    <h3>{{'newAttachment' | i18n}}</h3>
+                    <label for="file" class="sr-only">{{'file' | i18n}}</label>
+                    <input type="file" id="file" class="form-control-file" name="file" required>
+                    <small class="form-text text-muted">{{'maxFileSize' | i18n}}</small>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading" *ngIf="!viewOnly">
                     <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'save' | i18n}}</span>
                 </button>

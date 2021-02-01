@@ -20,6 +20,7 @@ import { AttachmentsComponent as BaseAttachmentsComponent } from '../../vault/at
     templateUrl: '../../vault/attachments.component.html',
 })
 export class AttachmentsComponent extends BaseAttachmentsComponent {
+    viewOnly = false;
     organization: Organization;
 
     constructor(cipherService: CipherService, i18nService: I18nService,

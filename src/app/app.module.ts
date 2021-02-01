@@ -114,6 +114,7 @@ import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.co
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { EmergencyAccessAddEditComponent } from './settings/emergency-access-add-edit.component';
+import { EmergencyAccessAttachmentsComponent } from './settings/emergency-access-attachments.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { EmergencyAccessConfirmComponent } from './settings/emergency-access-confirm.component';
 import { EmergencyAccessTakeoverComponent } from './settings/emergency-access-takeover.component';
@@ -304,6 +305,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DomainRulesComponent,
         DownloadLicenseComponent,
         EmergencyAccessAddEditComponent,
+        EmergencyAccessAttachmentsComponent,
         EmergencyAccessComponent,
         EmergencyAccessConfirmComponent,
         EmergencyAccessTakeoverComponent,
@@ -424,6 +426,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeleteAccountComponent,
         DeleteOrganizationComponent,
         EmergencyAccessAddEditComponent,
+        EmergencyAccessAttachmentsComponent,
         EmergencyAccessConfirmComponent,
         EmergencyAccessTakeoverComponent,
         EmergencyAddEditComponent,

@@ -11,11 +11,12 @@ import { AttachmentView } from 'jslib/models/view/attachmentView';
 import { AttachmentsComponent as BaseAttachmentsComponent } from 'jslib/angular/components/attachments.component';
 
 @Component({
-    selector: 'app-vault-attachments',
-    templateUrl: 'attachments.component.html',
+    selector: 'emergency-access-attachments',
+    templateUrl: '../vault/attachments.component.html',
 })
-export class AttachmentsComponent extends BaseAttachmentsComponent {
-    viewOnly = false;
+export class EmergencyAccessAttachmentsComponent extends BaseAttachmentsComponent {
+    viewOnly = true;
+    canAccessAttachments = true;
 
     constructor(cipherService: CipherService, i18nService: I18nService,
         cryptoService: CryptoService, userService: UserService,
@@ -23,13 +24,11 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
         super(cipherService, i18nService, cryptoService, userService, platformUtilsService, window);
     }
 
-    protected async reupload(attachment: AttachmentView) {
-        if (this.showFixOldAttachments(attachment)) {
-            await this.reuploadCipherAttachment(attachment, false);
-        }
+    protected async init() {
+        // Do nothing since cipher is already decoded
     }
 
     protected showFixOldAttachments(attachment: AttachmentView) {
-        return attachment.key == null && this.cipher.organizationId == null;
+        return false;
     }
 }

@@ -18,6 +18,7 @@ import { CipherView } from 'jslib/models/view/cipherView';
 
 import { ModalComponent } from '../modal.component';
 
+import { EmergencyAccessAttachmentsComponent } from './emergency-access-attachments.component';
 import { EmergencyAddEditComponent } from './emergency-add-edit.component';
 
 @Component({
@@ -26,6 +27,7 @@ import { EmergencyAddEditComponent } from './emergency-add-edit.component';
 })
 export class EmergencyAccessViewComponent implements OnInit {
     @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('attachments', { read: ViewContainerRef, static: true }) attachmentsModalRef: ViewContainerRef;
 
     id: string;
     ciphers: CipherView[] = [];
@@ -70,6 +72,22 @@ export class EmergencyAccessViewComponent implements OnInit {
     async load() {
         const response = await this.apiService.postEmergencyAccessView(this.id);
         this.ciphers = await this.getAllCiphers(response);
+    }
+
+    async viewAttachments(cipher: CipherView) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.attachmentsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<EmergencyAccessAttachmentsComponent>(EmergencyAccessAttachmentsComponent, this.attachmentsModalRef);
+
+        childComponent.cipher = cipher;
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
     }
 
     protected async getAllCiphers(response: EmergencyAccessViewResponse): Promise<CipherView[]> {
