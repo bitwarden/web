@@ -39,7 +39,7 @@ export class EmergencyAccessViewComponent implements OnInit {
         private route: ActivatedRoute, private apiService: ApiService) { }
 
     ngOnInit() {
-        this.route.params.subscribe((qParams) => {
+        this.route.params.subscribe(qParams => {
             if (qParams.id == null) {
                 return this.router.navigate(['settings/emergency-access']);
             }
@@ -98,10 +98,10 @@ export class EmergencyAccessViewComponent implements OnInit {
         const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
 
         const promises: any[] = [];
-        ciphers.forEach((cipherResponse) => {
+        ciphers.forEach(cipherResponse => {
             const cipherData = new CipherData(cipherResponse);
             const cipher = new Cipher(cipherData);
-            promises.push(cipher.decrypt(oldEncKey).then((c) => decCiphers.push(c)));
+            promises.push(cipher.decrypt(oldEncKey).then(c => decCiphers.push(c)));
         });
 
         await Promise.all(promises);

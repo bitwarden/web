@@ -26,7 +26,7 @@ export class InactiveTwoFactorReportComponent extends BaseInactiveTwoFactorRepor
     }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             await super.ngOnInit();
         });

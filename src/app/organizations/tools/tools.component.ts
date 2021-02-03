@@ -19,7 +19,7 @@ export class ToolsComponent {
         private messagingService: MessagingService) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
+        this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             // TODO: Maybe we want to just make sure they are not on a free plan? Just compare useTotp for now
             // since all paid plans include useTotp

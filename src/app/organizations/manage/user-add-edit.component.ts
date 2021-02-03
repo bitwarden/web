@@ -72,8 +72,8 @@ export class UserAddEditComponent implements OnInit {
                     this.permissions = user.permissions;
                 }
                 if (user.collections != null && this.collections != null) {
-                    user.collections.forEach((s) => {
-                        const collection = this.collections.filter((c) => c.id === s.id);
+                    user.collections.forEach(s => {
+                        const collection = this.collections.filter(c => c.id === s.id);
                         if (collection != null && collection.length > 0) {
                             (collection[0] as any).checked = true;
                             collection[0].readOnly = s.readOnly;
@@ -91,7 +91,7 @@ export class UserAddEditComponent implements OnInit {
 
     async loadCollections() {
         const response = await this.apiService.getCollections(this.organizationId);
-        const collections = response.data.map((r) =>
+        const collections = response.data.map(r =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
     }
@@ -104,7 +104,7 @@ export class UserAddEditComponent implements OnInit {
     }
 
     selectAll(select: boolean) {
-        this.collections.forEach((c) => this.check(c, select));
+        this.collections.forEach(c => this.check(c, select));
     }
 
     setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
@@ -144,8 +144,8 @@ export class UserAddEditComponent implements OnInit {
     async submit() {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {
-            collections = this.collections.filter((c) => (c as any).checked)
-                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
+            collections = this.collections.filter(c => (c as any).checked)
+                .map(c => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
         try {

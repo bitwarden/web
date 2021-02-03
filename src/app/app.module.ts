@@ -115,10 +115,10 @@ import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { EmergencyAccessAddEditComponent } from './settings/emergency-access-add-edit.component';
 import { EmergencyAccessAttachmentsComponent } from './settings/emergency-access-attachments.component';
-import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { EmergencyAccessConfirmComponent } from './settings/emergency-access-confirm.component';
 import { EmergencyAccessTakeoverComponent } from './settings/emergency-access-takeover.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { EmergencyAddEditComponent } from './settings/emergency-add-edit.component';
 import { LinkSsoComponent } from './settings/link-sso.component';
 import { OptionsComponent } from './settings/options.component';
@@ -191,8 +191,8 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
 import {
-    registerLocaleData,
     DatePipe,
+    registerLocaleData,
 } from '@angular/common';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';

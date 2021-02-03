@@ -31,6 +31,6 @@ export class CollectionsComponent extends BaseCollectionsComponent implements On
     }
 
     selectAll(select: boolean) {
-        this.collections.forEach((c) => this.check(c, select));
+        this.collections.forEach(c => this.check(c, select));
     }
 }

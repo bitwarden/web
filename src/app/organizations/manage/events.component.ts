@@ -39,7 +39,7 @@ export class EventsComponent implements OnInit {
         private router: Router) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
             if (organization == null || !organization.useEvents) {
@@ -55,7 +55,7 @@ export class EventsComponent implements OnInit {
 
     async load() {
         const response = await this.apiService.getOrganizationUsers(this.organizationId);
-        response.data.forEach((u) => {
+        response.data.forEach(u => {
             const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
             this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
             this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
@@ -92,7 +92,7 @@ export class EventsComponent implements OnInit {
         } catch { }
 
         this.continuationToken = response.continuationToken;
-        const events = response.data.map((r) => {
+        const events = response.data.map(r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = this.eventService.getEventInfo(r);
             const user = userId != null && this.orgUsersUserIdMap.has(userId) ?

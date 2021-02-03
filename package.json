@@ -24,8 +24,8 @@
     "dist:selfhost": "npm run build:selfhost:prod && gulp postdist",
     "deploy": "npm run dist && gh-pages -d build",
     "deploy:dev": "npm run dist && gh-pages -d build -r git@github.com:kspearrin/bitwarden-web-dev.git",
-    "lint": "tslint src/**/*.ts || true",
-    "lint:fix": "tslint src/**/*.ts --fix"
+    "lint": "tslint 'src/**/*.ts' || true",
+    "lint:fix": "tslint 'src/**/*.ts' --fix"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^9.1.12",

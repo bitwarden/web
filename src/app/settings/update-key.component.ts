@@ -47,7 +47,7 @@ export class UpdateKeyComponent {
         }
 
         try {
-            this.formPromise = this.makeRequest().then((request) => {
+            this.formPromise = this.makeRequest().then(request => {
                 return this.apiService.postAccountKey(request);
             });
             await this.formPromise;

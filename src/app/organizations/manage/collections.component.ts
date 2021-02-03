@@ -57,10 +57,10 @@ export class CollectionsComponent implements OnInit {
         private userService: UserService, private searchService: SearchService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (queryParamsSub != null) {
                     queryParamsSub.unsubscribe();
@@ -77,7 +77,7 @@ export class CollectionsComponent implements OnInit {
         } else {
             response = await this.apiService.getUserCollections();
         }
-        const collections = response.data.filter((c) => c.organizationId === this.organizationId).map((r) =>
+        const collections = response.data.filter(c => c.organizationId === this.organizationId).map(r =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
         this.resetPaging();

@@ -42,7 +42,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         }
 
         document.body.classList.remove('layout_frontend');
-        this.route.params.subscribe(async (params) => {
+        this.route.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
         });

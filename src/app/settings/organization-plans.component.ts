@@ -86,7 +86,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlan() {
-        return this.plans.find((plan) => plan.type === this.plan);
+        return this.plans.find(plan => plan.type === this.plan);
     }
 
     get selectedPlanInterval() {
@@ -96,18 +96,18 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectableProducts() {
-        let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
+        let validPlans = this.plans.filter(plan => plan.type !== PlanType.Custom);
 
         if (this.ownedBusiness) {
-            validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
+            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
         }
 
         if (!this.showFree) {
-            validPlans = validPlans.filter((plan) => plan.product !== ProductType.Free);
+            validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
         }
 
         validPlans = validPlans
-            .filter((plan) => !plan.legacyYear
+            .filter(plan => !plan.legacyYear
                 && !plan.disabled
                 && (plan.isAnnual || plan.product === this.productTypes.Free));
 
@@ -115,7 +115,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectablePlans() {
-        return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
+        return this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
     additionalStoragePriceMonthly(selectedPlan: PlanResponse) {

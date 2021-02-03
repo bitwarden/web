@@ -12,8 +12,8 @@ import {
 
 import { PolicyType } from 'jslib/enums/policyType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
 import { EnvironmentService } from 'jslib/abstractions';
+import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -51,7 +51,7 @@ export class PoliciesComponent implements OnInit {
         private router: Router, private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
             if (organization == null || !organization.usePolicies) {
@@ -106,7 +106,7 @@ export class PoliciesComponent implements OnInit {
             await this.load();
 
             // Handle policies component launch from Event message
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 if (qParams.policyId != null) {
                     const policyIdFromEvents: string = qParams.policyId;
                     for (const orgPolicy of this.orgPolicies) {
@@ -140,10 +140,10 @@ export class PoliciesComponent implements OnInit {
     async load() {
         const response = await this.apiService.getPolicies(this.organizationId);
         this.orgPolicies = response.data != null && response.data.length > 0 ? response.data : [];
-        this.orgPolicies.forEach((op) => {
+        this.orgPolicies.forEach(op => {
             this.policiesEnabledMap.set(op.type, op.enabled);
         });
-        this.policies.forEach((p) => {
+        this.policies.forEach(p => {
             p.enabled = this.policiesEnabledMap.has(p.type) && this.policiesEnabledMap.get(p.type);
         });
         this.loading = false;

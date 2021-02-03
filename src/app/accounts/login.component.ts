@@ -34,7 +34,7 @@ export class LoginComponent extends BaseLoginComponent {
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }

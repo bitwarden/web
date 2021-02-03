@@ -58,8 +58,8 @@ export class GroupAddEditComponent implements OnInit {
                 this.name = group.name;
                 this.externalId = group.externalId;
                 if (group.collections != null && this.collections != null) {
-                    group.collections.forEach((s) => {
-                        const collection = this.collections.filter((c) => c.id === s.id);
+                    group.collections.forEach(s => {
+                        const collection = this.collections.filter(c => c.id === s.id);
                         if (collection != null && collection.length > 0) {
                             (collection[0] as any).checked = true;
                             collection[0].readOnly = s.readOnly;
@@ -77,7 +77,7 @@ export class GroupAddEditComponent implements OnInit {
 
     async loadCollections() {
         const response = await this.apiService.getCollections(this.organizationId);
-        const collections = response.data.map((r) =>
+        const collections = response.data.map(r =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
     }
@@ -90,7 +90,7 @@ export class GroupAddEditComponent implements OnInit {
     }
 
     selectAll(select: boolean) {
-        this.collections.forEach((c) => this.check(c, select));
+        this.collections.forEach(c => this.check(c, select));
     }
 
     async submit() {
@@ -99,8 +99,8 @@ export class GroupAddEditComponent implements OnInit {
         request.externalId = this.externalId;
         request.accessAll = this.access === 'all';
         if (!request.accessAll) {
-            request.collections = this.collections.filter((c) => (c as any).checked)
-                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
+            request.collections = this.collections.filter(c => (c as any).checked)
+                .map(c => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
         try {

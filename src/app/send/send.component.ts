@@ -8,8 +8,8 @@ import {
 
 import { SendView } from 'jslib/models/view/sendView';
 
-import { AddEditComponent } from './add-edit.component';
 import { SendComponent as BaseSendComponent } from 'jslib/angular/components/send/send.component';
+import { AddEditComponent } from './add-edit.component';
 
 import { ModalComponent } from '../modal.component';
 

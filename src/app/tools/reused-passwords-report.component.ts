@@ -36,7 +36,7 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
         const allCiphers = await this.getAllCiphers();
         const ciphersWithPasswords: CipherView[] = [];
         this.passwordUseMap = new Map<string, number>();
-        allCiphers.forEach((c) => {
+        allCiphers.forEach(c => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
@@ -47,7 +47,7 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
                 this.passwordUseMap.set(c.login.password, 1);
             }
         });
-        const reusedPasswordCiphers = ciphersWithPasswords.filter((c) =>
+        const reusedPasswordCiphers = ciphersWithPasswords.filter(c =>
             this.passwordUseMap.has(c.login.password) && this.passwordUseMap.get(c.login.password) > 1);
         this.ciphers = reusedPasswordCiphers;
     }

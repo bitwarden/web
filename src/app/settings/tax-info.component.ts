@@ -45,7 +45,7 @@ export class TaxInfoComponent {
     constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             if (this.organizationId) {
                 try {
@@ -118,7 +118,7 @@ export class TaxInfoComponent {
 
     submitTaxInfo(): Promise<any> {
         if (!this.hasChanged()) {
-            return new Promise((resolve) => { resolve(); });
+            return new Promise(resolve => { resolve(); });
         }
         const request = this.getTaxInfoRequest();
         return this.organizationId ? this.apiService.putOrganizationTaxInfo(this.organizationId,
