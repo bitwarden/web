@@ -80,8 +80,8 @@ export class TwoFactorSetupComponent implements OnInit {
     async load() {
         this.loading = true;
         const providerList = await this.getTwoFactorProviders();
-        providerList.data.forEach((p) => {
-            this.providers.forEach((p2) => {
+        providerList.data.forEach(p => {
+            this.providers.forEach(p2 => {
                 if (p.type === p2.type) {
                     p2.enabled = p.enabled;
                 }
@@ -166,7 +166,7 @@ export class TwoFactorSetupComponent implements OnInit {
         if (!enabled && this.modal != null) {
             this.modal.close();
         }
-        this.providers.forEach((p) => {
+        this.providers.forEach(p => {
             if (p.type === type) {
                 p.enabled = enabled;
             }
@@ -175,9 +175,9 @@ export class TwoFactorSetupComponent implements OnInit {
     }
 
     private async evaluatePolicies() {
-        if (this.organizationId == null && this.providers.filter((p) => p.enabled).length === 1) {
+        if (this.organizationId == null && this.providers.filter(p => p.enabled).length === 1) {
             const policies = await this.policyService.getAll(PolicyType.TwoFactorAuthentication);
-            this.showPolicyWarning = policies != null && policies.some((p) => p.enabled);
+            this.showPolicyWarning = policies != null && policies.some(p => p.enabled);
         } else {
             this.showPolicyWarning = false;
         }

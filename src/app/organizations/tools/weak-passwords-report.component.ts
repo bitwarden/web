@@ -31,7 +31,7 @@ export class WeakPasswordsReportComponent extends BaseWeakPasswordsReportCompone
     }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.manageableCiphers = await this.cipherService.getAll();
             await super.ngOnInit();

@@ -99,7 +99,7 @@ export class ImportComponent implements OnInit {
             return null;
         }
 
-        const results = this.featuredImportOptions.concat(this.importOptions).filter((o) => o.id === this.format);
+        const results = this.featuredImportOptions.concat(this.importOptions).filter(o => o.id === this.format);
         if (results.length > 0) {
             return this.i18nService.t('instructionsFor', results[0].name);
         }
@@ -126,7 +126,7 @@ export class ImportComponent implements OnInit {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsText(file, 'utf-8');
-            reader.onload = (evt) => {
+            reader.onload = evt => {
                 if (this.format === 'lastpasscsv' && file.type === 'text/html') {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString((evt.target as any).result, 'text/html');

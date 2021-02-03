@@ -36,7 +36,7 @@ export class GroupingsComponent extends BaseGroupingsComponent {
 
         const collections = await this.apiService.getCollections(this.organization.id);
         if (collections != null && collections.data != null && collections.data.length) {
-            const collectionDomains = collections.data.map((r) =>
+            const collectionDomains = collections.data.map(r =>
                 new Collection(new CollectionData(r as CollectionDetailsResponse)));
             this.collections = await this.collectionService.decryptMany(collectionDomains);
         } else {

@@ -13,8 +13,8 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { Utils } from 'jslib/misc/utils';
 
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { SendAccess } from 'jslib/models/domain/sendAccess';
+import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
 import { SendAccessView } from 'jslib/models/view/sendAccessView';
 
@@ -57,7 +57,7 @@ export class AccessComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.params.subscribe(async (params) => {
+        this.route.params.subscribe(async params => {
             this.id = params.sendId;
             this.key = params.key;
             if (this.key == null || this.id == null) {

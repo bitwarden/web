@@ -62,12 +62,12 @@ export class VaultComponent implements OnInit, OnDestroy {
         private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
-        const queryParams = this.route.parent.params.subscribe(async (params) => {
+        const queryParams = this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
                 if (!this.organization.canManageAllCollections) {
                     await this.syncService.fullSync(false);
@@ -110,7 +110,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                 }
 
                 if (qParams.viewEvents != null) {
-                    const cipher = this.ciphersComponent.ciphers.filter((c) => c.id === qParams.viewEvents);
+                    const cipher = this.ciphersComponent.ciphers.filter(c => c.id === qParams.viewEvents);
                     if (cipher.length > 0) {
                         this.viewEvents(cipher[0]);
                     }
@@ -235,7 +235,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         if (this.organization.canManageAllCollections) {
             childComponent.collectionIds = cipher.collectionIds;
-            childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+            childComponent.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher.id;
@@ -254,7 +254,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         component.organizationId = this.organization.id;
         component.type = this.type;
         if (this.organization.canManageAllCollections) {
-            component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+            component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         if (this.collectionId != null) {
             component.collectionIds = [this.collectionId];
@@ -297,7 +297,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         component.cloneMode = true;
         component.organizationId = this.organization.id;
         if (this.organization.canManageAllCollections) {
-            component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+            component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value
         // in the add-edit componenet

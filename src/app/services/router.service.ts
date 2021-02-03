@@ -16,7 +16,7 @@ export class RouterService {
     constructor(private router: Router, private activatedRoute: ActivatedRoute,
         private titleService: Title, i18nService: I18nService) {
         this.currentUrl = this.router.url;
-        router.events.subscribe((event) => {
+        router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 this.previousUrl = this.currentUrl;
                 this.currentUrl = event.url;

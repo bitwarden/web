@@ -69,7 +69,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         let filteredCiphers = this.allCiphers;
 
         if (this.searchText == null || this.searchText.trim().length < 2) {
-            this.ciphers = filteredCiphers.filter((c) => {
+            this.ciphers = filteredCiphers.filter(c => {
                 if (c.isDeleted !== this.deleted) {
                     return false;
                 }

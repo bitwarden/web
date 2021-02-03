@@ -80,7 +80,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
 
-        const queryParamsSub = this.route.queryParams.subscribe(async (params) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async params => {
             await this.syncService.fullSync(false);
 
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
@@ -158,7 +158,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterFavorites() {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFavorites');
-        await this.ciphersComponent.reload((c) => c.favorite);
+        await this.ciphersComponent.reload(c => c.favorite);
         this.clearFilters();
         this.favorites = true;
         this.go();
@@ -177,7 +177,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterCipherType(type: CipherType) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
-        await this.ciphersComponent.reload((c) => c.type === type);
+        await this.ciphersComponent.reload(c => c.type === type);
         this.clearFilters();
         this.type = type;
         this.go();
@@ -187,7 +187,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.ciphersComponent.showAddNew = true;
         folderId = folderId === 'none' ? null : folderId;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFolder');
-        await this.ciphersComponent.reload((c) => c.folderId === folderId);
+        await this.ciphersComponent.reload(c => c.folderId === folderId);
         this.clearFilters();
         this.folderId = folderId == null ? 'none' : folderId;
         this.go();
@@ -196,7 +196,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterCollection(collectionId: string) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
-        await this.ciphersComponent.reload((c) => c.collectionIds != null &&
+        await this.ciphersComponent.reload(c => c.collectionIds != null &&
             c.collectionIds.indexOf(collectionId) > -1);
         this.clearFilters();
         this.collectionId = collectionId;
@@ -337,7 +337,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         component.type = this.type;
         component.folderId = this.folderId === 'none' ? null : this.folderId;
         if (this.collectionId != null) {
-            const collection = this.groupingsComponent.collections.filter((c) => c.id === this.collectionId);
+            const collection = this.groupingsComponent.collections.filter(c => c.id === this.collectionId);
             if (collection.length > 0) {
                 component.organizationId = collection[0].organizationId;
                 component.collectionIds = [this.collectionId];

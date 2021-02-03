@@ -54,7 +54,7 @@ export class GroupsComponent implements OnInit {
         private router: Router, private searchService: SearchService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
             if (organization == null || !organization.useGroups) {
@@ -62,7 +62,7 @@ export class GroupsComponent implements OnInit {
                 return;
             }
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (queryParamsSub != null) {
                     queryParamsSub.unsubscribe();

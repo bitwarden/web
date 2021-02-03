@@ -20,7 +20,7 @@ export class CreateOrganizationComponent implements OnInit {
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
             if (qParams.plan === 'families') {
                 this.orgPlansComponent.plan = PlanType.FamiliesAnnually;
                 this.orgPlansComponent.product = ProductType.Families;

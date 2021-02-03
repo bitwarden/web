@@ -13,8 +13,8 @@ import {
     ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent,
 } from '../../tools/exposed-passwords-report.component';
 
-import { CipherView } from 'jslib/models/view/cipherView';
 import { Cipher } from 'jslib/models/domain/cipher';
+import { CipherView } from 'jslib/models/view/cipherView';
 
 @Component({
     selector: 'app-exposed-passwords-report',
@@ -30,7 +30,7 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
     }
 
     ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.manageableCiphers = await this.cipherService.getAll();
             super.ngOnInit();

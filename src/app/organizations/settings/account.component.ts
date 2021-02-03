@@ -52,7 +52,7 @@ export class AccountComponent {
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             try {
                 this.org = await this.apiService.getOrganization(this.organizationId);

@@ -92,7 +92,7 @@ export class PaymentComponent implements OnInit {
     ngOnDestroy() {
         window.document.head.removeChild(this.stripeScript);
         window.setTimeout(() => {
-            Array.from(window.document.querySelectorAll('iframe')).forEach((el) => {
+            Array.from(window.document.querySelectorAll('iframe')).forEach(el => {
                 if (el.src != null && el.src.indexOf('stripe') > -1) {
                     try {
                         window.document.body.removeChild(el);
@@ -103,7 +103,7 @@ export class PaymentComponent implements OnInit {
         if (!this.hidePaypal) {
             window.document.head.removeChild(this.btScript);
             window.setTimeout(() => {
-                Array.from(window.document.head.querySelectorAll('script')).forEach((el) => {
+                Array.from(window.document.head.querySelectorAll('script')).forEach(el => {
                     if (el.src != null && el.src.indexOf('paypal') > -1) {
                         try {
                             window.document.head.removeChild(el);
@@ -165,7 +165,7 @@ export class PaymentComponent implements OnInit {
                 });
             } else if (this.method === PaymentMethodType.Card || this.method === PaymentMethodType.BankAccount) {
                 if (this.method === PaymentMethodType.Card) {
-                    this.apiService.postSetupPayment().then((clientSecret) =>
+                    this.apiService.postSetupPayment().then(clientSecret =>
                         this.stripe.handleCardSetup(clientSecret, this.stripeCardNumberElement))
                         .then((result: any) => {
                             if (result.error) {

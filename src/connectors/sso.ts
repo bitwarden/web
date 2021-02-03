@@ -1,7 +1,7 @@
 ﻿// tslint:disable-next-line
 require('./sso.scss');
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', event => {
     const code = getQsParam('code');
     const state = getQsParam('state');
 
