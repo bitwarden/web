@@ -33,7 +33,8 @@ export class SendComponent extends BaseSendComponent {
 
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
-        broadcasterService: BroadcasterService, ngZone: NgZone, searchService: SearchService, policyService: PolicyService, userService: UserService,
+        broadcasterService: BroadcasterService, ngZone: NgZone, searchService: SearchService,
+        policyService: PolicyService, userService: UserService,
         private componentFactoryResolver: ComponentFactoryResolver) {
         super(sendService, i18nService, platformUtilsService, environmentService, broadcasterService, ngZone,
             searchService, policyService, userService);
