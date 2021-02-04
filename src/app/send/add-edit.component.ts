@@ -6,6 +6,7 @@ import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SendService } from 'jslib/abstractions/send.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
@@ -19,7 +20,8 @@ export class AddEditComponent extends BaseAddEditComponent {
     constructor(i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         environmentService: EnvironmentService, datePipe: DatePipe,
         sendService: SendService, userService: UserService,
-        messagingService: MessagingService) {
-        super(i18nService, platformUtilsService, environmentService, datePipe, sendService, userService, messagingService);
+        messagingService: MessagingService, policyService: PolicyService) {
+        super(i18nService, platformUtilsService, environmentService, datePipe, sendService, userService,
+            messagingService, policyService);
     }
 }

@@ -1,4 +1,12 @@
 <div class="container page-content">
+    <div class="row card border-warning mb-4" *ngIf="disableSend">
+        <div class="card-header bg-warning text-white">
+            <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{'sendDisabled' | i18n}}
+        </div>
+        <div class="card-body">
+            <span>{{'sendDisabledWarning' | i18n}}</span>
+        </div>
+    </div>
     <div class="row">
         <div class="col-3 groupings">
             <div class="card vault-filters">
@@ -45,7 +53,7 @@
                     </small>
                 </h1>
                 <div class="ml-auto d-flex">
-                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()" [disabled]="disableSend">
                         <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'createSend' | i18n}}
                     </button>
                 </div>
