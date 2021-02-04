@@ -19,6 +19,8 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SendService } from 'jslib/abstractions/send.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
+import { SearchService, UserService } from 'jslib/abstractions';
 
 @Component({
     selector: 'app-send',
@@ -31,12 +33,18 @@ export class SendComponent extends BaseSendComponent {
 
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
-        broadcasterService: BroadcasterService, ngZone: NgZone,
+        broadcasterService: BroadcasterService, ngZone: NgZone, searchService: SearchService,
+        policyService: PolicyService, userService: UserService,
         private componentFactoryResolver: ComponentFactoryResolver) {
-        super(sendService, i18nService, platformUtilsService, environmentService, broadcasterService, ngZone);
+        super(sendService, i18nService, platformUtilsService, environmentService, broadcasterService, ngZone,
+            searchService, policyService, userService);
     }
 
     addSend() {
+        if (this.disableSend) {
+            return;
+        }
+
         const component = this.editSend(null);
         component.type = this.type;
     }
