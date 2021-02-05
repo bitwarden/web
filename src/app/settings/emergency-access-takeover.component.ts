@@ -22,8 +22,8 @@ import { KdfType } from 'jslib/enums/kdfType';
 import { Policy } from 'jslib/models/domain/policy';
 import { PolicyData } from 'jslib/models/data/policyData';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
-import { EmergencyAccessTakeoverResponse } from 'jslib/models/response/emergencyAccessResponse';
 import { EmergencyAccessPasswordRequest } from 'jslib/models/request/emergencyAccessPasswordRequest';
+import { EmergencyAccessTakeoverResponse } from 'jslib/models/response/emergencyAccessResponse';
 
 @Component({
     selector: 'emergency-access-takeover',
@@ -53,9 +53,9 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
         this.takeoverResponse = await this.apiService.postEmergencyAccessTakeover(this.emergencyAccessId);
         if (this.takeoverResponse.policy)
         {
-            const policyData = this.takeoverResponse.policy.map((policyResponse) => new PolicyData(policyResponse));
-            const policy = policyData.map((policyData) => new Policy(policyData));
-            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policy);    
+            const policyData = this.takeoverResponse.policy.map(policyResponse => new PolicyData(policyResponse));
+            const policy = policyData.map(data => new Policy(data));
+            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policy);
         }
      }
 
