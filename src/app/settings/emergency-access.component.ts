@@ -36,6 +36,7 @@ export class EmergencyAccessComponent implements OnInit {
     emergencyAccessType = EmergencyAccessType;
     emergencyAccessStatusType = EmergencyAccessStatusType;
     actionPromise: Promise<any>;
+    isOrganizationOwner: boolean;
 
     private modal: ModalComponent = null;
 
@@ -48,6 +49,8 @@ export class EmergencyAccessComponent implements OnInit {
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();
+        let orgs = await this.userService.getAllOrganizations();
+        this.isOrganizationOwner = orgs.some(o => o.isOwner);
         this.load();
     }
 
