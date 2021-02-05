@@ -116,8 +116,17 @@
                     <div class="col-6 form-group">
                         <label for="password" *ngIf="!hasPassword">{{'password' | i18n}}</label>
                         <label for="password" *ngIf="hasPassword">{{'newPassword' | i18n}}</label>
-                        <input id="password" class="form-control" type="password" name="Password"
-                            [(ngModel)]="password" [readOnly]="disableSend">
+                        <div class="input-group">
+                            <input id="password" class="form-control text-monospace" type="{{showPassword ? 'text' : 'password'}}"
+                                name="Password" [(ngModel)]="password" [readOnly]="disableSend">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'toggleVisibility' | i18n}}"
+                                    (click)="togglePasswordVisible()">
+                                    <i class="fa fa-lg" aria-hidden="true"
+                                        [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="form-text text-muted small">{{'sendPasswordDesc' | i18n}}</div>
                     </div>
                 </div>
