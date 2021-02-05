@@ -107,7 +107,7 @@
                                         {{'copySendLink' | i18n}}
                                     </a>
                                     <a class="dropdown-item" href="#" appStopClick (click)="removePassword(s)"
-                                        *ngIf="s.password">
+                                        *ngIf="s.password && !disableSend">
                                         <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
                                         {{'removePassword' | i18n}}
                                     </a>
