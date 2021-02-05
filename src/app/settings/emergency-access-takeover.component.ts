@@ -51,9 +51,12 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
 
     async ngOnInit() {
         this.takeoverResponse = await this.apiService.postEmergencyAccessTakeover(this.emergencyAccessId);
-        const policyData = this.takeoverResponse.policy.map((policyResponse) => new PolicyData(policyResponse));
-        const policy = policyData.map((policyData) => new Policy(policyData));
-        this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policy);
+        if (this.takeoverResponse.policy)
+        {
+            const policyData = this.takeoverResponse.policy.map((policyResponse) => new PolicyData(policyResponse));
+            const policy = policyData.map((policyData) => new Policy(policyData));
+            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policy);    
+        }
      }
 
     async submit() {
