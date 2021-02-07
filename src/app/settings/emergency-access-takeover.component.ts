@@ -19,8 +19,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 import { ChangePasswordComponent } from 'jslib/angular/components/change-password.component';
 
 import { KdfType } from 'jslib/enums/kdfType';
-import { Policy } from 'jslib/models/domain/policy';
 import { PolicyData } from 'jslib/models/data/policyData';
+import { Policy } from 'jslib/models/domain/policy';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { EmergencyAccessPasswordRequest } from 'jslib/models/request/emergencyAccessPasswordRequest';
 import { EmergencyAccessTakeoverResponse } from 'jslib/models/response/emergencyAccessResponse';
@@ -51,10 +51,9 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
 
     async ngOnInit() {
         this.takeoverResponse = await this.apiService.postEmergencyAccessTakeover(this.emergencyAccessId);
-        if (this.takeoverResponse.policy)
+        if (this.takeoverResponse.policy != null && this.takeoverResponse.policy.length > 0)
         {
-            const policyData = this.takeoverResponse.policy.map(policyResponse => new PolicyData(policyResponse));
-            const policy = policyData.map(data => new Policy(data));
+            const policy = this.takeoverResponse.policy.map(policyResponse => new Policy(new PolicyData(policyResponse)));
             this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policy);
         }
      }
