@@ -40,6 +40,11 @@ export class SendComponent extends BaseSendComponent {
             searchService, policyService, userService);
     }
 
+    async ngOnInit() {
+        await super.ngOnInit();
+        await this.load();
+    }
+
     addSend() {
         if (this.disableSend) {
             return;
