@@ -9,6 +9,7 @@ import {
 import { SendView } from 'jslib/models/view/sendView';
 
 import { SendComponent as BaseSendComponent } from 'jslib/angular/components/send/send.component';
+
 import { AddEditComponent } from './add-edit.component';
 
 import { ModalComponent } from '../modal.component';
@@ -16,11 +17,12 @@ import { ModalComponent } from '../modal.component';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 import { SendService } from 'jslib/abstractions/send.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { SearchService, UserService } from 'jslib/abstractions';
 
 @Component({
     selector: 'app-send',
