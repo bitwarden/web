@@ -26,7 +26,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     copyLinkToClipboard(link: string) {
-        // Copy function on web depends on the modal being open or note. Since this event occurs during a transition
+        // Copy function on web depends on the modal being open or not. Since this event occurs during a transition
         // of the modal closing we need to add a small delay to make sure state of the DOM is consistent.
         window.setTimeout(() => super.copyLinkToClipboard(link), 500);
     }
