@@ -23,6 +23,7 @@ import { PolicyData } from 'jslib/models/data/policyData';
 import { Policy } from 'jslib/models/domain/policy';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { EmergencyAccessPasswordRequest } from 'jslib/models/request/emergencyAccessPasswordRequest';
+import { ListResponse } from 'jslib/models/response';
 import { EmergencyAccessTakeoverResponse } from 'jslib/models/response/emergencyAccessResponse';
 import { PolicyResponse } from 'jslib/models/response/policyResponse';
 
@@ -39,7 +40,6 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
     @Input() kdfIterations: number;
 
     formPromise: Promise<any>;
-    takeoverResponse: EmergencyAccessTakeoverResponse;
 
     constructor(i18nService: I18nService, cryptoService: CryptoService,
         messagingService: MessagingService, userService: UserService,
@@ -51,11 +51,10 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
     }
 
     async ngOnInit() {
-        this.takeoverResponse = await this.apiService.postEmergencyAccessTakeover(this.emergencyAccessId);
-        if (this.takeoverResponse.policy != null && this.takeoverResponse.policy.length > 0)
-        {
-            const policy = this.takeoverResponse.policy.map((policyResponse: PolicyResponse) => new Policy(new PolicyData(policyResponse)));
-            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policy);
+        const response = await this.apiService.getEmergencyGrantorPolicies(this.emergencyAccessId);
+        if (response.data != null && response.data.length > 0) {
+            const policies = response.data.map((policyResponse: PolicyResponse) => new Policy(new PolicyData(policyResponse)));
+            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policies);
         }
      }
 
@@ -64,7 +63,9 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
             return;
         }
 
-        const oldKeyBuffer = await this.cryptoService.rsaDecrypt(this.takeoverResponse.keyEncrypted);
+        const takeoverResponse = await this.apiService.postEmergencyAccessTakeover(this.emergencyAccessId);
+
+        const oldKeyBuffer = await this.cryptoService.rsaDecrypt(takeoverResponse.keyEncrypted);
         const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
 
         if (oldEncKey == null) {
@@ -72,7 +73,7 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
             return;
         }
 
-        const key = await this.cryptoService.makeKey(this.masterPassword, this.email, this.takeoverResponse.kdf, this.takeoverResponse.kdfIterations);
+        const key = await this.cryptoService.makeKey(this.masterPassword, this.email, takeoverResponse.kdf, takeoverResponse.kdfIterations);
         const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
 
         const encKey = await this.cryptoService.remakeEncKey(key, oldEncKey);
