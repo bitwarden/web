@@ -24,6 +24,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
+const BroadcasterSubscriptionId = 'SendComponent';
+
 @Component({
     selector: 'app-send',
     templateUrl: 'send.component.html',
@@ -35,16 +37,32 @@ export class SendComponent extends BaseSendComponent {
 
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
-        broadcasterService: BroadcasterService, ngZone: NgZone, searchService: SearchService,
-        policyService: PolicyService, userService: UserService,
-        private componentFactoryResolver: ComponentFactoryResolver) {
-        super(sendService, i18nService, platformUtilsService, environmentService, broadcasterService, ngZone,
-            searchService, policyService, userService);
+        ngZone: NgZone, searchService: SearchService, policyService: PolicyService, userService: UserService,
+        private componentFactoryResolver: ComponentFactoryResolver, private broadcasterService: BroadcasterService) {
+        super(sendService, i18nService, platformUtilsService, environmentService, ngZone, searchService,
+            policyService, userService);
     }
 
     async ngOnInit() {
         await super.ngOnInit();
         await this.load();
+
+        // Broadcaster subscription - load if sync completes in the background
+        this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
+            this.ngZone.run(async () => {
+                switch (message.command) {
+                    case 'syncCompleted':
+                        if (message.successfully) {
+                            await this.load();
+                        }
+                        break;
+                }
+            });
+        });
+    }
+
+    ngOnDestroy() {
+        this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     }
 
     addSend() {
