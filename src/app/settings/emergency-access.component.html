@@ -8,6 +8,10 @@
     </a>
 </p>
 
+<p *ngIf="isOrganizationOwner">
+    <b>{{'warning' | i18n }}:</b> {{'emergencyAccessOwnerWarning' | i18n}}
+</p>
+
 <div class="page-header d-flex">
     <h2>
         {{'trustedEmergencyContacts' | i18n}}

@@ -19,8 +19,13 @@ import { UserService } from 'jslib/abstractions/user.service';
 import { ChangePasswordComponent } from 'jslib/angular/components/change-password.component';
 
 import { KdfType } from 'jslib/enums/kdfType';
+import { PolicyData } from 'jslib/models/data/policyData';
+import { Policy } from 'jslib/models/domain/policy';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { EmergencyAccessPasswordRequest } from 'jslib/models/request/emergencyAccessPasswordRequest';
+import { ListResponse } from 'jslib/models/response';
+import { EmergencyAccessTakeoverResponse } from 'jslib/models/response/emergencyAccessResponse';
+import { PolicyResponse } from 'jslib/models/response/policyResponse';
 
 @Component({
     selector: 'emergency-access-takeover',
@@ -45,8 +50,13 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
             platformUtilsService, policyService);
     }
 
-    // tslint:disable-next-line
-    async ngOnInit() { }
+    async ngOnInit() {
+        const response = await this.apiService.getEmergencyGrantorPolicies(this.emergencyAccessId);
+        if (response.data != null && response.data.length > 0) {
+            const policies = response.data.map((policyResponse: PolicyResponse) => new Policy(new PolicyData(policyResponse)));
+            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policies);
+        }
+     }
 
     async submit() {
         if (!await this.strongPassword()) {
