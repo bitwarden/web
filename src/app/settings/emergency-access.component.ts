@@ -197,7 +197,7 @@ export class EmergencyAccessComponent implements OnInit {
         const type = this.i18nService.t(details.type === EmergencyAccessType.View ? 'view' : 'takeover');
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('approveAccessConfirmation', details.name, type),
+            this.i18nService.t('approveAccessConfirmation', details.name || details.email, type),
             details.name || details.email,
             this.i18nService.t('approve'),
             this.i18nService.t('no'),
