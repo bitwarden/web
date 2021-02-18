@@ -27,7 +27,6 @@ import { ReferenceEventRequest } from 'jslib/models/request/referenceEventReques
 })
 export class RegisterComponent extends BaseRegisterComponent {
     showCreateOrgMessage = false;
-    showTerms = true;
     layout = '';
     enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
@@ -40,7 +39,6 @@ export class RegisterComponent extends BaseRegisterComponent {
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService);
-        this.showTerms = !platformUtilsService.isSelfHost();
     }
 
     getPasswordScoreAlertDisplay() {
@@ -64,7 +62,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe((qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe(qParams => {
             this.referenceData = new ReferenceEventRequest();
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
@@ -98,8 +96,8 @@ export class RegisterComponent extends BaseRegisterComponent {
                 const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,
                     invite.email, invite.organizationUserId);
                 if (policies.data != null) {
-                    const policiesData = policies.data.map((p) => new PolicyData(p));
-                    this.policies = policiesData.map((p) => new Policy(p));
+                    const policiesData = policies.data.map(p => new PolicyData(p));
+                    this.policies = policiesData.map(p => new Policy(p));
                 }
             } catch { }
         }

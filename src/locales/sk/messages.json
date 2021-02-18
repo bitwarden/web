@@ -37,6 +37,9 @@
   "password": {
     "message": "Heslo"
   },
+  "newPassword": {
+    "message": "Nové heslo"
+  },
   "passphrase": {
     "message": "Heslo"
   },
@@ -343,6 +346,9 @@
   },
   "editItem": {
     "message": "Upraviť položku"
+  },
+  "viewItem": {
+    "message": "View Item"
   },
   "ex": {
     "message": "napr.",
@@ -787,8 +793,14 @@
   "warning": {
     "message": "Upozornenie"
   },
+  "confirmVaultExport": {
+    "message": "Confirm Vault Export"
+  },
   "exportWarningDesc": {
     "message": "Tento export obsahuje vaše dáta v nešifrovanom formáte. Nemali by ste ich ukladať, ani posielať cez nezabezpečené kanály (napr. email). Okamžite ho odstráňte, keď ho prestanete používať."
+  },
+  "encExportWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
   },
   "exportMasterPassword": {
     "message": "Zadajte vaše hlavné heslo pre export údajov trezoru."
@@ -914,7 +926,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Nastavenie KDF iterácií príliš vysoko môže viesť k spomalení pri prihlasovaní sa do Bitwarden (a pri odomykaní) v zariadeniach s pomalším procesorom. Odporúčame zvýšiť hodnotu v prírastkoch po $INCREMENT$ a potom testovať na všetkých vašich zariadeniach.",
+    "message": "Ak nastavíte KDF iterácie príliš vysoko, môže to viesť k zníženému výkonu pri prihlasovaní do Bitwardenu (a pri jeho odomykaní) na zariadeniach s pomalšimi procesormi. Odporúčame navyšovať túto hodnotu po $INCREMENT$ inkrementoch a následne otestovať na všetkých vašich zariadeniach.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -1045,11 +1057,11 @@
     "message": "Použiť avatar obrázky načítané z gravatar.com."
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "Zapnúť vzhľad na celú šírku strany",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "Povoliť webovému trezoru roztiahnúť sa na celú šírku okna."
   },
   "default": {
     "message": "Predvolené"
@@ -1655,6 +1667,9 @@
   },
   "paymentInformation": {
     "message": "Informácie o platbe"
+  },
+  "billingInformation": {
+    "message": "Billing Information"
   },
   "creditCard": {
     "message": "Kreditná Karta"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "Unlinked SSO for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "Zariadenie"
   },
@@ -2783,6 +2807,9 @@
   "updateEncryptionKeyWarning": {
     "message": "Po aktualizácii šifrovacieho kľúča budete požiadaní o opätovné prihlásenie do všetkých Bitwarden aplikácii ktoré momentálne používate (napríklad mobilné aplikácie, alebo rozšírenia v prehliadači). Ak sa opätovne neprihlásite (touto operáciou sa stiahnu nové šifrovacie kľúče), mohlo by to viesť k poškodeniu uložených dát. Pokúsime sa odhlásiť vás automaticky, ale môže to chvíľu trvať."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Any encrypted exports that you have saved will also become invalid."
+  },
   "subscription": {
     "message": "Predplatné"
   },
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "Nič ste nevybrali."
   },
-  "submitAgreePolicies": {
-    "message": "Kliknutím na tlačidlo \"Odoslať\" súhlasíte s následujúcimi podmienkami:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Označením tohto políčka súhlasíte s nasledovným:"
+  },
+  "acceptPoliciesError": {
+    "message": "Neboli akceptované Podmienky používania a zásady Ochrany osobných údajov."
   },
   "termsOfService": {
     "message": "Podmienky používania"
@@ -2824,10 +2853,10 @@
     "message": "Filtre"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Časový limit pre trezor"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Vyberte kedy vyprší časový limit trezora a vykoná sa zvolená akcia."
   },
   "oneMinute": {
     "message": "1 minúta"
@@ -2940,13 +2969,19 @@
     "message": "API kľúč"
   },
   "apiKeyDesc": {
-    "message": "API kľúč možno použiť na autentifikáciu pre použitie verejného Bitwarden API."
+    "message": "Váš API kľúč je možné použiť na autentifikáciu do verejného API Bitwardenu."
   },
   "apiKeyRotateDesc": {
     "message": "Obnovením kľúča API zneplatníte predchádzajúci API kľúč. API kľúč môžete obnoviť ak si myslíte že súčasný kľúč už nie je bezpečný."
   },
   "apiKeyWarning": {
     "message": "API kľúč má plný prístup k organizácii. To by by ste ho udržať v bezpečí."
+  },
+  "userApiKeyDesc": {
+    "message": "Váš API kľúč je možné použiť na autentifikáciu v API Bitwardenu."
+  },
+  "userApiKeyWarning": {
+    "message": "Váš API kľúč je alternatívnym autentifikačným mechanizmom. Mali by ste si ho udržať v tajnosti."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 klientské poverenia",
@@ -2986,10 +3021,10 @@
     "message": "Požadujte dvojstupňové prihlásenie pre osobné účty."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Členovia organizácie, ktorí nemajú zapnuté dvojstupňové prihlásenie budú odstranení z organizácie a obdržia email s informáciou o tejto zmene."
+    "message": "Členovia organizácie, ktorí nie su vlastníci alebo administratori a ktorí nemajú zapnuté dvojstupňové prihlásenie budú odstranení z organizácie a obdržia email s informáciou o tejto zmene."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "Ste členom organizácie, ktorá požaduje dvojstupňové prihlásenie do vášho použivateľského účtu. Ak odstránite všetky formy dvojstupňového prihlasovania, budete s takýchto organizácii odstránený."
+    "message": "Ste členom organizácie, ktorá vyžaduje dvojstupňové prihlásenie do vášho použivateľského účtu. Ak zakážete všetky formy dvojstupňového prihlasovania, budete automaticky odstránený z týchto organizácií."
   },
   "passwordGeneratorPolicyDesc": {
     "message": "Zvoľte minimálne požiadavky pre nastavenie generátora hesiel."
@@ -3049,45 +3084,45 @@
     "message": "Nastaví používateľ"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Akcia pri vypršaní času pre trezor"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Uzamknutý trezor sa dá odomknúť opätovným zadaním hlavného hesla."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Odlhásený trezor bude vyžadovať opätovné prihlásenie aby ste k nemu mohli pristupovať."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Uzamknúť",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Kôš",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Hľadať v koši"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Natrvalo Odstrániť"
   },
   "permanentlyDeleteSelected": {
-    "message": "Permanently Delete Selected"
+    "message": "Natrvalo odstrániť vybrané položky"
   },
   "permanentlyDeleteItem": {
-    "message": "Permanently Delete Item"
+    "message": "Natrvalo odstrániť položku"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Naozaj chcete natrvalo odstrániť túto položku?"
   },
   "permanentlyDeletedItem": {
-    "message": "Permanently Deleted item"
+    "message": "Položka natrvalo odstránená"
   },
   "permanentlyDeletedItems": {
-    "message": "Permanently Deleted items"
+    "message": "Položky natrvalo odstránené"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to permanently delete. Are you sure you want to permanently delete all of these items?",
+    "message": "Vybrali ste $COUNT$ položiek na trvalé odstránenie. Ste si istý, že chcete natrvalo odstrániť všetky tieto položky?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3096,7 +3131,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Permanently Deleted item $ID$.",
+    "message": "Položka $ID$ natrvalo odstránená.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3105,28 +3140,28 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Obnoviť"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Obnoviť zvolené"
   },
   "restoreItem": {
-    "message": "Restore Item"
+    "message": "Obnoviť položku"
   },
   "restoredItem": {
-    "message": "Restored Item"
+    "message": "Obnovená položka"
   },
   "restoredItems": {
-    "message": "Restored Items"
+    "message": "Obnovené položky"
   },
   "restoreItemConfirmation": {
-    "message": "Are you sure you want to restore this item?"
+    "message": "Naozaj chcete obnoviť tieto položky?"
   },
   "restoreItems": {
-    "message": "Restore items"
+    "message": "Obnoviť položky"
   },
   "restoreSelectedItemsDesc": {
-    "message": "You have selected $COUNT$ item(s) to restore. Are you sure you want to restore all of these items?",
+    "message": "Vybrali ste $COUNT$ položiek na obnovenie. Ste si istý, že chcete obnoviť všetky tieto položky?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3135,7 +3170,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Restored item $ID$.",
+    "message": "Položka $ID$ obnovená.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3144,24 +3179,454 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Odhlásenie bude vyžadovať online prihlásenie po vypršaní časového limitu. Naozaj chcete použiť toto nastavenie?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "Potvrdenie akcie pre vypršaný časový limit"
   },
   "hidePasswords": {
-    "message": "Hide Passwords"
+    "message": "Skryť heslá"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "Tieto informácie potrebujeme iba pre výpočet dane a pre finančné reporty."
   },
   "includeVAT": {
-    "message": "Include VAT/GST Information (optional)"
+    "message": "Zahrnúť informáciu o DPH (voliteľné)"
   },
   "taxIdNumber": {
-    "message": "VAT/GST Tax ID"
+    "message": "Číslo ID pre DPH"
   },
   "taxInfoUpdated": {
-    "message": "Tax information updated."
+    "message": "Daňové informácie aktualizované."
+  },
+  "setMasterPassword": {
+    "message": "Nastaviť hlavné heslo"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Aby ste dokončili nastavenie prihlasovacieho portálu (SSO), prosím nastavte hlavné heslo na prístup a ochranu vášho trezora."
+  },
+  "identifier": {
+    "message": "Identifikátor"
+  },
+  "organizationIdentifier": {
+    "message": "Identifikátor organizácie"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Prihláste sa prostredníctvom jednotného prihlasovania (SSO) vašej organizácie. Najskôr zadajte identifikátor vašej organizácie."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Prihlásenie cez prihlasovací formulár spoločnosti (SSO)"
+  },
+  "ssoHandOff": {
+    "message": "Teraz môžete zavrieť túto kartu a pokračovať v rozšírení."
+  },
+  "businessPortal": {
+    "message": "Portál spoločnosti",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Všetky funkcie verzie pre Tímy, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO prihlásenie cez SAML2.0 a OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Pravidlá spoločnosti"
+  },
+  "ssoValidationFailed": {
+    "message": "Overenie cez prihlasovací portál (SSO) zlyhalo"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Pole identifikátora organizácie je povinné."
+  },
+  "unlinkSso": {
+    "message": "Odpojiť SSO"
+  },
+  "linkSso": {
+    "message": "Prepojiť SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Konfigurácia pravidiel bola presunutá a táto stránka bude čoskoro zrušená. Ak chcete radšej konfigurovať pravidlá v Portáli spoločnosti, kliknite, prosím, na tlačidlo nižšie."
+  },
+  "singleOrg": {
+    "message": "Jedna organizácia"
+  },
+  "singleOrgDesc": {
+    "message": "Zakázať používateľom stať sa členmi inej organizácie."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Váša súčasná organizácia má pravidlo, ktoré vám nedovoľuje pripojiť sa k viac než jednej organizácii. Kontaktujte, prosím, administrátorov vašej organizácie alebo sa prihláste prostredníctvom iného Bitwarden účtu."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Členovia organizácie, ktorí nie sú vlastníkmi alebo administrátormi a už sú členmi inej organizácie, budú odstránení z vašej organizácie."
+  },
+  "requireSso": {
+    "message": "Overovanie prostredníctvom jednotného prihlasovania (SSO)"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Vyžadovať od používateľov prihlásenie prostredníctvom jednotného prihlasovania (SSO) spoločnosti."
+  },
+  "prerequisite": {
+    "message": "Predpoklad"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Pravidlá spoločnosti o jednej organizácii musia byť povolené pred aktivovaním tohto pravidla."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Pravidlo jednej organizácie nie je povolené."
+  },
+  "requireSsoExemption": {
+    "message": "Vlastníci a administrátori organizácie sú vyňatí z uplatnenia tohto pravidla."
+  },
+  "sendTypeFile": {
+    "message": "Súbor"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Vytvoriť nový Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Upraviť Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send vytvorený",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send upravený",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send zmazaný",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Zmazať Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Naozaj chcete odstrániť tento Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Aký typ Send to je?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Dátum vymazania"
+  },
+  "deletionDateDesc": {
+    "message": "The Send will be permanently deleted on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Dátum exspirácie"
+  },
+  "expirationDateDesc": {
+    "message": "If set, access to this Send will expire on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maximálny počet prístupov"
+  },
+  "maxAccessCountDesc": {
+    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Súčasný počet prístupov"
+  },
+  "sendPasswordDesc": {
+    "message": "Optionally require a password for users to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Private notes about this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Vypnuté"
+  },
+  "sendLink": {
+    "message": "Odkaz na Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Kopírovať odkaz na Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Odstrániť Heslo"
+  },
+  "removedPassword": {
+    "message": "Heslo odstránené"
+  },
+  "removePasswordConfirmation": {
+    "message": "Naozaj chcete odstrániť heslo?"
+  },
+  "disableThisSend": {
+    "message": "Disable this Send so that no one can access it.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Všetky Sendy"
+  },
+  "maxAccessCountReached": {
+    "message": "Max access count reached"
+  },
+  "pendingDeletion": {
+    "message": "Pending deletion"
+  },
+  "expired": {
+    "message": "Expired"
+  },
+  "searchSends": {
+    "message": "Hľadať Sendy",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Tento Send je chránený heslom. Pre pokračovanie zadajte prosím heslo.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Neviete heslo? Požiadajte odosielateľa o heslo potrebné k prístupu k tomuto Sendu.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Tento Send je normálne skrytý. Tlačidlom nižšie môžete prepnúť jeho viditeľnosť.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Stiahnuť súbor"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Neexistujú žiadne Sendy na zobrazenie.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Emergency Access"
+  },
+  "emergencyAccessDesc": {
+    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Trusted emergency contacts"
+  },
+  "noTrustedContacts": {
+    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+  },
+  "addEmergencyContact": {
+    "message": "Add emergency contact"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Designated as emergency contact"
+  },
+  "noGrantedAccess": {
+    "message": "You have not been designated as an emergency contact for anyone yet."
+  },
+  "inviteEmergencyContact": {
+    "message": "Invite emergency contact"
+  },
+  "editEmergencyContact": {
+    "message": "Edit emergency contact"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Emergency Access Initiated"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Emergency Access Approved"
+  },
+  "viewDesc": {
+    "message": "Can view all items in your own vault."
+  },
+  "takeover": {
+    "message": "Takeover"
+  },
+  "takeoverDesc": {
+    "message": "Can reset your account with a new master password."
+  },
+  "waitTime": {
+    "message": "Wait Time"
+  },
+  "waitTimeDesc": {
+    "message": "Time required before automatically granting access."
+  },
+  "oneDay": {
+    "message": "1 day"
+  },
+  "days": {
+    "message": "$DAYS$ days",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Invited user."
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "Request Access"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Approve"
+  },
+  "reject": {
+    "message": "Reject"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Emergency access approved."
+  },
+  "emergencyRejected": {
+    "message": "Emergency access rejected"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personal Ownership"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Plan price"
+  },
+  "estimatedTax": {
+    "message": "Estimated tax"
+  },
+  "custom": {
+    "message": "Custom"
+  },
+  "customDesc": {
+    "message": "Allows more granular control of user permissions for advanced configurations."
+  },
+  "permissions": {
+    "message": "Permissions"
+  },
+  "accessBusinessPortal": {
+    "message": "Access Business Portal"
+  },
+  "accessEventLogs": {
+    "message": "Access Event Logs"
+  },
+  "accessImportExport": {
+    "message": "Access Import/Export"
+  },
+  "accessReports": {
+    "message": "Access Reports"
+  },
+  "manageAllCollections": {
+    "message": "Manage All Collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Manage Assigned Collections"
+  },
+  "manageGroups": {
+    "message": "Manage Groups"
+  },
+  "managePolicies": {
+    "message": "Manage Policies"
+  },
+  "manageSso": {
+    "message": "Manage SSO"
+  },
+  "manageUsers": {
+    "message": "Manage Users"
+  },
+  "disableRequireSsoError": {
+    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "An organization policy is affecting your ownership options."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Disable personal ownership for organization users"
+  },
+  "textHiddenByDefault": {
+    "message": "When accessing the Send, hide the text by default",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

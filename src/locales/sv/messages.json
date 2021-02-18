@@ -37,6 +37,9 @@
   "password": {
     "message": "Lösenord"
   },
+  "newPassword": {
+    "message": "Nytt lösenord"
+  },
   "passphrase": {
     "message": "Lösenordsfras"
   },
@@ -344,6 +347,9 @@
   "editItem": {
     "message": "Redigera objekt"
   },
+  "viewItem": {
+    "message": "Visa objekt"
+  },
   "ex": {
     "message": "t.ex.",
     "description": "Short abbreviation for 'example'."
@@ -458,7 +464,7 @@
     "message": "Radera bilaga"
   },
   "deleteItemConfirmation": {
-    "message": "Är du säker på att du vill radera detta objekt?"
+    "message": "Är du säker på att du vill skicka detta objekt till papperskorgen?"
   },
   "deletedItem": {
     "message": "Skickade objekt till papperskorgen"
@@ -787,8 +793,14 @@
   "warning": {
     "message": "Varning"
   },
+  "confirmVaultExport": {
+    "message": "Bekräfta export av valv"
+  },
   "exportWarningDesc": {
     "message": "Denna export innehåller ditt valv i ett okrypterat format. Du bör inte lagra eller skicka den exporterade filen över osäkra kanaler (t.ex. e-post). Radera den omedelbart när du är färdig med den."
+  },
+  "encExportWarningDesc": {
+    "message": "Denna export krypterar dina data med kontots krypteringsnyckel. Om du någonsin roterar kontots krypteringsnyckel bör du exportera igen eftersom du inte kommer att kunna dekryptera denna exportfil."
   },
   "exportMasterPassword": {
     "message": "Ange ditt huvudlösenord för att exportera ditt valv."
@@ -1135,7 +1147,7 @@
     "message": "Du har premiumåtkomst"
   },
   "alreadyPremiumFromOrg": {
-    "message": "Du har redan tillgång till premiumfunktioner på grund av en organisation som du är medlem i."
+    "message": "Du har redan tillgång till premium-funktioner på grund av en organisation som du är medlem i."
   },
   "manage": {
     "message": "Hantera"
@@ -1656,6 +1668,9 @@
   "paymentInformation": {
     "message": "Betalningsinformation"
   },
+  "billingInformation": {
+    "message": "Faktureringsuppgifter"
+  },
   "creditCard": {
     "message": "Kreditkort"
   },
@@ -1986,7 +2001,7 @@
     "message": "\"On-premise\"-hosting (valfri)"
   },
   "usersGetPremium": {
-    "message": "Användare får tillgång till premiummedlemskaps-funktioner"
+    "message": "Användare får tillgång till premium-funktioner"
   },
   "controlAccessWithGroups": {
     "message": "Reglera användaråtkomst med grupper"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "Olänkad SSO för användare $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "Enhet"
   },
@@ -2783,6 +2807,9 @@
   "updateEncryptionKeyWarning": {
     "message": "Efter att ha uppdaterat din krypteringsnyckel, måste du logga ut och in igen i alla Bitwarden-program som du använder (t.ex. mobilappen och webbläsartillägget). Att inte logga ut och in igen (vilket hämtar din nya krypteringsnyckel) kan resultera i datakorruption. Vi kommer försöka logga ut dig automatiskt, men det kan vara fördröjt."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Alla krypterade exporter som du har sparat kommer också bli ogiltiga."
+  },
   "subscription": {
     "message": "Abonnemang"
   },
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "Du har inte markerat något."
   },
-  "submitAgreePolicies": {
-    "message": "Genom att klicka på \"Skicka\"-knappen godkänner du följande policyer:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Genom att markera denna ruta godkänner du följande:"
+  },
+  "acceptPoliciesError": {
+    "message": "Användarvillkoren och Integritetspolicyn har inte accepterats."
   },
   "termsOfService": {
     "message": "Användarvillkor"
@@ -2948,6 +2977,12 @@
   "apiKeyWarning": {
     "message": "Din API-nyckel har full tillgång till organisationen. Den bör hållas hemlig."
   },
+  "userApiKeyDesc": {
+    "message": "Din API-nyckel kan användas för att autentisera i Bitwardens CLI."
+  },
+  "userApiKeyWarning": {
+    "message": "Din API-nyckel är en alternativ autentiseringsmekanism. Den bör hållas hemlig."
+  },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 Klientautentiseringsuppgifter",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2986,7 +3021,7 @@
     "message": "Kräv att användare konfigurerar tvåstegsverifiering för sina personliga konton."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organisationsmedlemmar som inte har tvåstegsverifiering aktiverat för sina personliga konton kommer tas bort från organisationen och få ett e-postmeddelande om ändringen."
+    "message": "Medlemmar som inte har tvåstegsverifiering aktiverat för sina personliga konton kommer tas bort från organisationen och få ett e-postmeddelande om ändringen."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Du är medlem i en organisation som kräver att tvåstegsverifiering är aktiverat för ditt användarkonto. Om du inaktiverar alla metoder för tvåstegsverifiering kommer du automatiskt tas bort från dessa organisationer."
@@ -3019,16 +3054,16 @@
     }
   },
   "policyInEffectUppercase": {
-    "message": "Innehåller en eller flera versaler"
+    "message": "Innehålla en eller flera versaler"
   },
   "policyInEffectLowercase": {
-    "message": "Innehåller en eller flera gemener"
+    "message": "Innehålla en eller flera gemener"
   },
   "policyInEffectNumbers": {
-    "message": "Innehåller en eller flera siffror"
+    "message": "Innehålla en eller flera siffror"
   },
   "policyInEffectSpecial": {
-    "message": "Innehåller ett eller flera av följande specialtecken $CHARS$",
+    "message": "Innehålla ett eller flera av följande specialtecken: $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
@@ -3163,5 +3198,435 @@
   },
   "taxInfoUpdated": {
     "message": "Momsinformationen uppdaterades."
+  },
+  "setMasterPassword": {
+    "message": "Ange huvudlösenord"
+  },
+  "ssoCompleteRegistration": {
+    "message": "För att slutföra inloggning med SSO, ange ett huvudlösenord för att komma åt och skydda ditt valv."
+  },
+  "identifier": {
+    "message": "Identifierare"
+  },
+  "organizationIdentifier": {
+    "message": "Organisationens Identifierare"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Logga in genom organisationens inloggningsportal. Ange organisationens identifierare för att börja."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Single Sign-On för företag"
+  },
+  "ssoHandOff": {
+    "message": "Du kan nu stänga denna flik och fortsätta i tillägget."
+  },
+  "businessPortal": {
+    "message": "Företagets portal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Alla funktioner för team, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO-autentisering via SAML2.0 och OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Företagets policyer"
+  },
+  "ssoValidationFailed": {
+    "message": "Validering med SSO misslyckades"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organisationens identifierare krävs."
+  },
+  "unlinkSso": {
+    "message": "Avlänka SSO"
+  },
+  "linkSso": {
+    "message": "Länka SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Policykonfigurationen har flyttats, och den här sidan kommer snart att fasas ut. Klicka nedan för att använda företagsportalens sida för policyer istället."
+  },
+  "singleOrg": {
+    "message": "En organisation"
+  },
+  "singleOrgDesc": {
+    "message": "Hindra användare från att gå med i några andra organisationer."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Din nuvarande organisation har en policy som hindrar dig från att gå med i fler än en organisation. Vänligen kontakta din organisations administratörer eller registrera ett annat Bitwarden-konto."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Medlemmar som inte är ägare eller administratörer och redan är med i en annan organisation kommer att tas bort från organisationen."
+  },
+  "requireSso": {
+    "message": "Autentisering med Single Sign-On"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Kräv att användare loggar in med Single Sign-On för företag."
+  },
+  "prerequisite": {
+    "message": "Förutsättning"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Policyn \"En organisation\" måste vara aktiverad innan denna policy kan aktiveras."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Policyn \"En organisation\" är inte aktiverad."
+  },
+  "requireSsoExemption": {
+    "message": "Organisationens ägare och administratörer är undantagna från denna policy."
+  },
+  "sendTypeFile": {
+    "message": "Fil"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Skapa ny försändelse",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Redigera försändelse",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Skapade försändelse",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Redigerade försändelse",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Raderade försändelse",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Radera försändelse",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Är du säker på att du vill radera denna försändelse?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Vilken typ av försändelse är detta?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Raderingsdatum"
+  },
+  "deletionDateDesc": {
+    "message": "Försändelsen kommer att raderas permanent på den angivna tiden, det angivna datumet.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Utgångsdatum"
+  },
+  "expirationDateDesc": {
+    "message": "Om angivet kommer åtkomst till denna försändelse upphöra på det angivna datumet, den angivna tiden.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maximalt antal åtkomster"
+  },
+  "maxAccessCountDesc": {
+    "message": "Om angivet kommer användare inte längre komma åt denna försändelse när den maximala antalet åtkomster har uppnåtts.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Nuvarande antal åtkomster"
+  },
+  "sendPasswordDesc": {
+    "message": "Kräv ett lösenord från användare innan de kommer åt denna försändelse.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Egna anteckningar om denna försändelse.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Inaktiverad"
+  },
+  "sendLink": {
+    "message": "Försändelselänk",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Kopiera försändelselänk",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Ta bort lösenord"
+  },
+  "removedPassword": {
+    "message": "Tog bort lösenord"
+  },
+  "removePasswordConfirmation": {
+    "message": "Är du säker på att du vill ta bort lösenordet?"
+  },
+  "disableThisSend": {
+    "message": "Inaktivera denna försändelse så att ingen kan komma åt den.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Alla försändelser"
+  },
+  "maxAccessCountReached": {
+    "message": "Det maximala antalet åtkomster har uppnåtts"
+  },
+  "pendingDeletion": {
+    "message": "Väntar på radering"
+  },
+  "expired": {
+    "message": "Utgången"
+  },
+  "searchSends": {
+    "message": "Sök försändelser",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Denna försändelse är skyddad med ett lösenord. Vänligen skriv in lösenordet nedan för att fortsätta.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Vet du inte lösenordet? Fråga avsändaren om lösenordet som behövs för att komma åt denna försändelse.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Denna försändelse är dold som standard. Du kan växla dess synlighet med knappen nedan.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Ladda ner fil"
+  },
+  "sendAccessUnavailable": {
+    "message": "Försändelsen du försöker komma åt finns inte eller är inte längre tillgänglig.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Det finns inga försändelser att visa.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Åtkomst i nödsituationer"
+  },
+  "emergencyAccessDesc": {
+    "message": "Bevilja och hantera åtkomst för betrodda kontakter i nödsituationer. Betrodda kontakter kan begära att antingen visa eller ta över ditt konto vid en nödsituation. Besök vår hjälpsida för mer information och information om hur delning utan kännedom fungerar."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Betrodda nödkontakter"
+  },
+  "noTrustedContacts": {
+    "message": "Du har inte lagt till några nödkontakter än, bjud in en betrodd kontakt för att komma igång."
+  },
+  "addEmergencyContact": {
+    "message": "Lägg till nödkontakt"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Utsedd till nödkontakt"
+  },
+  "noGrantedAccess": {
+    "message": "Du har inte utsetts till någon annans nödkontakt än."
+  },
+  "inviteEmergencyContact": {
+    "message": "Bjud in nödkontakt"
+  },
+  "editEmergencyContact": {
+    "message": "Redigera nödkontakt"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Bjud in en nödkontakt genom att ange e-postadressen som tillhör deras Bitwarden-konto nedan. Om de inte redan har ett Bitwarden-konto kommer de uppmanas att skapa ett."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Nödåtkomst initierad"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Nödåtkomst godkänd"
+  },
+  "viewDesc": {
+    "message": "Kan visa alla objekt i ditt valv."
+  },
+  "takeover": {
+    "message": "Ta över"
+  },
+  "takeoverDesc": {
+    "message": "Kan återställa ditt konto med ett nytt huvudlösenord."
+  },
+  "waitTime": {
+    "message": "Väntetid"
+  },
+  "waitTimeDesc": {
+    "message": "Tid som krävs innan åtkomst beviljas automatiskt."
+  },
+  "oneDay": {
+    "message": "1 dag"
+  },
+  "days": {
+    "message": "$DAYS$ dagar",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Bjöd in användare."
+  },
+  "acceptEmergencyAccess": {
+    "message": "Du har blivit inbjuden att bli nödkontakt åt användaren ovan. För att acceptera inbjudan måste du logga in eller skapa ett nytt Bitwarden-konto."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Det gick inte att acceptera inbjudan. Be användaren att skicka en ny inbjudan."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Det gick inte att acceptera inbjudan. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "Du kan komma åt nödalternativen för den här användaren efter att din identitet har bekräftats. Vi skickar dig ett e-postmeddelande när det händer."
+  },
+  "requestAccess": {
+    "message": "Begär åtkomst"
+  },
+  "requestAccessConfirmation": {
+    "message": "Är du säker på att du vill begära nödåtkomst? Du kommer att få åtkomst efter $WAITTIME$ dag(ar) eller när användaren manuellt godkänner begäran.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Nödåtkomst begärd för $USER$. Vi meddelar dig via e-post när det är möjligt att fortsätta.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Godkänn"
+  },
+  "reject": {
+    "message": "Neka"
+  },
+  "approveAccessConfirmation": {
+    "message": "Är du säker på att du vill godkänna nödåtkomst? Detta tillåter $USER$ att $ACTION$ ditt konto.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Nödåtkomst godkänd."
+  },
+  "emergencyRejected": {
+    "message": "Nödåtkomst nekad"
+  },
+  "passwordResetFor": {
+    "message": "Lösenordet för $USER$ återställdes. Du kan nu logga in med det nya lösenordet.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personligt ägarskap"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Kräv att användare sparar objekt till en organisation genom att ta bort det personliga ägarskapsalternativet."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organisationens ägare och administratörer är undantagna från denna policy."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "På grund av en av företagets policyer är du begränsad från att spara objekt till ditt personliga valv. Ändra ägarskap till en organisation och välj från tillgängliga samlingar."
+  },
+  "modifiedPolicyId": {
+    "message": "Ändrade policyn $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Abonnemangets pris"
+  },
+  "estimatedTax": {
+    "message": "Uppskattad moms"
+  },
+  "custom": {
+    "message": "Anpassad"
+  },
+  "customDesc": {
+    "message": "Tillåter mer detaljerad kontroll av användarbehörigheter för avancerade konfigurationer."
+  },
+  "permissions": {
+    "message": "Behörigheter"
+  },
+  "accessBusinessPortal": {
+    "message": "Åtkomst till företagsportalen"
+  },
+  "accessEventLogs": {
+    "message": "Åtkomst till händelseloggar"
+  },
+  "accessImportExport": {
+    "message": "Åtkomst till import/export"
+  },
+  "accessReports": {
+    "message": "Åtkomst till rapporter"
+  },
+  "manageAllCollections": {
+    "message": "Hantera alla samlingar"
+  },
+  "manageAssignedCollections": {
+    "message": "Hantera tilldelade samlingar"
+  },
+  "manageGroups": {
+    "message": "Hantera grupper"
+  },
+  "managePolicies": {
+    "message": "Hantera policyer"
+  },
+  "manageSso": {
+    "message": "Hantera SSO"
+  },
+  "manageUsers": {
+    "message": "Hantera användare"
+  },
+  "disableRequireSsoError": {
+    "message": "Du måste inaktivera policyn \"Autentisering med Single Sign-On\" manuellt innan denna policy kan inaktiveras."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "En organisationspolicy påverkar dina ägarskapsalternativ."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Inaktivera personligt ägarskap för organisationens användare"
+  },
+  "textHiddenByDefault": {
+    "message": "Dölj texten som standard när försändelsen öppnas",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

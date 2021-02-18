@@ -5,22 +5,23 @@
                 <div class="card-header">{{'manage' | i18n}}</div>
                 <div class="list-group list-group-flush">
                     <a routerLink="people" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.isAdmin">
+                        *ngIf="organization.canManageUsers">
                         {{'people' | i18n}}
                     </a>
-                    <a routerLink="collections" class="list-group-item" routerLinkActive="active">
+                    <a routerLink="collections" class="list-group-item" routerLinkActive="active"
+                        *ngIf="organization.canManageAssignedCollections || organization.canManageAllCollections">
                         {{'collections' | i18n}}
                     </a>
                     <a routerLink="groups" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.isAdmin && accessGroups">
+                        *ngIf="organization.canManageGroups && accessGroups">
                         {{'groups' | i18n}}
                     </a>
                     <a routerLink="policies" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.isAdmin && accessPolicies">
+                        *ngIf="organization.canManagePolicies && accessPolicies">
                         {{'policies' | i18n}}
                     </a>
                     <a routerLink="events" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.isAdmin && accessEvents">
+                        *ngIf="organization.canAccessEventLogs && accessEvents">
                         {{'eventLogs' | i18n}}
                     </a>
                 </div>

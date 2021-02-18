@@ -34,6 +34,6 @@ export class ShareComponent extends BaseShareComponent implements OnDestroy {
 
     selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
-        collections.forEach((c) => this.check(c, select));
+        collections.forEach(c => this.check(c, select));
     }
 }

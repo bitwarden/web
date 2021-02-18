@@ -4,7 +4,7 @@ import { getQsParam } from './common';
 // tslint:disable-next-line
 require('./duo.scss');
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', event => {
     const frameElement = document.createElement('iframe');
     frameElement.setAttribute('id', 'duo_iframe');
     setFrameHeight();

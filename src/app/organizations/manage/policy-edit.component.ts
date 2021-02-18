@@ -27,6 +27,7 @@ export class PolicyEditComponent implements OnInit {
     @Input() description: string;
     @Input() type: PolicyType;
     @Input() organizationId: string;
+    @Input() policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
     @Output() onSavedPolicy = new EventEmitter();
 
     policyType = PolicyType;
@@ -127,45 +128,85 @@ export class PolicyEditComponent implements OnInit {
     }
 
     async submit() {
-        const request = new PolicyRequest();
-        request.enabled = this.enabled;
-        request.type = this.type;
-        request.data = null;
-        switch (this.type) {
-            case PolicyType.PasswordGenerator:
-                request.data = {
-                    defaultType: this.passGenDefaultType,
-                    minLength: this.passGenMinLength || null,
-                    useUpper: this.passGenUseUpper,
-                    useLower: this.passGenUseLower,
-                    useNumbers: this.passGenUseNumbers,
-                    useSpecial: this.passGenUseSpecial,
-                    minNumbers: this.passGenMinNumbers || null,
-                    minSpecial: this.passGenMinSpecial || null,
-                    minNumberWords: this.passGenMinNumberWords || null,
-                    capitalize: this.passGenCapitalize,
-                    includeNumber: this.passGenIncludeNumber,
-                };
-                break;
-            case PolicyType.MasterPassword:
-                request.data = {
-                    minComplexity: this.masterPassMinComplexity || null,
-                    minLength: this.masterPassMinLength || null,
-                    requireUpper: this.masterPassRequireUpper,
-                    requireLower: this.masterPassRequireLower,
-                    requireNumbers: this.masterPassRequireNumbers,
-                    requireSpecial: this.masterPassRequireSpecial,
-                };
-                break;
-            default:
-                break;
+        if (this.preValidate()) {
+            const request = new PolicyRequest();
+            request.enabled = this.enabled;
+            request.type = this.type;
+            request.data = null;
+            switch (this.type) {
+                case PolicyType.PasswordGenerator:
+                    request.data = {
+                        defaultType: this.passGenDefaultType,
+                        minLength: this.passGenMinLength || null,
+                        useUpper: this.passGenUseUpper,
+                        useLower: this.passGenUseLower,
+                        useNumbers: this.passGenUseNumbers,
+                        useSpecial: this.passGenUseSpecial,
+                        minNumbers: this.passGenMinNumbers || null,
+                        minSpecial: this.passGenMinSpecial || null,
+                        minNumberWords: this.passGenMinNumberWords || null,
+                        capitalize: this.passGenCapitalize,
+                        includeNumber: this.passGenIncludeNumber,
+                    };
+                    break;
+                case PolicyType.MasterPassword:
+                    request.data = {
+                        minComplexity: this.masterPassMinComplexity || null,
+                        minLength: this.masterPassMinLength || null,
+                        requireUpper: this.masterPassRequireUpper,
+                        requireLower: this.masterPassRequireLower,
+                        requireNumbers: this.masterPassRequireNumbers,
+                        requireSpecial: this.masterPassRequireSpecial,
+                    };
+                    break;
+                default:
+                    break;
+            }
+            try {
+                this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
+                await this.formPromise;
+                this.analytics.eventTrack.next({ action: 'Edited Policy' });
+                this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.name));
+                this.onSavedPolicy.emit();
+            } catch { }
         }
-        try {
-            this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
-            await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Edited Policy' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.name));
-            this.onSavedPolicy.emit();
-        } catch { }
+    }
+
+    get checkboxDesc(): string {
+        return this.type === PolicyType.PersonalOwnership ? this.i18nService.t('personalOwnershipCheckboxDesc') :
+            this.i18nService.t('enabled');
+    }
+
+    private preValidate(): boolean {
+        switch (this.type) {
+            case PolicyType.RequireSso:
+                // Don't need prevalidation checks if submitting to disable
+                if (!this.enabled) {
+                    return true;
+                }
+                // Have SingleOrg policy enabled?
+                if (!(this.policiesEnabledMap.has(PolicyType.SingleOrg)
+                    && this.policiesEnabledMap.get(PolicyType.SingleOrg))) {
+                    this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoPolicyReqError'));
+                    return false;
+                }
+                return true;
+
+            case PolicyType.SingleOrg:
+                // Don't need prevalidation checks if submitting to enable
+                if (this.enabled) {
+                    return true;
+                }
+                // If RequireSso Policy is enabled prevent submittal
+                if (this.policiesEnabledMap.has(PolicyType.RequireSso)
+                    && this.policiesEnabledMap.get(PolicyType.RequireSso)) {
+                    this.toasterService.popAsync('error', null, this.i18nService.t('disableRequireSsoError'));
+                    return false;
+                }
+                return true;
+
+            default:
+                return true;
+        }
     }
 }

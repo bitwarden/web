@@ -37,6 +37,9 @@
   "password": {
     "message": "密码"
   },
+  "newPassword": {
+    "message": "新密码"
+  },
   "passphrase": {
     "message": "密码短语"
   },
@@ -170,7 +173,7 @@
     "message": "未分派"
   },
   "noneFolder": {
-    "message": "没有文件夹",
+    "message": "默认文件夹",
     "description": "This is the folder for uncategorized items"
   },
   "addFolder": {
@@ -330,7 +333,7 @@
     "message": "国家"
   },
   "shared": {
-    "message": "已分享"
+    "message": "已共享"
   },
   "attachments": {
     "message": "附件"
@@ -344,6 +347,9 @@
   "editItem": {
     "message": "编辑项目"
   },
+  "viewItem": {
+    "message": "查看项目"
+  },
   "ex": {
     "message": "例如",
     "description": "Short abbreviation for 'example'."
@@ -352,7 +358,7 @@
     "message": "其他"
   },
   "share": {
-    "message": "分享"
+    "message": "共享"
   },
   "valueCopied": {
     "message": "$VALUE$ 已复制",
@@ -395,7 +401,7 @@
     "message": "密码库"
   },
   "shareSelected": {
-    "message": "分享所选"
+    "message": "共享所选"
   },
   "deleteSelected": {
     "message": "删除所选"
@@ -461,10 +467,10 @@
     "message": "您确定要删除此项目吗?"
   },
   "deletedItem": {
-    "message": "项目已删除"
+    "message": "项目已发送到回收站"
   },
   "deletedItems": {
-    "message": "项目已删除"
+    "message": "项目已发送到回收站"
   },
   "movedItems": {
     "message": "项目已移动"
@@ -624,7 +630,7 @@
     "message": "没有可列出的事件。"
   },
   "newOrganization": {
-    "message": "新的组织"
+    "message": "新建组织"
   },
   "noOrganizationsList": {
     "message": "您没有加入任何组织。同一组织的用户可以安全地与其他用户共享项目。"
@@ -666,7 +672,7 @@
     "message": "重发验证码电子邮件"
   },
   "useAnotherTwoStepMethod": {
-    "message": "使用其他两步登录方法"
+    "message": "使用其他两步登录方式"
   },
   "insertYubiKey": {
     "message": "将您的 YubiKey 插入计算机的 USB 端口，然后按下按钮。"
@@ -787,8 +793,14 @@
   "warning": {
     "message": "警告"
   },
+  "confirmVaultExport": {
+    "message": "确认导出密码库"
+  },
   "exportWarningDesc": {
     "message": "导出的密码库数据包含未加密格式。您不应该通过不安全的渠道（例如电子邮件）来存储或发送导出的文件。用完后请立即将其删除。"
+  },
+  "encExportWarningDesc": {
+    "message": "此导出将使用您账户的加密密钥来加密您的数据。 如果您曾经轮换过账户的加密密钥，您应将其重新导出，否则您将无法解密导出的文件。"
   },
   "exportMasterPassword": {
     "message": "输入主密码来导出你的密码库数据。"
@@ -1135,7 +1147,7 @@
     "message": "您拥有高级访问权限"
   },
   "alreadyPremiumFromOrg": {
-    "message": "由于您所属的组织，您已经拥有高级版功能权限。"
+    "message": "由于您是拥有高级会员功能的组织的成员，您已经拥有此功能。"
   },
   "manage": {
     "message": "管理"
@@ -1210,7 +1222,7 @@
     "message": "具有 USB 端口的设备上的网页版密码库、桌面应用程序、CLI 以及浏览器扩展都可以使用您的 YubiKey。"
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "兼容 NFC 或者有数据端口的设备上的移动 APP可以使用您的 YubiKey。"
+    "message": "兼容 NFC 或者有数据端口的设备上的移动 APP 可以使用您的 YubiKey。"
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1243,7 +1255,7 @@
     "message": "YubiKey 已更新"
   },
   "disableAllKeys": {
-    "message": "禁用全部密钥"
+    "message": "禁用全部钥匙"
   },
   "twoFactorDuoDesc": {
     "message": "输入 Duo 管理面板提供的 Bitwarden 应用信息。"
@@ -1276,7 +1288,7 @@
     "message": "您确认要删除这个安全钥匙吗？"
   },
   "readKey": {
-    "message": "读取密钥"
+    "message": "读取钥匙"
   },
   "keyCompromised": {
     "message": "密钥被破坏。"
@@ -1306,7 +1318,7 @@
     "message": "单击下面的 \"保存\" 按钮，以启用此安全钥匙进行两步登录。"
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "读取安全密钥时出现问题，请再试一次。"
+    "message": "读取安全钥匙时出现问题，请再试一次。"
   },
   "twoFactorRecoveryYourCode": {
     "message": "您的 Bitwarden 两步登录恢复代码"
@@ -1322,7 +1334,7 @@
     "message": "报告"
   },
   "unsecuredWebsitesReport": {
-    "message": "不安全的网站报告"
+    "message": "不安全网站报告"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "使用带 http:// 的不安全网站是很危险的。如果网站允许，您应始终使用带 https:// 的加密连接来访问它们。"
@@ -1421,7 +1433,7 @@
     "message": "没有在密码库中发现弱密码。"
   },
   "reusedPasswordsReport": {
-    "message": "重复使用的密码报告"
+    "message": "重复使用密码报告"
   },
   "reusedPasswordsReportDesc": {
     "message": "如果您使用的服务被盗，在其他地方重复使用相同的密码可以让黑客轻松访问您的更多在线帐户。您应该对每个帐户或服务使用不同的密码。"
@@ -1656,6 +1668,9 @@
   "paymentInformation": {
     "message": "支付信息"
   },
+  "billingInformation": {
+    "message": "账单信息"
+  },
   "creditCard": {
     "message": "信用卡"
   },
@@ -1846,7 +1861,7 @@
     "message": "组织名称"
   },
   "accountOwnedBusiness": {
-    "message": "此帐户由商业用户拥有。"
+    "message": "此帐户由公司拥有。"
   },
   "billingEmail": {
     "message": "账单电子邮件"
@@ -1861,16 +1876,16 @@
     "message": "用户"
   },
   "userSeats": {
-    "message": "用户数"
+    "message": "用户席位"
   },
   "additionalUserSeats": {
-    "message": "附加用户数"
+    "message": "附加用户席位"
   },
   "userSeatsDesc": {
-    "message": "# 用户数"
+    "message": "# 用户席位"
   },
   "userSeatsAdditionalDesc": {
-    "message": "您的计划包含 $BASE_SEATS$ 个用户数。添加附加用户数的价格是 $SEAT_PRICE$ 每用户/月。",
+    "message": "您的计划包含 $BASE_SEATS$ 个用户席位。添加附加用户的价格是 $SEAT_PRICE$ 每用户/月。",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -1883,7 +1898,7 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "您需要多少个用户数？您也可以在需要的时候添加附加用户数。"
+    "message": "您需要多少个用户席位？您也可以在以后需要的时候添加附加席位。"
   },
   "planNameFree": {
     "message": "免费",
@@ -1902,7 +1917,7 @@
     "message": "家庭"
   },
   "planDescFamilies": {
-    "message": "适用于个人使用，与家人和朋友分享。"
+    "message": "适用于个人使用，与家人和朋友共享。"
   },
   "planNameTeams": {
     "message": "团队"
@@ -1959,7 +1974,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "添加并与 $COUNT$ 位用户共享",
+    "message": "添加并最多与 $COUNT$ 位用户共享",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1971,7 +1986,7 @@
     "message": "添加并与无限的用户共享"
   },
   "createUnlimitedCollections": {
-    "message": "创建无限集合"
+    "message": "创建无限个集合"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ 加密文件存储",
@@ -1983,7 +1998,7 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "内部托管（可选）"
+    "message": "本地托管（可选）"
   },
   "usersGetPremium": {
     "message": "用户拥有高级会员功能权限"
@@ -1992,7 +2007,7 @@
     "message": "使用群组控制用户访问权限"
   },
   "syncUsersFromDirectory": {
-    "message": "从目录中同步用户和组"
+    "message": "使用目录同步用户和群组"
   },
   "trackAuditLogs": {
     "message": "使用审核日志跟踪用户操作"
@@ -2256,7 +2271,7 @@
     }
   },
   "deletedItemId": {
-    "message": "已删除项目 $ID$。",
+    "message": "项目 $ID$ 已发送到回收站。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2427,7 +2442,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "已为项目 $ID$ 删除附件。",
+    "message": "已删除项目 $ID$ 的附件。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2473,6 +2488,15 @@
   },
   "editedGroupsForUser": {
     "message": "已为用户 $ID$ 编辑群组。",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "为用户 $ID$ 取消链接 SSO。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2538,7 +2562,7 @@
     "message": "确认用户"
   },
   "usersNeedConfirmed": {
-    "message": "您的用户已经接受了他们的邀请，但仍需要确认。用户在确认之前将无法访问该组织。"
+    "message": "您的用户已经接受了发给他们的邀请，但仍需要被确认。用户在被确认之前将无法访问组织。"
   },
   "startDate": {
     "message": "开始日期"
@@ -2728,11 +2752,11 @@
     "message": "输入您的安装 ID"
   },
   "addSeats": {
-    "message": "添加用户数",
+    "message": "添加席位",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "删除用户数",
+    "message": "移除席位",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2745,19 +2769,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "用户数已添加"
+    "message": "要添加的席位数"
   },
   "seatsToRemove": {
-    "message": "用户数已删除"
+    "message": "要移除的席位数"
   },
   "seatsAddNote": {
-    "message": "添加用户数将会调整账单金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前结算周期的剩余时间按比例分配。"
+    "message": "添加用户席位将会调整账单总金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前结算周期的剩余时间按比例分配。"
   },
   "seatsRemoveNote": {
-    "message": "删除用户数将会调整账单金额。这笔费用将按比例计入下一次结算周期。"
+    "message": "移除用户席位将对您的帐单总金额进行调整，并按比例计入下一笔帐单费用。"
   },
   "adjustedSeats": {
-    "message": "调整了 $AMOUNT$ 个用户数。",
+    "message": "调整了 $AMOUNT$ 个用户席位。",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2782,6 +2806,9 @@
   },
   "updateEncryptionKeyWarning": {
     "message": "更新加密密钥后，您需要登出所有正在使用的 Bitwarden 应用（比如手机版应用或者浏览器扩展）后重新登录。登出失败或者重新登录失败（下载新的加密密钥）可能会导致数据损坏。我们会尝试自动为您登出，但是，可能会有所延迟。"
+  },
+  "updateEncryptionKeyExportWarning": {
+    "message": "您保存的任何已加密导出也将变为无效。"
   },
   "subscription": {
     "message": "订阅"
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "您没有选择任何内容。"
   },
-  "submitAgreePolicies": {
-    "message": "当您点击 \"提交\" 按钮，表示您同意以下条款：",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "选中此框表示您同意："
+  },
+  "acceptPoliciesError": {
+    "message": "尚未同意服务条款和隐私政策。"
   },
   "termsOfService": {
     "message": "服务条款"
@@ -2859,7 +2888,7 @@
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "组织被禁用。"
+    "message": "组织已被禁用。"
   },
   "licenseIsExpired": {
     "message": "授权已过期"
@@ -2937,16 +2966,22 @@
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
-    "message": "API密钥"
+    "message": "API 密钥"
   },
   "apiKeyDesc": {
-    "message": "您的 API 密钥可以用来验证 Bitwarden 公共API。"
+    "message": "您的 API 密钥可以用来验证 Bitwarden 公共 API。"
   },
   "apiKeyRotateDesc": {
     "message": "轮换 API 密钥将使前一个密钥无效。如果你认为当前密钥不再安全，你可以轮换您的 API 密钥。"
   },
   "apiKeyWarning": {
-    "message": "您的 API 密钥可以完全访问该组织。请保密存放。"
+    "message": "您的 API 密钥拥有组织的全部访问权限。请将其存放在安全的地方。"
+  },
+  "userApiKeyDesc": {
+    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份验证。"
+  },
+  "userApiKeyWarning": {
+    "message": "您的 API 密钥是另一套等效的身份验证机制。请严格保密。"
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 客户端证书",
@@ -3087,7 +3122,7 @@
     "message": "已永久删除项目"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "您选择了要永久删除 $COUNT$ 个项目。确实要永久删除所有这些项目吗？",
+    "message": "您选择了要永久删除 $COUNT$ 个项目。确定要永久删除所有这些项目吗？",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3163,5 +3198,435 @@
   },
   "taxInfoUpdated": {
     "message": "税务信息已更新。"
+  },
+  "setMasterPassword": {
+    "message": "设置主密码"
+  },
+  "ssoCompleteRegistration": {
+    "message": "为使用单点登录（SSO）功能，请设置一个主密码以访问和保护您的密码库。"
+  },
+  "identifier": {
+    "message": "标识符"
+  },
+  "organizationIdentifier": {
+    "message": "组织标识符"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "要使用您组织的单点登录（SSO）门户登录。请首先输入您组织的标识符。"
+  },
+  "enterpriseSingleSignOn": {
+    "message": "企业单点登录（SSO）"
+  },
+  "ssoHandOff": {
+    "message": "您现在可以在扩展中关闭此标签并继续。"
+  },
+  "businessPortal": {
+    "message": "业务门户",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "包含所有团队版功能"
+  },
+  "includeSsoAuthentication": {
+    "message": "通过 SAML 2.0 和 OpenID 连接进行 SSO 身份验证"
+  },
+  "includeEnterprisePolicies": {
+    "message": "企业策略"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO 验证失败"
+  },
+  "ssoIdentifierRequired": {
+    "message": "需要组织标识符。"
+  },
+  "unlinkSso": {
+    "message": "取消链接 SSO"
+  },
+  "linkSso": {
+    "message": "链接 SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "策略配置已转移，此页面很快将废弃。请改用下方的业务门户策略页面。"
+  },
+  "singleOrg": {
+    "message": "单一组织"
+  },
+  "singleOrgDesc": {
+    "message": "限制用户加入任何其他组织。"
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "您当前的组织策略禁止您加入多个组织。 请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
+  },
+  "singleOrgPolicyWarning": {
+    "message": "非所有者或管理员并且已是其他组织成员的组织成员将从您的组织中移除。"
+  },
+  "requireSso": {
+    "message": "单点登录认证"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "要求用户使用企业单点登录（SSO）方式登录。"
+  },
+  "prerequisite": {
+    "message": "先决条件"
+  },
+  "requireSsoPolicyReq": {
+    "message": "启用此策略前，需先启用单一组织企业策略。"
+  },
+  "requireSsoPolicyReqError": {
+    "message": "单一组织策略未启用。"
+  },
+  "requireSsoExemption": {
+    "message": "组织的所有者和管理员豁免此策略。"
+  },
+  "sendTypeFile": {
+    "message": "文件"
+  },
+  "sendTypeText": {
+    "message": "文本"
+  },
+  "createSend": {
+    "message": "创建新 Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "编辑 Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send 已创建",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send 已编辑",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send 已删除",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "删除 Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "确定要删除此 Send 吗？",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "这是什么类型的 Send？",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "删除日期"
+  },
+  "deletionDateDesc": {
+    "message": "此 Send 将在指定的日期和时间后被永久删除。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "到期日期"
+  },
+  "expirationDateDesc": {
+    "message": "如果设置了，此 Send 的访问将在指定的日期和时间后过期。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "最大访问次数"
+  },
+  "maxAccessCountDesc": {
+    "message": "如果设置了，达到最大访问次数后用户将无法访问此 Send。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "当前访问次数"
+  },
+  "sendPasswordDesc": {
+    "message": "可选，用户需要提供密码才能访问此 Send。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "关于此 Send 的私密备注。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "已禁用"
+  },
+  "sendLink": {
+    "message": "Send 链接",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "复制 Send 链接",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "移除密码"
+  },
+  "removedPassword": {
+    "message": "密码已移除"
+  },
+  "removePasswordConfirmation": {
+    "message": "确定移除此密码？"
+  },
+  "disableThisSend": {
+    "message": "禁用此 Send 则没有人能访问它。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "所有 Send"
+  },
+  "maxAccessCountReached": {
+    "message": "已达最大访问次数"
+  },
+  "pendingDeletion": {
+    "message": "等待删除"
+  },
+  "expired": {
+    "message": "已过期"
+  },
+  "searchSends": {
+    "message": "搜索 Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "此 Send 受到密码保护。在下方输入密码以继续。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "不知道密码？请向提供此 Send 的发件人索要密码。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "此 Send 默认隐藏。您可使用下方的按钮切换其可见性。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "下载文件"
+  },
+  "sendAccessUnavailable": {
+    "message": "您尝试访问的 Send 不存在或不再可用。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "没有可列出的 Send。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "紧急访问"
+  },
+  "emergencyAccessDesc": {
+    "message": "授予和管理受信任联系人的紧急访问权限。受信任的联系人可以在紧急情况下请求获取查看或接管您账户的权限。查阅我们的帮助页面以了解更多关于零知识共享的工作原理和细节。"
+  },
+  "trustedEmergencyContacts": {
+    "message": "可信的紧急联系人"
+  },
+  "noTrustedContacts": {
+    "message": "您尚未添加任何紧急联系人，请邀请可信的联系人以开始。"
+  },
+  "addEmergencyContact": {
+    "message": "添加紧急联系人"
+  },
+  "designatedEmergencyContacts": {
+    "message": "已指定为紧急联系人"
+  },
+  "noGrantedAccess": {
+    "message": "您尚未被任何人指定为紧急联系人。"
+  },
+  "inviteEmergencyContact": {
+    "message": "邀请紧急联系人"
+  },
+  "editEmergencyContact": {
+    "message": "编辑紧急联系人"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "通过在下面输入他们的 Bitwarden 帐户电子邮件地址来邀请新的紧急联系人。 如果他们还没有 Bitwarden 帐户，将提示创建一个新帐户。"
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "紧急访问已发起"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "紧急访问已批准"
+  },
+  "viewDesc": {
+    "message": "可以查看您拥有的密码库中的所有项目。"
+  },
+  "takeover": {
+    "message": "接管"
+  },
+  "takeoverDesc": {
+    "message": "可以使用新的主密码重置您的帐户。"
+  },
+  "waitTime": {
+    "message": "等待时间"
+  },
+  "waitTimeDesc": {
+    "message": "自动授予访问权限之前的等待时间。"
+  },
+  "oneDay": {
+    "message": "1 天"
+  },
+  "days": {
+    "message": "$DAYS$ 天",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "已邀请用户。"
+  },
+  "acceptEmergencyAccess": {
+    "message": "您已被邀请成为上面所列用户的紧急联系人。要接受邀请，您需要登录或创建一个新的 Bitwarden 帐户。"
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "无法接受邀请。请用户发送新的邀请。"
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "无法接受邀请。$DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "身份确认后，您可以访问该用户的紧急选项。当发生这种情况时，我们会向您发送一封电子邮件。"
+  },
+  "requestAccess": {
+    "message": "请求访问权限"
+  },
+  "requestAccessConfirmation": {
+    "message": "您确定要申请紧急访问吗？这将在 $WAITTIME$ 天后或当用户手动批准请求时获得访问权限。",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "来自 $USER$ 的紧急访问请求。我们将通过电子邮件通知您何时可以继续。",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "批准"
+  },
+  "reject": {
+    "message": "拒绝"
+  },
+  "approveAccessConfirmation": {
+    "message": "您确定要批准紧急访问吗？这将允许 $USER$  $ACTION$ 您的帐户。",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "紧急访问已批准。"
+  },
+  "emergencyRejected": {
+    "message": "紧急访问已拒绝"
+  },
+  "passwordResetFor": {
+    "message": "$USER$ 的密码已重置。您现在可以使用新密码登录了。",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "个人所有权"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "要求用户通过移除个人所有权选项将密码库项目保存到组织。"
+  },
+  "personalOwnershipExemption": {
+    "message": "组织的所有者和管理员豁免此策略。"
+  },
+  "personalOwnershipSubmitError": {
+    "message": "由于企业策略，您被限制为保存项目到您的个人密码库。将所有权选项更改为组织，并从可用的集合中选择。"
+  },
+  "modifiedPolicyId": {
+    "message": "策略 $ID$ 已修改。",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "计划价格"
+  },
+  "estimatedTax": {
+    "message": "预计税额"
+  },
+  "custom": {
+    "message": "自定义"
+  },
+  "customDesc": {
+    "message": "高级配置允许对用户权限进行更多的粒度控制。"
+  },
+  "permissions": {
+    "message": "权限"
+  },
+  "accessBusinessPortal": {
+    "message": "访问业务门户"
+  },
+  "accessEventLogs": {
+    "message": "访问事件日志"
+  },
+  "accessImportExport": {
+    "message": "访问导入/导出"
+  },
+  "accessReports": {
+    "message": "访问报告"
+  },
+  "manageAllCollections": {
+    "message": "管理所有集合"
+  },
+  "manageAssignedCollections": {
+    "message": "管理已分配的集合"
+  },
+  "manageGroups": {
+    "message": "管理群组"
+  },
+  "managePolicies": {
+    "message": "管理策略"
+  },
+  "manageSso": {
+    "message": "管理 SSO"
+  },
+  "manageUsers": {
+    "message": "管理用户"
+  },
+  "disableRequireSsoError": {
+    "message": "您必须手动禁用单点登录认证策略，然后才能禁用此政策。"
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "组织策略正在影响您的所有权选项。"
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "为组织用户禁用个人所有权"
+  },
+  "textHiddenByDefault": {
+    "message": "访问 Send 时，默认将隐藏文本",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

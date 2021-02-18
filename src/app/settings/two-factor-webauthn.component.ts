@@ -141,7 +141,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         this.keysConfiguredCount = 0;
         for (let i = 1; i <= 5; i++) {
             if (response.keys != null) {
-                const key = response.keys.filter((k) => k.id === i);
+                const key = response.keys.filter(k => k.id === i);
                 if (key.length > 0) {
                     this.keysConfiguredCount++;
                     this.keys.push({

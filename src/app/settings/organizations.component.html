@@ -78,7 +78,7 @@
                                     <a *ngIf="o.ssoBound; else linkSso" class="dropdown-item" href="#" appStopClick
                                         (click)="unlinkSso(o)">
                                         <i class="fa fa-fw fa-chain-broken" aria-hidden="true"></i>
-                                        Unlink SSO
+                                        {{'unlinkSso' | i18n}}
                                     </a>
                                     <ng-template #linkSso>
                                         <app-link-sso [organization]="o">

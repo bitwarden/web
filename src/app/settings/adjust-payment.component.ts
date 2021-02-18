@@ -41,7 +41,7 @@ export class AdjustPaymentComponent {
     async submit() {
         try {
             const request = new PaymentRequest();
-            this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
+            this.formPromise = this.paymentComponent.createPaymentToken().then(result => {
                 request.paymentToken = result[0];
                 request.paymentMethodType = result[1];
                 request.postalCode = this.taxInfoComponent.taxInfo.postalCode;

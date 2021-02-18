@@ -1,0 +1,65 @@
+<form #form (ngSubmit)="load()" [appApiAction]="formPromise" class="container" ngNativeValidate>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-5">
+            <p class="lead text-center mb-4">Bitwarden Send</p>
+            <div class="card d-block">
+                <div class="card-body" *ngIf="loading" class="text-center">
+                    <i class="fa fa-spinner fa-spin fa-2x text-muted" title="{{'loading' | i18n}}"
+                        aria-hidden="true"></i>
+                    <span class="sr-only">{{'loading' | i18n}}</span>
+                </div>
+                <div class="card-body" *ngIf="!loading && passwordRequired">
+                    <p>{{'sendProtectedPassword' | i18n}}</p>
+                    <p>{{'sendProtectedPasswordDontKnow' | i18n}}</p>
+                    <div class="form-group">
+                        <label for="password">{{'password' | i18n}}</label>
+                        <input id="password" type="password" name="Password" class="text-monospace form-control"
+                            [(ngModel)]="password" required appInputVerbatim appAutofocus>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-primary btn-block btn-submit" [disabled]="form.loading">
+                            <span>
+                                <i class="fa fa-sign-in" aria-hidden="true"></i> {{'continue' | i18n}}
+                            </span>
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="!loading && unavailable">
+                    {{'sendAccessUnavailable' | i18n}}
+                </div>
+                <div class="card-body" *ngIf="!loading && error">
+                    {{'unexpectedError' | i18n}}
+                </div>
+                <div class="card-body" *ngIf="!loading && !passwordRequired && send">
+                    <p class="text-center"><b>{{send.name}}</b></p>
+                    <hr>
+                    <!-- Text -->
+                    <ng-container *ngIf="send.type === sendType.Text">
+                        <app-callout *ngIf="send.text.hidden" type="tip">{{'sendHiddenByDefault' | i18n}}</app-callout>
+                        <div class="form-group">
+                            <textarea id="text" rows="8" name="Text" [(ngModel)]="sendText" class="form-control"
+                                readonly></textarea>
+                        </div>
+                        <button class="btn btn-block btn-link" type="button" (click)="toggleText()"
+                            *ngIf="send.text.hidden">
+                            <i class="fa fa-lg" aria-hidden="true"
+                                [ngClass]="{'fa-eye': !showText, 'fa-eye-slash': showText}"></i>
+                            {{'toggleVisibility' | i18n}}
+                        </button>
+                        <button class="btn btn-block btn-link" type="button" (click)="copyText()">
+                            <i class="fa fa-copy" aria-hidden="true"></i> {{'copyValue' | i18n}}
+                        </button>
+                    </ng-container>
+                    <!-- File -->
+                    <ng-container *ngIf="send.type === sendType.File">
+                        <p>{{send.file.fileName}}</p>
+                        <button class="btn btn-primary btn-block" type="button" (click)="download()">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            {{'downloadFile' | i18n}} ({{send.file.sizeName}})</button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

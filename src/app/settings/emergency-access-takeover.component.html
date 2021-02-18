@@ -1,0 +1,63 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="userAddEditTitle">
+    <div class="modal-dialog modal-lg" role="document">
+        <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+            <div class="modal-header">
+                <h2 class="modal-title" id="userAddEditTitle">
+                    {{'takeover' | i18n}}
+                    <small class="text-muted" *ngIf="name">{{name}}</small>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" appA11yTitle="{{'close' | i18n}}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-callout type="warning">{{'loggedOutWarning' | i18n}}</app-callout>
+                <app-callout type="info" *ngIf="enforcedPolicyOptions">
+                    {{'masterPasswordPolicyInEffect' | i18n}}
+                    <ul class="mb-0">
+                        <li *ngIf="enforcedPolicyOptions?.minComplexity > 0">
+                            {{'policyInEffectMinComplexity' | i18n : getPasswordScoreAlertDisplay()}}
+                        </li>
+                        <li *ngIf="enforcedPolicyOptions?.minLength > 0">
+                            {{'policyInEffectMinLength' | i18n : enforcedPolicyOptions?.minLength.toString()}}
+                        </li>
+                        <li *ngIf="enforcedPolicyOptions?.requireUpper">
+                            {{'policyInEffectUppercase' | i18n}}</li>
+                        <li *ngIf="enforcedPolicyOptions?.requireLower">
+                            {{'policyInEffectLowercase' | i18n}}</li>
+                        <li *ngIf="enforcedPolicyOptions?.requireNumbers">
+                            {{'policyInEffectNumbers' | i18n}}</li>
+                        <li *ngIf="enforcedPolicyOptions?.requireSpecial">
+                            {{'policyInEffectSpecial' | i18n : '!@#$%^&*'}}</li>
+                    </ul>
+                </app-callout>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="masterPassword">{{'newMasterPass' | i18n}}</label>
+                            <input id="masterPassword" type="password" name="NewMasterPasswordHash" class="form-control mb-1"
+                                [(ngModel)]="masterPassword" (input)="updatePasswordStrength()" required appInputVerbatim
+                                autocomplete="new-password">
+                            <app-password-strength [score]="masterPasswordScore" [showText]="true"></app-password-strength>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="masterPasswordRetype">{{'confirmNewMasterPass' | i18n}}</label>
+                            <input id="masterPasswordRetype" type="password" name="MasterPasswordRetype"
+                                class="form-control" [(ngModel)]="masterPasswordRetype" required appInputVerbatim
+                                autocomplete="new-password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    <span>{{'save' | i18n}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'cancel' | i18n}}</button>
+            </div>
+        </form>
+    </div>
+</div>

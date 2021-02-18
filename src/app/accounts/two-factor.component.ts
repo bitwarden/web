@@ -5,7 +5,10 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { Router } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
@@ -34,9 +37,9 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
         i18nService: I18nService, apiService: ApiService,
         platformUtilsService: PlatformUtilsService, stateService: StateService,
         environmentService: EnvironmentService, private componentFactoryResolver: ComponentFactoryResolver,
-        storageService: StorageService) {
+        storageService: StorageService, route: ActivatedRoute) {
         super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService,
-            stateService, storageService);
+            stateService, storageService, route);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
@@ -57,16 +60,23 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     }
 
     async goAfterLogIn() {
-        const invite = await this.stateService.get<any>('orgInvitation');
-        if (invite != null) {
-            this.router.navigate(['accept-organization'], { queryParams: invite });
+        const orgInvite = await this.stateService.get<any>('orgInvitation');
+        const emergencyInvite = await this.stateService.get<any>('emergencyInvitation');
+        if (orgInvite != null) {
+            this.router.navigate(['accept-organization'], { queryParams: orgInvite });
+        } else if (emergencyInvite != null) {
+            this.router.navigate(['accept-emergency'], { queryParams: emergencyInvite });
         } else {
             const loginRedirect = await this.stateService.get<any>('loginRedirect');
             if (loginRedirect != null) {
                 this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
                 await this.stateService.remove('loginRedirect');
             } else {
-                this.router.navigate([this.successRoute]);
+                this.router.navigate([this.successRoute], {
+                    queryParams: {
+                        identifier: this.identifier,
+                    },
+                });
             }
         }
     }

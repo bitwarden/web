@@ -8,6 +8,7 @@ import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptEmergencyComponent } from './accounts/accept-emergency.component';
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
@@ -57,6 +58,9 @@ import {
 
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
+import { AccessComponent } from './send/access.component';
+import { SendComponent } from './send/send.component';
+
 import { AccountComponent } from './settings/account.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
@@ -87,7 +91,10 @@ import { UnauthGuardService } from './services/unauth-guard.service';
 
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 
-import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+import { Permissions } from 'jslib/enums/permissions';
+
+import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
 
 const routes: Routes = [
     {
@@ -122,6 +129,11 @@ const routes: Routes = [
                 component: AcceptOrganizationComponent,
                 data: { titleId: 'joinOrganization' },
             },
+            {
+                path: 'accept-emergency',
+                component: AcceptEmergencyComponent,
+                data: { titleId: 'acceptEmergency' },
+            },
             { path: 'recover', pathMatch: 'full', redirectTo: 'recover-2fa' },
             {
                 path: 'recover-2fa',
@@ -141,6 +153,11 @@ const routes: Routes = [
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'deleteAccount' },
             },
+            {
+                path: 'send/:sendId/:key',
+                component: AccessComponent,
+                data: { title: 'Bitwarden Send' },
+            },
         ],
     },
     {
@@ -149,6 +166,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         children: [
             { path: 'vault', component: VaultComponent, data: { titleId: 'myVault' } },
+            { path: 'sends', component: SendComponent, data: { title: 'Send' } },
             {
                 path: 'settings',
                 component: SettingsComponent,
@@ -170,6 +188,21 @@ const routes: Routes = [
                         path: 'create-organization',
                         component: CreateOrganizationComponent,
                         data: { titleId: 'newOrganization' },
+                    },
+                    {
+                        path: 'emergency-access',
+                        children: [
+                            {
+                                path: '',
+                                component: EmergencyAccessComponent,
+                                data: { titleId: 'emergencyAccess'},
+                            },
+                            {
+                                path: ':id',
+                                component: EmergencyAccessViewComponent,
+                                data: { titleId: 'emergencyAccess'},
+                            },
+                        ],
                     },
                 ],
             },
@@ -227,35 +260,75 @@ const routes: Routes = [
                 path: 'tools',
                 component: OrgToolsComponent,
                 canActivate: [OrganizationTypeGuardService],
-                data: { allowedTypes: [OrganizationUserType.Owner, OrganizationUserType.Admin] },
+                data: { permissions: [Permissions.AccessImportExport, Permissions.AccessReports] },
                 children: [
-                    { path: '', pathMatch: 'full', redirectTo: 'import' },
-                    { path: 'import', component: OrgImportComponent, data: { titleId: 'importData' } },
-                    { path: 'export', component: OrgExportComponent, data: { titleId: 'exportVault' } },
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'import',
+                    },
+                    {
+                        path: 'import',
+                        component: OrgImportComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'importData',
+                            permissions: [Permissions.AccessImportExport],
+                        },
+                    },
+                    {
+                        path: 'export',
+                        component: OrgExportComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'exportVault',
+                            permissions: [Permissions.AccessImportExport],
+                        },
+                    },
                     {
                         path: 'exposed-passwords-report',
                         component: OrgExposedPasswordsReportComponent,
-                        data: { titleId: 'exposedPasswordsReport' },
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'exposedPasswordsReport',
+                            permissions: [Permissions.AccessReports],
+                        },
                     },
                     {
                         path: 'inactive-two-factor-report',
                         component: OrgInactiveTwoFactorReportComponent,
-                        data: { titleId: 'inactive2faReport' },
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'inactive2faReport',
+                            permissions: [Permissions.AccessReports],
+                        },
                     },
                     {
                         path: 'reused-passwords-report',
                         component: OrgReusedPasswordsReportComponent,
-                        data: { titleId: 'reusedPasswordsReport' },
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'reusedPasswordsReport',
+                            permissions: [Permissions.AccessReports],
+                        },
                     },
                     {
                         path: 'unsecured-websites-report',
                         component: OrgUnsecuredWebsitesReportComponent,
-                        data: { titleId: 'unsecuredWebsitesReport' },
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'unsecuredWebsitesReport',
+                            permissions: [Permissions.AccessReports],
+                        },
                     },
                     {
                         path: 'weak-passwords-report',
                         component: OrgWeakPasswordsReportComponent,
-                        data: { titleId: 'weakPasswordsReport' },
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'weakPasswordsReport',
+                            permissions: [Permissions.AccessReports],
+                        },
                     },
                 ],
             },
@@ -264,26 +337,73 @@ const routes: Routes = [
                 component: OrgManageComponent,
                 canActivate: [OrganizationTypeGuardService],
                 data: {
-                    allowedTypes: [
-                        OrganizationUserType.Owner,
-                        OrganizationUserType.Admin,
-                        OrganizationUserType.Manager,
+                    permissions: [
+                        Permissions.ManageAssignedCollections,
+                        Permissions.ManageAllCollections,
+                        Permissions.AccessEventLogs,
+                        Permissions.ManageGroups,
+                        Permissions.ManageUsers,
+                        Permissions.ManagePolicies,
                     ],
                 },
                 children: [
-                    { path: '', pathMatch: 'full', redirectTo: 'people' },
-                    { path: 'collections', component: OrgManageCollectionsComponent, data: { titleId: 'collections' } },
-                    { path: 'events', component: OrgEventsComponent, data: { titleId: 'eventLogs' } },
-                    { path: 'groups', component: OrgGroupsComponent, data: { titleId: 'groups' } },
-                    { path: 'people', component: OrgPeopleComponent, data: { titleId: 'people' } },
-                    { path: 'policies', component: OrgPoliciesComponent, data: { titleId: 'policies' } },
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'people',
+                    },
+                    {
+                        path: 'collections',
+                        component: OrgManageCollectionsComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'collections',
+                            permissions: [Permissions.ManageAssignedCollections, Permissions.ManageAllCollections],
+                        },
+                    },
+                    {
+                        path: 'events',
+                        component: OrgEventsComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'eventLogs',
+                            permissions: [Permissions.AccessEventLogs],
+                        },
+                    },
+                    {
+                        path: 'groups',
+                        component: OrgGroupsComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'groups',
+                            permissions: [Permissions.ManageGroups],
+                        },
+                    },
+                    {
+                        path: 'people',
+                        component: OrgPeopleComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'people',
+                            permissions: [Permissions.ManageUsers],
+                        },
+                    },
+                    {
+                        path: 'policies',
+                        component: OrgPoliciesComponent,
+                        canActivate: [OrganizationTypeGuardService],
+                        data: {
+                            titleId: 'policies',
+                            permissions: [Permissions.ManagePolicies],
+                        },
+                    },
                 ],
             },
             {
                 path: 'settings',
                 component: OrgSettingsComponent,
                 canActivate: [OrganizationTypeGuardService],
-                data: { allowedTypes: [OrganizationUserType.Owner] },
+                data: { permissions: [Permissions.ManageOrganization] },
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'account' },
                     { path: 'account', component: OrgAccountComponent, data: { titleId: 'myOrganization' } },
@@ -308,6 +428,7 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes, {
         useHash: true,
+        paramsInheritanceStrategy: 'always',
         /*enableTracing: true,*/
     })],
     exports: [RouterModule],

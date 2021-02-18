@@ -30,8 +30,8 @@ export class TwoFactorRecoveryComponent {
             '<code style="font-family: Menlo, Monaco, Consolas, \'Courier New\', monospace;">' +
             this.code + '</code></div>' +
             '<p style="text-align: center;">' + new Date() + '</p>');
+        w.onafterprint = () => w.close();
         w.print();
-        w.close();
     }
 
     private formatString(s: string) {

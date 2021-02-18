@@ -1,5 +1,5 @@
 import * as jq from 'jquery';
-import Swal from 'sweetalert2/src/sweetalert2.js';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import {
     BodyOutputType,
@@ -157,7 +157,7 @@ export class AppComponent implements OnDestroy, OnInit {
             });
         });
 
-        this.router.events.subscribe((event) => {
+        this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 const modals = Array.from(document.querySelectorAll('.modal'));
                 for (const modal of modals) {

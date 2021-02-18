@@ -14,6 +14,8 @@ import { EventService } from 'jslib/abstractions/event.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
+import { TotpService } from 'jslib/abstractions/totp.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/components/ciphers.component';
 
@@ -37,13 +39,18 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     cipherType = CipherType;
     actionPromise: Promise<any>;
+    userHasPremiumAccess = false;
 
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
-        protected eventService: EventService) {
+        protected eventService: EventService, protected totpService: TotpService, protected userService: UserService) {
         super(searchService);
         this.pageSize = 200;
+    }
+
+    async ngOnInit() {
+        this.userHasPremiumAccess = await this.userService.canAccessPremium();
     }
 
     ngOnDestroy() {
@@ -117,9 +124,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.actionPromise = null;
     }
 
-    copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (value == null) {
+    async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
+        if (value == null || aType === 'TOTP' && !this.displayTotpCopyButton(cipher)) {
             return;
+        } else if (value === cipher.login.totp) {
+            value = await this.totpService.getCode(value);
         }
 
         this.analytics.eventTrack.next({ action: 'Copied ' + aType.toLowerCase() + ' from listing.' });
@@ -127,7 +136,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.toasterService.popAsync('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
 
-        if (typeI18nKey === 'password') {
+        if (typeI18nKey === 'password' || typeI18nKey === 'verificationCodeTotp') {
             this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, cipher.id);
         } else if (typeI18nKey === 'securityCode') {
             this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
@@ -154,11 +163,16 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (this.ciphers == null) {
             return [];
         }
-        return this.ciphers.filter((c) => !!(c as any).checked);
+        return this.ciphers.filter(c => !!(c as any).checked);
     }
 
     getSelectedIds(): string[] {
-        return this.getSelected().map((c) => c.id);
+        return this.getSelected().map(c => c.id);
+    }
+
+    displayTotpCopyButton(cipher: CipherView) {
+        return (cipher?.login?.hasTotp ?? false) &&
+            (cipher.organizationUseTotp || this.userHasPremiumAccess);
     }
 
     protected deleteCipher(id: string, permanent: boolean) {

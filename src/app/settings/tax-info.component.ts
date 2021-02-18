@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { OrganizationTaxInfoUpdateRequest } from 'jslib/models/request/organizationTaxInfoUpdateRequest';
 import { TaxInfoUpdateRequest } from 'jslib/models/request/taxInfoUpdateRequest';
+import { TaxRateResponse } from 'jslib/models/response/taxRateResponse';
 
 @Component({
     selector: 'app-tax-info',
@@ -28,6 +29,8 @@ export class TaxInfoComponent {
         includeTaxId: false,
     };
 
+    taxRates: TaxRateResponse[];
+
     private pristine: any = {
         taxId: null,
         line1: null,
@@ -42,7 +45,7 @@ export class TaxInfoComponent {
     constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             if (this.organizationId) {
                 try {
@@ -77,7 +80,20 @@ export class TaxInfoComponent {
                 this.onCountryChanged.emit();
             }
         });
+
+        const taxRates = await this.apiService.getTaxRates();
+        this.taxRates = taxRates.data;
         this.loading = false;
+    }
+
+    get taxRate() {
+        if (this.taxRates != null) {
+            const localTaxRate = this.taxRates.find(x =>
+                x.country === this.taxInfo.country &&
+                x.postalCode === this.taxInfo.postalCode
+            );
+            return localTaxRate?.rate ?? null;
+        }
     }
 
     getTaxInfoRequest(): TaxInfoUpdateRequest {
@@ -102,7 +118,7 @@ export class TaxInfoComponent {
 
     submitTaxInfo(): Promise<any> {
         if (!this.hasChanged()) {
-            return new Promise((resolve) => { resolve(); });
+            return new Promise(resolve => { resolve(); });
         }
         const request = this.getTaxInfoRequest();
         return this.organizationId ? this.apiService.putOrganizationTaxInfo(this.organizationId,

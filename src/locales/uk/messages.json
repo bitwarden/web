@@ -13,7 +13,7 @@
     "message": "Який це тип запису?"
   },
   "name": {
-    "message": "Назва"
+    "message": "Ім’я"
   },
   "uri": {
     "message": "URI"
@@ -36,6 +36,9 @@
   },
   "password": {
     "message": "Пароль"
+  },
+  "newPassword": {
+    "message": "Новий пароль"
   },
   "passphrase": {
     "message": "Парольна фраза"
@@ -266,7 +269,7 @@
     "message": "Пошук в обраному"
   },
   "searchType": {
-    "message": "Типу пошуку",
+    "message": "Пошук за типом",
     "description": "Search item type"
   },
   "searchVault": {
@@ -343,6 +346,9 @@
   },
   "editItem": {
     "message": "Змінити запис"
+  },
+  "viewItem": {
+    "message": "Перегляд запису"
   },
   "ex": {
     "message": "зразок",
@@ -458,7 +464,7 @@
     "message": "Видалити файл"
   },
   "deleteItemConfirmation": {
-    "message": "Ви дійсно хочете видалити цей запис?"
+    "message": "Ви дійсно хочете перенести до смітника?"
   },
   "deletedItem": {
     "message": "Запис перенесено до смітника"
@@ -494,7 +500,7 @@
     "message": "Ви дійсно хочете вийти?"
   },
   "logOut": {
-    "message": "Вихід"
+    "message": "Вийти"
   },
   "ok": {
     "message": "Ok"
@@ -609,19 +615,19 @@
     "message": "Заблокувати зараз"
   },
   "noItemsInList": {
-    "message": "Немає записів для відображення."
+    "message": "Немає записів."
   },
   "noCollectionsInList": {
-    "message": "Немає збірок для відображення."
+    "message": "Немає збірок."
   },
   "noGroupsInList": {
-    "message": "Немає груп для відображення."
+    "message": "Немає груп."
   },
   "noUsersInList": {
-    "message": "Немає користувачів для відображення."
+    "message": "Немає користувачів."
   },
   "noEventsInList": {
-    "message": "Немає подій для відображення."
+    "message": "Немає подій."
   },
   "newOrganization": {
     "message": "Нова організація"
@@ -787,8 +793,14 @@
   "warning": {
     "message": "Попередження"
   },
+  "confirmVaultExport": {
+    "message": "Підтвердити експорт сховища"
+  },
   "exportWarningDesc": {
     "message": "Експортовані дані вашого сховища знаходяться в незашифрованому вигляді. Вам не слід зберігати чи надсилати їх через незахищені канали (наприклад, е-поштою). Після використання негайно видаліть їх."
+  },
+  "encExportWarningDesc": {
+    "message": "Цей експорт шифрує ваші дані за допомогою ключа шифрування облікового запису. Якщо ви коли-небудь оновите ключ шифрування облікового запису, ви повинні виконати експорт знову, оскільки не зможете розшифрувати цей файл експорту."
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
@@ -841,7 +853,7 @@
     "message": "Історія паролів"
   },
   "noPasswordsInList": {
-    "message": "Немає паролів для відображення."
+    "message": "Немає паролів."
   },
   "clear": {
     "message": "Стерти",
@@ -1655,6 +1667,9 @@
   },
   "paymentInformation": {
     "message": "Інформація про оплату"
+  },
+  "billingInformation": {
+    "message": "Платіжна інформація"
   },
   "creditCard": {
     "message": "Кредитна карта"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "Незв'язаний SSO для користувача $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "Пристрій"
   },
@@ -2783,6 +2807,9 @@
   "updateEncryptionKeyWarning": {
     "message": "Після оновлення вашого ключа шифрування вам необхідно вийти з системи і потім виконати повторний вхід у всіх програмах Bitwarden, які ви використовуєте. Збій при виході та повторному вході може призвести до пошкодження даних. Ми спробуємо завершити ваші сеанси автоматично, однак, цей процес може відбутися із затримкою."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Будь-які зашифровані експортування, які ви зберегли, також стануть недійсними."
+  },
   "subscription": {
     "message": "Передплата"
   },
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "Ви нічого не обрали."
   },
-  "submitAgreePolicies": {
-    "message": "Натискаючи кнопку \"Відправити\", ви приймаєте такі умови:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Позначивши цей прапорець, ви погоджуєтеся з:"
+  },
+  "acceptPoliciesError": {
+    "message": "Умови користування та політика приватності не погоджені."
   },
   "termsOfService": {
     "message": "Умови користування"
@@ -2948,6 +2977,12 @@
   "apiKeyWarning": {
     "message": "Ваш ключ API має повний доступ до організації. Він повинен зберігатися в секреті."
   },
+  "userApiKeyDesc": {
+    "message": "Ваш ключ API може бути використаний для авторизації в Bitwarden CLI."
+  },
+  "userApiKeyWarning": {
+    "message": "Ваш ключ API є альтернативним засобом перевірки. Його слід зберігати в таємниці."
+  },
   "oauth2ClientCredentials": {
     "message": "Облікові дані клієнта OAuth 2.0",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2962,7 +2997,7 @@
     "message": "Ви повинні обрати принаймні одну збірку."
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "Нам не вдалося виконати оплату з вашої карти. Будь ласка, перегляньте і проведіть оплату за рахунком, вказаним внизу."
+    "message": "Нам не вдалося виконати оплату з вашої картки. Будь ласка, перегляньте і проведіть оплату за рахунком, вказаним внизу."
   },
   "inAppPurchase": {
     "message": "Покупка в додатку"
@@ -2986,7 +3021,7 @@
     "message": "Зобов'язувати користувачів встановлювати двоетапну перевірку в їхніх особистих облікових записах."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Учасники організації, в яких не увімкнено двоетапну перевірку для їхніх особистих облікових записів, будуть вилучені з організації та отримають поштове повідомлення про зміну."
+    "message": "Учасники організації, які не є власниками, чи адміністратори, в яких не увімкнено двоетапну перевірку для їхніх особистих облікових записів, будуть вилучені з організації та проінформовані поштовим повідомленням."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Ви включені до організації, яка зобов'язує використання двоетапної перевірки у вашому обліковому записі. Якщо ви вимкнете всі способи двоетапної перевірки, вас буде автоматично вилучено з цієї організації."
@@ -3058,7 +3093,7 @@
     "message": "Щоб відновити доступ до сховища після виходу, необхідно повторно авторизуватись."
   },
   "lock": {
-    "message": "Заблокувати",
+    "message": "Блокувати",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
@@ -3163,5 +3198,435 @@
   },
   "taxInfoUpdated": {
     "message": "Податкову інформацію оновлено."
+  },
+  "setMasterPassword": {
+    "message": "Встановити головний пароль"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Щоб завершити налаштування входу з SSO, встановіть головний пароль для доступу і захисту сховища."
+  },
+  "identifier": {
+    "message": "Ідентифікатор"
+  },
+  "organizationIdentifier": {
+    "message": "Ідентифікатор організації"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Виконуйте вхід з використанням порталу єдиного входу вашої організації. Для початку введіть ідентифікатор вашої організації."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Єдиний корпоративний вхід (SSO)"
+  },
+  "ssoHandOff": {
+    "message": "Тепер ви можете закрити цю вкладку і продовжити в розширенні."
+  },
+  "businessPortal": {
+    "message": "Бізнес-портал",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Усі функції команд, плюс:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO автентифікація через SAML2.0 та OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Політики організації"
+  },
+  "ssoValidationFailed": {
+    "message": "Збій перевірки SSO"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Потрібен ідентифікатор організації."
+  },
+  "unlinkSso": {
+    "message": "Від'єднати SSO"
+  },
+  "linkSso": {
+    "message": "Під'єднати SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Конфігурацію політик було переміщено і ця сторінка невдовзі стане застарілою. Натисніть нижче для використання нової сторінки політик бізнес-порталу."
+  },
+  "singleOrg": {
+    "message": "Єдина організація"
+  },
+  "singleOrgDesc": {
+    "message": "Заборонити користувачам приєднуватися до будь-яких інших організацій."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Ваша організація має політику, що не дозволяє вам приєднуватися до більш, ніж однієї організації. Будь ласка, зв'яжіться з адміністратором вашої організації, або увійдіть з іншим обліковим записом Bitwarden."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Учасники організації, які не є власниками чи адміністраторами, але вже є учасниками іншої організації, будуть вилучені з вашої організації."
+  },
+  "requireSso": {
+    "message": "Авторизація через єдиний вхід (SSO)"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Вимагати від користувачів входити в систему через єдиний вхід (SSO) компанії."
+  },
+  "prerequisite": {
+    "message": "Передумови"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Для активації цієї політики необхідно увімкнути політику єдиної організації компанії."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Політику єдиної організації компанії не увімкнено."
+  },
+  "requireSsoExemption": {
+    "message": "Власники організації та адміністратори звільняються від дотримання цієї політики."
+  },
+  "sendTypeFile": {
+    "message": "Файл"
+  },
+  "sendTypeText": {
+    "message": "Текст"
+  },
+  "createSend": {
+    "message": "Створити нове відправлення",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Змінити відправлення",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Відправлення створено",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Відправлення змінено",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Відправлення видалено",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Видалити відправлення",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Ви дійсно хочете видалити це відправлення?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Який це тип відправлення?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Дата видалення"
+  },
+  "deletionDateDesc": {
+    "message": "Відправлення буде остаточно видалено у вказаний час.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Термін дії"
+  },
+  "expirationDateDesc": {
+    "message": "Якщо встановлено, термін дії цього відправлення завершиться у вказаний час.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Максимальна кількість доступів"
+  },
+  "maxAccessCountDesc": {
+    "message": "Якщо встановлено, користувачі більше не зможуть отримати доступ до цього відправлення після досягнення максимальної кількості доступів.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Поточна кількість доступів"
+  },
+  "sendPasswordDesc": {
+    "message": "За бажанням вимагати пароль в користувачів для доступу до цього відправлення.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Особисті нотатки про це відправлення.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Вимкнено"
+  },
+  "sendLink": {
+    "message": "Надіслати посилання",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Копіювати посилання відправлення",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Вилучити пароль"
+  },
+  "removedPassword": {
+    "message": "Пароль вилучено"
+  },
+  "removePasswordConfirmation": {
+    "message": "Ви дійсно хочете вилучити пароль?"
+  },
+  "disableThisSend": {
+    "message": "Деактивувати це відправлення для скасування доступу до нього.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Усі відправлення"
+  },
+  "maxAccessCountReached": {
+    "message": "Досягнуто максимальну кількість доступів"
+  },
+  "pendingDeletion": {
+    "message": "Очікується видалення"
+  },
+  "expired": {
+    "message": "Термін дії завершився"
+  },
+  "searchSends": {
+    "message": "Пошук відправлень",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Це відправлення захищено паролем. Введіть пароль внизу для продовження.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Не знаєте пароль? Попросіть його у відправника для отримання доступу.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Це відправлення типово приховане. Ви можете змінити його видимість кнопкою нижче.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Завантажити файл"
+  },
+  "sendAccessUnavailable": {
+    "message": "Відправлення, до якого ви намагаєтесь отримати доступ, не існує, або більше недоступне.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "У списку немає відправлень.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Екстрений доступ"
+  },
+  "emergencyAccessDesc": {
+    "message": "Надавайте екстрений доступ довіреним контактам і керуйте ним. Довірені контакти можуть отримати доступ для перегляду чи привласнення вашого облікового запису в екстрених ситуаціях. Відвідайте нашу сторінку допомоги для детального ознайомлення про те, як працює спільний доступ нульового рівня."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Довірені екстрені контакти"
+  },
+  "noTrustedContacts": {
+    "message": "Ви ще не додали жодного екстреного контакту. Запросіть довірений контакт, щоб почати."
+  },
+  "addEmergencyContact": {
+    "message": "Додати екстрений контакт"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Визначено як екстрений контакт"
+  },
+  "noGrantedAccess": {
+    "message": "Ви ще не були призначені екстреним контактом для когось."
+  },
+  "inviteEmergencyContact": {
+    "message": "Запросити екстрений контакт"
+  },
+  "editEmergencyContact": {
+    "message": "Редагувати екстрений контакт"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Запросіть новий екстрений контакт, ввівши нижче адресу е-пошти його облікового запису Bitwarden. Якщо користувач ще не має облікового запису Bitwarden, йому буде запропоновано зареєструватися."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Ініційовано екстрений доступ"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Екстрений доступ схвалено"
+  },
+  "viewDesc": {
+    "message": "Може переглядати усі записи у вашому сховищі."
+  },
+  "takeover": {
+    "message": "Передача власності"
+  },
+  "takeoverDesc": {
+    "message": "Може скидати пароль вашого облікового запису."
+  },
+  "waitTime": {
+    "message": "Час очікування"
+  },
+  "waitTimeDesc": {
+    "message": "Час, після якого автоматично надається доступ."
+  },
+  "oneDay": {
+    "message": "1 день"
+  },
+  "days": {
+    "message": "$DAYS$ днів",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Запрошений користувач."
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "Request Access"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Approve"
+  },
+  "reject": {
+    "message": "Reject"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Emergency access approved."
+  },
+  "emergencyRejected": {
+    "message": "Emergency access rejected"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personal Ownership"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Plan price"
+  },
+  "estimatedTax": {
+    "message": "Estimated tax"
+  },
+  "custom": {
+    "message": "Custom"
+  },
+  "customDesc": {
+    "message": "Allows more granular control of user permissions for advanced configurations."
+  },
+  "permissions": {
+    "message": "Permissions"
+  },
+  "accessBusinessPortal": {
+    "message": "Access Business Portal"
+  },
+  "accessEventLogs": {
+    "message": "Access Event Logs"
+  },
+  "accessImportExport": {
+    "message": "Access Import/Export"
+  },
+  "accessReports": {
+    "message": "Access Reports"
+  },
+  "manageAllCollections": {
+    "message": "Manage All Collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Manage Assigned Collections"
+  },
+  "manageGroups": {
+    "message": "Manage Groups"
+  },
+  "managePolicies": {
+    "message": "Manage Policies"
+  },
+  "manageSso": {
+    "message": "Manage SSO"
+  },
+  "manageUsers": {
+    "message": "Manage Users"
+  },
+  "disableRequireSsoError": {
+    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "An organization policy is affecting your ownership options."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Disable personal ownership for organization users"
+  },
+  "textHiddenByDefault": {
+    "message": "When accessing the Send, hide the text by default",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

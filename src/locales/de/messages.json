@@ -37,6 +37,9 @@
   "password": {
     "message": "Passwort"
   },
+  "newPassword": {
+    "message": "Neues Passwort"
+  },
   "passphrase": {
     "message": "Passphrase"
   },
@@ -343,6 +346,9 @@
   },
   "editItem": {
     "message": "Eintrag bearbeiten"
+  },
+  "viewItem": {
+    "message": "Eintrag anzeigen"
   },
   "ex": {
     "message": "Bsp.",
@@ -678,7 +684,7 @@
     "message": "Anmeldung nicht verfügbar"
   },
   "noTwoStepProviders": {
-    "message": "Dieses Konto hat eine aktive Zwei Faktor-Authentifizierung, allerdings wird keiner der konfigurierten Zwei Faktor-Anbieter von diesem Browser unterstützt."
+    "message": "Dieses Konto hat eine aktive Zwei-Faktor-Authentifizierung, allerdings wird keiner der konfigurierten Zwei-Faktor-Anbieter von diesem Browser unterstützt."
   },
   "noTwoStepProviders2": {
     "message": "Bitte benutzen Sie einen unterstützten Browser (z. B. Chrome) und / oder fügen Sie zusätzliche Anbieter hinzu, die von mehr Browsern unterstützt werden (z. B. eine Authentifizierungs-App)."
@@ -787,8 +793,14 @@
   "warning": {
     "message": "Warnung"
   },
+  "confirmVaultExport": {
+    "message": "Tresor-Export bestätigen"
+  },
   "exportWarningDesc": {
     "message": "Dieser Export enthält Ihre Tresor-Daten in einem unverschlüsseltem Format. Sie sollten die Datei daher nicht über unsichere Kanäle (z.B. E-Mail) versenden oder speichern. Löschen Sie die Datei sofort nach ihrer Verwendung."
+  },
+  "encExportWarningDesc": {
+    "message": "Dieser Export verschlüsselt Ihre Daten mit dem Verschlüsselungscode Ihres Kontos. Falls Sie Ihren Verschlüsselungscode erneuern, sollten Sie den Export erneut durchführen, da Sie die zuvor erstellte Datei ansonsten nicht mehr entschlüsseln können."
   },
   "exportMasterPassword": {
     "message": "Geben Sie das Master-Passwort ein, um Ihre Tresordaten zu exportieren."
@@ -831,7 +843,7 @@
     "message": "Worttrennzeichen"
   },
   "capitalize": {
-    "message": "Wortanfänge großschreiben",
+    "message": "Großschreiben",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
@@ -1049,7 +1061,7 @@
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Dem Web-Tresor erlauben die volle Breite des Browserfenster zu benutzen."
+    "message": "Dem Web-Tresor erlauben, die volle Breite des Browserfensters zu benutzen."
   },
   "default": {
     "message": "Standard"
@@ -1656,6 +1668,9 @@
   "paymentInformation": {
     "message": "Zahlungsinformationen"
   },
+  "billingInformation": {
+    "message": "Informationen zur Abrechnung"
+  },
   "creditCard": {
     "message": "Kreditkarte"
   },
@@ -1908,7 +1923,7 @@
     "message": "Teams"
   },
   "planDescTeams": {
-    "message": "Für Unternehmen und andere Teams."
+    "message": "Für Unternehmen und andere Teamorganisationen."
   },
   "planNameEnterprise": {
     "message": "Unternehmen"
@@ -2130,7 +2145,7 @@
     }
   },
   "userUsingTwoStep": {
-    "message": "Dieser Benutzer hat seinen Account mit einer 2-Schritte Anmeldung geschützt."
+    "message": "Dieser Benutzer hat seinen Account mit einer 2-Faktor-Anmeldung geschützt."
   },
   "userAccessAllItems": {
     "message": "Der Benutzer kann alle Einträge einsehen und verändern."
@@ -2154,7 +2169,7 @@
     "message": "Besitzer"
   },
   "ownerDesc": {
-    "message": "Der Benutzer mit dem höchsten Berechtigungslevel, der alle Aspekte Ihrer Organisation verwalten kann."
+    "message": "Der Benutzer mit dem höchsten Berechtigungsgrad, der alle Aspekte Ihrer Organisation verwalten kann."
   },
   "admin": {
     "message": "Administrator"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "SSO-Verknüpfung für Benutzer $ID$ aufgehoben.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "Gerät"
   },
@@ -2574,7 +2598,7 @@
     "message": "Organisation beitreten"
   },
   "joinOrganizationDesc": {
-    "message": "Sie wurden eingeladen, oben genannter Organisation beizutreten. Um die Einladung anzunehmen, müssen Sie ein Bitwarden-Konto erstellen, oder sich mit Ihrem bestehenden Konto anmelden."
+    "message": "Sie wurden eingeladen, der oben genannten Organisation beizutreten. Um die Einladung anzunehmen, müssen Sie ein Bitwarden-Konto erstellen oder sich mit Ihrem bestehenden Konto anmelden."
   },
   "inviteAccepted": {
     "message": "Einladung angenommen"
@@ -2643,18 +2667,18 @@
     "message": "Informationen zur Steuer"
   },
   "taxInformationDesc": {
-    "message": "Bitte kontaktieren Sie unseren Support um Ihre Steuerinformationen Ihrer Rechnung abzufragen (oder zu aktualisieren)."
+    "message": "Für Kunden innerhalb der USA ist die Postleitzahl erforderlich, um die Umsatzsteuer-Anforderungen zu erfüllen, für andere Länder können Sie optional eine Steuernummer (VAT/GST) und/oder eine Adresse angeben, die auf Ihren Rechnungen erscheint."
   },
   "billingPlan": {
     "message": "Abo",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Abonnement ändern",
+    "message": "Abo ändern",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgraden sie ihr Konto zu einem anderen Plan, dafür müssen sie folgende Informationen bereitstellen. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode auf ihren Konto hinzugefügt haben.",
+    "message": "Ändern sie ihr Konto zu einem anderen Tarif, indem Sie folgende Informationen bereitstellen. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu ihren Konto hinzugefügt haben.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
@@ -2781,7 +2805,10 @@
     "message": "Wir sind auf größere Verschlüsselungscodes umgestiegen, welche bessere Sicherheit und Zugang zu neuen Features bieten. Das Update Ihres Verschlüsselungscodes ist schnell und einfach. Geben Sie einfach hier Ihr Master-Passwort ein. Das Update wird irgendwann verpflichtend."
   },
   "updateEncryptionKeyWarning": {
-    "message": "Nach der Aktualisierung Ihres Verschlüsselungscodes, müssen Sie sich bei allen Bitwarden-Anwendungen, welche Sie momentan benutzen (wie z. B. Smartphone-App, Browser-Erweiterungen), erneut anmelden. Ein Versäumnis der Ab- und Anmeldung (welche Ihren neuen Verschlüsselungscode bezieht) könnte zu einer Beschädigung der Daten führen. Wir werden versuchen Sie automatisch auszuloggen, was jedoch verzögert geschehen kann."
+    "message": "Nach der Aktualisierung Ihres Verschlüsselungscodes, müssen Sie sich bei allen Bitwarden-Anwendungen, welche Sie momentan benutzen, erneut anmelden (wie z. B. die mobile App oder die Browser-Erweiterungen). Fehler bei Ab- und Anmeldung (welche Ihren neuen Verschlüsselungscode bezieht) könnte zu einer Beschädigung der Daten führen. Wir werden versuchen Sie automatisch auszuloggen, was jedoch verzögert geschehen kann."
+  },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Alle verschlüsselten Exporte, die Sie gespeichert haben, werden ebenfalls ungültig."
   },
   "subscription": {
     "message": "Abo"
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "Sie haben keine Auswahl getroffen."
   },
-  "submitAgreePolicies": {
-    "message": "Durch Klicken des Absenden-Buttons stimmen Sie den folgenden Bedingungen zu:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Durch Anwählen dieses Kästchens erklären Sie sich mit folgendem einverstanden:"
+  },
+  "acceptPoliciesError": {
+    "message": "Die Nutzungsbedingungen und Datenschutzerklärung wurden nicht akzeptiert."
   },
   "termsOfService": {
     "message": "Allgemeine Geschäftsbedingungen"
@@ -2908,7 +2937,7 @@
     "message": "Sind Sie sich sicher, dass Sie ihren Verschlüsselungscode aktualisieren möchten?"
   },
   "attachmentsNeedFix": {
-    "message": "Dieser Eintrag hat Anhänge die repariert werden müssen."
+    "message": "Dieser Eintrag hat Anhänge, die repariert werden müssen."
   },
   "attachmentFixDesc": {
     "message": "Diese Dateianlage muss aufgrund ihres Alters aktualisiert werden. Klicken Sie hier, um mehr zu erfahren."
@@ -2948,6 +2977,12 @@
   "apiKeyWarning": {
     "message": "Ihr API-Schlüssel hat vollen Zugriff auf die Organisation. Er sollte geheim gehalten werden."
   },
+  "userApiKeyDesc": {
+    "message": "Ihr API-Schlüssel kann zur Authentifizierung im Bitwarden CLI verwendet werden."
+  },
+  "userApiKeyWarning": {
+    "message": "Ihr API-Schlüssel ist ein alternativer Authentifizierungsmechanismus. Er sollte geheim gehalten werden."
+  },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 Client Anmeldeinformationen",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2959,7 +2994,7 @@
     "message": "API-Schlüssel erneuern"
   },
   "selectOneCollection": {
-    "message": "Es muss mindestens eine Sammlung ausgewählt sein."
+    "message": "Sie müssen mindestens eine Sammlung auswählen."
   },
   "couldNotChargeCardPayInvoice": {
     "message": "Wir sind nicht in der Lage Ihre Kreditkarte zu belasten. Bitte bezahlen Sie den unten aufgelisteten noch nicht beglichenen Rechnungsbetrag."
@@ -2989,7 +3024,7 @@
     "message": "Organisationsmitglieder, die keine zweistufige Anmeldung für ihr persönliches Konto aktiviert haben, werden aus der Organisation entfernt und erhalten eine E-Mail, die sie über die Änderung benachrichtigt."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "Sie sind Mitglied einer Organisation, die eine zweistufige Anmeldung für Ihr Benutzerkonto erfordert. Wenn Sie alle Möglichkeiten zur zweistufigen Anmeldung deaktivieren, werden Sie automatisch aus diesen Organisationen entfernt."
+    "message": "Sie sind Mitglied einer Organisation, die eine Zwei-Faktor-Authentifizierung für Ihr Benutzerkonto verlangt. Wenn Sie alle Zwei-Faktor-Authentifizierungsanbieter deaktivieren, werden Sie automatisch aus diesen Organisationen entfernt."
   },
   "passwordGeneratorPolicyDesc": {
     "message": "Mindestanforderungen für die Passwortgenerator-Konfiguration festlegen."
@@ -3153,15 +3188,445 @@
     "message": "Passwörter verstecken"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "Wir benötigen diese Informationen nur zur Berechnung der Umsatzsteuer und Finanzberichterstattung."
   },
   "includeVAT": {
-    "message": "Include VAT/GST Information (optional)"
+    "message": "MwSt./GST-Informationen einschließen (optional)"
   },
   "taxIdNumber": {
     "message": "Umsatzsteuernummer"
   },
   "taxInfoUpdated": {
     "message": "Steuerinformationen aktualisiert."
+  },
+  "setMasterPassword": {
+    "message": "Masterpasswort festlegen"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Bitte legen Sie ein Masterpasswort für den Schutz Ihres Tresors fest, um die Anmeldung über SSO abzuschließen."
+  },
+  "identifier": {
+    "message": "Kennung"
+  },
+  "organizationIdentifier": {
+    "message": "Organisationskennung"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Über den Single Sign-on Ihrer Organisation anmelden. Bitte geben Sie Ihre Organisationskennung an, um zu beginnen."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Enterprise Single Sign-On"
+  },
+  "ssoHandOff": {
+    "message": "Sie können diesen Tab nun schließen und in der Erweiterung fortfahren."
+  },
+  "businessPortal": {
+    "message": "Unternehmensportal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Alle Teams Funktionen, zusätzlich:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO Authentifikation über SAML2.0 und OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Unternehmensrichtlinien"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO Validierung fehlgeschlagen"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Unternehmenskennung ist erforderlich."
+  },
+  "unlinkSso": {
+    "message": "SSO Verknüpfung aufheben"
+  },
+  "linkSso": {
+    "message": "SSO verknüpfen"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Die Richtlinien-Konfiguration wurde verschoben und diese Seite wird bald nicht mehr aktualisiert. Benutzen Sie stattdessen über den Link die Richtlinien-Seite des Unternehmensportal."
+  },
+  "singleOrg": {
+    "message": "Einzelne Organisation"
+  },
+  "singleOrgDesc": {
+    "message": "Benutzern verbieten, anderen Organisationen beizutreten."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Ihre aktuelle Organisation hat eine Richtlinie, die es Ihnen nicht erlaubt, mehr als einer Organisation beizutreten. Bitte kontaktieren Sie die Administratoren Ihrer Organisation oder melden Sie sich mit einem anderen Bitwarden-Konto an."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Organisationsmitglieder, die nicht Eigentümer oder Administratoren sind und bereits Mitglied einer anderen Organisation sind, werden aus Ihrer Organisation entfernt."
+  },
+  "requireSso": {
+    "message": "Single Sign-On Authentifizierung"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Benutzer müssen sich per Enterprise Single Sign-On anmelden."
+  },
+  "prerequisite": {
+    "message": "Voraussetzung"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Die Unternehmensrichtlinie für eine einzelne Organisation muss aktiviert sein, bevor diese Richtlinie aktiviert werden kann."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Richtlinie für eine einzelne Organisation nicht aktiviert."
+  },
+  "requireSsoExemption": {
+    "message": "Organisationseigentümer und Administratoren sind von der Durchsetzung dieser Richtlinie ausgenommen."
+  },
+  "sendTypeFile": {
+    "message": "Datei"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Neues Send erstellen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Send bearbeiten",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send erstellt",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Bearbeitetes Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Gelöschtes Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Send löschen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Sind Sie sicher, dass Sie dieses Send löschen möchten?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Welche Art von Send ist das?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Löschdatum"
+  },
+  "deletionDateDesc": {
+    "message": "Das Send wird am angegebenen Datum zur angegebenen Uhrzeit dauerhaft gelöscht.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Ablaufdatum"
+  },
+  "expirationDateDesc": {
+    "message": "Falls aktiviert, verfällt der Zugriff auf dieses Send am angegebenen Datum zur angegebenen Uhrzeit.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maximale Zugriffsanzahl"
+  },
+  "maxAccessCountDesc": {
+    "message": "Falls aktiviert, können Benutzer nicht mehr auf dieses Send zugreifen, sobald die maximale Zugriffsanzahl erreicht ist.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Aktuelle Zugriffsanzahl"
+  },
+  "sendPasswordDesc": {
+    "message": "Optional ein Passwort verlangen, damit Benutzer auf dieses Send zugreifen können.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Private Notizen zu diesem Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Deaktiviert"
+  },
+  "sendLink": {
+    "message": "Send Link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Send Link kopieren",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Passwort entfernen"
+  },
+  "removedPassword": {
+    "message": "Passwort entfernt"
+  },
+  "removePasswordConfirmation": {
+    "message": "Sind Sie sicher, dass Sie das Passwort entfernen möchten?"
+  },
+  "disableThisSend": {
+    "message": "Dieses Send deaktivieren, damit niemand darauf zugreifen kann.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Alle Sends"
+  },
+  "maxAccessCountReached": {
+    "message": "Maximale Zugriffsanzahl erreicht"
+  },
+  "pendingDeletion": {
+    "message": "Ausstehende Löschung"
+  },
+  "expired": {
+    "message": "Abgelaufen"
+  },
+  "searchSends": {
+    "message": "Sends suchen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Dieses Send ist mit einem Passwort geschützt. Bitte geben Sie unten das Passwort ein, um fortzufahren.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Kennen Sie das Passwort nicht? Fragen Sie den Absender nach dem benötigten Passwort, um auf dieses Send zuzugreifen.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Dieses Send ist standardmäßig ausgeblendet. Sie können die Sichtbarkeit mit dem Button unten umschalten.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Datei herunterladen"
+  },
+  "sendAccessUnavailable": {
+    "message": "Das Send, auf das Sie zugreifen möchten, existiert nicht oder ist nicht mehr verfügbar.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Es gibt keine Sends aufzulisten.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Notfallzugriff"
+  },
+  "emergencyAccessDesc": {
+    "message": "Gewähren und verwalten Sie einen Notfallzugriff für vertrauenswürdige Kontakte. Vertrauenswürdige Kontakte können im Notfall Zugriff verlangen, um Ihr Konto entweder einzusehen oder es zu übernehmen. Besuchen Sie unsere Hilfeseite für weitere Informationen und Details, wie der Austausch über Zero-Knowledge funktioniert."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Vertrauenswürdige Notfallkontakte"
+  },
+  "noTrustedContacts": {
+    "message": "Sie haben noch keine Notfallkontakte hinzugefügt, laden Sie einen vertrauenswürdigen Kontakt ein, um zu beginnen."
+  },
+  "addEmergencyContact": {
+    "message": "Notfallkontakt hinzufügen"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Als Notfallkontakt benannt"
+  },
+  "noGrantedAccess": {
+    "message": "Sie wurden noch nicht als Notfallkontakt für jemanden benannt."
+  },
+  "inviteEmergencyContact": {
+    "message": "Notfallkontakt einladen"
+  },
+  "editEmergencyContact": {
+    "message": "Notfallkontakt bearbeiten"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Laden Sie einen neuen Notfallkontakt ein, indem Sie die E-Mail-Adresse seines Bitwarden-Kontos unten eintragen. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Notfallzugriff ausgelöst"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Notfallzugriff genehmigt"
+  },
+  "viewDesc": {
+    "message": "Kann alle Einträge in Ihrem eigenen Tresor sehen."
+  },
+  "takeover": {
+    "message": "Übernahme"
+  },
+  "takeoverDesc": {
+    "message": "Kann Ihr Konto mit einem neuen Master-Passwort zurücksetzen."
+  },
+  "waitTime": {
+    "message": "Wartezeit"
+  },
+  "waitTimeDesc": {
+    "message": "Benötigte Zeit, bevor der Zugang automatisch gewährt wird."
+  },
+  "oneDay": {
+    "message": "1 Tag"
+  },
+  "days": {
+    "message": "$DAYS$ Tage",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Eingeladener Benutzer."
+  },
+  "acceptEmergencyAccess": {
+    "message": "Sie wurden eingeladen, ein Notfallkontakt für den oben genannten Benutzer zu werden. Um die Einladung anzunehmen, müssen Sie sich einloggen oder ein neues Bitwarden-Konto erstellen."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Die Einladung konnte nicht angenommen werden. Bitten Sie den Benutzer, eine neue Einladung zu versenden."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Die Einladung kann nicht angenommen werden. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "Sie können auf die Notfalloptionen für diesen Benutzer zugreifen, nachdem Ihre Identität bestätigt wurde. Wir senden Ihnen eine E-Mail, wenn dies geschieht."
+  },
+  "requestAccess": {
+    "message": "Zugriff anfordern"
+  },
+  "requestAccessConfirmation": {
+    "message": "Sind Sie sicher, dass Sie einen Notfallzugriff anfordern möchten? Sie erhalten nach $WAITTIME$ Tag(en) Zugang oder wann immer der Benutzer die Anfrage manuell genehmigt.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Notfallzugriff für $USER$ angefordert. Wir werden Sie per E-Mail benachrichtigen, wenn Sie fortfahren können.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Genehmigen"
+  },
+  "reject": {
+    "message": "Ablehnen"
+  },
+  "approveAccessConfirmation": {
+    "message": "Sind Sie sicher, dass Sie den Notfallzugriff genehmigen möchten? Dies gibt $USER$ folgende Berechtigung auf Ihr Konto: $ACTION$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Notfallzugriff genehmigt."
+  },
+  "emergencyRejected": {
+    "message": "Notfallzugriff abgelehnt"
+  },
+  "passwordResetFor": {
+    "message": "Passwort für $USER$ zurückgesetzt. Sie können sich jetzt mit dem neuen Passwort anmelden.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Persönliches Eigentum"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Benutzern vorschreiben, Tresoreinträge in einer Organisation zu speichern, indem sie die persönliche Eigentumsoption entfernen."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organisationseigentümer und Administratoren sind von der Durchsetzung dieser Richtlinie ausgenommen."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Aufgrund einer Unternehmensrichtlinie dürfen Sie keine Einträge in Ihrem persönlichen Tresor speichern. Ändern Sie die Eigentümer-Option in eine Organisation und wählen Sie aus den verfügbaren Sammlungen."
+  },
+  "modifiedPolicyId": {
+    "message": "Richtlinie $ID$ geändert.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Abopreis"
+  },
+  "estimatedTax": {
+    "message": "Voraussichtliche Steuern"
+  },
+  "custom": {
+    "message": "Benutzerdefiniert"
+  },
+  "customDesc": {
+    "message": "Feinere Kontrolle der Benutzer Berechtigungen für erweiterte Konfigurationen erlauben."
+  },
+  "permissions": {
+    "message": "Berechtigungen"
+  },
+  "accessBusinessPortal": {
+    "message": "Zugriff auf Unternehmensportal"
+  },
+  "accessEventLogs": {
+    "message": "Zugriff auf Ereignisprotokolle"
+  },
+  "accessImportExport": {
+    "message": "Zugriff auf Import/Export"
+  },
+  "accessReports": {
+    "message": "Zugriff auf Berichte"
+  },
+  "manageAllCollections": {
+    "message": "Alle Sammlungen verwalten"
+  },
+  "manageAssignedCollections": {
+    "message": "Zugewiesene Sammlungen verwalten"
+  },
+  "manageGroups": {
+    "message": "Gruppen verwalten"
+  },
+  "managePolicies": {
+    "message": "Richtlinien verwalten"
+  },
+  "manageSso": {
+    "message": "SSO verwalten"
+  },
+  "manageUsers": {
+    "message": "Benutzer verwalten"
+  },
+  "disableRequireSsoError": {
+    "message": "Sie müssen die Single Sign-On Authentifizierungsrichtlinie manuell deaktivieren, bevor diese Richtlinie deaktiviert werden kann."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "Eine Organisationsrichtlinie beeinflusst Ihre Eigentümer-Optionen."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Persönliches Eigentum für Organisationsbenutzer deaktivieren"
+  },
+  "textHiddenByDefault": {
+    "message": "Beim Zugriff auf dieses Send den Text standardmäßig ausblenden",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

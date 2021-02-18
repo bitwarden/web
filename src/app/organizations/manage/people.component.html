@@ -69,6 +69,7 @@
                         <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
                         <span *ngIf="u.type === organizationUserType.Manager">{{'manager' | i18n}}</span>
                         <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
+                        <span *ngIf="u.type === organizationUserType.Custom">{{'custom' | i18n}}</span>
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>

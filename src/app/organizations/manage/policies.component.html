@@ -1,3 +1,8 @@
+<app-callout *ngIf="userCanAccessBusinessPortal" [type]="'warning'">
+    <p>{{'webPoliciesDeprecationWarning' | i18n}}</p>
+    <button type="button" class="btn btn-outline-secondary"
+        (click)="goToEnterprisePortal()">{{'businessPortal' | i18n}}</button>
+</app-callout>
 <div class="page-header d-flex">
     <h1>{{'policies' | i18n}}</h1>
 </div>
@@ -8,7 +13,7 @@
 <table class="table table-hover table-list" *ngIf="!loading">
     <tbody>
         <tr *ngFor="let p of policies">
-            <td>
+            <td *ngIf="p.display">
                 <a href="#" appStopClick (click)="edit(p)">{{p.name}}</a>
                 <span class="badge badge-success" *ngIf="p.enabled">{{'enabled' | i18n}}</span>
                 <small class="text-muted d-block">{{p.description}}</small>

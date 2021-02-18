@@ -17,12 +17,14 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
 import { PlanType } from 'jslib/enums/planType';
+import { PolicyType } from 'jslib/enums/policyType';
 import { ProductType } from 'jslib/enums/productType';
 
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
@@ -56,13 +58,15 @@ export class OrganizationPlansComponent implements OnInit {
     businessName: string;
     productTypes = ProductType;
     formPromise: Promise<any>;
+    singleOrgPolicyBlock: boolean = false;
 
     plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
+        private router: Router, private syncService: SyncService,
+        private policyService: PolicyService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -70,6 +74,9 @@ export class OrganizationPlansComponent implements OnInit {
         if (!this.selfHosted) {
             const plans = await this.apiService.getPlans();
             this.plans = plans.data;
+            if (this.product === ProductType.Enterprise || this.product === ProductType.Teams) {
+                this.ownedBusiness = true;
+            }
         }
         this.loading = false;
     }
@@ -79,7 +86,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlan() {
-        return this.plans.find((plan) => plan.type === this.plan);
+        return this.plans.find(plan => plan.type === this.plan);
     }
 
     get selectedPlanInterval() {
@@ -89,18 +96,18 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectableProducts() {
-        let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
+        let validPlans = this.plans.filter(plan => plan.type !== PlanType.Custom);
 
         if (this.ownedBusiness) {
-            validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
+            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
         }
 
         if (!this.showFree) {
-            validPlans = validPlans.filter((plan) => plan.product !== ProductType.Free);
+            validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
         }
 
         validPlans = validPlans
-            .filter((plan) => !plan.legacyYear
+            .filter(plan => !plan.legacyYear
                 && !plan.disabled
                 && (plan.isAnnual || plan.product === this.productTypes.Free));
 
@@ -108,7 +115,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectablePlans() {
-        return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
+        return this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
     additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
@@ -155,6 +162,16 @@ export class OrganizationPlansComponent implements OnInit {
         return subTotal;
     }
 
+    get taxCharges() {
+        return this.taxComponent != null && this.taxComponent.taxRate != null ?
+            (this.taxComponent.taxRate / 100) * this.subtotal :
+            0;
+    }
+
+    get total() {
+        return (this.subtotal + this.taxCharges) || 0;
+    }
+
     changedProduct() {
         this.plan = this.selectablePlans[0].type;
         if (!this.selectedPlan.hasPremiumAccessOption) {
@@ -175,7 +192,8 @@ export class OrganizationPlansComponent implements OnInit {
         if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
             return;
         }
-        this.plan = PlanType.TeamsMonthly;
+        this.product = ProductType.Teams;
+        this.plan = PlanType.TeamsAnnually;
     }
 
     changedCountry() {
@@ -193,6 +211,16 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async submit() {
+        if (this.singleOrgPolicyBlock) {
+            return;
+        } else {
+            const policies = await this.policyService.getAll(PolicyType.SingleOrg);
+            this.singleOrgPolicyBlock = policies.some(policy => policy.enabled);
+            if (this.singleOrgPolicyBlock) {
+                return;
+            }
+        }
+
         let files: FileList = null;
         if (this.createOrganization && this.selfHosted) {
             const fileEl = document.getElementById('file') as HTMLInputElement;
@@ -264,6 +292,9 @@ export class OrganizationPlansComponent implements OnInit {
                     request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
                         this.premiumAccessAddon;
                     request.planType = this.selectedPlan.type;
+                    request.billingAddressCountry = this.taxComponent.taxInfo.country;
+                    request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+
                     const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
                     if (!result.success && result.paymentIntentClientSecret != null) {
                         await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);

@@ -37,6 +37,9 @@
   "password": {
     "message": "密碼"
   },
+  "newPassword": {
+    "message": "新密碼"
+  },
   "passphrase": {
     "message": "密碼短語"
   },
@@ -344,6 +347,9 @@
   "editItem": {
     "message": "編輯項目"
   },
+  "viewItem": {
+    "message": "檢視項目"
+  },
   "ex": {
     "message": "例如",
     "description": "Short abbreviation for 'example'."
@@ -461,7 +467,7 @@
     "message": "確定要刪除此項目嗎?"
   },
   "deletedItem": {
-    "message": "已刪除項目"
+    "message": "已刪除此項目"
   },
   "deletedItems": {
     "message": "已刪除項目"
@@ -787,8 +793,14 @@
   "warning": {
     "message": "警告"
   },
+  "confirmVaultExport": {
+    "message": "確認匯出密碼庫"
+  },
   "exportWarningDesc": {
     "message": "您的密碼將匯出成未加密的. csv 檔案。您不應將它存放或經由未經加密的方式傳送（例如電子郵件）。用完後請立即將它刪除。"
+  },
+  "encExportWarningDesc": {
+    "message": "將使用您帳號的加密金鑰來加密匯出資料，若您更新了帳號的加密金鑰，請重新匯出，才有辦法解密匯出的檔案。"
   },
   "exportMasterPassword": {
     "message": "輸入您的主密碼以匯出密碼庫資料。"
@@ -1045,11 +1057,11 @@
     "message": "載入 gravatar.com 上的頭像圖片。"
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "啟用全寬度版面配置",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "允許將網頁版密碼庫完全展開至瀏覽器視窗寬度。"
   },
   "default": {
     "message": "預設"
@@ -1575,7 +1587,7 @@
     }
   },
   "addons": {
-    "message": "Addons"
+    "message": "附加項目"
   },
   "premiumAccess": {
     "message": "Premium Access"
@@ -1656,6 +1668,9 @@
   "paymentInformation": {
     "message": "付款資訊"
   },
+  "billingInformation": {
+    "message": "帳單資訊"
+  },
   "creditCard": {
     "message": "信用卡"
   },
@@ -1666,7 +1681,7 @@
     "message": "取消訂閱"
   },
   "subscriptionCanceled": {
-    "message": "The subscription has been canceled."
+    "message": "訂閱已被取消"
   },
   "pendingCancellation": {
     "message": "Pending Cancellation"
@@ -1678,7 +1693,7 @@
     "message": "重新開始訂閱"
   },
   "reinstateConfirmation": {
-    "message": "Are you sure you want to remove the pending cancellation request and reinstate your subscription?"
+    "message": "您是否要移除待處理的取消要求，重新開始您的訂閱？"
   },
   "reinstated": {
     "message": "已重新開始訂閱。"
@@ -1720,7 +1735,7 @@
     "message": "增加儲存空間"
   },
   "removeStorage": {
-    "message": "Remove Storage"
+    "message": "減少儲存空間"
   },
   "subscriptionStorage": {
     "message": "您的訂閱方案包含 $MAX_STORAGE$ GB 的加密檔案儲存空間，目前已用 $USED_STORAGE$。",
@@ -1792,7 +1807,7 @@
     "message": "GB of Storage To Remove"
   },
   "storageAddNote": {
-    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "增添存儲空間將會調整帳單總額，並立即透過您的支付方式進行扣款程序。第一期費用將按照當前帳單週期的剩餘數依比例分配。"
   },
   "storageRemoveNote": {
     "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
@@ -1864,7 +1879,7 @@
     "message": "使用者數量"
   },
   "additionalUserSeats": {
-    "message": "Additional User Seats"
+    "message": "額外使用者席位"
   },
   "userSeatsDesc": {
     "message": "# 使用者數"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "Unlinked SSO for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "裝置"
   },
@@ -2728,11 +2752,11 @@
     "message": "Enter your installation id"
   },
   "addSeats": {
-    "message": "Add Seats",
+    "message": "新增席位",
     "description": "Seat = User Seat"
   },
   "removeSeats": {
-    "message": "Remove Seats",
+    "message": "移除席位",
     "description": "Seat = User Seat"
   },
   "subscriptionUserSeats": {
@@ -2751,7 +2775,7 @@
     "message": "要移除的席位數"
   },
   "seatsAddNote": {
-    "message": "Adding user seats will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
+    "message": "增添用戶數將會調整帳單總額，並立即透過您的支付方式進行扣款程序。第一期費用將按照當前帳單週期的剩餘數依比例分配。"
   },
   "seatsRemoveNote": {
     "message": "Removing user seats will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
@@ -2778,10 +2802,13 @@
     "message": "您目前使用的是過時的加密方式。"
   },
   "updateEncryptionKeyDesc": {
-    "message": "We've moved to larger encryption keys that provide better security and access to newer features. Updating your encryption key is quick and easy. Just type your master password below. This update will eventually become mandatory."
+    "message": "我們已經採用更強大的加密金鑰，而此金鑰提供了更強的安全機制及更新功能。更新您的加密金鑰非常簡單快速，僅需要輸入您的主密碼。此次更新最終將強制執行。"
   },
   "updateEncryptionKeyWarning": {
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+  },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Any encrypted exports that you have saved will also become invalid."
   },
   "subscription": {
     "message": "訂閱"
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "您沒有選擇任何項目。"
   },
-  "submitAgreePolicies": {
-    "message": "一旦您按下「送出」，表示您同意以下條款：",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "點擊此選取框，代表您同意下列項目:"
+  },
+  "acceptPoliciesError": {
+    "message": "尚未接受服務條款與隱私權保護政策。"
   },
   "termsOfService": {
     "message": "服務條款"
@@ -2824,10 +2853,10 @@
     "message": "篩選器"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "密碼庫逾時"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "選擇密碼庫多久之後才會逾時並執行選取動作。"
   },
   "oneMinute": {
     "message": "1 分鐘"
@@ -2948,6 +2977,12 @@
   "apiKeyWarning": {
     "message": "你的 API 金鑰對組織有完整存取權限，應要保密。"
   },
+  "userApiKeyDesc": {
+    "message": "您的 API 金鑰可用於 Bitwarden CLI 當中進行驗證。"
+  },
+  "userApiKeyWarning": {
+    "message": "您的 API 金鑰是另一種驗證身分的方式，請保存好不要公開。"
+  },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 客戶端登入資訊",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2986,10 +3021,10 @@
     "message": "要求使用者對個人帳號設定兩階段登入。"
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who do not have two-step login enabled for their personal account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "會從組織移除個人帳戶未啟用兩步驟登入的成員，成員會收到一封通知這項變更的電子信件。"
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "You are a member of an organization that requires two-step login to be enabled on your user account. If you disable all two-step login providers you will be automatically removed from these organizations."
+    "message": "您是組織成員，而組織要求您的使用者帳戶需要啟用兩步驟登入。如果停用所有兩步驟登入提供者，您就會被自動踢出這些組織。"
   },
   "passwordGeneratorPolicyDesc": {
     "message": "指定密碼產生器設定的最低需求。"
@@ -3049,7 +3084,7 @@
     "message": "使用者偏好設定"
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "密碼庫逾時動作"
   },
   "vaultTimeoutActionLockDesc": {
     "message": "鎖定密碼庫後需要重新輸入主密碼才能再次存取。"
@@ -3144,10 +3179,10 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "選擇登出將會在密碼庫逾時後移除所有密碼庫存取權，重新認證時需要連線網路。確定要登出嗎？"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Timeout Action Confirmation"
+    "message": "逾時動作確認"
   },
   "hidePasswords": {
     "message": "隱藏密碼"
@@ -3163,5 +3198,435 @@
   },
   "taxInfoUpdated": {
     "message": "已更新稅務資訊。"
+  },
+  "setMasterPassword": {
+    "message": "設定主密碼"
+  },
+  "ssoCompleteRegistration": {
+    "message": "請設定用來保護密碼庫的主控密碼以完成 SSO 登入。"
+  },
+  "identifier": {
+    "message": "Identifier"
+  },
+  "organizationIdentifier": {
+    "message": "Organization Identifier"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "企業單一登入（SSO）"
+  },
+  "ssoHandOff": {
+    "message": "您現在可以關閉此分頁，並且回到擴充套件繼續。"
+  },
+  "businessPortal": {
+    "message": "企業入口網站",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "All Teams features, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Enterprise Policies"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO Validation Failed"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organization Identifier is required."
+  },
+  "unlinkSso": {
+    "message": "取消 SSO 連結"
+  },
+  "linkSso": {
+    "message": "連結 SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+  },
+  "singleOrg": {
+    "message": "單一組織"
+  },
+  "singleOrgDesc": {
+    "message": "Restrict users from being able to join any other organizations."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+  },
+  "requireSso": {
+    "message": "單一登入驗證"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "要求使用者以企業單一登入方法登入。"
+  },
+  "prerequisite": {
+    "message": "先決條件"
+  },
+  "requireSsoPolicyReq": {
+    "message": "必須先開啟單一組織企業政策，才能再開啟此政策。"
+  },
+  "requireSsoPolicyReqError": {
+    "message": "未開啟單一組織政策。"
+  },
+  "requireSsoExemption": {
+    "message": "組織擁有者與管理員，不受此政策的執行影響。"
+  },
+  "sendTypeFile": {
+    "message": "檔案"
+  },
+  "sendTypeText": {
+    "message": "文字"
+  },
+  "createSend": {
+    "message": "Create New Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Edit Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Created Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Edited Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Deleted Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Delete Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Are you sure you want to delete this Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "What type of Send is this?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "刪除日期"
+  },
+  "deletionDateDesc": {
+    "message": "The Send will be permanently deleted on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "到期日"
+  },
+  "expirationDateDesc": {
+    "message": "If set, access to this Send will expire on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "最大存取次數"
+  },
+  "maxAccessCountDesc": {
+    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "目前已存取次數"
+  },
+  "sendPasswordDesc": {
+    "message": "Optionally require a password for users to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Private notes about this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "已停用"
+  },
+  "sendLink": {
+    "message": "傳送連結",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "複製傳送連結",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "移除密碼"
+  },
+  "removedPassword": {
+    "message": "已移除密碼"
+  },
+  "removePasswordConfirmation": {
+    "message": "您確定要移除密碼嗎？"
+  },
+  "disableThisSend": {
+    "message": "Disable this Send so that no one can access it.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "All Sends"
+  },
+  "maxAccessCountReached": {
+    "message": "Max access count reached"
+  },
+  "pendingDeletion": {
+    "message": "等待刪除中"
+  },
+  "expired": {
+    "message": "Expired"
+  },
+  "searchSends": {
+    "message": "Search Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "下載檔案"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "There are no Sends to list.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Emergency Access"
+  },
+  "emergencyAccessDesc": {
+    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+  },
+  "trustedEmergencyContacts": {
+    "message": "信任的緊急聯絡人"
+  },
+  "noTrustedContacts": {
+    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+  },
+  "addEmergencyContact": {
+    "message": "新增緊急聯絡人"
+  },
+  "designatedEmergencyContacts": {
+    "message": "已指定為緊急聯絡人"
+  },
+  "noGrantedAccess": {
+    "message": "You have not been designated as an emergency contact for anyone yet."
+  },
+  "inviteEmergencyContact": {
+    "message": "邀請緊急聯絡人"
+  },
+  "editEmergencyContact": {
+    "message": "編輯緊急聯絡人"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "已發動緊急存取"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "已確認緊急存取"
+  },
+  "viewDesc": {
+    "message": "Can view all items in your own vault."
+  },
+  "takeover": {
+    "message": "接管"
+  },
+  "takeoverDesc": {
+    "message": "Can reset your account with a new master password."
+  },
+  "waitTime": {
+    "message": "等候時間"
+  },
+  "waitTimeDesc": {
+    "message": "Time required before automatically granting access."
+  },
+  "oneDay": {
+    "message": "1 天"
+  },
+  "days": {
+    "message": "$DAYS$ 天",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "已邀請使用者。"
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "要求存取"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "核准"
+  },
+  "reject": {
+    "message": "拒絕"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "已核准緊急存取。"
+  },
+  "emergencyRejected": {
+    "message": "已拒絕緊急存取"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "個人擁有權"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "方案價格"
+  },
+  "estimatedTax": {
+    "message": "估計稅額"
+  },
+  "custom": {
+    "message": "自訂"
+  },
+  "customDesc": {
+    "message": "Allows more granular control of user permissions for advanced configurations."
+  },
+  "permissions": {
+    "message": "權限"
+  },
+  "accessBusinessPortal": {
+    "message": "存取企業入口網站"
+  },
+  "accessEventLogs": {
+    "message": "存取事件紀錄"
+  },
+  "accessImportExport": {
+    "message": "存取匯入/匯出"
+  },
+  "accessReports": {
+    "message": "存取報告"
+  },
+  "manageAllCollections": {
+    "message": "Manage All Collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Manage Assigned Collections"
+  },
+  "manageGroups": {
+    "message": "管理群組"
+  },
+  "managePolicies": {
+    "message": "Manage Policies"
+  },
+  "manageSso": {
+    "message": "管理 SSO"
+  },
+  "manageUsers": {
+    "message": "Manage Users"
+  },
+  "disableRequireSsoError": {
+    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "An organization policy is affecting your ownership options."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Disable personal ownership for organization users"
+  },
+  "textHiddenByDefault": {
+    "message": "When accessing the Send, hide the text by default",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

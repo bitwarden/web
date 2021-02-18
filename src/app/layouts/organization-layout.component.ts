@@ -24,9 +24,9 @@ const BroadcasterSubscriptionId = 'OrganizationLayoutComponent';
 })
 export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     organization: Organization;
-    enterpriseTokenPromise: Promise<any>;
+    businessTokenPromise: Promise<any>;
     private organizationId: string;
-    private enterpriseUrl: string;
+    private businessUrl: string;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
         private broadcasterService: BroadcasterService, private ngZone: NgZone,
@@ -34,15 +34,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         private environmentService: EnvironmentService) { }
 
     ngOnInit() {
-        this.enterpriseUrl = 'https://portal.bitwarden.com';
+        this.businessUrl = 'https://portal.bitwarden.com';
         if (this.environmentService.enterpriseUrl != null) {
-            this.enterpriseUrl = this.environmentService.enterpriseUrl;
+            this.businessUrl = this.environmentService.enterpriseUrl;
         } else if (this.environmentService.baseUrl != null) {
-            this.enterpriseUrl = this.environmentService.baseUrl + '/portal';
+            this.businessUrl = this.environmentService.baseUrl + '/portal';
         }
 
         document.body.classList.remove('layout_frontend');
-        this.route.params.subscribe(async (params) => {
+        this.route.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
         });
@@ -65,19 +65,68 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         this.organization = await this.userService.getOrganization(this.organizationId);
     }
 
-    async goToEnterprisePortal() {
-        if (this.enterpriseTokenPromise != null) {
+    async goToBusinessPortal() {
+        if (this.businessTokenPromise != null) {
             return;
         }
         try {
-            this.enterpriseTokenPromise = this.apiService.getEnterprisePortalSignInToken();
-            const token = await this.enterpriseTokenPromise;
+            this.businessTokenPromise = this.apiService.getEnterprisePortalSignInToken();
+            const token = await this.businessTokenPromise;
             if (token != null) {
                 const userId = await this.userService.getUserId();
-                this.platformUtilsService.launchUri(this.enterpriseUrl + '/login?userId=' + userId +
+                this.platformUtilsService.launchUri(this.businessUrl + '/login?userId=' + userId +
                     '&token=' + (window as any).encodeURIComponent(token) + '&organizationId=' + this.organization.id);
             }
         } catch { }
-        this.enterpriseTokenPromise = null;
+        this.businessTokenPromise = null;
+    }
+
+    get showMenuBar() {
+        return this.showManageTab || this.showToolsTab || this.organization.isOwner;
+    }
+
+    get showManageTab(): boolean {
+        return this.organization.canManageUsers ||
+            this.organization.canManageAssignedCollections ||
+            this.organization.canManageAllCollections ||
+            this.organization.canManageGroups ||
+            this.organization.canManagePolicies ||
+            this.organization.canAccessEventLogs;
+    }
+
+    get showToolsTab(): boolean {
+        return this.organization.canAccessImportExport || this.organization.canAccessReports;
+    }
+
+    get showBusinessPortalButton(): boolean {
+        return this.organization.useBusinessPortal && this.organization.canAccessBusinessPortal;
+    }
+
+    get toolsRoute(): string {
+        return this.organization.canAccessImportExport ?
+            'tools/import' :
+            'tools/exposed-passwords-report';
+    }
+
+    get manageRoute(): string {
+        let route: string;
+        switch (true) {
+            case this.organization.canManageUsers:
+                route = 'manage/people';
+                break;
+            case this.organization.canManageAssignedCollections || this.organization.canManageAllCollections:
+                route = 'manage/collections';
+                break;
+            case this.organization.canManageGroups:
+                route = 'manage/groups';
+                break;
+            case this.organization.canManagePolicies:
+                route = 'manage/policies';
+                break;
+            case this.organization.canAccessEventLogs:
+                route = 'manage/events';
+                break;
+        }
+        return route;
     }
 }

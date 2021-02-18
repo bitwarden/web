@@ -21,7 +21,7 @@ export class ManageComponent implements OnInit {
     constructor(private route: ActivatedRoute, private userService: UserService) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
+        this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.accessPolicies = this.organization.usePolicies;
             this.accessEvents = this.organization.useEvents;

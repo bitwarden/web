@@ -37,6 +37,9 @@
   "password": {
     "message": "Parola"
   },
+  "newPassword": {
+    "message": "Yeni Parola"
+  },
   "passphrase": {
     "message": "Kelimelerden Oluşan Parola"
   },
@@ -215,7 +218,7 @@
     "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
-    "message": "Generate Password"
+    "message": "Parola Üret"
   },
   "checkPassword": {
     "message": "Parolanız herhangi bir saldırı sonucu açığa çıkmış mı kontrol edin."
@@ -300,13 +303,13 @@
     "message": "Koleksiyonlar"
   },
   "firstName": {
-    "message": "İsim"
+    "message": "İlk Ad"
   },
   "middleName": {
-    "message": "İkinci İsim"
+    "message": "İkinci Ad"
   },
   "lastName": {
-    "message": "Soyisim"
+    "message": "Soyadı"
   },
   "address1": {
     "message": "Adres 1"
@@ -343,6 +346,9 @@
   },
   "editItem": {
     "message": "Ögeyi Düzenle"
+  },
+  "viewItem": {
+    "message": "View Item"
   },
   "ex": {
     "message": "ör.",
@@ -458,7 +464,7 @@
     "message": "Eki Sil"
   },
   "deleteItemConfirmation": {
-    "message": "Bu hesabı silmek istediğinize emin misiniz?"
+    "message": "Bu ögeyi silmek istediğinize emin misiniz?"
   },
   "deletedItem": {
     "message": "Öge Silindi"
@@ -787,8 +793,14 @@
   "warning": {
     "message": "Uyarı"
   },
+  "confirmVaultExport": {
+    "message": "Confirm Vault Export"
+  },
   "exportWarningDesc": {
     "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+  },
+  "encExportWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
   },
   "exportMasterPassword": {
     "message": "Kasadaki verilerinizi dışa aktarmak için ana parolanızı girin."
@@ -797,7 +809,7 @@
     "message": "Export Vault"
   },
   "fileFormat": {
-    "message": "File Format"
+    "message": "Dosya Biçimi"
   },
   "exportSuccess": {
     "message": "Kasadaki verileriniz dışa aktarıldı."
@@ -968,7 +980,7 @@
     "message": "Hesabı Sil"
   },
   "deleteAccountDesc": {
-    "message": "Hesabınızı ve tüm ilişkili verileri silmek için aşağıdan devam edin."
+    "message": "Hesabınızı ve ilişkili tüm verileri silmek için aşağıya devam edin."
   },
   "deleteAccountWarning": {
     "message": "Hesabınızı silmek kalıcıdır. Geri alınamaz."
@@ -1045,11 +1057,11 @@
     "message": "gravatar.com adresinden yüklenen avatarları kullanın."
   },
   "enableFullWidth": {
-    "message": "Enable Full Width Layout",
+    "message": "Tam Genişlik Düzenini Etkinleştir",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Allow the web vault to expand the full width of the browser window."
+    "message": "Web kasasının tarayıcı penceresini tam genişliğinde kullanmasına izin verin."
   },
   "default": {
     "message": "Varsayılan"
@@ -1079,7 +1091,7 @@
     "message": "Yeni Özel Alan Adı"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp://package.name\" to associate an android app with other website domains."
+    "message": "Virgülle ayrılmış alan adları listesi giriniz. Sadece ana alan adlarına izin verilmektedir. Alt alan adları girmeyiniz. Örneğin, \"www.google.com\" yerine \"google.com\" giriniz. Bir android uygulamasını diğer web sitesi alan adları ile eşleştirmek için \"androiduygulaması://paket.ismi\" girebilirsiniz."
   },
   "customDomainX": {
     "message": "Özel Alan Adı: $INDEX$",
@@ -1655,6 +1667,9 @@
   },
   "paymentInformation": {
     "message": "Ödeme Bilgileri"
+  },
+  "billingInformation": {
+    "message": "Billing Information"
   },
   "creditCard": {
     "message": "Kredi Kartı"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "Unlinked SSO for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "Aygıt"
   },
@@ -2625,7 +2649,7 @@
     "message": "Organizasyonu Sil"
   },
   "deleteOrganizationDesc": {
-    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+    "message": "Bu organizasyonu ve ilişkili tüm verileri silmek için aşağıya devam ediniz. Kişisel kullanıcı hesapları kalacak, fakat bu organizasyon ile ilişkisi kesilecektir. "
   },
   "deleteOrganizationWarning": {
     "message": "Organizasyonu silmek kalıcıdır. Bu işlem geri alınamaz."
@@ -2634,7 +2658,7 @@
     "message": "Organizasyon Silindi"
   },
   "organizationDeletedDesc": {
-    "message": "Organizasyon ve ona bağlı tüm veriler silindi."
+    "message": "Organizasyon ve ilişkili tüm veriler silindi."
   },
   "organizationUpdated": {
     "message": "Organizayson Güncellendi"
@@ -2783,6 +2807,9 @@
   "updateEncryptionKeyWarning": {
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Any encrypted exports that you have saved will also become invalid."
+  },
   "subscription": {
     "message": "Abonelik"
   },
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "Hiçbir şey seçmediniz."
   },
-  "submitAgreePolicies": {
-    "message": "'Gönder' butonuna tıklayın; politikaları onaylamak için:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Bu kutuyu işaretleyerek aşağıdakileri kabul etmiş olursunuz:"
+  },
+  "acceptPoliciesError": {
+    "message": "Hizmet Koşulları ve Gizlilik Politikası kabul edilmemiştir."
   },
   "termsOfService": {
     "message": "Hizmet Koşulları"
@@ -2827,7 +2856,7 @@
     "message": "Kasa Zaman Aşımı"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Kasanızın zaman aşımına uğrayıp seçilen eylemi uygulayacağı zamanı seçin."
   },
   "oneMinute": {
     "message": "1 dakika"
@@ -2948,6 +2977,12 @@
   "apiKeyWarning": {
     "message": "API anahtarınız organizasyona tam erişime sahiptir. Gizli tutulmalıdır."
   },
+  "userApiKeyDesc": {
+    "message": "API anahtarınız, Bitwarden CLI'de kimlik doğrulaması için kullanılabilir."
+  },
+  "userApiKeyWarning": {
+    "message": "API anahtarınız, alternatif bir kimlik doğrulama mekanizmasıdır. Gizli tutulmalıdır."
+  },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 İstemci Bilgileri",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -3052,10 +3087,10 @@
     "message": "Kasa Zaman Aşımı Eylemi"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Kilitli bir kasaya tekrar erişebilmeniz için ana parolanızı tekrar girmeniz gerekir."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Çıkış yapılmış bir kasaya tekrardan erişmek için yeniden kimlik doğrulaması gerekir."
   },
   "lock": {
     "message": "Kilitle",
@@ -3150,18 +3185,448 @@
     "message": "Zaman Aşımı Eylem Onayı"
   },
   "hidePasswords": {
-    "message": "Hide Passwords"
+    "message": "Parolaları Gizle"
   },
   "countryPostalCodeRequiredDesc": {
-    "message": "We require this information for calculating sales tax and financial reporting only."
+    "message": "Bu bilgiyi sadece satış vergisi hesaplama ve mali raporlama için istiyoruz."
   },
   "includeVAT": {
-    "message": "Include VAT/GST Information (optional)"
+    "message": "KDV Bilgisi Ekle (opsiyonel)"
   },
   "taxIdNumber": {
-    "message": "VAT/GST Tax ID"
+    "message": "KDV Vergi Kimlik Numarası"
   },
   "taxInfoUpdated": {
-    "message": "Tax information updated."
+    "message": "Vergi bilgileriniz güncellendi."
+  },
+  "setMasterPassword": {
+    "message": "Ana Parolayı Belirle"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Tek Oturum Açma (SSO) ile oturum açmayı tamamlamak için lütfen kasanıza erişebilmek ve onu korumak için bir ana parola ayarlayın."
+  },
+  "identifier": {
+    "message": "Tanımlayıcı"
+  },
+  "organizationIdentifier": {
+    "message": "Organizasyon Tanımlayıcı"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Kuruluşunuzun tek oturum açma (SSO) portalını kullanarak oturum açın. Başlamak için lütfen kuruluşunuzun tanımlayıcısını girin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Kurumsal Tek Oturum Açma"
+  },
+  "ssoHandOff": {
+    "message": "Şimdi bu sekmeyi kapatabilir ve uzantıya devam edebilirsiniz."
+  },
+  "businessPortal": {
+    "message": "Şirket Portalı",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Tüm Takımlar özellikleri, artı:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SAML2.0 ve OpenID Connect ile Tek Oturum Açma (SSO) Doğrulaması"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Kurumsal İlkeler"
+  },
+  "ssoValidationFailed": {
+    "message": "Tek Oturum Açma (SSO) Doğrulaması Başarısız Oldu"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organizasyon Tanımlayıcısı gereklidir."
+  },
+  "unlinkSso": {
+    "message": "Tek Oturum Açma (SSO) Bağlantısını Kaldır"
+  },
+  "linkSso": {
+    "message": "Tek Oturum Açma (SSO) Bağlantısı Oluştur"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Politika yapılandırması taşındı ve bu sayfa yakında kullanımdan kaldırılacak. Bunun yerine İş Portalı politikaları sayfasını kullanmak için lütfen aşağıyı tıklayın."
+  },
+  "singleOrg": {
+    "message": "Tek Organizasyon"
+  },
+  "singleOrgDesc": {
+    "message": "Kullanıcıların diğer kuruluşlara katılmasını kısıtlayın."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Mevcut kuruluşunuzun, birden fazla kuruluşa katılmanıza izin vermeyen bir politikası var. Lütfen kuruluş yöneticilerinizle iletişime geçin veya farklı bir Bitwarden hesabından kaydolun."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Sahip veya Yönetici olmayan ve zaten başka bir kuruluşun üyesi olan kuruluş üyeleri, kuruluşunuzdan kaldırılır."
+  },
+  "requireSso": {
+    "message": "Tek Oturum Açma Kimlik Doğrulaması"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Kullanıcıların Kurumsal olarak Tek Oturum Açma yöntemiyle oturum açmasını zorunlu kılın."
+  },
+  "prerequisite": {
+    "message": "Önkoşul"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Bu politikayı etkinleştirmeden önce Tek Kuruluş kurumsal politikası etkinleştirilmelidir."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Tek Kuruluş politikası etkinleştirilmedi."
+  },
+  "requireSsoExemption": {
+    "message": "Kuruluş Sahipleri ve Yöneticiler bu politika uygulamasından muaftır."
+  },
+  "sendTypeFile": {
+    "message": "Dosya"
+  },
+  "sendTypeText": {
+    "message": "Metin"
+  },
+  "createSend": {
+    "message": "Yeni Gönderi Oluştur",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Göndermeyi Düzenle",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Gönderi Oluşturuldu",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Gönderi Düzenlendi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Gönderi Silindi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Gönderiyi Sil",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Bu Gönderiyi silmek istediğinizden emin misiniz?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Bu ne tür bir Gönderme?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Silme Tarihi"
+  },
+  "deletionDateDesc": {
+    "message": "The Send will be permanently deleted on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Son Kullanma Tarihi"
+  },
+  "expirationDateDesc": {
+    "message": "If set, access to this Send will expire on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maksimum Gönderi Sayısı"
+  },
+  "maxAccessCountDesc": {
+    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Mevcut Erişim Sayısı"
+  },
+  "sendPasswordDesc": {
+    "message": "Optionally require a password for users to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Private notes about this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Devre Dışı"
+  },
+  "sendLink": {
+    "message": "Bağlantı gönder",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Gönderme Bağlantısını Kopyala",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Şifreyi kaldır"
+  },
+  "removedPassword": {
+    "message": "Parola kaldırıldı"
+  },
+  "removePasswordConfirmation": {
+    "message": "Şifreyi kaldırmak istediğinizden emin misiniz?"
+  },
+  "disableThisSend": {
+    "message": "Disable this Send so that no one can access it.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Tüm Gönderimler"
+  },
+  "maxAccessCountReached": {
+    "message": "Max access count reached"
+  },
+  "pendingDeletion": {
+    "message": "Pending deletion"
+  },
+  "expired": {
+    "message": "Expired"
+  },
+  "searchSends": {
+    "message": "Gönderileri Ara",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Bu Gönderim bir şifre ile korunmaktadır. Devam etmek için lütfen şifreyi aşağıya yazın.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Şifreyi bilmiyor musunuz? Gönderen'den bu Gönderime erişmek için gereken parolayı isteyin.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Bu gönderme varsayılan olarak gizlidir. Aşağıdaki düğmeyi kullanarak görünürlüğünü değiştirebilirsiniz.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Dosyayı indir"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Listelenecek olay yok.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Emergency Access"
+  },
+  "emergencyAccessDesc": {
+    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Trusted emergency contacts"
+  },
+  "noTrustedContacts": {
+    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+  },
+  "addEmergencyContact": {
+    "message": "Add emergency contact"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Designated as emergency contact"
+  },
+  "noGrantedAccess": {
+    "message": "You have not been designated as an emergency contact for anyone yet."
+  },
+  "inviteEmergencyContact": {
+    "message": "Invite emergency contact"
+  },
+  "editEmergencyContact": {
+    "message": "Edit emergency contact"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Emergency Access Initiated"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Emergency Access Approved"
+  },
+  "viewDesc": {
+    "message": "Can view all items in your own vault."
+  },
+  "takeover": {
+    "message": "Takeover"
+  },
+  "takeoverDesc": {
+    "message": "Can reset your account with a new master password."
+  },
+  "waitTime": {
+    "message": "Wait Time"
+  },
+  "waitTimeDesc": {
+    "message": "Time required before automatically granting access."
+  },
+  "oneDay": {
+    "message": "1 day"
+  },
+  "days": {
+    "message": "$DAYS$ days",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Invited user."
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "Request Access"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Approve"
+  },
+  "reject": {
+    "message": "Reject"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Emergency access approved."
+  },
+  "emergencyRejected": {
+    "message": "Emergency access rejected"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personal Ownership"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Plan price"
+  },
+  "estimatedTax": {
+    "message": "Estimated tax"
+  },
+  "custom": {
+    "message": "Custom"
+  },
+  "customDesc": {
+    "message": "Allows more granular control of user permissions for advanced configurations."
+  },
+  "permissions": {
+    "message": "Permissions"
+  },
+  "accessBusinessPortal": {
+    "message": "Access Business Portal"
+  },
+  "accessEventLogs": {
+    "message": "Access Event Logs"
+  },
+  "accessImportExport": {
+    "message": "Access Import/Export"
+  },
+  "accessReports": {
+    "message": "Access Reports"
+  },
+  "manageAllCollections": {
+    "message": "Manage All Collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Manage Assigned Collections"
+  },
+  "manageGroups": {
+    "message": "Manage Groups"
+  },
+  "managePolicies": {
+    "message": "Manage Policies"
+  },
+  "manageSso": {
+    "message": "Manage SSO"
+  },
+  "manageUsers": {
+    "message": "Manage Users"
+  },
+  "disableRequireSsoError": {
+    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "An organization policy is affecting your ownership options."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Disable personal ownership for organization users"
+  },
+  "textHiddenByDefault": {
+    "message": "When accessing the Send, hide the text by default",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }

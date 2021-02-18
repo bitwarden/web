@@ -37,6 +37,9 @@
   "password": {
     "message": "Mot de passe"
   },
+  "newPassword": {
+    "message": "Nouveau mot de passe"
+  },
   "passphrase": {
     "message": "Phrase de passe"
   },
@@ -344,6 +347,9 @@
   "editItem": {
     "message": "Modifier l'élément"
   },
+  "viewItem": {
+    "message": "Afficher l'élément"
+  },
   "ex": {
     "message": "ex.",
     "description": "Short abbreviation for 'example'."
@@ -458,7 +464,7 @@
     "message": "Supprimer la pièce jointe"
   },
   "deleteItemConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer cet élément ?"
+    "message": "Êtes-vous sûr(e) de vouloir déplacer cet élément vers la corbeille ?"
   },
   "deletedItem": {
     "message": "L'élément a été envoyé dans la corbeille"
@@ -787,8 +793,14 @@
   "warning": {
     "message": "Attention"
   },
+  "confirmVaultExport": {
+    "message": "Confirmer l'export du coffre"
+  },
   "exportWarningDesc": {
     "message": "Cet export contient les données de votre coffre dans un format non chiffré. Vous ne devriez ni le stocker ni l'envoyer via des canaux non sécurisés (tel que l'e-mail). Supprimez-le immédiatement après l'avoir utilisé."
+  },
+  "encExportWarningDesc": {
+    "message": "Cet export chiffre vos données en utilisant la clé de chiffrement de votre compte. Si jamais vous modifiez la clé de chiffrement de votre compte, vous devriez exporter à nouveau car vous ne pourrez pas déchiffrer ce fichier."
   },
   "exportMasterPassword": {
     "message": "Saisissez votre mot de passe maître pour exporter les données de votre coffre."
@@ -1656,6 +1668,9 @@
   "paymentInformation": {
     "message": "Informations de paiement"
   },
+  "billingInformation": {
+    "message": "Informations de facturation"
+  },
   "creditCard": {
     "message": "Carte de crédit"
   },
@@ -1992,7 +2007,7 @@
     "message": "Contrôlez l'accès des utilisateurs avec des groupes"
   },
   "syncUsersFromDirectory": {
-    "message": "Synchronisez vos utilisateurs et vos groupes à partir d’un répertoire"
+    "message": "Synchronisez vos utilisateurs et vos groupes à partir d'un répertoire"
   },
   "trackAuditLogs": {
     "message": "Suivez les actions des utilisateurs avec les journaux d'audit"
@@ -2480,6 +2495,15 @@
       }
     }
   },
+  "unlinkedSsoUser": {
+    "message": "SSO dissocié pour l'utilisateur $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "device": {
     "message": "Appareil"
   },
@@ -2783,6 +2807,9 @@
   "updateEncryptionKeyWarning": {
     "message": "Après avoir mis à jour votre clé de chiffrement, vous devrez vous reconnecter sur toutes les applications Bitwarden que vous utilisez actuellement (comme par exemple l'application mobile ou les extensions de navigateur). Le fait de ne pas vous déconnecter et de vous reconnecter (ce qui télécharge votre nouvelle clé de chiffrement) pourrait entraîner une corruption des données. Nous allons essayer de vous déconnecter automatiquement, mais cela demande un peu de temps."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Tous les exports chiffrés que vous avez enregistrés deviendront également invalides."
+  },
   "subscription": {
     "message": "Abonnement"
   },
@@ -2810,9 +2837,11 @@
   "nothingSelected": {
     "message": "Vous n'avez rien sélectionné."
   },
-  "submitAgreePolicies": {
-    "message": "En cliquant sur le bouton « Soumettre », vous acceptez les politiques suivantes :",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "En cochant cette case, vous acceptez les éléments suivants :"
+  },
+  "acceptPoliciesError": {
+    "message": "Les conditions d'utilisation et la politique de confidentialité n'ont pas été acceptées."
   },
   "termsOfService": {
     "message": "Conditions d'utilisation"
@@ -2948,6 +2977,12 @@
   "apiKeyWarning": {
     "message": "Votre clé d'API a un accès complet à l'organisation. Elle doit être gardée secrète."
   },
+  "userApiKeyDesc": {
+    "message": "Votre clé d'API peut être utilisée pour vous authentifier dans l'interface ligne de commande (CLI) de Bitwarden."
+  },
+  "userApiKeyWarning": {
+    "message": "Votre clé d'API est un mécanisme d'authentification alternatif. Elle doit être gardée secrète."
+  },
   "oauth2ClientCredentials": {
     "message": "Identifiants du client OAuth 2.0",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2986,7 +3021,7 @@
     "message": "Exiger que les utilisateurs définissent une connexion en deux étapes sur leurs comptes personnels."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Les membres de l'organisation qui n'ont pas activé la connexion en deux étapes sur leur compte personnel seront supprimés de l'organisation et recevront un courriel les informant du changement."
+    "message": "Les membres de l'organisation (hors propriétaires et administrateurs) qui n'ont pas activé la connexion en deux étapes sur leur compte personnel seront supprimés de l'organisation et recevront un courriel les informant du changement."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Vous êtes membre d'une organisation qui nécessite que la connexion en deux étapes soit activée sur votre compte utilisateur. Si vous désactivez tous les fournisseurs de connexion en deux étapes, vous serez automatiquement retiré de ces organisations."
@@ -3163,5 +3198,435 @@
   },
   "taxInfoUpdated": {
     "message": "Informations sur les taxes mises à jour."
+  },
+  "setMasterPassword": {
+    "message": "Définir le mot de passe maître"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Afin de terminer la connexion avec SSO, veuillez définir un mot de passe maître pour accéder à votre coffre et le protéger."
+  },
+  "identifier": {
+    "message": "Identifiant"
+  },
+  "organizationIdentifier": {
+    "message": "Identifiant de l'organisation"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Connectez-vous en utilisant le portail de connexion unique de votre organisation. Veuillez entrer l'identifiant de votre organisation pour commencer."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Portail de connexion unique d'entreprise (Single Sign-On)"
+  },
+  "ssoHandOff": {
+    "message": "Vous pouvez maintenant fermer cet onglet et continuer dans l'extension."
+  },
+  "businessPortal": {
+    "message": "Portail d'entreprise",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Toutes les fonctionnalités pour les équipes, plus :"
+  },
+  "includeSsoAuthentication": {
+    "message": "Authentification SSO via SAML2.0 et OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Politiques d'entreprise"
+  },
+  "ssoValidationFailed": {
+    "message": "Échec de la validation SSO"
+  },
+  "ssoIdentifierRequired": {
+    "message": "L'identifiant de l'organisation est requis."
+  },
+  "unlinkSso": {
+    "message": "Délier SSO"
+  },
+  "linkSso": {
+    "message": "Lier SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "La configuration des politiques a été déplacée et cette page sera bientôt obsolète. Veuillez cliquer ci-dessous pour utiliser la page des politiques du portail d'entreprise à la place."
+  },
+  "singleOrg": {
+    "message": "Organisation Unique"
+  },
+  "singleOrgDesc": {
+    "message": "Empêcher les utilisateurs de pouvoir rejoindre d'autres organisations."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Votre organisation actuelle a une politique qui ne vous permet pas de rejoindre plus d'une organisation. Veuillez contacter les administrateurs de votre organisation ou vous inscrire à partir d'un compte Bitwarden différent."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Les membres de l'organisation qui ne sont ni propriétaires ni administrateurs et qui sont déjà membres d'une autre organisation seront retirés de votre organisation."
+  },
+  "requireSso": {
+    "message": "Authentification par Connexion Unique (Single Sign-On)"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Exiger que les utilisateurs se connectent avec la méthode du portail de connexion unique d'entreprise."
+  },
+  "prerequisite": {
+    "message": "Prérequis"
+  },
+  "requireSsoPolicyReq": {
+    "message": "La politique d'entreprise \"Organisation Unique\" doit être activée avant d'activer cette politique."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "La politique \"Organisation Unique\" n'est pas activée."
+  },
+  "requireSsoExemption": {
+    "message": "Les propriétaires et les administrateurs de l'organisation sont exonérés de l'application de cette politique."
+  },
+  "sendTypeFile": {
+    "message": "Fichier"
+  },
+  "sendTypeText": {
+    "message": "Texte"
+  },
+  "createSend": {
+    "message": "Créer un nouveau Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Modifier le Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send créé",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send modifié",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send supprimé",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Supprimer le Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Êtes-vous sûr de vouloir supprimer ce Send ?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "De quel type de Send s'agit-il ?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Date de suppression"
+  },
+  "deletionDateDesc": {
+    "message": "Le Send sera définitivement supprimé à la date et heure spécifiées.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Date d'expiration"
+  },
+  "expirationDateDesc": {
+    "message": "Si défini, l'accès à ce Send expirera à la date et heure spécifiées.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Nombre maximum d'accès"
+  },
+  "maxAccessCountDesc": {
+    "message": "Si défini, les utilisateurs ne seront plus en mesure d'accéder à ce Send une fois que le nombre maximum d'accès sera atteint.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Nombre d'accès actuel"
+  },
+  "sendPasswordDesc": {
+    "message": "Vous pouvez, si vous le souhaitez, exiger un mot de passe pour accéder à ce Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Notes privées à propos de ce Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Désactivé"
+  },
+  "sendLink": {
+    "message": "Lien du Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Copier le lien du Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Supprimer le mot de passe"
+  },
+  "removedPassword": {
+    "message": "Mot de passe supprimé"
+  },
+  "removePasswordConfirmation": {
+    "message": "Êtes-vous sûr(e) de vouloir supprimer le mot de passe ?"
+  },
+  "disableThisSend": {
+    "message": "Désactiver ce Send pour que personne ne puisse y accéder.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Tous les Sends"
+  },
+  "maxAccessCountReached": {
+    "message": "Nombre maximum d'accès atteint"
+  },
+  "pendingDeletion": {
+    "message": "En attente de suppression"
+  },
+  "expired": {
+    "message": "Expiré"
+  },
+  "searchSends": {
+    "message": "Rechercher dans les Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Ce Send est protégé par un mot de passe. Veuillez saisir le mot de passe ci-dessous pour continuer.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Vous ne connaissez pas le mot de passe ? Demandez à l'expéditeur le mot de passe nécessaire pour accéder à ce Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Ce Send est masqué par défaut. Vous pouvez changer sa visibilité en utilisant le bouton ci-dessous.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Télécharger le fichier"
+  },
+  "sendAccessUnavailable": {
+    "message": "Le Send que vous essayez d'accéder n'existe pas ou n'est plus disponible.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Il n'y a aucun Send à afficher.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Accès d'urgence"
+  },
+  "emergencyAccessDesc": {
+    "message": "Accorder et gérer l'accès d'urgence pour les contacts de confiance. Les contacts de confiance peuvent demander l'accès à votre compte pour l'afficher ou en prendre le contrôle en cas d'urgence. Visitez notre page d'aide pour plus d'informations et de détails sur le fonctionnement du partage à divulgation nulle de connaissance."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Contacts d'urgence de confiance"
+  },
+  "noTrustedContacts": {
+    "message": "Vous n'avez pas encore ajouté de contacts d'urgence, invitez un contact de confiance pour commencer."
+  },
+  "addEmergencyContact": {
+    "message": "Ajouter un contact d'urgence"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Désigné comme contact d'urgence"
+  },
+  "noGrantedAccess": {
+    "message": "Vous n'avez pas encore été désigné comme contact d'urgence pour qui que ce soit."
+  },
+  "inviteEmergencyContact": {
+    "message": "Inviter un contact d'urgence"
+  },
+  "editEmergencyContact": {
+    "message": "Modifier le contact d'urgence"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invitez un nouveau contact d'urgence en entrant l'adresse e-mail de leur compte Bitwarden ci-dessous. S'ils n'ont pas encore de compte Bitwarden, ils seront invités à en créer un."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Accès d'urgence initié"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Accès d'urgence approuvé"
+  },
+  "viewDesc": {
+    "message": "Peut afficher tous les éléments dans votre propre coffre."
+  },
+  "takeover": {
+    "message": "Prise de contrôle"
+  },
+  "takeoverDesc": {
+    "message": "Peut réinitialiser votre compte avec un nouveau mot de passe maître."
+  },
+  "waitTime": {
+    "message": "Période d'attente"
+  },
+  "waitTimeDesc": {
+    "message": "Temps nécessaire avant d'accorder l'accès automatiquement."
+  },
+  "oneDay": {
+    "message": "1 jour"
+  },
+  "days": {
+    "message": "$DAYS$ jours",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Utilisateur invité."
+  },
+  "acceptEmergencyAccess": {
+    "message": "Vous avez été invité à devenir un contact d'urgence pour l'utilisateur indiqué ci-dessus. Pour accepter l'invitation, vous devez vous connecter ou créer un nouveau compte Bitwarden."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Impossible d'accepter l'invitation. Demandez à l'utilisateur d'envoyer une nouvelle invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Impossible d'accepter l'invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "Vous pourrez accéder aux options d'urgence pour cet utilisateur après la confirmation de votre identité. Nous vous enverrons un e-mail lorsque cela se produira."
+  },
+  "requestAccess": {
+    "message": "Demander l’accès"
+  },
+  "requestAccessConfirmation": {
+    "message": "Êtes-vous sûr de vouloir demander un accès d'urgence ? L'accès vous sera accordé après $WAITTIME$ jour(s) ou dès que l'utilisateur approuve manuellement la demande.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Accès d'urgence demandé pour $USER$. Nous vous informerons par e-mail quand il sera possible de continuer.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Accepter"
+  },
+  "reject": {
+    "message": "Refuser"
+  },
+  "approveAccessConfirmation": {
+    "message": "Êtes-vous sûr de vouloir approuver l'accès d'urgence ? Cela accordera à $USER$ les permissions suivantes sur votre compte: $ACTION$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Accès d'urgence approuvé."
+  },
+  "emergencyRejected": {
+    "message": "Accès d'urgence refusé."
+  },
+  "passwordResetFor": {
+    "message": "Réinitialisation du mot de passe pour $USER$. Vous pouvez maintenant vous connecter en utilisant le nouveau mot de passe.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Propriété individuelle"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Exiger que les utilisateurs enregistrent des éléments du coffre dans une organisation en retirant l'option de propriété individuelle."
+  },
+  "personalOwnershipExemption": {
+    "message": "Les propriétaires et les administrateurs d'organisations sont dispensés de l'application de cette politique."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "En raison d'une politique d'entreprise, il vous est interdit d'enregistrer des éléments dans votre coffre personnel. Sélectionnez une organisation dans l'option Propriété et choisissez parmi les collections disponibles."
+  },
+  "modifiedPolicyId": {
+    "message": "Politique $ID$ modifiée.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Prix du forfait"
+  },
+  "estimatedTax": {
+    "message": "Taxe estimée"
+  },
+  "custom": {
+    "message": "Personnalisé"
+  },
+  "customDesc": {
+    "message": "Permet un contrôle plus précis des permissions utilisateur pour les configurations avancées."
+  },
+  "permissions": {
+    "message": "Permissions"
+  },
+  "accessBusinessPortal": {
+    "message": "Accéder au portail d'entreprise"
+  },
+  "accessEventLogs": {
+    "message": "Accéder aux journaux d'événements"
+  },
+  "accessImportExport": {
+    "message": "Accéder aux options d'import et d'export"
+  },
+  "accessReports": {
+    "message": "Accéder aux rapports"
+  },
+  "manageAllCollections": {
+    "message": "Gérer toutes les collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Gérer les collections assignées"
+  },
+  "manageGroups": {
+    "message": "Gérer les groupes"
+  },
+  "managePolicies": {
+    "message": "Gérer les politiques"
+  },
+  "manageSso": {
+    "message": "Gérer le SSO"
+  },
+  "manageUsers": {
+    "message": "Gérer les utilisateurs"
+  },
+  "disableRequireSsoError": {
+    "message": "Vous devez désactiver manuellement la politique d'authentification unique (SSO) avant que cette politique ne puisse être désactivée."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "Une politique d'organisation affecte vos options de propriété."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Désactiver la propriété individuelle des utilisateurs de l'organisation"
+  },
+  "textHiddenByDefault": {
+    "message": "Lors de l'accès à ce Send, masquer le texte par défaut",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 }
