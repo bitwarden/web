@@ -9,6 +9,9 @@ import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { ImportOption, ImportService } from 'jslib/abstractions/import.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+
+import Swal, { SweetAlertIcon } from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
     selector: 'app-import',
@@ -26,7 +29,7 @@ export class ImportComponent implements OnInit {
 
     constructor(protected i18nService: I18nService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected importService: ImportService,
-        protected router: Router) { }
+        protected router: Router, protected platformUtilsService: PlatformUtilsService) { }
 
     ngOnInit() {
         this.setImportOptions();
@@ -114,12 +117,26 @@ export class ImportComponent implements OnInit {
         this.importOptions = this.importService.regularImportOptions;
     }
 
-    private error(error: Error) {
+    private async error(error: Error) {
         this.analytics.eventTrack.next({
             action: 'Import Data Failed',
             properties: { label: this.format },
         });
-        this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), error.message);
+
+        await Swal.fire({
+            heightAuto: false,
+            buttonsStyling: false,
+            icon: 'fa-bolt text-danger' as SweetAlertIcon,
+            input: 'textarea',
+            inputValue: error.message,
+            inputAttributes: {
+                'readonly': 'true',
+            },
+            title: this.i18nService.t('importError'),
+            text: this.i18nService.t('importErrorDesc'),
+            showConfirmButton: true,
+            confirmButtonText: this.i18nService.t('ok'),
+        });
     }
 
     private getFileContents(file: File): Promise<string> {
