@@ -77,7 +77,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         if (this.services.size > 0) {
             return;
         }
-        const response = await fetch(new Request('https://twofactorauth.org/api/v1/data.json'));
+        const response = await fetch(new Request('https://2fa.directory/api/v1/data.json'));
         if (response.status !== 200) {
             throw new Error();
         }
