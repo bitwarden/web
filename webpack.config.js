@@ -94,6 +94,11 @@ const plugins = [
         chunks: ['connectors/webauthn'],
     }),
     new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-fallback.html',
+        filename: 'webauthn-connector-fallback.html',
+        chunks: ['connectors/webauthn-fallback'],
+    }),
+    new HtmlWebpackPlugin({
         template: './src/connectors/sso.html',
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
@@ -164,6 +169,7 @@ const config = {
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
         'connectors/webauthn': './src/connectors/webauthn.ts',
+        'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
     },
