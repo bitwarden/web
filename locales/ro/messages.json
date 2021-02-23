@@ -1,0 +1,3632 @@
+{
+  "pageTitle": {
+    "message": "Seif web $APP_NAME$",
+    "description": "The title of the website in the browser window.",
+    "placeholders": {
+      "app_name": {
+        "content": "$1",
+        "example": "Bitwarden"
+      }
+    }
+  },
+  "whatTypeOfItem": {
+    "message": "Ce fel de articol este acesta?"
+  },
+  "name": {
+    "message": "Denumire"
+  },
+  "uri": {
+    "message": "URI"
+  },
+  "uriPosition": {
+    "message": "URI $POSITION$",
+    "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
+    "placeholders": {
+      "position": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "newUri": {
+    "message": "URI nou"
+  },
+  "username": {
+    "message": "Nume utilizator"
+  },
+  "password": {
+    "message": "Parolă"
+  },
+  "newPassword": {
+    "message": "Parolă nouă"
+  },
+  "passphrase": {
+    "message": "Frază de acces"
+  },
+  "notes": {
+    "message": "Note"
+  },
+  "customFields": {
+    "message": "Câmpuri particularizate"
+  },
+  "cardholderName": {
+    "message": "Deținător card"
+  },
+  "number": {
+    "message": "Număr card"
+  },
+  "brand": {
+    "message": "Tip card"
+  },
+  "expiration": {
+    "message": "Expirare"
+  },
+  "securityCode": {
+    "message": "Cod de securitate (CVV/CVC)"
+  },
+  "identityName": {
+    "message": "Nume identitate"
+  },
+  "company": {
+    "message": "Companie"
+  },
+  "ssn": {
+    "message": "Cod Numeric Personal"
+  },
+  "passportNumber": {
+    "message": "Număr CI / Pașaport"
+  },
+  "licenseNumber": {
+    "message": "Număr licență"
+  },
+  "email": {
+    "message": "E-mail"
+  },
+  "phone": {
+    "message": "Telefon"
+  },
+  "january": {
+    "message": "ianuarie"
+  },
+  "february": {
+    "message": "februarie"
+  },
+  "march": {
+    "message": "martie"
+  },
+  "april": {
+    "message": "aprilie"
+  },
+  "may": {
+    "message": "mai"
+  },
+  "june": {
+    "message": "iunie"
+  },
+  "july": {
+    "message": "iulie"
+  },
+  "august": {
+    "message": "august"
+  },
+  "september": {
+    "message": "septembrie"
+  },
+  "october": {
+    "message": "octombrie"
+  },
+  "november": {
+    "message": "noiembrie"
+  },
+  "december": {
+    "message": "decembrie"
+  },
+  "title": {
+    "message": "Titlu"
+  },
+  "mr": {
+    "message": "Dl"
+  },
+  "mrs": {
+    "message": "Dna"
+  },
+  "ms": {
+    "message": "Dra"
+  },
+  "dr": {
+    "message": "Dr."
+  },
+  "expirationMonth": {
+    "message": "Luna expirării"
+  },
+  "expirationYear": {
+    "message": "Anul expirării"
+  },
+  "authenticatorKeyTotp": {
+    "message": "Cheie autentificare (TOTP)"
+  },
+  "folder": {
+    "message": "Dosar"
+  },
+  "newCustomField": {
+    "message": "Câmp nou particularizat"
+  },
+  "value": {
+    "message": "Valoare"
+  },
+  "dragToSort": {
+    "message": "Tragere pentru sortare"
+  },
+  "cfTypeText": {
+    "message": "Text"
+  },
+  "cfTypeHidden": {
+    "message": "Ascuns"
+  },
+  "cfTypeBoolean": {
+    "message": "Valoare logică"
+  },
+  "remove": {
+    "message": "Ștergere"
+  },
+  "unassigned": {
+    "message": "Nealocat"
+  },
+  "noneFolder": {
+    "message": "Fără dosar",
+    "description": "This is the folder for uncategorized items"
+  },
+  "addFolder": {
+    "message": "Adăugare dosar"
+  },
+  "editFolder": {
+    "message": "Editare dosar"
+  },
+  "baseDomain": {
+    "message": "Domeniu de bază"
+  },
+  "host": {
+    "message": "Gazdă",
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
+  },
+  "exact": {
+    "message": "Exact"
+  },
+  "startsWith": {
+    "message": "Începe cu"
+  },
+  "regEx": {
+    "message": "Expresie regulată",
+    "description": "A programming term, also known as 'RegEx'."
+  },
+  "matchDetection": {
+    "message": "Detectare de potrivire",
+    "description": "URI match detection for auto-fill."
+  },
+  "defaultMatchDetection": {
+    "message": "Detectare de potrivire implicită",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "never": {
+    "message": "Niciodată"
+  },
+  "toggleVisibility": {
+    "message": "Comutare vizibilitate"
+  },
+  "toggleCollapse": {
+    "message": "Restrângere / Extindere",
+    "description": "Toggling an expand/collapse state."
+  },
+  "generatePassword": {
+    "message": "Generare parolă"
+  },
+  "checkPassword": {
+    "message": "Verificați dacă parola a fost dezvăluită."
+  },
+  "passwordExposed": {
+    "message": "Această parolă a fost dezvăluită de $VALUE$ ori în breșe de date. Ar trebui să o schimbați.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "passwordSafe": {
+    "message": "Această parolă nu a fost găsită în nicio breșă de date cunoscută. Ar trebui să fie sigură de utilizat."
+  },
+  "save": {
+    "message": "Salvare"
+  },
+  "cancel": {
+    "message": "Anulare"
+  },
+  "canceled": {
+    "message": "Anulat"
+  },
+  "close": {
+    "message": "Închidere"
+  },
+  "delete": {
+    "message": "Ștergere"
+  },
+  "favorite": {
+    "message": "Favorit"
+  },
+  "unfavorite": {
+    "message": "Scoatere din favorite"
+  },
+  "edit": {
+    "message": "Editare"
+  },
+  "searchCollection": {
+    "message": "Căutare în colecție"
+  },
+  "searchFolder": {
+    "message": "Căutare în dosar"
+  },
+  "searchFavorites": {
+    "message": "Căutare în favorite"
+  },
+  "searchType": {
+    "message": "Căutare în tipuri",
+    "description": "Search item type"
+  },
+  "searchVault": {
+    "message": "Căutare în seif"
+  },
+  "allItems": {
+    "message": "Toate elementele"
+  },
+  "favorites": {
+    "message": "Favorite"
+  },
+  "types": {
+    "message": "Tipuri"
+  },
+  "typeLogin": {
+    "message": "Conectare"
+  },
+  "typeCard": {
+    "message": "Card"
+  },
+  "typeIdentity": {
+    "message": "Identitate"
+  },
+  "typeSecureNote": {
+    "message": "Notă protejată"
+  },
+  "folders": {
+    "message": "Dosare"
+  },
+  "collections": {
+    "message": "Colecții"
+  },
+  "firstName": {
+    "message": "Prenume"
+  },
+  "middleName": {
+    "message": "Al doilea prenume"
+  },
+  "lastName": {
+    "message": "Nume"
+  },
+  "address1": {
+    "message": "Adresă 1"
+  },
+  "address2": {
+    "message": "Adresă 2"
+  },
+  "address3": {
+    "message": "Adresă 3"
+  },
+  "cityTown": {
+    "message": "Localitate"
+  },
+  "stateProvince": {
+    "message": "Județ"
+  },
+  "zipPostalCode": {
+    "message": "Cod poștal"
+  },
+  "country": {
+    "message": "Țară"
+  },
+  "shared": {
+    "message": "Partajat"
+  },
+  "attachments": {
+    "message": "Atașamente"
+  },
+  "select": {
+    "message": "Selectare"
+  },
+  "addItem": {
+    "message": "Adăugare articol"
+  },
+  "editItem": {
+    "message": "Editare articol"
+  },
+  "viewItem": {
+    "message": "Afișare articol"
+  },
+  "ex": {
+    "message": "ex.",
+    "description": "Short abbreviation for 'example'."
+  },
+  "other": {
+    "message": "Altele"
+  },
+  "share": {
+    "message": "Partajare"
+  },
+  "valueCopied": {
+    "message": "$VALUE$ s-a copiat",
+    "description": "Value has been copied to the clipboard.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "Password"
+      }
+    }
+  },
+  "copyValue": {
+    "message": "Copiere valoare",
+    "description": "Copy value to clipboard"
+  },
+  "copyPassword": {
+    "message": "Copiere parolă",
+    "description": "Copy password to clipboard"
+  },
+  "copyUsername": {
+    "message": "Copiere nume utilizator",
+    "description": "Copy username to clipboard"
+  },
+  "copyNumber": {
+    "message": "Copiere număr",
+    "description": "Copy credit card number"
+  },
+  "copySecurityCode": {
+    "message": "Copiere cod de securitate",
+    "description": "Copy credit card security code (CVV)"
+  },
+  "copyUri": {
+    "message": "Copiere URI",
+    "description": "Copy URI to clipboard"
+  },
+  "myVault": {
+    "message": "Seiful meu"
+  },
+  "vault": {
+    "message": "Seif"
+  },
+  "shareSelected": {
+    "message": "Partajare selecție"
+  },
+  "deleteSelected": {
+    "message": "Ștergere selecție"
+  },
+  "moveSelected": {
+    "message": "Mutare selecție"
+  },
+  "selectAll": {
+    "message": "Selectare totală"
+  },
+  "unselectAll": {
+    "message": "Deselectare totală"
+  },
+  "launch": {
+    "message": "Lansare"
+  },
+  "newAttachment": {
+    "message": "Adăugare atașament nou"
+  },
+  "deletedAttachment": {
+    "message": "Atașamentul s-a șters"
+  },
+  "deleteAttachmentConfirmation": {
+    "message": "Sigur doriți să ștergeți acest atașament?"
+  },
+  "attachmentSaved": {
+    "message": "Atașamentul a fost salvat."
+  },
+  "file": {
+    "message": "Fișier"
+  },
+  "selectFile": {
+    "message": "Selectare fișier."
+  },
+  "maxFileSize": {
+    "message": "Mărimea maximă a fișierului este de 100 MB."
+  },
+  "updateKey": {
+    "message": "Veți putea utiliza această caracteristică după ce veți actualiza cheia de criptare."
+  },
+  "addedItem": {
+    "message": "Articol adăugat"
+  },
+  "editedItem": {
+    "message": "Articol editat"
+  },
+  "sharedItem": {
+    "message": "Articol partajat"
+  },
+  "sharedItems": {
+    "message": "Articole partajate"
+  },
+  "deleteItem": {
+    "message": "Ștergere articol"
+  },
+  "deleteFolder": {
+    "message": "Ștergere dosar"
+  },
+  "deleteAttachment": {
+    "message": "Ștergere atașament"
+  },
+  "deleteItemConfirmation": {
+    "message": "Sigur doriți să trimiteți în coșul de reciclare?"
+  },
+  "deletedItem": {
+    "message": "Articolul a fost trimis în coșul de reciclare"
+  },
+  "deletedItems": {
+    "message": "Articolele au fost trimise în coșul de reciclare"
+  },
+  "movedItems": {
+    "message": "Articole mutate"
+  },
+  "overwritePasswordConfirmation": {
+    "message": "Sigur doriți să suprascrieți parola curentă?"
+  },
+  "editedFolder": {
+    "message": "Dosar editat"
+  },
+  "addedFolder": {
+    "message": "Dosar adăugat"
+  },
+  "deleteFolderConfirmation": {
+    "message": "Sigur doriți să ștergeți acest folder?"
+  },
+  "deletedFolder": {
+    "message": "Dosar șters"
+  },
+  "loggedOut": {
+    "message": "Deconectat"
+  },
+  "loginExpired": {
+    "message": "Sesiunea de autentificare a expirat."
+  },
+  "logOutConfirmation": {
+    "message": "Sigur doriți să vă deconectați?"
+  },
+  "logOut": {
+    "message": "Deconectare"
+  },
+  "ok": {
+    "message": "Ok"
+  },
+  "yes": {
+    "message": "Da"
+  },
+  "no": {
+    "message": "Nu"
+  },
+  "loginOrCreateNewAccount": {
+    "message": "Autentificați-vă sau creați un cont nou pentru a accesa seiful dvs. securizat."
+  },
+  "createAccount": {
+    "message": "Creare cont"
+  },
+  "logIn": {
+    "message": "Conectare"
+  },
+  "submit": {
+    "message": "Trimitere"
+  },
+  "emailAddressDesc": {
+    "message": "Vă veți folosi adresa de e-mail pentru a vă conecta."
+  },
+  "yourName": {
+    "message": "Numele dvs."
+  },
+  "yourNameDesc": {
+    "message": "Cum ar trebui să vă numim?"
+  },
+  "masterPass": {
+    "message": "Parolă principală"
+  },
+  "masterPassDesc": {
+    "message": "Parola principală este parola pe care o utilizați pentru a vă accesa seiful. Este foarte important să nu uitați această parolă. Nu există nicio modalitate de a recupera parola în cazul în care ați uitat-o."
+  },
+  "masterPassHintDesc": {
+    "message": "Un indiciu pentru parola principală vă poate ajuta să v-o reamintiți dacă o uitați."
+  },
+  "reTypeMasterPass": {
+    "message": "Reintroducere parolă principală"
+  },
+  "masterPassHint": {
+    "message": "Indiciu pentru parola principală (opțional)"
+  },
+  "masterPassHintLabel": {
+    "message": "Indiciu pentru parola principală"
+  },
+  "settings": {
+    "message": "Setări"
+  },
+  "passwordHint": {
+    "message": "Indiciu parolă"
+  },
+  "enterEmailToGetHint": {
+    "message": "Adresa de e-mail a contului pentru primirea indiciului parolei principale."
+  },
+  "getMasterPasswordHint": {
+    "message": "Obținere indiciu parolă principală"
+  },
+  "emailRequired": {
+    "message": "Adresa de e-mail este necesară."
+  },
+  "invalidEmail": {
+    "message": "Adresă de e-mail greșită."
+  },
+  "masterPassRequired": {
+    "message": "Este necesară parola principală."
+  },
+  "masterPassLength": {
+    "message": "Parola principală trebuie să conțină minimum 8 caractere."
+  },
+  "masterPassDoesntMatch": {
+    "message": "Parola principală și confirmarea ei nu coincid!"
+  },
+  "newAccountCreated": {
+    "message": "Noul dvs. cont a fost creat! Acum vă puteți autentifica."
+  },
+  "masterPassSent": {
+    "message": "V-am trimis un e-mail cu indiciul parolei principale."
+  },
+  "unexpectedError": {
+    "message": "A survenit o eroare neașteptată."
+  },
+  "emailAddress": {
+    "message": "Adresă de e-mail"
+  },
+  "yourVaultIsLocked": {
+    "message": "Seiful dvs. este blocat. Verificați parola principală pentru a continua."
+  },
+  "unlock": {
+    "message": "Deblocare"
+  },
+  "loggedInAsEmailOn": {
+    "message": "Autentificat ca $EMAIL$ pe $HOSTNAME$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "invalidMasterPassword": {
+    "message": "Parolă principală incorectă"
+  },
+  "lockNow": {
+    "message": "Blocare acum"
+  },
+  "noItemsInList": {
+    "message": "Niciun articol de afișat."
+  },
+  "noCollectionsInList": {
+    "message": "Nicio colecție de afișat."
+  },
+  "noGroupsInList": {
+    "message": "Niciun grup de afișat."
+  },
+  "noUsersInList": {
+    "message": "Niciun utilizator de afișat."
+  },
+  "noEventsInList": {
+    "message": "Niciun eveniment de afișat."
+  },
+  "newOrganization": {
+    "message": "Organizație nouă"
+  },
+  "noOrganizationsList": {
+    "message": "Nu aparțineți niciunei organizații. Organizațiile vă permit să partajați în siguranță articole cu alți utilizatori."
+  },
+  "versionNumber": {
+    "message": "Versiunea $VERSION_NUMBER$",
+    "placeholders": {
+      "version_number": {
+        "content": "$1",
+        "example": "1.2.3"
+      }
+    }
+  },
+  "enterVerificationCodeApp": {
+    "message": "Introducere cod de verificare din 6 cifre din aplicația de autentificare."
+  },
+  "enterVerificationCodeEmail": {
+    "message": "Introducere cod de verificare din 6 cifre care a fost trimis prin e-mail la $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "verificationCodeEmailSent": {
+    "message": "E-mailul de verificare a fost trimis la $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "rememberMe": {
+    "message": "Memorare autentificare"
+  },
+  "sendVerificationCodeEmailAgain": {
+    "message": "Retrimitere e-mail cu codul de verificare"
+  },
+  "useAnotherTwoStepMethod": {
+    "message": "Utilizare de metodă diferită de autentificare în două etape"
+  },
+  "insertYubiKey": {
+    "message": "Introduceți YubiKey în portul USB al calculatorului apoi apăsați butonul acestuia."
+  },
+  "insertU2f": {
+    "message": "Introduceți cheia de securitate în portul USB al computerului. Dacă are un buton, apăsați-l."
+  },
+  "loginUnavailable": {
+    "message": "Conectare indisponibilă"
+  },
+  "noTwoStepProviders": {
+    "message": "Acest cont are activată autentificarea în două etape, dar niciunul dintre furnizorii configurați pentru aceasta nu este acceptat de acest browser web."
+  },
+  "noTwoStepProviders2": {
+    "message": "Utilizați un browser acceptat (cum ar fi Chrome) și/sau adăugați furnizori suplimentari mai bine susținuți de browserele web (cum ar fi o aplicație de autentificare)."
+  },
+  "twoStepOptions": {
+    "message": "Opțiuni de autentificare în două etape"
+  },
+  "recoveryCodeDesc": {
+    "message": "Ați pierdut accesul la toți furnizorii de autentificare în două etape? Utilizați codul de recuperare pentru a dezactiva toți acești furnizori din contul dvs."
+  },
+  "recoveryCodeTitle": {
+    "message": "Cod de recuperare"
+  },
+  "authenticatorAppTitle": {
+    "message": "Aplicație de autentificare"
+  },
+  "authenticatorAppDesc": {
+    "message": "Utilizați o aplicație de autentificare (cum ar fi Authy sau Google Authenticator) pentru a genera codurile de verificare bazate pe timp.",
+    "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
+  },
+  "yubiKeyTitle": {
+    "message": "Cheie de securitate YubiKey OTP"
+  },
+  "yubiKeyDesc": {
+    "message": "Utilizați un YubiKey pentru a vă accesa contul. Funcționează cu dispozitivele YubiKey serie 4, 5 și NEO."
+  },
+  "duoDesc": {
+    "message": "Verificați cu Duo Security utilizând aplicația Duo Mobile, SMS, apel telefonic sau cheia de securitate U2F.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "duoOrganizationDesc": {
+    "message": "Verificați cu Duo Security pentru organizația dvs. utilizând aplicația Duo Mobile, SMS, apel telefonic sau cheia de securitate U2F.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "u2fDesc": {
+    "message": "Utilizați orice cheie de securitate activată FIDO U2F pentru a vă accesa contul."
+  },
+  "u2fTitle": {
+    "message": "Cheie de securitate FIDO U2F"
+  },
+  "emailTitle": {
+    "message": "E-mail"
+  },
+  "emailDesc": {
+    "message": "Codurile de verificare vor fi trimise prin e-mail."
+  },
+  "continue": {
+    "message": "Continuare"
+  },
+  "organization": {
+    "message": "Organizație"
+  },
+  "organizations": {
+    "message": "Organizații"
+  },
+  "shareDesc": {
+    "message": "Alegeți o organizație cu care doriți să partajați acest articol. Partajarea transferă proprietatea asupra articolului către organizație. Nu veți mai fi proprietarul direct al acestuia după ce a fost partajat."
+  },
+  "shareManyDesc": {
+    "message": "Alegeți o organizație cu care doriți să partajați aceste articole. Partajarea transferă proprietatea asupra articolelor către organizație. Nu veți mai fi proprietarul direct al acestora după ce au fost partajate."
+  },
+  "collectionsDesc": {
+    "message": "Editați colecțiile cu care este partajat acest articol. Numai utilizatorii organizației cu acces la aceste colecții vor putea vedea acest articol."
+  },
+  "deleteSelectedItemsDesc": {
+    "message": "Ați selectat $COUNT$ articole pentru ștergere. Sigur doriți să ștergeți toate aceste articole?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "moveSelectedItemsDesc": {
+    "message": "Alegeți un dosar în care doriți să mutați $COUNT$ articole selectate.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "shareSelectedItemsCountDesc": {
+    "message": "Ați selectat $COUNT$ articole. $SHAREABLE_COUNT$ articole sunt partajabile, $NONSHAREABLE_COUNT$ nu sunt.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      },
+      "shareable_count": {
+        "content": "$2",
+        "example": "8"
+      },
+      "nonshareable_count": {
+        "content": "$3",
+        "example": "2"
+      }
+    }
+  },
+  "verificationCodeTotp": {
+    "message": "Cod de verificare (TOTP)"
+  },
+  "copyVerificationCode": {
+    "message": "Copiere cod de verificare"
+  },
+  "warning": {
+    "message": "Avertisment"
+  },
+  "confirmVaultExport": {
+    "message": "Confirmare export seif"
+  },
+  "exportWarningDesc": {
+    "message": "Acest export conține datele dvs. din seif în format necriptat. Nu ar trebui să stocați sau să trimiteți fișierul pe canale nesecurizate (cum ar fi e-mail). Ștergeți-l imediat după ce nu îl mai folosiți."
+  },
+  "encExportWarningDesc": {
+    "message": "Acest export criptează datele folosind cheia de criptare a contului. Dacă schimbați vreodată cheia de criptare a contului, ar trebui să o exportați din nou, deoarece nu veți putea decripta acest fișier exportat."
+  },
+  "exportMasterPassword": {
+    "message": "Introducere parolă principală pentru exportarea datelor seifului."
+  },
+  "exportVault": {
+    "message": "Export seif"
+  },
+  "fileFormat": {
+    "message": "Format fișier"
+  },
+  "exportSuccess": {
+    "message": "Datele seifului dvs. au fost exportate."
+  },
+  "passwordGenerator": {
+    "message": "Generator de parole"
+  },
+  "minComplexityScore": {
+    "message": "Scor minim de complexitate"
+  },
+  "minNumbers": {
+    "message": "Minimum de cifre"
+  },
+  "minSpecial": {
+    "message": "Minimum de caractere speciale",
+    "description": "Minimum Special Characters"
+  },
+  "ambiguous": {
+    "message": "Se evită caracterele ambigue"
+  },
+  "regeneratePassword": {
+    "message": "Regenerare parolă"
+  },
+  "length": {
+    "message": "Lungime"
+  },
+  "numWords": {
+    "message": "Număr de cuvinte"
+  },
+  "wordSeparator": {
+    "message": "Separator de cuvinte"
+  },
+  "capitalize": {
+    "message": "Se folosesc majuscule inițiale",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Se includ cifre"
+  },
+  "passwordHistory": {
+    "message": "Istoric parole"
+  },
+  "noPasswordsInList": {
+    "message": "Nicio parolă de afișat."
+  },
+  "clear": {
+    "message": "Ștergere",
+    "description": "To clear something out. example: To clear browser history."
+  },
+  "accountUpdated": {
+    "message": "Contul s-a actualizat"
+  },
+  "changeEmail": {
+    "message": "Schimbare adresă e-mail"
+  },
+  "newEmail": {
+    "message": "E-mail nou"
+  },
+  "code": {
+    "message": "Cod"
+  },
+  "changeEmailDesc": {
+    "message": "Am trimis prin e-mail un cod de verificare la $EMAIL$. Verificați e-mailul pentru acest cod și introduceți-l mai jos pentru a finaliza schimbarea adresei de e-mail.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "john.smith@example.com"
+      }
+    }
+  },
+  "loggedOutWarning": {
+    "message": "Continuând, veți fi deconectat de la sesiunea curentă, solicitându-vă să vă conectați din nou. Sesiunile active pe alte dispozitive pot continua să rămână active timp de până la o oră."
+  },
+  "emailChanged": {
+    "message": "E-mailul a fost modificat"
+  },
+  "logBackIn": {
+    "message": "Vă rugăm să vă conectați din nou."
+  },
+  "logBackInOthersToo": {
+    "message": "Vă rugăm să vă reconectați. Dacă utilizați și alte aplicații Bitwarden, reconectați-vă la ele de asemenea."
+  },
+  "changeMasterPassword": {
+    "message": "Schimbare parolă principală"
+  },
+  "masterPasswordChanged": {
+    "message": "Parolă principală schimbată"
+  },
+  "currentMasterPass": {
+    "message": "Parola principală curentă"
+  },
+  "newMasterPass": {
+    "message": "Parolă principală nouă"
+  },
+  "confirmNewMasterPass": {
+    "message": "Confirmare parolă principală nouă"
+  },
+  "encKeySettings": {
+    "message": "Setări cheie de criptare"
+  },
+  "kdfAlgorithm": {
+    "message": "Algoritm KDF"
+  },
+  "kdfIterations": {
+    "message": "Iterații KDF"
+  },
+  "kdfIterationsDesc": {
+    "message": "Un număr de iterații KDF mai mare vă poate ajuta la protejarea parolei principale de un atac prin forța brută de către un atacator. Vă recomandăm o valoare de $VALUE$ sau mai mare.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Setarea iterațiilor KDF prea sus poate duce la performanțe slabe la conectarea (și deblocarea) Bitwarden pe dispozitive cu procesoare mai lente. Vă recomandăm să măriți valoarea în trepte de $INCREMENT$ și apoi să testați toate dispozitivele.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Modificare KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Setările cheii de criptare s-au modificat"
+  },
+  "dangerZone": {
+    "message": "Zonă periculoasă"
+  },
+  "dangerZoneDesc": {
+    "message": "Atenție, aceste acțiuni nu sunt reversibile!"
+  },
+  "deauthorizeSessions": {
+    "message": "Revocare sesiuni"
+  },
+  "deauthorizeSessionsDesc": {
+    "message": "Sunteți preocupat de faptul că v-ați conectat pe alt dispozitiv cu contul dvs.? Continuați în modul indicat mai jos pentru a revoca autorizarea computerelor sau dispozitivelor folosite anterior. Această măsură de securitate se recomandă dacă ați folosit anterior un computer public sau ați salvat neintenționat parola pe un dispozitiv care nu vă aparține. Aceasta va elimina, de asemenea, toate sesiunile de conectare în două etape stocate anterior."
+  },
+  "deauthorizeSessionsWarning": {
+    "message": "Continuând, veți fi deconectat de asemenea de la sesiunea curentă, solicitându-vă să vă reconectați. De asemenea, vi se va solicita din nou autentificarea în două etape, dacă este activată. Sesiunile active pe alte dispozitive pot continua să rămână active timp de până la o oră."
+  },
+  "sessionsDeauthorized": {
+    "message": "Toate sesiunile au fost revocate"
+  },
+  "purgeVault": {
+    "message": "Curățare seif"
+  },
+  "purgedOrganizationVault": {
+    "message": "Seiful organizației a fost curățat."
+  },
+  "purgeVaultDesc": {
+    "message": "Continuați în modul indicat mai jos pentru a șterge toate articolele și dosarele din seiful dvs. Articolele care aparțin unei organizații din care sunteți membru nu vor fi șterse."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Continuați în modul indicat mai jos pentru a șterge toate articolele din seiful organizației."
+  },
+  "purgeVaultWarning": {
+    "message": "Curățarea seifului dvs. este definitivă. Nu poate fi anulată."
+  },
+  "vaultPurged": {
+    "message": "Seiful dvs. a fost curățat."
+  },
+  "deleteAccount": {
+    "message": "Ștergere cont"
+  },
+  "deleteAccountDesc": {
+    "message": "Continuați în modul indicat mai jos pentru a vă șterge contul și toate datele asociate."
+  },
+  "deleteAccountWarning": {
+    "message": "Ștergerea contului dvs. este definitivă. Nu poate fi anulată."
+  },
+  "accountDeleted": {
+    "message": "Contul a fost șters"
+  },
+  "accountDeletedDesc": {
+    "message": "Contul dvs. a fost închis și toate datele asociate au fost șterse."
+  },
+  "myAccount": {
+    "message": "Contul meu"
+  },
+  "tools": {
+    "message": "Unelte"
+  },
+  "importData": {
+    "message": "Import de date"
+  },
+  "importSuccess": {
+    "message": "Datele au fost importate cu succes în seiful dvs."
+  },
+  "importFormatError": {
+    "message": "Datele nu au formatul corect. Vă rugăm să verificați fișierul de import și încercați din nou."
+  },
+  "importNothingError": {
+    "message": "Nu s-a importat nimic."
+  },
+  "selectFormat": {
+    "message": "Alegeți din listă formatul fișierului de import"
+  },
+  "selectImportFile": {
+    "message": "Alegeți fișierul de import"
+  },
+  "orCopyPasteFileContents": {
+    "message": "  sau copiați/lipiți conținutul fișierului de import"
+  },
+  "instructionsFor": {
+    "message": "Instrucțiuni $NAME$",
+    "description": "The title for the import tool instructions.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "LastPass (csv)"
+      }
+    }
+  },
+  "options": {
+    "message": "Opțiuni"
+  },
+  "optionsDesc": {
+    "message": "Personalizați-vă experiența în seiful web."
+  },
+  "optionsUpdated": {
+    "message": "Opțiunile s-au actualizat"
+  },
+  "language": {
+    "message": "Limbă"
+  },
+  "languageDesc": {
+    "message": "Alegeți limba în care folosiți seiful web."
+  },
+  "disableIcons": {
+    "message": "Dezactivare iconuri sait"
+  },
+  "disableIconsDesc": {
+    "message": "Iconurile saiturilor oferă o imagine identificabilă lângă fiecare element de conectare din seiful dvs."
+  },
+  "enableGravatars": {
+    "message": "Activare Gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Folosește imagini avatar încărcate de pe gravatar.com."
+  },
+  "enableFullWidth": {
+    "message": "Activare aspect seif cu lățimea completă",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Permite seifului web să se extindă pe toată lățimea ferestrei browserului."
+  },
+  "default": {
+    "message": "Implicit"
+  },
+  "domainRules": {
+    "message": "Reguli de domeniu"
+  },
+  "domainRulesDesc": {
+    "message": "Dacă aveți aceleași date de autentificare pe mai multe domenii web diferite, puteți marca saitul web ca \"echivalent\". Domeniile \"globale\" sunt cele create deja de Bitwarden pentru dvs."
+  },
+  "globalEqDomains": {
+    "message": "Domenii globale echivalente"
+  },
+  "customEqDomains": {
+    "message": "Domenii personalizate echivalente"
+  },
+  "exclude": {
+    "message": "Excludere"
+  },
+  "include": {
+    "message": "Includere"
+  },
+  "customize": {
+    "message": "Personalizare"
+  },
+  "newCustomDomain": {
+    "message": "Domeniu nou personalizat"
+  },
+  "newCustomDomainDesc": {
+    "message": "Introduceți o listă de domenii separate prin virgulă. Sunt permise doar domeniile de \"bază\". Nu introduceți subdomenii. De exemplu, introduceți \"google.com\" în loc de \"www.google.com\". Puteți introduce și \"androidapp://package.name\" pentru a asocia o aplicație Android cu alte domenii de site-uri web."
+  },
+  "customDomainX": {
+    "message": "Domeniu personalizat $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "domainsUpdated": {
+    "message": "Domenii s-au actualizat"
+  },
+  "twoStepLogin": {
+    "message": "Autentificare în două etape"
+  },
+  "twoStepLoginDesc": {
+    "message": "Vă securizează contul solicitând un pas suplimentar la conectare."
+  },
+  "twoStepLoginOrganizationDesc": {
+    "message": "Necesită autentificarea în două etape pentru utilizatorii organizației dvs. prin configurarea furnizorilor la nivel de organizație."
+  },
+  "twoStepLoginRecoveryWarning": {
+    "message": "Activarea autentificării în două etape vă poate bloca definitiv din contul Bitwarden. Un cod de recuperare vă permite să vă accesați contul când nu mai puteți utiliza furnizorul dvs. normal de autentificare în două etape (ex. vă pierdeți dispozitivul). Asistența Bitwarden nu vă va putea ajuta dacă pierdeți accesul la contul dvs. Vă recomandăm să notați sau să imprimați codul de recuperare și să îl păstrați într-un loc sigur."
+  },
+  "viewRecoveryCode": {
+    "message": "Afișare cod de recuperare"
+  },
+  "providers": {
+    "message": "Furnizori",
+    "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
+  },
+  "enable": {
+    "message": "Activare"
+  },
+  "enabled": {
+    "message": "Activat"
+  },
+  "premium": {
+    "message": "Premium",
+    "description": "Premium Membership"
+  },
+  "premiumMembership": {
+    "message": "Membru Premium"
+  },
+  "premiumRequired": {
+    "message": "Este necesară versiunea Premium"
+  },
+  "premiumRequiredDesc": {
+    "message": "Este necesar statutul de membru Premium pentru a utiliza această caracteristică."
+  },
+  "youHavePremiumAccess": {
+    "message": "Aveți acces premium"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Aveți deja acces la funcții premium datorită organizației la care sunteți membru."
+  },
+  "manage": {
+    "message": "Gestionare"
+  },
+  "disable": {
+    "message": "Dezactivare"
+  },
+  "twoStepLoginProviderEnabled": {
+    "message": "Acest furnizor de autentificare în două etape este activat în contul dvs."
+  },
+  "twoStepLoginAuthDesc": {
+    "message": "Introduceți parola principală pentru a modifica setările de autentificare în două etape."
+  },
+  "twoStepAuthenticatorDesc": {
+    "message": "Urmați acești pași pentru a configura autentificarea în două etape cu o aplicație de autentificare:"
+  },
+  "twoStepAuthenticatorDownloadApp": {
+    "message": "Descărcați o aplicație de autentificare în două etape"
+  },
+  "twoStepAuthenticatorNeedApp": {
+    "message": "Aveți nevoie de o aplicație de autentificare în două etape? Descărcați una dintre următoarele"
+  },
+  "iosDevices": {
+    "message": "Dispozitive iOS"
+  },
+  "androidDevices": {
+    "message": "Dispozitive Android"
+  },
+  "windowsDevices": {
+    "message": "Dispozitive Windows"
+  },
+  "twoStepAuthenticatorAppsRecommended": {
+    "message": "Aceste aplicații sunt recomandate, cu toate acestea, vor funcționa și alte aplicații de autentificare."
+  },
+  "twoStepAuthenticatorScanCode": {
+    "message": "Scanați acest cod QR cu aplicația dvs. de autentificare"
+  },
+  "key": {
+    "message": "Cheie"
+  },
+  "twoStepAuthenticatorEnterCode": {
+    "message": "Introduceți codul de verificare din 6 cifre din aplicație"
+  },
+  "twoStepAuthenticatorReaddDesc": {
+    "message": "Dacă trebuie să-l adăugați la un alt dispozitiv, mai jos este codul QR (sau cheia) cerut de aplicația dvs. de autentificare."
+  },
+  "twoStepDisableDesc": {
+    "message": "Sigur doriți să dezactivați acest furnizor de autentificare în două etape?"
+  },
+  "twoStepDisabled": {
+    "message": "Furnizorul de autentificare în două etape a fost dezactivat."
+  },
+  "twoFactorYubikeyAdd": {
+    "message": "Etape de urmat pentru a vă adăuga o nouă cheie in cont."
+  },
+  "twoFactorYubikeyPlugIn": {
+    "message": "Conectați YubiKey la portul USB al computerului."
+  },
+  "twoFactorYubikeySelectKey": {
+    "message": "Alegeți primul câmp de intrare YubiKey gol de mai jos."
+  },
+  "twoFactorYubikeyTouchButton": {
+    "message": "Atingeți butonul YubiKey."
+  },
+  "twoFactorYubikeySaveForm": {
+    "message": "Salvați formularul."
+  },
+  "twoFactorYubikeyWarning": {
+    "message": "Drept consecință a limitărilor platformei, YubiKey-urile nu se pot utiliza pe toate aplicațiile Bitwarden. Ar trebui să activați un alt furnizor de conectare în două etape pentru a vă accesa contul atunci când YubiKey-urile nu se pot utiliza. Platforme acceptate:"
+  },
+  "twoFactorYubikeySupportUsb": {
+    "message": "Seiful web, aplicația desktop, CLI (Command-Line Interface), și toate extensiile de browser de pe un dispozitiv cu un port USB care poate accepta YubiKey."
+  },
+  "twoFactorYubikeySupportMobile": {
+    "message": "Aplicații mobile pe un dispozitiv cu tehnologia NFC integrată sau un port de date care poate accepta YubiKey."
+  },
+  "yubikeyX": {
+    "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "Cheie U2F $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "nfcSupport": {
+    "message": "Suport NFC"
+  },
+  "twoFactorYubikeySupportsNfc": {
+    "message": "Una dintre cheile mele acceptă NFC."
+  },
+  "twoFactorYubikeySupportsNfcDesc": {
+    "message": "Dacă unul din YubiKey-urile dvs. suportă NFC (cum ar fi un YubiKey NEO), vi se va solicita pe dispozitivele mobile ori de câte ori este detectată disponibilitatea NFC."
+  },
+  "yubikeysUpdated": {
+    "message": "YubiKey-urile s-au actualizat"
+  },
+  "disableAllKeys": {
+    "message": "Dezactivare a tuturor cheilor"
+  },
+  "twoFactorDuoDesc": {
+    "message": "Introduceți informațiile despre aplicația Bitwarden din panoul dvs. Duo Admin."
+  },
+  "twoFactorDuoIntegrationKey": {
+    "message": "Cheie de integrare"
+  },
+  "twoFactorDuoSecretKey": {
+    "message": "Cheie secretă"
+  },
+  "twoFactorDuoApiHostname": {
+    "message": "Numele gazdei API"
+  },
+  "twoFactorEmailDesc": {
+    "message": "Urmați acești pași pentru a configura conectarea în două etape cu e-mail:"
+  },
+  "twoFactorEmailEnterEmail": {
+    "message": "Introducere de adresă de e-mail la care doriți să primiți codurile de verificare"
+  },
+  "twoFactorEmailEnterCode": {
+    "message": "Introducere cod de verificare din 6 cifre din e-mail"
+  },
+  "sendEmail": {
+    "message": "Trimitere e-mail"
+  },
+  "twoFactorU2fAdd": {
+    "message": "Adăugare de cheie de securitate FIDO U2F în contul dvs."
+  },
+  "removeU2fConfirmation": {
+    "message": "Sigur doriți să eliminați această cheie de securitate?"
+  },
+  "readKey": {
+    "message": "Citire cheie"
+  },
+  "keyCompromised": {
+    "message": "Cheia este compromisă."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Dați cheii de securitate un nume prietenos pentru a o identifica."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Conectați cheia de securitate la portul USB al computerului și clicați pe butonul \"Citire cheie\"."
+  },
+  "twoFactorU2fTouchButton": {
+    "message": "Când cheia de securitate are un buton, atingeți-l."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Salvați formularul."
+  },
+  "twoFactorU2fWarning": {
+    "message": "Drept consecință a limitărilor platformei, FIDO U2F nu poate fi utilizat pe toate aplicațiile Bitwarden. Ar trebui să activați un alt furnizor de conectare în două etape pentru a vă accesa contul atunci când FIDO U2F nu se poate utiliza. Platforme acceptate:"
+  },
+  "twoFactorU2fSupportWeb": {
+    "message": "Seiful web și extensiile de browser pe un desktop/laptop cu un browser activat U2F (Chrome, Opera, Vivaldi, sau Firefox cu FIDO U2F activat)."
+  },
+  "twoFactorU2fWaiting": {
+    "message": "Vă așteptăm ca să atingeți butonul de pe cheia de securitate"
+  },
+  "twoFactorU2fClickSave": {
+    "message": "Clicați pe butonul \"Salvare\" mai jos pentru a activa cheia de securitate de conectarea în două etape."
+  },
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "A apărut o problemă la citirea cheii de securitate. Încercați din nou."
+  },
+  "twoFactorRecoveryYourCode": {
+    "message": "Codul dvs. Bitwarden de recuperare a autentificării în două etape"
+  },
+  "twoFactorRecoveryNoCode": {
+    "message": "Nu ați activat încă niciun furnizor de conectare în două etape. După ce activați un furnizor de conectare în două etape, puteți reveni aici pentru codul de recuperare."
+  },
+  "printCode": {
+    "message": "Imprimare cod",
+    "description": "Print 2FA recovery code"
+  },
+  "reports": {
+    "message": "Rapoarte"
+  },
+  "unsecuredWebsitesReport": {
+    "message": "Raport de saituri nesecurizate"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "Utilizarea saiturilor nesecurizate cu schema http:// poate fi periculoasă. Dacă saitul permite, ar trebui să îl accesați întotdeauna utilizând schema https://, astfel încât conexiunea dvs. să fie criptată."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "S-au găsit saituri web nesecurizate"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "Am găsit $COUNT$ articole în seiful dvs. cu URI-uri nesecurizate. Ar trebui să schimbați schema URl-urilor lor în https:// dacă saitul o permite.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "Niciun articol din seiful dvs. nu are URI-uri nesecurizate."
+  },
+  "inactive2faReport": {
+    "message": "Raport 2FA inactiv"
+  },
+  "inactive2faReportDesc": {
+    "message": "Autentificarea cu doi factori (2FA) este o setare importantă de securitate care vă ajută să vă securizați conturile. Dacă saitul îl oferă, ar trebui să activați întotdeauna autentificarea cu doi factori."
+  },
+  "inactive2faFound": {
+    "message": "S-au găsit conectări fără 2FA"
+  },
+  "inactive2faFoundDesc": {
+    "message": "Am găsit $COUNT$ sait(uri) în seiful dvs., care probabil nu au fost configurate cu autentificarea cu doi factori (conform 2fa.directory). Pentru a proteja în continuare aceste conturi, ar trebui să activați autentificarea cu doi factori.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noInactive2fa": {
+    "message": "Nu au fost găsite saituri în seiful dvs. cu o configurație de autentificare cu doi factori lipsă."
+  },
+  "instructions": {
+    "message": "Instrucțiuni"
+  },
+  "exposedPasswordsReport": {
+    "message": "Raport de parole dezvăluite"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "Parolele dezvăluite sunt parole care au fost descoperite în scurgeri cunoscute de date care au fost lansate public sau vândute pe dark web de către hackeri."
+  },
+  "exposedPasswordsFound": {
+    "message": "S-au găsit parole dezvăluite"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "Am găsit $COUNT$ articole în seiful dvs. care folosesc parole dezvăluite în scurgeri de date cunoscute. Ar trebui să le schimbați pentru a utiliza o parolă nouă.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "Niciun articol din seiful dvs. nu are parole dezvăluite în scurgeri de date cunoscute."
+  },
+  "checkExposedPasswords": {
+    "message": "Verificați parolele dezvăluite"
+  },
+  "exposedXTimes": {
+    "message": "Dezvăluită de $COUNT$ ori",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
+  "weakPasswordsReport": {
+    "message": "Raport de parole slabe"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "Parolele slabe pot fi ușor ghicite de hackeri și de instrumente automate folosite la spargerea parolelor. Generatorul de parole Bitwarden vă poate ajuta la crearea unor parole puternice."
+  },
+  "weakPasswordsFound": {
+    "message": "S-au găsit parole slabe"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "Am găsit $COUNT$ articole cu parole slabe articole în seiful dvs. Ar trebui să le actualizați ca să folosească parole puternice.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "Niciun articol din seiful dvs. nu are parole slabe."
+  },
+  "reusedPasswordsReport": {
+    "message": "Raport de parole refolosite"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "Dacă unul din serviciile folosite este compromis, folosind aceeași parolă în altă parte poate permite hackerilor să aibă acces ușor la mai multe conturi online. Trebuie să folosiți parole unice pentru fiecare cont sau servici."
+  },
+  "reusedPasswordsFound": {
+    "message": "S-au găsit parole refolosite"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "Am găsit $COUNT$ parole reutilizate în seiful dvs. Ar trebui să le schimbați la o valoare unică.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "Nicio dată de conectare din seiful dvs. nu conține parole reutilizate."
+  },
+  "reusedXTimes": {
+    "message": "Refolosit $COUNT$ ori",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "dataBreachReport": {
+    "message": "Raport de scurgere de date"
+  },
+  "breachDesc": {
+    "message": "O \"scurgere\" este un incident unde datele unui sait au fost accesate ilegal de hackeri apoi dezvăluite public. Verificați tipul de date compromise (e-mail, parole, carduri de credit etc.) și luați măsura adecvată, cum ar fi schimbarea parolelor."
+  },
+  "breachCheckUsernameEmail": {
+    "message": "Verificați orice nume de utilizator sau adresă e-mail pe care o folosiți."
+  },
+  "checkBreaches": {
+    "message": "Verificare scurgeri"
+  },
+  "breachUsernameNotFound": {
+    "message": "$USERNAME$ nu a fost găsit în nicio scurgere de date cunoscută.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      }
+    }
+  },
+  "goodNews": {
+    "message": "Vești bune",
+    "description": "ex. Good News, No Breached Accounts Found!"
+  },
+  "breachUsernameFound": {
+    "message": "$USERNAME$ a fost găsit în $COUNT$ diferite scurgeri de date online.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      },
+      "count": {
+        "content": "$2",
+        "example": "7"
+      }
+    }
+  },
+  "breachFound": {
+    "message": "S-au găsit conturi cu scurgeri"
+  },
+  "compromisedData": {
+    "message": "Date compromise"
+  },
+  "website": {
+    "message": "Sait web"
+  },
+  "affectedUsers": {
+    "message": "Utilizatori afectați"
+  },
+  "breachOccurred": {
+    "message": "Scurgere produsă"
+  },
+  "breachReported": {
+    "message": "Scurgere raportată"
+  },
+  "reportError": {
+    "message": "A apărut o eroare la încărcarea raportului. Încercați din nou"
+  },
+  "billing": {
+    "message": "Facturare"
+  },
+  "accountCredit": {
+    "message": "Creditul contului",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Balanța contului",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Adăugare credit",
+    "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "Sumă",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Creditul adăugat va apare în contul dvs. după procesarea completă a plății. Unele metode de plată sunt întârziate și pot lua mai mult timp de procesare decât altele."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Vă rugăm să vă asigurați că aveți suficient credit disponibil în cont pentru această achiziție. Dacă nu aveți suficient credit în cont, metoda dvs. implicită de plată înregistrată va fi folosită pentru diferență. Puteți adăuga credit în contul dvs. din pagina Facturare."
+  },
+  "creditAppliedDesc": {
+    "message": "Creditul contului dvs. se poate utiliza pentru a face cumpărături. Orice credit disponibil va fi aplicat automat pentru facturile generate pentru acest cont."
+  },
+  "goPremium": {
+    "message": "Obțineți Premium",
+    "description": "Another way of saying \"Get a premium membership\""
+  },
+  "premiumUpdated": {
+    "message": "Ați actualizat la Premium."
+  },
+  "premiumUpgradeUnlockFeatures": {
+    "message": "Actualizați-vă contul la un abonament premium și deblocați câteva funcții suplimentare excelente."
+  },
+  "premiumSignUpStorage": {
+    "message": "1 GB stocare criptată pentru fișiere atașate."
+  },
+  "premiumSignUpTwoStep": {
+    "message": "Opțiuni suplimentare de conectare în două etape, cum ar fi YubiKey, FIDO U2F și Duo."
+  },
+  "premiumSignUpReports": {
+    "message": "Rapoarte privind igiena parolelor, sănătatea contului și breșele de date pentru a vă păstra seiful în siguranță."
+  },
+  "premiumSignUpTotp": {
+    "message": "Generator de cod de verificare TOTP (2FA) pentru autentificări în seiful dvs."
+  },
+  "premiumSignUpSupport": {
+    "message": "Asistență prioritară pentru clienți."
+  },
+  "premiumSignUpFuture": {
+    "message": "Toate funcțiile premium viitoare. În curând mai multe!"
+  },
+  "premiumPrice": {
+    "message": "Totul pentru numai $PRICE$ /an!",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      }
+    }
+  },
+  "addons": {
+    "message": "Add-on-uri"
+  },
+  "premiumAccess": {
+    "message": "Acces Premium"
+  },
+  "premiumAccessDesc": {
+    "message": "Puteți adăuga acces premium tuturor membrilor organizației dvs. pentru $PRICE$ /$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "additionalStorageGb": {
+    "message": "Stocare adițională (GB)"
+  },
+  "additionalStorageGbDesc": {
+    "message": "# de GB adiționali"
+  },
+  "additionalStorageIntervalDesc": {
+    "message": "Planul dvs. vine cu $SIZE$ de stocare criptată de fișiere. Puteți adăuga stocare suplimentară pentru $PRICE$ per GB /$INTERVAL$.",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      },
+      "price": {
+        "content": "$2",
+        "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "summary": {
+    "message": "Rezumat"
+  },
+  "total": {
+    "message": "Total"
+  },
+  "year": {
+    "message": "an"
+  },
+  "month": {
+    "message": "lună"
+  },
+  "monthAbbr": {
+    "message": "lună",
+    "description": "Short abbreviation for 'month'"
+  },
+  "paymentChargedAnnually": {
+    "message": "Metoda dvs. de plată va fi facturată imediat și apoi în mod recurent în fiecare an. Puteți anula în orice moment."
+  },
+  "paymentCharged": {
+    "message": "Metoda dvs. de plată va fi facturată imediat și apoi în mod recurent în fiecare $INTERVAL$. Puteți anula în orice moment.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentChargedWithTrial": {
+    "message": "Planul dvs. vine cu o încercare gratuită de 7 zile. Metoda dvs. de plată nu va fi facturată până la sfârșitul perioadei de încercare. Facturarea se va face recurent în fiecare $INTERVAL$. Puteți anula oricând.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentInformation": {
+    "message": "Informații de plată"
+  },
+  "billingInformation": {
+    "message": "Informații de facturare"
+  },
+  "creditCard": {
+    "message": "Card de credit"
+  },
+  "paypalClickSubmit": {
+    "message": "Clicați pe butonul PayPal pentru a vă conecta la contul PayPal, apoi clicați pe butonul Trimitere mai jos pentru a continua."
+  },
+  "cancelSubscription": {
+    "message": "Anulare abonament"
+  },
+  "subscriptionCanceled": {
+    "message": "Abonamentul a fost anulat."
+  },
+  "pendingCancellation": {
+    "message": "Anulare în așteptare"
+  },
+  "subscriptionPendingCanceled": {
+    "message": "Abonamentul a fost marcat pentru anulare la sfârșitul perioadei curente de facturare."
+  },
+  "reinstateSubscription": {
+    "message": "Restabilire abonament"
+  },
+  "reinstateConfirmation": {
+    "message": "Sigur doriți să eliminați cererea de anulare în așteptare și să vă restabiliți abonamentul?"
+  },
+  "reinstated": {
+    "message": "Abonamentul a fost restabilit."
+  },
+  "cancelConfirmation": {
+    "message": "Sigur doriți să anulați? Veți pierde accesul la toate funcționalitățile acestui abonament la sfârșitul acestui ciclu de facturare."
+  },
+  "canceledSubscription": {
+    "message": "Abonamentul a fost anulat."
+  },
+  "neverExpires": {
+    "message": "Nu expiră niciodată"
+  },
+  "status": {
+    "message": "Stare"
+  },
+  "nextCharge": {
+    "message": "Plata următoare"
+  },
+  "details": {
+    "message": "Detalii"
+  },
+  "downloadLicense": {
+    "message": "Descărcare licență"
+  },
+  "updateLicense": {
+    "message": "Actualizare licență"
+  },
+  "updatedLicense": {
+    "message": "Licența s-a actualizat"
+  },
+  "manageSubscription": {
+    "message": "Gestionare abonament"
+  },
+  "storage": {
+    "message": "Stocare"
+  },
+  "addStorage": {
+    "message": "Adăugare stocare"
+  },
+  "removeStorage": {
+    "message": "Eliminare stocare"
+  },
+  "subscriptionStorage": {
+    "message": "Abonamentul dvs. are un total de $MAX_STORAGE$ GB de stocare criptată de fișiere. În prezent folosiți $USED_STORAGE$.",
+    "placeholders": {
+      "max_storage": {
+        "content": "$1",
+        "example": "4"
+      },
+      "used_storage": {
+        "content": "$2",
+        "example": "65 MB"
+      }
+    }
+  },
+  "paymentMethod": {
+    "message": "Metoda de plată"
+  },
+  "noPaymentMethod": {
+    "message": "Nicio metodă de plată în fișier."
+  },
+  "addPaymentMethod": {
+    "message": "Adăugare metodă de plată"
+  },
+  "changePaymentMethod": {
+    "message": "Schimbare metodă de plată"
+  },
+  "invoices": {
+    "message": "Facturi"
+  },
+  "noInvoices": {
+    "message": "Nicio factură."
+  },
+  "paid": {
+    "message": "Plătit",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Neplătit",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Tranzacții",
+    "description": "Payment/credit transactions."
+  },
+  "noTransactions": {
+    "message": "Nicio tranzacție."
+  },
+  "chargeNoun": {
+    "message": "Debit",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Rambursare",
+    "description": "Noun. A refunded payment that was charged."
+  },
+  "chargesStatement": {
+    "message": "Orice plați în contul dvs. vor apărea ca $STATEMENT_NAME$.",
+    "placeholders": {
+      "statement_name": {
+        "content": "$1",
+        "example": "BITWARDEN"
+      }
+    }
+  },
+  "gbStorageAdd": {
+    "message": "GB de stocare de adăugat"
+  },
+  "gbStorageRemove": {
+    "message": "GB de stocare de eliminat"
+  },
+  "storageAddNote": {
+    "message": "Adăugarea stocării va duce la ajustări ale totalelor de facturare și la facturarea imediată conform metodei dvs. de facturare. Prima facturare va fi aplicată proporțional la restul ciclului curent de facturare."
+  },
+  "storageRemoveNote": {
+    "message": "Eliminarea stocării va duce la ajustări ale totalelor dvs. de facturare, care vor fi proporționate ca credite pentru următoarea facturare."
+  },
+  "adjustedStorage": {
+    "message": "$AMOUNT$ GB de spațiu de stocare ajustat.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "contactSupport": {
+    "message": "Contactare asistență pentru clienți"
+  },
+  "updatedPaymentMethod": {
+    "message": "Metoda de plată s-a actualizat."
+  },
+  "purchasePremium": {
+    "message": "Achiziționare abonament Premium"
+  },
+  "licenseFile": {
+    "message": "Fișier de licență"
+  },
+  "licenseFileDesc": {
+    "message": "Fișierul dvs. de licență va fi numit ceva de genul $FILE_NAME$",
+    "placeholders": {
+      "file_name": {
+        "content": "$1",
+        "example": "bitwarden_premium_license.json"
+      }
+    }
+  },
+  "uploadLicenseFilePremium": {
+    "message": "Pentru a vă actualiza contul la statutul de membru Premium, trebuie să încărcați un fișier de licență valid."
+  },
+  "uploadLicenseFileOrg": {
+    "message": "Pentru a crea o organizație găzduită local, trebuie să încărcați un fișier de licență valid."
+  },
+  "accountEmailMustBeVerified": {
+    "message": "Adresa de e-mail a contului dvs. trebuie verificată."
+  },
+  "newOrganizationDesc": {
+    "message": "Organizațiile vă permit să vă partajați părți din seif cu ceilalți, precum și gestionarea utilizatorilor asociați pentru o anumită entitate, cum ar fi o familie, echipă mică sau companie mare."
+  },
+  "generalInformation": {
+    "message": "Informații generale"
+  },
+  "organizationName": {
+    "message": "Numele organizației"
+  },
+  "accountOwnedBusiness": {
+    "message": "Acest cont este deținut de un business."
+  },
+  "billingEmail": {
+    "message": "Adresa e-mail de facturare"
+  },
+  "businessName": {
+    "message": "Numele businessului"
+  },
+  "chooseYourPlan": {
+    "message": "Alegeți-vă planul"
+  },
+  "users": {
+    "message": "Utilizatori"
+  },
+  "userSeats": {
+    "message": "Licențe utilizator"
+  },
+  "additionalUserSeats": {
+    "message": "Licențe utilizator adiționale"
+  },
+  "userSeatsDesc": {
+    "message": "# de licențe utilizator"
+  },
+  "userSeatsAdditionalDesc": {
+    "message": "Planul dvs. vine cu $BASE_SEATS$ licențe de utilizator. Puteți adăuga utilizatori adiționali pentru $SEAT_PRICE$ per utilizator /lună.",
+    "placeholders": {
+      "base_seats": {
+        "content": "$1",
+        "example": "5"
+      },
+      "seat_price": {
+        "content": "$2",
+        "example": "$2.00"
+      }
+    }
+  },
+  "userSeatsHowManyDesc": {
+    "message": "De câte licențe de utilizator aveți nevoie? Dacă este nevoie, licențe suplimentare pot fi adăugate mai târziu."
+  },
+  "planNameFree": {
+    "message": "Gratuit",
+    "description": "Free as in 'free beer'."
+  },
+  "planDescFree": {
+    "message": "Pentru testare sau pentru utilizatori privați pentru partajarea cu $COUNT$ alt utilizator.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "planNameFamilies": {
+    "message": "Familii"
+  },
+  "planDescFamilies": {
+    "message": "Pentru uz personal, pentru a partaja cu familia și prietenii."
+  },
+  "planNameTeams": {
+    "message": "Echipe"
+  },
+  "planDescTeams": {
+    "message": "Pentru businessuri și alte organizații în echipă."
+  },
+  "planNameEnterprise": {
+    "message": "Organizație"
+  },
+  "planDescEnterprise": {
+    "message": "Pentru businessuri și alte organizații mari."
+  },
+  "freeForever": {
+    "message": "Gratuit pentru totdeauna"
+  },
+  "includesXUsers": {
+    "message": "include $COUNT$ utilizatori",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "additionalUsers": {
+    "message": "Utilizatori suplimentari"
+  },
+  "costPerUser": {
+    "message": "$COST$ per utilizator",
+    "placeholders": {
+      "cost": {
+        "content": "$1",
+        "example": "$3"
+      }
+    }
+  },
+  "limitedUsers": {
+    "message": "Limitat la $COUNT$ utilizatori (inclusiv dvs.)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "limitedCollections": {
+    "message": "Limitat la $COUNT$ colecții",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "addShareLimitedUsers": {
+    "message": "Adăugare și partajare cu până la $COUNT$ utilizatori",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "addShareUnlimitedUsers": {
+    "message": "Adăugare și partajare cu utilizatori nelimitați"
+  },
+  "createUnlimitedCollections": {
+    "message": "Creați colecții nelimitate"
+  },
+  "gbEncryptedFileStorage": {
+    "message": "$SIZE$ de stocare de fișiere criptate",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      }
+    }
+  },
+  "onPremHostingOptional": {
+    "message": "Găzduire locală (opțional)"
+  },
+  "usersGetPremium": {
+    "message": "Utilizatorii au acces la funcțiile Premium"
+  },
+  "controlAccessWithGroups": {
+    "message": "Controlare a accesului utilizatorilor cu Grupuri"
+  },
+  "syncUsersFromDirectory": {
+    "message": "Sincronizare a utilizatorilor și Grupurilor dvs dintr-un director"
+  },
+  "trackAuditLogs": {
+    "message": "Urmăriți acțiunile utilizatorilor cu jurnalele de audit"
+  },
+  "enforce2faDuo": {
+    "message": "Impunere 2FA cu Duo"
+  },
+  "priorityCustomerSupport": {
+    "message": "Asistență prioritară pentru clienți"
+  },
+  "xDayFreeTrial": {
+    "message": "$COUNT$ zile de încercare gratuită, anulați oricând",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "monthly": {
+    "message": "Lunar"
+  },
+  "annually": {
+    "message": "Anual"
+  },
+  "basePrice": {
+    "message": "Preț de bază"
+  },
+  "organizationCreated": {
+    "message": "Organizația a fost creată"
+  },
+  "organizationReadyToGo": {
+    "message": "Noua dvs. organizație este pregătită!"
+  },
+  "organizationUpgraded": {
+    "message": "Un upgrade al organizației a fost efectuat."
+  },
+  "leave": {
+    "message": "Părăsește"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Sigur doriți să părăsiți această organizație?"
+  },
+  "leftOrganization": {
+    "message": "Ați părăsit organizația."
+  },
+  "defaultCollection": {
+    "message": "Colecție implicită"
+  },
+  "getHelp": {
+    "message": "Obținere ajutor"
+  },
+  "getApps": {
+    "message": "Obținere aplicație"
+  },
+  "loggedInAs": {
+    "message": "Autentificat ca"
+  },
+  "eventLogs": {
+    "message": "Jurnale evenimente"
+  },
+  "people": {
+    "message": "Persoane"
+  },
+  "policies": {
+    "message": "Politici"
+  },
+  "editPolicy": {
+    "message": "Editare politici"
+  },
+  "groups": {
+    "message": "Grupuri"
+  },
+  "newGroup": {
+    "message": "Grup nou"
+  },
+  "addGroup": {
+    "message": "Adăugare grup"
+  },
+  "editGroup": {
+    "message": "Editare grup"
+  },
+  "deleteGroupConfirmation": {
+    "message": "Sigur doriți să ștergeți acest grup?"
+  },
+  "removeUserConfirmation": {
+    "message": "Sigur doriți să eliminați acest utilizator?"
+  },
+  "externalId": {
+    "message": "Id Extern"
+  },
+  "externalIdDesc": {
+    "message": "Id-ul extern poate fi utilizat ca referință sau pentru a lega această resursă de un sistem extern, cum ar fi un folder utilizator."
+  },
+  "accessControl": {
+    "message": "Controlul accesului"
+  },
+  "groupAccessAllItems": {
+    "message": "Acest grup poate accesa și modifica toate articolele."
+  },
+  "groupAccessSelectedCollections": {
+    "message": "Acest grup poate accesa doar colecțiile selectate."
+  },
+  "readOnly": {
+    "message": "Doar pentru citire"
+  },
+  "newCollection": {
+    "message": "Colecție nouă"
+  },
+  "addCollection": {
+    "message": "Adăugare colecție"
+  },
+  "editCollection": {
+    "message": "Editare colecție"
+  },
+  "deleteCollectionConfirmation": {
+    "message": "Sigur doriți să ștergeți această colecție?"
+  },
+  "editUser": {
+    "message": "Editare utilizator"
+  },
+  "inviteUser": {
+    "message": "Invitare utilizator"
+  },
+  "inviteUserDesc": {
+    "message": "Invitați un utilizator nou în organizația dvs. introducându-i mai jos adresa de e-mail a contului Bitwarden. Dacă nu au deja un cont Bitwarden, li se va solicita să își creeze un cont nou."
+  },
+  "inviteMultipleEmailDesc": {
+    "message": "Puteți invita până la $COUNT$ utilizatori odată separând prin virgulă o listă de adrese de e-mail.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
+  "userUsingTwoStep": {
+    "message": "Acest utilizator folosește conectarea în două etape pentru a-și proteja contul."
+  },
+  "userAccessAllItems": {
+    "message": "Acest utilizator poate accesa și modifica toate articolele."
+  },
+  "userAccessSelectedCollections": {
+    "message": "Acest utilizator poate accesa doar colecțiile selectate."
+  },
+  "search": {
+    "message": "Căutare"
+  },
+  "invited": {
+    "message": "Invitat"
+  },
+  "accepted": {
+    "message": "Acceptat"
+  },
+  "confirmed": {
+    "message": "Confirmat"
+  },
+  "owner": {
+    "message": "Proprietar"
+  },
+  "ownerDesc": {
+    "message": "Contul cu cele mai mari privilegii care poate gestiona toate aspectele organizației."
+  },
+  "admin": {
+    "message": "Admin"
+  },
+  "adminDesc": {
+    "message": "Administratorii pot accesa și gestiona toate articolele, colecțiile și utilizatorii din organizația dvs."
+  },
+  "user": {
+    "message": "Utilizator"
+  },
+  "userDesc": {
+    "message": "Un utilizator obișnuit cu acces la colecțiile alocate din organizația dvs."
+  },
+  "manager": {
+    "message": "Manager"
+  },
+  "managerDesc": {
+    "message": "Managerii pot accesa și gestiona colecțiile atribuite în organizația dvs."
+  },
+  "all": {
+    "message": "Tot"
+  },
+  "refresh": {
+    "message": "Reîmprospătare"
+  },
+  "timestamp": {
+    "message": "Marcă temporală"
+  },
+  "event": {
+    "message": "Eveniment"
+  },
+  "unknown": {
+    "message": "Necunoscut"
+  },
+  "loadMore": {
+    "message": "Încărcați mai mult"
+  },
+  "mobile": {
+    "message": "Mobil",
+    "description": "Mobile app"
+  },
+  "extension": {
+    "message": "Extensie",
+    "description": "Browser extension/addon"
+  },
+  "desktop": {
+    "message": "Desktop",
+    "description": "Desktop app"
+  },
+  "webVault": {
+    "message": "Seif web"
+  },
+  "loggedIn": {
+    "message": "Autentificat."
+  },
+  "changedPassword": {
+    "message": "Parola contului a fost modificată."
+  },
+  "enabledUpdated2fa": {
+    "message": "Conectarea în două etape s-a activat/actualizat."
+  },
+  "disabled2fa": {
+    "message": "Conexiune în două etape dezactivată."
+  },
+  "recovered2fa": {
+    "message": "Cont recuperat de la conectarea în două etape."
+  },
+  "failedLogin": {
+    "message": "Încercare de conectare eșuată cu o parolă incorectă."
+  },
+  "failedLogin2fa": {
+    "message": "Încercare de conectare eșuată cu verificarea în două etape incorectă."
+  },
+  "exportedVault": {
+    "message": "Seiful a fost exportat."
+  },
+  "exportedOrganizationVault": {
+    "message": "Seiful organizației a fost exportat."
+  },
+  "editedOrgSettings": {
+    "message": "Setările organizației s-au modificat."
+  },
+  "createdItemId": {
+    "message": "Element $ID$ creat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedItemId": {
+    "message": "Element $ID$ editat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedItemId": {
+    "message": "Articolul $ID$ a fost trimis în coșul de reciclare.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "sharedItemId": {
+    "message": "Element $ID$ partajat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Element $ID$ vizualizat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Parola pentru elementul $ID$ a fost vizualizată.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Câmpul ascuns al elementului $ID$ a fost vizualizat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Codul de securitate al elementului $ID$ a fost vizualizat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Parola elementului $ID$ s-a copiat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Câmpul ascuns al elementului $ID$ a fost copiat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Codul de securitate al elementului $ID$ a fost copiat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Elementul $ID$ s-a completat automat",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "createdCollectionId": {
+    "message": "Colecția $ID$ a fost creată.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedCollectionId": {
+    "message": "Colecția $ID$ a fost editată.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "deletedCollectionId": {
+    "message": "Colecția $ID$ a fost ștearsă.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "Politica $ID$ a fost editată.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "createdGroupId": {
+    "message": "Grupul $ID$ a fost creat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "editedGroupId": {
+    "message": "Grupul $ID$ a fost editat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "deletedGroupId": {
+    "message": "Grupul $ID$ a fost șters.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "removedUserId": {
+    "message": "Utilizatorul $ID$ a fost eliminat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "createdAttachmentForItem": {
+    "message": "Atașamentul elementului $ID$ a fost creat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedAttachmentForItem": {
+    "message": "Atașamentul elementului $ID$ a fost șters.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedCollectionsForItem": {
+    "message": "Colecțiile elementului $ID$ au fost editate.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "invitedUserId": {
+    "message": "Utilizatorul $ID$ a fost invitat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmedUserId": {
+    "message": "Utilizatorul $ID$ a fost confirmat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedUserId": {
+    "message": "Utilizatorul $ID$ a fost editat.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedGroupsForUser": {
+    "message": "Grupurile utilizatorului $ID$ au fost editate.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "SSO deconectat pentru utilizatorul $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "device": {
+    "message": "Dispozitiv"
+  },
+  "view": {
+    "message": "Afișare"
+  },
+  "invalidDateRange": {
+    "message": "Interval de date incorect."
+  },
+  "errorOccurred": {
+    "message": "S-a produs o eroare."
+  },
+  "userAccess": {
+    "message": "Acces utilizator"
+  },
+  "userType": {
+    "message": "Tip de utilizator"
+  },
+  "groupAccess": {
+    "message": "Acces grup"
+  },
+  "groupAccessUserDesc": {
+    "message": "Editați grupurile cu care este asociat acest utilizator."
+  },
+  "invitedUsers": {
+    "message": "Utilizatori invitați."
+  },
+  "resendInvitation": {
+    "message": "Retrimitere invitație"
+  },
+  "hasBeenReinvited": {
+    "message": "$USER$ a fost invitat din nou.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirm": {
+    "message": "Confirmare"
+  },
+  "confirmUser": {
+    "message": "Confirmare utilizator"
+  },
+  "hasBeenConfirmed": {
+    "message": "$USER$ a fost confirmat.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmUsers": {
+    "message": "Confirmare utilizatori"
+  },
+  "usersNeedConfirmed": {
+    "message": "Aveți utilizatori care au acceptat invitația, dar care încă au nevoie să fie confirmați. Utilizatorii nu vor avea acces la organizație până când nu sunt confirmați."
+  },
+  "startDate": {
+    "message": "Data de început"
+  },
+  "endDate": {
+    "message": "Data de sfârșit"
+  },
+  "verifyEmail": {
+    "message": "Verificare e-mail"
+  },
+  "verifyEmailDesc": {
+    "message": "Verifică adresa de e-mail a contului pentru a debloca accesul la toate funcțiile."
+  },
+  "verifyEmailFirst": {
+    "message": "Adresa de e-mail a contului dvs. trebuie mai întâi verificată."
+  },
+  "checkInboxForVerification": {
+    "message": "Verificați dacă ați primit linkul de verificare prin e-mail."
+  },
+  "emailVerified": {
+    "message": "E-mailul dvs. a fost confirmat."
+  },
+  "emailVerifiedFailed": {
+    "message": "E-mailul dvs. nu a putut fi verificat. Încercați să trimiteți un nou e-mail de verificare."
+  },
+  "updateBrowser": {
+    "message": "Actualizare browser"
+  },
+  "updateBrowserDesc": {
+    "message": "Utilizați un browser nesuportat. Seiful web ar putea să nu funcționeze corect."
+  },
+  "joinOrganization": {
+    "message": "Alăturare la organizație"
+  },
+  "joinOrganizationDesc": {
+    "message": "Ați fost invitat să vă alăturați organizației listate mai sus. Pentru a accepta invitația, trebuie să vă conectați sau să creați un cont Bitwarden nou."
+  },
+  "inviteAccepted": {
+    "message": "Invitație acceptată"
+  },
+  "inviteAcceptedDesc": {
+    "message": "Puteți accesa această organizație după ce un administrator vă confirmă calitatea de membru. Vă vom trimite un e-mail atunci când se întâmplă acest lucru."
+  },
+  "inviteAcceptFailed": {
+    "message": "Imposibil de acceptat invitația. Solicitați unui administrator al organizației să trimită o invitație nouă."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Imposibil de acceptat invitația. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "rememberEmail": {
+    "message": "Memorare e-mail"
+  },
+  "recoverAccountTwoStepDesc": {
+    "message": "Dacă nu vă puteți accesa contul prin metodele normale de conectare în două etape, puteți utiliza codul de recuperare în două etape pentru a dezactiva toți furnizorii în două etape din contul dvs."
+  },
+  "recoverAccountTwoStep": {
+    "message": "Recuperare autentificare în două etape a contului"
+  },
+  "twoStepRecoverDisabled": {
+    "message": "Conectarea în două etape a fost dezactivată în contul dvs."
+  },
+  "learnMore": {
+    "message": "Aflați mai multe"
+  },
+  "deleteRecoverDesc": {
+    "message": "Introduceți adresa de e-mail mai jos pentru a vă recupera și șterge contul."
+  },
+  "deleteRecoverEmailSent": {
+    "message": "În cazul în care contul dvs. există, v-am trimis un e-mail cu instrucțiuni suplimentare."
+  },
+  "deleteRecoverConfirmDesc": {
+    "message": "Ați solicitat să ștergeți contul Bitwarden. Clicați pe butonul de mai jos pentru a confirma."
+  },
+  "myOrganization": {
+    "message": "Organizația mea"
+  },
+  "deleteOrganization": {
+    "message": "Ștergere organizație"
+  },
+  "deleteOrganizationDesc": {
+    "message": "Continuați în modul indicat mai jos pentru a șterge această organizație și toate datele asociate. Conturile de utilizator individuale vor rămâne, deși nu vor mai fi asociate cu această organizație. "
+  },
+  "deleteOrganizationWarning": {
+    "message": "Ștergerea organizației este definitivă. Nu poate fi anulată."
+  },
+  "organizationDeleted": {
+    "message": "Organizația a fost ștearsă"
+  },
+  "organizationDeletedDesc": {
+    "message": "Organizația și toate datele asociate au fost șterse."
+  },
+  "organizationUpdated": {
+    "message": "Organizația s-a actualizat"
+  },
+  "taxInformation": {
+    "message": "Informații fiscale"
+  },
+  "taxInformationDesc": {
+    "message": "Pentru clienții din SUA, codul ZIP este necesar pentru a satisface cerințele privind taxa de vânzare, pentru alte țări, opțional, puteți să furnizați un număr de identificare fiscală (TVA/GST) și/sau o adresă care să apară pe facturile dvs."
+  },
+  "billingPlan": {
+    "message": "Plan",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlan": {
+    "message": "Modificare plan",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanUpgrade": {
+    "message": "Actualizați-vă contului la un alt plan prin furnizarea informațiilor de mai jos. Vă rugăm să vă asigurați că ați adăugat o metodă de plată activă în cont.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanDesc": {
+    "message": "Contactați asistența pentru clienți dacă doriți să vă schimbați planul. Vă rugăm să vă asigurați că aveți o metodă de plată activă adăugată în cont.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "invoiceNumber": {
+    "message": "Factura #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "Afișare factură"
+  },
+  "downloadInvoice": {
+    "message": "Descărcare factură"
+  },
+  "verifyBankAccount": {
+    "message": "Verificare contul bancar"
+  },
+  "verifyBankAccountDesc": {
+    "message": "Am făcut două micro-depozite în contul dvs. bancar (poate dura 1-2 zile lucrătoare pentru a apărea). Introduceți aceste sume pentru a verifica contul bancar."
+  },
+  "verifyBankAccountInitialDesc": {
+    "message": "Plata cu un cont bancar este disponibilă numai clienților din Statele Unite. Vi se va cere să vă verificați contul bancar. Vom face două micro-depozite în următoarele 1-2 zile lucrătoare. Introduceți aceste sume pe pagina de facturare a organizației pentru a verifica contul bancar."
+  },
+  "verifyBankAccountFailureWarning": {
+    "message": "O eroare la validarea contului dvs. bancar va duce la o plată pierdută, iar abonamentul dvs. va fi dezactivat."
+  },
+  "verifiedBankAccount": {
+    "message": "Contul bancar a fost verificat."
+  },
+  "bankAccount": {
+    "message": "Cont bancar"
+  },
+  "amountX": {
+    "message": "Suma $COUNT$",
+    "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "routingNumber": {
+    "message": "Cod bancar",
+    "description": "Bank account routing number"
+  },
+  "accountNumber": {
+    "message": "Număr de cont"
+  },
+  "accountHolderName": {
+    "message": "Numele titularului contului"
+  },
+  "bankAccountType": {
+    "message": "Tip de cont"
+  },
+  "bankAccountTypeCompany": {
+    "message": "Companie (Business)"
+  },
+  "bankAccountTypeIndividual": {
+    "message": "Individual (Personal)"
+  },
+  "enterInstallationId": {
+    "message": "Introducere id de instalare"
+  },
+  "addSeats": {
+    "message": "Adăugare licențe",
+    "description": "Seat = User Seat"
+  },
+  "removeSeats": {
+    "message": "Eliminare licențe",
+    "description": "Seat = User Seat"
+  },
+  "subscriptionUserSeats": {
+    "message": "Abonamentul dvs. permite un total de $COUNT$ utilizatori.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "seatsToAdd": {
+    "message": "Licențe de adăugat"
+  },
+  "seatsToRemove": {
+    "message": "Licențe de eliminat"
+  },
+  "seatsAddNote": {
+    "message": "Adăugarea de licențe utilizator va duce la ajustări ale totalelor de facturare și la facturarea imediată conform metodei dvs. de facturare. Prima facturare va fi aplicată proporțional la restul ciclului curent de facturare."
+  },
+  "seatsRemoveNote": {
+    "message": "Eliminarea de licențe utilizatori va duce la ajustări ale totalelor dvs. de facturare, care vor fi proporționate ca credite pentru următoarea facturare."
+  },
+  "adjustedSeats": {
+    "message": "$AMOUNT$ licențe de utilizator actualizate.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "keyUpdated": {
+    "message": "Cheia s-a actualizat"
+  },
+  "updateKeyTitle": {
+    "message": "Actualizare cheie"
+  },
+  "updateEncryptionKey": {
+    "message": "Actualizare cheie de criptare"
+  },
+  "updateEncryptionKeyShortDesc": {
+    "message": "În prezent utilizați o schemă de criptare învechită."
+  },
+  "updateEncryptionKeyDesc": {
+    "message": "Ne-am mutat la chei mai mari de criptare care oferă o mai bună securitate și acces la funcții mai noi. Actualizarea cheii de criptare este rapidă și ușoară. Doar tastați parola principală mai jos. Această actualizare va deveni în cele din urmă obligatorie."
+  },
+  "updateEncryptionKeyWarning": {
+    "message": "După actualizarea cheii de criptare, trebuie să vă reconectați în toate aplicațiile Bitwarden pe care le utilizați în prezent (cum ar fi aplicația mobilă sau extensiile browserului). Faptul de a nu vă deconecta și reconecta (care descarcă noua cheie de criptare) poate duce la corupția datelor. Vom încerca să vă deconectăm automat, însă ar putea fi întârziat."
+  },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Orice export criptat pe care l-ați salvat va deveni, de asemenea, nevalid."
+  },
+  "subscription": {
+    "message": "Abonament"
+  },
+  "loading": {
+    "message": "Se încarcă"
+  },
+  "upgrade": {
+    "message": "Faceți upgrade"
+  },
+  "upgradeOrganization": {
+    "message": "Faceți upgrade organizației"
+  },
+  "upgradeOrganizationDesc": {
+    "message": "Această funcție nu este disponibilă pentru organizațiile gratuite. Comutați la un plan plătit pentru a debloca mai multe funcții."
+  },
+  "createOrganizationStep1": {
+    "message": "Crearea unei organizații: Pasul 1"
+  },
+  "createOrganizationCreatePersonalAccount": {
+    "message": "Înainte de a vă crea organizația, trebuie mai întâi să creați un cont personal gratuit."
+  },
+  "refunded": {
+    "message": "Rambursat"
+  },
+  "nothingSelected": {
+    "message": "Nu ați selectat nimic."
+  },
+  "acceptPolicies": {
+    "message": "Dacă bifați această casetă sunteți de acord cu următoarele:"
+  },
+  "acceptPoliciesError": {
+    "message": "Termeni de utilizare și Politica de confidențialitate nu au fost recunoscute."
+  },
+  "termsOfService": {
+    "message": "Termeni de utilizare"
+  },
+  "privacyPolicy": {
+    "message": "Politică de confidențialitate"
+  },
+  "filters": {
+    "message": "Filtre"
+  },
+  "vaultTimeout": {
+    "message": "Expirare seif"
+  },
+  "vaultTimeoutDesc": {
+    "message": "Determină când seiful dvs. va expira și va efectua acțiunea selectată."
+  },
+  "oneMinute": {
+    "message": "1 minut"
+  },
+  "fiveMinutes": {
+    "message": "5 minute"
+  },
+  "fifteenMinutes": {
+    "message": "15 minute"
+  },
+  "thirtyMinutes": {
+    "message": "30 de minute"
+  },
+  "oneHour": {
+    "message": "1 oră"
+  },
+  "fourHours": {
+    "message": "4 ore"
+  },
+  "onRefresh": {
+    "message": "La reîmprospătarea browserului"
+  },
+  "dateUpdated": {
+    "message": "S-a actualizat",
+    "description": "ex. Date this item was updated"
+  },
+  "datePasswordUpdated": {
+    "message": "Parola s-a actualizat",
+    "description": "ex. Date this password was updated"
+  },
+  "organizationIsDisabled": {
+    "message": "Organizația este dezactivată."
+  },
+  "licenseIsExpired": {
+    "message": "Licența a expirat."
+  },
+  "updatedUsers": {
+    "message": "Utilizatori actualizați"
+  },
+  "selected": {
+    "message": "Selectat(e)"
+  },
+  "ownership": {
+    "message": "Proprietate"
+  },
+  "whoOwnsThisItem": {
+    "message": "Cine deține acest element?"
+  },
+  "strong": {
+    "message": "Puternică",
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Bună",
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Slabă",
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "Foarte slabă",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Parolă principală slabă"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Parola principală aleasă este slabă. Ar trebui folosită o parolă principală (sau o frază de access) puternică pentru a vă proteja corect contul Bitwarden. Sigur doriți să folosiți această parola principală?"
+  },
+  "rotateAccountEncKey": {
+    "message": "De asemenea, revocați cheia de criptare a contului meu"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Revocare cheia de criptare"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Sigur doriți să revocați cheia de criptare a contului?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Acest element are atașamente vechi care trebuie fixate."
+  },
+  "attachmentFixDesc": {
+    "message": "Acesta este un atașament de fișier vechi care trebuie reparat. Clicați pentru a afla mai multe."
+  },
+  "fix": {
+    "message": "Repară",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Există atașamente de fișiere vechi în seiful dvs. care trebuie reparate înainte de a putea revoca cheia de criptare a contului."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Fraza amprentă a contului dvs.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "Pentru a asigura integritatea cheilor dvs. de criptare, vă rugăm să verificați fraza amprentă a utilizatorului înainte de a continua.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Nu-mi cereți să introduc din nou fraza amprentă",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "free": {
+    "message": "Gratuit",
+    "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "Cheie API"
+  },
+  "apiKeyDesc": {
+    "message": "Cheia dvs. API poate fi utilizată pentru autentificarea la API-ul public Bitwarden."
+  },
+  "apiKeyRotateDesc": {
+    "message": "Revocarea cheii API va invalida cheia anterioară. Puteți revoca cheia API dacă vi se pare că actuala cheie nu mai este sigur de folosit."
+  },
+  "apiKeyWarning": {
+    "message": "Cheia dvs. API are acces complet la organizație. Ar trebui păstrată secret."
+  },
+  "userApiKeyDesc": {
+    "message": "Cheia dvs. API poate fi utilizată pentru autentificare în Bitwarden CLI."
+  },
+  "userApiKeyWarning": {
+    "message": "Cheia dvs. API este un mecanism alternativ de autentificare. Ar trebui păstrată secret."
+  },
+  "oauth2ClientCredentials": {
+    "message": "Acreditări client OAuth 2.0",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "Afișare cheie API"
+  },
+  "rotateApiKey": {
+    "message": "Revocare cheie API"
+  },
+  "selectOneCollection": {
+    "message": "Trebuie să selectați cel puțin o colecție."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "Nu am putut procesa plata cu cardul dvs. Vă rugăm să vizualizați și să plătiți factura neplătită de mai jos."
+  },
+  "inAppPurchase": {
+    "message": "Achiziție în aplicație"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "Nu puteți efectua această acțiune în timp ce utilizați ca metodă de plată achiziția în aplicație."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Trebuie să vă gestionați abonamentul din magazinul în care a fost efectuată achiziția în aplicație."
+  },
+  "minLength": {
+    "message": "Lungimea minimă"
+  },
+  "clone": {
+    "message": "Clonare"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Setează cerințele minime pentru puterea parolei principale."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Solicită utilizatorilor să configureze conectarea în două etape pentru conturile lor personale."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Membrii organizației care nu sunt Proprietari sau Administratori și nu au activată conectarea în două etape în contul lor personal vor fi eliminați din organizație și vor primi o notificare prin e-mail cu privire la modificare."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "Sunteți membrul unei organizații care necesită conectarea în două etape activată în contul dvs. de utilizator. Dacă dezactivați toți furnizorii de conectare în două etape, veți fi eliminat automat din aceste organizații."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Setează cerințele minime pentru configurarea generatorului de parole."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Una sau mai multe politici organizaționale vă afectează setările generatorului."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Una sau mai multe politici organizaționale necesită ca parola principală să îndeplinească următoarele cerințe:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Scor minim de complexitate de $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Lungime minimă de $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Unul sau mai multe caractere majuscule"
+  },
+  "policyInEffectLowercase": {
+    "message": "Unul sau mai multe caractere minuscule"
+  },
+  "policyInEffectNumbers": {
+    "message": "Una sau mai multe cifre"
+  },
+  "policyInEffectSpecial": {
+    "message": "Unul sau mai multe din următoarele caractere: $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Noua dvs. parolă principală nu îndeplinește cerințele politicii."
+  },
+  "minimumNumberOfWords": {
+    "message": "Număr minim de cuvinte"
+  },
+  "defaultType": {
+    "message": "Tip implicit"
+  },
+  "userPreference": {
+    "message": "Preferințe utilizator"
+  },
+  "vaultTimeoutAction": {
+    "message": "Acțiune la expirarea seifului"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "Un seif blocat necesită reintroducerea parolei principale pentru a-l accesa din nou."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "Un seif deconectat necesită reautentificarea pentru a-l accesa din nou."
+  },
+  "lock": {
+    "message": "Blocare",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Coș de reciclare",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Căutare în coșul de reciclare"
+  },
+  "permanentlyDelete": {
+    "message": "Ștergere definitivă"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Ștergere definitivă a selecției"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Ștergere definitivă a articolului"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Sigur doriți să ștergeți definitiv acest articol?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Articolul a fost șters definitiv"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Articolele au fost șterse definitiv"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "Ați selectat $COUNT$ articol(e) pentru ștergere definitivă. Sigur vreți să ștergeți definitiv toate articolele selectate?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Articolul $ID$ a fost șters definitiv.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Restabilire"
+  },
+  "restoreSelected": {
+    "message": "Restabilire selecție"
+  },
+  "restoreItem": {
+    "message": "Restabilire articol"
+  },
+  "restoredItem": {
+    "message": "Articol restabilit"
+  },
+  "restoredItems": {
+    "message": "Articole restabilite"
+  },
+  "restoreItemConfirmation": {
+    "message": "Sigur doriți să restabiliți acest articol?"
+  },
+  "restoreItems": {
+    "message": "Restabilire articole"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "Ați selectat $COUNT$ articol(e) pentru restabilire. Sigur vreți să restabiliți toate aceste articole?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Elementul $ID$ a fost restabilit.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "După expirare, accesul la seiful dvs. va fi restricționat și va fi necesară autentificarea on-line. Sigur doriți să utilizați această setare?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Confirmare acțiune la expirare"
+  },
+  "hidePasswords": {
+    "message": "Ascundere parole"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "Solicităm aceste informații doar pentru calcularea taxei de vânzare și a raportării financiare."
+  },
+  "includeVAT": {
+    "message": "Includere informații despre TVA/GST (opțional)"
+  },
+  "taxIdNumber": {
+    "message": "Codul fiscal TVA/GST"
+  },
+  "taxInfoUpdated": {
+    "message": "Informațiile fiscale au fost actualizate."
+  },
+  "setMasterPassword": {
+    "message": "Setare parolă principală"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Pentru a finaliza conectarea cu SSO, vă rugăm să setați o parolă principală pentru a vă accesa și proteja seiful."
+  },
+  "identifier": {
+    "message": "Identificator"
+  },
+  "organizationIdentifier": {
+    "message": "Identificatorul organizației"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Conectați-vă utilizând portalul de conectare unică al organizației. Pentru a începe, Introduceți vă rog identificatorul organizației dvs."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Conectare unică organizație (SSO)"
+  },
+  "ssoHandOff": {
+    "message": "Acum puteți închide această filă și puteți continua în extensie."
+  },
+  "businessPortal": {
+    "message": "Portal de afaceri",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Toate funcțiile planului Echipe, plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "Autentificare SSO prin SAML2.0 și OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Politici Organizație"
+  },
+  "ssoValidationFailed": {
+    "message": "Validarea SSO nu a reușit"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Identificatorul organizației este necesar."
+  },
+  "unlinkSso": {
+    "message": "Deconectare SSO"
+  },
+  "linkSso": {
+    "message": "Conectare SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Configurarea politicii a fost mutată și această pagină se va deprecia în curând. Vă rugăm să clicați mai jos pentru a utiliza în schimb pagina de politici a portalului de afaceri."
+  },
+  "singleOrg": {
+    "message": "Organizație Single"
+  },
+  "singleOrgDesc": {
+    "message": "Restricționează utilizatorii să se alăture oricărei alte organizații."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Organizația dvs. actuală are o politică care nu vă permite să vă alăturați la mai mult de o organizație. Vă rugăm să contactați administratorii organizației sau să vă înscrieți dintr-un cont Bitwarden diferit."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Membrii organizației care nu sunt proprietari sau administratori și sunt deja membri ai unei alte organizații vor fi eliminați din organizația dvs."
+  },
+  "requireSso": {
+    "message": "Autentificare Single Sign-On"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Solicită utilizatorilor să se conecteze cu metoda Conectare unică organizație (SSO)."
+  },
+  "prerequisite": {
+    "message": "Condiție prealabilă"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Înainte de activarea acestei politici, trebuie activată metoda de conectare \"Single sign-on\" pentru organizație (SSO)."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Politica Organizație Single nu este activată."
+  },
+  "requireSsoExemption": {
+    "message": "Proprietarii și administratorii organizației sunt exceptați de la aplicarea acestei politici."
+  },
+  "sendTypeFile": {
+    "message": "Fișier"
+  },
+  "sendTypeText": {
+    "message": "Text"
+  },
+  "createSend": {
+    "message": "Creare de nou Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Editare Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "S-a creat un nou Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send-ul a fost editat",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send-ul a fost șters",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Ștergere Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Sigur doriți să ștergeți acest Send?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Ce fel de Send este acesta?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Data ștergerii"
+  },
+  "deletionDateDesc": {
+    "message": "Send-ul va fi șters definitiv la data și ora specificate.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Data expirării"
+  },
+  "expirationDateDesc": {
+    "message": "Dacă este setat, accesul la acest Send va expira la data și ora specificate.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Număr maxim de accesări"
+  },
+  "maxAccessCountDesc": {
+    "message": "Dacă este setată, utilizatorii nu vor mai putea accesa acest Send după atingerea numărului maxim de acces.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Număr actual de accesări"
+  },
+  "sendPasswordDesc": {
+    "message": "Opțional, este necesară o parolă pentru ca utilizatorii să acceseze acest Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Note private despre acest Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Dezactivat"
+  },
+  "sendLink": {
+    "message": "Linkul Send-ului",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Copiere link Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Eliminare parolă"
+  },
+  "removedPassword": {
+    "message": "Parola a fost eliminată"
+  },
+  "removePasswordConfirmation": {
+    "message": "Sigur doriți să eliminați parola?"
+  },
+  "disableThisSend": {
+    "message": "Dezactivați acest Send astfel încât nimeni să nu îl poată accesa.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Toate Send-urile"
+  },
+  "maxAccessCountReached": {
+    "message": "S-a atins numărul maxim de acces"
+  },
+  "pendingDeletion": {
+    "message": "Ștergere în așteptare"
+  },
+  "expired": {
+    "message": "Expirat"
+  },
+  "searchSends": {
+    "message": "Căutare în Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Acest Send este protejat cu parolă. Vă rugăm să introduceți mai jos parola pentru a continua.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Nu știți parola? Cereți Expeditorului parola necesară pentru a accesa acest Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Acest Send este ascuns în mod implicit. Puteți comuta vizibilitatea acestuia folosind butonul de mai jos.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Descărcare fișier"
+  },
+  "sendAccessUnavailable": {
+    "message": "Send-ul pe care încercați să-l accesați nu există sau nu mai este disponibil.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Niciun Send de afișat.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Acces de urgență"
+  },
+  "emergencyAccessDesc": {
+    "message": "Acordă și gestionează accesul de urgență contactelor de încredere. Contactele de încredere pot solicita accesul fie la vizualizarea fie la preluarea controlului contului dvs. în caz de urgență. Vizitați-ne pagina de ajutor pentru detalii privind modul cum funcționează schimbul zero de cunoștințe."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Contacte de urgență de încredere"
+  },
+  "noTrustedContacts": {
+    "message": "Nu ați adăugat încă niciun contact de urgență, invitați un contact de încredere pentru a începe."
+  },
+  "addEmergencyContact": {
+    "message": "Adăugați un contact de urgență"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Desemnat ca contact de urgență"
+  },
+  "noGrantedAccess": {
+    "message": "Nu ați fost încă desemnat drept contact de urgență pentru nimeni."
+  },
+  "inviteEmergencyContact": {
+    "message": "Invitați contactul de urgență"
+  },
+  "editEmergencyContact": {
+    "message": "Editați contactul de urgență"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invitați un nou contact de urgență introducând adresa de e-mail a contului Bitwarden de mai jos. Dacă nu au deja un cont Bitwarden, li se va solicita să creeze un cont nou."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Acces de urgență inițiat"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Acces de urgență aprobat"
+  },
+  "viewDesc": {
+    "message": "Poate vizualiza toate articolele din seiful dvs."
+  },
+  "takeover": {
+    "message": "Preluare"
+  },
+  "takeoverDesc": {
+    "message": "Vă poate reseta contul cu o nouă parolă principală."
+  },
+  "waitTime": {
+    "message": "Timp de așteptare"
+  },
+  "waitTimeDesc": {
+    "message": "Timp necesar înainte de acordarea automată a accesului."
+  },
+  "oneDay": {
+    "message": "1 zi"
+  },
+  "days": {
+    "message": "$DAYS$ zile",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Utilizator invitat."
+  },
+  "acceptEmergencyAccess": {
+    "message": "Ați fost invitat să deveniți un contact de urgență pentru utilizatorul listat mai sus. Pentru a accepta invitația, trebuie să vă conectați sau să creați un cont Bitwarden nou."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Invitația nu poate fi acceptată. Solicitați utilizatorului să trimită o nouă invitație."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Invitația nu poate fi acceptată. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "Puteți accesa opțiunile de urgență pentru acest utilizator după confirmarea identității dvs. Vă vom trimite un e-mail atunci când se întâmplă acest lucru."
+  },
+  "requestAccess": {
+    "message": "Solicitare de acces"
+  },
+  "requestAccessConfirmation": {
+    "message": "Sunteți sigur că doriți să solicitați acces de urgență? Vi se va oferi acces după $WAITTIME$ zi(le) sau ori de câte ori utilizatorul aprobă manual solicitarea.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Acces de urgență solicitat pentru $USER$. Vă vom notifica prin e-mail când este posibil să continuați.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Autorizez"
+  },
+  "reject": {
+    "message": "Declin"
+  },
+  "approveAccessConfirmation": {
+    "message": "Confirmați aprobarea accesului de urgență? Acest lucru va permite lui $USER$ să $ACTION$ contul dvs.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Acces de urgență aprobat."
+  },
+  "emergencyRejected": {
+    "message": "Acces de urgență respins"
+  },
+  "passwordResetFor": {
+    "message": "S-a resetat parola pentru $USER$. Vă puteți conecta acum cu noua parolă.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Proprietate personală"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Solicită utilizatorilor să salveze articolele din seif într-o organizație prin eliminarea opțiunii de proprietate personală."
+  },
+  "personalOwnershipExemption": {
+    "message": "Proprietarii și administratorii organizației sunt exceptați de la aplicarea acestei politici."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Datorită unei politici pentru întreprinderi, vă este restricționată salvarea de articole în seiful dvs. personal. Schimbați opțiunea de proprietate la o organizație și alegeți dintre colecțiile disponibile."
+  },
+  "modifiedPolicyId": {
+    "message": "Politica $ID$ a fost editată.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Prețul planului"
+  },
+  "estimatedTax": {
+    "message": "Taxa estimată"
+  },
+  "custom": {
+    "message": "Personalizat"
+  },
+  "customDesc": {
+    "message": "Permite mai mult control granular al permisiunilor utilizatorilor pentru configurații avansate."
+  },
+  "permissions": {
+    "message": "Permisiuni"
+  },
+  "accessBusinessPortal": {
+    "message": "Acces la portalul de afaceri"
+  },
+  "accessEventLogs": {
+    "message": "Acces la jurnalele de evenimente"
+  },
+  "accessImportExport": {
+    "message": "Acces la import/export"
+  },
+  "accessReports": {
+    "message": "Acces la rapoarte"
+  },
+  "manageAllCollections": {
+    "message": "Gestionați toate colecțiile"
+  },
+  "manageAssignedCollections": {
+    "message": "Gestionați colecțiile alocate"
+  },
+  "manageGroups": {
+    "message": "Gestionați grupurile"
+  },
+  "managePolicies": {
+    "message": "Gestionați politicile"
+  },
+  "manageSso": {
+    "message": "Gestionați SSO"
+  },
+  "manageUsers": {
+    "message": "Gestionați utilizatorii"
+  },
+  "disableRequireSsoError": {
+    "message": "Politica de autentificare la conectare unică (SSO) trebuie dezactivată manual înainte ca această politică să poată fi dezactivată."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "O politică de organizație vă afectează opțiunile de proprietate."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Dezactivează proprietatea personală pentru utilizatorii organizației"
+  },
+  "textHiddenByDefault": {
+    "message": "Când Send-ul este accesat, ascundeți textul în mod implicit",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  }
+}

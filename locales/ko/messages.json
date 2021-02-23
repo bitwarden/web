@@ -1,0 +1,3632 @@
+{
+  "pageTitle": {
+    "message": "$APP_NAME$ 웹 보관함",
+    "description": "The title of the website in the browser window.",
+    "placeholders": {
+      "app_name": {
+        "content": "$1",
+        "example": "Bitwarden"
+      }
+    }
+  },
+  "whatTypeOfItem": {
+    "message": "항목의 유형이 무엇입니까?"
+  },
+  "name": {
+    "message": "이름"
+  },
+  "uri": {
+    "message": "URI"
+  },
+  "uriPosition": {
+    "message": "URI $POSITION$",
+    "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
+    "placeholders": {
+      "position": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "newUri": {
+    "message": "새 URI"
+  },
+  "username": {
+    "message": "사용자 이름"
+  },
+  "password": {
+    "message": "비밀번호"
+  },
+  "newPassword": {
+    "message": "새 비밀번호"
+  },
+  "passphrase": {
+    "message": "패스프레이즈"
+  },
+  "notes": {
+    "message": "메모"
+  },
+  "customFields": {
+    "message": "사용자 지정 필드"
+  },
+  "cardholderName": {
+    "message": "카드 소유자 이름"
+  },
+  "number": {
+    "message": "번호"
+  },
+  "brand": {
+    "message": "브랜드"
+  },
+  "expiration": {
+    "message": "만료"
+  },
+  "securityCode": {
+    "message": "카드 보안 코드 (CVV)"
+  },
+  "identityName": {
+    "message": "ID 이름"
+  },
+  "company": {
+    "message": "회사"
+  },
+  "ssn": {
+    "message": "주민등록번호"
+  },
+  "passportNumber": {
+    "message": "여권 번호"
+  },
+  "licenseNumber": {
+    "message": "면허 번호"
+  },
+  "email": {
+    "message": "이메일"
+  },
+  "phone": {
+    "message": "전화번호"
+  },
+  "january": {
+    "message": "1월"
+  },
+  "february": {
+    "message": "2월"
+  },
+  "march": {
+    "message": "3월"
+  },
+  "april": {
+    "message": "4월"
+  },
+  "may": {
+    "message": "5월"
+  },
+  "june": {
+    "message": "6월"
+  },
+  "july": {
+    "message": "7월"
+  },
+  "august": {
+    "message": "8월"
+  },
+  "september": {
+    "message": "9월"
+  },
+  "october": {
+    "message": "10월"
+  },
+  "november": {
+    "message": "11월"
+  },
+  "december": {
+    "message": "12월"
+  },
+  "title": {
+    "message": "제목"
+  },
+  "mr": {
+    "message": "Mr"
+  },
+  "mrs": {
+    "message": "Mrs"
+  },
+  "ms": {
+    "message": "Ms"
+  },
+  "dr": {
+    "message": "Dr"
+  },
+  "expirationMonth": {
+    "message": "만료 월"
+  },
+  "expirationYear": {
+    "message": "만료 연도"
+  },
+  "authenticatorKeyTotp": {
+    "message": "인증 키 (TOTP)"
+  },
+  "folder": {
+    "message": "폴더"
+  },
+  "newCustomField": {
+    "message": "새 사용자 지정 필드"
+  },
+  "value": {
+    "message": "값"
+  },
+  "dragToSort": {
+    "message": "드래그하여 정렬"
+  },
+  "cfTypeText": {
+    "message": "텍스트"
+  },
+  "cfTypeHidden": {
+    "message": "숨김"
+  },
+  "cfTypeBoolean": {
+    "message": "참 / 거짓"
+  },
+  "remove": {
+    "message": "제거"
+  },
+  "unassigned": {
+    "message": "지정되지 않음"
+  },
+  "noneFolder": {
+    "message": "폴더 없음",
+    "description": "This is the folder for uncategorized items"
+  },
+  "addFolder": {
+    "message": "폴더 추가"
+  },
+  "editFolder": {
+    "message": "폴더 편집"
+  },
+  "baseDomain": {
+    "message": "기본 도메인"
+  },
+  "host": {
+    "message": "호스트",
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
+  },
+  "exact": {
+    "message": "정확히 일치"
+  },
+  "startsWith": {
+    "message": "...으로 시작"
+  },
+  "regEx": {
+    "message": "정규 표현식",
+    "description": "A programming term, also known as 'RegEx'."
+  },
+  "matchDetection": {
+    "message": "일치 인식",
+    "description": "URI match detection for auto-fill."
+  },
+  "defaultMatchDetection": {
+    "message": "기본 일치 인식",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "never": {
+    "message": "잠그지 않음"
+  },
+  "toggleVisibility": {
+    "message": "표시 전환"
+  },
+  "toggleCollapse": {
+    "message": "Toggle Collapse",
+    "description": "Toggling an expand/collapse state."
+  },
+  "generatePassword": {
+    "message": "비밀번호 생성"
+  },
+  "checkPassword": {
+    "message": "비밀번호가 노출되었는지 확인합니다."
+  },
+  "passwordExposed": {
+    "message": "이 비밀번호는 데이터 유출에 $VALUE$회 노출되었습니다. 비밀번호를 변경하는 것이 좋습니다.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "passwordSafe": {
+    "message": "이 비밀번호는 데이터 유출 목록에 없습니다. 사용하기에 안전한 비밀번호입니다."
+  },
+  "save": {
+    "message": "저장"
+  },
+  "cancel": {
+    "message": "취소"
+  },
+  "canceled": {
+    "message": "취소됨"
+  },
+  "close": {
+    "message": "닫기"
+  },
+  "delete": {
+    "message": "삭제"
+  },
+  "favorite": {
+    "message": "즐겨찾기"
+  },
+  "unfavorite": {
+    "message": "즐겨찾기 해제"
+  },
+  "edit": {
+    "message": "편집"
+  },
+  "searchCollection": {
+    "message": "컬렉션 검색"
+  },
+  "searchFolder": {
+    "message": "폴더 검색"
+  },
+  "searchFavorites": {
+    "message": "즐겨찾기 검색"
+  },
+  "searchType": {
+    "message": "유형 검색",
+    "description": "Search item type"
+  },
+  "searchVault": {
+    "message": "보관함 검색"
+  },
+  "allItems": {
+    "message": "모든 항목"
+  },
+  "favorites": {
+    "message": "즐겨찾기"
+  },
+  "types": {
+    "message": "유형"
+  },
+  "typeLogin": {
+    "message": "로그인"
+  },
+  "typeCard": {
+    "message": "카드"
+  },
+  "typeIdentity": {
+    "message": "신원"
+  },
+  "typeSecureNote": {
+    "message": "보안 메모"
+  },
+  "folders": {
+    "message": "폴더"
+  },
+  "collections": {
+    "message": "컬렉션"
+  },
+  "firstName": {
+    "message": "이름"
+  },
+  "middleName": {
+    "message": "가운데 이름"
+  },
+  "lastName": {
+    "message": "성"
+  },
+  "address1": {
+    "message": "주소 1"
+  },
+  "address2": {
+    "message": "주소 2"
+  },
+  "address3": {
+    "message": "주소 3"
+  },
+  "cityTown": {
+    "message": "읍 / 면 / 동"
+  },
+  "stateProvince": {
+    "message": "시 / 도"
+  },
+  "zipPostalCode": {
+    "message": "우편번호"
+  },
+  "country": {
+    "message": "국가"
+  },
+  "shared": {
+    "message": "공유됨"
+  },
+  "attachments": {
+    "message": "첨부 파일"
+  },
+  "select": {
+    "message": "선택"
+  },
+  "addItem": {
+    "message": "항목 추가"
+  },
+  "editItem": {
+    "message": "항목 편집"
+  },
+  "viewItem": {
+    "message": "View Item"
+  },
+  "ex": {
+    "message": "예)",
+    "description": "Short abbreviation for 'example'."
+  },
+  "other": {
+    "message": "기타"
+  },
+  "share": {
+    "message": "공유"
+  },
+  "valueCopied": {
+    "message": "$VALUE$를 클립보드에 복사함",
+    "description": "Value has been copied to the clipboard.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "Password"
+      }
+    }
+  },
+  "copyValue": {
+    "message": "값 복사",
+    "description": "Copy value to clipboard"
+  },
+  "copyPassword": {
+    "message": "비밀번호 복사",
+    "description": "Copy password to clipboard"
+  },
+  "copyUsername": {
+    "message": "사용자 이름 복사",
+    "description": "Copy username to clipboard"
+  },
+  "copyNumber": {
+    "message": "번호 복사",
+    "description": "Copy credit card number"
+  },
+  "copySecurityCode": {
+    "message": "보안 코드 복사",
+    "description": "Copy credit card security code (CVV)"
+  },
+  "copyUri": {
+    "message": "URI 복사",
+    "description": "Copy URI to clipboard"
+  },
+  "myVault": {
+    "message": "내 보관함"
+  },
+  "vault": {
+    "message": "보관함"
+  },
+  "shareSelected": {
+    "message": "선택 항목 공유"
+  },
+  "deleteSelected": {
+    "message": "선택 항목 삭제"
+  },
+  "moveSelected": {
+    "message": "선택 항목 이동"
+  },
+  "selectAll": {
+    "message": "모두 선택"
+  },
+  "unselectAll": {
+    "message": "모두 선택 해제"
+  },
+  "launch": {
+    "message": "열기"
+  },
+  "newAttachment": {
+    "message": "새 첨부 파일 추가"
+  },
+  "deletedAttachment": {
+    "message": "첨부 파일 삭제함"
+  },
+  "deleteAttachmentConfirmation": {
+    "message": "정말 이 첨부 파일을 삭제하시겠습니까?"
+  },
+  "attachmentSaved": {
+    "message": "첨부 파일을 저장했습니다."
+  },
+  "file": {
+    "message": "파일"
+  },
+  "selectFile": {
+    "message": "파일을 선택하세요."
+  },
+  "maxFileSize": {
+    "message": "최대 파일 크기는 100MB입니다."
+  },
+  "updateKey": {
+    "message": "이 기능을 사용하려면 암호화 키를 업데이트해야 합니다."
+  },
+  "addedItem": {
+    "message": "항목 추가함"
+  },
+  "editedItem": {
+    "message": "항목 편집함"
+  },
+  "sharedItem": {
+    "message": "항목 공유함"
+  },
+  "sharedItems": {
+    "message": "항목 공유함"
+  },
+  "deleteItem": {
+    "message": "항목 삭제"
+  },
+  "deleteFolder": {
+    "message": "폴더 삭제"
+  },
+  "deleteAttachment": {
+    "message": "첨부 파일 삭제"
+  },
+  "deleteItemConfirmation": {
+    "message": "정말 이 항목을 삭제하시겠습니까?"
+  },
+  "deletedItem": {
+    "message": "항목 삭제함"
+  },
+  "deletedItems": {
+    "message": "항목 삭제함"
+  },
+  "movedItems": {
+    "message": "항목 이동함"
+  },
+  "overwritePasswordConfirmation": {
+    "message": "정말 현재 비밀번호를 덮어쓰시겠습니까?"
+  },
+  "editedFolder": {
+    "message": "폴더 편집함"
+  },
+  "addedFolder": {
+    "message": "폴더 추가함"
+  },
+  "deleteFolderConfirmation": {
+    "message": "정말 이 폴더를 삭제하시겠습니까?"
+  },
+  "deletedFolder": {
+    "message": "폴더 삭제함"
+  },
+  "loggedOut": {
+    "message": "로그아웃됨"
+  },
+  "loginExpired": {
+    "message": "로그인 세션이 만료되었습니다."
+  },
+  "logOutConfirmation": {
+    "message": "정말 로그아웃하시겠습니까?"
+  },
+  "logOut": {
+    "message": "로그아웃"
+  },
+  "ok": {
+    "message": "확인"
+  },
+  "yes": {
+    "message": "예"
+  },
+  "no": {
+    "message": "아니오"
+  },
+  "loginOrCreateNewAccount": {
+    "message": "안전 보관함에 접근하려면 로그인하거나 새 계정을 만드세요."
+  },
+  "createAccount": {
+    "message": "계정 만들기"
+  },
+  "logIn": {
+    "message": "로그인"
+  },
+  "submit": {
+    "message": "보내기"
+  },
+  "emailAddressDesc": {
+    "message": "로그인에 이메일 주소를 사용하게 될 것입니다."
+  },
+  "yourName": {
+    "message": "이름"
+  },
+  "yourNameDesc": {
+    "message": "당신은 어떻게 불립니까?"
+  },
+  "masterPass": {
+    "message": "마스터 비밀번호"
+  },
+  "masterPassDesc": {
+    "message": "마스터 비밀번호는 보관함을 열 때 필요한 비밀번호입니다. 절대 마스터 비밀번호를 잊어버리지 마세요. 잊어버리면 복구할 수 있는 방법이 없습니다."
+  },
+  "masterPassHintDesc": {
+    "message": "마스터 비밀번호 힌트는 마스터 비밀번호를 잊었을 때 도움이 될 수 있습니다."
+  },
+  "reTypeMasterPass": {
+    "message": "마스터 비밀번호 다시 입력"
+  },
+  "masterPassHint": {
+    "message": "마스터 비밀번호 힌트 (선택)"
+  },
+  "masterPassHintLabel": {
+    "message": "마스터 비밀번호 힌트"
+  },
+  "settings": {
+    "message": "설정"
+  },
+  "passwordHint": {
+    "message": "비밀번호 힌트"
+  },
+  "enterEmailToGetHint": {
+    "message": "마스터 비밀번호 힌트를 받으려면 계정의 이메일 주소를 입력하세요."
+  },
+  "getMasterPasswordHint": {
+    "message": "마스터 비밀번호 힌트 얻기"
+  },
+  "emailRequired": {
+    "message": "이메일은 반드시 입력해야 합니다."
+  },
+  "invalidEmail": {
+    "message": "잘못된 이메일 주소입니다."
+  },
+  "masterPassRequired": {
+    "message": "마스터 비밀번호는 반드시 입력해야 합니다."
+  },
+  "masterPassLength": {
+    "message": "마스터 비밀번호는 최소 8자 이상이어야 합니다."
+  },
+  "masterPassDoesntMatch": {
+    "message": "마스터 비밀번호 확인과 마스터 비밀번호가 일치하지 않습니다."
+  },
+  "newAccountCreated": {
+    "message": "계정 생성이 완료되었습니다! 이제 로그인하실 수 있습니다."
+  },
+  "masterPassSent": {
+    "message": "마스터 비밀번호 힌트가 담긴 이메일을 보냈습니다."
+  },
+  "unexpectedError": {
+    "message": "예기치 못한 오류가 발생했습니다."
+  },
+  "emailAddress": {
+    "message": "이메일 주소"
+  },
+  "yourVaultIsLocked": {
+    "message": "보관함이 잠겨 있습니다. 마스터 비밀번호를 입력하여 계속하세요."
+  },
+  "unlock": {
+    "message": "잠금 해제"
+  },
+  "loggedInAsEmailOn": {
+    "message": "$HOSTNAME$ 에 $EMAIL$ 로 로그인했습니다.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "invalidMasterPassword": {
+    "message": "잘못된 마스터 비밀번호"
+  },
+  "lockNow": {
+    "message": "지금 잠그기"
+  },
+  "noItemsInList": {
+    "message": "항목이 없습니다."
+  },
+  "noCollectionsInList": {
+    "message": "콜렉션이 없습니다."
+  },
+  "noGroupsInList": {
+    "message": "그룹이 없습니다."
+  },
+  "noUsersInList": {
+    "message": "유저가 없습니다."
+  },
+  "noEventsInList": {
+    "message": "이벤트가 없습니다."
+  },
+  "newOrganization": {
+    "message": "새 조직"
+  },
+  "noOrganizationsList": {
+    "message": "당신은 어떤 조직에도 속해있지 않습니다. 조직은 다른 사용자들과 안전하게 항목을 공유할 수 있게 해줍니다."
+  },
+  "versionNumber": {
+    "message": "버전 $VERSION_NUMBER$",
+    "placeholders": {
+      "version_number": {
+        "content": "$1",
+        "example": "1.2.3"
+      }
+    }
+  },
+  "enterVerificationCodeApp": {
+    "message": "인증 앱에서 6자리 인증 코드를 입력하세요."
+  },
+  "enterVerificationCodeEmail": {
+    "message": "$EMAIL$ 주소로 전송된 6자리 인증 코드를 입력하세요.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "verificationCodeEmailSent": {
+    "message": "$EMAIL$ 주소로 인증 이메일을 보냈습니다.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "rememberMe": {
+    "message": "기억하기"
+  },
+  "sendVerificationCodeEmailAgain": {
+    "message": "인증 코드 이메일 다시 보내기"
+  },
+  "useAnotherTwoStepMethod": {
+    "message": "다른 2단계 인증 사용"
+  },
+  "insertYubiKey": {
+    "message": "YubiKey를 컴퓨터의 USB 포트에 삽입하고 버튼을 누르세요."
+  },
+  "insertU2f": {
+    "message": "보안 키를 컴퓨터의 USB 포트에 삽입하고 버튼이 있는 경우 누르세요."
+  },
+  "loginUnavailable": {
+    "message": "로그인 불가능"
+  },
+  "noTwoStepProviders": {
+    "message": "이 계정은 2단계 인증을 사용합니다. 그러나 설정된 2단계 인증 중 이 웹 브라우저에서 지원하는 방식이 없습니다."
+  },
+  "noTwoStepProviders2": {
+    "message": "지원하는 웹 브라우저(Chrome 등)를 사용하거나 더 많은 브라우저를 지원하는 2단계 인증 방식(인증 앱 등)을 추가하세요."
+  },
+  "twoStepOptions": {
+    "message": "2단계 인증 옵션"
+  },
+  "recoveryCodeDesc": {
+    "message": "모든 2단계 인증을 사용할 수 없는 상황인가요? 복구 코드를 사용하여 계정의 모든 2단계 인증을 비활성화할 수 있습니다."
+  },
+  "recoveryCodeTitle": {
+    "message": "복구 코드"
+  },
+  "authenticatorAppTitle": {
+    "message": "인증 앱"
+  },
+  "authenticatorAppDesc": {
+    "message": "인증 앱(Authy, Google OTP 등)을 통하여 일회용 인증 코드를 생성합니다.",
+    "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
+  },
+  "yubiKeyTitle": {
+    "message": "YubiKey OTP 보안 키"
+  },
+  "yubiKeyDesc": {
+    "message": "YubiKey를 사용하여 사용자의 계정에 접근합니다. YubiKey 4, 4 Nano, 4C 및 NEO 기기를 사용할 수 있습니다."
+  },
+  "duoDesc": {
+    "message": "Duo Mobile 앱, SMS, 전화 통화를 사용한 Duo Security 또는 U2F 보안 키를 사용하여 인증하세요.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "duoOrganizationDesc": {
+    "message": "Duo Mobile 앱, SMS, 전화 통화를 사용한 조직용 Duo Security 또는 U2F 보안 키를 사용하여 인증하세요.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "u2fDesc": {
+    "message": "FIDO U2F가 활성화된 보안 키를 사용하여 계정에 접근하세요."
+  },
+  "u2fTitle": {
+    "message": "FIDO U2F 보안 키"
+  },
+  "emailTitle": {
+    "message": "이메일"
+  },
+  "emailDesc": {
+    "message": "인증 코드가 담긴 이메일을 다시 보냅니다."
+  },
+  "continue": {
+    "message": "계속"
+  },
+  "organization": {
+    "message": "조직"
+  },
+  "organizations": {
+    "message": "조직"
+  },
+  "shareDesc": {
+    "message": "이 항목을 공유할 조직을 선택하십시오. 항목이 공유되면 소유권이 조직으로 이전됩니다. 일단 공유가 되면, 더는 항목의 직접적인 소유자가 아니게 됩니다."
+  },
+  "shareManyDesc": {
+    "message": "이 항목들을 공유할 조직을 선택하십시오. 항목들이 공유되면 소유권이 조직으로 이전됩니다. 일단 공유가 되면, 더는 항목들의 직접적인 소유자가 아니게 됩니다."
+  },
+  "collectionsDesc": {
+    "message": "이 항목이 공유될 콜렉션을 수정하십시오. 이 콜렉션에 접근할 수 있는 조직 사용자만 이 항목을 볼 수 있습니다."
+  },
+  "deleteSelectedItemsDesc": {
+    "message": "삭제를 위해 $COUNT$ 개의 항목이 선택됨. 정말로 이 항목들을 삭제하시겠습니까?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "moveSelectedItemsDesc": {
+    "message": "선택된 $COUNT$ 개의 항목을 옮길 폴더를 선택하십시오.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "shareSelectedItemsCountDesc": {
+    "message": "$COUNT$ 개의 항목 선택됨. $SHAREABLE_COUNT$ 개의 항목은 공유 가능하지만, $NONSHAREABLE_COUNT$ 개의 항목은 공유 불가능합니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      },
+      "shareable_count": {
+        "content": "$2",
+        "example": "8"
+      },
+      "nonshareable_count": {
+        "content": "$3",
+        "example": "2"
+      }
+    }
+  },
+  "verificationCodeTotp": {
+    "message": "인증 코드 (TOTP)"
+  },
+  "copyVerificationCode": {
+    "message": "인증 코드 복사"
+  },
+  "warning": {
+    "message": "경고"
+  },
+  "confirmVaultExport": {
+    "message": "Confirm Vault Export"
+  },
+  "exportWarningDesc": {
+    "message": "내보내기는 보관함 데이터가 암호화되지 않은 형식으로 포함됩니다. 내보낸 파일을 안전하지 않은 채널(예: 이메일)을 통해 저장하거나 보내지 마십시오. 사용이 끝난 후에는 즉시 삭제하십시오."
+  },
+  "encExportWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+  },
+  "exportMasterPassword": {
+    "message": "보관함 데이터를 내보내려면 마스터 비밀번호를 입력하세요."
+  },
+  "exportVault": {
+    "message": "보관함 내보내기"
+  },
+  "fileFormat": {
+    "message": "파일 형식"
+  },
+  "exportSuccess": {
+    "message": "보관함 데이터를 내보냈습니다."
+  },
+  "passwordGenerator": {
+    "message": "비밀번호 생성기"
+  },
+  "minComplexityScore": {
+    "message": "최소 복잡도 점수"
+  },
+  "minNumbers": {
+    "message": "숫자 최소 개수"
+  },
+  "minSpecial": {
+    "message": "특수 문자 최소 개수",
+    "description": "Minimum Special Characters"
+  },
+  "ambiguous": {
+    "message": "모호한 문자 사용 안 함"
+  },
+  "regeneratePassword": {
+    "message": "비밀번호 재생성"
+  },
+  "length": {
+    "message": "길이"
+  },
+  "numWords": {
+    "message": "단어 수"
+  },
+  "wordSeparator": {
+    "message": "구분 기호"
+  },
+  "capitalize": {
+    "message": "첫 글자를 대문자로",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "숫자 추가"
+  },
+  "passwordHistory": {
+    "message": "비밀번호 변경 기록"
+  },
+  "noPasswordsInList": {
+    "message": "비밀번호가 없습니다."
+  },
+  "clear": {
+    "message": "삭제",
+    "description": "To clear something out. example: To clear browser history."
+  },
+  "accountUpdated": {
+    "message": "계정 업데이트됨"
+  },
+  "changeEmail": {
+    "message": "이메일 변경"
+  },
+  "newEmail": {
+    "message": "새 이메일"
+  },
+  "code": {
+    "message": "코드"
+  },
+  "changeEmailDesc": {
+    "message": "$EMAIL$으로 인증 코드를 발송했습니다. 이메일에서 이 코드를 확인하고 아래에 입력하여 이메일 주소 변경을 완료하십시오.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "john.smith@example.com"
+      }
+    }
+  },
+  "loggedOutWarning": {
+    "message": "계속 진행하면, 현재 세션 또한 로그아웃 되므로 다시 로그인하여야 합니다. 2단계 로그인이 활성화 된 경우 다시 요구하는 메세지가 표시됩니다. 다른 기기의 활성화 된 세션은 최대 1시간 동안 유지 될 수 있습니다."
+  },
+  "emailChanged": {
+    "message": "이메일 변경됨"
+  },
+  "logBackIn": {
+    "message": "다시 로그인해 주세요."
+  },
+  "logBackInOthersToo": {
+    "message": "다시 로그인해 주세요. 다른 Bitwarden 앱을 사용 중인 경우 해당 앱에서도 다시 로그인해야 합니다."
+  },
+  "changeMasterPassword": {
+    "message": "마스터 비밀번호 변경"
+  },
+  "masterPasswordChanged": {
+    "message": "마스터 비밀번호 변경됨"
+  },
+  "currentMasterPass": {
+    "message": "현재 마스터 비밀번호"
+  },
+  "newMasterPass": {
+    "message": "새 마스터 비밀번호"
+  },
+  "confirmNewMasterPass": {
+    "message": "새 마스터 비밀번호 확인"
+  },
+  "encKeySettings": {
+    "message": "암호화 키 설정"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF 알고리즘"
+  },
+  "kdfIterations": {
+    "message": "KDF 이터레이션"
+  },
+  "kdfIterationsDesc": {
+    "message": "높은 KDF 반복자는 공격자의 무차별 공격으로부터 마스터 비밀번호를 보호해줍니다. $VALUE$ 이상의 값을 추천합니다.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "KDF 반복자를 너무 높게 설정하면 CPU가 느린 장치에서 Bitwarden에 로그인(및 잠금 해제)할 때 성능이 저하될 수 있습니다. $INCREMENT$ 단위로 값을 올려가며 모든 장치를 테스트하는 것이 좋습니다.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "KDF 변경"
+  },
+  "encKeySettingsChanged": {
+    "message": "암호화 키 설정 변경됨"
+  },
+  "dangerZone": {
+    "message": "위험 구역"
+  },
+  "dangerZoneDesc": {
+    "message": "주의, 이 행동들은 되돌릴 수 없음!"
+  },
+  "deauthorizeSessions": {
+    "message": "세션 해제"
+  },
+  "deauthorizeSessionsDesc": {
+    "message": "계정이 다른 장치에 로그인되어 있습니까? 이전에 사용된 모든 컴퓨터 또는 장치 인증을 취소하려면 다음 단계로 나아가십시오. 이 보안 단계는 이전에 공용 PC를 사용했거나 실수로 타인의 장치에 비밀번호를 저장한 경우 권장됩니다. 이 단계에서는 이전에 기억된 2단계 로그인 세션도 모두 삭제됩니다."
+  },
+  "deauthorizeSessionsWarning": {
+    "message": "계속 진행하면, 현재 세션 또한 로그아웃 되므로 다시 로그인하여야 합니다. 2단계 로그인이 활성화 된 경우 다시 요구하는 메세지가 표시됩니다. 다른 기기의 활성화 된 세션은 최대 1시간 동안 유지 될 수 있습니다."
+  },
+  "sessionsDeauthorized": {
+    "message": "모든 세션 해제 됨"
+  },
+  "purgeVault": {
+    "message": "보관함 삭제"
+  },
+  "purgedOrganizationVault": {
+    "message": "삭제 된 조직 보관함"
+  },
+  "purgeVaultDesc": {
+    "message": "보관함 내의 모든 항목과 폴더를 삭제하려면 다음 단계로 나아가십시오. 조직에 속한 공유 항목들은 삭제되지 않습니다."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "조직의 보관함 내 모든 항목을 삭제하려면 다음 단계로 나아가십시오."
+  },
+  "purgeVaultWarning": {
+    "message": "계정 삭제는 영구적이며 되돌릴 수 없습니다."
+  },
+  "vaultPurged": {
+    "message": "보관함이 삭제되었습니다."
+  },
+  "deleteAccount": {
+    "message": "계정 삭제"
+  },
+  "deleteAccountDesc": {
+    "message": "귀하의 계정과 저장된 데이터들을 삭제하려면 아래를 계속 진행하십시오."
+  },
+  "deleteAccountWarning": {
+    "message": "계정 삭제는 영구적이며 되돌릴 수 없습니다."
+  },
+  "accountDeleted": {
+    "message": "계정 삭제됨"
+  },
+  "accountDeletedDesc": {
+    "message": "당신의 계정과 연관된 모든 데이터들이 삭제되었습니다."
+  },
+  "myAccount": {
+    "message": "내 계정"
+  },
+  "tools": {
+    "message": "도구"
+  },
+  "importData": {
+    "message": "데이터 가져오기"
+  },
+  "importSuccess": {
+    "message": "데이터를 보관함으로 성공적으로 불러왔습니다."
+  },
+  "importFormatError": {
+    "message": "데이터의 포맷이 올바르지 않습니다. 불러올 파일을 확인하고 다시 시도해 주십시오."
+  },
+  "importNothingError": {
+    "message": "아무것도 가져오지 못했습니다."
+  },
+  "selectFormat": {
+    "message": "불러올 파일의 포맷"
+  },
+  "selectImportFile": {
+    "message": "불러올 파일"
+  },
+  "orCopyPasteFileContents": {
+    "message": "또는 가져온 파일 내용 복사/붙여넣기"
+  },
+  "instructionsFor": {
+    "message": "$NAME$ 안내사항",
+    "description": "The title for the import tool instructions.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "LastPass (csv)"
+      }
+    }
+  },
+  "options": {
+    "message": "옵션"
+  },
+  "optionsDesc": {
+    "message": "웹 보관함 환경 사용자 지정"
+  },
+  "optionsUpdated": {
+    "message": "옵션 업데이트됨"
+  },
+  "language": {
+    "message": "언어(Language)"
+  },
+  "languageDesc": {
+    "message": "웹 보관함에서 사용할 언어를 변경합니다."
+  },
+  "disableIcons": {
+    "message": "웹 사이트 아이콘 사용 안 함"
+  },
+  "disableIconsDesc": {
+    "message": "웹 사이트 아이콘을 사용하면 보관함 각 항목 옆에 이미지를 보여줍니다."
+  },
+  "enableGravatars": {
+    "message": "Gravatar 사용",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "gravatar.com의 아바타 이미지를 사용."
+  },
+  "enableFullWidth": {
+    "message": "전체 너비 레이아웃 활성화",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "웹 보관함이 브라우저 창의 전체 너비를 사용하도록 확장합니다."
+  },
+  "default": {
+    "message": "기본값"
+  },
+  "domainRules": {
+    "message": "도메인 규칙"
+  },
+  "domainRulesDesc": {
+    "message": "여러 웹 사이트 도메인에 대해 동일한 로그인이 있는 경우, 웹 사이트가 \"유사\"하다고 표시할 수 있습니다. \"전역\" 도메인은 Bitwarden에서 당신을 위해 이미 생성했습니다."
+  },
+  "globalEqDomains": {
+    "message": "전역 유사 도메인"
+  },
+  "customEqDomains": {
+    "message": "사용자 지정 유사 도메인"
+  },
+  "exclude": {
+    "message": "제외"
+  },
+  "include": {
+    "message": "포함"
+  },
+  "customize": {
+    "message": "사용자 지정"
+  },
+  "newCustomDomain": {
+    "message": "새 사용자 지정 도메인"
+  },
+  "newCustomDomainDesc": {
+    "message": "도메인 목록을 쉼표(,)로 구분하여 입력하십시오. \"기본\" 도메인만 사용할 수 있습니다. 하위 도메인을 입력하지 마십시오. 예를 들면, \"www.google.com\" 대신 \"google.com\"을 입력합니다. Android 앱을 다른 웹 사이트 도메인과 연결하려면 \"androidapp://package.name\"을 입력하십시오."
+  },
+  "customDomainX": {
+    "message": "사용자 정의 도메인 $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "domainsUpdated": {
+    "message": "도메인 업데이트됨"
+  },
+  "twoStepLogin": {
+    "message": "2단계 인증"
+  },
+  "twoStepLoginDesc": {
+    "message": "로그인할 때 추가 단계를 요구하여 계정을 보호하십시오."
+  },
+  "twoStepLoginOrganizationDesc": {
+    "message": "조직 수준에서 제공자를 구성하여 조직 내 사용자에게 2단계 로그인을 요구합니다."
+  },
+  "twoStepLoginRecoveryWarning": {
+    "message": "2단계 로그인을 활성화하면 Bitwarden 계정을 영원히 잠글 수 있습니다. 복구 코드를 사용하면 정상적인 2단계 로그인 제공자를 더 이상 사용할 수 없는 경우(예. 장치를 잃어버렸을 때) 계정에 액세스할 수 있습니다. 계정에 접근하지 못한다면 Bitwarden 지원팀은 어떤 도움도 줄 수 없습니다. 복구 코드를 기록하거나 출력하여 안전한 장소에 보관할 것을 권장합니다."
+  },
+  "viewRecoveryCode": {
+    "message": "복구 코드"
+  },
+  "providers": {
+    "message": "공급자",
+    "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
+  },
+  "enable": {
+    "message": "활성화"
+  },
+  "enabled": {
+    "message": "활성화됨"
+  },
+  "premium": {
+    "message": "프리미엄",
+    "description": "Premium Membership"
+  },
+  "premiumMembership": {
+    "message": "프리미엄 멤버십"
+  },
+  "premiumRequired": {
+    "message": "프리미엄 멤버십 필요"
+  },
+  "premiumRequiredDesc": {
+    "message": "이 기능을 사용하려면 프리미엄 멤버십이 필요합니다."
+  },
+  "youHavePremiumAccess": {
+    "message": "프리미엄 멤버십 사용 중"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "소속된 조직으로 이미 프리미엄 기능에 액세스할 수 있습니다."
+  },
+  "manage": {
+    "message": "관리"
+  },
+  "disable": {
+    "message": "비활성화"
+  },
+  "twoStepLoginProviderEnabled": {
+    "message": "이 2단계 로그인 제공자는 귀하의 계정에 사용 가능합니다."
+  },
+  "twoStepLoginAuthDesc": {
+    "message": "2단계 로그인 설정을 수정하려면 마스터 암호를 입력하십시오."
+  },
+  "twoStepAuthenticatorDesc": {
+    "message": "다음 단계에 따라 인증자 앱으로 2단계 로그인 설정:"
+  },
+  "twoStepAuthenticatorDownloadApp": {
+    "message": "2단계 인증자 앱 다운로드"
+  },
+  "twoStepAuthenticatorNeedApp": {
+    "message": "2단계 인증자 앱이 필요하십니까? 다음 중 하나를 다운로드하세요"
+  },
+  "iosDevices": {
+    "message": "iOS 기기"
+  },
+  "androidDevices": {
+    "message": "Android 기기"
+  },
+  "windowsDevices": {
+    "message": "Windows 기기"
+  },
+  "twoStepAuthenticatorAppsRecommended": {
+    "message": "These apps are recommended, however, other authenticator apps will also work."
+  },
+  "twoStepAuthenticatorScanCode": {
+    "message": "이 QR 코드를 인증 앱으로 스캔"
+  },
+  "key": {
+    "message": "키"
+  },
+  "twoStepAuthenticatorEnterCode": {
+    "message": "앱에서 결과로 나온 6자리 인증코드를 입력하십시오"
+  },
+  "twoStepAuthenticatorReaddDesc": {
+    "message": "다른 장치에 추가해야 하는 경우, 아래의 QR코드(혹은 키) 가 인증자 앱에 필요합니다."
+  },
+  "twoStepDisableDesc": {
+    "message": "이 2단계 로그인 제공자를 사용하지 않도록 설정하시겠습니까?"
+  },
+  "twoStepDisabled": {
+    "message": "2단계 로그인 제공자 비활성화됨."
+  },
+  "twoFactorYubikeyAdd": {
+    "message": "계정에 새로운 YubiKey를 추가합니다."
+  },
+  "twoFactorYubikeyPlugIn": {
+    "message": "YubiKey(NEO 혹은 4 시리즈)를 컴퓨터 USB 포트에 삽입하십시오."
+  },
+  "twoFactorYubikeySelectKey": {
+    "message": "첫번째 비어있는 YubiKey 입력 필드를 선택하십시오."
+  },
+  "twoFactorYubikeyTouchButton": {
+    "message": "YubiKey의 버튼을 터치하십시오"
+  },
+  "twoFactorYubikeySaveForm": {
+    "message": "폼 저장하기"
+  },
+  "twoFactorYubikeyWarning": {
+    "message": "플랫폼 제한으로 인해, 모든 Bitwawrden 애플리케이션에서 YubiKey를 사용할 수 없습니다. YubiKey를 사용할 수 없을 때 계정에 액세스할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
+  },
+  "twoFactorYubikeySupportUsb": {
+    "message": "웹 보관함, 데스크톱 응용프로그램, 명령 줄 인터페이스, USB 포트가 있는 장치의 브라우저 확장 기능은 YubiKey를 사용할 수 있습니다."
+  },
+  "twoFactorYubikeySupportMobile": {
+    "message": "NFC 또는 USB 포트가 있는 장치의 모바일 앱은 YubiKey를 사용할 수 있습니다."
+  },
+  "yubikeyX": {
+    "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "nfcSupport": {
+    "message": "NFC 지원"
+  },
+  "twoFactorYubikeySupportsNfc": {
+    "message": "내 키 중의 하나가 NFC를 지원합니다."
+  },
+  "twoFactorYubikeySupportsNfcDesc": {
+    "message": "YubiKey중 하나가 NFC(예: YubiKey NEO)를 지원할 경우, NFC 사용가능 여부가 감지될 때마다 모바일 장치에서 메시지가 표시됩니다."
+  },
+  "yubikeysUpdated": {
+    "message": "YubiKey 업데이트됨"
+  },
+  "disableAllKeys": {
+    "message": "Disable All Keys"
+  },
+  "twoFactorDuoDesc": {
+    "message": "Duo 관리자 패널에서 Bitwarden 애플리케이션 정보를 입력하십시오."
+  },
+  "twoFactorDuoIntegrationKey": {
+    "message": "Integration Key"
+  },
+  "twoFactorDuoSecretKey": {
+    "message": "비밀 키"
+  },
+  "twoFactorDuoApiHostname": {
+    "message": "API 호스트 이름"
+  },
+  "twoFactorEmailDesc": {
+    "message": "다음 단계에 따라 이메일로 2단계 로그인 설정:"
+  },
+  "twoFactorEmailEnterEmail": {
+    "message": "확인 코드를 수신할 이메일을 입력하십시오."
+  },
+  "twoFactorEmailEnterCode": {
+    "message": "이메일에서 결과로 나온 6자리 인증코드를 입력하십시오"
+  },
+  "sendEmail": {
+    "message": "Send Email"
+  },
+  "twoFactorU2fAdd": {
+    "message": "계정에 FIDO U2F 보안 키 추가"
+  },
+  "removeU2fConfirmation": {
+    "message": "정말로 이 보안 키를 제거하시겠습니까?"
+  },
+  "readKey": {
+    "message": "키 읽기"
+  },
+  "keyCompromised": {
+    "message": "키가 손상되었습니다."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "보안 키를 식별할 수 있는 친근한 이름을 지정하십시오."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "컴퓨터의 USB 포트에 보안 키를 삽입하고 \"키 읽기\" 버튼을 클릭하십시오."
+  },
+  "twoFactorU2fTouchButton": {
+    "message": "보안 키에 버튼이 있다면, 터치하십시오"
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "폼 저장하기"
+  },
+  "twoFactorU2fWarning": {
+    "message": "플랫폼 제한으로 인해, 모든 Bitwawrden 애플리케이션에서 FIDO U2F를 사용할 수 없습니다. FIDO U2F를 사용할 수 없을 때 계정에 액세스할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
+  },
+  "twoFactorU2fSupportWeb": {
+    "message": "U2F 지원 브라우저가 있는 데스크탑/랩탑의 웹 보관함 및 브라우저 확장 (FIDO U2F가 활성화된 Chrome, Opera, Vivaldi 또는 Firefox 사용)"
+  },
+  "twoFactorU2fWaiting": {
+    "message": "보안 키 버튼 터치를 기다리는 중"
+  },
+  "twoFactorU2fClickSave": {
+    "message": "2단계 로그인에 이 보안 키를 사용하려면 아래의 \"저장\" 버튼을 클릭하십시오"
+  },
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "보안 키를 읽어오는데 문제가 발생했습니다. 다시 시도해보십시오."
+  },
+  "twoFactorRecoveryYourCode": {
+    "message": "Bitwarden 2단계 로그인 복구 코드"
+  },
+  "twoFactorRecoveryNoCode": {
+    "message": "아직 2단계 로그인 제공자를 사용하도록 설정하지 않았습니다. 2단계 로그인 제공자를 사용하도록 설정한 후 여기에서 복구 코드를 확인하십시오."
+  },
+  "printCode": {
+    "message": "코드 출력",
+    "description": "Print 2FA recovery code"
+  },
+  "reports": {
+    "message": "보고서"
+  },
+  "unsecuredWebsitesReport": {
+    "message": "안전하지 않은 웹사이트들 보고서"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "http:// 스키마처럼 안전하지 않은 웹 사이트를 사용하는 것은 위험할 수 있습니다. 웹 사이트가 허용하는 경우 항상 https:// 스키마를 통해 액세스하여 연결이 암호화되도록 하십시오."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "안전하지 않은 웹사이트가 발견됨"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "보관함에 안전하지 않은 URI를 가진 항목 $COUNT$개를 발견했습니다. 웹 사이트에서 허용하는 경우 URI 스키마를 https://로 변경하십시오.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "보관함에 안전하지 않은 URI를 가진 항목이 없습니다."
+  },
+  "inactive2faReport": {
+    "message": "비활성 2단계 인증 보고서"
+  },
+  "inactive2faReportDesc": {
+    "message": "2단계 인증은 계정을 보호하는데 중요한 보안 설정입니다. 웹 사이트에서 제공하는 경우 항상 2단계 인증을 사용해야 합니다."
+  },
+  "inactive2faFound": {
+    "message": "2단계 인증이 없는 로그인이 발견됨"
+  },
+  "inactive2faFoundDesc": {
+    "message": "보관함에 (2fa.directory에 따른) 2단계 인증이 설정되지 않은 웹 사이트를 $COUNT$개 발견했습니다. 이러한 계정을 더욱 보호하려면 2단계 인증을 사용하십시오.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noInactive2fa": {
+    "message": "보관함에서 2단계 인증 구성이 누락된 웹 사이트를 찾을 수 없습니다."
+  },
+  "instructions": {
+    "message": "안내사항"
+  },
+  "exposedPasswordsReport": {
+    "message": "노출된 비밀번호 보고서"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "노출된 비밀번호는 해커들이 공개적으로 배포하거나 다크 웹에 판매되어 알려진 데이터 유출에서 발견된 비밀번호입니다."
+  },
+  "exposedPasswordsFound": {
+    "message": "노출된 비밀번호가 발견됨"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "보관함에 알려진 데이터 유출로 노출된 비밀번호가 있는 $COUNT$개의 항목을 발견했습니다. 새 암호를 사용하도록 암호를 변경해야합니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "보관함 내 알려진 데이터 유출로 노출된 비밀번호를 사용하는 항목이 없습니다."
+  },
+  "checkExposedPasswords": {
+    "message": "노출된 비밀번호 확인하기"
+  },
+  "exposedXTimes": {
+    "message": "$COUNT$회 노출됨",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
+  "weakPasswordsReport": {
+    "message": "취약한 비밀번호 보고서"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "취약한 비밀번호는 해커와 암호 해독에 사용되는 자동화 도구로 쉽게 짐작할 수 있습니다. Bitwarden 암호 생성기는 강력한 암호를 만드는데 도움을 줄 것입니다."
+  },
+  "weakPasswordsFound": {
+    "message": "취약한 비밀번호가 발견됨"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "강력한 비밀번호가 아닌 $COUNT$개의 항목을 보관함에서 찾았습니다. 더 강력한 암호를 사용하도록 업데이트해야 합니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "보관함에 취약한 비밀번호를 가진 항목이 없습니다."
+  },
+  "reusedPasswordsReport": {
+    "message": "재사용된 비밀번호 보고서"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "사용하는 서비스가 손상된 경우 다른 곳에서 동일한 암호를 다시 사용하면 해커가 더 많은 온라인 계정에 쉽게 액세스할 수 있습니다. 모든 계정 또는 서비스에 대해 고유한 암호를 사용하십시오."
+  },
+  "reusedPasswordsFound": {
+    "message": "재사용된 비밀번호가 발견됨"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "보관함에서 재사용중인 $COUNT$개의 비밀번호를 찾았습니다. 고유한 값으로 변경해야 합니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "보관함에 재사용된 비밀번호를 가진 로그인이 없습니다."
+  },
+  "reusedXTimes": {
+    "message": "$COUNT$회 재사용됨",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "dataBreachReport": {
+    "message": "데이터 유출 보고서"
+  },
+  "breachDesc": {
+    "message": "\"유출(breach)\"이란, 사이트의 데이터가 불법적으로 해커에 의해 접근되고 공개되는 사건을 뜻합니다. 손상된 데이터 유형(이메일 주소, 비밀번호, 신용카드 등)을 검토하고 비밀번호 변경 등 적절한 조치를 취하십시오."
+  },
+  "breachCheckUsernameEmail": {
+    "message": "사용하는 사용자 이름 혹은 이메일 주소를 확인해보세요."
+  },
+  "checkBreaches": {
+    "message": "유출 확인하기"
+  },
+  "breachUsernameNotFound": {
+    "message": "$USERNAME$을 알려진 데이터 유출에서 발견하지 못했습니다.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      }
+    }
+  },
+  "goodNews": {
+    "message": "좋은 소식이에요",
+    "description": "ex. Good News, No Breached Accounts Found!"
+  },
+  "breachUsernameFound": {
+    "message": "$USERNAME$을 $COUNT$개의 온라인 상의 데이터 유출에서 발견되었습니다.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      },
+      "count": {
+        "content": "$2",
+        "example": "7"
+      }
+    }
+  },
+  "breachFound": {
+    "message": "유출된 계정이 발견됨"
+  },
+  "compromisedData": {
+    "message": "손상된 데이터"
+  },
+  "website": {
+    "message": "웹 사이트"
+  },
+  "affectedUsers": {
+    "message": "영향을 받는 사용자"
+  },
+  "breachOccurred": {
+    "message": "유출 발생함"
+  },
+  "breachReported": {
+    "message": "유출 보고됨"
+  },
+  "reportError": {
+    "message": "보고서를 불러오는 도중 오류가 발생했습니다. 다시 시도해주세요."
+  },
+  "billing": {
+    "message": "결제"
+  },
+  "accountCredit": {
+    "message": "계정 크레딧",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "계정 잔액",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "크레딧 추가",
+    "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "금액",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "추가된 크레딧은 결제가 완전히 처리된 후 계정에 표시됩니다. 일부 결제 방식은 지연되거나 처리하는 데 시간이 오래 걸릴 수 있습니다."
+  },
+  "makeSureEnoughCredit": {
+    "message": "이 구매에 사용할 수 있는 크레딧이 충분한지 확인하십시오. 만약 계정에 충분한 크레딧이 없다면, 그 차액만큼 기본 결제 방식에서 지불될 것입니다. 청구 페이지를 통해 계정에 크레딧을 추가할 수 있습니다."
+  },
+  "creditAppliedDesc": {
+    "message": "계정의 크레딧을 구매에 사용할 수 있습니다. 사용 가능한 모든 크레딧이 이 계정에 대해 생성된 청구서에 자동으로 적용됩니다."
+  },
+  "goPremium": {
+    "message": "프리미엄 가입",
+    "description": "Another way of saying \"Get a premium membership\""
+  },
+  "premiumUpdated": {
+    "message": "프리미엄으로 업그레이드했습니다."
+  },
+  "premiumUpgradeUnlockFeatures": {
+    "message": "프리미엄 회원으로 계정을 업그레이드하고 몇 가지 훌륭한 추가 기능을 잠금 해제하세요."
+  },
+  "premiumSignUpStorage": {
+    "message": "1GB의 암호화된 파일 저장소."
+  },
+  "premiumSignUpTwoStep": {
+    "message": "YubiKey나 FIDO U2F, Duo 등의 추가적인 2단계 인증 옵션."
+  },
+  "premiumSignUpReports": {
+    "message": "보관함을 안전하게 유지하기 위한 암호 위생, 계정 상태, 데이터 유출 보고서"
+  },
+  "premiumSignUpTotp": {
+    "message": "보관함에 등록된 로그인 항목을 위한 TOTP 인증 코드(2FA) 생성기."
+  },
+  "premiumSignUpSupport": {
+    "message": "고객 지원 우선 순위 제공."
+  },
+  "premiumSignUpFuture": {
+    "message": "앞으로 추가될 모든 프리미엄 기능을 사용할 수 있습니다. 기대하세요!"
+  },
+  "premiumPrice": {
+    "message": "이 모든 기능을 연 $PRICE$에 이용하실 수 있습니다!",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      }
+    }
+  },
+  "addons": {
+    "message": "부가 기능"
+  },
+  "premiumAccess": {
+    "message": "프리미엄 이용권"
+  },
+  "premiumAccessDesc": {
+    "message": "$INTERVAL$간 $PRICE$로 조직의 모든 구성원에게 프리미엄 액세스를 추가할 수 있습니다.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "additionalStorageGb": {
+    "message": "추가 저장소 용량 (GB)"
+  },
+  "additionalStorageGbDesc": {
+    "message": "# 의 추가 GB"
+  },
+  "additionalStorageIntervalDesc": {
+    "message": "귀하의 플랜은 $SIZE$의 암호화된 파일 저장소가 제공됩니다. GB / $INTERVAL$당 $PRICE$로 저장소용량을 추가할 수 있습니다.",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      },
+      "price": {
+        "content": "$2",
+        "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "summary": {
+    "message": "요약"
+  },
+  "total": {
+    "message": "총합"
+  },
+  "year": {
+    "message": "년"
+  },
+  "month": {
+    "message": "월"
+  },
+  "monthAbbr": {
+    "message": "월",
+    "description": "Short abbreviation for 'month'"
+  },
+  "paymentChargedAnnually": {
+    "message": "귀하의 결제방식으로 즉시 요금이 부과되고 정기적으로 매 년 부과됩니다. 언제든지 취소할 수 있습니다."
+  },
+  "paymentCharged": {
+    "message": "귀하의 결제방식으로 즉시 요금이 부과되고 정기적으로 매 $INTERVAL$ 부과됩니다. 언제든지 취소할 수 있습니다.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentChargedWithTrial": {
+    "message": "귀하의 플랜은 7일 무료 평가판입니다. 평가 기간이 만료될 때까지 카드에서 대금이 지불되지 않습니다. 이후 정기적으로 매 $INTERVAL$ 청구됩니다. 언제든지 취소할 수 있습니다.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentInformation": {
+    "message": "결제 정보"
+  },
+  "billingInformation": {
+    "message": "Billing Information"
+  },
+  "creditCard": {
+    "message": "신용카드"
+  },
+  "paypalClickSubmit": {
+    "message": "PayPal 버튼을 클릭하여 PayPal 계정에 로그인한 후 아래의 제출 버튼을 클릭하여 계속 진행하십시오."
+  },
+  "cancelSubscription": {
+    "message": "구독 취소"
+  },
+  "subscriptionCanceled": {
+    "message": "구독을 취소했습니다."
+  },
+  "pendingCancellation": {
+    "message": "보류 취소"
+  },
+  "subscriptionPendingCanceled": {
+    "message": "구독은 현재 결제 기간이 끝날 때 취소로 표시됩니다."
+  },
+  "reinstateSubscription": {
+    "message": "구독 복원"
+  },
+  "reinstateConfirmation": {
+    "message": "보류중인 취소 요청을 제거하고 구독을 복원하시겠습니까?"
+  },
+  "reinstated": {
+    "message": "구독을 복원했습니다."
+  },
+  "cancelConfirmation": {
+    "message": "정말로 취소하시겠습니까? 청구 주기 후에 이 구독의 모든 기능에 대한 접근을 잃게 됩니다."
+  },
+  "canceledSubscription": {
+    "message": "구독을 취소했습니다."
+  },
+  "neverExpires": {
+    "message": "만료 없음"
+  },
+  "status": {
+    "message": "상태"
+  },
+  "nextCharge": {
+    "message": "다음 지불"
+  },
+  "details": {
+    "message": "세부사항"
+  },
+  "downloadLicense": {
+    "message": "라이선스 다운로드"
+  },
+  "updateLicense": {
+    "message": "라이선스 업데이트"
+  },
+  "updatedLicense": {
+    "message": "라이선스 업데이트됨"
+  },
+  "manageSubscription": {
+    "message": "구독 관리"
+  },
+  "storage": {
+    "message": "저장소"
+  },
+  "addStorage": {
+    "message": "저장소 용량 추가"
+  },
+  "removeStorage": {
+    "message": "저장소 용량 제거"
+  },
+  "subscriptionStorage": {
+    "message": "귀하의 구독은 총 $MAX_STORAGE$ GB의 암호화된 파일 저장소 용량을 갖고 있습니다. 현재 $USED_STORAGE$만큼 사용했습니다.",
+    "placeholders": {
+      "max_storage": {
+        "content": "$1",
+        "example": "4"
+      },
+      "used_storage": {
+        "content": "$2",
+        "example": "65 MB"
+      }
+    }
+  },
+  "paymentMethod": {
+    "message": "결제 수단"
+  },
+  "noPaymentMethod": {
+    "message": "파일에 결제방식이 없습니다."
+  },
+  "addPaymentMethod": {
+    "message": "결제 수단 추가"
+  },
+  "changePaymentMethod": {
+    "message": "결제 수단 변경"
+  },
+  "invoices": {
+    "message": "청구서"
+  },
+  "noInvoices": {
+    "message": "청구서 없음"
+  },
+  "paid": {
+    "message": "결제됨",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "미결제",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "거래내역",
+    "description": "Payment/credit transactions."
+  },
+  "noTransactions": {
+    "message": "거래내역 없음."
+  },
+  "chargeNoun": {
+    "message": "결제",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "환불",
+    "description": "Noun. A refunded payment that was charged."
+  },
+  "chargesStatement": {
+    "message": "모든 요금은 $STATEMENT_NAME$으로 내역서에 표시됩니다.",
+    "placeholders": {
+      "statement_name": {
+        "content": "$1",
+        "example": "BITWARDEN"
+      }
+    }
+  },
+  "gbStorageAdd": {
+    "message": "추가되는 저장소 용량 (GB)"
+  },
+  "gbStorageRemove": {
+    "message": "삭제되는 저장소 용량 (GB)"
+  },
+  "storageAddNote": {
+    "message": "저장소 용량을 추가하면 청구 총계가 조정되고 파일에 즉시 지불 방법이 청구됩니다. 첫 번째 요금은 현재 청구 주기의 나머지 기간 동안 적립될 것입니다."
+  },
+  "storageRemoveNote": {
+    "message": "저장소 용량을 제거하면 다음 청구 비용에 대한 크레딧으로 할당된 청구 총계가 조정될 것입니다."
+  },
+  "adjustedStorage": {
+    "message": "$AMOUNT$GB 저장소로 조정됨",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "contactSupport": {
+    "message": "고객 지원 서비스에 문의"
+  },
+  "updatedPaymentMethod": {
+    "message": "결제방식 업데이트됨."
+  },
+  "purchasePremium": {
+    "message": "프리미엄 구매"
+  },
+  "licenseFile": {
+    "message": "라이선스 파일"
+  },
+  "licenseFileDesc": {
+    "message": "라이선스 파일의 파일명은 $FILE_NAME$과 같을 것입니다.",
+    "placeholders": {
+      "file_name": {
+        "content": "$1",
+        "example": "bitwarden_premium_license.json"
+      }
+    }
+  },
+  "uploadLicenseFilePremium": {
+    "message": "프리미엄 멤버십으로 계정을 업그레이드하려면 유효한 라이선스 파일을 업로드해야 합니다."
+  },
+  "uploadLicenseFileOrg": {
+    "message": "온-프레미스 호스트 조직을 생성하려면 유효한 라이선스 파일을 업로드하십시오."
+  },
+  "accountEmailMustBeVerified": {
+    "message": "계정의 이메일 주소를 확인 해야 합니다."
+  },
+  "newOrganizationDesc": {
+    "message": "조직에서는 다른 사람과 저장소 일부를 공유할 수 있을 뿐 아니라 가족, 소규모 팀 또는 대기업과 같은 특정 엔터티에 대한 관련 사용자를 관리할 수 있습니다."
+  },
+  "generalInformation": {
+    "message": "일반 정보"
+  },
+  "organizationName": {
+    "message": "조직 이름"
+  },
+  "accountOwnedBusiness": {
+    "message": "이 계정은 기업이 소유하고 있습니다."
+  },
+  "billingEmail": {
+    "message": "결제 이메일"
+  },
+  "businessName": {
+    "message": "기업 이름"
+  },
+  "chooseYourPlan": {
+    "message": "플랜을 선택하십시오"
+  },
+  "users": {
+    "message": "사용자"
+  },
+  "userSeats": {
+    "message": "사용자 수"
+  },
+  "additionalUserSeats": {
+    "message": "추가 사용자 수"
+  },
+  "userSeatsDesc": {
+    "message": "# 의 사용자 수"
+  },
+  "userSeatsAdditionalDesc": {
+    "message": "귀하의 플랜은 $BASE_SEATS$개의 사용자 수가 제공됩니다. 사용자 당 월 $SEAT_PRICE$로 사용자를 추가할 수 있습니다.",
+    "placeholders": {
+      "base_seats": {
+        "content": "$1",
+        "example": "5"
+      },
+      "seat_price": {
+        "content": "$2",
+        "example": "$2.00"
+      }
+    }
+  },
+  "userSeatsHowManyDesc": {
+    "message": "사용자 수가 얼마나 필요하십니까? 필요한 경우 나중에 사용자를 추가할 수 있습니다."
+  },
+  "planNameFree": {
+    "message": "무료",
+    "description": "Free as in 'free beer'."
+  },
+  "planDescFree": {
+    "message": "테스트 용도나 개인 사용자는 다른 사용자에게 $COUNT$회 공유할 수 있습니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "planNameFamilies": {
+    "message": "가정"
+  },
+  "planDescFamilies": {
+    "message": "개인적인 사용을 위해 가족과 친구들에게 공유하세요."
+  },
+  "planNameTeams": {
+    "message": "팀"
+  },
+  "planDescTeams": {
+    "message": "기업 및 기타 팀 조직용."
+  },
+  "planNameEnterprise": {
+    "message": "기업"
+  },
+  "planDescEnterprise": {
+    "message": "기업 및 기타 대규모 조직용."
+  },
+  "freeForever": {
+    "message": "영구 무료"
+  },
+  "includesXUsers": {
+    "message": "$COUNT$명의 사용자 포함",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "additionalUsers": {
+    "message": "추가 사용자"
+  },
+  "costPerUser": {
+    "message": "사용자 당 $COST$",
+    "placeholders": {
+      "cost": {
+        "content": "$1",
+        "example": "$3"
+      }
+    }
+  },
+  "limitedUsers": {
+    "message": "$COUNT$명의 사용자(자신 포함) 로 제한됨",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "limitedCollections": {
+    "message": "$COUNT$개의 컬렉션으로 제한됨",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "addShareLimitedUsers": {
+    "message": "$COUNT$명까지 사용자 추가 및 공유",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "addShareUnlimitedUsers": {
+    "message": "사용자 무제한 추가 및 공유"
+  },
+  "createUnlimitedCollections": {
+    "message": "무제한 컬렉션 만들기"
+  },
+  "gbEncryptedFileStorage": {
+    "message": "$SIZE$의 암호화된 파일 저장소",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      }
+    }
+  },
+  "onPremHostingOptional": {
+    "message": "온-프레미스 호스팅 (선택 사항)"
+  },
+  "usersGetPremium": {
+    "message": "사용자가 프리미엄 멤버십 기능에 액세스 가능"
+  },
+  "controlAccessWithGroups": {
+    "message": "그룹을 통한 사용자 액세스 제어"
+  },
+  "syncUsersFromDirectory": {
+    "message": "디렉토리로부터 사용자 및 그룹 동기화"
+  },
+  "trackAuditLogs": {
+    "message": "감사 로그로 사용자 동작 추적"
+  },
+  "enforce2faDuo": {
+    "message": "Duo 2FA를 적용"
+  },
+  "priorityCustomerSupport": {
+    "message": "우선 고객 지원"
+  },
+  "xDayFreeTrial": {
+    "message": "$COUNT$일간 무료 평가, 언제든지 취소",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "monthly": {
+    "message": "월간"
+  },
+  "annually": {
+    "message": "연간"
+  },
+  "basePrice": {
+    "message": "기준 단가"
+  },
+  "organizationCreated": {
+    "message": "조직 생성됨"
+  },
+  "organizationReadyToGo": {
+    "message": "새 조직이 준비 완료되었습니다!"
+  },
+  "organizationUpgraded": {
+    "message": "조직이 업그레이드되었습니다."
+  },
+  "leave": {
+    "message": "나가기"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "정말 이 조직을 떠나시겠습니까?"
+  },
+  "leftOrganization": {
+    "message": "조직을 떠났습니다."
+  },
+  "defaultCollection": {
+    "message": "기본 컬렉션"
+  },
+  "getHelp": {
+    "message": "문의하기"
+  },
+  "getApps": {
+    "message": "앱 다운로드"
+  },
+  "loggedInAs": {
+    "message": "로그인됨"
+  },
+  "eventLogs": {
+    "message": "이벤트 로그"
+  },
+  "people": {
+    "message": "인물"
+  },
+  "policies": {
+    "message": "정책"
+  },
+  "editPolicy": {
+    "message": "정책 수정"
+  },
+  "groups": {
+    "message": "그룹"
+  },
+  "newGroup": {
+    "message": "새 그룹"
+  },
+  "addGroup": {
+    "message": "그룹 추가"
+  },
+  "editGroup": {
+    "message": "그룹 편집"
+  },
+  "deleteGroupConfirmation": {
+    "message": "정말 이 그룹을 삭제하시겠습니까?"
+  },
+  "removeUserConfirmation": {
+    "message": "정말 이 사용자를 제거하시겠습니까?"
+  },
+  "externalId": {
+    "message": "외부 ID"
+  },
+  "externalIdDesc": {
+    "message": "외부 Id는 참조로 사용되거나 사용자 디렉토리같은 외부 시스템에 리소스를 링크할 수 있습니다."
+  },
+  "accessControl": {
+    "message": "접근 제어"
+  },
+  "groupAccessAllItems": {
+    "message": "이 그룹은 모든 항목에 액세스하고 수정할 수 있습니다."
+  },
+  "groupAccessSelectedCollections": {
+    "message": "이 그룹은 선택된 컬렉션에만 액세스할 수 있습니다."
+  },
+  "readOnly": {
+    "message": "읽기 전용"
+  },
+  "newCollection": {
+    "message": "새 컬렉션"
+  },
+  "addCollection": {
+    "message": "컬렉션 추가"
+  },
+  "editCollection": {
+    "message": "컬렉션 편집"
+  },
+  "deleteCollectionConfirmation": {
+    "message": "정말 이 컬렉션을 삭제하시겠습니까?"
+  },
+  "editUser": {
+    "message": "사용자 편집"
+  },
+  "inviteUser": {
+    "message": "사용자 초대"
+  },
+  "inviteUserDesc": {
+    "message": "아래에 Bitwarden 계정 이메일 주소를 입력하여 조직에 새 사용자를 초대하십시오. Bitwarden 계정을 가지고 있지 않다면, 새로운 계정을 만들라는 메시지가 표시됩니다."
+  },
+  "inviteMultipleEmailDesc": {
+    "message": "이메일 주소 목록을 쉼표(,)로 구분하여 한 번에 최대 $COUNT$명의 사용자를 초대할 수 있습니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
+  "userUsingTwoStep": {
+    "message": "이 사용자는 계정을 보호하기 위해 2단계 로그인을 사용하고 있습니다."
+  },
+  "userAccessAllItems": {
+    "message": "이 사용자는 모든 항목에 액세스하고 수정할 수 있습니다."
+  },
+  "userAccessSelectedCollections": {
+    "message": "이 사용자는 선택된 컬렉션에만 액세스할 수 있습니다."
+  },
+  "search": {
+    "message": "검색"
+  },
+  "invited": {
+    "message": "초대함"
+  },
+  "accepted": {
+    "message": "수락함"
+  },
+  "confirmed": {
+    "message": "확인됨"
+  },
+  "owner": {
+    "message": "소유자"
+  },
+  "ownerDesc": {
+    "message": "조직의 모든 측면을 관리할 수있는 최고 액세스 사용자."
+  },
+  "admin": {
+    "message": "관리자"
+  },
+  "adminDesc": {
+    "message": "관리자는 모든 항목, 컬렉션 및 조직 내 속한 사용자에 대해 액세스하고 관리할 수 있습니다."
+  },
+  "user": {
+    "message": "사용자"
+  },
+  "userDesc": {
+    "message": "조직 내 할당된 컬렉션에 액세스할 수 있는 일반 사용자."
+  },
+  "manager": {
+    "message": "관리자"
+  },
+  "managerDesc": {
+    "message": "관리자는 조직 내 할당된 컬렉션에 액세스하고 관리할 수 있습니다."
+  },
+  "all": {
+    "message": "모두"
+  },
+  "refresh": {
+    "message": "새로 고침"
+  },
+  "timestamp": {
+    "message": "타임스탬프"
+  },
+  "event": {
+    "message": "이벤트"
+  },
+  "unknown": {
+    "message": "알 수 없음"
+  },
+  "loadMore": {
+    "message": "더 불러오기"
+  },
+  "mobile": {
+    "message": "모바일",
+    "description": "Mobile app"
+  },
+  "extension": {
+    "message": "확장",
+    "description": "Browser extension/addon"
+  },
+  "desktop": {
+    "message": "데스크탑",
+    "description": "Desktop app"
+  },
+  "webVault": {
+    "message": "웹 보관함"
+  },
+  "loggedIn": {
+    "message": "로그인됨."
+  },
+  "changedPassword": {
+    "message": "계정 비밀번호가 변경됨."
+  },
+  "enabledUpdated2fa": {
+    "message": "2단계 로그인 활성화/갱신됨."
+  },
+  "disabled2fa": {
+    "message": "2단계 로그인 비활성화됨."
+  },
+  "recovered2fa": {
+    "message": "2단계 로그인으로 복구된 계정."
+  },
+  "failedLogin": {
+    "message": "잘못된 암호로 로그인 시도가 실패했습니다."
+  },
+  "failedLogin2fa": {
+    "message": "잘못된 2단계 로그인으로 로그인 시도가 실패했습니다."
+  },
+  "exportedVault": {
+    "message": "보관함을 내보냈습니다."
+  },
+  "exportedOrganizationVault": {
+    "message": "조직 보관함을 내보냈습니다."
+  },
+  "editedOrgSettings": {
+    "message": "조직 설정이 수정되었습니다."
+  },
+  "createdItemId": {
+    "message": "$ID$ 항목이 생성되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedItemId": {
+    "message": "$ID$ 항목이 수정되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedItemId": {
+    "message": "$ID$ 항목이 삭제되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "sharedItemId": {
+    "message": "$ID$ 항목이 공유되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "$ID$ 항목을 확인했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "$ID$ 항목의 비밀번호를 확인했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "$ID$ 항목의 숨겨진 필드를 확인했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "$ID$ 항목의 보안 코드를 확인했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "$ID$ 항목의 비밀번호를 복사했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "$ID$ 항목의 숨겨진 필드를 복사했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "$ID$ 항목의 보안 코드를 복사했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "$ID$ 항목을 자동으로 채웠습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "createdCollectionId": {
+    "message": "$ID$ 컬렉션이 생성되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedCollectionId": {
+    "message": "$ID$ 컬렉션이 수정되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "deletedCollectionId": {
+    "message": "$ID$ 컬렉션이 삭제되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "정책 $ID$을/를 수정했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "createdGroupId": {
+    "message": "$ID$ 그룹을 만들었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "editedGroupId": {
+    "message": "$ID$ 그룹을 편집했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "deletedGroupId": {
+    "message": "$ID$ 그룹을 삭제했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "removedUserId": {
+    "message": "$ID$ 사용자를 제거했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "createdAttachmentForItem": {
+    "message": "$ID$ 항목에 첨부 파일을 만들었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedAttachmentForItem": {
+    "message": "$ID$ 항목에서 첨부 파일을 삭제했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedCollectionsForItem": {
+    "message": "$ID$ 항목에 대한 컬렉션이 수정되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "invitedUserId": {
+    "message": "$ID$ 사용자를 초대했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmedUserId": {
+    "message": "$ID$ 사용자가 확인되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedUserId": {
+    "message": "$ID$ 사용자를 편집했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedGroupsForUser": {
+    "message": "$ID$ 사용자에 대한 그룹이 편집되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "Unlinked SSO for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "device": {
+    "message": "기기"
+  },
+  "view": {
+    "message": "보기"
+  },
+  "invalidDateRange": {
+    "message": "날짜 범위가 잘못되었습니다."
+  },
+  "errorOccurred": {
+    "message": "오류가 발생했습니다."
+  },
+  "userAccess": {
+    "message": "사용자 접근"
+  },
+  "userType": {
+    "message": "사용자 유형"
+  },
+  "groupAccess": {
+    "message": "그룹 접근"
+  },
+  "groupAccessUserDesc": {
+    "message": "이 사용자가 속한 그룹을 편집합니다."
+  },
+  "invitedUsers": {
+    "message": "사용자를 초대했습니다."
+  },
+  "resendInvitation": {
+    "message": "초대장 다시 보내기"
+  },
+  "hasBeenReinvited": {
+    "message": "$USER$가 다시 초대되었습니다.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirm": {
+    "message": "확인"
+  },
+  "confirmUser": {
+    "message": "사용자 확인"
+  },
+  "hasBeenConfirmed": {
+    "message": "$USER$가 확인되었습니다.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmUsers": {
+    "message": "사용자 확인"
+  },
+  "usersNeedConfirmed": {
+    "message": "초대에 수락한 사용자가 있지만 여전히 확인이 필요합니다. 사용자는 확인될 때까지 조직에 액세스할 수 없습니다."
+  },
+  "startDate": {
+    "message": "시작 날짜"
+  },
+  "endDate": {
+    "message": "종료 날짜"
+  },
+  "verifyEmail": {
+    "message": "이메일 인증하기"
+  },
+  "verifyEmailDesc": {
+    "message": "모든 기능에 대한 액세스 잠금을 해제하려면 계정의 이메일을 인증하십시오."
+  },
+  "verifyEmailFirst": {
+    "message": "계정의 이메일 주소를 먼저 확인해야 합니다."
+  },
+  "checkInboxForVerification": {
+    "message": "이메일 편지함에서 인증 링크를 확인하십시오."
+  },
+  "emailVerified": {
+    "message": "이메일이 확인되었습니다."
+  },
+  "emailVerifiedFailed": {
+    "message": "이메일을 인증할 수 없습니다. 새로운 인증을 이메일로 전송하십시오."
+  },
+  "updateBrowser": {
+    "message": "브라우저 업데이트"
+  },
+  "updateBrowserDesc": {
+    "message": "지원하지 않는 웹 브라우저를 사용하고 있습니다. 웹 보관함 기능이 제대로 동작하지 않을 수 있습니다."
+  },
+  "joinOrganization": {
+    "message": "조직 참가"
+  },
+  "joinOrganizationDesc": {
+    "message": "이 조직에서 귀하에게 가입 초대를 보냈습니다. 초대를 수락하려면 로그인하거나 Bitwarden 계정을 생성해야 합니다."
+  },
+  "inviteAccepted": {
+    "message": "초대 수락됨"
+  },
+  "inviteAcceptedDesc": {
+    "message": "관리자의 확인을 받으면 조직에 액세스할 수 있습니다. 승인이 이뤄지면 이메일을 보내드리겠습니다."
+  },
+  "inviteAcceptFailed": {
+    "message": "초대를 수락할 수 없습니다. 조직 관리자에게 새 초대장을 보내도록 요청하십시오."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "초대를 수락할 수 없습니다. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "rememberEmail": {
+    "message": "이메일 기억하기"
+  },
+  "recoverAccountTwoStepDesc": {
+    "message": "일반적인 2단계 로그인 방법을 통해 계정에 액세스할 수 없는 경우, 2단계 로그인 복구 코드를 사용하여 계정의 모든 2단계 제공자를 비활성화할 수 있습니다."
+  },
+  "recoverAccountTwoStep": {
+    "message": "계정 2단계 로그인 복구하기"
+  },
+  "twoStepRecoverDisabled": {
+    "message": "계정에 2단계 로그인이 비활성화되어 있습니다."
+  },
+  "learnMore": {
+    "message": "더 알아보기"
+  },
+  "deleteRecoverDesc": {
+    "message": "계정을 복구하거나 삭제하려면 아래에 이메일 주소를 입력하십시오."
+  },
+  "deleteRecoverEmailSent": {
+    "message": "계정이 존재한다면 추가적인 안내사항이 있는 이메일을 보냈습니다."
+  },
+  "deleteRecoverConfirmDesc": {
+    "message": "Biitiwarden 계정을 삭제하도록 요청했습니다. 아래 버튼을 클릭하여 확인하십시오."
+  },
+  "myOrganization": {
+    "message": "내 조직"
+  },
+  "deleteOrganization": {
+    "message": "조직 삭제"
+  },
+  "deleteOrganizationDesc": {
+    "message": "조직과 연관된 모든 데이터를 삭제하려면 다음 단계로 나아가십시오. 개인 사용자 계정은 유지되지만 더 이상 조직에 연결되지 않습니다. "
+  },
+  "deleteOrganizationWarning": {
+    "message": "조직 삭제는 영구적이며 되돌릴 수 없습니다."
+  },
+  "organizationDeleted": {
+    "message": "조직 삭제됨"
+  },
+  "organizationDeletedDesc": {
+    "message": "조직과 연관된 모든 데이터가 삭제되었습니다."
+  },
+  "organizationUpdated": {
+    "message": "조직 갱신됨"
+  },
+  "taxInformation": {
+    "message": "세금 정보"
+  },
+  "taxInformationDesc": {
+    "message": "청구서에 대한 세금 정보를 제공(또는 업데이트) 하려면 지원팀에 문의하십시오."
+  },
+  "billingPlan": {
+    "message": "플랜",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlan": {
+    "message": "Change Plan",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanUpgrade": {
+    "message": "아래 정보를 제공하여 계정을 다른 플랜으로 업그레이드하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanDesc": {
+    "message": "플랜을 변경하려면 고객 지원팀에 문의하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "invoiceNumber": {
+    "message": "청구서 #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "청구서 보기"
+  },
+  "downloadInvoice": {
+    "message": "청구서 다운로드"
+  },
+  "verifyBankAccount": {
+    "message": "은행 계좌 인증하기"
+  },
+  "verifyBankAccountDesc": {
+    "message": "우리는 귀하의 은행 계좌에 2건의 소액 결제정보를 생성했습니다(보여지기까지 1~2영업일 소요됨). 은행 계좌를 인증하려면 해당 금액을 입력하십시오."
+  },
+  "verifyBankAccountInitialDesc": {
+    "message": "은행 계좌를 통한 결제는 미국 내 고객만 이용할 수 있습니다. 은행 계좌는 확인이 필요합니다. 1-2영업일 이내에 2건의 소액 결제정보를 생성할 것입니다. 은행 계좌를 인증하려면 조직 내 청구 페이지에서 해당 금액을 입력하십시오."
+  },
+  "verifyBankAccountFailureWarning": {
+    "message": "은행 계좌를 확인하지 않으면 결제가 누락되어 구독이 비활성화됩니다."
+  },
+  "verifiedBankAccount": {
+    "message": "계좌 번호가 확인되었습니다."
+  },
+  "bankAccount": {
+    "message": "은행 계좌"
+  },
+  "amountX": {
+    "message": "금액 $COUNT$",
+    "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "routingNumber": {
+    "message": "라우팅 번호",
+    "description": "Bank account routing number"
+  },
+  "accountNumber": {
+    "message": "계좌 번호"
+  },
+  "accountHolderName": {
+    "message": "계좌 소유자 이름"
+  },
+  "bankAccountType": {
+    "message": "계좌 유형"
+  },
+  "bankAccountTypeCompany": {
+    "message": "회사 (기업)"
+  },
+  "bankAccountTypeIndividual": {
+    "message": "개인 (개인)"
+  },
+  "enterInstallationId": {
+    "message": "설치 ID를 입력하십시오"
+  },
+  "addSeats": {
+    "message": "사용자 수 추가",
+    "description": "Seat = User Seat"
+  },
+  "removeSeats": {
+    "message": "사용자 수 제거",
+    "description": "Seat = User Seat"
+  },
+  "subscriptionUserSeats": {
+    "message": "귀하의 구독은 총 $COUNT$명의 사용자를 허용합니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "seatsToAdd": {
+    "message": "추가할 사용자 수"
+  },
+  "seatsToRemove": {
+    "message": "제거할 사용자 수"
+  },
+  "seatsAddNote": {
+    "message": "사용자 수를 추가하면 청구 총계가 조정되고 파일에 즉시 지불 방법이 청구됩니다. 첫 번째 요금은 현재 청구 주기의 나머지 기간 동안 적립될 것입니다."
+  },
+  "seatsRemoveNote": {
+    "message": "사용자 수를 제거하면 다음 청구 비용에 대한 크레딧으로 할당된 청구 총계가 조정될 것입니다."
+  },
+  "adjustedSeats": {
+    "message": "사용자 수가 $AMOUNT$명으로 조정됨",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "keyUpdated": {
+    "message": "키 업데이트됨"
+  },
+  "updateKeyTitle": {
+    "message": "키 업데이트"
+  },
+  "updateEncryptionKey": {
+    "message": "암호화 키 업데이트"
+  },
+  "updateEncryptionKeyShortDesc": {
+    "message": "현재 오래된 암호화 체계를 사용하고 있습니다."
+  },
+  "updateEncryptionKeyDesc": {
+    "message": "우리는 더 나은 보안 및 새로운 기능에 대한 액세스를 제공하는 더 큰 암호화 키로 이동했습니다. 암호화 키를 업데이트하는 것은 빠르고 쉽습니다. 그저 마스터 비밀번호를 입력하면 됩니다. 이 업데이트는 결국 필수사항이 될 것입니다."
+  },
+  "updateEncryptionKeyWarning": {
+    "message": "암호화 키를 업데이트하고난 후 현재 사용 중인 모든 Bitwarden 애플리케이션(예. 모바일 앱 혹은 브라우저 확장 기능)에서 로그아웃 후 다시 로그인해야 합니다. 재로그인하지 않으면 (새 암호화 키를 다운로드받는 경우) 데이터 손실이 발생할 수 있습니다. 자동으로 로그아웃을 시도하지만 지연될 수 있습니다."
+  },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Any encrypted exports that you have saved will also become invalid."
+  },
+  "subscription": {
+    "message": "구독"
+  },
+  "loading": {
+    "message": "불러오는 중"
+  },
+  "upgrade": {
+    "message": "업그레이드"
+  },
+  "upgradeOrganization": {
+    "message": "조직 업그레이드"
+  },
+  "upgradeOrganizationDesc": {
+    "message": "이 기능은 무료 조직에서는 사용할 수 없습니다. 더 많은 기능을 이용하려면 유료 플랜으로 전환하십시오."
+  },
+  "createOrganizationStep1": {
+    "message": "조직 만들기: 1단계"
+  },
+  "createOrganizationCreatePersonalAccount": {
+    "message": "조직을 생성하기 전에 먼저 무료 개인 계정을 생성해야 합니다."
+  },
+  "refunded": {
+    "message": "환불됨"
+  },
+  "nothingSelected": {
+    "message": "아무것도 선택하지 않았습니다."
+  },
+  "acceptPolicies": {
+    "message": "이 박스를 체크하면 다음에 동의하는 것으로 간주됩니다:"
+  },
+  "acceptPoliciesError": {
+    "message": "서비스 약관 및 개인 정보 보호 정책을 확인하지 않았습니다."
+  },
+  "termsOfService": {
+    "message": "서비스 약관"
+  },
+  "privacyPolicy": {
+    "message": "개인 정보 보호 정책"
+  },
+  "filters": {
+    "message": "필터"
+  },
+  "vaultTimeout": {
+    "message": "보관함 시간 제한"
+  },
+  "vaultTimeoutDesc": {
+    "message": "보관함이 언제까지 시간을 제한하고 선택된 행동을 수행하지 선택해주세요."
+  },
+  "oneMinute": {
+    "message": "1분"
+  },
+  "fiveMinutes": {
+    "message": "5분"
+  },
+  "fifteenMinutes": {
+    "message": "15분"
+  },
+  "thirtyMinutes": {
+    "message": "30분"
+  },
+  "oneHour": {
+    "message": "1시간"
+  },
+  "fourHours": {
+    "message": "4시간"
+  },
+  "onRefresh": {
+    "message": "브라우저 새로 고침 시"
+  },
+  "dateUpdated": {
+    "message": "업데이트됨",
+    "description": "ex. Date this item was updated"
+  },
+  "datePasswordUpdated": {
+    "message": "비밀번호 업데이트됨",
+    "description": "ex. Date this password was updated"
+  },
+  "organizationIsDisabled": {
+    "message": "조직이 비활성화됨"
+  },
+  "licenseIsExpired": {
+    "message": "라이선스가 만료되었습니다."
+  },
+  "updatedUsers": {
+    "message": "업데이트된 사용자"
+  },
+  "selected": {
+    "message": "선택됨"
+  },
+  "ownership": {
+    "message": "소유자"
+  },
+  "whoOwnsThisItem": {
+    "message": "이 항목의 소유자는 누구입니까?"
+  },
+  "strong": {
+    "message": "강함",
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "괜찮음",
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "약함",
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "매우 약함",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "취약한 마스터 비밀번호"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "선택한 마스터 비밀번호는 취약합니다. Bitwarden 계정을 확실히 보호하려면 강력한 마스터 비밀번호(혹은 패스프레이즈)를 사용해야 합니다. 정말 이 마스터 비밀번호를 사용하시겠습니까?"
+  },
+  "rotateAccountEncKey": {
+    "message": "내 계정의 암호화 키 회전"
+  },
+  "rotateEncKeyTitle": {
+    "message": "암호화 키 교체하기"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "정말 계정의 암호화 키를 교체하시겠습니까?"
+  },
+  "attachmentsNeedFix": {
+    "message": "이 항목은 수정이 필요한 오래된 파일을 갖고 있습니다."
+  },
+  "attachmentFixDesc": {
+    "message": "이것은 수정이 필요한 오래된 파일입니다. 자세한 내용을 보려면 클릭하십시오."
+  },
+  "fix": {
+    "message": "수정",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "계정의 암호화 키를 교체하기 전에 보관함 내 오래된 파일 수정이 필요합니다."
+  },
+  "yourAccountsFingerprint": {
+    "message": "계정 지문 구절",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "암호화 키의 무결성을 확인하려면 계속하기 전에 사용자의 지문 구문을 확인하십시오.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "지문 구절을 다시 확인하지 않음",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "free": {
+    "message": "무료",
+    "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "API 키"
+  },
+  "apiKeyDesc": {
+    "message": "API 키를 사용하여 Bitwarden 공용 API에 인증할 수 있습니다."
+  },
+  "apiKeyRotateDesc": {
+    "message": "API 키를 교체하면 이전 키는 무효화됩니다. 현재 키가 더 이상 안전하지 않다고 판단되면 API 키를 교체할 수 있습니다."
+  },
+  "apiKeyWarning": {
+    "message": "귀하의 API 키는 조직에 대한 전체 액세스 권한을 가집니다. 이것은 비밀로 해야 합니다."
+  },
+  "userApiKeyDesc": {
+    "message": "API 키를 사용하여 Bitwarden CLI에 인증할 수 있습니다."
+  },
+  "userApiKeyWarning": {
+    "message": "당신의 API 키는 대체 인증 수단입니다. 안전하게 보관해주세요."
+  },
+  "oauth2ClientCredentials": {
+    "message": "OAuth 2.0 클라이언트 자격 증명",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "API 키 보기"
+  },
+  "rotateApiKey": {
+    "message": "API 키 교체"
+  },
+  "selectOneCollection": {
+    "message": "반드시 하나 이상의 모음을 선택해야 합니다."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "카드에 청구할 수 없습니다. 아래 목록에서 결제되지 않은 인보이스를 확인하고 결제해주세요."
+  },
+  "inAppPurchase": {
+    "message": "애플리케이션 내 구매"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "인 앱 결제 수단을 사용하고 있을 때에는 이 행동을 수행할 수 없습니다."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "인 앱 결제가 이루어진 스토어에서 구독을 관리해야 합니다."
+  },
+  "minLength": {
+    "message": "최소 길이"
+  },
+  "clone": {
+    "message": "복제"
+  },
+  "masterPassPolicyDesc": {
+    "message": "마스터 비밀번호 강도에 대한 최소 요구 사항을 설정해주세요."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "개인 계정에서 2단계 로그인을 요구합니다."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "2단계 로그인을 활성화하지 않은 단체 맴버는 단체에서 제거되며 변경 사항에 대한 이메일 알림을 받습니다."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "사용자 계정에 대해서 2단계 로그인을 요구하는 단체의 멤버입니다. 모든 2단계 로그인 수단을 비활성화한다면 단체에서 자동으로 제거됩니다."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "비밀번호 생성기 설정에 최소 요구 사항을 설정해주세요."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "하나 이상의 단체 정책이 생성기 설정에 영항을 미치고 있습니다."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "하나 이상의 단체 정책이 마스터 비밀번호가 다음 사항을 따르도록 요구합니다:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "최소 복잡도 점수 $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "최소 길이 $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "하나 이상의 대문자 포함"
+  },
+  "policyInEffectLowercase": {
+    "message": "하나 이상의 소문자 포함"
+  },
+  "policyInEffectNumbers": {
+    "message": "하나 이상의 숫자 포함"
+  },
+  "policyInEffectSpecial": {
+    "message": "하나 이상의 특수문자 포함 $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "새 마스터 비밀번호가 정책 요구 사항을 따르지 않습니다."
+  },
+  "minimumNumberOfWords": {
+    "message": "단어 최소 개수"
+  },
+  "defaultType": {
+    "message": "기본 유형"
+  },
+  "userPreference": {
+    "message": "사용자 설정"
+  },
+  "vaultTimeoutAction": {
+    "message": "보관함 시간 제한 초과시 동작"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "잠긴 보관함에 다시 접근하려면 마스터 비밀번호를 입력해야 합니다."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "로그아웃한 보관함에 다시 접근하려면 다시 인증해야 합니다."
+  },
+  "lock": {
+    "message": "잠금",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "휴지통",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "휴지통 검색"
+  },
+  "permanentlyDelete": {
+    "message": "영구적으로 삭제"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "선택한 항목을 영구적으로 삭제"
+  },
+  "permanentlyDeleteItem": {
+    "message": "영구적으로 항목 삭제"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "정말로 이 항목을 영구적으로 삭제하시겠습니까?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "영구적으로 삭제된 항목"
+  },
+  "permanentlyDeletedItems": {
+    "message": "영구적으로 삭제된 항목"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "영구 삭제를 위해 $COUNT$ 개의 항목이 선택되었습니다. 정말로 이 항목들을 모두 영구적으로 삭제하시겠습니까?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "영구적으로 삭제된 항목 $ID$ 을(를) 삭제했습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "복원"
+  },
+  "restoreSelected": {
+    "message": "선택 항목 복원"
+  },
+  "restoreItem": {
+    "message": "항목 복구"
+  },
+  "restoredItem": {
+    "message": "복구된 항목"
+  },
+  "restoredItems": {
+    "message": "복구된 항목"
+  },
+  "restoreItemConfirmation": {
+    "message": "정말로 이 항목을 복구하시겠습니까?"
+  },
+  "restoreItems": {
+    "message": "항목 복구"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "복구를 위해 $COUNT$ 개의 항목이 선택되었습니다. 정말로 이 항목들을 모두 복구하시겠습니까?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "$ID$ 항목이 복구되었습니다.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "로그아웃하면 보관함에 대한 모든 접근이 제거되며 시간 제한을 초과하면 온라인 인증을 요구합니다. 정말로 이 설정을 사용하시겠습니까?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "시간 제한 초과시 동작 확인"
+  },
+  "hidePasswords": {
+    "message": "비밀번호 숨기기"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "세금 계산 및 금융 보고만을 위해서 해당 정보가 필요합니다."
+  },
+  "includeVAT": {
+    "message": "VAT/GST 정보 포함 (선택)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST 세금 ID"
+  },
+  "taxInfoUpdated": {
+    "message": "세금 정보가 업데이트되었습니다."
+  },
+  "setMasterPassword": {
+    "message": "마스터 비밀번호 설정"
+  },
+  "ssoCompleteRegistration": {
+    "message": "SSO 로그인을 하기 위해서 보관함에 접근하고 보호할 수 있도록 마스터 비밀번호를 설정해주세요."
+  },
+  "identifier": {
+    "message": "식별자"
+  },
+  "organizationIdentifier": {
+    "message": "조직 식별자"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "조직의 통합 인증(SSO) 포탈을 통해서 로그인하세요. 시작하려면 조직 식별자를 입력해주세요."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "엔터프라이즈 통합 인증 (SSO)"
+  },
+  "ssoHandOff": {
+    "message": "이제 이 탭을 닫고 확장 프로그램에서 계속 진행하셔도 됩니다."
+  },
+  "businessPortal": {
+    "message": "비즈니스 포탈",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "모든 팀 기능, 추가로:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SAML2.0과 OpenID Connect를 통한 SSO 인증"
+  },
+  "includeEnterprisePolicies": {
+    "message": "엔터프라이즈 정책"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO 검증 실패"
+  },
+  "ssoIdentifierRequired": {
+    "message": "조직 식별자가 필요합니다."
+  },
+  "unlinkSso": {
+    "message": "SSO 연결 해제"
+  },
+  "linkSso": {
+    "message": "SSO 연결"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "정책 설정이 이동되었으며 이 페이지는 곧 지원이 종료될 예정입니다. 아래를 클릭해서 Business Portal 정책 페이지를 사용해주세요."
+  },
+  "singleOrg": {
+    "message": "통합 조직"
+  },
+  "singleOrgDesc": {
+    "message": "사용자들이 다른 조직에 가입하지 못하도록 제한합니다."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "현재 조직에 하나 이상의 조직에 참가할 수 없도록 정책이 지정되어 있습니다. 조직 관리자에게 문의하거나 다른 Bitwarden 계정으로 로그앤해주세요."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "소유자 또는 관리자가 아닌 조직 구성원 및 이미 다른 조직의 구성원인 경우 이 조직에서 제거됩니다."
+  },
+  "requireSso": {
+    "message": "통합 (SSO) 인증"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "엔터프라이즈 통합 로그인 (SSO) 수단을 사용해서 로그인해야 합니다."
+  },
+  "prerequisite": {
+    "message": "필요 조건"
+  },
+  "requireSsoPolicyReq": {
+    "message": "이 정책을 활성화하기 전에 통합 조직 엔터프라이즈 정책이 활성화되어 있어야합니다."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "통합 조직 정책이 활성화되지 않았습니다."
+  },
+  "requireSsoExemption": {
+    "message": "조직 소유자와 관리자는 이 정책을 적용받지 않습니다."
+  },
+  "sendTypeFile": {
+    "message": "파일"
+  },
+  "sendTypeText": {
+    "message": "텍스트"
+  },
+  "createSend": {
+    "message": "새 Send 생성",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Send 편집",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send 생성함",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send 수정함",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send 삭제함",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Send 삭제",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "정말 이 Send를 삭제하시겠습니까?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "어떤 유형의 Send인가요?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "삭제일"
+  },
+  "deletionDateDesc": {
+    "message": "The Send will be permanently deleted on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "만료일"
+  },
+  "expirationDateDesc": {
+    "message": "If set, access to this Send will expire on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "최대 접근 횟수"
+  },
+  "maxAccessCountDesc": {
+    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "현재 접근 횟수"
+  },
+  "sendPasswordDesc": {
+    "message": "Optionally require a password for users to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Private notes about this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "비활성화됨"
+  },
+  "sendLink": {
+    "message": "Send 링크",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Send 링크 복사",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "비밀번호 제거"
+  },
+  "removedPassword": {
+    "message": "비밀번호 제거함"
+  },
+  "removePasswordConfirmation": {
+    "message": "비밀번호를 제거하시겠습니까?"
+  },
+  "disableThisSend": {
+    "message": "Disable this Send so that no one can access it.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "모든 Send"
+  },
+  "maxAccessCountReached": {
+    "message": "Max access count reached"
+  },
+  "pendingDeletion": {
+    "message": "Pending deletion"
+  },
+  "expired": {
+    "message": "Expired"
+  },
+  "searchSends": {
+    "message": "Send 검색",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "이 Send는 비밀번호로 보호되어 있습니다. 계속하려면 비밀번호를 입력해주세요.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "비밀번호를 모르시나요? 보낸 사람에게 Send에 접근할 수 있는 비밀번호를 요청하세요.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "이 Send는 기본적으로 숨겨져 있습니다. 아래의 버튼을 눌러 공개 여부를 전환할 수 있습니다.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "파일 다운로드"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Send가 없습니다.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Emergency Access"
+  },
+  "emergencyAccessDesc": {
+    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Trusted emergency contacts"
+  },
+  "noTrustedContacts": {
+    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+  },
+  "addEmergencyContact": {
+    "message": "Add emergency contact"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Designated as emergency contact"
+  },
+  "noGrantedAccess": {
+    "message": "You have not been designated as an emergency contact for anyone yet."
+  },
+  "inviteEmergencyContact": {
+    "message": "Invite emergency contact"
+  },
+  "editEmergencyContact": {
+    "message": "Edit emergency contact"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Emergency Access Initiated"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Emergency Access Approved"
+  },
+  "viewDesc": {
+    "message": "Can view all items in your own vault."
+  },
+  "takeover": {
+    "message": "Takeover"
+  },
+  "takeoverDesc": {
+    "message": "Can reset your account with a new master password."
+  },
+  "waitTime": {
+    "message": "Wait Time"
+  },
+  "waitTimeDesc": {
+    "message": "Time required before automatically granting access."
+  },
+  "oneDay": {
+    "message": "1 day"
+  },
+  "days": {
+    "message": "$DAYS$ days",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Invited user."
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "Request Access"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Approve"
+  },
+  "reject": {
+    "message": "Reject"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Emergency access approved."
+  },
+  "emergencyRejected": {
+    "message": "Emergency access rejected"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personal Ownership"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Plan price"
+  },
+  "estimatedTax": {
+    "message": "Estimated tax"
+  },
+  "custom": {
+    "message": "Custom"
+  },
+  "customDesc": {
+    "message": "Allows more granular control of user permissions for advanced configurations."
+  },
+  "permissions": {
+    "message": "Permissions"
+  },
+  "accessBusinessPortal": {
+    "message": "Access Business Portal"
+  },
+  "accessEventLogs": {
+    "message": "Access Event Logs"
+  },
+  "accessImportExport": {
+    "message": "Access Import/Export"
+  },
+  "accessReports": {
+    "message": "Access Reports"
+  },
+  "manageAllCollections": {
+    "message": "Manage All Collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Manage Assigned Collections"
+  },
+  "manageGroups": {
+    "message": "Manage Groups"
+  },
+  "managePolicies": {
+    "message": "Manage Policies"
+  },
+  "manageSso": {
+    "message": "Manage SSO"
+  },
+  "manageUsers": {
+    "message": "Manage Users"
+  },
+  "disableRequireSsoError": {
+    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "An organization policy is affecting your ownership options."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Disable personal ownership for organization users"
+  },
+  "textHiddenByDefault": {
+    "message": "When accessing the Send, hide the text by default",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  }
+}

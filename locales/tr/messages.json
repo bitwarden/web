@@ -1,0 +1,3632 @@
+{
+  "pageTitle": {
+    "message": "$APP_NAME$ Web Kasası",
+    "description": "The title of the website in the browser window.",
+    "placeholders": {
+      "app_name": {
+        "content": "$1",
+        "example": "Bitwarden"
+      }
+    }
+  },
+  "whatTypeOfItem": {
+    "message": "Bu kaydın türü nedir?"
+  },
+  "name": {
+    "message": "Ad"
+  },
+  "uri": {
+    "message": "URl"
+  },
+  "uriPosition": {
+    "message": "URL $POSITION$",
+    "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
+    "placeholders": {
+      "position": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "newUri": {
+    "message": "Yeni URI"
+  },
+  "username": {
+    "message": "Kullanıcı Adı"
+  },
+  "password": {
+    "message": "Parola"
+  },
+  "newPassword": {
+    "message": "Yeni Parola"
+  },
+  "passphrase": {
+    "message": "Kelimelerden Oluşan Parola"
+  },
+  "notes": {
+    "message": "Notlar"
+  },
+  "customFields": {
+    "message": "Özel Alanlar"
+  },
+  "cardholderName": {
+    "message": "Kart Sahibinin Adı"
+  },
+  "number": {
+    "message": "Numara"
+  },
+  "brand": {
+    "message": "Marka"
+  },
+  "expiration": {
+    "message": "Son Kullanma Tarihi"
+  },
+  "securityCode": {
+    "message": "Güvenlik Kodu (CVV)"
+  },
+  "identityName": {
+    "message": "Kimlik Adı"
+  },
+  "company": {
+    "message": "Şirket"
+  },
+  "ssn": {
+    "message": "Sosyal Güvenlik Numarası"
+  },
+  "passportNumber": {
+    "message": "Pasaport Numarası"
+  },
+  "licenseNumber": {
+    "message": "Ehliyet Numarası"
+  },
+  "email": {
+    "message": "E-posta"
+  },
+  "phone": {
+    "message": "Telefon"
+  },
+  "january": {
+    "message": "Ocak"
+  },
+  "february": {
+    "message": "Şubat"
+  },
+  "march": {
+    "message": "Mart"
+  },
+  "april": {
+    "message": "Nisan"
+  },
+  "may": {
+    "message": "Mayıs"
+  },
+  "june": {
+    "message": "Haziran"
+  },
+  "july": {
+    "message": "Temmuz"
+  },
+  "august": {
+    "message": "Ağustos"
+  },
+  "september": {
+    "message": "Eylül"
+  },
+  "october": {
+    "message": "Ekim"
+  },
+  "november": {
+    "message": "Kasım"
+  },
+  "december": {
+    "message": "Aralık"
+  },
+  "title": {
+    "message": "Başlık"
+  },
+  "mr": {
+    "message": "Bay"
+  },
+  "mrs": {
+    "message": "Bayan"
+  },
+  "ms": {
+    "message": "Bayan"
+  },
+  "dr": {
+    "message": "Dr"
+  },
+  "expirationMonth": {
+    "message": "Son Kullanma Ayı"
+  },
+  "expirationYear": {
+    "message": "Son Kullanma Yılı"
+  },
+  "authenticatorKeyTotp": {
+    "message": "Kimlik Doğrulama Anahtarı (TOTP)"
+  },
+  "folder": {
+    "message": "Klasör"
+  },
+  "newCustomField": {
+    "message": "Yeni Özel Alan"
+  },
+  "value": {
+    "message": "Değer"
+  },
+  "dragToSort": {
+    "message": "Sıralamak için sürükleyin"
+  },
+  "cfTypeText": {
+    "message": "Metin"
+  },
+  "cfTypeHidden": {
+    "message": "Gizli"
+  },
+  "cfTypeBoolean": {
+    "message": "Boolean"
+  },
+  "remove": {
+    "message": "Kaldır"
+  },
+  "unassigned": {
+    "message": "Atanmamış"
+  },
+  "noneFolder": {
+    "message": "Klasör Yok",
+    "description": "This is the folder for uncategorized items"
+  },
+  "addFolder": {
+    "message": "Klasör Ekle"
+  },
+  "editFolder": {
+    "message": "Klasörü Düzenle"
+  },
+  "baseDomain": {
+    "message": "Ana domain"
+  },
+  "host": {
+    "message": "Host",
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
+  },
+  "exact": {
+    "message": "Eşit"
+  },
+  "startsWith": {
+    "message": "Başlayan"
+  },
+  "regEx": {
+    "message": "Regular expression",
+    "description": "A programming term, also known as 'RegEx'."
+  },
+  "matchDetection": {
+    "message": "Match Detection",
+    "description": "URI match detection for auto-fill."
+  },
+  "defaultMatchDetection": {
+    "message": "Varsayılan eşleme tanıma",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "never": {
+    "message": "Asla"
+  },
+  "toggleVisibility": {
+    "message": "Toggle Visibility"
+  },
+  "toggleCollapse": {
+    "message": "Toggle Collapse",
+    "description": "Toggling an expand/collapse state."
+  },
+  "generatePassword": {
+    "message": "Parola Üret"
+  },
+  "checkPassword": {
+    "message": "Parolanız herhangi bir saldırı sonucu açığa çıkmış mı kontrol edin."
+  },
+  "passwordExposed": {
+    "message": "Bu parola $VALUE$ sefer saldırı sonucu veri ele geçmesiyle açığa çıkmış. Değiştirmeniz gerekiyor.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "passwordSafe": {
+    "message": "Parolanız, herhangi bir saldırı sonucu ele geçirilen veride bulunmadı. Kullanılması güvenli görünüyor."
+  },
+  "save": {
+    "message": "Kaydet"
+  },
+  "cancel": {
+    "message": "İptal"
+  },
+  "canceled": {
+    "message": "İptal Edildi"
+  },
+  "close": {
+    "message": "Kapat"
+  },
+  "delete": {
+    "message": "Sil"
+  },
+  "favorite": {
+    "message": "Favori"
+  },
+  "unfavorite": {
+    "message": "Favorilerden Çıkar"
+  },
+  "edit": {
+    "message": "Düzenle"
+  },
+  "searchCollection": {
+    "message": "Koleksiyon Ara"
+  },
+  "searchFolder": {
+    "message": "Klasör Ara"
+  },
+  "searchFavorites": {
+    "message": "Favorilerde Ara"
+  },
+  "searchType": {
+    "message": "Arama Tipi",
+    "description": "Search item type"
+  },
+  "searchVault": {
+    "message": "Search Vault"
+  },
+  "allItems": {
+    "message": "Tüm Öğeler"
+  },
+  "favorites": {
+    "message": "Favoriler"
+  },
+  "types": {
+    "message": "Tipler"
+  },
+  "typeLogin": {
+    "message": "Giriş"
+  },
+  "typeCard": {
+    "message": "Kart"
+  },
+  "typeIdentity": {
+    "message": "Kimlik"
+  },
+  "typeSecureNote": {
+    "message": "Güvenli Not"
+  },
+  "folders": {
+    "message": "Klasörler"
+  },
+  "collections": {
+    "message": "Koleksiyonlar"
+  },
+  "firstName": {
+    "message": "İlk Ad"
+  },
+  "middleName": {
+    "message": "İkinci Ad"
+  },
+  "lastName": {
+    "message": "Soyadı"
+  },
+  "address1": {
+    "message": "Adres 1"
+  },
+  "address2": {
+    "message": "Adres 2"
+  },
+  "address3": {
+    "message": "Adres 3"
+  },
+  "cityTown": {
+    "message": "Şehir / Kasaba"
+  },
+  "stateProvince": {
+    "message": "Eyalet / İl"
+  },
+  "zipPostalCode": {
+    "message": "Posta Kodu"
+  },
+  "country": {
+    "message": "Ülke"
+  },
+  "shared": {
+    "message": "Paylaşılan"
+  },
+  "attachments": {
+    "message": "Ekler"
+  },
+  "select": {
+    "message": "Seç"
+  },
+  "addItem": {
+    "message": "Öge Ekle"
+  },
+  "editItem": {
+    "message": "Ögeyi Düzenle"
+  },
+  "viewItem": {
+    "message": "View Item"
+  },
+  "ex": {
+    "message": "ör.",
+    "description": "Short abbreviation for 'example'."
+  },
+  "other": {
+    "message": "Diğer"
+  },
+  "share": {
+    "message": "Paylaş"
+  },
+  "valueCopied": {
+    "message": "$VALUE$ kopyalandı",
+    "description": "Value has been copied to the clipboard.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "Password"
+      }
+    }
+  },
+  "copyValue": {
+    "message": "Değeri kopyala",
+    "description": "Copy value to clipboard"
+  },
+  "copyPassword": {
+    "message": "Parolayı Kopyala",
+    "description": "Copy password to clipboard"
+  },
+  "copyUsername": {
+    "message": "Kullanıcı Adını Kopyala",
+    "description": "Copy username to clipboard"
+  },
+  "copyNumber": {
+    "message": "Numarayı Kopyala",
+    "description": "Copy credit card number"
+  },
+  "copySecurityCode": {
+    "message": "Güvenlik Kodunu Kopyala",
+    "description": "Copy credit card security code (CVV)"
+  },
+  "copyUri": {
+    "message": "URL'i kopyala",
+    "description": "Copy URI to clipboard"
+  },
+  "myVault": {
+    "message": "Kasam"
+  },
+  "vault": {
+    "message": "Kasa"
+  },
+  "shareSelected": {
+    "message": "Seçilenleri Paylaş"
+  },
+  "deleteSelected": {
+    "message": "Seçilenleri Sil"
+  },
+  "moveSelected": {
+    "message": "Seçilenleri Taşı"
+  },
+  "selectAll": {
+    "message": "Tümünü Seç"
+  },
+  "unselectAll": {
+    "message": "Tüm Seçimleri Kaldır"
+  },
+  "launch": {
+    "message": "Başlat"
+  },
+  "newAttachment": {
+    "message": "Yeni bir ek ekle"
+  },
+  "deletedAttachment": {
+    "message": "Silinen Ek"
+  },
+  "deleteAttachmentConfirmation": {
+    "message": "Bu eki silmek istediğinize emin misiniz?"
+  },
+  "attachmentSaved": {
+    "message": "Ekiniz kaydedildi."
+  },
+  "file": {
+    "message": "Dosya"
+  },
+  "selectFile": {
+    "message": "Bir dosya seç."
+  },
+  "maxFileSize": {
+    "message": "En büyük dosya boyutu 100MB."
+  },
+  "updateKey": {
+    "message": "Şifreleme anahtarınızı güncelleyene dek bu özelliği kullanamazsınız."
+  },
+  "addedItem": {
+    "message": "Hesap eklendi"
+  },
+  "editedItem": {
+    "message": "Hesap düzenlendi"
+  },
+  "sharedItem": {
+    "message": "Öğe Paylaşıldı"
+  },
+  "sharedItems": {
+    "message": "Paylaşılan hesaplar"
+  },
+  "deleteItem": {
+    "message": "Hesabı Sil"
+  },
+  "deleteFolder": {
+    "message": "Klasörü Sil"
+  },
+  "deleteAttachment": {
+    "message": "Eki Sil"
+  },
+  "deleteItemConfirmation": {
+    "message": "Bu ögeyi silmek istediğinize emin misiniz?"
+  },
+  "deletedItem": {
+    "message": "Öge Silindi"
+  },
+  "deletedItems": {
+    "message": "Ögeler Silindi"
+  },
+  "movedItems": {
+    "message": "Ögeler Taşındı"
+  },
+  "overwritePasswordConfirmation": {
+    "message": "Mevcut parolanın üzerine kaydetmek istediğinize emin misiniz?"
+  },
+  "editedFolder": {
+    "message": "Klasör Düzenlendi"
+  },
+  "addedFolder": {
+    "message": "Klasör Eklendi"
+  },
+  "deleteFolderConfirmation": {
+    "message": "Bu klasörü silmek istediğinize emin misiniz?"
+  },
+  "deletedFolder": {
+    "message": "Klasör silindi"
+  },
+  "loggedOut": {
+    "message": "Çıkış yapıldı"
+  },
+  "loginExpired": {
+    "message": "Oturumunuzun süresi doldu."
+  },
+  "logOutConfirmation": {
+    "message": "Çıkmak istediğinize emin misiniz?"
+  },
+  "logOut": {
+    "message": "Çıkış Yap"
+  },
+  "ok": {
+    "message": "Tamam"
+  },
+  "yes": {
+    "message": "Evet"
+  },
+  "no": {
+    "message": "Hayır"
+  },
+  "loginOrCreateNewAccount": {
+    "message": "Güvenli kasanıza ulaşmak için giriş yapın veya yeni bir hesap oluşturun."
+  },
+  "createAccount": {
+    "message": "Hesap Oluştur"
+  },
+  "logIn": {
+    "message": "Giriş Yap"
+  },
+  "submit": {
+    "message": "Gönder"
+  },
+  "emailAddressDesc": {
+    "message": "E-posta adresinizle oturum açabilirsiniz."
+  },
+  "yourName": {
+    "message": "İsminiz"
+  },
+  "yourNameDesc": {
+    "message": "Size nasıl seslenmeliyiz?"
+  },
+  "masterPass": {
+    "message": "Ana Parola"
+  },
+  "masterPassDesc": {
+    "message": "Ana parola, kasanıza ulaşmak için kullanacağınız paroladır. Ana parolanızı unutmamanız çok önemlidir. Ana parolanızı unutmanız durumunda parolanızı geri getirecek herhangi bir yol bulunmuyor."
+  },
+  "masterPassHintDesc": {
+    "message": "Ana parola ipucunuz -eğer unutursanız- parolanızı hatırlamanıza yardımcı olabilir."
+  },
+  "reTypeMasterPass": {
+    "message": "Ana Parolayı Tekrar Yazın"
+  },
+  "masterPassHint": {
+    "message": "Ana Parola İpucusu (isteğe bağlı)"
+  },
+  "masterPassHintLabel": {
+    "message": "Ana Parola İpucusu"
+  },
+  "settings": {
+    "message": "Ayarlar"
+  },
+  "passwordHint": {
+    "message": "Password Hint"
+  },
+  "enterEmailToGetHint": {
+    "message": "Ana parola ipucunu almak istediğiniz e-posta adresinizi girin."
+  },
+  "getMasterPasswordHint": {
+    "message": "Ana parola ipucunu al"
+  },
+  "emailRequired": {
+    "message": "E-posta adresi gereklidir."
+  },
+  "invalidEmail": {
+    "message": "Geçersiz e-posta adresi."
+  },
+  "masterPassRequired": {
+    "message": "Ana parola gereklidir."
+  },
+  "masterPassLength": {
+    "message": "Ana parola en az 8 karakter uzunluğunda olmalıdır."
+  },
+  "masterPassDoesntMatch": {
+    "message": "Ana parola onayı eşleşmiyor."
+  },
+  "newAccountCreated": {
+    "message": "Yeni hesabınız oluşturuldu! Şimdi giriş yapabilirsiniz."
+  },
+  "masterPassSent": {
+    "message": "Size ana parolanızın ipucunu içeren bir e-posta gönderdik."
+  },
+  "unexpectedError": {
+    "message": "Beklenmedik bir hata oluştu."
+  },
+  "emailAddress": {
+    "message": "E-posta Adresi"
+  },
+  "yourVaultIsLocked": {
+    "message": "Kasan kilitlendi. Devam etmek için ana parolanı doğrula."
+  },
+  "unlock": {
+    "message": "Kilidi Aç"
+  },
+  "loggedInAsEmailOn": {
+    "message": "$HOSTNAME$ üzerinde $EMAIL$ olarak oturum açıldı.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "invalidMasterPassword": {
+    "message": "Geçersiz ana parola"
+  },
+  "lockNow": {
+    "message": "Şimdi Kilitle"
+  },
+  "noItemsInList": {
+    "message": "Görüntülenecek öge yok."
+  },
+  "noCollectionsInList": {
+    "message": "Listelenecek koleksiyon yok."
+  },
+  "noGroupsInList": {
+    "message": "Listelenecek grup yok."
+  },
+  "noUsersInList": {
+    "message": "Listelenecek kullanıcı yok."
+  },
+  "noEventsInList": {
+    "message": "Listelenecek olay yok."
+  },
+  "newOrganization": {
+    "message": "Yeni Organizasyon"
+  },
+  "noOrganizationsList": {
+    "message": "Bir kuruluşa ait değilsiniz. Kuruluşlar, ögeleri diğer kullanıcılarla güvenli bir şekilde paylaşmanıza izin verir."
+  },
+  "versionNumber": {
+    "message": "Versiyon $VERSION_NUMBER$",
+    "placeholders": {
+      "version_number": {
+        "content": "$1",
+        "example": "1.2.3"
+      }
+    }
+  },
+  "enterVerificationCodeApp": {
+    "message": "Kimlik doğrulama uygulamanızda yazan 6 haneli doğrulama kodunu girin."
+  },
+  "enterVerificationCodeEmail": {
+    "message": "$EMAIL$ adresine gönderilen 6 haneli doğrulama kodunu girin.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "verificationCodeEmailSent": {
+    "message": "Doğrulama E-postası $EMAIL$ adresine gönderildi.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "rememberMe": {
+    "message": "Beni hatırla"
+  },
+  "sendVerificationCodeEmailAgain": {
+    "message": "Doğrulama kodu e-postasını yeniden gönder"
+  },
+  "useAnotherTwoStepMethod": {
+    "message": "Başka bir iki adımlı giriş yöntemi kullan"
+  },
+  "insertYubiKey": {
+    "message": "YubiKey'inizi bilgisayarınızın USB portuna takın, ardından düğmesine dokunun."
+  },
+  "insertU2f": {
+    "message": "Güvenlik anahtarınızı bilgisayarınızın USB portuna takın. Bir düğmesi varsa dokunun."
+  },
+  "loginUnavailable": {
+    "message": "Login Unavailable"
+  },
+  "noTwoStepProviders": {
+    "message": "Bu hesapta iki adımlı giriş özelliği etkin, ancak yapılandırılmış iki adımlı sağlayıcılarının hiçbiri bu internet tarayıcısı tarafından desteklenmiyor."
+  },
+  "noTwoStepProviders2": {
+    "message": "Lütfen desteklenen bir internet tarayıcısı kullanın (Chrome gibi) ve ya internet tarayıcılarında daha iyi desteklenen ek sağlayıcılar ekleyin (bir kimlik doğrulayıcı uygulaması gibi)."
+  },
+  "twoStepOptions": {
+    "message": "İki adımlı oturum açma seçenekleri"
+  },
+  "recoveryCodeDesc": {
+    "message": "İki adımlı doğrulama sağlayıcılarınızın hepsine erişiminizi mi kaybettiniz? Hesabınızdaki tüm iki faktörlü sağlayıcıları devre dışı bırakmak için kurtarma kodunuzu kullanın."
+  },
+  "recoveryCodeTitle": {
+    "message": "Kurtarma kodu"
+  },
+  "authenticatorAppTitle": {
+    "message": "Kimlik doğrulama uygulaması"
+  },
+  "authenticatorAppDesc": {
+    "message": "Zamana dayalı doğrulama kodları oluşturmak için bir kimlik doğrulayıcı uygulaması (Authy veya Google Authenticator gibi) kullanın.",
+    "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
+  },
+  "yubiKeyTitle": {
+    "message": "YubiKey OTP Güvenlik Anahtarı"
+  },
+  "yubiKeyDesc": {
+    "message": "Hesabınıza erişmek için bir YubiKey kullanın. YubiKey 4 serisi, 5 serisi ve NEO cihazlarıyla çalışır."
+  },
+  "duoDesc": {
+    "message": "Duo Security ile doğrulama için Duo Mobile uygulaması, SMS, telefon görüşmesi veya U2F güvenlik anahtarını kullanın.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "duoOrganizationDesc": {
+    "message": "Kuruluşunuzun Duo Security doğrulaması için Duo Mobile uygulaması, SMS, telefon görüşmesi veya U2F güvenlik anahtarını kullanın.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "u2fDesc": {
+    "message": "Hesabınıza erişmek için herhangi bir FIDO U2F etkin güvenlik anahtarı kullanın."
+  },
+  "u2fTitle": {
+    "message": "FIDO U2F Güvenlik Anahtarı"
+  },
+  "emailTitle": {
+    "message": "E-posta"
+  },
+  "emailDesc": {
+    "message": "Doğrulama kodu size e-postalanacak."
+  },
+  "continue": {
+    "message": "Devam Et"
+  },
+  "organization": {
+    "message": "Kuruluş"
+  },
+  "organizations": {
+    "message": "Kuruluşlar"
+  },
+  "shareDesc": {
+    "message": "Bu ögeyi paylaşmak istediğiniz organizasyonu seçin. Paylaşım, ögenin sahipliğini kuruluşa aktarır. Paylaşıldıktan sonra artık bu ögenin doğrudan sahibi olmayacaksınız."
+  },
+  "shareManyDesc": {
+    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+  },
+  "collectionsDesc": {
+    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+  },
+  "deleteSelectedItemsDesc": {
+    "message": "Silmek için $COUNT$ öge seçtiniz. Bu ögelerin tamamını silmek istediğinize emin misiniz?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "moveSelectedItemsDesc": {
+    "message": "$COUNT$ seçili ögeyi taşımak istediğiniz klasörü seçin.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "shareSelectedItemsCountDesc": {
+    "message": "$COUNT$ öge seçtiniz. $SHAREABLE_COUNT$ öge paylaşılabilir, $NONSHAREABLE_COUNT$ paylaşılamaz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      },
+      "shareable_count": {
+        "content": "$2",
+        "example": "8"
+      },
+      "nonshareable_count": {
+        "content": "$3",
+        "example": "2"
+      }
+    }
+  },
+  "verificationCodeTotp": {
+    "message": "Doğrulama kodu (TOTP)"
+  },
+  "copyVerificationCode": {
+    "message": "Doğrulama kodunu kopyala"
+  },
+  "warning": {
+    "message": "Uyarı"
+  },
+  "confirmVaultExport": {
+    "message": "Confirm Vault Export"
+  },
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+  },
+  "encExportWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+  },
+  "exportMasterPassword": {
+    "message": "Kasadaki verilerinizi dışa aktarmak için ana parolanızı girin."
+  },
+  "exportVault": {
+    "message": "Export Vault"
+  },
+  "fileFormat": {
+    "message": "Dosya Biçimi"
+  },
+  "exportSuccess": {
+    "message": "Kasadaki verileriniz dışa aktarıldı."
+  },
+  "passwordGenerator": {
+    "message": "Parola Oluşturucu"
+  },
+  "minComplexityScore": {
+    "message": "Minimum Karmaşa Puanı"
+  },
+  "minNumbers": {
+    "message": "En Az Rakam"
+  },
+  "minSpecial": {
+    "message": "En Az Özel Karakter",
+    "description": "Minimum Special Characters"
+  },
+  "ambiguous": {
+    "message": "Belirsiz Karakterler Kullanma"
+  },
+  "regeneratePassword": {
+    "message": "Yeni Parola Oluştur"
+  },
+  "length": {
+    "message": "Uzunluk"
+  },
+  "numWords": {
+    "message": "Kelime Sayısı"
+  },
+  "wordSeparator": {
+    "message": "Kelime Ayracı"
+  },
+  "capitalize": {
+    "message": "Baş Harfleri Büyük Yap",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Sayı Ekle"
+  },
+  "passwordHistory": {
+    "message": "Parola Geçmişi"
+  },
+  "noPasswordsInList": {
+    "message": "Listelenecek şifre yok."
+  },
+  "clear": {
+    "message": "Temizle",
+    "description": "To clear something out. example: To clear browser history."
+  },
+  "accountUpdated": {
+    "message": "Hesap Güncellendi"
+  },
+  "changeEmail": {
+    "message": "E-postayı Değiştir"
+  },
+  "newEmail": {
+    "message": "Yeni E-posta"
+  },
+  "code": {
+    "message": "Kod"
+  },
+  "changeEmailDesc": {
+    "message": "$EMAIL$ adresine doğrulama kodu gönderdik. Kod için E-postanızı kontrol edin ve E-posta değişikliğini tamamlamak için aşağıya girin.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "john.smith@example.com"
+      }
+    }
+  },
+  "loggedOutWarning": {
+    "message": "Devam etmek geçerli oturumunuzu sonlandıracaktır, bu da tekrar oturum açmanızı gerektirecektir. Diğer cihazlardaki aktif oturumlar bir saat kadar aktif kalmaya devam edebilir."
+  },
+  "emailChanged": {
+    "message": "E-posta Değiştirildi"
+  },
+  "logBackIn": {
+    "message": "Lütfen giriş yapın."
+  },
+  "logBackInOthersToo": {
+    "message": "Lütfen tekrar giriş yapın. Diğer Bitwarden uygulamalarını kullanıyorsanız oturumu kapatın ve tekrar giriş yapın."
+  },
+  "changeMasterPassword": {
+    "message": "Ana Parolayı Değiştir"
+  },
+  "masterPasswordChanged": {
+    "message": "Ana Parola Değiştirildi"
+  },
+  "currentMasterPass": {
+    "message": "Mevcut Ana Parola"
+  },
+  "newMasterPass": {
+    "message": "Yeni Ana Parola"
+  },
+  "confirmNewMasterPass": {
+    "message": "Yeni Ana Parolayı Onaylayın"
+  },
+  "encKeySettings": {
+    "message": "Şifreleme Anahtarı Ayarları"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF Algoritması"
+  },
+  "kdfIterations": {
+    "message": "KDF Yinelemesi"
+  },
+  "kdfIterationsDesc": {
+    "message": "Daha yüksek KDF yinelemeleri, ana şifrenizin saldırgan tarafından sürekli denenerek kırılmasından korunmaya yardımcı olabilir. $VALUE$ veya üzeri bir değer tavsiye ediyoruz.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "KDF yinelemelerinizi çok yüksek ayarlamak, daha yavaş CPU'ya sahip cihazlarda Bitwarden'e giriş yaparken (ve kilidi açarken) düşük performansa neden olabilir. Değeri $INCREMENT$ artışlarla artırmanızı ve ardından tüm cihazlarınızı test etmenizi tavsiye ediyoruz.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "KDF'yi değiştir"
+  },
+  "encKeySettingsChanged": {
+    "message": "Şifreleme Anahtarı Ayarları Değişti"
+  },
+  "dangerZone": {
+    "message": "Tehlikeli Alan"
+  },
+  "dangerZoneDesc": {
+    "message": "Dikkatli olun, bu eylemler geri alınamaz!"
+  },
+  "deauthorizeSessions": {
+    "message": "Oturumları Kapat"
+  },
+  "deauthorizeSessionsDesc": {
+    "message": "Başka bir cihazda oturum açtığınızdan endişeli misiniz? Daha önce kullandığınız tüm cihazlardan oturumu kapatmak için aşağıdan ilerleyin. Bu özellik halka açık bilgisayar kullanırsanız ya da sahibi olmadığınız cihazda giriş yaparsanız önerilir. Önceden iki aşamalı giriş ile oturum açılan hesaplar da kapatılacaktır."
+  },
+  "deauthorizeSessionsWarning": {
+    "message": "Devam etmek ayrıca geçerli oturumunuzu sonlandıracaktır, bu da tekrar oturum açmanızı gerektirecektir. Ayrıca, eğer etkinleştirildiyse, tekrardan iki adımlı giriş yapmanız istenecektir. Diğer cihazlardaki aktif oturumlar bir saat kadar aktif kalmaya devam edebilir."
+  },
+  "sessionsDeauthorized": {
+    "message": "Bütün Oturumlar Kapatıldı"
+  },
+  "purgeVault": {
+    "message": "Kasayı Sil"
+  },
+  "purgedOrganizationVault": {
+    "message": "Organizasyon kasası silindi."
+  },
+  "purgeVaultDesc": {
+    "message": "Kasanızdaki tüm ögeleri ve klasörleri silmek için aşağıdan ilerleyin. Kuruluş ile paylaştığınız ögeler silinmez."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Kuruluş kasasındaki tüm ögeleri silmek için aşağıdan ilerleyin."
+  },
+  "purgeVaultWarning": {
+    "message": "Kasanızı silmek kalıcıdır. Bu işlem geri alınamaz."
+  },
+  "vaultPurged": {
+    "message": "Kasanız silindi."
+  },
+  "deleteAccount": {
+    "message": "Hesabı Sil"
+  },
+  "deleteAccountDesc": {
+    "message": "Hesabınızı ve ilişkili tüm verileri silmek için aşağıya devam edin."
+  },
+  "deleteAccountWarning": {
+    "message": "Hesabınızı silmek kalıcıdır. Geri alınamaz."
+  },
+  "accountDeleted": {
+    "message": "Hesap Silindi"
+  },
+  "accountDeletedDesc": {
+    "message": "Hesabınız kapatıldı ve ilişkili tüm veriler silindi."
+  },
+  "myAccount": {
+    "message": "Hesabım"
+  },
+  "tools": {
+    "message": "Araçlar"
+  },
+  "importData": {
+    "message": "Verileri içe aktar"
+  },
+  "importSuccess": {
+    "message": "Veriler kasanıza başarıyla aktarıldı."
+  },
+  "importFormatError": {
+    "message": "Veriler doğru biçimlendirilmemiş. Lütfen içe aktarma dosyanızı kontrol edin ve tekrar deneyin."
+  },
+  "importNothingError": {
+    "message": "Hiçbir şey içe aktarılmadı."
+  },
+  "selectFormat": {
+    "message": "İçe aktarma dosyasının formatını seçin"
+  },
+  "selectImportFile": {
+    "message": "İçe aktarma dosyasını seçin"
+  },
+  "orCopyPasteFileContents": {
+    "message": "ya da içe aktarma dosyasının içeriğini kopyala/yapıştırın"
+  },
+  "instructionsFor": {
+    "message": "$NAME$ Talimatları",
+    "description": "The title for the import tool instructions.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "LastPass (csv)"
+      }
+    }
+  },
+  "options": {
+    "message": "Seçenekler"
+  },
+  "optionsDesc": {
+    "message": "Web kasası deneyiminizi özelleştirin."
+  },
+  "optionsUpdated": {
+    "message": "Seçenekler güncellendi"
+  },
+  "language": {
+    "message": "Dil"
+  },
+  "languageDesc": {
+    "message": "Web kasası tarafından kullanılan dili değiştirin."
+  },
+  "disableIcons": {
+    "message": "Site simgelerini devre dışı bırak"
+  },
+  "disableIconsDesc": {
+    "message": "Web Sitesi Simgeleri, kasanızdaki her giriş bilgisinin yanında o siteyi tanımanıza yardımcı olacak bir simge gösterir."
+  },
+  "enableGravatars": {
+    "message": "Gravatar'ı Etkinleştir",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "gravatar.com adresinden yüklenen avatarları kullanın."
+  },
+  "enableFullWidth": {
+    "message": "Tam Genişlik Düzenini Etkinleştir",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Web kasasının tarayıcı penceresini tam genişliğinde kullanmasına izin verin."
+  },
+  "default": {
+    "message": "Varsayılan"
+  },
+  "domainRules": {
+    "message": "Alan Adı Kuralları"
+  },
+  "domainRulesDesc": {
+    "message": "Birden fazla farklı web sitesi alan adında aynı giriş bilgisine sahipseniz, web sitesini \"eşdeğer\" olarak işaretleyebilirsiniz. \"Global\" alan adları, sizin için Bitwarden tarafından oluşturulmuş olanlardır."
+  },
+  "globalEqDomains": {
+    "message": "Global Eşdeğer Alan Adları"
+  },
+  "customEqDomains": {
+    "message": "Özel Eşdeğer Alan Adları"
+  },
+  "exclude": {
+    "message": "Hariç tut"
+  },
+  "include": {
+    "message": "Dahil et"
+  },
+  "customize": {
+    "message": "Özelleştir"
+  },
+  "newCustomDomain": {
+    "message": "Yeni Özel Alan Adı"
+  },
+  "newCustomDomainDesc": {
+    "message": "Virgülle ayrılmış alan adları listesi giriniz. Sadece ana alan adlarına izin verilmektedir. Alt alan adları girmeyiniz. Örneğin, \"www.google.com\" yerine \"google.com\" giriniz. Bir android uygulamasını diğer web sitesi alan adları ile eşleştirmek için \"androiduygulaması://paket.ismi\" girebilirsiniz."
+  },
+  "customDomainX": {
+    "message": "Özel Alan Adı: $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "domainsUpdated": {
+    "message": "Alan adları güncellendi"
+  },
+  "twoStepLogin": {
+    "message": "İki Aşamalı Giriş"
+  },
+  "twoStepLoginDesc": {
+    "message": "Oturum açarken ek bir adım talep ederek hesabınızı güvenceye alın."
+  },
+  "twoStepLoginOrganizationDesc": {
+    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+  },
+  "twoStepLoginRecoveryWarning": {
+    "message": "İki aşamalı girişi etkinleştirmek, Bitwarden hesabınızı kalıcı olarak kilitleyebilir. Kurtarma kodunuz, iki aşamalı giriş sağlayıcınızı kullanamamanız durumunda hesabınıza erişmenize olanak sağlar (ör. cihazınızı kaybedersiniz). Hesabınıza erişiminizi kaybederseniz Bitwarden desteği size yardımcı olamaz. Kurtarma kodunu yazmanızı veya yazdırmanızı ve güvenli bir yerde saklamanızı öneririz."
+  },
+  "viewRecoveryCode": {
+    "message": "Kurtarma Kodunu İncele"
+  },
+  "providers": {
+    "message": "Sağlayıcılar",
+    "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
+  },
+  "enable": {
+    "message": "Etkinleştir"
+  },
+  "enabled": {
+    "message": "Etkin"
+  },
+  "premium": {
+    "message": "Premium",
+    "description": "Premium Membership"
+  },
+  "premiumMembership": {
+    "message": "Premium Üyelik"
+  },
+  "premiumRequired": {
+    "message": "Premium Gerekli"
+  },
+  "premiumRequiredDesc": {
+    "message": "Bu özelliği kullanmak için premium üyelik gereklidir."
+  },
+  "youHavePremiumAccess": {
+    "message": "Premium erişim hakkınız var"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "Üyesi olduğunuz bir organizasyon nedeniyle premium özelliklere zaten erişiminiz var."
+  },
+  "manage": {
+    "message": "Yönet"
+  },
+  "disable": {
+    "message": "Devre dışı bırak"
+  },
+  "twoStepLoginProviderEnabled": {
+    "message": "Bu iki adımlı giriş sağlayıcısı hesabınızda etkin durumda."
+  },
+  "twoStepLoginAuthDesc": {
+    "message": "İki adımlı giriş ayarlarını değiştirmek için ana parolanızı girin."
+  },
+  "twoStepAuthenticatorDesc": {
+    "message": "Kimlik doğrulayıcı bir uygulamayla iki adımlı oturum açmayı ayarlamak için şu adımları izleyin:"
+  },
+  "twoStepAuthenticatorDownloadApp": {
+    "message": "İki adımlı bir kimlik doğrulama uygulaması indirin"
+  },
+  "twoStepAuthenticatorNeedApp": {
+    "message": "İki adımlı bir kimlik doğrulama uygulamasına mı ihtiyacınız var? Aşağıdakilerden birini indirin"
+  },
+  "iosDevices": {
+    "message": "iOS cihazları"
+  },
+  "androidDevices": {
+    "message": "Android cihazları"
+  },
+  "windowsDevices": {
+    "message": "Windows cihazları"
+  },
+  "twoStepAuthenticatorAppsRecommended": {
+    "message": "Bu uygulamalar önerilir, ancak diğer kimlik doğrulayıcı uygulamalar da çalışacaktır."
+  },
+  "twoStepAuthenticatorScanCode": {
+    "message": "Bu QR kodunu kimlik doğrulama uygulamanızla tarayın"
+  },
+  "key": {
+    "message": "Anahtar"
+  },
+  "twoStepAuthenticatorEnterCode": {
+    "message": "Uygulamadan gelen 6 basamaklı doğrulama kodunu girin"
+  },
+  "twoStepAuthenticatorReaddDesc": {
+    "message": "Başka bir cihaza eklemeniz gerekirse, aşağıda kimlik doğrulama uygulamanızın gerektirdiği QR kodu (veya anahtarı) verilmiştir."
+  },
+  "twoStepDisableDesc": {
+    "message": "Bu iki adımlı giriş sağlayıcısını devre dışı bırakmak istediğinize emin misiniz?"
+  },
+  "twoStepDisabled": {
+    "message": "İki adım oturum açma sağlayıcısı devre dışı."
+  },
+  "twoFactorYubikeyAdd": {
+    "message": "Hesabınıza yeni bir YubiKey ekleyin"
+  },
+  "twoFactorYubikeyPlugIn": {
+    "message": "YubiKey'i bilgisayarınızın USB portuna takın."
+  },
+  "twoFactorYubikeySelectKey": {
+    "message": "Aşağıdaki ilk boş YubiKey giriş alanını seçin."
+  },
+  "twoFactorYubikeyTouchButton": {
+    "message": "YubiKey'in düğmesine dokunun."
+  },
+  "twoFactorYubikeySaveForm": {
+    "message": "Formu kaydedin."
+  },
+  "twoFactorYubikeyWarning": {
+    "message": "Platform sınırlamaları nedeniyle, YubiKeyler tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece YubiKeyler kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
+  },
+  "twoFactorYubikeySupportUsb": {
+    "message": "Web kasası, masaüstü uygulaması, CLI ve YubiKey'inizi kabul edebilecek bir USB bağlantı noktasına sahip bir cihazdaki tüm tarayıcı uzantıları."
+  },
+  "twoFactorYubikeySupportMobile": {
+    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+  },
+  "yubikeyX": {
+    "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "U2F Anahtarı: $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "nfcSupport": {
+    "message": "NFC Desteği"
+  },
+  "twoFactorYubikeySupportsNfc": {
+    "message": "Anahtarlarımdan biri NFC'yi destekliyor."
+  },
+  "twoFactorYubikeySupportsNfcDesc": {
+    "message": "YubiKey'lerinizden biri NFC'yi destekliyorsa (YubiKey NEO gibi), mobil cihazlarda NFC kullanılabilirliği tespit edildiğinde uyarılacaksınız."
+  },
+  "yubikeysUpdated": {
+    "message": "YubiKey'ler güncellendi"
+  },
+  "disableAllKeys": {
+    "message": "Bütün Anahtarları Devre Dışı Bırak"
+  },
+  "twoFactorDuoDesc": {
+    "message": "Duo Yönetici panelinizden Bitwarden uygulama bilgilerini girin."
+  },
+  "twoFactorDuoIntegrationKey": {
+    "message": "Entegrasyon Anahtarı"
+  },
+  "twoFactorDuoSecretKey": {
+    "message": "Gizli Anahtar"
+  },
+  "twoFactorDuoApiHostname": {
+    "message": "API Hostname"
+  },
+  "twoFactorEmailDesc": {
+    "message": "E-posta ile iki adımlı oturum açmayı ayarlamak için şu adımları izleyin:"
+  },
+  "twoFactorEmailEnterEmail": {
+    "message": "Doğrulama kodlarını almak istediğiniz e-posta adresini girin"
+  },
+  "twoFactorEmailEnterCode": {
+    "message": "E-posta adresine gelen 6 basamaklı doğrulama kodunu girin"
+  },
+  "sendEmail": {
+    "message": "E-posta gönder"
+  },
+  "twoFactorU2fAdd": {
+    "message": "Hesabınıza FIDO U2F güvenlik anahtarı ekleyin"
+  },
+  "removeU2fConfirmation": {
+    "message": "Bu güvenlik anahtarını kaldırmak istediğinizden emin misiniz?"
+  },
+  "readKey": {
+    "message": "Anahtarı Oku"
+  },
+  "keyCompromised": {
+    "message": "Anahtar ele geçirilmiş."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Güvenlik anahtarını tanımlamak için kolay bir isim verin."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Güvenlik anahtarını bilgisayarınızın USB portuna takın ve \"Anahtarı Oku\" düğmesine tıklayın."
+  },
+  "twoFactorU2fTouchButton": {
+    "message": "Güvenlik anahtarının bir düğmesi varsa, ona dokunun."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Formu kaydedin."
+  },
+  "twoFactorU2fWarning": {
+    "message": "Platform sınırlamaları nedeniyle, FIDO U2F tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece FIDO U2F kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
+  },
+  "twoFactorU2fSupportWeb": {
+    "message": "Web kasası ve U2F etkinleştirilmiş bir tarayıcıya (FIDO U2F etkinleştirilmiş Chrome, Opera, Vivaldi veya Firefox) sahip bir masaüstü/dizüstü bilgisayarda tarayıcı uzantıları."
+  },
+  "twoFactorU2fWaiting": {
+    "message": "Güvenlik anahtarınızdaki düğmeye dokunmanız bekleniyor"
+  },
+  "twoFactorU2fClickSave": {
+    "message": "İki adımlı giriş için bu güvenlik anahtarını etkinleştirmek için aşağıdaki \"Kaydet\" butonuna tıklayın."
+  },
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Güvenlik anahtarını okurken bir sorun oluştu. Tekrar deneyin."
+  },
+  "twoFactorRecoveryYourCode": {
+    "message": "Bitwarden iki adım giriş kurtarma kodunuz"
+  },
+  "twoFactorRecoveryNoCode": {
+    "message": "Henüz herhangi bir iki adımlı giriş sağlayıcısını etkinleştirmediniz. İki adımlı bir giriş sağlayıcısını etkinleştirdikten sonra, kurtarma kodunuz için burayı tekrar kontrol edebilirsiniz."
+  },
+  "printCode": {
+    "message": "Kodu Yazdır",
+    "description": "Print 2FA recovery code"
+  },
+  "reports": {
+    "message": "Raporlar"
+  },
+  "unsecuredWebsitesReport": {
+    "message": "Güvenli Olmayan Web Siteler Raporu"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "http:// şemasına sahip güvenli olmayan web sitelerini kullanmak tehlikeli olabilir. Web sitesi izin veriyorsa, bağlantınızın şifrelenmesi için her zaman https:// şemasını kullanarak erişmelisiniz."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "Güvenli Olmayan Web Siteler Bulundu"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "Kasanızda güvenli olmayan URI'ye sahip $COUNT$ öge bulduk. Web sitesi izin veriyorsa, URI şemasını https:// olarak değiştirmelisiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "Kasanızda güvenli olmayan URI'ye sahip öge yoktur."
+  },
+  "inactive2faReport": {
+    "message": "2FA Raporu Pasif"
+  },
+  "inactive2faReportDesc": {
+    "message": "İki adımlı kimlik doğrulama (2FA), hesaplarınızı güvenceye almanıza yardımcı olan önemli bir güvenlik ayarıdır. Web sitesi sunduğu takdirde, her zaman iki adımlı kimlik doğrulamayı etkinleştirmelisiniz."
+  },
+  "inactive2faFound": {
+    "message": "2FA Olmayan Hesaplar Bulundu"
+  },
+  "inactive2faFoundDesc": {
+    "message": "Kasanızda iki adımlı kimlik doğrulaması ile yapılandırılmamış olabilecek $COUNT$ web sitesi bulduk (2fa.directory’a göre). Bu hesapları daha fazla korumak için iki adımlı kimlik doğrulamasını etkinleştirmelisiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noInactive2fa": {
+    "message": "Kasanızda iki adımlı kimlik doğrulama yapılandırması eksik olan web sitesi bulunamadı."
+  },
+  "instructions": {
+    "message": "Talimatlar"
+  },
+  "exposedPasswordsReport": {
+    "message": "Açığa Çıkan Parolalar Raporu"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "Açığa çıkan şifreler, kamuya açık olarak yayınlanan veya bilgisayar korsanları tarafından karanlık ağda satıldığı bilinen şifrelerdir."
+  },
+  "exposedPasswordsFound": {
+    "message": "Açığa Çıkan Parolalar Bulundu"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "Kasanızda, bilinen veri ihlallerine maruz kalmış şifreleri olan $COUNT$ öge bulundu. Yeni bir şifre kullanmaları için onları değiştirmelisiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "Kasanızdaki hiçbir ögenin bilinen veri ihlallerine maruz kalmış şifreleri yoktur."
+  },
+  "checkExposedPasswords": {
+    "message": "Açığa Çıkan Parolaları Kontrol Et"
+  },
+  "exposedXTimes": {
+    "message": "$COUNT$ defa maruz kaldı",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
+  "weakPasswordsReport": {
+    "message": "Zayıf Şifreler Raporu"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "Zayıf parolalar bilgisayar korsanları ve onları kırmak için kullanılan otomatik araçlar tarafından kolayca tahmin edilebilir. Bitwarden şifre üreticisi, güçlü şifreler oluşturmanıza yardımcı olabilir."
+  },
+  "weakPasswordsFound": {
+    "message": "Zayıf Parolalar Bulundu"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "Kasanızda güçlü olmayan parolalara sahip $COUNT$ öge bulduk. Daha güçlü şifreler kullanmaları için bunları güncellemelisiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "Kasanızdaki hiçbir ögenin zayıf şifresi yoktur."
+  },
+  "reusedPasswordsReport": {
+    "message": "Yeniden Kullanılmış Parolalar Raporu"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "Kullandığınız bir servisin güvenliği ihlal edilirse, aynı parolayı başka bir yerde tekrar kullanmak bilgisayar korsanlarının çevrimiçi hesaplarınızın daha fazlasına kolayca erişmesine izin verebilir. Her hesap veya hizmet için benzersiz bir parola kullanmalısınız."
+  },
+  "reusedPasswordsFound": {
+    "message": "Yeniden Kullanılmış Parolalar Bulundu"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "Kasanızda tekrar kullanılmakta olan $COUNT$ tane parola bulduk. Onları benzersiz bir değerle değiştirmelisiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "Kasanızdaki hiçbir hesap, yeniden kullanılmakta olan parolalara sahip değildir."
+  },
+  "reusedXTimes": {
+    "message": "$COUNT$ defa yeniden kullanıldı",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "dataBreachReport": {
+    "message": "Veri İhlali Raporu"
+  },
+  "breachDesc": {
+    "message": "\"İhlal\", bir sitenin verilerine bilgisayar korsanları tarafından yasa dışı bir şekilde erişildiği ve daha sonra herkese açık olarak yayınlandığı bir olaydır. Ele geçirilen veri türlerini (e-posta adresleri, parolalar, kredi kartları vb.) inceleyin ve parolaları değiştirmek gibi uygun işlemleri yapın."
+  },
+  "breachCheckUsernameEmail": {
+    "message": "Kullandığınız kullanıcı adlarını veya e-posta adreslerini kontrol edin."
+  },
+  "checkBreaches": {
+    "message": "İhlalleri Kontrol Et"
+  },
+  "breachUsernameNotFound": {
+    "message": "$USERNAME$ bilinen veri ihlallerinde bulunamadı.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      }
+    }
+  },
+  "goodNews": {
+    "message": "İyi Haber",
+    "description": "ex. Good News, No Breached Accounts Found!"
+  },
+  "breachUsernameFound": {
+    "message": "$USERNAME$ $COUNT$ farklı çevrimiçi veri ihlalinde bulundu.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      },
+      "count": {
+        "content": "$2",
+        "example": "7"
+      }
+    }
+  },
+  "breachFound": {
+    "message": "İhlal Edilmiş Hesaplar Bulundu"
+  },
+  "compromisedData": {
+    "message": "Ele geçirilmiş veriler"
+  },
+  "website": {
+    "message": "Web sitesi"
+  },
+  "affectedUsers": {
+    "message": "Etkilenen Kullanıcılar"
+  },
+  "breachOccurred": {
+    "message": "İhlal Oluştu"
+  },
+  "breachReported": {
+    "message": "İhlal Bildirildi"
+  },
+  "reportError": {
+    "message": "Rapor yüklenmeye çalışılırken bir hata oluştu. Tekrar deneyin"
+  },
+  "billing": {
+    "message": "Faturalandırma"
+  },
+  "accountCredit": {
+    "message": "Hesap Kredisi",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Hesap Bakiyesi",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Kredi Ekle",
+    "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "Miktar",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Ödeme tamamlandıktan sonra eklenen kredi hesabınızda görünecektir. Bazı ödeme yöntemleri gecikmelidir ve diğerlerine göre daha uzun sürebilir."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Lütfen hesabınızda bu satın alım için yeterli kredi olduğundan emin olun. Hesabınızda yeterli kredi yoksa, fark için dosyadaki varsayılan ödeme yönteminiz kullanılır. Hesabınıza, Faturalandırma sayfasından kredi ekleyebilirsiniz."
+  },
+  "creditAppliedDesc": {
+    "message": "Hesabınızın kredisi, satın almalarda kullanılabilir. Kullanılabilir herhangi bir kredi, bu hesap için oluşturulan faturalara otomatik olarak uygulanacaktır."
+  },
+  "goPremium": {
+    "message": "Premium'a Geç",
+    "description": "Another way of saying \"Get a premium membership\""
+  },
+  "premiumUpdated": {
+    "message": "Premium'a yükselttiniz."
+  },
+  "premiumUpgradeUnlockFeatures": {
+    "message": "Hesabınızı premium üyeliğe yükseltin ve bazı harika ek özelliklerin kilidini açın."
+  },
+  "premiumSignUpStorage": {
+    "message": "Dosyalarınız için 1GB şifreli depolama."
+  },
+  "premiumSignUpTwoStep": {
+    "message": "YubiKey, FIDO U2F ve Duo gibi ilave iki adımlı oturum açma seçenekleri."
+  },
+  "premiumSignUpReports": {
+    "message": "Kasanızı güvende tutmak için parola hijyeni, hesap sağlığı, ve veri ihlali raporları."
+  },
+  "premiumSignUpTotp": {
+    "message": "Kasanızdaki giriş bilgileriniz için TOTP doğrulama kodu (2FA) oluşturucu."
+  },
+  "premiumSignUpSupport": {
+    "message": "Öncelikli müşteri desteği."
+  },
+  "premiumSignUpFuture": {
+    "message": "Gelecekteki tüm premium özellikler. Daha fazlası yakında!"
+  },
+  "premiumPrice": {
+    "message": "Bunların hepsi sadece yılda $PRICE$!",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      }
+    }
+  },
+  "addons": {
+    "message": "Eklentiler"
+  },
+  "premiumAccess": {
+    "message": "Premium Erişim"
+  },
+  "premiumAccessDesc": {
+    "message": "Kuruluşunuzda bulunan tüm üyelerine premium erişim ekleyebilirsiniz: $PRICE$ /$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "additionalStorageGb": {
+    "message": "Ek Depolama (GB)"
+  },
+  "additionalStorageGbDesc": {
+    "message": "# ilave GB"
+  },
+  "additionalStorageIntervalDesc": {
+    "message": "Planınızda $SIZE$ şifreli dosya depolama alanı bulunmaktadır. GB/$INTERVAL$ başına $PRICE$ karşılığında ilave depolama alanı ekleyebilirsiniz.",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      },
+      "price": {
+        "content": "$2",
+        "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "summary": {
+    "message": "Özet"
+  },
+  "total": {
+    "message": "Toplam"
+  },
+  "year": {
+    "message": "yıl"
+  },
+  "month": {
+    "message": "ay"
+  },
+  "monthAbbr": {
+    "message": "ay.",
+    "description": "Short abbreviation for 'month'"
+  },
+  "paymentChargedAnnually": {
+    "message": "Ödeme yönteminiz hemen şimdi ve ardından her yıl düzenli olarak ücretlendirilecektir. İstediğiniz zaman iptal edebilirsiniz."
+  },
+  "paymentCharged": {
+    "message": "Ödeme yönteminiz hemen şimdi ve ardından her $INTERVAL$ düzenli olarak ücretlendirilecektir. İstediğiniz zaman iptal edebilirsiniz.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentChargedWithTrial": {
+    "message": "Planınız 7 günlük ücretsiz deneme ile birlikte gelmektedir. Deneme sona erene kadar ödeme yönteminiz ücretlendirilmeyecektir. Faturalandırma, her $INTERVAL$ bir düzenli olarak gerçekleştirilecektir. İstediğiniz zaman iptal edebilirsiniz.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentInformation": {
+    "message": "Ödeme Bilgileri"
+  },
+  "billingInformation": {
+    "message": "Billing Information"
+  },
+  "creditCard": {
+    "message": "Kredi Kartı"
+  },
+  "paypalClickSubmit": {
+    "message": "PayPal hesabınıza giriş yapmak için PayPal butonuna tıklayın, ardından devam etmek için aşağıdaki Gönder butonuna tıklayın."
+  },
+  "cancelSubscription": {
+    "message": "Aboneliği İptal Edin"
+  },
+  "subscriptionCanceled": {
+    "message": "Abonelik İptal Edildi."
+  },
+  "pendingCancellation": {
+    "message": "İptal İçin Bekleniyor"
+  },
+  "subscriptionPendingCanceled": {
+    "message": "Abonelik, geçerli fatura dönemi sonunda iptal edilmek için işaretlendi."
+  },
+  "reinstateSubscription": {
+    "message": "Aboneliği Geri Yükleyin"
+  },
+  "reinstateConfirmation": {
+    "message": "Bekleyen iptal isteğini kaldırmak ve aboneliğinizi yeniden eski haline getirmek istediğinizden emin misiniz?"
+  },
+  "reinstated": {
+    "message": "Abonelik eski haline getirildi."
+  },
+  "cancelConfirmation": {
+    "message": "İptal etmek istediğinden emin misin? Bu faturalandırma döneminin sonunda bu aboneliğin tüm özelliklerine erişiminizi kaybedeceksiniz."
+  },
+  "canceledSubscription": {
+    "message": "Abonelik İptal Edildi."
+  },
+  "neverExpires": {
+    "message": "Asla Sona Ermez"
+  },
+  "status": {
+    "message": "Durum"
+  },
+  "nextCharge": {
+    "message": "Sonraki Ödeme"
+  },
+  "details": {
+    "message": "Ayrıntılar"
+  },
+  "downloadLicense": {
+    "message": "Lisansı İndir"
+  },
+  "updateLicense": {
+    "message": "Lisansı Güncelle"
+  },
+  "updatedLicense": {
+    "message": "Lisans güncellendi"
+  },
+  "manageSubscription": {
+    "message": "Aboneliği Yönet"
+  },
+  "storage": {
+    "message": "Depolama"
+  },
+  "addStorage": {
+    "message": "Depolama Ekle"
+  },
+  "removeStorage": {
+    "message": "Depolamayı Kaldır"
+  },
+  "subscriptionStorage": {
+    "message": "\nAboneliğinizin toplam $MAX_STORAGE$ GB şifreli dosya depolama alanı var. Şu anda $USED_STORAGE $ kullanıyorsunuz.",
+    "placeholders": {
+      "max_storage": {
+        "content": "$1",
+        "example": "4"
+      },
+      "used_storage": {
+        "content": "$2",
+        "example": "65 MB"
+      }
+    }
+  },
+  "paymentMethod": {
+    "message": "Ödeme Yöntemi"
+  },
+  "noPaymentMethod": {
+    "message": "Dosya üzerinde ödeme yöntemi yok."
+  },
+  "addPaymentMethod": {
+    "message": "Ödeme Yöntemi Ekle"
+  },
+  "changePaymentMethod": {
+    "message": "Ödeme Yöntemini Değiştir"
+  },
+  "invoices": {
+    "message": "Faturalar"
+  },
+  "noInvoices": {
+    "message": "Fatura yok."
+  },
+  "paid": {
+    "message": "Ödendi",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Ödenmemiş",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "İşlemler",
+    "description": "Payment/credit transactions."
+  },
+  "noTransactions": {
+    "message": "İşlem yok."
+  },
+  "chargeNoun": {
+    "message": "Ücret",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Geri ödeme",
+    "description": "Noun. A refunded payment that was charged."
+  },
+  "chargesStatement": {
+    "message": "Tüm masraflar ifadenizde $STATEMENT_NAME$ olarak görünecek.",
+    "placeholders": {
+      "statement_name": {
+        "content": "$1",
+        "example": "BITWARDEN"
+      }
+    }
+  },
+  "gbStorageAdd": {
+    "message": "Depolamaya GB Ekle"
+  },
+  "gbStorageRemove": {
+    "message": "Depolamadan GB Çıkar"
+  },
+  "storageAddNote": {
+    "message": "Depolama alanı eklemek, fatura toplamınızda ayarlamalar yapmanıza ve ödeme yönteminizi derhal borçlandırmanıza neden olur. İlk masraf, mevcut faturalandırma döngüsünün kalanı için geçerli olacaktır."
+  },
+  "storageRemoveNote": {
+    "message": "Depolamayı kaldırmak, bir sonraki fatura ücretinize kredi olarak kanıtlanacak olan fatura toplamlarınızda ayarlamalar yapmanıza neden olur."
+  },
+  "adjustedStorage": {
+    "message": "Düzeltilmiş $AMOUNT$ GB depolama alanı.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "contactSupport": {
+    "message": "Müşteri Hizmetleriyle iletişime geçin"
+  },
+  "updatedPaymentMethod": {
+    "message": "Ödeme yöntemi güncellendi."
+  },
+  "purchasePremium": {
+    "message": "Premium Satın Al"
+  },
+  "licenseFile": {
+    "message": "Lisans Dosyası"
+  },
+  "licenseFileDesc": {
+    "message": "Lisans dosyanızın adı şuna benzer olacak: $FILE_NAME$",
+    "placeholders": {
+      "file_name": {
+        "content": "$1",
+        "example": "bitwarden_premium_license.json"
+      }
+    }
+  },
+  "uploadLicenseFilePremium": {
+    "message": "Hesabınızı premium üyeliğe yükseltmek için geçerli bir lisans dosyası yüklemelisiniz."
+  },
+  "uploadLicenseFileOrg": {
+    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+  },
+  "accountEmailMustBeVerified": {
+    "message": "Hesabınızın e-posta adresi doğrulanmalıdır."
+  },
+  "newOrganizationDesc": {
+    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+  },
+  "generalInformation": {
+    "message": "Genel Bilgi"
+  },
+  "organizationName": {
+    "message": "Organizasyon Adı"
+  },
+  "accountOwnedBusiness": {
+    "message": "Bu hesap bir işletmeye aittir."
+  },
+  "billingEmail": {
+    "message": "Fatura İçin E-posta"
+  },
+  "businessName": {
+    "message": "İşletme Adı"
+  },
+  "chooseYourPlan": {
+    "message": "Planınızı Seçin"
+  },
+  "users": {
+    "message": "Kullanıcılar"
+  },
+  "userSeats": {
+    "message": "Kullanıcı Yeri"
+  },
+  "additionalUserSeats": {
+    "message": "Ek Kullanıcı Yerleri"
+  },
+  "userSeatsDesc": {
+    "message": "Kullanıcı sayısı"
+  },
+  "userSeatsAdditionalDesc": {
+    "message": "Planınız $BASE_SEATS$ kullanıcı yeri ile birlikte gelir. Kullanıcı /ay başına $SEAT_PRICE$ için ek kullanıcılar ekleyebilirsiniz.",
+    "placeholders": {
+      "base_seats": {
+        "content": "$1",
+        "example": "5"
+      },
+      "seat_price": {
+        "content": "$2",
+        "example": "$2.00"
+      }
+    }
+  },
+  "userSeatsHowManyDesc": {
+    "message": "Kaç kullanıcı yerine ihtiyacınız var? Gerekirse daha sonra ilave yerler de ekleyebilirsiniz "
+  },
+  "planNameFree": {
+    "message": "Ücretsiz",
+    "description": "Free as in 'free beer'."
+  },
+  "planDescFree": {
+    "message": "For testing or personal users to share with $COUNT$ other user.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "planNameFamilies": {
+    "message": "Aileler"
+  },
+  "planDescFamilies": {
+    "message": "Kişisel kullanım için, aileniz ve arkadaşlarınızla paylaşın."
+  },
+  "planNameTeams": {
+    "message": "Takımlar"
+  },
+  "planDescTeams": {
+    "message": "For businesses and other team organizations."
+  },
+  "planNameEnterprise": {
+    "message": "Kuruluş"
+  },
+  "planDescEnterprise": {
+    "message": "For businesses and other large organizations."
+  },
+  "freeForever": {
+    "message": "Ömür Boyu Ücretsiz"
+  },
+  "includesXUsers": {
+    "message": "$COUNT$ kullanıcı içerir",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "additionalUsers": {
+    "message": "Ek Kullanıcılar"
+  },
+  "costPerUser": {
+    "message": "Kullanıcı başına $COST$",
+    "placeholders": {
+      "cost": {
+        "content": "$1",
+        "example": "$3"
+      }
+    }
+  },
+  "limitedUsers": {
+    "message": "$COUNT$ kullanıcıyla sınırlı (siz dahil)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "limitedCollections": {
+    "message": "$COUNT$ koleksiyonla sınırlıdır",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "addShareLimitedUsers": {
+    "message": "$COUNT$ kullanıcısına kadar ekleyin ve paylaşın",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "addShareUnlimitedUsers": {
+    "message": "Sınırsız kullanıcı ekle ve paylaş"
+  },
+  "createUnlimitedCollections": {
+    "message": "Sınırsız koleksiyon oluştur"
+  },
+  "gbEncryptedFileStorage": {
+    "message": "$SIZE$ şifreli dosya depolama",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      }
+    }
+  },
+  "onPremHostingOptional": {
+    "message": "Şirket içi barındırma (isteğe bağlı)"
+  },
+  "usersGetPremium": {
+    "message": "Kullanıcılar premium üyelik özelliklerine erişebilir"
+  },
+  "controlAccessWithGroups": {
+    "message": "Kullanıcı erişimini gruplarla kontrol etme"
+  },
+  "syncUsersFromDirectory": {
+    "message": "Kullanıcılarınızı ve gruplarınızı bir dizinden senkronize edin"
+  },
+  "trackAuditLogs": {
+    "message": "Kullanıcı işlemlerini denetim günlükleriyle izleyin"
+  },
+  "enforce2faDuo": {
+    "message": "Duo ile 2FA'yı zorla"
+  },
+  "priorityCustomerSupport": {
+    "message": "Öncelikli müşteri desteği"
+  },
+  "xDayFreeTrial": {
+    "message": "$COUNT$ günlük ücretsiz deneme sürümü, istediğiniz zaman iptal edin",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "monthly": {
+    "message": "Aylık"
+  },
+  "annually": {
+    "message": "Yıllık"
+  },
+  "basePrice": {
+    "message": "Taban Fiyat"
+  },
+  "organizationCreated": {
+    "message": "Organizayson Oluşturuldu"
+  },
+  "organizationReadyToGo": {
+    "message": "Yeni organizasyonunuz hazır!"
+  },
+  "organizationUpgraded": {
+    "message": "Kuruluşunuz yükseltildi."
+  },
+  "leave": {
+    "message": "Ayrıl"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Bu organizasyondan ayrılmak için emin misiniz?"
+  },
+  "leftOrganization": {
+    "message": "Organizasyondan ayrıldınız."
+  },
+  "defaultCollection": {
+    "message": "Varsayılan Koleksiyon"
+  },
+  "getHelp": {
+    "message": "Yardım Alın"
+  },
+  "getApps": {
+    "message": "Uygulamaları Edinin"
+  },
+  "loggedInAs": {
+    "message": "Olarak giriş yapıldı"
+  },
+  "eventLogs": {
+    "message": "Olay Günlükleri"
+  },
+  "people": {
+    "message": "İnsan"
+  },
+  "policies": {
+    "message": "İlkeler"
+  },
+  "editPolicy": {
+    "message": "İlkeyi Düzenle"
+  },
+  "groups": {
+    "message": "Gruplar"
+  },
+  "newGroup": {
+    "message": "Yeni Grup"
+  },
+  "addGroup": {
+    "message": "Grup Ekle"
+  },
+  "editGroup": {
+    "message": "Grubu Düzenle"
+  },
+  "deleteGroupConfirmation": {
+    "message": "Bu grubu silmek isteğinizden emin misiniz?"
+  },
+  "removeUserConfirmation": {
+    "message": "Bu kullanıcıyı kaldırmak için emin misiniz?"
+  },
+  "externalId": {
+    "message": "Harici Kimlik"
+  },
+  "externalIdDesc": {
+    "message": "Harici kimlik, referans olarak veya bu kaynağı kullanıcı dizini gibi harici bir sisteme bağlamak için kullanılabilir."
+  },
+  "accessControl": {
+    "message": "Erişim Kontrolü"
+  },
+  "groupAccessAllItems": {
+    "message": "Bu grup bütün ögelere erişebilir ve değiştirebilir."
+  },
+  "groupAccessSelectedCollections": {
+    "message": "Bu grup sadece seçili koleksiyonlara erişebilir."
+  },
+  "readOnly": {
+    "message": "Salt Okunur"
+  },
+  "newCollection": {
+    "message": "Yeni Koleksiyon"
+  },
+  "addCollection": {
+    "message": "Koleksiyon Ekle"
+  },
+  "editCollection": {
+    "message": "Koleksiyonu Düzenle"
+  },
+  "deleteCollectionConfirmation": {
+    "message": "Bu koleksiyonu silmek istediğinizden emin misiniz?"
+  },
+  "editUser": {
+    "message": "Kullanıcı Düzenle"
+  },
+  "inviteUser": {
+    "message": "Kullanıcı Davet Et"
+  },
+  "inviteUserDesc": {
+    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "inviteMultipleEmailDesc": {
+    "message": "E-posta listesini virgül ile ayırarak bir seferde $COUNT$ kullanıcıyı davet edebilirsiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
+  "userUsingTwoStep": {
+    "message": "Bu kullanıcı hesabını korumak için iki aşamalı giriş kullanıyor."
+  },
+  "userAccessAllItems": {
+    "message": "Bu kullanıcı bütün ögelere erişebilir ve değiştirebilir."
+  },
+  "userAccessSelectedCollections": {
+    "message": "Bu kullanıcı sadece seçili koleksiyonlara erişebilir."
+  },
+  "search": {
+    "message": "Ara"
+  },
+  "invited": {
+    "message": "Davetli"
+  },
+  "accepted": {
+    "message": "Kadul Edildi"
+  },
+  "confirmed": {
+    "message": "Onaylandı"
+  },
+  "owner": {
+    "message": "Sahip"
+  },
+  "ownerDesc": {
+    "message": "The highest access user that can manage all aspects of your organization."
+  },
+  "admin": {
+    "message": "Yönetici"
+  },
+  "adminDesc": {
+    "message": "Yöneticiler organizasyonunzda bulunan tüm ögelere, koleksiyonlara ve kullanıcılara erişebilir ve yönetebilir."
+  },
+  "user": {
+    "message": "Kullanıcı"
+  },
+  "userDesc": {
+    "message": "A regular user with access to your organization's collections."
+  },
+  "manager": {
+    "message": "Yetkili"
+  },
+  "managerDesc": {
+    "message": "Yetkililer organizasyonunuzda bulunan seçilmiş koleksiyonlara erişebilir ve yönetebilir."
+  },
+  "all": {
+    "message": "Hepsi"
+  },
+  "refresh": {
+    "message": "Yenile"
+  },
+  "timestamp": {
+    "message": "Zaman Damgası"
+  },
+  "event": {
+    "message": "Etkinlik"
+  },
+  "unknown": {
+    "message": "Bilinmeyen"
+  },
+  "loadMore": {
+    "message": "Daha Fazla Yükle"
+  },
+  "mobile": {
+    "message": "Mobil",
+    "description": "Mobile app"
+  },
+  "extension": {
+    "message": "Eklenti",
+    "description": "Browser extension/addon"
+  },
+  "desktop": {
+    "message": "Masaüstü",
+    "description": "Desktop app"
+  },
+  "webVault": {
+    "message": "Web Kasası"
+  },
+  "loggedIn": {
+    "message": "Giriş yapıldı."
+  },
+  "changedPassword": {
+    "message": "Hesap şifresi değiştirildi."
+  },
+  "enabledUpdated2fa": {
+    "message": "İki aşamalı giriş açıldı/güncellendi."
+  },
+  "disabled2fa": {
+    "message": "İki aşamalı giriş kapatıldı."
+  },
+  "recovered2fa": {
+    "message": "İki aşamalı giriş ile hesap kurtarıldı."
+  },
+  "failedLogin": {
+    "message": "Yanlış şifre yüzünden oturum açma girişimi başarısız."
+  },
+  "failedLogin2fa": {
+    "message": "Yanlış iki aşamalı giriş yüzünden oturum açma girişimi başarısız."
+  },
+  "exportedVault": {
+    "message": "Kasa dışarı aktarıldı."
+  },
+  "exportedOrganizationVault": {
+    "message": "Organizasyon kasası dışarı aktarıldı."
+  },
+  "editedOrgSettings": {
+    "message": "Edited organization settings."
+  },
+  "createdItemId": {
+    "message": "Öge oluşturuldu: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedItemId": {
+    "message": "Öge düzenlendi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedItemId": {
+    "message": "Öge silindi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "sharedItemId": {
+    "message": "Öge paylaşıldı: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Öge incelendi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "$ID$ için parola incelendi.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "$ID$ için gizli bilgi incelendi.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "$ID$ için güvenlik kodu incelendi.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "$ID$ için parola kopyalandı.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "$ID$ için gizli bilgi kopyalandı.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "$ID$ için güvenlik kodu kopyalandı.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "$ID$ için otomatik dolduruldu.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "createdCollectionId": {
+    "message": "Koleksiyon oluşturuldu: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedCollectionId": {
+    "message": "Koleksiyon düzenlendi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "deletedCollectionId": {
+    "message": "Koleksiyon silindi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedPolicyId": {
+    "message": "İlke düzenlendi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "createdGroupId": {
+    "message": "Grup oluşturuldu: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "editedGroupId": {
+    "message": "Grup düzenlendi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "deletedGroupId": {
+    "message": "Grup silindi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "removedUserId": {
+    "message": "Kullanıcı silindi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "createdAttachmentForItem": {
+    "message": "$ID$ için bir ek oluşturuldu.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedAttachmentForItem": {
+    "message": "$ID$ için bir ek silindi.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedCollectionsForItem": {
+    "message": "$ID$ için koleksiyonlar düzenlendi.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "invitedUserId": {
+    "message": "Kullanıcı davet edildi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmedUserId": {
+    "message": "Kullanıcı onaylandı: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedUserId": {
+    "message": "Kullanıcı düzenlendi: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedGroupsForUser": {
+    "message": "$ID$ için gruplar düzenlendi.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "Unlinked SSO for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "device": {
+    "message": "Aygıt"
+  },
+  "view": {
+    "message": "Görüntüle"
+  },
+  "invalidDateRange": {
+    "message": "Geçersiz tarih aralığı."
+  },
+  "errorOccurred": {
+    "message": "Bir hata oluştu."
+  },
+  "userAccess": {
+    "message": "Kullanıcı Erişimi"
+  },
+  "userType": {
+    "message": "Kullanıcı Türü"
+  },
+  "groupAccess": {
+    "message": "Grup Erişimi"
+  },
+  "groupAccessUserDesc": {
+    "message": "Bu kullanıcının gruplarını düzenleyin."
+  },
+  "invitedUsers": {
+    "message": "Kullanıcı(lar) davet edildi."
+  },
+  "resendInvitation": {
+    "message": "Daveti Yeniden Gönder"
+  },
+  "hasBeenReinvited": {
+    "message": "$USER$ yeniden davet edildi.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirm": {
+    "message": "Onayla"
+  },
+  "confirmUser": {
+    "message": "Kullanıcıyı Onayla"
+  },
+  "hasBeenConfirmed": {
+    "message": "$USER$ onaylandı.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmUsers": {
+    "message": "Kullanıcıları Onayla"
+  },
+  "usersNeedConfirmed": {
+    "message": "Onların davetini kabul eden kullanıcılar var, ama hala onaylanması gerekmektedir. Kullanıcılar doğrulanana kadar organizasyona erişemez."
+  },
+  "startDate": {
+    "message": "Başlangıç Tarihi"
+  },
+  "endDate": {
+    "message": "Bitiş Tarihi"
+  },
+  "verifyEmail": {
+    "message": "E-postayı Doğrula"
+  },
+  "verifyEmailDesc": {
+    "message": "Bütün özelliklere erişmek için e-posta hesabınızı doğrulayın."
+  },
+  "verifyEmailFirst": {
+    "message": "Öncelikle hesabınızın e-posta adresi onaylanmalıdır."
+  },
+  "checkInboxForVerification": {
+    "message": "Doğrulama linki için e-posta hesabınızı kontrol edin."
+  },
+  "emailVerified": {
+    "message": "E-posta hesabınız doğrulandı."
+  },
+  "emailVerifiedFailed": {
+    "message": "E-posta hesabı doğrulanamadı. Yeniden doğrulama e-postası göndermeyi dene."
+  },
+  "updateBrowser": {
+    "message": "Tarayıcıyı Güncelle"
+  },
+  "updateBrowserDesc": {
+    "message": "Desteklenmeyen bir web tarayıcı kullanıyorsunuz. Kasanız düzgün çalışmayabilir."
+  },
+  "joinOrganization": {
+    "message": "Organizasyona Katıl"
+  },
+  "joinOrganizationDesc": {
+    "message": "Yukarıda listelenen organizasyona katılman için davet edildin. Daveti kabul etmek için, giriş yapmanız ya da yeni bir Bitwarden hesabı oluşturmalısınız."
+  },
+  "inviteAccepted": {
+    "message": "Davet Kabul Edildi"
+  },
+  "inviteAcceptedDesc": {
+    "message": "Bir yönetici üyeliğinizi onayladığı zaman organizasyona erişebilirsiniz. Bu olduğunda bir e-posta göndereceğiz."
+  },
+  "inviteAcceptFailed": {
+    "message": "Davet kabul edilmedi. Yeni bir davetiye göndermesi için organizasyon yöneticisine başvurun."
+  },
+  "inviteAcceptFailedShort": {
+    "message": "Davetiye kabul edilemiyor. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "rememberEmail": {
+    "message": "E-posta'yı hatırla"
+  },
+  "recoverAccountTwoStepDesc": {
+    "message": "Eğer iki aşamalı giriş ile ilgili bir sorun yaşıyorsanız kurtarma kodunuz ile iki aşamalı giriş özelliğini kapatabilirsiniz."
+  },
+  "recoverAccountTwoStep": {
+    "message": "İki Aşamalı Giriş İle Hesabı Kurtarın"
+  },
+  "twoStepRecoverDisabled": {
+    "message": "İki aşamalı giriş hesabınızda devre dışı bırakıldı."
+  },
+  "learnMore": {
+    "message": "Daha fazla bilgi edinin"
+  },
+  "deleteRecoverDesc": {
+    "message": "Hesabınızı kurtarmak ve silmek için e-posta hesabınızı girin."
+  },
+  "deleteRecoverEmailSent": {
+    "message": "Bir hesabınız var ise daha fazla talimat içeren bir e-posta göndereceğiz."
+  },
+  "deleteRecoverConfirmDesc": {
+    "message": "Bitwarden hesabınızı silmek istiyorsunuz. Onaylamak için aşağıdaki butona basın."
+  },
+  "myOrganization": {
+    "message": "Organizasyonum"
+  },
+  "deleteOrganization": {
+    "message": "Organizasyonu Sil"
+  },
+  "deleteOrganizationDesc": {
+    "message": "Bu organizasyonu ve ilişkili tüm verileri silmek için aşağıya devam ediniz. Kişisel kullanıcı hesapları kalacak, fakat bu organizasyon ile ilişkisi kesilecektir. "
+  },
+  "deleteOrganizationWarning": {
+    "message": "Organizasyonu silmek kalıcıdır. Bu işlem geri alınamaz."
+  },
+  "organizationDeleted": {
+    "message": "Organizasyon Silindi"
+  },
+  "organizationDeletedDesc": {
+    "message": "Organizasyon ve ilişkili tüm veriler silindi."
+  },
+  "organizationUpdated": {
+    "message": "Organizayson Güncellendi"
+  },
+  "taxInformation": {
+    "message": "Vergi Bilgisi"
+  },
+  "taxInformationDesc": {
+    "message": "Faturalarla ilgili vergi bilgisini sağlamak (ya da güncellemek) için destek ile iletişime geçin."
+  },
+  "billingPlan": {
+    "message": "Plan",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlan": {
+    "message": "Planı Değiştir",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanUpgrade": {
+    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanDesc": {
+    "message": "Planınızı değiştirmek istiyorsanız müşteri hizmetlerine başvurun. Hesaba eklenmiş etkin bir ödeme yönteminin olduğundan da lütfen emin olun.",
+    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
+  },
+  "invoiceNumber": {
+    "message": "Fatura #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "Faturayı Görüntüle"
+  },
+  "downloadInvoice": {
+    "message": "Faturayı İndir"
+  },
+  "verifyBankAccount": {
+    "message": "Banka Hesabını Doğrula"
+  },
+  "verifyBankAccountDesc": {
+    "message": "Banka hesabınıza iki tane mikro para yatırma işlemi yaptık (gösterilmesi 1-2 iş günü sürebilir). Banka hesabını doğrulamak için bu tutarları girin."
+  },
+  "verifyBankAccountInitialDesc": {
+    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+  },
+  "verifyBankAccountFailureWarning": {
+    "message": "Banka hesabının doğrulanamaması, ödemenin yapılamamasına ve aboneliğinizin devre dışı bırakılmasına neden olur."
+  },
+  "verifiedBankAccount": {
+    "message": "Banka hesabınız doğrulandı."
+  },
+  "bankAccount": {
+    "message": "Banka Hesabı"
+  },
+  "amountX": {
+    "message": "Tutar $COUNT$",
+    "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "routingNumber": {
+    "message": "İşlem Numarası",
+    "description": "Bank account routing number"
+  },
+  "accountNumber": {
+    "message": "Hesap Numarası"
+  },
+  "accountHolderName": {
+    "message": "Hesap Sahibinin Adı"
+  },
+  "bankAccountType": {
+    "message": "Hesap Türü"
+  },
+  "bankAccountTypeCompany": {
+    "message": "Şirket (İş)"
+  },
+  "bankAccountTypeIndividual": {
+    "message": "Bireysel (Kişisel)"
+  },
+  "enterInstallationId": {
+    "message": "Yükleme numarasını girin"
+  },
+  "addSeats": {
+    "message": "Yerler Ekle",
+    "description": "Seat = User Seat"
+  },
+  "removeSeats": {
+    "message": "Yerleri Kaldır",
+    "description": "Seat = User Seat"
+  },
+  "subscriptionUserSeats": {
+    "message": "Aboneliğiniz toplam $COUNT$ kullanıcıya izin veriyor.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "seatsToAdd": {
+    "message": "Seats To Add"
+  },
+  "seatsToRemove": {
+    "message": "Seats To Remove"
+  },
+  "seatsAddNote": {
+    "message": "Kullanıcı yerleri eklemek, fatura toplamınızda değişikliklere ve ödeme yönteminizin derhal ücretlendirilmesine neden olacaktır. İlk ücretlendirme, mevcut faturalandırma döngüsünün kalanı için geçerli olacaktır."
+  },
+  "seatsRemoveNote": {
+    "message": "Kullanıcı yerlerinin kaldırılması, bir sonraki fatura ücretlendirmenize kredi olarak yansıyacak fatura toplamlarınızda değişikliklere neden olacaktır."
+  },
+  "adjustedSeats": {
+    "message": "$AMOUNT$ kullanıcı yeri güncellendi.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "keyUpdated": {
+    "message": "Anahtar Güncellendi"
+  },
+  "updateKeyTitle": {
+    "message": "Anahtarı Güncelle"
+  },
+  "updateEncryptionKey": {
+    "message": "Şifreleme Anahtarını Güncelle"
+  },
+  "updateEncryptionKeyShortDesc": {
+    "message": "Şu anda eski bir şifreleme şeması kullanıyorsunuz."
+  },
+  "updateEncryptionKeyDesc": {
+    "message": "Daha iyi güvenlik ve daha yeni özelliklere erişim sağlayan daha büyük şifreleme anahtarlarına geçtik. Şifreleme anahtarınızı güncellemek hızlı ve kolaydır. Sadece ana şifrenizi aşağıya yazın. Bu güncelleme sonunda zorunlu hale gelecektir."
+  },
+  "updateEncryptionKeyWarning": {
+    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+  },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Any encrypted exports that you have saved will also become invalid."
+  },
+  "subscription": {
+    "message": "Abonelik"
+  },
+  "loading": {
+    "message": "Yükleniyor"
+  },
+  "upgrade": {
+    "message": "Yükselt"
+  },
+  "upgradeOrganization": {
+    "message": "Organizasyonu Yükselt"
+  },
+  "upgradeOrganizationDesc": {
+    "message": "Bu özellik ücretsiz organizasyonlar için mevcut değil. Daha fazla özellik için ücretli plana geçin."
+  },
+  "createOrganizationStep1": {
+    "message": "Organizasyon Oluştur: Aşama 1"
+  },
+  "createOrganizationCreatePersonalAccount": {
+    "message": "Organizasyon oluşturmadan önce ücretsiz bir kişisel hesap açmalısınız."
+  },
+  "refunded": {
+    "message": "İade Edildi"
+  },
+  "nothingSelected": {
+    "message": "Hiçbir şey seçmediniz."
+  },
+  "acceptPolicies": {
+    "message": "Bu kutuyu işaretleyerek aşağıdakileri kabul etmiş olursunuz:"
+  },
+  "acceptPoliciesError": {
+    "message": "Hizmet Koşulları ve Gizlilik Politikası kabul edilmemiştir."
+  },
+  "termsOfService": {
+    "message": "Hizmet Koşulları"
+  },
+  "privacyPolicy": {
+    "message": "Gizlilik Politikası"
+  },
+  "filters": {
+    "message": "Filtreler"
+  },
+  "vaultTimeout": {
+    "message": "Kasa Zaman Aşımı"
+  },
+  "vaultTimeoutDesc": {
+    "message": "Kasanızın zaman aşımına uğrayıp seçilen eylemi uygulayacağı zamanı seçin."
+  },
+  "oneMinute": {
+    "message": "1 dakika"
+  },
+  "fiveMinutes": {
+    "message": "5 dakika"
+  },
+  "fifteenMinutes": {
+    "message": "15 dakika"
+  },
+  "thirtyMinutes": {
+    "message": "30 dakika"
+  },
+  "oneHour": {
+    "message": "1 saat"
+  },
+  "fourHours": {
+    "message": "4 saat"
+  },
+  "onRefresh": {
+    "message": "Tarayıcıyı Yeniden Yükleyince"
+  },
+  "dateUpdated": {
+    "message": "Güncellendi",
+    "description": "ex. Date this item was updated"
+  },
+  "datePasswordUpdated": {
+    "message": "Şifre Güncellendi",
+    "description": "ex. Date this password was updated"
+  },
+  "organizationIsDisabled": {
+    "message": "Organizasyon devre dışı."
+  },
+  "licenseIsExpired": {
+    "message": "Lisans süresi doldu."
+  },
+  "updatedUsers": {
+    "message": "Kullanıcılar güncellendi"
+  },
+  "selected": {
+    "message": "Seçildi"
+  },
+  "ownership": {
+    "message": "Sahiplik"
+  },
+  "whoOwnsThisItem": {
+    "message": "Bu ögenin sahibi kim?"
+  },
+  "strong": {
+    "message": "Güçlü",
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "İyi",
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Zayıf",
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "Çok Zayıf",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Zayıf Ana Parola"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Seçtiğiniz ana parola kolayca tahmin edilebilir. Bitwarden hesabınızı korumak istiyorsanız daha güçlü bir ana parola (veya şifre) seçmelisiniz. Bu ana parolayı kullanmak istediğinizden emin misiniz?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Ayrıca hesabımın şifreleme anahtarını da döndür"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Rotate Encryption Key"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Hesabınızın şifreleme anahtarını döndürmek istediğinizden emin misiniz?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Bu ögede düzeltilmesi gereken eski dosya ekleri bulunmaktadır."
+  },
+  "attachmentFixDesc": {
+    "message": "Bu düzeltilmesi gereken eski bir dosya eki. Daha fazla bilgi edinmek için tıklayın."
+  },
+  "fix": {
+    "message": "Düzelt",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Hesabınızın şifreleme anahtarını döndürmeden önce, kasanızda düzeltilmesi gereken eski dosya ekleri bulunmaktadır."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Hesabınızın parmak izi şifresi",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "Şifreleme anahtarlarınızın bütünlüğünü sağlamak için, devam etmeden önce lütfen kullanıcının parmak izi şifresini doğrulayın.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Parmak hesabı şifresini tekrar doğrulamak için sorma",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "free": {
+    "message": "Ücretsiz",
+    "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "API Anahtarı"
+  },
+  "apiKeyDesc": {
+    "message": "API anahtarınız Bitwarden genel API'i doğrulamak için kullanılabilir."
+  },
+  "apiKeyRotateDesc": {
+    "message": "API anahtarını döndürmek önceki anahtarı geçersiz kılacaktır. Geçerli anahtarın artık güvenli olmadığına inanıyorsanız API anahtarınızı döndürebilirsiniz."
+  },
+  "apiKeyWarning": {
+    "message": "API anahtarınız organizasyona tam erişime sahiptir. Gizli tutulmalıdır."
+  },
+  "userApiKeyDesc": {
+    "message": "API anahtarınız, Bitwarden CLI'de kimlik doğrulaması için kullanılabilir."
+  },
+  "userApiKeyWarning": {
+    "message": "API anahtarınız, alternatif bir kimlik doğrulama mekanizmasıdır. Gizli tutulmalıdır."
+  },
+  "oauth2ClientCredentials": {
+    "message": "OAuth 2.0 İstemci Bilgileri",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "API anahtarını görüntüle"
+  },
+  "rotateApiKey": {
+    "message": "API Anahtarını döndür"
+  },
+  "selectOneCollection": {
+    "message": "En az bir koleksiyon seçmelisiniz."
+  },
+  "couldNotChargeCardPayInvoice": {
+    "message": "Kartınızı ücretlendiremedik. Lütfen aşağıda listelenen ödenmemiş faturayı görüntüleyin ve ödeyin."
+  },
+  "inAppPurchase": {
+    "message": "Uygulama içi satın alma"
+  },
+  "cannotPerformInAppPurchase": {
+    "message": "Bir uygulama içi satın alma ödeme yöntemi kullanırken bu işlemi gerçekleştiremezsiniz."
+  },
+  "manageSubscriptionFromStore": {
+    "message": "Aboneliğinizi uygulama içi satın alımınızın yapıldığı mağazadan yönetmelisiniz."
+  },
+  "minLength": {
+    "message": "Minimum Uzunluk"
+  },
+  "clone": {
+    "message": "Klonla"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Ana şifre gücü için minimum gereksinimleri ayarlayın."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Kullanıcılardan hesaplarında iki adımlı oturum açma özelliğini kullanmalarını isteyin."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "İki adımlı oturum açma özelliği etkinleştirilmemiş kuruluş üyeleri kuruluştan kaldırılır ve değişiklik hakkında onları bilgilendiren bir e-posta alır."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "İki adımlı oturum açmanın etkinleştirilmesi gereken bir kuruluşun üyesisiniz. İki adımlı oturum açma sağlayıcılarının tümünü devre dışı bırakırsanız, bu kuruluşlardan otomatik olarak kaldırılırsınız."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Şifre üreticisi ayarları için minimum gereksinimleri ayarlayın."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Bir ya da daha fazla organizasyon ilkesi oluşturucu ayarlarınızı etkiliyor."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Bir ya da daha fazla organizasyon ilkesi için ana şifrenizin aşağıdaki gereksinimleri karşılaması gerekir:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimum karmaşa puanı $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimum uzunluk $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Bir veya daha fazla büyük harf içermeli"
+  },
+  "policyInEffectLowercase": {
+    "message": "Bir veya daha fazla küçük harf içermeli"
+  },
+  "policyInEffectNumbers": {
+    "message": "Bir veya daha fazla sayı içermeli"
+  },
+  "policyInEffectSpecial": {
+    "message": "Aşağıdaki özel karakterlerden birini veya daha fazlasını içermeli $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Yeni ana şifreniz ilke gereksinimlerini karşılamıyor."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimum Kelime Sayısı"
+  },
+  "defaultType": {
+    "message": "Varsayılan Tür"
+  },
+  "userPreference": {
+    "message": "Kullanıcı Tercihi"
+  },
+  "vaultTimeoutAction": {
+    "message": "Kasa Zaman Aşımı Eylemi"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "Kilitli bir kasaya tekrar erişebilmeniz için ana parolanızı tekrar girmeniz gerekir."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "Çıkış yapılmış bir kasaya tekrardan erişmek için yeniden kimlik doğrulaması gerekir."
+  },
+  "lock": {
+    "message": "Kilitle",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Çöp Kutusu",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Çöplerde ara"
+  },
+  "permanentlyDelete": {
+    "message": "Kalıcı Olarak Sil"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Seçileni Kalıcı Olarak Sil"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Ögeyi Kalıcı Olarak Sil"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Bu ögeyi kalıcı olarak silmek istediğinize emin misiniz?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Kalıcı Olarak Silinmiş Öge"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Kalıcı Olarak Silinmiş Ögeler"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "Silinmesi için $COUNT$ öge seçtiniz. Bu ögelerin tamamını kalıcı şekilde silmek istediğinizden emin misiniz?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Kalıcı Olarak Silinmiş Öge: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Geri Yükle"
+  },
+  "restoreSelected": {
+    "message": "Seçilileri Geri Yükle"
+  },
+  "restoreItem": {
+    "message": "Ögeyi Geri Yükle"
+  },
+  "restoredItem": {
+    "message": "Geri yüklenmiş öge"
+  },
+  "restoredItems": {
+    "message": "Geri yüklenmiş ögeler"
+  },
+  "restoreItemConfirmation": {
+    "message": "Bu ögeyi geri yüklemek istediğinizden emin misiniz?"
+  },
+  "restoreItems": {
+    "message": "Ögeleri geri yükle"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "Geri yüklenmesi için $COUNT$ öge seçtiniz. Bu ögelerin tamamını geri yüklemek istediğinizden emin misiniz?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Geri yüklenmiş öge: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Oturumu kapatmak kasanıza olan tüm erişiminizi kaldırır ve zaman aşımından sonra çevrimiçi kimlik doğrulaması gerektirir. Bu ayarı kullanmak istediğinizden emin misiniz?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Zaman Aşımı Eylem Onayı"
+  },
+  "hidePasswords": {
+    "message": "Parolaları Gizle"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "Bu bilgiyi sadece satış vergisi hesaplama ve mali raporlama için istiyoruz."
+  },
+  "includeVAT": {
+    "message": "KDV Bilgisi Ekle (opsiyonel)"
+  },
+  "taxIdNumber": {
+    "message": "KDV Vergi Kimlik Numarası"
+  },
+  "taxInfoUpdated": {
+    "message": "Vergi bilgileriniz güncellendi."
+  },
+  "setMasterPassword": {
+    "message": "Ana Parolayı Belirle"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Tek Oturum Açma (SSO) ile oturum açmayı tamamlamak için lütfen kasanıza erişebilmek ve onu korumak için bir ana parola ayarlayın."
+  },
+  "identifier": {
+    "message": "Tanımlayıcı"
+  },
+  "organizationIdentifier": {
+    "message": "Organizasyon Tanımlayıcı"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Kuruluşunuzun tek oturum açma (SSO) portalını kullanarak oturum açın. Başlamak için lütfen kuruluşunuzun tanımlayıcısını girin."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Kurumsal Tek Oturum Açma"
+  },
+  "ssoHandOff": {
+    "message": "Şimdi bu sekmeyi kapatabilir ve uzantıya devam edebilirsiniz."
+  },
+  "businessPortal": {
+    "message": "Şirket Portalı",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Tüm Takımlar özellikleri, artı:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SAML2.0 ve OpenID Connect ile Tek Oturum Açma (SSO) Doğrulaması"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Kurumsal İlkeler"
+  },
+  "ssoValidationFailed": {
+    "message": "Tek Oturum Açma (SSO) Doğrulaması Başarısız Oldu"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organizasyon Tanımlayıcısı gereklidir."
+  },
+  "unlinkSso": {
+    "message": "Tek Oturum Açma (SSO) Bağlantısını Kaldır"
+  },
+  "linkSso": {
+    "message": "Tek Oturum Açma (SSO) Bağlantısı Oluştur"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Politika yapılandırması taşındı ve bu sayfa yakında kullanımdan kaldırılacak. Bunun yerine İş Portalı politikaları sayfasını kullanmak için lütfen aşağıyı tıklayın."
+  },
+  "singleOrg": {
+    "message": "Tek Organizasyon"
+  },
+  "singleOrgDesc": {
+    "message": "Kullanıcıların diğer kuruluşlara katılmasını kısıtlayın."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Mevcut kuruluşunuzun, birden fazla kuruluşa katılmanıza izin vermeyen bir politikası var. Lütfen kuruluş yöneticilerinizle iletişime geçin veya farklı bir Bitwarden hesabından kaydolun."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Sahip veya Yönetici olmayan ve zaten başka bir kuruluşun üyesi olan kuruluş üyeleri, kuruluşunuzdan kaldırılır."
+  },
+  "requireSso": {
+    "message": "Tek Oturum Açma Kimlik Doğrulaması"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Kullanıcıların Kurumsal olarak Tek Oturum Açma yöntemiyle oturum açmasını zorunlu kılın."
+  },
+  "prerequisite": {
+    "message": "Önkoşul"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Bu politikayı etkinleştirmeden önce Tek Kuruluş kurumsal politikası etkinleştirilmelidir."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Tek Kuruluş politikası etkinleştirilmedi."
+  },
+  "requireSsoExemption": {
+    "message": "Kuruluş Sahipleri ve Yöneticiler bu politika uygulamasından muaftır."
+  },
+  "sendTypeFile": {
+    "message": "Dosya"
+  },
+  "sendTypeText": {
+    "message": "Metin"
+  },
+  "createSend": {
+    "message": "Yeni Gönderi Oluştur",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Göndermeyi Düzenle",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Gönderi Oluşturuldu",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Gönderi Düzenlendi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Gönderi Silindi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Gönderiyi Sil",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Bu Gönderiyi silmek istediğinizden emin misiniz?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Bu ne tür bir Gönderme?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Silme Tarihi"
+  },
+  "deletionDateDesc": {
+    "message": "The Send will be permanently deleted on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Son Kullanma Tarihi"
+  },
+  "expirationDateDesc": {
+    "message": "If set, access to this Send will expire on the specified date and time.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maksimum Gönderi Sayısı"
+  },
+  "maxAccessCountDesc": {
+    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Mevcut Erişim Sayısı"
+  },
+  "sendPasswordDesc": {
+    "message": "Optionally require a password for users to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Private notes about this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Devre Dışı"
+  },
+  "sendLink": {
+    "message": "Bağlantı gönder",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Gönderme Bağlantısını Kopyala",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Şifreyi kaldır"
+  },
+  "removedPassword": {
+    "message": "Parola kaldırıldı"
+  },
+  "removePasswordConfirmation": {
+    "message": "Şifreyi kaldırmak istediğinizden emin misiniz?"
+  },
+  "disableThisSend": {
+    "message": "Disable this Send so that no one can access it.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Tüm Gönderimler"
+  },
+  "maxAccessCountReached": {
+    "message": "Max access count reached"
+  },
+  "pendingDeletion": {
+    "message": "Pending deletion"
+  },
+  "expired": {
+    "message": "Expired"
+  },
+  "searchSends": {
+    "message": "Gönderileri Ara",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Bu Gönderim bir şifre ile korunmaktadır. Devam etmek için lütfen şifreyi aşağıya yazın.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Şifreyi bilmiyor musunuz? Gönderen'den bu Gönderime erişmek için gereken parolayı isteyin.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Bu gönderme varsayılan olarak gizlidir. Aşağıdaki düğmeyi kullanarak görünürlüğünü değiştirebilirsiniz.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Dosyayı indir"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Listelenecek olay yok.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Emergency Access"
+  },
+  "emergencyAccessDesc": {
+    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Trusted emergency contacts"
+  },
+  "noTrustedContacts": {
+    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+  },
+  "addEmergencyContact": {
+    "message": "Add emergency contact"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Designated as emergency contact"
+  },
+  "noGrantedAccess": {
+    "message": "You have not been designated as an emergency contact for anyone yet."
+  },
+  "inviteEmergencyContact": {
+    "message": "Invite emergency contact"
+  },
+  "editEmergencyContact": {
+    "message": "Edit emergency contact"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Emergency Access Initiated"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Emergency Access Approved"
+  },
+  "viewDesc": {
+    "message": "Can view all items in your own vault."
+  },
+  "takeover": {
+    "message": "Takeover"
+  },
+  "takeoverDesc": {
+    "message": "Can reset your account with a new master password."
+  },
+  "waitTime": {
+    "message": "Wait Time"
+  },
+  "waitTimeDesc": {
+    "message": "Time required before automatically granting access."
+  },
+  "oneDay": {
+    "message": "1 day"
+  },
+  "days": {
+    "message": "$DAYS$ days",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Invited user."
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "Request Access"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Approve"
+  },
+  "reject": {
+    "message": "Reject"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Emergency access approved."
+  },
+  "emergencyRejected": {
+    "message": "Emergency access rejected"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personal Ownership"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Plan price"
+  },
+  "estimatedTax": {
+    "message": "Estimated tax"
+  },
+  "custom": {
+    "message": "Custom"
+  },
+  "customDesc": {
+    "message": "Allows more granular control of user permissions for advanced configurations."
+  },
+  "permissions": {
+    "message": "Permissions"
+  },
+  "accessBusinessPortal": {
+    "message": "Access Business Portal"
+  },
+  "accessEventLogs": {
+    "message": "Access Event Logs"
+  },
+  "accessImportExport": {
+    "message": "Access Import/Export"
+  },
+  "accessReports": {
+    "message": "Access Reports"
+  },
+  "manageAllCollections": {
+    "message": "Manage All Collections"
+  },
+  "manageAssignedCollections": {
+    "message": "Manage Assigned Collections"
+  },
+  "manageGroups": {
+    "message": "Manage Groups"
+  },
+  "managePolicies": {
+    "message": "Manage Policies"
+  },
+  "manageSso": {
+    "message": "Manage SSO"
+  },
+  "manageUsers": {
+    "message": "Manage Users"
+  },
+  "disableRequireSsoError": {
+    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "An organization policy is affecting your ownership options."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Disable personal ownership for organization users"
+  },
+  "textHiddenByDefault": {
+    "message": "When accessing the Send, hide the text by default",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  }
+}
