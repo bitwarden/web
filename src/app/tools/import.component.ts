@@ -23,6 +23,7 @@ export class ImportComponent implements OnInit {
     format: string = null;
     fileContents: string;
     formPromise: Promise<Error>;
+    loading: boolean = false;
 
     protected organizationId: string = null;
     protected successNavigate: any[] = ['vault'];
@@ -50,10 +51,13 @@ export class ImportComponent implements OnInit {
     }
 
     async submit() {
+        this.loading = true;
+
         const importer = this.importService.getImporter(this.format, this.organizationId);
         if (importer === null) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFormat'));
+            this.loading = false;
             return;
         }
 
@@ -62,6 +66,7 @@ export class ImportComponent implements OnInit {
         if ((files == null || files.length === 0) && (this.fileContents == null || this.fileContents === '')) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFile'));
+            this.loading = false;
             return;
         }
 
@@ -78,6 +83,7 @@ export class ImportComponent implements OnInit {
         if (fileContents == null || fileContents === '') {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFile'));
+            this.loading = false;
             return;
         }
 
@@ -86,6 +92,7 @@ export class ImportComponent implements OnInit {
             const error = await this.formPromise;
             if (error != null) {
                 this.error(error);
+                this.loading = false;
                 return;
             }
             this.analytics.eventTrack.next({
@@ -95,6 +102,8 @@ export class ImportComponent implements OnInit {
             this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
             this.router.navigate(this.successNavigate);
         } catch { }
+
+        this.loading = false;
     }
 
     getFormatInstructionTitle() {

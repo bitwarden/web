@@ -248,7 +248,7 @@
         <label for="fileContents">{{'orCopyPasteFileContents' | i18n}}</label>
         <textarea id="fileContents" class="form-control" name="FileContents" [(ngModel)]="fileContents"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+    <button type="submit" class="btn btn-primary btn-submit" [disabled]="loading">
         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'importData' | i18n}}</span>
     </button>
