@@ -146,8 +146,8 @@ export class ImportComponent implements OnInit {
             text: this.i18nService.t('importErrorDesc'),
             showConfirmButton: true,
             confirmButtonText: this.i18nService.t('ok'),
-            onOpen: (popupEl) => { 
-                popupEl.querySelector(".swal2-textarea").scrollTo(0, 0);
+            onOpen: popupEl => {
+                popupEl.querySelector('.swal2-textarea').scrollTo(0, 0);
              },
         });
     }
