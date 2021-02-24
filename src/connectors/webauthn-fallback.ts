@@ -1,5 +1,8 @@
 import { getQsParam } from './common';
 
+// tslint:disable-next-line
+require('./webauthn-fallback.scss');
+
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let version: number = null;
@@ -109,6 +112,13 @@ function success(assertedCredential: PublicKeyCredential) {
     window.postMessage({ command: 'webAuthnResult', data: dataString }, '*');
 
     sentSuccess = true;
+
+    (document.querySelector("#webauthn-button") as any).disabled = true;
+
+    const msg = document.querySelector("#msg");
+    msg.innerHTML = "<strong>WebAuthn verified successfully!</strong><br>You may close this tab.";
+    msg.classList.add("alert");
+    msg.classList.add("alert-success");
 }
 
 function b64Decode(str: string) {

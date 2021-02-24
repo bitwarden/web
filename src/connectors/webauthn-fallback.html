@@ -6,9 +6,20 @@
     <title>Bitwarden WebAuthn Connector</title>
 </head>
 
-<body>
-
-    <button onClick="javascript:init()">Start</button>
+<body class="layout_frontend">
+    <div class="mt-5 d-flex justify-content-center">
+        <div>
+            <img src="../images/logo-dark@2x.png" class="mb-4 logo" alt="Bitwarden">
+            <div class="card d-block mt-4">
+                <div class="card-body ng-star-inserted">
+                    <p id="msg" class="text-center">To verify your 2FA please click the button below.</p>
+                    <p class="text-center mb-0">
+                        <button id="webauthn-button" onClick="javascript:init()" class="btn btn-primary btn-lg">Authenticate WebAuthn</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
