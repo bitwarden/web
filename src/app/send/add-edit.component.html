@@ -65,96 +65,103 @@
                         </div>
                     </div>
                 </ng-container>
-                <h3 class="mt-5">{{'options' | i18n}}</h3>
-                <div class="row">
-                    <div class="col-6 form-group">
-                        <label for="deletionDate">{{'deletionDate' | i18n}}</label>
-                        <div *ngIf="!editMode">
-                            <select id="deletionDate" name="DeletionDateSelect" [(ngModel)]="deletionDateSelect"
-                                class="form-control" required>
-                                <option *ngFor="let o of deletionDateOptions" [ngValue]="o.value">{{o.name}}
-                                </option>
-                            </select>
-                            <input id="deletionDateCustom" class="form-control mt-1" type="datetime-local"
-                                name="DeletionDate" [(ngModel)]="deletionDate" required *ngIf="deletionDateSelect === 0"
-                                placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
-                        </div>
-                        <div *ngIf="editMode">
-                            <input id="deletionDate" class="form-control" type="datetime-local" name="DeletionDate"
-                                [(ngModel)]="deletionDate" required placeholder="MM/DD/YYYY HH:MM AM/PM"
-                                [readOnly]="disableSend">
-                        </div>
-                        <div class="form-text text-muted small">{{'deletionDateDesc' | i18n}}</div>
-                    </div>
-                    <div class="col-6 form-group">
-                        <div class="d-flex">
-                            <label for="expirationDate">{{'expirationDate' | i18n}}</label>
-                            <a href="#" appStopClick (click)="clearExpiration()" class="ml-auto" *ngIf="editMode">
-                                {{'clear' | i18n}}
-                            </a>
-                        </div>
-                        <div *ngIf="!editMode">
-                            <select id="expirationDate" name="ExpirationDateSelect" [(ngModel)]="expirationDateSelect"
-                                class="form-control" required>
-                                <option *ngFor="let o of expirationDateOptions" [ngValue]="o.value">{{o.name}}
-                                </option>
-                            </select>
-                            <input id="expirationDateCustom" class="form-control mt-1" type="datetime-local"
-                                name="ExpirationDate" [(ngModel)]="expirationDate" required
-                                *ngIf="expirationDateSelect === 0" placeholder="MM/DD/YYYY HH:MM AM/PM"
-                                [readOnly]="disableSend">
-                        </div>
-                        <div *ngIf="editMode">
-                            <input id="expirationDate" class="form-control" type="datetime-local" name="ExpirationDate"
-                                [(ngModel)]="expirationDate" placeholder="MM/DD/YYYY HH:MM AM/PM"
-                                [readOnly]="disableSend">
-                        </div>
-                        <div class="form-text text-muted small">{{'expirationDateDesc' | i18n}}</div>
-                    </div>
+                <div id="options-header" class="section-header d-flex flex-row align-items-center mt-5">
+                    <h3 class="mb-0 mr-2">{{'options' | i18n}}</h3>
+                    <a class="mb-1" href="#" appStopClick role="button" (click)="toggleOptions()">
+                        <i class="fa" aria-hidden="true" [ngClass]="{'fa-chevron-down': !showOptions, 'fa-chevron-up': showOptions}"></i>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col-6 form-group">
-                        <label for="maxAccessCount">{{'maxAccessCount' | i18n}}</label>
-                        <input id="maxAccessCount" class="form-control" type="number" name="MaxAccessCount"
-                            [(ngModel)]="send.maxAccessCount" min="1" [readOnly]="disableSend">
-                        <div class="form-text text-muted small">{{'maxAccessCountDesc' | i18n}}</div>
-                    </div>
-                    <div class="col-6 form-group" *ngIf="editMode">
-                        <label for="accessCount">{{'currentAccessCount' | i18n}}</label>
-                        <input id="accessCount" class="form-control" type="number" name="AccessCount" readonly
-                            [(ngModel)]="send.accessCount">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 form-group">
-                        <label for="password" *ngIf="!hasPassword">{{'password' | i18n}}</label>
-                        <label for="password" *ngIf="hasPassword">{{'newPassword' | i18n}}</label>
-                        <div class="input-group">
-                            <input id="password" class="form-control text-monospace"
-                                type="{{showPassword ? 'text' : 'password'}}" name="Password" [(ngModel)]="password"
-                                [readOnly]="disableSend">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-outline-secondary"
-                                    appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePasswordVisible()">
-                                    <i class="fa fa-lg" aria-hidden="true"
-                                        [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
-                                </button>
+                <div id="options" [hidden]="!showOptions">
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label for="deletionDate">{{'deletionDate' | i18n}}</label>
+                            <div *ngIf="!editMode">
+                                <select id="deletionDate" name="DeletionDateSelect" [(ngModel)]="deletionDateSelect"
+                                    class="form-control" required>
+                                    <option *ngFor="let o of deletionDateOptions" [ngValue]="o.value">{{o.name}}
+                                    </option>
+                                </select>
+                                <input id="deletionDateCustom" class="form-control mt-1" type="datetime-local"
+                                    name="DeletionDate" [(ngModel)]="deletionDate" required *ngIf="deletionDateSelect === 0"
+                                    placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
                             </div>
+                            <div *ngIf="editMode">
+                                <input id="deletionDate" class="form-control" type="datetime-local" name="DeletionDate"
+                                    [(ngModel)]="deletionDate" required placeholder="MM/DD/YYYY HH:MM AM/PM"
+                                    [readOnly]="disableSend">
+                            </div>
+                            <div class="form-text text-muted small">{{'deletionDateDesc' | i18n}}</div>
                         </div>
-                        <div class="form-text text-muted small">{{'sendPasswordDesc' | i18n}}</div>
+                        <div class="col-6 form-group">
+                            <div class="d-flex">
+                                <label for="expirationDate">{{'expirationDate' | i18n}}</label>
+                                <a href="#" appStopClick (click)="clearExpiration()" class="ml-auto" *ngIf="editMode">
+                                    {{'clear' | i18n}}
+                                </a>
+                            </div>
+                            <div *ngIf="!editMode">
+                                <select id="expirationDate" name="ExpirationDateSelect" [(ngModel)]="expirationDateSelect"
+                                    class="form-control" required>
+                                    <option *ngFor="let o of expirationDateOptions" [ngValue]="o.value">{{o.name}}
+                                    </option>
+                                </select>
+                                <input id="expirationDateCustom" class="form-control mt-1" type="datetime-local"
+                                    name="ExpirationDate" [(ngModel)]="expirationDate" required
+                                    *ngIf="expirationDateSelect === 0" placeholder="MM/DD/YYYY HH:MM AM/PM"
+                                    [readOnly]="disableSend">
+                            </div>
+                            <div *ngIf="editMode">
+                                <input id="expirationDate" class="form-control" type="datetime-local" name="ExpirationDate"
+                                    [(ngModel)]="expirationDate" placeholder="MM/DD/YYYY HH:MM AM/PM"
+                                    [readOnly]="disableSend">
+                            </div>
+                            <div class="form-text text-muted small">{{'expirationDateDesc' | i18n}}</div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="notes">{{'notes' | i18n}}</label>
-                    <textarea id="notes" name="Notes" rows="6" [(ngModel)]="send.notes" class="form-control"
-                        [readOnly]="disableSend"></textarea>
-                    <div class="form-text text-muted small">{{'sendNotesDesc' | i18n}}</div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [(ngModel)]="send.disabled" id="disabled"
-                            name="Disabled" [disabled]="disableSend">
-                        <label class="form-check-label" for="disabled">{{'disableThisSend' | i18n}}</label>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label for="maxAccessCount">{{'maxAccessCount' | i18n}}</label>
+                            <input id="maxAccessCount" class="form-control" type="number" name="MaxAccessCount"
+                                [(ngModel)]="send.maxAccessCount" min="1" [readOnly]="disableSend">
+                            <div class="form-text text-muted small">{{'maxAccessCountDesc' | i18n}}</div>
+                        </div>
+                        <div class="col-6 form-group" *ngIf="editMode">
+                            <label for="accessCount">{{'currentAccessCount' | i18n}}</label>
+                            <input id="accessCount" class="form-control" type="number" name="AccessCount" readonly
+                                [(ngModel)]="send.accessCount">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label for="password" *ngIf="!hasPassword">{{'password' | i18n}}</label>
+                            <label for="password" *ngIf="hasPassword">{{'newPassword' | i18n}}</label>
+                            <div class="input-group">
+                                <input id="password" class="form-control text-monospace"
+                                    type="{{showPassword ? 'text' : 'password'}}" name="Password" [(ngModel)]="password"
+                                    [readOnly]="disableSend">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePasswordVisible()">
+                                        <i class="fa fa-lg" aria-hidden="true"
+                                            [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-text text-muted small">{{'sendPasswordDesc' | i18n}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">{{'notes' | i18n}}</label>
+                        <textarea id="notes" name="Notes" rows="6" [(ngModel)]="send.notes" class="form-control"
+                            [readOnly]="disableSend"></textarea>
+                        <div class="form-text text-muted small">{{'sendNotesDesc' | i18n}}</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="send.disabled" id="disabled"
+                                name="Disabled" [disabled]="disableSend">
+                            <label class="form-check-label" for="disabled">{{'disableThisSend' | i18n}}</label>
+                        </div>
                     </div>
                 </div>
                 <h3 class="mt-5">{{'share' | i18n}}</h3>
