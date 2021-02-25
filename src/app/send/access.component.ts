@@ -56,6 +56,20 @@ export class AccessComponent implements OnInit {
         return this.showText ? this.send.text.text : this.send.text.maskedText;
     }
 
+    get expirationDate() {
+        if (this.send == null || this.send.expirationDate == null) {
+            return null;
+        }
+        return this.send.expirationDate;
+    }
+
+    get creatorIdentifier() {
+        if (this.send == null || this.send.creatorIdentifier == null) {
+            return null;
+        }
+        return this.send.creatorIdentifier;
+    }
+
     ngOnInit() {
         this.route.params.subscribe(async params => {
             this.id = params.sendId;
