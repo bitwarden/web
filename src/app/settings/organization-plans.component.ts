@@ -30,6 +30,8 @@ import { ProductType } from 'jslib/enums/productType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { PlanResponse } from 'jslib/models/response/planResponse';
+import { UserService } from 'jslib/abstractions';
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 
 @Component({
     selector: 'app-organization-plans',
@@ -66,7 +68,7 @@ export class OrganizationPlansComponent implements OnInit {
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
         private router: Router, private syncService: SyncService,
-        private policyService: PolicyService) {
+        private policyService: PolicyService, private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -215,7 +217,13 @@ export class OrganizationPlansComponent implements OnInit {
             return;
         } else {
             const policies = await this.policyService.getAll(PolicyType.SingleOrg);
-            this.singleOrgPolicyBlock = policies.some(policy => policy.enabled);
+            for (let policy of policies) {
+                if (!this.singleOrgPolicyBlock && policy.enabled) {
+                    const organization = await this.userService.getOrganization(policy.organizationId);
+                    this.singleOrgPolicyBlock = organization.type !== OrganizationUserType.Owner &&
+                                                organization.type !== OrganizationUserType.Admin;
+                }
+            }
             if (this.singleOrgPolicyBlock) {
                 return;
             }
