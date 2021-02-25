@@ -12,6 +12,14 @@
                 <app-callout *ngIf="disableSend">
                     <span>{{'sendDisabledWarning' | i18n}}</span>
                 </app-callout>
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label for="name">{{'name' | i18n}}</label>
+                        <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="send.name" required
+                            [readOnly]="disableSend">
+                        <small class="form-text text-muted">{{'sendNameDesc' | i18n}}</small>
+                    </div>
+                </div>
                 <div class="row" *ngIf="!editMode">
                     <div class="col-6 form-group">
                         <label>{{'whatTypeOfSend' | i18n}}</label>
@@ -23,14 +31,6 @@
                                 {{o.name}}
                             </label>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 form-group">
-                        <label for="name">{{'name' | i18n}}</label>
-                        <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="send.name" required
-                            [readOnly]="disableSend">
-                        <small class="form-text text-muted">{{'sendNameDesc' | i18n}}</small>
                     </div>
                 </div>
                 <!-- Text -->
@@ -65,10 +65,24 @@
                         </div>
                     </div>
                 </ng-container>
-                <div id="options-header" class="section-header d-flex flex-row align-items-center mt-5">
+                <h3 class="mt-5">{{'share' | i18n}}</h3>
+                <div class="form-group" *ngIf="link">
+                    <label for="link">{{'sendLinkLabel' | i18n}}</label>
+                    <input type="text" readonly id="link" name="Link" [(ngModel)]="link" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="copyLink" id="copy-link"
+                            name="CopyLink">
+                        <label class="form-check-label" for="copy-link">{{'copySendLinkOnSave' | i18n}}</label>
+                    </div>
+                </div>
+                <div id="options-header" class="section-header d-flex flex-row align-items-center mt-5"
+                    (click)="toggleOptions()">
                     <h3 class="mb-0 mr-2">{{'options' | i18n}}</h3>
-                    <a class="mb-1" href="#" appStopClick role="button" (click)="toggleOptions()">
-                        <i class="fa" aria-hidden="true" [ngClass]="{'fa-chevron-down': !showOptions, 'fa-chevron-up': showOptions}"></i>
+                    <a class="mb-1" href="#" appStopClick role="button">
+                        <i class="fa" aria-hidden="true"
+                            [ngClass]="{'fa-chevron-down': !showOptions, 'fa-chevron-up': showOptions}"></i>
                     </a>
                 </div>
                 <div id="options" [hidden]="!showOptions">
@@ -82,8 +96,9 @@
                                     </option>
                                 </select>
                                 <input id="deletionDateCustom" class="form-control mt-1" type="datetime-local"
-                                    name="DeletionDate" [(ngModel)]="deletionDate" required *ngIf="deletionDateSelect === 0"
-                                    placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
+                                    name="DeletionDate" [(ngModel)]="deletionDate" required
+                                    *ngIf="deletionDateSelect === 0" placeholder="MM/DD/YYYY HH:MM AM/PM"
+                                    [readOnly]="disableSend">
                             </div>
                             <div *ngIf="editMode">
                                 <input id="deletionDate" class="form-control" type="datetime-local" name="DeletionDate"
@@ -95,13 +110,14 @@
                         <div class="col-6 form-group">
                             <div class="d-flex">
                                 <label for="expirationDate">{{'expirationDate' | i18n}}</label>
-                                <a href="#" appStopClick (click)="clearExpiration()" class="ml-auto" *ngIf="editMode">
+                                <a href="#" appStopClick (click)="clearExpiration()" class="ml-auto"
+                                    *ngIf="editMode && !disableSend">
                                     {{'clear' | i18n}}
                                 </a>
                             </div>
                             <div *ngIf="!editMode">
-                                <select id="expirationDate" name="ExpirationDateSelect" [(ngModel)]="expirationDateSelect"
-                                    class="form-control" required>
+                                <select id="expirationDate" name="ExpirationDateSelect"
+                                    [(ngModel)]="expirationDateSelect" class="form-control" required>
                                     <option *ngFor="let o of expirationDateOptions" [ngValue]="o.value">{{o.name}}
                                     </option>
                                 </select>
@@ -111,9 +127,9 @@
                                     [readOnly]="disableSend">
                             </div>
                             <div *ngIf="editMode">
-                                <input id="expirationDate" class="form-control" type="datetime-local" name="ExpirationDate"
-                                    [(ngModel)]="expirationDate" placeholder="MM/DD/YYYY HH:MM AM/PM"
-                                    [readOnly]="disableSend">
+                                <input id="expirationDate" class="form-control" type="datetime-local"
+                                    name="ExpirationDate" [(ngModel)]="expirationDate"
+                                    placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
                             </div>
                             <div class="form-text text-muted small">{{'expirationDateDesc' | i18n}}</div>
                         </div>
@@ -162,18 +178,6 @@
                                 name="Disabled" [disabled]="disableSend">
                             <label class="form-check-label" for="disabled">{{'disableThisSend' | i18n}}</label>
                         </div>
-                    </div>
-                </div>
-                <h3 class="mt-5">{{'share' | i18n}}</h3>
-                <div class="form-group" *ngIf="link">
-                    <label for="link">{{'sendLinkLabel' | i18n}}</label>
-                    <input type="text" readonly id="link" name="Link" [(ngModel)]="link" class="form-control">
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [(ngModel)]="copyLink" id="copy-link"
-                            name="CopyLink">
-                        <label class="form-check-label" for="copy-link">{{'copySendLinkOnSave' | i18n}}</label>
                     </div>
                 </div>
             </div>
