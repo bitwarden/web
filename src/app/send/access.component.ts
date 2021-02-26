@@ -90,8 +90,15 @@ export class AccessComponent implements OnInit {
             return;
         }
 
+        const downloadData = await this.apiService.getSendFileDownloadData(this.send);
+
+        if (Utils.isNullOrWhitespace(downloadData.url)) {
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingSendFile'));
+            return;
+        }
+
         this.downloading = true;
-        const response = await fetch(new Request(this.send.file.url, { cache: 'no-store' }));
+        const response = await fetch(new Request(downloadData.url, { cache: 'no-store' }));
         if (response.status !== 200) {
             this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
             this.downloading = false;
