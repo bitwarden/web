@@ -37,7 +37,6 @@ export class AddEditComponent extends BaseAddEditComponent {
     viewingPasswordHistory = false;
     viewOnly = false;
     defaultUsernames: string[] = [];
-    selectedUsername = "";
 
     protected totpInterval: number;
 
