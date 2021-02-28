@@ -94,11 +94,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="!editMode && !viewOnly && defaultUsernames.length > 0">
                         <div class="col-6 form-group">
                             <label for="defaultUsernames">{{'defaultUsernames' | i18n}}</label>
                             <select id="defaultUsername" name="DefaultUsername" [(ngModel)]="cipher.login.username" class="form-control"
-                                [disabled]="cipher.isDeleted || viewOnly" (change)=selectDefaultUsername() >
+                                [disabled]="cipher.isDeleted || viewOnly" >
                                 <option *ngFor="let u of defaultUsernames" [ngValue]="u">{{u}}</option>
                             </select>
                         </div>
