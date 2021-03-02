@@ -19,10 +19,13 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
+import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 import { PlanType } from 'jslib/enums/planType';
 import { PolicyType } from 'jslib/enums/policyType';
 import { ProductType } from 'jslib/enums/productType';
@@ -30,8 +33,6 @@ import { ProductType } from 'jslib/enums/productType';
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
 import { PlanResponse } from 'jslib/models/response/planResponse';
-import { UserService } from 'jslib/abstractions';
-import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 
 @Component({
     selector: 'app-organization-plans',
@@ -217,13 +218,18 @@ export class OrganizationPlansComponent implements OnInit {
             return;
         } else {
             const policies = await this.policyService.getAll(PolicyType.SingleOrg);
-            for (let policy of policies) {
-                if (!this.singleOrgPolicyBlock && policy.enabled) {
-                    const organization = await this.userService.getOrganization(policy.organizationId);
-                    this.singleOrgPolicyBlock = organization.type !== OrganizationUserType.Owner &&
-                                                organization.type !== OrganizationUserType.Admin;
-                }
-            }
+            const orgs = await this.userService.getAllOrganizations();
+
+            const orgsWithSingleOrgPolicy = policies
+                .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
+                .map(p => p.organizationId);
+
+            this.singleOrgPolicyBlock = orgs.some(org =>
+                org.type !== OrganizationUserType.Owner &&
+                org.type !== OrganizationUserType.Admin &&
+                org.status !== OrganizationUserStatusType.Invited &&
+                orgsWithSingleOrgPolicy.includes(org.id));
+
             if (this.singleOrgPolicyBlock) {
                 return;
             }
