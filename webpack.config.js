@@ -95,7 +95,7 @@ const plugins = [
     }),
     new HtmlWebpackPlugin({
         template: './src/connectors/webauthn-fallback.html',
-        filename: 'webauthn-connector-fallback.html',
+        filename: 'webauthn-fallback-connector.html',
         chunks: ['connectors/webauthn-fallback'],
     }),
     new HtmlWebpackPlugin({
