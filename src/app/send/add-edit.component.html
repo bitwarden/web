@@ -137,10 +137,10 @@
                                 </ng-container>
                                 <div class="d-flex justify-content-around" *ngIf="!isDateTimeLocalSupported">
                                     <input id="expirationDateCustomFallback" class="form-control mt-1" type="date"
-                                        name="ExpirationDateFallback" [(ngModel)]="expirationDateFallback" required
+                                        name="ExpirationDateFallback" [(ngModel)]="expirationDateFallback" [required]="!editMode"
                                         placeholder="MM/DD/YYYY" [readOnly]="disableSend">
                                     <input id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
-                                        name="ExpirationTimeFallback" [(ngModel)]="expirationTimeFallback" required
+                                        name="ExpirationTimeFallback" [(ngModel)]="expirationTimeFallback" [required]="!editMode"
                                         placeholder="HH:MM AM/PM" [readOnly]="disableSend">
                                 </div>
                             </ng-template>
