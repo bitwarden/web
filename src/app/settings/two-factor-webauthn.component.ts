@@ -112,19 +112,19 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         this.resetWebAuthn(true);
 
         navigator.credentials.create({
-            publicKey: webAuthnChallenge
+            publicKey: webAuthnChallenge,
         }).then((data: PublicKeyCredential) => {
             this.ngZone.run(() => {
                 this.webAuthnListening = false;
                 this.webAuthnResponse = data;
             });
-        }).catch((err) => {
+        }).catch(err => {
             // tslint:disable-next-line
             console.error(err);
             this.resetWebAuthn(false);
             // TODO: Should we display the actual error?
             this.webAuthnError = true;
-        })
+        });
     }
 
     private resetWebAuthn(listening = false) {

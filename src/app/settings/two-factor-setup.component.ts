@@ -23,8 +23,8 @@ import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.comp
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
 import { TwoFactorEmailComponent } from './two-factor-email.component';
 import { TwoFactorRecoveryComponent } from './two-factor-recovery.component';
-import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 import { TwoFactorWebAuthnComponent } from './two-factor-webauthn.component';
+import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 
 @Component({
     selector: 'app-two-factor-setup',

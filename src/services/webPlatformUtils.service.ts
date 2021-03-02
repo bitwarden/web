@@ -159,7 +159,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     supportsWebAuthn(win: Window): boolean {
-        return (typeof(PublicKeyCredential) !== 'undefined')
+        return (typeof(PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {

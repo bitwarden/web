@@ -1,6 +1,6 @@
 import { getQsParam } from './common';
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     init();
 });
 
@@ -57,7 +57,7 @@ function start() {
         return;
     }
 
-    stopWebAuthn = false
+    stopWebAuthn = false;
     initWebAuthn(json);
 }
 
@@ -81,7 +81,7 @@ function initWebAuthn(obj: any) {
 }
 
 function onMessage() {
-    window.addEventListener('message', (event) => {
+    window.addEventListener('message', event => {
         if (!event.origin || event.origin === '' || event.origin !== parentOrigin) {
             return;
         }
@@ -119,8 +119,8 @@ function success(assertedCredential: PublicKeyCredential) {
         response: {
             authenticatorData: coerceToBase64Url(authData),
             clientDataJson: coerceToBase64Url(clientDataJSON),
-            signature: coerceToBase64Url(sig)
-        }
+            signature: coerceToBase64Url(sig),
+        },
     };
 
     const dataString = JSON.stringify(data);
@@ -170,4 +170,4 @@ function coerceToBase64Url(thing: any) {
     thing = thing.replace(/\+/g, '-').replace(/\//g, '_').replace(/=*$/g, '');
 
     return thing;
-};
+}

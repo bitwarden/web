@@ -32,7 +32,7 @@ function translate(id: string) {
 
 (window as any).init = () => {
     start();
-}
+};
 
 function start() {
     if (sentSuccess) {
@@ -90,12 +90,12 @@ function initWebAuthn(obj: any) {
             }
 
             const response = assertedCredential.response as AuthenticatorAssertionResponse;
-        
+
             const authData = new Uint8Array(response.authenticatorData);
             const clientDataJSON = new Uint8Array(response.clientDataJSON);
             const rawId = new Uint8Array(assertedCredential.rawId);
             const sig = new Uint8Array(response.signature);
-        
+
             const data = {
                 id: assertedCredential.id,
                 rawId: coerceToBase64Url(rawId),
@@ -104,16 +104,16 @@ function initWebAuthn(obj: any) {
                 response: {
                     authenticatorData: coerceToBase64Url(authData),
                     clientDataJson: coerceToBase64Url(clientDataJSON),
-                    signature: coerceToBase64Url(sig)
-                }
+                    signature: coerceToBase64Url(sig),
+                },
             };
-        
+
             const dataString = JSON.stringify(data);
-            const remember = (document.getElementById("remember") as HTMLInputElement).checked;
+            const remember = (document.getElementById('remember') as HTMLInputElement).checked;
             window.postMessage({ command: 'webAuthnResult', data: dataString, remember: remember }, '*');
 
             sentSuccess = true;
-            success(translate('webAuthnSuccess'))
+            success(translate('webAuthnSuccess'));
         })
         .catch(err => error(err));
 }
@@ -126,7 +126,7 @@ function error(message: string) {
 }
 
 function success(message: string) {
-    (document.querySelector("#webauthn-button") as any).disabled = true;
+    (document.getElementById('webauthn-button') as HTMLButtonElement).disabled = true;
 
     const el = document.getElementById('msg');
     el.innerHTML = message;
@@ -172,4 +172,4 @@ function coerceToBase64Url(thing: any) {
     thing = thing.replace(/\+/g, '-').replace(/\//g, '_').replace(/=*$/g, '');
 
     return thing;
-};
+}
