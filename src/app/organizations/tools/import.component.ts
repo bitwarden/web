@@ -24,9 +24,9 @@ export class ImportComponent extends BaseImportComponent {
     constructor(i18nService: I18nService, analytics: Angulartics2,
         toasterService: ToasterService, importService: ImportService,
         router: Router, private route: ActivatedRoute,
-        private platformUtilsService: PlatformUtilsService,
+        platformUtilsService: PlatformUtilsService,
         private userService: UserService) {
-        super(i18nService, analytics, toasterService, importService, router);
+        super(i18nService, analytics, toasterService, importService, router, platformUtilsService);
     }
 
     async ngOnInit() {

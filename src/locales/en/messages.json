@@ -1009,6 +1009,12 @@
   "importData": {
     "message": "Import Data"
   },
+  "importError": {
+    "message": "Import Error"
+  },
+  "importErrorDesc": {
+    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+  },
   "importSuccess": {
     "message": "Data has been successfully imported into your vault."
   },
@@ -1400,7 +1406,7 @@
     "message": "Logins Without 2FA Found"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to twofactorauth.org). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to 2fa.directory). To further protect these accounts, you should enable two-factor authentication.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3391,7 +3397,7 @@
     "message": "Disabled"
   },
   "sendLink": {
-    "message": "Send Link",
+    "message": "Send link",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
@@ -3444,6 +3450,10 @@
   },
   "sendAccessUnavailable": {
     "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "missingSendFile": {
+    "message": "The file associated with this Send could not be found.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3701,6 +3711,43 @@
   },
   "copySendLinkOnSave": {
     "message": "Copy the link to share this Send to my clipboard upon save."
+  },
+  "sendLinkLabel": {
+    "message": "Send link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Learn more about",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "sign up",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "to try it today.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
   },
   "webAuthnFallbackMsg": {
     "message": "To verify your 2FA please click the button below."

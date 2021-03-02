@@ -43,6 +43,7 @@ export class AccessComponent implements OnInit {
     private id: string;
     private key: string;
     private decKey: SymmetricCryptoKey;
+    private accessRequest: SendAccessRequest;
 
     constructor(private i18nService: I18nService, private cryptoFunctionService: CryptoFunctionService,
         private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
@@ -54,6 +55,20 @@ export class AccessComponent implements OnInit {
             return null;
         }
         return this.showText ? this.send.text.text : this.send.text.maskedText;
+    }
+
+    get expirationDate() {
+        if (this.send == null || this.send.expirationDate == null) {
+            return null;
+        }
+        return this.send.expirationDate;
+    }
+
+    get creatorIdentifier() {
+        if (this.send == null || this.send.creatorIdentifier == null) {
+            return null;
+        }
+        return this.send.creatorIdentifier;
     }
 
     ngOnInit() {
@@ -76,8 +91,16 @@ export class AccessComponent implements OnInit {
             return;
         }
 
+
+        const downloadData = await this.apiService.getSendFileDownloadData(this.send, this.accessRequest);
+
+        if (Utils.isNullOrWhitespace(downloadData.url)) {
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingSendFile'));
+            return;
+        }
+
         this.downloading = true;
-        const response = await fetch(new Request(this.send.file.url, { cache: 'no-store' }));
+        const response = await fetch(new Request(downloadData.url, { cache: 'no-store' }));
         if (response.status !== 200) {
             this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
             this.downloading = false;
@@ -109,17 +132,17 @@ export class AccessComponent implements OnInit {
         this.unavailable = false;
         this.error = false;
         const keyArray = Utils.fromUrlB64ToArray(this.key);
-        const accessRequest = new SendAccessRequest();
+        this.accessRequest = new SendAccessRequest();
         if (this.password != null) {
             const passwordHash = await this.cryptoFunctionService.pbkdf2(this.password, keyArray, 'sha256', 100000);
-            accessRequest.password = Utils.fromBufferToB64(passwordHash);
+            this.accessRequest.password = Utils.fromBufferToB64(passwordHash);
         }
         try {
             let sendResponse: SendAccessResponse = null;
             if (this.loading) {
-                sendResponse = await this.apiService.postSendAccess(this.id, accessRequest);
+                sendResponse = await this.apiService.postSendAccess(this.id, this.accessRequest);
             } else {
-                this.formPromise = this.apiService.postSendAccess(this.id, accessRequest);
+                this.formPromise = this.apiService.postSendAccess(this.id, this.accessRequest);
                 sendResponse = await this.formPromise;
             }
             this.passwordRequired = false;
