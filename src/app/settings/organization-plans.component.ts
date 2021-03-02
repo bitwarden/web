@@ -19,10 +19,13 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
+import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 import { PlanType } from 'jslib/enums/planType';
 import { PolicyType } from 'jslib/enums/policyType';
 import { ProductType } from 'jslib/enums/productType';
@@ -66,7 +69,7 @@ export class OrganizationPlansComponent implements OnInit {
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
         private router: Router, private syncService: SyncService,
-        private policyService: PolicyService) {
+        private policyService: PolicyService, private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -215,7 +218,18 @@ export class OrganizationPlansComponent implements OnInit {
             return;
         } else {
             const policies = await this.policyService.getAll(PolicyType.SingleOrg);
-            this.singleOrgPolicyBlock = policies.some(policy => policy.enabled);
+            const orgs = await this.userService.getAllOrganizations();
+
+            const orgsWithSingleOrgPolicy = policies
+                .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
+                .map(p => p.organizationId);
+
+            this.singleOrgPolicyBlock = orgs.some(org =>
+                org.type !== OrganizationUserType.Owner &&
+                org.type !== OrganizationUserType.Admin &&
+                org.status !== OrganizationUserStatusType.Invited &&
+                orgsWithSingleOrgPolicy.includes(org.id));
+
             if (this.singleOrgPolicyBlock) {
                 return;
             }
