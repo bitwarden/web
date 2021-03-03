@@ -3,7 +3,7 @@
         <div class="col-12">
             <p class="lead text-center mb-4">Bitwarden Send</p>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center" *ngIf="creatorIdentifier != null">
             <p>{{'sendCreatorIdentifier' | i18n: creatorIdentifier }}</p>
         </div>
         <div class="col-5">
@@ -63,15 +63,19 @@
                             <i class="fa fa-download" aria-hidden="true"></i>
                             {{'downloadFile' | i18n}} ({{send.file.sizeName}})</button>
                     </ng-container>
-                    <p *ngIf="expirationDate" class="text-center text-muted">Expires: {{expirationDate | date: 'medium'}}</p>
+                    <p *ngIf="expirationDate" class="text-center text-muted">Expires:
+                        {{expirationDate | date: 'medium'}}</p>
                 </div>
             </div>
         </div>
         <div class="col-12 text-center mt-5 text-muted">
             <p class="mb-0">{{'sendAccessTaglineProductDesc' | i18n}}<br>
-            {{'sendAccessTaglineLearnMore' | i18n}} <a href="https://www.bitwarden.com/products/send?source=web-vault">Bitwarden Send</a> {{'sendAccessTaglineOr' | i18n}} <a href="https://vault.bitwarden.com/#/register">{{'sendAccessTaglineSignUp' | i18n}}</a> {{'sendAccessTaglineTryToday' | i18n}}
+                {{'sendAccessTaglineLearnMore' | i18n}} <a
+                    href="https://www.bitwarden.com/products/send?source=web-vault">Bitwarden Send</a>
+                {{'sendAccessTaglineOr' | i18n}} <a
+                    href="https://vault.bitwarden.com/#/register">{{'sendAccessTaglineSignUp' | i18n}}</a>
+                {{'sendAccessTaglineTryToday' | i18n}}
             </p>
         </div>
     </div>
 </form>
-
