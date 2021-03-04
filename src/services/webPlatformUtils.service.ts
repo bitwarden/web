@@ -179,7 +179,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
     }
 
-    async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
+    async showDialog(body: string, title?: string, confirmText?: string, cancelText?: string, type?: string,
+        bodyIsHtml: boolean = false) {
         let iconClasses: string = null;
         if (type != null) {
             // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
@@ -207,7 +208,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             buttonsStyling: false,
             icon: type as SweetAlertIcon, // required to be any of the SweetAlertIcons to output the iconHtml.
             iconHtml: iconHtmlStr,
-            text: text,
+            text: bodyIsHtml ? null : body,
+            html: bodyIsHtml ? body : null,
             title: title,
             showCancelButton: (cancelText != null),
             cancelButtonText: cancelText,
