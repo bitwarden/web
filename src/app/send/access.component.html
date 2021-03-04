@@ -59,9 +59,12 @@
                     <!-- File -->
                     <ng-container *ngIf="send.type === sendType.File">
                         <p>{{send.file.fileName}}</p>
-                        <button class="btn btn-primary btn-block" type="button" (click)="download()">
+                        <button class="btn btn-primary btn-block" type="button" (click)="download()" *ngIf="!downloading">
                             <i class="fa fa-download" aria-hidden="true"></i>
                             {{'downloadFile' | i18n}} ({{send.file.sizeName}})</button>
+                        <button class="btn btn-primary btn-block" type="button" *ngIf="downloading" disabled="true">
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                        </button>
                     </ng-container>
                     <p *ngIf="expirationDate" class="text-center text-muted">Expires:
                         {{expirationDate | date: 'medium'}}</p>
