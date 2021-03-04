@@ -35,9 +35,8 @@ function start() {
         error('No parent.');
         return;
     } else {
-        const link = document.createElement('a');
-        link.href = parentUrl;
-        parentOrigin = link.origin;
+        parentUrl = decodeURIComponent(parentUrl);
+        parentOrigin = new URL(parentUrl).origin;
     }
 
     const versionQs = getQsParam('v');
