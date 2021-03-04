@@ -74,7 +74,7 @@ jobs:
           chmod +x ./build.sh
           ./build.sh
 
-      - name: Tag release branch
+      - name: Tag rc branch
         if: github.ref == 'refs/heads/rc'
         run: ./build.sh tag rc
 
