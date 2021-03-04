@@ -74,6 +74,10 @@ jobs:
           chmod +x ./build.sh
           ./build.sh
 
+      - name: Tag rc branch
+        if: github.ref == 'refs/heads/rc'
+        run: ./build.sh tag rc
+
       - name: Tag dev
         if: github.ref == 'refs/heads/master' || github.event_name == 'release'
         run: ./build.sh tag dev
@@ -92,6 +96,13 @@ jobs:
       - name: List docker images
         if: github.ref == 'refs/heads/master' || github.event_name == 'release'
         run: docker images
+
+      - name: Push rc images
+        if: github.ref == 'refs/heads/rc'
+        run: ./build.sh push rc
+        env: 
+          DOCKER_CONTENT_TRUST: 1
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ secrets.DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE }}
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master' || github.event_name == 'release'
