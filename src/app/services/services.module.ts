@@ -28,6 +28,7 @@ import { ApiService } from 'jslib/services/api.service';
 import { AppIdService } from 'jslib/services/appId.service';
 import { AuditService } from 'jslib/services/audit.service';
 import { AuthService } from 'jslib/services/auth.service';
+import { AzureStorageService } from 'jslib/services/azureStorage.service';
 import { CipherService } from 'jslib/services/cipher.service';
 import { CollectionService } from 'jslib/services/collection.service';
 import { ConsoleLogService } from 'jslib/services/consoleLog.service';
@@ -113,7 +114,8 @@ const folderService = new FolderService(cryptoService, userService, apiService, 
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService);
 const policyService = new PolicyService(userService, storageService);
-const sendService = new SendService(cryptoService, userService, apiService, storageService,
+const azureStorageService = new AzureStorageService(consoleLogService);
+const sendService = new SendService(cryptoService, userService, apiService, azureStorageService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
