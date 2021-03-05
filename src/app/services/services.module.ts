@@ -58,6 +58,7 @@ import { ApiService as ApiServiceAbstraction } from 'jslib/abstractions/api.serv
 import { AppIdService as AppIdServiceAbstraction } from 'jslib/abstractions/appId.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib/abstractions/auth.service';
+import { AzureStorageService as AzureStorageServiceAbstraction } from 'jslib/abstractions/azureStorage.service';
 import { CipherService as CipherServiceAbstraction } from 'jslib/abstractions/cipher.service';
 import { CollectionService as CollectionServiceAbstraction } from 'jslib/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib/abstractions/crypto.service';
@@ -215,6 +216,7 @@ export function initFactory(): Function {
         { provide: PlatformUtilsServiceAbstraction, useValue: platformUtilsService },
         { provide: PasswordGenerationServiceAbstraction, useValue: passwordGenerationService },
         { provide: ApiServiceAbstraction, useValue: apiService },
+        { provide: AzureStorageServiceAbstraction, useValue: azureStorageService },
         { provide: SyncServiceAbstraction, useValue: syncService },
         { provide: UserServiceAbstraction, useValue: userService },
         { provide: MessagingServiceAbstraction, useValue: messagingService },
