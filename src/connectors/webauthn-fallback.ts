@@ -2,7 +2,7 @@ import { getQsParam } from './common';
 import { b64Decode, buildDataString } from './common-webauthn';
 
 // tslint:disable-next-line
-require('./webauthn-fallback.scss');
+require('./webauthn.scss');
 
 let parentUrl: string = null;
 let parentOrigin: string = null;

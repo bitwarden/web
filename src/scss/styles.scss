@@ -604,6 +604,17 @@ app-user-billing {
     }
 }
 
+#web-authn-frame {
+    background: url('../images/loading.svg') 0 0 no-repeat;
+    height: 290px;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}
+
 #bt-dropin-container {
     background: url('../images/loading.svg') 0 0 no-repeat;
     min-height: 50px;

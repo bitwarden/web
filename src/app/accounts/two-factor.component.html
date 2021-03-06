@@ -34,15 +34,9 @@
                         </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.WebAuthn">
-                        <p class="text-center" *ngIf="!webAuthnReady">
-                            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
-                                aria-hidden="true"></i>
-                            <span class="sr-only">{{'loading' | i18n}}</span>
-                        </p>
-                        <ng-container *ngIf="webAuthnReady">
-                            <p class="text-center">{{'insertU2f' | i18n}}</p>
-                            <img src="../../images/u2fkey.jpg" alt="" class="rounded img-fluid mb-3">
-                        </ng-container>
+                        <div id="web-authn-frame" class="mb-3">
+                            <iframe id="webauthn_iframe"></iframe>
+                        </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.Duo ||
                         selectedProviderType === providerType.OrganizationDuo">
@@ -84,4 +78,3 @@
     </div>
 </form>
 <ng-template #twoFactorOptions></ng-template>
-<iframe id="webauthn_iframe" hidden></iframe>
