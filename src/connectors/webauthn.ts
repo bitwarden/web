@@ -1,6 +1,7 @@
 import { getQsParam } from './common';
 import { b64Decode, buildDataString } from './common-webauthn';
 
+// tslint:disable-next-line
 require('./webauthn.scss');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,7 +60,7 @@ function start() {
         const fixedId = listItem.id.replace(/\_/g, '/').replace(/\-/g, '+');
         listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
     });
-    
+
     stopWebAuthn = false;
 
     if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {

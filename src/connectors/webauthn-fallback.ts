@@ -85,7 +85,7 @@ async function initWebAuthn(obj: any) {
 
     try {
         const assertedCredential = await navigator.credentials.get({ publicKey: obj }) as PublicKeyCredential;
-        
+
         if (sentSuccess) {
             return;
         }
