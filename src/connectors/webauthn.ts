@@ -6,6 +6,11 @@ require('./webauthn.scss');
 
 document.addEventListener('DOMContentLoaded', () => {
     init();
+
+    const text = getQsParam('btnText');
+    if (text) {
+        document.getElementById('webauthn-button').innerText = decodeURI(text);
+    }
 });
 
 let parentUrl: string = null;
