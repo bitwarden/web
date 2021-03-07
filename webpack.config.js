@@ -100,7 +100,7 @@ const plugins = [
         { from: './src/browserconfig.xml' },
         { from: './src/app-id.json' },
         { from: './src/404.html' },
-        { from: './src/404.css' },
+        { from: './src/404', to: '404' },
         { from: './src/images', to: 'images' },
         { from: './src/locales', to: 'locales' },
         { from: './src/scripts', to: 'scripts' },
