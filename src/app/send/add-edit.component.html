@@ -96,16 +96,16 @@
                                         placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
                                 </ng-container>
                                 <div *ngIf="!isDateTimeLocalSupported" class="d-flex justify-content-around">
-                                    <input id="deletionDateCustomFallback" class="form-control mt-1 date-polyfill" type="date"
+                                    <input id="deletionDateCustomFallback" class="form-control mt-1" type="date"
                                         name="DeletionDateFallback" [(ngModel)]="deletionDateFallback" required
                                         placeholder="MM/DD/YYYY" [readOnly]="disableSend" data-date-format="mm/dd/yyyy">
                                     <select *ngIf="isSafari" id="deletionTimeCustomFallback" class="form-control mt-1 ml-1" [required]="!editMode"
                                         [(ngModel)]="safariDeletionTime" name="SafariDeletionTime">
                                         <option *ngFor="let o of safariTimeOptions('deletion')" [value]="o.military">{{o.standard}}</option>
                                     </select>
-                                    <input *ngIf="!isSafari" #deletionTimeFallbackRef id="deletionTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
+                                    <input *ngIf="!isSafari" id="deletionTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
                                         name="DeletionTimeDate" [(ngModel)]="deletionTimeFallback" required
-                                        [readOnly]="disableSend" title="Deletion Date Time">
+                                        placeholder="HH:MM AM/PM" [readOnly]="disableSend">
                                 </div>
                             </ng-template>
                             <div *ngIf="!editMode">
@@ -139,7 +139,7 @@
                                         name="ExpirationDate" [(ngModel)]="expirationDate" placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
                                 </ng-container>
                                 <div class="d-flex justify-content-around" *ngIf="!isDateTimeLocalSupported">
-                                    <input id="expirationDateCustomFallback" class="form-control mt-1 date-polyfill" type="date"
+                                    <input id="expirationDateCustomFallback" class="form-control mt-1" type="date"
                                         name="ExpirationDateFallback" [(ngModel)]="expirationDateFallback" [required]="!editMode"
                                         placeholder="MM/DD/YYYY" [readOnly]="disableSend" data-date-format="mm/dd/yyyy">
                                         <select *ngIf="isSafari" id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" [required]="!editMode"
@@ -148,7 +148,7 @@
                                         </select>
                                         <input *ngIf="!isSafari" id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
                                             name="ExpirationTimeFallback" [(ngModel)]="expirationTimeFallback" [required]="!editMode"
-                                            [readOnly]="disableSend" title="Expiration Date Time">
+                                            placeholder="HH:MM AM/PM" [readOnly]="disableSend">
                                 </div>
                             </ng-template>
                             <div *ngIf="!editMode">
