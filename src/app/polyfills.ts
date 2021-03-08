@@ -19,4 +19,5 @@ if (process.env.ENV === 'production') {
 // Other polyfills
 require('whatwg-fetch');
 require('webcrypto-shim');
+require('date-input-polyfill');
 /* tslint:enable */
