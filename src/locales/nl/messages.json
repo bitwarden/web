@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Deze export bevat jouw kluisgegevens in een niet-versleutelde opmaak. Je moet het geëxporteerde bestand niet opslaan of verzenden over onbeveiligde kanalen (zoals e-mail). Verwijder het exportbestand direct na gebruik."
   },
-  "encExportWarningDesc": {
-    "message": "Deze export versleutelt je gegevens met de encryptiesleutel van je account. Als je je encryptiesleutel verandert moet je opnieuw exporteren, omdat je deze export dan niet meer kunt ontcijferen."
+  "encExportKeyWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
   },
   "exportMasterPassword": {
     "message": "Voer je hoofdwachtwoord in om de kluisgegevens te exporteren."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Gegevens importeren"
   },
+  "importError": {
+    "message": "Import Error"
+  },
+  "importErrorDesc": {
+    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+  },
   "importSuccess": {
     "message": "De gegevens zijn in je kluis geïmporteerd."
+  },
+  "importWarning": {
+    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "De gegevens zijn niet correct opgemaakt. Controleer je importbestand en probeer het opnieuw."
@@ -1364,7 +1382,7 @@
     "message": "Logins zonder 2FA gevonden"
   },
   "inactive2faFoundDesc": {
-    "message": "We hebben $COUNT$ website(s) in je kluis gevonden waar je tweestapsaanmelding nog kunt configureren (volgens 2fa.directory). Om deze accounts verder te beschermen, zou je tweestapsaanmelding moeten inschakelen.",
+    "message": "We hebben $COUNT$ website(s) in je kluis gevonden waar je tweestapsaanmelding nog kunt configureren (volgens twofactorauth.org). Om deze accounts verder te beschermen, zou je tweestapsaanmelding moeten inschakelen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1564,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "Extra tweestapsaanmeldingsopties zoals YubiKey, FIDO U2F en Duo."
+  },
+  "premiumSignUpEmergency": {
+    "message": "Emergency Access"
   },
   "premiumSignUpReports": {
     "message": "Rapportages op wachtwoordhygiëne, gezondheid van je account en datalekken om je kluis veilig te houden."
@@ -3369,7 +3390,7 @@
     "message": "Weet je zeker dat je dit wachtwoord wilt verwijderen?"
   },
   "disableThisSend": {
-    "message": "Schakel deze Send uit zodat niemand 'm kan benaderen.",
+    "message": "Schakel deze Send uit zodat niemand hem kan benaderen.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
@@ -3404,7 +3425,11 @@
     "message": "Bestand downloaden"
   },
   "sendAccessUnavailable": {
-    "message": "De Send die je probeert te benaderen bestaat niet of is niet langer beschikbaar.",
+    "message": "De Send die je probeert te benaderen is niet (langer) beschikbaar.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "missingSendFile": {
+    "message": "The file associated with this Send could not be found.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3415,7 +3440,10 @@
     "message": "Noodtoegang"
   },
   "emergencyAccessDesc": {
-    "message": "Verleen en beheer noodtoegang voor vertrouwde contacten. Vertrouwde contacten kunnen toegang vragen tot het bekijken of overnemen van je account in noodgevallen. Bezoek onze helppagina voor meer informatie en details over de werking van \"zero knowledge sharing\"."
+    "message": "Verleen en beheer noodtoegang voor vertrouwde contacten. Vertrouwde contacten kunnen in noodgevallen toegang vragen tot het bekijken of overnemen van je account. Bezoek onze helppagina voor meer informatie en details over de werking van \"zero knowledge sharing\"."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
   },
   "trustedEmergencyContacts": {
     "message": "Vertrouwde noodcontacten"
@@ -3439,7 +3467,7 @@
     "message": "Noodcontact bewerken"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Nodig een nieuw noodcontact uit door hieronder het e-mailadres van hun Bitwarden-e-mailadres in te vullen. Als ze nog geen Bitwarden-account hebben, krijgen ze de mogelijkheid direct een account aan te maken."
+    "message": "Nodig een nieuw noodcontact uit door hieronder het e-mailadres van hun Bitwarden-account in te vullen. Als ze nog geen Bitwarden-account hebben, krijgen ze de mogelijkheid direct een account aan te maken."
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "Noodtoegang geïnitieerd"
@@ -3454,13 +3482,13 @@
     "message": "Overnemen"
   },
   "takeoverDesc": {
-    "message": "Kan je een nieuw hoofdwachtwoord instellen op je account."
+    "message": "Kan op jouw account een nieuw hoofdwachtwoord instellen."
   },
   "waitTime": {
     "message": "Wachttijd"
   },
   "waitTimeDesc": {
-    "message": "Verstreken tijd voor het automatisch verlenen van toegang."
+    "message": "Wachttijd tot het automatisch verlenen van toegang."
   },
   "oneDay": {
     "message": "1 dag"
@@ -3493,13 +3521,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "Je kunt de instellingen voor noodtoegang van deze gebruiker benaderen zodraje identiteit is bevestigd. We sturen je een e-mail wanneer dat is gebeurd."
+    "message": "Je kunt de instellingen voor noodtoegang van deze gebruiker benaderen zodra je identiteit is bevestigd. We sturen je een e-mail wanneer dat is gerealiseerd."
   },
   "requestAccess": {
-    "message": "Toegang vragen"
+    "message": "Toegang aanvragen"
   },
   "requestAccessConfirmation": {
-    "message": "Weet je zeker dat je noodtoegang wilt vragen? Je krijgt toegang na $WAITTIME$ dag(en) of zodra de gebruiker de aanvraag handmatig goedkeurt.",
+    "message": "Weet je zeker dat je noodtoegang wilt aanvragen? Je krijgt toegang na $WAITTIME$ dag(en) of zodra de gebruiker de aanvraag handmatig goedkeurt.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3523,7 +3551,7 @@
     "message": "Afwijzen"
   },
   "approveAccessConfirmation": {
-    "message": "Weet u zeker dat u toegang tot noodgevallen wilt goedkeuren? Hiermee kan $USER$ op je account $ACTION$.",
+    "message": "Weet je zeker dat je noodtoegang wilt goedkeuren? Hiermee verleen je $USER$ toegang tot je account $ACTION$.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3561,6 +3589,24 @@
   },
   "personalOwnershipSubmitError": {
     "message": "Wegens bedrijfsbeleid mag je geen wachtwoorden opslaan in je persoonlijke kluis. Verander het eigenaarschap naar een organisatie en kies uit een van de beschikbare collecties."
+  },
+  "disableSend": {
+    "message": "Disable Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "sendDisabled": {
+    "message": "Send disabled",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
     "message": "Bewerkt beleid $ID$.",
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "Verberg de tekst standaard bij het gebruiken van de Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "A friendly name to describe this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "The text you want to send."
+  },
+  "sendFileDesc": {
+    "message": "The file you want to send."
+  },
+  "copySendLinkOnSave": {
+    "message": "Copy the link to share this Send to my clipboard upon save."
+  },
+  "sendLinkLabel": {
+    "message": "Send link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Learn more about",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Share text or files directly with anyone."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Learn more",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "see",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "how it works",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "try it now",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "sign up",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "to try it today.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "The expiration date provided is not valid."
+  },
+  "deletionDateIsInvalid": {
+    "message": "The deletion date provided is not valid."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "An expiration date and time are required."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "A deletion date and time are required."
+  },
+  "dateParsingError": {
+    "message": "There was an error saving your deletion and expiration dates."
   }
 }
