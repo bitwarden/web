@@ -141,7 +141,7 @@
                                 <div class="d-flex justify-content-around" *ngIf="!isDateTimeLocalSupported">
                                     <input id="expirationDateCustomFallback" class="form-control mt-1" type="date"
                                         name="ExpirationDateFallback" [(ngModel)]="expirationDateFallback" [required]="!editMode"
-                                        placeholder="MM/DD/YYYY" [readOnly]="disableSend" data-date-format="mm/dd/yyyy">
+                                        placeholder="MM/DD/YYYY" [readOnly]="disableSend" data-date-format="mm/dd/yyyy" (change)="expirationDateFallbackChanged()">
                                         <select *ngIf="isSafari" id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" [required]="!editMode"
                                             [(ngModel)]="safariExpirationTime" name="SafariExpirationTime">
                                             <option *ngFor="let o of safariExpirationTimeOptions" [ngValue]="o.military">{{o.standard}}</option>
