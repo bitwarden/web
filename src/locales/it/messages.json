@@ -50,7 +50,7 @@
     "message": "Campi Personalizzati"
   },
   "cardholderName": {
-    "message": "Titolare della Carta"
+    "message": "Titolare della carta"
   },
   "number": {
     "message": "Numero"
@@ -65,13 +65,13 @@
     "message": "Codice di sicurezza (CVV)"
   },
   "identityName": {
-    "message": "Nome dell'identità"
+    "message": "Nome identità"
   },
   "company": {
     "message": "Azienda"
   },
   "ssn": {
-    "message": "Codice fiscale"
+    "message": "Numero di previdenza sociale/codice fiscale"
   },
   "passportNumber": {
     "message": "Numero del passaporto"
@@ -143,7 +143,7 @@
     "message": "Anno di scadenza"
   },
   "authenticatorKeyTotp": {
-    "message": "Chiave di Autenticazione (TOTP)"
+    "message": "Chiave di autenticazione (TOTP)"
   },
   "folder": {
     "message": "Cartella"
@@ -211,10 +211,10 @@
     "message": "Mai"
   },
   "toggleVisibility": {
-    "message": "Mostra / nascondi"
+    "message": "Mostra/nascondi"
   },
   "toggleCollapse": {
-    "message": "Comprimi / espandi",
+    "message": "Comprimi/espandi",
     "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
@@ -269,14 +269,14 @@
     "message": "Cerca tra i preferiti"
   },
   "searchType": {
-    "message": "Cerca in questo tipo",
+    "message": "Cerca tipo",
     "description": "Search item type"
   },
   "searchVault": {
     "message": "Cerca nella cassaforte"
   },
   "allItems": {
-    "message": "Tutti gli Elementi"
+    "message": "Tutti gli elementi"
   },
   "favorites": {
     "message": "Preferiti"
@@ -306,7 +306,7 @@
     "message": "Nome"
   },
   "middleName": {
-    "message": "Secondo Nome"
+    "message": "Secondo nome"
   },
   "lastName": {
     "message": "Cognome"
@@ -342,10 +342,10 @@
     "message": "Seleziona"
   },
   "addItem": {
-    "message": "Aggiungi Elemento"
+    "message": "Aggiungi elemento"
   },
   "editItem": {
-    "message": "Modifica Elemento"
+    "message": "Modifica elemento"
   },
   "viewItem": {
     "message": "Visualizza elemento"
@@ -419,7 +419,7 @@
     "message": "Avvia"
   },
   "newAttachment": {
-    "message": "Aggiungi allegato"
+    "message": "Aggiungi nuovo allegato"
   },
   "deletedAttachment": {
     "message": "Elimina Allegato"
@@ -587,7 +587,7 @@
     "message": "Si è verificato un errore imprevisto."
   },
   "emailAddress": {
-    "message": "Indirizzo e-mail"
+    "message": "Indirizzo email"
   },
   "yourVaultIsLocked": {
     "message": "La tua cassaforte è bloccata. Verifica la tua password principale per continuare."
@@ -696,7 +696,7 @@
     "message": "Hai perso l'accesso a tutti i tuoi metodi di verifica in due passaggi? Usa il tuo codice di recupero per disattivare tutti i metodi di verifica sul tuo account."
   },
   "recoveryCodeTitle": {
-    "message": "Codice di Recupero"
+    "message": "Codice di recupero"
   },
   "authenticatorAppTitle": {
     "message": "App di autenticazione"
@@ -706,7 +706,7 @@
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
-    "message": "Chiave di Sicurezza YubiKey OTP"
+    "message": "Chiave di sicurezza YubiKey OTP"
   },
   "yubiKeyDesc": {
     "message": "Utilizzate una YubiKey per accedere al vostro conto. Funziona con dispositivi YubiKey serie 4, serie 5 e NEO."
@@ -747,7 +747,7 @@
     "message": "Scegli un'organizzazione con cui desideri condividere questi elementi. La condivisione ne trasferisce la proprietà all'organizzazione. Non sarai più il proprietario diretto di questi elementi una volta condivisi."
   },
   "collectionsDesc": {
-    "message": "Modifica le raccolte con le quali questo elemento viene condiviso. Solo gli utenti di organizzazioni che hanno accesso a queste collezioni saranno in grado di visualizzare questo elemento."
+    "message": "Modifica le raccolte con le quali questo elemento viene condiviso. Solo gli utenti di organizzazioni che hanno accesso a queste raccolte saranno in grado di visualizzare questo elemento."
   },
   "deleteSelectedItemsDesc": {
     "message": "La selezione comprende $COUNT$ elemento/i da eliminare. Sei sicuro di voler procedere con l'eliminazione?",
@@ -785,7 +785,7 @@
     }
   },
   "verificationCodeTotp": {
-    "message": "Codice di Verifica (TOTP)"
+    "message": "Codice di verifica (TOTP)"
   },
   "copyVerificationCode": {
     "message": "Copia il codice di verifica"
@@ -794,19 +794,22 @@
     "message": "Attenzione"
   },
   "confirmVaultExport": {
-    "message": "Conferma esportazione della Cassaforte"
+    "message": "Conferma esportazione della cassaforte"
   },
   "exportWarningDesc": {
-    "message": "Questa esportazione contiene i dati della cassaforte in un formato non criptato. Non archiviare o inviare il file esportato su canali non protetti (come la posta elettronica). Eliminalo immediatamente dopo aver finito di usarlo."
+    "message": "Questa esportazione contiene i dati della tua cassaforte in un formato non criptato. Non salvare o inviare il file esportato su canali non protetti (come la posta elettronica). Eliminalo immediatamente dopo l'utilizzo."
   },
-  "encExportWarningDesc": {
-    "message": "Questa esportazione cifra i tuoi dati utilizzando la chiave di crittografia del tuo account. Se cambi la chiave di crittografia del tuo account, non sarai più in grado di decifrare il file esportato e sarà necessario eseguire nuovo export."
+  "encExportKeyWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
   },
   "exportMasterPassword": {
     "message": "Inserisci la tua password principale per esportare i dati della tua cassaforte."
   },
   "exportVault": {
-    "message": "Esporta Cassaforte"
+    "message": "Esporta cassaforte"
   },
   "fileFormat": {
     "message": "Formato file"
@@ -821,14 +824,14 @@
     "message": "Punteggio minimo di complessità"
   },
   "minNumbers": {
-    "message": "Minimo di Numeri"
+    "message": "Minimo numeri"
   },
   "minSpecial": {
-    "message": "Minimo di Speciali",
+    "message": "Minimo caratteri speciali",
     "description": "Minimum Special Characters"
   },
   "ambiguous": {
-    "message": "Evita Caratteri Ambigui"
+    "message": "Evita caratteri ambigui"
   },
   "regeneratePassword": {
     "message": "Rigenera password"
@@ -863,7 +866,7 @@
     "message": "Account aggiornato"
   },
   "changeEmail": {
-    "message": "Cambia indirizzo Email"
+    "message": "Cambia indirizzo email"
   },
   "newEmail": {
     "message": "Nuova Email"
@@ -902,10 +905,10 @@
     "message": "Password Principale Attuale"
   },
   "newMasterPass": {
-    "message": "Nuova Password Principale"
+    "message": "Nuova password principale"
   },
   "confirmNewMasterPass": {
-    "message": "Conferma Nuova Password Principale"
+    "message": "Conferma nuova password principale"
   },
   "encKeySettings": {
     "message": "Impostazioni chiave di crittografia"
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Importa dati"
   },
+  "importError": {
+    "message": "Import Error"
+  },
+  "importErrorDesc": {
+    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+  },
   "importSuccess": {
     "message": "I dati sono stati importati con successo nella tua cassaforte."
+  },
+  "importWarning": {
+    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "I dati non sono formattati correttamente. Si prega di ricontrollare il file da importare."
@@ -1138,7 +1156,7 @@
     "message": "Abbonamento Premium"
   },
   "premiumRequired": {
-    "message": "Abbonamento Premium Richiesto"
+    "message": "Abbonamento Premium richiesto"
   },
   "premiumRequiredDesc": {
     "message": "Un abbonamento premium è richiesto per utilizzare questa funzionalità."
@@ -1364,7 +1382,7 @@
     "message": "Login senza 2FA trovato"
   },
   "inactive2faFoundDesc": {
-    "message": "Abbiamo trovato $COUNT$ sito(i) Web nella tua cassaforte che potrebbero non essere configurati con l'autenticazione a due fattori (secondo 2fa.directory). Per proteggere ulteriormente questi account, è necessario abilitare l'autenticazione a due fattori.",
+    "message": "Abbiamo trovato $COUNT$ sito(i) Web nella tua cassaforte che potrebbero non essere configurati con l'autenticazione a due fattori (secondo twofactorauth.org). Per proteggere ulteriormente questi account, è necessario abilitare l'autenticazione a due fattori.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1544,7 +1562,7 @@
     "message": "Il credito aggiunto apparirà sul tuo account dopo che il pagamento è stato completamente elaborato. Alcuni metodi di pagamento sono in ritardo e possono richiedere più tempo per il processo rispetto ad altri."
   },
   "makeSureEnoughCredit": {
-    "message": "Assicurati che il tuo account abbia abbastanza credito disponibile per questo acquisto. Se il tuo account non ha abbastanza credito disponibile, il tuo metodo di pagamento predefinito sul file verrà utilizzato per la differenza. Puoi aggiungere credito al tuo account dalla pagina di fatturazione."
+    "message": "Assicurati che il tuo account abbia abbastanza credito disponibile per questo acquisto. Se il tuo account non ha abbastanza credito disponibile, il tuo metodo di pagamento predefinito verrà utilizzato per la differenza. Puoi aggiungere credito al tuo account dalla pagina di fatturazione."
   },
   "creditAppliedDesc": {
     "message": "Il credito del tuo account può essere utilizzato per effettuare acquisti. Ogni credito disponibile verrà automaticamente applicato alle fatture generate per questo account."
@@ -1565,8 +1583,11 @@
   "premiumSignUpTwoStep": {
     "message": "Opzioni di verifica in due passaggi addizionali come YubiKey, FIDO U2F, e Duo."
   },
+  "premiumSignUpEmergency": {
+    "message": "Emergency Access"
+  },
   "premiumSignUpReports": {
-    "message": "Sicurezza delle password, integrità dell'account, e rapporti sulla violazione dei dati per mantenere sicura la tua cassaforte."
+    "message": "Sicurezza delle password, integrità dell'account e rapporti sulla violazione dei dati per mantenere sicura la tua cassaforte."
   },
   "premiumSignUpTotp": {
     "message": "Generatore di codice (2FA) di verifica di TOTP per gli account di accesso nel tuo vault."
@@ -1986,7 +2007,7 @@
     "message": "Aggiungi e condividi con utenti illimitati"
   },
   "createUnlimitedCollections": {
-    "message": "Creare raccolte illimitate"
+    "message": "Crea raccolte illimitate"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ di spazio di archiviazione crittografato",
@@ -2115,13 +2136,13 @@
     "message": "Sola lettura"
   },
   "newCollection": {
-    "message": "Nuova Raccolta"
+    "message": "Nuova raccolta"
   },
   "addCollection": {
-    "message": "Aggiungi Raccolta"
+    "message": "Aggiungi raccolta"
   },
   "editCollection": {
-    "message": "Modifica Raccolta"
+    "message": "Modifica raccolta"
   },
   "deleteCollectionConfirmation": {
     "message": "Sei sicuro di voler eliminare questa collezione?"
@@ -2708,7 +2729,7 @@
     "message": "Abbiamo fatto due micro-depositi sul tuo conto bancario (potrebbe richiedere 1-2 giorni lavorativi per presentarsi). Immettere questi importi per verificare il conto bancario."
   },
   "verifyBankAccountInitialDesc": {
-    "message": "Il pagamento con un conto in banca è disponibile solo per i clienti negli Stati Uniti. Sarà necessario verificare il tuo conto in banca. Faremo due micro-depositi entro i prossimi 1-2 giorni lavorativi. Immettere questi importi nella pagina fatturazione dell'organizzazione per verificare il conto bancario."
+    "message": "Il pagamento con un conto in banca è disponibile solo per i clienti negli Stati Uniti. Sarà necessario verificare il tuo conto in banca. Faremo due micro-depositi entro i prossimi 1-2 giorni lavorativi. Immettere questi importi nella pagina di fatturazione dell'organizzazione per verificare il conto bancario."
   },
   "verifyBankAccountFailureWarning": {
     "message": "Mancata verifica del conto in banca si tradurrà in un mancato pagamento e l'abbonamento viene disattivato."
@@ -2841,7 +2862,7 @@
     "message": "Selezionando la casella accetti quanto segue:"
   },
   "acceptPoliciesError": {
-    "message": "I Termini di Servizio e l'Informativa sulla Privacy non sono stati accettati."
+    "message": "I termini di servizio e l'informativa sulla privacy non sono stati accettati."
   },
   "termsOfService": {
     "message": "Termini del servizio"
@@ -2853,7 +2874,7 @@
     "message": "Filtri"
   },
   "vaultTimeout": {
-    "message": "Timeout Cassaforte"
+    "message": "Timeout cassaforte"
   },
   "vaultTimeoutDesc": {
     "message": "Scegli quando la tua cassaforte andrà in timeout ed esegui l'azione selezionata."
@@ -2884,7 +2905,7 @@
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Password Aggiornata",
+    "message": "Password aggiornata",
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
@@ -2922,10 +2943,10 @@
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
-    "message": "Password Principale Debole"
+    "message": "Password principale debole"
   },
   "weakMasterPasswordDesc": {
-    "message": "La password principale che hai scelto è debole. È necessario utilizzare una password principale avanzata (o una Frase segreta) per proteggere adeguatamente il tuo account Bitwarden. Sei sicuro di voler utilizzare questa password principale?"
+    "message": "La password principale che hai scelto è debole. È necessario utilizzare una password principale forte (o una passphrase) per proteggere adeguatamente il tuo account Bitwarden. Sei sicuro di voler utilizzare questa password principale?"
   },
   "rotateAccountEncKey": {
     "message": "Ruota anche la chiave di crittografia del mio account"
@@ -2950,15 +2971,15 @@
     "message": "Ci sono vecchi file allegati nella tua cassaforte che devono essere corretti prima di poter ruotare la chiave di crittografia del tuo account."
   },
   "yourAccountsFingerprint": {
-    "message": "Frase dell'impronta digitale del tuo account",
+    "message": "Frase impronta del tuo account",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
-    "message": "Per garantire l'integrità delle tue chiavi di crittografia, verifica la frase dell'impronta digitale dell'utente prima di continuare.",
+    "message": "Per garantire l'integrità delle tue chiavi di crittografia, verifica la frase impronta dell'utente prima di continuare.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Non chiedere di verificare di nuovo la frase dell'impronta digitale",
+    "message": "Non chiedere di verificare di nuovo la frase impronta",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -2994,7 +3015,7 @@
     "message": "Ruota chiave API"
   },
   "selectOneCollection": {
-    "message": "Devi selezionare almeno una categoria."
+    "message": "Devi selezionare almeno una raccolta."
   },
   "couldNotChargeCardPayInvoice": {
     "message": "Non siamo stati in grado di addebitare sulla tua carta. Per favore, visualizza e paga la fattura non pagata presente qui sotto."
@@ -3149,7 +3170,7 @@
     "message": "Ripristina elemento"
   },
   "restoredItem": {
-    "message": "Ripristina Elemento"
+    "message": "Elemento ripristinato"
   },
   "restoredItems": {
     "message": "Elementi Ripristinati"
@@ -3182,7 +3203,7 @@
     "message": "La disconnessione rimuove tutti gli accessi alla tua cassaforte e richiede l'autenticazione online dopo il periodo di timeout. Sei sicuro di voler utilizzare questa impostazione?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Conferma Azione di Timeout"
+    "message": "Conferma azione di timeout"
   },
   "hidePasswords": {
     "message": "Nascondi Password"
@@ -3200,7 +3221,7 @@
     "message": "Dati fiscali aggiornati."
   },
   "setMasterPassword": {
-    "message": "Impostare la password principale"
+    "message": "Imposta la password principale"
   },
   "ssoCompleteRegistration": {
     "message": "Per completare il login con SSO, si prega di impostare una password principale per accedere e proteggere la cassaforte."
@@ -3215,7 +3236,7 @@
     "message": "Accedi usando il portale di accesso Single Sign-On della tua organizzazione. Inserisci l'identificativo della tua organizzazione per iniziare."
   },
   "enterpriseSingleSignOn": {
-    "message": "Accesso con il portale dell'organizzazione Single Sign-On"
+    "message": "Accesso con il portale dell'organizzazione (SSO)"
   },
   "ssoHandOff": {
     "message": "Puoi chiudere questa scheda e continuare nell'estensione."
@@ -3407,6 +3428,10 @@
     "message": "Il Send a cui stai provando ad accedere non esiste o non è più disponibile.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "The file associated with this Send could not be found.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "Non ci sono Sends da elencare.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3416,6 +3441,9 @@
   },
   "emergencyAccessDesc": {
     "message": "Concedi e gestisci l'accesso di emergenza per un contatto fidato. I contatti fidati possono richiede di ereditare l'account o accedere in sola lettura in caso di emergenza. Visita la nostra pagina di aiuto per maggiori informazioni e dettagli."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
   },
   "trustedEmergencyContacts": {
     "message": "Contatti di emergenza fidati"
@@ -3499,7 +3527,7 @@
     "message": "Richiedi l'accesso"
   },
   "requestAccessConfirmation": {
-    "message": "Sei sicuro di voler richiedere l'accesso di emergenza? Ti sarà possibile accedere dopo $WAITTIME$ giorno/i o ogniqualvolta l'utente approva la richiesta.",
+    "message": "Sei sicuro di voler richiedere l'accesso di emergenza? Ti sarà possibile accedere dopo $WAITTIME$ giorno/i o subito, qualora l'utente approvi la richiesta.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3561,6 +3589,24 @@
   },
   "personalOwnershipSubmitError": {
     "message": "A causa di una policy aziendale, non è possibile salvare elementi nella tua cassaforte personale. Cambia l'opzione proprietà in un'organizzazione e scegli tra le raccolte disponibili."
+  },
+  "disableSend": {
+    "message": "Disable Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "sendDisabled": {
+    "message": "Send disabled",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
     "message": "Policy modificata $ID$.",
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "Quando si accede al Send, nascondi il testo di default",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "A friendly name to describe this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "The text you want to send."
+  },
+  "sendFileDesc": {
+    "message": "The file you want to send."
+  },
+  "copySendLinkOnSave": {
+    "message": "Copy the link to share this Send to my clipboard upon save."
+  },
+  "sendLinkLabel": {
+    "message": "Send link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Learn more about",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Share text or files directly with anyone."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Learn more",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "see",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "how it works",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "try it now",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "sign up",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "to try it today.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "The expiration date provided is not valid."
+  },
+  "deletionDateIsInvalid": {
+    "message": "The deletion date provided is not valid."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "An expiration date and time are required."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "A deletion date and time are required."
+  },
+  "dateParsingError": {
+    "message": "There was an error saving your deletion and expiration dates."
   }
 }
