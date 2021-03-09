@@ -425,7 +425,7 @@
     "message": "Pièce jointe supprimée"
   },
   "deleteAttachmentConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer cette pièce jointe ?"
+    "message": "Êtes-vous sûr de vouloir supprimer cette pièce jointe ?"
   },
   "attachmentSaved": {
     "message": "La pièce jointe a été enregistrée."
@@ -464,7 +464,7 @@
     "message": "Supprimer la pièce jointe"
   },
   "deleteItemConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir déplacer cet élément vers la corbeille ?"
+    "message": "Êtes-vous sûr de vouloir déplacer cet élément vers la corbeille ?"
   },
   "deletedItem": {
     "message": "L'élément a été envoyé dans la corbeille"
@@ -476,7 +476,7 @@
     "message": "Éléments déplacés"
   },
   "overwritePasswordConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir écraser le mot de passe actuel ?"
+    "message": "Êtes-vous sûr de vouloir écraser le mot de passe actuel ?"
   },
   "editedFolder": {
     "message": "Dossier modifié"
@@ -485,7 +485,7 @@
     "message": "Dossier ajouté"
   },
   "deleteFolderConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer ce dossier ?"
+    "message": "Êtes-vous sûr de vouloir supprimer ce dossier ?"
   },
   "deletedFolder": {
     "message": "Dossier supprimé"
@@ -497,7 +497,7 @@
     "message": "Votre session a expiré."
   },
   "logOutConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
+    "message": "Êtes-vous sûr de vouloir vous déconnecter ?"
   },
   "logOut": {
     "message": "Déconnexion"
@@ -750,7 +750,7 @@
     "message": "Modifier les collections avec lesquelles cet élément est partagé. Seuls les utilisateurs de l'organisation avec un accès à ces collections pourront voir cet élément."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Vous avez sélectionné $COUNT$ élément(s) à supprimer. Êtes-vous sûr(e) de vouloir supprimer tous ces éléments ?",
+    "message": "Vous avez sélectionné $COUNT$ élément(s) à supprimer. Êtes-vous sûr de vouloir supprimer tous ces éléments ?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Cet export contient les données de votre coffre dans un format non chiffré. Vous ne devriez ni le stocker ni l'envoyer via des canaux non sécurisés (tel que l'e-mail). Supprimez-le immédiatement après l'avoir utilisé."
   },
-  "encExportWarningDesc": {
-    "message": "Cet export chiffre vos données en utilisant la clé de chiffrement de votre compte. Si jamais vous modifiez la clé de chiffrement de votre compte, vous devriez exporter à nouveau car vous ne pourrez pas déchiffrer ce fichier."
+  "encExportKeyWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
   },
   "exportMasterPassword": {
     "message": "Saisissez votre mot de passe maître pour exporter les données de votre coffre."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Importer des données"
   },
+  "importError": {
+    "message": "Import Error"
+  },
+  "importErrorDesc": {
+    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+  },
   "importSuccess": {
     "message": "Les données ont été importées dans votre coffre avec succès."
+  },
+  "importWarning": {
+    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Les données ne sont pas correctement mises en forme. Veuillez vérifier le fichier importé et réessayer."
@@ -1195,7 +1213,7 @@
     "message": "Dans le cas où vous devez l’ajouter à un autre appareil, voici le code QR (ou clé) requis par votre application d'authentification."
   },
   "twoStepDisableDesc": {
-    "message": "Êtes-vous sûr(e) de que vouloir désactiver ce fournisseur de connexion en deux étapes ?"
+    "message": "Êtes-vous sûr de que vouloir désactiver ce fournisseur de connexion en deux étapes ?"
   },
   "twoStepDisabled": {
     "message": "Fournisseur de connexion en deux étapes désactivé."
@@ -1285,7 +1303,7 @@
     "message": "Ajouter une clé de sécurité FIDO U2F à votre compte"
   },
   "removeU2fConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer cette clé de sécurité ?"
+    "message": "Êtes-vous sûr de vouloir supprimer cette clé de sécurité ?"
   },
   "readKey": {
     "message": "Lire la clé"
@@ -1364,7 +1382,7 @@
     "message": "Identifiants sans 2FA trouvés"
   },
   "inactive2faFoundDesc": {
-    "message": "Nous avons trouvé $COUNT$ site(s) web(s) dans votre coffre qui ne sont peut-être pas configurés avec une authentification à deux facteurs (d'après 2fa.directory). Pour mieux protéger ces comptes, vous devriez activer l'authentification à deux facteurs.",
+    "message": "Nous avons trouvé $COUNT$ site(s) web(s) dans votre coffre qui ne sont peut-être pas configurés avec une authentification à deux facteurs (d'après twofactorauth.org). Pour mieux protéger ces comptes, vous devriez activer l'authentification à deux facteurs.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1565,6 +1583,9 @@
   "premiumSignUpTwoStep": {
     "message": "Options d'identification en deux étapes additionnelles comme YubiKey, FIDO U2F et Duo."
   },
+  "premiumSignUpEmergency": {
+    "message": "Emergency Access"
+  },
   "premiumSignUpReports": {
     "message": "Rapports sur l'hygiène des mots de passe, la santé des comptes et les fuites de données pour assurer la sécurité de votre coffre."
   },
@@ -1693,13 +1714,13 @@
     "message": "Rétablir l’abonnement"
   },
   "reinstateConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir retirer la demande d’annulation en attente et rétablir votre abonnement ?"
+    "message": "Êtes-vous sûr de vouloir retirer la demande d’annulation en attente et rétablir votre abonnement ?"
   },
   "reinstated": {
     "message": "Votre abonnement a été rétabli."
   },
   "cancelConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir annuler ? Vous perdrez l’accès à toutes les fonctionnalités de l’abonnement à la fin de ce cycle de facturation."
+    "message": "Êtes-vous sûr de vouloir annuler ? Vous perdrez l’accès à toutes les fonctionnalités de l’abonnement à la fin de ce cycle de facturation."
   },
   "canceledSubscription": {
     "message": "L'abonnement a été annulé."
@@ -2049,7 +2070,7 @@
     "message": "Quitter"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir quitter cette organisation ?"
+    "message": "Êtes-vous sûr de vouloir quitter cette organisation ?"
   },
   "leftOrganization": {
     "message": "Vous avez quitté l'organisation."
@@ -2091,10 +2112,10 @@
     "message": "Modifier le groupe"
   },
   "deleteGroupConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer ce groupe?"
+    "message": "Êtes-vous sûr de vouloir supprimer ce groupe?"
   },
   "removeUserConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir retirer cet utilisateur ?"
+    "message": "Êtes-vous sûr de vouloir retirer cet utilisateur ?"
   },
   "externalId": {
     "message": "Identifiant externe"
@@ -2124,7 +2145,7 @@
     "message": "Modifier la collection"
   },
   "deleteCollectionConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer cette collection?"
+    "message": "Êtes-vous sûr de vouloir supprimer cette collection?"
   },
   "editUser": {
     "message": "Modifier un utilisateur"
@@ -2925,7 +2946,7 @@
     "message": "Mot de passe maître faible"
   },
   "weakMasterPasswordDesc": {
-    "message": "Le mot de passe maître que vous avez choisi est faible. Vous devriez utiliser un mot de passe (ou une phrase de passe) fort(e) pour protéger correctement votre compte Bitwarden. Êtes-vous sûr(e) de vouloir utiliser ce mot de passe maître ?"
+    "message": "Le mot de passe maître que vous avez choisi est faible. Vous devriez utiliser un mot de passe (ou une phrase de passe) fort(e) pour protéger correctement votre compte Bitwarden. Êtes-vous sûr de vouloir utiliser ce mot de passe maître ?"
   },
   "rotateAccountEncKey": {
     "message": "Révoquer également la clé de chiffrement de mon compte"
@@ -2934,7 +2955,7 @@
     "message": "Révoquer la clé de chiffrement"
   },
   "rotateEncKeyConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir révoquer la clé de chiffrement de votre compte ?"
+    "message": "Êtes-vous sûr de vouloir révoquer la clé de chiffrement de votre compte ?"
   },
   "attachmentsNeedFix": {
     "message": "Cet élément a d'anciennes pièces jointes qui doivent être réparées."
@@ -3113,7 +3134,7 @@
     "message": "Supprimer définitivement l'élément"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer définitivement cet élément ?"
+    "message": "Êtes-vous sûr de vouloir supprimer définitivement cet élément ?"
   },
   "permanentlyDeletedItem": {
     "message": "Élément supprimé définitivement"
@@ -3155,7 +3176,7 @@
     "message": "Éléments restaurés"
   },
   "restoreItemConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir restaurer cet élément ?"
+    "message": "Êtes-vous sûr de vouloir restaurer cet élément ?"
   },
   "restoreItems": {
     "message": "Restaurer les éléments"
@@ -3366,7 +3387,7 @@
     "message": "Mot de passe supprimé"
   },
   "removePasswordConfirmation": {
-    "message": "Êtes-vous sûr(e) de vouloir supprimer le mot de passe ?"
+    "message": "Êtes-vous sûr de vouloir supprimer le mot de passe ?"
   },
   "disableThisSend": {
     "message": "Désactiver ce Send pour que personne ne puisse y accéder.",
@@ -3407,6 +3428,10 @@
     "message": "Le Send que vous essayez d'accéder n'existe pas ou n'est plus disponible.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "The file associated with this Send could not be found.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "Il n'y a aucun Send à afficher.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3416,6 +3441,9 @@
   },
   "emergencyAccessDesc": {
     "message": "Accorder et gérer l'accès d'urgence pour les contacts de confiance. Les contacts de confiance peuvent demander l'accès à votre compte pour l'afficher ou en prendre le contrôle en cas d'urgence. Visitez notre page d'aide pour plus d'informations et de détails sur le fonctionnement du partage à divulgation nulle de connaissance."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
   },
   "trustedEmergencyContacts": {
     "message": "Contacts d'urgence de confiance"
@@ -3562,6 +3590,24 @@
   "personalOwnershipSubmitError": {
     "message": "En raison d'une politique d'entreprise, il vous est interdit d'enregistrer des éléments dans votre coffre personnel. Sélectionnez une organisation dans l'option Propriété et choisissez parmi les collections disponibles."
   },
+  "disableSend": {
+    "message": "Disable Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "sendDisabled": {
+    "message": "Send disabled",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Politique $ID$ modifiée.",
     "placeholders": {
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "Lors de l'accès à ce Send, masquer le texte par défaut",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "A friendly name to describe this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "The text you want to send."
+  },
+  "sendFileDesc": {
+    "message": "The file you want to send."
+  },
+  "copySendLinkOnSave": {
+    "message": "Copy the link to share this Send to my clipboard upon save."
+  },
+  "sendLinkLabel": {
+    "message": "Send link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Learn more about",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Share text or files directly with anyone."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Learn more",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "see",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "how it works",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "try it now",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "sign up",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "to try it today.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "The expiration date provided is not valid."
+  },
+  "deletionDateIsInvalid": {
+    "message": "The deletion date provided is not valid."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "An expiration date and time are required."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "A deletion date and time are required."
+  },
+  "dateParsingError": {
+    "message": "There was an error saving your deletion and expiration dates."
   }
 }
