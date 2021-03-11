@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Експортовані дані вашого сховища знаходяться в незашифрованому вигляді. Вам не слід зберігати чи надсилати їх через незахищені канали (наприклад, е-поштою). Після використання негайно видаліть їх."
   },
-  "encExportWarningDesc": {
-    "message": "Цей експорт шифрує ваші дані за допомогою ключа шифрування облікового запису. Якщо ви коли-небудь оновите ключ шифрування облікового запису, ви повинні виконати експорт знову, оскільки не зможете розшифрувати цей файл експорту."
+  "encExportKeyWarningDesc": {
+    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Імпорт даних"
   },
+  "importError": {
+    "message": "Import Error"
+  },
+  "importErrorDesc": {
+    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+  },
   "importSuccess": {
     "message": "Дані успішно імпортовано до вашого сховища."
+  },
+  "importWarning": {
+    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Дані мають некоректне форматування. Перевірте файл імпорту і спробуйте знову."
@@ -1364,7 +1382,7 @@
     "message": "Знайдено записи без двоетапної перевірки"
   },
   "inactive2faFoundDesc": {
-    "message": "Ми знайшли $COUNT$ вебсайтів у вашому сховищі, що можуть бути не налаштовані для двоетапної перевірки (за даними 2fa.directory). Для захисту цих облікових записів вам слід активувати двоетапну перевірку.",
+    "message": "Ми знайшли $COUNT$ вебсайтів у вашому сховищі, що можуть бути не налаштовані для двоетапної перевірки (за даними twofactorauth.org). Для захисту цих облікових записів вам слід активувати двоетапну перевірку.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1564,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "Додаткові можливості двоетапної перевірки, наприклад, YubiKey, FIDO U2F та Duo."
+  },
+  "premiumSignUpEmergency": {
+    "message": "Emergency Access"
   },
   "premiumSignUpReports": {
     "message": "Гігієна паролів, здоров'я облікового запису, а також звіти про вразливості даних, щоб зберігати ваше сховище в безпеці."
@@ -3407,6 +3428,10 @@
     "message": "Відправлення, до якого ви намагаєтесь отримати доступ, не існує, або більше недоступне.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "The file associated with this Send could not be found.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "У списку немає відправлень.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3416,6 +3441,9 @@
   },
   "emergencyAccessDesc": {
     "message": "Надавайте екстрений доступ довіреним контактам і керуйте ним. Довірені контакти можуть отримати доступ для перегляду чи привласнення вашого облікового запису в екстрених ситуаціях. Відвідайте нашу сторінку допомоги для детального ознайомлення про те, як працює спільний доступ нульового рівня."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
   },
   "trustedEmergencyContacts": {
     "message": "Довірені екстрені контакти"
@@ -3478,13 +3506,13 @@
     "message": "Запрошений користувач."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Вас було запрошено стати екстреним контактом для користувача, зазначеного вгорі. Щоб прийняти запрошення, вам необхідно увійти чи створити новий обліковий запис Bitwarden."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Неможливо прийняти запрошення. Попросіть користувача надіслати нове запрошення."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Не вдається прийняти запрошення. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3521,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Ви отримаєте доступ до екстрених можливостей для цього користувача після підтвердження ваших облікових даних. Ми надішлемо вам електронний лист, коли це станеться."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "Запитати доступ"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Ви дійсно хочете запитати екстрений доступ? Вам надасться доступ через $WAITTIME$ днів, або коли користувач вручну схвалить запит.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3536,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Для користувача $USER$ запитано екстрений доступ. Ми повідомимо вас електронною поштою, коли можна буде продовжити.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3517,13 +3545,13 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Схвалити"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Відхилити"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Ви впевнені, що хочете схвалити екстрений доступ? Це дозволить користувачу $USER$ $ACTION$ ваш обліковий запис.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3536,13 +3564,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "Екстрений доступ схвалено."
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "Екстрений доступ відхилено"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Пароль для користувача $USER$ скинуто. Тепер ви можете увійти використовуючи новий пароль.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3579,37 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Особиста власність"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Вимагати від користувачів зберігати записи до організації, вилучивши можливість особистої власності."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Власники організації та адміністратори звільняються від дотримання цієї політики."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "У зв'язку з корпоративною політикою, вам не дозволено зберігати записи до особистого сховища. Змініть налаштування власності на організацію та виберіть серед доступних збірок."
+  },
+  "disableSend": {
+    "message": "Disable Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "sendDisabled": {
+    "message": "Send disabled",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Змінено політику $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,61 +3618,149 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Ціна тарифного плану"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "Приблизний податок"
   },
   "custom": {
-    "message": "Custom"
+    "message": "Спеціальний"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Дозволяє детальніший контроль дозволів користувача для розширеної конфігурації."
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "Дозволи"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Доступ до Бізнес-порталу"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Доступ до журналів подій"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Доступ до імпорту й експорту"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Доступ до звітів"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Керування всіма збірками"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Керування призначеними збірками"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "Керування групами"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "Керування політиками"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Керування SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Керування користувачами"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Для вимкнення цієї політики ви повинні вручну вимкнути політику ідентифікації єдиного входу (SSO)."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Політика організації впливає на ваші параметри власності."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Вимкнути особисту власність для користувачів організації"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "При доступі до відправлення типово приховувати текст",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "A friendly name to describe this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "The text you want to send."
+  },
+  "sendFileDesc": {
+    "message": "The file you want to send."
+  },
+  "copySendLinkOnSave": {
+    "message": "Copy the link to share this Send to my clipboard upon save."
+  },
+  "sendLinkLabel": {
+    "message": "Send link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Learn more about",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Share text or files directly with anyone."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Learn more",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "see",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "how it works",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "try it now",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "or",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "sign up",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "to try it today.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "The expiration date provided is not valid."
+  },
+  "deletionDateIsInvalid": {
+    "message": "The deletion date provided is not valid."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "An expiration date and time are required."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "A deletion date and time are required."
+  },
+  "dateParsingError": {
+    "message": "There was an error saving your deletion and expiration dates."
   }
 }
