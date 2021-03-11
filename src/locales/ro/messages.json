@@ -800,10 +800,10 @@
     "message": "Acest export conține datele dvs. din seif în format necriptat. Nu ar trebui să stocați sau să trimiteți fișierul pe canale nesecurizate (cum ar fi e-mail). Ștergeți-l imediat după ce nu îl mai folosiți."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Acest export criptează datele, utilizând cheia de criptare a contului. Dacă revocați vreodată cheia de criptare a contului dvs., ar trebui să exportați din nou, deoarece nu veți putea decripta acest fișier de export."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Cheile de criptare a contului sunt unice fiecărui cont de utilizator Bitwarden, astfel încât nu puteți importa un export criptat într-un cont diferit."
   },
   "exportMasterPassword": {
     "message": "Introducere parolă principală pentru exportarea datelor seifului."
@@ -1004,16 +1004,16 @@
     "message": "Import de date"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Eroare de import"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "A apărut o problemă cu datele pe care ați încercat să le importați. Vă rugăm să rezolvați erorile enumerate mai jos în fișierul sursă și să încercați din nou."
   },
   "importSuccess": {
     "message": "Datele au fost importate cu succes în seiful dvs."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Importați date în $ORGANIZATION$. Datele dvs. pot fi partajate cu membrii acestei organizații. Doriți să continuați?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1382,7 +1382,7 @@
     "message": "S-au găsit conectări fără 2FA"
   },
   "inactive2faFoundDesc": {
-    "message": "Am găsit $COUNT$ sait(uri) în seiful dvs., care probabil nu au fost configurate cu autentificarea cu doi factori (conform twofactorauth.org). Pentru a proteja în continuare aceste conturi, ar trebui să activați autentificarea cu doi factori.",
+    "message": "Am găsit $COUNT$ sait(uri) web în seiful dvs. care s-ar putea să nu fie configurate cu autentificarea cu doi factori (conform cu 2fa.directory). Pentru a proteja în continuare aceste conturi, ar trebui să activați autentificarea cu doi factori.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1584,7 +1584,7 @@
     "message": "Opțiuni suplimentare de conectare în două etape, cum ar fi YubiKey, FIDO U2F și Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Acces de urgență"
   },
   "premiumSignUpReports": {
     "message": "Rapoarte privind igiena parolelor, sănătatea contului și breșele de date pentru a vă păstra seiful în siguranță."
@@ -3373,7 +3373,7 @@
     "message": "Dezactivat"
   },
   "sendLink": {
-    "message": "Linkul Send-ului",
+    "message": "Link Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
@@ -3429,7 +3429,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Fișierul asociat cu acest Send nu a putut fi găsit.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3440,10 +3440,10 @@
     "message": "Acces de urgență"
   },
   "emergencyAccessDesc": {
-    "message": "Acordă și gestionează accesul de urgență contactelor de încredere. Contactele de încredere pot solicita accesul fie la vizualizarea fie la preluarea controlului contului dvs. în caz de urgență. Vizitați-ne pagina de ajutor pentru detalii privind modul cum funcționează schimbul zero de cunoștințe."
+    "message": "Acordă și gestionează accesul de urgență, contactelor de încredere. Contactele de încredere, pot solicita accesul, fie la vizualizarea, fie la preluarea controlului contului dvs. în caz de urgență. Vizitați-ne pagina de ajutor, pentru detalii privind modul cum funcționează schimbul zero de cunoștințe."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Sunteți proprietarul uneia sau mai multor organizații. Dacă permiteți preluarea controlului de către un contact de urgență, acesta va putea utiliza toate permisiunile dvs. ca proprietar, după preluarea controlului."
   },
   "trustedEmergencyContacts": {
     "message": "Contacte de urgență de încredere"
@@ -3591,21 +3591,21 @@
     "message": "Datorită unei politici pentru întreprinderi, vă este restricționată salvarea de articole în seiful dvs. personal. Schimbați opțiunea de proprietate la o organizație și alegeți dintre colecțiile disponibile."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Dezactivare Send"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Nu permiteți utilizatorilor să creeze sau să editeze un Send Bitwarden. Ștergerea unui Send existent este încă permisă.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Utilizatorii organizației care pot gestiona politicile organizației sunt exceptați de la aplicarea acestei politici."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send dezactivat",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Datorită unei politici de întreprindere, puteți șterge numai un Send existent.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3676,20 +3676,20 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Un nume prietenos pentru a descrie acest Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Textul pe care doriți să-l trimiteți."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Fișierul pe care doriți să-l trimiteți."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Copiați linkul pentru a partaja acest Send în clipboard-ul meu la salvare."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Link Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,50 +3697,50 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Bitwarden Send transmite celorlalți informații sensibile, temporare, cu ușurință și în siguranță.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Aflați mai multe despre",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Partajați text sau fișiere direct cu oricine."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Aflați mai multe",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "vedeți",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "cum funcționează",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "sau",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "încercați-l acum",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "sau",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "înregistrați-vă",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "pentru a-l încerca astăzi.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Utilizatorul Bitwarden $USER_IDENTIFIER$ a partajat următoarele cu dvs.",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3749,18 +3749,18 @@
     }
   },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Data de expirare furnizată nu este validă."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Data de ștergere furnizată nu este validă."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Sunt necesare o dată și o oră de expirare."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Sunt necesare o dată și o oră de ștergere."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "A survenit o eroare la salvarea datelor de ștergere și de expirare."
   }
 }
