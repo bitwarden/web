@@ -143,7 +143,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             const a = win.document.createElement('a');
             if (doDownload) {
                 a.download = fileName;
-            } else {
+            } else if (!this.isSafari()) {
                 a.target = '_blank';
             }
             a.href = URL.createObjectURL(blob);
