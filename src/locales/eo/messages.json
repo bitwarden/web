@@ -363,7 +363,7 @@
   "valueCopied": {
     "message": "$VALUE$ kopiita",
     "description": "Valoro estis kopiita al la tondejo.",
-    "placeholder": {
+    "placeholders": {
       "value": {
         "content": "$1",
         "example": "Pasvorto"
@@ -421,7 +421,7 @@
   "newAttachment": {
     "message": "Aldoni Novan Aldonaĵon"
   },
-  "deleteAttachment": {
+  "deletedAttachment": {
     "message": "Forigita aldonaĵo"
   },
   "deleteAttachmentConfirmation": {
@@ -460,7 +460,7 @@
   "deleteFolder": {
     "message": "Forigi dosierujon"
   },
-  "deletedAttachment": {
+  "deleteAttachment": {
     "message": "Forigi Aldonaĵon"
   },
   "deleteItemConfirmation": {
@@ -637,7 +637,7 @@
   },
   "versionNumber": {
     "message": "Versio $VERSION_NUMBER $",
-    "plaholder": {
+    "placeholders": {
       "version_number": {
         "content": "$1",
         "example": "1.2.3"
@@ -648,7 +648,7 @@
     "message": "Enigu la 6-ciferan konfirmkodon de via aŭtentikiga programo."
   },
   "enterVerificationCodeEmail": {
-    "message": "Enigu la 6-ciferan konfirmkodon, kiu estis retpoŝta al $EMAIL $.",
+    "message": "Enigu la 6-ciferan konfirmkodon, kiu estis retpoŝta al $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -657,7 +657,7 @@
     }
   },
   "verificationCodeEmailSent": {
-    "message": "Kontrola retpoŝto sendita al $EMAIL $.",
+    "message": "Kontrola retpoŝto sendita al $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -768,7 +768,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "Vi elektis $COUNT$ eron (j). $SHAREABLE_COUNT $eroj estas kompareblaj, $NONSHAREABLE_COUNT$ ne.",
+    "message": "Vi elektis $COUNT$ eron (j). $SHAREABLE_COUNT$ eroj estas kompareblaj, $NONSHAREABLE_COUNT$ ne.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -875,7 +875,7 @@
     "message": "Kodo"
   },
   "changeEmailDesc": {
-    "message": "Ni sendis retpoŝtan kontrolkodon al $EMAIL $. Bonvolu kontroli vian retpoŝton pri ĉi tiu kodo kaj enigu ĝin sube por fini la retpoŝtan adresŝanĝon.",
+    "message": "Ni sendis retpoŝtan kontrolkodon al $EMAIL$. Bonvolu kontroli vian retpoŝton pri ĉi tiu kodo kaj enigu ĝin sube por fini la retpoŝtan adresŝanĝon.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1113,7 +1113,7 @@
   },
   "customDomainX": {
     "message": "Propra Domajno $INDEX$",
-    "placeholder": {
+    "placeholders": {
       "index": {
         "content": "$1",
         "example": "2"
@@ -1194,7 +1194,7 @@
   "androidDevices": {
     "message": "Android-aparatoj"
   },
-  "WindowsDevices": {
+  "windowsDevices": {
     "message": "Vindozaj aparatoj"
   },
   "twoStepAuthenticatorAppsRecommended": {
@@ -1914,7 +1914,7 @@
       },
       "seat_price": {
         "content": "$2",
-        "example": "2,00 USD"
+        "example": "2,00"
       }
     }
   },
@@ -1970,7 +1970,7 @@
   "costPerUser": {
     "message": "$COST$ por uzanto",
     "placeholders": {
-      "kosto": {
+      "cost": {
         "content": "$1",
         "example": "$3"
       }
@@ -1979,7 +1979,7 @@
   "limitedUsers": {
     "message": "Limigita al $COUNT$ uzantoj (inkluzive de vi)",
     "placeholders": {
-      "kalkuli": {
+      "count": {
         "content": "$1",
         "example": "2"
       }
@@ -2255,7 +2255,7 @@
   "disabled2fa": {
     "message": "Malebligita du-ŝtupa ensaluto."
   },
-  "recovery2fa": {
+  "recovered2fa": {
     "message": "Rekuperita konto post du-ŝtupa ensaluto."
   },
   "failedLogin": {
@@ -2276,7 +2276,7 @@
   "createdItemId": {
     "message": "Kreita ero $ID$.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2285,7 +2285,7 @@
   "editedItemId": {
     "message": "Redaktita ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2294,7 +2294,7 @@
   "deletedItemId": {
     "message": "Sendita ero $ID $al rubujo.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2303,7 +2303,7 @@
   "sharedItemId": {
     "message": "Komuna ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "'Google'"
       }
@@ -2312,7 +2312,7 @@
   "viewedItemId": {
     "message": "Vidita ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2321,7 +2321,7 @@
   "viewedPasswordItemId": {
     "message": "Vidita pasvorto por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2330,7 +2330,7 @@
   "viewedHiddenFieldItemId": {
     "message": "Vidita kaŝita kampo por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2339,7 +2339,7 @@
   "viewedSecurityCodeItemId": {
     "message": "Vidita sekureca kodo por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2348,7 +2348,7 @@
   "copiedPasswordItemId": {
     "message": "Kopiita pasvorto por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2357,7 +2357,7 @@
   "copiedHiddenFieldItemId": {
     "message": "Kopiita kaŝita kampo por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2366,7 +2366,7 @@
   "copiedSecurityCodeItemId": {
     "message": "Kopiita sekureca kodo por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2375,7 +2375,7 @@
   "autofilledItemId": {
     "message": "Aŭtomate plenigita ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2384,16 +2384,16 @@
   "createdCollectionId": {
     "message": "Kreita kolekto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Servilaj Pasvortoj"
       }
     }
   },
-  "redaktitaKolektoId": {
+  "editedCollectionId": {
     "message": "Redaktita kolekto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Servilaj Pasvortoj"
       }
@@ -2402,16 +2402,16 @@
   "deletedCollectionId": {
     "message": "Forigita kolekto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Servilaj Pasvortoj"
       }
     }
   },
-  "deletedPolicyId": {
+  "editedPolicyId": {
     "message": "Redaktita politiko $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Majstra Pasvorto"
       }
@@ -2420,7 +2420,7 @@
   "createdGroupId": {
     "message": "Kreita grupo $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Programistoj"
       }
@@ -2429,7 +2429,7 @@
   "editedGroupId": {
     "message": "Redaktita grupo $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Programistoj"
       }
@@ -2438,7 +2438,7 @@
   "deletedGroupId": {
     "message": "Forigita grupo $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Programistoj"
       }
@@ -2447,7 +2447,7 @@
   "removedUserId": {
     "message": "Forigita uzanto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "John Smith"
       }
@@ -2465,7 +2465,7 @@
   "deletedAttachmentForItem": {
     "message": "Forigita aldonaĵo por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -2474,25 +2474,25 @@
   "editedCollectionsForItem": {
     "message": "Redaktitaj kolektoj por ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
     }
   },
-  "inviteUserId": {
+  "invitedUserId": {
     "message": "Invitita uzanto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "John Smith"
       }
     }
   },
-  "confirmUserId": {
+  "confirmedUserId": {
     "message": "Konfirmita uzanto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "John Smith"
       }
@@ -2501,7 +2501,7 @@
   "editedUserId": {
     "message": "Redaktita uzanto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "John Smith"
       }
@@ -2510,7 +2510,7 @@
   "editedGroupsForUser": {
     "message": "Redaktitaj grupoj por uzanto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "John Smith"
       }
@@ -2519,7 +2519,7 @@
   "unlinkedSsoUser": {
     "message": "Senligita SSO por uzanto $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "John Smith"
       }
@@ -2549,7 +2549,7 @@
   "groupAccessUserDesc": {
     "message": "Redaktu la grupojn al kiuj apartenas ĉi tiu uzanto."
   },
-  "inviteUsers": {
+  "invitedUsers": {
     "message": "Invititaj uzantoj."
   },
   "resendInvitation": {
@@ -2558,7 +2558,7 @@
   "hasBeenReinvited": {
     "message": "$USER$ estis reenvitita.",
     "placeholders": {
-      "uzanto": {
+      "user": {
         "content": "$1",
         "example": "John Smith"
       }
@@ -2707,7 +2707,7 @@
     "description": "Faktura plano / pakaĵo. Ekzemple: familioj, teamoj, entrepreno, ktp."
   },
   "invoiceNumber": {
-    "message": "Fakturo # $NUMBER $",
+    "message": "Fakturo # $NUMBER$",
     "description": "ekz. Fakturo n-ro 79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2734,14 +2734,14 @@
   "verifyBankAccountFailureWarning": {
     "message": "Malsukceso kontroli la bankan konton rezultigos mankan pagon kaj via abono malŝaltita."
   },
-  "VerifiedBankAccount": {
+  "verifiedBankAccount": {
     "message": "Banka konto estas kontrolita."
   },
   "bankAccount": {
     "message": "Banka Konto"
   },
   "kvantoX": {
-    "message": "Kvanto $COUNT $",
+    "message": "Kvanto $COUNT$",
     "description": "Uzata en konfirmo de bankkontoj de mikrodeponejoj. Kvanto, kiel en valuta sumo. Ekz. Sumo 1 estas$ 2,00, Sumo 2 estas $1,50",
     "placeholders": {
       "count": {
@@ -2780,7 +2780,7 @@
     "message": "Forigi Sidlokojn",
     "description": "Sidloko = Uzanta Seĝo"
   },
-  "SubscribeUserSeats": {
+  "subscriptionUserSeats": {
     "message": "Via abono permesas entute $COUNT$ uzantojn.",
     "placeholders": {
       "count": {
@@ -2795,7 +2795,7 @@
   "seatsToRemove": {
     "message": "Forigeblaj Seĝoj"
   },
-  "seatAddNote": {
+  "seatsAddNote": {
     "message": "Aldoni uzantajn seĝojn rezultigos ĝustigojn al viaj fakturaj sumoj kaj tuj ŝargos vian pagmanieron en dosiero. La unua ŝarĝo estos proporciigita por la resto de la aktuala faktura ciklo."
   },
   "seatsRemoveNote": {
@@ -2804,7 +2804,7 @@
   "adjustedSeats": {
     "message": "Ĝustigitaj $AMOUNT$ uzanto-seĝoj.",
     "placeholders": {
-      "acmount": {
+      "amount": {
         "content": "$1",
         "example": "15"
       }
@@ -3057,7 +3057,7 @@
     "message": "Unu aŭ pluraj organizaj politikoj postulas vian ĉefan pasvorton por plenumi la jenajn postulojn:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimuma kompleksa poentaro de $SCORE $",
+    "message": "Minimuma kompleksa poentaro de $SCORE$",
     "placeholders": {
       "poentaro": {
         "content": "$1",
@@ -3066,7 +3066,7 @@
     }
   },
   "policyInEffectMinLength": {
-    "message": "Minimuma longo de $LENGTH $",
+    "message": "Minimuma longo de $LENGTH$",
     "placeholders": {
       "length": {
         "content": "$1",
@@ -3084,11 +3084,11 @@
     "message": "Enhavas unu aŭ plurajn numerojn"
   },
   "policyInEffectSpecial": {
-    "message": "Enhavas unu aŭ pli el la jenaj specialaj signoj $CHARS $",
+    "message": "Enhavas unu aŭ pli el la jenaj specialaj signoj $CHARS$",
     "placeholders": {
       "chars": {
         "content": "$1",
-        "example": "! @ # $% ^ & *"
+        "example": "!@#$%^&*"
       }
     }
   },
@@ -3127,22 +3127,22 @@
   "permanentlyDelete": {
     "message": "Konstante Forigi"
   },
-  "permanentDeleteSelected": {
+  "permanentltDeleteSelected": {
     "message": "Konstante Forigi Elektitajn"
   },
-  "permanentDeleteItem": {
+  "permanentlyDeleteItem": {
     "message": "Konstante Forigi Artikolon"
   },
-  "permanentDeleteItemConfirmation": {
+  "permanentlyDeleteItemConfirmation": {
     "message": "Ĉu vi certe volas konstante forigi ĉi tiun eron?"
   },
-  "permanentDeletedItem": {
+  "permanentlyDeletedItem": {
     "message": "Konstante forigita ero"
   },
-  "permanentDeletedItems": {
+  "permanentlyDeletedItems": {
     "message": "Konstante Forigitaj Eroj"
   },
-  "permanentDeleteSelectedItemsDesc": {
+  "permanentlyDeleteSelectedItemsDesc": {
     "message": "Vi elektis $COUNT$ eron (j) por konstante forigi. Ĉu vi certas, ke vi volas forigi konstante ĉiujn ĉi tiujn erojn?",
     "placeholders": {
       "count": {
@@ -3151,10 +3151,10 @@
       }
     }
   },
-  "permanentDeletedItemId": {
+  "permanentlyDeletedItemId": {
     "message": "Konstante Forigita ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -3184,7 +3184,7 @@
   "restoreSelectedItemsDesc": {
     "message": "Vi elektis $COUNT$ eron (j) por restarigi. Ĉu vi certe volas restarigi ĉiujn ĉi tiujn erojn?",
     "placeholders": {
-      "kalkuli": {
+      "count": {
         "content": "$1",
         "example": "150"
       }
@@ -3193,7 +3193,7 @@
   "restoreItemId": {
     "message": "Restarigita ero $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Google"
       }
@@ -3214,7 +3214,7 @@
   "includeVAT": {
     "message": "Inkluzivi informojn pri VAT / GST (nedeviga)"
   },
-  "impostnumero": {
+  "taxIdNumber": {
     "message": "Imposta ID de VAT / GST"
   },
   "taxInfoUpdated": {
@@ -3229,7 +3229,7 @@
   "identifier": {
     "message": "Identigilo"
   },
-  "organizaidentifier": {
+  "organizationIdentifier": {
     "message": "Organiza Identigilo"
   },
   "ssoLogInWithOrgIdentifier": {
@@ -3399,7 +3399,7 @@
   "maxAccessCountReached": {
     "message": "Maksimuma alirnombro atingis"
   },
-  "PendingDeletion": {
+  "pendingDeletion": {
     "message": "Atendanta forigo"
   },
   "expired": {
@@ -3436,16 +3436,16 @@
     "message": "Estas neniuj Sendoj por listigi.",
     "description": "'Sendi' estas substantivo kaj la nomo de trajto nomata 'Bitwarden Sendi'. Ĝi ne estu tradukita."
   },
-  "EmergencyAccess": {
+  "emergencyAccess": {
     "message": "Kriza Aliro"
   },
-  "EmergencyAccessDesc": {
+  "emergencyAccessDesc": {
     "message": "Donu kaj administru krizan aliron por fidindaj kontaktoj. Fidindaj kontaktoj povas peti aliron al aŭ Vidi aŭ Transpreni vian konton en kazo de krizo. Vizitu nian helpopaĝon por pliaj informoj kaj detaloj pri kiel funkcias nula scio-dividado."
   },
-  "EmergencyAccessOwnerWarning": {
+  "emergencyAccessOwnerWarning": {
     "message": "Vi estas Posedanto de unu aŭ pluraj organizoj. Se vi donas transprenan aliron al urĝa kontakto, ili povos uzi ĉiujn viajn permesojn kiel Posedanto post transpreno."
   },
-  "TrustEmergencyContacts": {
+  "trustedEmergencyContacts": {
     "message": "Fidindaj krizaj kontaktoj"
   },
   "noTrustedContacts": {
@@ -3469,10 +3469,10 @@
   "inviteEmergencyContactDesc": {
     "message": "Invitu novan krizan kontakton enigante sube sian retpoŝtan adreson Bitwarden. Se ili ne havas Bitwarden-konton jam, ili estos petataj krei novan konton."
   },
-  "EmergencyAccessRecoveryInitiated": {
+  "emergencyAccessRecoveryInitiated": {
     "message": "Kriza Aliro Komencita"
   },
-  "EmergencyAccessRecoveryApproved": {
+  "emergencyAccessRecoveryApproved": {
     "message": "Akutaliro aprobita"
   },
   "viewDesc": {
@@ -3498,7 +3498,7 @@
     "placeholders": {
       "days": {
         "content": "$1",
-        "ekzemplo": "1"
+        "example": "1"
       }
     }
   },
@@ -3508,10 +3508,10 @@
   "acceptEmergencyAccess": {
     "message": "Vi estis invitita fariĝi urĝa kontakto por la supre listigita uzanto. Por akcepti la inviton, vi devas ensaluti aŭ krei novan Bitwarden-konton."
   },
-  "EmergencyInviteAcceptFailed": {
+  "emergencyInviteAcceptFailed": {
     "message": "Ne eblas akcepti inviton. Petu la uzanton sendi novan inviton."
   },
-  "EmergencyInviteAcceptFailedShort": {
+  "emergencyInviteAcceptFailedShort": {
     "message": "Ne eblas akcepti inviton. $DESCRIPTION $",
     "placeholders": {
       "description": {
@@ -3520,7 +3520,7 @@
       }
     }
   },
-  "EmergencyInviteAcceptedDesc": {
+  "emergencyInviteAcceptedDesc": {
     "message": "Vi povas aliri la krizajn eblojn por ĉi tiu uzanto post kiam via identeco estis konfirmita. Ni sendos al vi retpoŝton kiam tio okazos."
   },
   "requestAccess": {
@@ -3529,9 +3529,9 @@
   "requestAccessConfirmation": {
     "message": "Ĉu vi certe volas peti krizan aliron? Vi ricevos aliron post $WAITTIME$ tago (j) aŭ kiam la uzanto mane aprobos la peton.",
     "placeholders": {
-      "atendado": {
+      "waittime": {
         "content": "$1",
-        "ekzemplo": "1"
+        "example": "1"
       }
     }
   },
@@ -3555,7 +3555,7 @@
     "placeholders": {
       "user": {
         "content": "$1",
-        "ekzemplo": "John Smith"
+        "example": "John Smith"
       },
       "ago": {
         "content": "$2",
@@ -3563,10 +3563,10 @@
       }
     }
   },
-  "EmergencyApproved": {
+  "emergencyApproved": {
     "message": "Akutaliro aprobita."
   },
-  "EmergencyRejected": {
+  "emergencyRejected": {
     "message": "Krizaliro malakceptita"
   },
   "passwordResetFor": {
@@ -3611,7 +3611,7 @@
   "modifiedPolicyId": {
     "message": "Modifita politiko $ID $.",
     "placeholders": {
-      "identifier": {
+      "id": {
         "content": "$1",
         "example": "Majstra Pasvorto"
       }
@@ -3620,7 +3620,7 @@
   "planPrice": {
     "message": "Plana prezo"
   },
-  "estimateTax": {
+  "estimatedTax": {
     "message": "Taksita imposto"
   },
   "custom": {
@@ -3742,7 +3742,7 @@
   "sendCreatorIdentifier": {
     "message": "Bitwarden-uzanto $USER_IDENTIFIER$ dividis la jenon kun vi",
     "placeholders": {
-      "user_id": {
+      "user_identifier": {
         "content": "$1",
         "example": "Retpoŝta adreso"
       }
