@@ -25,8 +25,8 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
 
     constructor(cipherService: CipherService, i18nService: I18nService,
         cryptoService: CryptoService, userService: UserService,
-        platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
-        super(cipherService, i18nService, cryptoService, userService, platformUtilsService);
+        platformUtilsService: PlatformUtilsService, apiService: ApiService) {
+        super(cipherService, i18nService, cryptoService, userService, platformUtilsService, apiService);
     }
 
     protected async reupload(attachment: AttachmentView) {
