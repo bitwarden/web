@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Ez az exportálás titkosítás nélkül tartalmazza a széfadatokat.Nem célszerű az exportált fájlt nem biztonságos csatornákon tárolni és továbbküldeni (például emailben). A felhasználás után erősen ajánlott a törlés."
   },
-  "encExportWarningDesc": {
-    "message": "Ez az exportálás titkosítja az adatokat a fiók titkosítási kulcsával. Ha valaha a fiók forgatási kulcsa más lesz, akkor újra exportálni kell, mert nem lehet visszafejteni ezt az exportálási fájlt."
+  "encExportKeyWarningDesc": {
+    "message": "Ez az exportálás titkosítja az adatokat a fiók titkosítási kulcsával. Ha valaha a diók forgatási kulcsa más lesz, akkor újra exportálni kell, mert nem lehet visszafejteni ezt az exportálási fájlt."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "A fiók titkosítási kulcsai minden Bitwarden felhasználói fiókhoz egyediek, ezért nem importálhatunk titkosított exportálást egy másik fiókba."
   },
   "exportMasterPassword": {
     "message": "A mesterjelszó megadása a széfadatok exportálásához."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Adatok importálása"
   },
+  "importError": {
+    "message": "Importálási hiba"
+  },
+  "importErrorDesc": {
+    "message": "Hiba történt az importálni próbált adatokkal. Javítsuk a felsorolt hibákat a forrásfájlban és próbáljuk újra."
+  },
   "importSuccess": {
     "message": "Az adatok sikeresen importálásra kerültek a széfbe."
+  },
+  "importWarning": {
+    "message": "Adatokat importálunk $ORGANIZATION$ mappába. Az adatok megoszthatók a szervezet tagjaival. Folytatjuk?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Az adatok formázása nem megfelelő. Ellenőrizzük az import fájlt és próbáljuk újra."
@@ -1364,7 +1382,7 @@
     "message": "2FA nélküli bejelentkezések találhatók."
   },
   "inactive2faFoundDesc": {
-    "message": "$COUNT$ olyan webhely van a széfben, amely nincs kétlépcsős hitelesítéssel konfigurálva (a 2fa.directory alapján). Ezen fiókok további védelme érdekében, javasolt lenne a kétlépcsős hitelesítés használata.",
+    "message": "$COUNT$ olyan webhely van a széfben, amely nincs kétlépcsős hitelesítéssel konfigurálva (a twofactorauth.org alapján). Ezen fiókok további védelme érdekében, javasolt lenne a kétlépcsős hitelesítés használata.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1564,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "További olyan kétlépcsős bejelentkezési opciók mint a YubiKey, FIDO U2F és Duo."
+  },
+  "premiumSignUpEmergency": {
+    "message": "Sürgősségi hozzáférés"
   },
   "premiumSignUpReports": {
     "message": "Jelszó higiénia, felhasználói fiók biztonsága, és adatszivárgási jelentések a széf biztonsága érdekében."
@@ -3407,6 +3428,10 @@
     "message": "Az elérendő küldés nem létezik vagy már nem elérhető.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "A Küldéshez társított fájl nem található.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "A listában nincs küldés.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3416,6 +3441,9 @@
   },
   "emergencyAccessDesc": {
     "message": "Sürgősségi hozzáférés kezelése és megadása megbízható kapcsolatoknál. A megbízható kapcsolatok sürgősségi helyzet esetén hozzáférést kérhetnek a fiókhoz vagy azt átvehetik. A súgó oldalon további információkat és kezdőknek szóló megosztási munkákat kapunk."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "Jelnleg egy vagy több szervezet tulajdonosa vagyunk. Ha átvételi hozzáférést adunk egy vészhelyzeti kapcsolattartónak, akkor az átvételt követően tulajdonosként használhatják az összes engedélyt."
   },
   "trustedEmergencyContacts": {
     "message": "Megbízható sürgősségi kapcsolatok"
@@ -3562,6 +3590,24 @@
   "personalOwnershipSubmitError": {
     "message": "Egy vállalati házirend miatt korlátozásra került az elemek személyes tárolóba történő mentése. Módosítsuk a Tulajdon opciót egy szervezetre és válasszunk az elérhető gyűjtemények közül."
   },
+  "disableSend": {
+    "message": "Küdlés letiltása"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Ne engedjük a felhasználóknak a Bitwarden Küldés létrehozását vagy szerkesztését. A meglévő küldés törlése továbbra is megengedett.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "A szervezet házirendjét kezeő szervezeti felhasználók, mentesülnek az irányelvek végrehajtása alól."
+  },
+  "sendDisabled": {
+    "message": "A küldés kikapcsolásra került",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "A vállalati házirend miatt csak egy meglévő Küldés törölhető.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "$ID$ szabály módosításra került.",
     "placeholders": {
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "A Küldés elérésekor alapértelmezés szerint a szöveg elrejtése",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "Barátságos név a Küldés leírására.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "A küldendő szöveg."
+  },
+  "sendFileDesc": {
+    "message": "A küldendő fájl."
+  },
+  "copySendLinkOnSave": {
+    "message": "A hivatkozás másolása a Küldés megosztásához a vágólapra mentéskor."
+  },
+  "sendLinkLabel": {
+    "message": "Hivatkozás küldése",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Küldés",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "A Bitwarden Küldés könnyen és biztonságosan továbbítja az érzékeny, ideiglenes információkat másoknak.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Bővebben erről",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Szöveg és fájlok közvetlen megosztása bárkivel."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "További információ",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "nézzük",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "Hogyan működik?",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "vagy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "próbáljuk ki most",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "vagy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "regisztráció",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "próbáljuk ki még ma.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "$USER_IDENTIFIER$ Bitwarden felhasználó megosztotta a következőket",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "A megadott lejárati idő nem érvényes."
+  },
+  "deletionDateIsInvalid": {
+    "message": "A megadot törlési dátum nem érvényes."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "Lejárati dátum és idő megadása szükséges."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "Törlési dátum és idő megadása szükséges."
+  },
+  "dateParsingError": {
+    "message": "Hiba történt a törlés és a lejárati dátum mentésekor."
   }
 }

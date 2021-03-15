@@ -98,8 +98,12 @@
                                 <div *ngIf="!isDateTimeLocalSupported" class="d-flex justify-content-around">
                                     <input id="deletionDateCustomFallback" class="form-control mt-1" type="date"
                                         name="DeletionDateFallback" [(ngModel)]="deletionDateFallback" required
-                                        placeholder="MM/DD/YYYY" [readOnly]="disableSend">
-                                    <input id="deletionTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
+                                        placeholder="MM/DD/YYYY" [readOnly]="disableSend" data-date-format="mm/dd/yyyy">
+                                    <select *ngIf="isSafari" id="deletionTimeCustomFallback" class="form-control mt-1 ml-1" [required]="!editMode"
+                                        [(ngModel)]="safariDeletionTime" name="SafariDeletionTime">
+                                        <option *ngFor="let o of safariDeletionTimeOptions" [value]="o.military">{{o.standard}}</option>
+                                    </select>
+                                    <input *ngIf="!isSafari" id="deletionTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
                                         name="DeletionTimeDate" [(ngModel)]="deletionTimeFallback" required
                                         placeholder="HH:MM AM/PM" [readOnly]="disableSend">
                                 </div>
@@ -132,16 +136,19 @@
                             <ng-template #expirationDateCustom>
                                 <ng-container *ngIf="isDateTimeLocalSupported">
                                     <input id="expirationDateCustom" class="form-control mt-1" type="datetime-local"
-                                        name="ExpirationDate" [(ngModel)]="expirationDate" required
-                                        placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
+                                        name="ExpirationDate" [(ngModel)]="expirationDate" placeholder="MM/DD/YYYY HH:MM AM/PM" [readOnly]="disableSend">
                                 </ng-container>
                                 <div class="d-flex justify-content-around" *ngIf="!isDateTimeLocalSupported">
                                     <input id="expirationDateCustomFallback" class="form-control mt-1" type="date"
-                                        name="ExpirationDateFallback" [(ngModel)]="expirationDateFallback" required
-                                        placeholder="MM/DD/YYYY" [readOnly]="disableSend">
-                                    <input id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
-                                        name="ExpirationTimeFallback" [(ngModel)]="expirationTimeFallback" required
-                                        placeholder="HH:MM AM/PM" [readOnly]="disableSend">
+                                        name="ExpirationDateFallback" [(ngModel)]="expirationDateFallback" [required]="!editMode"
+                                        placeholder="MM/DD/YYYY" [readOnly]="disableSend" data-date-format="mm/dd/yyyy" (change)="expirationDateFallbackChanged()">
+                                        <select *ngIf="isSafari" id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" [required]="!editMode"
+                                            [(ngModel)]="safariExpirationTime" name="SafariExpirationTime">
+                                            <option *ngFor="let o of safariExpirationTimeOptions" [ngValue]="o.military">{{o.standard}}</option>
+                                        </select>
+                                        <input *ngIf="!isSafari" id="expirationTimeCustomFallback" class="form-control mt-1 ml-1" type="time"
+                                            name="ExpirationTimeFallback" [(ngModel)]="expirationTimeFallback" [required]="!editMode"
+                                            placeholder="HH:MM AM/PM" [readOnly]="disableSend">
                                 </div>
                             </ng-template>
                             <div *ngIf="!editMode">

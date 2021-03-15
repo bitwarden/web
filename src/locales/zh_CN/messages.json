@@ -59,7 +59,7 @@
     "message": "品牌"
   },
   "expiration": {
-    "message": "到期日"
+    "message": "过期日"
   },
   "securityCode": {
     "message": "安全码 (CVV)"
@@ -137,10 +137,10 @@
     "message": "博士"
   },
   "expirationMonth": {
-    "message": "到期月份"
+    "message": "过期月份"
   },
   "expirationYear": {
-    "message": "到期年份"
+    "message": "过期年份"
   },
   "authenticatorKeyTotp": {
     "message": "验证器密钥 (TOTP)"
@@ -266,7 +266,7 @@
     "message": "搜索文件夹"
   },
   "searchFavorites": {
-    "message": "搜索收藏夹"
+    "message": "搜索收藏"
   },
   "searchType": {
     "message": "搜索类型",
@@ -279,7 +279,7 @@
     "message": "所有项目"
   },
   "favorites": {
-    "message": "收藏夹"
+    "message": "收藏"
   },
   "types": {
     "message": "类型"
@@ -288,7 +288,7 @@
     "message": "登录"
   },
   "typeCard": {
-    "message": "卡片"
+    "message": "支付卡"
   },
   "typeIdentity": {
     "message": "身份"
@@ -497,10 +497,10 @@
     "message": "您的登录会话已过期。"
   },
   "logOutConfirmation": {
-    "message": "您确定要登出吗？"
+    "message": "您确定要注销吗？"
   },
   "logOut": {
-    "message": "登出"
+    "message": "注销"
   },
   "ok": {
     "message": "确定"
@@ -536,7 +536,7 @@
     "message": "主密码"
   },
   "masterPassDesc": {
-    "message": "主密码是您访问密码库的唯一密码。它非常重要，请您不要忘记。一旦忘记，无任何办法恢复此密码。"
+    "message": "主密码是您访问密码库的密码。它非常重要，请您不要忘记。一旦忘记，无任何办法恢复此密码。"
   },
   "masterPassHintDesc": {
     "message": "主密码提示可以在你忘记密码时帮你回忆起来。"
@@ -596,7 +596,7 @@
     "message": "解锁​​​​"
   },
   "loggedInAsEmailOn": {
-    "message": "以 $EMAIL$ 在 $HOSTNAME$ 上登录。",
+    "message": "已在 $HOSTNAME$ 以 $EMAIL$ 身份登入。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -645,7 +645,7 @@
     }
   },
   "enterVerificationCodeApp": {
-    "message": "请输入您的身份验证器应用中的 6 位验证码。"
+    "message": "请输入验证器应用程序中的 6 位验证码。"
   },
   "enterVerificationCodeEmail": {
     "message": "请输入发送给电子邮件 $EMAIL$ 的 6 位验证码。",
@@ -687,7 +687,7 @@
     "message": "此账户已启用两步登录，但此浏览器不支持任何已配置的两步登录提供程序。"
   },
   "noTwoStepProviders2": {
-    "message": "请使用支持的网页浏览器（例如 Chrome）和/或添加其他支持更广泛的提供程序（例如身份验证器应用）。"
+    "message": "请使用支持的网页浏览器（例如 Chrome）和/或添加其他支持更广泛的提供程序（例如验证器应用）。"
   },
   "twoStepOptions": {
     "message": "两步登录选项"
@@ -702,14 +702,14 @@
     "message": "验证器应用"
   },
   "authenticatorAppDesc": {
-    "message": "使用身份验证器应用（例如 Authy 或 Google Authenticator）来生成基于时间的验证码。",
+    "message": "使用验证器应用（例如 Authy 或 Google Authenticator）来生成基于时间的验证码。",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
     "message": "YubiKey OTP 安全钥匙"
   },
   "yubiKeyDesc": {
-    "message": "使用 YubiKey 来访问您的账户。支持 YubiKey 4系列、5系列以及 NEO 设备。"
+    "message": "使用 YubiKey 来访问您的账户。支持 YubiKey 4 系列、5 系列以及 NEO 设备。"
   },
   "duoDesc": {
     "message": "使用 Duo Security 的 Duo 移动应用、短信、电话或 U2F 安全钥匙来进行验证。",
@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "导出的密码库数据包含未加密格式。您不应该通过不安全的渠道（例如电子邮件）来存储或发送导出的文件。用完后请立即将其删除。"
   },
-  "encExportWarningDesc": {
+  "encExportKeyWarningDesc": {
     "message": "此导出将使用您账户的加密密钥来加密您的数据。 如果您曾经轮换过账户的加密密钥，您应将其重新导出，否则您将无法解密导出的文件。"
+  },
+  "encExportAccountWarningDesc": {
+    "message": "账户加密密钥对每个 Bitwarden 用户账户都是唯一的，所以您不能将加密的导出导入到另一个账户。"
   },
   "exportMasterPassword": {
     "message": "输入主密码来导出你的密码库数据。"
@@ -926,7 +929,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "如果将 KDF 迭代设置得太高，可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能变差。建议您以 $INCREMENT$ 的增量值递增，然后测试所有设备。",
+    "message": "如果将 KDF 迭代设置得太高，可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能变差。建议您以 $INCREMENT$ 的增量值递增，然后在所有设备上行进测试。",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -953,10 +956,10 @@
     "message": "您是否担心自己的帐号在其他设备上登录？请按照以下步骤取消对之前使用过的所有计算机或设备的授权。如果您以前使用过公共电脑或不小心曾将密码保存在不属于您的设备上，则建议执行此安全步骤。此步骤还将清除所有以前记住的两步登录会话。"
   },
   "deauthorizeSessionsWarning": {
-    "message": "接下来将会注销您当前的会话，要求您重新登录。如果有两步登录，也需要重新验证。其他设备上的活动会话可能会继续保持最多一小时。"
+    "message": "接下来将会注销您当前的会话，并要求您重新登录。如果有设置两步登录，也需要重新认证。其他设备上的活动会话可能会继续保持最多一小时。"
   },
   "sessionsDeauthorized": {
-    "message": "已取消所有会话授权"
+    "message": "已取消会话授权"
   },
   "purgeVault": {
     "message": "清空密码库"
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "导入数据"
   },
+  "importError": {
+    "message": "导入错误"
+  },
+  "importErrorDesc": {
+    "message": "您尝试导入的数据有问题。请解决如下列出的源文件中的错误，然后重试。"
+  },
   "importSuccess": {
     "message": "数据已经成功导入到密码库"
+  },
+  "importWarning": {
+    "message": "您正在将数据导入到 $ORGANIZATION$。您的数据可能会与此组织中的成员共享。是否继续？",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "数据格式不正确。请检查您的导入文件后重试。"
@@ -1115,7 +1133,7 @@
     "message": "在组织机构层面配置提供程序，以要求你组织的用户采用两步登录。"
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "启用两步登录可以将您永久性地锁定在Bitwarden帐户之外。如果您无法使用常规的两步登录提供程序（例如您丢失了设备），则可以使用恢复代码访问您的帐户。 如果您无法访问您的帐户，Bitwarden 支持也无法帮助您。我们建议您记下或打印恢复代码，并将其妥善保管。"
+    "message": "启用两步登录可能会将您永久锁定在 Bitwarden 帐户之外。如果您无法使用常规的两步登录提供程序（例如您丢失了设备），则可以使用恢复代码访问您的帐户。如果您失去对您帐户的访问，Bitwarden 支持也无法帮助您。我们建议您记下或打印恢复代码，并将其妥善保管。"
   },
   "viewRecoveryCode": {
     "message": "查看恢复代码"
@@ -1162,7 +1180,7 @@
     "message": "输入主密码以修改两步登录设置。"
   },
   "twoStepAuthenticatorDesc": {
-    "message": "按照以下步骤，使用身份验证器应用设置两步登录："
+    "message": "按照以下步骤，使用验证器应用设置两步登录："
   },
   "twoStepAuthenticatorDownloadApp": {
     "message": "下载两步登录验证器应用"
@@ -1183,13 +1201,13 @@
     "message": "推荐使用这些应用，您也可以使用其它验证器应用。"
   },
   "twoStepAuthenticatorScanCode": {
-    "message": "使用身份验证器应用扫描这个二维码"
+    "message": "使用验证器应用扫描这个二维码"
   },
   "key": {
     "message": "密钥"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "输入 App 中的 6 位验证码"
+    "message": "输入应用程序中的 6 位验证码"
   },
   "twoStepAuthenticatorReaddDesc": {
     "message": "如果您要把它添加到另一个设备，下面是您的验证器应用所需要的二维码（或密钥）。"
@@ -1216,7 +1234,7 @@
     "message": "保存表单"
   },
   "twoFactorYubikeyWarning": {
-    "message": "由于平台的限制，YubiKey 不能在所有Bitwarden应用程序上使用。您应该启用另一个两步登录提供程序，以便在无法使用 YubiKey 时可以访问您的帐户。 支持的平台："
+    "message": "由于平台的限制，YubiKey 不能在所有 Bitwarden 应用程序上使用。您应该启用另一个两步登录提供程序，以便在无法使用 YubiKey 时可以访问您的帐户。支持的平台："
   },
   "twoFactorYubikeySupportUsb": {
     "message": "具有 USB 端口的设备上的网页版密码库、桌面应用程序、CLI 以及浏览器扩展都可以使用您的 YubiKey。"
@@ -1249,7 +1267,7 @@
     "message": "我的一把钥匙支持 NFC。"
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "如果您的某个 YubiKey 支持 NFC（例如 YubiKey NEO），则只要检测到 NFC 可用，系统就会在移动设备上提示您。"
+    "message": "如果您的某个 YubiKey 支持 NFC（例如 YubiKey NEO），移动设备在检测到 NFC 时将提示您。"
   },
   "yubikeysUpdated": {
     "message": "YubiKey 已更新"
@@ -1297,7 +1315,7 @@
     "message": "给安全钥匙一个友好的名称来标识它。"
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "将安全钥匙插入计算机的 USB 端口，然后单击 \"读取密钥\" 按钮。"
+    "message": "将安全钥匙插入计算机的 USB 端口，然后单击“读取钥匙”按钮。"
   },
   "twoFactorU2fTouchButton": {
     "message": "如果安全钥匙有按钮，请按下它。"
@@ -1355,16 +1373,16 @@
     "message": "没有在你的密码库中发现带不安全 URI 的项目。"
   },
   "inactive2faReport": {
-    "message": "未激活2FA报告"
+    "message": "未激活 2FA 报告"
   },
   "inactive2faReportDesc": {
-    "message": "双重身份验证 (2FA) 是保护您帐户安全的一个重要安全设置。如果网站提供，您应该始终启用双重身份验证。"
+    "message": "双重身份验证（2FA）是保护您帐户安全的一个重要安全设置。如果网站提供双重身份验证，您应该始终启用它。"
   },
   "inactive2faFound": {
     "message": "发现未使用双重身份验证的登录"
   },
   "inactive2faFoundDesc": {
-    "message": "我们在您的密码库发现 $COUNT$ 个网站没有配置双重身份验证（通过 2fa.directory）。为了保护这些账户，您应该启用双重身份验证。",
+    "message": "我们在您的密码库中发现 $COUNT$ 个网站可能没有配置双重验证（通过 twofactorauth.org）。为了进一步保护这些账户，您应该启用双重验证。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1466,7 +1484,7 @@
     "message": "数据泄露报告"
   },
   "breachDesc": {
-    "message": "“泄漏”是指黑客非法访问网站数据然后公开发布的事件。查看已泄露的数据类型（电子邮件地址，密码，信用卡等）并采取适当的措施，例如更改密码。"
+    "message": "“泄漏”是指黑客非法访问网站数据然后公开发布的事件。查看已泄露的数据类型（电子邮件地址、密码、信用卡等）并采取适当的措施，例如更改密码。"
   },
   "breachCheckUsernameEmail": {
     "message": "检查您使用的任何用户名或电子邮件地址。"
@@ -1522,10 +1540,10 @@
     "message": "加载报告时发生错误，请重试。"
   },
   "billing": {
-    "message": "账单"
+    "message": "计费"
   },
   "accountCredit": {
-    "message": "账户信用额",
+    "message": "账户信用额度",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
@@ -1533,7 +1551,7 @@
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "添加信用额",
+    "message": "添加信用额度",
     "description": "Add more credit to your account's balance."
   },
   "amount": {
@@ -1541,13 +1559,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "在付款全部处理后，添加的信用额将出现在您的帐户上。某些付款方式会延迟，并且可能需要比其他付款方式更长的时间来处理。"
+    "message": "添加的信用额度在付款全部处理后将出现在您的帐户上。某些付款方式会延迟，并且可能需要比其他付款方式更长的时间来处理。"
   },
   "makeSureEnoughCredit": {
-    "message": "请确保您的帐户有足够的信用额度来用于此购买。如果您的帐户没有足够的可用信用额度，您的默认付款方式将用于补足差额。您可以从“账单”页面向您的帐户添加信用额度。"
+    "message": "请确保您的帐户有足够的信用额度来用于此购买。如果您的帐户信用额度不足，您的默认付款方式将用于补足差额。您可以从计费页面向您的帐户添加信用额度。"
   },
   "creditAppliedDesc": {
-    "message": "您帐户的信用额度可用于进行消费。任何可用的信用额度将自动支付此帐户的账单。"
+    "message": "您帐户的信用额度可用于进行消费。任何可用的信用额度将用于自动支付此帐户的账单。"
   },
   "goPremium": {
     "message": "升级高级会员",
@@ -1564,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "额外的两步登录选项，如 YubiKey、FIDO U2F 和 Duo。"
+  },
+  "premiumSignUpEmergency": {
+    "message": "紧急访问"
   },
   "premiumSignUpReports": {
     "message": "密码健康、账户体检以及数据泄露报告，保障您的密码库安全。"
@@ -1657,7 +1678,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "您的计划包含了 7 天的免费试用期。在试用期结束前，不会从您的支付方式中扣款。随后将会在每 $INTERVAL$ 定期扣款。您可以随时取消。",
+    "message": "您的计划包含了 7 天的免费试用期。在试用期结束前，不会从您的支付方式中扣款。随后将会每 $INTERVAL$ 定期扣款。您可以随时取消。",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1672,7 +1693,7 @@
     "message": "账单信息"
   },
   "creditCard": {
-    "message": "信用卡"
+    "message": "支付卡"
   },
   "paypalClickSubmit": {
     "message": "点击 PayPal 按钮登录您的 PayPal 账户，然后点击 提交 按钮。"
@@ -1687,7 +1708,7 @@
     "message": "待取消"
   },
   "subscriptionPendingCanceled": {
-    "message": "订阅已在当前账单周期结束时标记为取消。"
+    "message": "订阅在当前计费周期结束前已标记为取消。"
   },
   "reinstateSubscription": {
     "message": "恢复订阅"
@@ -1699,7 +1720,7 @@
     "message": "您的订阅已恢复。"
   },
   "cancelConfirmation": {
-    "message": "您确定要取消吗？在本次账单周期结束后，您将无法使用所有订阅功能。"
+    "message": "您确定要取消吗？在本次计费周期结束后，您将无法使用此订阅的所有功能。"
   },
   "canceledSubscription": {
     "message": "订阅已取消。"
@@ -1735,7 +1756,7 @@
     "message": "添加存储"
   },
   "removeStorage": {
-    "message": "移除存储"
+    "message": "移除存储空间"
   },
   "subscriptionStorage": {
     "message": "您的订阅共有 $MAX_STORAGE$ GB 的加密存储空间。您目前已使用 $USED_STORAGE$ 。",
@@ -1754,7 +1775,7 @@
     "message": "支付方式"
   },
   "noPaymentMethod": {
-    "message": "没有支付方式"
+    "message": "无支付方式"
   },
   "addPaymentMethod": {
     "message": "添加支付方式"
@@ -1763,10 +1784,10 @@
     "message": "更改支付方式"
   },
   "invoices": {
-    "message": "收据"
+    "message": "发票"
   },
   "noInvoices": {
-    "message": "无收据"
+    "message": "无发票"
   },
   "paid": {
     "message": "已支付",
@@ -1777,11 +1798,11 @@
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
-    "message": "交易",
+    "message": "交易记录",
     "description": "Payment/credit transactions."
   },
   "noTransactions": {
-    "message": "无交易"
+    "message": "无交易记录"
   },
   "chargeNoun": {
     "message": "费用",
@@ -1807,10 +1828,10 @@
     "message": "GB 存储空间将删除"
   },
   "storageAddNote": {
-    "message": "添加存储空间将会调整账单金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前结算周期的剩余时间按比例分配。"
+    "message": "添加存储空间将会调整计费总金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前计费周期的剩余时间按比例分配。"
   },
   "storageRemoveNote": {
-    "message": "删除存储空间将会调整账单金额。这笔费用将按比例计入下一次结算周期。"
+    "message": "移除存储空间将会调整计费总金额，这笔费用将按比例返回下一笔账单费用中。"
   },
   "adjustedStorage": {
     "message": "已调整 $AMOUNT$ GB 的存储空间。",
@@ -1852,7 +1873,7 @@
     "message": "您必须验证账户的电子邮件地址。"
   },
   "newOrganizationDesc": {
-    "message": "组织允许您与他人以及特定实体（如家庭、小型团队或大公司）的相关用户共享部分密码库。"
+    "message": "组织允许您与他人共享您的密码库的部分内容，以及管理特定实体（例如家族、小型团队或大型公司）的相关用户。"
   },
   "generalInformation": {
     "message": "常规信息"
@@ -1885,7 +1906,7 @@
     "message": "# 用户席位"
   },
   "userSeatsAdditionalDesc": {
-    "message": "您的计划包含 $BASE_SEATS$ 个用户席位。添加附加用户的价格是 $SEAT_PRICE$ 每用户/月。",
+    "message": "您的计划包含 $BASE_SEATS$ 个用户席位。添加附加用户的价格是 $SEAT_PRICE$ 每用户每月。",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2352,7 +2373,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "自动填充了项目 $ID$。",
+    "message": "项目 $ID$ 已自动填充。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2598,7 +2619,7 @@
     "message": "加入组织"
   },
   "joinOrganizationDesc": {
-    "message": "邀请您加入下面的组织。要接受邀请，您需要登录或者创建一个 Bitwarden 账户。"
+    "message": "您已被邀请加入上面的组织。要接受邀请，您需要登录或者创建一个 Bitwarden 账户。"
   },
   "inviteAccepted": {
     "message": "邀请已接受"
@@ -2667,7 +2688,7 @@
     "message": "税务信息"
   },
   "taxInformationDesc": {
-    "message": "对于美国境内的客户，邮政编码必须满足销售税要求。 对于其他国家，您可以选择提供一个税号(VAT/GST)和/或地址来显示在您的发票上。"
+    "message": "对于美国境内的客户，需要提供邮政编码以满足销售税要求。 对于其他国家，您可以选择提供一个税号(VAT/GST) 和/或地址来显示在您的发票上。"
   },
   "billingPlan": {
     "message": "计划",
@@ -2686,7 +2707,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "收据 #$NUMBER$",
+    "message": "发票 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2696,10 +2717,10 @@
     }
   },
   "viewInvoice": {
-    "message": "查看收据"
+    "message": "查看发票"
   },
   "downloadInvoice": {
-    "message": "下载收据"
+    "message": "下载发票"
   },
   "verifyBankAccount": {
     "message": "验证银行帐户"
@@ -2708,7 +2729,7 @@
     "message": "我们已将两笔小额转账存入您的银行账户（将会在 1-2 个工作日到账）。输入这些金额来验证银行账户。"
   },
   "verifyBankAccountInitialDesc": {
-    "message": "只有美国用户才能使用银行账户付款。您需要验证自己的银行账户。我们将在 1-2 个工作日内进行两笔小额转账，在组织的结算页面输入这些金额来验证银行账户。"
+    "message": "只有美国用户才能使用银行账户付款。您需要验证自己的银行账户。我们将在 1-2 个工作日内进行两笔小额转账，在组织的计费页面输入这些金额来验证银行账户。"
   },
   "verifyBankAccountFailureWarning": {
     "message": "验证银行账户失败将会错过支付，您的订阅将失效。"
@@ -2775,10 +2796,10 @@
     "message": "要移除的席位数"
   },
   "seatsAddNote": {
-    "message": "添加用户席位将会调整账单总金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前结算周期的剩余时间按比例分配。"
+    "message": "添加用户席位将会调整计费总金额，并立即通过您的支付方式进行扣款。 第一笔费用将按当前计费周期的剩余时间按比例分配。"
   },
   "seatsRemoveNote": {
-    "message": "移除用户席位将对您的帐单总金额进行调整，并按比例计入下一笔帐单费用。"
+    "message": "移除用户席位将会调整计费总金额，这笔费用将按比例返回下一笔账单费用中。"
   },
   "adjustedSeats": {
     "message": "调整了 $AMOUNT$ 个用户席位。",
@@ -2799,13 +2820,13 @@
     "message": "更新加密密钥"
   },
   "updateEncryptionKeyShortDesc": {
-    "message": "您目前正在使用过时的加密方案。"
+    "message": "您目前使用的是过时的加密方案。"
   },
   "updateEncryptionKeyDesc": {
     "message": "我们已经采用更强大的加密密钥，提供了更强的安全性和更新的功能。更新您的加密密钥非常简单快捷，只需要输入主密码。此次更新最终将强制执行。"
   },
   "updateEncryptionKeyWarning": {
-    "message": "更新加密密钥后，您需要登出所有正在使用的 Bitwarden 应用（比如手机版应用或者浏览器扩展）后重新登录。登出失败或者重新登录失败（下载新的加密密钥）可能会导致数据损坏。我们会尝试自动为您登出，但是，可能会有所延迟。"
+    "message": "更新加密密钥后，您需要注销所有正在使用的 Bitwarden 应用（比如手机版应用或者浏览器扩展）后重新登录。注销或者重新登录（这将下载新的加密密钥）失败可能会导致数据损坏。我们会尝试自动为您注销，但是，可能会有所延迟。"
   },
   "updateEncryptionKeyExportWarning": {
     "message": "您保存的任何已加密导出也将变为无效。"
@@ -2928,7 +2949,7 @@
     "message": "您选择的主密码较弱。您应该使用强密码（或密码短语）来正确保护您的 Bitwarden 账户。仍要使用此主密码吗？"
   },
   "rotateAccountEncKey": {
-    "message": "同时轮换我的帐户的加密密钥"
+    "message": "同时轮换帐户的加密密钥"
   },
   "rotateEncKeyTitle": {
     "message": "轮换加密密钥"
@@ -2969,7 +2990,7 @@
     "message": "API 密钥"
   },
   "apiKeyDesc": {
-    "message": "您的 API 密钥可以用来验证 Bitwarden 公共 API。"
+    "message": "您的 API 密钥可用于认证 Bitwarden 公共 API。"
   },
   "apiKeyRotateDesc": {
     "message": "轮换 API 密钥将使前一个密钥无效。如果你认为当前密钥不再安全，你可以轮换您的 API 密钥。"
@@ -2978,7 +2999,7 @@
     "message": "您的 API 密钥拥有组织的全部访问权限。请将其存放在安全的地方。"
   },
   "userApiKeyDesc": {
-    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份验证。"
+    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份认证。"
   },
   "userApiKeyWarning": {
     "message": "您的 API 密钥是另一套等效的身份验证机制。请严格保密。"
@@ -2997,13 +3018,13 @@
     "message": "您必须至少选择一个集合。"
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "我们无法从您的卡中扣款。请查看并支付下面列出的未支付收据。"
+    "message": "我们无法从您的支付卡中扣款。请查看并支付下面列出的未支付款项。"
   },
   "inAppPurchase": {
     "message": "应用内购买"
   },
   "cannotPerformInAppPurchase": {
-    "message": "使用应用内购买付款方法时，您不能执行此操作。"
+    "message": "使用应用内购买这种支付方式时，您不能执行此操作。"
   },
   "manageSubscriptionFromStore": {
     "message": "您必须在进行应用内购买的商店中管理订阅。"
@@ -3021,10 +3042,10 @@
     "message": "要求用户在个人帐户上设置两步登录。"
   },
   "twoStepLoginPolicyWarning": {
-    "message": "组织成员中个人账户未启用两步登录的将被从组织中删除，并将收到一封关于这一变化的电子邮件。"
+    "message": "非所有者或管理员并且其个人账户未启用两步登录的组织成员将从组织中移除，并将收到一封关于此更改的电子邮件通知。"
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "您的组织要求您在您的个人账户上启用两步登录。 如果您禁用所有两步登录提供程序，您将自动被这些组织删除。"
+    "message": "您的组织要求您在您的个人账户上启用两步登录。 如果您禁用所有两步登录提供程序，您将自动被这些组织移除。"
   },
   "passwordGeneratorPolicyDesc": {
     "message": "设置密码生成器配置的最低要求。"
@@ -3090,7 +3111,7 @@
     "message": "已锁定的密码库需要重新输入主密码才能再次访问。"
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "已登出的密码库需要重新认证才能再次访问。"
+    "message": "已注销的密码库需要重新认证才能再次访问。"
   },
   "lock": {
     "message": "锁定",
@@ -3179,7 +3200,7 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "超时后登出将解除对密码库的所有访问权限，并需要进行在线认证。确定使用此设置吗？"
+    "message": "超时后注销将解除对密码库的所有访问权限，并需要进行在线验证。确定使用此设置吗？"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "超时动作确认"
@@ -3228,7 +3249,7 @@
     "message": "包含所有团队版功能"
   },
   "includeSsoAuthentication": {
-    "message": "通过 SAML 2.0 和 OpenID 连接进行 SSO 身份验证"
+    "message": "通过 SAML2.0 和 OpenID Connect 进行 SSO 身份验证"
   },
   "includeEnterprisePolicies": {
     "message": "企业策略"
@@ -3258,10 +3279,10 @@
     "message": "您当前的组织策略禁止您加入多个组织。 请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
   },
   "singleOrgPolicyWarning": {
-    "message": "非所有者或管理员并且已是其他组织成员的组织成员将从您的组织中移除。"
+    "message": "不是所有者或管理员并且已是其他组织的成员的组织成员将从您的组织中移除。"
   },
   "requireSso": {
-    "message": "单点登录认证"
+    "message": "单点登录验证"
   },
   "requireSsoPolicyDesc": {
     "message": "要求用户使用企业单点登录（SSO）方式登录。"
@@ -3324,7 +3345,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "到期日期"
+    "message": "过期日期"
   },
   "expirationDateDesc": {
     "message": "如果设置了，此 Send 的访问将在指定的日期和时间后过期。",
@@ -3407,6 +3428,10 @@
     "message": "您尝试访问的 Send 不存在或不再可用。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "没有找到与此 Send 关联的文件。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "没有可列出的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3415,7 +3440,10 @@
     "message": "紧急访问"
   },
   "emergencyAccessDesc": {
-    "message": "授予和管理受信任联系人的紧急访问权限。受信任的联系人可以在紧急情况下请求获取查看或接管您账户的权限。查阅我们的帮助页面以了解更多关于零知识共享的工作原理和细节。"
+    "message": "授予和管理可信联系人的紧急访问权限。可信联系人可以在紧急情况下请求获取查看或接管您账户的权限。查阅我们的帮助页面以了解更多关于零知识共享的工作原理和细节。"
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "您是一个或多个组织的拥有者。如果您授予紧急联系人接管权限，他们在接管后可作为拥有者持有您的所有权限。"
   },
   "trustedEmergencyContacts": {
     "message": "可信的紧急联系人"
@@ -3562,6 +3590,24 @@
   "personalOwnershipSubmitError": {
     "message": "由于企业策略，您被限制为保存项目到您的个人密码库。将所有权选项更改为组织，并从可用的集合中选择。"
   },
+  "disableSend": {
+    "message": "禁用 Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "不允许用户创建和编辑 Bitwarden Send。仍允许删除现有的 Send。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "可以管理组织策略的组织用户豁免此策略的执行。"
+  },
+  "sendDisabled": {
+    "message": "Send 已禁用",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "由于企业策略，您只能删除现有的 Send。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "策略 $ID$ 已修改。",
     "placeholders": {
@@ -3617,7 +3663,7 @@
     "message": "管理用户"
   },
   "disableRequireSsoError": {
-    "message": "您必须手动禁用单点登录认证策略，然后才能禁用此政策。"
+    "message": "您必须手动禁用单点登录验证策略，然后才能禁用此策略。"
   },
   "personalOwnershipPolicyInEffect": {
     "message": "组织策略正在影响您的所有权选项。"
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "访问 Send 时，默认将隐藏文本",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "用于描述此 Send 的友好名称。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "您要发送的文本。"
+  },
+  "sendFileDesc": {
+    "message": "您要发送的文件。"
+  },
+  "copySendLinkOnSave": {
+    "message": "保存时复制链接以共享 Send 到我的剪贴板。"
+  },
+  "sendLinkLabel": {
+    "message": "Send 链接",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send 能轻松、安全地向他人传送敏感的临时信息。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "进一步了解",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "直接与其他人分享文本或文件。"
+  },
+  "sendVaultCardLearnMore": {
+    "message": "进一步了解",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "参见",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "工作原理",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "或",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "立即体验",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "或",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "注册",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "来马上尝试。",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden 用户 $USER_IDENTIFIER$ 与您分享了以下内容",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "所提供的过期日期无效。"
+  },
+  "deletionDateIsInvalid": {
+    "message": "所提供的删除日期无效。"
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "需要过期日期和时间。"
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "需要删除日期和时间。"
+  },
+  "dateParsingError": {
+    "message": "保存您的删除和过期日期时出错。"
   }
 }

@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Esta exportação contém os dados do seu cofre em um formato não criptografado. Você não deve armazenar ou enviar o arquivo exportado por canais inseguros (como e-mail). Exclua o arquivo imediatamente após terminar de usá-lo."
   },
-  "encExportWarningDesc": {
+  "encExportKeyWarningDesc": {
     "message": "Esta exportação criptografa seus dados usando a chave de criptografia da sua conta. Se você rotacionar a chave de criptografia da sua conta, você deve exportar novamente, já que você não será capaz de descriptografar este arquivo de exportação."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Chaves de criptografia da conta são únicas para cada conta de usuário do Bitwarden, então você não pode importar uma exportação criptografada para uma conta diferente."
   },
   "exportMasterPassword": {
     "message": "Insira a sua senha mestra para exportar os dados do seu cofre."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Importar dados"
   },
+  "importError": {
+    "message": "Erro de Importação"
+  },
+  "importErrorDesc": {
+    "message": "Houve um problema com os dados que você tentou importar. Por favor, resolva os erros listados abaixo em seu arquivo de origem e tente novamente."
+  },
   "importSuccess": {
     "message": "Os dados foram importados com sucesso para o seu cofre."
+  },
+  "importWarning": {
+    "message": "Você está importando dados para $ORGANIZATION$. Seus dados podem ser compartilhados com membros desta organização. Você deseja continuar?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Os dados não estão formatados corretamente. Por favor, verifique o seu arquivo de importação e tente novamente."
@@ -1364,7 +1382,7 @@
     "message": "Credenciais Sem 2FA Encontradas"
   },
   "inactive2faFoundDesc": {
-    "message": "Nós encontramos $COUNT$ site(s) no seu cofre que pode não estar configurado com autenticação de duas etapas (de acordo com 2fa.directory). Para proteger ainda mais essas contas, você deve habilitar a autenticação de duas etapas.",
+    "message": "Nós encontramos $COUNT$ site(s) no seu cofre que pode não estar configurado com autenticação de duas etapas (de acordo com twofactorauth.org). Para proteger ainda mais essas contas, você deve habilitar a autenticação de duas etapas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1564,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "Opções adicionais de login em duas etapas, como YubiKey, FIDO U2F e Duo."
+  },
+  "premiumSignUpEmergency": {
+    "message": "Acesso de Emergência"
   },
   "premiumSignUpReports": {
     "message": "Higiene de senha, saúde da conta, e relatórios sobre violação de dados para manter o seu cofre seguro."
@@ -3407,6 +3428,10 @@
     "message": "O Send que você está tentando acessar não existe ou não está mais disponível.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "O arquivo associado a este Send não foi encontrado.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "Não há Sends para listar.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3416,6 +3441,9 @@
   },
   "emergencyAccessDesc": {
     "message": "Conceda e gerencie o acesso de emergência para contatos confiáveis. Contatos confiáveis podem solicitar acesso a Visualizar ou Assumir o Controle da sua conta em caso de emergência. Visite a nossa página de ajuda para obter mais informações e detalhes sobre como o compartilhamento de conhecimento zero funciona."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "Você é o Proprietário de uma ou mais organizações. Se você conceder acesso a um contato de emergência, eles serão capazes de usar todas as suas permissões como Proprietário após uma concessão."
   },
   "trustedEmergencyContacts": {
     "message": "Contatos de emergência confiáveis"
@@ -3562,6 +3590,24 @@
   "personalOwnershipSubmitError": {
     "message": "Devido a uma Política Empresarial, você está restrito de salvar itens para seu cofre pessoal. Altere a opção de propriedade para uma organização e escolha entre as Coleções disponíveis."
   },
+  "disableSend": {
+    "message": "Desabilitar Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Não permite que usuários criem ou editem um Send no Bitwarden. Excluir um Send existente ainda é permitido.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Os usuários da organização que podem gerenciar as políticas da organização estão isentos da aplicação desta política."
+  },
+  "sendDisabled": {
+    "message": "Send desabilitado",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Devido a uma política corporativa, você só é capaz de excluir um Send existente.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Política modificada $ID$.",
     "placeholders": {
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "Ao acessar o Send, ocultar o texto por padrão",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "Um nome amigável para descrever este Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "O texto que você deseja enviar."
+  },
+  "sendFileDesc": {
+    "message": "O arquivo que você deseja enviar."
+  },
+  "copySendLinkOnSave": {
+    "message": "Copie o link para compartilhar este Send para minha área de transferência depois de salvar."
+  },
+  "sendLinkLabel": {
+    "message": "Link do Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "O Bitwarden Send transmite informações sensíveis e temporárias para outras pessoas de forma fácil e segura.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Saiba mais",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Compartilhe texto ou arquivos diretamente com qualquer um."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Saiba mais",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "veja",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "como funciona",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "ou",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "teste agora",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "ou",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "registre-se",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "para testar hoje mesmo.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "O usuário $USER_IDENTIFIER$ do Bitwarden compartilhou o seguinte com você",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "A data de validade fornecida não é válida."
+  },
+  "deletionDateIsInvalid": {
+    "message": "A data de exclusão fornecida não é válida."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "Uma data e hora de expiração são obrigatórias."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "Uma data e hora de exclusão são obrigatórias."
+  },
+  "dateParsingError": {
+    "message": "Ocorreu um erro ao salvar as suas datas de exclusão e validade."
   }
 }

@@ -167,6 +167,7 @@ import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
+import { SendInfoComponent } from './vault/send-info.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
@@ -382,6 +383,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SelectCopyDirective,
         SendAddEditComponent,
         SendComponent,
+        SendInfoComponent,
         SettingsComponent,
         ShareComponent,
         SsoComponent,

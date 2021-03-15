@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Eksporditav fail on krüpteeringuta ja sisaldab hoidla sisu. Seda faili ei tohiks kaua käidelda ning mitte mingil juhul ebaturvaliselt saata (näiteks e-postiga). Kustuta see koheselt pärast kasutamist."
   },
-  "encExportWarningDesc": {
+  "encExportKeyWarningDesc": {
     "message": "Eksporditavate andmete krüpteerimiseks kasutatakse kontol olevat krüpteerimisvõtit. Kui sa peaksid seda krüpteerimise võtit roteerima, ei saa sa järgnevalt eksporditavaid andmeid enam dekrüpteerida."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Iga Bitwardeni kasutaja krüpteerimisvõti on unikaalne. Eksporditud andmeid ei saa importida teise Bitwardeni kasutajakontosse."
   },
   "exportMasterPassword": {
     "message": "Hoidlas olevate andmete eksportimiseks on vajalik ülemparooli sisestamine."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Andmete importimine"
   },
+  "importError": {
+    "message": "Viga importimisel"
+  },
+  "importErrorDesc": {
+    "message": "Andmete importimisel ilmnes tõrge. Paranda originaalfailis olevad vead (kuvatud all) ning proovi uuesti."
+  },
   "importSuccess": {
     "message": "Andmed on edukalt hoidlasse imporditud."
+  },
+  "importWarning": {
+    "message": "Impordid andmeid organisatsiooni $ORGANIZATION$. Imporditavaid andmeid võidakse jagada teiste organisatsiooni liikmetega. Soovid jätkata?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Andmed ei ole korrektse vorminguga. Palun kontrolli imporditavat faili ja proovi uuesti."
@@ -1364,7 +1382,7 @@
     "message": "Kaheastmelise kinnituseta kontod"
   },
   "inactive2faFoundDesc": {
-    "message": "Leidsime sinu hoidlast $COUNT$ veebilehte, kus kaheastmeline kinnitamine ei pruugi olla sisselülitatud (kontrolliks kasutatakse 2fa.directory). Nende kontode paremaks kaitsmiseks soovitame kaheastmelise kinnitamise sisse lülitada.",
+    "message": "Leidsime sinu hoidlast $COUNT$ veebilehte, kus kaheastmeline kinnitamine ei pruugi olla sisselülitatud (kontrolliks kasutatakse twofactorauth.org). Nende kontode paremaks kaitsmiseks soovitame kaheastmelise kinnitamise sisse lülitada.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1564,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "Lisavõimalused kaheastmeliseks kinnitamiseks, näiteks YubiKey, FIDO U2F ja Duo."
+  },
+  "premiumSignUpEmergency": {
+    "message": "Hädaolukorra ligipääs"
   },
   "premiumSignUpReports": {
     "message": "Parooli hügieen, konto seisukord ja andmelekete raportid aitavad hoidlat turvalisena hoida."
@@ -2823,7 +2844,7 @@
     "message": "Täienda organisatsiooni"
   },
   "upgradeOrganizationDesc": {
-    "message": "See funktsioon ei ole \"tasuta\" litsentsi kasutatavatele organisatsioonidele saadaval. Hangi tasuline versioon, mis sisaldab rohkem funktsioone."
+    "message": "See funktsioon ei ole tasuta organisatsioonidele saadaval. Hangi tasuline versioon, mis sisaldab rohkem funktsioone."
   },
   "createOrganizationStep1": {
     "message": "Organisatsiooni loomine: Samm 1"
@@ -3407,6 +3428,10 @@
     "message": "Send, millele üritad ligi pääseda, ei eksisteeri või see pole enam saadaval.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "missingSendFile": {
+    "message": "Sendiga seotud faili ei suudetud leida.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "noSendsInList": {
     "message": "Puuduvad Sendid, mida kuvada.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3416,6 +3441,9 @@
   },
   "emergencyAccessDesc": {
     "message": "Siin saad hallata ning seadistada usaldusväärseid kontakte, kes saavad hädaolukorral sinu Hoidla sisu kas Vaadata või Üle võtta. Rohkema info saamiseks vaata meie abilehekülge. Tegemist on turvalise ja „zero-knowledge“ lahendusega."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "Oled ühe või enama organisatsiooni omanik. Andes ligipääsu hädaolukorra kontaktile, saab ta pärast konto ülevõtmist ka neid õiguseid kasutada."
   },
   "trustedEmergencyContacts": {
     "message": "Usaldusväärsed hädaolukorra kontaktid"
@@ -3562,6 +3590,24 @@
   "personalOwnershipSubmitError": {
     "message": "Ettevõtte poliitika tõttu ei saa sa andmeid oma personaalsesse Hoidlasse salvestada. Vali Omanikuks organisatsioon ja vali mõni saadavaolevatest Kogumikest."
   },
+  "disableSend": {
+    "message": "Keela Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Ära võimalda kasutajatel Bitwardeni Sende luua või muuta. Olemasolevate Sendide kustutamise võimalikkus säilib.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Neid organisatsiooni liikmeid, kes saavad hallata organisatsiooni poliitikaid, see muudatus ei mõjuta."
+  },
+  "sendDisabled": {
+    "message": "Send on väljalülitatud",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Ettevõtte poliitika kohaselt saad ainult olemasolevat Sendi kustutada.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Muutis poliitikat $ID$.",
     "placeholders": {
@@ -3628,5 +3674,93 @@
   "textHiddenByDefault": {
     "message": "Sendi avamisel peida tekst automaatselt",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "Sisesta Sendi nimi.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "Tekst, mida soovid saata."
+  },
+  "sendFileDesc": {
+    "message": "Fail, mida soovid saata."
+  },
+  "copySendLinkOnSave": {
+    "message": "Salvestamisel kopeeri Sendi jagamise link lõikepuhvrisse."
+  },
+  "sendLinkLabel": {
+    "message": "Sendi link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwardeni Send võimaldab sensitiivset, ajutist informatsiooni hõlpsasti ning turvaliselt edastada.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Rohkem infot",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Jaga tekste või faile ükskõik kellega."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Rohkem infot",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "vaata",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "kuidas see töötab",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "või",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "proovi seda ise",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "või",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "loo konto,",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "et seda ise proovida.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwardeni kasutaja $USER_IDENTIFIER$ jagas sinuga järgnevat",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "Valitud aegumiskuupäev ei ole õige."
+  },
+  "deletionDateIsInvalid": {
+    "message": "Valitud kustutamise kuupäev ei ole õige."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "Nõutav on aegumiskuupäev ja kellaaeg."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "Nõutav on kustutamise kuupäev ja kellaaeg."
+  },
+  "dateParsingError": {
+    "message": "Kustutamis- ja aegumiskuupäevade salvestamisel ilmnes tõrge."
   }
 }

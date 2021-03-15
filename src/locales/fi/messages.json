@@ -80,7 +80,7 @@
     "message": "Ajokortin numero"
   },
   "email": {
-    "message": "Sähköposti"
+    "message": "Sähköpostiosoite"
   },
   "phone": {
     "message": "Puhelinnumero"
@@ -494,7 +494,7 @@
     "message": "Kirjauduttu ulos"
   },
   "loginExpired": {
-    "message": "Kirjautumisesi on vanhentunut."
+    "message": "Kirjautumisistuntosi on erääntynyt."
   },
   "logOutConfirmation": {
     "message": "Haluatko varmasti kirjautua ulos?"
@@ -726,7 +726,7 @@
     "message": "FIDO U2F ‑todennuslaite"
   },
   "emailTitle": {
-    "message": "Sähköposti"
+    "message": "Sähköpostiosoite"
   },
   "emailDesc": {
     "message": "Todennuskoodit lähetetään sinulle sähköpostitse."
@@ -799,8 +799,11 @@
   "exportWarningDesc": {
     "message": "Tämä vienti sisältää holvisi tiedot salaamattomassa muodossa. Sinun ei tulisi säilyttää tai lähettää vietyä tiedostoa suojaamattomien kanavien (kuten sähköpostin) välityksellä. Poista se välittömästi kun sille ei enää ole käyttöä."
   },
-  "encExportWarningDesc": {
-    "message": "Tämä vienti salaa tietosi käyttäjätilisi salausavaimella. Jos joskus uudistat tilisi salausavaimen, on teitojen vienti tehtävä uudelleen, koska et voi enää purkaa nyt viedyn tiedoston salausta."
+  "encExportKeyWarningDesc": {
+    "message": "Tämä vienti salaa tietosi käyttäen tilisi salausavainta. Jos joskus uudistat tilisi salausavaimen, tulisi vienti suorittaa uudelleen, koska et voi enää purkaa nyt viedyn tiedoston salausta."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Tilin salausavaimet ovat ainutlaatuisia jokaiselle Bitwarden-käyttäjätilille, joten et voi tuoda salattua vientitiedostoa toiselle tilille."
   },
   "exportMasterPassword": {
     "message": "Syötä pääsalasanasi viedäksesi holvisi tiedot."
@@ -1000,8 +1003,23 @@
   "importData": {
     "message": "Tuo tiedot"
   },
+  "importError": {
+    "message": "Tuontivirhe"
+  },
+  "importErrorDesc": {
+    "message": "Tiedoissa, joita yritit tuoda, havaittiin ongelma. Korjaa alla listatut virheet lähdetiedostosta ja yritä uudelleen."
+  },
   "importSuccess": {
     "message": "Tietojen tuonti holviisi onnistui."
+  },
+  "importWarning": {
+    "message": "Olet tuomassa tietoja organisaatioon $ORGANIZATION$. Tietojasi saatetaan jakaa organisaation jäsenten kesken. Haluatko jatkaa?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Tietoja ei ole muotoiltu oikein. Tarkista tuotavan tiedoston muotoilu ja yritä uudelleen."
@@ -1091,7 +1109,7 @@
     "message": "Lisää oma verkkotunnus"
   },
   "newCustomDomainDesc": {
-    "message": "Syötä verkkotunnukset pilkulla eroteltuina. Vain \"juuritason\" verkkotunnukset sallitaan, ei aliverkkotunnuksia. Eli syötä esimerkiksi \"www.google.com\" sijasta \"google.com\". Voit myös syöttää \"androidapp://package.name\" -muotoisia osoitteita liittääksesi myös Android-sovelluksia verkkotunnuksiin."
+    "message": "Syötä verkkotunnukset pilkulla eroteltuina. Vain \"juuritason\" verkkotunnukset sallitaan, ei aliverkkotunnuksia. Eli syötä esimerkiksi \"www.google.com\" sijasta \"google.com\". Voit syöttää myös \"androidapp://package.name\" -muotoisia osoitteita yhdistääksesi Android-sovelluksia verkkotunnuksiin."
   },
   "customDomainX": {
     "message": "Oma verkkotunnus $INDEX$",
@@ -1364,7 +1382,7 @@
     "message": "Löydettiin tunnuksia ilman kaksivaiheista kirjautumista"
   },
   "inactive2faFoundDesc": {
-    "message": "Löysimme holvistasi $COUNT$ sivustoa, joita ei ehkä ole määritetty käyttämään kaksivaiheista kirjautumista (2fa.directory-sivuston mukaan). Suojataksesi nämä tilit paremmin, sinun tulisi ottaa kaksivaiheinen kirjautuminen käyttöön.",
+    "message": "Löysimme holvistasi $COUNT$ sivustoa, joita ei ehkä ole määritetty käyttämään kaksivaiheista kirjautumista (2fa.directory -sivuston mukaan). Suojataksesi nämä tilit paremmin, sinun tulisi ottaa kaksivaiheinen kirjautuminen käyttöön.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1565,6 +1583,9 @@
   "premiumSignUpTwoStep": {
     "message": "Muita kaksivaiheisen kirjautumisen todennusmenetelmiä kuten YubiKey, FIDO U2F ja Duo Security."
   },
+  "premiumSignUpEmergency": {
+    "message": "Hätäyhteys"
+  },
   "premiumSignUpReports": {
     "message": "Salasanahygienian, tilin terveyden ja tietovuotojen raportointitoiminnot pitävät holvisi turvassa."
   },
@@ -1609,7 +1630,7 @@
     "message": "Lisättävä tallennustila, Gt"
   },
   "additionalStorageGbDesc": {
-    "message": "# vapaana olevista gigatavuista"
+    "message": "Gigatavujen määrä"
   },
   "additionalStorageIntervalDesc": {
     "message": "Tilaukseesi sisältyy $SIZE$ salattua tallennustilaa. Voit saada lisätilaa $PRICE$ per Gt/$INTERVAL$.",
@@ -1690,7 +1711,7 @@
     "message": "Tilaus on merkitty päättyväksi kuluvan laskutuskauden lopussa."
   },
   "reinstateSubscription": {
-    "message": "Plauta tilaus voimaan"
+    "message": "Palauta tilaus voimaan"
   },
   "reinstateConfirmation": {
     "message": "Haluatko varmasti poistaa odottavan peruutuspyynnön ja pitää tilauksesi voimassa?"
@@ -1882,7 +1903,7 @@
     "message": "Lisättävät käyttäjäpaikat"
   },
   "userSeatsDesc": {
-    "message": "# käyttäjäpaikkaa"
+    "message": "Käyttäjäpaikkojen määrä"
   },
   "userSeatsAdditionalDesc": {
     "message": "Tilaukseesi kuuluu $BASE_SEATS$ käyttäjäpaikkaa. Voit lisätä käyttäjäpaikkoja hintaan $SEAT_PRICE$ per käyttäjä/kuukausi.",
@@ -2106,7 +2127,7 @@
     "message": "Käyttöoikeuden laajuus"
   },
   "groupAccessAllItems": {
-    "message": "Tällä ryhmällä on käyttö- ja muokkausoikeus kaikkiin kohteisiin."
+    "message": "Tällä ryhmällä on käyttö- ja muokkausoikeudet kaikkiin kohteisiin."
   },
   "groupAccessSelectedCollections": {
     "message": "Tällä ryhmällä on käyttöoikeus vain valittuihin kokoelmiin."
@@ -2133,7 +2154,7 @@
     "message": "Kutsu käyttäjä"
   },
   "inviteUserDesc": {
-    "message": "Kutsu organisaatioosi uusi käyttäjä syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään uomaan uusi tili."
+    "message": "Kutsu organisaatioosi uusi käyttäjä syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään luomaan uusi tili."
   },
   "inviteMultipleEmailDesc": {
     "message": "Voit kutsua korkeintaan $COUNT$ käyttäjää kerrallaan, erottelemalla listan sähköpostiosoitteista pilkuilla.",
@@ -2496,7 +2517,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "Poistettu yrityksen kertakirjautuminen (SSO) käyttäjältä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2511,13 +2532,13 @@
     "message": "Näytä"
   },
   "invalidDateRange": {
-    "message": "Virheellinen aikaväli."
+    "message": "Virheellinen ajanjakso."
   },
   "errorOccurred": {
     "message": "Tapahtui virhe."
   },
   "userAccess": {
-    "message": "Käyttäjän käyttöoikeus"
+    "message": "Käyttäjän käyttöoikeudet"
   },
   "userType": {
     "message": "Käyttäjän tyyppi"
@@ -2808,7 +2829,7 @@
     "message": "Salausavaimesi päivityksen jälkeen, sinun tulee kirjautua ulos ja sitten takaisin sisään kaikissa Bitwarden-sovelluksissa, jotka ovat käytössäsi (esim. mobiilisovellus ja selainlaajennukset). Uudelleenkirjautumisen (joka lataa uuden salausavaimen) suorittamatta jättäminen saattaa johtaa tietojen vaurioitumiseen. Yritämme kirjata sinut ulos autmaattisesti, mutta tämä voi tapahtua vasta jonkin ajan kuluttua."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "Tallentamistasi salatuista vienneistä tulee käyttökelvottomia."
   },
   "subscription": {
     "message": "Tilaus"
@@ -2891,7 +2912,7 @@
     "message": "Organisaatio on poistettu käytöstä."
   },
   "licenseIsExpired": {
-    "message": "Lisenssi on vanhentunut."
+    "message": "Lisenssi on erääntynyt."
   },
   "updatedUsers": {
     "message": "Päivitetyt käyttäjät"
@@ -3320,43 +3341,43 @@
     "message": "Poistopäivä"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Send poistetaan pysyvästi määritettynä ajankohtana.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Erääntymispäivä"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Jos määritetty, Send erääntyy määritettynä ajankohtana.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
-    "message": "Suurin käyttömäärä"
+    "message": "Käyttökertojen enimmäismäärä"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Jos määritetty, käyttäjät eivät voi avata Sendiä käyttökertojen enimmäismäärän täytyttyä.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "Nykyinen käyttömäärä"
+    "message": "Nykyinen käyttökertojen määrä"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Halutessasi, vaadi käyttäjiä syöttämään salasana Sendin avaamiseksi.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "Yksityiset muistiinpanot tästä Sendistä.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
-    "message": "Ei käytössä"
+    "message": "Poistettu käytöstä"
   },
   "sendLink": {
     "message": "Send-linkki",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Kopioi Send-linkki",
+    "message": "Kopioi Sendin linkki",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
@@ -3369,20 +3390,20 @@
     "message": "Haluatko varmasti poistaa salasanan?"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Poista Send käytöstä, jottei kukaan voi avata sitä.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
     "message": "Kaikki Sendit"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Käyttökertojen enimmäismäärä saavutettu"
   },
   "pendingDeletion": {
     "message": "Odottaa poistoa"
   },
   "expired": {
-    "message": "Vanhentunut"
+    "message": "Erääntynyt"
   },
   "searchSends": {
     "message": "Hae Sendeistä",
@@ -3404,7 +3425,11 @@
     "message": "Lataa tiedosto"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "Sendiä, jota yrität avata, ei ole olemassa tai se ei ole enää käytettävissä.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "missingSendFile": {
+    "message": "Sendiin liittyvää tiedostoa ei löytynyt.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3412,34 +3437,37 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Hätäyhteys"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of a emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Myönnä ja hallitse luotettujen kontaktien hätäkäyttöoikeuksia. Luotetut kontaktit voivat anoa oikeutta tilisi tarkasteluun tai hallintaan hätätilanteessa. Käy ohjesivullamme saadaksesi lisätietoja ja tarkempia tietoja siitä, miten nollatiedon jako toimii."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "Olet yhden tai useamman organisaation omistaja. Jos myönnät hätäkontaktille hallintaoikeuden, on heillä haltuunoton jälkeen samat oikeudet."
   },
   "trustedEmergencyContacts": {
-    "message": "Trusted emergency contacts"
+    "message": "Luotetut hätäkontaktit"
   },
   "noTrustedContacts": {
-    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+    "message": "Et ole vielä lisännyt hätäkontakteja. Kutsu luotettu kontakti aloittaaksesi."
   },
   "addEmergencyContact": {
-    "message": "Lisää hätäyhteystieto"
+    "message": "Lisää hätäkontakti"
   },
   "designatedEmergencyContacts": {
-    "message": "Designated as emergency contact"
+    "message": "Määritetty hätäkontaktiksi"
   },
   "noGrantedAccess": {
-    "message": "You have not been designated as an emergency contact for anyone yet."
+    "message": "Sinua ei ole vielä määritetty kenenkään hätäkontaktiksi."
   },
   "inviteEmergencyContact": {
-    "message": "Kutsu hätäyhteystieto"
+    "message": "Kutsu hätäkontakti"
   },
   "editEmergencyContact": {
-    "message": "Muokkaa hätäyhteystietoa"
+    "message": "Muokkaa hätäkontaktia"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Kutsu uusi hätäkontakti syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään luomaan uusi tili."
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "Hätäkäyttö aloitettu"
@@ -3460,7 +3488,7 @@
     "message": "Odotusaika"
   },
   "waitTimeDesc": {
-    "message": "Time required before automatically granting access."
+    "message": "Aika, joka vaaditaan ennen kuin pääsy myönnetään automaattisesti."
   },
   "oneDay": {
     "message": "1 päivä"
@@ -3478,13 +3506,13 @@
     "message": "Kutsuttu käyttäjä."
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Sinut on kutsuttu yllä mainitun käyttäjän hätäkontaktiksi. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden tili."
   },
   "emergencyInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+    "message": "Kutsun hyväksyntä ei onnistu. Pyydä käyttäjää lähettämään uusi kutsu."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "message": "Kutsun hyväksyntä ei onnistunut. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -3493,13 +3521,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+    "message": "Voit käyttää tämän käyttäjän hätävalintoja kun henkilöllisyytesi on vahvistettu. Saat vahvistuksesta ilmoituksen sähköpostitse."
   },
   "requestAccess": {
     "message": "Pyydä käyttöoikeutta"
   },
   "requestAccessConfirmation": {
-    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "message": "Haluatko varmasti anoa hätäkäyttöoikeutta? Pääsy myönnetään $WAITTIME$ päivän kuluttua tai käyttäjän hyväksyessä käyttöoikeuden manuaalisesti.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3508,7 +3536,7 @@
     }
   },
   "requestSent": {
-    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "message": "Hätäkäyttöoikeutta pyydetty käyttäjältä $USER$. Kun voit jatkaa, saat ilmoituksen sähköpostitse.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3523,7 +3551,7 @@
     "message": "Hylkää"
   },
   "approveAccessConfirmation": {
-    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "message": "Haluatko varmasti sallia hätäyhteyden? Tämä sallii käyttäjälle $USER$ tiliisi oikeuden: $ACTION$.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3539,10 +3567,10 @@
     "message": "Hätäkäyttö sallittu."
   },
   "emergencyRejected": {
-    "message": "Hätäkäyttö kielletty"
+    "message": "Hätäyhteys hylätty"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "Käyttäjän $USER$ salasana on palautettu. Voit nyt kirjautua sisään käyttäen uutta salasanaa.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3551,19 +3579,37 @@
     }
   },
   "personalOwnership": {
-    "message": "Personal Ownership"
+    "message": "Henkilökohtainen omistus"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+    "message": "Vaadi käyttäjiä tallentamaan holvin kohteet organisaatiolle poistamalla henkilökohtaisen omistuksen valinta."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "Organisaation omistajat ja järjestelmänvalvojat on vapautettu tämän käytännön piiristä."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an Enterprise Policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "Yrityksen asettaman käytännön johdosta kohteiden tallennus omaan holviisi ei ole mahdollista. Muuta omistusasetus organisaatiolle ja valitse käytettävissä olevista kokoelmista."
+  },
+  "disableSend": {
+    "message": "Poista Send käytöstä"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Älä salli käyttäjien luoda tai muokata Bitwarden Sendejä. Olemassa olevan Sendin poisto sallitaan edelleen.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Käytäntöä ei pakoteta käyttöön niille organisaation käyttäjille, joilla on organisaation käytäntöjen hallintaoikeudet."
+  },
+  "sendDisabled": {
+    "message": "Send on poistettu käytöstä",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Yrityksen käytännön vuoksi voit poistaa vain olemassa olevan Sendin.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "Muokattiin käytäntöä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3572,7 +3618,7 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "Tilauksen hinta"
   },
   "estimatedTax": {
     "message": "Arvioitu vero"
@@ -3581,52 +3627,140 @@
     "message": "Mukautettu"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "Mahdollistaa käyttäjien oikeuksien tarkemman hallinnan edistyneemmissä käyttöympäristöissä."
   },
   "permissions": {
     "message": "Käyttöoikeudet"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "Yritysportaalin käyttö"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Tapahtumalokien käyttö"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Tuonnin/viennin käyttö"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Raporttien käyttö"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "Kaikkien kokoelmien hallinta"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "Määritettyjen kokoelmien hallinta"
   },
   "manageGroups": {
-    "message": "Hallitse ryhmiä"
+    "message": "Ryhmien hallinta"
   },
   "managePolicies": {
-    "message": "Hallitse käytäntöjä"
+    "message": "Käytäntöjen hallinta"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "Kertakirjautumisen (SSO) hallinta"
   },
   "manageUsers": {
     "message": "Käyttäjien hallinta"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "Yrityksen kertakirjautuminen (SSO) on poistettava käytöstä manuaalisesti ennen kuin tämän käytännön voi poistaa käytöstä."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "Organisaatiokäytäntö vaikuttaa omistajuusvalintoihisi."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "Poista henkilökohtaisen omistajuuden valinta käytöstä organisaation käyttäjiltä"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Piilota teksti oletuksena kun Send avataan",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "Kuvaava nimi Sendille.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "Teksti, jonka haluat lähettää."
+  },
+  "sendFileDesc": {
+    "message": "Tiedosto, jonka haluat lähettää."
+  },
+  "copySendLinkOnSave": {
+    "message": "Kopioi Sendin linkki leikepöydälle tallennettaessa."
+  },
+  "sendLinkLabel": {
+    "message": "Send-linkki",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send lähettää arkaluonteisia, väliaikaisia tietoja muille helposti ja turvallisesti.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Lue lisää",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Jaa tekstiä tai tiedostoja suoraan kenen tahansa kanssa."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Lue lisää",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "näe",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "miten se toimii",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "tai",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "kokeile sitä nyt",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "tai",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "liity",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "kokeillaksesi sitä tänään.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden-käyttäjä $USER_IDENTIFIER$ jakoi kanssasi seuraavat",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "Asetettu erääntymispäivä on virhellinen."
+  },
+  "deletionDateIsInvalid": {
+    "message": "Asetettu poistopäivä on virheellinen."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "Viimeinen voimassaolopäivä ja aika vaaditaan."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "Poistopäivä ja -aika vaaditaan."
+  },
+  "dateParsingError": {
+    "message": "Tapahtui virhe tallennettaessa poisto- ja erääntymispäiviä."
   }
 }
