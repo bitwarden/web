@@ -725,6 +725,15 @@
   "u2fTitle": {
     "message": "FIDO U2F Security Key"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
+  },
   "emailTitle": {
     "message": "Email"
   },
@@ -1260,6 +1269,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC Support"
   },
@@ -1305,6 +1323,9 @@
   "removeU2fConfirmation": {
     "message": "Are you sure you want to remove this security key?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "Read Key"
   },
@@ -1337,6 +1358,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "There was a problem reading the security key. Try again."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Your Bitwarden two-step login recovery code"
@@ -3762,5 +3789,17 @@
   },
   "dateParsingError": {
     "message": "There was an error saving your deletion and expiration dates."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
   }
 }

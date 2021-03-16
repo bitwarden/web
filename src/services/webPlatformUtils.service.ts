@@ -158,11 +158,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return process.env.APPLICATION_VERSION || '-';
     }
 
-    supportsU2f(win: Window): boolean {
-        if (win != null && (win as any).u2f != null) {
-            return true;
-        }
-        return this.isChrome() || ((this.isEdge() || this.isOpera() || this.isVivaldi()) && !Utils.isMobileBrowser);
+    supportsWebAuthn(win: Window): boolean {
+        return (typeof(PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {

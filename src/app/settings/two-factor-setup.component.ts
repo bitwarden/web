@@ -23,7 +23,7 @@ import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.comp
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
 import { TwoFactorEmailComponent } from './two-factor-email.component';
 import { TwoFactorRecoveryComponent } from './two-factor-recovery.component';
-import { TwoFactorU2fComponent } from './two-factor-u2f.component';
+import { TwoFactorWebAuthnComponent } from './two-factor-webauthn.component';
 import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 
 @Component({
@@ -34,9 +34,9 @@ export class TwoFactorSetupComponent implements OnInit {
     @ViewChild('recoveryTemplate', { read: ViewContainerRef, static: true }) recoveryModalRef: ViewContainerRef;
     @ViewChild('authenticatorTemplate', { read: ViewContainerRef, static: true }) authenticatorModalRef: ViewContainerRef;
     @ViewChild('yubikeyTemplate', { read: ViewContainerRef, static: true }) yubikeyModalRef: ViewContainerRef;
-    @ViewChild('u2fTemplate', { read: ViewContainerRef, static: true }) u2fModalRef: ViewContainerRef;
     @ViewChild('duoTemplate', { read: ViewContainerRef, static: true }) duoModalRef: ViewContainerRef;
     @ViewChild('emailTemplate', { read: ViewContainerRef, static: true }) emailModalRef: ViewContainerRef;
+    @ViewChild('webAuthnTemplate', { read: ViewContainerRef, static: true }) webAuthnModalRef: ViewContainerRef;
 
     organizationId: string;
     providers: any[] = [];
@@ -117,10 +117,10 @@ export class TwoFactorSetupComponent implements OnInit {
                     this.updateStatus(enabled, TwoFactorProviderType.Email);
                 });
                 break;
-            case TwoFactorProviderType.U2f:
-                const u2fComp = this.openModal(this.u2fModalRef, TwoFactorU2fComponent);
-                u2fComp.onUpdated.subscribe((enabled: boolean) => {
-                    this.updateStatus(enabled, TwoFactorProviderType.U2f);
+            case TwoFactorProviderType.WebAuthn:
+                const webAuthnComp = this.openModal(this.webAuthnModalRef, TwoFactorWebAuthnComponent);
+                webAuthnComp.onUpdated.subscribe((enabled: boolean) => {
+                    this.updateStatus(enabled, TwoFactorProviderType.WebAuthn);
                 });
                 break;
             default:

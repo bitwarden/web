@@ -89,6 +89,16 @@ const plugins = [
         chunks: ['connectors/u2f'],
     }),
     new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn.html',
+        filename: 'webauthn-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-fallback.html',
+        filename: 'webauthn-fallback-connector.html',
+        chunks: ['connectors/webauthn-fallback'],
+    }),
+    new HtmlWebpackPlugin({
         template: './src/connectors/sso.html',
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
@@ -158,6 +168,8 @@ const config = {
         'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
+        'connectors/webauthn': './src/connectors/webauthn.ts',
+        'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
     },
