@@ -143,7 +143,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             const a = win.document.createElement('a');
             if (doDownload) {
                 a.download = fileName;
-            } else {
+            } else if (!this.isSafari()) {
                 a.target = '_blank';
             }
             a.href = URL.createObjectURL(blob);
@@ -158,11 +158,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return process.env.APPLICATION_VERSION || '-';
     }
 
-    supportsU2f(win: Window): boolean {
-        if (win != null && (win as any).u2f != null) {
-            return true;
-        }
-        return this.isChrome() || ((this.isOpera() || this.isVivaldi()) && !Utils.isMobileBrowser);
+    supportsWebAuthn(win: Window): boolean {
+        return (typeof(PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {
@@ -179,7 +176,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
     }
 
-    async showDialog(text: string, title?: string, confirmText?: string, cancelText?: string, type?: string) {
+    async showDialog(body: string, title?: string, confirmText?: string, cancelText?: string, type?: string,
+        bodyIsHtml: boolean = false) {
         let iconClasses: string = null;
         if (type != null) {
             // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
@@ -207,7 +205,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             buttonsStyling: false,
             icon: type as SweetAlertIcon, // required to be any of the SweetAlertIcons to output the iconHtml.
             iconHtml: iconHtmlStr,
-            text: text,
+            text: bodyIsHtml ? null : body,
+            html: bodyIsHtml ? body : null,
             title: title,
             showCancelButton: (cancelText != null),
             cancelButtonText: cancelText,
@@ -284,5 +283,13 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     supportsSecureStorage() {
         return false;
+    }
+
+    getDefaultSystemTheme() {
+        return null as 'light' | 'dark';
+    }
+
+    onDefaultSystemThemeChange() {
+        /* noop */
     }
 }

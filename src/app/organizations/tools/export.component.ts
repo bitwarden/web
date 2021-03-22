@@ -23,7 +23,7 @@ export class ExportComponent extends BaseExportComponent {
     }
 
     ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
         });
     }

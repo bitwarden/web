@@ -19,10 +19,13 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
 
+import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 import { PlanType } from 'jslib/enums/planType';
 import { PolicyType } from 'jslib/enums/policyType';
 import { ProductType } from 'jslib/enums/productType';
@@ -66,7 +69,7 @@ export class OrganizationPlansComponent implements OnInit {
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
         private router: Router, private syncService: SyncService,
-        private policyService: PolicyService) {
+        private policyService: PolicyService, private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -74,6 +77,9 @@ export class OrganizationPlansComponent implements OnInit {
         if (!this.selfHosted) {
             const plans = await this.apiService.getPlans();
             this.plans = plans.data;
+            if (this.product === ProductType.Enterprise || this.product === ProductType.Teams) {
+                this.ownedBusiness = true;
+            }
         }
         this.loading = false;
     }
@@ -83,7 +89,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlan() {
-        return this.plans.find((plan) => plan.type === this.plan);
+        return this.plans.find(plan => plan.type === this.plan);
     }
 
     get selectedPlanInterval() {
@@ -93,18 +99,18 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectableProducts() {
-        let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
+        let validPlans = this.plans.filter(plan => plan.type !== PlanType.Custom);
 
         if (this.ownedBusiness) {
-            validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
+            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
         }
 
         if (!this.showFree) {
-            validPlans = validPlans.filter((plan) => plan.product !== ProductType.Free);
+            validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
         }
 
         validPlans = validPlans
-            .filter((plan) => !plan.legacyYear
+            .filter(plan => !plan.legacyYear
                 && !plan.disabled
                 && (plan.isAnnual || plan.product === this.productTypes.Free));
 
@@ -112,7 +118,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectablePlans() {
-        return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
+        return this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
     additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
@@ -189,7 +195,8 @@ export class OrganizationPlansComponent implements OnInit {
         if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
             return;
         }
-        this.plan = PlanType.TeamsMonthly;
+        this.product = ProductType.Teams;
+        this.plan = PlanType.TeamsAnnually;
     }
 
     changedCountry() {
@@ -211,7 +218,18 @@ export class OrganizationPlansComponent implements OnInit {
             return;
         } else {
             const policies = await this.policyService.getAll(PolicyType.SingleOrg);
-            this.singleOrgPolicyBlock = policies.some(policy => policy.enabled);
+            const orgs = await this.userService.getAllOrganizations();
+
+            const orgsWithSingleOrgPolicy = policies
+                .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
+                .map(p => p.organizationId);
+
+            this.singleOrgPolicyBlock = orgs.some(org =>
+                org.type !== OrganizationUserType.Owner &&
+                org.type !== OrganizationUserType.Admin &&
+                org.status !== OrganizationUserStatusType.Invited &&
+                orgsWithSingleOrgPolicy.includes(org.id));
+
             if (this.singleOrgPolicyBlock) {
                 return;
             }

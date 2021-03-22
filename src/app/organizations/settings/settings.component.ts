@@ -16,7 +16,7 @@ export class SettingsComponent {
         private platformUtilsService: PlatformUtilsService) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
+        this.route.parent.params.subscribe(async params => {
             this.selfHosted = await this.platformUtilsService.isSelfHost();
             const organization = await this.userService.getOrganization(params.organizationId);
             this.access2fa = organization.use2fa;

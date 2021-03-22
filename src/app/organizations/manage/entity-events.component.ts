@@ -50,7 +50,7 @@ export class EntityEventsComponent implements OnInit {
     async load() {
         if (this.showUser) {
             const response = await this.apiService.getOrganizationUsers(this.organizationId);
-            response.data.forEach((u) => {
+            response.data.forEach(u => {
                 const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
                 this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
                 this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
@@ -94,7 +94,7 @@ export class EntityEventsComponent implements OnInit {
         } catch { }
 
         this.continuationToken = response.continuationToken;
-        const events = response.data.map((r) => {
+        const events = response.data.map(r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = this.eventService.getEventInfo(r);
             const user = this.showUser && userId != null && this.orgUsersUserIdMap.has(userId) ?

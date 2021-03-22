@@ -12,8 +12,8 @@ import {
 
 import { PolicyType } from 'jslib/enums/policyType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
 import { EnvironmentService } from 'jslib/abstractions';
+import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -37,12 +37,13 @@ export class PoliciesComponent implements OnInit {
 
     // Remove when removing deprecation warning
     enterpriseTokenPromise: Promise<any>;
+    userCanAccessBusinessPortal = false;
+
     private enterpriseUrl: string;
 
     private modal: ModalComponent = null;
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
-
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
@@ -50,13 +51,14 @@ export class PoliciesComponent implements OnInit {
         private router: Router, private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
             if (organization == null || !organization.usePolicies) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
+            this.userCanAccessBusinessPortal = organization.canAccessBusinessPortal;
             this.policies = [
                 {
                     name: this.i18nService.t('twoStepLogin'),
@@ -100,11 +102,18 @@ export class PoliciesComponent implements OnInit {
                     enabled: false,
                     display: true,
                 },
+                {
+                    name: this.i18nService.t('disableSend'),
+                    description: this.i18nService.t('disableSendPolicyDesc'),
+                    type: PolicyType.DisableSend,
+                    enabled: false,
+                    display: true,
+                },
             ];
             await this.load();
 
             // Handle policies component launch from Event message
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 if (qParams.policyId != null) {
                     const policyIdFromEvents: string = qParams.policyId;
                     for (const orgPolicy of this.orgPolicies) {
@@ -138,10 +147,10 @@ export class PoliciesComponent implements OnInit {
     async load() {
         const response = await this.apiService.getPolicies(this.organizationId);
         this.orgPolicies = response.data != null && response.data.length > 0 ? response.data : [];
-        this.orgPolicies.forEach((op) => {
+        this.orgPolicies.forEach(op => {
             this.policiesEnabledMap.set(op.type, op.enabled);
         });
-        this.policies.forEach((p) => {
+        this.policies.forEach(p => {
             p.enabled = this.policiesEnabledMap.has(p.type) && this.policiesEnabledMap.get(p.type);
         });
         this.loading = false;

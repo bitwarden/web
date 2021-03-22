@@ -125,7 +125,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (value == null || !this.displayTotpCopyButton(cipher)) {
+        if (value == null || aType === 'TOTP' && !this.displayTotpCopyButton(cipher)) {
             return;
         } else if (value === cipher.login.totp) {
             value = await this.totpService.getCode(value);
@@ -163,11 +163,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (this.ciphers == null) {
             return [];
         }
-        return this.ciphers.filter((c) => !!(c as any).checked);
+        return this.ciphers.filter(c => !!(c as any).checked);
     }
 
     getSelectedIds(): string[] {
-        return this.getSelected().map((c) => c.id);
+        return this.getSelected().map(c => c.id);
     }
 
     displayTotpCopyButton(cipher: CipherView) {

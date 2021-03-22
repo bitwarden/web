@@ -172,16 +172,35 @@ export class PolicyEditComponent implements OnInit {
         }
     }
 
+    get checkboxDesc(): string {
+        return this.type === PolicyType.PersonalOwnership ? this.i18nService.t('personalOwnershipCheckboxDesc') :
+            this.i18nService.t('enabled');
+    }
+
     private preValidate(): boolean {
         switch (this.type) {
             case PolicyType.RequireSso:
-                if (!this.enabled) { // Don't need prevalidation checks if submitting to disable
+                // Don't need prevalidation checks if submitting to disable
+                if (!this.enabled) {
                     return true;
                 }
                 // Have SingleOrg policy enabled?
                 if (!(this.policiesEnabledMap.has(PolicyType.SingleOrg)
                     && this.policiesEnabledMap.get(PolicyType.SingleOrg))) {
                     this.toasterService.popAsync('error', null, this.i18nService.t('requireSsoPolicyReqError'));
+                    return false;
+                }
+                return true;
+
+            case PolicyType.SingleOrg:
+                // Don't need prevalidation checks if submitting to enable
+                if (this.enabled) {
+                    return true;
+                }
+                // If RequireSso Policy is enabled prevent submittal
+                if (this.policiesEnabledMap.has(PolicyType.RequireSso)
+                    && this.policiesEnabledMap.get(PolicyType.RequireSso)) {
+                    this.toasterService.popAsync('error', null, this.i18nService.t('disableRequireSsoError'));
                     return false;
                 }
                 return true;

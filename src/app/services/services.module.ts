@@ -128,7 +128,8 @@ const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
     consoleLogService);
 const exportService = new ExportService(folderService, cipherService, apiService);
-const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService);
+const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
+    platformUtilsService);
 const notificationsService = new NotificationsService(userService, syncService, appIdService,
     apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
@@ -146,6 +147,7 @@ export function initFactory(): Function {
         if (!isDev && platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
+            environmentService.webVaultUrl = isDev ? 'https://localhost:8080' : null;
             environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
                 'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
             environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :

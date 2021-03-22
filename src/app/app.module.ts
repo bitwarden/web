@@ -27,6 +27,7 @@ import { NavbarComponent } from './layouts/navbar.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptEmergencyComponent } from './accounts/accept-emergency.component';
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
@@ -112,6 +113,13 @@ import { CreateOrganizationComponent } from './settings/create-organization.comp
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
+import { EmergencyAccessAddEditComponent } from './settings/emergency-access-add-edit.component';
+import { EmergencyAccessAttachmentsComponent } from './settings/emergency-access-attachments.component';
+import { EmergencyAccessConfirmComponent } from './settings/emergency-access-confirm.component';
+import { EmergencyAccessTakeoverComponent } from './settings/emergency-access-takeover.component';
+import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { EmergencyAddEditComponent } from './settings/emergency-add-edit.component';
 import { LinkSsoComponent } from './settings/link-sso.component';
 import { OptionsComponent } from './settings/options.component';
 import { OrganizationPlansComponent } from './settings/organization-plans.component';
@@ -127,8 +135,8 @@ import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
 import { TwoFactorEmailComponent } from './settings/two-factor-email.component';
 import { TwoFactorRecoveryComponent } from './settings/two-factor-recovery.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
-import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
+import { TwoFactorWebAuthnComponent } from './settings/two-factor-webauthn.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
@@ -159,6 +167,7 @@ import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
+import { SendInfoComponent } from './vault/send-info.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
@@ -183,8 +192,8 @@ import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
 import {
-    registerLocaleData,
     DatePipe,
+    registerLocaleData,
 } from '@angular/common';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
@@ -258,6 +267,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     declarations: [
         A11yTitleDirective,
+        AcceptEmergencyComponent,
         AccessComponent,
         AcceptOrganizationComponent,
         AccountComponent,
@@ -295,6 +305,13 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeleteOrganizationComponent,
         DomainRulesComponent,
         DownloadLicenseComponent,
+        EmergencyAccessAddEditComponent,
+        EmergencyAccessAttachmentsComponent,
+        EmergencyAccessComponent,
+        EmergencyAccessConfirmComponent,
+        EmergencyAccessTakeoverComponent,
+        EmergencyAccessViewComponent,
+        EmergencyAddEditComponent,
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
@@ -366,6 +383,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SelectCopyDirective,
         SendAddEditComponent,
         SendComponent,
+        SendInfoComponent,
         SettingsComponent,
         ShareComponent,
         SsoComponent,
@@ -381,8 +399,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorOptionsComponent,
         TwoFactorRecoveryComponent,
         TwoFactorSetupComponent,
-        TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
+        TwoFactorWebAuthnComponent,
         TwoFactorYubiKeyComponent,
         UnsecuredWebsitesReportComponent,
         UpdateKeyComponent,
@@ -409,6 +427,11 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeauthorizeSessionsComponent,
         DeleteAccountComponent,
         DeleteOrganizationComponent,
+        EmergencyAccessAddEditComponent,
+        EmergencyAccessAttachmentsComponent,
+        EmergencyAccessConfirmComponent,
+        EmergencyAccessTakeoverComponent,
+        EmergencyAddEditComponent,
         FolderAddEditComponent,
         ModalComponent,
         OrgAddEditComponent,
@@ -431,7 +454,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
         TwoFactorRecoveryComponent,
-        TwoFactorU2fComponent,
+        TwoFactorWebAuthnComponent,
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],

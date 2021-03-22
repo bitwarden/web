@@ -1,4 +1,12 @@
 <div class="container page-content">
+    <div class="row card border-warning mb-4" *ngIf="disableSend">
+        <div class="card-header bg-warning text-white">
+            <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{'sendDisabled' | i18n}}
+        </div>
+        <div class="card-body">
+            <span>{{'sendDisabledWarning' | i18n}}</span>
+        </div>
+    </div>
     <div class="row">
         <div class="col-3 groupings">
             <div class="card vault-filters">
@@ -35,7 +43,7 @@
         <div class="col-9">
             <div class="page-header d-flex">
                 <h1>
-                    Send
+                    {{'send' | i18n}}
                     <small #actionSpinner [appApiAction]="actionPromise">
                         <ng-container *ngIf="actionSpinner.loading">
                             <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
@@ -45,7 +53,8 @@
                     </small>
                 </h1>
                 <div class="ml-auto d-flex">
-                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()"
+                        [disabled]="disableSend">
                         <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'createSend' | i18n}}
                     </button>
                 </div>
@@ -62,9 +71,29 @@
                         </td>
                         <td class="reduced-lh wrap">
                             <a href="#" appStopClick appStopProp (click)="editSend(s)">{{s.name}}</a>
+                            <ng-container *ngIf="s.disabled">
+                                <i class="fa fa-warning" appStopProp title="{{'disabled' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'disabled' | i18n}}</span>
+                            </ng-container>
                             <ng-container *ngIf="s.password">
                                 <i class="fa fa-key" appStopProp title="{{'password' | i18n}}" aria-hidden="true"></i>
                                 <span class="sr-only">{{'password' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.maxAccessCountReached">
+                                <i class="fa fa-ban" appStopProp title="{{'maxAccessCountReached' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'maxAccessCountReached' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.expired">
+                                <i class="fa fa-clock-o" appStopProp title="{{'expired' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'expired' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.pendingDelete">
+                                <i class="fa fa-trash" appStopProp title="{{'pendingDeletion' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'pendingDeletion' | i18n}}</span>
                             </ng-container>
                             <br>
                             <small appStopProp>{{s.deletionDate | date:'medium'}}</small>
@@ -82,7 +111,7 @@
                                         {{'copySendLink' | i18n}}
                                     </a>
                                     <a class="dropdown-item" href="#" appStopClick (click)="removePassword(s)"
-                                        *ngIf="s.password">
+                                        *ngIf="s.password && !disableSend">
                                         <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
                                         {{'removePassword' | i18n}}
                                     </a>
@@ -103,7 +132,7 @@
                 </ng-container>
                 <ng-container *ngIf="loaded">
                     <p>{{'noSendsInList' | i18n}}</p>
-                    <button (click)="addSend()" class="btn btn-outline-primary">
+                    <button (click)="addSend()" class="btn btn-outline-primary" [disabled]="disableSend">
                         <i class="fa fa-plus fa-fw"></i>{{'createSend' | i18n}}</button>
                 </ng-container>
             </div>

@@ -51,7 +51,7 @@ export class OptionsComponent implements OnInit {
         }
 
         const localeOptions: any[] = [];
-        i18nService.supportedTranslationLocales.forEach((locale) => {
+        i18nService.supportedTranslationLocales.forEach(locale => {
             let name = locale;
             if (i18nService.localeNames.has(locale)) {
                 name += (' - ' + i18nService.localeNames.get(locale));

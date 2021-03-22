@@ -34,6 +34,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     showRevisionDate = false;
     hasPasswordHistory = false;
     viewingPasswordHistory = false;
+    viewOnly = false;
 
     protected totpInterval: number;
 

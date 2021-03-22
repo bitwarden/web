@@ -28,10 +28,10 @@ export class DomainRulesComponent implements OnInit {
         const response = await this.apiService.getSettingsDomains();
         this.loading = false;
         if (response.equivalentDomains != null) {
-            this.custom = response.equivalentDomains.map((d) => d.join(', '));
+            this.custom = response.equivalentDomains.map(d => d.join(', '));
         }
         if (response.globalEquivalentDomains != null) {
-            this.global = response.globalEquivalentDomains.map((d) => {
+            this.global = response.globalEquivalentDomains.map(d => {
                 return {
                     domains: d.domains.join(', '),
                     excluded: d.excluded,
@@ -60,13 +60,13 @@ export class DomainRulesComponent implements OnInit {
 
     async submit() {
         const request = new UpdateDomainsRequest();
-        request.excludedGlobalEquivalentDomains = this.global.filter((d) => d.excluded)
-            .map((d) => d.key);
+        request.excludedGlobalEquivalentDomains = this.global.filter(d => d.excluded)
+            .map(d => d.key);
         if (request.excludedGlobalEquivalentDomains.length === 0) {
             request.excludedGlobalEquivalentDomains = null;
         }
-        request.equivalentDomains = this.custom.filter((d) => d != null && d.trim() !== '')
-            .map((d) => d.split(',').map((d2) => d2.trim()));
+        request.equivalentDomains = this.custom.filter(d => d != null && d.trim() !== '')
+            .map(d => d.split(',').map(d2 => d2.trim()));
         if (request.equivalentDomains.length === 0) {
             request.equivalentDomains = null;
         }

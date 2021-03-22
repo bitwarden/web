@@ -78,7 +78,7 @@ export class PremiumComponent implements OnInit {
                     return this.finalizePremium();
                 });
             } else {
-                this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
+                this.formPromise = this.paymentComponent.createPaymentToken().then(result => {
                     const fd = new FormData();
                     fd.append('paymentMethodType', result[1].toString());
                     if (result[0] != null) {
@@ -88,7 +88,7 @@ export class PremiumComponent implements OnInit {
                     fd.append('country', this.taxInfoComponent.taxInfo.country);
                     fd.append('postalCode', this.taxInfoComponent.taxInfo.postalCode);
                     return this.apiService.postPremium(fd);
-                }).then((paymentResponse) => {
+                }).then(paymentResponse => {
                     if (!paymentResponse.success && paymentResponse.paymentIntentClientSecret != null) {
                         return this.paymentComponent.handleStripeCardPayment(paymentResponse.paymentIntentClientSecret,
                             () => this.finalizePremium());
@@ -114,7 +114,17 @@ export class PremiumComponent implements OnInit {
         return this.storageGbPrice * Math.abs(this.additionalStorage || 0);
     }
 
+    get subtotal(): number {
+        return this.premiumPrice + this.additionalStorageTotal;
+    }
+
+    get taxCharges(): number {
+        return this.taxInfoComponent != null && this.taxInfoComponent.taxRate != null ?
+            (this.taxInfoComponent.taxRate / 100) * this.subtotal :
+            0;
+    }
+
     get total(): number {
-        return this.additionalStorageTotal + this.premiumPrice;
+        return (this.subtotal + this.taxCharges) || 0;
     }
 }

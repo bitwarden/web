@@ -76,10 +76,10 @@ export class PeopleComponent implements OnInit {
         private storageService: StorageService, private searchService: SearchService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
-            if (!organization.isAdmin) {
+            if (!organization.canManageUsers) {
                 this.router.navigate(['../collections'], { relativeTo: this.route });
                 return;
             }
@@ -87,10 +87,10 @@ export class PeopleComponent implements OnInit {
             this.accessGroups = organization.useGroups;
             await this.load();
 
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
-                    const user = this.users.filter((u) => u.id === qParams.viewEvents);
+                    const user = this.users.filter(u => u.id === qParams.viewEvents);
                     if (user.length > 0 && user[0].status === OrganizationUserStatusType.Confirmed) {
                         this.events(user[0]);
                     }
@@ -107,7 +107,7 @@ export class PeopleComponent implements OnInit {
         this.statusMap.clear();
         this.allUsers = response.data != null && response.data.length > 0 ? response.data : [];
         this.allUsers.sort(Utils.getSortFunction(this.i18nService, 'email'));
-        this.allUsers.forEach((u) => {
+        this.allUsers.forEach(u => {
             if (!this.statusMap.has(u.status)) {
                 this.statusMap.set(u.status, [u]);
             } else {

@@ -36,7 +36,7 @@ export class UserGroupsComponent implements OnInit {
 
     async ngOnInit() {
         const groupsResponse = await this.apiService.getGroups(this.organizationId);
-        const groups = groupsResponse.data.map((r) => r);
+        const groups = groupsResponse.data.map(r => r);
         groups.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.groups = groups;
 
@@ -44,8 +44,8 @@ export class UserGroupsComponent implements OnInit {
             const userGroups = await this.apiService.getOrganizationUserGroups(
                 this.organizationId, this.organizationUserId);
             if (userGroups != null && this.groups != null) {
-                userGroups.forEach((ug) => {
-                    const group = this.groups.filter((g) => g.id === ug);
+                userGroups.forEach(ug => {
+                    const group = this.groups.filter(g => g.id === ug);
                     if (group != null && group.length > 0) {
                         (group[0] as any).checked = true;
                     }
@@ -64,12 +64,12 @@ export class UserGroupsComponent implements OnInit {
     }
 
     selectAll(select: boolean) {
-        this.groups.forEach((g) => this.check(g, select));
+        this.groups.forEach(g => this.check(g, select));
     }
 
     async submit() {
         const request = new OrganizationUserUpdateGroupsRequest();
-        request.groupIds = this.groups.filter((g) => (g as any).checked).map((g) => g.id);
+        request.groupIds = this.groups.filter(g => (g as any).checked).map(g => g.id);
 
         try {
             this.formPromise = this.apiService.putOrganizationUserGroups(this.organizationId, this.organizationUserId,

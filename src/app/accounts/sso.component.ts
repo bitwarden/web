@@ -36,7 +36,7 @@ export class SsoComponent extends BaseSsoComponent {
 
     async ngOnInit() {
         super.ngOnInit();
-        const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
             if (qParams.identifier != null) {
                 this.identifier = qParams.identifier;
             } else {
@@ -54,7 +54,7 @@ export class SsoComponent extends BaseSsoComponent {
     async submit() {
         await this.storageService.save(IdentifierStorageKey, this.identifier);
         if (this.clientId === 'browser') {
-            document.cookie = `ssoHandOffMessage=${this.i18nService.t('ssoHandOff')};SameSite=strict`
+            document.cookie = `ssoHandOffMessage=${this.i18nService.t('ssoHandOff')};SameSite=strict`;
         }
         super.submit();
     }

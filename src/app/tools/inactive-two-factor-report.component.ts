@@ -44,7 +44,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
             const inactive2faCiphers: CipherView[] = [];
             const promises: Promise<void>[] = [];
             const docs = new Map<string, string>();
-            allCiphers.forEach((c) => {
+            allCiphers.forEach(c => {
                 if (c.type !== CipherType.Login || (c.login.totp != null && c.login.totp !== '') || !c.login.hasUris ||
                     c.isDeleted) {
                     return;
@@ -77,7 +77,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         if (this.services.size > 0) {
             return;
         }
-        const response = await fetch(new Request('https://twofactorauth.org/api/v1/data.json'));
+        const response = await fetch(new Request('https://2fa.directory/api/v2/totp.json'));
         if (response.status !== 200) {
             throw new Error();
         }
@@ -88,7 +88,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
                 for (const serviceName in category) {
                     if (category.hasOwnProperty(serviceName)) {
                         const service = category[serviceName];
-                        if (service.tfa && service.software && service.url != null) {
+                        if (service.url != null) {
                             const hostname = Utils.getHostname(service.url);
                             if (hostname != null) {
                                 this.services.set(hostname, service.doc);
