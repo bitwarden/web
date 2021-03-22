@@ -13,6 +13,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { PolicyType } from 'jslib/enums/policyType';
+import { DisableSendPolicyType } from 'jslib/enums/disableSendPolicyType';
 
 import { PolicyRequest } from 'jslib/models/request/policyRequest';
 
@@ -36,6 +37,7 @@ export class PolicyEditComponent implements OnInit {
     formPromise: Promise<any>;
     passwordScores: any[];
     defaultTypes: any[];
+    disableSendPolicyOptions: any[];
 
     // Master password
 
@@ -60,6 +62,10 @@ export class PolicyEditComponent implements OnInit {
     passGenCapitalize?: boolean;
     passGenIncludeNumber?: boolean;
 
+    // Disable Send
+
+    disabledSends: DisableSendPolicyType = DisableSendPolicyType.DisableAll;
+
     private policy: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -77,6 +83,10 @@ export class PolicyEditComponent implements OnInit {
             { name: i18nService.t('password'), value: 'password' },
             { name: i18nService.t('passphrase'), value: 'passphrase' },
         ];
+        this.disableSendPolicyOptions = [
+            { name: i18nService.t('disableAllSends'), value: DisableSendPolicyType.DisableAll },
+            { name: i18nService.t('disableAnonymousSends'), value: DisableSendPolicyType.DisableAnonymous }
+        ]
     }
 
     async ngOnInit() {
@@ -112,6 +122,10 @@ export class PolicyEditComponent implements OnInit {
                             this.masterPassRequireLower = this.policy.data.requireLower;
                             this.masterPassRequireNumbers = this.policy.data.requireNumbers;
                             this.masterPassRequireSpecial = this.policy.data.requireSpecial;
+                            break;
+                        case PolicyType.DisableSend:
+                            this.disabledSends = this.policy.data.disabledSends ||
+                                DisableSendPolicyType.DisableAll;
                             break;
                         default:
                             break;
@@ -158,6 +172,11 @@ export class PolicyEditComponent implements OnInit {
                         requireNumbers: this.masterPassRequireNumbers,
                         requireSpecial: this.masterPassRequireSpecial,
                     };
+                    break;
+                case PolicyType.DisableSend:
+                    request.data = {
+                        disableSendPolicy: this.disabledSends,
+                    }
                     break;
                 default:
                     break;
