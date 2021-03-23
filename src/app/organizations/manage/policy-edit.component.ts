@@ -12,8 +12,8 @@ import { Angulartics2 } from 'angulartics2';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
-import { PolicyType } from 'jslib/enums/policyType';
 import { DisableSendType } from 'jslib/enums/disableSendType';
+import { PolicyType } from 'jslib/enums/policyType';
 
 import { PolicyRequest } from 'jslib/models/request/policyRequest';
 
@@ -85,8 +85,8 @@ export class PolicyEditComponent implements OnInit {
         ];
         this.disableSendPolicyOptions = [
             { name: i18nService.t('disableAllSends'), value: DisableSendType.DisableAll },
-            { name: i18nService.t('disableAnonymousSends'), value: DisableSendType.DisableAnonymous }
-        ]
+            { name: i18nService.t('disableAnonymousSends'), value: DisableSendType.DisableAnonymous },
+        ];
     }
 
     async ngOnInit() {
@@ -176,7 +176,7 @@ export class PolicyEditComponent implements OnInit {
                 case PolicyType.DisableSend:
                     request.data = {
                         disableSend: this.disableSend,
-                    }
+                    };
                     break;
                 default:
                     break;
