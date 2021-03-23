@@ -10,7 +10,8 @@
             </div>
             <div class="modal-body" *ngIf="send">
                 <app-callout *ngIf="disableSend">
-                    <span>{{'sendDisabledWarning' | i18n}}</span>
+                    <span>{{(send.hideEmail && editMode && disableAnonymousSend ?
+                        'anonymousSendDisabledWarning' : 'sendDisabledWarning') | i18n}}</span>
                 </app-callout>
                 <div class="row">
                     <div class="col-6 form-group">
@@ -212,7 +213,7 @@
                             <input class="form-check-input" type="checkbox" [(ngModel)]="send.hideEmail" id="hideEmail" 
                             name="HideEmail" [disabled]="disableAnonymousSend || disableSend">
                             <label class="form-check-label" for="hideEmail">
-                                {{'hideEmail' | i18n}}<span *ngIf="disableAnonymousSend" class="font-italic"> {{'anonymousSendDisabled' | i18n}}</span>
+                                {{'hideEmail' | i18n}}<span *ngIf="disableAnonymousSend && !editMode" class="font-italic"> {{'anonymousSendDisabled' | i18n}}</span>
                             </label>
                         </div>
                     </div>
