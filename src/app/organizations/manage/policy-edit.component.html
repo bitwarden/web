@@ -152,7 +152,8 @@
                         <label>{{'disabledSendType' | i18n}}</label>
                         <div class="form-check" *ngFor="let o of disableSendPolicyOptions">
                             <input class="form-check-input" type="radio" [(ngModel)]="disableSend" name="Type_{{o.value}}"
-                                id="type_{{o.value}}" [value]="o.value" [checked]="disableSend === o.value">
+                                id="type_{{o.value}}" [value]="o.value" [checked]="disableSend === o.value"
+                                [disabled]="!enabled">
                             <label class="form-check-label" for="type_{{o.value}}">
                                 {{o.name}}
                             </label>
