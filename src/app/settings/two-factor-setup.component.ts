@@ -9,10 +9,12 @@ import {
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { TwoFactorProviders } from 'jslib/services/auth.service';
 
+import { PolicyType } from 'jslib/enums/policyType';
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 
 import { ModalComponent } from '../modal.component';
@@ -21,7 +23,7 @@ import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.comp
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
 import { TwoFactorEmailComponent } from './two-factor-email.component';
 import { TwoFactorRecoveryComponent } from './two-factor-recovery.component';
-import { TwoFactorU2fComponent } from './two-factor-u2f.component';
+import { TwoFactorWebAuthnComponent } from './two-factor-webauthn.component';
 import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
 
 @Component({
@@ -29,22 +31,24 @@ import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
     templateUrl: 'two-factor-setup.component.html',
 })
 export class TwoFactorSetupComponent implements OnInit {
-    @ViewChild('recoveryTemplate', { read: ViewContainerRef }) recoveryModalRef: ViewContainerRef;
-    @ViewChild('authenticatorTemplate', { read: ViewContainerRef }) authenticatorModalRef: ViewContainerRef;
-    @ViewChild('yubikeyTemplate', { read: ViewContainerRef }) yubikeyModalRef: ViewContainerRef;
-    @ViewChild('u2fTemplate', { read: ViewContainerRef }) u2fModalRef: ViewContainerRef;
-    @ViewChild('duoTemplate', { read: ViewContainerRef }) duoModalRef: ViewContainerRef;
-    @ViewChild('emailTemplate', { read: ViewContainerRef }) emailModalRef: ViewContainerRef;
+    @ViewChild('recoveryTemplate', { read: ViewContainerRef, static: true }) recoveryModalRef: ViewContainerRef;
+    @ViewChild('authenticatorTemplate', { read: ViewContainerRef, static: true }) authenticatorModalRef: ViewContainerRef;
+    @ViewChild('yubikeyTemplate', { read: ViewContainerRef, static: true }) yubikeyModalRef: ViewContainerRef;
+    @ViewChild('duoTemplate', { read: ViewContainerRef, static: true }) duoModalRef: ViewContainerRef;
+    @ViewChild('emailTemplate', { read: ViewContainerRef, static: true }) emailModalRef: ViewContainerRef;
+    @ViewChild('webAuthnTemplate', { read: ViewContainerRef, static: true }) webAuthnModalRef: ViewContainerRef;
 
     organizationId: string;
     providers: any[] = [];
     canAccessPremium: boolean;
+    showPolicyWarning = false;
     loading = true;
 
     private modal: ModalComponent = null;
 
     constructor(protected apiService: ApiService, protected userService: UserService,
-        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService) { }
+        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService,
+        protected policyService: PolicyService) { }
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();
@@ -76,13 +80,14 @@ export class TwoFactorSetupComponent implements OnInit {
     async load() {
         this.loading = true;
         const providerList = await this.getTwoFactorProviders();
-        providerList.data.forEach((p) => {
-            this.providers.forEach((p2) => {
+        providerList.data.forEach(p => {
+            this.providers.forEach(p2 => {
                 if (p.type === p2.type) {
                     p2.enabled = p.enabled;
                 }
             });
         });
+        this.evaluatePolicies();
         this.loading = false;
     }
 
@@ -112,10 +117,10 @@ export class TwoFactorSetupComponent implements OnInit {
                     this.updateStatus(enabled, TwoFactorProviderType.Email);
                 });
                 break;
-            case TwoFactorProviderType.U2f:
-                const u2fComp = this.openModal(this.u2fModalRef, TwoFactorU2fComponent);
-                u2fComp.onUpdated.subscribe((enabled: boolean) => {
-                    this.updateStatus(enabled, TwoFactorProviderType.U2f);
+            case TwoFactorProviderType.WebAuthn:
+                const webAuthnComp = this.openModal(this.webAuthnModalRef, TwoFactorWebAuthnComponent);
+                webAuthnComp.onUpdated.subscribe((enabled: boolean) => {
+                    this.updateStatus(enabled, TwoFactorProviderType.WebAuthn);
                 });
                 break;
             default:
@@ -161,10 +166,20 @@ export class TwoFactorSetupComponent implements OnInit {
         if (!enabled && this.modal != null) {
             this.modal.close();
         }
-        this.providers.forEach((p) => {
+        this.providers.forEach(p => {
             if (p.type === type) {
                 p.enabled = enabled;
             }
         });
+        this.evaluatePolicies();
+    }
+
+    private async evaluatePolicies() {
+        if (this.organizationId == null && this.providers.filter(p => p.enabled).length === 1) {
+            const policies = await this.policyService.getAll(PolicyType.TwoFactorAuthentication);
+            this.showPolicyWarning = policies != null && policies.some(p => p.enabled);
+        } else {
+            this.showPolicyWarning = false;
+        }
     }
 }

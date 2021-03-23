@@ -17,6 +17,7 @@ import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
 @Component({
     selector: 'app-premium',
@@ -24,6 +25,7 @@ import { PaymentComponent } from './payment.component';
 })
 export class PremiumComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxInfoComponent: TaxInfoComponent;
 
     canAccessPremium = false;
     selfHosted = false;
@@ -76,15 +78,17 @@ export class PremiumComponent implements OnInit {
                     return this.finalizePremium();
                 });
             } else {
-                this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
+                this.formPromise = this.paymentComponent.createPaymentToken().then(result => {
                     const fd = new FormData();
                     fd.append('paymentMethodType', result[1].toString());
                     if (result[0] != null) {
                         fd.append('paymentToken', result[0]);
                     }
                     fd.append('additionalStorageGb', (this.additionalStorage || 0).toString());
+                    fd.append('country', this.taxInfoComponent.taxInfo.country);
+                    fd.append('postalCode', this.taxInfoComponent.taxInfo.postalCode);
                     return this.apiService.postPremium(fd);
-                }).then((paymentResponse) => {
+                }).then(paymentResponse => {
                     if (!paymentResponse.success && paymentResponse.paymentIntentClientSecret != null) {
                         return this.paymentComponent.handleStripeCardPayment(paymentResponse.paymentIntentClientSecret,
                             () => this.finalizePremium());
@@ -110,7 +114,17 @@ export class PremiumComponent implements OnInit {
         return this.storageGbPrice * Math.abs(this.additionalStorage || 0);
     }
 
+    get subtotal(): number {
+        return this.premiumPrice + this.additionalStorageTotal;
+    }
+
+    get taxCharges(): number {
+        return this.taxInfoComponent != null && this.taxInfoComponent.taxRate != null ?
+            (this.taxInfoComponent.taxRate / 100) * this.subtotal :
+            0;
+    }
+
     get total(): number {
-        return this.additionalStorageTotal + this.premiumPrice;
+        return (this.subtotal + this.taxCharges) || 0;
     }
 }

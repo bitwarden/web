@@ -14,7 +14,8 @@
             <div class="modal-body" *ngIf="!loading">
                 <div class="form-group">
                     <label for="name">{{'name' | i18n}}</label>
-                    <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required>
+                    <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required
+                        appAutofocus>
                 </div>
                 <div class="form-group">
                     <label for="externalId">{{'externalId' | i18n}}</label>
@@ -41,6 +42,7 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>{{'name' | i18n}}</th>
+                                <th width="100" class="text-center">{{'hidePasswords' | i18n}}</th>
                                 <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
                             </tr>
                         </thead>
@@ -57,6 +59,10 @@
                                             aria-hidden="true"></i>
                                         <span class="sr-only">{{'groupAccessAllItems' | i18n}}</span>
                                     </ng-container>
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" [(ngModel)]="g.hidePasswords"
+                                        name="Groups[{{i}}].HidePasswords" [disabled]="!g.checked || g.accessAll">
                                 </td>
                                 <td class="text-center">
                                     <input type="checkbox" [(ngModel)]="g.readOnly" name="Groups[{{i}}].ReadOnly"

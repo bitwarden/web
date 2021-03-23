@@ -20,6 +20,11 @@
                     <i class="fa-li fa fa-fw fa-star"></i>{{'favorites' | i18n}}
                 </a>
             </li>
+            <li [ngClass]="{active: selectedTrash}" *ngIf="showTrash">
+                <a href="#" appStopClick (click)="selectTrash()">
+                    <i class="fa-li fa fa-fw fa-trash-o"></i>{{'trash' | i18n}}
+                </a>
+            </li>
         </ul>
         <h3>{{'types' | i18n}}</h3>
         <ul class="fa-ul card-ul">
@@ -57,15 +62,17 @@
                         <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
                     </a>
                 </h3>
-                <ul class="fa-ul card-ul carets">
+                <ul class="fa-ul card-ul">
                     <ng-template #recursiveFolders let-folders>
                         <li *ngFor="let f of folders"
                             [ngClass]="{active: selectedFolder && f.node.id === selectedFolderId}">
                             <div class="d-flex">
-                                <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
+                                <i *ngIf="f.children.length" class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
                                     [ngClass]="{'fa-caret-right': isCollapsed(f.node), 'fa-caret-down': !isCollapsed(f.node)}"
                                     (click)="collapse(f.node)"></i>
-                                <a href="#" appStopClick (click)="selectFolder(f.node)">{{f.node.name}}</a>
+                                <a href="#" appStopClick (click)="selectFolder(f.node)">
+                                    <i *ngIf="f.children.length === 0" class="fa-li fa fa-folder-o" aria-hidden="true"></i>{{f.node.name}}
+                                </a>
                                 <a href="#" class="text-muted ml-auto show-active" appStopClick
                                     (click)="editFolder(f.node)" appA11yTitle="{{'editFolder' | i18n}}"
                                     *ngIf="f.node.id">
@@ -84,13 +91,15 @@
             </ng-container>
             <ng-container *ngIf="showCollections && collections && collections.length">
                 <h3>{{'collections' | i18n}}</h3>
-                <ul class="fa-ul card-ul carets">
+                <ul class="fa-ul card-ul">
                     <ng-template #recursiveCollections let-collections>
                         <li *ngFor="let c of collections" [ngClass]="{active: c.node.id === selectedCollectionId}">
-                            <i class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
+                            <i *ngIf="c.children.length" class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
                                 [ngClass]="{'fa-caret-right': isCollapsed(c.node), 'fa-caret-down': !isCollapsed(c.node)}"
                                 (click)="collapse(c.node)"></i>
-                            <a href="#" appStopClick (click)="selectCollection(c.node)">{{c.node.name}}</a>
+                            <a href="#" appStopClick (click)="selectCollection(c.node)">
+                                <i *ngIf="c.children.length === 0" class="fa-li fa fa-cube" aria-hidden="true"></i>{{c.node.name}}
+                            </a>
                             <ul class="fa-ul card-ul carets" *ngIf="c.children.length && !isCollapsed(c.node)">
                                 <ng-container
                                     *ngTemplateOutlet="recursiveCollections; context:{ $implicit: c.children }">

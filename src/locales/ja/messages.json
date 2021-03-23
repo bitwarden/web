@@ -37,6 +37,9 @@
   "password": {
     "message": "パスワード"
   },
+  "newPassword": {
+    "message": "新しいパスワード"
+  },
   "passphrase": {
     "message": "パスフレーズ"
   },
@@ -266,7 +269,7 @@
     "message": "お気に入りの検索"
   },
   "searchType": {
-    "message": "検索の種類",
+    "message": "タイプの検索",
     "description": "Search item type"
   },
   "searchVault": {
@@ -291,7 +294,7 @@
     "message": "ID"
   },
   "typeSecureNote": {
-    "message": "セキュアメモ"
+    "message": "メモ"
   },
   "folders": {
     "message": "フォルダー"
@@ -343,6 +346,9 @@
   },
   "editItem": {
     "message": "アイテムの編集"
+  },
+  "viewItem": {
+    "message": "アイテムの表示"
   },
   "ex": {
     "message": "例:",
@@ -787,8 +793,17 @@
   "warning": {
     "message": "注意"
   },
+  "confirmVaultExport": {
+    "message": "保管庫のエクスポートの確認"
+  },
   "exportWarningDesc": {
     "message": "このエクスポートデータは暗号化されていない形式の保管庫データを含んでいます。メールなどのセキュリティ保護されていない方法で共有したり保管したりしないでください。使用した後はすぐに削除してください。"
+  },
+  "encExportKeyWarningDesc": {
+    "message": "このエクスポートは、アカウントの暗号化キーを使用してデータを暗号化します。 暗号化キーをローテーションした場合は、このエクスポートファイルを復号することはできなくなるため、もう一度エクスポートする必要があります。"
+  },
+  "encExportAccountWarningDesc": {
+    "message": "アカウント暗号化キーは各 Bitwarden ユーザーアカウントに固有であるため、暗号化されたエクスポートを別のアカウントにインポートすることはできません。"
   },
   "exportMasterPassword": {
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
@@ -805,8 +820,11 @@
   "passwordGenerator": {
     "message": "パスワード生成ツール"
   },
+  "minComplexityScore": {
+    "message": "最小複雑度"
+  },
   "minNumbers": {
-    "message": "数字の最小数"
+    "message": "数字の最小個数"
   },
   "minSpecial": {
     "message": "記号の最小数",
@@ -985,8 +1003,23 @@
   "importData": {
     "message": "データをインポート"
   },
+  "importError": {
+    "message": "インポートエラー"
+  },
+  "importErrorDesc": {
+    "message": "インポートしようとしたデータに問題がありました。以下のエラーをソースファイルで解決し、もう一度やり直してください。"
+  },
   "importSuccess": {
     "message": "データを保管庫にインポートしました。"
+  },
+  "importWarning": {
+    "message": "$ORGANIZATION$にデータをインポートしています。データはこの組織のメンバーと共有される可能性があります。続行しますか？",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "データが正しい形式ではありません。インポートするファイルを確認してやり直してください。"
@@ -1040,6 +1073,13 @@
   },
   "enableGravatarsDesc": {
     "message": "gravatar.com から読み込んだアバター画像を使います。"
+  },
+  "enableFullWidth": {
+    "message": "全幅レイアウトを有効化",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "ウェブ保管庫の幅をブラウザウインドウ一杯に広げます。"
   },
   "default": {
     "message": "デフォルト"
@@ -1543,6 +1583,9 @@
   "premiumSignUpTwoStep": {
     "message": "YubiKey、FIDO U2F、Duoなどの追加の2段階認証ログインオプション"
   },
+  "premiumSignUpEmergency": {
+    "message": "緊急アクセス"
+  },
   "premiumSignUpReports": {
     "message": "保管庫を安全に保つための、パスワードやアカウントの健全性、データ侵害に関するレポート"
   },
@@ -1645,6 +1688,9 @@
   },
   "paymentInformation": {
     "message": "お支払い情報"
+  },
+  "billingInformation": {
+    "message": "請求情報"
   },
   "creditCard": {
     "message": "クレジットカード"
@@ -2047,6 +2093,12 @@
   "people": {
     "message": "メンバー"
   },
+  "policies": {
+    "message": "方針"
+  },
+  "editPolicy": {
+    "message": "方針を編集"
+  },
   "groups": {
     "message": "グループ"
   },
@@ -2356,6 +2408,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "編集された方針：$ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "グループ「$ID$」の作成",
     "placeholders": {
@@ -2448,6 +2509,15 @@
   },
   "editedGroupsForUser": {
     "message": "ユーザー「$ID$」のグループの編集",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "ユーザー $ID$ にリンクされていない SSO",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2560,6 +2630,15 @@
   "inviteAcceptFailed": {
     "message": "招待を承諾出来ませんでした。組織の管理者に招待を再送信するように依頼してください。"
   },
+  "inviteAcceptFailedShort": {
+    "message": "招待を受けることができません。$DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "メールアドレスを保存"
   },
@@ -2573,7 +2652,7 @@
     "message": "二段階認証が無効化されました。"
   },
   "learnMore": {
-    "message": "さらに詳しく"
+    "message": "詳細"
   },
   "deleteRecoverDesc": {
     "message": "メールアドレスを入力してアカウントを削除します。"
@@ -2749,6 +2828,9 @@
   "updateEncryptionKeyWarning": {
     "message": "暗号化キーの更新後は、モバイルアプリやブラウザ拡張機能など現在利用中のすべてのBitwardenアプリで再ログインが必要となります。再ログインしないと(新しい暗号化キーをダウンロードすると)データが破損する可能性があります。自動的にログアウトを試みますが、遅延することがあります。"
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "保存済みの暗号化されたエクスポートも無効になります。"
+  },
   "subscription": {
     "message": "契約"
   },
@@ -2776,9 +2858,11 @@
   "nothingSelected": {
     "message": "何も選択されていません。"
   },
-  "submitAgreePolicies": {
-    "message": "「送信」ボタンをクリックすると、次のポリシーに同意します。",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "以下に同意しチェックします:"
+  },
+  "acceptPoliciesError": {
+    "message": "利用規約とプライバシーポリシーを確認してください。"
   },
   "termsOfService": {
     "message": "利用規約"
@@ -2789,11 +2873,11 @@
   "filters": {
     "message": "フィルタ"
   },
-  "lockOptions": {
-    "message": "ロックオプション"
+  "vaultTimeout": {
+    "message": "保管庫のタイムアウト"
   },
-  "lockOptionsDesc": {
-    "message": "いつ保管庫をロックするか選択します。ロックされた保管庫にアクセスするためにはマスターパスワードを入力する必要があります。"
+  "vaultTimeoutDesc": {
+    "message": "保管庫がタイムアウトし、選択したアクションを実行するタイミングを選択します。"
   },
   "oneMinute": {
     "message": "1分"
@@ -2914,6 +2998,12 @@
   "apiKeyWarning": {
     "message": "API キーは組織へのフルアクセス権限を持っています。漏れないよう秘密にしてください。"
   },
+  "userApiKeyDesc": {
+    "message": "API キーは、Bitwarden CLI で認証するために使用されます。"
+  },
+  "userApiKeyWarning": {
+    "message": "API キーは代替認証メカニズムです。秘密にする必要があります。"
+  },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 クライアント資格情報",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2938,5 +3028,739 @@
   },
   "manageSubscriptionFromStore": {
     "message": "アプリ内購入したストアでサブスクリプションを管理してください。"
+  },
+  "minLength": {
+    "message": "最小文字数"
+  },
+  "clone": {
+    "message": "複製"
+  },
+  "masterPassPolicyDesc": {
+    "message": "マスターパスワードの強度に最低要件を設定する。"
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "２段階認証の設定を要求する。"
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "２段階認証を有効にしないメンバーは組織から除外され、メールで通知されます。"
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "２段階認証を必要とする組織に入っています。２段階認証をすべて無効にすると、それらの組織からは自動的に除外されます。"
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "パスワード生成の最低要件を設定する。"
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "組織の要件がパスワード生成の設定に影響しています。"
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "組織が求めるマスターパスワードの要件は："
+  },
+  "policyInEffectMinComplexity": {
+    "message": "複雑度は最低$SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "長さは最低$LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "大文字が最低１つ必要"
+  },
+  "policyInEffectLowercase": {
+    "message": "小文字が最低１つ必要"
+  },
+  "policyInEffectNumbers": {
+    "message": "数字が最低１つ必要"
+  },
+  "policyInEffectSpecial": {
+    "message": "次の記号から１つ以上：$CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "新しいマスターパスワードは最低要件を満たしていません。"
+  },
+  "minimumNumberOfWords": {
+    "message": "文字の最小数"
+  },
+  "defaultType": {
+    "message": "デフォルトのタイプ"
+  },
+  "userPreference": {
+    "message": "ユーザー設定"
+  },
+  "vaultTimeoutAction": {
+    "message": "保管庫タイムアウト時のアクション"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "ロックされた保管庫にアクセスするには、マスターパスワードを再入力してください。"
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "ログアウトした保管庫にアクセスするには、再認証してください。"
+  },
+  "lock": {
+    "message": "ロック",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "ごみ箱",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "ごみ箱を検索"
+  },
+  "permanentlyDelete": {
+    "message": "完全に削除"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "選択したものを完全に削除"
+  },
+  "permanentlyDeleteItem": {
+    "message": "アイテムを完全に削除"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "このアイテムを完全に削除してもよろしいですか？"
+  },
+  "permanentlyDeletedItem": {
+    "message": "完全に削除されたアイテム"
+  },
+  "permanentlyDeletedItems": {
+    "message": "完全に削除されたアイテム"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "$COUNT$ 個のアイテムを選択しました。選択したすべてのアイテムを完全に削除してもよろしいですか？",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "アイテム $ID$ を完全に削除しました。",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "リストア"
+  },
+  "restoreSelected": {
+    "message": "選択したものをリストア"
+  },
+  "restoreItem": {
+    "message": "アイテムをリストア"
+  },
+  "restoredItem": {
+    "message": "リストアされたアイテム"
+  },
+  "restoredItems": {
+    "message": "リストアされたアイテム"
+  },
+  "restoreItemConfirmation": {
+    "message": "このアイテムをリストアしますか？"
+  },
+  "restoreItems": {
+    "message": "アイテムをリストア"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "$COUNT$個のアイテムをリストアしようとしています。本当にこれらのアイテムをリストアしますか？",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "アイテム $ID$ をリストアしました。",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "ログアウトすると保管庫へのすべてのアクセスが制限され、タイムアウト期間後にオンライン認証が必要になります。 この設定を使用してもよろしいですか？"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "タイムアウトアクションの確認"
+  },
+  "hidePasswords": {
+    "message": "パスワードを隠す"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "この情報は税計算と財務報告のために必要です。"
+  },
+  "includeVAT": {
+    "message": "VAT/GST 情報を含める (任意)"
+  },
+  "taxIdNumber": {
+    "message": "VAT/GST Tax ID"
+  },
+  "taxInfoUpdated": {
+    "message": "TAX 情報を更新しました。"
+  },
+  "setMasterPassword": {
+    "message": "マスターパスワードを設定"
+  },
+  "ssoCompleteRegistration": {
+    "message": "SSO ログインを完了するには、保管庫にアクセス・保護するためのマスターパスワードを設定してください。"
+  },
+  "identifier": {
+    "message": "識別子"
+  },
+  "organizationIdentifier": {
+    "message": "組織識別子"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "組織のシングルサインオンポータルを使用してログインします。開始するには組織の識別子を入力してください。"
+  },
+  "enterpriseSingleSignOn": {
+    "message": "組織のシングルサインオン"
+  },
+  "ssoHandOff": {
+    "message": "このタブを閉じて拡張機能で続けられます。"
+  },
+  "businessPortal": {
+    "message": "ビジネスポータル",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "すべてのチームの機能に加えて:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SAML2.0 と OpenID Connect による SSO 認証"
+  },
+  "includeEnterprisePolicies": {
+    "message": "組織ポリシー"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO 認証に失敗しました"
+  },
+  "ssoIdentifierRequired": {
+    "message": "組織識別子が必要です。"
+  },
+  "unlinkSso": {
+    "message": "SSO のリンクを解除"
+  },
+  "linkSso": {
+    "message": "SSO をリンク"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "ポリシー設定が移動されました。このページは間もなく廃止されます。代わりにビジネスポータルポリシーページを使用するには、以下をクリックしてください。"
+  },
+  "singleOrg": {
+    "message": "単一組織"
+  },
+  "singleOrgDesc": {
+    "message": "ユーザーが他の組織に参加できないように制限します。"
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "現在の組織には、複数の組織に参加することを許可していないポリシーがあります。 組織の管理者に連絡するか、別の Bitwarden アカウントから登録してください。"
+  },
+  "singleOrgPolicyWarning": {
+    "message": "オーナーまたは管理者でなく、すでに他の組織のメンバーであるメンバーは組織から削除されます。"
+  },
+  "requireSso": {
+    "message": "シングルサインオン認証"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "組織のシングルサインオン認証でログインする必要があります。"
+  },
+  "prerequisite": {
+    "message": "前提条件"
+  },
+  "requireSsoPolicyReq": {
+    "message": "このポリシーを有効にするには、単一組織のエンタープライズポリシーを有効にする必要があります。"
+  },
+  "requireSsoPolicyReqError": {
+    "message": "単一組織ポリシーが有効になっていません。"
+  },
+  "requireSsoExemption": {
+    "message": "組織の所有者および管理者は、このポリシーの執行から除外されます。"
+  },
+  "sendTypeFile": {
+    "message": "ファイル"
+  },
+  "sendTypeText": {
+    "message": "テキスト"
+  },
+  "createSend": {
+    "message": "新しい Send を作成",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Send を編集",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "作成した Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "編集済みの Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "削除した Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Send を削除",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "この Send を削除してもよろしいですか?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "この Send の種類は何ですか？",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "削除日時"
+  },
+  "deletionDateDesc": {
+    "message": "Send は指定された日時に完全に削除されます。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "有効期限"
+  },
+  "expirationDateDesc": {
+    "message": "設定されている場合、この Send へのアクセスは指定された日時に失効します。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "最大アクセス数"
+  },
+  "maxAccessCountDesc": {
+    "message": "設定されている場合、最大アクセス数に達するとユーザーはこの Send にアクセスできなくなります。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "現在のアクセス数"
+  },
+  "sendPasswordDesc": {
+    "message": "必要に応じて、ユーザーがこの Send にアクセスするためのパスワードを要求します。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "この Send に関するプライベートメモ",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "無効"
+  },
+  "sendLink": {
+    "message": "Send リンク",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Send リンクをコピー",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "パスワードを削除"
+  },
+  "removedPassword": {
+    "message": "パスワードを削除"
+  },
+  "removePasswordConfirmation": {
+    "message": "パスワードを削除してもよろしいですか？"
+  },
+  "disableThisSend": {
+    "message": "誰もアクセスできないように、この Send を無効にします。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "すべての Send"
+  },
+  "maxAccessCountReached": {
+    "message": "最大アクセス数に達しました"
+  },
+  "pendingDeletion": {
+    "message": "Pending deletion"
+  },
+  "expired": {
+    "message": "Expired"
+  },
+  "searchSends": {
+    "message": "Search Sends",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Download File"
+  },
+  "sendAccessUnavailable": {
+    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "missingSendFile": {
+    "message": "この Send に関連付けられたファイルが見つかりませんでした。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "There are no Sends to list.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Emergency Access"
+  },
+  "emergencyAccessDesc": {
+    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of an emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "あなたは1つ以上の組織の所有者です。 緊急連絡先に引き継ぎアクセスを与えると、引き継ぎ後に所有者としてすべての権限を使用できるようになります。"
+  },
+  "trustedEmergencyContacts": {
+    "message": "Trusted emergency contacts"
+  },
+  "noTrustedContacts": {
+    "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
+  },
+  "addEmergencyContact": {
+    "message": "Add emergency contact"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Designated as emergency contact"
+  },
+  "noGrantedAccess": {
+    "message": "You have not been designated as an emergency contact for anyone yet."
+  },
+  "inviteEmergencyContact": {
+    "message": "Invite emergency contact"
+  },
+  "editEmergencyContact": {
+    "message": "Edit emergency contact"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Emergency Access Initiated"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Emergency Access Approved"
+  },
+  "viewDesc": {
+    "message": "Can view all items in your own vault."
+  },
+  "takeover": {
+    "message": "Takeover"
+  },
+  "takeoverDesc": {
+    "message": "Can reset your account with a new master password."
+  },
+  "waitTime": {
+    "message": "Wait Time"
+  },
+  "waitTimeDesc": {
+    "message": "Time required before automatically granting access."
+  },
+  "oneDay": {
+    "message": "1 day"
+  },
+  "days": {
+    "message": "$DAYS$ days",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Invited user."
+  },
+  "acceptEmergencyAccess": {
+    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask the user to send a new invitation."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Unable to accept invitation. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
+  },
+  "requestAccess": {
+    "message": "Request Access"
+  },
+  "requestAccessConfirmation": {
+    "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Emergency access requested for $USER$. We'll notify you by email when it's possible to continue.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Approve"
+  },
+  "reject": {
+    "message": "Reject"
+  },
+  "approveAccessConfirmation": {
+    "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Emergency access approved."
+  },
+  "emergencyRejected": {
+    "message": "Emergency access rejected"
+  },
+  "passwordResetFor": {
+    "message": "Password reset for $USER$. You can now login using the new password.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personal Ownership"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Require users to save vault items to an organization by removing the personal ownership option."
+  },
+  "personalOwnershipExemption": {
+    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Due to an enterprise policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+  },
+  "disableSend": {
+    "message": "Send を無効化"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Bitwarden Send の作成や編集を許可しません。既存の Send を削除することはできます。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "組織のポリシーを管理できる組織ユーザーは、このポリシーの適用から除外されます。"
+  },
+  "sendDisabled": {
+    "message": "Send 無効",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "組織のポリシーにより、既存の Send のみを削除できます。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "modifiedPolicyId": {
+    "message": "Modified policy $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Plan price"
+  },
+  "estimatedTax": {
+    "message": "Estimated tax"
+  },
+  "custom": {
+    "message": "Custom"
+  },
+  "customDesc": {
+    "message": "ユーザー権限をより詳細に制御できます。"
+  },
+  "permissions": {
+    "message": "権限"
+  },
+  "accessBusinessPortal": {
+    "message": "ビジネスポータルにアクセス"
+  },
+  "accessEventLogs": {
+    "message": "イベントログにアクセス"
+  },
+  "accessImportExport": {
+    "message": "インポート/エクスポートにアクセス"
+  },
+  "accessReports": {
+    "message": "レポートにアクセス"
+  },
+  "manageAllCollections": {
+    "message": "すべてのコレクションを管理"
+  },
+  "manageAssignedCollections": {
+    "message": "割り当てられたコレクションの管理"
+  },
+  "manageGroups": {
+    "message": "グループを管理"
+  },
+  "managePolicies": {
+    "message": "ポリシーの管理"
+  },
+  "manageSso": {
+    "message": "SSO を管理"
+  },
+  "manageUsers": {
+    "message": "ユーザーを管理"
+  },
+  "disableRequireSsoError": {
+    "message": "このポリシーを無効にするには、シングルサインオン認証ポリシーを手動で無効にする必要があります。"
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "組織のポリシーが所有者のオプションに影響を与えています。"
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "組織ユーザーの個人所有権を無効にする"
+  },
+  "textHiddenByDefault": {
+    "message": "Send へのアクセス時に既定でテキストを非表示にする",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "この Send を説明するわかりやすい名前",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "送信したいテキスト"
+  },
+  "sendFileDesc": {
+    "message": "送信するファイル"
+  },
+  "copySendLinkOnSave": {
+    "message": "Send の保存時にクリップボードへリンクをコピーします。"
+  },
+  "sendLinkLabel": {
+    "message": "Send リンク",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send を使うと機密性の高い情報を他の人に簡単かつ安全に送信できます。",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "今すぐ",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "テキストやファイルを誰とでも直接共有できます。"
+  },
+  "sendVaultCardLearnMore": {
+    "message": "今すぐ",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "詳細",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "を確認",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "または",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "試してみてください",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "または",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "登録して",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "試してみてください",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden ユーザー $USER_IDENTIFIER$ が共有しました",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "入力された有効期限は正しくありません。"
+  },
+  "deletionDateIsInvalid": {
+    "message": "入力された削除日時は正しくありません。"
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "有効期限は必須です。"
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "削除日時は必須です。"
+  },
+  "dateParsingError": {
+    "message": "削除と有効期限の保存中にエラーが発生しました。"
   }
 }

@@ -35,7 +35,7 @@ export class AdjustStorageComponent {
     @Output() onAdjusted = new EventEmitter<number>();
     @Output() onCanceled = new EventEmitter();
 
-    @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
 
     storageAdjustment = 0;
     formPromise: Promise<any>;

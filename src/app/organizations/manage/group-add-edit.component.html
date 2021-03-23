@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="groupAddEditTitle">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title" id="groupAddEditTitle">{{title}}</h2>
@@ -24,6 +24,10 @@
                 <h3 class="mt-4 d-flex">
                     <div class="mb-2">
                         {{'accessControl' | i18n}}
+                        <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                            href="https://bitwarden.com/help/article/user-types-access-control/#access-control">
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                        </a>
                     </div>
                     <div class="ml-auto" *ngIf="access === 'selected' && collections && collections.length">
                         <button type="button" (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
@@ -59,6 +63,7 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>{{'name' | i18n}}</th>
+                                <th width="100" class="text-center">{{'hidePasswords' | i18n}}</th>
                                 <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
                             </tr>
                         </thead>
@@ -70,6 +75,10 @@
                                 </td>
                                 <td (click)="check(c)">
                                     {{c.name}}
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" [(ngModel)]="c.hidePasswords"
+                                        name="Collection[{{i}}].HidePasswords" [disabled]="!c.checked">
                                 </td>
                                 <td class="text-center">
                                     <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly"

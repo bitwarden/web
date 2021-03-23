@@ -1,6 +1,5 @@
 import * as jq from 'jquery';
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import {
     BodyOutputType,
@@ -36,24 +35,23 @@ import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
-import { LockService } from 'jslib/abstractions/lock.service';
 import { NotificationsService } from 'jslib/abstractions/notifications.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SearchService } from 'jslib/abstractions/search.service';
 import { SettingsService } from 'jslib/abstractions/settings.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
+import { VaultTimeoutService } from 'jslib/abstractions/vaultTimeout.service';
 
 import { ConstantsService } from 'jslib/services/constants.service';
 
 import { RouterService } from './services/router.service';
 
 const BroadcasterSubscriptionId = 'AppComponent';
-// Hack due to Angular 5.2 bug
-const swal: SweetAlert = _swal as any;
 const IdleTimeout = 60000 * 10; // 10 minutes
 
 @Component({
@@ -80,11 +78,12 @@ export class AppComponent implements OnDestroy, OnInit {
         private authService: AuthService, private router: Router, private analytics: Angulartics2,
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
-        private lockService: LockService, private storageService: StorageService,
+        private vaultTimeoutService: VaultTimeoutService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
-        private stateService: StateService, private eventService: EventService) { }
+        private stateService: StateService, private eventService: EventService,
+        private policyService: PolicyService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -111,7 +110,7 @@ export class AppComponent implements OnDestroy, OnInit {
                         this.logOut(!!message.expired);
                         break;
                     case 'lockVault':
-                        await this.lockService.lock();
+                        await this.vaultTimeoutService.lock();
                         break;
                     case 'locked':
                         this.notificationsService.updateConnection(false);
@@ -149,13 +148,16 @@ export class AppComponent implements OnDestroy, OnInit {
                             properties: { label: message.label },
                         });
                         break;
+                    case 'setFullWidth':
+                        this.setFullWidth();
+                        break;
                     default:
                         break;
                 }
             });
         });
 
-        this.router.events.subscribe((event) => {
+        this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 const modals = Array.from(document.querySelectorAll('.modal'));
                 for (const modal of modals) {
@@ -163,10 +165,12 @@ export class AppComponent implements OnDestroy, OnInit {
                 }
 
                 if (document.querySelector('.swal-modal') != null) {
-                    swal.close(undefined);
+                    Swal.close(undefined);
                 }
             }
         });
+
+        this.setFullWidth();
     }
 
     ngOnDestroy() {
@@ -187,6 +191,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.cipherService.clear(userId),
             this.folderService.clear(userId),
             this.collectionService.clear(userId),
+            this.policyService.clear(userId),
             this.passwordGenerationService.clear(),
             this.stateService.purge(),
         ]);
@@ -198,6 +203,8 @@ export class AppComponent implements OnDestroy, OnInit {
                 this.toasterService.popAsync('warning', this.i18nService.t('loggedOut'),
                     this.i18nService.t('loginExpired'));
             }
+
+            Swal.close();
             this.router.navigate(['/']);
         });
     }
@@ -260,6 +267,15 @@ export class AppComponent implements OnDestroy, OnInit {
             this.notificationsService.disconnectFromInactivity();
         } else {
             this.notificationsService.reconnectFromActivity();
+        }
+    }
+
+    private async setFullWidth() {
+        const enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
+        if (enableFullWidth) {
+            document.body.classList.add('full-width');
+        } else {
+            document.body.classList.remove('full-width');
         }
     }
 }

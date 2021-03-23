@@ -1,9 +1,9 @@
 @import "../css/webfonts.css";
 
-$primary: #3c8dbc;
-$primary-accent: #286090;
+$primary: #175DDC;
+$primary-accent: #1252A3;
 $secondary: #ced4da;
-$secondary-alt: #2c3e50;
+$secondary-alt: #1A3B66;
 $success: #00a65a;
 $info: #555555;
 $warning: #bf7e16;
@@ -122,6 +122,13 @@ body {
 
     &.layout_frontend {
         background-color: #ecf0f5;
+    }
+
+    &.full-width:not(.layout_frontend) {
+        .container {
+            min-width: 980px;
+            width: 90%;
+        }
     }
 }
 
@@ -272,7 +279,7 @@ input, select, textarea {
 }
 
 .modal-body {
-    h3 {
+    h3, .section-header > * {
         font-weight: normal;
         text-transform: uppercase;
         color: $text-muted;
@@ -308,6 +315,16 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 }
 
+.btn-link {
+    &:focus,
+    &.focus {
+        outline-color: -webkit-focus-ring-color;
+        outline-offset: 1px;
+        outline-style: auto;
+        outline-width: 1px;
+    }
+}
+
 .btn-outline-secondary {
     color: $text-muted;
 
@@ -317,6 +334,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
     &:disabled {
         opacity: 1;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($primary), $primary, 15%), .5);
     }
 }
 
@@ -343,6 +365,17 @@ input[type="search"]::-webkit-search-cancel-button {
             visibility: hidden;
         }
     }
+}
+
+.list-group-item {
+    &:focus,
+    &.focus {
+        z-index: 100;
+    }
+}
+
+.fa-icon-above-input {
+    height: 1.5em;
 }
 
 .table.table-list {
@@ -455,7 +488,7 @@ input[type="search"]::-webkit-search-cancel-button {
     color: #c40800;
 }
 
-app-vault-groupings, app-org-vault-groupings {
+app-vault-groupings, app-org-vault-groupings, .groupings {
     .card {
         #search {
             margin-bottom: 1rem;
@@ -563,6 +596,17 @@ app-user-billing {
 #duo-frame {
     background: url('../images/loading.svg') 0 0 no-repeat;
     height: 330px;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}
+
+#web-authn-frame {
+    background: url('../images/loading.svg') 0 0 no-repeat;
+    height: 290px;
 
     iframe {
         width: 100%;
@@ -832,3 +876,5 @@ img.logo {
 .cursor-move {
     cursor: move !important;
 }
+
+@import "./register-layout";

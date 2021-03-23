@@ -41,18 +41,19 @@ const BroadcasterSubscriptionId = 'OrgVaultComponent';
     templateUrl: 'vault.component.html',
 })
 export class VaultComponent implements OnInit, OnDestroy {
-    @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
-    @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
-    @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
-    @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
-    @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
+    @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
+    @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
+    @ViewChild('attachments', { read: ViewContainerRef, static: true }) attachmentsModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef, static: true }) collectionsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
 
     organization: Organization;
-    collectionId: string;
-    type: CipherType;
+    collectionId: string = null;
+    type: CipherType = null;
+    deleted: boolean = false;
 
-    private modal: ModalComponent = null;
+    modal: ModalComponent = null;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
@@ -61,14 +62,14 @@ export class VaultComponent implements OnInit, OnDestroy {
         private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
+        const queryParams = this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
-                if (!this.organization.isAdmin) {
+                if (!this.organization.canManageAllCollections) {
                     await this.syncService.fullSync(false);
                     this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
                         this.ngZone.run(async () => {
@@ -92,7 +93,10 @@ export class VaultComponent implements OnInit, OnDestroy {
                     this.groupingsComponent.selectedAll = true;
                     await this.ciphersComponent.reload();
                 } else {
-                    if (qParams.type) {
+                    if (qParams.deleted) {
+                        this.groupingsComponent.selectedTrash = true;
+                        await this.filterDeleted(true);
+                    } else if (qParams.type) {
                         const t = parseInt(qParams.type, null);
                         this.groupingsComponent.selectedType = t;
                         await this.filterCipherType(t, true);
@@ -106,7 +110,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                 }
 
                 if (qParams.viewEvents != null) {
-                    const cipher = this.ciphersComponent.ciphers.filter((c) => c.id === qParams.viewEvents);
+                    const cipher = this.ciphersComponent.ciphers.filter(c => c.id === qParams.viewEvents);
                     if (cipher.length > 0) {
                         this.viewEvents(cipher[0]);
                     }
@@ -116,6 +120,10 @@ export class VaultComponent implements OnInit, OnDestroy {
                     queryParamsSub.unsubscribe();
                 }
             });
+
+            if (queryParams != null) {
+                queryParams.unsubscribe();
+            }
         });
     }
 
@@ -125,6 +133,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async clearGroupingFilters() {
         this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.deleted = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchVault');
         await this.ciphersComponent.applyFilter();
         this.clearFilters();
@@ -133,6 +142,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async filterCipherType(type: CipherType, load = false) {
         this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.deleted = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
         const filter = (c: CipherView) => c.type === type;
         if (load) {
@@ -147,6 +157,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async filterCollection(collectionId: string, load = false) {
         this.ciphersComponent.showAddNew = true;
+        this.ciphersComponent.deleted = false;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
         const filter = (c: CipherView) => {
             if (collectionId === 'unassigned') {
@@ -162,6 +173,20 @@ export class VaultComponent implements OnInit, OnDestroy {
         }
         this.clearFilters();
         this.collectionId = collectionId;
+        this.go();
+    }
+
+    async filterDeleted(load: boolean = false) {
+        this.ciphersComponent.showAddNew = false;
+        this.ciphersComponent.deleted = true;
+        this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchTrash');
+        if (load) {
+            await this.ciphersComponent.reload(null, true);
+        } else {
+            await this.ciphersComponent.applyFilter(null);
+        }
+        this.clearFilters();
+        this.deleted = true;
         this.go();
     }
 
@@ -208,9 +233,9 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.modal = this.collectionsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
 
-        if (this.organization.isAdmin) {
+        if (this.organization.canManageAllCollections) {
             childComponent.collectionIds = cipher.collectionIds;
-            childComponent.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+            childComponent.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         childComponent.organization = this.organization;
         childComponent.cipherId = cipher.id;
@@ -228,8 +253,8 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = this.editCipher(null);
         component.organizationId = this.organization.id;
         component.type = this.type;
-        if (this.organization.isAdmin) {
-            component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+        if (this.organization.canManageAllCollections) {
+            component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         if (this.collectionId != null) {
             component.collectionIds = [this.collectionId];
@@ -255,12 +280,28 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
+        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
 
         return childComponent;
+    }
+
+    cloneCipher(cipher: CipherView) {
+        const component = this.editCipher(cipher);
+        component.cloneMode = true;
+        component.organizationId = this.organization.id;
+        if (this.organization.canManageAllCollections) {
+            component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
+        }
+        // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value
+        // in the add-edit componenet
+        component.collectionIds = cipher.collectionIds;
     }
 
     async viewEvents(cipher: CipherView) {
@@ -287,6 +328,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     private clearFilters() {
         this.collectionId = null;
         this.type = null;
+        this.deleted = false;
     }
 
     private go(queryParams: any = null) {
@@ -294,6 +336,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             queryParams = {
                 type: this.type,
                 collectionId: this.collectionId,
+                deleted: this.deleted ? true : null,
             };
         }
 

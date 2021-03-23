@@ -10,16 +10,16 @@
     }
   },
   "whatTypeOfItem": {
-    "message": "Millist tüüpi kirje see on?"
+    "message": "Mis tüüpi kirje see on?"
   },
   "name": {
     "message": "Nimi"
   },
   "uri": {
-    "message": "URL"
+    "message": "URI"
   },
   "uriPosition": {
-    "message": "URL $POSITION$",
+    "message": "URI $POSITION$",
     "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
     "placeholders": {
       "position": {
@@ -29,13 +29,16 @@
     }
   },
   "newUri": {
-    "message": "Uus URL"
+    "message": "Uus URI"
   },
   "username": {
     "message": "Kasutajanimi"
   },
   "password": {
     "message": "Parool"
+  },
+  "newPassword": {
+    "message": "Uus Parool"
   },
   "passphrase": {
     "message": "Paroolifraas"
@@ -50,13 +53,13 @@
     "message": "Kaardiomaniku nimi"
   },
   "number": {
-    "message": "Number"
+    "message": "Kaardi number"
   },
   "brand": {
     "message": "Väljastaja"
   },
   "expiration": {
-    "message": "Aegumine"
+    "message": "Aegumiskuupäev"
   },
   "securityCode": {
     "message": "Kaardi turvakood (CVV)"
@@ -201,7 +204,7 @@
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
-    "message": "Vaikeseadistus",
+    "message": "Vaike sobivuse tuvastamine",
     "description": "Default URI match detection for auto-fill."
   },
   "never": {
@@ -344,6 +347,9 @@
   "editItem": {
     "message": "Kirje muutmine"
   },
+  "viewItem": {
+    "message": "Kirje vaatamine"
+  },
   "ex": {
     "message": "nt.",
     "description": "Short abbreviation for 'example'."
@@ -385,7 +391,7 @@
     "description": "Copy credit card security code (CVV)"
   },
   "copyUri": {
-    "message": "Kopeeri URL",
+    "message": "Kopeeri URI",
     "description": "Copy URI to clipboard"
   },
   "myVault": {
@@ -395,7 +401,7 @@
     "message": "Hoidla"
   },
   "shareSelected": {
-    "message": "Jaga valituid"
+    "message": "Jaga valitud"
   },
   "deleteSelected": {
     "message": "Kustuta valitud"
@@ -452,7 +458,7 @@
     "message": "Kustuta kirje"
   },
   "deleteFolder": {
-    "message": "Kustuta Kaust"
+    "message": "Kustuta kaust"
   },
   "deleteAttachment": {
     "message": "Kustuta manus"
@@ -461,16 +467,16 @@
     "message": "Soovid tõesti selle kirje kustutada?"
   },
   "deletedItem": {
-    "message": "Kirje on kustutatud"
+    "message": "Kirje on prügikasti teisaldatud"
   },
   "deletedItems": {
-    "message": "Kirje on kustutatud"
+    "message": "Kirjed on prügikasti teisaldatud"
   },
   "movedItems": {
     "message": "Kirjed on teisaldatud"
   },
   "overwritePasswordConfirmation": {
-    "message": "Oled kindel, et soovid olemasolevat parooli üle kirjutada?"
+    "message": "Oled kindel, et soovid olemas olevat parooli üle kirjutada?"
   },
   "editedFolder": {
     "message": "Kaust on muudetud"
@@ -482,7 +488,7 @@
     "message": "Oled kindel, et soovid seda kausta kustutada?"
   },
   "deletedFolder": {
-    "message": "Kaust kustutatud"
+    "message": "Kaust on kustutatud"
   },
   "loggedOut": {
     "message": "Välja logitud"
@@ -530,7 +536,7 @@
     "message": "Ülemparool"
   },
   "masterPassDesc": {
-    "message": "Ülemparool on parool, millega pääsed oma kontole ligi. On äärmiselt tähtis, et ülemparool ei ununeks. Selle parooli taastamine ei ole mingil moel võimalik."
+    "message": "Ülemparooliga pääsed oma kontole ligi. On äärmiselt tähtis, et ülemparool ei ununeks. Selle parooli taastamine ei ole mingil moel võimalik."
   },
   "masterPassHintDesc": {
     "message": "Vihje võib abiks olla olukorras, kui oled ülemparooli unustanud."
@@ -539,7 +545,7 @@
     "message": "Sisesta ülemparool uuesti"
   },
   "masterPassHint": {
-    "message": "Ülemparooli vihje (ei ole kohutuslik)"
+    "message": "Ülemparooli vihje (ei ole kohustuslik)"
   },
   "masterPassHintLabel": {
     "message": "Ülemparooli vihje"
@@ -590,7 +596,7 @@
     "message": "Lukusta lahti"
   },
   "loggedInAsEmailOn": {
-    "message": "Sisse logitud kontoga $EMAIL$ aadressil $HOSTNAME$.",
+    "message": "Sisse logitud kontosse $EMAIL$ aadressil $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -687,7 +693,7 @@
     "message": "Kaheastmelise sisselogimise valikud"
   },
   "recoveryCodeDesc": {
-    "message": "Sul ei ole ligipääsu ühelegi kaheastmelise kinnitamise teenusele? Kasuta Taastamise koodi, et kaheastmeline kinnitamine oma kontol välja lülitada."
+    "message": "Sul ei ole ligipääsu ühelegi kaheastmelise kinnitamise teenusele? Kasuta taastamise koodi, et kaheastmeline kinnitamine oma kontol välja lülitada."
   },
   "recoveryCodeTitle": {
     "message": "Taastamise kood"
@@ -703,7 +709,7 @@
     "message": "YubiKey OTP Turvaline võti"
   },
   "yubiKeyDesc": {
-    "message": "Kasuta kontole ligipääsemiseks YubiKey-d. See töötab YubiKey 4, 4 Nano, 4C ja NEO seadmetega."
+    "message": "Kasuta kontole ligipääsemiseks YubiKey-d. See töötab YubiKey 4, 5 ja NEO seadmetega."
   },
   "duoDesc": {
     "message": "Kinnita Duo Security abil, kasutades selleks Duo Mobile rakendust, SMS-i, telefonikõnet või U2F turvavõtit.",
@@ -787,8 +793,17 @@
   "warning": {
     "message": "Hoiatus"
   },
+  "confirmVaultExport": {
+    "message": "Hoidla eksportimise kinnitamine"
+  },
   "exportWarningDesc": {
     "message": "Eksporditav fail on krüpteeringuta ja sisaldab hoidla sisu. Seda faili ei tohiks kaua käidelda ning mitte mingil juhul ebaturvaliselt saata (näiteks e-postiga). Kustuta see koheselt pärast kasutamist."
+  },
+  "encExportKeyWarningDesc": {
+    "message": "Eksporditavate andmete krüpteerimiseks kasutatakse kontol olevat krüpteerimisvõtit. Kui sa peaksid seda krüpteerimise võtit roteerima, ei saa sa järgnevalt eksporditavaid andmeid enam dekrüpteerida."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Iga Bitwardeni kasutaja krüpteerimisvõti on unikaalne. Eksporditud andmeid ei saa importida teise Bitwardeni kasutajakontosse."
   },
   "exportMasterPassword": {
     "message": "Hoidlas olevate andmete eksportimiseks on vajalik ülemparooli sisestamine."
@@ -805,6 +820,9 @@
   "passwordGenerator": {
     "message": "Parooli genereerimine"
   },
+  "minComplexityScore": {
+    "message": "Minimaalne keerulisuse skoor"
+  },
   "minNumbers": {
     "message": "Vähim arv numbreid"
   },
@@ -816,7 +834,7 @@
     "message": "Väldi ebamääraseid kirjamärke"
   },
   "regeneratePassword": {
-    "message": "Genereeri salasõna uuesti"
+    "message": "Genereeri parool uuesti"
   },
   "length": {
     "message": "Pikkus"
@@ -857,7 +875,7 @@
     "message": "Kood"
   },
   "changeEmailDesc": {
-    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize your the email address change.",
+    "message": "Kinnituskood on saadetud e-postile $EMAIL$. Kontrolli oma e-posti ning sisesta see kood allolevasse kasti, et e-posti aadressi muutmine lõpule viia.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -985,8 +1003,23 @@
   "importData": {
     "message": "Andmete importimine"
   },
+  "importError": {
+    "message": "Viga importimisel"
+  },
+  "importErrorDesc": {
+    "message": "Andmete importimisel ilmnes tõrge. Paranda originaalfailis olevad vead (kuvatud all) ning proovi uuesti."
+  },
   "importSuccess": {
     "message": "Andmed on edukalt hoidlasse imporditud."
+  },
+  "importWarning": {
+    "message": "Impordid andmeid organisatsiooni $ORGANIZATION$. Imporditavaid andmeid võidakse jagada teiste organisatsiooni liikmetega. Soovid jätkata?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "Andmed ei ole korrektse vorminguga. Palun kontrolli imporditavat faili ja proovi uuesti."
@@ -1020,13 +1053,13 @@
     "message": "Erinevad Veebihoidla kohandamise valikud."
   },
   "optionsUpdated": {
-    "message": "Seadistus on uuendatud"
+    "message": "Muudatused on rakendatud"
   },
   "language": {
     "message": "Keel"
   },
   "languageDesc": {
-    "message": "Siin saad veebihoidla keelt muuta."
+    "message": "Siin saab veebihoidla keelt muuta."
   },
   "disableIcons": {
     "message": "Lülita veebisaidi ikoonid välja"
@@ -1040,6 +1073,13 @@
   },
   "enableGravatarsDesc": {
     "message": "Luba avatari pildid, mida laaditakse lehelt gravatar.com."
+  },
+  "enableFullWidth": {
+    "message": "Lülita sisse veebihoidla laiem vaade",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "See valik muudab veebihoidla laiust selliselt, et see ulatuks üle terve brauseri."
   },
   "default": {
     "message": "Vaikimisi"
@@ -1096,7 +1136,7 @@
     "message": "Kaheastmelise kinnitamine aktiveerimine võib luua olukorra, kus sul on võimatu oma Bitwardeni kontosse sisse logida. Näiteks juhtudel, kui kaotad oma nutiseadme. Taastamise kood võimaldab aga kontole ligi pääseda ka juhtudel, kui kaheastmelist kinnitamist ei ole võimalik läbi viia. Sellistel juhtudel ei saa ka Bitwardeni klienditugi sinu kontole ligipääsu taastada. Selle tõttu soovitame taastekoodi välja printida ja seda turvalises kohas hoida."
   },
   "viewRecoveryCode": {
-    "message": "Vaata taaastamise koodi"
+    "message": "Vaata taastamise koodi"
   },
   "providers": {
     "message": "Teenused",
@@ -1128,7 +1168,7 @@
     "message": "Organisatsiooni kuulumise tõttu on sul juba juurdepääs premium funktsioonidele."
   },
   "manage": {
-    "message": "Haldamine"
+    "message": "Haldus"
   },
   "disable": {
     "message": "Keela"
@@ -1321,7 +1361,7 @@
     "message": "Leiti ebaturvalisi veebilehti"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "Leidsime sinu hoidlast $COUNT$ ebaturvalist veebilehte. Kui veebilehed seda võimaldavad, soovitame tungivalt need https:// URL-ideks muuta ",
+    "message": "Leidsime hoidlast $COUNT$ ebaturvalist veebilehte.\nKui võimalik, soovitame nende veebilehtede alguse tungivalt https:// -ks muuta. ",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1330,13 +1370,13 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "Hoidlas olevad kirjed ei kasuta ebaturvalisi URL-e."
+    "message": "Hoidlas olevad kirjed ei kasuta ebaturvalisi URI-sid."
   },
   "inactive2faReport": {
     "message": "Sisselülitamata 2FA raport"
   },
   "inactive2faReportDesc": {
-    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust tõstev seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelise kinnituse sisse lülitada."
+    "message": "Kaheastmeline kinnitamine (2FA) on tähtis turvalisust lisav seadistus, mis aitab kontoandmeid kaitsta. Kui veebileht seda võimaldab, soovitame tungivalt kaheastmelise kinnituse sisse lülitada."
   },
   "inactive2faFound": {
     "message": "Kaheastmelise kinnituseta kontod"
@@ -1351,7 +1391,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "Hoidlast ei leitud veebilehti, kus kaheastmelise kinnitamise seadistus on välja lülitatud."
+    "message": "Hoidlast ei leitud kontosid, kus kaheastmelise kinnitamise seadistus on välja lülitatud."
   },
   "instructions": {
     "message": "Juhised"
@@ -1393,10 +1433,10 @@
     "message": "Nõrkade paroolide raport"
   },
   "weakPasswordsReportDesc": {
-    "message": "Nõrgad paroolid on häkkerite poolt vägagi lihtasti lahtimurtavad, sest selleks kasutatakse automatiseeritud tööriistu. Bitwardeni parooli genereerija aitab sul luua paroole, mida on märksa keerulisem lahti murda."
+    "message": "Nõrgad paroolid on häkkerite poolt vägagi lihtsasti lahtimurtavad, sest selleks kasutatakse automatiseeritud tööriistu. Bitwardeni parooli genereerija aitab sul luua paroole, mida on märksa keerulisem lahti murda."
   },
   "weakPasswordsFound": {
-    "message": "Avastatud on nõrku paroole"
+    "message": "Avastatud on nõrgad paroolid"
   },
   "weakPasswordsFoundDesc": {
     "message": "Leidsime sinu hoidlast $COUNT$ kirjet, milledel on nõrgad paroolid. Soovitame tungivalt need paroolid tugevamate vastu välja vahetada.",
@@ -1447,7 +1487,7 @@
     "message": "Andmeleke on intsident, kus sinu kasutajakonto andmed on lekkinud või häkkerite poolt varastatud. Soovitame tungivalt üle kontrollida lekkinud andmed (e-posti aadress, paroolid, krediitkaardi andmed jne) ning võtta kasutusele meetmed nende turvamiseks. Näiteks paroolivahetus."
   },
   "breachCheckUsernameEmail": {
-    "message": "Kontrolli mistahes kasutajanimesid või e-posti aadresse, mida ma kasutan."
+    "message": "Kontrollitakse mistahes kasutajanimesid või e-posti aadresse, mida kontodes kasutatakse."
   },
   "checkBreaches": {
     "message": "Kontrolli lekkeid"
@@ -1462,7 +1502,7 @@
     }
   },
   "goodNews": {
-    "message": "Head uudised",
+    "message": "Head uudised!",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
@@ -1543,11 +1583,14 @@
   "premiumSignUpTwoStep": {
     "message": "Lisavõimalused kaheastmeliseks kinnitamiseks, näiteks YubiKey, FIDO U2F ja Duo."
   },
+  "premiumSignUpEmergency": {
+    "message": "Hädaolukorra ligipääs"
+  },
   "premiumSignUpReports": {
     "message": "Parooli hügieen, konto seisukord ja andmelekete raportid aitavad hoidlat turvalisena hoida."
   },
   "premiumSignUpTotp": {
-    "message": "TOTP kinnituskoodide (2FA) genereeria hoidlas olevatele kasutajakontodele."
+    "message": "TOTP kinnituskoodide (2FA) genereerija hoidlas olevatele kasutajakontodele."
   },
   "premiumSignUpSupport": {
     "message": "Kiirem klienditugi."
@@ -1565,7 +1608,7 @@
     }
   },
   "addons": {
-    "message": "Täiendused"
+    "message": "Lisad"
   },
   "premiumAccess": {
     "message": "Premium ligipääs"
@@ -1590,7 +1633,7 @@
     "message": "# lisa GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Sul on kasutada $SIZE$ krüpteeritud failiruumi Soovi korral saad osta lisaruumi hinnaga $PRICE$ GB /$INTERVAL$.",
+    "message": "Sul on kasutada $SIZE$ krüpteeritud failiruumi. Soovi korral saad osta lisaruumi hinnaga $PRICE$ GB /$INTERVAL$.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1635,7 +1678,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Sinu valitud pakett sisaldab 7 päevast prooviperioodi. Krediitkaardilt ei debiteerita raha enne, kui prooviperiood otsa lõpeb. Kirjas olev summa debiteeritakse iga $INTERVAL$. Tellimust on võimalik igal ajal tühistada.",
+    "message": "Valitud pakett sisaldab 7 päevast prooviperioodi. Krediitkaardilt ei võeta raha enne, kui prooviperiood otsa lõpeb. Välja toodud summa debiteeritakse iga $INTERVAL$. Tellimust on võimalik igal ajal tühistada.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1645,6 +1688,9 @@
   },
   "paymentInformation": {
     "message": "Maksemeetod"
+  },
+  "billingInformation": {
+    "message": "Arveldusandmed"
   },
   "creditCard": {
     "message": "Krediitkaart"
@@ -1827,7 +1873,7 @@
     "message": "Vajalik on konto e-posti aadressi kinnitamine."
   },
   "newOrganizationDesc": {
-    "message": "Organisatsioonid võimaldavad sul hoidlat osaliselt või täielikult jagada. Lisaks saad kõiki kasutajaid liigitada näiteks perekonda, väikesesse meeskonda või suurde ettevõttesse."
+    "message": "Organisatsioonid võimaldavad hoidla sisu osaliselt või täielikult jagada. Lisaks on võimalik kõiki kasutajaid liigitada näiteks perekonda, väiksesse meeskonda või suurde ettevõttesse."
   },
   "generalInformation": {
     "message": "Üldine Informatsioon"
@@ -1845,7 +1891,7 @@
     "message": "Ettevõtte nimi"
   },
   "chooseYourPlan": {
-    "message": "Vali oma pakett"
+    "message": "Vali pakett"
   },
   "users": {
     "message": "Kasutajad"
@@ -1873,14 +1919,14 @@
     }
   },
   "userSeatsHowManyDesc": {
-    "message": "Palju kasutajaid sa vajad? Kasutajaid on hiljem võimalik juurde lisada."
+    "message": "Vali vajalik arv kasutajaid. Neid on võimalik iga kell juurde lisada või eemaldada."
   },
   "planNameFree": {
     "message": "Tasuta",
     "description": "Free as in 'free beer'."
   },
   "planDescFree": {
-    "message": "Testimiseks ja isiklikuks kasutamiseks, et jagada $COUNT$ teise kasutajaga.",
+    "message": "Testimiseks ja isiklikuks kasutamiseks, jagamaks $COUNT$ teise kasutajaga.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1973,13 +2019,13 @@
     }
   },
   "onPremHostingOptional": {
-    "message": "Ise majutamine (valikuline)"
+    "message": "Ise hostimise võimalus (valikuline)"
   },
   "usersGetPremium": {
-    "message": "Kasutajad saavad juurdepääsu premium funktsioonidele"
+    "message": "Liikmed saavad automaatse juurdepääsu premium funktsioonidele"
   },
   "controlAccessWithGroups": {
-    "message": "Halda gruppide abil kasutajate ligipääse"
+    "message": "Halda gruppide abil kasutajate ligipääsu õigusi"
   },
   "syncUsersFromDirectory": {
     "message": "Sünkroniseeri kasutajaid ja gruppe kataloogist"
@@ -1994,7 +2040,7 @@
     "message": "Kiirem klienditugi"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ päevane prooviversioon, tühistatav iga kell",
+    "message": "$COUNT$ päevane prooviversioon, mida saab iga kell tühistada",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2045,7 +2091,13 @@
     "message": "Sündmuste logid"
   },
   "people": {
-    "message": "Inimesed"
+    "message": "Liikmed"
+  },
+  "policies": {
+    "message": "Poliitikad"
+  },
+  "editPolicy": {
+    "message": "Muuda poliitikat"
   },
   "groups": {
     "message": "Grupid"
@@ -2356,6 +2408,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Muutis poliitikat $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Lõi grupi $ID$.",
     "placeholders": {
@@ -2384,7 +2445,7 @@
     }
   },
   "removedUserId": {
-    "message": "Eemaldas kasutaja $ID$.",
+    "message": "Kasutaja $ID$ on eemaldatud.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2448,6 +2509,15 @@
   },
   "editedGroupsForUser": {
     "message": "Muutis kasutaja $ID$ gruppe.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "Kasutaja $ID$ SSO on eemaldatud.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2560,8 +2630,17 @@
   "inviteAcceptFailed": {
     "message": "Kutse vastuvõtmine nurjus. Palu organisatsiooni administraatoril uus kutse saata."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Kutset ei õnnestu vastu võtta. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
-    "message": "Mäleta e-posti aadressi"
+    "message": "Pea e-posti aadressi meeles"
   },
   "recoverAccountTwoStepDesc": {
     "message": "Kui sa ei pääse oma kontole ühegi kaheastmeliste kinnitamise meetodi abiga ligi, saad selle välja lülitada. Selleks kasuta kaheastmelise kinnitamise tühistamise koodi."
@@ -2644,7 +2723,7 @@
     "message": "Laadi arve alla"
   },
   "verifyBankAccount": {
-    "message": "Pangakonto verifitseerimine"
+    "message": "Pangakonto kinnitamine"
   },
   "verifyBankAccountDesc": {
     "message": "Tegime sinu pangakontole kaks väikest ülekannet (nende kohalejõudmine võib võtta 1-2 tööpäeva). Selleks, et pangakonto kinnitada, sisesta need summad siia."
@@ -2749,6 +2828,9 @@
   "updateEncryptionKeyWarning": {
     "message": "Pärast krüpteerimisvõtme uuendamist pead kõikides seadmetes, kus Bitwardeni rakendust kasutad, oma kontosse uuesti sisse logima (nt nutitelefonis ja brauseris). Välja- ja sisselogimise (mis ühtlasi laadib ka uue krüpteerimisvõtme) nurjumine võib tingida andmete riknemise. Üritame sinu seadmetest ise välja logida, aga see võib võtta natukene aega."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Mistahes krüpteeritud, eksporditud andmed muutuvad samuti vigaseks."
+  },
   "subscription": {
     "message": "Tellimus"
   },
@@ -2762,13 +2844,13 @@
     "message": "Täienda organisatsiooni"
   },
   "upgradeOrganizationDesc": {
-    "message": "See funktsioon ei ole \"tasuta\" litsentsi kasutatavatele organisatsioonidele saadaval. Hangi tasuline versioon, mis sisaldab rohkem funktsioone."
+    "message": "See funktsioon ei ole tasuta organisatsioonidele saadaval. Hangi tasuline versioon, mis sisaldab rohkem funktsioone."
   },
   "createOrganizationStep1": {
     "message": "Organisatsiooni loomine: Samm 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Enne organisatsiooni loomist pead esmalt looma tasuta konto."
+    "message": "Enne organisatsiooni loomist pead registreerima tasuta konto."
   },
   "refunded": {
     "message": "Tagasi makstud"
@@ -2776,9 +2858,11 @@
   "nothingSelected": {
     "message": "Midagi pole valitud."
   },
-  "submitAgreePolicies": {
-    "message": "Klikkides \"Kinnita\" nupule, nõustud järgnevate tingimustega:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Märkeruudu markeerimisel nõustud järgnevaga:"
+  },
+  "acceptPoliciesError": {
+    "message": "Kasutustingimuste ja Privaatsuspoliitikaga pole nõustutud."
   },
   "termsOfService": {
     "message": "Kasutustingimused"
@@ -2789,11 +2873,11 @@
   "filters": {
     "message": "Filtrid"
   },
-  "lockOptions": {
-    "message": "Automaatne lukustamine"
+  "vaultTimeout": {
+    "message": "Hoidla ajalõpp"
   },
-  "lockOptionsDesc": {
-    "message": "Vali, kuna hoidla lukustatakse. Lukustatud hoidlale pääseb ligi pärast ülemparooli sisestamist."
+  "vaultTimeoutDesc": {
+    "message": "Vali aeg, peale mida sooritatakse allpool valitud tegevus."
   },
   "oneMinute": {
     "message": "1 minuti pärast"
@@ -2814,7 +2898,7 @@
     "message": "4 tunni pärast"
   },
   "onRefresh": {
-    "message": "Brauseri kinnipanekul"
+    "message": "Brauseri sulgemisel"
   },
   "dateUpdated": {
     "message": "Uuendatud",
@@ -2914,6 +2998,12 @@
   "apiKeyWarning": {
     "message": "Sinu API võtmel on täielik ligipääs organisatsioonile. Seda võtit peab salajas hoidma ja kaitsma."
   },
+  "userApiKeyDesc": {
+    "message": "Sinu API võtit saab kasutada Bitwardeni CLI-s autentimiseks."
+  },
+  "userApiKeyWarning": {
+    "message": "API võti on alternatiivne autentimise mehhanism. Seda tuleks salajas hoida."
+  },
   "oauth2ClientCredentials": {
     "message": "OAuthi 2.0 kliendi tunnistus",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2938,5 +3028,739 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Saad oma tellimust hallata poest, kust äpi sisese ostu sooritasid."
+  },
+  "minLength": {
+    "message": "Minimaalne pikkus"
+  },
+  "clone": {
+    "message": "Klooni"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Määra minimaalsed ülemparooli tugevuse tingimused."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Nõua, et kasutajad seadistaksid oma kontodes kaheastmelise kinnituse."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organisatsiooni liikmed, kel pole kaheastmeline kinnitamine sisse lülitatud, eemaldatakse organisatsioonist ning neile saadetakse sellekohane e-kiri."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "Kuulud organisatsiooni, mis nõuab kontol kaheastmelise kinnitamise sisselülitamist.\nKui lülitad välja kõik Kaheastmelise kinnitamise valikud, eemaldatakse sind organisatsioonist."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Määra parooli genereerija konfiguratsiooni tingimused."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Organisatsiooni seaded mõjutavad parooli genereerija sätteid."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Üks või enam organisatsiooni eeskirja nõuavad, et ülemparool vastaks nendele nõudmistele:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimaalne keerulisuse skoor peab olema $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimaalne pikkus peab olema $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Sisaldab üht või enamat suurtähte"
+  },
+  "policyInEffectLowercase": {
+    "message": "Sisaldab üht või enamat väiketähte"
+  },
+  "policyInEffectNumbers": {
+    "message": "Sisaldab üht või rohkem numbreid"
+  },
+  "policyInEffectSpecial": {
+    "message": "Sisaldab üht või enamat järgnevatest märkidest: $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Uus ülemparool ei vasta eeskirjades väljatoodud tingimustele."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimaalne sõnade arv"
+  },
+  "defaultType": {
+    "message": "Vaiketüüp"
+  },
+  "userPreference": {
+    "message": "Kasutaja eelistus"
+  },
+  "vaultTimeoutAction": {
+    "message": "Sooritatav tegevus"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "Lukustamisel nõutakse hoidlale uuesti ligi pääsemiseks ülemparooli."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "Väljalogimisel nõutakse hoidlale uuesti ligi pääsemiseks autentimist."
+  },
+  "lock": {
+    "message": "Lukusta",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Prügikast",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Otsi prügikastist"
+  },
+  "permanentlyDelete": {
+    "message": "Kustuta kirje jäädavalt"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Kustuta valitud jäädavalt"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Kustuta kirje jäädavalt"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Oled kindel, et soovid selle kirje jäädavalt kustutada?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Kirje on jäädavalt kustutatud"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Kirjed on jäädavalt kustutatud"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "Oled valinud jäädavaks kustutamiseks $COUNT$ kirje(t). Oled kindel, et soovid need kirjed jäädavalt kustutada?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "$ID$ kirjet on jäädavalt kustutatud.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Taasta"
+  },
+  "restoreSelected": {
+    "message": "Taasta valitud"
+  },
+  "restoreItem": {
+    "message": "Taasta kirje"
+  },
+  "restoredItem": {
+    "message": "Kirje on taastatud"
+  },
+  "restoredItems": {
+    "message": "Kirjed on taastatud"
+  },
+  "restoreItemConfirmation": {
+    "message": "Oled kindel, et soovid selle kirje taastada?"
+  },
+  "restoreItems": {
+    "message": "Taasta kirjed"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "Oled taastamiseks valinud $COUNT$ kirje(t). Oled kindel, et soovid kõik need kirjed taastada?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Taastas kirje $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Väljalogimine tähendab, et hoidlale ei pääse enam ligi ning sisselogimiseks peab konto uuesti autentima. Oled kindel, et soovid seda valikut kasutada?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Ajalõpu tegevuse kinnitamine"
+  },
+  "hidePasswords": {
+    "message": "Peida paroolid"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "Vajame seda informatsiooni ainult käibemaksu arvutamiseks ja finantsraportite jaoks."
+  },
+  "includeVAT": {
+    "message": "Lisa KM andmed (valikuline)"
+  },
+  "taxIdNumber": {
+    "message": "KMKR nr"
+  },
+  "taxInfoUpdated": {
+    "message": "Käibemaksu informatsioon on uuendatud."
+  },
+  "setMasterPassword": {
+    "message": "Määra ülemparool"
+  },
+  "ssoCompleteRegistration": {
+    "message": "SSO-ga sisselogimise kinnitamiseks tuleb määrata ülemparool. See kaitseb sinu hoidlat ning võimaldab sellele ligi pääseda."
+  },
+  "identifier": {
+    "message": "Identifikaator"
+  },
+  "organizationIdentifier": {
+    "message": "Organisatsiooni identifikaator"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Sisselogimine läbi organisatsiooni ühekordne sisselogimise portaali. Jätkamiseks sisesta ettevõtte identifikaator."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Ettevõtte Single Sign-On"
+  },
+  "ssoHandOff": {
+    "message": "Võid nüüd selle vahelehe sulgeda ning jätkata brauseri laienduses."
+  },
+  "businessPortal": {
+    "message": "Ärikliendi portaal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Kõik Tiimi funktsioonid, lisaks:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO autentimine läbi SAML2.0 ja OpenID Connect-i"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Ettevõtte poliitikate rakendamine"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO kinnitamine nurjus"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Nõutud on organisatsioon identifikaator."
+  },
+  "unlinkSso": {
+    "message": "Ühenda SSO lahti"
+  },
+  "linkSso": {
+    "message": "Ühenda SSO"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Poliitikate konfigureerimine on kolinud ning see lehekülg on peatselt aegumas. Palun kasuta poliitikate juurutamiseks allolevat Ärikliendi portaali linki."
+  },
+  "singleOrg": {
+    "message": "Üksainus organisatsioon"
+  },
+  "singleOrgDesc": {
+    "message": "Keela kasutajatel teiste organisatsioonidega liitumine."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Sinu praeguse organisatsiooni poliitika kohaselt ei saa sa olla rohkem kui ühe organisatsiooni liige. Palun kontakteeru oma praeguse organisatsiooni administraatoritega või kasuta liitumiseks teist Bitwardeni kontot."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Sisselülitamisel eemaldatakse organisatsioonist liikmed, kes on juba mõne teise organisatsiooniga liitunud. See ei puuduta liikmeid, kelle staatus on Omanik või Administraator."
+  },
+  "requireSso": {
+    "message": "Single Sign-On autentiseerimine"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Nõua kasutajatelt sisselogimist läbi Ettevõtte Single Sign-On meetodi."
+  },
+  "prerequisite": {
+    "message": "Eeltingimus"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Selle poliitika aktiveerimise eelduseks on valiku „Üksainus organisatsioon“ sisselülitamine."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Poliitika „Üksainus organisatsioon“ ei ole sisse lülitatud."
+  },
+  "requireSsoExemption": {
+    "message": "Selle poliitika rakendamine ei puuduta Omanikke ega Administraatoreid."
+  },
+  "sendTypeFile": {
+    "message": "Fail"
+  },
+  "sendTypeText": {
+    "message": "Tekst"
+  },
+  "createSend": {
+    "message": "Loo uus Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Muuda Sendi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Lõi Sendi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Muutis Sendi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Kustutas Sendi",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Kustuta Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Soovid tõesti selle Sendi kustutada?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Mis tüüpi Send see on?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Kustutamise kuupäev"
+  },
+  "deletionDateDesc": {
+    "message": "Send kustutatakse määratud kuupäeval ja kellaajal jäädavalt.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Aegumiskuupäev"
+  },
+  "expirationDateDesc": {
+    "message": "Seadistamisel ei pääse sellele Sendile enam pärast määratud kuupäeva ligi.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maksimaalne ligipääsude arv"
+  },
+  "maxAccessCountDesc": {
+    "message": "Seadistamisel ei saa kasutajad pärast maksimaalse ligipääsude arvu saavutamist sellele Sendile enam ligi.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Hetkeline ligipääsude arv"
+  },
+  "sendPasswordDesc": {
+    "message": "Mittekohustuslik parooli küsimine, et Sendile ligi pääseda.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Privaatne märkus selle Sendi kohta.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Keelatud"
+  },
+  "sendLink": {
+    "message": "Sendi link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Kopeeri Sendi link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Eemalda parool"
+  },
+  "removedPassword": {
+    "message": "Eemaldas parooli"
+  },
+  "removePasswordConfirmation": {
+    "message": "Soovid kindlasti selle parooli eemaldada?"
+  },
+  "disableThisSend": {
+    "message": "Keela see Send, et keegi ei pääseks sellele ligi.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Kõik Sendid"
+  },
+  "maxAccessCountReached": {
+    "message": "Maksimaalne ligipääsude arv on saavutatud"
+  },
+  "pendingDeletion": {
+    "message": "Kustutamise ootel"
+  },
+  "expired": {
+    "message": "Aegunud"
+  },
+  "searchSends": {
+    "message": "Otsi Sende",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "See Send on parooliga kaitstud. Jätkamiseks sisesta parool allolevale väljale.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Sa ei tea parooli? Küsi seda konkreetse Sendi saatjalt.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "See Send on vaikeseades peidetud. Saad selle nähtavust alloleva nupu abil seadistada.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Laadi fail alla"
+  },
+  "sendAccessUnavailable": {
+    "message": "Send, millele üritad ligi pääseda, ei eksisteeri või see pole enam saadaval.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "missingSendFile": {
+    "message": "Sendiga seotud faili ei suudetud leida.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Puuduvad Sendid, mida kuvada.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Hädaolukorra ligipääs"
+  },
+  "emergencyAccessDesc": {
+    "message": "Siin saad hallata ning seadistada usaldusväärseid kontakte, kes saavad hädaolukorral sinu Hoidla sisu kas Vaadata või Üle võtta. Rohkema info saamiseks vaata meie abilehekülge. Tegemist on turvalise ja „zero-knowledge“ lahendusega."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "Oled ühe või enama organisatsiooni omanik. Andes ligipääsu hädaolukorra kontaktile, saab ta pärast konto ülevõtmist ka neid õiguseid kasutada."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Usaldusväärsed hädaolukorra kontaktid"
+  },
+  "noTrustedContacts": {
+    "message": "Hetkel pole ühtei kontakti määratud. Alustamiseks saada usaldusväärsele kontaktile kutse."
+  },
+  "addEmergencyContact": {
+    "message": "Lisa hädaolukorra kontakt"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Hädaolukorra kontaktiks määratud"
+  },
+  "noGrantedAccess": {
+    "message": "Sind ei ole hetkel ühelegi kontole hädaolukorra kontaktiks määratud."
+  },
+  "inviteEmergencyContact": {
+    "message": "Hädaolukorra kontakti loomine"
+  },
+  "editEmergencyContact": {
+    "message": "Hädaolukorra kontakti muutmine"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Kutsu oma hädaolukorra kontaktiks usaldusväärne kasutaja, sisestades alla tema Bitwardeni konto e-posti aadress. Kui tal ei ole veel Bitwardeni kontot, pakutakse talle võimalus see luua."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Hädaolukorra ligipääs on käivitatud"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Hädaolukorra ligipääs on kinnitatud"
+  },
+  "viewDesc": {
+    "message": "Saab vaadata sinu Hoidla täit sisu."
+  },
+  "takeover": {
+    "message": "Ülevõtmine"
+  },
+  "takeoverDesc": {
+    "message": "Saab määrata kontole uue ülemaparooli."
+  },
+  "waitTime": {
+    "message": "Ooteaeg"
+  },
+  "waitTimeDesc": {
+    "message": "Aeg, peale mida võimaldatakse kontaktile automaatne ligipääs."
+  },
+  "oneDay": {
+    "message": "1 päev"
+  },
+  "days": {
+    "message": "$DAYS$ päeva",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Kasutaja on kutsutud."
+  },
+  "acceptEmergencyAccess": {
+    "message": "Sind on kutsutud ülal oleva kasutaja hädaolukorra kontaktiks. Liitumise kinnitamiseks pead oma Bitwardeni kontosse sisse logima. Kui sul ei ole veel kontot, saad selle luua."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Kutse vastuvõtmine nurjus. Palu kasutajal uus kutse saata."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Kutset ei õnnestu vastu võtta. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "Selle kasutaja hädaolukorra valikutele ligipääsuks on vajalik identiteedi kinnitamine. Pärast kinnitamist saadame sulle vastavasisulise e-kirja."
+  },
+  "requestAccess": {
+    "message": "Taotle ligipääsu"
+  },
+  "requestAccessConfirmation": {
+    "message": "Oled kindel, et soovid esitada hädaolukorra ligipääsu taotluse? Ligipääsu võimaldatakse pärast $WAITTIME$ päev(a) või niipea, kui teine kasutaja sinu selle heaks kiidab.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Kasutajale $USER$ on saadet hädaolukorra ligipääsu kutse. Anname e-kirjaga märku, kui saad selle seadistamisega edasi minna.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Kinnita"
+  },
+  "reject": {
+    "message": "Keeldu"
+  },
+  "approveAccessConfirmation": {
+    "message": "Oled kindel, et soovid hädaolukorra ligipääsu päringu heaks kiita? See võimaldab kasutajal $USER$ sinu kontoga teha järgnevat: $ACTION$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Hädaolukorra ligipääs on kinnitatud."
+  },
+  "emergencyRejected": {
+    "message": "Hädaolukorra ligipääsust keelduti"
+  },
+  "passwordResetFor": {
+    "message": "$USER$ parool on taastatud. Saad nüüd uue parooliga sisse logida.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Personaalne salvestamine"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Nõua kasutajatelt andmete salvestamist organisatsiooni hoidlasse, eemaldades personaalse hoidla valiku."
+  },
+  "personalOwnershipExemption": {
+    "message": "Selle poliitika rakendamine ei puuduta Omanikke ega Administraatoreid."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Ettevõtte poliitika tõttu ei saa sa andmeid oma personaalsesse Hoidlasse salvestada. Vali Omanikuks organisatsioon ja vali mõni saadavaolevatest Kogumikest."
+  },
+  "disableSend": {
+    "message": "Keela Send"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Ära võimalda kasutajatel Bitwardeni Sende luua või muuta. Olemasolevate Sendide kustutamise võimalikkus säilib.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Neid organisatsiooni liikmeid, kes saavad hallata organisatsiooni poliitikaid, see muudatus ei mõjuta."
+  },
+  "sendDisabled": {
+    "message": "Send on väljalülitatud",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Ettevõtte poliitika kohaselt saad ainult olemasolevat Sendi kustutada.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "modifiedPolicyId": {
+    "message": "Muutis poliitikat $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Hind"
+  },
+  "estimatedTax": {
+    "message": "Eeldatavad maksud"
+  },
+  "custom": {
+    "message": "Kohandatud"
+  },
+  "customDesc": {
+    "message": "Pakub kasutajate haldamiseks ja õiguste määramiseks rohkem võimalusi."
+  },
+  "permissions": {
+    "message": "Õigused"
+  },
+  "accessBusinessPortal": {
+    "message": "Ligipääs Ärikliendi portaalile"
+  },
+  "accessEventLogs": {
+    "message": "Ligipääs sündmuste logile"
+  },
+  "accessImportExport": {
+    "message": "Ligipääs impordile/ekspordile"
+  },
+  "accessReports": {
+    "message": "Ligipääs raportitele"
+  },
+  "manageAllCollections": {
+    "message": "Saab hallata kõiki kollektsioone"
+  },
+  "manageAssignedCollections": {
+    "message": "Saab hallata määratud kollektsioone"
+  },
+  "manageGroups": {
+    "message": "Gruppide haldamine"
+  },
+  "managePolicies": {
+    "message": "Poliitikate haldamine"
+  },
+  "manageSso": {
+    "message": "SSO haldamine"
+  },
+  "manageUsers": {
+    "message": "Kasutajate haldamine"
+  },
+  "disableRequireSsoError": {
+    "message": "Enne selle poliitika keelamist pead Single Sign-On autentimise käsitsi välja lülitama."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "Organisatsiooni poliitika on seadnud omaniku valikutele piirangu."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Keela organisatsiooni liikmetel paroolide salvestamine isiklikku Hoidlasse"
+  },
+  "textHiddenByDefault": {
+    "message": "Sendi avamisel peida tekst automaatselt",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "Sisesta Sendi nimi.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "Tekst, mida soovid saata."
+  },
+  "sendFileDesc": {
+    "message": "Fail, mida soovid saata."
+  },
+  "copySendLinkOnSave": {
+    "message": "Salvestamisel kopeeri Sendi jagamise link lõikepuhvrisse."
+  },
+  "sendLinkLabel": {
+    "message": "Sendi link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwardeni Send võimaldab sensitiivset, ajutist informatsiooni hõlpsasti ning turvaliselt edastada.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Rohkem infot",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Jaga tekste või faile ükskõik kellega."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Rohkem infot",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "vaata",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "kuidas see töötab",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "või",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "proovi seda ise",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "või",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "loo konto,",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "et seda ise proovida.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwardeni kasutaja $USER_IDENTIFIER$ jagas sinuga järgnevat",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "Valitud aegumiskuupäev ei ole õige."
+  },
+  "deletionDateIsInvalid": {
+    "message": "Valitud kustutamise kuupäev ei ole õige."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "Nõutav on aegumiskuupäev ja kellaaeg."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "Nõutav on kustutamise kuupäev ja kellaaeg."
+  },
+  "dateParsingError": {
+    "message": "Kustutamis- ja aegumiskuupäevade salvestamisel ilmnes tõrge."
   }
 }

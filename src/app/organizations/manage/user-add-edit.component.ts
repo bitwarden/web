@@ -23,6 +23,7 @@ import { CollectionDetailsResponse } from 'jslib/models/response/collectionRespo
 import { CollectionView } from 'jslib/models/view/collectionView';
 
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+import { PermissionsApi } from 'jslib/models/api/permissionsApi';
 
 @Component({
     selector: 'app-user-add-edit',
@@ -40,11 +41,17 @@ export class UserAddEditComponent implements OnInit {
     title: string;
     emails: string;
     type: OrganizationUserType = OrganizationUserType.User;
+    permissions = new PermissionsApi();
+    showCustom = false;
     access: 'all' | 'selected' = 'selected';
     collections: CollectionView[] = [];
     formPromise: Promise<any>;
     deletePromise: Promise<any>;
     organizationUserType = OrganizationUserType;
+
+    get customUserTypeSelected(): boolean {
+        return this.type === OrganizationUserType.Custom;
+    }
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
@@ -61,12 +68,16 @@ export class UserAddEditComponent implements OnInit {
                 const user = await this.apiService.getOrganizationUser(this.organizationId, this.organizationUserId);
                 this.access = user.accessAll ? 'all' : 'selected';
                 this.type = user.type;
+                if (user.type === OrganizationUserType.Custom) {
+                    this.permissions = user.permissions;
+                }
                 if (user.collections != null && this.collections != null) {
-                    user.collections.forEach((s) => {
-                        const collection = this.collections.filter((c) => c.id === s.id);
+                    user.collections.forEach(s => {
+                        const collection = this.collections.filter(c => c.id === s.id);
                         if (collection != null && collection.length > 0) {
                             (collection[0] as any).checked = true;
                             collection[0].readOnly = s.readOnly;
+                            collection[0].hidePasswords = s.hidePasswords;
                         }
                     });
                 }
@@ -80,7 +91,7 @@ export class UserAddEditComponent implements OnInit {
 
     async loadCollections() {
         const response = await this.apiService.getCollections(this.organizationId);
-        const collections = response.data.map((r) =>
+        const collections = response.data.map(r =>
             new Collection(new CollectionData(r as CollectionDetailsResponse)));
         this.collections = await this.collectionService.decryptMany(collections);
     }
@@ -93,14 +104,48 @@ export class UserAddEditComponent implements OnInit {
     }
 
     selectAll(select: boolean) {
-        this.collections.forEach((c) => this.check(c, select));
+        this.collections.forEach(c => this.check(c, select));
+    }
+
+    setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
+        p.accessBusinessPortal = clearPermissions ?
+            false :
+            this.permissions.accessBusinessPortal;
+        p.accessEventLogs = this.permissions.accessEventLogs = clearPermissions ?
+            false :
+            this.permissions.accessEventLogs;
+        p.accessImportExport = clearPermissions ?
+            false :
+            this.permissions.accessImportExport;
+        p.accessReports = clearPermissions ?
+            false :
+            this.permissions.accessReports;
+        p.manageAllCollections = clearPermissions ?
+            false :
+            this.permissions.manageAllCollections;
+        p.manageAssignedCollections = clearPermissions ?
+            false :
+            this.permissions.manageAssignedCollections;
+        p.manageGroups = clearPermissions ?
+            false :
+            this.permissions.manageGroups;
+        p.manageSso = clearPermissions ?
+            false :
+            this.permissions.manageSso;
+        p.managePolicies = clearPermissions ?
+            false :
+            this.permissions.managePolicies;
+        p.manageUsers = clearPermissions ?
+            false :
+            this.permissions.manageUsers;
+        return p;
     }
 
     async submit() {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {
-            collections = this.collections.filter((c) => (c as any).checked)
-                .map((c) => new SelectionReadOnlyRequest(c.id, !!c.readOnly));
+            collections = this.collections.filter(c => (c as any).checked)
+                .map(c => new SelectionReadOnlyRequest(c.id, !!c.readOnly, !!c.hidePasswords));
         }
 
         try {
@@ -109,6 +154,7 @@ export class UserAddEditComponent implements OnInit {
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
                 request.collections = collections;
+                request.permissions = this.setRequestPermissions(request.permissions ?? new PermissionsApi(), request.type !== OrganizationUserType.Custom);
                 this.formPromise = this.apiService.putOrganizationUser(this.organizationId, this.organizationUserId,
                     request);
             } else {
@@ -116,6 +162,7 @@ export class UserAddEditComponent implements OnInit {
                 request.emails = this.emails.trim().split(/\s*,\s*/);
                 request.accessAll = this.access === 'all';
                 request.type = this.type;
+                request.permissions = this.setRequestPermissions(request.permissions ?? new PermissionsApi(), request.type !== OrganizationUserType.Custom);
                 request.collections = collections;
                 this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }
@@ -147,4 +194,5 @@ export class UserAddEditComponent implements OnInit {
             this.onDeletedUser.emit();
         } catch { }
     }
+
 }

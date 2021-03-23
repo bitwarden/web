@@ -3,7 +3,7 @@
         [infiniteScrollDistance]="1" [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
         <tbody>
             <tr *ngFor="let c of filteredCiphers">
-                <td (click)="checkCipher(c)" class="table-list-checkbox" *ngIf="!organization">
+                <td (click)="checkCipher(c)" class="table-list-checkbox">
                     <input type="checkbox" [(ngModel)]="c.checked" appStopProp>
                 </td>
                 <td (click)="checkCipher(c)" class="table-list-icon">
@@ -36,11 +36,21 @@
                             <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <ng-container *ngIf="c.type === cipherType.Login">
+                            <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
                                 <a class="dropdown-item" href="#" appStopClick
-                                    (click)="copy(c, c.login.password, 'password', 'password')">
-                                    <i class="fa fa-fw fa-clipboard" aria-hidden="true"></i>
+                                    (click)="copy(c, c.login.username, 'username', 'username')">
+                                    <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                                    {{'copyUsername' | i18n}}
+                                </a>
+                                <a class="dropdown-item" href="#" appStopClick
+                                    (click)="copy(c, c.login.password, 'password', 'password')" *ngIf="c.viewPassword">
+                                    <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
                                     {{'copyPassword' | i18n}}
+                                </a>
+                                <a class="dropdown-item" href="#" appStopClick (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
+                                    *ngIf="displayTotpCopyButton(c)">
+                                    <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                                    {{'copyVerificationCode' | i18n}}
                                 </a>
                                 <a class="dropdown-item" href="#" appStopClick *ngIf="c.login.canLaunch"
                                     (click)="launch(c.login.launchUri)">
@@ -52,12 +62,18 @@
                                 <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
                                 {{'attachments' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="!organization && !c.organizationId"
-                                (click)="share(c)">
+                            <a class="dropdown-item" href="#" appStopClick
+                                *ngIf="((!organization && !c.organizationId) || organization) && !c.isDeleted"
+                                (click)="clone(c)">
+                                <i class="fa fa-fw fa-files-o" aria-hidden="true"></i>
+                                {{'clone' | i18n}}
+                            </a>
+                            <a class="dropdown-item" href="#" appStopClick
+                                *ngIf="!organization && !c.organizationId && !c.isDeleted" (click)="share(c)">
                                 <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
                                 {{'share' | i18n}}
                             </a>
-                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId"
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="c.organizationId && !c.isDeleted"
                                 (click)="collections(c)">
                                 <i class="fa fa-fw fa-cubes" aria-hidden="true"></i>
                                 {{'collections' | i18n}}
@@ -67,9 +83,13 @@
                                 <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
                                 {{'eventLogs' | i18n}}
                             </a>
+                            <a class="dropdown-item" href="#" appStopClick (click)="restore(c)" *ngIf="c.isDeleted">
+                                <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+                                {{'restore' | i18n}}
+                            </a>
                             <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
                                 <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
-                                {{'delete' | i18n}}
+                                {{(c.isDeleted ? 'permanentlyDelete' : 'delete') | i18n}}
                             </a>
                         </div>
                     </div>

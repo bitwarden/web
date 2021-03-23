@@ -48,8 +48,8 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
-        allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+        allCiphers.forEach(c => {
+            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
             const hasUsername = WeakPasswordsReportComponent.hasUsername(c);
@@ -61,10 +61,10 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                     if (atPosition > -1) {
                         userInput = userInput.concat(
                             c.login.username.substr(0, atPosition).trim().toLowerCase().split(/[^A-Za-z0-9]/))
-                            .filter((i) => i.length >= 3);
+                            .filter(i => i.length >= 3);
                     } else {
                         userInput = c.login.username.trim().toLowerCase().split(/[^A-Za-z0-9]/)
-                            .filter((i) => i.length >= 3);
+                            .filter(i => i.length >= 3);
                     }
                 }
                 const result = this.passwordGenerationService.passwordStrength(c.login.password,
@@ -72,7 +72,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                 this.passwordStrengthCache.set(cacheKey, result.score);
             }
             const score = this.passwordStrengthCache.get(cacheKey);
-            if (score != null && score <= 3) {
+            if (score != null && score <= 2) {
                 this.passwordStrengthMap.set(c.id, this.scoreKey(score));
                 weakPasswordCiphers.push(c);
             }
@@ -86,6 +86,11 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
 
     protected getAllCiphers(): Promise<CipherView[]> {
         return this.cipherService.getAllDecrypted();
+    }
+
+    protected canManageCipher(c: CipherView): boolean {
+        // this will only ever be false from the org view;
+        return true;
     }
 
     private scoreKey(score: number): [string, string] {

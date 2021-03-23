@@ -33,7 +33,7 @@ export class VerifyRecoverDeleteComponent implements OnInit {
 
     ngOnInit() {
         let fired = false;
-        this.route.queryParams.subscribe(async (qParams) => {
+        this.route.queryParams.subscribe(async qParams => {
             if (fired) {
                 return;
             }

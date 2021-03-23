@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const pjson = require('./package.json');
@@ -13,12 +13,6 @@ if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
 }
 const ENV = process.env.ENV = process.env.NODE_ENV;
-
-const extractCss = new ExtractTextPlugin({
-    filename: '[name].[hash].css',
-    disable: false,
-    allChunks: true,
-});
 
 const moduleRules = [
     {
@@ -49,18 +43,21 @@ const moduleRules = [
             options: {
                 name: '[name].[ext]',
                 outputPath: 'images/',
-            }
-        }]
+            },
+        }],
     },
     {
         test: /\.scss$/,
-        use: extractCss.extract({
-            use: [
-                { loader: 'css-loader' },
-                { loader: 'sass-loader' },
-            ],
-            publicPath: '../',
-        }),
+        use: [
+            {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                    publicPath: '../',
+                },
+            },
+            'css-loader',
+            'sass-loader',
+        ],
     },
     // Hide System.import warnings. ref: https://github.com/angular/angular/issues/21560
     {
@@ -91,19 +88,39 @@ const plugins = [
         filename: 'u2f-connector.html',
         chunks: ['connectors/u2f'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn.html',
+        filename: 'webauthn-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-fallback.html',
+        filename: 'webauthn-fallback-connector.html',
+        chunks: ['connectors/webauthn-fallback'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/sso.html',
+        filename: 'sso-connector.html',
+        chunks: ['connectors/sso'],
+    }),
     new CopyWebpackPlugin([
         { from: './src/.nojekyll' },
         { from: './src/manifest.json' },
         { from: './src/favicon.ico' },
         { from: './src/browserconfig.xml' },
         { from: './src/app-id.json' },
+        { from: './src/404.html' },
+        { from: './src/404', to: '404' },
         { from: './src/images', to: 'images' },
         { from: './src/locales', to: 'locales' },
         { from: './src/scripts', to: 'scripts' },
         { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
         { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
     ]),
-    extractCss,
+    new MiniCssExtractPlugin({
+        filename: '[name].[hash].css',
+        chunkFilename: '[id].[hash].css',
+    }),
     new webpack.DefinePlugin({
         'process.env': {
             'ENV': JSON.stringify(ENV),
@@ -151,7 +168,10 @@ const config = {
         'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
+        'connectors/webauthn': './src/connectors/webauthn.ts',
+        'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
+        'connectors/sso': './src/connectors/sso.ts',
     },
     externals: {
         'u2f': 'u2f',
@@ -173,6 +193,7 @@ const config = {
                 terserOptions: {
                     safari10: true,
                 },
+                sourceMap: true,
             }),
         ],
     },

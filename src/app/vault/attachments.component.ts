@@ -15,6 +15,8 @@ import { AttachmentsComponent as BaseAttachmentsComponent } from 'jslib/angular/
     templateUrl: 'attachments.component.html',
 })
 export class AttachmentsComponent extends BaseAttachmentsComponent {
+    viewOnly = false;
+
     constructor(cipherService: CipherService, i18nService: I18nService,
         cryptoService: CryptoService, userService: UserService,
         platformUtilsService: PlatformUtilsService) {

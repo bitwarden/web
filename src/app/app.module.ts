@@ -19,7 +19,6 @@ import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
-import { CalloutComponent } from './components/callout.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
@@ -28,6 +27,7 @@ import { NavbarComponent } from './layouts/navbar.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
+import { AcceptEmergencyComponent } from './accounts/accept-emergency.component';
 import { AcceptOrganizationComponent } from './accounts/accept-organization.component';
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
@@ -35,6 +35,8 @@ import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { SetPasswordComponent } from './accounts/set-password.component';
+import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
@@ -59,13 +61,11 @@ import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/m
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
-import { ApiKeyComponent as OrgApiKeyComponent } from './organizations/settings/api-key.component';
 import { ChangePlanComponent } from './organizations/settings/change-plan.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { DownloadLicenseComponent } from './organizations/settings/download-license.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';
 import { OrganizationSubscriptionComponent } from './organizations/settings/organization-subscription.component';
-import { RotateApiKeyComponent as OrgRotateApiKeyComponent } from './organizations/settings/rotate-api-key.component';
 import { SettingsComponent as OrgSettingComponent } from './organizations/settings/settings.component';
 import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
@@ -97,10 +97,15 @@ import { CollectionsComponent as OrgCollectionsComponent } from './organizations
 import { GroupingsComponent as OrgGroupingsComponent } from './organizations/vault/groupings.component';
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
+import { AccessComponent } from './send/access.component';
+import { AddEditComponent as SendAddEditComponent } from './send/add-edit.component';
+import { SendComponent } from './send/send.component';
+
 import { AccountComponent } from './settings/account.component';
 import { AddCreditComponent } from './settings/add-credit.component';
 import { AdjustPaymentComponent } from './settings/adjust-payment.component';
 import { AdjustStorageComponent } from './settings/adjust-storage.component';
+import { ApiKeyComponent } from './settings/api-key.component';
 import { ChangeEmailComponent } from './settings/change-email.component';
 import { ChangeKdfComponent } from './settings/change-kdf.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
@@ -108,6 +113,14 @@ import { CreateOrganizationComponent } from './settings/create-organization.comp
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
+import { EmergencyAccessAddEditComponent } from './settings/emergency-access-add-edit.component';
+import { EmergencyAccessAttachmentsComponent } from './settings/emergency-access-attachments.component';
+import { EmergencyAccessConfirmComponent } from './settings/emergency-access-confirm.component';
+import { EmergencyAccessTakeoverComponent } from './settings/emergency-access-takeover.component';
+import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
+import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { EmergencyAddEditComponent } from './settings/emergency-add-edit.component';
+import { LinkSsoComponent } from './settings/link-sso.component';
 import { OptionsComponent } from './settings/options.component';
 import { OrganizationPlansComponent } from './settings/organization-plans.component';
 import { OrganizationsComponent } from './settings/organizations.component';
@@ -116,13 +129,14 @@ import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TaxInfoComponent } from './settings/tax-info.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
 import { TwoFactorEmailComponent } from './settings/two-factor-email.component';
 import { TwoFactorRecoveryComponent } from './settings/two-factor-recovery.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
-import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
+import { TwoFactorWebAuthnComponent } from './settings/two-factor-webauthn.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
@@ -144,16 +158,20 @@ import { WeakPasswordsReportComponent } from './tools/weak-passwords-report.comp
 
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
+import { BulkActionsComponent } from './vault/bulk-actions.component';
 import { BulkDeleteComponent } from './vault/bulk-delete.component';
 import { BulkMoveComponent } from './vault/bulk-move.component';
+import { BulkRestoreComponent } from './vault/bulk-restore.component';
 import { BulkShareComponent } from './vault/bulk-share.component';
 import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
+import { SendInfoComponent } from './vault/send-info.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
+import { CalloutComponent } from 'jslib/angular/components/callout.component';
 import { IconComponent } from 'jslib/angular/components/icon.component';
 
 import { A11yTitleDirective } from 'jslib/angular/directives/a11y-title.directive';
@@ -173,11 +191,15 @@ import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
-import { registerLocaleData } from '@angular/common';
+import {
+    DatePipe,
+    registerLocaleData,
+} from '@angular/common';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
 import localeDa from '@angular/common/locales/da';
 import localeDe from '@angular/common/locales/de';
+import localeEl from '@angular/common/locales/el';
 import localeEnGb from '@angular/common/locales/en-GB';
 import localeEs from '@angular/common/locales/es';
 import localeEt from '@angular/common/locales/et';
@@ -186,6 +208,8 @@ import localeHe from '@angular/common/locales/he';
 import localeIt from '@angular/common/locales/it';
 import localeJa from '@angular/common/locales/ja';
 import localeKo from '@angular/common/locales/ko';
+import localeLv from '@angular/common/locales/lv';
+import localeMl from '@angular/common/locales/ml';
 import localeNb from '@angular/common/locales/nb';
 import localeNl from '@angular/common/locales/nl';
 import localePl from '@angular/common/locales/pl';
@@ -202,6 +226,7 @@ registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
 registerLocaleData(localeDa, 'da');
 registerLocaleData(localeDe, 'de');
+registerLocaleData(localeEl, 'el');
 registerLocaleData(localeEnGb, 'en-GB');
 registerLocaleData(localeEs, 'es');
 registerLocaleData(localeEt, 'et');
@@ -210,6 +235,8 @@ registerLocaleData(localeHe, 'he');
 registerLocaleData(localeIt, 'it');
 registerLocaleData(localeJa, 'ja');
 registerLocaleData(localeKo, 'ko');
+registerLocaleData(localeLv, 'lv');
+registerLocaleData(localeMl, 'ml');
 registerLocaleData(localeNb, 'nb');
 registerLocaleData(localeNl, 'nl');
 registerLocaleData(localePl, 'pl');
@@ -229,7 +256,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         FormsModule,
         AppRoutingModule,
         ServicesModule,
-        Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], {
+        Angulartics2Module.forRoot({
             pageTracking: {
                 clearQueryParams: true,
             },
@@ -240,14 +267,18 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     declarations: [
         A11yTitleDirective,
+        AcceptEmergencyComponent,
+        AccessComponent,
         AcceptOrganizationComponent,
         AccountComponent,
+        SetPasswordComponent,
         AddCreditComponent,
         AddEditComponent,
         AdjustPaymentComponent,
         AdjustSeatsComponent,
         AdjustStorageComponent,
         ApiActionDirective,
+        ApiKeyComponent,
         AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
@@ -255,8 +286,10 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BlurClickDirective,
         BoxRowDirective,
         BreachReportComponent,
+        BulkActionsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
+        BulkRestoreComponent,
         BulkShareComponent,
         CalloutComponent,
         ChangeEmailComponent,
@@ -272,6 +305,13 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DeleteOrganizationComponent,
         DomainRulesComponent,
         DownloadLicenseComponent,
+        EmergencyAccessAddEditComponent,
+        EmergencyAccessAttachmentsComponent,
+        EmergencyAccessComponent,
+        EmergencyAccessConfirmComponent,
+        EmergencyAccessTakeoverComponent,
+        EmergencyAccessViewComponent,
+        EmergencyAddEditComponent,
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
@@ -285,6 +325,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ImportComponent,
         InactiveTwoFactorReportComponent,
         InputVerbatimDirective,
+        LinkSsoComponent,
         LockComponent,
         LoginComponent,
         ModalComponent,
@@ -292,7 +333,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OptionsComponent,
         OrgAccountComponent,
         OrgAddEditComponent,
-        OrgApiKeyComponent,
         OrganizationBillingComponent,
         OrganizationPlansComponent,
         OrganizationSubscriptionComponent,
@@ -316,7 +356,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgPolicyEditComponent,
         OrgPoliciesComponent,
         OrgReusedPasswordsReportComponent,
-        OrgRotateApiKeyComponent,
         OrgSettingComponent,
         OrgToolsComponent,
         OrgTwoFactorSetupComponent,
@@ -342,10 +381,15 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SearchCiphersPipe,
         SearchPipe,
         SelectCopyDirective,
+        SendAddEditComponent,
+        SendComponent,
+        SendInfoComponent,
         SettingsComponent,
         ShareComponent,
+        SsoComponent,
         StopClickDirective,
         StopPropDirective,
+        TaxInfoComponent,
         ToolsComponent,
         TrueFalseValueDirective,
         TwoFactorAuthenticatorComponent,
@@ -355,8 +399,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorOptionsComponent,
         TwoFactorRecoveryComponent,
         TwoFactorSetupComponent,
-        TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
+        TwoFactorWebAuthnComponent,
         TwoFactorYubiKeyComponent,
         UnsecuredWebsitesReportComponent,
         UpdateKeyComponent,
@@ -372,18 +416,25 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     entryComponents: [
         AddEditComponent,
+        ApiKeyComponent,
         AttachmentsComponent,
+        BulkActionsComponent,
         BulkDeleteComponent,
         BulkMoveComponent,
+        BulkRestoreComponent,
         BulkShareComponent,
         CollectionsComponent,
         DeauthorizeSessionsComponent,
         DeleteAccountComponent,
         DeleteOrganizationComponent,
+        EmergencyAccessAddEditComponent,
+        EmergencyAccessAttachmentsComponent,
+        EmergencyAccessConfirmComponent,
+        EmergencyAccessTakeoverComponent,
+        EmergencyAddEditComponent,
         FolderAddEditComponent,
         ModalComponent,
         OrgAddEditComponent,
-        OrgApiKeyComponent,
         OrgAttachmentsComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
@@ -391,23 +442,23 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
         OrgPolicyEditComponent,
-        OrgRotateApiKeyComponent,
         OrgUserAddEditComponent,
         OrgUserConfirmComponent,
         OrgUserGroupsComponent,
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
+        SendAddEditComponent,
         ShareComponent,
         TwoFactorAuthenticatorComponent,
         TwoFactorDuoComponent,
         TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
         TwoFactorRecoveryComponent,
-        TwoFactorU2fComponent,
+        TwoFactorWebAuthnComponent,
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],
-    providers: [],
+    providers: [DatePipe],
     bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
@@ -20,12 +21,12 @@ import { TwoFactorSetupComponent as BaseTwoFactorSetupComponent } from '../../se
 export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
     constructor(apiService: ApiService, userService: UserService,
         componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
-        private route: ActivatedRoute) {
-        super(apiService, userService, componentFactoryResolver, messagingService);
+        policyService: PolicyService, private route: ActivatedRoute) {
+        super(apiService, userService, componentFactoryResolver, messagingService, policyService);
     }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await super.ngOnInit();
         });

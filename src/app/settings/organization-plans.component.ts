@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnInit,
     Output,
     ViewChild,
 } from '@angular/core';
@@ -16,89 +17,224 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
+import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 import { PlanType } from 'jslib/enums/planType';
+import { PolicyType } from 'jslib/enums/policyType';
+import { ProductType } from 'jslib/enums/productType';
+
 import { OrganizationCreateRequest } from 'jslib/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib/models/request/organizationUpgradeRequest';
+import { PlanResponse } from 'jslib/models/response/planResponse';
 
 @Component({
     selector: 'app-organization-plans',
     templateUrl: 'organization-plans.component.html',
 })
-export class OrganizationPlansComponent {
+export class OrganizationPlansComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent) taxComponent: TaxInfoComponent;
 
     @Input() organizationId: string;
     @Input() showFree = true;
     @Input() showCancel = false;
-    @Input() plan = 'free';
+    @Input() product: ProductType = ProductType.Free;
+    @Input() plan: PlanType = PlanType.Free;
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
-    selfHosted = false;
-    ownedBusiness = false;
-    premiumAccessAddon = false;
-    storageGbPriceMonthly = 0.33;
-    additionalStorage = 0;
-    additionalSeats = 0;
-    interval = 'year';
+    loading: boolean = true;
+    selfHosted: boolean = false;
+    ownedBusiness: boolean = false;
+    premiumAccessAddon: boolean = false;
+    additionalStorage: number = 0;
+    additionalSeats: number = 0;
     name: string;
     billingEmail: string;
     businessName: string;
-
-    storageGb: any = {
-        price: 0.33,
-        monthlyPrice: 0.50,
-        yearlyPrice: 4,
-    };
-
-    plans: any = {
-        free: {
-            basePrice: 0,
-            noAdditionalSeats: true,
-            noPayment: true,
-        },
-        families: {
-            basePrice: 1,
-            annualBasePrice: 12,
-            baseSeats: 5,
-            noAdditionalSeats: true,
-            annualPlanType: PlanType.FamiliesAnnually,
-            canBuyPremiumAccessAddon: true,
-        },
-        teams: {
-            basePrice: 5,
-            annualBasePrice: 60,
-            monthlyBasePrice: 8,
-            baseSeats: 5,
-            seatPrice: 2,
-            annualSeatPrice: 24,
-            monthlySeatPrice: 2.5,
-            monthPlanType: PlanType.TeamsMonthly,
-            annualPlanType: PlanType.TeamsAnnually,
-        },
-        enterprise: {
-            seatPrice: 3,
-            annualSeatPrice: 36,
-            monthlySeatPrice: 4,
-            monthPlanType: PlanType.EnterpriseMonthly,
-            annualPlanType: PlanType.EnterpriseAnnually,
-        },
-    };
-
+    productTypes = ProductType;
     formPromise: Promise<any>;
+    singleOrgPolicyBlock: boolean = false;
+
+    plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
         platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService) {
+        private router: Router, private syncService: SyncService,
+        private policyService: PolicyService, private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
+    async ngOnInit() {
+        if (!this.selfHosted) {
+            const plans = await this.apiService.getPlans();
+            this.plans = plans.data;
+            if (this.product === ProductType.Enterprise || this.product === ProductType.Teams) {
+                this.ownedBusiness = true;
+            }
+        }
+        this.loading = false;
+    }
+
+    get createOrganization() {
+        return this.organizationId == null;
+    }
+
+    get selectedPlan() {
+        return this.plans.find(plan => plan.type === this.plan);
+    }
+
+    get selectedPlanInterval() {
+        return this.selectedPlan.isAnnual
+            ? 'year'
+            : 'month';
+    }
+
+    get selectableProducts() {
+        let validPlans = this.plans.filter(plan => plan.type !== PlanType.Custom);
+
+        if (this.ownedBusiness) {
+            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
+        }
+
+        if (!this.showFree) {
+            validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
+        }
+
+        validPlans = validPlans
+            .filter(plan => !plan.legacyYear
+                && !plan.disabled
+                && (plan.isAnnual || plan.product === this.productTypes.Free));
+
+        return validPlans;
+    }
+
+    get selectablePlans() {
+        return this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product);
+    }
+
+    additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
+        if (!selectedPlan.isAnnual) {
+            return selectedPlan.additionalStoragePricePerGb;
+        }
+        return selectedPlan.additionalStoragePricePerGb / 12;
+    }
+
+    seatPriceMonthly(selectedPlan: PlanResponse) {
+        if (!selectedPlan.isAnnual) {
+            return selectedPlan.seatPrice;
+        }
+        return selectedPlan.seatPrice / 12;
+    }
+
+    additionalStorageTotal(plan: PlanResponse): number {
+        if (!plan.hasAdditionalStorageOption) {
+            return 0;
+        }
+
+        return plan.additionalStoragePricePerGb * Math.abs(this.additionalStorage || 0);
+    }
+
+    seatTotal(plan: PlanResponse): number {
+        if (!plan.hasAdditionalSeatsOption) {
+            return 0;
+        }
+
+        return plan.seatPrice * Math.abs(this.additionalSeats || 0);
+    }
+
+    get subtotal() {
+        let subTotal = this.selectedPlan.basePrice;
+        if (this.selectedPlan.hasAdditionalSeatsOption && this.additionalSeats) {
+            subTotal += this.seatTotal(this.selectedPlan);
+        }
+        if (this.selectedPlan.hasAdditionalStorageOption && this.additionalStorage) {
+            subTotal += this.additionalStorageTotal(this.selectedPlan);
+        }
+        if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
+            subTotal += this.selectedPlan.premiumAccessOptionPrice;
+        }
+        return subTotal;
+    }
+
+    get taxCharges() {
+        return this.taxComponent != null && this.taxComponent.taxRate != null ?
+            (this.taxComponent.taxRate / 100) * this.subtotal :
+            0;
+    }
+
+    get total() {
+        return (this.subtotal + this.taxCharges) || 0;
+    }
+
+    changedProduct() {
+        this.plan = this.selectablePlans[0].type;
+        if (!this.selectedPlan.hasPremiumAccessOption) {
+            this.premiumAccessAddon = false;
+        }
+        if (!this.selectedPlan.hasAdditionalStorageOption) {
+            this.additionalStorage = 0;
+        }
+        if (!this.selectedPlan.hasAdditionalSeatsOption) {
+            this.additionalSeats = 0;
+        } else if (!this.additionalSeats && !this.selectedPlan.baseSeats &&
+            this.selectedPlan.hasAdditionalSeatsOption) {
+            this.additionalSeats = 1;
+        }
+    }
+
+    changedOwnedBusiness() {
+        if (!this.ownedBusiness || this.selectedPlan.canBeUsedByBusiness) {
+            return;
+        }
+        this.product = ProductType.Teams;
+        this.plan = PlanType.TeamsAnnually;
+    }
+
+    changedCountry() {
+        this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
+        // Bank Account payments are only available for US customers
+        if (this.paymentComponent.hideBank &&
+            this.paymentComponent.method === PaymentMethodType.BankAccount) {
+            this.paymentComponent.method = PaymentMethodType.Card;
+            this.paymentComponent.changeMethod();
+        }
+    }
+
+    cancel() {
+        this.onCanceled.emit();
+    }
+
     async submit() {
+        if (this.singleOrgPolicyBlock) {
+            return;
+        } else {
+            const policies = await this.policyService.getAll(PolicyType.SingleOrg);
+            const orgs = await this.userService.getAllOrganizations();
+
+            const orgsWithSingleOrgPolicy = policies
+                .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
+                .map(p => p.organizationId);
+
+            this.singleOrgPolicyBlock = orgs.some(org =>
+                org.type !== OrganizationUserType.Owner &&
+                org.type !== OrganizationUserType.Admin &&
+                org.status !== OrganizationUserStatusType.Invited &&
+                orgsWithSingleOrgPolicy.includes(org.id));
+
+            if (this.singleOrgPolicyBlock) {
+                return;
+            }
+        }
+
         let files: FileList = null;
         if (this.createOrganization && this.selfHosted) {
             const fileEl = document.getElementById('file') as HTMLInputElement;
@@ -115,7 +251,7 @@ export class OrganizationPlansComponent {
                 let orgId: string = null;
                 if (this.createOrganization) {
                     let tokenResult: [string, PaymentMethodType] = null;
-                    if (!this.selfHosted && this.plan !== 'free') {
+                    if (!this.selfHosted && this.plan !== PlanType.Free) {
                         tokenResult = await this.paymentComponent.createPaymentToken();
                     }
                     const shareKey = await this.cryptoService.makeShareKey();
@@ -138,7 +274,7 @@ export class OrganizationPlansComponent {
                         request.name = this.name;
                         request.billingEmail = this.billingEmail;
 
-                        if (this.plan === 'free') {
+                        if (this.selectedPlan.type === PlanType.Free) {
                             request.planType = PlanType.Free;
                         } else {
                             request.paymentToken = tokenResult[0];
@@ -146,12 +282,17 @@ export class OrganizationPlansComponent {
                             request.businessName = this.ownedBusiness ? this.businessName : null;
                             request.additionalSeats = this.additionalSeats;
                             request.additionalStorageGb = this.additionalStorage;
-                            request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
                                 this.premiumAccessAddon;
-                            if (this.interval === 'month') {
-                                request.planType = this.plans[this.plan].monthPlanType;
-                            } else {
-                                request.planType = this.plans[this.plan].annualPlanType;
+                            request.planType = this.selectedPlan.type;
+                            request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+                            request.billingAddressCountry = this.taxComponent.taxInfo.country;
+                            if (this.taxComponent.taxInfo.includeTaxId) {
+                                request.taxIdNumber = this.taxComponent.taxInfo.taxId;
+                                request.billingAddressLine1 = this.taxComponent.taxInfo.line1;
+                                request.billingAddressLine2 = this.taxComponent.taxInfo.line2;
+                                request.billingAddressCity = this.taxComponent.taxInfo.city;
+                                request.billingAddressState = this.taxComponent.taxInfo.state;
                             }
                         }
                         const response = await this.apiService.postOrganization(request);
@@ -162,13 +303,12 @@ export class OrganizationPlansComponent {
                     request.businessName = this.ownedBusiness ? this.businessName : null;
                     request.additionalSeats = this.additionalSeats;
                     request.additionalStorageGb = this.additionalStorage;
-                    request.premiumAccessAddon = this.plans[this.plan].canBuyPremiumAccessAddon &&
+                    request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
                         this.premiumAccessAddon;
-                    if (this.interval === 'month') {
-                        request.planType = this.plans[this.plan].monthPlanType;
-                    } else {
-                        request.planType = this.plans[this.plan].annualPlanType;
-                    }
+                    request.planType = this.selectedPlan.type;
+                    request.billingAddressCountry = this.taxComponent.taxInfo.country;
+                    request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+
                     const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
                     if (!result.success && result.paymentIntentClientSecret != null) {
                         await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
@@ -197,78 +337,4 @@ export class OrganizationPlansComponent {
         } catch { }
     }
 
-    cancel() {
-        this.onCanceled.emit();
-    }
-
-    changedPlan() {
-        if (!this.plans[this.plan].canBuyPremiumAccessAddon) {
-            this.premiumAccessAddon = false;
-        }
-
-        if (this.plans[this.plan].monthPlanType == null) {
-            this.interval = 'year';
-        }
-
-        if (this.plans[this.plan].noAdditionalSeats) {
-            this.additionalSeats = 0;
-        } else if (!this.additionalSeats && !this.plans[this.plan].baseSeats &&
-            !this.plans[this.plan].noAdditionalSeats) {
-            this.additionalSeats = 1;
-        }
-    }
-
-    changedOwnedBusiness() {
-        if (!this.ownedBusiness || this.plan === 'teams' || this.plan === 'enterprise') {
-            return;
-        }
-        this.plan = 'teams';
-    }
-
-    additionalStorageTotal(annual: boolean): number {
-        if (annual) {
-            return Math.abs(this.additionalStorage || 0) * this.storageGb.yearlyPrice;
-        } else {
-            return Math.abs(this.additionalStorage || 0) * this.storageGb.monthlyPrice;
-        }
-    }
-
-    seatTotal(annual: boolean): number {
-        if (this.plans[this.plan].noAdditionalSeats) {
-            return 0;
-        }
-
-        if (annual) {
-            return this.plans[this.plan].annualSeatPrice * Math.abs(this.additionalSeats || 0);
-        } else {
-            return this.plans[this.plan].monthlySeatPrice * Math.abs(this.additionalSeats || 0);
-        }
-    }
-
-    baseTotal(annual: boolean): number {
-        if (annual) {
-            return Math.abs(this.plans[this.plan].annualBasePrice || 0);
-        } else {
-            return Math.abs(this.plans[this.plan].monthlyBasePrice || 0);
-        }
-    }
-
-    premiumAccessTotal(annual: boolean): number {
-        if (this.plans[this.plan].canBuyPremiumAccessAddon && this.premiumAccessAddon) {
-            if (annual) {
-                return 40;
-            }
-        }
-        return 0;
-    }
-
-    get total(): number {
-        const annual = this.interval === 'year';
-        return this.baseTotal(annual) + this.seatTotal(annual) + this.additionalStorageTotal(annual) +
-            this.premiumAccessTotal(annual);
-    }
-
-    get createOrganization() {
-        return this.organizationId == null;
-    }
 }

@@ -19,6 +19,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
@@ -42,14 +43,15 @@ import { UserGroupsComponent } from './user-groups.component';
     templateUrl: 'people.component.html',
 })
 export class PeopleComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
-    @ViewChild('groupsTemplate', { read: ViewContainerRef }) groupsModalRef: ViewContainerRef;
-    @ViewChild('eventsTemplate', { read: ViewContainerRef }) eventsModalRef: ViewContainerRef;
-    @ViewChild('confirmTemplate', { read: ViewContainerRef }) confirmModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
+    @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
+    @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
     users: OrganizationUserUserDetailsResponse[];
+    pagedUsers: OrganizationUserUserDetailsResponse[];
     searchText: string;
     status: OrganizationUserStatusType = null;
     statusMap = new Map<OrganizationUserStatusType, OrganizationUserUserDetailsResponse[]>();
@@ -59,6 +61,10 @@ export class PeopleComponent implements OnInit {
     accessEvents = false;
     accessGroups = false;
 
+    protected didScroll = false;
+    protected pageSize = 100;
+
+    private pagedUsersCount = 0;
     private modal: ModalComponent = null;
     private allUsers: OrganizationUserUserDetailsResponse[];
 
@@ -67,13 +73,13 @@ export class PeopleComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private userService: UserService, private router: Router,
-        private storageService: StorageService) { }
+        private storageService: StorageService, private searchService: SearchService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
-            if (!organization.isAdmin) {
+            if (!organization.canManageUsers) {
                 this.router.navigate(['../collections'], { relativeTo: this.route });
                 return;
             }
@@ -81,10 +87,10 @@ export class PeopleComponent implements OnInit {
             this.accessGroups = organization.useGroups;
             await this.load();
 
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
-                    const user = this.users.filter((u) => u.id === qParams.viewEvents);
+                    const user = this.users.filter(u => u.id === qParams.viewEvents);
                     if (user.length > 0 && user[0].status === OrganizationUserStatusType.Confirmed) {
                         this.events(user[0]);
                     }
@@ -101,7 +107,7 @@ export class PeopleComponent implements OnInit {
         this.statusMap.clear();
         this.allUsers = response.data != null && response.data.length > 0 ? response.data : [];
         this.allUsers.sort(Utils.getSortFunction(this.i18nService, 'email'));
-        this.allUsers.forEach((u) => {
+        this.allUsers.forEach(u => {
             if (!this.statusMap.has(u.status)) {
                 this.statusMap.set(u.status, [u]);
             } else {
@@ -119,6 +125,27 @@ export class PeopleComponent implements OnInit {
         } else {
             this.users = this.allUsers;
         }
+        this.resetPaging();
+    }
+
+    loadMore() {
+        if (!this.users || this.users.length <= this.pageSize) {
+            return;
+        }
+        const pagedLength = this.pagedUsers.length;
+        let pagedSize = this.pageSize;
+        if (pagedLength === 0 && this.pagedUsersCount > this.pageSize) {
+            pagedSize = this.pagedUsersCount;
+        }
+        if (this.users.length > pagedLength) {
+            this.pagedUsers = this.pagedUsers.concat(this.users.slice(pagedLength, pagedLength + pagedSize));
+        }
+        this.pagedUsersCount = this.pagedUsers.length;
+        this.didScroll = this.pagedUsers.length > this.pageSize;
+    }
+
+    get allCount() {
+        return this.allUsers != null ? this.allUsers.length : 0;
     }
 
     get invitedCount() {
@@ -290,6 +317,23 @@ export class PeopleComponent implements OnInit {
         });
     }
 
+    async resetPaging() {
+        this.pagedUsers = [];
+        this.loadMore();
+    }
+
+    isSearching() {
+        return this.searchService.isSearchable(this.searchText);
+    }
+
+    isPaging() {
+        const searching = this.isSearching();
+        if (searching && this.didScroll) {
+            this.resetPaging();
+        }
+        return !searching && this.users && this.users.length > this.pageSize;
+    }
+
     private async doConfirmation(user: OrganizationUserUserDetailsResponse) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
@@ -309,6 +353,7 @@ export class PeopleComponent implements OnInit {
         let index = this.users.indexOf(user);
         if (index > -1) {
             this.users.splice(index, 1);
+            this.resetPaging();
         }
         if (this.statusMap.has(OrganizationUserStatusType.Accepted)) {
             index = this.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);

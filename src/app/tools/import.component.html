@@ -1,7 +1,7 @@
 <div class="page-header">
     <h1>{{'importData' | i18n}}</h1>
 </div>
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+<form #form (ngSubmit)="submit()" ngNativeValidate>
     <div class="row">
         <div class="col-6">
             <div class="form-group">
@@ -77,12 +77,11 @@
                 https://help.bitwarden.com/article/import-from-chrome/</a>
         </ng-container>
         <ng-container *ngIf="format === 'firefoxcsv'">
-            Use the
-            <a target="_blank" rel="noopener"
-                href="https://github.com/kspearrin/ff-password-exporter/blob/master/README.md#ff-password-exporter">
-                FF Password Exporter</a> application to export your passwords to a CSV file.
+             See detailed instructions on our help site at
+            <a target="_blank" rel="noopener" href="https://bitwarden.com/help/article/import-from-firefox/">
+                https://bitwarden.com/help/article/import-from-firefox/</a>.
         </ng-container>
-        <ng-container *ngIf="format === '1password1pif' || format === '1passwordwincsv'">
+        <ng-container *ngIf="format === '1password1pif' || format === '1passwordwincsv' || format === '1passwordmaccsv'">
             See detailed instructions on our help site at
             <a target="_blank" rel="noopener" href="https://help.bitwarden.com/article/import-from-1password/">
                 https://help.bitwarden.com/article/import-from-1password/</a>.
@@ -228,6 +227,14 @@
             Open the Codebook desktop application and log in. Navigate to "File" &rarr; "Export all", then click
             "Yes" on the dialog and save the CSV file.
         </ng-container>
+        <ng-container *ngIf="format === 'encryptrcsv'">
+            Open the newest version of the Encryptr desktop application and allow all of your data to sync.
+            Once syncing of your data is complete, the download icon in the top right corner will turn pink. Click
+            the download icon and save the CSV file.
+        </ng-container>
+        <ng-container *ngIf="format === 'yoticsv'">
+            From the Yoti browser extension, click on "Settings", then "Export Saved Logins" and save the CSV file.
+        </ng-container>
     </app-callout>
     <div class="row">
         <div class="col-6">
@@ -241,7 +248,7 @@
         <label for="fileContents">{{'orCopyPasteFileContents' | i18n}}</label>
         <textarea id="fileContents" class="form-control" name="FileContents" [(ngModel)]="fileContents"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+    <button type="submit" class="btn btn-primary btn-submit" [disabled]="loading">
         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'importData' | i18n}}</span>
     </button>

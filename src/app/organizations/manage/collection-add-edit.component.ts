@@ -56,7 +56,7 @@ export class CollectionAddEditComponent implements OnInit {
         this.editMode = this.loading = this.collectionId != null;
         if (this.accessGroups) {
             const groupsResponse = await this.apiService.getGroups(this.organizationId);
-            this.groups = groupsResponse.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
+            this.groups = groupsResponse.data.map(r => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
         }
         this.orgKey = await this.cryptoService.getOrgKey(this.organizationId);
 
@@ -68,11 +68,12 @@ export class CollectionAddEditComponent implements OnInit {
                 this.name = await this.cryptoService.decryptToUtf8(new CipherString(collection.name), this.orgKey);
                 this.externalId = collection.externalId;
                 if (collection.groups != null && this.groups.length > 0) {
-                    collection.groups.forEach((s) => {
-                        const group = this.groups.filter((g) => !g.accessAll && g.id === s.id);
+                    collection.groups.forEach(s => {
+                        const group = this.groups.filter(g => !g.accessAll && g.id === s.id);
                         if (group != null && group.length > 0) {
                             (group[0] as any).checked = true;
                             (group[0] as any).readOnly = s.readOnly;
+                            (group[0] as any).hidePasswords = s.hidePasswords;
                         }
                     });
                 }
@@ -81,7 +82,7 @@ export class CollectionAddEditComponent implements OnInit {
             this.title = this.i18nService.t('addCollection');
         }
 
-        this.groups.forEach((g) => {
+        this.groups.forEach(g => {
             if (g.accessAll) {
                 (g as any).checked = true;
             }
@@ -97,11 +98,12 @@ export class CollectionAddEditComponent implements OnInit {
         (g as any).checked = select == null ? !(g as any).checked : select;
         if (!(g as any).checked) {
             (g as any).readOnly = false;
+            (g as any).hidePasswords = false;
         }
     }
 
     selectAll(select: boolean) {
-        this.groups.forEach((g) => this.check(g, select));
+        this.groups.forEach(g => this.check(g, select));
     }
 
     async submit() {
@@ -112,8 +114,8 @@ export class CollectionAddEditComponent implements OnInit {
         const request = new CollectionRequest();
         request.name = (await this.cryptoService.encrypt(this.name, this.orgKey)).encryptedString;
         request.externalId = this.externalId;
-        request.groups = this.groups.filter((g) => (g as any).checked && !g.accessAll)
-            .map((g) => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly));
+        request.groups = this.groups.filter(g => (g as any).checked && !g.accessAll)
+            .map(g => new SelectionReadOnlyRequest(g.id, !!(g as any).readOnly, !!(g as any).hidePasswords));
 
         try {
             if (this.editMode) {

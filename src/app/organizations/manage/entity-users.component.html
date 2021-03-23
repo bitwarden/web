@@ -47,6 +47,8 @@
                                 <th>{{'name' | i18n}}</th>
                                 <th *ngIf="entity === 'collection'">&nbsp;</th>
                                 <th>{{'userType' | i18n}}</th>
+                                <th width="100" class="text-center" *ngIf="entity === 'collection'">{{'hidePasswords' |
+                                    i18n}}</th>
                                 <th width="100" class="text-center" *ngIf="entity === 'collection'">{{'readOnly' |
                                     i18n}}</th>
                             </tr>
@@ -84,6 +86,12 @@
                                     <span *ngIf="u.type === organizationUserType.Admin">{{'admin' | i18n}}</span>
                                     <span *ngIf="u.type === organizationUserType.Manager">{{'manager' | i18n}}</span>
                                     <span *ngIf="u.type === organizationUserType.User">{{'user' | i18n}}</span>
+                                    <span *ngIf="u.type === organizationUserType.Custom">{{'custom' | i18n}}</span>
+                                </td>
+                                <td class="text-center" *ngIf="entity === 'collection'">
+                                    <input type="checkbox" [(ngModel)]="u.hidePasswords"
+                                        name="{{u.id.substr(0,8)}}_HidePasswords"
+                                        [disabled]="u.accessAll || !u.checked">
                                 </td>
                                 <td class="text-center" *ngIf="entity === 'collection'">
                                     <input type="checkbox" [(ngModel)]="u.readOnly" name="{{u.id.substr(0,8)}}_ReadOnly"

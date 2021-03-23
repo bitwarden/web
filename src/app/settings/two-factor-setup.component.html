@@ -15,6 +15,9 @@
         <span class="sr-only">{{'loading' | i18n}}</span>
     </small>
 </h2>
+<app-callout type="warning" *ngIf="showPolicyWarning">
+    {{'twoStepLoginPolicyUserWarning' | i18n}}
+</app-callout>
 <ul class="list-group list-group-2fa">
     <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
         <div class="logo-2fa d-flex justify-content-center">
@@ -48,4 +51,4 @@
 <ng-template #duoTemplate></ng-template>
 <ng-template #emailTemplate></ng-template>
 <ng-template #yubikeyTemplate></ng-template>
-<ng-template #u2fTemplate></ng-template>
+<ng-template #webAuthnTemplate></ng-template>

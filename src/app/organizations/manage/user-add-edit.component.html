@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="userAddEditTitle">
-    <div class="modal-dialog" [ngClass]="{'modal-lg': !editMode}" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title" id="userAddEditTitle">
@@ -19,11 +19,18 @@
                     <p>{{'inviteUserDesc' | i18n}}</p>
                     <div class="form-group mb-4">
                         <label for="emails">{{'email' | i18n}}</label>
-                        <input id="emails" class="form-control" type="text" name="Emails" [(ngModel)]="emails" required>
+                        <input id="emails" class="form-control" type="text" name="Emails" [(ngModel)]="emails" required
+                            appAutoFocus>
                         <small class="text-muted">{{'inviteMultipleEmailDesc' | i18n : '20'}}</small>
                     </div>
                 </ng-container>
-                <h3>{{'userType' | i18n}}</h3>
+                <h3>
+                    {{'userType' | i18n}}
+                    <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                        href="https://bitwarden.com/help/article/user-types-access-control/#user-types">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                    </a>
+                </h3>
                 <div class="form-check mt-2 form-check-block">
                     <input class="form-check-input" type="radio" name="userType" id="userTypeUser"
                         [value]="organizationUserType.User" [(ngModel)]="type">
@@ -56,9 +63,132 @@
                         <small>{{'ownerDesc' | i18n}}</small>
                     </label>
                 </div>
+                <div class="form-check mt-2 form-check-block">
+                    <input class="form-check-input" type="radio" name="userType" id="userTypeCustom"
+                        [value]="organizationUserType.Custom" [(ngModel)]="type">
+                    <label class="form-check-label" for="userTypeCustom">
+                        {{'custom' | i18n}}
+                        <small>{{'customDesc' | i18n}}</small>
+                    </label>
+                </div>
+                <ng-container *ngIf="customUserTypeSelected">
+                    <h3 class="mt-4 d-flex">
+                        {{'permissions' | i18n}}
+                    </h3>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="font-weight-bold mb-0">Manager Permissions</label>
+                                <hr class="my-0 mr-2" />
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="manageAssignedCollections"
+                                            id="manageAssignedCollections"
+                                            [(ngModel)]="permissions.manageAssignedCollections">
+                                        <label class="form-check-label font-weight-normal"
+                                            for="manageAssignedCollections">
+                                            {{'manageAssignedCollections' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="font-weight-bold mb-0">Admin Permissions</label>
+                                <hr class="my-0 mr-2" />
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="accessBusinessPortal"
+                                            id="accessBusinessPortal" [(ngModel)]="permissions.accessBusinessPortal">
+                                        <label class="form-check-label font-weight-normal" for="accessBusinessPortal">
+                                            {{'accessBusinessPortal' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="accessEventLogs"
+                                            id="accessEventLogs" [(ngModel)]="permissions.accessEventLogs">
+                                        <label class="form-check-label font-weight-normal" for="accessEventLogs">
+                                            {{'accessEventLogs' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="accessImportExport"
+                                            id="accessImportExport" [(ngModel)]="permissions.accessImportExport">
+                                        <label class="form-check-label font-weight-normal" for="accessImportExport">
+                                            {{'accessImportExport' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="accessReports"
+                                            id="accessReports" [(ngModel)]="permissions.accessReports">
+                                        <label class="form-check-label font-weight-normal" for="accessReports">
+                                            {{'accessReports' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="manageAllCollections"
+                                            id="manageAllCollections" [(ngModel)]="permissions.manageAllCollections">
+                                        <label class="form-check-label font-weight-normal" for="manageAllCollections">
+                                            {{'manageAllCollections' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="manageGroups"
+                                            id="manageGroups" [(ngModel)]="permissions.manageGroups">
+                                        <label class="form-check-label font-weight-normal" for="manageGroups">
+                                            {{'manageGroups' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="manageSso"
+                                            id="managePolicies" [(ngModel)]="permissions.manageSso">
+                                        <label class="form-check-label font-weight-normal" for="manageSso">
+                                            {{'manageSso' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="managePolicies"
+                                            id="managePolicies" [(ngModel)]="permissions.managePolicies">
+                                        <label class="form-check-label font-weight-normal" for="managePolicies">
+                                            {{'managePolicies' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="form-check mt-1 form-check-block">
+                                        <input class="form-check-input" type="checkbox" name="manageUsers"
+                                            id="manageUsers" [(ngModel)]="permissions.manageUsers">
+                                        <label class="form-check-label font-weight-normal" for="manageUsers">
+                                            {{'manageUsers' | i18n}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
                 <h3 class="mt-4 d-flex">
-                    <div class="mb-2">
+                    <div class="mb-3">
                         {{'accessControl' | i18n}}
+                        <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                            href="https://bitwarden.com/help/article/user-types-access-control/#access-control">
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                        </a>
                     </div>
                     <div class="ml-auto" *ngIf="access === 'selected' && collections && collections.length">
                         <button type="button" (click)="selectAll(true)" class="btn btn-link btn-sm py-0">
@@ -94,6 +224,7 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>{{'name' | i18n}}</th>
+                                <th width="100" class="text-center">{{'hidePasswords' | i18n}}</th>
                                 <th width="100" class="text-center">{{'readOnly' | i18n}}</th>
                             </tr>
                         </thead>
@@ -105,6 +236,10 @@
                                 </td>
                                 <td (click)="check(c)">
                                     {{c.name}}
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" [(ngModel)]="c.hidePasswords"
+                                        name="Collection[{{i}}].HidePasswords" [disabled]="!c.checked">
                                 </td>
                                 <td class="text-center">
                                     <input type="checkbox" [(ngModel)]="c.readOnly" name="Collection[{{i}}].ReadOnly"

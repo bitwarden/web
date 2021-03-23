@@ -37,6 +37,9 @@
   "password": {
     "message": "Wachtwoord"
   },
+  "newPassword": {
+    "message": "Nieuw wachtwoord"
+  },
   "passphrase": {
     "message": "Wachtwoordzin"
   },
@@ -140,7 +143,7 @@
     "message": "Vervaljaar"
   },
   "authenticatorKeyTotp": {
-    "message": "Authenticatiesleutel (TOTP)"
+    "message": "Authenticatiecode (TOTP)"
   },
   "folder": {
     "message": "Map"
@@ -282,7 +285,7 @@
     "message": "Categorieën"
   },
   "typeLogin": {
-    "message": "Inloggen"
+    "message": "Login"
   },
   "typeCard": {
     "message": "Kaart"
@@ -343,6 +346,9 @@
   },
   "editItem": {
     "message": "Item bewerken"
+  },
+  "viewItem": {
+    "message": "Item weergeven"
   },
   "ex": {
     "message": "bijv.",
@@ -590,7 +596,7 @@
     "message": "Ontgrendelen"
   },
   "loggedInAsEmailOn": {
-    "message": "Ingelogd als $EMAIL$ op $HOSTNAME$.",
+    "message": "Aangemeld als $EMAIL$ op $HOSTNAME$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -675,7 +681,7 @@
     "message": "Steek je beveilingssleutel in de USB-poort van je computer. Als het een knop heeft, druk deze dan in."
   },
   "loginUnavailable": {
-    "message": "Inloggen niet beschikbaar"
+    "message": "Login niet beschikbaar"
   },
   "noTwoStepProviders": {
     "message": "Dit account heeft tweestapsaanmelding ingeschakeld, maar deze webbrowser ondersteunt geen van de geconfigureerde aanbieders."
@@ -787,8 +793,17 @@
   "warning": {
     "message": "Waarschuwing"
   },
+  "confirmVaultExport": {
+    "message": "Kluisexport bevestigen"
+  },
   "exportWarningDesc": {
     "message": "Deze export bevat jouw kluisgegevens in een niet-versleutelde opmaak. Je moet het geëxporteerde bestand niet opslaan of verzenden over onbeveiligde kanalen (zoals e-mail). Verwijder het exportbestand direct na gebruik."
+  },
+  "encExportKeyWarningDesc": {
+    "message": "Deze export versleutelt je gegevens met de encryptiesleutel van je account. Als je je encryptiesleutel verandert moet je opnieuw exporteren, omdat je deze export dan niet meer kunt ontcijferen."
+  },
+  "encExportAccountWarningDesc": {
+    "message": "Encryptiesleutels zijn uniek voor elk Bitwarden-gebruikersaccount, je kun kunt een versleutelde niet in een ander account importeren."
   },
   "exportMasterPassword": {
     "message": "Voer je hoofdwachtwoord in om de kluisgegevens te exporteren."
@@ -805,6 +820,9 @@
   "passwordGenerator": {
     "message": "Wachtwoordgenerator"
   },
+  "minComplexityScore": {
+    "message": "Minimale complexiteitsscore"
+  },
   "minNumbers": {
     "message": "Minimum aantal cijfers"
   },
@@ -816,7 +834,7 @@
     "message": "Dubbelzinnige tekens vermijden"
   },
   "regeneratePassword": {
-    "message": "Wachtwoord opnieuw genereren"
+    "message": "Opnieuw genereren"
   },
   "length": {
     "message": "Lengte"
@@ -835,7 +853,7 @@
     "message": "Cijfer toevoegen"
   },
   "passwordHistory": {
-    "message": "Wachtwoordgeschiedenis"
+    "message": "Geschiedenis"
   },
   "noPasswordsInList": {
     "message": "Er zijn geen wachtwoorden om weer te geven."
@@ -985,8 +1003,23 @@
   "importData": {
     "message": "Gegevens importeren"
   },
+  "importError": {
+    "message": "Fout bij importeren"
+  },
+  "importErrorDesc": {
+    "message": "Er was een probleem met de data die je probeerde te importeren. Los de onderstaande fouten op in het bronbestand en probeer het opnieuw."
+  },
   "importSuccess": {
     "message": "De gegevens zijn in je kluis geïmporteerd."
+  },
+  "importWarning": {
+    "message": "Je importeert gegevens naar $ORGANIZATION$. Je gegevens kunnen gedeeld worden met de leden van deze organisatie. Wil je doorgaan?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "importFormatError": {
     "message": "De gegevens zijn niet correct opgemaakt. Controleer je importbestand en probeer het opnieuw."
@@ -1040,6 +1073,13 @@
   },
   "enableGravatarsDesc": {
     "message": "Gebruik avatar-afbeeldingen van gravatar.com."
+  },
+  "enableFullWidth": {
+    "message": "Weergave op volle breedte inschakelen",
+    "description": "Allows scaling the web vault UI's width"
+  },
+  "enableFullWidthDesc": {
+    "message": "Laat de webkluis de volledige breedte van het browservenster gebruiken."
   },
   "default": {
     "message": "Standaard"
@@ -1312,7 +1352,7 @@
     "message": "Rapportages"
   },
   "unsecuredWebsitesReport": {
-    "message": "Overzicht van niet-beveiligde websites"
+    "message": "Niet-beveiligde websites"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "Onbeveiligde websites met http:// gebruiken kan gevaarlijk zijn. Als de website het ondersteunt, moet je deze altijd benaderen met behulp van https:// zodat je verbinding versleuteld is."
@@ -1333,7 +1373,7 @@
     "message": "Geen items in je kluis met onbeveiligde URIs."
   },
   "inactive2faReport": {
-    "message": "Overzicht van inactieve 2FA"
+    "message": "Niet-geactiveerde 2FA"
   },
   "inactive2faReportDesc": {
     "message": "Tweestapsaanmelding (2FA) is een belangrijke instelling die bijdraagt aan de beveiliging van je accounts. Als de website het ondersteunt, zou je altijd tweestapsaanmelding moeten gebruiken."
@@ -1342,7 +1382,7 @@
     "message": "Logins zonder 2FA gevonden"
   },
   "inactive2faFoundDesc": {
-    "message": "We hebben $COUNT$ website(s) in je kluis gevonden waar je tweestapsaanmelding nog kunt configureren (volgens twofactorauth.org). Om deze accounts verder te beschermen, zou je tweestapsaanmelding moeten inschakelen.",
+    "message": "We hebben $COUNT$ website(s) in je kluis gevonden waar je (volgens 2fa.directory) nog tweestapsaanmelding kunt instellen. Om deze accounts beter te beschermen, zou je tweestapsaanmelding moeten inschakelen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1357,7 +1397,7 @@
     "message": "Instructies"
   },
   "exposedPasswordsReport": {
-    "message": "Overzicht van gelekte wachtwoorden"
+    "message": "Gelekte wachtwoorden"
   },
   "exposedPasswordsReportDesc": {
     "message": "Gelekte wachtwoorden zijn wachtwoorden die zijn ontdekt in bekende datalekken die publiekelijk zijn vrijgegeven of door hackers op het dark web worden verkocht."
@@ -1390,7 +1430,7 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Overzicht van zwakke wachtwoorden"
+    "message": "Zwakke wachtwoorden"
   },
   "weakPasswordsReportDesc": {
     "message": "Hackers en geautomatiseerde gereedschappen die wachtwoorden kraken kunnen zwakke wachtwoorden eenvoudig raden. De wachtwoordgenerator van Bitwarden helpt je bij het maken van sterke wachtwoorden."
@@ -1411,7 +1451,7 @@
     "message": "Er zijn geen items met zwakke wachtwoorden in je kluis gevonden."
   },
   "reusedPasswordsReport": {
-    "message": "Overzicht van dubbele wachtwoorden"
+    "message": "Dubbele wachtwoorden"
   },
   "reusedPasswordsReportDesc": {
     "message": "Als hackers wachtwoorden stelen bij een dienst die je gebruikt, kunnen zij met hetzelfde wachtwoord eenvoudig toegang krijgen tot meer van je online accounts. Je zou voor iedere dienst een uniek wachtwoord moeten gebruiken."
@@ -1441,7 +1481,7 @@
     }
   },
   "dataBreachReport": {
-    "message": "Overzicht van datalekken"
+    "message": "Datalekken"
   },
   "breachDesc": {
     "message": "Een \"datalek\" is een incident waarbij de gegevens van een website zijn gestolen door hackers en vervolgens openbaar zijn gemaakt. Controleer de soorten gegevens die zijn gelekt (e-mailadressen, wachtwoorden, creditcards, enz.) en neem passende maatregelen, zoals het wijzigen van wachtwoorden."
@@ -1542,6 +1582,9 @@
   },
   "premiumSignUpTwoStep": {
     "message": "Extra tweestapsaanmeldingsopties zoals YubiKey, FIDO U2F en Duo."
+  },
+  "premiumSignUpEmergency": {
+    "message": "Noodtoegang"
   },
   "premiumSignUpReports": {
     "message": "Rapportages op wachtwoordhygiëne, gezondheid van je account en datalekken om je kluis veilig te houden."
@@ -1645,6 +1688,9 @@
   },
   "paymentInformation": {
     "message": "Betaalgegevens"
+  },
+  "billingInformation": {
+    "message": "Factureringsgegevens"
   },
   "creditCard": {
     "message": "Creditcard"
@@ -1976,7 +2022,7 @@
     "message": "Zelfhosting (optioneel)"
   },
   "usersGetPremium": {
-    "message": "Gebruikers krijgen toegang tot functionaliteiten van het Premium-abonnement"
+    "message": "Gebruikers krijgen toegang tot Premium-functies"
   },
   "controlAccessWithGroups": {
     "message": "Gebruikerstoegang beheren met groepen"
@@ -2046,6 +2092,12 @@
   },
   "people": {
     "message": "Personen"
+  },
+  "policies": {
+    "message": "Beleidseisen"
+  },
+  "editPolicy": {
+    "message": "Beleid bewerken"
   },
   "groups": {
     "message": "Groepen"
@@ -2153,10 +2205,10 @@
     "message": "Een standaardgebruiker met toegang tot de verzamelingen van je organisatie."
   },
   "manager": {
-    "message": "Beheerder"
+    "message": "Manager"
   },
   "managerDesc": {
-    "message": "Beheerders hebben toegang tot toegewezen verzamelingen binnen je organisatie en kunnen deze ook beheren."
+    "message": "Managers hebben toegang tot toegewezen verzamelingen binnen je organisatie en kunnen deze ook beheren."
   },
   "all": {
     "message": "Alle"
@@ -2356,6 +2408,15 @@
       }
     }
   },
+  "editedPolicyId": {
+    "message": "Bewerkt beleid $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
   "createdGroupId": {
     "message": "Groep aangemaakt $ID$.",
     "placeholders": {
@@ -2448,6 +2509,15 @@
   },
   "editedGroupsForUser": {
     "message": "Groepen gewijzigd van gebruiker $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "unlinkedSsoUser": {
+    "message": "SSO ontkoppeld voor gebruiker $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2560,6 +2630,15 @@
   "inviteAcceptFailed": {
     "message": "De uitnodiging is niet geaccepteerd. Vraag een beheerder van de organisatie om een nieuwe uitnodiging te versturen."
   },
+  "inviteAcceptFailedShort": {
+    "message": "Uitnodiging kan niet worden geaccepteerd. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
   "rememberEmail": {
     "message": "Mijn e-mailadres onthouden"
   },
@@ -2609,7 +2688,7 @@
     "message": "Belastinginformatie"
   },
   "taxInformationDesc": {
-    "message": "Neem contact op met klantondersteuning voor het verstrekken (of bijwerken) van belastinginformatie voor je facturen."
+    "message": "Voor klanten in de VS is een postcode nodig om te voldoen aan belastingvoorschriften. Klanten uit andere landen kunnen desgewenst een belastingnummer (BTW/VAT/GST) en/of adres opgeven voor vermelding op de facturen."
   },
   "billingPlan": {
     "message": "Abonnement",
@@ -2749,6 +2828,9 @@
   "updateEncryptionKeyWarning": {
     "message": "Na het bijwerken van je encryptiesleutel moet je je afmelden en weer aanmelden bij alle Bitwarden-applicaties die je gebruikt (zoals de mobiele app of browserextensies). Als je niet opnieuw inlogt (wat je nieuwe encryptiesleutel downloadt), kan dit gegevensbeschadiging tot gevolg hebben. We proberen je automatisch uit te loggen, maar het kan zijn dat dit met enige vertraging gebeurt."
   },
+  "updateEncryptionKeyExportWarning": {
+    "message": "Elke versleutelde export die je hebt bewaard wordt onbruikbaar."
+  },
   "subscription": {
     "message": "Abonnement"
   },
@@ -2776,9 +2858,11 @@
   "nothingSelected": {
     "message": "Je hebt niets geselecteerd."
   },
-  "submitAgreePolicies": {
-    "message": "Met \"Versturen\" ga je akkoord met de volgende voorwaarden:",
-    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  "acceptPolicies": {
+    "message": "Door dit vakje aan te vinken ga je akkoord met het volgende:"
+  },
+  "acceptPoliciesError": {
+    "message": "Algemene voorwaarden en privacybeleid zijn nog niet erkend."
   },
   "termsOfService": {
     "message": "Algemene gebruiksvoorwaarden"
@@ -2789,11 +2873,11 @@
   "filters": {
     "message": "Filters"
   },
-  "lockOptions": {
-    "message": "Vergrendelingsopties"
+  "vaultTimeout": {
+    "message": "Time-out van de kluis"
   },
-  "lockOptionsDesc": {
-    "message": "Kies wanneer je kluis vergrendelt. Een vergrendelde kluis is pas weer toegankelijk als je je hoofdwachtwoord opnieuw invoert."
+  "vaultTimeoutDesc": {
+    "message": "Stel de time-out van de kluis en de bijbehorende actie in."
   },
   "oneMinute": {
     "message": "1 minuut"
@@ -2914,6 +2998,12 @@
   "apiKeyWarning": {
     "message": "Je API-sleutel heeft volledige toegang tot de organisatie. Houd het geheim."
   },
+  "userApiKeyDesc": {
+    "message": "Met je API-sleutel kun je inloggen in de Bitwarden CLI."
+  },
+  "userApiKeyWarning": {
+    "message": "Je API-sleutel is een alternatieve manier van inloggen. Het moet geheim blijven."
+  },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 clientreferenties",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
@@ -2938,5 +3028,739 @@
   },
   "manageSubscriptionFromStore": {
     "message": "Je moet je abonnement beheren vanuit de winkel waar je in-app aankoop is gemaakt."
+  },
+  "minLength": {
+    "message": "Minimale lengte"
+  },
+  "clone": {
+    "message": "Dupliceren"
+  },
+  "masterPassPolicyDesc": {
+    "message": "Minimale eisen voor de sterkte van het hoofdwachtwoord instellen."
+  },
+  "twoStepLoginPolicyDesc": {
+    "message": "Vereis tweestapsaanmelding op het persoonlijke account van gebruikers."
+  },
+  "twoStepLoginPolicyWarning": {
+    "message": "Organisatieleden die geen eigenaren of beheerders zijn en geen tweestapsaanmelding hebben ingeschakeld voor hun persoonlijke account worden verwijderd uit de organisatie en ontvangen een e-mail waarin ze worden geïnformeerd over de wijziging."
+  },
+  "twoStepLoginPolicyUserWarning": {
+    "message": "Je bent lid van een organisatie die tweestapsaanmelding vereist op je persoonlijke account. Als je tweestapsaanmelding uitschakelt wordt je automatisch uit deze organisaties verwijderd."
+  },
+  "passwordGeneratorPolicyDesc": {
+    "message": "Stel minimale vereisten in voor de configuratie van de wachtwoordgenerator."
+  },
+  "passwordGeneratorPolicyInEffect": {
+    "message": "Een of meer organisatiebeleidseisen heeft invloed op de instellingen van je generator."
+  },
+  "masterPasswordPolicyInEffect": {
+    "message": "Een of meer organisatiebeleidseisen stelt de volgende eisen aan je hoofdwachtwoord:"
+  },
+  "policyInEffectMinComplexity": {
+    "message": "Minimale complexiteitsscore van $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "policyInEffectMinLength": {
+    "message": "Minimale lengte van $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "policyInEffectUppercase": {
+    "message": "Bevat een of meer hoofdletters"
+  },
+  "policyInEffectLowercase": {
+    "message": "Bevat een of meer kleine letters"
+  },
+  "policyInEffectNumbers": {
+    "message": "Bevat een of meer cijfers"
+  },
+  "policyInEffectSpecial": {
+    "message": "Bevat een of meer van de volgende speciale tekens $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },
+  "masterPasswordPolicyRequirementsNotMet": {
+    "message": "Je nieuwe hoofdwachtwoord voldoet niet aan de beleidseisen."
+  },
+  "minimumNumberOfWords": {
+    "message": "Minimum aantal woorden"
+  },
+  "defaultType": {
+    "message": "Standaardtype"
+  },
+  "userPreference": {
+    "message": "Persoonlijke voorkeur"
+  },
+  "vaultTimeoutAction": {
+    "message": "Actie bij time-out"
+  },
+  "vaultTimeoutActionLockDesc": {
+    "message": "Om toegang te krijgen tot een vergrendelde kluis moet het hoofdwachtwoord opnieuw worden ingevoerd."
+  },
+  "vaultTimeoutActionLogOutDesc": {
+    "message": "Om toegang te krijgen tot een uitgelogde kluis te krijgen moet je opnieuw inloggen."
+  },
+  "lock": {
+    "message": "Vergrendelen",
+    "description": "Verb form: to make secure or inaccesible by"
+  },
+  "trash": {
+    "message": "Prullenbak",
+    "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
+  },
+  "searchTrash": {
+    "message": "Prullenbak doorzoeken"
+  },
+  "permanentlyDelete": {
+    "message": "Definitief verwijderen"
+  },
+  "permanentlyDeleteSelected": {
+    "message": "Selectie definitief verwijderen"
+  },
+  "permanentlyDeleteItem": {
+    "message": "Item definitief verwijderen"
+  },
+  "permanentlyDeleteItemConfirmation": {
+    "message": "Weet je zeker dat je dit item definitief wilt verwijderen?"
+  },
+  "permanentlyDeletedItem": {
+    "message": "Definitief verwijderd item"
+  },
+  "permanentlyDeletedItems": {
+    "message": "Definitief verwijderde items"
+  },
+  "permanentlyDeleteSelectedItemsDesc": {
+    "message": "Je hebt $COUNT$ item(s) geselecteerd voor verwijdering. Weet je zeker dat je al deze items definitief wilt verwijderen?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "permanentlyDeletedItemId": {
+    "message": "Definitief verwijderd item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "restore": {
+    "message": "Herstellen"
+  },
+  "restoreSelected": {
+    "message": "Selectie herstellen"
+  },
+  "restoreItem": {
+    "message": "Item herstellen"
+  },
+  "restoredItem": {
+    "message": "Hersteld item"
+  },
+  "restoredItems": {
+    "message": "Herstelde items"
+  },
+  "restoreItemConfirmation": {
+    "message": "Weet je zeker dat je dit item wilt herstellen?"
+  },
+  "restoreItems": {
+    "message": "Items herstellen"
+  },
+  "restoreSelectedItemsDesc": {
+    "message": "Je hebt $COUNT$ item(s) geselecteerd voor herstel. Weet je zeker dat je al deze items wilt herstellen?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "restoredItemId": {
+    "message": "Hersteld item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "vaultTimeoutLogOutConfirmation": {
+    "message": "Uitloggen ontneemt je de toegang tot je kluis en vereist online authenticatie na een periode van time-out. Weet je zeker dat je deze instelling wilt gebruiken?"
+  },
+  "vaultTimeoutLogOutConfirmationTitle": {
+    "message": "Bevestiging actie bij time-out"
+  },
+  "hidePasswords": {
+    "message": "Wachtwoorden verbergen"
+  },
+  "countryPostalCodeRequiredDesc": {
+    "message": "We gebruiken deze informatie alleen voor het berekenen van belasting en financiële rapportages."
+  },
+  "includeVAT": {
+    "message": "Inclusief btw-informatie (optioneel)"
+  },
+  "taxIdNumber": {
+    "message": "Btw-nummer"
+  },
+  "taxInfoUpdated": {
+    "message": "Belastinginformatie bijgewerkt."
+  },
+  "setMasterPassword": {
+    "message": "Hoofdwachtwoord instellen"
+  },
+  "ssoCompleteRegistration": {
+    "message": "Voor het inloggen met SSO moet je een hoofdwachtwoord instellen voor toegang tot en bescherming van je kluis."
+  },
+  "identifier": {
+    "message": "Identificatie"
+  },
+  "organizationIdentifier": {
+    "message": "Organisatie-identificatie"
+  },
+  "ssoLogInWithOrgIdentifier": {
+    "message": "Inloggen met het single sign-on portaal van je organisatie. Voer de identificatie van je organisatie in om te beginnen."
+  },
+  "enterpriseSingleSignOn": {
+    "message": "Enterprise Single Sign-On"
+  },
+  "ssoHandOff": {
+    "message": "Je kunt dit tabblad nu sluiten en doorgaan in de extensie."
+  },
+  "businessPortal": {
+    "message": "Zakelijk portaal",
+    "description": "The web portal used by business organizations for configuring certain features."
+  },
+  "includeAllTeamsFeatures": {
+    "message": "Alle functionaliteit van Teams plus:"
+  },
+  "includeSsoAuthentication": {
+    "message": "SSO-authenticatie via SAML2.0 en OpenID Connect"
+  },
+  "includeEnterprisePolicies": {
+    "message": "Enterprisebeleid"
+  },
+  "ssoValidationFailed": {
+    "message": "SSO-validatie mislukt"
+  },
+  "ssoIdentifierRequired": {
+    "message": "Organisatie-identificatie vereist."
+  },
+  "unlinkSso": {
+    "message": "SSO ontkoppelen"
+  },
+  "linkSso": {
+    "message": "SSO koppelen"
+  },
+  "webPoliciesDeprecationWarning": {
+    "message": "Beleidsconfiguratie is verplaatst en deze pagina wordt binnenkort niet meer ondersteund. Klik hieronder om het bedrijfsbeleidsportaal te gebruiken."
+  },
+  "singleOrg": {
+    "message": "Enkele organisatie"
+  },
+  "singleOrgDesc": {
+    "message": "Beperk de mogelijkheid voor gebruikers om deel te nemen aan andere organisaties."
+  },
+  "singleOrgBlockCreateMessage": {
+    "message": "Jouw huidige organisatie heeft een beleid dat je niet toestaat om deel te nemen aan meer dan één organisatie. Neem contact op met de beheerders van jouw organisatie of meld je aan met een ander Bitwarden-account."
+  },
+  "singleOrgPolicyWarning": {
+    "message": "Leden van de organisatie die geen eigenaar of beheerder zijn en die al lid zijn van een andere organisatie, worden verwijderd uit jouw organisatie."
+  },
+  "requireSso": {
+    "message": "Single Sign-On Authenticatie"
+  },
+  "requireSsoPolicyDesc": {
+    "message": "Verplicht gebruikers om in te loggen met de Enterprise Single Sign-On methode."
+  },
+  "prerequisite": {
+    "message": "Vereisten"
+  },
+  "requireSsoPolicyReq": {
+    "message": "Voordat je dit beleid kunt activeren moet je eerst het Enkele organisatie-bedrijfsbeleid inschakelen."
+  },
+  "requireSsoPolicyReqError": {
+    "message": "Enkele Organisatie-beleid is niet ingeschakeld."
+  },
+  "requireSsoExemption": {
+    "message": "Eigenaren en beheerders van de organisatie zijn vrijgesteld van de handhaving van dit beleid."
+  },
+  "sendTypeFile": {
+    "message": "Bestand"
+  },
+  "sendTypeText": {
+    "message": "Tekst"
+  },
+  "createSend": {
+    "message": "Nieuwe Send aanmaken",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editSend": {
+    "message": "Send bewerken",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "createdSend": {
+    "message": "Send aangemaakt",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "editedSend": {
+    "message": "Send bewerkt",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletedSend": {
+    "message": "Send verwijderd",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSend": {
+    "message": "Send verwijderen",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deleteSendConfirmation": {
+    "message": "Weet je zeker dat je deze Send wilt verwijderen?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "whatTypeOfSend": {
+    "message": "Wat voor soort Send is dit?",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "deletionDate": {
+    "message": "Verwijderingsdatum"
+  },
+  "deletionDateDesc": {
+    "message": "Deze Send wordt definitief verwijderd op de aangegeven datum en tijd.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "expirationDate": {
+    "message": "Vervaldatum"
+  },
+  "expirationDateDesc": {
+    "message": "Als dit is ingesteld verloopt deze Send op een specifieke datum en tijd.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "maxAccessCount": {
+    "message": "Maximum toegangsaantal"
+  },
+  "maxAccessCountDesc": {
+    "message": "Als dit is ingesteld kunnen gebruikers deze Send niet meer benaderen zodra het maximale aantal toegang is bereikt.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "currentAccessCount": {
+    "message": "Huidige toegangsaantal"
+  },
+  "sendPasswordDesc": {
+    "message": "Vereis optioneel een wachtwoord voor gebruikers om toegang te krijgen tot deze Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNotesDesc": {
+    "message": "Privénotities over deze Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disabled": {
+    "message": "Uitgeschakeld"
+  },
+  "sendLink": {
+    "message": "Send-koppeling",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "copySendLink": {
+    "message": "Send-koppeling kopiëren",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "removePassword": {
+    "message": "Wachtwoord verwijderen"
+  },
+  "removedPassword": {
+    "message": "Wachtwoord verwijderd"
+  },
+  "removePasswordConfirmation": {
+    "message": "Weet je zeker dat je dit wachtwoord wilt verwijderen?"
+  },
+  "disableThisSend": {
+    "message": "Schakel deze Send uit zodat niemand hem kan benaderen.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "allSends": {
+    "message": "Alle Sends"
+  },
+  "maxAccessCountReached": {
+    "message": "Maximum aantal keren benaderd"
+  },
+  "pendingDeletion": {
+    "message": "Wordt verwijderd"
+  },
+  "expired": {
+    "message": "Verlopen"
+  },
+  "searchSends": {
+    "message": "Sends zoeken",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPassword": {
+    "message": "Deze Send is beveiligd met een wachtwoord. Voer het wachtwoord hieronder in om door te gaan.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendProtectedPasswordDontKnow": {
+    "message": "Weet je het wachtwoord niet? Vraag de afzender om het wachtwoord om toegang te krijgen tot deze Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendHiddenByDefault": {
+    "message": "Deze Send is standaard verborgen. Je kunt de zichtbaarheid ervan in- en uitschakelen met de knop hieronder.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "downloadFile": {
+    "message": "Bestand downloaden"
+  },
+  "sendAccessUnavailable": {
+    "message": "De Send die je probeert te benaderen is niet (langer) beschikbaar.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "missingSendFile": {
+    "message": "Het aan deze Send gekoppelde bestand kon niet gevonden worden.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "noSendsInList": {
+    "message": "Er zijn geen Sends beschikbaar.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "emergencyAccess": {
+    "message": "Noodtoegang"
+  },
+  "emergencyAccessDesc": {
+    "message": "Verleen en beheer noodtoegang voor vertrouwde contacten. Vertrouwde contacten kunnen in noodgevallen toegang vragen om je account te bekijken of overnemen. Bezoek onze helppagina voor meer informatie en details over de werking van \"zero knowledge sharing\"."
+  },
+  "emergencyAccessOwnerWarning": {
+    "message": "Je bent eigenaar van een of meer organisaties. Als je toegang tot overname geeft aan een noodcontact, kan deze na een overname jouw toegangsrechten als eigenaar gebruiken."
+  },
+  "trustedEmergencyContacts": {
+    "message": "Vertrouwde noodcontacten"
+  },
+  "noTrustedContacts": {
+    "message": "Je hebt nog geen noodcontacten, nodig een vertrouwde contactpersoon uit om te beginnen."
+  },
+  "addEmergencyContact": {
+    "message": "Noodcontact toevoegen"
+  },
+  "designatedEmergencyContacts": {
+    "message": "Aangewezen als noodcontact"
+  },
+  "noGrantedAccess": {
+    "message": "Je bent nog door niemand aangewezen als noodcontact."
+  },
+  "inviteEmergencyContact": {
+    "message": "Noodcontact uitnodigen"
+  },
+  "editEmergencyContact": {
+    "message": "Noodcontact bewerken"
+  },
+  "inviteEmergencyContactDesc": {
+    "message": "Nodig een nieuw noodcontact uit door hieronder het e-mailadres van hun Bitwarden-account in te vullen. Als ze nog geen Bitwarden-account hebben, krijgen ze de mogelijkheid direct een account aan te maken."
+  },
+  "emergencyAccessRecoveryInitiated": {
+    "message": "Noodtoegang geïnitieerd"
+  },
+  "emergencyAccessRecoveryApproved": {
+    "message": "Noodtoegang goedgekeurd"
+  },
+  "viewDesc": {
+    "message": "Kan alle items in je eigen kluis bekijken."
+  },
+  "takeover": {
+    "message": "Overnemen"
+  },
+  "takeoverDesc": {
+    "message": "Kan op jouw account een nieuw hoofdwachtwoord instellen."
+  },
+  "waitTime": {
+    "message": "Wachttijd"
+  },
+  "waitTimeDesc": {
+    "message": "Wachttijd tot het automatisch verlenen van toegang."
+  },
+  "oneDay": {
+    "message": "1 dag"
+  },
+  "days": {
+    "message": "$DAYS$ dagen",
+    "placeholders": {
+      "days": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "invitedUser": {
+    "message": "Uitgenodigde gebruiker."
+  },
+  "acceptEmergencyAccess": {
+    "message": "Je bent uitgenodigd als noodcontact voor bovenstaande gebruiker. Om de uitnodiging te accepteren, moet je inloggen of een nieuw Bitwarden-account aanmaken."
+  },
+  "emergencyInviteAcceptFailed": {
+    "message": "Kon de uitnodiging niet accepteren. Vraag de gebruiker om een nieuwe uitnodiging te versturen."
+  },
+  "emergencyInviteAcceptFailedShort": {
+    "message": "Kon de uitnodiging niet accepteren. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must enable 2FA on your user account before you can join this organization."
+      }
+    }
+  },
+  "emergencyInviteAcceptedDesc": {
+    "message": "Je kunt de instellingen voor noodtoegang van deze gebruiker benaderen zodra je identiteit is bevestigd. We sturen je een e-mail wanneer dat is gerealiseerd."
+  },
+  "requestAccess": {
+    "message": "Toegang aanvragen"
+  },
+  "requestAccessConfirmation": {
+    "message": "Weet je zeker dat je noodtoegang wilt aanvragen? Je krijgt toegang na $WAITTIME$ dag(en) of zodra de gebruiker de aanvraag handmatig goedkeurt.",
+    "placeholders": {
+      "waittime": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "requestSent": {
+    "message": "Noodtoegang aangevraagd voor $USER$. We brengen je per e-mail op de hoogte wanneer je verder kunt.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "approve": {
+    "message": "Goedkeuren"
+  },
+  "reject": {
+    "message": "Afwijzen"
+  },
+  "approveAccessConfirmation": {
+    "message": "Weet je zeker dat je noodtoegang wilt goedkeuren? Hiermee verleen je $USER$ toegang tot je account $ACTION$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      },
+      "action": {
+        "content": "$2",
+        "example": "View"
+      }
+    }
+  },
+  "emergencyApproved": {
+    "message": "Noodtoegang goedgekeurd."
+  },
+  "emergencyRejected": {
+    "message": "Noodtoegang afgewezen"
+  },
+  "passwordResetFor": {
+    "message": "Wachtwoord opnieuw ingesteld voor $USER$. Je kunt nu inloggen met het nieuwe wachtwoord.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "personalOwnership": {
+    "message": "Persoonlijk eigendom"
+  },
+  "personalOwnershipPolicyDesc": {
+    "message": "Verplicht gebruikers kluisitems op te slaan in een organisatie door de persoonlijke eigendomsoptie te verwijderen."
+  },
+  "personalOwnershipExemption": {
+    "message": "Eigenaren en beheerders van de organisatie zijn vrijgesteld van de handhaving van dit beleid."
+  },
+  "personalOwnershipSubmitError": {
+    "message": "Wegens bedrijfsbeleid mag je geen wachtwoorden opslaan in je persoonlijke kluis. Verander het eigenaarschap naar een organisatie en kies uit een van de beschikbare collecties."
+  },
+  "disableSend": {
+    "message": "Send uitschakelen"
+  },
+  "disableSendPolicyDesc": {
+    "message": "Gebruikers mogen geen Bitwarden Send maken of bewerken. Het verwijderen van een bestaande Send is nog steeds toegestaan.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "disableSendExemption": {
+    "message": "Gebruikers in de organisatie die het beleid van de organisatie kunnen beheren, zijn vrijgesteld van de handhaving van dit beleid."
+  },
+  "sendDisabled": {
+    "message": "Send uitgeschakeld",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendDisabledWarning": {
+    "message": "Als gevolg van een ondernemingsbeleid kun je alleen een bestaande Send verwijderen.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "modifiedPolicyId": {
+    "message": "Bewerkt beleid $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Master Password"
+      }
+    }
+  },
+  "planPrice": {
+    "message": "Prijs"
+  },
+  "estimatedTax": {
+    "message": "Geschatte belasting"
+  },
+  "custom": {
+    "message": "Aangepast"
+  },
+  "customDesc": {
+    "message": "Maakt een fijnmazige controle van gebruikersrechten voor geavanceerde configuraties mogelijk."
+  },
+  "permissions": {
+    "message": "Rechten"
+  },
+  "accessBusinessPortal": {
+    "message": "Business Portaal"
+  },
+  "accessEventLogs": {
+    "message": "Eventlogs"
+  },
+  "accessImportExport": {
+    "message": "Importeren/exporteren"
+  },
+  "accessReports": {
+    "message": "Rapporten"
+  },
+  "manageAllCollections": {
+    "message": "Alle verbindingen beheren"
+  },
+  "manageAssignedCollections": {
+    "message": "Toegewezen collecties beheren"
+  },
+  "manageGroups": {
+    "message": "Groepen beheren"
+  },
+  "managePolicies": {
+    "message": "Beleid beheren"
+  },
+  "manageSso": {
+    "message": "SSO beheren"
+  },
+  "manageUsers": {
+    "message": "Gebruikers beheren"
+  },
+  "disableRequireSsoError": {
+    "message": "Je moet handmatig het Single Sign-On-verificatiebeleid uitschakelen voordat je dit beleid kunt uitgeschakeld."
+  },
+  "personalOwnershipPolicyInEffect": {
+    "message": "Een organisatiebeleid heeft invloed op je eigendomsopties."
+  },
+  "personalOwnershipCheckboxDesc": {
+    "message": "Schakel persoonlijke eigendom uit voor organisatiegebruikers"
+  },
+  "textHiddenByDefault": {
+    "message": "Verberg de tekst standaard bij het gebruiken van de Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendNameDesc": {
+    "message": "Een vriendelijke naam om deze Send te beschrijven.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendTextDesc": {
+    "message": "De tekst die je wilt versturen."
+  },
+  "sendFileDesc": {
+    "message": "Het bestand dat je wilt versturen."
+  },
+  "copySendLinkOnSave": {
+    "message": "Kopieer de link om deze Send te delen bij opslaan naar mijn klembord."
+  },
+  "sendLinkLabel": {
+    "message": "Send-link",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "send": {
+    "message": "Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineProductDesc": {
+    "message": "Bitwarden Send verstuurt gevoelige, tijdelijke informatie naar anderen op een gemakkelijke en veilige manier.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendAccessTaglineLearnMore": {
+    "message": "Leer meer over",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
+  },
+  "sendVaultCardProductDesc": {
+    "message": "Deel tekst of bestanden met wie je maar wilt."
+  },
+  "sendVaultCardLearnMore": {
+    "message": "Meer informatie",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
+  },
+  "sendVaultCardSee": {
+    "message": "zien",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
+  },
+  "sendVaultCardHowItWorks": {
+    "message": "hoe het werkt",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
+  },
+  "sendVaultCardOr": {
+    "message": "of",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
+  },
+  "sendVaultCardTryItNow": {
+    "message": "probeer het nu",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
+  },
+  "sendAccessTaglineOr": {
+    "message": "of",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
+  },
+  "sendAccessTaglineSignUp": {
+    "message": "meld je aan",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
+  },
+  "sendAccessTaglineTryToday": {
+    "message": "om het vandaag te proberen.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
+  },
+  "sendCreatorIdentifier": {
+    "message": "Bitwarden-gebruiker $USER_IDENTIFIER$ heeft het volgende met je gedeeld",
+    "placeholders": {
+      "user_identifier": {
+        "content": "$1",
+        "example": "An email address"
+      }
+    }
+  },
+  "expirationDateIsInvalid": {
+    "message": "De opgegeven vervaldatum is niet geldig."
+  },
+  "deletionDateIsInvalid": {
+    "message": "De opgegeven verwijderdatum is niet geldig."
+  },
+  "expirationDateAndTimeRequired": {
+    "message": "Een vervaldatum en -tijd zijn vereist."
+  },
+  "deletionDateAndTimeRequired": {
+    "message": "Een verwijderingsdatum en -tijd zijn vereist."
+  },
+  "dateParsingError": {
+    "message": "Er is een fout opgetreden bij het opslaan van je verwijder- en vervaldatum."
   }
 }

@@ -37,13 +37,14 @@ export class AcceptOrganizationComponent implements OnInit {
 
     ngOnInit() {
         let fired = false;
-        this.route.queryParams.subscribe(async (qParams) => {
+        this.route.queryParams.subscribe(async qParams => {
             if (fired) {
                 return;
             }
             fired = true;
             await this.stateService.remove('orgInvitation');
             let error = qParams.organizationId == null || qParams.organizationUserId == null || qParams.token == null;
+            let errorMessage: string = null;
             if (!error) {
                 this.authed = await this.userService.isAuthenticated();
                 if (this.authed) {
@@ -61,8 +62,9 @@ export class AcceptOrganizationComponent implements OnInit {
                         };
                         this.toasterService.popAsync(toast);
                         this.router.navigate(['/vault']);
-                    } catch {
+                    } catch (e) {
                         error = true;
+                        errorMessage = e.message;
                     }
                 } else {
                     await this.stateService.save('orgInvitation', qParams);
@@ -76,7 +78,14 @@ export class AcceptOrganizationComponent implements OnInit {
             }
 
             if (error) {
-                this.toasterService.popAsync('error', null, this.i18nService.t('inviteAcceptFailed'));
+                const toast: Toast = {
+                    type: 'error',
+                    title: null,
+                    body: errorMessage != null ? this.i18nService.t('inviteAcceptFailedShort', errorMessage) :
+                        this.i18nService.t('inviteAcceptFailed'),
+                    timeout: 10000,
+                };
+                this.toasterService.popAsync(toast);
                 this.router.navigate(['/']);
             }
 

@@ -17,13 +17,15 @@ import { PaymentRequest } from 'jslib/models/request/paymentRequest';
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
 import { PaymentComponent } from './payment.component';
+import { TaxInfoComponent } from './tax-info.component';
 
 @Component({
     selector: 'app-adjust-payment',
     templateUrl: 'adjust-payment.component.html',
 })
 export class AdjustPaymentComponent {
-    @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
+    @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
+    @ViewChild(TaxInfoComponent, { static: true }) taxInfoComponent: TaxInfoComponent;
 
     @Input() currentType?: PaymentMethodType;
     @Input() organizationId: string;
@@ -39,12 +41,20 @@ export class AdjustPaymentComponent {
     async submit() {
         try {
             const request = new PaymentRequest();
-            this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
+            this.formPromise = this.paymentComponent.createPaymentToken().then(result => {
                 request.paymentToken = result[0];
                 request.paymentMethodType = result[1];
+                request.postalCode = this.taxInfoComponent.taxInfo.postalCode;
+                request.country = this.taxInfoComponent.taxInfo.country;
                 if (this.organizationId == null) {
                     return this.apiService.postAccountPayment(request);
                 } else {
+                    request.taxId = this.taxInfoComponent.taxInfo.taxId;
+                    request.state = this.taxInfoComponent.taxInfo.state;
+                    request.line1 = this.taxInfoComponent.taxInfo.line1;
+                    request.line2 = this.taxInfoComponent.taxInfo.line2;
+                    request.city = this.taxInfoComponent.taxInfo.city;
+                    request.state = this.taxInfoComponent.taxInfo.state;
                     return this.apiService.postOrganizationPayment(this.organizationId, request);
                 }
             });
@@ -59,5 +69,17 @@ export class AdjustPaymentComponent {
 
     cancel() {
         this.onCanceled.emit();
+    }
+
+    changeCountry() {
+        if (this.taxInfoComponent.taxInfo.country === 'US') {
+            this.paymentComponent.hideBank = !this.organizationId;
+        } else {
+            this.paymentComponent.hideBank = true;
+            if (this.paymentComponent.method === PaymentMethodType.BankAccount) {
+                this.paymentComponent.method = PaymentMethodType.Card;
+                this.paymentComponent.changeMethod();
+            }
+        }
     }
 }

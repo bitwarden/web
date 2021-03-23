@@ -4,16 +4,27 @@ import { ConstantsService } from 'jslib/services';
 
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
-        ConstantsService.disableFaviconKey, ConstantsService.lockOptionKey, 'rememberEmail', 'enableGravatars',
-        ConstantsService.localeKey, ConstantsService.lockOptionKey, ConstantsService.autoConfirmFingerprints]);
+        ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
+        ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
+        ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
+        ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
+    private memoryStorageStartsWithKeys = ['ciphers_', 'folders_', 'collections_', 'settings_', 'lastSync_'];
+    private memoryStorage = new Map<string, string>();
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
     async init() {
-        const lockOption = await this.get<number>(ConstantsService.lockOptionKey);
-        if (lockOption == null && !this.platformUtilsService.isDev()) {
-            await this.save(ConstantsService.lockOptionKey, 15);
+        // LockOption -> VaultTimeout (uses the same legacy string value for backwards compat)
+        const vaultTimeout = await this.get<number>(ConstantsService.vaultTimeoutKey);
+        if (vaultTimeout == null && !this.platformUtilsService.isDev()) {
+            await this.save(ConstantsService.vaultTimeoutKey, 15);
+        }
+
+        // Default Action to lock
+        const vaultTimeoutAction = await this.get<string>(ConstantsService.vaultTimeoutActionKey);
+        if (vaultTimeoutAction == null) {
+            await this.save(ConstantsService.vaultTimeoutActionKey, 'lock');
         }
     }
 
@@ -21,6 +32,8 @@ export class HtmlStorageService implements StorageService {
         let json: string = null;
         if (this.isLocalStorage(key)) {
             json = window.localStorage.getItem(key);
+        } else if (this.isMemoryStorage(key)) {
+            json = this.memoryStorage.get(key);
         } else {
             json = window.sessionStorage.getItem(key);
         }
@@ -39,6 +52,8 @@ export class HtmlStorageService implements StorageService {
         const json = JSON.stringify(obj);
         if (this.isLocalStorage(key)) {
             window.localStorage.setItem(key, json);
+        } else if (this.isMemoryStorage(key)) {
+            this.memoryStorage.set(key, json);
         } else {
             window.sessionStorage.setItem(key, json);
         }
@@ -48,6 +63,8 @@ export class HtmlStorageService implements StorageService {
     remove(key: string): Promise<any> {
         if (this.isLocalStorage(key)) {
             window.localStorage.removeItem(key);
+        } else if (this.isMemoryStorage(key)) {
+            this.memoryStorage.delete(key);
         } else {
             window.sessionStorage.removeItem(key);
         }
@@ -59,6 +76,15 @@ export class HtmlStorageService implements StorageService {
             return true;
         }
         for (const swKey of this.localStorageStartsWithKeys) {
+            if (key.startsWith(swKey)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private isMemoryStorage(key: string): boolean {
+        for (const swKey of this.memoryStorageStartsWithKeys) {
             if (key.startsWith(swKey)) {
                 return true;
             }

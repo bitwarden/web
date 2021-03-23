@@ -13,6 +13,8 @@ import { EventService } from 'jslib/abstractions/event.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
+import { TotpService } from 'jslib/abstractions/totp.service';
+import { UserService } from 'jslib/abstractions/user.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -34,14 +36,14 @@ export class CiphersComponent extends BaseCiphersComponent {
     constructor(searchService: SearchService, analytics: Angulartics2,
         toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, cipherService: CipherService,
-        private apiService: ApiService, eventService: EventService) {
+        private apiService: ApiService, eventService: EventService, totpService: TotpService, userService: UserService) {
         super(searchService, analytics, toasterService, i18nService, platformUtilsService,
-            cipherService, eventService);
+            cipherService, eventService, totpService, userService);
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
-        if (!this.organization.isAdmin) {
-            await super.load(filter);
+        if (!this.organization.canManageAllCollections) {
+            await super.load(filter, this.deleted);
             return;
         }
         this.accessEvents = this.organization.useEvents;
@@ -51,7 +53,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async applyFilter(filter: (cipher: CipherView) => boolean = null) {
-        if (this.organization.isAdmin) {
+        if (this.organization.canManageAllCollections) {
             await super.applyFilter(filter);
         } else {
             const f = (c: CipherView) => c.organizationId === this.organization.id && (filter == null || filter(c));
@@ -60,24 +62,26 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async search(timeout: number = null) {
-        if (!this.organization.isAdmin) {
+        if (!this.organization.canManageAllCollections) {
             return super.search(timeout);
         }
         this.searchPending = false;
         let filteredCiphers = this.allCiphers;
-        if (this.filter != null) {
-            filteredCiphers = filteredCiphers.filter(this.filter);
-        }
+
         if (this.searchText == null || this.searchText.trim().length < 2) {
-            this.ciphers = filteredCiphers;
+            this.ciphers = filteredCiphers.filter(c => {
+                if (c.isDeleted !== this.deleted) {
+                    return false;
+                }
+                return this.filter == null || this.filter(c);
+            });
         } else {
-            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText);
+            if (this.filter != null) {
+                filteredCiphers = filteredCiphers.filter(this.filter);
+            }
+            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText, this.deleted);
         }
         await this.resetPaging();
-    }
-
-    checkCipher(c: CipherView) {
-        // do nothing
     }
 
     events(c: CipherView) {
@@ -85,13 +89,13 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     protected deleteCipher(id: string) {
-        if (!this.organization.isAdmin) {
-            return super.deleteCipher(id);
+        if (!this.organization.canManageAllCollections) {
+            return super.deleteCipher(id, this.deleted);
         }
-        return this.apiService.deleteCipherAdmin(id);
+        return this.deleted ? this.apiService.deleteCipherAdmin(id) : this.apiService.putDeleteCipherAdmin(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {
-        return this.organization.isAdmin && c.hasOldAttachments;
+        return this.organization.canManageAllCollections && c.hasOldAttachments;
     }
 }

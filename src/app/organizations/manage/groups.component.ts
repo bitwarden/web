@@ -16,6 +16,7 @@ import { Angulartics2 } from 'angulartics2';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { SearchService } from 'jslib/abstractions/search.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { GroupResponse } from 'jslib/models/response/groupResponse';
@@ -31,24 +32,29 @@ import { GroupAddEditComponent } from './group-add-edit.component';
     templateUrl: 'groups.component.html',
 })
 export class GroupsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef }) usersModalRef: ViewContainerRef;
+    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
     groups: GroupResponse[];
+    pagedGroups: GroupResponse[];
     searchText: string;
 
+    protected didScroll = false;
+    protected pageSize = 100;
+
+    private pagedGroupsCount = 0;
     private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private analytics: Angulartics2, private toasterService: ToasterService,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private router: Router) { }
+        private router: Router, private searchService: SearchService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             const organization = await this.userService.getOrganization(this.organizationId);
             if (organization == null || !organization.useGroups) {
@@ -56,7 +62,7 @@ export class GroupsComponent implements OnInit {
                 return;
             }
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async (qParams) => {
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (queryParamsSub != null) {
                     queryParamsSub.unsubscribe();
@@ -70,7 +76,24 @@ export class GroupsComponent implements OnInit {
         const groups = response.data != null && response.data.length > 0 ? response.data : [];
         groups.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.groups = groups;
+        this.resetPaging();
         this.loading = false;
+    }
+
+    loadMore() {
+        if (!this.groups || this.groups.length <= this.pageSize) {
+            return;
+        }
+        const pagedLength = this.pagedGroups.length;
+        let pagedSize = this.pageSize;
+        if (pagedLength === 0 && this.pagedGroupsCount > this.pageSize) {
+            pagedSize = this.pagedGroupsCount;
+        }
+        if (this.groups.length > pagedLength) {
+            this.pagedGroups = this.pagedGroups.concat(this.groups.slice(pagedLength, pagedLength + pagedSize));
+        }
+        this.pagedGroupsCount = this.pagedGroups.length;
+        this.didScroll = this.pagedGroups.length > this.pageSize;
     }
 
     edit(group: GroupResponse) {
@@ -142,10 +165,28 @@ export class GroupsComponent implements OnInit {
         });
     }
 
+    async resetPaging() {
+        this.pagedGroups = [];
+        this.loadMore();
+    }
+
+    isSearching() {
+        return this.searchService.isSearchable(this.searchText);
+    }
+
+    isPaging() {
+        const searching = this.isSearching();
+        if (searching && this.didScroll) {
+            this.resetPaging();
+        }
+        return !searching && this.groups && this.groups.length > this.pageSize;
+    }
+
     private removeGroup(group: GroupResponse) {
         const index = this.groups.indexOf(group);
         if (index > -1) {
             this.groups.splice(index, 1);
+            this.resetPaging();
         }
     }
 }

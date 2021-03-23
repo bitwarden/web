@@ -1,9 +1,10 @@
 <div class="container page-content">
     <div class="row">
         <div class="col-3">
-            <app-org-vault-groupings [showFolders]="false" [showFavorites]="false"
+            <app-org-vault-groupings [showFolders]="false" [showFavorites]="false" [showTrash]="true"
                 (onAllClicked)="clearGroupingFilters()" (onCipherTypeClicked)="filterCipherType($event)"
-                (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)">
+                (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)"
+                (onTrashClicked)="filterDeleted()">
             </app-org-vault-groupings>
         </div>
         <div class="col-9">
@@ -18,13 +19,20 @@
                         </ng-container>
                     </small>
                 </h1>
-                <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()">
-                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'addItem' | i18n}}
-                </button>
+                <div class="ml-auto d-flex">
+                    <app-vault-bulk-actions [ciphersComponent]="ciphersComponent" [modal]="modal" [deleted]="deleted"
+                        [organization]="organization">
+                    </app-vault-bulk-actions>
+                    <button type="button" class="btn btn-outline-primary btn-sm ml-auto" (click)="addCipher()"
+                        *ngIf="!deleted">
+                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'addItem' | i18n}}
+                    </button>
+                </div>
             </div>
             <app-org-vault-ciphers (onCipherClicked)="editCipher($event)"
                 (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
-                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)">
+                (onCollectionsClicked)="editCipherCollections($event)" (onEventsClicked)="viewEvents($event)"
+                (onCloneClicked)="cloneCipher($event)">
             </app-org-vault-ciphers>
         </div>
     </div>

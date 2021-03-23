@@ -13,8 +13,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
@@ -25,9 +23,6 @@ import { OrganizationsComponent } from '../settings/organizations.component';
 import { UpdateKeyComponent } from '../settings/update-key.component';
 import { AddEditComponent } from './add-edit.component';
 import { AttachmentsComponent } from './attachments.component';
-import { BulkDeleteComponent } from './bulk-delete.component';
-import { BulkMoveComponent } from './bulk-move.component';
-import { BulkShareComponent } from './bulk-share.component';
 import { CiphersComponent } from './ciphers.component';
 import { CollectionsComponent } from './collections.component';
 import { FolderAddEditComponent } from './folder-add-edit.component';
@@ -51,18 +46,15 @@ const BroadcasterSubscriptionId = 'VaultComponent';
     templateUrl: 'vault.component.html',
 })
 export class VaultComponent implements OnInit, OnDestroy {
-    @ViewChild(GroupingsComponent) groupingsComponent: GroupingsComponent;
-    @ViewChild(CiphersComponent) ciphersComponent: CiphersComponent;
-    @ViewChild(OrganizationsComponent) organizationsComponent: OrganizationsComponent;
-    @ViewChild('attachments', { read: ViewContainerRef }) attachmentsModalRef: ViewContainerRef;
-    @ViewChild('folderAddEdit', { read: ViewContainerRef }) folderAddEditModalRef: ViewContainerRef;
-    @ViewChild('cipherAddEdit', { read: ViewContainerRef }) cipherAddEditModalRef: ViewContainerRef;
-    @ViewChild('share', { read: ViewContainerRef }) shareModalRef: ViewContainerRef;
-    @ViewChild('collections', { read: ViewContainerRef }) collectionsModalRef: ViewContainerRef;
-    @ViewChild('bulkDeleteTemplate', { read: ViewContainerRef }) bulkDeleteModalRef: ViewContainerRef;
-    @ViewChild('bulkMoveTemplate', { read: ViewContainerRef }) bulkMoveModalRef: ViewContainerRef;
-    @ViewChild('bulkShareTemplate', { read: ViewContainerRef }) bulkShareModalRef: ViewContainerRef;
-    @ViewChild('updateKeyTemplate', { read: ViewContainerRef }) updateKeyModalRef: ViewContainerRef;
+    @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
+    @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
+    @ViewChild(OrganizationsComponent, { static: true }) organizationsComponent: OrganizationsComponent;
+    @ViewChild('attachments', { read: ViewContainerRef, static: true }) attachmentsModalRef: ViewContainerRef;
+    @ViewChild('folderAddEdit', { read: ViewContainerRef, static: true }) folderAddEditModalRef: ViewContainerRef;
+    @ViewChild('cipherAddEdit', { read: ViewContainerRef, static: true }) cipherAddEditModalRef: ViewContainerRef;
+    @ViewChild('share', { read: ViewContainerRef, static: true }) shareModalRef: ViewContainerRef;
+    @ViewChild('collections', { read: ViewContainerRef, static: true }) collectionsModalRef: ViewContainerRef;
+    @ViewChild('updateKeyTemplate', { read: ViewContainerRef, static: true }) updateKeyModalRef: ViewContainerRef;
 
     favorites: boolean = false;
     type: CipherType = null;
@@ -72,22 +64,23 @@ export class VaultComponent implements OnInit, OnDestroy {
     showBrowserOutdated = false;
     showUpdateKey = false;
     showPremiumCallout = false;
+    deleted: boolean = false;
 
-    private modal: ModalComponent = null;
+    modal: ModalComponent = null;
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
+        private ngZone: NgZone) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
         this.showBrowserOutdated = window.navigator.userAgent.indexOf('MSIE') !== -1;
 
-        const queryParamsSub = this.route.queryParams.subscribe(async (params) => {
+        const queryParamsSub = this.route.queryParams.subscribe(async params => {
             await this.syncService.fullSync(false);
 
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
@@ -104,7 +97,10 @@ export class VaultComponent implements OnInit, OnDestroy {
                 this.groupingsComponent.selectedAll = true;
                 await this.ciphersComponent.reload();
             } else {
-                if (params.favorites) {
+                if (params.deleted) {
+                    this.groupingsComponent.selectedTrash = true;
+                    await this.filterDeleted();
+                } else if (params.favorites) {
                     this.groupingsComponent.selectedFavorites = true;
                     await this.filterFavorites();
                 } else if (params.type) {
@@ -162,16 +158,26 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterFavorites() {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFavorites');
-        await this.ciphersComponent.reload((c) => c.favorite);
+        await this.ciphersComponent.reload(c => c.favorite);
         this.clearFilters();
         this.favorites = true;
+        this.go();
+    }
+
+    async filterDeleted() {
+        this.ciphersComponent.showAddNew = false;
+        this.ciphersComponent.deleted = true;
+        this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchTrash');
+        await this.ciphersComponent.reload(null, true);
+        this.clearFilters();
+        this.deleted = true;
         this.go();
     }
 
     async filterCipherType(type: CipherType) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchType');
-        await this.ciphersComponent.reload((c) => c.type === type);
+        await this.ciphersComponent.reload(c => c.type === type);
         this.clearFilters();
         this.type = type;
         this.go();
@@ -181,7 +187,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.ciphersComponent.showAddNew = true;
         folderId = folderId === 'none' ? null : folderId;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchFolder');
-        await this.ciphersComponent.reload((c) => c.folderId === folderId);
+        await this.ciphersComponent.reload(c => c.folderId === folderId);
         this.clearFilters();
         this.folderId = folderId == null ? 'none' : folderId;
         this.go();
@@ -190,7 +196,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     async filterCollection(collectionId: string) {
         this.ciphersComponent.showAddNew = true;
         this.groupingsComponent.searchPlaceholder = this.i18nService.t('searchCollection');
-        await this.ciphersComponent.reload((c) => c.collectionIds != null &&
+        await this.ciphersComponent.reload(c => c.collectionIds != null &&
             c.collectionIds.indexOf(collectionId) > -1);
         this.clearFilters();
         this.collectionId = collectionId;
@@ -331,7 +337,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         component.type = this.type;
         component.folderId = this.folderId === 'none' ? null : this.folderId;
         if (this.collectionId != null) {
-            const collection = this.groupingsComponent.collections.filter((c) => c.id === this.collectionId);
+            const collection = this.groupingsComponent.collections.filter(c => c.id === this.collectionId);
             if (collection.length > 0) {
                 component.organizationId = collection[0].organizationId;
                 component.collectionIds = [this.collectionId];
@@ -358,6 +364,10 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.modal.close();
             await this.ciphersComponent.refresh();
         });
+        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
+            this.modal.close();
+            await this.ciphersComponent.refresh();
+        });
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
@@ -366,89 +376,9 @@ export class VaultComponent implements OnInit, OnDestroy {
         return childComponent;
     }
 
-    bulkDelete() {
-        const selectedIds = this.ciphersComponent.getSelectedIds();
-        if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
-
-        childComponent.cipherIds = selectedIds;
-        childComponent.onDeleted.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
-    }
-
-    bulkShare() {
-        const selectedCiphers = this.ciphersComponent.getSelected();
-        if (selectedCiphers.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkShareModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkShareComponent>(BulkShareComponent, this.bulkShareModalRef);
-
-        childComponent.ciphers = selectedCiphers;
-        childComponent.onShared.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
-        });
-    }
-
-    bulkMove() {
-        const selectedIds = this.ciphersComponent.getSelectedIds();
-        if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('nothingSelected'));
-            return;
-        }
-
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
-
-        childComponent.cipherIds = selectedIds;
-        childComponent.onMoved.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
-    }
-
-    selectAll(select: boolean) {
-        this.ciphersComponent.selectAll(select);
+    cloneCipher(cipher: CipherView) {
+        const component = this.editCipher(cipher);
+        component.cloneMode = true;
     }
 
     updateKey() {
@@ -470,6 +400,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.collectionId = null;
         this.favorites = false;
         this.type = null;
+        this.deleted = false;
     }
 
     private go(queryParams: any = null) {
@@ -479,6 +410,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                 type: this.type,
                 folderId: this.folderId,
                 collectionId: this.collectionId,
+                deleted: this.deleted ? true : null,
             };
         }
 

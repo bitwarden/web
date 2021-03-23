@@ -32,11 +32,11 @@ export class UnsecuredWebsitesReportComponent extends CipherReportComponent impl
 
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
-        const unsecuredCiphers = allCiphers.filter((c) => {
-            if (c.type !== CipherType.Login || !c.login.hasUris) {
+        const unsecuredCiphers = allCiphers.filter(c => {
+            if (c.type !== CipherType.Login || !c.login.hasUris || c.isDeleted) {
                 return false;
             }
-            return c.login.uris.some((u) => u.uri != null && u.uri.indexOf('http://') === 0);
+            return c.login.uris.some(u => u.uri != null && u.uri.indexOf('http://') === 0);
         });
         this.ciphers = unsecuredCiphers;
     }

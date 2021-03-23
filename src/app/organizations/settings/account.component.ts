@@ -11,31 +11,35 @@ import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { OrganizationUpdateRequest } from 'jslib/models/request/organizationUpdateRequest';
 import { OrganizationResponse } from 'jslib/models/response/organizationResponse';
 
 import { ModalComponent } from '../../modal.component';
+import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
-import { ApiKeyComponent } from './api-key.component';
+import { TaxInfoComponent } from '../../settings/tax-info.component';
 import { DeleteOrganizationComponent } from './delete-organization.component';
-import { RotateApiKeyComponent } from './rotate-api-key.component';
 
 @Component({
     selector: 'app-org-account',
     templateUrl: 'account.component.html',
 })
 export class AccountComponent {
-    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef }) deleteModalRef: ViewContainerRef;
-    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef }) purgeModalRef: ViewContainerRef;
-    @ViewChild('apiKeyTemplate', { read: ViewContainerRef }) apiKeyModalRef: ViewContainerRef;
-    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
+    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
+    @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
+    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
+    selfHosted = false;
     loading = true;
     canUseApi = false;
     org: OrganizationResponse;
     formPromise: Promise<any>;
+    taxFormPromise: Promise<any>;
 
     private organizationId: string;
     private modal: ModalComponent = null;
@@ -43,10 +47,12 @@ export class AccountComponent {
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
         private apiService: ApiService, private i18nService: I18nService,
         private analytics: Angulartics2, private toasterService: ToasterService,
-        private route: ActivatedRoute, private syncService: SyncService) { }
+        private route: ActivatedRoute, private syncService: SyncService,
+        private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.selfHosted = this.platformUtilsService.isSelfHost();
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             try {
                 this.org = await this.apiService.getOrganization(this.organizationId);
@@ -62,6 +68,7 @@ export class AccountComponent {
             request.name = this.org.name;
             request.businessName = this.org.businessName;
             request.billingEmail = this.org.billingEmail;
+            request.identifier = this.org.identifier;
             this.formPromise = this.apiService.putOrganization(this.organizationId, request).then(() => {
                 return this.syncService.fullSync(true);
             });
@@ -69,6 +76,13 @@ export class AccountComponent {
             this.analytics.eventTrack.next({ action: 'Updated Organization Settings' });
             this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpdated'));
         } catch { }
+    }
+
+    async submitTaxInfo() {
+        this.taxFormPromise = this.taxInfo.submitTaxInfo();
+        await this.taxFormPromise;
+        this.analytics.eventTrack.next({ action: 'Updated Organization Tax Info' });
+        this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
     }
 
     deleteOrganization() {
@@ -110,7 +124,14 @@ export class AccountComponent {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.apiKeyModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.apiKeyModalRef);
-        childComponent.organizationId = this.organizationId;
+        childComponent.keyType = 'organization';
+        childComponent.entityId = this.organizationId;
+        childComponent.postKey = this.apiService.postOrganizationApiKey.bind(this.apiService);
+        childComponent.scope = 'api.organization';
+        childComponent.grantType = 'client_credentials';
+        childComponent.apiKeyTitle = 'apiKey';
+        childComponent.apiKeyWarning = 'apiKeyWarning';
+        childComponent.apiKeyDescription = 'apiKeyDesc';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
@@ -124,8 +145,16 @@ export class AccountComponent {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.rotateApiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<RotateApiKeyComponent>(RotateApiKeyComponent, this.rotateApiKeyModalRef);
-        childComponent.organizationId = this.organizationId;
+        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.rotateApiKeyModalRef);
+        childComponent.keyType = 'organization';
+        childComponent.isRotation = true;
+        childComponent.entityId = this.organizationId;
+        childComponent.postKey = this.apiService.postOrganizationRotateApiKey.bind(this.apiService);
+        childComponent.scope = 'api.organization';
+        childComponent.grantType = 'client_credentials';
+        childComponent.apiKeyTitle = 'apiKey';
+        childComponent.apiKeyWarning = 'apiKeyWarning';
+        childComponent.apiKeyDescription = 'apiKeyRotateDesc';
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;

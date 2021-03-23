@@ -1,0 +1,142 @@
+<div class="container page-content">
+    <div class="row card border-warning mb-4" *ngIf="disableSend">
+        <div class="card-header bg-warning text-white">
+            <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{'sendDisabled' | i18n}}
+        </div>
+        <div class="card-body">
+            <span>{{'sendDisabledWarning' | i18n}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 groupings">
+            <div class="card vault-filters">
+                <div class="card-header d-flex">
+                    {{'filters' | i18n}}
+                </div>
+                <div class="card-body">
+                    <input type="search" placeholder="{{searchPlaceholder || ('searchSends' | i18n)}}" id="search"
+                        class="form-control" [(ngModel)]="searchText" (input)="searchTextChanged()" autocomplete="off"
+                        appAutofocus>
+                    <ul class="fa-ul card-ul">
+                        <li [ngClass]="{active: selectedAll}">
+                            <a href="#" appStopClick (click)="selectAll()">
+                                <i class="fa-li fa fa-fw fa-th"></i>{{'allSends' | i18n}}
+                            </a>
+                        </li>
+                    </ul>
+                    <h3>{{'types' | i18n}}</h3>
+                    <ul class="fa-ul card-ul">
+                        <li [ngClass]="{active: selectedType === sendType.Text}">
+                            <a href="#" appStopClick (click)="selectType(sendType.Text)">
+                                <i class="fa-li fa fa-fw fa-file-text-o"></i>{{'sendTypeText' | i18n}}
+                            </a>
+                        </li>
+                        <li [ngClass]="{active: selectedType === sendType.File}">
+                            <a href="#" appStopClick (click)="selectType(sendType.File)">
+                                <i class="fa-li fa fa-fw fa-file-o"></i>{{'sendTypeFile' | i18n}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="page-header d-flex">
+                <h1>
+                    {{'send' | i18n}}
+                    <small #actionSpinner [appApiAction]="actionPromise">
+                        <ng-container *ngIf="actionSpinner.loading">
+                            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
+                                aria-hidden="true"></i>
+                            <span class="sr-only">{{'loading' | i18n}}</span>
+                        </ng-container>
+                    </small>
+                </h1>
+                <div class="ml-auto d-flex">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSend()"
+                        [disabled]="disableSend">
+                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{'createSend' | i18n}}
+                    </button>
+                </div>
+            </div>
+            <!--Listing Table-->
+            <table class="table table-hover table-list" *ngIf="filteredSends && filteredSends.length">
+                <tbody>
+                    <tr *ngFor="let s of filteredSends">
+                        <td class="table-list-icon">
+                            <div class="icon" aria-hidden="true">
+                                <i class="fa fa-fw fa-lg fa-file-o" *ngIf="s.type == sendType.File"></i>
+                                <i class="fa fa-fw fa-lg fa-file-text-o" *ngIf="s.type == sendType.Text"></i>
+                            </div>
+                        </td>
+                        <td class="reduced-lh wrap">
+                            <a href="#" appStopClick appStopProp (click)="editSend(s)">{{s.name}}</a>
+                            <ng-container *ngIf="s.disabled">
+                                <i class="fa fa-warning" appStopProp title="{{'disabled' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'disabled' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.password">
+                                <i class="fa fa-key" appStopProp title="{{'password' | i18n}}" aria-hidden="true"></i>
+                                <span class="sr-only">{{'password' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.maxAccessCountReached">
+                                <i class="fa fa-ban" appStopProp title="{{'maxAccessCountReached' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'maxAccessCountReached' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.expired">
+                                <i class="fa fa-clock-o" appStopProp title="{{'expired' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'expired' | i18n}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="s.pendingDelete">
+                                <i class="fa fa-trash" appStopProp title="{{'pendingDeletion' | i18n}}"
+                                    aria-hidden="true"></i>
+                                <span class="sr-only">{{'pendingDeletion' | i18n}}</span>
+                            </ng-container>
+                            <br>
+                            <small appStopProp>{{s.deletionDate | date:'medium'}}</small>
+                        </td>
+                        <td class="table-list-options">
+                            <div class="dropdown" appListDropdown>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" appA11yTitle="{{'options' | i18n}}">
+                                    <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
+                                        <i class="fa fa-fw fa-copy" aria-hidden="true"></i>
+                                        {{'copySendLink' | i18n}}
+                                    </a>
+                                    <a class="dropdown-item" href="#" appStopClick (click)="removePassword(s)"
+                                        *ngIf="s.password && !disableSend">
+                                        <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+                                        {{'removePassword' | i18n}}
+                                    </a>
+                                    <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(s)">
+                                        <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+                                        {{'delete' | i18n}}
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no-items" *ngIf="filteredSends && !filteredSends.length">
+                <ng-container *ngIf="!loaded">
+                    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    <span class="sr-only">{{'loading' | i18n}}</span>
+                </ng-container>
+                <ng-container *ngIf="loaded">
+                    <p>{{'noSendsInList' | i18n}}</p>
+                    <button (click)="addSend()" class="btn btn-outline-primary" [disabled]="disableSend">
+                        <i class="fa fa-plus fa-fw"></i>{{'createSend' | i18n}}</button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #sendAddEdit></ng-template>

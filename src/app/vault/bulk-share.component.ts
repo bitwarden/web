@@ -41,10 +41,10 @@ export class BulkShareComponent implements OnInit {
         private collectionService: CollectionService, private userService: UserService) { }
 
     async ngOnInit() {
-        this.shareableCiphers = this.ciphers.filter((c) => !c.hasOldAttachments && c.organizationId == null);
+        this.shareableCiphers = this.ciphers.filter(c => !c.hasOldAttachments && c.organizationId == null);
         this.nonShareableCount = this.ciphers.length - this.shareableCiphers.length;
         const allCollections = await this.collectionService.getAllDecrypted();
-        this.writeableCollections = allCollections.filter((c) => !c.readOnly);
+        this.writeableCollections = allCollections.filter(c => !c.readOnly);
         this.organizations = await this.userService.getAllOrganizations();
         if (this.organizationId == null && this.organizations.length > 0) {
             this.organizationId = this.organizations[0].id;
@@ -61,12 +61,12 @@ export class BulkShareComponent implements OnInit {
         if (this.organizationId == null || this.writeableCollections.length === 0) {
             this.collections = [];
         } else {
-            this.collections = this.writeableCollections.filter((c) => c.organizationId === this.organizationId);
+            this.collections = this.writeableCollections.filter(c => c.organizationId === this.organizationId);
         }
     }
 
     async submit() {
-        const checkedCollectionIds = this.collections.filter((c) => (c as any).checked).map((c) => c.id);
+        const checkedCollectionIds = this.collections.filter(c => (c as any).checked).map(c => c.id);
         try {
             this.formPromise = this.cipherService.shareManyWithServer(this.shareableCiphers, this.organizationId,
                 checkedCollectionIds);
@@ -83,7 +83,7 @@ export class BulkShareComponent implements OnInit {
 
     selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
-        collections.forEach((c) => this.check(c, select));
+        collections.forEach(c => this.check(c, select));
     }
 
     get canSave() {

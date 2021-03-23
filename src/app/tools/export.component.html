@@ -3,13 +3,13 @@
         <h1>{{'exportVault' | i18n}}</h1>
     </div>
     <p>{{'exportMasterPassword' | i18n}}</p>
-    <app-callout type="warning">{{'exportWarningDesc' | i18n}}</app-callout>
     <div class="row">
         <div class="form-group col-6">
             <label for="format">{{'fileFormat' | i18n}}</label>
             <select class="form-control" id="format" name="Format" [(ngModel)]="format">
                 <option value="json">.json</option>
                 <option value="csv">.csv</option>
+                <option value="encrypted_json">.json (Encrypted)</option>
             </select>
         </div>
     </div>

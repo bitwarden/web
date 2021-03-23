@@ -51,7 +51,7 @@ export class EntityUsersComponent implements OnInit {
 
     get users() {
         if (this.showSelected) {
-            return this.allUsers.filter((u) => (u as any).checked);
+            return this.allUsers.filter(u => (u as any).checked);
         } else {
             return this.allUsers;
         }
@@ -59,12 +59,12 @@ export class EntityUsersComponent implements OnInit {
 
     async loadUsers() {
         const users = await this.apiService.getOrganizationUsers(this.organizationId);
-        this.allUsers = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
+        this.allUsers = users.data.map(r => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
         if (this.entity === 'group') {
             const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
-                response.forEach((s) => {
-                    const user = users.data.filter((u) => u.id === s);
+                response.forEach(s => {
+                    const user = users.data.filter(u => u.id === s);
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
                     }
@@ -73,17 +73,18 @@ export class EntityUsersComponent implements OnInit {
         } else if (this.entity === 'collection') {
             const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
-                response.forEach((s) => {
-                    const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
+                response.forEach(s => {
+                    const user = users.data.filter(u => !u.accessAll && u.id === s.id);
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
                         (user[0] as any).readOnly = s.readOnly;
+                        (user[0] as any).hidePasswords = s.hidePasswords;
                     }
                 });
             }
         }
 
-        this.allUsers.forEach((u) => {
+        this.allUsers.forEach(u => {
             if (this.entity === 'collection' && u.accessAll) {
                 (u as any).checked = true;
             }
@@ -107,6 +108,7 @@ export class EntityUsersComponent implements OnInit {
         } else {
             if (this.entity === 'collection') {
                 (u as any).readOnly = false;
+                (u as any).hidePasswords = false;
             }
             this.selectedCount--;
         }
@@ -119,11 +121,11 @@ export class EntityUsersComponent implements OnInit {
     async submit() {
         try {
             if (this.entity === 'group') {
-                const selections = this.users.filter((u) => (u as any).checked).map((u) => u.id);
+                const selections = this.users.filter(u => (u as any).checked).map(u => u.id);
                 this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
             } else {
-                const selections = this.users.filter((u) => (u as any).checked && !u.accessAll)
-                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly));
+                const selections = this.users.filter(u => (u as any).checked && !u.accessAll)
+                    .map(u => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords));
                 this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
             }
             await this.formPromise;

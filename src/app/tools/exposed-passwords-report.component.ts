@@ -41,12 +41,12 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
         const exposedPasswordCiphers: CipherView[] = [];
-        const promises: Array<Promise<void>> = [];
-        allCiphers.forEach((c) => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '') {
+        const promises: Promise<void>[] = [];
+        allCiphers.forEach(c => {
+            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
-            const promise = this.auditService.passwordLeaked(c.login.password).then((exposedCount) => {
+            const promise = this.auditService.passwordLeaked(c.login.password).then(exposedCount => {
                 if (exposedCount > 0) {
                     exposedPasswordCiphers.push(c);
                     this.exposedPasswordMap.set(c.id, exposedCount);
@@ -60,5 +60,10 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
 
     protected getAllCiphers(): Promise<CipherView[]> {
         return this.cipherService.getAllDecrypted();
+    }
+
+    protected canManageCipher(c: CipherView): boolean {
+        // this will only ever be false from the org view;
+        return true;
     }
 }

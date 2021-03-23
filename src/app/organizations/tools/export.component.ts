@@ -16,8 +16,6 @@ import { EventType } from 'jslib/enums/eventType';
     templateUrl: '../../tools/export.component.html',
 })
 export class ExportComponent extends BaseExportComponent {
-    organizationId: string;
-
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         eventService: EventService, private route: ActivatedRoute) {
@@ -25,7 +23,7 @@ export class ExportComponent extends BaseExportComponent {
     }
 
     ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
+        this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
         });
     }

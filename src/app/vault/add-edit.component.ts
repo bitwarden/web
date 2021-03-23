@@ -12,6 +12,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -33,6 +34,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     showRevisionDate = false;
     hasPasswordHistory = false;
     viewingPasswordHistory = false;
+    viewOnly = false;
 
     protected totpInterval: number;
 
@@ -41,9 +43,10 @@ export class AddEditComponent extends BaseAddEditComponent {
         auditService: AuditService, stateService: StateService,
         userService: UserService, collectionService: CollectionService,
         protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
-        protected messagingService: MessagingService, eventService: EventService) {
+        protected messagingService: MessagingService, eventService: EventService,
+        protected policyService: PolicyService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, messagingService, eventService);
+            userService, collectionService, messagingService, eventService, policyService);
     }
 
     async ngOnInit() {
@@ -103,7 +106,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     async generatePassword(): Promise<boolean> {
         const confirmed = await super.generatePassword();
         if (confirmed) {
-            const options = await this.passwordGenerationService.getOptions();
+            const options = (await this.passwordGenerationService.getOptions())[0];
             this.cipher.login.password = await this.passwordGenerationService.generatePassword(options);
         }
         return confirmed;
@@ -152,6 +155,11 @@ export class AddEditComponent extends BaseAddEditComponent {
                 window.clearInterval(this.totpInterval);
             }
         }
+    }
+
+    protected allowOwnershipAssignment() {
+        return (!this.editMode || this.cloneMode) && this.ownershipOptions != null
+            && (this.ownershipOptions.length > 1 || !this.allowPersonal);
     }
 
     private async totpTick(intervalSeconds: number) {
