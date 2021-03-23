@@ -13,7 +13,7 @@ import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
 import { PolicyType } from 'jslib/enums/policyType';
-import { DisableSendPolicyType } from 'jslib/enums/disableSendPolicyType';
+import { DisableSendType } from 'jslib/enums/disableSendType';
 
 import { PolicyRequest } from 'jslib/models/request/policyRequest';
 
@@ -64,7 +64,7 @@ export class PolicyEditComponent implements OnInit {
 
     // Disable Send
 
-    disabledSends: DisableSendPolicyType = DisableSendPolicyType.DisableAll;
+    disableSend = DisableSendType.DisableAll;
 
     private policy: PolicyResponse;
 
@@ -84,8 +84,8 @@ export class PolicyEditComponent implements OnInit {
             { name: i18nService.t('passphrase'), value: 'passphrase' },
         ];
         this.disableSendPolicyOptions = [
-            { name: i18nService.t('disableAllSends'), value: DisableSendPolicyType.DisableAll },
-            { name: i18nService.t('disableAnonymousSends'), value: DisableSendPolicyType.DisableAnonymous }
+            { name: i18nService.t('disableAllSends'), value: DisableSendType.DisableAll },
+            { name: i18nService.t('disableAnonymousSends'), value: DisableSendType.DisableAnonymous }
         ]
     }
 
@@ -124,8 +124,8 @@ export class PolicyEditComponent implements OnInit {
                             this.masterPassRequireSpecial = this.policy.data.requireSpecial;
                             break;
                         case PolicyType.DisableSend:
-                            this.disabledSends = this.policy.data.disabledSends ||
-                                DisableSendPolicyType.DisableAll;
+                            this.disableSend = this.policy.data.disableSend ||
+                                DisableSendType.DisableAll;
                             break;
                         default:
                             break;
@@ -175,7 +175,7 @@ export class PolicyEditComponent implements OnInit {
                     break;
                 case PolicyType.DisableSend:
                     request.data = {
-                        disableSendPolicy: this.disabledSends,
+                        disableSend: this.disableSend,
                     }
                     break;
                 default:
