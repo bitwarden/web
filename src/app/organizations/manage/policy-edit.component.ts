@@ -37,7 +37,6 @@ export class PolicyEditComponent implements OnInit {
     formPromise: Promise<any>;
     passwordScores: any[];
     defaultTypes: any[];
-    disableSendPolicyOptions: any[];
 
     // Master password
 
@@ -62,10 +61,6 @@ export class PolicyEditComponent implements OnInit {
     passGenCapitalize?: boolean;
     passGenIncludeNumber?: boolean;
 
-    // Disable Send
-
-    disableSend = DisableSendType.DisableAll;
-
     private policy: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -82,10 +77,6 @@ export class PolicyEditComponent implements OnInit {
             { name: i18nService.t('userPreference'), value: null },
             { name: i18nService.t('password'), value: 'password' },
             { name: i18nService.t('passphrase'), value: 'passphrase' },
-        ];
-        this.disableSendPolicyOptions = [
-            { name: i18nService.t('disableAllSends'), value: DisableSendType.DisableAll },
-            { name: i18nService.t('disableAnonymousSends'), value: DisableSendType.DisableAnonymous },
         ];
     }
 
@@ -122,10 +113,6 @@ export class PolicyEditComponent implements OnInit {
                             this.masterPassRequireLower = this.policy.data.requireLower;
                             this.masterPassRequireNumbers = this.policy.data.requireNumbers;
                             this.masterPassRequireSpecial = this.policy.data.requireSpecial;
-                            break;
-                        case PolicyType.DisableSend:
-                            this.disableSend = this.policy.data.disableSend ||
-                                DisableSendType.DisableAll;
                             break;
                         default:
                             break;
@@ -171,11 +158,6 @@ export class PolicyEditComponent implements OnInit {
                         requireLower: this.masterPassRequireLower,
                         requireNumbers: this.masterPassRequireNumbers,
                         requireSpecial: this.masterPassRequireSpecial,
-                    };
-                    break;
-                case PolicyType.DisableSend:
-                    request.data = {
-                        disableSend: this.disableSend,
                     };
                     break;
                 default:
