@@ -3638,8 +3638,8 @@
     "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
-  "anonymousSendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send that hides your email address. There are no restrictions on Sends that do not hide your email address.",
+  "sendDisableHideEmailWarning": {
+    "message": "Due to an enterprise policy, you are not allowed to hide your email address in a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -3652,7 +3652,7 @@
     "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address when creating a Send.",
+    "message": "Do not allow users to hide their email address when creating or editing a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3795,10 +3795,7 @@
       }
     }
   },
-  "anonymousSendDisabled": {
-    "message": "(This option has been disabled by an Enterprise Policy.)"
-  },
-  "anonymousSendWarning": {
+  "viewSendHiddenEmailWarning": {
     "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should not trust this Send or download any file unless you trust the user who created it."
   },
   "expirationDateIsInvalid": {
