@@ -153,7 +153,7 @@
                     </app-callout>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="sendDisableHideEmail" [(ngModel)]="sendDisableHideEmail"
-                            name="SendDisableHideEmail">
+                            name="SendDisableHideEmail" [disabled]="!enabled">
                         <label class="form-check-label" for="sendDisableHideEmail">{{'disableHideEmail' | i18n}}</label>
                     </div>
                 </ng-container>

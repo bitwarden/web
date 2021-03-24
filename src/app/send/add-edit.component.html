@@ -13,7 +13,10 @@
                     <span>{{'sendDisabledWarning' | i18n}}</span>
                 </app-callout>
                 <app-callout *ngIf="!disableSend && disableHideEmail">
-                    <span>{{'sendDisableHideEmailWarning' | i18n}}</span>
+                    <span>{{'sendOptionsPolicyInEffect' | i18n}}</span>
+                    <ul class="mb-0">
+                        <li>{{'sendDisableHideEmailInEffect' | i18n}}</li>
+                    </ul>
                 </app-callout>
                 <div class="row">
                     <div class="col-6 form-group">
