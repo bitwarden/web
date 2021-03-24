@@ -12,7 +12,6 @@ import { Angulartics2 } from 'angulartics2';
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 
-import { DisableSendType } from 'jslib/enums/disableSendType';
 import { PolicyType } from 'jslib/enums/policyType';
 
 import { PolicyRequest } from 'jslib/models/request/policyRequest';
@@ -60,6 +59,10 @@ export class PolicyEditComponent implements OnInit {
     passGenMinNumberWords?: number;
     passGenCapitalize?: boolean;
     passGenIncludeNumber?: boolean;
+
+    // Send options
+
+    sendDisableHideEmail?: boolean;
 
     private policy: PolicyResponse;
 
@@ -114,6 +117,9 @@ export class PolicyEditComponent implements OnInit {
                             this.masterPassRequireNumbers = this.policy.data.requireNumbers;
                             this.masterPassRequireSpecial = this.policy.data.requireSpecial;
                             break;
+                        case PolicyType.SendOptions:
+                            this.sendDisableHideEmail = this.policy.data.disableHideEmail;
+                            break;
                         default:
                             break;
                     }
@@ -158,6 +164,11 @@ export class PolicyEditComponent implements OnInit {
                         requireLower: this.masterPassRequireLower,
                         requireNumbers: this.masterPassRequireNumbers,
                         requireSpecial: this.masterPassRequireSpecial,
+                    };
+                    break;
+                case PolicyType.SendOptions:
+                    request.data = {
+                        disableHideEmail: this.sendDisableHideEmail,
                     };
                     break;
                 default:
