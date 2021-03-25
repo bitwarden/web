@@ -28,7 +28,6 @@ import { ApiService } from 'jslib/services/api.service';
 import { AppIdService } from 'jslib/services/appId.service';
 import { AuditService } from 'jslib/services/audit.service';
 import { AuthService } from 'jslib/services/auth.service';
-import { AzureStorageService } from 'jslib/services/azureStorage.service';
 import { CipherService } from 'jslib/services/cipher.service';
 import { CollectionService } from 'jslib/services/collection.service';
 import { ConsoleLogService } from 'jslib/services/consoleLog.service';
@@ -38,6 +37,7 @@ import { CryptoService } from 'jslib/services/crypto.service';
 import { EnvironmentService } from 'jslib/services/environment.service';
 import { EventService as EventLoggingService } from 'jslib/services/event.service';
 import { ExportService } from 'jslib/services/export.service';
+import { FileUploadService } from 'jslib/services/fileUpload.service';
 import { FolderService } from 'jslib/services/folder.service';
 import { ImportService } from 'jslib/services/import.service';
 import { NotificationsService } from 'jslib/services/notifications.service';
@@ -58,7 +58,6 @@ import { ApiService as ApiServiceAbstraction } from 'jslib/abstractions/api.serv
 import { AppIdService as AppIdServiceAbstraction } from 'jslib/abstractions/appId.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib/abstractions/auth.service';
-import { AzureStorageService as AzureStorageServiceAbstraction } from 'jslib/abstractions/azureStorage.service';
 import { CipherService as CipherServiceAbstraction } from 'jslib/abstractions/cipher.service';
 import { CollectionService as CollectionServiceAbstraction } from 'jslib/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib/abstractions/crypto.service';
@@ -66,6 +65,7 @@ import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib
 import { EnvironmentService as EnvironmentServiceAbstraction } from 'jslib/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/export.service';
+import { FileUploadService as FileUploadServiceAbstraction } from 'jslib/abstractions/fileUpload.service';
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
@@ -115,8 +115,8 @@ const folderService = new FolderService(cryptoService, userService, apiService, 
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService);
 const policyService = new PolicyService(userService, storageService);
-const azureStorageService = new AzureStorageService(consoleLogService);
-const sendService = new SendService(cryptoService, userService, apiService, azureStorageService, storageService,
+const fileUploadService = new FileUploadService(consoleLogService, apiService);
+const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
@@ -216,7 +216,7 @@ export function initFactory(): Function {
         { provide: PlatformUtilsServiceAbstraction, useValue: platformUtilsService },
         { provide: PasswordGenerationServiceAbstraction, useValue: passwordGenerationService },
         { provide: ApiServiceAbstraction, useValue: apiService },
-        { provide: AzureStorageServiceAbstraction, useValue: azureStorageService },
+        { provide: FileUploadServiceAbstraction, useValue: fileUploadService },
         { provide: SyncServiceAbstraction, useValue: syncService },
         { provide: UserServiceAbstraction, useValue: userService },
         { provide: MessagingServiceAbstraction, useValue: messagingService },
