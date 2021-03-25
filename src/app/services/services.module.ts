@@ -108,15 +108,14 @@ const apiService = new ApiService(tokenService, platformUtilsService,
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
-const azureStorageService = new AzureStorageService(consoleLogService);
+const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, azureStorageService, () => searchService);
+    apiService, fileUploadService, storageService, i18nService, () => searchService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService);
 const policyService = new PolicyService(userService, storageService);
-const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
