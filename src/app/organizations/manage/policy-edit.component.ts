@@ -61,7 +61,6 @@ export class PolicyEditComponent implements OnInit {
     passGenIncludeNumber?: boolean;
 
     // Send options
-
     sendDisableHideEmail?: boolean;
 
     private policy: PolicyResponse;
