@@ -38,7 +38,6 @@ export class PolicyEditComponent implements OnInit {
     defaultTypes: any[];
 
     // Master password
-
     masterPassMinComplexity?: number = null;
     masterPassMinLength?: number;
     masterPassRequireUpper?: number;
@@ -47,7 +46,6 @@ export class PolicyEditComponent implements OnInit {
     masterPassRequireSpecial?: number;
 
     // Password generator
-
     passGenDefaultType?: string;
     passGenMinLength?: number;
     passGenUseUpper?: boolean;
