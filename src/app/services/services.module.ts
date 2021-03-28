@@ -65,7 +65,7 @@ import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib
 import { EnvironmentService as EnvironmentServiceAbstraction } from 'jslib/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/export.service';
-import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib/abstractions/fileUpload.service';
+import { FileUploadService as FileUploadServiceAbstraction } from 'jslib/abstractions/fileUpload.service';
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
@@ -105,7 +105,6 @@ const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
 const apiService = new ApiService(tokenService, platformUtilsService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const fileUploadService: FileUploadServiceAbstraction = new FileUploadService(consoleLogService, apiService);
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
@@ -116,6 +115,7 @@ const folderService = new FolderService(cryptoService, userService, apiService, 
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService);
 const policyService = new PolicyService(userService, storageService);
+const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
@@ -216,6 +216,7 @@ export function initFactory(): Function {
         { provide: PlatformUtilsServiceAbstraction, useValue: platformUtilsService },
         { provide: PasswordGenerationServiceAbstraction, useValue: passwordGenerationService },
         { provide: ApiServiceAbstraction, useValue: apiService },
+        { provide: FileUploadServiceAbstraction, useValue: fileUploadService },
         { provide: SyncServiceAbstraction, useValue: syncService },
         { provide: UserServiceAbstraction, useValue: userService },
         { provide: MessagingServiceAbstraction, useValue: messagingService },
