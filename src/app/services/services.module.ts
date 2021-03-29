@@ -65,7 +65,7 @@ import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib
 import { EnvironmentService as EnvironmentServiceAbstraction } from 'jslib/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/export.service';
-import { FileUploadService as FileUploadServiceAbstraction } from 'jslib/abstractions/fileUpload.service';
+import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib/abstractions/fileUpload.service';
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';

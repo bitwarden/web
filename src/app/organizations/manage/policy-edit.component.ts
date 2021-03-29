@@ -38,7 +38,6 @@ export class PolicyEditComponent implements OnInit {
     defaultTypes: any[];
 
     // Master password
-
     masterPassMinComplexity?: number = null;
     masterPassMinLength?: number;
     masterPassRequireUpper?: number;
@@ -47,7 +46,6 @@ export class PolicyEditComponent implements OnInit {
     masterPassRequireSpecial?: number;
 
     // Password generator
-
     passGenDefaultType?: string;
     passGenMinLength?: number;
     passGenUseUpper?: boolean;
@@ -59,6 +57,9 @@ export class PolicyEditComponent implements OnInit {
     passGenMinNumberWords?: number;
     passGenCapitalize?: boolean;
     passGenIncludeNumber?: boolean;
+
+    // Send options
+    sendDisableHideEmail?: boolean;
 
     private policy: PolicyResponse;
 
@@ -113,6 +114,9 @@ export class PolicyEditComponent implements OnInit {
                             this.masterPassRequireNumbers = this.policy.data.requireNumbers;
                             this.masterPassRequireSpecial = this.policy.data.requireSpecial;
                             break;
+                        case PolicyType.SendOptions:
+                            this.sendDisableHideEmail = this.policy.data.disableHideEmail;
+                            break;
                         default:
                             break;
                     }
@@ -157,6 +161,11 @@ export class PolicyEditComponent implements OnInit {
                         requireLower: this.masterPassRequireLower,
                         requireNumbers: this.masterPassRequireNumbers,
                         requireSpecial: this.masterPassRequireSpecial,
+                    };
+                    break;
+                case PolicyType.SendOptions:
+                    request.data = {
+                        disableHideEmail: this.sendDisableHideEmail,
                     };
                     break;
                 default:

@@ -6,6 +6,13 @@
         <div class="col-12 text-center" *ngIf="creatorIdentifier != null">
             <p>{{'sendCreatorIdentifier' | i18n: creatorIdentifier }}</p>
         </div>
+        <div class="col-8" *ngIf="creatorIdentifier == null && !loading && !unavailable">
+            <app-callout type="warning" title="{{'warning' | i18n}}">
+                {{'viewSendHiddenEmailWarning' | i18n }} <a href="https://bitwarden.com/help/article/receive-send/">{{'learnMore' | i18n}}</a>.
+            </app-callout>
+        </div>
+    </div>
+    <div class="row justify-content-center">
         <div class="col-5">
             <div class="card d-block">
                 <div class="card-body" *ngIf="loading" class="text-center">
