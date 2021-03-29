@@ -74,6 +74,16 @@
                                 <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
+                                <a *ngIf="!o.isResetPasswordEnrolled" class="dropdown-item" href="#" appStopClick
+                                    (click)="toggleResetPasswordEnrollment(o)">
+                                    <i class="fa fa-fw fa-key" aria-hidden="true"></i>
+                                    {{'enrollPasswordReset' | i18n}}
+                                </a>
+                                <a *ngIf="o.isResetPasswordEnrolled" class="dropdown-item" href="#" appStopClick
+                                    (click)="toggleResetPasswordEnrollment(o)">
+                                    <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+                                    {{'withdrawPasswordReset' | i18n}}
+                                </a>
                                 <ng-container *ngIf="o.useSso && o.identifier">
                                     <a *ngIf="o.ssoBound; else linkSso" class="dropdown-item" href="#" appStopClick
                                         (click)="unlinkSso(o)">
