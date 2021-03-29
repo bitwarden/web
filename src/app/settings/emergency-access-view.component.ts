@@ -84,6 +84,7 @@ export class EmergencyAccessViewComponent implements OnInit {
         const childComponent = this.modal.show<EmergencyAccessAttachmentsComponent>(EmergencyAccessAttachmentsComponent, this.attachmentsModalRef);
 
         childComponent.cipher = cipher;
+        childComponent.emergencyAccessId = this.id;
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
