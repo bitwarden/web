@@ -35,6 +35,9 @@
                 <app-callout type="warning" *ngIf="type === policyType.DisableSend">
                     {{'disableSendExemption' | i18n}}
                 </app-callout>
+                <app-callout type="warning" *ngIf="type === policyType.SendOptions">
+                    {{'sendOptionsExemption' | i18n}}
+                </app-callout>
                 <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="enabled" [(ngModel)]="enabled"
@@ -145,6 +148,14 @@
                         <input class="form-check-input" type="checkbox" id="passGenIncludeNumber"
                             [(ngModel)]="passGenIncludeNumber" name="PassGenIncludeNumber">
                         <label class="form-check-label" for="passGenIncludeNumber">{{'includeNumber' | i18n}}</label>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="type === policyType.SendOptions">
+                    <h3 class="mt-4">{{'options' | i18n}}</h3>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sendDisableHideEmail" [(ngModel)]="sendDisableHideEmail"
+                            name="SendDisableHideEmail">
+                        <label class="form-check-label" for="sendDisableHideEmail">{{'disableHideEmail' | i18n}}</label>
                     </div>
                 </ng-container>
             </div>

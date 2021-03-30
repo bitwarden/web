@@ -109,6 +109,13 @@ export class PoliciesComponent implements OnInit {
                     enabled: false,
                     display: true,
                 },
+                {
+                    name: this.i18nService.t('sendOptions'),
+                    description: this.i18nService.t('sendOptionsPolicyDesc'),
+                    type: PolicyType.SendOptions,
+                    enabled: false,
+                    display: true,
+                },
             ];
             await this.load();
 

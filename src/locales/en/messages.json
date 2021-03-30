@@ -3416,6 +3416,9 @@
   "removePasswordConfirmation": {
     "message": "Are you sure you want to remove the password?"
   },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
+  },
   "disableThisSend": {
     "message": "Disable this Send so that no one can access it.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3635,6 +3638,28 @@
     "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Modified policy $ID$.",
     "placeholders": {
@@ -3774,6 +3799,10 @@
         "example": "An email address"
       }
     }
+  },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
     "message": "The expiration date provided is not valid."
