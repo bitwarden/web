@@ -21,14 +21,6 @@ import { CipherReportComponent } from './cipher-report.component';
 })
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
 
-    private static hasUsername(c: CipherView): boolean {
-        return c.login.username != null && c.login.username.trim() !== '';
-    }
-
-    private static getCacheKey(c: CipherView): string {
-        return c.login.password + '_____' + (WeakPasswordsReportComponent.hasUsername(c) ? c.login.username : '');
-    }
-
     passwordStrengthMap = new Map<string, [string, string]>();
 
     private passwordStrengthCache = new Map<string, number>();
@@ -48,15 +40,22 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
+        const isUserNameNotEmpty = (c: CipherView): boolean => {
+            return c.login.username != null && c.login.username.trim() !== '';
+        }
+        const getCacheKey = (c:CipherView): string => {
+            return c.login.password + '_____' + (isUserNameNotEmpty(c) ? c.login.username : '');
+        }
+
         allCiphers.forEach(c => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
-            const hasUsername = WeakPasswordsReportComponent.hasUsername(c);
-            const cacheKey = WeakPasswordsReportComponent.getCacheKey(c);
+            const hasUserName = isUserNameNotEmpty(c);
+            const cacheKey = getCacheKey(c);
             if (!this.passwordStrengthCache.has(cacheKey)) {
                 let userInput: string[] = [];
-                if (hasUsername) {
+                if (hasUserName) {
                     const atPosition = c.login.username.indexOf('@');
                     if (atPosition > -1) {
                         userInput = userInput.concat(
@@ -78,8 +77,8 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             }
         });
         weakPasswordCiphers.sort((a, b) => {
-            return this.passwordStrengthCache.get(WeakPasswordsReportComponent.getCacheKey(a)) -
-                this.passwordStrengthCache.get(WeakPasswordsReportComponent.getCacheKey(b));
+            return this.passwordStrengthCache.get(getCacheKey(a)) -
+                this.passwordStrengthCache.get(getCacheKey(b));
         });
         this.ciphers = weakPasswordCiphers;
     }
