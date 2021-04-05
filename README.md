@@ -80,6 +80,6 @@ This means that you are having a CORS header issue. This can be mitigated by usi
 
 ## Contribute
 
-Code contributions are welcome! Please commit any pull requests against the `master` branch.
+Code contributions are welcome! Please commit any pull requests against the `master` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
 
 Security audits and feedback are welcome. Please open an issue or email us privately if the report is sensitive in nature. You can read our security policy in the [`SECURITY.md`](SECURITY.md) file.
