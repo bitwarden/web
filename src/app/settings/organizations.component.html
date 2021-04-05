@@ -65,6 +65,11 @@
                                 title="{{'organizationIsDisabled' | i18n}}" aria-hidden="true"></i>
                             <span class="sr-only">{{'organizationIsDisabled' | i18n}}</span>
                         </ng-container>
+                        <ng-container *ngIf="o.isResetPasswordEnrolled">
+                            <i class="fa fa-key" appStopProp title="{{'enrolledPasswordReset' | i18n}}"
+                                aria-hidden="true"></i>
+                            <span class="sr-only">{{'enrolledPasswordReset' | i18n}}</span>
+                        </ng-container>
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>
