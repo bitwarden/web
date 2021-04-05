@@ -157,18 +157,10 @@ export function initFactory(): Function {
                 'https://portal.bitwarden.com'; // window.location.origin + '/portal';
         }
         apiService.setUrls({
-            base: isDev ? null : window.location.origin,
-            api: isDev ? 'http://localhost:4000' : null,
-            identity: isDev ? 'http://localhost:33656' : null,
-            events: isDev ? 'http://localhost:46273' : null,
-
-            // Uncomment these (and comment out the above) if you want to target production
-            // servers for local development.
-
-            // base: null,
-            // api: 'https://api.bitwarden.com',
-            // identity: 'https://identity.bitwarden.com',
-            // events: 'https://events.bitwarden.com',
+            base: window.location.origin,
+            api: null,
+            identity: null,
+            events: null,
         });
         setTimeout(() => notificationsService.init(environmentService), 3000);
 
