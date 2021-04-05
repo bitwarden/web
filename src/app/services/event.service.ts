@@ -155,6 +155,13 @@ export class EventService {
                 break;
             case EventType.OrganizationUser_UnlinkedSso:
                 msg = this.i18nService.t('unlinkedSsoUser', this.formatOrgUserId(ev));
+                break;
+            case EventType.OrganizationUser_ResetPassword_Enroll:
+                msg = this.i18nService.t('eventEnrollPasswordReset', this.formatOrgUserId(ev));
+                break;
+            case EventType.OrganizationUser_ResetPassword_Withdraw:
+                msg = this.i18nService.t('eventWithdrawPasswordReset', this.formatOrgUserId(ev));
+                break;
             // Org
             case EventType.Organization_Updated:
                 msg = this.i18nService.t('editedOrgSettings');
