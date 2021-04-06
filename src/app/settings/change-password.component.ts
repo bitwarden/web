@@ -25,6 +25,7 @@ import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
 import { EmergencyAccessUpdateRequest } from 'jslib/models/request/emergencyAccessUpdateRequest';
 import { FolderWithIdRequest } from 'jslib/models/request/folderWithIdRequest';
+import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib/models/request/organizationUserResetPasswordEnrollmentRequest';
 import { PasswordRequest } from 'jslib/models/request/passwordRequest';
 import { UpdateKeyRequest } from 'jslib/models/request/updateKeyRequest';
 
@@ -41,7 +42,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         userService: UserService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private folderService: FolderService, private cipherService: CipherService,
-        private syncService: SyncService, private apiService: ApiService ) {
+        private syncService: SyncService, private apiService: ApiService) {
         super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
             platformUtilsService, policyService);
     }
@@ -74,6 +75,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             const result = await this.platformUtilsService.showDialog(
                 this.i18nService.t('updateEncryptionKeyWarning') + ' ' +
                 this.i18nService.t('updateEncryptionKeyExportWarning') + ' ' +
+                this.i18nService.t('updateEncryptionKeyResetPasswordWarning') + ' ' +
                 this.i18nService.t('rotateEncKeyConfirmation'), this.i18nService.t('rotateEncKeyTitle'),
                 this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
             if (!result) {
@@ -166,6 +168,8 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         await this.apiService.postAccountKey(request);
 
         await this.updateEmergencyAccesses(encKey[0]);
+
+        await this.updateAllResetPasswordKeys();
     }
 
     private async updateEmergencyAccesses(encKey: SymmetricCryptoKey) {
@@ -190,6 +194,17 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             updateRequest.keyEncrypted = encryptedKey.encryptedString;
 
             await this.apiService.putEmergencyAccess(details.id, updateRequest);
+        }
+    }
+
+    private async updateAllResetPasswordKeys() {
+        const orgs = await this.userService.getAllOrganizations();
+
+        for (const org of orgs) {
+            const request = new OrganizationUserResetPasswordEnrollmentRequest();
+            request.resetPasswordKey = null;
+
+            await this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
         }
     }
 }
