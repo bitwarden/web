@@ -48,7 +48,8 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
         this.accessEvents = this.organization.useEvents;
         this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
-        this.applyFilter(filter);
+        await this.searchService.indexCiphers(this.allCiphers);
+        await this.applyFilter(filter);
         this.loaded = true;
     }
 
@@ -62,28 +63,8 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async search(timeout: number = null) {
-        if (!this.organization.canManageAllCollections) {
-            return super.search(timeout);
-        }
-        this.searchPending = false;
-        let filteredCiphers = this.allCiphers;
-
-        if (this.searchText == null || this.searchText.trim().length < 2) {
-            this.ciphers = filteredCiphers.filter(c => {
-                if (c.isDeleted !== this.deleted) {
-                    return false;
-                }
-                return this.filter == null || this.filter(c);
-            });
-        } else {
-            if (this.filter != null) {
-                filteredCiphers = filteredCiphers.filter(this.filter);
-            }
-            this.ciphers = this.searchService.searchCiphersBasic(filteredCiphers, this.searchText, this.deleted);
-        }
-        await this.resetPaging();
+        super.search(timeout, this.allCiphers);
     }
-
     events(c: CipherView) {
         this.onEventsClicked.emit(c);
     }

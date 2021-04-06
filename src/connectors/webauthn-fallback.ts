@@ -103,6 +103,7 @@ async function initWebAuthn(obj: any) {
 
 function error(message: string) {
     const el = document.getElementById('msg');
+    resetMsgBox(el);
     el.innerHTML = message;
     el.classList.add('alert');
     el.classList.add('alert-danger');
@@ -112,7 +113,14 @@ function success(message: string) {
     (document.getElementById('webauthn-button') as HTMLButtonElement).disabled = true;
 
     const el = document.getElementById('msg');
+    resetMsgBox(el);
     el.innerHTML = message;
     el.classList.add('alert');
     el.classList.add('alert-success');
+}
+
+function resetMsgBox(el: HTMLElement) {
+    el.classList.remove('alert');
+    el.classList.remove('alert-danger');
+    el.classList.remove('alert-success');
 }

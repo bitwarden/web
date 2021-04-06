@@ -157,8 +157,45 @@ const devServer = {
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
     // host: '192.168.1.9',
+    proxy: {
+        '/api': {
+            target: 'http://localhost:4000',
+            pathRewrite: {'^/api' : ''}
+        },
+        '/identity': {
+            target: 'http://localhost:33656',
+            pathRewrite: {'^/identity' : ''}
+        },
+        '/events': {
+            target: 'http://localhost:46273',
+            pathRewrite: {'^/events' : ''}
+        }
+    },
     hot: false,
 };
+
+if (ENV === "production") {
+    devServer.proxy = {
+        '/api': {
+            target: 'https://api.bitwarden.com',
+            pathRewrite: {'^/api' : ''},
+            secure: false,
+            changeOrigin: true
+        },
+        '/identity': {
+            target: 'https://identity.bitwarden.com',
+            pathRewrite: {'^/identity' : ''},
+            secure: false,
+            changeOrigin: true
+        },
+        '/events': {
+            target: 'https://events.bitwarden.com',
+            pathRewrite: {'^/events' : ''},
+            secure: false,
+            changeOrigin: true
+        }
+    };
+}
 
 const config = {
     mode: ENV,
