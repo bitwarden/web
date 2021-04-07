@@ -201,10 +201,12 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         const orgs = await this.userService.getAllOrganizations();
 
         for (const org of orgs) {
-            const request = new OrganizationUserResetPasswordEnrollmentRequest();
-            request.resetPasswordKey = null;
+            if (org.isResetPasswordEnrolled) {
+                const request = new OrganizationUserResetPasswordEnrollmentRequest();
+                request.resetPasswordKey = null;
 
-            await this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
+                await this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
+            }
         }
     }
 }
