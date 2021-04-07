@@ -138,6 +138,9 @@ export class UserAddEditComponent implements OnInit {
         p.manageUsers = clearPermissions ?
             false :
             this.permissions.manageUsers;
+        p.manageResetPassword = clearPermissions ?
+            false :
+            this.permissions.manageResetPassword;
         return p;
     }
 
