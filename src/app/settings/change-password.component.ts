@@ -75,7 +75,6 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             const result = await this.platformUtilsService.showDialog(
                 this.i18nService.t('updateEncryptionKeyWarning') + ' ' +
                 this.i18nService.t('updateEncryptionKeyExportWarning') + ' ' +
-                this.i18nService.t('updateEncryptionKeyResetPasswordWarning') + ' ' +
                 this.i18nService.t('rotateEncKeyConfirmation'), this.i18nService.t('rotateEncKeyTitle'),
                 this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
             if (!result) {
@@ -169,7 +168,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
         await this.updateEmergencyAccesses(encKey[0]);
 
-        await this.updateAllResetPasswordKeys();
+        await this.updateAllResetPasswordKeys(encKey[0]);
     }
 
     private async updateEmergencyAccesses(encKey: SymmetricCryptoKey) {
@@ -197,16 +196,24 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         }
     }
 
-    private async updateAllResetPasswordKeys() {
+    private async updateAllResetPasswordKeys(encKey: SymmetricCryptoKey) {
         const orgs = await this.userService.getAllOrganizations();
 
         for (const org of orgs) {
-            if (org.isResetPasswordEnrolled) {
-                const request = new OrganizationUserResetPasswordEnrollmentRequest();
-                request.resetPasswordKey = null;
-
-                await this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
+            // If not already enrolled, skip
+            if (!org.isResetPasswordEnrolled) {
+                continue;
             }
+
+            // Re-enroll - encrpyt user's encKey.key with organization key
+            const orgSymKey = await this.cryptoService.getOrgKey(org.id);
+            const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);
+
+            // Create/Execute request
+            const request = new OrganizationUserResetPasswordEnrollmentRequest();
+            request.resetPasswordKey = encryptedKey.encryptedString;
+
+            await this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
         }
     }
 }
