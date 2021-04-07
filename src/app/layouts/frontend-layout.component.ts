@@ -16,9 +16,9 @@ export class FrontendLayoutComponent implements OnInit, OnDestroy {
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.year = new Date().getFullYear().toString();
-        this.version = this.platformUtilsService.getApplicationVersion();
+        this.version = await this.platformUtilsService.getApplicationVersion();
         document.body.classList.add('layout_frontend');
     }
 
