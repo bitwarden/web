@@ -22,8 +22,6 @@ import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 import { ValidationService } from 'jslib/angular/services/validation.service';
 
-import { Analytics } from 'jslib/misc/analytics';
-
 import { ApiService } from 'jslib/services/api.service';
 import { AppIdService } from 'jslib/services/appId.service';
 import { AuditService } from 'jslib/services/audit.service';
@@ -139,23 +137,20 @@ const environmentService = new EnvironmentService(apiService, storageService, no
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
 
-const analytics = new Analytics(window, () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
-    platformUtilsService, storageService, appIdService);
 containerService.attachToWindow(window);
 
 export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
         const isDev = platformUtilsService.isDev();
-        if (!isDev && platformUtilsService.isSelfHost()) {
+
+        if (isDev || platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
-            environmentService.webVaultUrl = isDev ? 'https://localhost:8080' : null;
-            environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
-                'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
-            environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :
-                'https://portal.bitwarden.com'; // window.location.origin + '/portal';
+            environmentService.notificationsUrl = 'https://notifications.bitwarden.com';
+            environmentService.enterpriseUrl = 'https://portal.bitwarden.com';
         }
+
         apiService.setUrls({
             base: window.location.origin,
             api: null,
