@@ -42,10 +42,10 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
         const weakPasswordCiphers: CipherView[] = [];
         const isUserNameNotEmpty = (c: CipherView): boolean => {
             return c.login.username != null && c.login.username.trim() !== '';
-        }
-        const getCacheKey = (c:CipherView): string => {
+        };
+        const getCacheKey = (c: CipherView): string => {
             return c.login.password + '_____' + (isUserNameNotEmpty(c) ? c.login.username : '');
-        }
+        };
 
         allCiphers.forEach(c => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
