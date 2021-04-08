@@ -107,7 +107,7 @@ const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, () => searchService);
+    apiService, storageService, i18nService, () => searchService, consoleLogService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
