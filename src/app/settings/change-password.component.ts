@@ -25,6 +25,7 @@ import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
 import { EmergencyAccessUpdateRequest } from 'jslib/models/request/emergencyAccessUpdateRequest';
 import { FolderWithIdRequest } from 'jslib/models/request/folderWithIdRequest';
+import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib/models/request/organizationUserResetPasswordEnrollmentRequest';
 import { PasswordRequest } from 'jslib/models/request/passwordRequest';
 import { UpdateKeyRequest } from 'jslib/models/request/updateKeyRequest';
 
@@ -41,7 +42,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         userService: UserService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private folderService: FolderService, private cipherService: CipherService,
-        private syncService: SyncService, private apiService: ApiService ) {
+        private syncService: SyncService, private apiService: ApiService) {
         super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
             platformUtilsService, policyService);
     }
@@ -166,6 +167,8 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         await this.apiService.postAccountKey(request);
 
         await this.updateEmergencyAccesses(encKey[0]);
+
+        await this.updateAllResetPasswordKeys(encKey[0]);
     }
 
     private async updateEmergencyAccesses(encKey: SymmetricCryptoKey) {
@@ -190,6 +193,27 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             updateRequest.keyEncrypted = encryptedKey.encryptedString;
 
             await this.apiService.putEmergencyAccess(details.id, updateRequest);
+        }
+    }
+
+    private async updateAllResetPasswordKeys(encKey: SymmetricCryptoKey) {
+        const orgs = await this.userService.getAllOrganizations();
+
+        for (const org of orgs) {
+            // If not already enrolled, skip
+            if (!org.isResetPasswordEnrolled) {
+                continue;
+            }
+
+            // Re-enroll - encrpyt user's encKey.key with organization key
+            const orgSymKey = await this.cryptoService.getOrgKey(org.id);
+            const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);
+
+            // Create/Execute request
+            const request = new OrganizationUserResetPasswordEnrollmentRequest();
+            request.resetPasswordKey = encryptedKey.encryptedString;
+
+            await this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
         }
     }
 }

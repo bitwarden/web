@@ -3714,6 +3714,9 @@
   "manageUsers": {
     "message": "Manage Users"
   },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
+  },
   "disableRequireSsoError": {
     "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
   },
@@ -3833,5 +3836,38 @@
   },
   "hintEqualsPassword": {
     "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
   }
 }

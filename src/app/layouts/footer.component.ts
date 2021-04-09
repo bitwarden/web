@@ -15,8 +15,8 @@ export class FooterComponent implements OnInit {
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.year = new Date().getFullYear().toString();
-        this.version = this.platformUtilsService.getApplicationVersion();
+        this.version = await this.platformUtilsService.getApplicationVersion();
     }
 }

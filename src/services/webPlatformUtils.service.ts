@@ -154,8 +154,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         }
     }
 
-    getApplicationVersion(): string {
-        return process.env.APPLICATION_VERSION || '-';
+    getApplicationVersion(): Promise<string> {
+        return Promise.resolve(process.env.APPLICATION_VERSION || '-');
     }
 
     supportsWebAuthn(win: Window): boolean {
@@ -286,7 +286,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     getDefaultSystemTheme() {
-        return null as 'light' | 'dark';
+        return Promise.resolve(null as 'light' | 'dark');
     }
 
     onDefaultSystemThemeChange() {

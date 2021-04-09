@@ -22,8 +22,6 @@ import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 import { ValidationService } from 'jslib/angular/services/validation.service';
 
-import { Analytics } from 'jslib/misc/analytics';
-
 import { ApiService } from 'jslib/services/api.service';
 import { AppIdService } from 'jslib/services/appId.service';
 import { AuditService } from 'jslib/services/audit.service';
@@ -114,7 +112,7 @@ const cipherService = new CipherService(cryptoService, userService, settingsServ
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
-searchService = new SearchService(cipherService, consoleLogService);
+searchService = new SearchService(cipherService, consoleLogService, i18nService);
 const policyService = new PolicyService(userService, storageService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
@@ -139,36 +137,25 @@ const environmentService = new EnvironmentService(apiService, storageService, no
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
 
-const analytics = new Analytics(window, () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
-    platformUtilsService, storageService, appIdService);
 containerService.attachToWindow(window);
 
 export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
         const isDev = platformUtilsService.isDev();
-        if (!isDev && platformUtilsService.isSelfHost()) {
+
+        if (isDev || platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
-            environmentService.webVaultUrl = isDev ? 'https://localhost:8080' : null;
-            environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
-                'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
-            environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :
-                'https://portal.bitwarden.com'; // window.location.origin + '/portal';
+            environmentService.notificationsUrl = 'https://notifications.bitwarden.com';
+            environmentService.enterpriseUrl = 'https://portal.bitwarden.com';
         }
+
         apiService.setUrls({
-            base: isDev ? null : window.location.origin,
-            api: isDev ? 'http://localhost:4000' : null,
-            identity: isDev ? 'http://localhost:33656' : null,
-            events: isDev ? 'http://localhost:46273' : null,
-
-            // Uncomment these (and comment out the above) if you want to target production
-            // servers for local development.
-
-            // base: null,
-            // api: 'https://api.bitwarden.com',
-            // identity: 'https://identity.bitwarden.com',
-            // events: 'https://events.bitwarden.com',
+            base: window.location.origin,
+            api: null,
+            identity: null,
+            events: null,
         });
         setTimeout(() => notificationsService.init(environmentService), 3000);
 
