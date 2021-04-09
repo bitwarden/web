@@ -13,6 +13,7 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
 
+import { ValidationService } from 'jslib/angular/services/validation.service';
 import { ConstantsService } from 'jslib/services/constants.service';
 
 import { ApiService } from 'jslib/abstractions/api.service';
@@ -73,7 +74,8 @@ export class PeopleComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private userService: UserService, private router: Router,
-        private storageService: StorageService, private searchService: SearchService) { }
+        private storageService: StorageService, private searchService: SearchService,
+        private validationService: ValidationService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -258,6 +260,21 @@ export class PeopleComponent implements OnInit {
             }
         }
 
+        const confirmUser = async (publicKey: Uint8Array) => {
+            try {
+                this.actionPromise = this.doConfirmation(user, publicKey);
+                await this.actionPromise;
+                updateUser(this);
+                this.analytics.eventTrack.next({ action: 'Confirmed User' });
+                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
+            } catch (e) {
+                this.validationService.showError(e);
+                throw e;
+            } finally {
+                this.actionPromise = null;
+            }
+        };
+
         if (this.actionPromise != null) {
             return;
         }
@@ -277,9 +294,14 @@ export class PeopleComponent implements OnInit {
             childComponent.organizationId = this.organizationId;
             childComponent.organizationUserId = user != null ? user.id : null;
             childComponent.userId = user != null ? user.userId : null;
-            childComponent.onConfirmedUser.subscribe(() => {
-                this.modal.close();
-                updateUser(this);
+            childComponent.onConfirmedUser.subscribe(async (publicKey: Uint8Array) => {
+                try {
+                    await confirmUser(publicKey);
+                    this.modal.close();
+                } catch (e) {
+                    // tslint:disable-next-line
+                    console.error('Handled exception:', e);
+                }
             });
 
             this.modal.onClosed.subscribe(() => {
@@ -288,12 +310,19 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        this.actionPromise = this.doConfirmation(user);
-        await this.actionPromise;
-        updateUser(this);
-        this.analytics.eventTrack.next({ action: 'Confirmed User' });
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
-        this.actionPromise = null;
+        try {
+            const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
+            const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
+            try {
+                // tslint:disable-next-line
+                console.log('User\'s fingerprint: ' +
+                    (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
+            } catch { }
+            await confirmUser(publicKey);
+        } catch (e) {
+            // tslint:disable-next-line
+            console.error('Handled exception:', e);
+        }
     }
 
     async events(user: OrganizationUserUserDetailsResponse) {
@@ -334,15 +363,8 @@ export class PeopleComponent implements OnInit {
         return !searching && this.users && this.users.length > this.pageSize;
     }
 
-    private async doConfirmation(user: OrganizationUserUserDetailsResponse) {
+    private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
-        const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
-        const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
-        try {
-            // tslint:disable-next-line
-            console.log('User\'s fingerprint: ' +
-                (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
-        } catch { }
         const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
         const request = new OrganizationUserConfirmRequest();
         request.key = key.encryptedString;

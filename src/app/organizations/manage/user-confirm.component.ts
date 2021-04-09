@@ -6,17 +6,11 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { ConstantsService } from 'jslib/services/constants.service';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
-
-import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
 import { Utils } from 'jslib/misc/utils';
 
@@ -34,13 +28,11 @@ export class UserConfirmComponent implements OnInit {
     dontAskAgain = false;
     loading = true;
     fingerprint: string;
-    formPromise: Promise<any>;
 
     private publicKey: Uint8Array = null;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private storageService: StorageService) { }
+    constructor(private apiService: ApiService, private cryptoService: CryptoService,
+        private storageService: StorageService) { }
 
     async ngOnInit() {
         try {
@@ -65,20 +57,6 @@ export class UserConfirmComponent implements OnInit {
             await this.storageService.save(ConstantsService.autoConfirmFingerprints, true);
         }
 
-        try {
-            this.formPromise = this.doConfirmation();
-            await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Confirmed User' });
-            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.name));
-            this.onConfirmedUser.emit();
-        } catch { }
-    }
-
-    private async doConfirmation() {
-        const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
-        const key = await this.cryptoService.rsaEncrypt(orgKey.key, this.publicKey.buffer);
-        const request = new OrganizationUserConfirmRequest();
-        request.key = key.encryptedString;
-        await this.apiService.postOrganizationUserConfirm(this.organizationId, this.organizationUserId, request);
+        this.onConfirmedUser.emit(this.publicKey);
     }
 }
