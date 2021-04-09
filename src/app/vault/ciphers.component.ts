@@ -8,6 +8,7 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
+import { AuthService } from 'jslib/abstractions/auth.service';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { EventService } from 'jslib/abstractions/event.service';
@@ -44,7 +45,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
-        protected eventService: EventService, protected totpService: TotpService, protected userService: UserService) {
+        protected eventService: EventService, protected totpService: TotpService, protected userService: UserService, protected authService: AuthService) {
         super(searchService);
         this.pageSize = 200;
     }
@@ -125,6 +126,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
+        if (cipher.passwordPrompt && ['TOTP', 'password'].includes(aType) && !await this.authService.showPasswordPrompt()) {
+            return;
+        }
+
         if (value == null || aType === 'TOTP' && !this.displayTotpCopyButton(cipher)) {
             return;
         } else if (value === cipher.login.totp) {
@@ -173,6 +178,12 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     displayTotpCopyButton(cipher: CipherView) {
         return (cipher?.login?.hasTotp ?? false) &&
             (cipher.organizationUseTotp || this.userHasPremiumAccess);
+    }
+
+    async selectCipher(cipher: CipherView) {
+        if (!cipher.passwordPrompt || await this.authService.showPasswordPrompt()) {
+            super.selectCipher(cipher);
+        }
     }
 
     protected deleteCipher(id: string, permanent: boolean) {
