@@ -8,11 +8,11 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 import { Angulartics2 } from 'angulartics2';
-import { AuthService } from 'jslib/abstractions/auth.service';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SearchService } from 'jslib/abstractions/search.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
@@ -45,7 +45,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     constructor(searchService: SearchService, protected analytics: Angulartics2,
         protected toasterService: ToasterService, protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, protected cipherService: CipherService,
-        protected eventService: EventService, protected totpService: TotpService, protected userService: UserService, protected authService: AuthService) {
+        protected eventService: EventService, protected totpService: TotpService, protected userService: UserService,
+        protected passwordRepromptService: PasswordRepromptService) {
         super(searchService);
         this.pageSize = 200;
     }
@@ -126,7 +127,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (cipher.passwordPrompt && ['TOTP', 'password'].includes(aType) && !await this.authService.showPasswordPrompt()) {
+        if (cipher.passwordPrompt && ['TOTP', 'password'].includes(aType) && !await this.passwordRepromptService.showPasswordPrompt()) {
             return;
         }
 
@@ -134,6 +135,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             return;
         } else if (value === cipher.login.totp) {
             value = await this.totpService.getCode(value);
+        }
+
+        if (!cipher.viewPassword) {
+            return;
         }
 
         this.analytics.eventTrack.next({ action: 'Copied ' + aType.toLowerCase() + ' from listing.' });
@@ -181,7 +186,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async selectCipher(cipher: CipherView) {
-        if (!cipher.passwordPrompt || await this.authService.showPasswordPrompt()) {
+        if (!cipher.passwordPrompt || await this.passwordRepromptService.showPasswordPrompt()) {
             super.selectCipher(cipher);
         }
     }
