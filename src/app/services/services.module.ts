@@ -110,7 +110,8 @@ const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const webWorkerService = new WebWorkerService(consoleLogService);
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, () => searchService, webWorkerService);
+    apiService, storageService, i18nService, () => searchService, webWorkerService,
+    platformUtilsService.isDev() ? storageService : secureStorageService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
