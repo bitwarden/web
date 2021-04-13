@@ -46,6 +46,7 @@ import { SyncService } from 'jslib/abstractions/sync.service';
 import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib/abstractions/vaultTimeout.service';
+import { WebWorkerService } from 'jslib/abstractions/webWorker.service';
 
 import { ConstantsService } from 'jslib/services/constants.service';
 
@@ -83,7 +84,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
         private stateService: StateService, private eventService: EventService,
-        private policyService: PolicyService) { }
+        private policyService: PolicyService, private webWorkerService: WebWorkerService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -194,6 +195,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.policyService.clear(userId),
             this.passwordGenerationService.clear(),
             this.stateService.purge(),
+            this.webWorkerService.terminateAll(),
         ]);
 
         this.searchService.clearIndex();

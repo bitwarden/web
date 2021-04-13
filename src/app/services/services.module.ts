@@ -108,7 +108,7 @@ const apiService = new ApiService(tokenService, platformUtilsService,
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
-const webWorkerService = new WebWorkerService(consoleLogService);
+const webWorkerService = new WebWorkerService();
 const cipherService = new CipherService(cryptoService, userService, settingsService,
     apiService, storageService, i18nService, () => searchService, webWorkerService,
     platformUtilsService.isDev() ? storageService : secureStorageService);
@@ -121,7 +121,7 @@ const sendService = new SendService(cryptoService, userService, apiService, stor
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    null, async () => messagingService.send('logout', { expired: false }));
+    null, async () => messagingService.send('logout', { expired: false }), webWorkerService);
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
