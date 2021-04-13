@@ -52,6 +52,7 @@ import { TotpService } from 'jslib/services/totp.service';
 import { UserService } from 'jslib/services/user.service';
 import { VaultTimeoutService } from 'jslib/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib/services/webCryptoFunction.service';
+import { WebWorkerService } from 'jslib/services/webWorker.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib/abstractions/api.service';
 import { AppIdService as AppIdServiceAbstraction } from 'jslib/abstractions/appId.service';
@@ -85,6 +86,7 @@ import { TokenService as TokenServiceAbstraction } from 'jslib/abstractions/toke
 import { TotpService as TotpServiceAbstraction } from 'jslib/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib/abstractions/vaultTimeout.service';
+import { WebWorkerService as WebWorkerServiceAbstraction } from 'jslib/abstractions/webWorker.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
@@ -106,8 +108,9 @@ const apiService = new ApiService(tokenService, platformUtilsService,
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
+const webWorkerService = new WebWorkerService(consoleLogService);
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, () => searchService,
+    apiService, storageService, i18nService, () => searchService, webWorkerService,
     platformUtilsService.isDev() ? storageService : secureStorageService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
@@ -230,6 +233,7 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
+        { provide: WebWorkerServiceAbstraction, useValue: webWorkerService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,
