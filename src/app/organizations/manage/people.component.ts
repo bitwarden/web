@@ -11,7 +11,6 @@ import {
 } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ValidationService } from 'jslib/angular/services/validation.service';
 import { ConstantsService } from 'jslib/services/constants.service';
@@ -71,9 +70,8 @@ export class PeopleComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
-        private platformUtilsService: PlatformUtilsService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private userService: UserService, private router: Router,
+        private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
+        private cryptoService: CryptoService, private userService: UserService, private router: Router,
         private storageService: StorageService, private searchService: SearchService,
         private validationService: ValidationService) { }
 
@@ -233,7 +231,6 @@ export class PeopleComponent implements OnInit {
 
         try {
             await this.apiService.deleteOrganizationUser(this.organizationId, user.id);
-            this.analytics.eventTrack.next({ action: 'Deleted User' });
             this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
             this.removeUser(user);
         } catch { }
@@ -245,7 +242,6 @@ export class PeopleComponent implements OnInit {
         }
         this.actionPromise = this.apiService.postOrganizationUserReinvite(this.organizationId, user.id);
         await this.actionPromise;
-        this.analytics.eventTrack.next({ action: 'Reinvited User' });
         this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
         this.actionPromise = null;
     }
@@ -265,7 +261,6 @@ export class PeopleComponent implements OnInit {
                 this.actionPromise = this.doConfirmation(user, publicKey);
                 await this.actionPromise;
                 updateUser(this);
-                this.analytics.eventTrack.next({ action: 'Confirmed User' });
                 this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
             } catch (e) {
                 this.validationService.showError(e);

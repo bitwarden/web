@@ -8,7 +8,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
@@ -52,9 +51,9 @@ export class CollectionsComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private collectionService: CollectionService, private componentFactoryResolver: ComponentFactoryResolver,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        private userService: UserService, private searchService: SearchService) { }
+        private toasterService: ToasterService, private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService, private userService: UserService,
+        private searchService: SearchService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -141,7 +140,6 @@ export class CollectionsComponent implements OnInit {
 
         try {
             await this.apiService.deleteCollection(this.organizationId, collection.id);
-            this.analytics.eventTrack.next({ action: 'Deleted Collection' });
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', collection.name));
             this.removeCollection(collection);
         } catch { }

@@ -32,7 +32,6 @@ export class DownloadLicenseComponent {
             const license = await this.formPromise;
             const licenseString = JSON.stringify(license, null, 2);
             this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_organization_license.json');
-            this.platformUtilsService.eventTrack('Downloaded License');
             this.onDownloaded.emit();
         } catch { }
     }

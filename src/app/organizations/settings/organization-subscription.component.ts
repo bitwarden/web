@@ -5,7 +5,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { OrganizationSubscriptionResponse } from 'jslib/models/response/organizationSubscriptionResponse';
 
@@ -38,9 +37,8 @@ export class OrganizationSubscriptionComponent implements OnInit {
     reinstatePromise: Promise<any>;
 
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private messagingService: MessagingService,
-        private route: ActivatedRoute) {
+        private i18nService: I18nService, private toasterService: ToasterService,
+        private messagingService: MessagingService, private route: ActivatedRoute) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -75,7 +73,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postOrganizationReinstate(this.organizationId);
             await this.reinstatePromise;
-            this.analytics.eventTrack.next({ action: 'Reinstated Plan' });
             this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
             this.load();
         } catch { }
@@ -95,7 +92,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
-            this.analytics.eventTrack.next({ action: 'Canceled Plan' });
             this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
         } catch { }

@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -27,8 +26,7 @@ export abstract class TwoFactorBaseComponent {
     protected masterPasswordHash: string;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected analytics: Angulartics2, protected toasterService: ToasterService,
-        protected platformUtilsService: PlatformUtilsService) { }
+        protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService) { }
 
     protected auth(authResponse: any) {
         this.masterPasswordHash = authResponse.masterPasswordHash;
@@ -38,9 +36,6 @@ export abstract class TwoFactorBaseComponent {
     protected async enable(enableFunction: () => Promise<void>) {
         try {
             await enableFunction();
-            this.analytics.eventTrack.next({
-                action: 'Enabled Two-step ' + TwoFactorProviderType[this.type].toString(),
-            });
             this.onUpdated.emit(true);
         } catch { }
     }
@@ -63,9 +58,6 @@ export abstract class TwoFactorBaseComponent {
             }
             await promise;
             this.enabled = false;
-            this.analytics.eventTrack.next({
-                action: 'Disabled Two-step ' + TwoFactorProviderType[this.type].toString(),
-            });
             this.toasterService.popAsync('success', null, this.i18nService.t('twoStepDisabled'));
             this.onUpdated.emit(false);
         } catch { }

@@ -6,8 +6,6 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
-import { Utils } from 'jslib/misc/utils';
-
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 
@@ -76,10 +74,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     isMacAppStore(): boolean {
         return false;
-    }
-
-    analyticsId(): string {
-        return 'UA-81915606-3';
     }
 
     isViewOpen(): Promise<boolean> {
@@ -215,14 +209,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
 
         return confirmed.value;
-    }
-
-    eventTrack(action: string, label?: string, options?: any) {
-        this.messagingService.send('analyticsEventTrack', {
-            action: action,
-            label: label,
-            options: options,
-        });
     }
 
     isDev(): boolean {

@@ -7,7 +7,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -46,9 +45,8 @@ export class AccountComponent {
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
         private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private route: ActivatedRoute, private syncService: SyncService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private toasterService: ToasterService, private route: ActivatedRoute,
+        private syncService: SyncService, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -73,7 +71,6 @@ export class AccountComponent {
                 return this.syncService.fullSync(true);
             });
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Updated Organization Settings' });
             this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpdated'));
         } catch { }
     }
@@ -81,7 +78,6 @@ export class AccountComponent {
     async submitTaxInfo() {
         this.taxFormPromise = this.taxInfo.submitTaxInfo();
         await this.taxFormPromise;
-        this.analytics.eventTrack.next({ action: 'Updated Organization Tax Info' });
         this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
     }
 

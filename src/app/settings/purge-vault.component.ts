@@ -5,7 +5,6 @@ import {
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -24,8 +23,8 @@ export class PurgeVaultComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private router: Router) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private router: Router) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -39,9 +38,6 @@ export class PurgeVaultComponent {
         try {
             this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
             await this.formPromise;
-            this.analytics.eventTrack.next({
-                action: this.organizationId != null ? 'Purged Organization Vault' : 'Purged Vault',
-            });
             this.toasterService.popAsync('success', null, this.i18nService.t('vaultPurged'));
             if (this.organizationId != null) {
                 this.router.navigate(['organizations', this.organizationId, 'vault']);

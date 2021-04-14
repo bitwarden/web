@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { BillingResponse } from 'jslib/models/response/billingResponse';
 
@@ -35,8 +34,7 @@ export class UserBillingComponent implements OnInit {
     verifyBankPromise: Promise<any>;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected analytics: Angulartics2, protected toasterService: ToasterService,
-        protected platformUtilsService: PlatformUtilsService) { }
+        protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         await this.load();
@@ -67,7 +65,6 @@ export class UserBillingComponent implements OnInit {
             request.amount2 = this.verifyAmount2;
             this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(this.organizationId, request);
             await this.verifyBankPromise;
-            this.analytics.eventTrack.next({ action: 'Verified Bank Account' });
             this.toasterService.popAsync('success', null, this.i18nService.t('verifiedBankAccount'));
             this.load();
         } catch { }
