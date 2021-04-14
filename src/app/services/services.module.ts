@@ -111,7 +111,7 @@ export let searchService: SearchService = null;
 const webWorkerService = new WebWorkerService();
 const cipherService = new CipherService(cryptoService, userService, settingsService,
     apiService, storageService, i18nService, () => searchService, webWorkerService,
-    platformUtilsService.isDev() ? storageService : secureStorageService);
+    platformUtilsService.isDev() ? storageService : secureStorageService, consoleLogService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
