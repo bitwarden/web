@@ -9,6 +9,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
+import { CipherRepromptType } from 'jslib/enums/cipherRepromptType';
 
 import { Organization } from 'jslib/models/domain/organization';
 
@@ -172,7 +173,7 @@ export class BulkActionsComponent {
 
     private async promptPassword() {
         const selectedCiphers = this.ciphersComponent.getSelected();
-        const notProtected = !selectedCiphers.find(cipher => cipher.reprompt);
+        const notProtected = !selectedCiphers.find(cipher => cipher.reprompt !== CipherRepromptType.None);
 
         return notProtected || await this.passwordRepromptService.showPasswordPrompt();
     }
