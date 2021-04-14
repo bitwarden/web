@@ -8,6 +8,7 @@ import {
 import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
 
 import { Organization } from 'jslib/models/domain/organization';
 
@@ -36,9 +37,14 @@ export class BulkActionsComponent {
 
     constructor(private toasterService: ToasterService,
         private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver) { }
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private passwordRepromptService: PasswordRepromptService) { }
 
-    bulkDelete() {
+    async bulkDelete() {
+        if (!await this.promptPassword()) {
+            return;
+        }
+
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -67,7 +73,11 @@ export class BulkActionsComponent {
         });
     }
 
-    bulkRestore() {
+    async bulkRestore() {
+        if (!await this.promptPassword()) {
+            return;
+        }
+
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -94,7 +104,11 @@ export class BulkActionsComponent {
         });
     }
 
-    bulkShare() {
+    async bulkShare() {
+        if (!await this.promptPassword()) {
+            return;
+        }
+
         const selectedCiphers = this.ciphersComponent.getSelected();
         if (selectedCiphers.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -121,7 +135,11 @@ export class BulkActionsComponent {
         });
     }
 
-    bulkMove() {
+    async bulkMove() {
+        if (!await this.promptPassword()) {
+            return;
+        }
+
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
@@ -150,5 +168,12 @@ export class BulkActionsComponent {
 
     selectAll(select: boolean) {
         this.ciphersComponent.selectAll(select);
+    }
+
+    private async promptPassword() {
+        const selectedCiphers = this.ciphersComponent.getSelected();
+        const hasProtected = selectedCiphers.find(cipher => cipher.reprompt);
+
+        return !hasProtected || await this.passwordRepromptService.showPasswordPrompt();
     }
 }

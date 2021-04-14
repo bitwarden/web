@@ -20,6 +20,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/components/ciphers.component';
 
+import { CipherRepromptType } from 'jslib/enums/cipherRepromptType';
 import { CipherType } from 'jslib/enums/cipherType';
 import { EventType } from 'jslib/enums/eventType';
 
@@ -64,11 +65,17 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.platformUtilsService.launchUri(uri);
     }
 
-    attachments(c: CipherView) {
+    async attachments(c: CipherView) {
+        if (c.reprompt !== CipherRepromptType.None && !await this.passwordRepromptService.showPasswordPrompt()) {
+            return;
+        }
         this.onAttachmentsClicked.emit(c);
     }
 
-    share(c: CipherView) {
+    async share(c: CipherView) {
+        if (c.reprompt !== CipherRepromptType.None && !await this.passwordRepromptService.showPasswordPrompt()) {
+            return;
+        }
         this.onShareClicked.emit(c);
     }
 
@@ -76,11 +83,17 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.onCollectionsClicked.emit(c);
     }
 
-    clone(c: CipherView) {
+    async clone(c: CipherView) {
+        if (c.reprompt !== CipherRepromptType.None && !await this.passwordRepromptService.showPasswordPrompt()) {
+            return;
+        }
         this.onCloneClicked.emit(c);
     }
 
     async delete(c: CipherView): Promise<boolean> {
+        if (c.reprompt !== CipherRepromptType.None && !await this.passwordRepromptService.showPasswordPrompt()) {
+            return;
+        }
         if (this.actionPromise != null) {
             return;
         }
@@ -127,7 +140,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (cipher.passwordPrompt && ['TOTP', 'password'].includes(aType) && !await this.passwordRepromptService.showPasswordPrompt()) {
+        const requirePrompt = cipher.reprompt && this.passwordRepromptService.protectedFields().includes(aType);
+        if (requirePrompt && !await this.passwordRepromptService.showPasswordPrompt()) {
             return;
         }
 
@@ -186,7 +200,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async selectCipher(cipher: CipherView) {
-        if (!cipher.passwordPrompt || await this.passwordRepromptService.showPasswordPrompt()) {
+        if (!cipher.reprompt || await this.passwordRepromptService.showPasswordPrompt()) {
             super.selectCipher(cipher);
         }
     }

@@ -515,9 +515,8 @@
                 <ng-container>
                     <h3 class="mt-4">{{'options' | i18n}}</h3>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [(ngModel)]="cipher.passwordPrompt"
-                                id="passwordPrompt" name="passwordPrompt"
-                                [disabled]="cipher.isDeleted || viewOnly">
+                        <input class="form-check-input" type="checkbox" [ngModel]="reprompt" (change)="repromptChanged()"
+                                id="passwordPrompt" name="passwordPrompt" [disabled]="cipher.isDeleted || viewOnly">
                             <label class="form-check-label" for="passwordPrompt">{{'passwordPrompt' | i18n}}</label>
                     </div>
                 </ng-container>

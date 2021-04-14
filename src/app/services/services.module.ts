@@ -73,6 +73,7 @@ import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/a
 import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
 } from 'jslib/abstractions/passwordGeneration.service';
+import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService as PolicyServiceAbstraction } from 'jslib/abstractions/policy.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
@@ -86,7 +87,6 @@ import { TotpService as TotpServiceAbstraction } from 'jslib/abstractions/totp.s
 import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib/abstractions/vaultTimeout.service';
 import { BrowserPasswordRepromptService } from 'jslib/services/BrowserPasswordReprompt.service';
-import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
