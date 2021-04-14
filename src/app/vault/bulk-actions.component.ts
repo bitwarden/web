@@ -172,8 +172,8 @@ export class BulkActionsComponent {
 
     private async promptPassword() {
         const selectedCiphers = this.ciphersComponent.getSelected();
-        const hasProtected = selectedCiphers.find(cipher => cipher.reprompt);
+        const notProtected = !selectedCiphers.find(cipher => cipher.reprompt);
 
-        return !hasProtected || await this.passwordRepromptService.showPasswordPrompt();
+        return notProtected || await this.passwordRepromptService.showPasswordPrompt();
     }
 }

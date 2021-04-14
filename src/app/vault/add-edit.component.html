@@ -209,10 +209,16 @@
                         <div class="col-6 form-group">
                             <label for="cardNumber">{{'number' | i18n}}</label>
                             <div class="input-group">
-                                <input id="cardNumber" class="form-control" type="text" name="Card.Number"
-                                    [(ngModel)]="cipher.card.number" appInputVerbatim
+                                <input id="cardNumber" class="form-control text-monospace"
+                                    type="{{showCardNumber ? 'text' : 'password'}}" name="Card.Number"
+                                    [(ngModel)]="cipher.card.number" appInputVerbatim autocomplete="new-password"
                                     [disabled]="cipher.isDeleted || viewOnly">
                                 <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleCardNumber()">
+                                        <i class="fa fa-lg" aria-hidden="true"
+                                            [ngClass]="{'fa-eye': !showCardNumber, 'fa-eye-slash': showCardNumber}"></i>
+                                    </button>
                                     <button type="button" class="btn btn-outline-secondary"
                                         appA11yTitle="{{'copyNumber' | i18n}}"
                                         (click)="copy(cipher.card.number, 'number', 'Number')">
