@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -21,8 +20,8 @@ export class DeleteOrganizationComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private router: Router) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private router: Router) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -36,7 +35,6 @@ export class DeleteOrganizationComponent {
         try {
             this.formPromise = this.apiService.deleteOrganization(this.organizationId, request);
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Deleted Organization' });
             this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),
                 this.i18nService.t('organizationDeletedDesc'));
             this.router.navigate(['/']);

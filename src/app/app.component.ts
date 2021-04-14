@@ -5,11 +5,8 @@ import {
     BodyOutputType,
     Toast,
     ToasterConfig,
-    ToasterContainerComponent,
     ToasterService,
 } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import {
     Component,
@@ -70,12 +67,12 @@ export class AppComponent implements OnDestroy, OnInit {
     private idleTimer: number = null;
     private isIdle = false;
 
-    constructor(private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
+    constructor(
         private broadcasterService: BroadcasterService, private userService: UserService,
         private tokenService: TokenService, private folderService: FolderService,
         private settingsService: SettingsService, private syncService: SyncService,
         private passwordGenerationService: PasswordGenerationService, private cipherService: CipherService,
-        private authService: AuthService, private router: Router, private analytics: Angulartics2,
+        private authService: AuthService, private router: Router,
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
         private vaultTimeoutService: VaultTimeoutService, private storageService: StorageService,
@@ -151,12 +148,6 @@ export class AppComponent implements OnDestroy, OnInit {
                     case 'showToast':
                         this.showToast(message);
                         break;
-                    case 'analyticsEventTrack':
-                        this.analytics.eventTrack.next({
-                            action: message.action,
-                            properties: { label: message.label },
-                        });
-                        break;
                     case 'setFullWidth':
                         this.setFullWidth();
                         break;
@@ -207,7 +198,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
         this.searchService.clearIndex();
         this.authService.logOut(async () => {
-            this.analytics.eventTrack.next({ action: 'Logged Out' });
             if (expired) {
                 this.toasterService.popAsync('warning', this.i18nService.t('loggedOut'),
                     this.i18nService.t('loginExpired'));

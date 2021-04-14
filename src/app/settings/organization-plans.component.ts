@@ -9,7 +9,6 @@ import {
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
 
@@ -66,9 +65,8 @@ export class OrganizationPlansComponent implements OnInit {
     plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private router: Router, private syncService: SyncService,
+        private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService, private router: Router, private syncService: SyncService,
         private policyService: PolicyService, private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
@@ -320,11 +318,9 @@ export class OrganizationPlansComponent implements OnInit {
                     await this.apiService.refreshIdentityToken();
                     await this.syncService.fullSync(true);
                     if (this.createOrganization) {
-                        this.analytics.eventTrack.next({ action: 'Created Organization' });
                         this.toasterService.popAsync('success',
                             this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
                     } else {
-                        this.analytics.eventTrack.next({ action: 'Upgraded Organization' });
                         this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpgraded'));
                     }
                     this.router.navigate(['/organizations/' + orgId]);

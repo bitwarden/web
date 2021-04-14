@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -42,7 +41,7 @@ export class EntityUsersComponent implements OnInit {
     private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+        private toasterService: ToasterService) { }
 
     async ngOnInit() {
         await this.loadUsers();
@@ -129,9 +128,6 @@ export class EntityUsersComponent implements OnInit {
                 this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({
-                action: this.entity === 'group' ? 'Edited Group Users' : 'Edited Collection Users',
-            });
             this.toasterService.popAsync('success', null, this.i18nService.t('updatedUsers'));
             this.onEditedUsers.emit();
         } catch { }

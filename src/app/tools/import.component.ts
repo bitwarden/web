@@ -5,7 +5,6 @@ import {
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { ImportOption, ImportService } from 'jslib/abstractions/import.service';
@@ -28,9 +27,9 @@ export class ImportComponent implements OnInit {
     protected organizationId: string = null;
     protected successNavigate: any[] = ['vault'];
 
-    constructor(protected i18nService: I18nService, protected analytics: Angulartics2,
-        protected toasterService: ToasterService, protected importService: ImportService,
-        protected router: Router, protected platformUtilsService: PlatformUtilsService) { }
+    constructor(protected i18nService: I18nService, protected toasterService: ToasterService,
+        protected importService: ImportService, protected router: Router,
+        protected platformUtilsService: PlatformUtilsService) { }
 
     ngOnInit() {
         this.setImportOptions();
@@ -95,10 +94,6 @@ export class ImportComponent implements OnInit {
                 this.loading = false;
                 return;
             }
-            this.analytics.eventTrack.next({
-                action: 'Imported Data',
-                properties: { label: this.format },
-            });
             this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
             this.router.navigate(this.successNavigate);
         } catch { }
@@ -127,11 +122,6 @@ export class ImportComponent implements OnInit {
     }
 
     private async error(error: Error) {
-        this.analytics.eventTrack.next({
-            action: 'Import Data Failed',
-            properties: { label: this.format },
-        });
-
         await Swal.fire({
             heightAuto: false,
             buttonsStyling: false,

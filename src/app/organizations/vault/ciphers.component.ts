@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -33,12 +32,11 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     protected allCiphers: CipherView[] = [];
 
-    constructor(searchService: SearchService, analytics: Angulartics2,
-        toasterService: ToasterService, i18nService: I18nService,
+    constructor(searchService: SearchService, toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, cipherService: CipherService,
         private apiService: ApiService, eventService: EventService, totpService: TotpService, userService: UserService) {
-        super(searchService, analytics, toasterService, i18nService, platformUtilsService,
-            cipherService, eventService, totpService, userService);
+        super(searchService, toasterService, i18nService, platformUtilsService, cipherService,
+            eventService, totpService, userService);
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {

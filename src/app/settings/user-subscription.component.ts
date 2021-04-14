@@ -5,7 +5,6 @@ import {
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { SubscriptionResponse } from 'jslib/models/response/subscriptionResponse';
 
@@ -32,8 +31,7 @@ export class UserSubscriptionComponent implements OnInit {
 
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router) {
+        private toasterService: ToasterService, private router: Router) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -78,7 +76,6 @@ export class UserSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postReinstatePremium();
             await this.reinstatePromise;
-            this.analytics.eventTrack.next({ action: 'Reinstated Premium' });
             this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
             this.load();
         } catch { }
@@ -104,7 +101,6 @@ export class UserSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postCancelPremium();
             await this.cancelPromise;
-            this.analytics.eventTrack.next({ action: 'Canceled Premium' });
             this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
         } catch { }

@@ -12,7 +12,6 @@ import {
 } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -41,8 +40,8 @@ export class AdjustStorageComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router, private activatedRoute: ActivatedRoute) { }
+        private toasterService: ToasterService, private router: Router,
+        private activatedRoute: ActivatedRoute) { }
 
     async submit() {
         try {
@@ -71,7 +70,6 @@ export class AdjustStorageComponent {
             };
             this.formPromise = action();
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.add ? 'Added Storage' : 'Removed Storage' });
             this.onAdjusted.emit(this.storageAdjustment);
             if (paymentFailed) {
                 this.toasterService.popAsync({

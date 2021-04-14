@@ -78,7 +78,6 @@ export class AddEditComponent extends BaseAddEditComponent {
             return;
         }
 
-        this.platformUtilsService.eventTrack('Launched Login URI');
         this.platformUtilsService.launchUri(uri.launchUri);
     }
 
@@ -87,7 +86,6 @@ export class AddEditComponent extends BaseAddEditComponent {
             return;
         }
 
-        this.platformUtilsService.eventTrack('Copied ' + aType);
         this.platformUtilsService.copyToClipboard(value, { window: window });
         this.platformUtilsService.showToast('info', null,
             this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));

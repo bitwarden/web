@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -33,8 +32,8 @@ export class OrganizationsComponent implements OnInit {
 
     constructor(private userService: UserService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private syncService: SyncService, private cryptoService: CryptoService) { }
+        private toasterService: ToasterService, private syncService: SyncService,
+        private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         if (!this.vault) {
@@ -63,7 +62,6 @@ export class OrganizationsComponent implements OnInit {
                 return this.syncService.fullSync(true);
             });
             await this.actionPromise;
-            this.analytics.eventTrack.next({ action: 'Unlinked SSO' });
             this.toasterService.popAsync('success', null, 'Unlinked SSO');
             await this.load();
         } catch { }
@@ -82,7 +80,6 @@ export class OrganizationsComponent implements OnInit {
                 return this.syncService.fullSync(true);
             });
             await this.actionPromise;
-            this.analytics.eventTrack.next({ action: 'Left Organization' });
             this.toasterService.popAsync('success', null, this.i18nService.t('leftOrganization'));
             await this.load();
         } catch { }

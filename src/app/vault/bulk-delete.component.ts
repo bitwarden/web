@@ -5,7 +5,6 @@ import {
     Output,
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -26,9 +25,8 @@ export class BulkDeleteComponent {
 
     formPromise: Promise<any>;
 
-    constructor(private analytics: Angulartics2, private cipherService: CipherService,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private apiService: ApiService) { }
+    constructor(private cipherService: CipherService, private toasterService: ToasterService,
+        private i18nService: I18nService, private apiService: ApiService) { }
 
     async submit() {
         if (!this.organization || !this.organization.canManageAllCollections) {
@@ -40,7 +38,6 @@ export class BulkDeleteComponent {
         await this.formPromise;
 
         this.onDeleted.emit();
-        this.analytics.eventTrack.next({ action: 'Bulk Deleted Items' });
         this.toasterService.popAsync('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
             : 'deletedItems'));
     }
