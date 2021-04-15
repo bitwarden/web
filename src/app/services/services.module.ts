@@ -73,7 +73,7 @@ import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/a
 import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
 } from 'jslib/abstractions/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
+import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from 'jslib/abstractions/passwordReprompt.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService as PolicyServiceAbstraction } from 'jslib/abstractions/policy.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
@@ -86,7 +86,7 @@ import { TokenService as TokenServiceAbstraction } from 'jslib/abstractions/toke
 import { TotpService as TotpServiceAbstraction } from 'jslib/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib/abstractions/vaultTimeout.service';
-import { BrowserPasswordRepromptService } from 'jslib/services/BrowserPasswordReprompt.service';
+import { PasswordRepromptService } from 'jslib/services/PasswordReprompt.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
@@ -138,7 +138,7 @@ const notificationsService = new NotificationsService(userService, syncService, 
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
-const passwordRepromptService = new BrowserPasswordRepromptService(i18nService, cryptoService);
+const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
 
 containerService.attachToWindow(window);
 
@@ -223,7 +223,7 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
-        { provide: PasswordRepromptService, useValue: passwordRepromptService },
+        { provide: PasswordRepromptServiceAbstraction, useValue: passwordRepromptService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,
