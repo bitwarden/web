@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -29,9 +28,9 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
     emailPromise: Promise<any>;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        analytics: Angulartics2, toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private userService: UserService) {
-        super(apiService, i18nService, analytics, toasterService, platformUtilsService);
+        toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        private userService: UserService) {
+        super(apiService, i18nService, toasterService, platformUtilsService);
     }
 
     auth(authResponse: any) {

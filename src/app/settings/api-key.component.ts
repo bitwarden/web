@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -30,8 +29,8 @@ export class ApiKeyComponent {
     clientId: string;
     clientSecret: string;
 
-    constructor(private i18nService: I18nService, private analytics: Angulartics2,
-        private toasterService: ToasterService, private cryptoService: CryptoService) { }
+    constructor(private i18nService: I18nService, private toasterService: ToasterService,
+        private cryptoService: CryptoService) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -47,7 +46,6 @@ export class ApiKeyComponent {
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = `${this.keyType}.${this.entityId}`;
-            this.analytics.eventTrack.next({ action: `Viewed ${this.keyType} API Key` });
         } catch { }
     }
 }

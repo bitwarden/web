@@ -28,7 +28,6 @@ export class ChangePlanComponent {
 
     async submit() {
         try {
-            this.platformUtilsService.eventTrack('Changed Plan');
             this.onChanged.emit();
         } catch { }
     }

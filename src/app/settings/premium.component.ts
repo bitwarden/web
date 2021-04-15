@@ -6,7 +6,6 @@ import {
 import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -36,10 +35,10 @@ export class PremiumComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        platformUtilsService: PlatformUtilsService, private tokenService: TokenService,
-        private router: Router, private messagingService: MessagingService,
-        private syncService: SyncService, private userService: UserService) {
+        private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        private tokenService: TokenService, private router: Router,
+        private messagingService: MessagingService, private syncService: SyncService,
+        private userService: UserService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -104,7 +103,6 @@ export class PremiumComponent implements OnInit {
     async finalizePremium() {
         await this.apiService.refreshIdentityToken();
         await this.syncService.fullSync(true);
-        this.analytics.eventTrack.next({ action: 'Signed Up Premium' });
         this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
         this.messagingService.send('purchasedPremium');
         this.router.navigate(['/settings/subscription']);

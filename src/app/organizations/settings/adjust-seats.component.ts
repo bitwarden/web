@@ -12,7 +12,6 @@ import {
 } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -39,8 +38,8 @@ export class AdjustSeatsComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private router: Router, private activatedRoute: ActivatedRoute) { }
+        private toasterService: ToasterService, private router: Router,
+        private activatedRoute: ActivatedRoute) { }
 
     async submit() {
         try {
@@ -63,7 +62,6 @@ export class AdjustSeatsComponent {
             };
             this.formPromise = action();
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.add ? 'Added Seats' : 'Removed Seats' });
             this.onAdjusted.emit(this.seatAdjustment);
             if (paymentFailed) {
                 this.toasterService.popAsync({

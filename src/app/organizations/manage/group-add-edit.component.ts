@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
@@ -42,8 +41,8 @@ export class GroupAddEditComponent implements OnInit {
     deletePromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private collectionService: CollectionService, private platformUtilsService: PlatformUtilsService) { }
+        private toasterService: ToasterService, private collectionService: CollectionService,
+        private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.groupId != null;
@@ -110,7 +109,6 @@ export class GroupAddEditComponent implements OnInit {
                 this.formPromise = this.apiService.postGroup(this.organizationId, request);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited Group' : 'Created Group' });
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedGroupId' : 'createdGroupId', this.name));
             this.onSavedGroup.emit();
@@ -132,7 +130,6 @@ export class GroupAddEditComponent implements OnInit {
         try {
             this.deletePromise = this.apiService.deleteGroup(this.organizationId, this.groupId);
             await this.deletePromise;
-            this.analytics.eventTrack.next({ action: 'Deleted Group' });
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', this.name));
             this.onDeletedGroup.emit();
         } catch { }

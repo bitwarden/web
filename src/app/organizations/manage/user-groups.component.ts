@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -32,7 +31,7 @@ export class UserGroupsComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) { }
+        private toasterService: ToasterService) { }
 
     async ngOnInit() {
         const groupsResponse = await this.apiService.getGroups(this.organizationId);
@@ -75,7 +74,6 @@ export class UserGroupsComponent implements OnInit {
             this.formPromise = this.apiService.putOrganizationUserGroups(this.organizationId, this.organizationUserId,
                 request);
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Edited User Groups' });
             this.toasterService.popAsync('success', null, this.i18nService.t('editedGroupsForUser', this.name));
             this.onSavedUser.emit();
         } catch { }
