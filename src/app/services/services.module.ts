@@ -53,7 +53,6 @@ import { VaultTimeoutService } from 'jslib/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib/services/webCryptoFunction.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib/abstractions/api.service';
-import { AppIdService as AppIdServiceAbstraction } from 'jslib/abstractions/appId.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib/abstractions/auth.service';
 import { CipherService as CipherServiceAbstraction } from 'jslib/abstractions/cipher.service';
@@ -67,7 +66,6 @@ import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib/abstra
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
-import { LogService as LogServiceAbstraction } from 'jslib/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/abstractions/notifications.service';
 import {
@@ -86,7 +84,7 @@ import { TokenService as TokenServiceAbstraction } from 'jslib/abstractions/toke
 import { TotpService as TotpServiceAbstraction } from 'jslib/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib/abstractions/vaultTimeout.service';
-import { PasswordRepromptService } from 'jslib/services/PasswordReprompt.service';
+import { PasswordRepromptService } from 'jslib/services/passwordReprompt.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
