@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -67,9 +67,7 @@ const moduleRules = [
 ];
 
 const plugins = [
-    new CleanWebpackPlugin([
-        path.resolve(__dirname, 'build/*'),
-    ]),
+    new CleanWebpackPlugin(),
     // ref: https://github.com/angular/angular/issues/20357
     new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)fesm5/,
         path.resolve(__dirname, './src')),
@@ -103,20 +101,22 @@ const plugins = [
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
     }),
-    new CopyWebpackPlugin([
-        { from: './src/.nojekyll' },
-        { from: './src/manifest.json' },
-        { from: './src/favicon.ico' },
-        { from: './src/browserconfig.xml' },
-        { from: './src/app-id.json' },
-        { from: './src/404.html' },
-        { from: './src/404', to: '404' },
-        { from: './src/images', to: 'images' },
-        { from: './src/locales', to: 'locales' },
-        { from: './src/scripts', to: 'scripts' },
-        { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
-        { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
-    ]),
+    new CopyWebpackPlugin({
+        patterns:[
+            { from: './src/.nojekyll' },
+            { from: './src/manifest.json' },
+            { from: './src/favicon.ico' },
+            { from: './src/browserconfig.xml' },
+            { from: './src/app-id.json' },
+            { from: './src/404.html' },
+            { from: './src/404', to: '404' },
+            { from: './src/images', to: 'images' },
+            { from: './src/locales', to: 'locales' },
+            { from: './src/scripts', to: 'scripts' },
+            { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
+            { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
+        ],
+    }),
     new MiniCssExtractPlugin({
         filename: '[name].[hash].css',
         chunkFilename: '[id].[hash].css',
