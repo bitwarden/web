@@ -22,8 +22,6 @@ import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 import { ValidationService } from 'jslib/angular/services/validation.service';
 
-import { Analytics } from 'jslib/misc/analytics';
-
 import { ApiService } from 'jslib/services/api.service';
 import { AppIdService } from 'jslib/services/appId.service';
 import { AuditService } from 'jslib/services/audit.service';
@@ -37,6 +35,7 @@ import { CryptoService } from 'jslib/services/crypto.service';
 import { EnvironmentService } from 'jslib/services/environment.service';
 import { EventService as EventLoggingService } from 'jslib/services/event.service';
 import { ExportService } from 'jslib/services/export.service';
+import { FileUploadService } from 'jslib/services/fileUpload.service';
 import { FolderService } from 'jslib/services/folder.service';
 import { ImportService } from 'jslib/services/import.service';
 import { NotificationsService } from 'jslib/services/notifications.service';
@@ -65,6 +64,7 @@ import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib
 import { EnvironmentService as EnvironmentServiceAbstraction } from 'jslib/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/export.service';
+import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib/abstractions/fileUpload.service';
 import { FolderService as FolderServiceAbstraction } from 'jslib/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
@@ -108,16 +108,17 @@ const apiService = new ApiService(tokenService, platformUtilsService,
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
+const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const webWorkerService = new WebWorkerService();
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, storageService, i18nService, () => searchService, webWorkerService,
+    apiService, fileUploadService, storageService, i18nService, () => searchService, webWorkerService,
     platformUtilsService.isDev() ? storageService : secureStorageService, consoleLogService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
-searchService = new SearchService(cipherService, consoleLogService);
+searchService = new SearchService(cipherService, consoleLogService, i18nService);
 const policyService = new PolicyService(userService, storageService);
-const sendService = new SendService(cryptoService, userService, apiService, storageService,
+const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
@@ -140,36 +141,25 @@ const environmentService = new EnvironmentService(apiService, storageService, no
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
 
-const analytics = new Analytics(window, () => platformUtilsService.isDev() || platformUtilsService.isSelfHost(),
-    platformUtilsService, storageService, appIdService);
 containerService.attachToWindow(window);
 
 export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
         const isDev = platformUtilsService.isDev();
-        if (!isDev && platformUtilsService.isSelfHost()) {
+
+        if (isDev || platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
-            environmentService.webVaultUrl = isDev ? 'https://localhost:8080' : null;
-            environmentService.notificationsUrl = isDev ? 'http://localhost:61840' :
-                'https://notifications.bitwarden.com'; // window.location.origin + '/notifications';
-            environmentService.enterpriseUrl = isDev ? 'http://localhost:52313' :
-                'https://portal.bitwarden.com'; // window.location.origin + '/portal';
+            environmentService.notificationsUrl = 'https://notifications.bitwarden.com';
+            environmentService.enterpriseUrl = 'https://portal.bitwarden.com';
         }
+
         apiService.setUrls({
-            base: isDev ? null : window.location.origin,
-            api: isDev ? 'http://localhost:4000' : null,
-            identity: isDev ? 'http://localhost:33656' : null,
-            events: isDev ? 'http://localhost:46273' : null,
-
-            // Uncomment these (and comment out the above) if you want to target production
-            // servers for local development.
-
-            // base: null,
-            // api: 'https://api.bitwarden.com',
-            // identity: 'https://identity.bitwarden.com',
-            // events: 'https://events.bitwarden.com',
+            base: window.location.origin,
+            api: null,
+            identity: null,
+            events: null,
         });
         setTimeout(() => notificationsService.init(environmentService), 3000);
 
@@ -217,6 +207,7 @@ export function initFactory(): Function {
         { provide: PlatformUtilsServiceAbstraction, useValue: platformUtilsService },
         { provide: PasswordGenerationServiceAbstraction, useValue: passwordGenerationService },
         { provide: ApiServiceAbstraction, useValue: apiService },
+        { provide: FileUploadServiceAbstraction, useValue: fileUploadService },
         { provide: SyncServiceAbstraction, useValue: syncService },
         { provide: UserServiceAbstraction, useValue: userService },
         { provide: MessagingServiceAbstraction, useValue: messagingService },

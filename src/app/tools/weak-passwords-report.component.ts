@@ -20,6 +20,7 @@ import { CipherReportComponent } from './cipher-report.component';
     templateUrl: 'weak-passwords-report.component.html',
 })
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
+
     passwordStrengthMap = new Map<string, [string, string]>();
 
     private passwordStrengthCache = new Map<string, number>();
@@ -39,15 +40,22 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     async setCiphers() {
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
+        const isUserNameNotEmpty = (c: CipherView): boolean => {
+            return c.login.username != null && c.login.username.trim() !== '';
+        };
+        const getCacheKey = (c: CipherView): string => {
+            return c.login.password + '_____' + (isUserNameNotEmpty(c) ? c.login.username : '');
+        };
+
         allCiphers.forEach(c => {
             if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
                 return;
             }
-            const hasUsername = c.login.username != null && c.login.username.trim() !== '';
-            const cacheKey = c.login.password + '_____' + (hasUsername ? c.login.username : '');
+            const hasUserName = isUserNameNotEmpty(c);
+            const cacheKey = getCacheKey(c);
             if (!this.passwordStrengthCache.has(cacheKey)) {
                 let userInput: string[] = [];
-                if (hasUsername) {
+                if (hasUserName) {
                     const atPosition = c.login.username.indexOf('@');
                     if (atPosition > -1) {
                         userInput = userInput.concat(
@@ -67,6 +75,10 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
                 this.passwordStrengthMap.set(c.id, this.scoreKey(score));
                 weakPasswordCiphers.push(c);
             }
+        });
+        weakPasswordCiphers.sort((a, b) => {
+            return this.passwordStrengthCache.get(getCacheKey(a)) -
+                this.passwordStrengthCache.get(getCacheKey(b));
         });
         this.ciphers = weakPasswordCiphers;
     }

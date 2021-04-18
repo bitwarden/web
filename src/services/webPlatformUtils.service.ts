@@ -6,8 +6,6 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
-import { Utils } from 'jslib/misc/utils';
-
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 
@@ -78,10 +76,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return false;
     }
 
-    analyticsId(): string {
-        return 'UA-81915606-3';
-    }
-
     isViewOpen(): Promise<boolean> {
         return Promise.resolve(false);
     }
@@ -143,7 +137,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             const a = win.document.createElement('a');
             if (doDownload) {
                 a.download = fileName;
-            } else {
+            } else if (!this.isSafari()) {
                 a.target = '_blank';
             }
             a.href = URL.createObjectURL(blob);
@@ -154,15 +148,12 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         }
     }
 
-    getApplicationVersion(): string {
-        return process.env.APPLICATION_VERSION || '-';
+    getApplicationVersion(): Promise<string> {
+        return Promise.resolve(process.env.APPLICATION_VERSION || '-');
     }
 
-    supportsU2f(win: Window): boolean {
-        if (win != null && (win as any).u2f != null) {
-            return true;
-        }
-        return this.isChrome() || ((this.isEdge() || this.isOpera() || this.isVivaldi()) && !Utils.isMobileBrowser);
+    supportsWebAuthn(win: Window): boolean {
+        return (typeof(PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {
@@ -218,14 +209,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
 
         return confirmed.value;
-    }
-
-    eventTrack(action: string, label?: string, options?: any) {
-        this.messagingService.send('analyticsEventTrack', {
-            action: action,
-            label: label,
-            options: options,
-        });
     }
 
     isDev(): boolean {
@@ -289,7 +272,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     getDefaultSystemTheme() {
-        return null as 'light' | 'dark';
+        return Promise.resolve(null as 'light' | 'dark');
     }
 
     onDefaultSystemThemeChange() {

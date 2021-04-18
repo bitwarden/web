@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -34,9 +33,9 @@ export class OptionsComponent implements OnInit {
     private startingLocale: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
-        private analytics: Angulartics2, private i18nService: I18nService,
-        private toasterService: ToasterService, private vaultTimeoutService: VaultTimeoutService,
-        private platformUtilsService: PlatformUtilsService, private messagingService: MessagingService) {
+        private i18nService: I18nService, private toasterService: ToasterService,
+        private vaultTimeoutService: VaultTimeoutService, private platformUtilsService: PlatformUtilsService,
+        private messagingService: MessagingService) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -82,7 +81,6 @@ export class OptionsComponent implements OnInit {
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         await this.storageService.save(ConstantsService.localeKey, this.locale);
-        this.analytics.eventTrack.next({ action: 'Saved Options' });
         if (this.locale !== this.startingLocale) {
             window.location.reload();
         } else {

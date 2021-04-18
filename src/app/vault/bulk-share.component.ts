@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { CipherService } from 'jslib/abstractions/cipher.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
@@ -36,9 +35,9 @@ export class BulkShareComponent implements OnInit {
 
     private writeableCollections: CollectionView[] = [];
 
-    constructor(private analytics: Angulartics2, private cipherService: CipherService,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private collectionService: CollectionService, private userService: UserService) { }
+    constructor(private cipherService: CipherService, private toasterService: ToasterService,
+        private i18nService: I18nService, private collectionService: CollectionService,
+        private userService: UserService) { }
 
     async ngOnInit() {
         this.shareableCiphers = this.ciphers.filter(c => !c.hasOldAttachments && c.organizationId == null);
@@ -72,7 +71,6 @@ export class BulkShareComponent implements OnInit {
                 checkedCollectionIds);
             await this.formPromise;
             this.onShared.emit();
-            this.analytics.eventTrack.next({ action: 'Bulk Shared Items' });
             this.toasterService.popAsync('success', null, this.i18nService.t('sharedItems'));
         } catch { }
     }

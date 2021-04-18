@@ -800,10 +800,10 @@
     "message": "Šī datu izdošana satur glabātavas datus nešifrētā veidā. Izdoto datni nevajadzētu glabāt vai sūtīt nedrošos veidos (piemēram, e-pastā). Izdzēst to uzreiz pēc izmantošanas."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Šī izvade šifrē datus ar konta šifrēšanas atslēgu. Ja tā jebkad tiks mainīta, izvadi vajadzētu veikt vēlreiz, jo vairs nebūs iespējams atšifrēt šo datni."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Katram kontam ir neatkārtojamas šifrēšanas atslēgas, tādēļ nav iespējams ievietot šifrētas izdošanas datnes saturu citā kontā."
   },
   "exportMasterPassword": {
     "message": "Ievadīt galveno paroli, lai izdotu glabātavas saturu."
@@ -1004,16 +1004,16 @@
     "message": "Ievietot datus"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Ievietošanas kļūda"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "Ir nepilnības ievietojamajos datos. Lūgums novērst zemāk uzskaitītās kļūdas avota datnē un mēģināt vēlreiz."
   },
   "importSuccess": {
     "message": "Dati ir veiksmīgi ievietoti glabātavā."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Dati tiks ievietoti $ORGANIZATION$. Tie var tikt kopīgoti ar citiem apvienības dalībniekiem. Vai turpināt?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1584,7 +1584,7 @@
     "message": "Tādas papildus divpakāpju pierakstīšanās iespējas kā YubiKey, FIDO U2F un Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Ārkārtas piekļuve"
   },
   "premiumSignUpReports": {
     "message": "Paroļu higiēnas, kontu veselības un datu pārkāpumu atskaites, lai uzturētu glabātavu drošu."
@@ -2912,7 +2912,7 @@
     "message": "Apvienība ir atspējota."
   },
   "licenseIsExpired": {
-    "message": "Licences derīguma termiņš ir beidzies."
+    "message": "Ir beidzies licences izmantošanas laiks."
   },
   "updatedUsers": {
     "message": "Lietotāji atjaunināti"
@@ -3345,7 +3345,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "Derīguma termiņš"
+    "message": "Derīguma beigu datums"
   },
   "expirationDateDesc": {
     "message": "Ja uzstādīts, piekļuve šim \"Send\" beigsies norādītajā dienā un laikā.",
@@ -3403,7 +3403,7 @@
     "message": "Gaida dzēšanu"
   },
   "expired": {
-    "message": "Beidzies derīguma termiņš"
+    "message": "Beidzies izmantošanas laiks"
   },
   "searchSends": {
     "message": "Meklēt \"Send\"",
@@ -3591,7 +3591,7 @@
     "message": "Uzņēmuma nosacījumi liedz saglabāt vienumus privātajā glabātavā. Ir jānorāda piederība apvienībai un jāizvēlas kāds no pieejamajiem krājumiem."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Atspējot \"Send\""
   },
   "disableSendPolicyDesc": {
     "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
@@ -3601,11 +3601,11 @@
     "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "\"Send\" atspējots",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Uzņēmuma nosacījumu kopas dēļ ir tikai iespējams dzēst esošu \"Send\".",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3676,24 +3676,24 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Lasāms nosaukums, kas apraksta šo \"Send\".",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Teksts, kuru ir vēlme nosūtīt."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Datne, kuru ir vēlme nosūtīt."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Saglabājot ievietot šī \"Send\" saiti starpliktuvē."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "\"Send\" saite",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
-    "message": "Send",
+    "message": "\"Send\"",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
@@ -3701,42 +3701,42 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Uzzināt vairāk par",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
     "message": "Share text or files directly with anyone."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Uzzināt vairāk",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "skatīt",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": ", kā tas darbojas",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "vai",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "izmēģināt tagad",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "vai",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "pieteikties",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "izmēģinātu šodien.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
@@ -3749,18 +3749,18 @@
     }
   },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Norādītais derīguma beigu datums nav derīgs."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Norādītais dzēšanas datums nav derīgs."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Ir jānorāda derīguma beigu datums un laiks."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Ir jānorāda dzēšanas datums un laiks."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "Atgadījās kļūda, saglabājot dzēšanas un derīguma beigu datumus."
   }
 }

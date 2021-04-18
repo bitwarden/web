@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -46,9 +45,8 @@ export class CollectionAddEditComponent implements OnInit {
     private orgKey: SymmetricCryptoKey;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
-        private userService: UserService) { }
+        private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService, private userService: UserService) { }
 
     async ngOnInit() {
         const organization = await this.userService.getOrganization(this.organizationId);
@@ -124,7 +122,6 @@ export class CollectionAddEditComponent implements OnInit {
                 this.formPromise = this.apiService.postCollection(this.organizationId, request);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited Collection' : 'Created Collection' });
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedCollectionId' : 'createdCollectionId', this.name));
             this.onSavedCollection.emit();
@@ -146,7 +143,6 @@ export class CollectionAddEditComponent implements OnInit {
         try {
             this.deletePromise = this.apiService.deleteCollection(this.organizationId, this.collectionId);
             await this.deletePromise;
-            this.analytics.eventTrack.next({ action: 'Deleted Collection' });
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', this.name));
             this.onDeletedCollection.emit();
         } catch { }

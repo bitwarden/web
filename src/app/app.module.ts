@@ -1,8 +1,6 @@
 import 'core-js';
 
 import { ToasterModule } from 'angular2-toaster';
-import { Angulartics2Module } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -135,8 +133,8 @@ import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
 import { TwoFactorEmailComponent } from './settings/two-factor-email.component';
 import { TwoFactorRecoveryComponent } from './settings/two-factor-recovery.component';
 import { TwoFactorSetupComponent } from './settings/two-factor-setup.component';
-import { TwoFactorU2fComponent } from './settings/two-factor-u2f.component';
 import { TwoFactorVerifyComponent } from './settings/two-factor-verify.component';
+import { TwoFactorWebAuthnComponent } from './settings/two-factor-webauthn.component';
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
@@ -256,11 +254,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         FormsModule,
         AppRoutingModule,
         ServicesModule,
-        Angulartics2Module.forRoot({
-            pageTracking: {
-                clearQueryParams: true,
-            },
-        }),
         ToasterModule.forRoot(),
         InfiniteScrollModule,
         DragDropModule,
@@ -399,8 +392,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorOptionsComponent,
         TwoFactorRecoveryComponent,
         TwoFactorSetupComponent,
-        TwoFactorU2fComponent,
         TwoFactorVerifyComponent,
+        TwoFactorWebAuthnComponent,
         TwoFactorYubiKeyComponent,
         UnsecuredWebsitesReportComponent,
         UpdateKeyComponent,
@@ -454,7 +447,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorEmailComponent,
         TwoFactorOptionsComponent,
         TwoFactorRecoveryComponent,
-        TwoFactorU2fComponent,
+        TwoFactorWebAuthnComponent,
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],

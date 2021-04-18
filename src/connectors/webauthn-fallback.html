@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Bitwarden WebAuthn Connector</title>
+</head>
+
+<body class="layout_frontend">
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-5">
+                <img src="../images/logo-dark@2x.png" class="mb-4 logo" alt="Bitwarden">
+                <div id="spinner">
+                    <p class="text-center">
+                        <i class="fa fa-spinner fa-spin fa-2x text-muted" title="Loading" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div id="content" class="card mt-4 d-none">
+                    <div class="card-body ng-star-inserted">
+                        <p id="msg" class="text-center"></p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <label class="form-check-label" for="remember" id="remember-label"></label>
+                        </div>
+                        <hr>
+                        <p class="text-center mb-0">
+                            <button id="webauthn-button" onClick="javascript:init()" class="btn btn-primary btn-lg"></button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

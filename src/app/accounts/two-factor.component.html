@@ -33,16 +33,10 @@
                                 required appAutofocus appInputVerbatim autocomplete="new-password">
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="selectedProviderType === providerType.U2f">
-                        <p class="text-center" *ngIf="!u2fReady">
-                            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}"
-                                aria-hidden="true"></i>
-                            <span class="sr-only">{{'loading' | i18n}}</span>
-                        </p>
-                        <ng-container *ngIf="u2fReady">
-                            <p class="text-center">{{'insertU2f' | i18n}}</p>
-                            <img src="../../images/u2fkey.jpg" alt="" class="rounded img-fluid mb-3">
-                        </ng-container>
+                    <ng-container *ngIf="selectedProviderType === providerType.WebAuthn">
+                        <div id="web-authn-frame" class="mb-3">
+                            <iframe id="webauthn_iframe"></iframe>
+                        </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.Duo ||
                         selectedProviderType === providerType.OrganizationDuo">
@@ -51,7 +45,7 @@
                         </div>
                     </ng-container>
                     <i class="fa fa-spinner text-muted fa-spin pull-right" title="{{'loading' | i18n}}"
-                        *ngIf="form.loading && selectedProviderType === providerType.U2f" aria-hidden="true"></i>
+                        *ngIf="form.loading && selectedProviderType === providerType.WebAuthn" aria-hidden="true"></i>
                     <div class="form-check" *ngIf="selectedProviderType != null">
                         <input id="remember" type="checkbox" name="Remember" class="form-check-input"
                             [(ngModel)]="remember">
@@ -65,7 +59,7 @@
                     <div class="d-flex mb-3">
                         <button type="submit" class="btn btn-primary btn-block btn-submit" [disabled]="form.loading"
                             *ngIf="selectedProviderType != null && selectedProviderType !== providerType.Duo && 
-                        selectedProviderType !== providerType.OrganizationDuo && selectedProviderType !== providerType.U2f">
+                        selectedProviderType !== providerType.OrganizationDuo && selectedProviderType !== providerType.WebAuthn">
                             <span>
                                 <i class="fa fa-sign-in" aria-hidden="true"></i> {{'continue' | i18n}}
                             </span>
@@ -84,4 +78,3 @@
     </div>
 </form>
 <ng-template #twoFactorOptions></ng-template>
-<iframe id="u2f_iframe" hidden></iframe>

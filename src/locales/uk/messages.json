@@ -800,10 +800,10 @@
     "message": "Експортовані дані вашого сховища знаходяться в незашифрованому вигляді. Вам не слід зберігати чи надсилати їх через незахищені канали (наприклад, е-поштою). Після використання негайно видаліть їх."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Цей експорт шифрує ваші дані за допомогою ключа шифрування облікового запису. Якщо ви коли-небудь оновите ключ шифрування облікового запису, ви повинні виконати експорт знову, оскільки не зможете розшифрувати цей файл експорту."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Ключі шифрування унікальні для кожного облікового запису користувача Bitwarden, тому ви не можете імпортувати зашифрований експорт до іншого облікового запису."
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
@@ -1004,16 +1004,16 @@
     "message": "Імпорт даних"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Помилка імпорту"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "При спробі імпорту ваших даних виникла проблема. Будь ласка, виправте вказані нижче помилки у вихідному файлі та спробуйте знову."
   },
   "importSuccess": {
     "message": "Дані успішно імпортовано до вашого сховища."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Ви імпортуєте дані до $ORGANIZATION$. Ваші дані можуть бути доступними учасникам цієї організації. Ви хочете продовжити?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1382,7 +1382,7 @@
     "message": "Знайдено записи без двоетапної перевірки"
   },
   "inactive2faFoundDesc": {
-    "message": "Ми знайшли $COUNT$ вебсайтів у вашому сховищі, що можуть бути не налаштовані для двоетапної перевірки (за даними twofactorauth.org). Для захисту цих облікових записів вам слід активувати двоетапну перевірку.",
+    "message": "Ми знайшли $COUNT$ вебсайтів у вашому сховищі, що можуть бути не налаштовані для двоетапної перевірки (за даними 2fa.directory). Для захисту цих облікових записів вам слід активувати двоетапну перевірку.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1584,7 +1584,7 @@
     "message": "Додаткові можливості двоетапної перевірки, наприклад, YubiKey, FIDO U2F та Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Екстрений доступ"
   },
   "premiumSignUpReports": {
     "message": "Гігієна паролів, здоров'я облікового запису, а також звіти про вразливості даних, щоб зберігати ваше сховище в безпеці."
@@ -3373,7 +3373,7 @@
     "message": "Вимкнено"
   },
   "sendLink": {
-    "message": "Надіслати посилання",
+    "message": "Посилання на відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
@@ -3429,7 +3429,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Не вдається знайти файл, пов'язаний з цим відправленням.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3443,7 @@
     "message": "Надавайте екстрений доступ довіреним контактам і керуйте ним. Довірені контакти можуть отримати доступ для перегляду чи привласнення вашого облікового запису в екстрених ситуаціях. Відвідайте нашу сторінку допомоги для детального ознайомлення про те, як працює спільний доступ нульового рівня."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Ви володієте однією чи більше організаціями. Якщо ви надасте доступ для передачі власності екстреним контактам, то вони зможуть використовувати усі ваші повноваження власника після передачі."
   },
   "trustedEmergencyContacts": {
     "message": "Довірені екстрені контакти"
@@ -3591,21 +3591,21 @@
     "message": "У зв'язку з корпоративною політикою, вам не дозволено зберігати записи до особистого сховища. Змініть налаштування власності на організацію та виберіть серед доступних збірок."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Вимкнути відправлення"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Не дозволяти користувачам створювати чи змінювати відправлення Bitwarden. Видалення наявних відправлень все ще дозволяється.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Користувачі організації, які можуть керувати політиками організації, звільняються від дотримання цієї політики."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Відправлення вимкнено",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "У зв'язку з політикою компанії, ви можете лише видалити наявне відправлення.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3676,71 +3676,71 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Опис цього відправлення.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Текст, який ви хочете відправити."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Файл, який ви хочете відправити."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Копіювати посилання, щоб поділитися відправленням після збереження."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Посилання на відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
-    "message": "Send",
+    "message": "Відправлення",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Відправлення Bitwarden легко та надійно передає вразливу, тимчасову інформацію іншим.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Дізнайтеся більше про",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Обмінюйтесь текстом чи файлами безпосередньо з іншими."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Дізнайтеся більше",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "подивіться",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "як це працює",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "або",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "спробуйте",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "або",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "зареєструйтеся",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "щоб спробувати.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Користувач Bitwarden $USER_IDENTIFIER$ ділиться з вами таким",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3749,18 +3749,18 @@
     }
   },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Вказано недійсний термін дії."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Вказано недійсну дату видалення."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Необхідно вказати час і дату терміну дії."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Необхідно вказати час і дату видалення."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "При збереженні дат видалення і терміну дії виникла помилка."
   }
 }

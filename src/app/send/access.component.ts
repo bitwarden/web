@@ -39,6 +39,7 @@ export class AccessComponent implements OnInit {
     showText = false;
     unavailable = false;
     error = false;
+    hideEmail = false;
 
     private id: string;
     private key: string;
@@ -131,6 +132,7 @@ export class AccessComponent implements OnInit {
     async load() {
         this.unavailable = false;
         this.error = false;
+        this.hideEmail = false;
         const keyArray = Utils.fromUrlB64ToArray(this.key);
         this.accessRequest = new SendAccessRequest();
         if (this.password != null) {
@@ -162,5 +164,6 @@ export class AccessComponent implements OnInit {
             }
         }
         this.loading = false;
+        this.hideEmail = this.creatorIdentifier == null && !this.passwordRequired && !this.loading && !this.unavailable;
     }
 }

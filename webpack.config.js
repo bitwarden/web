@@ -89,6 +89,16 @@ const plugins = [
         chunks: ['connectors/u2f'],
     }),
     new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn.html',
+        filename: 'webauthn-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-fallback.html',
+        filename: 'webauthn-fallback-connector.html',
+        chunks: ['connectors/webauthn-fallback'],
+    }),
+    new HtmlWebpackPlugin({
         template: './src/connectors/sso.html',
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
@@ -147,8 +157,51 @@ const devServer = {
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
     },
     // host: '192.168.1.9',
+    proxy: {
+        '/api': {
+            target: 'http://localhost:4000',
+            pathRewrite: {'^/api' : ''},
+            secure: false,
+            changeOrigin: true
+        },
+        '/identity': {
+            target: 'http://localhost:33656',
+            pathRewrite: {'^/identity' : ''},
+            secure: false,
+            changeOrigin: true
+        },
+        '/events': {
+            target: 'http://localhost:46273',
+            pathRewrite: {'^/events' : ''},
+            secure: false,
+            changeOrigin: true
+        },
+        '/notifications': {
+            target: 'http://localhost:61840',
+            pathRewrite: {'^/notifications' : ''},
+            secure: false,
+            changeOrigin: true
+        },
+        '/portal': {
+            target: 'http://localhost:52313',
+            pathRewrite: {'^/portal' : ''},
+            secure: false,
+            changeOrigin: true
+        }
+    },
     hot: false,
+    allowedHosts: [
+        'bitwarden.test',
+    ],
 };
+
+if (ENV === "production") {
+    devServer.proxy['/api'].target = 'https://api.bitwarden.com';
+    devServer.proxy['/identity'].target = 'https://identity.bitwarden.com';
+    devServer.proxy['/events'].target = 'https://events.bitwarden.com';
+    devServer.proxy['/notifications'].target = 'https://notifications.bitwarden.com';
+    devServer.proxy['/portal'].target = 'https://portal.bitwarden.com';
+}
 
 const config = {
     mode: ENV,
@@ -158,6 +211,8 @@ const config = {
         'app/polyfills': './src/app/polyfills.ts',
         'app/main': './src/app/main.ts',
         'connectors/u2f': './src/connectors/u2f.js',
+        'connectors/webauthn': './src/connectors/webauthn.ts',
+        'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
     },

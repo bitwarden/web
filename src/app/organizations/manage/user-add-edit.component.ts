@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CollectionService } from 'jslib/abstractions/collection.service';
@@ -54,8 +53,8 @@ export class UserAddEditComponent implements OnInit {
     }
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private collectionService: CollectionService, private platformUtilsService: PlatformUtilsService) { }
+        private toasterService: ToasterService, private collectionService: CollectionService,
+        private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.organizationUserId != null;
@@ -138,6 +137,9 @@ export class UserAddEditComponent implements OnInit {
         p.manageUsers = clearPermissions ?
             false :
             this.permissions.manageUsers;
+        p.manageResetPassword = clearPermissions ?
+            false :
+            this.permissions.manageResetPassword;
         return p;
     }
 
@@ -167,7 +169,6 @@ export class UserAddEditComponent implements OnInit {
                 this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: this.editMode ? 'Edited User' : 'Invited User' });
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
             this.onSavedUser.emit();
@@ -189,7 +190,6 @@ export class UserAddEditComponent implements OnInit {
         try {
             this.deletePromise = this.apiService.deleteOrganizationUser(this.organizationId, this.organizationUserId);
             await this.deletePromise;
-            this.analytics.eventTrack.next({ action: 'Deleted User' });
             this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.name));
             this.onDeletedUser.emit();
         } catch { }

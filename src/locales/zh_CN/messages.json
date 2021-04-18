@@ -59,7 +59,7 @@
     "message": "品牌"
   },
   "expiration": {
-    "message": "到期日"
+    "message": "过期日"
   },
   "securityCode": {
     "message": "安全码 (CVV)"
@@ -137,10 +137,10 @@
     "message": "博士"
   },
   "expirationMonth": {
-    "message": "到期月份"
+    "message": "过期月份"
   },
   "expirationYear": {
-    "message": "到期年份"
+    "message": "过期年份"
   },
   "authenticatorKeyTotp": {
     "message": "验证器密钥 (TOTP)"
@@ -800,10 +800,10 @@
     "message": "导出的密码库数据包含未加密格式。您不应该通过不安全的渠道（例如电子邮件）来存储或发送导出的文件。用完后请立即将其删除。"
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "此导出将使用您账户的加密密钥来加密您的数据。 如果您曾经轮换过账户的加密密钥，您应将其重新导出，否则您将无法解密导出的文件。"
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "账户加密密钥对每个 Bitwarden 用户账户都是唯一的，所以您不能将加密的导出导入到另一个账户。"
   },
   "exportMasterPassword": {
     "message": "输入主密码来导出你的密码库数据。"
@@ -1004,16 +1004,16 @@
     "message": "导入数据"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "导入错误"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "您尝试导入的数据有问题。请解决如下列出的源文件中的错误，然后重试。"
   },
   "importSuccess": {
     "message": "数据已经成功导入到密码库"
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "您正在将数据导入到 $ORGANIZATION$。您的数据可能会与此组织中的成员共享。是否继续？",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1382,7 +1382,7 @@
     "message": "发现未使用双重身份验证的登录"
   },
   "inactive2faFoundDesc": {
-    "message": "我们在您的密码库发现 $COUNT$ 个网站没有配置双重身份验证（通过 twofactorauth.org）。为了保护这些账户，您应该启用双重身份验证。",
+    "message": "我们在您的密码库中发现 $COUNT$ 个网站可能没有配置双重验证（通过 twofactorauth.org）。为了进一步保护这些账户，您应该启用双重验证。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1584,7 +1584,7 @@
     "message": "额外的两步登录选项，如 YubiKey、FIDO U2F 和 Duo。"
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "紧急访问"
   },
   "premiumSignUpReports": {
     "message": "密码健康、账户体检以及数据泄露报告，保障您的密码库安全。"
@@ -3345,7 +3345,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "到期日期"
+    "message": "过期日期"
   },
   "expirationDateDesc": {
     "message": "如果设置了，此 Send 的访问将在指定的日期和时间后过期。",
@@ -3429,7 +3429,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "没有找到与此 Send 关联的文件。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3443,7 @@
     "message": "授予和管理可信联系人的紧急访问权限。可信联系人可以在紧急情况下请求获取查看或接管您账户的权限。查阅我们的帮助页面以了解更多关于零知识共享的工作原理和细节。"
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "您是一个或多个组织的拥有者。如果您授予紧急联系人接管权限，他们在接管后可作为拥有者持有您的所有权限。"
   },
   "trustedEmergencyContacts": {
     "message": "可信的紧急联系人"
@@ -3591,21 +3591,21 @@
     "message": "由于企业策略，您被限制为保存项目到您的个人密码库。将所有权选项更改为组织，并从可用的集合中选择。"
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "禁用 Send"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "不允许用户创建和编辑 Bitwarden Send。仍允许删除现有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "可以管理组织策略的组织用户豁免此策略的执行。"
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send 已禁用",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "由于企业策略，您只能删除现有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3676,20 +3676,20 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "用于描述此 Send 的友好名称。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "您要发送的文本。"
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "您要发送的文件。"
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "保存时复制链接以共享 Send 到我的剪贴板。"
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Send 链接",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,50 +3697,50 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Bitwarden Send 能轻松、安全地向他人传送敏感的临时信息。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "进一步了解",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "直接与其他人分享文本或文件。"
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "进一步了解",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "参见",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "工作原理",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "或",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "立即体验",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "或",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "注册",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "来马上尝试。",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Bitwarden 用户 $USER_IDENTIFIER$ 与您分享了以下内容",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3749,18 +3749,18 @@
     }
   },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "所提供的过期日期无效。"
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "所提供的删除日期无效。"
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "需要过期日期和时间。"
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "需要删除日期和时间。"
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "保存您的删除和过期日期时出错。"
   }
 }

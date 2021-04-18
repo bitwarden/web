@@ -4,7 +4,6 @@ import {
     Toast,
     ToasterService,
 } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CipherService } from 'jslib/abstractions/cipher.service';
@@ -29,10 +28,9 @@ export class UpdateKeyComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private messagingService: MessagingService,
-        private syncService: SyncService, private folderService: FolderService,
-        private cipherService: CipherService) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private messagingService: MessagingService, private syncService: SyncService,
+        private folderService: FolderService, private cipherService: CipherService) { }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
@@ -51,7 +49,6 @@ export class UpdateKeyComponent {
                 return this.apiService.postAccountKey(request);
             });
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Key Updated' });
             const toast: Toast = {
                 type: 'success',
                 title: this.i18nService.t('keyUpdated'),

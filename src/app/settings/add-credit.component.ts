@@ -8,9 +8,6 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
-
 import { ApiService } from 'jslib/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
@@ -49,7 +46,6 @@ export class AddCreditComponent implements OnInit {
     private email: string;
 
     constructor(private userService: UserService, private apiService: ApiService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
         private platformUtilsService: PlatformUtilsService) {
         if (platformUtilsService.isDev()) {
             this.ppButtonFormAction = WebConstants.paypal.buttonActionSandbox;
@@ -108,9 +104,6 @@ export class AddCreditComponent implements OnInit {
             return;
         }
         try {
-            this.analytics.eventTrack.next({
-                action: 'Added Credit',
-            });
             this.onAdded.emit();
         } catch { }
     }

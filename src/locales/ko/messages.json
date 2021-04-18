@@ -800,10 +800,10 @@
     "message": "내보내기는 보관함 데이터가 암호화되지 않은 형식으로 포함됩니다. 내보낸 파일을 안전하지 않은 채널(예: 이메일)을 통해 저장하거나 보내지 마십시오. 사용이 끝난 후에는 즉시 삭제하십시오."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "이 내보내기는 계정의 암호화 키를 사용하여 데이터를 암호화합니다. 추후 계정의 암호화 키를 교체할 경우 다시 내보내기를 진행해야 합니다. 그러지 않을 경우 이 내보내기 파일을 해독할 수 없게 됩니다."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "모든 Bitwarden 사용자 계정은 고유한 계정 암호화 키를 가지고 있습니다. 따라서, 다른 계정에서는 암호화된 내보내기를 가져올 수 없습니다."
   },
   "exportMasterPassword": {
     "message": "보관함 데이터를 내보내려면 마스터 비밀번호를 입력하세요."
@@ -1004,16 +1004,16 @@
     "message": "데이터 가져오기"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "가져오기 오류"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "가져오려고 하는 데이터에 문제가 있습니다. 아래에 표시된 파일의 오류를 해결한 뒤 다시 시도해 주세요."
   },
   "importSuccess": {
     "message": "데이터를 보관함으로 성공적으로 불러왔습니다."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "$ORGANIZATION$ 조직으로 데이터를 가져오려고 합니다. 데이터가 이 조직의 구성원과 공유될 수 있습니다. 계속하시겠습니까?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1584,7 +1584,7 @@
     "message": "YubiKey나 FIDO U2F, Duo 등의 추가적인 2단계 인증 옵션."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "긴급 접근"
   },
   "premiumSignUpReports": {
     "message": "보관함을 안전하게 유지하기 위한 암호 위생, 계정 상태, 데이터 유출 보고서"
@@ -3338,7 +3338,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "삭제일"
+    "message": "삭제 날짜"
   },
   "deletionDateDesc": {
     "message": "이 Send가 정해진 일시에 영구적으로 삭제됩니다.",
@@ -3429,7 +3429,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "이 Send와 연관된 파일을 찾을 수 없습니다.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3443,7 @@
     "message": "신뢰할 수 있는 연락처에 긴급 접근 권한을 부여하고 관리합니다. 신뢰할 수 있는 연락처는 보관함 내용을 보거나 계정을 넘겨받기 위해 권한을 요청할 수도 있습니다. 도움말 페이지를 방문하여 영지식 증명을 통한 공유의 작동 방식에 대해 더 자세히 알아보세요."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "현재 하나 이상의 조직의 소유자입니다. 긴급 연락처에 넘겨받기 권한을 부여할 경우, 해당 연락처가 계정을 넘겨받은 뒤에는 소유자로서의 당신의 권한을 모두 행사할 수 있게 됩니다."
   },
   "trustedEmergencyContacts": {
     "message": "신뢰할 수 있는 긴급 연락처"
@@ -3591,21 +3591,21 @@
     "message": "엔터프라이즈 정책으로 인해 개인 보관함에 항목을 저장할 수 없습니다. 조직에서 소유권 설정을 변경한 다음, 사용 가능한 컬렉션 중에서 선택해주세요."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Send 비활성화"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "사용자가 Bitwarden Send를 생성하거나 수정할 수 없게 합니다. 이미 생성된 Send를 삭제하는 것은 계속 허용됩니다.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "조직의 정책을 관리할 수 있는 사용자는 이 정책의 영향을 받지 않습니다."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send 비활성화됨",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "엔터프라이즈 정책으로 인해 이미 생성된 Send를 삭제하는 것만 허용됩니다.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3676,20 +3676,20 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "이 Send의 이름",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "전송하려는 텍스트"
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "전송하려는 파일"
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "저장할 때 이 Send를 공유하기 위한 링크를 클립보드에 복사합니다."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Send 링크",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,7 +3697,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Bitwarden Send는 민감하고 일시적인 정보를 다른 사람들에게 쉽고 안전하게 보낼 수 있게 해줍니다.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
@@ -3740,7 +3740,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Bitwarden의 $USER_IDENTIFIER$ 사용자가 다음 내용을 당신과 공유했습니다",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3749,18 +3749,18 @@
     }
   },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "제공된 만료 날짜가 유효하지 않습니다."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "제공된 삭제 날짜가 유효하지 않습니다."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "만료 날짜와 시간은 반드시 입력해야 합니다."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "삭제 날짜와 시간은 반드시 입력해야 합니다."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "삭제 날짜와 만료 날짜를 저장하는 도중 오류가 발생했습니다."
   }
 }

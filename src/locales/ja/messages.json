@@ -38,7 +38,7 @@
     "message": "パスワード"
   },
   "newPassword": {
-    "message": "New Password"
+    "message": "新しいパスワード"
   },
   "passphrase": {
     "message": "パスフレーズ"
@@ -348,7 +348,7 @@
     "message": "アイテムの編集"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "アイテムの表示"
   },
   "ex": {
     "message": "例:",
@@ -794,16 +794,16 @@
     "message": "注意"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault Export"
+    "message": "保管庫のエクスポートの確認"
   },
   "exportWarningDesc": {
     "message": "このエクスポートデータは暗号化されていない形式の保管庫データを含んでいます。メールなどのセキュリティ保護されていない方法で共有したり保管したりしないでください。使用した後はすぐに削除してください。"
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "このエクスポートは、アカウントの暗号化キーを使用してデータを暗号化します。 暗号化キーをローテーションした場合は、このエクスポートファイルを復号することはできなくなるため、もう一度エクスポートする必要があります。"
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "アカウント暗号化キーは各 Bitwarden ユーザーアカウントに固有であるため、暗号化されたエクスポートを別のアカウントにインポートすることはできません。"
   },
   "exportMasterPassword": {
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
@@ -1004,16 +1004,16 @@
     "message": "データをインポート"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "インポートエラー"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "インポートしようとしたデータに問題がありました。以下のエラーをソースファイルで解決し、もう一度やり直してください。"
   },
   "importSuccess": {
     "message": "データを保管庫にインポートしました。"
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "$ORGANIZATION$にデータをインポートしています。データはこの組織のメンバーと共有される可能性があります。続行しますか？",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1584,7 +1584,7 @@
     "message": "YubiKey、FIDO U2F、Duoなどの追加の2段階認証ログインオプション"
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "緊急アクセス"
   },
   "premiumSignUpReports": {
     "message": "保管庫を安全に保つための、パスワードやアカウントの健全性、データ侵害に関するレポート"
@@ -1690,7 +1690,7 @@
     "message": "お支払い情報"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "請求情報"
   },
   "creditCard": {
     "message": "クレジットカード"
@@ -2517,7 +2517,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Unlinked SSO for user $ID$.",
+    "message": "ユーザー $ID$ にリンクされていない SSO",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2829,7 +2829,7 @@
     "message": "暗号化キーの更新後は、モバイルアプリやブラウザ拡張機能など現在利用中のすべてのBitwardenアプリで再ログインが必要となります。再ログインしないと(新しい暗号化キーをダウンロードすると)データが破損する可能性があります。自動的にログアウトを試みますが、遅延することがあります。"
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Any encrypted exports that you have saved will also become invalid."
+    "message": "保存済みの暗号化されたエクスポートも無効になります。"
   },
   "subscription": {
     "message": "契約"
@@ -2859,10 +2859,10 @@
     "message": "何も選択されていません。"
   },
   "acceptPolicies": {
-    "message": "By checking this box you agree to the following:"
+    "message": "以下に同意しチェックします:"
   },
   "acceptPoliciesError": {
-    "message": "Terms of Service and Privacy Policy have not been acknowledged."
+    "message": "利用規約とプライバシーポリシーを確認してください。"
   },
   "termsOfService": {
     "message": "利用規約"
@@ -2999,10 +2999,10 @@
     "message": "API キーは組織へのフルアクセス権限を持っています。漏れないよう秘密にしてください。"
   },
   "userApiKeyDesc": {
-    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+    "message": "API キーは、Bitwarden CLI で認証するために使用されます。"
   },
   "userApiKeyWarning": {
-    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
+    "message": "API キーは代替認証メカニズムです。秘密にする必要があります。"
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0 クライアント資格情報",
@@ -3239,7 +3239,7 @@
     "message": "組織のシングルサインオン"
   },
   "ssoHandOff": {
-    "message": "You may now close this tab and continue in the extension."
+    "message": "このタブを閉じて拡張機能で続けられます。"
   },
   "businessPortal": {
     "message": "ビジネスポータル",
@@ -3267,137 +3267,137 @@
     "message": "SSO をリンク"
   },
   "webPoliciesDeprecationWarning": {
-    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
+    "message": "ポリシー設定が移動されました。このページは間もなく廃止されます。代わりにビジネスポータルポリシーページを使用するには、以下をクリックしてください。"
   },
   "singleOrg": {
-    "message": "Single Organization"
+    "message": "単一組織"
   },
   "singleOrgDesc": {
-    "message": "Restrict users from being able to join any other organizations."
+    "message": "ユーザーが他の組織に参加できないように制限します。"
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Your current organization has a policy that does not allow you to join more than one organization. Please contact your organization admins or sign up from a different Bitwarden account."
+    "message": "現在の組織には、複数の組織に参加することを許可していないポリシーがあります。 組織の管理者に連絡するか、別の Bitwarden アカウントから登録してください。"
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "オーナーまたは管理者でなく、すでに他の組織のメンバーであるメンバーは組織から削除されます。"
   },
   "requireSso": {
-    "message": "Single Sign-On Authentication"
+    "message": "シングルサインオン認証"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require users to log in with the Enterprise Single Sign-On method."
+    "message": "組織のシングルサインオン認証でログインする必要があります。"
   },
   "prerequisite": {
-    "message": "Prerequisite"
+    "message": "前提条件"
   },
   "requireSsoPolicyReq": {
-    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+    "message": "このポリシーを有効にするには、単一組織のエンタープライズポリシーを有効にする必要があります。"
   },
   "requireSsoPolicyReqError": {
-    "message": "Single Organization policy not enabled."
+    "message": "単一組織ポリシーが有効になっていません。"
   },
   "requireSsoExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "組織の所有者および管理者は、このポリシーの執行から除外されます。"
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "ファイル"
   },
   "sendTypeText": {
-    "message": "Text"
+    "message": "テキスト"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "新しい Send を作成",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Edit Send",
+    "message": "Send を編集",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Created Send",
+    "message": "作成した Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Edited Send",
+    "message": "編集済みの Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Deleted Send",
+    "message": "削除した Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Delete Send",
+    "message": "Send を削除",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Are you sure you want to delete this Send?",
+    "message": "この Send を削除してもよろしいですか?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "What type of Send is this?",
+    "message": "この Send の種類は何ですか？",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Deletion Date"
+    "message": "削除日時"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Send は指定された日時に完全に削除されます。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "Expiration Date"
+    "message": "有効期限"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "設定されている場合、この Send へのアクセスは指定された日時に失効します。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
-    "message": "Maximum Access Count"
+    "message": "最大アクセス数"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "設定されている場合、最大アクセス数に達するとユーザーはこの Send にアクセスできなくなります。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "現在のアクセス数"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "必要に応じて、ユーザーがこの Send にアクセスするためのパスワードを要求します。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Private notes about this Send.",
+    "message": "この Send に関するプライベートメモ",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
-    "message": "Disabled"
+    "message": "無効"
   },
   "sendLink": {
-    "message": "Send link",
+    "message": "Send リンク",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copy Send Link",
+    "message": "Send リンクをコピー",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
-    "message": "Remove Password"
+    "message": "パスワードを削除"
   },
   "removedPassword": {
-    "message": "Removed Password"
+    "message": "パスワードを削除"
   },
   "removePasswordConfirmation": {
-    "message": "Are you sure you want to remove the password?"
+    "message": "パスワードを削除してもよろしいですか？"
   },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "誰もアクセスできないように、この Send を無効にします。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
-    "message": "All Sends"
+    "message": "すべての Send"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "最大アクセス数に達しました"
   },
   "pendingDeletion": {
     "message": "Pending deletion"
@@ -3429,7 +3429,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "この Send に関連付けられたファイルが見つかりませんでした。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3443,7 @@
     "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of an emergency. Visit our help page for more information and details into how zero knowledge sharing works."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "あなたは1つ以上の組織の所有者です。 緊急連絡先に引き継ぎアクセスを与えると、引き継ぎ後に所有者としてすべての権限を使用できるようになります。"
   },
   "trustedEmergencyContacts": {
     "message": "Trusted emergency contacts"
@@ -3591,21 +3591,21 @@
     "message": "Due to an enterprise policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Send を無効化"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Bitwarden Send の作成や編集を許可しません。既存の Send を削除することはできます。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "組織のポリシーを管理できる組織ユーザーは、このポリシーの適用から除外されます。"
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send 無効",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "組織のポリシーにより、既存の Send のみを削除できます。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3627,69 +3627,69 @@
     "message": "Custom"
   },
   "customDesc": {
-    "message": "Allows more granular control of user permissions for advanced configurations."
+    "message": "ユーザー権限をより詳細に制御できます。"
   },
   "permissions": {
-    "message": "Permissions"
+    "message": "権限"
   },
   "accessBusinessPortal": {
-    "message": "Access Business Portal"
+    "message": "ビジネスポータルにアクセス"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "イベントログにアクセス"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "インポート/エクスポートにアクセス"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "レポートにアクセス"
   },
   "manageAllCollections": {
-    "message": "Manage All Collections"
+    "message": "すべてのコレクションを管理"
   },
   "manageAssignedCollections": {
-    "message": "Manage Assigned Collections"
+    "message": "割り当てられたコレクションの管理"
   },
   "manageGroups": {
-    "message": "Manage Groups"
+    "message": "グループを管理"
   },
   "managePolicies": {
-    "message": "Manage Policies"
+    "message": "ポリシーの管理"
   },
   "manageSso": {
-    "message": "Manage SSO"
+    "message": "SSO を管理"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "ユーザーを管理"
   },
   "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
+    "message": "このポリシーを無効にするには、シングルサインオン認証ポリシーを手動で無効にする必要があります。"
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "組織のポリシーが所有者のオプションに影響を与えています。"
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Disable personal ownership for organization users"
+    "message": "組織ユーザーの個人所有権を無効にする"
   },
   "textHiddenByDefault": {
-    "message": "When accessing the Send, hide the text by default",
+    "message": "Send へのアクセス時に既定でテキストを非表示にする",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "この Send を説明するわかりやすい名前",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "送信したいテキスト"
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "送信するファイル"
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Send の保存時にクリップボードへリンクをコピーします。"
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Send リンク",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,50 +3697,50 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Bitwarden Send を使うと機密性の高い情報を他の人に簡単かつ安全に送信できます。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "今すぐ",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "テキストやファイルを誰とでも直接共有できます。"
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "今すぐ",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "詳細",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "を確認",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "または",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "試してみてください",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "または",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "登録して",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "試してみてください",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Bitwarden ユーザー $USER_IDENTIFIER$ が共有しました",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3749,18 +3749,18 @@
     }
   },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "入力された有効期限は正しくありません。"
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "入力された削除日時は正しくありません。"
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "有効期限は必須です。"
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "削除日時は必須です。"
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "削除と有効期限の保存中にエラーが発生しました。"
   }
 }

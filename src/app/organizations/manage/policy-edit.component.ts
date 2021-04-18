@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
@@ -38,7 +37,6 @@ export class PolicyEditComponent implements OnInit {
     defaultTypes: any[];
 
     // Master password
-
     masterPassMinComplexity?: number = null;
     masterPassMinLength?: number;
     masterPassRequireUpper?: number;
@@ -47,7 +45,6 @@ export class PolicyEditComponent implements OnInit {
     masterPassRequireSpecial?: number;
 
     // Password generator
-
     passGenDefaultType?: string;
     passGenMinLength?: number;
     passGenUseUpper?: boolean;
@@ -60,10 +57,13 @@ export class PolicyEditComponent implements OnInit {
     passGenCapitalize?: boolean;
     passGenIncludeNumber?: boolean;
 
+    // Send options
+    sendDisableHideEmail?: boolean;
+
     private policy: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService) {
+        private toasterService: ToasterService) {
         this.passwordScores = [
             { name: '-- ' + i18nService.t('select') + ' --', value: null },
             { name: i18nService.t('weak') + ' (0)', value: 0 },
@@ -113,6 +113,9 @@ export class PolicyEditComponent implements OnInit {
                             this.masterPassRequireNumbers = this.policy.data.requireNumbers;
                             this.masterPassRequireSpecial = this.policy.data.requireSpecial;
                             break;
+                        case PolicyType.SendOptions:
+                            this.sendDisableHideEmail = this.policy.data.disableHideEmail;
+                            break;
                         default:
                             break;
                     }
@@ -159,13 +162,17 @@ export class PolicyEditComponent implements OnInit {
                         requireSpecial: this.masterPassRequireSpecial,
                     };
                     break;
+                case PolicyType.SendOptions:
+                    request.data = {
+                        disableHideEmail: this.sendDisableHideEmail,
+                    };
+                    break;
                 default:
                     break;
             }
             try {
                 this.formPromise = this.apiService.putPolicy(this.organizationId, this.type, request);
                 await this.formPromise;
-                this.analytics.eventTrack.next({ action: 'Edited Policy' });
                 this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.name));
                 this.onSavedPolicy.emit();
             } catch { }

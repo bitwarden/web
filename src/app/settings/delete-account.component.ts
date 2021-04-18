@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import { Angulartics2 } from 'angulartics2';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
@@ -19,8 +18,8 @@ export class DeleteAccountComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private analytics: Angulartics2, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private messagingService: MessagingService) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private messagingService: MessagingService) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -34,7 +33,6 @@ export class DeleteAccountComponent {
         try {
             this.formPromise = this.apiService.deleteAccount(request);
             await this.formPromise;
-            this.analytics.eventTrack.next({ action: 'Deleted Account' });
             this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
                 this.i18nService.t('accountDeletedDesc'));
             this.messagingService.send('logout');
