@@ -71,7 +71,7 @@ jobs:
 
       - name: Build
         run: |
-          DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+          #DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
           echo -e "# Building Web\n"
           echo "Building app"
@@ -81,7 +81,7 @@ jobs:
 
           echo -e "\nBuilding docker image"
           docker --version
-          docker build -t bitwarden/web $DIR/.
+          docker build -t bitwarden/web .
 
       - name: Tag rc branch
         if: github.ref == 'refs/heads/rc'
