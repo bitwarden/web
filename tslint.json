@@ -11,22 +11,7 @@
         [ "Symbol", "Avoid using the `Symbol` type. Did you mean `symbol`?" ]
       ]
     },
-    "arrow-return-shorthand": true,
-    "member-access": [
-      true,
-      "no-public"
-    ],
-    "curly": true,
-    "deprecation": {
-      "severity": "warning"
-    },
-    "eofline": true,
-    "import-spacing": true,
-    "indent": {
-      "options": [
-        "spaces"
-      ]
-    },
+    "member-access": [ true, "no-public" ],
     "member-ordering": [
       true,
       {
@@ -81,41 +66,7 @@
         "singleline": "never"
       }
     ],
-    "space-before-function-paren": {
-      "options": {
-        "anonymous": "never",
-        "asyncArrow": "always",
-        "constructor": "never",
-        "method": "never",
-        "named": "never"
-      }
-    },
     "ordered-imports": true,
-    "typedef-whitespace": {
-      "options": [
-        {
-          "call-signature": "nospace",
-          "index-signature": "nospace",
-          "parameter": "nospace",
-          "property-declaration": "nospace",
-          "variable-declaration": "nospace"
-        },
-        {
-          "call-signature": "onespace",
-          "index-signature": "onespace",
-          "parameter": "onespace",
-          "property-declaration": "onespace",
-          "variable-declaration": "onespace"
-        }
-      ]
-    },
-    "variable-name": {
-      "options": [
-        "ban-keywords",
-        "check-format",
-        "allow-pascal-case"
-      ]
-    },
     "arrow-parens": [
       true,
       "ban-single-arg-parens"
