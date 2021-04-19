@@ -118,7 +118,7 @@ export class TaxInfoComponent {
 
     submitTaxInfo(): Promise<any> {
         if (!this.hasChanged()) {
-            return new Promise(resolve => { resolve(); });
+            return new Promise<void>(resolve => { resolve(); });
         }
         const request = this.getTaxInfoRequest();
         return this.organizationId ? this.apiService.putOrganizationTaxInfo(this.organizationId,

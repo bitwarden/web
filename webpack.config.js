@@ -64,6 +64,10 @@ const moduleRules = [
         test: /[\/\\]@angular[\/\\].+\.js$/,
         parser: { system: true },
     },
+    {
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        loader: '@ngtools/webpack',
+    },
 ];
 
 const plugins = [
@@ -129,25 +133,12 @@ const plugins = [
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
         }
     }),
-];
-
-if (ENV === 'production') {
-    moduleRules.push({
-        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        loader: '@ngtools/webpack',
-    });
-    plugins.push(new AngularCompilerPlugin({
+    new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',
         entryModule: 'src/app/app.module#AppModule',
         sourceMap: true,
-    }));
-} else {
-    moduleRules.push({
-        test: /\.ts$/,
-        loaders: ['ts-loader', 'angular2-template-loader'],
-        exclude: path.resolve(__dirname, 'node_modules'),
-    });
-}
+    }),
+];
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';

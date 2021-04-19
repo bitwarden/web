@@ -1,6 +1,7 @@
 /* tslint:disable */
 import 'core-js/es6';
 import 'core-js/es7/reflect';
+import '@angular/localize/init';
 require('zone.js/dist/zone');
 
 // IE11 fix, ref: https://github.com/angular/angular/issues/24769
