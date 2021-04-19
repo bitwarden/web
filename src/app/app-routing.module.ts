@@ -195,12 +195,12 @@ const routes: Routes = [
                             {
                                 path: '',
                                 component: EmergencyAccessComponent,
-                                data: { titleId: 'emergencyAccess'},
+                                data: { titleId: 'emergencyAccess' },
                             },
                             {
                                 path: ':id',
                                 component: EmergencyAccessViewComponent,
-                                data: { titleId: 'emergencyAccess'},
+                                data: { titleId: 'emergencyAccess' },
                             },
                         ],
                     },
@@ -385,7 +385,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'people',
-                            permissions: [Permissions.ManageUsers],
+                            permissions: [Permissions.ManageUsers, Permissions.ManageUsersPassword],
                         },
                     },
                     {

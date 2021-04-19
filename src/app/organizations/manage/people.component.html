@@ -98,6 +98,11 @@
                                     <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
                                     {{'eventLogs' | i18n}}
                                 </a>
+                                <a class="dropdown-item" href="#" appStopClick (click)="resetPassword(u)"
+                                    *ngIf="u.resetPasswordEnrolled && this.canResetPassword">
+                                    <i class="fa fa-fw fa-key" aria-hidden="true"></i>
+                                    {{'resetPassword' | i18n}}
+                                </a>
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
                                     <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                                     {{'remove' | i18n}}
@@ -114,3 +119,4 @@
 <ng-template #groupsTemplate></ng-template>
 <ng-template #eventsTemplate></ng-template>
 <ng-template #confirmTemplate></ng-template>
+<ng-template #resetPasswordTemplate></ng-template>

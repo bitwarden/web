@@ -33,7 +33,9 @@ import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 import { Utils } from 'jslib/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
+
 import { EntityEventsComponent } from './entity-events.component';
+import { ResetPasswordComponent } from './reset-password.component';
 import { UserAddEditComponent } from './user-add-edit.component';
 import { UserConfirmComponent } from './user-confirm.component';
 import { UserGroupsComponent } from './user-groups.component';
@@ -47,6 +49,7 @@ export class PeopleComponent implements OnInit {
     @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
     @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
+    @ViewChild('resetPasswordTemplate', { read: ViewContainerRef, static: true }) resetPasswordModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -60,6 +63,7 @@ export class PeopleComponent implements OnInit {
     actionPromise: Promise<any>;
     accessEvents = false;
     accessGroups = false;
+    canResetPassword = false;
 
     protected didScroll = false;
     protected pageSize = 100;
@@ -85,6 +89,7 @@ export class PeopleComponent implements OnInit {
             }
             this.accessEvents = organization.useEvents;
             this.accessGroups = organization.useGroups;
+            this.canResetPassword = organization.canManageUsersPassword;
             await this.load();
 
             const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
@@ -356,6 +361,31 @@ export class PeopleComponent implements OnInit {
             this.resetPaging();
         }
         return !searching && this.users && this.users.length > this.pageSize;
+    }
+
+    async resetPassword(user: OrganizationUserUserDetailsResponse) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.resetPasswordModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<ResetPasswordComponent>(
+            ResetPasswordComponent, this.resetPasswordModalRef);
+
+        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.email = user != null ? user.email : null;
+        childComponent.organizationId = this.organizationId;
+        childComponent.userId = user != null ? user.userId : null;
+
+        childComponent.onPasswordReset.subscribe(() => {
+            this.modal.close();
+            this.load();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {
