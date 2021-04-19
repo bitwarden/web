@@ -71,8 +71,6 @@ jobs:
 
       - name: Build
         run: |
-          #DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
