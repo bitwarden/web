@@ -112,7 +112,7 @@ const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const webWorkerService = new WebWorkerService();
 const cipherService = new CipherService(cryptoService, userService, settingsService,
     apiService, fileUploadService, storageService, i18nService, () => searchService, webWorkerService,
-    consoleLogService);
+    consoleLogService, platformUtilsService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);

@@ -160,6 +160,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return true;
     }
 
+    supportsWebWorkers(): boolean {
+        return true;
+    }
+
     showToast(type: 'error' | 'success' | 'warning' | 'info', title: string, text: string | string[],
         options?: any): void {
         this.messagingService.send('showToast', {
@@ -277,5 +281,31 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     onDefaultSystemThemeChange() {
         /* noop */
+    }
+
+    async showPasswordDialog(title: string, body: string, passwordValidation: (value: string) => Promise<boolean>):
+        Promise<boolean> {
+        const result = await Swal.fire({
+            heightAuto: false,
+            title: title,
+            input: 'password',
+            text: body,
+            confirmButtonText: this.i18nService.t('ok'),
+            showCancelButton: true,
+            cancelButtonText: this.i18nService.t('cancel'),
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off',
+            },
+            inputValidator: async (value: string): Promise<any> => {
+                if (await passwordValidation(value)) {
+                    return false;
+                }
+
+                return this.i18nService.t('invalidMasterPassword');
+            },
+        });
+
+        return result.isConfirmed;
     }
 }
