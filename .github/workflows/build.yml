@@ -83,23 +83,19 @@ jobs:
 
       - name: Tag rc branch
         if: github.ref == 'refs/heads/rc'
-        run: |
-          docker tag bitwarden/web bitwarden/web:rc
+        run: docker tag bitwarden/web bitwarden/web:rc
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master' || github.event_name == 'release'
-        run: |
-          docker tag bitwarden/web bitwarden/web:dev
+        run: docker tag bitwarden/web bitwarden/web:dev
 
       - name: Tag beta
         if: github.event_name == 'release'
-        run: |
-          docker tag bitwarden/web bitwarden/web:beta
+        run: docker tag bitwarden/web bitwarden/web:beta
 
       - name: Tag version
         if: github.event_name == 'release'
-        run: |
-          docker tag bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
+        run: docker tag bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
         shell: pwsh
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
@@ -110,40 +106,35 @@ jobs:
 
       - name: Push rc images
         if: github.ref == 'refs/heads/rc'
-        run: |
-          docker push bitwarden/web:rc
+        run: docker push bitwarden/web:rc
         env: 
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ secrets.DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE }}
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master' || github.event_name == 'release'
-        run: |
-          docker push bitwarden/web:dev
+        run: docker push bitwarden/web:dev
         env: 
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ secrets.DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE }}
 
       - name: Push beta images
         if: github.event_name == 'release'
-        run: |
-          docker push bitwarden/web:beta
+        run: docker push bitwarden/web:beta
         env: 
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ secrets.DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE }}
 
       - name: Push latest images
         if: github.event_name == 'release'
-        run: |
-          docker push bitwarden/web:latest
+        run: docker push bitwarden/web:latest
         env: 
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ secrets.DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE }}
 
       - name: Push version images
         if: github.event_name == 'release'
-        run: |
-          docker push bitwarde/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
+        run: docker push bitwarde/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
         shell: pwsh
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
