@@ -376,7 +376,7 @@ export class PeopleComponent implements OnInit {
         childComponent.name = user != null ? user.name || user.email : null;
         childComponent.email = user != null ? user.email : null;
         childComponent.organizationId = this.organizationId;
-        childComponent.userId = user != null ? user.userId : null;
+        childComponent.id = user != null ? user.id : null;
 
         childComponent.onPasswordReset.subscribe(() => {
             this.modal.close();

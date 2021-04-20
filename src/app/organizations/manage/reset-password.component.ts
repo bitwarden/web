@@ -27,7 +27,7 @@ import { OrganizationUserResetPasswordRequest } from 'jslib/models/request/organ
 export class ResetPasswordComponent implements OnInit {
     @Input() name: string;
     @Input() email: string;
-    @Input() userId: string;
+    @Input() id: string;
     @Input() organizationId: string;
     @Output() onPasswordReset = new EventEmitter();
 
@@ -136,7 +136,7 @@ export class ResetPasswordComponent implements OnInit {
         let resetPasswordKey = null;
         try {
             this.loading = true;
-            const response = await this.apiService.getOrganizationUserResetPasswordDetails(this.organizationId, this.userId);
+            const response = await this.apiService.getOrganizationUserResetPasswordDetails(this.organizationId, this.id);
             if (response != null) {
                 kdfType = response.kdf;
                 kdfIterations = response.kdfIterations;
@@ -168,7 +168,7 @@ export class ResetPasswordComponent implements OnInit {
 
         // Change user's password
         try {
-            this.formPromise = this.apiService.putOrganizationUserResetPassword(this.organizationId, this.userId, request);
+            this.formPromise = this.apiService.putOrganizationUserResetPassword(this.organizationId, this.id, request);
             await this.formPromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t('resetPasswordSuccess'));
             this.onPasswordReset.emit();
