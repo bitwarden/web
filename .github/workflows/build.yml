@@ -134,7 +134,7 @@ jobs:
 
       - name: Push version images
         if: github.event_name == 'release'
-        run: docker push bitwarde/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
+        run: docker push bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
         shell: pwsh
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
