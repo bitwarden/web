@@ -13,9 +13,16 @@ const config = require('./config.js')
 if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
 }
+
 const NODE_ENV = process.env.NODE_ENV;
+const envConfig = config.load(process.env.ENV)
+
+if (process.env.ENV == null) {
+    // Defaults to development if an ENV is not explicitly chosen. Also preserves the selfHost option
+    process.env.ENV = 'development' 
+} 
+
 const ENV = process.env.ENV;
-const envConfig = config.load(ENV)
 
 const moduleRules = [
     {
@@ -193,9 +200,7 @@ const devServer = {
         }
     },
     hot: false,
-    allowedHosts: [
-        'bitwarden.test',
-    ],
+    allowedHosts: envConfig['allowedHosts']
 };
 
 const webpackConfig = {
