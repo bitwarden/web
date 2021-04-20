@@ -16,6 +16,7 @@ if (process.env.NODE_ENV == null) {
 
 const NODE_ENV = process.env.NODE_ENV;
 const envConfig = config.load(process.env.ENV)
+config.log(envConfig)
 
 if (process.env.ENV == null) {
     // Defaults to development if an ENV is not explicitly chosen. Also preserves the selfHost option

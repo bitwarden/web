@@ -1,6 +1,6 @@
 function load(envName) {
     const envOverrides = {
-        'produciton': () => require('./config/production.json'),
+        'production': () => require('./config/production.json'),
         'qa': () => require('./config/qa.json'),
         'development': () => require('./config/development.json'),
     };
@@ -14,6 +14,16 @@ function load(envName) {
     };
 }
 
+function log(configObj) {
+    const repeatNum = 50
+    console.log(`${"=".repeat(repeatNum)}\nenvConfig`)
+    Object.entries(configObj).map(([key, value]) => {
+        console.log(`  ${key}: ${value}`)
+    })
+    console.log(`${"=".repeat(repeatNum)}`)
+}
+
 module.exports = {
-    load
+    load,
+    log
 };
