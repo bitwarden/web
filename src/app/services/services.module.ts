@@ -16,10 +16,11 @@ import { EventService } from './event.service';
 import { OrganizationGuardService } from './organization-guard.service';
 import { OrganizationTypeGuardService } from './organization-type-guard.service';
 import { RouterService } from './router.service';
-import { UnauthGuardService } from './unauth-guard.service';
 
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+import { LockGuardService } from 'jslib/angular/services/lock-guard.service';
+import { UnauthGuardService } from 'jslib/angular/services/unauth-guard.service';
 import { ValidationService } from 'jslib/angular/services/validation.service';
 
 import { ApiService } from 'jslib/services/api.service';
@@ -190,6 +191,7 @@ export function initFactory(): Function {
         UnauthGuardService,
         RouterService,
         EventService,
+        LockGuardService,
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
