@@ -1,5 +1,3 @@
-import 'core-js';
-
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
