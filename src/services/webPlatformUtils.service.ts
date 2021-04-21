@@ -211,11 +211,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return confirmed.value;
     }
 
-    async showPasswordDialog(title: string, body: string, passwordValidation: (value: string) => Promise<boolean>):
-        Promise<boolean> {
-        throw new Error('Not implemented.');
-    }
-
     isDev(): boolean {
         return process.env.ENV === 'development';
     }
