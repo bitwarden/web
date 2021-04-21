@@ -7,7 +7,6 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
-    showPasswordDialog: (title: string, body: string, passwordValidation: (value: string) => Promise<boolean>) => Promise<boolean>;
     identityClientId: string = 'web';
 
     private browserCache: DeviceType = null;
@@ -210,6 +209,11 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
 
         return confirmed.value;
+    }
+
+    async showPasswordDialog(title: string, body: string, passwordValidation: (value: string) => Promise<boolean>):
+        Promise<boolean> {
+        throw new Error('Not implemented.');
     }
 
     isDev(): boolean {
