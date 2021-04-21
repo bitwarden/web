@@ -19,7 +19,7 @@ import {
 import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
 import { Utils } from 'jslib/misc/utils';
 
-import { CipherString } from 'jslib/models/domain/cipherString';
+import { EncString } from 'jslib/models/domain/encString';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
 import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
@@ -108,7 +108,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     }
 
     async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
-        newEncKey: [SymmetricCryptoKey, CipherString]) {
+        newEncKey: [SymmetricCryptoKey, EncString]) {
         const request = new PasswordRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.currentMasterPassword, null);
         request.newMasterPasswordHash = newMasterPasswordHash;
@@ -136,7 +136,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     private async updateKey(key: SymmetricCryptoKey, masterPasswordHash: string) {
         const encKey = await this.cryptoService.makeEncKey(key);
         const privateKey = await this.cryptoService.getPrivateKey();
-        let encPrivateKey: CipherString = null;
+        let encPrivateKey: EncString = null;
         if (privateKey != null) {
             encPrivateKey = await this.cryptoService.encrypt(privateKey, encKey[0]);
         }

@@ -40,26 +40,26 @@ If you want to point the development web vault to the production APIs, you can r
 
 ```
 npm install
-npm run build:prod:watch
+ENV=production npm run build:watch
 ```
 
-You can also manually adjusting your API endpoint settings in `webpack.config.js` by altering the `targets` within `proxy`. For example:
+You can also manually adjusting your API endpoint settings by adding `config/development.js` overriding any of the values in `config/base.json`. For example:
 
 ```typescript
-proxy: {
-  '/api': {
-      target: 'http://localhost:4000',
-      pathRewrite: {'^/api' : ''}
-  },
-  '/identity': {
-      target: 'http://localhost:33656',
-      pathRewrite: {'^/identity' : ''}
-  },
-  '/events': {
-      target: 'http://localhost:46273',
-      pathRewrite: {'^/events' : ''}
-  }
-},
+{
+    "proxyApi": "http://your-api-url",
+    "proxyIdentity": "http://your-identity-url",
+    "proxyEvents": "http://your-events-url",
+    "proxyNotifications": "http://your-notifications-url",
+    "proxyPortal": "http://your-portal-url",
+    "allowedHosts": ["hostnames-to-allow-in-webpack"]
+}
+```
+
+To pick up the overrides in the newly created `config/development.js` file, run the app with:
+
+```
+npm run build:dev:watch
 ```
 
 ## Contribute
