@@ -14,7 +14,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-import { CipherString } from 'jslib/models/domain/cipherString';
+import { EncString } from 'jslib/models/domain/encString';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { CollectionRequest } from 'jslib/models/request/collectionRequest';
 import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
@@ -63,7 +63,7 @@ export class CollectionAddEditComponent implements OnInit {
             this.title = this.i18nService.t('editCollection');
             try {
                 const collection = await this.apiService.getCollectionDetails(this.organizationId, this.collectionId);
-                this.name = await this.cryptoService.decryptToUtf8(new CipherString(collection.name), this.orgKey);
+                this.name = await this.cryptoService.decryptToUtf8(new EncString(collection.name), this.orgKey);
                 this.externalId = collection.externalId;
                 if (collection.groups != null && this.groups.length > 0) {
                     collection.groups.forEach(s => {
