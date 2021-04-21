@@ -7,6 +7,7 @@ import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
+    showPasswordDialog: (title: string, body: string, passwordValidation: (value: string) => Promise<boolean>) => Promise<boolean>;
     identityClientId: string = 'web';
 
     private browserCache: DeviceType = null;
