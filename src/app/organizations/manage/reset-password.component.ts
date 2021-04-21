@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     Component,
     EventEmitter,
     Input,
@@ -12,8 +13,6 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib/abstractions/policy.service';
-
-import { ValidationService } from 'jslib/angular/services/validation.service';
 
 import { CipherString } from 'jslib/models/domain/cipherString';
 import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordPolicyOptions';
@@ -31,7 +30,6 @@ export class ResetPasswordComponent implements OnInit {
     @Input() organizationId: string;
     @Output() onPasswordReset = new EventEmitter();
 
-    loading = true;
     enforcedPolicyOptions: MasterPasswordPolicyOptions;
     newPassword: string = null;
     showPassword: boolean = false;
@@ -41,17 +39,11 @@ export class ResetPasswordComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private passwordGenerationService: PasswordGenerationService,
-        private policyService: PolicyService, private cryptoService: CryptoService,
-        private validationService: ValidationService) { }
+        private policyService: PolicyService, private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         // Get Enforced Policy Options
         this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions();
-
-        // Generate password (using any enforced policies)
-        await this.generatePassword();
-
-        this.loading = false;
     }
 
     get loggedOutWarningName() {
@@ -130,45 +122,44 @@ export class ResetPasswordComponent implements OnInit {
             }
         }
 
-        // Get user Information (kdf type, kdf iterations, resetPasswordKey)
-        let kdfType = null;
-        let kdfIterations = null;
-        let resetPasswordKey = null;
+        // Get user Information (kdf type, kdf iterations, resetPasswordKey) and change password
         try {
-            this.loading = true;
-            const response = await this.apiService.getOrganizationUserResetPasswordDetails(this.organizationId, this.id);
-            if (response != null) {
-                kdfType = response.kdf;
-                kdfIterations = response.kdfIterations;
-                resetPasswordKey = response.resetPasswordKey;
-            }
-        } catch (e) {
-            this.loading = false;
-            this.validationService.showError(e);
-            return;
-        }
+            this.formPromise = this.apiService.getOrganizationUserResetPasswordDetails(this.organizationId, this.id)
+                .then(async response => {
+                    let kdfType = null;
+                    let kdfIterations = null;
+                    let resetPasswordKey = null;
 
-        // Decrypt User's Reset Password Key to get EncKey
-        const orgSymKey = await this.cryptoService.getOrgKey(this.organizationId);
-        const decValue = await this.cryptoService.decryptToBytes(new CipherString(resetPasswordKey), orgSymKey);
-        const userEncKey = new SymmetricCryptoKey(decValue);
+                    if (response != null) {
+                        kdfType = response.kdf;
+                        kdfIterations = response.kdfIterations;
+                        resetPasswordKey = response.resetPasswordKey;
+                    } else {
+                        throw new Error('Reset Password Details response is null');
+                    }
 
-        // Create new key and hash new password
-        const newKey = await this.cryptoService.makeKey(this.newPassword, this.email.trim().toLowerCase(),
-            kdfType, kdfIterations);
-        const newPasswordHash = await this.cryptoService.hashPassword(this.newPassword, newKey);
+                    // Decrypt User's Reset Password Key to get EncKey
+                    const orgSymKey = await this.cryptoService.getOrgKey(this.organizationId);
+                    const decValue = await this.cryptoService.decryptToBytes(new CipherString(resetPasswordKey), orgSymKey);
+                    const userEncKey = new SymmetricCryptoKey(decValue);
 
-        // Create new encKey for the User
-        const newEncKey = await this.cryptoService.remakeEncKey(newKey, userEncKey);
+                    // Create new key and hash new password
+                    const newKey = await this.cryptoService.makeKey(this.newPassword, this.email.trim().toLowerCase(),
+                        kdfType, kdfIterations);
+                    const newPasswordHash = await this.cryptoService.hashPassword(this.newPassword, newKey);
 
-        // Create request
-        const request = new OrganizationUserResetPasswordRequest();
-        request.key = newEncKey[1].encryptedString;
-        request.newMasterPasswordHash = newPasswordHash;
+                    // Create new encKey for the User
+                    const newEncKey = await this.cryptoService.remakeEncKey(newKey, userEncKey);
 
-        // Change user's password
-        try {
-            this.formPromise = this.apiService.putOrganizationUserResetPassword(this.organizationId, this.id, request);
+                    // Create request
+                    const request = new OrganizationUserResetPasswordRequest();
+                    request.key = newEncKey[1].encryptedString;
+                    request.newMasterPasswordHash = newPasswordHash;
+
+                    // Change user's password
+                    return this.apiService.putOrganizationUserResetPassword(this.organizationId, this.id, request);
+                });
+
             await this.formPromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t('resetPasswordSuccess'));
             this.onPasswordReset.emit();
