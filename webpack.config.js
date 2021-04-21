@@ -8,11 +8,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const pjson = require('./package.json');
+const config = require('./config.js')
 
 if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
 }
-const ENV = process.env.ENV = process.env.NODE_ENV;
+
+const NODE_ENV = process.env.NODE_ENV;
+const envConfig = config.load(process.env.ENV)
+config.log(envConfig)
 
 const moduleRules = [
     {
@@ -123,7 +127,7 @@ const plugins = [
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(ENV),
+            'ENV': JSON.stringify(NODE_ENV),
             'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
@@ -131,7 +135,7 @@ const plugins = [
     }),
 ];
 
-if (ENV === 'production') {
+if (NODE_ENV === 'production') {
     moduleRules.push({
         test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
         loader: '@ngtools/webpack',
@@ -159,52 +163,42 @@ const devServer = {
     // host: '192.168.1.9',
     proxy: {
         '/api': {
-            target: 'http://localhost:4000',
+            target: envConfig['proxyApi'],
             pathRewrite: {'^/api' : ''},
             secure: false,
             changeOrigin: true
         },
         '/identity': {
-            target: 'http://localhost:33656',
+            target: envConfig['proxyIdentity'],
             pathRewrite: {'^/identity' : ''},
             secure: false,
             changeOrigin: true
         },
         '/events': {
-            target: 'http://localhost:46273',
+            target: envConfig['proxyEvents'],
             pathRewrite: {'^/events' : ''},
             secure: false,
             changeOrigin: true
         },
         '/notifications': {
-            target: 'http://localhost:61840',
+            target: envConfig['proxyNotifications'],
             pathRewrite: {'^/notifications' : ''},
             secure: false,
             changeOrigin: true
         },
         '/portal': {
-            target: 'http://localhost:52313',
+            target: envConfig['proxyPortal'],
             pathRewrite: {'^/portal' : ''},
             secure: false,
             changeOrigin: true
         }
     },
     hot: false,
-    allowedHosts: [
-        'bitwarden.test',
-    ],
+    allowedHosts: envConfig['allowedHosts']
 };
 
-if (ENV === "production") {
-    devServer.proxy['/api'].target = 'https://api.bitwarden.com';
-    devServer.proxy['/identity'].target = 'https://identity.bitwarden.com';
-    devServer.proxy['/events'].target = 'https://events.bitwarden.com';
-    devServer.proxy['/notifications'].target = 'https://notifications.bitwarden.com';
-    devServer.proxy['/portal'].target = 'https://portal.bitwarden.com';
-}
-
-const config = {
-    mode: ENV,
+const webpackConfig = {
+    mode: NODE_ENV,
     devtool: 'source-map',
     devServer: devServer,
     entry: {
@@ -257,4 +251,4 @@ const config = {
     plugins: plugins,
 };
 
-module.exports = config;
+module.exports = webpackConfig;
