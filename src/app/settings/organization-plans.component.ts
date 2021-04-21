@@ -61,6 +61,7 @@ export class OrganizationPlansComponent implements OnInit {
     productTypes = ProductType;
     formPromise: Promise<any>;
     singleOrgPolicyBlock: boolean = false;
+    freeTrial: boolean = false;
 
     plans: PlanResponse[];
 
@@ -187,6 +188,7 @@ export class OrganizationPlansComponent implements OnInit {
             this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 1;
         }
+        this.freeTrial = this.selectedPlan.trialPeriodDays != null;
     }
 
     changedOwnedBusiness() {

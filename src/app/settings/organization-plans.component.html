@@ -54,7 +54,7 @@
                 <small *ngIf="selectableProduct.hasSelfHost">• {{'onPremHostingOptional' | i18n}}</small>
                 <small *ngIf="selectableProduct.hasSso">• {{'includeSsoAuthentication' | i18n}}</small>
                 <small *ngIf="selectableProduct.hasPolicies">• {{'includeEnterprisePolicies' | i18n}}</small>
-                <small *ngIf="selectableProduct.trialPeriodDays">•
+                <small *ngIf="selectableProduct.trialPeriodDays && createOrganization">•
                     {{'xDayFreeTrial' | i18n : selectableProduct.trialPeriodDays }}
                 </small>
             </ng-container>
@@ -79,7 +79,7 @@
                 <small *ngIf="selectableProduct.usersGetPremium">• {{'usersGetPremium' | i18n}}</small>
                 <small *ngIf="selectableProduct.product != productTypes.Free">•
                     {{'priorityCustomerSupport' | i18n}}</small>
-                <small *ngIf="selectableProduct.trialPeriodDays">•
+                <small *ngIf="selectableProduct.trialPeriodDays && createOrganization">•
                     {{'xDayFreeTrial' | i18n : selectableProduct.trialPeriodDays }}
                 </small>
             </ng-template>
@@ -224,12 +224,17 @@
             <p class="text-lg"><strong>{{'total' | i18n}}:</strong>
                 {{total | currency:'USD $'}}/{{selectedPlanInterval | i18n}}</p>
         </div>
-        <small class="text-muted font-italic">{{'paymentChargedWithTrial' | i18n : (selectedPlanInterval | i18n) }}</small>
+        <small class="text-muted font-italic" *ngIf="freeTrial && createOrganization; else paymentChargedImmediately">
+            {{'paymentChargedWithTrial' | i18n : (selectedPlanInterval | i18n) }}
+        </small>
+        <ng-template  #paymentChargedImmediately>
+            <small class="text-muted font-italic mt-2 d-block">
+                {{'paymentCharged' | i18n : (selectedPlanInterval | i18n) }}
+            </small>
+        </ng-template>
         <ng-container *ngIf="!createOrganization">
             <app-payment [showMethods]="false"></app-payment>
         </ng-container>
-        <small class="text-muted font-italic mt-2 d-block" *ngIf="!createOrganization">
-            {{'paymentCharged' | i18n : (selectedPlanInterval | i18n) }}</small>
     </div>
     <div *ngIf="singleOrgPolicyBlock" class="mt-4">
         <app-callout [type]="'error'">{{'singleOrgBlockCreateMessage' | i18n}}</app-callout>
