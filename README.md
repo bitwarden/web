@@ -40,13 +40,7 @@ If you want to point the development web vault to the production APIs, you can r
 
 ```
 npm install
-npm run build:prod:watch
-```
-
-Or you can set the ENV variable to `production` and run webpack manually.
-
-```
-cross-env NODE_ENV=production ENV=production webpack
+ENV=production npm run build:watch
 ```
 
 You can also manually adjusting your API endpoint settings by adding `config/development.js` overriding any of the values in `config/base.json`. For example:

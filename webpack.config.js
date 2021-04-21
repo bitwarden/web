@@ -18,13 +18,6 @@ const NODE_ENV = process.env.NODE_ENV;
 const envConfig = config.load(process.env.ENV)
 config.log(envConfig)
 
-if (process.env.ENV == null) {
-    // Defaults to development if an ENV is not explicitly chosen. Also preserves the selfHost option
-    process.env.ENV = 'development' 
-} 
-
-const ENV = process.env.ENV;
-
 const moduleRules = [
     {
         test: /\.ts$/,
@@ -134,7 +127,7 @@ const plugins = [
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(ENV),
+            'ENV': JSON.stringify(NODE_ENV),
             'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
