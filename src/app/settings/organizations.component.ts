@@ -29,6 +29,8 @@ export class OrganizationsComponent implements OnInit {
     organizations: Organization[];
     loaded: boolean = false;
     actionPromise: Promise<any>;
+    // TODO Remove feature flag once ready for general release
+    resetPasswordFeatureFlag = false;
 
     constructor(private userService: UserService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private apiService: ApiService,
@@ -86,6 +88,11 @@ export class OrganizationsComponent implements OnInit {
     }
 
     async toggleResetPasswordEnrollment(org: Organization) {
+        // Feature Flag
+        if (!this.resetPasswordFeatureFlag) {
+            return;
+        }
+
         // Set variables
         let keyString: string = null;
         let toastStringRef = 'withdrawPasswordResetSuccess';
