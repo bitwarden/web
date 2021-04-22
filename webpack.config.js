@@ -131,7 +131,7 @@ const plugins = [
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(ENV),
+            'ENV': JSON.stringify(NODE_ENV),
             'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
