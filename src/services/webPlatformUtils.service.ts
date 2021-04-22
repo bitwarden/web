@@ -245,7 +245,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             textarea.select();
             try {
                 // Security exception may be thrown by some browsers.
-                doc.execCommand('copy');
+                const copyEnabled = doc.execCommand('copy');
+                if (!copyEnabled) {
+                    throw new Error('Command unsupported or disabled');
+                }
             } catch (e) {
                 // tslint:disable-next-line
                 console.warn('Copy to clipboard failed.', e);
