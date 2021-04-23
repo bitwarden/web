@@ -33,13 +33,6 @@ export class LockComponent extends BaseLockComponent {
 
     async ngOnInit() {
         await super.ngOnInit();
-        const authed = await this.userService.isAuthenticated();
-        if (!authed) {
-            this.router.navigate(['/']);
-        } else if (await this.cryptoService.hasKey()) {
-            this.router.navigate(['vault']);
-        }
-
         this.onSuccessfulSubmit = () => {
             const previousUrl = this.routerService.getPreviousUrl();
             if (previousUrl !== '/' && previousUrl.indexOf('lock') === -1) {

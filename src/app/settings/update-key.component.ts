@@ -13,7 +13,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
-import { CipherString } from 'jslib/models/domain/cipherString';
+import { EncString } from 'jslib/models/domain/encString';
 
 import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
 import { FolderWithIdRequest } from 'jslib/models/request/folderWithIdRequest';
@@ -64,7 +64,7 @@ export class UpdateKeyComponent {
         const key = await this.cryptoService.getKey();
         const encKey = await this.cryptoService.makeEncKey(key);
         const privateKey = await this.cryptoService.getPrivateKey();
-        let encPrivateKey: CipherString = null;
+        let encPrivateKey: EncString = null;
         if (privateKey != null) {
             encPrivateKey = await this.cryptoService.encrypt(privateKey, encKey[0]);
         }

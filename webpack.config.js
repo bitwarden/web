@@ -1,18 +1,22 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const pjson = require('./package.json');
+const config = require('./config.js')
 
 if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
 }
-const ENV = process.env.ENV = process.env.NODE_ENV;
+
+const NODE_ENV = process.env.NODE_ENV;
+const envConfig = config.load(process.env.ENV)
+config.log(envConfig)
 
 const moduleRules = [
     {
@@ -64,12 +68,14 @@ const moduleRules = [
         test: /[\/\\]@angular[\/\\].+\.js$/,
         parser: { system: true },
     },
+    {
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        loader: '@ngtools/webpack',
+    },
 ];
 
 const plugins = [
-    new CleanWebpackPlugin([
-        path.resolve(__dirname, 'build/*'),
-    ]),
+    new CleanWebpackPlugin(),
     // ref: https://github.com/angular/angular/issues/20357
     new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)fesm5/,
         path.resolve(__dirname, './src')),
@@ -103,51 +109,40 @@ const plugins = [
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
     }),
-    new CopyWebpackPlugin([
-        { from: './src/.nojekyll' },
-        { from: './src/manifest.json' },
-        { from: './src/favicon.ico' },
-        { from: './src/browserconfig.xml' },
-        { from: './src/app-id.json' },
-        { from: './src/404.html' },
-        { from: './src/404', to: '404' },
-        { from: './src/images', to: 'images' },
-        { from: './src/locales', to: 'locales' },
-        { from: './src/scripts', to: 'scripts' },
-        { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
-        { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
-    ]),
+    new CopyWebpackPlugin({
+        patterns:[
+            { from: './src/.nojekyll' },
+            { from: './src/manifest.json' },
+            { from: './src/favicon.ico' },
+            { from: './src/browserconfig.xml' },
+            { from: './src/app-id.json' },
+            { from: './src/404.html' },
+            { from: './src/404', to: '404' },
+            { from: './src/images', to: 'images' },
+            { from: './src/locales', to: 'locales' },
+            { from: './src/scripts', to: 'scripts' },
+            { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
+            { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
+        ],
+    }),
     new MiniCssExtractPlugin({
         filename: '[name].[hash].css',
         chunkFilename: '[id].[hash].css',
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(ENV),
+            'ENV': JSON.stringify(NODE_ENV),
             'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
         }
     }),
-];
-
-if (ENV === 'production') {
-    moduleRules.push({
-        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        loader: '@ngtools/webpack',
-    });
-    plugins.push(new AngularCompilerPlugin({
+    new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',
         entryModule: 'src/app/app.module#AppModule',
         sourceMap: true,
-    }));
-} else {
-    moduleRules.push({
-        test: /\.ts$/,
-        loaders: ['ts-loader', 'angular2-template-loader'],
-        exclude: path.resolve(__dirname, 'node_modules'),
-    });
-}
+    }),
+];
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
@@ -159,52 +154,42 @@ const devServer = {
     // host: '192.168.1.9',
     proxy: {
         '/api': {
-            target: 'http://localhost:4000',
+            target: envConfig['proxyApi'],
             pathRewrite: {'^/api' : ''},
             secure: false,
             changeOrigin: true
         },
         '/identity': {
-            target: 'http://localhost:33656',
+            target: envConfig['proxyIdentity'],
             pathRewrite: {'^/identity' : ''},
             secure: false,
             changeOrigin: true
         },
         '/events': {
-            target: 'http://localhost:46273',
+            target: envConfig['proxyEvents'],
             pathRewrite: {'^/events' : ''},
             secure: false,
             changeOrigin: true
         },
         '/notifications': {
-            target: 'http://localhost:61840',
+            target: envConfig['proxyNotifications'],
             pathRewrite: {'^/notifications' : ''},
             secure: false,
             changeOrigin: true
         },
         '/portal': {
-            target: 'http://localhost:52313',
+            target: envConfig['proxyPortal'],
             pathRewrite: {'^/portal' : ''},
             secure: false,
             changeOrigin: true
         }
     },
     hot: false,
-    allowedHosts: [
-        'bitwarden.test',
-    ],
+    allowedHosts: envConfig['allowedHosts']
 };
 
-if (ENV === "production") {
-    devServer.proxy['/api'].target = 'https://api.bitwarden.com';
-    devServer.proxy['/identity'].target = 'https://identity.bitwarden.com';
-    devServer.proxy['/events'].target = 'https://events.bitwarden.com';
-    devServer.proxy['/notifications'].target = 'https://notifications.bitwarden.com';
-    devServer.proxy['/portal'].target = 'https://portal.bitwarden.com';
-}
-
-const config = {
-    mode: ENV,
+const webpackConfig = {
+    mode: NODE_ENV,
     devtool: 'source-map',
     devServer: devServer,
     entry: {
@@ -257,4 +242,4 @@ const config = {
     plugins: plugins,
 };
 
-module.exports = config;
+module.exports = webpackConfig;
