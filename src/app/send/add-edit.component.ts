@@ -11,6 +11,7 @@ import { SendService } from 'jslib/abstractions/send.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib/angular/components/send/add-edit.component';
+import { SendType } from 'jslib/enums/sendType';
 
 @Component({
     selector: 'app-send-add-edit',
@@ -23,6 +24,15 @@ export class AddEditComponent extends BaseAddEditComponent {
         messagingService: MessagingService, policyService: PolicyService) {
         super(i18nService, platformUtilsService, environmentService, datePipe, sendService, userService,
             messagingService, policyService);
+    }
+
+    async showSuccessMessage() {
+        if (!this.editMode && this.send.type === SendType.File) {
+            this.platformUtilsService.showDialog(this.i18nService.t('createdSend'), null,
+                this.i18nService.t('ok'), null, 'success', null);
+        } else {
+            await super.showSuccessMessage();
+        }
     }
 
     copyLinkToClipboard(link: string) {
