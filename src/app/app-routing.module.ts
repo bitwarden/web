@@ -87,9 +87,10 @@ import { VaultComponent } from './vault/vault.component';
 
 import { OrganizationGuardService } from './services/organization-guard.service';
 import { OrganizationTypeGuardService } from './services/organization-type-guard.service';
-import { UnauthGuardService } from './services/unauth-guard.service';
 
 import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
+import { LockGuardService } from 'jslib/angular/services/lock-guard.service';
+import { UnauthGuardService } from 'jslib/angular/services/unauth-guard.service';
 
 import { Permissions } from 'jslib/enums/permissions';
 
@@ -122,7 +123,11 @@ const routes: Routes = [
                 canActivate: [UnauthGuardService],
                 data: { titleId: 'passwordHint' },
             },
-            { path: 'lock', component: LockComponent },
+            {
+                path: 'lock',
+                component: LockComponent,
+                canActivate: [LockGuardService],
+            },
             { path: 'verify-email', component: VerifyEmailTokenComponent },
             {
                 path: 'accept-organization',

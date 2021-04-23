@@ -192,7 +192,7 @@ export class PaymentComponent implements OnInit {
     }
 
     handleStripeCardPayment(clientSecret: string, successCallback: () => Promise<any>): Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             if (this.showMethods && this.stripeCardNumberElement == null) {
                 reject();
                 return;
