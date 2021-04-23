@@ -1,5 +1,5 @@
 import { getQsParam } from './common';
-import { b64Decode, buildDataString } from './common-webauthn';
+import { b64Decode, buildDataString, parseWebauthnJson } from './common-webauthn';
 
 // tslint:disable-next-line
 require('./webauthn.scss');
@@ -50,21 +50,12 @@ function start() {
 
     try {
         const jsonString = b64Decode(data);
-        obj = JSON.parse(jsonString);
+        obj = parseWebauthnJson(jsonString);
     }
     catch (e) {
         error('Cannot parse data.');
         return;
     }
-
-    const challenge = obj.challenge.replace(/-/g, '+').replace(/_/g, '/');
-    obj.challenge = Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
-
-    // fix escaping. Change this to coerce
-    obj.allowCredentials.forEach((listItem: any) => {
-        const fixedId = listItem.id.replace(/\_/g, '/').replace(/\-/g, '+');
-        listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
-    });
 
     stopWebAuthn = false;
 
