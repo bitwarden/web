@@ -26,12 +26,12 @@ export class AddEditComponent extends BaseAddEditComponent {
             messagingService, policyService);
     }
 
-    async showSuccessMessage() {
-        if (!this.editMode && this.send.type === SendType.File) {
-            this.platformUtilsService.showDialog(this.i18nService.t('createdSend'), null,
+    async showSuccessMessage(inactive: boolean) {
+        if (inactive && this.copyLink && this.send.type === SendType.File) {
+            await this.platformUtilsService.showDialog(this.i18nService.t('createdSend'), null,
                 this.i18nService.t('ok'), null, 'success', null);
         } else {
-            await super.showSuccessMessage();
+            await super.showSuccessMessage(inactive);
         }
     }
 
