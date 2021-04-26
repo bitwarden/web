@@ -5,11 +5,11 @@ import {
     Output,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { PlanType } from 'jslib/enums/planType';
-import { ProductType } from 'jslib/enums/productType';
+import { PlanType } from 'jslib-common/enums/planType';
+import { ProductType } from 'jslib-common/enums/productType';
 
 @Component({
     selector: 'app-change-plan',

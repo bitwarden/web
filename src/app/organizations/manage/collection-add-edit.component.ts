@@ -8,19 +8,19 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { EncString } from 'jslib/models/domain/encString';
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
-import { CollectionRequest } from 'jslib/models/request/collectionRequest';
-import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
-import { GroupResponse } from 'jslib/models/response/groupResponse';
+import { EncString } from 'jslib-common/models/domain/encString';
+import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+import { CollectionRequest } from 'jslib-common/models/request/collectionRequest';
+import { SelectionReadOnlyRequest } from 'jslib-common/models/request/selectionReadOnlyRequest';
+import { GroupResponse } from 'jslib-common/models/response/groupResponse';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
     selector: 'app-collection-add-edit',

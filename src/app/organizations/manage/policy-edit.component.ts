@@ -8,14 +8,14 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { PolicyType } from 'jslib/enums/policyType';
+import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { PolicyRequest } from 'jslib/models/request/policyRequest';
+import { PolicyRequest } from 'jslib-common/models/request/policyRequest';
 
-import { PolicyResponse } from 'jslib/models/response/policyResponse';
+import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
 
 @Component({
     selector: 'app-policy-edit',

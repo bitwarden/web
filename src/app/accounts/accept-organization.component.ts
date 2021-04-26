@@ -12,12 +12,12 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { OrganizationUserAcceptRequest } from 'jslib/models/request/organizationUserAcceptRequest';
+import { OrganizationUserAcceptRequest } from 'jslib-common/models/request/organizationUserAcceptRequest';
 
 @Component({
     selector: 'app-accept-organization',

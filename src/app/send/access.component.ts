@@ -5,24 +5,24 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
-import { SendAccess } from 'jslib/models/domain/sendAccess';
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
+import { SendAccess } from 'jslib-common/models/domain/sendAccess';
+import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
 
-import { SendAccessView } from 'jslib/models/view/sendAccessView';
+import { SendAccessView } from 'jslib-common/models/view/sendAccessView';
 
-import { SendType } from 'jslib/enums/sendType';
-import { SendAccessRequest } from 'jslib/models/request/sendAccessRequest';
-import { ErrorResponse } from 'jslib/models/response/errorResponse';
+import { SendType } from 'jslib-common/enums/sendType';
+import { SendAccessRequest } from 'jslib-common/models/request/sendAccessRequest';
+import { ErrorResponse } from 'jslib-common/models/response/errorResponse';
 
-import { SendAccessResponse } from 'jslib/models/response/sendAccessResponse';
+import { SendAccessResponse } from 'jslib-common/models/response/sendAccessResponse';
 
 @Component({
     selector: 'app-send-access',

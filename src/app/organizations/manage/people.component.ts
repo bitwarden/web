@@ -12,25 +12,25 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ValidationService } from 'jslib/angular/services/validation.service';
-import { ConstantsService } from 'jslib/services/constants.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SearchService } from 'jslib/abstractions/search.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
+import { OrganizationUserConfirmRequest } from 'jslib-common/models/request/organizationUserConfirmRequest';
 
-import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
+import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
 
-import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
-import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
 import { EntityEventsComponent } from './entity-events.component';

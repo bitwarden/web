@@ -5,9 +5,9 @@ import {
     Router,
 } from '@angular/router';
 
-import { UserService } from 'jslib/abstractions/user.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { Permissions } from 'jslib/enums/permissions';
+import { Permissions } from 'jslib-common/enums/permissions';
 
 @Injectable()
 export class OrganizationTypeGuardService implements CanActivate {

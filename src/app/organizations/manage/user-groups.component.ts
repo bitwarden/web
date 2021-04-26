@@ -8,13 +8,13 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { OrganizationUserUpdateGroupsRequest } from 'jslib/models/request/organizationUserUpdateGroupsRequest';
-import { GroupResponse } from 'jslib/models/response/groupResponse';
+import { OrganizationUserUpdateGroupsRequest } from 'jslib-common/models/request/organizationUserUpdateGroupsRequest';
+import { GroupResponse } from 'jslib-common/models/response/groupResponse';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
     selector: 'app-user-groups',

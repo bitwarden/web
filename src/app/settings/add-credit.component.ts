@@ -8,13 +8,13 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
-import { BitPayInvoiceRequest } from 'jslib/models/request/bitPayInvoiceRequest';
+import { BitPayInvoiceRequest } from 'jslib-common/models/request/bitPayInvoiceRequest';
 
 import { WebConstants } from '../../services/webConstants';
 

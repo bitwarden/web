@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { ModalComponent } from 'jslib/angular/components/modal.component';
+import { ModalComponent } from 'jslib-angular/components/modal.component';
 
 @NgModule({
     imports: [],

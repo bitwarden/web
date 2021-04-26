@@ -13,17 +13,17 @@ import {
     Router,
 } from '@angular/router';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
-import { Organization } from 'jslib/models/domain/organization';
-import { CipherView } from 'jslib/models/view/cipherView';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
-import { CipherType } from 'jslib/enums/cipherType';
+import { CipherType } from 'jslib-common/enums/cipherType';
 
 import { ModalComponent } from '../../modal.component';
 

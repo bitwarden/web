@@ -9,10 +9,10 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { VerifyDeleteRecoverRequest } from 'jslib/models/request/verifyDeleteRecoverRequest';
+import { VerifyDeleteRecoverRequest } from 'jslib-common/models/request/verifyDeleteRecoverRequest';
 
 @Component({
     selector: 'app-verify-recover-delete',

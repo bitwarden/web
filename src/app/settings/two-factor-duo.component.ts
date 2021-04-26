@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
-import { UpdateTwoFactorDuoRequest } from 'jslib/models/request/updateTwoFactorDuoRequest';
-import { TwoFactorDuoResponse } from 'jslib/models/response/twoFactorDuoResponse';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { UpdateTwoFactorDuoRequest } from 'jslib-common/models/request/updateTwoFactorDuoRequest';
+import { TwoFactorDuoResponse } from 'jslib-common/models/response/twoFactorDuoResponse';
 
 import { TwoFactorBaseComponent } from './two-factor-base.component';
 

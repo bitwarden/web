@@ -8,13 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
 
-import { OrganizationUpdateRequest } from 'jslib/models/request/organizationUpdateRequest';
-import { OrganizationResponse } from 'jslib/models/response/organizationResponse';
+import { OrganizationUpdateRequest } from 'jslib-common/models/request/organizationUpdateRequest';
+import { OrganizationResponse } from 'jslib-common/models/response/organizationResponse';
 
 import { ModalComponent } from '../../modal.component';
 import { ApiKeyComponent } from '../../settings/api-key.component';
