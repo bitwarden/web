@@ -11,6 +11,7 @@ import { SendService } from 'jslib/abstractions/send.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib/angular/components/send/add-edit.component';
+
 import { SendType } from 'jslib/enums/sendType';
 
 @Component({
