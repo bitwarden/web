@@ -9,7 +9,6 @@ import { ToasterModule } from 'angular2-toaster';
 import { BroadcasterMessagingService } from '../../services/broadcasterMessaging.service';
 import { HtmlStorageService } from '../../services/htmlStorage.service';
 import { I18nService } from '../../services/i18n.service';
-import { MemoryStorageService } from '../../services/memoryStorage.service';
 import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
 import { EventService } from './event.service';
@@ -38,6 +37,7 @@ import { ExportService } from 'jslib/services/export.service';
 import { FileUploadService } from 'jslib/services/fileUpload.service';
 import { FolderService } from 'jslib/services/folder.service';
 import { ImportService } from 'jslib/services/import.service';
+import { MemoryStorageService } from 'jslib/services/memoryStorage.service';
 import { NotificationsService } from 'jslib/services/notifications.service';
 import { PasswordGenerationService } from 'jslib/services/passwordGeneration.service';
 import { PolicyService } from 'jslib/services/policy.service';
