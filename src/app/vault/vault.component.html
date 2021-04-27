@@ -28,6 +28,9 @@
                     </button>
                 </div>
             </div>
+            <app-callout type="warning" *ngIf="deleted" icon="fa-warning">
+                {{trashCleanupWarning}}
+            </app-callout>
             <app-vault-ciphers (onCipherClicked)="editCipher($event)"
                 (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
                 (onShareClicked)="shareCipher($event)" (onCollectionsClicked)="editCipherCollections($event)"
