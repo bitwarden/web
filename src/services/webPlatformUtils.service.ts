@@ -161,7 +161,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     supportsWebWorkers(): boolean {
-        return true;
+        return window?.Worker != null;
     }
 
     showToast(type: 'error' | 'success' | 'warning' | 'info', title: string, text: string | string[],
