@@ -48,7 +48,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         }
         this.accessEvents = this.organization.useEvents;
         this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
-        await this.searchService.indexCiphers(this.allCiphers);
+        await this.searchService.indexCiphers(this.organization.id, this.allCiphers);
         await this.applyFilter(filter);
         this.loaded = true;
     }
