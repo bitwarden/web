@@ -11,9 +11,7 @@
       "es6",
       "dom"
     ],
-    "allowJs": true,
     "sourceMap": true,
-    "types": ["sweetalert2"],
     "baseUrl": ".",
     "paths": {
       "tldjs": [
@@ -21,32 +19,13 @@
       ],
       "jslib/*": [
         "jslib/src/*"
-      ],
-      "@angular/*": [
-        "node_modules/@angular/*"
-      ],
-      "node": [
-        "node_modules/@types/node"
-      ],
-      "duo_web_sdk": [
-        "node_modules/duo_web_sdk"
       ]
     }
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": true
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    "jslib/node_modules",
-    "jslib/dist",
-    "jslib/spec",
-    "jslib/src/electron",
-    "jslib/src/cli",
-    "jslib/src/services/nodeApi.service.ts",
-    "jslib/src/services/lowdbStorage.service.ts",
-    "jslib/src/misc/nodeUtils.ts"
+  "include": [
+    "src"
   ]
 }
