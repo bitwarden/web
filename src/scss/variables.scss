@@ -72,7 +72,7 @@ $grid-breakpoints: (
 );
 
 $text-color: #000000;
-$border-color: #000000;
+$border-color: #ced4da;
 
 $themes: (
     Light: (
@@ -80,7 +80,7 @@ $themes: (
         borderColor: $border-color,
         backgroundColor: $body-bg,
         inputBackgroundColor: #fbfbfb,
-        inputBorderColor: #ced4da
+        inputBorderColor: $border-color
     ),
     Dark: (
         textColor: #ffffff,
