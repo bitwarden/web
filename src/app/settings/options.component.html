@@ -114,6 +114,17 @@
             </label>
         </div>
     </div>
+<!--    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="theme">{{'theme' | i18n}}</label>
+                <select id="theme" name="theme" [(ngModel)]="theme" class="form-control">
+                    <option *ngFor="let o of themeOptions" [ngValue]="o.value">{{o.name}}</option>
+                </select>
+                <small class="form-text text-muted">{{'themeDesc' | i18n}}</small>
+            </div>
+        </div>
+    </div>-->
     <button type="submit" class="btn btn-primary">
         {{'save' | i18n}}
     </button>

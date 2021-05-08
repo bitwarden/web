@@ -26,7 +26,8 @@ export class OptionsComponent implements OnInit {
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
-    theme: string = 'themeDefault';
+    theme: string = 'defaultThemeSet';
+    themeOptions: any[];
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
@@ -61,6 +62,11 @@ export class OptionsComponent implements OnInit {
         localeOptions.sort(Utils.getSortFunction(i18nService, 'name'));
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
+        this.themeOptions = [
+            { name: i18nService.t('themeDefault'), value: 'themeDefault' },
+            { name: i18nService.t('themeLight'), value: 'themeLight' },
+            { name: i18nService.t('themeDark'), value: 'themeDark' }
+        ];
     }
 
     async ngOnInit() {
@@ -106,9 +112,9 @@ export class OptionsComponent implements OnInit {
     }
 
     async themeChanged(themeUpdate: string) {
-        let theme = ['themeDefault', 'themeDark', 'themeLight'];
+        //const theme = ['themeDark', 'themeLight'];
         const htmlEl = window.document.documentElement;
-        theme.forEach(element => {
+        this.themeOptions.forEach(element => {
             htmlEl.classList.remove(element);
         });
         htmlEl.classList.add(themeUpdate);

@@ -30,7 +30,7 @@ export class HtmlStorageService implements StorageService {
         // Default theme to match the browser
         const theme = await this.get<string>(ConstantsService.themeKey);
         if (theme == null) {
-            await this.save(ConstantsService.themeKey, 'themeDefault');
+            await this.save(ConstantsService.themeKey, 'themeDefaultSet');
         }
     }
 

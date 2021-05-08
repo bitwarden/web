@@ -12,7 +12,6 @@ $theme-colors: (
     "secondary-alt": $secondary-alt,
 );
 
-
 $body-bg: #ffffff;
 $body-color: #333333;
 
@@ -73,10 +72,12 @@ $grid-breakpoints: (
 );
 
 $text-color: #000000;
+$border-color: #000000;
 
 $themes: (
     Light: (
         textColor: $text-color,
+        borderColor: $border-color,
         backgroundColor: $body-bg
     ),
     Dark: (
