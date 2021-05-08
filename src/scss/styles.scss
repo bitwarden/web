@@ -47,16 +47,6 @@ html {
 
 body {
     min-width: 1010px;
-    @media (prefers-color-scheme: light) {
-        &.layout_frontend {
-            background-color: #ecf0f5;
-        }
-    }
-    @media (prefers-color-scheme: dark) {
-        &.layout_frontend {
-            background-color: #222222;
-        }
-    }
     @include themify($themes) {
         color: themed('textColor');
         background-color: themed('backgroundColor');
@@ -459,13 +449,6 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .card {
-    @media (prefers-color-scheme: light) {
-        background-color: $body-bg;
-    }
-    @media (prefers-color-scheme: dark) {
-        background-color: #222222;
-    }
-
     @include themify($themes) {
         color: themed('textColor');
         background-color: themed('backgroundColor');
@@ -784,6 +767,14 @@ app-user-billing {
 .form-inline {
     input[type='datetime-local'] {
         width: 200px;
+    }
+}
+
+.form-control {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('inputBackgroundColor');
+        border-color: themed('inputBorderColor');
     }
 }
 

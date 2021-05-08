@@ -65,7 +65,7 @@ export class OptionsComponent implements OnInit {
         this.themeOptions = [
             { name: i18nService.t('themeDefault'), value: 'themeDefaultSet' },
             { name: i18nService.t('themeLight'), value: 'themeLight' },
-            { name: i18nService.t('themeDark'), value: 'themeDark' }
+            { name: i18nService.t('themeDark'), value: 'themeDark' },
         ];
     }
 
@@ -112,11 +112,20 @@ export class OptionsComponent implements OnInit {
     }
 
     async themeChanged(themeUpdate: string) {
-        //const theme = ['themeDark', 'themeLight'];
+        const theme = ['themeDefaultSet', 'themeDark', 'themeLight'];
         const htmlEl = window.document.documentElement;
-        this.themeOptions.forEach(element => {
+        theme.forEach(element => {
             htmlEl.classList.remove(element);
         });
-        htmlEl.classList.add(themeUpdate);
+        if (themeUpdate === 'themeDefaultSet') {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlEl.classList.add('themeDark', themeUpdate);
+            }
+            if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                htmlEl.classList.add('themeLight', themeUpdate);
+            }
+        } else {
+            htmlEl.classList.add(themeUpdate);
+        }
     }
 }
