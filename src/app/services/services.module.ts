@@ -170,9 +170,9 @@ export function initFactory(): Function {
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
         let theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
-            theme = 'light';
+            theme = 'themeLight';
         }
-        htmlEl.classList.add('theme_' + theme);
+        htmlEl.classList.add(theme);
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));

@@ -26,6 +26,7 @@ export class OptionsComponent implements OnInit {
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
+    theme: string = 'themeDefault';
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
@@ -69,6 +70,7 @@ export class OptionsComponent implements OnInit {
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
+        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
     }
 
     async submit() {
@@ -79,6 +81,7 @@ export class OptionsComponent implements OnInit {
         await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
+        await this.storageService.save('theme', this.theme);
         this.messagingService.send('setFullWidth');
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         if (this.locale !== this.startingLocale) {
@@ -100,5 +103,14 @@ export class OptionsComponent implements OnInit {
             }
         }
         this.vaultTimeoutAction = newValue;
+    }
+
+    async themeChanged(themeUpdate: string) {
+        let theme = ["themeDefault","themeDark","themeLight"];
+        const htmlEl = window.document.documentElement;
+        theme.forEach(element => {
+            htmlEl.classList.remove(element);
+        });
+        htmlEl.classList.add(themeUpdate);
     }
 }

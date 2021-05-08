@@ -4,7 +4,7 @@ import { ConstantsService } from 'jslib/services';
 
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
-        ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
+        ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth', ConstantsService.themeKey,
         ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
         ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
         ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
@@ -25,6 +25,12 @@ export class HtmlStorageService implements StorageService {
         const vaultTimeoutAction = await this.get<string>(ConstantsService.vaultTimeoutActionKey);
         if (vaultTimeoutAction == null) {
             await this.save(ConstantsService.vaultTimeoutActionKey, 'lock');
+        }
+
+        // Default theme to match the browser
+        const theme = await this.get<string>(ConstantsService.themeKey);
+        if (theme == null) {
+            await this.save(ConstantsService.themeKey, 'themeDefault');
         }
     }
 
