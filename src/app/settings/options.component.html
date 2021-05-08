@@ -87,34 +87,7 @@
         </div>
         <small class="form-text text-muted">{{'enableFullWidthDesc' | i18n}}</small>
     </div>
-    <div class="form-group">
-        <label>{{'theme' | i18n}}</label>
-        <div class="form-check form-check-block">
-            <input class="form-check-input" type="radio" name="theme" id="themeDefault"
-                value="themeDefault" [(ngModel)]="theme" (ngModelChange)="themeChanged($event)">
-            <label class="form-check-label" for="themeDefault">
-                {{'themeDefault' | i18n}}
-                <small>{{'themeDefaultDesc' | i18n}}</small>
-            </label>
-        </div>
-        <div class="form-check mt-2 form-check-block">
-            <input class="form-check-input" type="radio" name="theme" id="themeDark"
-                value="themeDark" [(ngModel)]="theme" (ngModelChange)="themeChanged($event)">
-            <label class="form-check-label" for="themeDark">
-                {{'themeDark' | i18n}}
-                <small>{{'themeDarkDesc' | i18n}}</small>
-            </label>
-        </div>
-        <div class="form-check mt-3 form-check-block">
-            <input class="form-check-input" type="radio" name="theme" id="themeLight"
-                value="themeLight" [(ngModel)]="theme" (ngModelChange)="themeChanged($event)">
-            <label class="form-check-label" for="themeLight">
-                {{'themeLight' | i18n}}
-                <small>{{'themeLightDesc' | i18n}}</small>
-            </label>
-        </div>
-    </div>
-<!--    <div class="row">
+    <div class="row">
         <div class="col-6">
             <div class="form-group">
                 <label for="theme">{{'theme' | i18n}}</label>
@@ -124,7 +97,7 @@
                 <small class="form-text text-muted">{{'themeDesc' | i18n}}</small>
             </div>
         </div>
-    </div>-->
+    </div>
     <button type="submit" class="btn btn-primary">
         {{'save' | i18n}}
     </button>
