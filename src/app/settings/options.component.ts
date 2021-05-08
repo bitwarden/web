@@ -106,7 +106,7 @@ export class OptionsComponent implements OnInit {
     }
 
     async themeChanged(themeUpdate: string) {
-        let theme = ["themeDefault","themeDark","themeLight"];
+        let theme = ['themeDefault', 'themeDark', 'themeLight'];
         const htmlEl = window.document.documentElement;
         theme.forEach(element => {
             htmlEl.classList.remove(element);
