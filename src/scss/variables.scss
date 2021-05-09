@@ -80,7 +80,14 @@ $themes: (
         borderColor: $border-color,
         backgroundColor: $body-bg,
         inputBackgroundColor: #fbfbfb,
-        inputBorderColor: $border-color
+        inputBorderColor: $border-color,
+        bgPrimaryColor: $primary,
+        borderPrimaryColor: $primary,
+        buttonBorderColor: $secondary,
+        buttonBackgroundColor: $primary,
+        buttonBackgroundColorHover: $primary,
+        buttonBorderColorHover: $primary,
+        buttonTextColor: $primary
     ),
     Dark: (
         textColor: #fbfbfb,
@@ -88,9 +95,15 @@ $themes: (
         backgroundColor: #222222,
         inputBackgroundColor: #1A1A1A,
         inputBorderColor: #111111,
+        bgPrimaryColor: $secondary-alt,
+        borderPrimaryColor: $secondary-alt,
+        buttonBorderColor: $secondary-alt,
+        buttonBackgroundColor: $secondary-alt,
+        buttonBackgroundColorHover: $primary-accent,
+        buttonBorderColorHover: $secondary-alt,
+        buttonTextColor: $secondary
     ),
 );
-
 
 @mixin themify($themes: $themes) {
     @each $theme, $map in $themes {
