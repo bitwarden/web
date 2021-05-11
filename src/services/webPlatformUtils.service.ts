@@ -2,6 +2,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib/enums/deviceType';
 
+import { LogService } from 'jslib/abstractions/log.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
@@ -11,7 +12,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     private browserCache: DeviceType = null;
 
-    constructor(private i18nService: I18nService, private messagingService: MessagingService) { }
+    constructor(private i18nService: I18nService, private messagingService: MessagingService,
+        private logService: LogService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -273,6 +275,9 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             try {
                 // Security exception may be thrown by some browsers.
                 success = doc.execCommand('copy');
+                if (!success) {
+                    this.logService.debug('Copy command unsupported or disabled.');
+                }
             } catch (e) {
                 // tslint:disable-next-line
                 console.warn('Copy to clipboard failed.', e);

@@ -91,12 +91,12 @@ const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService);
+const consoleLogService = new ConsoleLogService(false);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
-const consoleLogService = new ConsoleLogService(false);
 const cryptoService = new CryptoService(storageService,
     platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService, platformUtilsService,
     consoleLogService);
