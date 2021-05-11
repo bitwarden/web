@@ -44,7 +44,7 @@
     "message": "密碼短語"
   },
   "notes": {
-    "message": "筆記"
+    "message": "備註"
   },
   "customFields": {
     "message": "自訂欄位"
@@ -56,7 +56,7 @@
     "message": "號碼"
   },
   "brand": {
-    "message": "品牌"
+    "message": "發卡組織"
   },
   "expiration": {
     "message": "過期"
@@ -173,7 +173,7 @@
     "message": "未指派"
   },
   "noneFolder": {
-    "message": "默認資料夾",
+    "message": "（未分類）",
     "description": "This is the folder for uncategorized items"
   },
   "addFolder": {
@@ -545,7 +545,7 @@
     "message": "重新輸入主密碼"
   },
   "masterPassHint": {
-    "message": "主密码提示（非必須）"
+    "message": "主密碼提示（選用）"
   },
   "masterPassHintLabel": {
     "message": "主密碼提示"
@@ -724,6 +724,15 @@
   },
   "u2fTitle": {
     "message": "FIDO U2F 安全鑰匙"
+  },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
   },
   "emailTitle": {
     "message": "電子郵件"
@@ -1260,6 +1269,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC 支援"
   },
@@ -1305,6 +1323,9 @@
   "removeU2fConfirmation": {
     "message": "您確定要移除這把安全鑰匙嗎？"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "讀取鑰匙"
   },
@@ -1337,6 +1358,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "讀取安全鑰匙時發生問題。請重試。"
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "您的 Bitwarden 兩步驟登入復原代碼"
@@ -1531,10 +1558,10 @@
     "message": "受影響的使用者"
   },
   "breachOccurred": {
-    "message": "已發生外洩"
+    "message": "外洩發生于"
   },
   "breachReported": {
-    "message": "已回報外洩"
+    "message": "外洩回報于"
   },
   "reportError": {
     "message": "嘗試載入報告時發生錯誤。請重試。"
@@ -1565,7 +1592,7 @@
     "message": "請確保你的帳戶有足夠的信用額度繳付此次購買，如果你的帳戶額度不足，則會以你預設的付款方式補足差額。你可以透過計費頁面向您的帳戶添加信用額度。"
   },
   "creditAppliedDesc": {
-    "message": "您帳戶的信用額度可用於消費。任何可用的信用額度將用于自動支付此帳戶的帳單。"
+    "message": "您帳戶的信用額度可用於消費。任何可用的信用額度將用于自動繳付此帳戶的帳單。"
   },
   "goPremium": {
     "message": "升級至進階版",
@@ -1784,17 +1811,17 @@
     "message": "變更付款方式"
   },
   "invoices": {
-    "message": "發票"
+    "message": "帳單"
   },
   "noInvoices": {
-    "message": "無發票"
+    "message": "無帳單。"
   },
   "paid": {
-    "message": "已付款",
+    "message": "已繳付",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "未付款",
+    "message": "待繳付",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
@@ -2609,6 +2636,12 @@
   "emailVerifiedFailed": {
     "message": "無法驗證電子郵件。請嘗試傳送一封新的驗證電子郵件。"
   },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
+  },
   "updateBrowser": {
     "message": "更新瀏覽器"
   },
@@ -2688,7 +2721,7 @@
     "message": "稅務資訊"
   },
   "taxInformationDesc": {
-    "message": "對於美國境內的客戶，需要使用郵遞區號來滿足銷售稅要求，對於其他國家，您可以選擇提供稅務識別號（VAT/GST）和/或地址以顯示在您的發票上。"
+    "message": "對於美國境內的客戶，需要使用郵遞區號來滿足銷售稅要求，對於其他國家，您可以選擇提供稅務識別號（VAT/GST）和/或地址以顯示在您的帳單上。"
   },
   "billingPlan": {
     "message": "方案",
@@ -2707,7 +2740,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "收據 #$NUMBER$",
+    "message": "帳單 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2717,10 +2750,10 @@
     }
   },
   "viewInvoice": {
-    "message": "檢視發票"
+    "message": "檢視帳單"
   },
   "downloadInvoice": {
-    "message": "下載發票"
+    "message": "下載帳單"
   },
   "verifyBankAccount": {
     "message": "驗證銀行帳戶"
@@ -3359,7 +3392,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "目前已存取次數"
+    "message": "目前存取次數"
   },
   "sendPasswordDesc": {
     "message": "可選。使用者需提供密碼才能存取此 Send。",
@@ -3389,8 +3422,11 @@
   "removePasswordConfirmation": {
     "message": "您確定要移除密碼嗎？"
   },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
+  },
   "disableThisSend": {
-    "message": "禁用此 Send 則沒有任何人能存取它。",
+    "message": "停用此 Send 以阻止任何人存取它。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
@@ -3608,6 +3644,28 @@
     "message": "由於某個企業原則，您只能刪除已有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "原則 $ID$ 已修改。",
     "placeholders": {
@@ -3662,6 +3720,9 @@
   "manageUsers": {
     "message": "管理使用者"
   },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
+  },
   "disableRequireSsoError": {
     "message": "您必須手動停用單一登入認證原則，然後才能停用此原則。"
   },
@@ -3686,7 +3747,7 @@
     "message": "您想要傳送的檔案。"
   },
   "copySendLinkOnSave": {
-    "message": "保存時複製連結以共享此 Send 到我的剪貼簿。"
+    "message": "储存時複製連結到剪貼簿以便分享此 Send。"
   },
   "sendLinkLabel": {
     "message": "Send 連結",
@@ -3748,6 +3809,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "指定的逾期日期無效。"
   },
@@ -3762,5 +3827,68 @@
   },
   "dateParsingError": {
     "message": "儲存刪除日期和逾期日期時發生錯誤。"
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "trashCleanupWarning": {
+    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
   }
 }
