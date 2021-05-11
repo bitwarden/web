@@ -25,6 +25,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
+import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
@@ -37,7 +38,6 @@ import { EntityEventsComponent } from './entity-events.component';
 import { UserAddEditComponent } from './user-add-edit.component';
 import { UserConfirmComponent } from './user-confirm.component';
 import { UserGroupsComponent } from './user-groups.component';
-import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
 
 @Component({
     selector: 'app-org-people',
