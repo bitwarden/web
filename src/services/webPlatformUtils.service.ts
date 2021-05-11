@@ -201,7 +201,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             iconHtml: iconHtmlStr,
             text: bodyIsHtml ? null : body,
             html: bodyIsHtml ? body : null,
-            title: title,
+            titleText: title,
             showCancelButton: (cancelText != null),
             cancelButtonText: cancelText,
             showConfirmButton: true,
@@ -215,7 +215,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         Promise<boolean> {
         const result = await Swal.fire({
             heightAuto: false,
-            title: title,
+            titleText: title,
             input: 'password',
             text: body,
             confirmButtonText: this.i18nService.t('ok'),
