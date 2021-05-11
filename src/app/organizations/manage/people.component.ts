@@ -39,6 +39,8 @@ import { UserAddEditComponent } from './user-add-edit.component';
 import { UserConfirmComponent } from './user-confirm.component';
 import { UserGroupsComponent } from './user-groups.component';
 
+const MaxCheckedCount = 500;
+
 @Component({
     selector: 'app-org-people',
     templateUrl: 'people.component.html',
@@ -126,6 +128,8 @@ export class PeopleComponent implements OnInit {
         } else {
             this.users = this.allUsers;
         }
+        // Reset checkbox selecton
+        this.selectAll(false);
         this.resetPaging();
     }
 
@@ -385,6 +389,18 @@ export class PeopleComponent implements OnInit {
 
     checkUser(user: OrganizationUserUserDetailsResponse, select?: boolean) {
         (user as any).checked = select == null ? !(user as any).checked : select;
+    }
+
+    selectAll(select: boolean) {
+        if (select) {
+            this.selectAll(false);
+        }
+        const selectCount = select && this.users.length > MaxCheckedCount
+            ? MaxCheckedCount
+            : this.users.length;
+        for (let i = 0; i < selectCount; i++) {
+            this.checkUser(this.users[i], select);
+        }
     }
 
     private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {

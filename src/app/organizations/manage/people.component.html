@@ -35,6 +35,15 @@
                     <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
                     {{'reinviteSelected' | i18n}}
                 </button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" appStopClick (click)="selectAll(true)">
+                    <i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i>
+                    {{'selectAll' | i18n}}
+                </button>
+                <button class="dropdown-item" appStopClick (click)="selectAll(false)">
+                    <i class="fa fa-fw fa-minus-square-o" aria-hidden="true"></i>
+                    {{'unselectAll' | i18n}}
+                </button>
             </div>
         </div>        
         <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="invite()">
