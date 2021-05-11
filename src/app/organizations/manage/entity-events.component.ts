@@ -94,9 +94,9 @@ export class EntityEventsComponent implements OnInit {
         } catch { }
 
         this.continuationToken = response.continuationToken;
-        const events = response.data.map(r => {
+        const events = await Promise.all(response.data.map(async r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
-            const eventInfo = this.eventService.getEventInfo(r);
+            const eventInfo = await this.eventService.getEventInfo(r);
             const user = this.showUser && userId != null && this.orgUsersUserIdMap.has(userId) ?
                 this.orgUsersUserIdMap.get(userId) : null;
             return {
@@ -110,7 +110,7 @@ export class EntityEventsComponent implements OnInit {
                 ip: r.ipAddress,
                 type: r.type,
             };
-        });
+        }));
 
         if (!clearExisting && this.events != null && this.events.length > 0) {
             this.events = this.events.concat(events);

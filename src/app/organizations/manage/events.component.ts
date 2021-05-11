@@ -14,6 +14,7 @@ import { EventService } from '../../services/event.service';
 
 import { EventResponse } from 'jslib/models/response/eventResponse';
 import { ListResponse } from 'jslib/models/response/listResponse';
+import { EventView } from 'jslib/models/view/eventView';
 
 @Component({
     selector: 'app-org-events',
@@ -92,13 +93,14 @@ export class EventsComponent implements OnInit {
         } catch { }
 
         this.continuationToken = response.continuationToken;
-        const events = response.data.map(r => {
+        const events = await Promise.all(response.data.map(async r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
-            const eventInfo = this.eventService.getEventInfo(r);
+            const eventInfo = await this.eventService.getEventInfo(r);
             const user = userId != null && this.orgUsersUserIdMap.has(userId) ?
                 this.orgUsersUserIdMap.get(userId) : null;
-            return {
+            return new EventView({
                 message: eventInfo.message,
+                humanReadableMessage: eventInfo.humanReadableMessage,
                 appIcon: eventInfo.appIcon,
                 appName: eventInfo.appName,
                 userId: userId,
@@ -107,8 +109,8 @@ export class EventsComponent implements OnInit {
                 date: r.date,
                 ip: r.ipAddress,
                 type: r.type,
-            };
-        });
+            });
+        }));
 
         if (!clearExisting && this.events != null && this.events.length > 0) {
             this.events = this.events.concat(events);
