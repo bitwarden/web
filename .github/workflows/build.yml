@@ -46,6 +46,7 @@ jobs:
           GITHUB_EVENT: ${{ github.event_name }}
 
       - name: Login to Azure
+        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
           creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
