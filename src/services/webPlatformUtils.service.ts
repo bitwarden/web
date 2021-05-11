@@ -245,7 +245,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return process.env.SELF_HOST.toString() === 'true';
     }
 
-    copyToClipboard(text: string, options?: any): void {
+    copyToClipboard(text: string, options?: any): void | boolean {
         let win = window;
         let doc = window.document;
         if (options && (options.window || options.win)) {
@@ -269,18 +269,17 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             }
             copyEl.appendChild(textarea);
             textarea.select();
+            let success = false;
             try {
                 // Security exception may be thrown by some browsers.
-                const copyEnabled = doc.execCommand('copy');
-                if (!copyEnabled) {
-                    throw new Error('Command unsupported or disabled');
-                }
+                success = doc.execCommand('copy');
             } catch (e) {
                 // tslint:disable-next-line
                 console.warn('Copy to clipboard failed.', e);
             } finally {
                 copyEl.removeChild(textarea);
             }
+            return success;
         }
     }
 
