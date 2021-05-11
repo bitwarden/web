@@ -7,7 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { ExportService } from 'jslib/abstractions/export.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { EventService } from '../../services/event.service';
@@ -24,19 +26,20 @@ export class EventsComponent implements OnInit {
     loading = true;
     loaded = false;
     organizationId: string;
-    events: any[];
+    events: EventView[];
     start: string;
     end: string;
     continuationToken: string;
     refreshPromise: Promise<any>;
+    exportPromise: Promise<any>;
     morePromise: Promise<any>;
 
     private orgUsersUserIdMap = new Map<string, any>();
     private orgUsersIdMap = new Map<string, any>();
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private eventService: EventService, private i18nService: I18nService,
-        private toasterService: ToasterService, private userService: UserService,
+    constructor(private apiService: ApiService, private route: ActivatedRoute, private eventService: EventService,
+        private i18nService: I18nService, private toasterService: ToasterService, private userService: UserService,
+        private exportService: ExportService, private platformUtilsService: PlatformUtilsService,
         private router: Router) { }
 
     async ngOnInit() {
@@ -65,8 +68,25 @@ export class EventsComponent implements OnInit {
         this.loaded = true;
     }
 
+    async exportEvents() {
+        if (this.appApiPromiseUnfulfilled()) {
+            return;
+        }
+
+        this.loading = true;
+        try {
+            this.exportPromise = this.exportService.getEventExport(this.events);
+            const data = await this.exportPromise;
+            const fileName = this.exportService.getFileName('org-events', 'csv');
+            this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
+        } catch { }
+
+        this.exportPromise = null;
+        this.loading = false;
+    }
+
     async loadEvents(clearExisting: boolean) {
-        if (this.refreshPromise != null || this.morePromise != null) {
+        if (this.appApiPromiseUnfulfilled()) {
             return;
         }
 
@@ -121,5 +141,12 @@ export class EventsComponent implements OnInit {
         this.loading = false;
         this.morePromise = null;
         this.refreshPromise = null;
+    }
+
+    private appApiPromiseUnfulfilled() {
+        if (this.refreshPromise != null || this.morePromise != null || this.exportPromise != null) {
+            return true;
+        }
+        return false;
     }
 }
