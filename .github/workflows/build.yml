@@ -139,12 +139,14 @@ jobs:
         run: docker push bitwarden/web:beta
         env: 
           DOCKER_CONTENT_TRUST: 1
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Push latest images
         if: github.event_name == 'release'
         run: docker push bitwarden/web:latest
         env: 
           DOCKER_CONTENT_TRUST: 1
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Push version images
         if: github.event_name == 'release'
