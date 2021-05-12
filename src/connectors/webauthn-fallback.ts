@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById('msg').innerText = translate('webAuthnFallbackMsg');
     document.getElementById('remember-label').innerText = translate('rememberMe');
-    document.getElementById('webauthn-button').innerText = translate('webAuthnAuthenticate');
+
+    const button = document.getElementById('webauthn-button');
+    button.innerText = translate('webAuthnAuthenticate');
+    button.onclick = start;
 
     document.getElementById('spinner').classList.add('d-none');
     const content = document.getElementById('content');
@@ -30,10 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 function translate(id: string) {
     return locales[id]?.message || '';
 }
-
-(window as any).init = () => {
-    start();
-};
 
 function start() {
     if (sentSuccess) {
