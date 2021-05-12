@@ -25,8 +25,8 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
+import { UserBulkDeleteRequest } from 'jslib/models/request/userBulkDeleteRequest';
 import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
-import { UserBulkRemoveRequest } from 'jslib/models/request/userBulkRemoveRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
@@ -271,7 +271,7 @@ export class PeopleComponent implements OnInit {
             return false;
         }
 
-        const request = new UserBulkRemoveRequest(users.map(user => user.id));
+        const request = new UserBulkDeleteRequest(users.map(user => user.id));
         this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
         try {
             await this.actionPromise;
