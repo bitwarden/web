@@ -2,8 +2,8 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib/enums/deviceType';
 
-import { LogService } from 'jslib/abstractions/log.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { LogService } from 'jslib/abstractions/log.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
