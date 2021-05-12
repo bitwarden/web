@@ -725,6 +725,15 @@
   "u2fTitle": {
     "message": "Klucz bezpieczeństwa FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
+  },
   "emailTitle": {
     "message": "Adres e-mail"
   },
@@ -800,10 +809,10 @@
     "message": "Plik zawiera dane sejfu w niezaszyfrowanym formacie. Nie powinieneś go przechowywać, ani przesyłać poprzez niezabezpieczone kanały (takie jak poczta e-mail). Skasuj go natychmiast po użyciu."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Dane eksportu zostaną zaszyfrowane za pomocą klucza szyfrowania konta. Jeśli kiedykolwiek zmienisz ten klucz, wyeksportuj dane ponownie, ponieważ nie będziesz w stanie odszyfrować tego pliku."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Klucze szyfrowania konta są unikalne dla każdego użytkownika Bitwarden, więc nie możesz zaimportować zaszyfrowanego pliku eksportu na inne konto."
   },
   "exportMasterPassword": {
     "message": "Wpisz hasło główne, aby wyeksportować dane z sejfu."
@@ -1004,16 +1013,16 @@
     "message": "Importuj dane"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Wystąpił błąd podczas importowania"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "Wystąpił problem z danymi, które chcesz zaimportować. Rozwiąż poniższe problemy w Twoim pliku i spróbuj ponownie."
   },
   "importSuccess": {
     "message": "Dane zostały zaimportowane do sejfu."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Importujesz dane do organizacji $ORGANIZATION$. Dane mogą zostać udostępnione członkom organizacji. Czy chcesz kontynuować?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1260,6 +1269,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Obsługa NFC"
   },
@@ -1305,6 +1323,9 @@
   "removeU2fConfirmation": {
     "message": "Czy na pewno chcesz usunąć ten klucz bezpieczeństwa?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "Odczytaj klucz"
   },
@@ -1337,6 +1358,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Wystąpił problem z odczytem klucza bezpieczeństwa. Spróbuj ponownie."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Kod odzyskiwania konta Bitwarden"
@@ -1382,7 +1409,7 @@
     "message": "Znaleźliśmy elementy bez włączonej opcji logowania dwustopniowego"
   },
   "inactive2faFoundDesc": {
-    "message": "Znaleźliśmy witryny w sejfie, które mogą nie korzystać z opcji logowania dwustopniowego (według twofactorauth.org). Włącz logowanie dwustopniowe, aby dodatkowo zabezpieczyć te konta.",
+    "message": "Znaleźliśmy witryny w sejfie, które mogą nie korzystać z opcji logowania dwustopniowego (według 2fa.directory). Włącz logowanie dwustopniowe, aby dodatkowo zabezpieczyć te konta.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1584,7 +1611,7 @@
     "message": "Dodatkowe opcje logowania dwustopniowego, takie jak klucze YubiKey, FIDO U2F oraz Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Dostęp awaryjny"
   },
   "premiumSignUpReports": {
     "message": "Raporty bezpieczeństwa haseł, stanu konta i raporty wycieków danych, aby Twoje dane były bezpieczne."
@@ -2609,6 +2636,12 @@
   "emailVerifiedFailed": {
     "message": "Nie możemy zweryfikować Twojego adresu e-mail. Spróbuj ponownie wysłać wiadomość weryfikacyjną."
   },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
+  },
   "updateBrowser": {
     "message": "Aktualizuj przeglądarkę"
   },
@@ -2829,7 +2862,7 @@
     "message": "Po zaktualizowaniu klucza szyfrowania, musisz ponownie zalogować się do wszystkich aplikacji Bitwarden, z których obecnie korzystasz (na przykład aplikacje mobilne lub rozszerzenia przeglądarki). Niepowodzenie logowania (podczas którego pobierany jest nowy klucz szyfrowania) może spowodować uszkodzenie danych. Postaramy się wylogować Ciebie automatycznie, jednak może to chwilę potrwać."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Wszystkie zaszyfrowane eksporty, które wcześniej zapisałeś, staną się nieprawidłowe."
+    "message": "Wszystkie zaszyfrowane pliki eksportu, które wcześniej zapisałeś, staną się nieprawidłowe."
   },
   "subscription": {
     "message": "Subskrypcja"
@@ -3334,7 +3367,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "Jakie typu jest to wysyłka?",
+    "message": "Jakiego typu jest to wysyłka?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
@@ -3362,7 +3395,7 @@
     "message": "Obecna liczba dostępów"
   },
   "sendPasswordDesc": {
-    "message": "Wpisz opcjonalnie hasło, aby uzyskać dostęp do wysyłki.",
+    "message": "Opcjonalne hasło dla użytkownika, aby uzyskać dostęp do wysyłki.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
@@ -3388,6 +3421,9 @@
   },
   "removePasswordConfirmation": {
     "message": "Czy na pewno chcesz usunąć hasło?"
+  },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
   },
   "disableThisSend": {
     "message": "Wyłącz tę wysyłkę, aby nikt nie miał do niej dostępu.",
@@ -3429,7 +3465,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Plik powiązany z wysyłką nie został znaleziony.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3440,10 +3476,10 @@
     "message": "Dostęp awaryjny"
   },
   "emergencyAccessDesc": {
-    "message": "Zarządzaj dostępem awaryjnym dla zaufanych kontaktów. Zaufane kontakty mogą poprosić Cię o przejęcie Twojego konta lub uzyskania dostępu do jego odczytu w awaryjnych przypadkach. Odwiedź naszą stronę pomocy, aby dowiedzieć się więcej jak działa funkcja dostępu awaryjnego."
+    "message": "Zarządzaj dostępem awaryjnym dla zaufanych kontaktów. Zaufane kontakty mogą poprosić Cię o przejęcie Twojego konta lub uzyskania dostępu do jego odczytu w awaryjnych przypadkach. Odwiedź naszą stronę pomocy, aby dowiedzieć się jak działa funkcja dostępu awaryjnego."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Jesteś właścicielem co najmniej jednej organizacji. Jeśli kontaktowi awaryjnemu przyznasz dostęp do swojego konta, będzie mógł użyć wszystkich Twoich uprawnień."
   },
   "trustedEmergencyContacts": {
     "message": "Zaufane kontakty awaryjne"
@@ -3458,7 +3494,7 @@
     "message": "Wyznaczone kontakty awaryjne"
   },
   "noGrantedAccess": {
-    "message": "Nie zostałeś ustawiony jako kontakt awaryjny dla kogokolwiek."
+    "message": "Nie zostałeś ustawiony jako kontakt awaryjny dla żadnego użytkownika."
   },
   "inviteEmergencyContact": {
     "message": "Zaproś kontakt awaryjny"
@@ -3467,7 +3503,7 @@
     "message": "Edytuj kontakt awaryjny"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Zaproś nowy kontakt awaryjny poprzez wprowadzenie jego adresu e-mail poniżej. Jeśli nie posiada on jeszcze konta Bitwarden, zostanie poproszony o jego utworzenie."
+    "message": "Zaproś nowy kontakt awaryjny poprzez wpisanie jego adresu e-mail poniżej. Jeśli nie posiada on jeszcze konta Bitwarden, zostanie poproszony o jego utworzenie."
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "Dostęp awaryjny został zainicjowany"
@@ -3479,7 +3515,7 @@
     "message": "Może zobaczyć wszystkie elementy w Twoim sejfie."
   },
   "takeover": {
-    "message": "Przejęte"
+    "message": "Przejęcie"
   },
   "takeoverDesc": {
     "message": "Może zresetować Twoje konto za pomocą nowego hasła głównego."
@@ -3506,7 +3542,7 @@
     "message": "Użytkownik został zaproszony."
   },
   "acceptEmergencyAccess": {
-    "message": "Zostałeś zaproszony przez poniższego użytkownika do zostania jego kontaktem awaryjnym. Aby zaakceptować zaproszenie, musisz się zalogować lub utworzyć nowe konto Bitwarden."
+    "message": "Zostałeś zaproszony przez powyższego użytkownika do zostania jego kontaktem awaryjnym. Aby zaakceptować zaproszenie, musisz zalogować się lub utworzyć nowe konto Bitwarden."
   },
   "emergencyInviteAcceptFailed": {
     "message": "Nie można zaakceptować zaproszenia. Poproś użytkownika o wysłanie nowego zaproszenia."
@@ -3521,7 +3557,7 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "Dostęp do tego użytkownika otrzymasz po potwierdzeniu swojej tożsamości. Dostaniesz wtedy wiadomość e-mail."
+    "message": "Dostęp do konta tego użytkownika otrzymasz po potwierdzeniu swojej tożsamości. Dostaniesz wtedy wiadomość e-mail."
   },
   "requestAccess": {
     "message": "Poproś o dostęp"
@@ -3588,24 +3624,46 @@
     "message": "Właściciele i administratorzy organizacji są zwolnieni z przestrzegania wymagań zasad."
   },
   "personalOwnershipSubmitError": {
-    "message": "Ze względu na zasadę przedsiębiorstwa nie możesz zapisywać elementów w osobistym sejfie. Zmień właściciela elementu na organizację i wybierz jedną z dostępnych kolekcji."
+    "message": "Ze względu na zasadę przedsiębiorstwa, nie możesz zapisywać elementów w osobistym sejfie. Zmień właściciela elementu na organizację i wybierz jedną z dostępnych kolekcji."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Wyłącz wysyłkę"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Nie zezwalaj użytkownikom na tworzenie i edytowanie wysyłek. Usunięcie obecnej wysyłki nadal jest dozwolone.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Użytkownicy organizacji, którzy mogą zarządzać zasadami organizacji są zwolnieni z przestrzegania wymagań zasad."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Wysyłka została wyłączona",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Ze względu na zasadę przedsiębiorstwa, tylko Ty możesz usunąć obecną wysyłkę.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3624,7 +3682,7 @@
     "message": "Podatek"
   },
   "custom": {
-    "message": "Niestandardowy"
+    "message": "Niestandardowa"
   },
   "customDesc": {
     "message": "Umożliwia zaawansowaną kontrolę uprawnień użytkownika."
@@ -3662,6 +3720,9 @@
   "manageUsers": {
     "message": "Zarządzaj użytkownikami"
   },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
+  },
   "disableRequireSsoError": {
     "message": "Musisz wyłączyć zasadę uwierzytelniania logowaniem jednokrotnym przed wyłączeniem tej zasady."
   },
@@ -3672,75 +3733,75 @@
     "message": "Wyłącz opcję własności osobistej dla użytkowników organizacji"
   },
   "textHiddenByDefault": {
-    "message": "Ukryj tekst podczas dostępu do wysyłki",
+    "message": "Ukryj domyślnie tekst wysyłki",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Nazwa wysyłki.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Tekst, który chcesz wysłać."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Plik, który chcesz wysłać."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Po zapisaniu wysyłki, skopiuj link do schowka."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Link wysyłki",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
-    "message": "Send",
+    "message": "Wyślij",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Wysyłaj wrażliwe i krótkotrwałe informacje w łatwy i bezpieczny sposób.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Dowiedz się więcej o funkcji",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Udostępniaj teksty i pliki."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Dowiedz się więcej",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "zobacz",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "jak to działa",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "lub",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "wypróbuj teraz",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "lub",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "zarejestruj się",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": ", aby ją wypróbować.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Użytkownik Bitwarden $USER_IDENTIFIER$ udostępnił Tobie",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3748,19 +3809,86 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Data wygaśnięcia nie jest prawidłowa."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Data usunięcia nie jest prawidłowa."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Data i czas wygaśnięcia są wymagane."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Data i czas usunięcia są wymagane."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "Wystąpił błąd podczas zapisywania dat usunięcia i wygaśnięcia."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "trashCleanupWarning": {
+    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
   }
 }
