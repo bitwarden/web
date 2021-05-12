@@ -709,10 +709,10 @@
     "message": "YubiKey OTP güvenlik anahtarı"
   },
   "yubiKeyDesc": {
-    "message": "Hesabınıza erişmek için bir YubiKey kullanın. YubiKey 4 serisi, 5 serisi ve NEO cihazlarıyla çalışır."
+    "message": "Hesabınıza erişmek için YubiKey kullanabilirsiniz. YubiKey 4 serisi, 5 serisi ve NEO cihazlarıyla çalışır."
   },
   "duoDesc": {
-    "message": "Duo Security ile doğrulama için Duo Mobile uygulaması, SMS, telefon görüşmesi veya U2F güvenlik anahtarını kullanın.",
+    "message": "Duo Security ile doğrulama için Duo Mobile uygulaması, SMS, telefon araması veya U2F güvenlik anahtarını kullanın.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
@@ -724,6 +724,15 @@
   },
   "u2fTitle": {
     "message": "FIDO U2F güvenlik anahtarı"
+  },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
   },
   "emailTitle": {
     "message": "E-posta"
@@ -744,13 +753,13 @@
     "message": "Bu kaydı paylaşmak istediğiniz kuruluşu seçin. Paylaştığınız kaydın sahipliği seçtiğiniz kuruluşa aktarılacak. Artık bu kaydın doğrudan sahibi olmayacaksınız."
   },
   "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+    "message": "Bu kayıtları paylaşmak istediğiniz kuruluşu seçin. Paylaştığınız kayıtların sahipliği seçtiğiniz kuruluşa aktarılacak. Artık bu kayıtların doğrudan sahibi olmayacaksınız."
   },
   "collectionsDesc": {
-    "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
+    "message": "Bu nesnenin şu anda paylaşıldığı koleksiyonları düzenler. Kurumdaki kullanıcılardan yalnızca bu koleksiyonlara erişimi olanlar bu nesneyi görebilirler."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Silmek için $COUNT$ öge seçtiniz. Bu ögelerin tamamını silmek istediğinize emin misiniz?",
+    "message": "Silinmek üzere $COUNT$ kayıt seçtiniz. Bu kayıtların hepsini silmek istediğinizden emin misiniz?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -759,7 +768,7 @@
     }
   },
   "moveSelectedItemsDesc": {
-    "message": "$COUNT$ seçili ögeyi taşımak istediğiniz klasörü seçin.",
+    "message": "Seçtiğiniz $COUNT$ kaydı taşımak istediğiniz klasörü seçin.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -768,7 +777,7 @@
     }
   },
   "shareSelectedItemsCountDesc": {
-    "message": "$COUNT$ öge seçtiniz. $SHAREABLE_COUNT$ öge paylaşılabilir, $NONSHAREABLE_COUNT$ paylaşılamaz.",
+    "message": "$COUNT$ kayıt seçtiniz. Bunlardan $SHAREABLE_COUNT$ tanesi paylaşılabilir, $NONSHAREABLE_COUNT$ tanesi paylaşılamaz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -800,10 +809,10 @@
     "message": "Dışa aktarılan dosyadaki verileriniz şifrelenmemiş olacak. Bu dosyayı güvensiz yöntemlerle (örn. e-posta) göndermemeli ve saklamamalısınız. İşiniz bittikten sonra dosyayı hemen silin."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Dışa aktardığınız bu dosyadaki verileriniz, hesabınızın şifreleme anahtarıyla şifrelenir. Hesabınızın şifreleme anahtarını değiştirirseniz bu dosyanın şifresi çözülemez hale gelir, dolayısıyla dosyayı yeniden dışa aktarmanız gerekir."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Hesap şifreleme anahtarları her Bitwarden kullanıcı hesabı için farklıdır. Dolayısıyla şifrelenmiş bir dışa aktarmayı başka bir hesapta içe aktaramazsınız."
   },
   "exportMasterPassword": {
     "message": "Kasadaki verilerinizi dışa aktarmak için ana parolanızı girin."
@@ -875,7 +884,7 @@
     "message": "Kod"
   },
   "changeEmailDesc": {
-    "message": "$EMAIL$ adresine doğrulama kodu gönderdik. Kod için E-postanızı kontrol edin ve E-posta değişikliğini tamamlamak için aşağıya girin.",
+    "message": "$EMAIL$ adresine bir doğrulama kodu gönderdik. E-posta adresi değişikliğinizi tamamlamak için lütfen gönderdiğimiz kodu aşağıya yazın.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -884,7 +893,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Devam etmek geçerli oturumunuzu sonlandıracaktır, bu da tekrar oturum açmanızı gerektirecektir. Diğer cihazlardaki aktif oturumlar bir saat kadar aktif kalmaya devam edebilir."
+    "message": "Devam ederseniz geçerli oturumunuz sonlanacak ve yeniden oturum açmanız gerekecek. Diğer cihazlardaki aktif oturumlar bir saate kadar aktif kalabilir."
   },
   "emailChanged": {
     "message": "E-posta değiştirildi"
@@ -893,7 +902,7 @@
     "message": "Lütfen yeniden giriş yapın."
   },
   "logBackInOthersToo": {
-    "message": "Lütfen tekrar giriş yapın. Diğer Bitwarden uygulamalarını kullanıyorsanız oturumu kapatın ve tekrar giriş yapın."
+    "message": "Lütfen yeniden oturum açın. Diğer Bitwarden uygulamalarını kullanıyorsanız onlarda da oturumunuzu kapatıp yeniden açın."
   },
   "changeMasterPassword": {
     "message": "Ana parolayı değiştir"
@@ -917,10 +926,10 @@
     "message": "KDF algoritması"
   },
   "kdfIterations": {
-    "message": "KDF Yinelemesi"
+    "message": "KDF iterasyonu"
   },
   "kdfIterationsDesc": {
-    "message": "Daha yüksek KDF yinelemeleri, ana şifrenizin saldırgan tarafından sürekli denenerek kırılmasından korunmaya yardımcı olabilir. $VALUE$ veya üzeri bir değer tavsiye ediyoruz.",
+    "message": "KDF iterasyonunun daha yüksek olması ana parolanızın kaba kuvvet yoluyla kırılmasını önleyebilir. $VALUE$ veya üzeri bir değer tavsiye ediyoruz.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -929,7 +938,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "KDF yinelemelerinizi çok yüksek ayarlamak, daha yavaş CPU'ya sahip cihazlarda Bitwarden'e giriş yaparken (ve kilidi açarken) düşük performansa neden olabilir. Değeri $INCREMENT$ artışlarla artırmanızı ve ardından tüm cihazlarınızı test etmenizi tavsiye ediyoruz.",
+    "message": "KDF iterasyonunu çok yüksek ayarlamak, işlemcisi yavaş olan cihazlardan Bitwarden'a giriş yaparken (ve kilidi açarken) düşük performansa neden olabilir. Değeri $INCREMENT$ ve katları halinde artırmanızı ve ardından tüm cihazlarınızda test etmenizi öneririz.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -938,19 +947,19 @@
     }
   },
   "changeKdf": {
-    "message": "KDF'yi değiştir"
+    "message": "KDF'i değiştir"
   },
   "encKeySettingsChanged": {
-    "message": "Şifreleme Anahtarı Ayarları Değişti"
+    "message": "Şifreleme anahtarı ayarları değişti"
   },
   "dangerZone": {
-    "message": "Tehlikeli Alan"
+    "message": "Tehlikeli Bölge"
   },
   "dangerZoneDesc": {
-    "message": "Dikkatli olun, bu eylemler geri alınamaz!"
+    "message": "Dikkatli olun, bu işlemleri geri alamazsınız!"
   },
   "deauthorizeSessions": {
-    "message": "Oturumları Kapat"
+    "message": "Oturumları kapat"
   },
   "deauthorizeSessionsDesc": {
     "message": "Başka bir cihazda oturum açtığınızdan endişeli misiniz? Daha önce kullandığınız tüm cihazlardan oturumu kapatmak için aşağıdan ilerleyin. Bu özellik halka açık bilgisayar kullanırsanız ya da sahibi olmadığınız cihazda giriş yaparsanız önerilir. Önceden iki aşamalı giriş ile oturum açılan hesaplar da kapatılacaktır."
@@ -971,7 +980,7 @@
     "message": "Kasanızdaki tüm ögeleri ve klasörleri silmek için aşağıdan ilerleyin. Kuruluş ile paylaştığınız ögeler silinmez."
   },
   "purgeOrgVaultDesc": {
-    "message": "Kuruluş kasasındaki tüm ögeleri silmek için aşağıdan ilerleyin."
+    "message": "Kuruluş kasasındaki tüm kayıtları silmek için aşağıdaki adımları izleyin."
   },
   "purgeVaultWarning": {
     "message": "Kasanızı silmek kalıcıdır. Bu işlem geri alınamaz."
@@ -980,16 +989,16 @@
     "message": "Kasanız silindi."
   },
   "deleteAccount": {
-    "message": "Hesabı Sil"
+    "message": "Hesabı sil"
   },
   "deleteAccountDesc": {
-    "message": "Hesabınızı ve ilişkili tüm verileri silmek için aşağıya devam edin."
+    "message": "Hesabınızı ve tüm ilişkili verileri silmek için aşağıdan devam edin."
   },
   "deleteAccountWarning": {
     "message": "Hesabınızı silmek kalıcıdır. Geri alınamaz."
   },
   "accountDeleted": {
-    "message": "Hesap Silindi"
+    "message": "Hesap silindi"
   },
   "accountDeletedDesc": {
     "message": "Hesabınız kapatıldı ve ilişkili tüm veriler silindi."
@@ -1004,16 +1013,16 @@
     "message": "Verileri içe aktar"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "İçe aktarma hatası"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "İçe aktarmaya çalıştığınız verilerle ilgili bir problem var. Lütfen kaynak dosyanızdaki aşağıda belirtilen hataları çözüp tekrar deneyin."
   },
   "importSuccess": {
     "message": "Veriler kasanıza başarıyla aktarıldı."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "$ORGANIZATION$ kuruluşuna veri aktarıyorsunuz. Verileriniz bu kuruluşun üyeleriyle paylaşılabilir. Devam etmek istiyor musunuz?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1028,13 +1037,13 @@
     "message": "Hiçbir şey içe aktarılmadı."
   },
   "selectFormat": {
-    "message": "İçe aktarma dosyasının formatını seçin"
+    "message": "İçe aktarma dosyasının biçimini seçin"
   },
   "selectImportFile": {
     "message": "İçe aktarma dosyasını seçin"
   },
   "orCopyPasteFileContents": {
-    "message": "ya da içe aktarma dosyasının içeriğini kopyala/yapıştırın"
+    "message": "veya içe aktarma dosyasının içeriğini kopyalayıp yapıştırın"
   },
   "instructionsFor": {
     "message": "$NAME$ Talimatları",
@@ -1059,27 +1068,27 @@
     "message": "Dil"
   },
   "languageDesc": {
-    "message": "Web kasası tarafından kullanılan dili değiştirin."
+    "message": "Web kasasında kullanılan dili değiştirin."
   },
   "disableIcons": {
     "message": "Site simgelerini devre dışı bırak"
   },
   "disableIconsDesc": {
-    "message": "Web Sitesi Simgeleri, kasanızdaki her giriş bilgisinin yanında o siteyi tanımanıza yardımcı olacak bir simge gösterir."
+    "message": "Web sitesi simgeleri, kasanızdaki her kaydın yanında o siteyi tanımanıza yardımcı olan bir resim sunar."
   },
   "enableGravatars": {
     "message": "Gravatar'ı etkinleştir",
     "description": "'Gravatar' is the name of a service. See www.gravatar.com"
   },
   "enableGravatarsDesc": {
-    "message": "gravatar.com adresinden yüklenen avatarları kullanın."
+    "message": "gravatar.com adresinden yüklenen avatarları kullan."
   },
   "enableFullWidth": {
-    "message": "Tam Genişlik Düzenini Etkinleştir",
+    "message": "Tam genişlik görünümünü etkinleştir",
     "description": "Allows scaling the web vault UI's width"
   },
   "enableFullWidthDesc": {
-    "message": "Web kasasının tarayıcı penceresini tam genişliğinde kullanmasına izin verin."
+    "message": "Web kasasının tarayıcı penceresi genişliğinin tamamını kullanmasına izin ver."
   },
   "default": {
     "message": "Varsayılan"
@@ -1091,10 +1100,10 @@
     "message": "Birden fazla farklı web sitesi alan adında aynı giriş bilgisine sahipseniz, web sitesini \"eşdeğer\" olarak işaretleyebilirsiniz. \"Global\" alan adları, sizin için Bitwarden tarafından oluşturulmuş olanlardır."
   },
   "globalEqDomains": {
-    "message": "Global Eşdeğer Alan Adları"
+    "message": "Global eşdeğer alan adları"
   },
   "customEqDomains": {
-    "message": "Özel Eşdeğer Alan Adları"
+    "message": "Özel eşdeğer alan adları"
   },
   "exclude": {
     "message": "Hariç tut"
@@ -1127,10 +1136,10 @@
     "message": "İki aşamalı giriş"
   },
   "twoStepLoginDesc": {
-    "message": "Oturum açarken ek bir adım talep ederek hesabınızı güvenceye alın."
+    "message": "Oturum açarken ek bir adım talep ederek hesabınızı güvenceye alabilirsiniz."
   },
   "twoStepLoginOrganizationDesc": {
-    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+    "message": "Kurum düzeyinde sağlayıcıları düzenleyerek kurumuzun kullanıcılarına iki aşamalı girişi zorunlu kılın."
   },
   "twoStepLoginRecoveryWarning": {
     "message": "İki aşamalı girişi etkinleştirmek, Bitwarden hesabınızı kalıcı olarak kilitleyebilir. Kurtarma kodunuz, iki aşamalı giriş sağlayıcınızı kullanamamanız durumunda hesabınıza erişmenize olanak sağlar (ör. cihazınızı kaybedersiniz). Hesabınıza erişiminizi kaybederseniz Bitwarden desteği size yardımcı olamaz. Kurtarma kodunu yazmanızı veya yazdırmanızı ve güvenli bir yerde saklamanızı öneririz."
@@ -1165,7 +1174,7 @@
     "message": "Premium erişiminiz var"
   },
   "alreadyPremiumFromOrg": {
-    "message": "Üyesi olduğunuz bir organizasyon nedeniyle premium özelliklere zaten erişiminiz var."
+    "message": "Üyesi olduğunuz kuruluş sayesinde premium özelliklere zaten erişiminiz var."
   },
   "manage": {
     "message": "Yönet"
@@ -1174,19 +1183,19 @@
     "message": "Devre dışı bırak"
   },
   "twoStepLoginProviderEnabled": {
-    "message": "Bu iki adımlı giriş sağlayıcısı hesabınızda etkin durumda."
+    "message": "Bu iki aşamalı giriş sağlayıcısı hesabınızda etkin durumda."
   },
   "twoStepLoginAuthDesc": {
     "message": "İki aşamalı giriş ayarlarını değiştirmek için ana parolanızı girin."
   },
   "twoStepAuthenticatorDesc": {
-    "message": "Kimlik doğrulayıcı bir uygulamayla iki adımlı oturum açmayı ayarlamak için şu adımları izleyin:"
+    "message": "Kimlik doğrulama uygulamasıyla iki aşamalı girişi ayarlamak için aşağıdaki adımları izleyin:"
   },
   "twoStepAuthenticatorDownloadApp": {
-    "message": "İki adımlı bir kimlik doğrulama uygulaması indirin"
+    "message": "İki aşamalı kimlik doğrulama uygulamalarından birini indirin"
   },
   "twoStepAuthenticatorNeedApp": {
-    "message": "İki adımlı bir kimlik doğrulama uygulamasına mı ihtiyacınız var? Aşağıdakilerden birini indirin"
+    "message": "Kimlik doğrulama uygulamasına mı ihtiyacınız var? Aşağıdakilerden birini indirebilirsiniz"
   },
   "iosDevices": {
     "message": "iOS cihazları"
@@ -1198,7 +1207,7 @@
     "message": "Windows cihazları"
   },
   "twoStepAuthenticatorAppsRecommended": {
-    "message": "Bu uygulamalar önerilir, ancak diğer kimlik doğrulayıcı uygulamalar da çalışacaktır."
+    "message": "Bunlar bizim önerdiğimiz uygulamalar ama farklı kimlik doğrulama uygulamaları da kullanabilirsiniz."
   },
   "twoStepAuthenticatorScanCode": {
     "message": "Bu QR kodunu kimlik doğrulama uygulamanızla tarayın"
@@ -1207,16 +1216,16 @@
     "message": "Anahtar"
   },
   "twoStepAuthenticatorEnterCode": {
-    "message": "Uygulamadan gelen 6 basamaklı doğrulama kodunu girin"
+    "message": "Uygulamanın verdiği 6 basamaklı doğrulama kodunu girin"
   },
   "twoStepAuthenticatorReaddDesc": {
     "message": "Başka bir cihaza eklemeniz gerekirse, aşağıda kimlik doğrulama uygulamanızın gerektirdiği QR kodu (veya anahtarı) verilmiştir."
   },
   "twoStepDisableDesc": {
-    "message": "Bu iki adımlı giriş sağlayıcısını devre dışı bırakmak istediğinize emin misiniz?"
+    "message": "Bu iki aşamalı giriş sağlayıcısını devre dışı bırakmak istediğinize emin misiniz?"
   },
   "twoStepDisabled": {
-    "message": "İki adım oturum açma sağlayıcısı devre dışı."
+    "message": "İki aşamalı giriş sağlayıcısı devre dışı."
   },
   "twoFactorYubikeyAdd": {
     "message": "Hesabıma yeni bir YubiKey ekle"
@@ -1260,6 +1269,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC desteği"
   },
@@ -1285,16 +1303,16 @@
     "message": "Gizli anahtar"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API Hostname"
+    "message": "API sunucusu"
   },
   "twoFactorEmailDesc": {
-    "message": "E-posta ile iki adımlı oturum açmayı ayarlamak için şu adımları izleyin:"
+    "message": "E-posta ile iki aşamalı girişi kurmak için aşağıdaki adımları izleyin:"
   },
   "twoFactorEmailEnterEmail": {
     "message": "Doğrulama kodlarını almak istediğiniz e-posta adresini girin"
   },
   "twoFactorEmailEnterCode": {
-    "message": "E-posta adresine gelen 6 basamaklı doğrulama kodunu girin"
+    "message": "E-postadaki 6 basamaklı doğrulama kodunu girin"
   },
   "sendEmail": {
     "message": "E-posta gönder"
@@ -1305,8 +1323,11 @@
   "removeU2fConfirmation": {
     "message": "Bu güvenlik anahtarını kaldırmak istediğinizden emin misiniz?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
-    "message": "Anahtarı Oku"
+    "message": "Anahtarı oku"
   },
   "keyCompromised": {
     "message": "Anahtar ele geçirilmiş."
@@ -1315,7 +1336,7 @@
     "message": "Güvenlik anahtarını tanımlamak için kolay bir isim verin."
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "Güvenlik anahtarını bilgisayarınızın USB portuna takın ve \"Anahtarı Oku\" düğmesine tıklayın."
+    "message": "Güvenlik anahtarını bilgisayarınızın USB portuna takıp \"Anahtarı oku\" düğmesine tıklayın."
   },
   "twoFactorU2fTouchButton": {
     "message": "Güvenlik anahtarının düğmesi varsa düğmeye dokunun."
@@ -1333,10 +1354,16 @@
     "message": "Güvenlik anahtarınızdaki düğmeye dokunmanız bekleniyor"
   },
   "twoFactorU2fClickSave": {
-    "message": "İki adımlı giriş için bu güvenlik anahtarını etkinleştirmek için aşağıdaki \"Kaydet\" butonuna tıklayın."
+    "message": "Bu güvenlik anahtarıyla iki aşamalı girişi etkinleştirmek için aşağıdaki \"Kaydet\" düğmesine tıklayın."
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Güvenlik anahtarını okurken bir sorun oluştu. Tekrar deneyin."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwarden iki aşamalı giriş kurtarma kodunuz"
@@ -1352,13 +1379,13 @@
     "message": "Raporlar"
   },
   "unsecuredWebsitesReport": {
-    "message": "Güvenli Olmayan Web Siteler Raporu"
+    "message": "Güvensiz Web Siteler Raporu"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "http:// şemasına sahip güvenli olmayan web sitelerini kullanmak tehlikeli olabilir. Web sitesi izin veriyorsa, bağlantınızın şifrelenmesi için her zaman https:// şemasını kullanarak erişmelisiniz."
   },
   "unsecuredWebsitesFound": {
-    "message": "Güvenli Olmayan Web Siteler Bulundu"
+    "message": "Güvensiz web siteleri bulundu"
   },
   "unsecuredWebsitesFoundDesc": {
     "message": "Kasanızda güvenli olmayan URI'ye sahip $COUNT$ öge bulduk. Web sitesi izin veriyorsa, URI şemasını https:// olarak değiştirmelisiniz.",
@@ -1436,7 +1463,7 @@
     "message": "Zayıf parolalar bilgisayar korsanları ve onları kırmak için kullanılan otomatik araçlar tarafından kolayca tahmin edilebilir. Bitwarden şifre üreticisi, güçlü şifreler oluşturmanıza yardımcı olabilir."
   },
   "weakPasswordsFound": {
-    "message": "Zayıf Parolalar Bulundu"
+    "message": "Zayıf parolalar pulundu"
   },
   "weakPasswordsFoundDesc": {
     "message": "Kasanızda güçlü olmayan parolalara sahip $COUNT$ öge bulduk. Daha güçlü şifreler kullanmaları için bunları güncellemelisiniz.",
@@ -1448,7 +1475,7 @@
     }
   },
   "noWeakPasswords": {
-    "message": "Kasanızdaki hiçbir ögenin zayıf şifresi yoktur."
+    "message": "Kasanızdaki hiçbir kaydın parolası zayıf değil."
   },
   "reusedPasswordsReport": {
     "message": "Yeniden Kullanılmış Parolalar Raporu"
@@ -1472,7 +1499,7 @@
     "message": "Kasanızdaki hiçbir hesap, yeniden kullanılmakta olan parolalara sahip değildir."
   },
   "reusedXTimes": {
-    "message": "$COUNT$ defa yeniden kullanıldı",
+    "message": "$COUNT$ kere yeniden kullanılmış",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1490,7 +1517,7 @@
     "message": "Kullandığınız kullanıcı adlarını veya e-posta adreslerini kontrol edin."
   },
   "checkBreaches": {
-    "message": "İhlalleri Kontrol Et"
+    "message": "İhlalleri denetle"
   },
   "breachUsernameNotFound": {
     "message": "$USERNAME$ bilinen veri ihlallerinde bulunamadı.",
@@ -1502,7 +1529,7 @@
     }
   },
   "goodNews": {
-    "message": "İyi Haber",
+    "message": "Haberler iyi",
     "description": "ex. Good News, No Breached Accounts Found!"
   },
   "breachUsernameFound": {
@@ -1568,7 +1595,7 @@
     "message": "Hesabınızın kredisi, satın almalarda kullanılabilir. Kullanılabilir herhangi bir kredi, bu hesap için oluşturulan faturalara otomatik olarak uygulanacaktır."
   },
   "goPremium": {
-    "message": "Premium'a Geç",
+    "message": "Premium'a geçin",
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
@@ -1578,13 +1605,13 @@
     "message": "Hesabınızı premium üyeliğe yükseltin ve bazı harika ek özelliklerin kilidini açın."
   },
   "premiumSignUpStorage": {
-    "message": "Dosyalarınız için 1GB şifreli depolama."
+    "message": "Dosya ekleri için 1 GB şifrelenmiş depolama."
   },
   "premiumSignUpTwoStep": {
-    "message": "YubiKey, FIDO U2F ve Duo gibi ilave iki adımlı oturum açma seçenekleri."
+    "message": "YubiKey, FIDO U2F ve Duo gibi iki aşamalı giriş seçenekleri."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Acil durum erişimi"
   },
   "premiumSignUpReports": {
     "message": "Kasanızı güvende tutmak için parola hijyeni, hesap sağlığı ve veri ihlali raporları."
@@ -1690,7 +1717,7 @@
     "message": "Ödeme Bilgileri"
   },
   "billingInformation": {
-    "message": "Faturalandırma Bilgisi"
+    "message": "Fatura Bilgileri"
   },
   "creditCard": {
     "message": "Kredi kartı"
@@ -1723,7 +1750,7 @@
     "message": "İptal etmek istediğinden emin misin? Bu faturalandırma döneminin sonunda bu aboneliğin tüm özelliklerine erişiminizi kaybedeceksiniz."
   },
   "canceledSubscription": {
-    "message": "Abonelik İptal Edildi."
+    "message": "Abonelik iptal edildi."
   },
   "neverExpires": {
     "message": "Asla Sona Ermez"
@@ -1753,10 +1780,10 @@
     "message": "Depolama"
   },
   "addStorage": {
-    "message": "Depolama Ekle"
+    "message": "Depolama ekle"
   },
   "removeStorage": {
-    "message": "Depolamayı Kaldır"
+    "message": "Depolama azalt"
   },
   "subscriptionStorage": {
     "message": "\nAboneliğinizin toplam $MAX_STORAGE$ GB şifreli dosya depolama alanı var. Şu anda $USED_STORAGE $ kullanıyorsunuz.",
@@ -1986,7 +2013,7 @@
     }
   },
   "limitedCollections": {
-    "message": "$COUNT$ koleksiyonla sınırlıdır",
+    "message": "$COUNT$ koleksiyonla sınırlı",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2010,7 +2037,7 @@
     "message": "Sınırsız koleksiyon oluştur"
   },
   "gbEncryptedFileStorage": {
-    "message": "$SIZE$ şifreli dosya depolama",
+    "message": "$SIZE$ şifrelenmiş dosya depolama",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -2109,16 +2136,16 @@
     "message": "Grup ekle"
   },
   "editGroup": {
-    "message": "Grubu Düzenle"
+    "message": "Grubu düzenle"
   },
   "deleteGroupConfirmation": {
     "message": "Bu grubu silmek isteğinizden emin misiniz?"
   },
   "removeUserConfirmation": {
-    "message": "Bu kullanıcıyı kaldırmak için emin misiniz?"
+    "message": "Bu kullanıcıyı silmek istediğinizden emin misiniz?"
   },
   "externalId": {
-    "message": "Harici Kimlik"
+    "message": "Harici kimlik"
   },
   "externalIdDesc": {
     "message": "Harici kimlik, referans olarak veya bu kaynağı kullanıcı dizini gibi harici bir sisteme bağlamak için kullanılabilir."
@@ -2136,22 +2163,22 @@
     "message": "Salt Okunur"
   },
   "newCollection": {
-    "message": "Yeni Koleksiyon"
+    "message": "Yeni koleksiyon"
   },
   "addCollection": {
-    "message": "Koleksiyon Ekle"
+    "message": "Koleksiyon ekle"
   },
   "editCollection": {
-    "message": "Koleksiyonu Düzenle"
+    "message": "Koleksiyonu düzenle"
   },
   "deleteCollectionConfirmation": {
     "message": "Bu koleksiyonu silmek istediğinizden emin misiniz?"
   },
   "editUser": {
-    "message": "Kullanıcı Düzenle"
+    "message": "Kullanıcıyı düzenle"
   },
   "inviteUser": {
-    "message": "Kullanıcı Davet Et"
+    "message": "Kullanıcı davet et"
   },
   "inviteUserDesc": {
     "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
@@ -2178,10 +2205,10 @@
     "message": "Ara"
   },
   "invited": {
-    "message": "Davetli"
+    "message": "Davet edildi"
   },
   "accepted": {
-    "message": "Kadul Edildi"
+    "message": "Kabul etti"
   },
   "confirmed": {
     "message": "Onaylandı"
@@ -2526,7 +2553,7 @@
     }
   },
   "device": {
-    "message": "Aygıt"
+    "message": "Cihaz"
   },
   "view": {
     "message": "Görüntüle"
@@ -2608,6 +2635,12 @@
   },
   "emailVerifiedFailed": {
     "message": "E-posta hesabı doğrulanamadı. Yeniden doğrulama e-postası göndermeyi dene."
+  },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
   },
   "updateBrowser": {
     "message": "Tarayıcıyı güncelle"
@@ -3306,67 +3339,67 @@
     "message": "Metin"
   },
   "createSend": {
-    "message": "Yeni Gönderi Oluştur",
+    "message": "Yeni Send oluştur",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Göndermeyi Düzenle",
+    "message": "Send'i düzenle",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Gönderi Oluşturuldu",
+    "message": "Send oluşturuldu",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Gönderi Düzenlendi",
+    "message": "Send düzenlendi",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Gönderi Silindi",
+    "message": "Send silindi",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Gönderiyi Sil",
+    "message": "Send'i sil",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Bu Gönderiyi silmek istediğinizden emin misiniz?",
+    "message": "Bu Send'i silmek istediğinizden emin misiniz?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "Bu ne tür bir Gönderme?",
+    "message": "Bu ne tür bir Send?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Silme Tarihi"
+    "message": "Silinme tarihi"
   },
   "deletionDateDesc": {
-    "message": "Bu Send belirtilen tarih ve zamanda sonsuza dek silinecek.",
+    "message": "Bu Send belirtilen tarih ve saatte kalıcı olacak silinecek.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "Son Kullanma Tarihi"
+    "message": "Son kullanma tarihi"
   },
   "expirationDateDesc": {
-    "message": "Eğer ayarlanırsa, bu Send'in belirtilen tarih ve zamanda süresi dolacak.",
+    "message": "Bunu ayarlarsanız belirtilen tarih ve saatten sonra bu Send'e erişilemeyecektir.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
-    "message": "Maksimum Gönderi Sayısı"
+    "message": "Maksimum erişim sayısı"
   },
   "maxAccessCountDesc": {
-    "message": "Eğer ayarlanırsa, kullanıcılar maksimum erişim sayısına ulaşıldığında bu Send'e erişemeyecekler.",
+    "message": "Bunu ayarlarsanız maksimum erişim sayısına ulaşıldıktan sonra bu Send'e erişilemeyecektir.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "Mevcut Erişim Sayısı"
+    "message": "Mevcut erişim sayısı"
   },
   "sendPasswordDesc": {
-    "message": "İsteğe bağlı olarak kullanıcıların bu Send'e erişmek için bir parola girmelerini zorunlu kıl.",
+    "message": "Kullanıcıların bu Send'e erişmek için parola girmelerini isteyebilirsiniz.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Send hakkındaki özel notlar.",
+    "message": "Bu Send ile ilgili özel notlar.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
@@ -3388,6 +3421,9 @@
   },
   "removePasswordConfirmation": {
     "message": "Parolayı kaldırmak istediğinizden emin misiniz?"
+  },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
   },
   "disableThisSend": {
     "message": "Kimsenin erişememesi için bu Send'i devre dışı bırak.",
@@ -3429,7 +3465,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Bu Send ile ilişkili dosya bulunamadı.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3479,7 @@
     "message": "Güvenilen kişiler için acil erişim izni ver ve yönet. Güvenilen kişiler acil bir durumda hesabınızı görmek veya devralmak için talepte bulunabilirler. Sıfır bilgi ispatı ile paylaşımının nasıl çalıştığı ile ilgili detaylar için yardım sayfamızı ziyaret edin."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Bir ya da birden fazla organizasyonun sahibisiniz. Acil durum kişisine hak devralma yetkisi verirseniz, devralma işleminden sonra sahip olduğunuz tüm hakları kullanabilir."
   },
   "trustedEmergencyContacts": {
     "message": "Güvenilen acil durum kişileri"
@@ -3591,21 +3627,43 @@
     "message": "Bir Kurumsal Politika nedeniyle, kişisel kasanıza öğeleri kaydetmeniz kısıtlanmıştır. Sahiplik seçeneğini bir kuruluş olarak değiştirin ve mevcut Koleksiyonlar arasından seçim yapın."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Send'i devre dışı bırak"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Kullanıcıların bir Bitwarden Send oluşturmasını veya düzenlemesine izin verme. Varolan bir Send'i silmeye gene de izin verilir.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Kurum ilkelerini yönetebilen kullanıcılar bu ilkenin uygulanmasından muaf tutulurlar."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send devre dışı bırakıldı",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Bir kuruluş ilkesi nedeniyle yalnızca mevcut Send'leri silebilirsiniz.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3662,11 +3720,14 @@
   "manageUsers": {
     "message": "Kullanıcıları Yönetme"
   },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
+  },
   "disableRequireSsoError": {
     "message": "Bu ilke devre dışı bırakılmadan önce Tek Giriş Kimlik Doğrulama ilkesini elle devre dışı bırakmanız gerekir."
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "Bir kurumsal politika sahiplik seçeneklerinizi etkiliyor."
+    "message": "Bir kuruluş ilkesi sahiplik seçeneklerinizi etkiliyor."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Kurum kullanıcıları için kişisel sahipliği kapat"
@@ -3676,20 +3737,20 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Bu Send'i açıklayan anlaşılır bir ad.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Göndermek istediğiniz metin."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Göndermek istediğiniz dosya."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Kaydettikten sonra bu Send'i paylaşma linkini panoya kopyala."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Send bağlantısı",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,50 +3758,50 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Bitwarden Send geçici, hassas bilginin diğerlerine kolay ve güvenli iletimini sağlar.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Hakkında daha fazla öğren",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Herhangi biriyle doğrudan dosya veya yazı paylaşın."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Daha fazla bilgi edinin",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "bkz",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "Nasıl çalışır",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "ya da",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "Şimdi deneyin",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "ya da",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "Kaydol",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "hemen denemek için.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Bitwarden kullanıcısı $USER_IDENTIFIER$ aşağıdakileri sizinle paylaştı",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3748,19 +3809,86 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Belirtilen son kullanma tarihi geçersiz."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Belirtilen silinme tarihi geçersiz."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Son kullanma tarihi ve saati gereklidir."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Silinme tarihi ve saati gereklidir."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "Silinme ve son kullanma tarihleriniz kaydedilirken bir hata oluştu."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "trashCleanupWarning": {
+    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
   }
 }
