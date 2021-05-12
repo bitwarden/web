@@ -1,8 +1,9 @@
-import Swal, { SweetAlertIcon } from 'sweetalert2/dist/sweetalert2.js';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib/enums/deviceType';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { LogService } from 'jslib/abstractions/log.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
@@ -11,7 +12,8 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     private browserCache: DeviceType = null;
 
-    constructor(private i18nService: I18nService, private messagingService: MessagingService) { }
+    constructor(private i18nService: I18nService, private messagingService: MessagingService,
+        private logService: LogService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -211,6 +213,32 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return confirmed.value;
     }
 
+    async showPasswordDialog(title: string, body: string, passwordValidation: (value: string) => Promise<boolean>):
+        Promise<boolean> {
+        const result = await Swal.fire({
+            heightAuto: false,
+            title: title,
+            input: 'password',
+            text: body,
+            confirmButtonText: this.i18nService.t('ok'),
+            showCancelButton: true,
+            cancelButtonText: this.i18nService.t('cancel'),
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off',
+            },
+            inputValidator: async (value: string): Promise<any> => {
+                if (await passwordValidation(value)) {
+                    return false;
+                }
+
+                return this.i18nService.t('invalidMasterPassword');
+            },
+        });
+
+        return result.isConfirmed;
+    }
+
     isDev(): boolean {
         return process.env.ENV === 'development';
     }
@@ -219,7 +247,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return process.env.SELF_HOST.toString() === 'true';
     }
 
-    copyToClipboard(text: string, options?: any): void {
+    copyToClipboard(text: string, options?: any): void | boolean {
         let win = window;
         let doc = window.document;
         if (options && (options.window || options.win)) {
@@ -243,11 +271,12 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             }
             copyEl.appendChild(textarea);
             textarea.select();
+            let success = false;
             try {
                 // Security exception may be thrown by some browsers.
-                const copyEnabled = doc.execCommand('copy');
-                if (!copyEnabled) {
-                    throw new Error('Command unsupported or disabled');
+                success = doc.execCommand('copy');
+                if (!success) {
+                    this.logService.debug('Copy command unsupported or disabled.');
                 }
             } catch (e) {
                 // tslint:disable-next-line
@@ -255,6 +284,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             } finally {
                 copyEl.removeChild(textarea);
             }
+            return success;
         }
     }
 
