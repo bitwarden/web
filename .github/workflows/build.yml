@@ -111,7 +111,7 @@ jobs:
 
       - name: Tag version
         if: github.event_name == 'release'
-        run: docker tag bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
+        run: docker tag bitwarden/web bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
         shell: pwsh
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
