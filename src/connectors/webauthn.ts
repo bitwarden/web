@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const text = getQsParam('btnText');
     if (text) {
-        document.getElementById('webauthn-button').innerText = decodeURI(text);
+        const button = document.getElementById('webauthn-button');
+        button.innerText = decodeURI(text);
+        button.onclick = executeWebAuthn;
     }
 });
 
@@ -75,8 +77,6 @@ function executeWebAuthn() {
         .then(success)
         .catch(err => error('WebAuth Error: ' + err));
 }
-
-(window as any).executeWebAuthn = executeWebAuthn;
 
 function onMessage() {
     window.addEventListener('message', event => {
