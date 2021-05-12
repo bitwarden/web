@@ -26,6 +26,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
 import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
+import { UserBulkRemoveRequest } from 'jslib/models/request/userBulkRemoveRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
@@ -248,6 +249,37 @@ export class PeopleComponent implements OnInit {
         this.actionPromise = this.apiService.postOrganizationUserReinvite(this.organizationId, user.id);
         await this.actionPromise;
         this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+        this.actionPromise = null;
+    }
+
+    async bulkRemove() {
+        if (this.actionPromise != null) {
+            return;
+        }
+
+        const users = this.getCheckedUsers();
+        if (users.length <= 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('noSelectedUsersApplicable'));
+            return;
+        }
+
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('removeSelectedUsersConfirmation'), this.i18nService.t('remove'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        const request = new UserBulkRemoveRequest(users.map(user => user.id));
+        this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
+        try {
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenRemoved'));
+        } catch (e) {
+            this.validationService.showError(e);
+        }
+        await this.load();
         this.actionPromise = null;
     }
 
