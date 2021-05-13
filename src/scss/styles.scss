@@ -396,6 +396,10 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .table.table-list {
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+
     thead th {
         border-top: none;
     }
@@ -527,17 +531,12 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 }
 
-.swal2-popup {
-    @include themify($themes) {
-        color: themed('textColor');
-        background-color: themed('backgroundColor');
-        border-color: themed('borderPrimaryColor');
-    }
-}
-
-table, .table, .table-hover, tbody, tr:hover {
-    @include themify($themes) {
-        color: themed('textColor');
+[class*="swal2-"] {
+    &:not(.swal2-container) {
+        @include themify($themes) {
+            color: themed('textColor');
+            background-color: themed('backgroundColor');
+        }
     }
 }
 
