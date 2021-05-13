@@ -26,7 +26,7 @@ export class OptionsComponent implements OnInit {
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
-    theme: string = 'defaultThemeSet';
+    theme: string;
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
@@ -88,6 +88,7 @@ export class OptionsComponent implements OnInit {
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
+        await this.storageService.save('theme', this.theme);
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         if (this.locale !== this.startingLocale) {
             window.location.reload();
