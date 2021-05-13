@@ -26,9 +26,11 @@ export class OptionsComponent implements OnInit {
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
+    theme: string = 'defaultThemeSet';
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
+    themeOptions: any[];
 
     private startingLocale: string;
 
@@ -60,6 +62,11 @@ export class OptionsComponent implements OnInit {
         localeOptions.sort(Utils.getSortFunction(i18nService, 'name'));
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
+        this.themeOptions = [
+            { name: i18nService.t('themeDefault'), value: 'themeDefaultSet' },
+            { name: i18nService.t('themeLight'), value: 'themeLight' },
+            { name: i18nService.t('themeDark'), value: 'themeDark' },
+        ];
     }
 
     async ngOnInit() {
@@ -69,6 +76,7 @@ export class OptionsComponent implements OnInit {
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
+        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
     }
 
     async submit() {
@@ -100,5 +108,23 @@ export class OptionsComponent implements OnInit {
             }
         }
         this.vaultTimeoutAction = newValue;
+    }
+
+    async themeChanged(themeUpdate: string) {
+        const theme = ['themeDefaultSet', 'themeDark', 'themeLight'];
+        const htmlEl = window.document.documentElement;
+        theme.forEach(element => {
+            htmlEl.classList.remove(element);
+        });
+        if (themeUpdate === 'themeDefaultSet') {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlEl.classList.add('themeDark', themeUpdate);
+            }
+            if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                htmlEl.classList.add('themeLight', themeUpdate);
+            }
+        } else {
+            htmlEl.classList.add(themeUpdate);
+        }
     }
 }
