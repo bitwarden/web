@@ -74,11 +74,12 @@ export class EventsComponent implements OnInit {
         }
 
         this.loading = true;
-        try {
-            this.exportPromise = this.exportService.getEventExport(this.events);
-            const data = await this.exportPromise;
+        this.exportPromise = this.exportService.getEventExport(this.events).then(data => {
             const fileName = this.exportService.getFileName('org-events', 'csv');
             this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
+        });
+        try {
+            await this.exportPromise;
         } catch { }
 
         this.exportPromise = null;
@@ -144,9 +145,6 @@ export class EventsComponent implements OnInit {
     }
 
     private appApiPromiseUnfulfilled() {
-        if (this.refreshPromise != null || this.morePromise != null || this.exportPromise != null) {
-            return true;
-        }
-        return false;
+        return this.refreshPromise != null || this.morePromise != null || this.exportPromise != null;
     }
 }
