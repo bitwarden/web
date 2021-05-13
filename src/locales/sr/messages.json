@@ -361,7 +361,7 @@
     "message": "Подели"
   },
   "valueCopied": {
-    "message": "$VALUE$ копирано",
+    "message": "$VALUE$ копиран(а/о)",
     "description": "Value has been copied to the clipboard.",
     "placeholders": {
       "value": {
@@ -724,6 +724,15 @@
   },
   "u2fTitle": {
     "message": "FIDO U2F сигурносни кључ"
+  },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
   },
   "emailTitle": {
     "message": "Е-пошта"
@@ -1260,6 +1269,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC подршка"
   },
@@ -1305,6 +1323,9 @@
   "removeU2fConfirmation": {
     "message": "Да ли сте сигурни да желите да уклоните овај сигурносни кључ?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "Читај кључ"
   },
@@ -1337,6 +1358,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Догодила се грешка приликом читања безбедносног кључа. Покушајте поново."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Ваш Bitwarden код за опоравак пријаве у два корака"
@@ -2609,6 +2636,12 @@
   "emailVerifiedFailed": {
     "message": "Није могуће верификовати ваш имејл. Покушајте да пошаљете нову поруку за верификацију."
   },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
+  },
   "updateBrowser": {
     "message": "Ажурирајте Претраживач"
   },
@@ -3338,14 +3371,14 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Датум брисања"
+    "message": "Брисање после"
   },
   "deletionDateDesc": {
     "message": "„The Send“ ће бити трајно избрисан наведеног датума и времена.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "Датум истека"
+    "message": "Рок употребе"
   },
   "expirationDateDesc": {
     "message": "Ако је постављено, приступ овом „Send“ истиче на наведени датум и време.",
@@ -3388,6 +3421,9 @@
   },
   "removePasswordConfirmation": {
     "message": "Да ли сте сигурни да желите уклонити лозинку?"
+  },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
   },
   "disableThisSend": {
     "message": "Онемогућите овај „Send“ да нико не би могао да му приступи.",
@@ -3608,6 +3644,28 @@
     "message": "Због полисе компаније, можеш само да бришеш постојећа слања.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Политика $ID$ промењена.",
     "placeholders": {
@@ -3624,7 +3682,7 @@
     "message": "Процењен ПДВ"
   },
   "custom": {
-    "message": "Прилагођен"
+    "message": "Друго"
   },
   "customDesc": {
     "message": "Омогућава детаљнију контролу корисничких дозвола за напредне конфигурације."
@@ -3661,6 +3719,9 @@
   },
   "manageUsers": {
     "message": "Управљај корисницима"
+  },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
   },
   "disableRequireSsoError": {
     "message": "Морате ручно да онемогућите аутентификацију јединствене пријаве пре него што ова политика може да се онемогући."
@@ -3748,6 +3809,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "Наведени датум истицања није исправан."
   },
@@ -3762,5 +3827,68 @@
   },
   "dateParsingError": {
     "message": "Појавила се грешка при снимању датума брисања и истицања."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "trashCleanupWarning": {
+    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
   }
 }

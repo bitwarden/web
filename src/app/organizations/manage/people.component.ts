@@ -25,6 +25,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
+import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
@@ -37,6 +38,8 @@ import { EntityEventsComponent } from './entity-events.component';
 import { UserAddEditComponent } from './user-add-edit.component';
 import { UserConfirmComponent } from './user-confirm.component';
 import { UserGroupsComponent } from './user-groups.component';
+
+const MaxCheckedCount = 500;
 
 @Component({
     selector: 'app-org-people',
@@ -125,6 +128,8 @@ export class PeopleComponent implements OnInit {
         } else {
             this.users = this.allUsers;
         }
+        // Reset checkbox selecton
+        this.selectAll(false);
         this.resetPaging();
     }
 
@@ -246,6 +251,30 @@ export class PeopleComponent implements OnInit {
         this.actionPromise = null;
     }
 
+    async bulkReinvite() {
+        if (this.actionPromise != null) {
+            return;
+        }
+
+        const users = this.getCheckedUsers().filter(u => u.status === OrganizationUserStatusType.Invited);
+
+        if (users.length <= 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('noSelectedUsersApplicable'));
+            return;
+        }
+
+        const request = new UserBulkReinviteRequest(users.map(user => user.id));
+        this.actionPromise = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
+        try {
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenReinvited'));
+        } catch (e) {
+            this.validationService.showError(e);
+        }
+        this.actionPromise = null;
+    }
+
     async confirm(user: OrganizationUserUserDetailsResponse) {
         function updateUser(self: PeopleComponent) {
             user.status = OrganizationUserStatusType.Confirmed;
@@ -358,6 +387,22 @@ export class PeopleComponent implements OnInit {
         return !searching && this.users && this.users.length > this.pageSize;
     }
 
+    checkUser(user: OrganizationUserUserDetailsResponse, select?: boolean) {
+        (user as any).checked = select == null ? !(user as any).checked : select;
+    }
+
+    selectAll(select: boolean) {
+        if (select) {
+            this.selectAll(false);
+        }
+        const selectCount = select && this.users.length > MaxCheckedCount
+            ? MaxCheckedCount
+            : this.users.length;
+        for (let i = 0; i < selectCount; i++) {
+            this.checkUser(this.users[i], select);
+        }
+    }
+
     private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
@@ -390,5 +435,9 @@ export class PeopleComponent implements OnInit {
                 this.statusMap.get(OrganizationUserStatusType.Confirmed).splice(index, 1);
             }
         }
+    }
+
+    private getCheckedUsers() {
+        return this.users.filter(u => (u as any).checked);
     }
 }

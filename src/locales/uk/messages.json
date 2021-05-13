@@ -725,6 +725,15 @@
   "u2fTitle": {
     "message": "Ключ безпеки FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
+  },
   "emailTitle": {
     "message": "Е-пошта"
   },
@@ -1260,6 +1269,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Підтримка NFC"
   },
@@ -1305,6 +1323,9 @@
   "removeU2fConfirmation": {
     "message": "Ви впевнені, що хочете вилучити цей ключ безпеки?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "Читати ключ"
   },
@@ -1337,6 +1358,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Сталася проблема при читанні ключа безпеки. Спробуйте знову."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Ваш код відновлення двоетапної перевірки Bitwarden"
@@ -2609,6 +2636,12 @@
   "emailVerifiedFailed": {
     "message": "Неможливо підтвердити вашу е-пошту. Спробуйте надіслати нове повідомлення для підтвердження."
   },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
+  },
   "updateBrowser": {
     "message": "Оновити браузер"
   },
@@ -3389,6 +3422,9 @@
   "removePasswordConfirmation": {
     "message": "Ви дійсно хочете вилучити пароль?"
   },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
+  },
   "disableThisSend": {
     "message": "Деактивувати це відправлення для скасування доступу до нього.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3608,6 +3644,28 @@
     "message": "У зв'язку з політикою компанії, ви можете лише видалити наявне відправлення.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Змінено політику $ID$.",
     "placeholders": {
@@ -3661,6 +3719,9 @@
   },
   "manageUsers": {
     "message": "Керування користувачами"
+  },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
   },
   "disableRequireSsoError": {
     "message": "Для вимкнення цієї політики ви повинні вручну вимкнути політику ідентифікації єдиного входу (SSO)."
@@ -3748,6 +3809,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "Вказано недійсний термін дії."
   },
@@ -3762,5 +3827,68 @@
   },
   "dateParsingError": {
     "message": "При збереженні дат видалення і терміну дії виникла помилка."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "trashCleanupWarning": {
+    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
   }
 }
