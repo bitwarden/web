@@ -15,6 +15,10 @@
             <i class="fa fa-refresh fa-fw" aria-hidden="true" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"></i>
             {{'refresh' | i18n}}
         </button>
+        <button #exportBtn [appApiAction]="exportPromise" type="button" class="btn btn-sm btn-outline-primary ml-3"
+            (click)="exportEvents()" [disabled]="loaded && refreshBtn.loading">
+            {{'export' | i18n}}
+        </button>
     </div>
 </div>
 <ng-container *ngIf="!loaded">
