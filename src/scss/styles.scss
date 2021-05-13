@@ -540,6 +540,12 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 }
 
+.close {
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+}
+
 app-vault-groupings, app-org-vault-groupings, .groupings {
     .card {
         #search {
@@ -564,7 +570,9 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
 
             &:hover {
                 &.text-muted {
-                    color: $body-color !important;
+                    @include themify($themes) {
+                        color: themed('iconHover') !important;
+                    }
                 }
             }
         }
