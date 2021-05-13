@@ -1,77 +1,5 @@
 @import "../css/webfonts.css";
-
-$primary: #175DDC;
-$primary-accent: #1252A3;
-$secondary: #ced4da;
-$secondary-alt: #1A3B66;
-$success: #00a65a;
-$info: #555555;
-$warning: #bf7e16;
-$danger: #dd4b39;
-
-$theme-colors: (  
-    "primary-accent": $primary-accent,
-    "secondary-alt": $secondary-alt,
-);
-
-$body-bg: #ffffff;
-$body-color: #333333;
-
-$font-family-sans-serif: 'Open Sans','Helvetica Neue',Helvetica,
-    Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
-
-$h1-font-size: 1.7rem;
-$h2-font-size: 1.3rem;
-$h3-font-size: 1rem;
-$h4-font-size: 1rem;
-$h5-font-size: 1rem;
-$h6-font-size: 1rem;
-
-$small-font-size: 90%;
-$font-size-lg: 1.15rem;
-$code-font-size: 100%;
-
-$navbar-padding-y: .75rem;
-$grid-gutter-width: 20px;
-$card-spacer-y: .6rem;
-
-$list-group-item-padding-y: .6rem;
-$list-group-active-color: $body-color;
-$list-group-active-bg: #ffffff;
-$list-group-active-border-color: rgba(#000000, .125);
-
-$dropdown-link-color: $body-color;
-$dropdown-link-hover-bg: rgba(#000000, .06);
-$dropdown-link-active-color: $dropdown-link-color;
-$dropdown-link-active-bg: rgba(#000000, .1);
-$dropdown-item-padding-x: 1rem;
-
-$navbar-brand-font-size: 35px;
-$navbar-brand-height: 35px;
-$navbar-brand-padding-y: 0;
-$navbar-dark-color: rgba(#ffffff, .7);
-$navbar-dark-hover-color: rgba(#ffffff, .9);
-$navbar-nav-link-padding-x: 0.8rem;
-
-$input-bg: #fbfbfb;
-$input-focus-bg: #ffffff;
-$input-disabled-bg: #e0e0e0;
-$input-placeholder-color: #b4b4b4;
-
-$table-accent-bg: rgba(#000000, .02);
-$table-hover-bg: rgba(#000000, .03);
-
-$modal-backdrop-opacity: 0.3;
-$btn-font-weight: 600;
-$lead-font-weight: normal;
-
-$grid-breakpoints: (
-  xs: 0,
-  sm: 1px,
-  md: 2px,
-  lg: 3px,
-  xl: 4px
-);
+@import "variables.scss";
 
 //@import "~bootstrap/scss/bootstrap";
 @import "~bootstrap/scss/_functions";
@@ -119,9 +47,9 @@ html {
 
 body {
     min-width: 1010px;
-
-    &.layout_frontend {
-        background-color: #ecf0f5;
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
     }
 
     &.full-width:not(.layout_frontend) {
@@ -146,11 +74,44 @@ h1, h2, h3, h4, h5 {
     small {
         font-size: 80%;
     }
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+}
+
+a {
+    @include themify($themes) {
+        color: themed('linkColor');
+    }
 }
 
 input, select, textarea {
     &:required {
         box-shadow: none;
+    }
+}
+
+.bg-primary {
+    @include themify($themes) {
+        background-color: themed('bgPrimaryColor') !important;
+    }
+}
+
+.bg-warning {
+    @include themify($themes) {
+        background-color: themed('warning') !important;
+    }
+}
+
+.border-primary {
+    @include themify($themes) {
+        border-color: themed('borderPrimaryColor') !important;
+    }
+}
+
+.border-warning {
+    @include themify($themes) {
+        border-color: themed('warning') !important;
     }
 }
 
@@ -165,9 +126,22 @@ input, select, textarea {
     .dropdown-menu {
         min-width: 200px;
         max-width: 300px;
+        @include themify($themes) {
+            color: themed('textColor');
+            background-color: themed('backgroundColor');
+        }
+
+        .dropdown-item {
+            @include themify($themes) {
+                color: themed('textColor');
+            }
+        }
 
         .dropdown-item-text {
             line-height: 1.3;
+            @include themify($themes) {
+                color: themed('textColor');
+            }
 
             span, small {
                 display: block;
@@ -212,14 +186,21 @@ input, select, textarea {
 }
 
 .list-group-item.active {
-    border-left: 3px solid theme-color("primary");
     font-weight: bold;
     padding-left: calc(#{$list-group-item-padding-x} - 3px);
+    border-color: rgba(0,0,0,0.125);
+    @include themify($themes) {
+        border-left: 3px solid themed('borderPrimaryColor');
+    }
 }
 
 .card-header, .modal-header {
     font-weight: bold;
     text-transform: uppercase;
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+    }
 
     small {
         font-weight: normal;
@@ -279,6 +260,10 @@ input, select, textarea {
 }
 
 .modal-body {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+    }
     h3, .section-header > * {
         font-weight: normal;
         text-transform: uppercase;
@@ -296,8 +281,11 @@ input, select, textarea {
 
 .modal-footer {
     justify-content: flex-start;
-    background-color: $input-bg;
     @include border-radius($modal-content-border-radius);
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+    }
 }
 
 label:not(.form-check-label):not(.btn), label.bold {
@@ -308,11 +296,36 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button;
 }
 
-.btn[class*="btn-outline-"] {
-    &:not(:hover) {
-        border-color: $secondary;
-        background-color: #fbfbfb;
+.btn-primary {
+    @include themify($themes) {
+        border-color: themed('buttonBorderColor');
+        background-color: themed('buttonBackgroundColor');
     }
+    &:hover {
+        @include themify($themes) {
+            border-color: themed('buttonBorderColorHover');
+            background-color: themed('buttonBackgroundColorHover');
+        }
+        color: #FFFFFF;
+    }
+}
+
+.btn[class*="btn-outline-"] {
+    &:not(:hover):not(.btn-outline-danger) {
+        @include themify($themes) {
+            border-color: themed('buttonBorderColor');
+            background-color: themed('backgroundColor');
+            color: themed('buttonTextColor');
+        }
+    }
+    &:hover:not(.btn-outline-danger) {
+        @include themify($themes) {
+            border-color: themed('buttonBorderColorHover');
+            background-color: themed('buttonBackgroundColorHover');
+            color: #fff;
+        }
+    }
+
 }
 
 .btn-link {
@@ -371,6 +384,10 @@ input[type="search"]::-webkit-search-cancel-button {
     &:focus,
     &.focus {
         z-index: 100;
+    }
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
     }
 }
 
@@ -488,6 +505,42 @@ input[type="search"]::-webkit-search-cancel-button {
     color: #c40800;
 }
 
+.card {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+        border-color: themed('borderColor');
+    }
+}
+
+.card-body {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+    }
+}
+
+.badge[class*="badge-"] {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('buttonBackgroundColor');
+    }
+}
+
+.swal2-popup {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+        border-color: themed('borderPrimaryColor');
+    }
+}
+
+table, .table, .table-hover, tbody, tr:hover {
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+}
+
 app-vault-groupings, app-org-vault-groupings, .groupings {
     .card {
         #search {
@@ -505,7 +558,10 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         }
 
         .card-body a {
-            color: $body-color;
+            @include themify($themes) {
+                color: themed('textColor');
+                background-color: themed('backgroundColor');
+            }
 
             &:hover {
                 &.text-muted {
@@ -533,11 +589,15 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         li.active {
             > a:first-of-type, > div a:first-of-type {
                 font-weight: bold;
-                color: theme-color("primary");
+                @include themify($themes) {
+                    color: themed('linkColor');
+                }
             }
 
             > .fa, > div > .fa {
-                color: theme-color("primary");
+                @include themify($themes) {
+                    color: themed('linkColor');
+                }
             }
         }
     }
@@ -702,7 +762,10 @@ app-user-billing {
     border: 1px solid $card-border-color;
     border-left-width: 5px;
     border-radius: $card-inner-border-radius;
-    background-color: #fafafa;
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+    }
 
     .callout-heading {
         margin-top: 0;
@@ -788,6 +851,18 @@ app-user-billing {
     input[type='datetime-local'] {
         width: 200px;
     }
+}
+
+.form-control {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('inputBackgroundColor');
+        border-color: themed('inputBorderColor');
+    }
+}
+
+input[type="radio"], input[type="checkbox"] {
+    cursor: pointer;
 }
 
 .form-control.stripe-form-control {
