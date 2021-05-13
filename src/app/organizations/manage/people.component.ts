@@ -25,8 +25,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
-import { UserBulkDeleteRequest } from 'jslib/models/request/userBulkDeleteRequest';
-import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
+import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
@@ -271,15 +270,15 @@ export class PeopleComponent implements OnInit {
             return false;
         }
 
-        const request = new UserBulkDeleteRequest(users.map(user => user.id));
+        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
         this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
         try {
             await this.actionPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenRemoved'));
+            await this.load();
         } catch (e) {
             this.validationService.showError(e);
         }
-        await this.load();
         this.actionPromise = null;
     }
 
@@ -296,7 +295,7 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const request = new UserBulkReinviteRequest(users.map(user => user.id));
+        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
         this.actionPromise = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
         try {
             await this.actionPromise;
