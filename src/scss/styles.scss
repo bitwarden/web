@@ -91,6 +91,12 @@ input, select, textarea {
     }
 }
 
+.text-body {
+    @include themify($themes) {
+        color: themed('textColor') !important;
+    }
+}
+
 .bg-primary {
     @include themify($themes) {
         background-color: themed('bgPrimaryColor') !important;
@@ -335,8 +341,13 @@ input[type="search"]::-webkit-search-cancel-button {
         outline-style: auto;
         outline-width: 1px;
     }
+    &:not(.text-danger):not(.cursor-move) {
+        @include themify($themes) {
+            border-color: themed('buttonBorderColor');
+            color: themed('buttonBackgroundColor');
+        }
+    }
     @include themify($themes) {
-        border-color: themed('buttonBorderColor');
         color: themed('buttonBackgroundColor');
     }
 }
@@ -479,6 +490,13 @@ input[type="search"]::-webkit-search-cancel-button {
     td.table-list-strike {
         color: $text-muted;
         text-decoration: line-through;
+    }
+}
+
+.table-hover tbody tr:hover {
+    @include themify($themes) {
+        color: themed('tableHover');
+        background-color: rgba(0, 0, 0, 0.03)
     }
 }
 
@@ -909,8 +927,11 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .org-nav {
-    background-color: $input-bg;
-    border-bottom: 1px solid $border-color;
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
+        border-bottom: 1px solid themed('borderColor');
+    }
     height: 100px;
     min-height: 100px;
 
@@ -922,14 +943,18 @@ input[type="radio"], input[type="checkbox"] {
         border-bottom: none;
 
         a {
-            color: $body-color;
+            @include themify($themes) {
+                color: themed('textColor');
+            }
 
             &:not(.active) {
                 border-color: transparent;
             }
 
             &.active {
-                border-top: 3px solid theme-color("primary");
+                @include themify($themes) {
+                    border-top: 3px solid themed('primary');
+                }
                 font-weight: bold;
                 padding-top: calc(#{$nav-link-padding-y} - 2px);
             }
@@ -948,6 +973,12 @@ input[type="radio"], input[type="checkbox"] {
         }
     }
 }
+.nav-tabs .nav-link.active {
+    @include themify($themes) {
+        background: themed('navActiveBackground');
+        border-color: themed('borderColor');
+    }
+}
 
 img.logo, .logo#loginLogo {
     width: 284px;
@@ -962,12 +993,6 @@ img.logo, .logo#loginLogo {
     background-size: cover;
 }
 
-/*#loginLogo {
-    @include themify($themes) {
-        background: themed('loginLogo');
-    }
-}*/
-
 .min-height-fix {
     min-height: 1px;
 }
@@ -979,8 +1004,11 @@ img.logo, .logo#loginLogo {
 .cdk-drag-preview {
     z-index: $zindex-tooltip !important;
     opacity: 0.8;
-    background-color: $white;
+    /*background-color: $white;*/
     border-radius: $border-radius;
+    @include themify($themes) {
+        background: themed('cdkDraggingBackground');
+    }
 }
 
 .cursor-move {

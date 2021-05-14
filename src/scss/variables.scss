@@ -76,6 +76,7 @@ $border-color: #ced4da;
 
 $themes: (
     Light: (
+        primary: $primary,
         textColor: $text-color,
         linkColor: $primary,
         iconHover: $body-color,
@@ -92,9 +93,13 @@ $themes: (
         buttonTextColor: $primary,
         warning: $warning,
         loginLogo: url("../images/logo-dark@2x.png"),
-        totpFilter:  invert(0) grayscale(0)
+        totpFilter:  invert(0) grayscale(0),
+        cdkDraggingBackground: #FFFFFF,
+        tableHover: #3333,
+        navActiveBackground: #FFFFFF
     ),
     Dark: (
+        primary: $secondary-alt,
         textColor: #fbfbfb,
         linkColor: $primary-accent,
         iconHover: $secondary,
@@ -111,7 +116,10 @@ $themes: (
         buttonTextColor: $secondary,
         warning: $warning,
         loginLogo: url("../images/logo-white@2x.png"),
-        totpFilter: invert(1) grayscale(1)
+        totpFilter: invert(1) grayscale(1),
+        cdkDraggingBackground: #000000,
+        tableHover: $secondary,
+        navActiveBackground: #1A1A1A
     ),
 );
 
