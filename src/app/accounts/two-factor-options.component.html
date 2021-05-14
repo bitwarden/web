@@ -7,17 +7,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="list-group list-group-flush">
-                <a href="#" appStopClick *ngFor="let p of providers" (click)="choose(p)"
-                    class="list-group-item list-group-item-action">
-                    <img [src]="'images/two-factor/' + p.type + '.png'" alt="" class="pull-right">
-                    <h3>{{p.name}}</h3>
-                    {{p.description}}
-                </a>
-                <a href="#" appStopClick class="list-group-item list-group-item-action" (click)="recover()">
-                    <h3>{{'recoveryCodeTitle' | i18n}}</h3>
-                    {{'recoveryCodeDesc' | i18n}}
-                </a>
+            <div class="modal-body">
+                <div class="list-group list-group-flush">
+                    <a href="#" appStopClick *ngFor="let p of providers" (click)="choose(p)"
+                        class="list-group-item list-group-item-action">
+                        <img [src]="'images/two-factor/' + p.type + '.png'" alt="" class="pull-right">
+                        <h3>{{p.name}}</h3>
+                        {{p.description}}
+                    </a>
+                    <a href="#" appStopClick class="list-group-item list-group-item-action" (click)="recover()">
+                        <h3>{{'recoveryCodeTitle' | i18n}}</h3>
+                        {{'recoveryCodeDesc' | i18n}}
+                    </a>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
