@@ -91,7 +91,8 @@ $themes: (
         buttonBorderColorHover: $primary,
         buttonTextColor: $primary,
         warning: $warning,
-        loginLogo: url("../images/logo-dark@2x.png")
+        loginLogo: url("../images/logo-dark@2x.png"),
+        totpFilter:  invert(0) grayscale(0)
     ),
     Dark: (
         textColor: #fbfbfb,
@@ -109,7 +110,8 @@ $themes: (
         buttonBorderColorHover: $secondary-alt,
         buttonTextColor: $secondary,
         warning: $warning,
-        loginLogo: url("../images/logo-white@2x.png")
+        loginLogo: url("../images/logo-white@2x.png"),
+        totpFilter: invert(1) grayscale(1)
     ),
 );
 

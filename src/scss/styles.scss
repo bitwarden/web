@@ -335,6 +335,10 @@ input[type="search"]::-webkit-search-cancel-button {
         outline-style: auto;
         outline-width: 1px;
     }
+    @include themify($themes) {
+        border-color: themed('buttonBorderColor');
+        color: themed('buttonBackgroundColor');
+    }
 }
 
 .btn-outline-secondary {
@@ -525,7 +529,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .badge[class*="badge-"] {
     @include themify($themes) {
-        color: themed('textColor');
+        color: #FFFFFF;
         background-color: themed('buttonBackgroundColor');
     }
 }
@@ -536,6 +540,12 @@ input[type="search"]::-webkit-search-cancel-button {
             color: themed('textColor');
             background-color: themed('backgroundColor');
         }
+    }
+}
+
+#totpImage {
+    @include themify($themes) {
+        filter: themed('totpFilter');
     }
 }
 
