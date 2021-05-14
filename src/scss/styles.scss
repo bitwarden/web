@@ -311,21 +311,20 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .btn[class*="btn-outline-"] {
-    &:not(:hover):not(.btn-outline-danger) {
+    &:not(:hover):not(.btn-outline-danger):not(.dropdown-toggle) {
         @include themify($themes) {
             border-color: themed('buttonBorderColor');
             background-color: themed('backgroundColor');
             color: themed('buttonTextColor');
         }
     }
-    &:hover:not(.btn-outline-danger) {
+    &:hover:not(.btn-outline-danger):not(.dropdown-toggle) {
         @include themify($themes) {
             border-color: themed('buttonBorderColorHover');
             background-color: themed('buttonBackgroundColorHover');
             color: #fff;
         }
     }
-
 }
 
 .btn-link {
@@ -543,6 +542,13 @@ input[type="search"]::-webkit-search-cancel-button {
 .close {
     @include themify($themes) {
         color: themed('textColor');
+    }
+}
+
+.dropdown-menu, .dropdown-item  {
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('backgroundColor');
     }
 }
 
@@ -933,12 +939,24 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 
-img.logo {
+img.logo, .logo#loginLogo {
     width: 284px;
     height: 43px;
     margin: 0 auto;
     display: block;
+    @include themify($themes) {
+        background: themed('loginLogo') no-repeat center center;
+        background-size: cover;
+    }
+    background: url("../images/logo-dark@2x.png") no-repeat center center;
+    background-size: cover;
 }
+
+/*#loginLogo {
+    @include themify($themes) {
+        background: themed('loginLogo');
+    }
+}*/
 
 .min-height-fix {
     min-height: 1px;
