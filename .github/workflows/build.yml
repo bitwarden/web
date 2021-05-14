@@ -30,7 +30,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '14.x'
 
       - name: Print environment
         run: |
@@ -175,7 +175,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '14.x'
 
       - name: Print environment
         run: |
