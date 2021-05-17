@@ -234,20 +234,29 @@ export class PeopleComponent implements OnInit {
             return false;
         }
 
+        this.actionPromise = this.apiService.deleteOrganizationUser(this.organizationId, user.id);
         try {
-            await this.apiService.deleteOrganizationUser(this.organizationId, user.id);
+            await this.actionPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
             this.removeUser(user);
-        } catch { }
+        } catch (e) {
+            this.validationService.showError(e);
+        }
+        this.actionPromise = null;
     }
 
     async reinvite(user: OrganizationUserUserDetailsResponse) {
         if (this.actionPromise != null) {
             return;
         }
+
         this.actionPromise = this.apiService.postOrganizationUserReinvite(this.organizationId, user.id);
-        await this.actionPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+        try {
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+        } catch (e) {
+            this.validationService.showError(e);
+        }
         this.actionPromise = null;
     }
 
