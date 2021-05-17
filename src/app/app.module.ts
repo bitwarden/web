@@ -191,17 +191,17 @@ import {
     DatePipe,
     registerLocaleData,
 } from '@angular/common';
+import localeBg from '@angular/common/locales/bg';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
-import localeBg from '@angular/common/locales/bg';
 import localeDa from '@angular/common/locales/da';
 import localeDe from '@angular/common/locales/de';
 import localeEl from '@angular/common/locales/el';
 import localeEnGb from '@angular/common/locales/en-GB';
 import localeEnIn from '@angular/common/locales/en-IN';
+import localeEo from '@angular/common/locales/eo';
 import localeEs from '@angular/common/locales/es';
 import localeEt from '@angular/common/locales/et';
-import localeEo from '@angular/common/locales/eo';
 import localeFi from '@angular/common/locales/fi';
 import localeFr from '@angular/common/locales/fr';
 import localeHe from '@angular/common/locales/he';
