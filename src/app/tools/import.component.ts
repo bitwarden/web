@@ -132,7 +132,7 @@ export class ImportComponent implements OnInit {
             inputAttributes: {
                 'readonly': 'true',
             },
-            title: this.i18nService.t('importError'),
+            titleText: this.i18nService.t('importError'),
             text: this.i18nService.t('importErrorDesc'),
             showConfirmButton: true,
             confirmButtonText: this.i18nService.t('ok'),
