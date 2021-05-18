@@ -25,7 +25,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
-import { UserBulkReinviteRequest } from 'jslib/models/request/userBulkReinviteRequest';
+import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
@@ -260,6 +260,37 @@ export class PeopleComponent implements OnInit {
         this.actionPromise = null;
     }
 
+    async bulkRemove() {
+        if (this.actionPromise != null) {
+            return;
+        }
+
+        const users = this.getCheckedUsers();
+        if (users.length <= 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('noSelectedUsersApplicable'));
+            return;
+        }
+
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('removeSelectedUsersConfirmation'), this.i18nService.t('remove'),
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        if (!confirmed) {
+            return false;
+        }
+
+        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
+        this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
+        try {
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenRemoved'));
+            await this.load();
+        } catch (e) {
+            this.validationService.showError(e);
+        }
+        this.actionPromise = null;
+    }
+
     async bulkReinvite() {
         if (this.actionPromise != null) {
             return;
@@ -273,7 +304,7 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const request = new UserBulkReinviteRequest(users.map(user => user.id));
+        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
         this.actionPromise = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
         try {
             await this.actionPromise;
