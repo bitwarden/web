@@ -40,12 +40,12 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
-        if (!this.organization.canManageAllCollections) {
-            await super.load(filter, this.deleted);
-            return;
+        if (this.organization.canManageAllCollections) {
+            this.accessEvents = this.organization.useEvents;
+            this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
+        } else {
+            this.allCiphers = (await this.cipherService.getAllDecrypted()).filter(c => c.organizationId === this.organization.id);
         }
-        this.accessEvents = this.organization.useEvents;
-        this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
         await this.searchService.indexCiphers(this.organization.id, this.allCiphers);
         await this.applyFilter(filter);
         this.loaded = true;
@@ -61,7 +61,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async search(timeout: number = null) {
-        super.search(timeout, this.allCiphers);
+        await super.search(timeout, this.allCiphers);
     }
     events(c: CipherView) {
         this.onEventsClicked.emit(c);
