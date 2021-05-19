@@ -1,5 +1,5 @@
 import { getQsParam } from './common';
-import { b64Decode, buildDataString } from './common-webauthn';
+import { b64Decode, buildDataString, parseWebauthnJson } from './common-webauthn';
 
 // tslint:disable-next-line
 require('./webauthn.scss');
@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const text = getQsParam('btnText');
     if (text) {
-        document.getElementById('webauthn-button').innerText = decodeURI(text);
+        const button = document.getElementById('webauthn-button');
+        button.innerText = decodeURI(text);
+        button.onclick = executeWebAuthn;
     }
 });
 
@@ -50,21 +52,12 @@ function start() {
 
     try {
         const jsonString = b64Decode(data);
-        obj = JSON.parse(jsonString);
+        obj = parseWebauthnJson(jsonString);
     }
     catch (e) {
         error('Cannot parse data.');
         return;
     }
-
-    const challenge = obj.challenge.replace(/-/g, '+').replace(/_/g, '/');
-    obj.challenge = Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
-
-    // fix escaping. Change this to coerce
-    obj.allowCredentials.forEach((listItem: any) => {
-        const fixedId = listItem.id.replace(/\_/g, '/').replace(/\-/g, '+');
-        listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
-    });
 
     stopWebAuthn = false;
 
@@ -84,8 +77,6 @@ function executeWebAuthn() {
         .then(success)
         .catch(err => error('WebAuth Error: ' + err));
 }
-
-(window as any).executeWebAuthn = executeWebAuthn;
 
 function onMessage() {
     window.addEventListener('message', event => {

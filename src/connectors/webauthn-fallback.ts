@@ -1,5 +1,5 @@
 import { getQsParam } from './common';
-import { b64Decode, buildDataString } from './common-webauthn';
+import { b64Decode, buildDataString, parseWebauthnJson } from './common-webauthn';
 
 // tslint:disable-next-line
 require('./webauthn.scss');
@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById('msg').innerText = translate('webAuthnFallbackMsg');
     document.getElementById('remember-label').innerText = translate('rememberMe');
-    document.getElementById('webauthn-button').innerText = translate('webAuthnAuthenticate');
+
+    const button = document.getElementById('webauthn-button');
+    button.innerText = translate('webAuthnAuthenticate');
+    button.onclick = start;
 
     document.getElementById('spinner').classList.add('d-none');
     const content = document.getElementById('content');
@@ -30,10 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 function translate(id: string) {
     return locales[id]?.message || '';
 }
-
-(window as any).init = () => {
-    start();
-};
 
 function start() {
     if (sentSuccess) {
@@ -63,7 +62,7 @@ function start() {
     let json: any;
     try {
         const jsonString = b64Decode(data);
-        json = JSON.parse(jsonString);
+        json = parseWebauthnJson(jsonString);
     }
     catch (e) {
         error('Cannot parse data.');
@@ -74,15 +73,6 @@ function start() {
 }
 
 async function initWebAuthn(obj: any) {
-    const challenge = obj.challenge.replace(/-/g, '+').replace(/_/g, '/');
-    obj.challenge = Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
-
-    // fix escaping. Change this to coerce
-    obj.allowCredentials.forEach((listItem: any) => {
-        const fixedId = listItem.id.replace(/\_/g, '/').replace(/\-/g, '+');
-        listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
-    });
-
     try {
         const assertedCredential = await navigator.credentials.get({ publicKey: obj }) as PublicKeyCredential;
 

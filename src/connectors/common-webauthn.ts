@@ -27,6 +27,20 @@ export function b64Decode(str: string) {
     }).join(''));
 }
 
+export function parseWebauthnJson(jsonString: string) {
+    const json = JSON.parse(jsonString);
+
+    const challenge = json.challenge.replace(/-/g, '+').replace(/_/g, '/');
+    json.challenge = Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
+
+    json.allowCredentials.forEach((listItem: any) => {
+        const fixedId = listItem.id.replace(/\_/g, '/').replace(/\-/g, '+');
+        listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
+    });
+
+    return json;
+}
+
 // From https://github.com/abergs/fido2-net-lib/blob/b487a1d47373ea18cd752b4988f7262035b7b54e/Demo/wwwroot/js/helpers.js#L34
 // License: https://github.com/abergs/fido2-net-lib/blob/master/LICENSE.txt
 function coerceToBase64Url(thing: any) {
