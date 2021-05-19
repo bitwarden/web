@@ -25,7 +25,7 @@ import { EventType } from 'jslib/enums/eventType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
-const MaxCheckedCount = 500;
+const MaxCheckedCount = 1000;
 
 @Component({
     selector: 'app-vault-ciphers',
