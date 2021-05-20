@@ -195,9 +195,9 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             }
         }
 
-        const bootstrapModal = document.querySelector("div.modal");
+        const bootstrapModal = document.querySelector('div.modal');
         if (bootstrapModal != null) {
-            bootstrapModal.removeAttribute("tabindex");
+            bootstrapModal.removeAttribute('tabindex');
         }
 
         const iconHtmlStr = iconClasses != null ? `<i class="swal-custom-icon fa ${iconClasses}"></i>` : undefined;
@@ -216,7 +216,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         });
 
         if (bootstrapModal != null) {
-            bootstrapModal.setAttribute("tabindex", "-1");
+            bootstrapModal.setAttribute('tabindex', '-1');
         }
 
         return confirmed.value;
