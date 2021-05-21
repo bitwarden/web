@@ -34,6 +34,8 @@ import { OrganizationUserType } from 'jslib/enums/organizationUserType';
 
 import { Utils } from 'jslib/misc/utils';
 
+import { ListResponse } from 'jslib/models/response';
+import { OrganizationUserBulkResponse } from 'jslib/models/response/organizationUserBulkResponse';
 import { ModalComponent } from '../../modal.component';
 import { BulkStatusComponent } from './bulk-status.component';
 import { EntityEventsComponent } from './entity-events.component';
@@ -285,8 +287,8 @@ export class PeopleComponent implements OnInit {
         const request = new OrganizationUserBulkRequest(users.map(user => user.id));
         this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
         try {
-            await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenRemoved'));
+            const response: ListResponse<OrganizationUserBulkResponse> = await this.actionPromise;
+            this.showBulkStatus(users, users, response, this.i18nService.t('bulkRemovedMessage'));
             await this.load();
         } catch (e) {
             this.validationService.showError(e);
@@ -299,19 +301,20 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const users = this.getCheckedUsers().filter(u => u.status === OrganizationUserStatusType.Invited);
+        const users = this.getCheckedUsers();
+        const filteredUsers = users.filter(u => u.status === OrganizationUserStatusType.Invited);
 
-        if (users.length <= 0) {
+        if (filteredUsers.length <= 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }
 
-        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
+        const request = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
         this.actionPromise = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
         try {
-            await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenReinvited'));
+            const response: ListResponse<OrganizationUserBulkResponse> = await this.actionPromise;
+            this.showBulkStatus(users, filteredUsers, response, this.i18nService.t('bulkReinviteMessage'));
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -323,15 +326,16 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const users = this.getCheckedUsers().filter(u => u.status === OrganizationUserStatusType.Accepted);
+        const users = this.getCheckedUsers();
+        const filteredUsers = users.filter(u => u.status === OrganizationUserStatusType.Accepted);
 
-        if (users.length <= 0) {
+        if (filteredUsers.length <= 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }
 
-        const publicKeyRequest = new OrganizationUserBulkRequest(users.map(user => user.id));
+        const publicKeyRequest = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
         const publicKeyResponse = await this.apiService.postOrganizationUsersPublicKey(this.organizationId, publicKeyRequest);
 
         const keyMap = new Map<string, Uint8Array>();
@@ -341,7 +345,8 @@ export class PeopleComponent implements OnInit {
 
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const userIdsWithKeys: any[] = [];
-        for (const user of users) {
+        const approvedUsers = [];
+        for (const user of filteredUsers) {
             const publicKey = keyMap.get(user.id);
             if (publicKey == null) {
                 continue;
@@ -349,6 +354,7 @@ export class PeopleComponent implements OnInit {
 
             if (await this.promptConfirmUser(user, publicKey)) {
                 const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
+                approvedUsers.push(user);
                 userIdsWithKeys.push({
                     id: user.id,
                     key: key.encryptedString,
@@ -364,26 +370,11 @@ export class PeopleComponent implements OnInit {
 
         try {
             const request = new OrganizationUserBulkConfirmRequest();
-            request.keys = await Promise.all(userIdsWithKeys);
+            request.keys = userIdsWithKeys;
             const response = await this.apiService.postOrganizationUserBulkConfirm(this.organizationId, request);
             await this.load();
 
-            const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
-
-            const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-            this.modal = this.eventsModalRef.createComponent(factory).instance;
-            const childComponent = this.modal.show<BulkStatusComponent>(
-                BulkStatusComponent, this.eventsModalRef);
-
-            childComponent.users = users.map(user => ({
-                user: user,
-                error: keyedErrors.hasOwnProperty(user.id),
-                message: keyedErrors[user.id] ?? this.i18nService.t('bulkConfirmMessage'),
-            }));
-
-            this.modal.onClosed.subscribe(() => {
-                this.modal = null;
-            });
+            this.showBulkStatus(users, approvedUsers, response, this.i18nService.t('bulkConfirmMessage'));
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -478,6 +469,34 @@ export class PeopleComponent implements OnInit {
         for (let i = 0; i < selectCount; i++) {
             this.checkUser(this.users[i], select);
         }
+    }
+
+    private showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],
+        bulkResponse: ListResponse<OrganizationUserBulkResponse>, successfullMessage: string) {
+        const keyedErrors: any = bulkResponse.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
+        const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.eventsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<BulkStatusComponent>(
+            BulkStatusComponent, this.eventsModalRef);
+
+        childComponent.users = users.map(user => {
+            let message = keyedErrors[user.id] ?? successfullMessage;
+            if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
+                message = this.i18nService.t('bulkFilteredMessage');
+            }
+
+            return {
+                user: user,
+                error: keyedErrors.hasOwnProperty(user.id),
+                message: message,
+            };
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
     }
 
     private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {
