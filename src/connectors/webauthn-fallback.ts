@@ -11,11 +11,14 @@ let sentSuccess = false;
 let locales: any = {};
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const locale = getQsParam('locale');
 
-    const filePath = `locales/${locale}/messages.json?cache=${process.env.CACHE_TAG}`;
-    const localesResult = await fetch(filePath);
-    locales = await localesResult.json();
+    const locale = getQsParam('locale').replace('-', '_');
+    try {
+        locales = await loadLocales(locale);
+    } catch {
+        console.error('Failed to load the locale', locale);
+        locales = await loadLocales('en')
+    }
 
     document.getElementById('msg').innerText = translate('webAuthnFallbackMsg');
     document.getElementById('remember-label').innerText = translate('rememberMe');
@@ -29,6 +32,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     content.classList.add('d-block');
     content.classList.remove('d-none');
 });
+
+async function loadLocales(locale: string) {
+    const filePath = `locales/${locale}/messages.json?cache=${process.env.CACHE_TAG}`;
+    const localesResult = await fetch(filePath);
+    return await localesResult.json();
+}
 
 function translate(id: string) {
     return locales[id]?.message || '';
