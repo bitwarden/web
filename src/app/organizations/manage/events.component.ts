@@ -138,7 +138,8 @@ export class EventsComponent implements OnInit {
         }
 
         const data = await this.exportService.getEventExport(events);
-        this.downloadFile(data);
+        const fileName = this.exportService.getFileName('org-events', 'csv');
+        this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
     }
 
     private async loadAndParseEvents(startDate: string, endDate: string, continuationToken: string) {
@@ -180,10 +181,5 @@ export class EventsComponent implements OnInit {
 
     private appApiPromiseUnfulfilled() {
         return this.refreshPromise != null || this.morePromise != null || this.exportPromise != null;
-    }
-
-    private downloadFile(csv: string): void {
-        const fileName = this.exportService.getFileName('org-events', 'csv');
-        this.platformUtilsService.saveFile(window, csv, { type: 'text/plain' }, fileName);
     }
 }
