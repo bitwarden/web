@@ -2,6 +2,7 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+
 import {
     ActivatedRoute,
     Router,
@@ -13,11 +14,18 @@ import {
 } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
+import { Utils } from 'jslib/misc/utils';
+
+import { Policy } from 'jslib/models/domain/policy';
+
 import { OrganizationUserAcceptRequest } from 'jslib/models/request/organizationUserAcceptRequest';
+import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib/models/request/organizationUserResetPasswordEnrollmentRequest';
 
 @Component({
     selector: 'app-accept-organization',
@@ -33,7 +41,8 @@ export class AcceptOrganizationComponent implements OnInit {
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
         private apiService: ApiService, private userService: UserService,
-        private stateService: StateService) { }
+        private stateService: StateService, private cryptoService: CryptoService,
+        private policyService: PolicyService) { }
 
     ngOnInit() {
         let fired = false;
@@ -51,8 +60,39 @@ export class AcceptOrganizationComponent implements OnInit {
                     const request = new OrganizationUserAcceptRequest();
                     request.token = qParams.token;
                     try {
-                        this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
-                            qParams.organizationUserId, request);
+                        if (await this.performResetPasswordAutoEnroll(qParams)) {
+                            this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
+                                qParams.organizationUserId, request).then(() => {
+                                    // Retrieve Public Key
+                                    return this.apiService.getOrganizationKeys(qParams.organizationId);
+                                }).then(async response => {
+                                    let publicKey = null;
+
+                                    if (response != null) {
+                                        publicKey = Utils.fromB64ToArray(response.publicKey);
+                                    } else {
+                                        throw new Error('Get Organization Keys response is null');
+                                    }
+
+                                    // RSA Encrypt user's encKey.key with organization public key
+                                    const encKey = await this.cryptoService.getEncKey();
+                                    const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
+
+                                    // Create request and execute enrollment
+                                    const resetRequest = new OrganizationUserResetPasswordEnrollmentRequest();
+                                    resetRequest.resetPasswordKey = encryptedKey.encryptedString;
+
+                                    // Get User Id
+                                    // TODO Reset Password - Update this api method to use orgUser.Id
+                                    const userId = await this.userService.getUserId();
+
+                                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, userId, resetRequest);
+                                });
+                        } else {
+                            this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
+                                qParams.organizationUserId, request);
+                        }
+
                         await this.actionPromise;
                         const toast: Toast = {
                             type: 'success',
@@ -91,5 +131,22 @@ export class AcceptOrganizationComponent implements OnInit {
 
             this.loading = false;
         });
+    }
+
+    private async performResetPasswordAutoEnroll(qParams: any): Promise<boolean> {
+        let policyList: Policy[] = null;
+        try {
+            const policies = await this.apiService.getPoliciesByToken(qParams.organizationId, qParams.token,
+                qParams.email, qParams.organizationUserId);
+            policyList = this.policyService.mapPoliciesFromToken(policies);
+        } catch { }
+
+        if (policyList != null) {
+            const result = this.policyService.getResetPasswordPolicyOptions(policyList, qParams.organizationId);
+            // Return true if policy enabled and auto-enroll enabled
+            return result[1] && result[0].autoEnrollEnabled;
+        }
+
+        return false;
     }
 }

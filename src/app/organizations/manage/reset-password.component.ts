@@ -14,7 +14,7 @@ import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib/abstractions/policy.service';
 
-import { CipherString } from 'jslib/models/domain/cipherString';
+import { EncString } from 'jslib/models/domain/encString';
 import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordPolicyOptions';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 import { OrganizationUserResetPasswordRequest } from 'jslib/models/request/organizationUserResetPasswordRequest';
@@ -122,25 +122,30 @@ export class ResetPasswordComponent implements OnInit {
             }
         }
 
-        // Get user Information (kdf type, kdf iterations, resetPasswordKey) and change password
+        // Get user Information (kdf type, kdf iterations, resetPasswordKey, private key) and change password
         try {
             this.formPromise = this.apiService.getOrganizationUserResetPasswordDetails(this.organizationId, this.id)
                 .then(async response => {
                     let kdfType = null;
                     let kdfIterations = null;
                     let resetPasswordKey = null;
+                    let encryptedPrivateKey = null;
 
                     if (response != null) {
                         kdfType = response.kdf;
                         kdfIterations = response.kdfIterations;
                         resetPasswordKey = response.resetPasswordKey;
+                        encryptedPrivateKey = response.encryptedPrivateKey;
                     } else {
                         throw new Error('Reset Password Details response is null');
                     }
 
-                    // Decrypt User's Reset Password Key to get EncKey
+                    // Decrypt Organization's encrypted Private Key with org key
                     const orgSymKey = await this.cryptoService.getOrgKey(this.organizationId);
-                    const decValue = await this.cryptoService.decryptToBytes(new CipherString(resetPasswordKey), orgSymKey);
+                    const decPrivateKey = await this.cryptoService.decryptToBytes(new EncString(encryptedPrivateKey), orgSymKey);
+
+                    // Decrypt User's Reset Password Key to get EncKey
+                    const decValue = await this.cryptoService.rsaDecrypt(resetPasswordKey, decPrivateKey);
                     const userEncKey = new SymmetricCryptoKey(decValue);
 
                     // Create new key and hash new password
