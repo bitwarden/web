@@ -284,10 +284,9 @@ export class PeopleComponent implements OnInit {
             return false;
         }
 
-        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
-        this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
         try {
-            const response: ListResponse<OrganizationUserBulkResponse> = await this.actionPromise;
+            const request = new OrganizationUserBulkRequest(users.map(user => user.id));
+            const response = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
             this.showBulkStatus(users, users, response, this.i18nService.t('bulkRemovedMessage'));
             await this.load();
         } catch (e) {
@@ -310,10 +309,10 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const request = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
-        this.actionPromise = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
+        
         try {
-            const response: ListResponse<OrganizationUserBulkResponse> = await this.actionPromise;
+            const request = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
+            const response = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
             this.showBulkStatus(users, filteredUsers, response, this.i18nService.t('bulkReinviteMessage'));
         } catch (e) {
             this.validationService.showError(e);
@@ -369,12 +368,10 @@ export class PeopleComponent implements OnInit {
         }
 
         try {
-            const request = new OrganizationUserBulkConfirmRequest();
-            request.keys = userIdsWithKeys;
-            const response = await this.apiService.postOrganizationUserBulkConfirm(this.organizationId, request);
-            await this.load();
-
+            const request = new OrganizationUserBulkConfirmRequest(userIdsWithKeys);
+            const response = this.apiService.postOrganizationUserBulkConfirm(this.organizationId, request);
             this.showBulkStatus(users, approvedUsers, response, this.i18nService.t('bulkConfirmMessage'));
+            await this.load();
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -471,32 +468,40 @@ export class PeopleComponent implements OnInit {
         }
     }
 
-    private showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],
-        bulkResponse: ListResponse<OrganizationUserBulkResponse>, successfullMessage: string) {
-        const keyedErrors: any = bulkResponse.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
-        const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+    private async showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],
+        request: Promise<ListResponse<OrganizationUserBulkResponse>>, successfullMessage: string) {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.eventsModalRef.createComponent(factory).instance;
         const childComponent = this.modal.show<BulkStatusComponent>(
             BulkStatusComponent, this.eventsModalRef);
 
-        childComponent.users = users.map(user => {
-            let message = keyedErrors[user.id] ?? successfullMessage;
-            if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
-                message = this.i18nService.t('bulkFilteredMessage');
-            }
-
-            return {
-                user: user,
-                error: keyedErrors.hasOwnProperty(user.id),
-                message: message,
-            };
-        });
+        childComponent.loading = true;
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
+
+        const response = await request;
+
+        if (this.modal) {
+            const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
+            const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+    
+            childComponent.users = users.map(user => {
+                let message = keyedErrors[user.id] ?? successfullMessage;
+                if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
+                    message = this.i18nService.t('bulkFilteredMessage');
+                }
+    
+                return {
+                    user: user,
+                    error: keyedErrors.hasOwnProperty(user.id),
+                    message: message,
+                };
+            });
+            childComponent.loading = false;
+        }
     }
 
     private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {

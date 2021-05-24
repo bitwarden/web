@@ -10,7 +10,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-hover table-list">
+                <div class="card-body text-center" *ngIf="loading">
+                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    {{'loading' | i18n}}
+                </div>
+                <table class="table table-hover table-list" *ngIf="!loading">
                     <thead>
                         <tr>
                             <th colspan="2">{{'user' | i18n}}</th>

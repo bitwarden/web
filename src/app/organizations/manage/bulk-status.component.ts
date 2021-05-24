@@ -15,5 +15,6 @@ type BulkStatusEntry = {
 export class BulkStatusComponent {
 
     users: BulkStatusEntry[];
+    loading: boolean = false;
 
 }
