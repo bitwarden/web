@@ -195,6 +195,11 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             }
         }
 
+        const bootstrapModal = document.querySelector('div.modal');
+        if (bootstrapModal != null) {
+            bootstrapModal.removeAttribute('tabindex');
+        }
+
         const iconHtmlStr = iconClasses != null ? `<i class="swal-custom-icon fa ${iconClasses}"></i>` : undefined;
         const confirmed = await Swal.fire({
             heightAuto: false,
@@ -209,6 +214,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
             showConfirmButton: true,
             confirmButtonText: confirmText == null ? this.i18nService.t('ok') : confirmText,
         });
+
+        if (bootstrapModal != null) {
+            bootstrapModal.setAttribute('tabindex', '-1');
+        }
 
         return confirmed.value;
     }
