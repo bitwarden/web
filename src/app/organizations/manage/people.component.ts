@@ -309,7 +309,7 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        
+
         try {
             const request = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
             const response = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
@@ -487,13 +487,13 @@ export class PeopleComponent implements OnInit {
         if (this.modal) {
             const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
             const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
-    
+
             childComponent.users = users.map(user => {
                 let message = keyedErrors[user.id] ?? successfullMessage;
                 if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
                     message = this.i18nService.t('bulkFilteredMessage');
                 }
-    
+
                 return {
                     user: user,
                     error: keyedErrors.hasOwnProperty(user.id),
