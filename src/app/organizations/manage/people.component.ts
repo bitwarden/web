@@ -480,29 +480,44 @@ export class PeopleComponent implements OnInit {
 
         childComponent.loading = true;
 
+        // Workaround to handle closing the modal shortly after it has been opened
+        let close = false;
+        this.modal.onShown.subscribe(() => {
+            if (close) {
+                this.modal.close();
+            }
+        });
+
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
         });
 
-        const response = await request;
+        try {
+            const response = await request;
 
-        if (this.modal) {
-            const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
-            const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+            if (this.modal) {
+                const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
+                const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
 
-            childComponent.users = users.map(user => {
-                let message = keyedErrors[user.id] ?? successfullMessage;
-                if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
-                    message = this.i18nService.t('bulkFilteredMessage');
-                }
+                childComponent.users = users.map(user => {
+                    let message = keyedErrors[user.id] ?? successfullMessage;
+                    if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
+                        message = this.i18nService.t('bulkFilteredMessage');
+                    }
 
-                return {
-                    user: user,
-                    error: keyedErrors.hasOwnProperty(user.id),
-                    message: message,
-                };
-            });
-            childComponent.loading = false;
+                    return {
+                        user: user,
+                        error: keyedErrors.hasOwnProperty(user.id),
+                        message: message,
+                    };
+                });
+                childComponent.loading = false;
+            }
+        } catch {
+            close = true;
+            if (this.modal) {
+                this.modal.close();
+            }
         }
     }
 
