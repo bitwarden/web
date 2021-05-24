@@ -288,6 +288,7 @@ export class PeopleComponent implements OnInit {
             const request = new OrganizationUserBulkRequest(users.map(user => user.id));
             const response = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
             this.showBulkStatus(users, users, response, this.i18nService.t('bulkRemovedMessage'));
+            await response;
             await this.load();
         } catch (e) {
             this.validationService.showError(e);
@@ -371,6 +372,7 @@ export class PeopleComponent implements OnInit {
             const request = new OrganizationUserBulkConfirmRequest(userIdsWithKeys);
             const response = this.apiService.postOrganizationUserBulkConfirm(this.organizationId, request);
             this.showBulkStatus(users, approvedUsers, response, this.i18nService.t('bulkConfirmMessage'));
+            await response;
             await this.load();
         } catch (e) {
             this.validationService.showError(e);
