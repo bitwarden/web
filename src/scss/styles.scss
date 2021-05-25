@@ -200,6 +200,12 @@ input, select, textarea {
     }
 }
 
+.text-muted {
+    @include themify($themes) {
+        color: themed('textMuted') !important;
+    }
+}
+
 .card-header, .modal-header {
     font-weight: bold;
     text-transform: uppercase;
@@ -273,7 +279,9 @@ input, select, textarea {
     h3, .section-header > * {
         font-weight: normal;
         text-transform: uppercase;
-        color: $text-muted;
+        @include themify($themes) {
+            color: themed('textMuted');
+        }
     }
 }
 .modal .list-group-flush {
@@ -353,7 +361,9 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .btn-outline-secondary {
-    color: $text-muted;
+    @include themify($themes) {
+        color: themed('textMuted');
+    }
 
     &:hover:not(:disabled) {
         color: $body-color;
@@ -435,7 +445,9 @@ input[type="search"]::-webkit-search-cancel-button {
         }
 
         small, > .fa, .icon {
-            color: $text-muted;
+            @include themify($themes) {
+                color: themed('textMuted');
+            }
         }
     }
 
@@ -488,7 +500,9 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     td.table-list-strike {
-        color: $text-muted;
+        @include themify($themes) {
+            color: themed('textMuted');
+        }
         text-decoration: line-through;
     }
 }
@@ -589,7 +603,9 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         h3 {
             font-weight: normal;
             text-transform: uppercase;
-            color: $text-muted;
+            @include themify($themes) {
+                color: themed('textMuted');
+            }
         }
 
         ul:last-child {
@@ -870,7 +886,9 @@ app-user-billing {
 
         > small {
             display: block;
-            color: $text-muted;
+            @include themify($themes) {
+                color: themed('textMuted');
+            }
             font-weight: normal;
         }
 
