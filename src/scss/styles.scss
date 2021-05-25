@@ -537,11 +537,15 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .password-number {
-    color: #007fde;
+    @include themify($themes) {
+        color: themed('pwNumber');
+    }
 }
 
 .password-special {
-    color: #c40800;
+    @include themify($themes) {
+        color: themed('pwSpecial');
+    }
 }
 
 .card {
