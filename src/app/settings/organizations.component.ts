@@ -98,7 +98,7 @@ export class OrganizationsComponent implements OnInit {
         let toastStringRef = 'withdrawPasswordResetSuccess';
 
         // Enroll - encrpyt user's encKey.key with organization key
-        if (!org.isResetPasswordEnrolled) {
+        if (!org.resetPasswordEnrolled) {
             const encKey = await this.cryptoService.getEncKey();
             const orgSymKey = await this.cryptoService.getOrgKey(org.id);
             const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);

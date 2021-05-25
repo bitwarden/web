@@ -201,7 +201,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
         for (const org of orgs) {
             // If not already enrolled, skip
-            if (!org.isResetPasswordEnrolled) {
+            if (!org.resetPasswordEnrolled) {
                 continue;
             }
 
