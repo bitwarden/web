@@ -35,6 +35,10 @@
                     <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
                     {{'reinviteSelected' | i18n}}
                 </button>
+                <button class="dropdown-item text-success" appStopClick (click)="bulkConfirm()" *ngIf="showConfirmUsers">
+                    <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+                    {{'confirmSelected' | i18n}}
+                </button>
                 <button class="dropdown-item text-danger" appStopClick (click)="bulkRemove()">
                     <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                     {{'remove' | i18n}}
@@ -142,3 +146,4 @@
 <ng-template #groupsTemplate></ng-template>
 <ng-template #eventsTemplate></ng-template>
 <ng-template #confirmTemplate></ng-template>
+<ng-template #bulkStatusTemplate></ng-template>
