@@ -41,6 +41,7 @@ import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
+import { PasswordRepromptService } from 'jslib-common/services/passwordReprompt.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
 import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
@@ -54,7 +55,6 @@ import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service'
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
-import { AppIdService as AppIdServiceAbstraction } from 'jslib-common/abstractions/appId.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
 import { CipherService as CipherServiceAbstraction } from 'jslib-common/abstractions/cipher.service';
@@ -68,12 +68,12 @@ import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib-common
 import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib-common/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstractions/import.service';
-import { LogService as LogServiceAbstraction } from 'jslib-common/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
 import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
 } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService as PolicyServiceAbstraction } from 'jslib-common/abstractions/policy.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib-common/abstractions/search.service';
@@ -91,12 +91,12 @@ const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService);
+const consoleLogService = new ConsoleLogService(false);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
-const consoleLogService = new ConsoleLogService(false);
 const cryptoService = new CryptoService(storageService,
     platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService, platformUtilsService,
     consoleLogService);
@@ -129,14 +129,15 @@ const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
     consoleLogService);
-const exportService = new ExportService(folderService, cipherService, apiService);
+const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
-    platformUtilsService);
+    platformUtilsService, cryptoService);
 const notificationsService = new NotificationsService(userService, syncService, appIdService,
     apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
+const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
 
 containerService.attachToWindow(window);
 
@@ -222,6 +223,7 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
+        { provide: PasswordRepromptServiceAbstraction, useValue: passwordRepromptService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,

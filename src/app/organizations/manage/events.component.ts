@@ -7,13 +7,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
-
-import { EventService } from '../../services/event.service';
 
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
 import { ListResponse } from 'jslib-common/models/response/listResponse';
+import { EventView } from 'jslib-common/models/view/eventView';
+
+import { EventService } from '../../services/event.service';
 
 @Component({
     selector: 'app-org-events',
@@ -23,19 +26,20 @@ export class EventsComponent implements OnInit {
     loading = true;
     loaded = false;
     organizationId: string;
-    events: any[];
+    events: EventView[];
     start: string;
     end: string;
     continuationToken: string;
     refreshPromise: Promise<any>;
+    exportPromise: Promise<any>;
     morePromise: Promise<any>;
 
     private orgUsersUserIdMap = new Map<string, any>();
     private orgUsersIdMap = new Map<string, any>();
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private eventService: EventService, private i18nService: I18nService,
-        private toasterService: ToasterService, private userService: UserService,
+    constructor(private apiService: ApiService, private route: ActivatedRoute, private eventService: EventService,
+        private i18nService: I18nService, private toasterService: ToasterService, private userService: UserService,
+        private exportService: ExportService, private platformUtilsService: PlatformUtilsService,
         private router: Router) { }
 
     async ngOnInit() {
@@ -64,8 +68,26 @@ export class EventsComponent implements OnInit {
         this.loaded = true;
     }
 
+    async exportEvents() {
+        if (this.appApiPromiseUnfulfilled()) {
+            return;
+        }
+
+        this.loading = true;
+        this.exportPromise = this.exportService.getEventExport(this.events).then(data => {
+            const fileName = this.exportService.getFileName('org-events', 'csv');
+            this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
+        });
+        try {
+            await this.exportPromise;
+        } catch { }
+
+        this.exportPromise = null;
+        this.loading = false;
+    }
+
     async loadEvents(clearExisting: boolean) {
-        if (this.refreshPromise != null || this.morePromise != null) {
+        if (this.appApiPromiseUnfulfilled()) {
             return;
         }
 
@@ -92,13 +114,14 @@ export class EventsComponent implements OnInit {
         } catch { }
 
         this.continuationToken = response.continuationToken;
-        const events = response.data.map(r => {
+        const events = await Promise.all(response.data.map(async r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
-            const eventInfo = this.eventService.getEventInfo(r);
+            const eventInfo = await this.eventService.getEventInfo(r);
             const user = userId != null && this.orgUsersUserIdMap.has(userId) ?
                 this.orgUsersUserIdMap.get(userId) : null;
-            return {
+            return new EventView({
                 message: eventInfo.message,
+                humanReadableMessage: eventInfo.humanReadableMessage,
                 appIcon: eventInfo.appIcon,
                 appName: eventInfo.appName,
                 userId: userId,
@@ -107,8 +130,8 @@ export class EventsComponent implements OnInit {
                 date: r.date,
                 ip: r.ipAddress,
                 type: r.type,
-            };
-        });
+            });
+        }));
 
         if (!clearExisting && this.events != null && this.events.length > 0) {
             this.events = this.events.concat(events);
@@ -119,5 +142,9 @@ export class EventsComponent implements OnInit {
         this.loading = false;
         this.morePromise = null;
         this.refreshPromise = null;
+    }
+
+    private appApiPromiseUnfulfilled() {
+        return this.refreshPromise != null || this.morePromise != null || this.exportPromise != null;
     }
 }

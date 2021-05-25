@@ -817,6 +817,9 @@
   "exportMasterPassword": {
     "message": "Enter your master password to export your vault data."
   },
+  "export": {
+    "message": "Export"
+  },
   "exportVault": {
     "message": "Export Vault"
   },
@@ -1035,6 +1038,9 @@
   },
   "importNothingError": {
     "message": "Nothing was imported."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Select the format of the import file"
@@ -3832,7 +3838,7 @@
     "message": "To verify your 2FA please click the button below."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Authenticate WebAuthn"
   },
   "webAuthnNotSupported": {
     "message": "WebAuthn is not supported in this browser."
@@ -3875,5 +3881,35 @@
         "example": "John Smith"
       }
     }
+  },
+  "trashCleanupWarning": {
+    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Items that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "usersHasBeenReinvited": {
+    "message": "The selected users have been reinvited."
+  },
+  "removeSelectedUsersConfirmation": {
+    "message": "Are you sure you want to remove the selected users?"
+  },
+  "usersHasBeenRemoved": {
+    "message": "The selected users have been removed."
   }
 }

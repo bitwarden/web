@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
@@ -21,6 +22,7 @@ import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/componen
 import { CipherType } from 'jslib-common/enums/cipherType';
 import { EventType } from 'jslib-common/enums/eventType';
 
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
 const MaxCheckedCount = 500;
@@ -43,7 +45,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     constructor(searchService: SearchService, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
         protected cipherService: CipherService, protected eventService: EventService,
-        protected totpService: TotpService, protected userService: UserService) {
+        protected totpService: TotpService, protected userService: UserService,
+        protected passwordRepromptService: PasswordRepromptService) {
         super(searchService);
         this.pageSize = 200;
     }
@@ -60,11 +63,17 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.platformUtilsService.launchUri(uri);
     }
 
-    attachments(c: CipherView) {
+    async attachments(c: CipherView) {
+        if (!await this.repromptCipher(c)) {
+            return;
+        }
         this.onAttachmentsClicked.emit(c);
     }
 
-    share(c: CipherView) {
+    async share(c: CipherView) {
+        if (!await this.repromptCipher(c)) {
+            return;
+        }
         this.onShareClicked.emit(c);
     }
 
@@ -72,11 +81,17 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.onCollectionsClicked.emit(c);
     }
 
-    clone(c: CipherView) {
+    async clone(c: CipherView) {
+        if (!await this.repromptCipher(c)) {
+            return;
+        }
         this.onCloneClicked.emit(c);
     }
 
     async delete(c: CipherView): Promise<boolean> {
+        if (!await this.repromptCipher(c)) {
+            return;
+        }
         if (this.actionPromise != null) {
             return;
         }
@@ -121,10 +136,18 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
+        if (this.passwordRepromptService.protectedFields().includes(aType) && !await this.repromptCipher(cipher)) {
+            return;
+        }
+
         if (value == null || aType === 'TOTP' && !this.displayTotpCopyButton(cipher)) {
             return;
         } else if (value === cipher.login.totp) {
             value = await this.totpService.getCode(value);
+        }
+
+        if (!cipher.viewPassword) {
+            return;
         }
 
         this.platformUtilsService.copyToClipboard(value, { window: window });
@@ -170,11 +193,21 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             (cipher.organizationUseTotp || this.userHasPremiumAccess);
     }
 
+    async selectCipher(cipher: CipherView) {
+        if (await this.repromptCipher(cipher)) {
+            super.selectCipher(cipher);
+        }
+    }
+
     protected deleteCipher(id: string, permanent: boolean) {
         return permanent ? this.cipherService.deleteWithServer(id) : this.cipherService.softDeleteWithServer(id);
     }
 
     protected showFixOldAttachments(c: CipherView) {
         return c.hasOldAttachments && c.organizationId == null;
+    }
+
+    protected async repromptCipher(c: CipherView) {
+        return c.reprompt === CipherRepromptType.None || await this.passwordRepromptService.showPasswordPrompt();
     }
 }

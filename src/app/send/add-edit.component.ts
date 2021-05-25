@@ -25,9 +25,11 @@ export class AddEditComponent extends BaseAddEditComponent {
             messagingService, policyService);
     }
 
-    copyLinkToClipboard(link: string) {
+    async copyLinkToClipboard(link: string): Promise<void | boolean> {
         // Copy function on web depends on the modal being open or not. Since this event occurs during a transition
         // of the modal closing we need to add a small delay to make sure state of the DOM is consistent.
-        window.setTimeout(() => super.copyLinkToClipboard(link), 500);
+        return new Promise(resolve => {
+            window.setTimeout(() => resolve(super.copyLinkToClipboard(link)), 500);
+        });
     }
 }

@@ -15,6 +15,7 @@ import {
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -52,6 +53,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     collectionId: string = null;
     type: CipherType = null;
     deleted: boolean = false;
+    trashCleanupWarning: string = null;
 
     modal: ModalComponent = null;
 
@@ -59,9 +61,14 @@ export class VaultComponent implements OnInit, OnDestroy {
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
         private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private broadcasterService: BroadcasterService, private ngZone: NgZone,
+        private platformUtilsService: PlatformUtilsService) { }
 
     ngOnInit() {
+        this.trashCleanupWarning = this.i18nService.t(
+            this.platformUtilsService.isSelfHost() ? 'trashCleanupWarningSelfHosted' : 'trashCleanupWarning'
+        );
+
         const queryParams = this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
