@@ -575,12 +575,6 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 }
 
-#totpImage {
-    @include themify($themes) {
-        filter: themed('totpFilter');
-    }
-}
-
 .close {
     @include themify($themes) {
         color: themed('textColor');
@@ -722,7 +716,9 @@ app-user-billing {
 }
 
 #web-authn-frame {
-    background: url('../images/loading.svg') 0 0 no-repeat;
+    @include themify($themes) {
+        background: themed('imgLoading') 0 0 no-repeat;
+    }
     height: 290px;
 
     iframe {
@@ -733,8 +729,11 @@ app-user-billing {
 }
 
 #bt-dropin-container {
-    background: url('../images/loading.svg') 0 0 no-repeat;
-    min-height: 50px;
+/*    @include themify($themes) {
+        background: themed('imgLoading') 0 0 no-repeat;
+    }
+    */min-height: 50px;
+    background: url('../images/loading-white.svg') 0 0 no-repeat;
 }
 
 .braintree-placeholder, .braintree-sheet__header {
@@ -753,6 +752,18 @@ app-user-billing {
 
 .braintree-sheet {
     border: none;
+}
+
+[data-braintree-id="upper-container"]::before {
+    @include themify($themes) {
+        background-color: themed('backgroundColor');
+    }
+}
+
+#totpImage {
+    @include themify($themes) {
+        filter: themed('imgFilter');
+    }
 }
 
 .totp {

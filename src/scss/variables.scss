@@ -95,8 +95,9 @@ $themes: (
         warning: $warning,
         loginLogo: url("../images/logo-dark@2x.png"),
         totpFilter:  invert(0) grayscale(0),
+        imgLoading: url('../images/loading.svg'),
         cdkDraggingBackground: #FFFFFF,
-        tableHover: #3333,
+        tableHover: #333333,
         navActiveBackground: #FFFFFF
     ),
     Dark: (
@@ -104,7 +105,7 @@ $themes: (
         textColor: #fbfbfb,
         textMuted: #C1C4C8,
         linkColor: #46ace7,
-        iconHover: $secondary,
+        iconHover: #555555,
         borderColor: #111111,
         backgroundColor: #222222,
         inputBackgroundColor: #1A1A1A,
@@ -118,7 +119,8 @@ $themes: (
         buttonTextColor: $secondary,
         warning: $warning,
         loginLogo: url("../images/logo-white@2x.png"),
-        totpFilter: invert(1) grayscale(1),
+        imgFilter: invert(1) grayscale(1),
+        imgLoading: url('../images/loading-white.svg'),
         cdkDraggingBackground: #000000,
         tableHover: $secondary,
         navActiveBackground: #1A1A1A
