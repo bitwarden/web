@@ -108,6 +108,7 @@ export class OrganizationsComponent implements OnInit {
         let keyString: string = null;
         let toastStringRef = 'withdrawPasswordResetSuccess';
 
+<<<<<<< HEAD
         // Enrolling
         if (!org.resetPasswordEnrolled) {
             // Alert user about enrollment
@@ -145,6 +146,19 @@ export class OrganizationsComponent implements OnInit {
                 });
         } else {
             // Withdrawal
+=======
+        // Enroll - encrpyt user's encKey.key with organization key
+        if (!org.resetPasswordEnrolled) {
+            const encKey = await this.cryptoService.getEncKey();
+            const orgSymKey = await this.cryptoService.getOrgKey(org.id);
+            const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);
+            keyString = encryptedKey.encryptedString;
+            toastStringRef = 'enrollPasswordResetSuccess';
+        }
+
+        // Create/Execute request
+        try {
+>>>>>>> master
             const request = new OrganizationUserResetPasswordEnrollmentRequest();
             request.resetPasswordKey = keyString;
             this.actionPromise = this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request)

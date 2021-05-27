@@ -26,8 +26,12 @@ import { SearchService } from 'jslib/abstractions/search.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
+<<<<<<< HEAD
 import { OrganizationKeysRequest } from 'jslib/models/request/organizationKeysRequest';
 import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
+=======
+import { OrganizationUserBulkConfirmRequest } from 'jslib/models/request/organizationUserBulkConfirmRequest';
+>>>>>>> master
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
@@ -38,8 +42,14 @@ import { PolicyType } from 'jslib/enums/policyType';
 
 import { Utils } from 'jslib/misc/utils';
 
+import { ListResponse } from 'jslib/models/response';
+import { OrganizationUserBulkResponse } from 'jslib/models/response/organizationUserBulkResponse';
 import { ModalComponent } from '../../modal.component';
+<<<<<<< HEAD
 
+=======
+import { BulkStatusComponent } from './bulk-status.component';
+>>>>>>> master
 import { EntityEventsComponent } from './entity-events.component';
 import { ResetPasswordComponent } from './reset-password.component';
 import { UserAddEditComponent } from './user-add-edit.component';
@@ -57,7 +67,11 @@ export class PeopleComponent implements OnInit {
     @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
     @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
+<<<<<<< HEAD
     @ViewChild('resetPasswordTemplate', { read: ViewContainerRef, static: true }) resetPasswordModalRef: ViewContainerRef;
+=======
+    @ViewChild('bulkStatusTemplate', { read: ViewContainerRef, static: true }) bulkStatusModalRef: ViewContainerRef;
+>>>>>>> master
 
     loading = true;
     organizationId: string;
@@ -340,11 +354,11 @@ export class PeopleComponent implements OnInit {
             return false;
         }
 
-        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
-        this.actionPromise = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
         try {
-            await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenRemoved'));
+            const request = new OrganizationUserBulkRequest(users.map(user => user.id));
+            const response = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
+            this.showBulkStatus(users, users, response, this.i18nService.t('bulkRemovedMessage'));
+            await response;
             await this.load();
         } catch (e) {
             this.validationService.showError(e);
@@ -357,40 +371,108 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const users = this.getCheckedUsers().filter(u => u.status === OrganizationUserStatusType.Invited);
+        const users = this.getCheckedUsers();
+        const filteredUsers = users.filter(u => u.status === OrganizationUserStatusType.Invited);
 
-        if (users.length <= 0) {
+        if (filteredUsers.length <= 0) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }
 
-        const request = new OrganizationUserBulkRequest(users.map(user => user.id));
-        this.actionPromise = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
+
         try {
-            await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('usersHasBeenReinvited'));
+            const request = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
+            const response = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
+            this.showBulkStatus(users, filteredUsers, response, this.i18nService.t('bulkReinviteMessage'));
         } catch (e) {
             this.validationService.showError(e);
         }
         this.actionPromise = null;
     }
 
-    async confirm(user: OrganizationUserUserDetailsResponse) {
-        function updateUser(self: PeopleComponent) {
-            user.status = OrganizationUserStatusType.Confirmed;
-            const mapIndex = self.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
-            if (mapIndex > -1) {
-                self.statusMap.get(OrganizationUserStatusType.Accepted).splice(mapIndex, 1);
-                self.statusMap.get(OrganizationUserStatusType.Confirmed).push(user);
+    async bulkConfirm() {
+        if (this.actionPromise != null) {
+            return;
+        }
+
+        const users = this.getCheckedUsers();
+        const filteredUsers = users.filter(u => u.status === OrganizationUserStatusType.Accepted);
+
+        if (filteredUsers.length <= 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('noSelectedUsersApplicable'));
+            return;
+        }
+
+        const publicKeyRequest = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
+        const publicKeyResponse = await this.apiService.postOrganizationUsersPublicKey(this.organizationId, publicKeyRequest);
+
+        const keyMap = new Map<string, Uint8Array>();
+        publicKeyResponse.data.forEach(entry => {
+            keyMap.set(entry.id, Utils.fromB64ToArray(entry.key));
+        });
+
+        const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
+        const userIdsWithKeys: any[] = [];
+        const approvedUsers = [];
+        for (const user of filteredUsers) {
+            const publicKey = keyMap.get(user.id);
+            if (publicKey == null) {
+                continue;
+            }
+
+            if (await this.promptConfirmUser(user, publicKey)) {
+                const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
+                approvedUsers.push(user);
+                userIdsWithKeys.push({
+                    id: user.id,
+                    key: key.encryptedString,
+                });
             }
         }
 
-        const confirmUser = async (publicKey: Uint8Array) => {
+        if (userIdsWithKeys.length <= 0) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('noSelectedUsersApplicable'));
+            return;
+        }
+
+        try {
+            const request = new OrganizationUserBulkConfirmRequest(userIdsWithKeys);
+            const response = this.apiService.postOrganizationUserBulkConfirm(this.organizationId, request);
+            this.showBulkStatus(users, approvedUsers, response, this.i18nService.t('bulkConfirmMessage'));
+            await response;
+            await this.load();
+        } catch (e) {
+            this.validationService.showError(e);
+        }
+    }
+
+    async confirm(user: OrganizationUserUserDetailsResponse): Promise<void> {
+        if (this.actionPromise != null) {
+            return;
+        }
+
+        try {
+            const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
+            const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
+
+            const confirmed = await this.promptConfirmUser(user, publicKey);
+            if (!confirmed) {
+                return;
+            }
+
+            try {
+                // tslint:disable-next-line
+                console.log('User\'s fingerprint: ' +
+                    (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
+            } catch { }
+
             try {
                 this.actionPromise = this.doConfirmation(user, publicKey);
                 await this.actionPromise;
-                updateUser(this);
+                this.confirmUser(user);
                 this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
             } catch (e) {
                 this.validationService.showError(e);
@@ -398,52 +480,6 @@ export class PeopleComponent implements OnInit {
             } finally {
                 this.actionPromise = null;
             }
-        };
-
-        if (this.actionPromise != null) {
-            return;
-        }
-
-        const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
-        if (autoConfirm == null || !autoConfirm) {
-            if (this.modal != null) {
-                this.modal.close();
-            }
-
-            const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-            this.modal = this.confirmModalRef.createComponent(factory).instance;
-            const childComponent = this.modal.show<UserConfirmComponent>(
-                UserConfirmComponent, this.confirmModalRef);
-
-            childComponent.name = user != null ? user.name || user.email : null;
-            childComponent.organizationId = this.organizationId;
-            childComponent.organizationUserId = user != null ? user.id : null;
-            childComponent.userId = user != null ? user.userId : null;
-            childComponent.onConfirmedUser.subscribe(async (publicKey: Uint8Array) => {
-                try {
-                    await confirmUser(publicKey);
-                    this.modal.close();
-                } catch (e) {
-                    // tslint:disable-next-line
-                    console.error('Handled exception:', e);
-                }
-            });
-
-            this.modal.onClosed.subscribe(() => {
-                this.modal = null;
-            });
-            return;
-        }
-
-        try {
-            const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
-            const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
-            try {
-                // tslint:disable-next-line
-                console.log('User\'s fingerprint: ' +
-                    (await this.cryptoService.getFingerprint(user.userId, publicKey.buffer)).join('-'));
-            } catch { }
-            await confirmUser(publicKey);
         } catch (e) {
             // tslint:disable-next-line
             console.error('Handled exception:', e);
@@ -529,6 +565,57 @@ export class PeopleComponent implements OnInit {
         }
     }
 
+    private async showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],
+        request: Promise<ListResponse<OrganizationUserBulkResponse>>, successfullMessage: string) {
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.eventsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<BulkStatusComponent>(
+            BulkStatusComponent, this.eventsModalRef);
+
+        childComponent.loading = true;
+
+        // Workaround to handle closing the modal shortly after it has been opened
+        let close = false;
+        this.modal.onShown.subscribe(() => {
+            if (close) {
+                this.modal.close();
+            }
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+
+        try {
+            const response = await request;
+
+            if (this.modal) {
+                const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
+                const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+
+                childComponent.users = users.map(user => {
+                    let message = keyedErrors[user.id] ?? successfullMessage;
+                    if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
+                        message = this.i18nService.t('bulkFilteredMessage');
+                    }
+
+                    return {
+                        user: user,
+                        error: keyedErrors.hasOwnProperty(user.id),
+                        message: message,
+                    };
+                });
+                childComponent.loading = false;
+            }
+        } catch {
+            close = true;
+            if (this.modal) {
+                this.modal.close();
+            }
+        }
+    }
+
     private async doConfirmation(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array) {
         const orgKey = await this.cryptoService.getOrgKey(this.organizationId);
         const key = await this.cryptoService.rsaEncrypt(orgKey.key, publicKey.buffer);
@@ -563,7 +650,50 @@ export class PeopleComponent implements OnInit {
         }
     }
 
+    private confirmUser(user: OrganizationUserUserDetailsResponse) {
+        user.status = OrganizationUserStatusType.Confirmed;
+        const mapIndex = this.statusMap.get(OrganizationUserStatusType.Accepted).indexOf(user);
+        if (mapIndex > -1) {
+            this.statusMap.get(OrganizationUserStatusType.Accepted).splice(mapIndex, 1);
+            this.statusMap.get(OrganizationUserStatusType.Confirmed).push(user);
+        }
+    }
+
     private getCheckedUsers() {
         return this.users.filter(u => (u as any).checked);
+    }
+
+    private promptConfirmUser(user: OrganizationUserUserDetailsResponse, publicKey: Uint8Array): Promise<boolean> {
+        return new Promise(async (resolve, reject) => {
+            const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+            if (autoConfirm ?? false) {
+                resolve(true);
+            }
+            let success = false;
+
+            if (this.modal != null) {
+                this.modal.close();
+            }
+
+            const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+            this.modal = this.confirmModalRef.createComponent(factory).instance;
+            const childComponent = this.modal.show<UserConfirmComponent>(
+                UserConfirmComponent, this.confirmModalRef);
+
+            childComponent.name = user != null ? user.name || user.email : null;
+            childComponent.organizationId = this.organizationId;
+            childComponent.organizationUserId = user != null ? user.id : null;
+            childComponent.userId = user != null ? user.userId : null;
+            childComponent.publicKey = publicKey;
+            childComponent.onConfirmedUser.subscribe(() => {
+                success = true;
+                this.modal.close();
+            });
+
+            this.modal.onClosed.subscribe(() => {
+                this.modal = null;
+                setTimeout(() => resolve(success), 10);
+            });
+        });
     }
 }
