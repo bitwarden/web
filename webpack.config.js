@@ -8,15 +8,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const pjson = require('./package.json');
-const config = require('./config.js')
+const config = require('./config.js');
 
-if (process.env.NODE_ENV == null) {
-    process.env.NODE_ENV = 'development';
-}
+const ENV = process.env.ENV == null ? 'development' : process.env.ENV;
+const NODE_ENV = process.env.NODE_ENV == null ? 'development' : process.env.NODE_ENV;
 
-const NODE_ENV = process.env.NODE_ENV;
 const envConfig = config.load(process.env.ENV);
-config.log(envConfig)
+config.log(envConfig);
 
 const moduleRules = [
     {
