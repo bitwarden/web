@@ -145,7 +145,7 @@ export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
 
-        if (process.env.ENV !== 'production') {
+        if (process.env.ENV !== 'production' || platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
             environmentService.notificationsUrl = 'https://notifications.bitwarden.com';
