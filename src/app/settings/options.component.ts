@@ -45,6 +45,7 @@ export class OptionsComponent implements OnInit {
             { name: i18nService.t('fourHours'), value: 240 },
             { name: i18nService.t('eightHours'), value: 480 },
             { name: i18nService.t('twelveHours'), value: 720 },
+            { name: i18nService.t('twentyFourHours'), value: 1440 },
             { name: i18nService.t('onRefresh'), value: -1 },
         ];
         if (this.platformUtilsService.isDev()) {
