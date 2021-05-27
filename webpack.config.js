@@ -15,7 +15,7 @@ if (process.env.NODE_ENV == null) {
 }
 
 const NODE_ENV = process.env.NODE_ENV;
-const envConfig = config.load(process.env.TARGET);
+const envConfig = config.load(process.env.ENV);
 config.log(envConfig)
 
 const moduleRules = [
@@ -131,8 +131,8 @@ const plugins = [
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(NODE_ENV),
-            'TARGET': JSON.stringify(process.env.TARGET),
+            'ENV': JSON.stringify(ENV),
+            'SELF_HOST': JSON.stringify(process.env.SELF_HOST),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
         }
