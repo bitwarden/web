@@ -26,12 +26,9 @@ import { SearchService } from 'jslib/abstractions/search.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
-<<<<<<< HEAD
 import { OrganizationKeysRequest } from 'jslib/models/request/organizationKeysRequest';
 import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
-=======
 import { OrganizationUserBulkConfirmRequest } from 'jslib/models/request/organizationUserBulkConfirmRequest';
->>>>>>> master
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
@@ -44,12 +41,9 @@ import { Utils } from 'jslib/misc/utils';
 
 import { ListResponse } from 'jslib/models/response';
 import { OrganizationUserBulkResponse } from 'jslib/models/response/organizationUserBulkResponse';
-import { ModalComponent } from '../../modal.component';
-<<<<<<< HEAD
 
-=======
+import { ModalComponent } from '../../modal.component';
 import { BulkStatusComponent } from './bulk-status.component';
->>>>>>> master
 import { EntityEventsComponent } from './entity-events.component';
 import { ResetPasswordComponent } from './reset-password.component';
 import { UserAddEditComponent } from './user-add-edit.component';
@@ -67,11 +61,8 @@ export class PeopleComponent implements OnInit {
     @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
     @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
-<<<<<<< HEAD
     @ViewChild('resetPasswordTemplate', { read: ViewContainerRef, static: true }) resetPasswordModalRef: ViewContainerRef;
-=======
     @ViewChild('bulkStatusTemplate', { read: ViewContainerRef, static: true }) bulkStatusModalRef: ViewContainerRef;
->>>>>>> master
 
     loading = true;
     organizationId: string;
@@ -591,8 +582,8 @@ export class PeopleComponent implements OnInit {
             const response = await request;
 
             if (this.modal) {
-                const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
-                const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+                const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({ ...a, [x.id]: x.error }), {});
+                const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({ ...a, [x.id]: x }), {});
 
                 childComponent.users = users.map(user => {
                     let message = keyedErrors[user.id] ?? successfullMessage;
