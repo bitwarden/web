@@ -198,9 +198,13 @@ export class EventService {
                 msg = this.i18nService.t('eventWithdrawPasswordReset', this.formatOrgUserId(ev));
                 humanReadableMsg = this.i18nService.t('eventWithdrawPasswordReset', this.getShortId(ev.organizationUserId));
                 break;
+            case EventType.OrganizationUser_AdminResetPassword:
+                msg = this.i18nService.t('eventAdminPasswordReset', this.formatOrgUserId(ev));
+                humanReadableMsg = this.i18nService.t('eventAdminPasswordReset', this.getShortId(ev.organizationUserId));
+                break;
             // Org
             case EventType.Organization_Updated:
-                msg  = humanReadableMsg = this.i18nService.t('editedOrgSettings');
+                msg = humanReadableMsg = this.i18nService.t('editedOrgSettings');
                 break;
             case EventType.Organization_PurgedVault:
                 msg = humanReadableMsg = this.i18nService.t('purgedOrganizationVault');
