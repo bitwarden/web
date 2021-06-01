@@ -3882,6 +3882,15 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "trashCleanupWarning": {
     "message": "Items that have been in Trash more than 30 days will be automatically deleted."
   },
@@ -3903,13 +3912,25 @@
   "noSelectedUsersApplicable": {
     "message": "This action is not applicable to any of the selected users."
   },
-  "usersHasBeenReinvited": {
-    "message": "The selected users have been reinvited."
-  },
   "removeSelectedUsersConfirmation": {
     "message": "Are you sure you want to remove the selected users?"
   },
-  "usersHasBeenRemoved": {
-    "message": "The selected users have been removed."
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
   }
 }

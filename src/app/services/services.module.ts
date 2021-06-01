@@ -144,9 +144,8 @@ containerService.attachToWindow(window);
 export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
-        const isDev = platformUtilsService.isDev();
 
-        if (isDev || platformUtilsService.isSelfHost()) {
+        if (process.env.ENV !== 'production' || platformUtilsService.isSelfHost()) {
             environmentService.baseUrl = window.location.origin;
         } else {
             environmentService.notificationsUrl = 'https://notifications.bitwarden.com';

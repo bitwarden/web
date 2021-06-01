@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         locales = await loadLocales(locale);
     } catch {
+        // tslint:disable-next-line:no-console
         console.error('Failed to load the locale', locale);
         locales = await loadLocales('en');
     }
