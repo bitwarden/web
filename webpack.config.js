@@ -180,7 +180,13 @@ const devServer = {
             pathRewrite: {'^/portal' : ''},
             secure: false,
             changeOrigin: true
-        }
+        },
+        '/icons': {
+            target: envConfig['proxyIcons'],
+            pathRewrite: { '^/icons': '' },
+            secure: false,
+            changeOrigin: true
+        },
     },
     hot: false,
     allowedHosts: envConfig['allowedHosts']
