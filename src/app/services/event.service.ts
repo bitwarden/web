@@ -37,6 +37,7 @@ export class EventService {
             message: message,
             humanReadableMessage: humanReadableMessage,
             appIcon: appInfo[0],
+            deviceType: ev.deviceType,
             appName: appInfo[1],
         };
     }
@@ -353,6 +354,7 @@ export class EventInfo {
     message: string;
     humanReadableMessage: string;
     appIcon: string;
+    deviceType: DeviceType;
     appName: string;
 }
 

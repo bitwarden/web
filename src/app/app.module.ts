@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
+import { EventIconComponent } from './components/eventIcon.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
@@ -325,6 +326,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         EmergencyAccessViewComponent,
         EmergencyAddEditComponent,
         ExportComponent,
+        EventIconComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,

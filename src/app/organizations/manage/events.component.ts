@@ -124,6 +124,7 @@ export class EventsComponent implements OnInit {
                 humanReadableMessage: eventInfo.humanReadableMessage,
                 appIcon: eventInfo.appIcon,
                 appName: eventInfo.appName,
+                deviceType: eventInfo.deviceType,
                 userId: userId,
                 userName: user != null ? user.name : this.i18nService.t('unknown'),
                 userEmail: user != null ? user.email : '',

@@ -1,0 +1,4 @@
+<div class="icon" aria-hidden="true">
+    <img [src]="image" appFallbackSrc="images/fa-globe" *ngIf="imageEnabled && image" alt="" />
+    <i class="text-muted fa fa-lg {{fallbackIcon}}" *ngIf="!imageEnabled || !image"></i>
+</div>
