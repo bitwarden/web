@@ -119,7 +119,7 @@ export class PeopleComponent implements OnInit {
                 if (response != null) {
                     this.orgHasKeys = response.publicKey != null && response.privateKey != null;
                 } else {
-                    throw new Error('Manage People/Backfill: Organization Keys response is null');
+                    throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
                 }
             } else {
                 this.orgHasKeys = true;

@@ -126,19 +126,14 @@ export class ResetPasswordComponent implements OnInit {
         try {
             this.formPromise = this.apiService.getOrganizationUserResetPasswordDetails(this.organizationId, this.id)
                 .then(async response => {
-                    let kdfType = null;
-                    let kdfIterations = null;
-                    let resetPasswordKey = null;
-                    let encryptedPrivateKey = null;
-
-                    if (response != null) {
-                        kdfType = response.kdf;
-                        kdfIterations = response.kdfIterations;
-                        resetPasswordKey = response.resetPasswordKey;
-                        encryptedPrivateKey = response.encryptedPrivateKey;
-                    } else {
-                        throw new Error('Reset Password Details response is null');
+                    if (response == null) {
+                        throw new Error(this.i18nService.t('resetPasswordDetailsError'));
                     }
+
+                    const kdfType = response.kdf;
+                    const kdfIterations = response.kdfIterations;
+                    const resetPasswordKey = response.resetPasswordKey;
+                    const encryptedPrivateKey = response.encryptedPrivateKey;
 
                     // Decrypt Organization's encrypted Private Key with org key
                     const orgSymKey = await this.cryptoService.getOrgKey(this.organizationId);

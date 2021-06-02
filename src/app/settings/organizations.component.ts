@@ -121,13 +121,11 @@ export class OrganizationsComponent implements OnInit {
             // Retrieve Public Key
             this.actionPromise = this.apiService.getOrganizationKeys(org.id)
                 .then(async response => {
-                    let publicKey = null;
-
-                    if (response != null) {
-                        publicKey = Utils.fromB64ToArray(response.publicKey);
-                    } else {
-                        throw new Error('Get Organization Keys response is null');
+                    if (response == null) {
+                        throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
                     }
+
+                    const publicKey = Utils.fromB64ToArray(response.publicKey);
 
                     // RSA Encrypt user's encKey.key with organization public key
                     const encKey = await this.cryptoService.getEncKey();

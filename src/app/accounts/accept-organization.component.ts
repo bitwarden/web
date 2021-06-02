@@ -66,13 +66,11 @@ export class AcceptOrganizationComponent implements OnInit {
                                     // Retrieve Public Key
                                     return this.apiService.getOrganizationKeys(qParams.organizationId);
                                 }).then(async response => {
-                                    let publicKey = null;
-
-                                    if (response != null) {
-                                        publicKey = Utils.fromB64ToArray(response.publicKey);
-                                    } else {
-                                        throw new Error('Get Organization Keys response is null');
+                                    if (response == null) {
+                                        throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
                                     }
+
+                                    const publicKey = Utils.fromB64ToArray(response.publicKey);
 
                                     // RSA Encrypt user's encKey.key with organization public key
                                     const encKey = await this.cryptoService.getEncKey();
@@ -83,7 +81,6 @@ export class AcceptOrganizationComponent implements OnInit {
                                     resetRequest.resetPasswordKey = encryptedKey.encryptedString;
 
                                     // Get User Id
-                                    // TODO Reset Password - Update this api method to use orgUser.Id
                                     const userId = await this.userService.getUserId();
 
                                     return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, userId, resetRequest);
