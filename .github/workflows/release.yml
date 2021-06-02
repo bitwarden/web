@@ -82,9 +82,6 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
-        env:
-          GITHUB_REF: ${{ github.ref }}
-          GITHUB_EVENT: ${{ github.event_name }}
 
       - name: Login to Azure
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
@@ -131,12 +128,9 @@ jobs:
           npm install
           npm run dist:selfhost
 
-          echo -e "\nBuilding docker image"
+          echo -e "\nBuilding Docker image"
           docker --version
           docker build -t bitwarden/web .
-
-      - name: Tag beta
-        run: docker tag bitwarden/web bitwarden/web:beta
 
       - name: Tag version
         run: docker tag bitwarden/web bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
@@ -144,14 +138,8 @@ jobs:
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
 
-      - name: List docker images
+      - name: List Docker images
         run: docker images
-
-      - name: Push beta images
-        run: docker push bitwarden/web:beta
-        env: 
-          DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Push latest images
         run: docker push bitwarden/web:latest
@@ -167,5 +155,5 @@ jobs:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
-      - name: Log out of docker
+      - name: Log out of Docker
         run: docker logout
