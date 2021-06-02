@@ -60,7 +60,7 @@ jobs:
                     dct-delegate-2-repo-passphrase,
                     dct-delegate-2-key"
 
-      - name: Log into docker
+      - name: Log into Docker
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         env:
@@ -91,7 +91,7 @@ jobs:
           npm install
           npm run dist:selfhost
 
-          echo -e "\nBuilding docker image"
+          echo -e "\nBuilding Docker image"
           docker --version
           docker build -t bitwarden/web .
 
@@ -103,7 +103,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: docker tag bitwarden/web bitwarden/web:dev
 
-      - name: List docker images
+      - name: List Docker images
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker images
 
@@ -121,7 +121,7 @@ jobs:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
-      - name: Log out of docker
+      - name: Log out of Docker
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker logout
 
