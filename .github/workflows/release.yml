@@ -1,25 +1,65 @@
-name: build
+name: Release
 
 on:
-  push:
-    branches-ignore:
-      - 'l10n_master'
-      - 'gh-pages'
+  workflow_dispatch:
+    inputs:
+      release_tag_name_input:
+        description: "Release Tag Name <X.X.X>"
+        required: true
 
 jobs:
-  cloc:
+  setup:
     runs-on: ubuntu-latest
+    outputs:
+      release_upload_url: ${{ steps.create_release.outputs.upload_url }}
+      release_version: ${{ steps.create_tags.outputs.package_version }}
+      tag_version: ${{ steps.create_tags.outputs.tag_version }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
-
-      - name: Set up cloc
+      - name: Branch check
         run: |
-          sudo apt update
-          sudo apt -y install cloc
+          if [[ "$GITHUB_REF" != "refs/heads/rc" ]]; then
+            echo "==================================="
+            echo "[!] Can only release from rc branch"
+            echo "==================================="
+            exit 1
+          fi
 
-      - name: Print lines of code
-        run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # 2.3.4
+
+      - name: Create Release Vars
+        id: create_tags
+        run: |
+          case "${RELEASE_TAG_NAME_INPUT:0:1}" in
+            v)
+              echo "RELEASE_NAME=${RELEASE_TAG_NAME_INPUT:1}" >> $GITHUB_ENV
+              echo "RELEASE_TAG_NAME=$RELEASE_TAG_NAME_INPUT" >> $GITHUB_ENV
+              echo "::set-output name=package_version::${RELEASE_TAG_NAME_INPUT:1}"
+              echo "::set-output name=tag_version::$RELEASE_TAG_NAME_INPUT"
+              ;;
+            [0-9])
+              echo "RELEASE_NAME=$RELEASE_TAG_NAME_INPUT" >> $GITHUB_ENV
+              echo "RELEASE_TAG_NAME=v$RELEASE_TAG_NAME_INPUT" >> $GITHUB_ENV
+              echo "::set-output name=package_version::$RELEASE_TAG_NAME_INPUT"
+              echo "::set-output name=tag_version::v$RELEASE_TAG_NAME_INPUT"
+              ;;
+            *)
+              exit 1
+              ;;
+          esac
+        env:
+          RELEASE_TAG_NAME_INPUT: ${{ github.event.inputs.release_tag_name_input }}
+
+      - name: Create Draft Release
+        id: create_release
+        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e  # 1.1.4 - Repo Archived
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.RELEASE_TAG_NAME }}
+          release_name: ${{ env.RELEASE_NAME }}
+          draft: true
+          prerelease: false
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -44,13 +84,11 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Login to Azure
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
           creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
 
       - name: Retrieve secrets
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         id: retrieve-secrets
         uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
         with:
@@ -61,14 +99,13 @@ jobs:
                     dct-delegate-2-key"
 
       - name: Log into Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         env:
           DOCKER_USERNAME: ${{ steps.retrieve-secrets.outputs.docker-username }}
           DOCKER_PASSWORD: ${{ steps.retrieve-secrets.outputs.docker-password }}
 
       - name: Setup Docker Trust
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
         run: |
           mkdir -p ~/.docker/trust/private
 
@@ -95,75 +132,28 @@ jobs:
           docker --version
           docker build -t bitwarden/web .
 
-      - name: Tag rc branch
-        if: github.ref == 'refs/heads/rc'
-        run: docker tag bitwarden/web bitwarden/web:rc
-
-      - name: Tag dev
-        if: github.ref == 'refs/heads/master'
-        run: docker tag bitwarden/web bitwarden/web:dev
+      - name: Tag version
+        run: docker tag bitwarden/web bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
+        shell: pwsh
+        env:
+          RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker images
 
-      - name: Push rc images
-        if: github.ref == 'refs/heads/rc'
-        run: docker push bitwarden/web:rc
+      - name: Push latest images
+        run: docker push bitwarden/web:latest
         env: 
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
-      - name: Push dev images
-        if: github.ref == 'refs/heads/master'
-        run: docker push bitwarden/web:dev
-        env: 
+      - name: Push version images
+        run: docker push bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
+        shell: pwsh
+        env:
+          RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker logout
-
-  windows:
-    runs-on: windows-latest
-    steps:
-      - name: Set up NuGet
-        uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
-        with:
-          nuget-version: 'latest'
-
-      - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@c26a08ba26249b81327e26f6ef381897b6a8754d
-
-      - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
-        with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
-
-      - name: Print environment
-        run: |
-          nuget help | grep Version
-          msbuild -version
-          dotnet --info
-          node --version
-          npm --version
-          echo "GitHub ref: $GITHUB_REF"
-          echo "GitHub event: $GITHUB_EVENT"
-        env:
-          GITHUB_REF: ${{ github.ref }}
-          GITHUB_EVENT: ${{ github.event_name }}
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
-
-      - name: npm install
-        run: npm install
-
-      - name: npm build
-        run: npm run build:prod
-
