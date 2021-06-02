@@ -5,9 +5,6 @@ on:
     branches-ignore:
       - 'l10n_master'
       - 'gh-pages'
-  release:
-    types:
-      - published
 
 jobs:
   cloc:
@@ -41,18 +38,15 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
-        env:
-          GITHUB_REF: ${{ github.ref }}
-          GITHUB_EVENT: ${{ github.event_name }}
 
       - name: Login to Azure
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
           creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
 
       - name: Retrieve secrets
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         id: retrieve-secrets
         uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
         with:
@@ -62,15 +56,15 @@ jobs:
                     dct-delegate-2-repo-passphrase,
                     dct-delegate-2-key"
 
-      - name: Log into docker
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
+      - name: Log into Docker
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         env:
           DOCKER_USERNAME: ${{ steps.retrieve-secrets.outputs.docker-username }}
           DOCKER_PASSWORD: ${{ steps.retrieve-secrets.outputs.docker-password }}
 
       - name: Setup Docker Trust
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: |
           mkdir -p ~/.docker/trust/private
 
@@ -93,7 +87,7 @@ jobs:
           npm install
           npm run dist:selfhost
 
-          echo -e "\nBuilding docker image"
+          echo -e "\nBuilding Docker image"
           docker --version
           docker build -t bitwarden/web .
 
@@ -102,22 +96,11 @@ jobs:
         run: docker tag bitwarden/web bitwarden/web:rc
 
       - name: Tag dev
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release'
+        if: github.ref == 'refs/heads/master'
         run: docker tag bitwarden/web bitwarden/web:dev
 
-      - name: Tag beta
-        if: github.event_name == 'release'
-        run: docker tag bitwarden/web bitwarden/web:beta
-
-      - name: Tag version
-        if: github.event_name == 'release'
-        run: docker tag bitwarden/web bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
-        shell: pwsh
-        env:
-          RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
-
-      - name: List docker images
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
+      - name: List Docker images
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker images
 
       - name: Push rc images
@@ -128,37 +111,14 @@ jobs:
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Push dev images
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release'
+        if: github.ref == 'refs/heads/master'
         run: docker push bitwarden/web:dev
         env: 
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
-      - name: Push beta images
-        if: github.event_name == 'release'
-        run: docker push bitwarden/web:beta
-        env: 
-          DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
-
-      - name: Push latest images
-        if: github.event_name == 'release'
-        run: docker push bitwarden/web:latest
-        env: 
-          DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
-
-      - name: Push version images
-        if: github.event_name == 'release'
-        run: docker push bitwarden/web:$($env:RELEASE_TAG_NAME.trimStart('v'))
-        shell: pwsh
-        env:
-          RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
-          DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
-
-      - name: Log out of docker
-        if: github.ref == 'refs/heads/master' || github.event_name == 'release' || github.ref == 'refs/heads/rc'
+      - name: Log out of Docker
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker logout
 
   windows:
