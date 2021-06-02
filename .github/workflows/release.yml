@@ -98,7 +98,7 @@ jobs:
                     dct-delegate-2-repo-passphrase,
                     dct-delegate-2-key"
 
-      - name: Log into docker
+      - name: Log into Docker
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         env:
           DOCKER_USERNAME: ${{ steps.retrieve-secrets.outputs.docker-username }}
