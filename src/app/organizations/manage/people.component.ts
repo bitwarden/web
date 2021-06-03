@@ -13,7 +13,6 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-<<<<<<< HEAD
 import { ValidationService } from 'jslib-angular/services/validation.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
