@@ -49,6 +49,10 @@ export class HtmlStorageService implements StorageService {
             return this.remove(key);
         }
 
+        if (obj instanceof Set) {
+            obj = Array.from(obj);
+        }
+
         const json = JSON.stringify(obj);
         if (this.isLocalStorage(key)) {
             window.localStorage.setItem(key, json);
