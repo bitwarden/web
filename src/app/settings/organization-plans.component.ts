@@ -31,6 +31,8 @@ import { ProductType } from 'jslib-common/enums/productType';
 
 import { OrganizationCreateRequest } from 'jslib-common/models/request/organizationCreateRequest';
 import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
+import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
+
 import { PlanResponse } from 'jslib-common/models/response/planResponse';
 
 @Component({
@@ -259,6 +261,7 @@ export class OrganizationPlansComponent implements OnInit {
                     const collection = await this.cryptoService.encrypt(
                         this.i18nService.t('defaultCollection'), shareKey[1]);
                     const collectionCt = collection.encryptedString;
+                    const orgKeys = await this.cryptoService.makeKeyPair(shareKey[1]);
 
                     if (this.selfHosted) {
                         const fd = new FormData();
@@ -267,12 +270,17 @@ export class OrganizationPlansComponent implements OnInit {
                         fd.append('collectionName', collectionCt);
                         const response = await this.apiService.postOrganizationLicense(fd);
                         orgId = response.id;
+
+                        // Org Keys live outside of the OrganizationLicense - add the keys to the org here
+                        const request = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+                        await this.apiService.postOrganizationKeys(orgId, request);
                     } else {
                         const request = new OrganizationCreateRequest();
                         request.key = key;
                         request.collectionName = collectionCt;
                         request.name = this.name;
                         request.billingEmail = this.billingEmail;
+                        request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
 
                         if (this.selectedPlan.type === PlanType.Free) {
                             request.planType = PlanType.Free;
@@ -308,6 +316,14 @@ export class OrganizationPlansComponent implements OnInit {
                     request.planType = this.selectedPlan.type;
                     request.billingAddressCountry = this.taxComponent.taxInfo.country;
                     request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+
+                    // Retrieve org info to backfill pub/priv key if necessary
+                    const org = await this.userService.getOrganization(this.organizationId);
+                    if (!org.hasPublicAndPrivateKeys) {
+                        const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
+                        const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
+                        request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+                    }
 
                     const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
                     if (!result.success && result.paymentIntentClientSecret != null) {

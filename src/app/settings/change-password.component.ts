@@ -205,9 +205,12 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
                 continue;
             }
 
-            // Re-enroll - encrpyt user's encKey.key with organization key
-            const orgSymKey = await this.cryptoService.getOrgKey(org.id);
-            const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);
+            // Retrieve public key
+            const response = await this.apiService.getOrganizationKeys(org.id);
+            const publicKey = Utils.fromB64ToArray(response?.publicKey);
+
+            // Re-enroll - encrpyt user's encKey.key with organization public key
+            const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
 
             // Create/Execute request
             const request = new OrganizationUserResetPasswordEnrollmentRequest();
