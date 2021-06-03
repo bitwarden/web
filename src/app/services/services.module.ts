@@ -167,18 +167,11 @@ export function initFactory(): Function {
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
-        const theme = await storageService.get<string>(ConstantsService.themeKey);
+        let theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
-            htmlEl.classList.add('themeDefaultSet');
-        } else {
-            htmlEl.classList.add(theme);
+            theme = 'light';
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches && htmlEl.classList.contains('themeDefaultSet')) {
-            htmlEl.classList.add('themeDark');
-        }
-        if (window.matchMedia('(prefers-color-scheme: light)').matches && htmlEl.classList.contains('themeDefaultSet')) {
-            htmlEl.classList.add('themeLight');
-        }
+        htmlEl.classList.add('theme_' + theme);
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
