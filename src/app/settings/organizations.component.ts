@@ -10,9 +10,9 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 

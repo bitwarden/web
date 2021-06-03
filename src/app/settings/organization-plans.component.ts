@@ -30,8 +30,8 @@ import { PolicyType } from 'jslib-common/enums/policyType';
 import { ProductType } from 'jslib-common/enums/productType';
 
 import { OrganizationCreateRequest } from 'jslib-common/models/request/organizationCreateRequest';
-import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
+import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
 
 import { PlanResponse } from 'jslib-common/models/response/planResponse';
 

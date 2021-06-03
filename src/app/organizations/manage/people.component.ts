@@ -21,15 +21,15 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
+import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUserBulkConfirmRequest } from 'jslib-common/models/request/organizationUserBulkConfirmRequest';
 import { OrganizationUserBulkRequest } from 'jslib-common/models/request/organizationUserBulkRequest';
 import { OrganizationUserConfirmRequest } from 'jslib-common/models/request/organizationUserConfirmRequest';
-import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 
 import { ListResponse } from 'jslib-common/models/response/listResponse';
 import { OrganizationUserBulkResponse } from 'jslib-common/models/response/organizationUserBulkResponse';
