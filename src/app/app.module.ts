@@ -1,13 +1,17 @@
-import { ToasterModule } from 'angular2-toaster';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
-import { AppRoutingModule } from './app-routing.module';
-
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {
+    DatePipe,
+    registerLocaleData,
+} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { ToasterModule } from 'angular2-toaster';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { ServicesModule } from './services/services.module';
 
@@ -17,9 +21,7 @@ import { ModalComponent } from './modal.component';
 import { AvatarComponent } from './components/avatar.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
-import { FooterComponent } from './layouts/footer.component';
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
-import { NavbarComponent } from './layouts/navbar.component';
 import { OrganizationLayoutComponent } from './layouts/organization-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout.component';
 
@@ -168,11 +170,11 @@ import { SendInfoComponent } from './vault/send-info.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
+import { SetupProviderComponent } from './providers/setup-provider.component';
+
 import { CalloutComponent } from 'jslib/angular/components/callout.component';
 import { IconComponent } from 'jslib/angular/components/icon.component';
 
-import { A11yTitleDirective } from 'jslib/angular/directives/a11y-title.directive';
-import { ApiActionDirective } from 'jslib/angular/directives/api-action.directive';
 import { AutofocusDirective } from 'jslib/angular/directives/autofocus.directive';
 import { BlurClickDirective } from 'jslib/angular/directives/blur-click.directive';
 import { BoxRowDirective } from 'jslib/angular/directives/box-row.directive';
@@ -184,14 +186,9 @@ import { StopPropDirective } from 'jslib/angular/directives/stop-prop.directive'
 import { TrueFalseValueDirective } from 'jslib/angular/directives/true-false-value.directive';
 
 import { ColorPasswordPipe } from 'jslib/angular/pipes/color-password.pipe';
-import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
 
-import {
-    DatePipe,
-    registerLocaleData,
-} from '@angular/common';
 import localeBg from '@angular/common/locales/bg';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
@@ -228,6 +225,7 @@ import localeTr from '@angular/common/locales/tr';
 import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
+import { BitwardenCommonModule } from './common.module';
 
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
@@ -271,14 +269,13 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
-        AppRoutingModule,
-        ServicesModule,
         ToasterModule.forRoot(),
         InfiniteScrollModule,
         DragDropModule,
+        BitwardenCommonModule,
+        AppRoutingModule,
     ],
     declarations: [
-        A11yTitleDirective,
         AcceptEmergencyComponent,
         AccessComponent,
         AcceptOrganizationComponent,
@@ -289,7 +286,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AdjustPaymentComponent,
         AdjustSeatsComponent,
         AdjustStorageComponent,
-        ApiActionDirective,
         ApiKeyComponent,
         AppComponent,
         AttachmentsComponent,
@@ -328,11 +324,9 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
-        FooterComponent,
         FrontendLayoutComponent,
         GroupingsComponent,
         HintComponent,
-        I18nPipe,
         IconComponent,
         ImportComponent,
         InactiveTwoFactorReportComponent,
@@ -340,8 +334,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         LinkSsoComponent,
         LockComponent,
         LoginComponent,
-        ModalComponent,
-        NavbarComponent,
         OptionsComponent,
         OrgAccountComponent,
         OrgAddEditComponent,
@@ -398,6 +390,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SendComponent,
         SendInfoComponent,
         SettingsComponent,
+        SetupProviderComponent,
         ShareComponent,
         SsoComponent,
         StopClickDirective,
@@ -462,6 +455,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         PasswordGeneratorHistoryComponent,
         PurgeVaultComponent,
         SendAddEditComponent,
+        SetupProviderComponent,
         ShareComponent,
         TwoFactorAuthenticatorComponent,
         TwoFactorDuoComponent,
@@ -474,5 +468,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     providers: [DatePipe],
     bootstrap: [AppComponent],
+    exports: [],
 })
 export class AppModule { }

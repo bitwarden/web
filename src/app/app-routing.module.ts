@@ -94,6 +94,7 @@ import { UnauthGuardService } from 'jslib/angular/services/unauth-guard.service'
 
 import { Permissions } from 'jslib/enums/permissions';
 
+import { SetupProviderComponent } from './providers/setup-provider.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 
@@ -162,6 +163,11 @@ const routes: Routes = [
                 path: 'send/:sendId/:key',
                 component: AccessComponent,
                 data: { title: 'Bitwarden Send' },
+            },
+            {
+                path: 'setup-provider',
+                component: SetupProviderComponent,
+                data: { titleId: 'setupProvider' },
             },
         ],
     },
@@ -426,6 +432,11 @@ const routes: Routes = [
                 ],
             },
         ],
+    },
+    {
+        path: 'providers',
+        canActivate: [AuthGuardService],
+        loadChildren: './providers/providers.module#ProvidersModule',
     },
     { path: '**', redirectTo: '' },
 ];
