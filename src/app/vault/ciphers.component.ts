@@ -19,10 +19,10 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
 
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 import { CipherType } from 'jslib-common/enums/cipherType';
 import { EventType } from 'jslib-common/enums/eventType';
 
-import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
 const MaxCheckedCount = 500;

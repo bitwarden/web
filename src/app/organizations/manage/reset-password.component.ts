@@ -7,17 +7,17 @@ import {
     Output,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
-import { EncString } from 'jslib/models/domain/encString';
-import { MasterPasswordPolicyOptions } from 'jslib/models/domain/masterPasswordPolicyOptions';
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
-import { OrganizationUserResetPasswordRequest } from 'jslib/models/request/organizationUserResetPasswordRequest';
+import { EncString } from 'jslib-common/models/domain/encString';
+import { MasterPasswordPolicyOptions } from 'jslib-common/models/domain/masterPasswordPolicyOptions';
+import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+import { OrganizationUserResetPasswordRequest } from 'jslib-common/models/request/organizationUserResetPasswordRequest';
 
 @Component({
     selector: 'app-reset-password',

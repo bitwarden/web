@@ -15,10 +15,11 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
-
-import { Utils } from 'jslib-common/misc/utils';
+import { Policy } from 'jslib-common/models/domain/policy';
 
 import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
+
+import { Utils } from 'jslib-common/misc/utils';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
