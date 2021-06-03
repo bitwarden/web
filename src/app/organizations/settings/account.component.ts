@@ -4,22 +4,28 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib/abstractions/api.service';
+import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
+import { OrganizationKeysRequest } from 'jslib/models/request/organizationKeysRequest';
 import { OrganizationUpdateRequest } from 'jslib/models/request/organizationUpdateRequest';
+
 import { OrganizationResponse } from 'jslib/models/response/organizationResponse';
 
 import { ModalComponent } from '../../modal.component';
+
 import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
+
 import { DeleteOrganizationComponent } from './delete-organization.component';
 
 @Component({
@@ -46,7 +52,8 @@ export class AccountComponent {
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
-        private syncService: SyncService, private platformUtilsService: PlatformUtilsService) { }
+        private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -67,6 +74,14 @@ export class AccountComponent {
             request.businessName = this.org.businessName;
             request.billingEmail = this.org.billingEmail;
             request.identifier = this.org.identifier;
+
+            // Backfill pub/priv key if necessary
+            if (!this.org.hasPublicAndPrivateKeys) {
+                const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
+                const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
+                request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+            }
+
             this.formPromise = this.apiService.putOrganization(this.organizationId, request).then(() => {
                 return this.syncService.fullSync(true);
             });

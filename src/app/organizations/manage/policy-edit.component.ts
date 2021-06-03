@@ -60,6 +60,9 @@ export class PolicyEditComponent implements OnInit {
     // Send options
     sendDisableHideEmail?: boolean;
 
+    // Reset Password
+    resetPasswordAutoEnroll?: boolean;
+
     private policy: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -116,6 +119,9 @@ export class PolicyEditComponent implements OnInit {
                         case PolicyType.SendOptions:
                             this.sendDisableHideEmail = this.policy.data.disableHideEmail;
                             break;
+                        case PolicyType.ResetPassword:
+                            this.resetPasswordAutoEnroll = this.policy.data.autoEnrollEnabled;
+                            break;
                         default:
                             break;
                     }
@@ -165,6 +171,11 @@ export class PolicyEditComponent implements OnInit {
                 case PolicyType.SendOptions:
                     request.data = {
                         disableHideEmail: this.sendDisableHideEmail,
+                    };
+                    break;
+                case PolicyType.ResetPassword:
+                    request.data = {
+                        autoEnrollEnabled: this.resetPasswordAutoEnroll,
                     };
                     break;
                 default:

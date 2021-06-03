@@ -115,6 +115,12 @@ export class PoliciesComponent implements OnInit {
                     type: PolicyType.SendOptions,
                     enabled: false,
                     display: true,
+                }, {
+                    name: this.i18nService.t('resetPasswordPolicy'),
+                    description: this.i18nService.t('resetPasswordPolicyDescription'),
+                    type: PolicyType.ResetPassword,
+                    enabled: false,
+                    display: organization.useResetPassword,
                 },
             ];
             await this.load();

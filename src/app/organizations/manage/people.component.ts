@@ -5,6 +5,7 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
+
 import {
     ActivatedRoute,
     Router,
@@ -13,32 +14,38 @@ import {
 import { ToasterService } from 'angular2-toaster';
 
 import { ValidationService } from 'jslib/angular/services/validation.service';
+
 import { ConstantsService } from 'jslib/services/constants.service';
 
 import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib/abstractions/policy.service';
 import { SearchService } from 'jslib/abstractions/search.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
+import { OrganizationKeysRequest } from 'jslib/models/request/organizationKeysRequest';
+import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
 import { OrganizationUserBulkConfirmRequest } from 'jslib/models/request/organizationUserBulkConfirmRequest';
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
-import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib/enums/organizationUserType';
+import { PolicyType } from 'jslib/enums/policyType';
 
 import { Utils } from 'jslib/misc/utils';
 
 import { ListResponse } from 'jslib/models/response';
 import { OrganizationUserBulkResponse } from 'jslib/models/response/organizationUserBulkResponse';
+
 import { ModalComponent } from '../../modal.component';
 import { BulkStatusComponent } from './bulk-status.component';
 import { EntityEventsComponent } from './entity-events.component';
+import { ResetPasswordComponent } from './reset-password.component';
 import { UserAddEditComponent } from './user-add-edit.component';
 import { UserConfirmComponent } from './user-confirm.component';
 import { UserGroupsComponent } from './user-groups.component';
@@ -54,6 +61,7 @@ export class PeopleComponent implements OnInit {
     @ViewChild('groupsTemplate', { read: ViewContainerRef, static: true }) groupsModalRef: ViewContainerRef;
     @ViewChild('eventsTemplate', { read: ViewContainerRef, static: true }) eventsModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
+    @ViewChild('resetPasswordTemplate', { read: ViewContainerRef, static: true }) resetPasswordModalRef: ViewContainerRef;
     @ViewChild('bulkStatusTemplate', { read: ViewContainerRef, static: true }) bulkStatusModalRef: ViewContainerRef;
 
     loading = true;
@@ -68,6 +76,11 @@ export class PeopleComponent implements OnInit {
     actionPromise: Promise<any>;
     accessEvents = false;
     accessGroups = false;
+    canResetPassword = false; // User permission (admin/custom)
+    orgUseResetPassword = false; // Org plan ability
+    orgHasKeys = false; // Org public/private keys
+    orgResetPasswordPolicyEnabled = false;
+    callingUserType: OrganizationUserType = null;
 
     protected didScroll = false;
     protected pageSize = 100;
@@ -81,7 +94,7 @@ export class PeopleComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
         private cryptoService: CryptoService, private userService: UserService, private router: Router,
         private storageService: StorageService, private searchService: SearchService,
-        private validationService: ValidationService) { }
+        private validationService: ValidationService, private policyService: PolicyService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -93,6 +106,25 @@ export class PeopleComponent implements OnInit {
             }
             this.accessEvents = organization.useEvents;
             this.accessGroups = organization.useGroups;
+            this.canResetPassword = organization.canManageUsersPassword;
+            this.orgUseResetPassword = organization.useResetPassword;
+            this.callingUserType = organization.type;
+
+            // Backfill pub/priv key if necessary
+            if (!organization.hasPublicAndPrivateKeys) {
+                const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
+                const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
+                const request = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+                const response = await this.apiService.postOrganizationKeys(this.organizationId, request);
+                if (response != null) {
+                    this.orgHasKeys = response.publicKey != null && response.privateKey != null;
+                } else {
+                    throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
+                }
+            } else {
+                this.orgHasKeys = true;
+            }
+
             await this.load();
 
             const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
@@ -123,7 +155,36 @@ export class PeopleComponent implements OnInit {
             }
         });
         this.filter(this.status);
+        const policies = await this.policyService.getAll(PolicyType.ResetPassword);
+        this.orgResetPasswordPolicyEnabled = policies.some(p => p.organizationId === this.organizationId && p.enabled);
         this.loading = false;
+    }
+
+    allowResetPassword(orgUser: OrganizationUserUserDetailsResponse): boolean {
+        // Hierarchy check
+        let callingUserHasPermission = false;
+
+        switch (this.callingUserType) {
+            case OrganizationUserType.Owner:
+                callingUserHasPermission = true;
+                break;
+            case OrganizationUserType.Admin:
+                callingUserHasPermission = orgUser.type !== OrganizationUserType.Owner;
+                break;
+            case OrganizationUserType.Custom:
+                callingUserHasPermission = orgUser.type !== OrganizationUserType.Owner
+                    && orgUser.type !== OrganizationUserType.Admin;
+                break;
+        }
+
+        // Final
+        return this.canResetPassword && callingUserHasPermission && this.orgUseResetPassword && this.orgHasKeys
+            && orgUser.resetPasswordEnrolled && this.orgResetPasswordPolicyEnabled
+            && orgUser.status === OrganizationUserStatusType.Confirmed;
+    }
+
+    showEnrolledStatus(orgUser: OrganizationUserUserDetailsResponse): boolean {
+        return this.orgUseResetPassword && orgUser.resetPasswordEnrolled && this.orgResetPasswordPolicyEnabled;
     }
 
     filter(status: OrganizationUserStatusType) {
@@ -454,6 +515,31 @@ export class PeopleComponent implements OnInit {
         return !searching && this.users && this.users.length > this.pageSize;
     }
 
+    async resetPassword(user: OrganizationUserUserDetailsResponse) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.resetPasswordModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<ResetPasswordComponent>(
+            ResetPasswordComponent, this.resetPasswordModalRef);
+
+        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.email = user != null ? user.email : null;
+        childComponent.organizationId = this.organizationId;
+        childComponent.id = user != null ? user.id : null;
+
+        childComponent.onPasswordReset.subscribe(() => {
+            this.modal.close();
+            this.load();
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+    }
+
     checkUser(user: OrganizationUserUserDetailsResponse, select?: boolean) {
         (user as any).checked = select == null ? !(user as any).checked : select;
     }
@@ -496,8 +582,8 @@ export class PeopleComponent implements OnInit {
             const response = await request;
 
             if (this.modal) {
-                const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({...a, [x.id]: x.error}), {});
-                const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({...a, [x.id]: x}), {});
+                const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({ ...a, [x.id]: x.error }), {});
+                const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({ ...a, [x.id]: x }), {});
 
                 childComponent.users = users.map(user => {
                     let message = keyedErrors[user.id] ?? successfullMessage;
