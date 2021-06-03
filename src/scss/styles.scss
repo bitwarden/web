@@ -47,6 +47,14 @@ html {
 
 body {
     min-width: 1010px;
+
+    &.layout_frontend {
+        @include themify($themes) {
+            color: themed('textColor');
+            background-color: themed('layoutFrontendColor');
+        }
+    }
+
     @include themify($themes) {
         color: themed('textColor');
         background-color: themed('backgroundColor');
@@ -82,6 +90,12 @@ h1, h2, h3, h4, h5 {
 a {
     @include themify($themes) {
         color: themed('linkColor');
+    }
+}
+
+a:hover {
+    @include themify($themes) {
+        color: themed('linkColorHover');
     }
 }
 
@@ -197,6 +211,7 @@ input, select, textarea {
     border-color: rgba(0,0,0,0.125);
     @include themify($themes) {
         border-left: 3px solid themed('borderPrimaryColor');
+        color: themed('textColor');
     }
 }
 
@@ -211,7 +226,7 @@ input, select, textarea {
     text-transform: uppercase;
     @include themify($themes) {
         color: themed('textColor');
-        background-color: themed('backgroundColor');
+        background-color: themed('headerColor');
     }
 
     small {
@@ -298,7 +313,7 @@ input, select, textarea {
     @include border-radius($modal-content-border-radius);
     @include themify($themes) {
         color: themed('textColor');
-        background-color: themed('backgroundColor');
+        background-color: themed('footerBackgroundColor');
     }
 }
 
@@ -312,32 +327,58 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .btn-primary {
     @include themify($themes) {
-        border-color: themed('buttonBorderColor');
-        background-color: themed('buttonBackgroundColor');
+        border-color: themed('buttonPrimaryBorderColor');
+        background-color: themed('buttonPrimaryBackgroundColor');
+        color: themed('buttonPrimaryTextColor');
     }
     &:hover {
         @include themify($themes) {
-            border-color: themed('buttonBorderColorHover');
-            background-color: themed('buttonBackgroundColorHover');
+            border-color: themed('buttonPrimaryBorderColorHover');
+            background-color: themed('buttonPrimaryBackgroundColorHover');
         }
         color: #FFFFFF;
     }
 }
 
-.btn[class*="btn-outline-"] {
-    &:not(:hover):not(.btn-outline-danger):not(.dropdown-toggle) {
-        @include themify($themes) {
-            border-color: themed('buttonBorderColor');
-            background-color: themed('backgroundColor');
-            color: themed('buttonTextColor');
-        }
+.btn-outline-primary {
+    @include themify($themes) {
+        border-color: themed('buttonPrimaryBorderColor');
+        background-color: themed('backgroundColor');
+        color: themed('buttonOutlinePrimaryTextColor');
     }
-    &:hover:not(.btn-outline-danger):not(.dropdown-toggle) {
+    &:hover {
         @include themify($themes) {
-            border-color: themed('buttonBorderColorHover');
-            background-color: themed('buttonBackgroundColorHover');
+            border-color: themed('buttonPrimaryBorderColorHover');
+            background-color: themed('buttonPrimaryBackgroundColorHover');
             color: #fff;
         }
+    }
+}
+
+.btn-outline-secondary {
+    @include themify($themes) {
+        border-color: themed('buttonSecondaryBorderColor');
+        background-color: themed('buttonColor');
+        color: themed('buttonSecondaryTextColor');
+    }
+    &:hover {
+        @include themify($themes) {
+            border-color: themed('buttonSecondaryBorderColorHover');
+            background-color: themed('buttonSecondaryBackgroundColorHover');
+            color: themed('buttonSecondaryTextColorHover');
+        }
+    }
+    &:hover:not(:disabled) {
+        color: $body-color;
+    }
+
+    &:disabled {
+        opacity: 1;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($primary), $primary, 15%), .5);
     }
 }
 
@@ -351,32 +392,17 @@ input[type="search"]::-webkit-search-cancel-button {
     }
     &:not(.text-danger):not(.cursor-move) {
         @include themify($themes) {
-            border-color: themed('buttonBorderColor');
-            color: themed('buttonBackgroundColor');
+            border-color: themed('buttonIconColor');
+            color: themed('buttonIconColor');
         }
     }
     @include themify($themes) {
-        color: themed('buttonBackgroundColor');
+        color: themed('buttonPrimaryBackgroundColor');
     }
 }
 
 .btn-outline-secondary {
-    @include themify($themes) {
-        color: themed('textMuted');
-    }
 
-    &:hover:not(:disabled) {
-        color: $body-color;
-    }
-
-    &:disabled {
-        opacity: 1;
-    }
-
-    &:focus,
-    &.focus {
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($primary), $primary, 15%), .5);
-    }
 }
 
 .btn-submit {
@@ -410,8 +436,8 @@ input[type="search"]::-webkit-search-cancel-button {
         z-index: 100;
     }
     @include themify($themes) {
-        color: themed('textColor');
-        background-color: themed('backgroundColor');
+        color: themed('linkColor');
+        background-color: themed('foregroundColor');
     }
 }
 
@@ -436,7 +462,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
     td {
         vertical-align: middle;
-        
+        @include themify($themes) {
+            color: themed('textColor');
+        }
         &.reduced-lh {
             line-height: 1;
             small {
@@ -447,6 +475,11 @@ input[type="search"]::-webkit-search-cancel-button {
         small, > .fa, .icon {
             @include themify($themes) {
                 color: themed('textMuted');
+            }
+        }
+        .fa-globe {
+            @include themify($themes) {
+                color: themed('iconColor');
             }
         }
     }
@@ -551,7 +584,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .card {
     @include themify($themes) {
         color: themed('textColor');
-        background-color: themed('backgroundColor');
+        background-color: themed('foregroundColor');
         border-color: themed('borderColor');
     }
 }
@@ -559,14 +592,14 @@ input[type="search"]::-webkit-search-cancel-button {
 .card-body {
     @include themify($themes) {
         color: themed('textColor');
-        background-color: themed('backgroundColor');
+        background-color: themed('foregroundColor');
     }
 }
 
 .badge[class*="badge-"] {
     @include themify($themes) {
         color: #FFFFFF;
-        background-color: themed('buttonBackgroundColor');
+        background-color: themed('buttonPrimaryBackgroundColor');
     }
 }
 
@@ -613,7 +646,6 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         .card-body a {
             @include themify($themes) {
                 color: themed('textColor');
-                background-color: themed('backgroundColor');
             }
 
             &:hover {
@@ -836,7 +868,7 @@ app-user-billing {
     border-radius: $card-inner-border-radius;
     @include themify($themes) {
         color: themed('textColor');
-        background-color: themed('backgroundColor');
+        background-color: themed('foregroundColor');
     }
 
     .callout-heading {
