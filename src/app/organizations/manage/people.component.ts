@@ -27,8 +27,8 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 import { OrganizationKeysRequest } from 'jslib/models/request/organizationKeysRequest';
-import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
 import { OrganizationUserBulkConfirmRequest } from 'jslib/models/request/organizationUserBulkConfirmRequest';
+import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
 import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
 
 import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
