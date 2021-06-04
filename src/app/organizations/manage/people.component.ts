@@ -659,6 +659,7 @@ export class PeopleComponent implements OnInit {
             const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
             if (autoConfirm ?? false) {
                 resolve(true);
+                return;
             }
             let success = false;
 
