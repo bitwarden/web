@@ -239,6 +239,10 @@ export class PeopleComponent implements OnInit {
             this.confirmedCount > 0 && this.confirmedCount < 3 && this.acceptedCount > 0;
     }
 
+    get showBulkConfirmUsers(): boolean {
+        return this.acceptedCount > 0;
+    }
+
     edit(user: OrganizationUserUserDetailsResponse) {
         if (this.modal != null) {
             this.modal.close();
