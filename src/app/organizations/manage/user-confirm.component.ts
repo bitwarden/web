@@ -8,8 +8,11 @@ import {
 
 import { ConstantsService } from 'jslib/services/constants.service';
 
+import { ApiService } from 'jslib/abstractions/api.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
+
+import { Utils } from 'jslib/misc/utils';
 
 @Component({
     selector: 'app-user-confirm',
@@ -20,18 +23,22 @@ export class UserConfirmComponent implements OnInit {
     @Input() userId: string;
     @Input() organizationUserId: string;
     @Input() organizationId: string;
-    @Input() publicKey: Uint8Array;
     @Output() onConfirmedUser = new EventEmitter();
 
     dontAskAgain = false;
     loading = true;
     fingerprint: string;
 
-    constructor(private cryptoService: CryptoService, private storageService: StorageService) { }
+    private publicKey: Uint8Array = null;
+
+    constructor(private apiService: ApiService, private cryptoService: CryptoService,
+        private storageService: StorageService) { }
 
     async ngOnInit() {
         try {
-            if (this.publicKey != null) {
+            const publicKeyResponse = await this.apiService.getUserPublicKey(this.userId);
+            if (publicKeyResponse != null) {
+                this.publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
                 const fingerprint = await this.cryptoService.getFingerprint(this.userId, this.publicKey.buffer);
                 if (fingerprint != null) {
                     this.fingerprint = fingerprint.join('-');
@@ -50,6 +57,6 @@ export class UserConfirmComponent implements OnInit {
             await this.storageService.save(ConstantsService.autoConfirmFingerprints, true);
         }
 
-        this.onConfirmedUser.emit();
+        this.onConfirmedUser.emit(this.publicKey);
     }
 }

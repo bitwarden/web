@@ -39,6 +39,7 @@ import { VerifyEmailTokenComponent } from './accounts/verify-email-token.compone
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
 import { BulkStatusComponent as OrgBulkStatusComponent } from './organizations/manage/bulk-status.component';
+import { BulkConfirmComponent as OrgBulkConfirmComponent } from './organizations/manage/bulk/bulk-confirm.component';
 import {
     CollectionAddEditComponent as OrgCollectionAddEditComponent,
 } from './organizations/manage/collection-add-edit.component';
@@ -351,6 +352,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrganizationSubscriptionComponent,
         OrgAttachmentsComponent,
         OrgBulkStatusComponent,
+        OrgBulkConfirmComponent,
         OrgCiphersComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
@@ -452,6 +454,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgAddEditComponent,
         OrgAttachmentsComponent,
         OrgBulkStatusComponent,
+        OrgBulkConfirmComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
         OrgEntityEventsComponent,
