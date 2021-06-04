@@ -43,6 +43,7 @@ import { OrganizationUserBulkResponse } from 'jslib/models/response/organization
 
 import { ModalComponent } from '../../modal.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
+import { BulkRemoveComponent } from './bulk/bulk-remove.component';
 import { BulkStatusComponent } from './bulk/bulk-status.component';
 import { EntityEventsComponent } from './entity-events.component';
 import { ResetPasswordComponent } from './reset-password.component';
@@ -64,6 +65,7 @@ export class PeopleComponent implements OnInit {
     @ViewChild('resetPasswordTemplate', { read: ViewContainerRef, static: true }) resetPasswordModalRef: ViewContainerRef;
     @ViewChild('bulkStatusTemplate', { read: ViewContainerRef, static: true }) bulkStatusModalRef: ViewContainerRef;
     @ViewChild('bulkConfirmTemplate', { read: ViewContainerRef, static: true }) bulkConfirmModalRef: ViewContainerRef;
+    @ViewChild('bulkRemoveTemplate', { read: ViewContainerRef, static: true }) bulkRemoveModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -336,30 +338,21 @@ export class PeopleComponent implements OnInit {
             return;
         }
 
-        const users = this.getCheckedUsers();
-        if (users.length <= 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('noSelectedUsersApplicable'));
-            return;
+        if (this.modal != null) {
+            this.modal.close();
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeSelectedUsersConfirmation'), this.i18nService.t('remove'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return false;
-        }
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.bulkRemoveModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show(BulkRemoveComponent, this.bulkRemoveModalRef);
 
-        try {
-            const request = new OrganizationUserBulkRequest(users.map(user => user.id));
-            const response = this.apiService.deleteManyOrganizationUsers(this.organizationId, request);
-            this.showBulkStatus(users, users, response, this.i18nService.t('bulkRemovedMessage'));
-            await response;
+        childComponent.organizationId = this.organizationId;
+        childComponent.users = this.getCheckedUsers();
+
+        this.modal.onClosed.subscribe(async () => {
             await this.load();
-        } catch (e) {
-            this.validationService.showError(e);
-        }
-        this.actionPromise = null;
+            this.modal = null;
+        });
     }
 
     async bulkReinvite() {
@@ -398,7 +391,7 @@ export class PeopleComponent implements OnInit {
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.modal = this.bulkConfirmModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkConfirmComponent>(BulkConfirmComponent, this.bulkConfirmModalRef);
+        const childComponent = this.modal.show(BulkConfirmComponent, this.bulkConfirmModalRef);
 
         childComponent.organizationId = this.organizationId;
         childComponent.users = this.getCheckedUsers();

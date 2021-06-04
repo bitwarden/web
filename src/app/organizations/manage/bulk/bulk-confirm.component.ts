@@ -34,7 +34,7 @@ export class BulkConfirmComponent implements OnInit {
 
     loading: boolean = true;
     done: boolean = false;
-    error: any;
+    error: string;
 
     constructor(private cryptoService: CryptoService, private apiService: ApiService,
       private i18nService: I18nService) { }
