@@ -38,8 +38,8 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
-import { BulkStatusComponent as OrgBulkStatusComponent } from './organizations/manage/bulk-status.component';
 import { BulkConfirmComponent as OrgBulkConfirmComponent } from './organizations/manage/bulk/bulk-confirm.component';
+import { BulkStatusComponent as OrgBulkStatusComponent } from './organizations/manage/bulk/bulk-status.component';
 import {
     CollectionAddEditComponent as OrgCollectionAddEditComponent,
 } from './organizations/manage/collection-add-edit.component';

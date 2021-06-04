@@ -88,7 +88,7 @@ export class BulkConfirmComponent implements OnInit {
 
             this.done = true;
         } catch (e) {
-            this.error = e;
+            this.error = e.message;
         }
         this.loading = false;
     }

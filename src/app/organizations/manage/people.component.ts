@@ -42,8 +42,8 @@ import { ListResponse } from 'jslib/models/response';
 import { OrganizationUserBulkResponse } from 'jslib/models/response/organizationUserBulkResponse';
 
 import { ModalComponent } from '../../modal.component';
-import { BulkStatusComponent } from './bulk-status.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
+import { BulkStatusComponent } from './bulk/bulk-status.component';
 import { EntityEventsComponent } from './entity-events.component';
 import { ResetPasswordComponent } from './reset-password.component';
 import { UserAddEditComponent } from './user-add-edit.component';
