@@ -6,7 +6,7 @@ import {
     Router,
 } from '@angular/router';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
 @Injectable()
 export class RouterService {

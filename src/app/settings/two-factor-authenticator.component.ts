@@ -6,15 +6,15 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { UpdateTwoFactorAuthenticatorRequest } from 'jslib/models/request/updateTwoFactorAuthenticatorRequest';
-import { TwoFactorAuthenticatorResponse } from 'jslib/models/response/twoFactorAuthenticatorResponse';
+import { UpdateTwoFactorAuthenticatorRequest } from 'jslib-common/models/request/updateTwoFactorAuthenticatorRequest';
+import { TwoFactorAuthenticatorResponse } from 'jslib-common/models/response/twoFactorAuthenticatorResponse';
 
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
 import { TwoFactorBaseComponent } from './two-factor-base.component';
 

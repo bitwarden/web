@@ -13,34 +13,32 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ValidationService } from 'jslib/angular/services/validation.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
-import { ConstantsService } from 'jslib/services/constants.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { SearchService } from 'jslib/abstractions/search.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
+import { OrganizationUserBulkConfirmRequest } from 'jslib-common/models/request/organizationUserBulkConfirmRequest';
+import { OrganizationUserBulkRequest } from 'jslib-common/models/request/organizationUserBulkRequest';
+import { OrganizationUserConfirmRequest } from 'jslib-common/models/request/organizationUserConfirmRequest';
 
-import { OrganizationKeysRequest } from 'jslib/models/request/organizationKeysRequest';
-import { OrganizationUserBulkConfirmRequest } from 'jslib/models/request/organizationUserBulkConfirmRequest';
-import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
-import { OrganizationUserConfirmRequest } from 'jslib/models/request/organizationUserConfirmRequest';
+import { ListResponse } from 'jslib-common/models/response/listResponse';
+import { OrganizationUserBulkResponse } from 'jslib-common/models/response/organizationUserBulkResponse';
+import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
 
-import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
+import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
+import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
+import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
-import { OrganizationUserType } from 'jslib/enums/organizationUserType';
-import { PolicyType } from 'jslib/enums/policyType';
-
-import { Utils } from 'jslib/misc/utils';
-
-import { ListResponse } from 'jslib/models/response';
-import { OrganizationUserBulkResponse } from 'jslib/models/response/organizationUserBulkResponse';
+import { Utils } from 'jslib-common/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
 import { BulkStatusComponent } from './bulk-status.component';

@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { SubscriptionResponse } from 'jslib/models/response/subscriptionResponse';
+import { SubscriptionResponse } from 'jslib-common/models/response/subscriptionResponse';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { TokenService } from 'jslib/abstractions/token.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { TokenService } from 'jslib-common/abstractions/token.service';
 
 @Component({
     selector: 'app-user-subscription',

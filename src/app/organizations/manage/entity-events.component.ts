@@ -6,13 +6,13 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
 import { EventService } from '../../services/event.service';
 
-import { EventResponse } from 'jslib/models/response/eventResponse';
-import { ListResponse } from 'jslib/models/response/listResponse';
+import { EventResponse } from 'jslib-common/models/response/eventResponse';
+import { ListResponse } from 'jslib-common/models/response/listResponse';
 
 @Component({
     selector: 'app-entity-events',

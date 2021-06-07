@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { DeleteRecoverRequest } from 'jslib/models/request/deleteRecoverRequest';
+import { DeleteRecoverRequest } from 'jslib-common/models/request/deleteRecoverRequest';
 
 @Component({
     selector: 'app-recover-delete',

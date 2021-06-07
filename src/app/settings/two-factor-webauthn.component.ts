@@ -5,19 +5,19 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
-import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerificationRequest';
-import { UpdateTwoFactorWebAuthnDeleteRequest } from 'jslib/models/request/updateTwoFactorWebAuthnDeleteRequest';
-import { UpdateTwoFactorWebAuthnRequest } from 'jslib/models/request/updateTwoFactorWebAuthnRequest';
+import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { UpdateTwoFactorWebAuthnDeleteRequest } from 'jslib-common/models/request/updateTwoFactorWebAuthnDeleteRequest';
+import { UpdateTwoFactorWebAuthnRequest } from 'jslib-common/models/request/updateTwoFactorWebAuthnRequest';
 import {
     ChallengeResponse,
     TwoFactorWebAuthnResponse,
-} from 'jslib/models/response/twoFactorWebAuthnResponse';
+} from 'jslib-common/models/response/twoFactorWebAuthnResponse';
 
 import { TwoFactorBaseComponent } from './two-factor-base.component';
 

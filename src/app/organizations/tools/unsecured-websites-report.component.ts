@@ -4,15 +4,15 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import {
     UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent,
 } from '../../tools/unsecured-websites-report.component';
 
-import { CipherView } from 'jslib/models/view/cipherView';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
 @Component({
     selector: 'app-unsecured-websites-report',

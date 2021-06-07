@@ -7,15 +7,15 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { TwoFactorProviders } from 'jslib/services/auth.service';
+import { TwoFactorProviders } from 'jslib-common/services/auth.service';
 
-import { PolicyType } from 'jslib/enums/policyType';
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
+import { PolicyType } from 'jslib-common/enums/policyType';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
 import { ModalComponent } from '../modal.component';
 

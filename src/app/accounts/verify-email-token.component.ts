@@ -9,11 +9,11 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { VerifyEmailRequest } from 'jslib/models/request/verifyEmailRequest';
+import { VerifyEmailRequest } from 'jslib-common/models/request/verifyEmailRequest';
 
 @Component({
     selector: 'app-verify-email-token',

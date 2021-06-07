@@ -3,7 +3,7 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Component({
     selector: 'app-footer',

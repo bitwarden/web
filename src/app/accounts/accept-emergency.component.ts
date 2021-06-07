@@ -12,11 +12,11 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { UserService } from 'jslib/abstractions/user.service';
-import { EmergencyAccessAcceptRequest } from 'jslib/models/request/emergencyAccessAcceptRequest';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+import { EmergencyAccessAcceptRequest } from 'jslib-common/models/request/emergencyAccessAcceptRequest';
 
 @Component({
     selector: 'app-accept-emergency',

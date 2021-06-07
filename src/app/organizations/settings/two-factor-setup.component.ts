@@ -4,12 +4,12 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
 import { TwoFactorDuoComponent } from '../../settings/two-factor-duo.component';
 import { TwoFactorSetupComponent as BaseTwoFactorSetupComponent } from '../../settings/two-factor-setup.component';

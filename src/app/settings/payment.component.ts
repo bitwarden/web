@@ -4,10 +4,10 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { WebConstants } from '../../services/webConstants';
 

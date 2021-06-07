@@ -13,10 +13,10 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { SeatRequest } from 'jslib/models/request/seatRequest';
+import { SeatRequest } from 'jslib-common/models/request/seatRequest';
 
 import { PaymentComponent } from '../../settings/payment.component';
 

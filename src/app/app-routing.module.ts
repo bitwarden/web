@@ -88,11 +88,11 @@ import { VaultComponent } from './vault/vault.component';
 import { OrganizationGuardService } from './services/organization-guard.service';
 import { OrganizationTypeGuardService } from './services/organization-type-guard.service';
 
-import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
-import { LockGuardService } from 'jslib/angular/services/lock-guard.service';
-import { UnauthGuardService } from 'jslib/angular/services/unauth-guard.service';
+import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
+import { LockGuardService } from 'jslib-angular/services/lock-guard.service';
+import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 
-import { Permissions } from 'jslib/enums/permissions';
+import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
