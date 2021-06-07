@@ -169,15 +169,15 @@ export function initFactory(): Function {
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
         const theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
-            htmlEl.classList.add('themeDefaultSet');
+            htmlEl.classList.add('theme_DefaultSet');
         } else {
             htmlEl.classList.add(theme);
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches && htmlEl.classList.contains('themeDefaultSet')) {
-            htmlEl.classList.add('themeDark');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches && htmlEl.classList.contains('theme_defaultSet')) {
+            htmlEl.classList.add('theme_dark');
         }
-        if (window.matchMedia('(prefers-color-scheme: light)').matches && htmlEl.classList.contains('themeDefaultSet')) {
-            htmlEl.classList.add('themeLight');
+        if (window.matchMedia('(prefers-color-scheme: light)').matches && htmlEl.classList.contains('theme_defaultSet')) {
+            htmlEl.classList.add('theme_light');
         }
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));

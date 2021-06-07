@@ -63,9 +63,9 @@ export class OptionsComponent implements OnInit {
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
         this.themeOptions = [
-            { name: i18nService.t('themeDefault'), value: 'themeDefaultSet' },
-            { name: i18nService.t('themeLight'), value: 'themeLight' },
-            { name: i18nService.t('themeDark'), value: 'themeDark' },
+            { name: i18nService.t('themeDefault'), value: 'theme_defaultSet' },
+            { name: i18nService.t('themeLight'), value: 'theme_light' },
+            { name: i18nService.t('themeDark'), value: 'theme_dark' },
         ];
     }
 
@@ -112,17 +112,17 @@ export class OptionsComponent implements OnInit {
     }
 
     async themeChanged(themeUpdate: string) {
-        const theme = ['themeDefaultSet', 'themeDark', 'themeLight'];
+        const theme = ['theme_defaultSet', 'theme_dark', 'theme_light'];
         const htmlEl = window.document.documentElement;
         theme.forEach(element => {
             htmlEl.classList.remove(element);
         });
-        if (themeUpdate === 'themeDefaultSet') {
+        if (themeUpdate === 'theme_defaultSet') {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                htmlEl.classList.add('themeDark', themeUpdate);
+                htmlEl.classList.add('theme_dark', themeUpdate);
             }
             if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                htmlEl.classList.add('themeLight', themeUpdate);
+                htmlEl.classList.add('theme_light', themeUpdate);
             }
         } else {
             htmlEl.classList.add(themeUpdate);

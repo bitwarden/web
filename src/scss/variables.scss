@@ -75,7 +75,7 @@ $text-color: #333333;
 $border-color: #ced4da;
 
 $themes: (
-    Light: (
+    light: (
         primary: $primary,
         textColor: $text-color,
         textMuted: #6c757d,
@@ -119,7 +119,7 @@ $themes: (
         headerColor: rgba(0,0,0,0.03),
         orgNavBackgroundColor: #fbfbfb
     ),
-    Dark: (
+    dark: (
         primary: $secondary-alt,
         textColor: #fbfbfb,
         textMuted: #C1C4C8,
@@ -167,7 +167,7 @@ $themes: (
 
 @mixin themify($themes: $themes) {
     @each $theme, $map in $themes {
-        html.theme#{$theme} & {
+        html.theme_#{$theme} & {
             $theme-map: () !global;
             @each $key, $submap in $map {
                 $value: map-get(map-get($themes, $theme), '#{$key}');
