@@ -155,6 +155,11 @@ input, select, textarea {
             @include themify($themes) {
                 color: themed('textColor');
             }
+            &:hover {
+                @include themify($themes) {
+                    background-color: themed('dropdownHover');
+                }
+            }
         }
 
         .dropdown-item-text {
