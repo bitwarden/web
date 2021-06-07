@@ -5,7 +5,7 @@ import { ConstantsService } from 'jslib-common/services';
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
         ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
-        ConstantsService.themeKey, ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
+        ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
         ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
         ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
@@ -25,12 +25,6 @@ export class HtmlStorageService implements StorageService {
         const vaultTimeoutAction = await this.get<string>(ConstantsService.vaultTimeoutActionKey);
         if (vaultTimeoutAction == null) {
             await this.save(ConstantsService.vaultTimeoutActionKey, 'lock');
-        }
-
-        // Default theme to match the browser if the theme isn't set
-        const theme = await this.get<string>(ConstantsService.themeKey);
-        if (theme == null) {
-            await this.save(ConstantsService.themeKey, 'themeDefaultSet');
         }
     }
 
@@ -53,6 +47,10 @@ export class HtmlStorageService implements StorageService {
     save(key: string, obj: any): Promise<any> {
         if (obj == null) {
             return this.remove(key);
+        }
+
+        if (obj instanceof Set) {
+            obj = Array.from(obj);
         }
 
         const json = JSON.stringify(obj);
