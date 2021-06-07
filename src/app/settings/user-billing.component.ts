@@ -5,15 +5,15 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { BillingResponse } from 'jslib/models/response/billingResponse';
+import { BillingResponse } from 'jslib-common/models/response/billingResponse';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
-import { TransactionType } from 'jslib/enums/transactionType';
-import { VerifyBankRequest } from 'jslib/models/request/verifyBankRequest';
+import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
+import { TransactionType } from 'jslib-common/enums/transactionType';
+import { VerifyBankRequest } from 'jslib-common/models/request/verifyBankRequest';
 
 @Component({
     selector: 'app-user-billing',

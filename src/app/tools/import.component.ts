@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { ImportOption, ImportService } from 'jslib/abstractions/import.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { ImportOption, ImportService } from 'jslib-common/abstractions/import.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 

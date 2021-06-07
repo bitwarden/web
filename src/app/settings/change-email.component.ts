@@ -4,14 +4,14 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { EmailRequest } from 'jslib/models/request/emailRequest';
-import { EmailTokenRequest } from 'jslib/models/request/emailTokenRequest';
+import { EmailRequest } from 'jslib-common/models/request/emailRequest';
+import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
 
 @Component({
     selector: 'app-change-email',

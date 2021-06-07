@@ -5,16 +5,16 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { CipherView } from 'jslib/models/view/cipherView';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
-import { Organization } from 'jslib/models/domain/organization';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 import { ModalComponent } from '../modal.component';
 import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/add-edit.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Directive()
 export class CipherReportComponent {

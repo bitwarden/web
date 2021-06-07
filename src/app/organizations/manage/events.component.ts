@@ -6,17 +6,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { ExportService } from 'jslib/abstractions/export.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { ExportService } from 'jslib-common/abstractions/export.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { EventResponse } from 'jslib-common/models/response/eventResponse';
+import { ListResponse } from 'jslib-common/models/response/listResponse';
+import { EventView } from 'jslib-common/models/view/eventView';
 
 import { EventService } from '../../services/event.service';
-
-import { EventResponse } from 'jslib/models/response/eventResponse';
-import { ListResponse } from 'jslib/models/response/listResponse';
-import { EventView } from 'jslib/models/view/eventView';
 
 @Component({
     selector: 'app-org-events',

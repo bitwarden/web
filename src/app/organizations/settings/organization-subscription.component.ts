@@ -6,14 +6,14 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { OrganizationSubscriptionResponse } from 'jslib/models/response/organizationSubscriptionResponse';
+import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/organizationSubscriptionResponse';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { PlanType } from 'jslib/enums/planType';
+import { PlanType } from 'jslib-common/enums/planType';
 
 @Component({
     selector: 'app-org-subscription',

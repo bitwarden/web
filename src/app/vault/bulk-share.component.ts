@@ -8,15 +8,15 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { CollectionService } from 'jslib-common/abstractions/collection.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { CipherView } from 'jslib/models/view';
-import { CollectionView } from 'jslib/models/view/collectionView';
+import { CipherView } from 'jslib-common/models/view';
+import { CollectionView } from 'jslib-common/models/view/collectionView';
 
-import { Organization } from 'jslib/models/domain/organization';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 @Component({
     selector: 'app-vault-bulk-share',

@@ -4,9 +4,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { UserService } from 'jslib/abstractions/user.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { Organization } from 'jslib/models/domain/organization';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 @Component({
     selector: 'app-org-manage',

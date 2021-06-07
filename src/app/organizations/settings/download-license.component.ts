@@ -5,8 +5,8 @@ import {
     Output,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Component({
     selector: 'app-download-license',

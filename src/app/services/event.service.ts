@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
-import { DeviceType } from 'jslib/enums/deviceType';
-import { EventType } from 'jslib/enums/eventType';
-import { PolicyType } from 'jslib/enums/policyType';
+import { DeviceType } from 'jslib-common/enums/deviceType';
+import { EventType } from 'jslib-common/enums/eventType';
+import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { EventResponse } from 'jslib/models/response/eventResponse';
+import { EventResponse } from 'jslib-common/models/response/eventResponse';
+
 
 @Injectable()
 export class EventService {

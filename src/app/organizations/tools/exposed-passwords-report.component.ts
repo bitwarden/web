@@ -4,17 +4,17 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { AuditService } from 'jslib/abstractions/audit.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { AuditService } from 'jslib-common/abstractions/audit.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import {
     ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent,
 } from '../../tools/exposed-passwords-report.component';
 
-import { Cipher } from 'jslib/models/domain/cipher';
-import { CipherView } from 'jslib/models/view/cipherView';
+import { Cipher } from 'jslib-common/models/domain/cipher';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
 @Component({
     selector: 'app-exposed-passwords-report',

@@ -6,10 +6,11 @@ import {
     Output,
 } from '@angular/core';
 
-import { ConstantsService } from 'jslib/services/constants.service';
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+
 
 @Component({
     selector: 'app-user-confirm',
