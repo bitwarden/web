@@ -436,7 +436,7 @@ const routes: Routes = [
     {
         path: 'providers',
         canActivate: [AuthGuardService],
-        loadChildren: './providers/providers.module#ProvidersModule',
+        loadChildren: async () => (await import('./providers/providers.module')).ProvidersModule,
     },
     { path: '**', redirectTo: '' },
 ];

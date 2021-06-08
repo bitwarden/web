@@ -6,11 +6,11 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-
 import {
     Toast,
     ToasterService,
 } from 'angular2-toaster';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
