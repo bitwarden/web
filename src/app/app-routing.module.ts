@@ -88,11 +88,11 @@ import { VaultComponent } from './vault/vault.component';
 import { OrganizationGuardService } from './services/organization-guard.service';
 import { OrganizationTypeGuardService } from './services/organization-type-guard.service';
 
-import { AuthGuardService } from 'jslib/angular/services/auth-guard.service';
-import { LockGuardService } from 'jslib/angular/services/lock-guard.service';
-import { UnauthGuardService } from 'jslib/angular/services/unauth-guard.service';
+import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
+import { LockGuardService } from 'jslib-angular/services/lock-guard.service';
+import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 
-import { Permissions } from 'jslib/enums/permissions';
+import { Permissions } from 'jslib-common/enums/permissions';
 
 import { SetupProviderComponent } from './providers/setup-provider.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
@@ -206,12 +206,12 @@ const routes: Routes = [
                             {
                                 path: '',
                                 component: EmergencyAccessComponent,
-                                data: { titleId: 'emergencyAccess'},
+                                data: { titleId: 'emergencyAccess' },
                             },
                             {
                                 path: ':id',
                                 component: EmergencyAccessViewComponent,
-                                data: { titleId: 'emergencyAccess'},
+                                data: { titleId: 'emergencyAccess' },
                             },
                         ],
                     },
@@ -396,7 +396,7 @@ const routes: Routes = [
                         canActivate: [OrganizationTypeGuardService],
                         data: {
                             titleId: 'people',
-                            permissions: [Permissions.ManageUsers],
+                            permissions: [Permissions.ManageUsers, Permissions.ManageUsersPassword],
                         },
                     },
                     {

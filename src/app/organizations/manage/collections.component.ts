@@ -9,21 +9,21 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SearchService } from 'jslib/abstractions/search.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CollectionService } from 'jslib-common/abstractions/collection.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SearchService } from 'jslib-common/abstractions/search.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { CollectionData } from 'jslib/models/data/collectionData';
-import { Collection } from 'jslib/models/domain/collection';
+import { CollectionData } from 'jslib-common/models/data/collectionData';
+import { Collection } from 'jslib-common/models/domain/collection';
 import {
     CollectionDetailsResponse,
     CollectionResponse,
-} from 'jslib/models/response/collectionResponse';
-import { ListResponse } from 'jslib/models/response/listResponse';
-import { CollectionView } from 'jslib/models/view/collectionView';
+} from 'jslib-common/models/response/collectionResponse';
+import { ListResponse } from 'jslib-common/models/response/listResponse';
+import { CollectionView } from 'jslib-common/models/view/collectionView';
 
 import { ModalComponent } from '../../modal.component';
 import { CollectionAddEditComponent } from './collection-add-edit.component';

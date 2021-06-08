@@ -1,6 +1,6 @@
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
-import { ConstantsService } from 'jslib/services';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { ConstantsService } from 'jslib-common/services';
 
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
@@ -47,6 +47,10 @@ export class HtmlStorageService implements StorageService {
     save(key: string, obj: any): Promise<any> {
         if (obj == null) {
             return this.remove(key);
+        }
+
+        if (obj instanceof Set) {
+            obj = Array.from(obj);
         }
 
         const json = JSON.stringify(obj);

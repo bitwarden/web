@@ -8,22 +8,22 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { EventService } from 'jslib/abstractions/event.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PasswordRepromptService } from 'jslib/abstractions/passwordReprompt.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SearchService } from 'jslib/abstractions/search.service';
-import { TotpService } from 'jslib/abstractions/totp.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { EventService } from 'jslib-common/abstractions/event.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SearchService } from 'jslib-common/abstractions/search.service';
+import { TotpService } from 'jslib-common/abstractions/totp.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { CiphersComponent as BaseCiphersComponent } from 'jslib/angular/components/ciphers.component';
+import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
 
-import { CipherRepromptType } from 'jslib/enums/cipherRepromptType';
-import { CipherType } from 'jslib/enums/cipherType';
-import { EventType } from 'jslib/enums/eventType';
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
+import { CipherType } from 'jslib-common/enums/cipherType';
+import { EventType } from 'jslib-common/enums/eventType';
 
-import { CipherView } from 'jslib/models/view/cipherView';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
 const MaxCheckedCount = 500;
 

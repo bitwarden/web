@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service';
-import { StateService } from 'jslib/abstractions/state.service';
+import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
     selector: 'app-avatar',

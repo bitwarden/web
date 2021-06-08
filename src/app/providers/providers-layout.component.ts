@@ -5,14 +5,14 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 
-import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { EnvironmentService } from 'jslib/abstractions/environment.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { ProviderResponse } from 'jslib/models/response/providerResponse';
+import { ProviderResponse } from 'jslib-common/models/response/providerResponse';
 
 @Component({
     selector: 'providers-layout',

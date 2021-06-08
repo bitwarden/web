@@ -2,6 +2,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -12,11 +13,9 @@ import { ModalComponent } from './modal.component';
 import { FooterComponent } from './layouts/footer.component';
 import { NavbarComponent } from './layouts/navbar.component';
 
-import { RouterModule } from '@angular/router';
-import { A11yTitleDirective } from 'jslib/angular/directives/a11y-title.directive';
-import { ApiActionDirective } from 'jslib/angular/directives/api-action.directive';
-import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
-import { AppRoutingModule } from './app-routing.module';
+import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
+import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
+import { I18nPipe } from 'jslib-angular/pipes/i18n.pipe';
 
 @NgModule({
     imports: [

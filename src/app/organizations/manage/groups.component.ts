@@ -12,15 +12,15 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SearchService } from 'jslib/abstractions/search.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SearchService } from 'jslib-common/abstractions/search.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { GroupResponse } from 'jslib/models/response/groupResponse';
+import { GroupResponse } from 'jslib-common/models/response/groupResponse';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
 import { EntityUsersComponent } from './entity-users.component';

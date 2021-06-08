@@ -6,10 +6,10 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { ImportService } from 'jslib/abstractions/import.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { ImportService } from 'jslib-common/abstractions/import.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ImportComponent as BaseImportComponent } from '../../tools/import.component';
 

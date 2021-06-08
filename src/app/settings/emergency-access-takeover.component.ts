@@ -8,24 +8,23 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { UserService } from 'jslib/abstractions/user.service';
-import { ChangePasswordComponent } from 'jslib/angular/components/change-password.component';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { KdfType } from 'jslib/enums/kdfType';
-import { PolicyData } from 'jslib/models/data/policyData';
-import { Policy } from 'jslib/models/domain/policy';
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
-import { EmergencyAccessPasswordRequest } from 'jslib/models/request/emergencyAccessPasswordRequest';
-import { ListResponse } from 'jslib/models/response';
-import { EmergencyAccessTakeoverResponse } from 'jslib/models/response/emergencyAccessResponse';
-import { PolicyResponse } from 'jslib/models/response/policyResponse';
+import { KdfType } from 'jslib-common/enums/kdfType';
+import { PolicyData } from 'jslib-common/models/data/policyData';
+import { Policy } from 'jslib-common/models/domain/policy';
+import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+import { EmergencyAccessPasswordRequest } from 'jslib-common/models/request/emergencyAccessPasswordRequest';
+import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
+
+import { ChangePasswordComponent } from 'jslib-angular/components/change-password.component';
 
 @Component({
     selector: 'emergency-access-takeover',

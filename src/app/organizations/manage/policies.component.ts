@@ -10,15 +10,15 @@ import {
     Router,
 } from '@angular/router';
 
-import { PolicyType } from 'jslib/enums/policyType';
+import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { EnvironmentService } from 'jslib/abstractions';
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { EnvironmentService } from 'jslib-common/abstractions';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { PolicyResponse } from 'jslib/models/response/policyResponse';
+import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
 
 import { ModalComponent } from '../../modal.component';
 
@@ -115,6 +115,12 @@ export class PoliciesComponent implements OnInit {
                     type: PolicyType.SendOptions,
                     enabled: false,
                     display: true,
+                }, {
+                    name: this.i18nService.t('resetPasswordPolicy'),
+                    description: this.i18nService.t('resetPasswordPolicyDescription'),
+                    type: PolicyType.ResetPassword,
+                    enabled: false,
+                    display: organization.useResetPassword,
                 },
             ];
             await this.load();

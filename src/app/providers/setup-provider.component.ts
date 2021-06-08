@@ -12,9 +12,9 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Component({
     selector: 'app-setup-provider',

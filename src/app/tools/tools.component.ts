@@ -3,8 +3,8 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Component({
     selector: 'app-tools',

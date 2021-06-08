@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { CipherData } from 'jslib/models/data/cipherData';
-import { Cipher } from 'jslib/models/domain/cipher';
-import { Organization } from 'jslib/models/domain/organization';
+import { CipherData } from 'jslib-common/models/data/cipherData';
+import { Cipher } from 'jslib-common/models/domain/cipher';
+import { Organization } from 'jslib-common/models/domain/organization';
 
-import { AttachmentView } from 'jslib/models/view/attachmentView';
+import { AttachmentView } from 'jslib-common/models/view/attachmentView';
 
 import { AttachmentsComponent as BaseAttachmentsComponent } from '../../vault/attachments.component';
 

@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { PlanType } from 'jslib/enums/planType';
-import { ProductType } from 'jslib/enums/productType';
+import { PlanType } from 'jslib-common/enums/planType';
+import { ProductType } from 'jslib-common/enums/productType';
 
 import { OrganizationPlansComponent } from './organization-plans.component';
 

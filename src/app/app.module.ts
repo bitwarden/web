@@ -7,16 +7,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { ServicesModule } from './services/services.module';
-
 import { AppComponent } from './app.component';
-import { ModalComponent } from './modal.component';
+import { BitwardenCommonModule } from './common.module';
 
 import { AvatarComponent } from './components/avatar.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
@@ -54,6 +51,7 @@ import { ManageComponent as OrgManageComponent } from './organizations/manage/ma
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
 import { PoliciesComponent as OrgPoliciesComponent } from './organizations/manage/policies.component';
 import { PolicyEditComponent as OrgPolicyEditComponent } from './organizations/manage/policy-edit.component';
+import { ResetPasswordComponent as OrgResetPasswordComponent } from './organizations/manage/reset-password.component';
 import { UserAddEditComponent as OrgUserAddEditComponent } from './organizations/manage/user-add-edit.component';
 import { UserConfirmComponent as OrgUserConfirmComponent } from './organizations/manage/user-confirm.component';
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
@@ -172,22 +170,22 @@ import { VaultComponent } from './vault/vault.component';
 
 import { SetupProviderComponent } from './providers/setup-provider.component';
 
-import { CalloutComponent } from 'jslib/angular/components/callout.component';
-import { IconComponent } from 'jslib/angular/components/icon.component';
+import { CalloutComponent } from 'jslib-angular/components/callout.component';
+import { IconComponent } from 'jslib-angular/components/icon.component';
 
-import { AutofocusDirective } from 'jslib/angular/directives/autofocus.directive';
-import { BlurClickDirective } from 'jslib/angular/directives/blur-click.directive';
-import { BoxRowDirective } from 'jslib/angular/directives/box-row.directive';
-import { FallbackSrcDirective } from 'jslib/angular/directives/fallback-src.directive';
-import { InputVerbatimDirective } from 'jslib/angular/directives/input-verbatim.directive';
-import { SelectCopyDirective } from 'jslib/angular/directives/select-copy.directive';
-import { StopClickDirective } from 'jslib/angular/directives/stop-click.directive';
-import { StopPropDirective } from 'jslib/angular/directives/stop-prop.directive';
-import { TrueFalseValueDirective } from 'jslib/angular/directives/true-false-value.directive';
+import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
+import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
+import { BoxRowDirective } from 'jslib-angular/directives/box-row.directive';
+import { FallbackSrcDirective } from 'jslib-angular/directives/fallback-src.directive';
+import { InputVerbatimDirective } from 'jslib-angular/directives/input-verbatim.directive';
+import { SelectCopyDirective } from 'jslib-angular/directives/select-copy.directive';
+import { StopClickDirective } from 'jslib-angular/directives/stop-click.directive';
+import { StopPropDirective } from 'jslib-angular/directives/stop-prop.directive';
+import { TrueFalseValueDirective } from 'jslib-angular/directives/true-false-value.directive';
 
-import { ColorPasswordPipe } from 'jslib/angular/pipes/color-password.pipe';
-import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
-import { SearchPipe } from 'jslib/angular/pipes/search.pipe';
+import { ColorPasswordPipe } from 'jslib-angular/pipes/color-password.pipe';
+import { SearchCiphersPipe } from 'jslib-angular/pipes/search-ciphers.pipe';
+import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 
 import localeBg from '@angular/common/locales/bg';
 import localeCa from '@angular/common/locales/ca';
@@ -225,7 +223,6 @@ import localeTr from '@angular/common/locales/tr';
 import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
-import { BitwardenCommonModule } from './common.module';
 
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
@@ -360,6 +357,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgPeopleComponent,
         OrgPolicyEditComponent,
         OrgPoliciesComponent,
+        OrgResetPasswordComponent,
         OrgReusedPasswordsReportComponent,
         OrgSettingComponent,
         OrgToolsComponent,
@@ -439,7 +437,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         EmergencyAccessTakeoverComponent,
         EmergencyAddEditComponent,
         FolderAddEditComponent,
-        ModalComponent,
         OrgAddEditComponent,
         OrgAttachmentsComponent,
         OrgBulkStatusComponent,
@@ -449,6 +446,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgEntityUsersComponent,
         OrgGroupAddEditComponent,
         OrgPolicyEditComponent,
+        OrgResetPasswordComponent,
         OrgUserAddEditComponent,
         OrgUserConfirmComponent,
         OrgUserGroupsComponent,

@@ -6,17 +6,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { ExportService } from 'jslib/abstractions/export.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { ExportService } from 'jslib-common/abstractions/export.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { EventResponse } from 'jslib-common/models/response/eventResponse';
+import { ListResponse } from 'jslib-common/models/response/listResponse';
+import { EventView } from 'jslib-common/models/view/eventView';
 
 import { EventService } from '../../services/event.service';
-
-import { EventResponse } from 'jslib/models/response/eventResponse';
-import { ListResponse } from 'jslib/models/response/listResponse';
-import { EventView } from 'jslib/models/view/eventView';
 
 @Component({
     selector: 'app-org-events',
@@ -29,6 +29,7 @@ export class EventsComponent implements OnInit {
     events: EventView[];
     start: string;
     end: string;
+    dirtyDates: boolean = true;
     continuationToken: string;
     refreshPromise: Promise<any>;
     exportPromise: Promise<any>;
@@ -69,16 +70,20 @@ export class EventsComponent implements OnInit {
     }
 
     async exportEvents() {
-        if (this.appApiPromiseUnfulfilled()) {
+        if (this.appApiPromiseUnfulfilled() || this.dirtyDates) {
             return;
         }
 
         this.loading = true;
-        this.exportPromise = this.exportService.getEventExport(this.events).then(data => {
-            const fileName = this.exportService.getFileName('org-events', 'csv');
-            this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
-        });
+
+        const dates = this.parseDates();
+        if (dates == null) {
+            return;
+        }
+
         try {
+            this.exportPromise = this.export(dates[0], dates[1]);
+
             await this.exportPromise;
         } catch { }
 
@@ -91,29 +96,56 @@ export class EventsComponent implements OnInit {
             return;
         }
 
-        let dates: string[] = null;
-        try {
-            dates = this.eventService.formatDateFilters(this.start, this.end);
-        } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('invalidDateRange'));
+        const dates = this.parseDates();
+        if (dates == null) {
             return;
         }
 
         this.loading = true;
-        let response: ListResponse<EventResponse>;
+        let events: EventView[] = [];
         try {
-            const promise = this.apiService.getEventsOrganization(this.organizationId, dates[0], dates[1],
-                clearExisting ? null : this.continuationToken);
+            const promise = this.loadAndParseEvents(dates[0], dates[1], clearExisting ? null : this.continuationToken);
             if (clearExisting) {
                 this.refreshPromise = promise;
             } else {
                 this.morePromise = promise;
             }
-            response = await promise;
+            const result = await promise;
+            this.continuationToken = result.continuationToken;
+            events = result.events;
         } catch { }
 
-        this.continuationToken = response.continuationToken;
+        if (!clearExisting && this.events != null && this.events.length > 0) {
+            this.events = this.events.concat(events);
+        } else {
+            this.events = events;
+        }
+
+        this.dirtyDates = false;
+        this.loading = false;
+        this.morePromise = null;
+        this.refreshPromise = null;
+    }
+
+    private async export(start: string, end: string) {
+        let continuationToken = this.continuationToken;
+        let events = [].concat(this.events);
+
+        while (continuationToken != null) {
+            const result = await this.loadAndParseEvents(start, end, continuationToken);
+            continuationToken = result.continuationToken;
+            events = events.concat(result.events);
+        }
+
+        const data = await this.exportService.getEventExport(events);
+        const fileName = this.exportService.getFileName('org-events', 'csv');
+        this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
+    }
+
+    private async loadAndParseEvents(startDate: string, endDate: string, continuationToken: string) {
+        const response = await this.apiService.getEventsOrganization(this.organizationId, startDate, endDate,
+            continuationToken);
+
         const events = await Promise.all(response.data.map(async r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = await this.eventService.getEventInfo(r);
@@ -132,16 +164,19 @@ export class EventsComponent implements OnInit {
                 type: r.type,
             });
         }));
+        return { continuationToken: response.continuationToken, events: events };
+    }
 
-        if (!clearExisting && this.events != null && this.events.length > 0) {
-            this.events = this.events.concat(events);
-        } else {
-            this.events = events;
+    private parseDates() {
+        let dates: string[] = null;
+        try {
+            dates = this.eventService.formatDateFilters(this.start, this.end);
+        } catch (e) {
+            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('invalidDateRange'));
+            return null;
         }
-
-        this.loading = false;
-        this.morePromise = null;
-        this.refreshPromise = null;
+        return dates;
     }
 
     private appApiPromiseUnfulfilled() {

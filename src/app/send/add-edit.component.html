@@ -232,10 +232,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary disabled" disabled=true *ngIf="disableSend">
-                    <span>{{'save' | i18n}}</span>
-                </button>
-                <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading" *ngIf="!disableSend">
+                <button type="submit" class="btn btn-primary btn-submit manual" [ngClass]="{loading:form.loading}"
+                    [disabled]="form.loading || disableSend">
                     <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'save' | i18n}}</span>
                 </button>

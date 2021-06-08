@@ -7,10 +7,10 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ModalComponent as BaseModalComponent } from 'jslib/angular/components/modal.component';
-import { Utils } from 'jslib/misc/utils';
+import { ModalComponent as BaseModalComponent } from 'jslib-angular/components/modal.component';
+import { Utils } from 'jslib-common/misc/utils';
 
-import { MessagingService } from 'jslib/abstractions/messaging.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
 @Component({
     selector: 'app-modal',

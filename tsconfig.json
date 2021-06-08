@@ -15,17 +15,24 @@
     "baseUrl": ".",
     "paths": {
       "tldjs": [
-        "jslib/src/misc/tldjs.noop"
+        "jslib/common/src/misc/tldjs.noop"
       ],
-      "jslib/*": [
-        "jslib/src/*"
+      "jslib-common/*": [
+        "jslib/common/src/*"
+      ],
+      "jslib-angular/*": [
+        "jslib/angular/src/*"
       ]
     }
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": true
   },
+  "files": [
+    "src/app/polyfills.ts",
+    "src/app/main.ts"
+  ],
   "include": [
-    "src"
+    "src/connectors/*.ts",
   ]
 }

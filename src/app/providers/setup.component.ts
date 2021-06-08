@@ -11,15 +11,14 @@ import {
     Toast,
     ToasterService,
 } from 'angular2-toaster';
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { UserService } from 'jslib/abstractions/user.service';
-import { ValidationService } from 'jslib/angular/services/validation.service';
-import { ProviderSetupRequest } from 'jslib/models/request/providerSetupRequest';
-import { runInThisContext } from 'vm';
+import { ValidationService } from 'jslib-angular/services/validation.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderSetupRequest } from 'jslib-common/models/request/providerSetupRequest';
 
 @Component({
     selector: 'provider-setup',

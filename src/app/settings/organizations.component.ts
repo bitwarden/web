@@ -6,18 +6,22 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { Organization } from 'jslib/models/domain/organization';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { Policy } from 'jslib-common/models/domain/policy';
 
-import { Utils } from 'jslib/misc/utils';
+import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
 
-import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib/models/request/organizationUserResetPasswordEnrollmentRequest';
+import { Utils } from 'jslib-common/misc/utils';
+
+import { PolicyType } from 'jslib-common/enums/policyType';
 
 @Component({
     selector: 'app-organizations',
@@ -27,15 +31,14 @@ export class OrganizationsComponent implements OnInit {
     @Input() vault = false;
 
     organizations: Organization[];
+    policies: Policy[];
     loaded: boolean = false;
     actionPromise: Promise<any>;
-    // TODO Remove feature flag once ready for general release
-    resetPasswordFeatureFlag = false;
 
     constructor(private userService: UserService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private apiService: ApiService,
         private toasterService: ToasterService, private syncService: SyncService,
-        private cryptoService: CryptoService) { }
+        private cryptoService: CryptoService, private policyService: PolicyService) { }
 
     async ngOnInit() {
         if (!this.vault) {
@@ -48,7 +51,20 @@ export class OrganizationsComponent implements OnInit {
         const orgs = await this.userService.getAllOrganizations();
         orgs.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.organizations = orgs;
+        this.policies = await this.policyService.getAll(PolicyType.ResetPassword);
         this.loaded = true;
+    }
+
+    allowEnrollmentChanges(org: Organization): boolean {
+        if (org.usePolicies && org.useResetPassword && org.hasPublicAndPrivateKeys) {
+            return this.policies.some(p => p.organizationId === org.id && p.enabled);
+        }
+
+        return false;
+    }
+
+    showEnrolledStatus(org: Organization): boolean {
+        return org.useResetPassword && org.resetPasswordEnrolled && this.policies.some(p => p.organizationId === org.id && p.enabled);
     }
 
     async unlinkSso(org: Organization) {
@@ -88,32 +104,54 @@ export class OrganizationsComponent implements OnInit {
     }
 
     async toggleResetPasswordEnrollment(org: Organization) {
-        // Feature Flag
-        if (!this.resetPasswordFeatureFlag) {
-            return;
-        }
-
         // Set variables
         let keyString: string = null;
         let toastStringRef = 'withdrawPasswordResetSuccess';
 
-        // Enroll - encrpyt user's encKey.key with organization key
+        // Enrolling
         if (!org.resetPasswordEnrolled) {
-            const encKey = await this.cryptoService.getEncKey();
-            const orgSymKey = await this.cryptoService.getOrgKey(org.id);
-            const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);
-            keyString = encryptedKey.encryptedString;
-            toastStringRef = 'enrollPasswordResetSuccess';
-        }
+            // Alert user about enrollment
+            const confirmed = await this.platformUtilsService.showDialog(
+                this.i18nService.t('resetPasswordEnrollmentWarning'), null,
+                this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            if (!confirmed) {
+                return;
+            }
 
-        // Create/Execute request
-        try {
+            // Retrieve Public Key
+            this.actionPromise = this.apiService.getOrganizationKeys(org.id)
+                .then(async response => {
+                    if (response == null) {
+                        throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
+                    }
+
+                    const publicKey = Utils.fromB64ToArray(response.publicKey);
+
+                    // RSA Encrypt user's encKey.key with organization public key
+                    const encKey = await this.cryptoService.getEncKey();
+                    const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
+                    keyString = encryptedKey.encryptedString;
+                    toastStringRef = 'enrollPasswordResetSuccess';
+
+                    // Create request and execute enrollment
+                    const request = new OrganizationUserResetPasswordEnrollmentRequest();
+                    request.resetPasswordKey = keyString;
+                    return this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request);
+                })
+                .then(() => {
+                    return this.syncService.fullSync(true);
+                });
+        } else {
+            // Withdrawal
             const request = new OrganizationUserResetPasswordEnrollmentRequest();
             request.resetPasswordKey = keyString;
             this.actionPromise = this.apiService.putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request)
                 .then(() => {
                     return this.syncService.fullSync(true);
                 });
+        }
+
+        try {
             await this.actionPromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t(toastStringRef));
             await this.load();

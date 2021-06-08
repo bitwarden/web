@@ -8,17 +8,17 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CollectionService } from 'jslib-common/abstractions/collection.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { CollectionData } from 'jslib/models/data/collectionData';
-import { Collection } from 'jslib/models/domain/collection';
-import { GroupRequest } from 'jslib/models/request/groupRequest';
-import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
-import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
-import { CollectionView } from 'jslib/models/view/collectionView';
+import { CollectionData } from 'jslib-common/models/data/collectionData';
+import { Collection } from 'jslib-common/models/domain/collection';
+import { GroupRequest } from 'jslib-common/models/request/groupRequest';
+import { SelectionReadOnlyRequest } from 'jslib-common/models/request/selectionReadOnlyRequest';
+import { CollectionDetailsResponse } from 'jslib-common/models/response/collectionResponse';
+import { CollectionView } from 'jslib-common/models/view/collectionView';
 
 @Component({
     selector: 'app-group-add-edit',

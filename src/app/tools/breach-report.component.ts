@@ -3,9 +3,9 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { AuditService } from 'jslib/abstractions/audit.service';
-import { UserService } from 'jslib/abstractions/user.service';
-import { BreachAccountResponse } from 'jslib/models/response/breachAccountResponse';
+import { AuditService } from 'jslib-common/abstractions/audit.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+import { BreachAccountResponse } from 'jslib-common/models/response/breachAccountResponse';
 
 @Component({
     selector: 'app-breach-report',
