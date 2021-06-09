@@ -13,19 +13,18 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { Utils } from 'jslib/misc/utils';
+import { OrganizationUserAcceptRequest } from 'jslib-common/models/request/organizationUserAcceptRequest';
+import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
 
-import { Policy } from 'jslib/models/domain/policy';
-
-import { OrganizationUserAcceptRequest } from 'jslib/models/request/organizationUserAcceptRequest';
-import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib/models/request/organizationUserResetPasswordEnrollmentRequest';
+import { Utils } from 'jslib-common/misc/utils';
+import { Policy } from 'jslib-common/models/domain/policy';
 
 @Component({
     selector: 'app-accept-organization',

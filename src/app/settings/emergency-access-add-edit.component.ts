@@ -8,12 +8,12 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { EmergencyAccessType } from 'jslib/enums/emergencyAccessType';
-import { EmergencyAccessInviteRequest } from 'jslib/models/request/emergencyAccessInviteRequest';
-import { EmergencyAccessUpdateRequest } from 'jslib/models/request/emergencyAccessUpdateRequest';
+import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
+import { EmergencyAccessInviteRequest } from 'jslib-common/models/request/emergencyAccessInviteRequest';
+import { EmergencyAccessUpdateRequest } from 'jslib-common/models/request/emergencyAccessUpdateRequest';
 
 @Component({
     selector: 'emergency-access-add-edit',

@@ -4,18 +4,18 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { OrganizationUserBulkConfirmRequest } from 'jslib/models/request/organizationUserBulkConfirmRequest';
-import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
+import { OrganizationUserBulkConfirmRequest } from 'jslib-common/models/request/organizationUserBulkConfirmRequest';
+import { OrganizationUserBulkRequest } from 'jslib-common/models/request/organizationUserBulkRequest';
 
-import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
+import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
 
-import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
+import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
     selector: 'app-bulk-confirm',

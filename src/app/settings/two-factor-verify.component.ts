@@ -7,13 +7,13 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { PasswordVerificationRequest } from 'jslib/models/request/passwordVerificationRequest';
+import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
 @Component({
     selector: 'app-two-factor-verify',

@@ -19,9 +19,9 @@
                 {{'refresh' | i18n}}
             </button>
         </form>
-        <form #exportForm [appApiAction]="exportForm" class="d-inline">
+        <form #exportForm [appApiAction]="exportPromise" class="d-inline">
             <button type="button" class="btn btn-sm btn-outline-primary btn-submit manual ml-3"
-                [ngClass]="{loading:refreshForm.loading}" (click)="exportEvents()"
+                [ngClass]="{loading:exportForm.loading}" (click)="exportEvents()"
                 [disabled]="loaded && exportForm.loading || dirtyDates">
                 <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
                 <span>{{'export' | i18n}}</span>

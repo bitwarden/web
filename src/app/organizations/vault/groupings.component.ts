@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
-import { FolderService } from 'jslib/abstractions/folder.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CollectionService } from 'jslib-common/abstractions/collection.service';
+import { FolderService } from 'jslib-common/abstractions/folder.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { CollectionData } from 'jslib/models/data/collectionData';
-import { Collection } from 'jslib/models/domain/collection';
-import { Organization } from 'jslib/models/domain/organization';
-import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
-import { CollectionView } from 'jslib/models/view/collectionView';
+import { CollectionData } from 'jslib-common/models/data/collectionData';
+import { Collection } from 'jslib-common/models/domain/collection';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { CollectionDetailsResponse } from 'jslib-common/models/response/collectionResponse';
+import { CollectionView } from 'jslib-common/models/view/collectionView';
 
 import { GroupingsComponent as BaseGroupingsComponent } from '../../vault/groupings.component';
 

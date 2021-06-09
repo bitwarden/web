@@ -7,8 +7,8 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
 @Component({
     selector: 'app-vault-bulk-restore',

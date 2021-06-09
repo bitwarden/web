@@ -7,14 +7,14 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
-import { CipherData } from 'jslib/models/data';
-import { Cipher, SymmetricCryptoKey } from 'jslib/models/domain';
-import { EmergencyAccessViewResponse } from 'jslib/models/response/emergencyAccessResponse';
-import { CipherView } from 'jslib/models/view/cipherView';
+import { CipherData } from 'jslib-common/models/data';
+import { Cipher, SymmetricCryptoKey } from 'jslib-common/models/domain';
+import { EmergencyAccessViewResponse } from 'jslib-common/models/response/emergencyAccessResponse';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import { ModalComponent } from '../modal.component';
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
+import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
 
 type BulkStatusEntry = {
     user: OrganizationUserUserDetailsResponse,

@@ -3,11 +3,11 @@ import {
     Input,
 } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { OrganizationUserBulkRequest } from 'jslib/models/request/organizationUserBulkRequest';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationUserBulkRequest } from 'jslib-common/models/request/organizationUserBulkRequest';
 
-import { OrganizationUserUserDetailsResponse } from 'jslib/models/response/organizationUserResponse';
+import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
 
 @Component({
     selector: 'app-bulk-remove',
