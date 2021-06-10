@@ -1,0 +1,74 @@
+name: Bump jslib
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump-jslib:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup git config
+        run: |
+          git config user.name = "GitHub Action Bot"
+          git config user.email = "<>"
+
+      - name: Bump jslib and commit
+        id: bump
+        run: |
+          TARGET_BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})
+          NEW_BRANCH_NAME="auto-bump-jslib"
+
+          if [ "$TARGET_BRANCH_NAME" = "master" ]; then
+            git checkout -b $NEW_BRANCH_NAME
+            echo "[*] Checked out new branch $NEW_BRANCH_NAME"
+          fi
+
+          npm run sub:init
+          OLD_JSLIB_HASH=`git submodule status | awk '{print $1}'`
+
+          npm run sub:update
+
+          if [ `git diff --quiet jslib` ]; then
+            echo "Unable to bump jslib: branch $TARGET_BRANCH_NAME is already using the latest jslib commit."
+            exit 1
+          fi
+
+          git add jslib
+          git commit -m "bump jslib"
+
+          NEW_JSLIB_HASH=`git submodule status | awk '{print $1}'`
+          echo "[*] Bumped jslib to $NEW_JSLIB_HASH"
+
+          if [ "$TARGET_BRANCH_NAME" = "master" ]; then
+            git push -u origin $NEW_BRANCH_NAME
+            echo "[*] Pushed to $NEW_BRANCH_NAME"
+          else
+            git push origin $TARGET_BRANCH_NAME
+            echo "[*] Pushed to $TARGET_BRANCH_NAME"
+          fi
+
+          cd jslib
+          GIT_LOG=`git log $OLD_JSLIB_HASH..$NEW_JSLIB_HASH --oneline`
+          
+          echo "::set-output name=target-branch-name::${TARGET_BRANCH_NAME}"
+          echo "::set-output name=new-branch-name::${NEW_BRANCH_NAME}"
+          echo "::set-output name=git-log::${GIT_LOG}"
+
+      - name: Submit PR against master branch
+        if: github.ref == 'refs/heads/master'
+        run: |
+          gh pr create --title "Auto bump jslib" \
+            --body "@${{github.actor}} would like to bump jslib in this repo. This will pull in the following new commits:
+              
+            $GIT_LOG" \
+            --reviewer eliykat
+          
+          echo "[*] Submitted PR against master branch"
+        env:
+          GIT_LOG: ${{ steps.bump.outputs.git-log }}
+          TARGET_BRANCH_NAME: ${{ steps.bump.outputs.target-branch-name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
