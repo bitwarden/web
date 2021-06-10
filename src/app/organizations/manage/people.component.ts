@@ -37,6 +37,8 @@ import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserS
 import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { PolicyType } from 'jslib-common/enums/policyType';
 
+import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
+
 import { Utils } from 'jslib-common/misc/utils';
 
 import { ModalComponent } from '../../modal.component';
@@ -95,7 +97,8 @@ export class PeopleComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService, private toasterService: ToasterService,
         private cryptoService: CryptoService, private userService: UserService, private router: Router,
         private storageService: StorageService, private searchService: SearchService,
-        private validationService: ValidationService, private policyService: PolicyService) { }
+        private validationService: ValidationService, private policyService: PolicyService,
+        private searchPipe: SearchPipe) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -545,11 +548,14 @@ export class PeopleComponent implements OnInit {
         if (select) {
             this.selectAll(false);
         }
-        const selectCount = select && this.users.length > MaxCheckedCount
+
+        const filteredUsers = this.searchPipe.transform(this.users, this.searchText, 'name', 'email', 'id');
+
+        const selectCount = select && filteredUsers.length > MaxCheckedCount
             ? MaxCheckedCount
-            : this.users.length;
+            : filteredUsers.length;
         for (let i = 0; i < selectCount; i++) {
-            this.checkUser(this.users[i], select);
+            this.checkUser(filteredUsers[i], select);
         }
     }
 
