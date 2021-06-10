@@ -36,7 +36,7 @@
                     {{'reinviteSelected' | i18n}}
                 </button>
                 <button class="dropdown-item text-success" appStopClick (click)="bulkConfirm()"
-                    *ngIf="showConfirmUsers">
+                    *ngIf="showBulkConfirmUsers">
                     <i class="fa fa-fw fa-check" aria-hidden="true"></i>
                     {{'confirmSelected' | i18n}}
                 </button>
@@ -158,3 +158,5 @@
 <ng-template #confirmTemplate></ng-template>
 <ng-template #resetPasswordTemplate></ng-template>
 <ng-template #bulkStatusTemplate></ng-template>
+<ng-template #bulkConfirmTemplate></ng-template>
+<ng-template #bulkRemoveTemplate></ng-template>
