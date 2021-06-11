@@ -49,6 +49,15 @@ body {
     min-width: 1010px;
 
     &.layout_frontend {
+        @media (prefers-color-scheme: dark) {
+            background-color: #222222;
+        }
+        @media (prefers-color-scheme: light) {
+            background-color: #FFFFFF;
+        }
+    }
+
+    &.layout_frontend {
         @include themify($themes) {
             color: themed('textColor');
             background-color: themed('layoutFrontendColor');
@@ -1061,12 +1070,18 @@ img.logo, .logo#loginLogo {
     height: 43px;
     margin: 0 auto;
     display: block;
+    @media (prefers-color-scheme: dark){
+        background: url("../images/logo-white@2x.png") no-repeat center center;
+        background-size: cover;
+    }
+    @media (prefers-color-scheme: light){
+        background: url("../images/logo-dark@2x.png") no-repeat center center;
+        background-size: cover;
+    }
     @include themify($themes) {
         background: themed('loginLogo') no-repeat center center;
         background-size: cover;
     }
-    background: url("../images/logo-dark@2x.png") no-repeat center center;
-    background-size: cover;
 }
 
 .min-height-fix {
