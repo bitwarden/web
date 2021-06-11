@@ -24,7 +24,7 @@ export class AcceptEmergencyComponent extends BaseAcceptComponent {
 
     name: string;
 
-    protected requiredParameters: string[] = ['name', 'email', 'token'];
+    protected requiredParameters: string[] = ['id', 'name', 'email', 'token'];
     protected failedShortMessage = 'emergencyInviteAcceptFailedShort';
     protected failedMessage = 'emergencyInviteAcceptFailed';
 
