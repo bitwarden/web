@@ -21,7 +21,7 @@ jobs:
       - name: Print lines of code
         run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
 
-  build:
+  npm-ci:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Node
@@ -32,6 +32,54 @@ jobs:
       - name: Update NPM
         run: |
           npm install -g npm@7
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Print environment
+        run: |
+          whoami
+          node --version
+          npm --version
+          gulp --version
+          docker --version
+          echo "GitHub ref: $GITHUB_REF"
+          echo "GitHub event: $GITHUB_EVENT"
+
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      - name: Restore
+        run: dotnet tool restore
+
+      - name: Build
+        run: |
+          echo "npm version $(npm --version)"
+          npm ci
+
+
+  build-selfhost:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        with:
+          node-version: '14'
+
+      - name: Update NPM
+        run: |
+          npm install -g npm@7
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -83,12 +131,15 @@ jobs:
       - name: Restore
         run: dotnet tool restore
 
+      - name: Install dependencies if not cached
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
       - name: Build
         run: |
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm ci
           npm run dist:selfhost
 
           echo -e "\nBuilding Docker image"
@@ -138,6 +189,13 @@ jobs:
         run: |
           npm install -g npm@7
 
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
+
       - name: Print environment
         run: |
           whoami
@@ -149,44 +207,24 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Login to Azure
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
           creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
 
-      - name: Retrieve secrets
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
-        id: retrieve-secrets
-        uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
-        with:
-          keyvault: "bitwarden-prod-kv"
-          secrets: "docker-password, 
-                    docker-username,
-                    dct-delegate-2-repo-passphrase,
-                    dct-delegate-2-key"
-
-      - name: Log into Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
-        run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        env:
-          DOCKER_USERNAME: ${{ steps.retrieve-secrets.outputs.docker-username }}
-          DOCKER_PASSWORD: ${{ steps.retrieve-secrets.outputs.docker-password }}
-
-      - name: Setup Docker Trust
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
-        run: |
-          mkdir -p ~/.docker/trust/private
-
-          echo "$DCT_DELEGATE_KEY" > ~/.docker/trust/private/$DCT_DELEGATION_KEY_ID.key
-        env:
-          DCT_DELEGATION_KEY_ID: "c9bde8ec820701516491e5e03d3a6354e7bd66d05fa3df2b0062f68b116dc59c"
-          DCT_DELEGATE_KEY: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-key }}
+      - name: Log into container registry
+        #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        run: az acr login -n bitwardenqa
 
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Restore
         run: dotnet tool restore
+
+      - name: Install dependencies if not cached
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Build
         run: |
@@ -201,7 +239,7 @@ jobs:
           docker build -t bitwardenqa.azurecr.io/web .
 
       - name: Tag rc branch
-        if: github.ref == 'refs/heads/rc'
+        #if: github.ref == 'refs/heads/rc'
         run: docker tag bitwarden/web bitwardenqa.azurecr.io/web:rc
 
       - name: Tag dev
@@ -209,25 +247,19 @@ jobs:
         run: docker tag bitwarden/web bitwardenqa.azurecr.io/web:dev
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker images
 
       - name: Push rc images
         if: github.ref == 'refs/heads/rc'
         run: docker push bitwardenqa.azurecr.io/web:rc
-        env: 
-          DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Push dev images
-        if: github.ref == 'refs/heads/master'
+        #if: github.ref == 'refs/heads/master'
         run: docker push bitwardenqa.azurecr.io/web:dev
-        env: 
-          DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker logout
 
 
