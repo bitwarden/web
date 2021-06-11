@@ -481,7 +481,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],
-    providers: [DatePipe],
+    providers: [DatePipe, SearchPipe],
     bootstrap: [AppComponent],
 })
 export class AppModule { }
