@@ -26,7 +26,7 @@ export class OptionsComponent implements OnInit {
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
-    theme: string;
+    theme: string = null;
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
@@ -63,9 +63,9 @@ export class OptionsComponent implements OnInit {
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
         this.themeOptions = [
-            { name: i18nService.t('themeDefault'), value: 'theme_defaultSet' },
-            { name: i18nService.t('themeLight'), value: 'theme_light' },
-            { name: i18nService.t('themeDark'), value: 'theme_dark' },
+            { name: i18nService.t('themeDefault'), value: null },
+            { name: i18nService.t('themeLight'), value: 'light' },
+            { name: i18nService.t('themeDark'), value: 'dark' },
         ];
     }
 
@@ -112,20 +112,11 @@ export class OptionsComponent implements OnInit {
     }
 
     async themeChanged(themeUpdate: string) {
-        const theme = ['theme_defaultSet', 'theme_dark', 'theme_light'];
         const htmlEl = window.document.documentElement;
-        theme.forEach(element => {
-            htmlEl.classList.remove(element);
-        });
-        if (themeUpdate === 'theme_defaultSet') {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                htmlEl.classList.add('theme_dark', themeUpdate);
-            }
-            if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                htmlEl.classList.add('theme_light', themeUpdate);
-            }
-        } else {
-            htmlEl.classList.add(themeUpdate);
+        htmlEl.classList.remove('theme_dark', 'theme_light');
+        if (themeUpdate == null) {
+            themeUpdate = await this.platformUtilsService.getDefaultSystemTheme();
         }
+        htmlEl.classList.add('theme_' + themeUpdate);
     }
 }

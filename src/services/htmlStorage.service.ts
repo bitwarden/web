@@ -26,12 +26,6 @@ export class HtmlStorageService implements StorageService {
         if (vaultTimeoutAction == null) {
             await this.save(ConstantsService.vaultTimeoutActionKey, 'lock');
         }
-
-        // Default theme to match the browser if the theme isn't set
-        const theme = await this.get<string>(ConstantsService.themeKey);
-        if (theme == null) {
-            await this.save(ConstantsService.themeKey, 'theme_defaultSet');
-        }
     }
 
     get<T>(key: string): Promise<T> {
