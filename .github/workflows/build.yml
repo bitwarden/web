@@ -210,7 +210,7 @@ jobs:
         #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
-          creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
 
       - name: Log into container registry
         #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
