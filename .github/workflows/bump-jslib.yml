@@ -80,11 +80,10 @@ jobs:
             gh pr create --title "Auto bump jslib" \
               --body "$BODY_TEXT" \
               --reviewer eliykat
-            
             echo "[*] Submitted PR against master branch"
           else
-            gh pr comment \
-              --body "$BODY_TEXT"
+            gh pr comment --body "$BODY_TEXT"
+            echo "[*] Updated existing PR"
           fi
         env:
           GIT_LOG: ${{ steps.bump.outputs.git-log }}
