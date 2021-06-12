@@ -111,7 +111,6 @@ import { ChangeKdfComponent } from './settings/change-kdf.component';
 import { ChangePasswordComponent } from './settings/change-password.component';
 import { CreateOrganizationComponent } from './settings/create-organization.component';
 import { DeauthorizeSessionsComponent } from './settings/deauthorize-sessions.component';
-import { DefaultUsernamesComponent } from './settings/default-usernames.component';
 import { DeleteAccountComponent } from './settings/delete-account.component';
 import { DomainRulesComponent } from './settings/domain-rules.component';
 import { EmergencyAccessAddEditComponent } from './settings/emergency-access-add-edit.component';
@@ -301,7 +300,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ColorPasswordPipe,
         CreateOrganizationComponent,
         DeauthorizeSessionsComponent,
-        DefaultUsernamesComponent,
         DeleteAccountComponent,
         DeleteOrganizationComponent,
         DomainRulesComponent,
