@@ -70,9 +70,9 @@ export class AddEditComponent extends BaseAddEditComponent {
             }, 1000);
         }
 
-        const response = await this.apiService.getSettingsDefaultUsernames();
-        if (response.defaultUsernames != null) {
-            this.defaultUsernames = response.defaultUsernames;
+        const topUsernames = this.cipherService.topUsernames;
+        if (topUsernames != null) {
+            this.defaultUsernames = topUsernames;
             this.defaultUsernames.unshift('');
         }
     }
