@@ -70,10 +70,12 @@ export class AddEditComponent extends BaseAddEditComponent {
             }, 1000);
         }
 
-        const topUsernames = this.cipherService.topUsernames;
-        if (topUsernames != null) {
-            this.defaultUsernames = topUsernames;
-            this.defaultUsernames.unshift('');
+        if (this.cipher.type === CipherType.Login) {
+            const topUsernames = this.cipherService.topUsernames;
+            if (topUsernames != null) {
+                this.defaultUsernames = topUsernames;
+                this.defaultUsernames.unshift('');
+            }
         }
     }
 
