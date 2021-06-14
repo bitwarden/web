@@ -240,11 +240,11 @@ jobs:
 
       - name: Tag rc branch
         #if: github.ref == 'refs/heads/rc'
-        run: docker tag bitwarden/web bitwardenqa.azurecr.io/web:rc
+        run: docker tag bitwardenqa.azurecr.io/web bitwardenqa.azurecr.io/web:rc
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
-        run: docker tag bitwarden/web bitwardenqa.azurecr.io/web:dev
+        run: docker tag bitwardenqa.azurecr.io/web bitwardenqa.azurecr.io/web:dev
 
       - name: List Docker images
         #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
