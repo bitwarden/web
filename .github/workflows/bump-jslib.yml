@@ -24,7 +24,7 @@ jobs:
           if [ "$CHECKED_OUT_BRANCH_NAME" = "master" ]; then
             TARGET_BRANCH_NAME="auto-bump-jslib"
             git fetch origin
-            EXISTING_PR=`git ls-remote --heads origin $TARGET_BRANCH_NAME | wc -l`
+            EXISTING_PR=$(git ls-remote --heads origin $TARGET_BRANCH_NAME | wc -l)
             if [ "$EXISTING_PR" -gt 0 ]; then
               git checkout $TARGET_BRANCH_NAME
               echo "[*] Checked out existing PR branch $TARGET_BRANCH_NAME"
@@ -39,11 +39,11 @@ jobs:
           fi
 
           npm run sub:init
-          OLD_JSLIB_HASH=`git submodule status | awk '{print $1}'`
+          OLD_JSLIB_HASH=$(git submodule status | awk '{print $1}')
 
           npm run sub:update
 
-          if [ `git diff jslib | wc -l` -eq 0 ]; then
+          if [ $(git diff jslib | wc -l) -eq 0 ]; then
             echo "Unable to bump jslib: branch $TARGET_BRANCH_NAME is already using the latest jslib commit."
             if [ "$EXISTING_PR" -gt 0 ]; then
               echo "Try merging the $TARGET_BRANCH_NAME branch into master first."
@@ -54,7 +54,7 @@ jobs:
           git add jslib
           git commit -m "Bump jslib"
 
-          NEW_JSLIB_HASH=`git submodule status | awk '{print $1}'`
+          NEW_JSLIB_HASH=$(git submodule status | awk '{print $1}')
           echo "[*] Bumped jslib to $NEW_JSLIB_HASH"
 
           if [ "$EXISTING_PR" -eq 0 ]; then
@@ -65,7 +65,7 @@ jobs:
           echo "[*] Pushed to $TARGET_BRANCH_NAME"
 
           cd jslib
-          GIT_LOG=`git log $OLD_JSLIB_HASH..$NEW_JSLIB_HASH --oneline | sed 's/^/* /g' | sed 's/#[0-9]*[)]/bitwarden\/jslib&/g'`
+          GIT_LOG="$(git log $OLD_JSLIB_HASH..$NEW_JSLIB_HASH --oneline | sed 's/^/* /g' | sed 's/#[0-9]*[)]/bitwarden\/jslib&/g')"
           
           echo "::set-output name=git-log::${GIT_LOG}"
           echo "::set-output name=existing-pr::${EXISTING_PR}"
