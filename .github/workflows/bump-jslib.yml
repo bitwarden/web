@@ -1,0 +1,91 @@
+name: Bump jslib
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump-jslib:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      - name: Setup git config
+        run: |
+          git config user.name = "GitHub Action Bot"
+          git config user.email = "<>"
+
+      - name: Bump jslib and commit
+        id: bump
+        run: |
+          CHECKED_OUT_BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})
+
+          if [ "$CHECKED_OUT_BRANCH_NAME" = "master" ]; then
+            TARGET_BRANCH_NAME="auto-bump-jslib"
+            git fetch origin
+            EXISTING_PR=`git ls-remote --heads origin $TARGET_BRANCH_NAME | wc -l`
+            if [ "$EXISTING_PR" -gt 0 ]; then
+              git checkout $TARGET_BRANCH_NAME
+              echo "[*] Checked out existing PR branch $TARGET_BRANCH_NAME"
+            else
+              git checkout -b $TARGET_BRANCH_NAME
+              echo "[*] Checked out new branch $TARGET_BRANCH_NAME"
+            fi
+          else
+            TARGET_BRANCH_NAME="$CHECKED_OUT_BRANCH_NAME"
+            EXISTING_PR=0
+            echo "[*] Running on existing feature branch $TARGET_BRANCH_NAME"
+          fi
+
+          npm run sub:init
+          OLD_JSLIB_HASH=`git submodule status | awk '{print $1}'`
+
+          npm run sub:update
+
+          if [ `git diff jslib | wc -l` -eq 0 ]; then
+            echo "Unable to bump jslib: branch $TARGET_BRANCH_NAME is already using the latest jslib commit."
+            if [ "$EXISTING_PR" -gt 0 ]; then
+              echo "Try merging the $TARGET_BRANCH_NAME branch into master first."
+            fi
+            exit 1
+          fi
+
+          git add jslib
+          git commit -m "Bump jslib"
+
+          NEW_JSLIB_HASH=`git submodule status | awk '{print $1}'`
+          echo "[*] Bumped jslib to $NEW_JSLIB_HASH"
+
+          if [ "$EXISTING_PR" -eq 0 ]; then
+            git push -u origin $TARGET_BRANCH_NAME
+          else
+            git push origin $TARGET_BRANCH_NAME
+          fi
+          echo "[*] Pushed to $TARGET_BRANCH_NAME"
+
+          cd jslib
+          GIT_LOG=`git log $OLD_JSLIB_HASH..$NEW_JSLIB_HASH --oneline | sed 's/^/* /g' | sed 's/#[0-9]*[)]/bitwarden\/jslib&/g'`
+          
+          echo "::set-output name=git-log::${GIT_LOG}"
+          echo "::set-output name=existing-pr::${EXISTING_PR}"
+
+      - name: Submit or update PR against master branch
+        if: github.ref == 'refs/heads/master'
+        run: |
+          BODY_TEXT="@${{github.actor}} would like to bump jslib in this repo. This will pull in the following new commits:
+          $GIT_LOG"
+
+          if [ "$EXISTING_PR" -eq 0 ]; then
+            gh pr create --title "Auto bump jslib" \
+              --body "$BODY_TEXT" \
+              --reviewer eliykat
+            echo "[*] Submitted PR against master branch"
+          else
+            gh pr comment --body "$BODY_TEXT"
+            echo "[*] Updated existing PR"
+          fi
+        env:
+          GIT_LOG: ${{ steps.bump.outputs.git-log }}
+          EXISTING_PR: ${{ steps.bump.outputs.existing-pr }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
