@@ -208,11 +208,11 @@ jobs:
         run: docker images
 
       - name: Push rc images
-        if: github.ref == 'refs/heads/rc'
+        #if: github.ref == 'refs/heads/rc'
         run: docker push bitwardenqa.azurecr.io/web:rc
 
       - name: Push dev images
-        #if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         run: docker push bitwardenqa.azurecr.io/web:dev
 
       - name: Log out of Docker
