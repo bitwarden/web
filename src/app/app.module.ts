@@ -37,7 +37,9 @@ import { TwoFactorComponent } from './accounts/two-factor.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
-import { BulkStatusComponent as OrgBulkStatusComponent } from './organizations/manage/bulk-status.component';
+import { BulkConfirmComponent as OrgBulkConfirmComponent } from './organizations/manage/bulk/bulk-confirm.component';
+import { BulkRemoveComponent as OrgBulkRemoveComponent } from './organizations/manage/bulk/bulk-remove.component';
+import { BulkStatusComponent as OrgBulkStatusComponent } from './organizations/manage/bulk/bulk-status.component';
 import {
     CollectionAddEditComponent as OrgCollectionAddEditComponent,
 } from './organizations/manage/collection-add-edit.component';
@@ -339,6 +341,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrganizationSubscriptionComponent,
         OrgAttachmentsComponent,
         OrgBulkStatusComponent,
+        OrgBulkConfirmComponent,
+        OrgBulkRemoveComponent,
         OrgCiphersComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
@@ -440,6 +444,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         OrgAddEditComponent,
         OrgAttachmentsComponent,
         OrgBulkStatusComponent,
+        OrgBulkConfirmComponent,
+        OrgBulkRemoveComponent,
         OrgCollectionAddEditComponent,
         OrgCollectionsComponent,
         OrgEntityEventsComponent,
@@ -464,7 +470,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],
-    providers: [DatePipe],
+    providers: [DatePipe, SearchPipe],
     bootstrap: [AppComponent],
     exports: [],
 })
