@@ -54,25 +54,24 @@ jobs:
           git add jslib
           git commit -m "Bump jslib"
 
-          NEW_JSLIB_HASH=$(git submodule status | awk '{print $1}')
-          echo "[*] Bumped jslib to $NEW_JSLIB_HASH"
-
           if [ "$EXISTING_PR" -eq 0 ]; then
             git push -u origin $TARGET_BRANCH_NAME
           else
             git push origin $TARGET_BRANCH_NAME
           fi
           echo "[*] Pushed to $TARGET_BRANCH_NAME"
-
-          cd jslib
-          GIT_LOG="$(git log $OLD_JSLIB_HASH..$NEW_JSLIB_HASH --oneline | sed 's/^/* /g' | sed 's/#[0-9]*[)]/bitwarden\/jslib&/g')"
           
-          echo "::set-output name=git-log::${GIT_LOG}"
+          echo "::set-output name=old-jslib-hash::${OLD_JSLIB_HASH}"
           echo "::set-output name=existing-pr::${EXISTING_PR}"
 
       - name: Submit or update PR against master branch
         if: github.ref == 'refs/heads/master'
         run: |
+          NEW_JSLIB_HASH=$(git submodule status | awk '{print $1}')
+          cd jslib
+          GIT_LOG="$(git log $OLD_JSLIB_HASH..$NEW_JSLIB_HASH --oneline | sed 's/^[a-zA-Z0-9]*/* `&`/g' | sed 's/#[0-9]*[)]/bitwarden\/jslib&/g')"
+          cd ..
+
           BODY_TEXT="@${{github.actor}} would like to bump jslib in this repo. This will pull in the following new commits:
           $GIT_LOG"
 
@@ -86,6 +85,6 @@ jobs:
             echo "[*] Updated existing PR"
           fi
         env:
-          GIT_LOG: ${{ steps.bump.outputs.git-log }}
+          OLD_JSLIB_HASH: ${{ steps.bump.outputs.old-jslib-hash }}
           EXISTING_PR: ${{ steps.bump.outputs.existing-pr }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
