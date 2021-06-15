@@ -76,7 +76,7 @@ jobs:
           $GIT_LOG"
 
           if [ "$EXISTING_PR" -eq 0 ]; then
-            gh pr create --title "Auto bump jslib" \
+            gh pr create --title "[Bot] Bump jslib" \
               --body "$BODY_TEXT" \
               --reviewer bitwarden/dept-engineering
             echo "[*] Submitted PR against master branch"
