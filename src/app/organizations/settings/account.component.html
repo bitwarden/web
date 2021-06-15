@@ -38,6 +38,16 @@
         <span>{{'save' | i18n}}</span>
     </button>
 </form>
+<ng-container>
+    <div class="secondary-header border-0 mb-0">
+        <h1>{{'provider' | i18n}}</h1>
+    </div>
+    <p>{{'attachToProviderDesc' | i18n}}</p>
+    <button type="button" class="btn btn-primary btn-submit" (click)="attachProvider()">
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span>{{'attachToProvider' | i18n}}</span>
+    </button>
+</ng-container>
 <ng-container *ngIf="canUseApi">
     <div class="secondary-header border-0 mb-0">
         <h1>{{'apiKey' | i18n}}</h1>
@@ -81,3 +91,4 @@
 <ng-template #purgeOrganizationTemplate></ng-template>
 <ng-template #apiKeyTemplate></ng-template>
 <ng-template #rotateApiKeyTemplate></ng-template>
+<ng-template #attachProviderTemplate></ng-template>

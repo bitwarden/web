@@ -25,6 +25,7 @@ import { ModalComponent } from '../../modal.component';
 import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
+import { AttachProviderComponent } from '../../providers/attach-provider.component';
 
 import { DeleteOrganizationComponent } from './delete-organization.component';
 
@@ -37,6 +38,7 @@ export class AccountComponent {
     @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
     @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
     @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild('attachProviderTemplate', { read: ViewContainerRef, static: true }) attachProviderRef: ViewContainerRef;
     @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     selfHosted = false;
@@ -166,6 +168,21 @@ export class AccountComponent {
         childComponent.apiKeyTitle = 'apiKey';
         childComponent.apiKeyWarning = 'apiKeyWarning';
         childComponent.apiKeyDescription = 'apiKeyRotateDesc';
+
+        this.modal.onClosed.subscribe(async () => {
+            this.modal = null;
+        });
+    }
+
+    attachProvider() {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.attachProviderRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<AttachProviderComponent>(AttachProviderComponent, this.attachProviderRef);
+        childComponent.organizationId = this.organizationId;
 
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;

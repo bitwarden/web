@@ -1,5 +1,5 @@
 import {
-    Component,
+    Directive,
     OnInit,
 } from '@angular/core';
 import {
@@ -16,19 +16,23 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-@Component({
-    selector: 'app-setup-provider',
-    templateUrl: 'setup-provider.component.html',
-})
-export class SetupProviderComponent implements OnInit {
+@Directive()
+export abstract class BaseAcceptComponent implements OnInit {
     loading = true;
     authed = false;
     email: string;
     actionPromise: Promise<any>;
 
-    constructor(private router: Router, private toasterService: ToasterService,
-        private i18nService: I18nService, private route: ActivatedRoute,
-        private userService: UserService, private stateService: StateService) { }
+    protected requiredParameters: string[] = [];
+    protected failedShortMessage = 'inviteAcceptFailedShort';
+    protected failedMessage = 'inviteAcceptFailed';
+
+    constructor(protected router: Router, protected toasterService: ToasterService,
+        protected i18nService: I18nService, protected route: ActivatedRoute,
+        protected userService: UserService, private stateService: StateService) { }
+
+    abstract authedHandler(qParams: any): Promise<void>;
+    abstract unauthedHandler(qParams: any): Promise<void>;
 
     ngOnInit() {
         let fired = false;
@@ -38,19 +42,27 @@ export class SetupProviderComponent implements OnInit {
             }
             fired = true;
             await this.stateService.remove('loginRedirect');
-            const error = qParams.providerId == null || qParams.email == null || qParams.token == null;
-            const errorMessage: string = null;
 
+            let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] == '');
+            let errorMessage: string = null;
             if (!error) {
                 this.authed = await this.userService.isAuthenticated();
+
                 if (this.authed) {
-                    debugger;
+                    try {
+                        await this.authedHandler(qParams);
+                    } catch (e) {
+                        error = true;
+                        errorMessage = e.message;
+                    }
                 } else {
                     await this.stateService.save('loginRedirect', {
-                        route: 'accept-provider',
+                        route: this.getRedirectRoute(),
                         qParams: qParams,
                     });
+
                     this.email = qParams.email;
+                    await this.unauthedHandler(qParams);
                 }
             }
 
@@ -58,8 +70,8 @@ export class SetupProviderComponent implements OnInit {
                 const toast: Toast = {
                     type: 'error',
                     title: null,
-                    body: errorMessage != null ? this.i18nService.t('inviteAcceptFailedShort', errorMessage) :
-                        this.i18nService.t('inviteAcceptFailed'),
+                    body: errorMessage != null ? this.i18nService.t(this.failedShortMessage, errorMessage) :
+                        this.i18nService.t(this.failedMessage),
                     timeout: 10000,
                 };
                 this.toasterService.popAsync(toast);
@@ -68,5 +80,11 @@ export class SetupProviderComponent implements OnInit {
 
             this.loading = false;
         });
+    }
+
+    getRedirectRoute() {
+        const urlTree = this.router.parseUrl(this.router.url);
+        urlTree.queryParams = {};
+        return urlTree.toString();
     }
 }

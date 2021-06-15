@@ -18,7 +18,7 @@ import { ValidationService } from 'jslib-angular/services/validation.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
-import { ProviderSetupRequest } from 'jslib-common/models/request/providerSetupRequest';
+import { ProviderSetupRequest } from 'jslib-common/models/request/provider/providerSetupRequest';
 
 @Component({
     selector: 'provider-setup',

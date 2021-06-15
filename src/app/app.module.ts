@@ -15,7 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BitwardenCommonModule } from './common.module';
 
-import { AvatarComponent } from './components/avatar.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
@@ -170,9 +169,11 @@ import { SendInfoComponent } from './vault/send-info.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
+import { AcceptProviderComponent } from './providers/accept-provider.component';
+import { ProvidersComponent } from './providers/providers.component';
 import { SetupProviderComponent } from './providers/setup-provider.component';
+import { AttachProviderComponent } from './providers/attach-provider.component';
 
-import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
 
 import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
@@ -181,13 +182,10 @@ import { BoxRowDirective } from 'jslib-angular/directives/box-row.directive';
 import { FallbackSrcDirective } from 'jslib-angular/directives/fallback-src.directive';
 import { InputVerbatimDirective } from 'jslib-angular/directives/input-verbatim.directive';
 import { SelectCopyDirective } from 'jslib-angular/directives/select-copy.directive';
-import { StopClickDirective } from 'jslib-angular/directives/stop-click.directive';
-import { StopPropDirective } from 'jslib-angular/directives/stop-prop.directive';
 import { TrueFalseValueDirective } from 'jslib-angular/directives/true-false-value.directive';
 
 import { ColorPasswordPipe } from 'jslib-angular/pipes/color-password.pipe';
 import { SearchCiphersPipe } from 'jslib-angular/pipes/search-ciphers.pipe';
-import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 
 import localeBg from '@angular/common/locales/bg';
 import localeCa from '@angular/common/locales/ca';
@@ -278,6 +276,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AcceptEmergencyComponent,
         AccessComponent,
         AcceptOrganizationComponent,
+        AcceptProviderComponent,
         AccountComponent,
         SetPasswordComponent,
         AddCreditComponent,
@@ -289,7 +288,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
-        AvatarComponent,
         BlurClickDirective,
         BoxRowDirective,
         BreachReportComponent,
@@ -298,7 +296,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BulkMoveComponent,
         BulkRestoreComponent,
         BulkShareComponent,
-        CalloutComponent,
         ChangeEmailComponent,
         ChangeKdfComponent,
         ChangePasswordComponent,
@@ -380,23 +377,22 @@ registerLocaleData(localeZhTw, 'zh-TW');
         PaymentComponent,
         PremiumComponent,
         ProfileComponent,
+        ProvidersComponent,
         PurgeVaultComponent,
         RecoverDeleteComponent,
         RecoverTwoFactorComponent,
         RegisterComponent,
         ReusedPasswordsReportComponent,
         SearchCiphersPipe,
-        SearchPipe,
         SelectCopyDirective,
         SendAddEditComponent,
         SendComponent,
         SendInfoComponent,
         SettingsComponent,
         SetupProviderComponent,
+        AttachProviderComponent,
         ShareComponent,
         SsoComponent,
-        StopClickDirective,
-        StopPropDirective,
         TaxInfoComponent,
         ToolsComponent,
         TrueFalseValueDirective,
@@ -460,6 +456,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         PurgeVaultComponent,
         SendAddEditComponent,
         SetupProviderComponent,
+        AttachProviderComponent,
         ShareComponent,
         TwoFactorAuthenticatorComponent,
         TwoFactorDuoComponent,
@@ -470,7 +467,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         TwoFactorYubiKeyComponent,
         UpdateKeyComponent,
     ],
-    providers: [DatePipe, SearchPipe],
+    providers: [DatePipe],
     bootstrap: [AppComponent],
     exports: [],
 })

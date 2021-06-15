@@ -54,7 +54,7 @@
                     {{'unselectAll' | i18n}}
                 </button>
             </div>
-        </div>
+        </div>        
         <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="invite()">
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'inviteUser' | i18n}}
@@ -70,7 +70,7 @@
     <p *ngIf="!searchedUsers.length">{{'noUsersInList' | i18n}}</p>
     <ng-container *ngIf="searchedUsers.length">
         <app-callout type="info" title="{{'confirmUsers' | i18n}}" icon="fa-check-circle" *ngIf="showConfirmUsers">
-            {{'usersNeedConfirmed' | i18n}}
+            {{'providerUsersNeedConfirmed' | i18n}}
         </app-callout>
         <table class="table table-hover table-list" infiniteScroll [infiniteScrollDistance]="1"
             [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
@@ -96,16 +96,10 @@
                             <i class="fa fa-lock" title="{{'userUsingTwoStep' | i18n}}" aria-hidden="true"></i>
                             <span class="sr-only">{{'userUsingTwoStep' | i18n}}</span>
                         </ng-container>
-                        <ng-container *ngIf="showEnrolledStatus(u)">
-                            <i class="fa fa-key" title="{{'enrolledPasswordReset' | i18n}}" aria-hidden="true"></i>
-                            <span class="sr-only">{{'enrolledPasswordReset' | i18n}}</span>
-                        </ng-container>
                     </td>
                     <td>
-                        <span *ngIf="u.type === userType.Owner">{{'owner' | i18n}}</span>
-                        <span *ngIf="u.type === userType.Admin">{{'admin' | i18n}}</span>
-                        <span *ngIf="u.type === userType.Manager">{{'manager' | i18n}}</span>
-                        <span *ngIf="u.type === userType.User">{{'user' | i18n}}</span>
+                        <span *ngIf="u.type === userType.ProviderAdmin">{{'providerAdmin' | i18n}}</span>
+                        <span *ngIf="u.type === userType.ServiceUser">{{'serviceUser' | i18n}}</span>
                         <span *ngIf="u.type === userType.Custom">{{'custom' | i18n}}</span>
                     </td>
                     <td class="table-list-options">
@@ -135,11 +129,6 @@
                                     <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
                                     {{'eventLogs' | i18n}}
                                 </a>
-                                <a class="dropdown-item" href="#" appStopClick (click)="resetPassword(u)"
-                                    *ngIf="allowResetPassword(u)">
-                                    <i class="fa fa-fw fa-key" aria-hidden="true"></i>
-                                    {{'resetPassword' | i18n}}
-                                </a>
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
                                     <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                                     {{'remove' | i18n}}
@@ -156,7 +145,6 @@
 <ng-template #groupsTemplate></ng-template>
 <ng-template #eventsTemplate></ng-template>
 <ng-template #confirmTemplate></ng-template>
-<ng-template #resetPasswordTemplate></ng-template>
 <ng-template #bulkStatusTemplate></ng-template>
 <ng-template #bulkConfirmTemplate></ng-template>
 <ng-template #bulkRemoveTemplate></ng-template>
