@@ -79,7 +79,7 @@ jobs:
           if [ "$EXISTING_PR" -eq 0 ]; then
             gh pr create --title "Auto bump jslib" \
               --body "$BODY_TEXT" \
-              --reviewer eliykat
+              --reviewer bitwarden/dept-engineering
             echo "[*] Submitted PR against master branch"
           else
             gh pr comment --body "$BODY_TEXT"
