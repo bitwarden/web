@@ -319,7 +319,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     onDefaultSystemThemeChange(callback: ((theme: 'light' | 'dark') => unknown)) {
-        this.prefersColorSchemeDark.addListener(({ matches }) => {
+        this.prefersColorSchemeDark.addEventListener('change', ({ matches }) => {
             callback(matches ? 'dark' : 'light');
         });
     }

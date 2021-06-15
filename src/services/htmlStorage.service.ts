@@ -5,7 +5,7 @@ import { ConstantsService } from 'jslib-common/services';
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
         ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
-        ConstantsService.themeKey, ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
+        ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
         ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
         ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
