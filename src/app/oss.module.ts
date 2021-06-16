@@ -478,4 +478,4 @@ registerLocaleData(localeZhTw, 'zh-TW');
     providers: [DatePipe, SearchPipe],
     bootstrap: [],
 })
-export class OSSModule { }
+export class OssModule { }

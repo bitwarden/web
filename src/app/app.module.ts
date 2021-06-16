@@ -8,12 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OSSModule } from './oss.module';
+import { OssModule } from './oss.module';
 import { ServicesModule } from './services/services.module';
 
 @NgModule({
     imports: [
-        OSSModule,
+        OssModule,
         BrowserAnimationsModule,
         FormsModule,
         ServicesModule,
