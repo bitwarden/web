@@ -45,7 +45,7 @@ export class HtmlStorageService implements StorageService {
     }
 
     async has(key: string): Promise<boolean> {
-        return this.get(key) != null;
+        return await this.get(key) != null;
     }
 
     save(key: string, obj: any): Promise<any> {
