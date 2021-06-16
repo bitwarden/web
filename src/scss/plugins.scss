@@ -3,13 +3,14 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~angular2-toaster/toaster";
 @import "~sweetalert2/src/sweetalert2.scss";
 
-#toast-container {
+.toast-container {
     &.toast-top-right {
         top: 76px;
     }
 
     .toast-close-button {
-        right: -0.15em;
+        margin-right: 4px;
+        font-size: 18px;
     }
 
     .toast {
@@ -30,8 +31,11 @@ $fa-font-path: "~font-awesome/fonts";
             line-height: 20px;
             float: left;
             color: #ffffff;
-            padding-right: 10px;
-            margin: auto 0 auto -36px;
+            margin: auto 0 auto 15px;
+        }
+
+        .toast-content {
+            padding: 15px;
         }
 
         .toaster-icon {
@@ -54,7 +58,6 @@ $fa-font-path: "~font-awesome/fonts";
 
             &:before {
                 content: "\f0e7";
-                margin-left: -30px;
             }
         }
 
