@@ -29,8 +29,10 @@ import { LogService } from 'jslib-common/abstractions';
 import { ProviderUserBulkRequest } from 'jslib-common/models/request/provider/providerUserBulkRequest';
 import { ProviderUserConfirmRequest } from 'jslib-common/models/request/provider/providerUserConfirmRequest';
 import { ProviderUserBulkResponse } from 'jslib-common/models/response/provider/providerUserBulkResponse';
-import { BasePeopleComponent } from '../../common/base.people.component';
-import { ModalComponent } from '../../modal.component';
+
+import { BasePeopleComponent } from 'src/app/common/base.people.component';
+import { ModalComponent } from 'src/app/modal.component';
+
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';
 import { BulkStatusComponent } from './bulk/bulk-status.component';

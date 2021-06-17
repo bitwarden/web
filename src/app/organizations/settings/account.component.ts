@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
+import { UserService } from 'jslib-common/abstractions/user.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -25,7 +26,6 @@ import { ModalComponent } from '../../modal.component';
 import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
-import { AttachProviderComponent } from '../../providers/attach-provider.component';
 
 import { DeleteOrganizationComponent } from './delete-organization.component';
 
@@ -44,6 +44,7 @@ export class AccountComponent {
     selfHosted = false;
     loading = true;
     canUseApi = false;
+    canAttachProvider = false;
     org: OrganizationResponse;
     formPromise: Promise<any>;
     taxFormPromise: Promise<any>;
@@ -55,7 +56,7 @@ export class AccountComponent {
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService) { }
+        private cryptoService: CryptoService, private userService: UserService) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -65,6 +66,7 @@ export class AccountComponent {
                 this.org = await this.apiService.getOrganization(this.organizationId);
                 this.canUseApi = this.org.useApi;
             } catch { }
+            const
         });
         this.loading = false;
     }
@@ -175,6 +177,7 @@ export class AccountComponent {
     }
 
     attachProvider() {
+        /*
         if (this.modal != null) {
             this.modal.close();
         }
@@ -187,5 +190,6 @@ export class AccountComponent {
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
         });
+        */
     }
 }

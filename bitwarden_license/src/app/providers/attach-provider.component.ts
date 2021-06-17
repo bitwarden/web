@@ -31,6 +31,7 @@ export class AttachProviderComponent implements OnInit {
     }
 
     async submit() {
+        const key = "";
         const request = new ProviderAttachOrganizationRequest();
         request.organizationId = this.organizationId;
         request.key = key;

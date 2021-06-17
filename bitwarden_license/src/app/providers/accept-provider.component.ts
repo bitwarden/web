@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast, ToasterService } from 'angular2-toaster';
 
-import { BaseAcceptComponent } from '../common/base.accept.component';
+import { BaseAcceptComponent } from 'src/app/common/base.accept.component';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 
@@ -16,11 +16,7 @@ import { ProviderUserAcceptRequest } from 'jslib-common/models/request/provider/
     templateUrl: 'accept-provider.component.html',
 })
 export class AcceptProviderComponent extends BaseAcceptComponent {
-    loading = true;
-    authed = false;
     providerName: string;
-    email: string;
-    actionPromise: Promise<any>;
 
     failedMessage = 'providerInviteAcceptFailed';
 

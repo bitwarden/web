@@ -6,12 +6,14 @@ import 'jquery';
 import 'popper.js';
 
 // tslint:disable-next-line
-require('../../../src/scss/styles.scss');
+require('src/scss/styles.scss');
 
 import { AppModule } from './app.module';
 
 if (process.env.ENV === 'production') {
     enableProdMode();
 }
+
+console.log(AppModule);
 
 platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true });

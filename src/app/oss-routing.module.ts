@@ -94,12 +94,10 @@ import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service'
 
 import { Permissions } from 'jslib-common/enums/permissions';
 
-import { AcceptProviderComponent } from './providers/accept-provider.component';
-import { SetupProviderComponent } from './providers/setup-provider.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: FrontendLayoutComponent,
@@ -164,16 +162,6 @@ const routes: Routes = [
                 path: 'send/:sendId/:key',
                 component: AccessComponent,
                 data: { title: 'Bitwarden Send' },
-            },
-            {
-                path: 'setup-provider',
-                component: SetupProviderComponent,
-                data: { titleId: 'setupProvider' },
-            },
-            {
-                path: 'accept-provider',
-                component: AcceptProviderComponent,
-                data: { titleId: 'acceptProvider' },
             },
         ],
     },
@@ -439,11 +427,6 @@ const routes: Routes = [
             },
         ],
     },
-    {
-        path: 'providers',
-        canActivate: [AuthGuardService],
-        loadChildren: async () => (await import('./providers/providers.module')).ProvidersModule,
-    },
     { path: '**', redirectTo: '' },
 ];
 
@@ -455,4 +438,4 @@ const routes: Routes = [
     })],
     exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class OssRoutingModule { }

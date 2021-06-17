@@ -45,4 +45,8 @@ export class ClientsComponent implements OnInit {
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
         this.loading = false;
     }
+
+    create() {
+        
+    }
 }

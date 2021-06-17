@@ -38,6 +38,9 @@ import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { ProviderUserType } from 'jslib-common/enums/providerUserType';
+import { BasePeopleComponent } from '../../common/base.people.component';
 import { ModalComponent } from '../../modal.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';
@@ -46,9 +49,6 @@ import { EntityEventsComponent } from './entity-events.component';
 import { ResetPasswordComponent } from './reset-password.component';
 import { UserAddEditComponent } from './user-add-edit.component';
 import { UserGroupsComponent } from './user-groups.component';
-import { BasePeopleComponent } from '../../common/base.people.component';
-import { ProviderUserType } from 'jslib-common/enums/providerUserType';
-import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-org-people',
