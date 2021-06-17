@@ -143,6 +143,15 @@ export class UserAddEditComponent implements OnInit {
         return p;
     }
 
+    handleDependentPermissions() {
+        // Manage Password Reset must have Manage Users enabled
+        if (this.permissions.manageResetPassword && !this.permissions.manageUsers) {
+            this.permissions.manageUsers = true;
+            (document.getElementById('manageUsers') as HTMLInputElement).checked = true;
+            this.platformUtilsService.showToast('info', null, this.i18nService.t('resetPasswordManageUsers'));
+        }
+    }
+
     async submit() {
         let collections: SelectionReadOnlyRequest[] = null;
         if (this.access !== 'all') {

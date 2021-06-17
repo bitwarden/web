@@ -11,6 +11,10 @@ export class MemoryStorageService implements StorageService {
         return Promise.resolve(null);
     }
 
+    async has(key: string): Promise<boolean> {
+        return this.get(key) != null;
+    }
+
     save(key: string, obj: any): Promise<any> {
         if (obj == null) {
             return this.remove(key);

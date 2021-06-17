@@ -43,7 +43,7 @@ export abstract class BaseAcceptComponent implements OnInit {
             fired = true;
             await this.stateService.remove('loginRedirect');
 
-            let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] == '');
+            let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] === '');
             let errorMessage: string = null;
             if (!error) {
                 this.authed = await this.userService.isAuthenticated();
