@@ -10,6 +10,7 @@ import { BroadcasterMessagingService } from '../../services/broadcasterMessaging
 import { HtmlStorageService } from '../../services/htmlStorage.service';
 import { I18nService } from '../../services/i18n.service';
 import { MemoryStorageService } from '../../services/memoryStorage.service';
+import { PasswordRepromptService } from '../../services/passwordReprompt.service';
 import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
 import { EventService } from './event.service';
@@ -41,7 +42,6 @@ import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib-common/services/passwordReprompt.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
 import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
@@ -54,6 +54,7 @@ import { UserService } from 'jslib-common/services/user.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
+import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/modal.service';
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
@@ -86,6 +87,7 @@ import { TokenService as TokenServiceAbstraction } from 'jslib-common/abstractio
 import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
+import { ModalService } from './modal.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
@@ -137,7 +139,6 @@ const notificationsService = new NotificationsService(userService, syncService, 
 const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
-const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
 
 containerService.attachToWindow(window);
 
@@ -192,6 +193,7 @@ export function initFactory(): Function {
         RouterService,
         EventService,
         LockGuardService,
+        { provide: ModalServiceAbstraction, useClass: ModalService },
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
@@ -222,7 +224,7 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
-        { provide: PasswordRepromptServiceAbstraction, useValue: passwordRepromptService },
+        { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,

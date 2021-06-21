@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
+import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
@@ -383,6 +384,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
         PasswordStrengthComponent,
+        PasswordRepromptComponent,
         PaymentComponent,
         PremiumComponent,
         ProfileComponent,
