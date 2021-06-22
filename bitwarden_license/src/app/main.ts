@@ -14,6 +14,4 @@ if (process.env.ENV === 'production') {
     enableProdMode();
 }
 
-console.log(AppModule);
-
 platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true });

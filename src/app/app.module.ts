@@ -6,8 +6,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { OssRoutingModule } from './oss-routing.module';
 import { AppComponent } from './app.component';
+import { OssRoutingModule } from './oss-routing.module';
 import { OssModule } from './oss.module';
 import { ServicesModule } from './services/services.module';
 

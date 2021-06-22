@@ -9,9 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from 'src/app/app.component';
+import { OssRoutingModule } from 'src/app/oss-routing.module';
 import { OssModule } from 'src/app/oss.module';
 import { ServicesModule } from 'src/app/services/services.module';
-import { OssRoutingModule } from 'src/app/oss-routing.module';
 
 @NgModule({
     imports: [

@@ -4050,16 +4050,29 @@
   "provider": {
     "message": "Provider"
   },
-  "attachToProviderDesc": {
-    "message": "Converts this organization into a child organization attached to a parent Provider."
-  },
-  "attachToProvider": {
-    "message": "Attach to provider"
+  "joinOrganizationToProviderDesc": {
+    "message": "Convert this organization into a child organization by joining a Provider. This will give access to the Provider and allow them to manage this organization."
   },
   "newClientOrganization": {
     "message": "New client organization"
   },
   "myProvider": {
     "message": "My Provider"
+  },
+  "organizationJoinProviderConfirmation": {
+    "message": "Are you sure you want $ORGANIZATION$ to join $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organization successfully joined the provider"
   }
 }

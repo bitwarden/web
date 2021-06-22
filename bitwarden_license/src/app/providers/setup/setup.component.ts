@@ -89,8 +89,7 @@ export class SetupComponent implements OnInit {
             const provider = await this.apiService.postProviderSetup(this.providerId, request);
             this.toasterService.popAsync('success', this.i18nService.t('providerSetup'));
 
-            // this.router.navigate(['providers', provider.id]);
-            this.router.navigate(['/']);
+            this.router.navigate(['/providers', provider.id]);
         } catch (e) {
             this.validationService.showError(e);
         }

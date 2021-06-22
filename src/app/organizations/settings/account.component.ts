@@ -5,16 +5,16 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUpdateRequest } from 'jslib-common/models/request/organizationUpdateRequest';
@@ -27,7 +27,9 @@ import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
 
+import { Provider } from 'jslib-common/models/domain/provider';
 import { DeleteOrganizationComponent } from './delete-organization.component';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 @Component({
     selector: 'app-org-account',
@@ -38,16 +40,19 @@ export class AccountComponent {
     @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
     @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
     @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
-    @ViewChild('attachProviderTemplate', { read: ViewContainerRef, static: true }) attachProviderRef: ViewContainerRef;
     @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     selfHosted = false;
     loading = true;
     canUseApi = false;
-    canAttachProvider = false;
     org: OrganizationResponse;
+    userOrg: Organization;
     formPromise: Promise<any>;
     taxFormPromise: Promise<any>;
+
+    canJoinProvider = false;
+    providers: Provider[];
+    provider: string = null;
 
     private organizationId: string;
     private modal: ModalComponent = null;
@@ -56,7 +61,8 @@ export class AccountComponent {
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private userService: UserService) { }
+        private cryptoService: CryptoService, private userService: UserService,
+        private router: Router) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -66,7 +72,10 @@ export class AccountComponent {
                 this.org = await this.apiService.getOrganization(this.organizationId);
                 this.canUseApi = this.org.useApi;
             } catch { }
-            const
+            this.providers = (await this.userService.getAllProviders()).filter(p => p.canCreateOrganizations);
+            this.userOrg = await this.userService.getOrganization(this.organizationId);
+            this.canJoinProvider = this.userOrg.providerId == null && this.providers.length > 0;
+            this.provider = this.providers[0]?.id;
         });
         this.loading = false;
     }
@@ -176,20 +185,11 @@ export class AccountComponent {
         });
     }
 
-    attachProvider() {
-        /*
-        if (this.modal != null) {
-            this.modal.close();
+    joinProvider() {
+        if (this.providers.every(p => p.id !== this.provider)) {
+            // ID not found fail.
         }
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.attachProviderRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AttachProviderComponent>(AttachProviderComponent, this.attachProviderRef);
-        childComponent.organizationId = this.organizationId;
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
-        });
-        */
+        this.router.navigate(['/providers', this.provider, 'join', this.organizationId]);
     }
 }

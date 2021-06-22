@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { SearchService } from 'jslib-common/abstractions/search.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -16,11 +17,17 @@ export class ClientsComponent implements OnInit {
     searchText: string;
     loading = false;
 
+    protected didScroll = false;
+    protected pageSize = 100;
+    private pagedClientsCount = 0;
+
     clients: ProviderOrganizationOrganizationDetailsResponse[];
+    pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
 
     constructor(private route: ActivatedRoute, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private apiService: ApiService) { }
-    
+        private platformUtilsService: PlatformUtilsService, private apiService: ApiService,
+        private searchService: SearchService) { }
+
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
             this.providerId = params.providerId;
@@ -46,7 +53,41 @@ export class ClientsComponent implements OnInit {
         this.loading = false;
     }
 
+    isPaging() {
+        const searching = this.isSearching();
+        if (searching && this.didScroll) {
+            this.resetPaging();
+        }
+        return !searching && this.clients && this.clients.length > this.pageSize;
+    }
+
+    isSearching() {
+        return this.searchService.isSearchable(this.searchText);
+    }
+
+    async resetPaging() {
+        this.pagedClients = [];
+        this.loadMore();
+    }
+
+
+    loadMore() {
+        if (!this.clients || this.clients.length <= this.pageSize) {
+            return;
+        }
+        const pagedLength = this.pagedClients.length;
+        let pagedSize = this.pageSize;
+        if (pagedLength === 0 && this.pagedClientsCount > this.pageSize) {
+            pagedSize = this.pagedClientsCount;
+        }
+        if (this.clients.length > pagedLength) {
+            this.pagedClients = this.pagedClients.concat(this.clients.slice(pagedLength, pagedLength + pagedSize));
+        }
+        this.pagedClientsCount = this.pagedClients.length;
+        this.didScroll = this.pagedClients.length > this.pageSize;
+    }
+
     create() {
-        
+
     }
 }

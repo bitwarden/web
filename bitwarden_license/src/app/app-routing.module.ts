@@ -5,7 +5,7 @@ const routes: Routes = [
     {
         path: 'providers',
         loadChildren: async () => (await import('./providers/providers.module')).ProvidersModule,
-    }
+    },
 ];
 
 @NgModule({
