@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
 
-import { AcceptProviderComponent } from './accept-provider.component';
-import { ClientsComponent } from './clients.component';
+import { AddOrganizationComponent } from './clients/add-organization.component';
+import { ClientsComponent } from './clients/clients.component';
+import { CreateOrganizationComponent } from './clients/create-organization.component';
+import { AcceptProviderComponent } from './manage/accept-provider.component';
 import { PeopleComponent } from './manage/people.component';
 import { ProvidersLayoutComponent } from './providers-layout.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -11,7 +13,6 @@ import { SetupProviderComponent } from './setup/setup-provider.component';
 import { SetupComponent } from './setup/setup.component';
 
 import { FrontendLayoutComponent } from 'src/app/layouts/frontend-layout.component';
-import { OrganizationJoinProviderComponent } from './organization-join-provider.component';
 
 const routes: Routes = [
     {
@@ -43,6 +44,7 @@ const routes: Routes = [
                 component: ProvidersLayoutComponent,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'clients' },
+                    { path: 'clients/create', component: CreateOrganizationComponent },
                     { path: 'clients', component: ClientsComponent, data: { titleId: 'clients' } },
                     {
                         path: 'manage',
@@ -53,8 +55,8 @@ const routes: Routes = [
                         component: SettingsComponent,
                     },
                     {
-                        path: 'join/:organizationId',
-                        component: OrganizationJoinProviderComponent,
+                        path: 'add/:organizationId',
+                        component: AddOrganizationComponent,
                     },
                 ],
             },

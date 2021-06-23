@@ -442,6 +442,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ModalComponent,
         NavbarComponent,
         FooterComponent,
+        OrganizationPlansComponent,
     ],
     providers: [DatePipe, SearchPipe],
     bootstrap: [],

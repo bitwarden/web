@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
-import { ValidationService } from 'jslib-angular/services/validation.service';
-import { I18nService } from 'jslib-common/abstractions';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { Provider } from 'jslib-common/models/domain/provider';
 
 import { OrganizationResponse } from 'jslib-common/models/response/organizationResponse';
 
-import { ProviderService } from './provider.service';
+import { ProviderService } from '../provider.service';
 
 @Component({
-    selector: 'provider-attach-organization',
-    templateUrl: 'organization-join-provider.component.html',
+    selector: 'provider-add-organization',
+    templateUrl: 'add-organization.component.html',
 })
-export class OrganizationJoinProviderComponent implements OnInit {
+export class AddOrganizationComponent implements OnInit {
 
     providerId: string;
     provider: Provider;

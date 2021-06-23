@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SearchService } from 'jslib-common/abstractions/search.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { ProviderOrganizationOrganizationDetailsResponse } from 'jslib-common/models/response/provider/providerOrganizationResponse';
+import {
+    ProviderOrganizationOrganizationDetailsResponse
+} from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
 @Component({
     templateUrl: 'clients.component.html',
@@ -17,12 +19,12 @@ export class ClientsComponent implements OnInit {
     searchText: string;
     loading = false;
 
+    clients: ProviderOrganizationOrganizationDetailsResponse[];
+    pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
+
     protected didScroll = false;
     protected pageSize = 100;
     private pagedClientsCount = 0;
-
-    clients: ProviderOrganizationOrganizationDetailsResponse[];
-    pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
 
     constructor(private route: ActivatedRoute, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private apiService: ApiService,

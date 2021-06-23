@@ -27,9 +27,9 @@ import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
 
+import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
 import { DeleteOrganizationComponent } from './delete-organization.component';
-import { Organization } from 'jslib-common/models/domain/organization';
 
 @Component({
     selector: 'app-org-account',
@@ -190,6 +190,6 @@ export class AccountComponent {
             // ID not found fail.
         }
 
-        this.router.navigate(['/providers', this.provider, 'join', this.organizationId]);
+        this.router.navigate(['/providers', this.provider, 'add', this.organizationId]);
     }
 }
