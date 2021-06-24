@@ -34,6 +34,7 @@ import { OrganizationKeysRequest } from 'jslib-common/models/request/organizatio
 import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
 
 import { PlanResponse } from 'jslib-common/models/response/planResponse';
+import { EncString } from 'jslib-common/models/domain';
 
 @Component({
     selector: 'app-organization-plans',
@@ -219,31 +220,9 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.singleOrgPolicyBlock) {
             return;
         } else {
-            const policies = await this.policyService.getAll(PolicyType.SingleOrg);
-            const orgs = await this.userService.getAllOrganizations();
-
-            const orgsWithSingleOrgPolicy = policies
-                .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
-                .map(p => p.organizationId);
-
-            this.singleOrgPolicyBlock = orgs.some(org =>
-                org.type !== OrganizationUserType.Owner &&
-                org.type !== OrganizationUserType.Admin &&
-                org.status !== OrganizationUserStatusType.Invited &&
-                orgsWithSingleOrgPolicy.includes(org.id));
+            this.singleOrgPolicyBlock = await this.userHasBlockingSingleOrgPolicy();
 
             if (this.singleOrgPolicyBlock) {
-                return;
-            }
-        }
-
-        let files: FileList = null;
-        if (this.createOrganization && this.selfHosted) {
-            const fileEl = document.getElementById('file') as HTMLInputElement;
-            files = fileEl.files;
-            if (files == null || files.length === 0) {
-                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                    this.i18nService.t('selectFile'));
                 return;
             }
         }
@@ -252,10 +231,6 @@ export class OrganizationPlansComponent implements OnInit {
             const doSubmit = async () => {
                 let orgId: string = null;
                 if (this.createOrganization) {
-                    let tokenResult: [string, PaymentMethodType] = null;
-                    if (!this.selfHosted && this.plan !== PlanType.Free) {
-                        tokenResult = await this.paymentComponent.createPaymentToken();
-                    }
                     const shareKey = await this.cryptoService.makeShareKey();
                     const key = shareKey[0].encryptedString;
                     const collection = await this.cryptoService.encrypt(
@@ -264,85 +239,20 @@ export class OrganizationPlansComponent implements OnInit {
                     const orgKeys = await this.cryptoService.makeKeyPair(shareKey[1]);
 
                     if (this.selfHosted) {
-                        const fd = new FormData();
-                        fd.append('license', files[0]);
-                        fd.append('key', key);
-                        fd.append('collectionName', collectionCt);
-                        const response = await this.apiService.postOrganizationLicense(fd);
-                        orgId = response.id;
-
-                        // Org Keys live outside of the OrganizationLicense - add the keys to the org here
-                        const request = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
-                        await this.apiService.postOrganizationKeys(orgId, request);
+                        orgId = await this.createSelfHosted(key, collectionCt, orgKeys);
                     } else {
-                        const request = new OrganizationCreateRequest();
-                        request.key = key;
-                        request.collectionName = collectionCt;
-                        request.name = this.name;
-                        request.billingEmail = this.billingEmail;
-                        request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
-
-                        if (this.selectedPlan.type === PlanType.Free) {
-                            request.planType = PlanType.Free;
-                        } else {
-                            request.paymentToken = tokenResult[0];
-                            request.paymentMethodType = tokenResult[1];
-                            request.businessName = this.ownedBusiness ? this.businessName : null;
-                            request.additionalSeats = this.additionalSeats;
-                            request.additionalStorageGb = this.additionalStorage;
-                            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
-                                this.premiumAccessAddon;
-                            request.planType = this.selectedPlan.type;
-                            request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
-                            request.billingAddressCountry = this.taxComponent.taxInfo.country;
-                            if (this.taxComponent.taxInfo.includeTaxId) {
-                                request.taxIdNumber = this.taxComponent.taxInfo.taxId;
-                                request.billingAddressLine1 = this.taxComponent.taxInfo.line1;
-                                request.billingAddressLine2 = this.taxComponent.taxInfo.line2;
-                                request.billingAddressCity = this.taxComponent.taxInfo.city;
-                                request.billingAddressState = this.taxComponent.taxInfo.state;
-                            }
-                        }
-                        const response = await this.apiService.postOrganization(request);
-                        orgId = response.id;
+                        orgId = await this.createCloudHosted(key, collectionCt, orgKeys);
                     }
+
+                    this.toasterService.popAsync('success', this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
                 } else {
-                    const request = new OrganizationUpgradeRequest();
-                    request.businessName = this.ownedBusiness ? this.businessName : null;
-                    request.additionalSeats = this.additionalSeats;
-                    request.additionalStorageGb = this.additionalStorage;
-                    request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
-                        this.premiumAccessAddon;
-                    request.planType = this.selectedPlan.type;
-                    request.billingAddressCountry = this.taxComponent.taxInfo.country;
-                    request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
-
-                    // Retrieve org info to backfill pub/priv key if necessary
-                    const org = await this.userService.getOrganization(this.organizationId);
-                    if (!org.hasPublicAndPrivateKeys) {
-                        const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
-                        const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
-                        request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
-                    }
-
-                    const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
-                    if (!result.success && result.paymentIntentClientSecret != null) {
-                        await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
-                    }
-                    orgId = this.organizationId;
+                    orgId = await this.updateOrganization(orgId);
+                    this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpgraded'));
                 }
 
-                if (orgId != null) {
-                    await this.apiService.refreshIdentityToken();
-                    await this.syncService.fullSync(true);
-                    if (this.createOrganization) {
-                        this.toasterService.popAsync('success',
-                            this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
-                    } else {
-                        this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpgraded'));
-                    }
-                    this.router.navigate(['/organizations/' + orgId]);
-                }
+                await this.apiService.refreshIdentityToken();
+                await this.syncService.fullSync(true);
+                this.router.navigate(['/organizations/' + orgId]);
             };
 
             this.formPromise = doSubmit();
@@ -351,4 +261,102 @@ export class OrganizationPlansComponent implements OnInit {
         } catch { }
     }
 
+    private async userHasBlockingSingleOrgPolicy() {
+        const policies = await this.policyService.getAll(PolicyType.SingleOrg);
+        const orgs = await this.userService.getAllOrganizations();
+
+        const orgsWithSingleOrgPolicy = policies
+            .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
+            .map(p => p.organizationId);
+
+        return orgs.some(org => org.type !== OrganizationUserType.Owner &&
+            org.type !== OrganizationUserType.Admin &&
+            org.status !== OrganizationUserStatusType.Invited &&
+            orgsWithSingleOrgPolicy.includes(org.id));
+    }
+
+    private async updateOrganization(orgId: string) {
+        const request = new OrganizationUpgradeRequest();
+        request.businessName = this.ownedBusiness ? this.businessName : null;
+        request.additionalSeats = this.additionalSeats;
+        request.additionalStorageGb = this.additionalStorage;
+        request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
+            this.premiumAccessAddon;
+        request.planType = this.selectedPlan.type;
+        request.billingAddressCountry = this.taxComponent.taxInfo.country;
+        request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+
+        // Retrieve org info to backfill pub/priv key if necessary
+        const org = await this.userService.getOrganization(this.organizationId);
+        if (!org.hasPublicAndPrivateKeys) {
+            const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
+            const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
+            request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+        }
+
+        const result = await this.apiService.postOrganizationUpgrade(this.organizationId, request);
+        if (!result.success && result.paymentIntentClientSecret != null) {
+            await this.paymentComponent.handleStripeCardPayment(result.paymentIntentClientSecret, null);
+        }
+        return this.organizationId;
+    }
+
+    async createCloudHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
+        const tokenResult = await this.paymentComponent.createPaymentToken();
+
+        const request = new OrganizationCreateRequest();
+        request.key = key;
+        request.collectionName = collectionCt;
+        request.name = this.name;
+        request.billingEmail = this.billingEmail;
+        request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+
+        if (this.selectedPlan.type === PlanType.Free) {
+            request.planType = PlanType.Free;
+        } else {
+            request.paymentToken = tokenResult[0];
+            request.paymentMethodType = tokenResult[1];
+            request.businessName = this.ownedBusiness ? this.businessName : null;
+            request.additionalSeats = this.additionalSeats;
+            request.additionalStorageGb = this.additionalStorage;
+            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
+                this.premiumAccessAddon;
+            request.planType = this.selectedPlan.type;
+            request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
+            request.billingAddressCountry = this.taxComponent.taxInfo.country;
+            if (this.taxComponent.taxInfo.includeTaxId) {
+                request.taxIdNumber = this.taxComponent.taxInfo.taxId;
+                request.billingAddressLine1 = this.taxComponent.taxInfo.line1;
+                request.billingAddressLine2 = this.taxComponent.taxInfo.line2;
+                request.billingAddressCity = this.taxComponent.taxInfo.city;
+                request.billingAddressState = this.taxComponent.taxInfo.state;
+            }
+        }
+        const response = await this.apiService.postOrganization(request);
+        return response.id;
+    }
+
+    async createSelfHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
+        let files: FileList = null;
+        if (this.createOrganization && this.selfHosted) {
+            const fileEl = document.getElementById('file') as HTMLInputElement;
+            files = fileEl.files;
+            if (files == null || files.length === 0) {
+                throw new Error(this.i18nService.t('selectFile'));
+            }
+        }
+
+        const fd = new FormData();
+        fd.append('license', files[0]);
+        fd.append('key', key);
+        fd.append('collectionName', collectionCt);
+        const response = await this.apiService.postOrganizationLicense(fd);
+        const orgId = response.id;
+
+        // Org Keys live outside of the OrganizationLicense - add the keys to the org here
+        const request = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+        await this.apiService.postOrganizationKeys(orgId, request);
+
+        return orgId;
+    }
 }
