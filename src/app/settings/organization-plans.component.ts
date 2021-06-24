@@ -33,8 +33,8 @@ import { OrganizationCreateRequest } from 'jslib-common/models/request/organizat
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
 
-import { PlanResponse } from 'jslib-common/models/response/planResponse';
 import { EncString } from 'jslib-common/models/domain';
+import { PlanResponse } from 'jslib-common/models/response/planResponse';
 
 @Component({
     selector: 'app-organization-plans',
@@ -296,7 +296,7 @@ export class OrganizationPlansComponent implements OnInit {
         return this.organizationId;
     }
 
-    async createCloudHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
+    private async createCloudHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
         const request = new OrganizationCreateRequest();
         request.key = key;
         request.collectionName = collectionCt;
@@ -331,7 +331,7 @@ export class OrganizationPlansComponent implements OnInit {
         return response.id;
     }
 
-    async createSelfHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
+    private async createSelfHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
         const fileEl = document.getElementById('file') as HTMLInputElement;
         const files = fileEl.files;
         if (files == null || files.length === 0) {
