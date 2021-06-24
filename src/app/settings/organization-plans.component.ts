@@ -217,14 +217,10 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async submit() {
+        this.singleOrgPolicyBlock = await this.userHasBlockingSingleOrgPolicy();
+
         if (this.singleOrgPolicyBlock) {
             return;
-        } else {
-            this.singleOrgPolicyBlock = await this.userHasBlockingSingleOrgPolicy();
-
-            if (this.singleOrgPolicyBlock) {
-                return;
-            }
         }
 
         try {
@@ -280,8 +276,7 @@ export class OrganizationPlansComponent implements OnInit {
         request.businessName = this.ownedBusiness ? this.businessName : null;
         request.additionalSeats = this.additionalSeats;
         request.additionalStorageGb = this.additionalStorage;
-        request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
-            this.premiumAccessAddon;
+        request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon;
         request.planType = this.selectedPlan.type;
         request.billingAddressCountry = this.taxComponent.taxInfo.country;
         request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
@@ -302,8 +297,6 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async createCloudHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
-        const tokenResult = await this.paymentComponent.createPaymentToken();
-
         const request = new OrganizationCreateRequest();
         request.key = key;
         request.collectionName = collectionCt;
@@ -314,6 +307,8 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.selectedPlan.type === PlanType.Free) {
             request.planType = PlanType.Free;
         } else {
+            const tokenResult = await this.paymentComponent.createPaymentToken();
+
             request.paymentToken = tokenResult[0];
             request.paymentMethodType = tokenResult[1];
             request.businessName = this.ownedBusiness ? this.businessName : null;
@@ -337,13 +332,10 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     async createSelfHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
-        let files: FileList = null;
-        if (this.createOrganization && this.selfHosted) {
-            const fileEl = document.getElementById('file') as HTMLInputElement;
-            files = fileEl.files;
-            if (files == null || files.length === 0) {
-                throw new Error(this.i18nService.t('selectFile'));
-            }
+        const fileEl = document.getElementById('file') as HTMLInputElement;
+        const files = fileEl.files;
+        if (files == null || files.length === 0) {
+            throw new Error(this.i18nService.t('selectFile'));
         }
 
         const fd = new FormData();
