@@ -7,10 +7,10 @@
             <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}"
                 [(ngModel)]="searchText">
         </div>
-        <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="create()">
+        <a class="btn btn-sm btn-outline-primary ml-3" routerLink="create">
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newClientOrganization' | i18n}}
-        </button>
+        </a>
     </div>
 </div>
 
