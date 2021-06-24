@@ -101,8 +101,8 @@ export class EventService {
                 humanReadableMsg = this.i18nService.t('deletedAttachmentForItem', this.getShortId(ev.cipherId));
                 break;
             case EventType.Cipher_Shared:
-                msg = this.i18nService.t('sharedItemId', this.formatCipherId(ev, options));
-                humanReadableMsg = this.i18nService.t('sharedItemId', this.getShortId(ev.cipherId));
+                msg = this.i18nService.t('movedItemIdToOrg', this.formatCipherId(ev, options));
+                humanReadableMsg = this.i18nService.t('movedItemIdToOrg', this.getShortId(ev.cipherId));
                 break;
             case EventType.Cipher_ClientViewed:
                 msg = this.i18nService.t('viewedItemId', this.formatCipherId(ev, options));

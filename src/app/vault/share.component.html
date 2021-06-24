@@ -3,7 +3,7 @@
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise">
             <div class="modal-header">
                 <h2 class="modal-title" id="shareTitle">
-                    {{'share' | i18n}}
+                    {{'moveToOrganization' | i18n}}
                     <small *ngIf="cipher">{{cipher.name}}</small>
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" appA11yTitle="{{'close' | i18n}}">
@@ -14,7 +14,7 @@
                 {{'noOrganizationsList' | i18n}}
             </div>
             <div class="modal-body" *ngIf="organizations && organizations.length">
-                <p>{{'shareDesc' | i18n}}</p>
+                <p>{{'moveToOrgDesc' | i18n}}</p>
                 <div class="form-group">
                     <label for="organization">{{'organization' | i18n}}</label>
                     <select id="organization" name="OrganizationId" [(ngModel)]="organizationId" class="form-control"
