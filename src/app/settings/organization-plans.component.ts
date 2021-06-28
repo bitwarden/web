@@ -49,6 +49,7 @@ export class OrganizationPlansComponent implements OnInit {
     @Input() showCancel = false;
     @Input() product: ProductType = ProductType.Free;
     @Input() plan: PlanType = PlanType.Free;
+    @Input() providerId: string;
     @Output() onSuccess = new EventEmitter();
     @Output() onCanceled = new EventEmitter();
 
@@ -327,8 +328,12 @@ export class OrganizationPlansComponent implements OnInit {
                 request.billingAddressState = this.taxComponent.taxInfo.state;
             }
         }
-        const response = await this.apiService.postOrganization(request);
-        return response.id;
+
+        if (this.providerId) {
+            return (await this.apiService.postProviderCreateOrganization(this.providerId, request)).id;
+        } else {
+            return (await this.apiService.postOrganization(request)).id;
+        }
     }
 
     private async createSelfHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {

@@ -5,9 +5,6 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { PlanType } from 'jslib-common/enums/planType';
-import { ProductType } from 'jslib-common/enums/productType';
-
 import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.component';
 
 @Component({
@@ -17,23 +14,13 @@ import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.
 export class CreateOrganizationComponent implements OnInit {
     @ViewChild(OrganizationPlansComponent, { static: true }) orgPlansComponent: OrganizationPlansComponent;
 
+    providerId: string;
+
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
-            if (qParams.plan === 'families') {
-                this.orgPlansComponent.plan = PlanType.FamiliesAnnually;
-                this.orgPlansComponent.product = ProductType.Families;
-            } else if (qParams.plan === 'teams') {
-                this.orgPlansComponent.plan = PlanType.TeamsAnnually;
-                this.orgPlansComponent.product = ProductType.Teams;
-            } else if (qParams.plan === 'enterprise') {
-                this.orgPlansComponent.plan = PlanType.EnterpriseAnnually;
-                this.orgPlansComponent.product = ProductType.Enterprise;
-            }
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
+        this.route.parent.params.subscribe(async params => {
+            this.providerId = params.providerId;
         });
     }
 }
