@@ -9,8 +9,8 @@
             {{'moveSelected' | i18n}}
         </button>
         <button class="dropdown-item" appStopClick (click)="bulkShare()" *ngIf="!deleted && !organization">
-            <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
-            {{'shareSelected' | i18n}}
+            <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
+            {{'moveSelectedToOrg' | i18n}}
         </button>
         <button class="dropdown-item" (click)="bulkRestore()" *ngIf="deleted && !organization">
             <i class="fa fa-fw fa-undo" aria-hidden="true"></i>

@@ -107,6 +107,11 @@ const plugins = [
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/captcha.html',
+        filename: 'captcha-connector.html',
+        chunks: ['connectors/captcha'],
+    }),
     new CopyWebpackPlugin({
         patterns:[
             { from: './src/.nojekyll' },
@@ -198,6 +203,7 @@ const webpackConfig = {
         'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
+        'connectors/captcha': './src/connectors/captcha.ts',
     },
     externals: {
         'u2f': 'u2f',

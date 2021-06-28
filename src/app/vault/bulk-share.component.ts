@@ -71,7 +71,8 @@ export class BulkShareComponent implements OnInit {
                 checkedCollectionIds);
             await this.formPromise;
             this.onShared.emit();
-            this.toasterService.popAsync('success', null, this.i18nService.t('sharedItems'));
+            const orgName = this.organizations.find(o => o.id === this.organizationId)?.name ?? this.i18nService.t('organization');
+            this.toasterService.popAsync('success', null, this.i18nService.t('movedItemsToOrg', orgName));
         } catch { }
     }
 
