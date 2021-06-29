@@ -360,6 +360,9 @@
   "share": {
     "message": "공유"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": "$VALUE$를 클립보드에 복사함",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "보관함"
   },
-  "shareSelected": {
-    "message": "선택 항목 공유"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "선택 항목 삭제"
@@ -437,7 +440,7 @@
     "message": "파일을 선택하세요."
   },
   "maxFileSize": {
-    "message": "최대 파일 크기는 100MB입니다."
+    "message": "최대 파일 크기는 500MB입니다."
   },
   "updateKey": {
     "message": "이 기능을 사용하려면 암호화 키를 업데이트해야 합니다."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "항목 편집함"
   },
-  "sharedItem": {
-    "message": "항목 공유함"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "항목 공유함"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "항목 삭제"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "WebAuthn이 활성화된 보안 키를 사용하여 계정에 접근하세요."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(FIDO에서 이전됨)"
   },
   "emailTitle": {
     "message": "이메일"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "조직"
   },
-  "shareDesc": {
-    "message": "이 항목을 공유할 조직을 선택하십시오. 항목이 공유되면 소유권이 조직으로 이전됩니다. 일단 공유가 되면, 더는 항목의 직접적인 소유자가 아니게 됩니다."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "이 항목들을 공유할 조직을 선택하십시오. 항목들이 공유되면 소유권이 조직으로 이전됩니다. 일단 공유가 되면, 더는 항목들의 직접적인 소유자가 아니게 됩니다."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "이 항목이 공유될 콜렉션을 수정하십시오. 이 콜렉션에 접근할 수 있는 조직 사용자만 이 항목을 볼 수 있습니다."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "$COUNT$ 개의 항목 선택됨. $SHAREABLE_COUNT$ 개의 항목은 공유 가능하지만, $NONSHAREABLE_COUNT$ 개의 항목은 공유 불가능합니다.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "보관함 데이터를 내보내려면 마스터 비밀번호를 입력하세요."
+  },
+  "export": {
+    "message": "Export"
   },
   "exportVault": {
     "message": "보관함 내보내기"
@@ -1036,6 +1058,9 @@
   "importNothingError": {
     "message": "아무것도 가져오지 못했습니다."
   },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+  },
   "selectFormat": {
     "message": "불러올 파일의 포맷"
   },
@@ -1243,7 +1268,7 @@
     "message": "폼 저장하기"
   },
   "twoFactorYubikeyWarning": {
-    "message": "플랫폼 제한으로 인해, 모든 Bitwawrden 애플리케이션에서 YubiKey를 사용할 수 없습니다. YubiKey를 사용할 수 없을 때 계정에 액세스할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
+    "message": "플랫폼 제한으로 인해, 모든 Bitwarden 애플리케이션에서 YubiKey를 사용할 수 없습니다. YubiKey를 사용할 수 없을 때 계정에 접근할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "웹 보관함, 데스크톱 응용프로그램, 명령 줄 인터페이스, USB 포트가 있는 장치의 브라우저 확장 기능은 YubiKey를 사용할 수 있습니다."
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn 키 $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "정말로 이 보안 키를 제거하시겠습니까?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "계정에 WebAuthn 보안 키 추가"
   },
   "readKey": {
     "message": "키 읽기"
@@ -1345,7 +1370,7 @@
     "message": "폼 저장하기"
   },
   "twoFactorU2fWarning": {
-    "message": "플랫폼 제한으로 인해, 모든 Bitwawrden 애플리케이션에서 FIDO U2F를 사용할 수 없습니다. FIDO U2F를 사용할 수 없을 때 계정에 액세스할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
+    "message": "플랫폼 제한으로 인해, 모든 Bitwarden 애플리케이션에서 FIDO U2F를 사용할 수 없습니다. FIDO U2F를 사용할 수 없을 때 계정에 접근할 수 있도록 다른 2단계 로그인 제공자를 활성화하십시오. 지원하는 플랫폼:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "U2F 지원 브라우저가 있는 데스크탑/랩탑의 웹 보관함 및 브라우저 확장 (FIDO U2F가 활성화된 Chrome, Opera, Vivaldi 또는 Firefox 사용)"
@@ -1360,10 +1385,10 @@
     "message": "보안 키를 읽어오는데 문제가 발생했습니다. 다시 시도해보십시오."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "플랫폼 제한으로 인해, 모든 Bitwarden 애플리케이션에서 WebAuthn을 사용할 수 없습니다. WebAuthn을 사용할 수 없을 때 계정에 접근할 수 있도록 다른 2단계 로그인 방법을 활성화하십시오. 지원하는 플랫폼:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "WebAuthn 지원 브라우저가 있는 데스크탑/랩탑의 웹 보관함 및 브라우저 확장 (WebAuthn이 활성화된 Chrome, Opera, Vivaldi 또는 Firefox 사용)"
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwarden 2단계 로그인 복구 코드"
@@ -1409,7 +1434,7 @@
     "message": "2단계 인증이 없는 로그인이 발견됨"
   },
   "inactive2faFoundDesc": {
-    "message": "보관함에 (twofactorauth.org에 따른) 2단계 인증이 설정되지 않은 웹 사이트를 $COUNT$개 발견했습니다. 이러한 계정을 더욱 보호하려면 2단계 인증을 사용하십시오.",
+    "message": "보관함에 (2fa.directory에 따른) 2단계 인증이 설정되지 않은 웹 사이트를 $COUNT$개 발견했습니다. 이러한 계정을 더욱 보호하려면 2단계 인증을 사용하십시오.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "$ID$ 항목이 공유되었습니다.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "이메일을 인증할 수 없습니다. 새로운 인증을 이메일로 전송하십시오."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "이메일 인증 필요함"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "이 기능을 이용하기 위해서는 이메일을 인증해야 합니다."
   },
   "updateBrowser": {
     "message": "브라우저 업데이트"
@@ -3423,7 +3448,7 @@
     "message": "비밀번호를 제거하시겠습니까?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "받는 사람으로부터 나의 이메일 주소 숨기기"
   },
   "disableThisSend": {
     "message": "이 Send를 비활성화하여 아무도 접근할 수 없게 합니다.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Send 설정",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Send를 생성하거나 수정하는 것과 관련된 옵션을 설정합니다.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "조직의 정책을 관리할 수 있는 사용자는 이 정책의 영향을 받지 않습니다."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "사용자가 Send를 생성하거나 수정할 때 받는 사람으로부터 자신의 이메일 주소를 숨기지 못하게 합니다.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "다음 단체 정책이 현재 영향을 미치고 있습니다:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "사용자는 Send를 생성하거나 수정할 때 받는 사람으로부터 자신의 이메일 주소를 숨기지 못하게 됩니다.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "사용자 관리"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "비밀번호 초기화 관리"
   },
   "disableRequireSsoError": {
     "message": "이 정책을 비활성화하려면 먼저 SSO 인증 정책을 수동으로 비활성화해야 합니다."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "이 Send를 생성한 Bitwarden 사용자가 자신의 이메일 주소를 숨겼습니다. 이 링크에 접속하거나 내용을 다운로드하기 전에, 이 링크의 출처를 신뢰하는지 확인하십시오.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "삭제 날짜와 만료 날짜를 저장하는 도중 오류가 발생했습니다."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "2단계 인증을 확인하려면 아래의 버튼을 클릭하십시오."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "WebAuthn 인증"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "이 브라우저에서는 WebAuthn이 지원되지 않습니다."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "<strong>WebAuthn 인증을 성공적으로 완료했습니다!</strong><br>이제 이 탭을 닫아도 좋습니다."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "비밀번호 힌트는 비밀번호와 같을 수 없습니다."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "비밀번호 초기화에 등록"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "비밀번호 초기화에 등록됨"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "비밀번호 초기화에서 등록 해제"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "성공적으로 등록됨!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "성공적으로 등록 해제됨!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "$ID$ 사용자가 비밀번호 초기화 지원에 등록되었습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "$ID$ 사용자가 비밀번호 초기화 지원에서 등록 해제되었습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "휴지통으로 이동된 암호는 30일 이후 자동으로 삭제됩니다."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "휴지통으로 이동된 암호는 일정 기간 이후 자동으로 삭제됩니다."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "마스터 비밀번호 재확인"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "마스터 비밀번호 확인"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "이 작업은 보호되어 있습니다. 계속하려면 마스터 비밀번호를 입력하여 신원을 인증하세요."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }
