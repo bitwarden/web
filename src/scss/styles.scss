@@ -50,7 +50,7 @@ body {
 
     &.layout_frontend {
         @media (prefers-color-scheme: dark) {
-            background-color: #222222;
+            background-color: #1F242E;
         }
         @media (prefers-color-scheme: light) {
             background-color: #FFFFFF;
@@ -129,6 +129,35 @@ input, select, textarea {
 .bg-warning {
     @include themify($themes) {
         background-color: themed('warning') !important;
+        color: themed('warningTextColor') !important;
+    }
+}
+
+.bg-success {
+    @include themify($themes) {
+        background-color: themed('success') !important;
+        color: themed('successTextColor') !important;
+    }
+}
+
+.toast-error {
+    @include themify($themes) {
+        background-color: themed('danger') !important;
+        color: themed('textColor') !important;
+    }
+}
+
+.toast-warning {
+    @include themify($themes) {
+        background-color: themed('warning') !important;
+        color: themed('darkTextColor') !important;
+    }
+}
+
+.toast-success {
+    @include themify($themes) {
+        background-color: themed('success') !important;
+        color: themed('darkTextColor') !important;
     }
 }
 
@@ -144,8 +173,43 @@ input, select, textarea {
     }
 }
 
+.border-danger {
+    @include themify($themes) {
+        border-color: themed('danger') !important;
+    }
+}
+
 .secondary-header, .spaced-header {
     margin-top: 4rem;
+}
+
+.dropdown-menu, .dropdown-item  {
+    @include themify($themes) {
+        color: themed('darkTextColor');
+        background-color: themed('dropdownBackground');
+    }
+}
+
+.dropdown-item {
+    &.text-danger {
+        @include themify($themes) {
+            background-color: themed('danger');
+        }
+        color: #FFF !important;
+
+        &:hover {
+            color: #FFF !important;
+            @include themify($themes){
+                background-color: themed('dropdownDangerHover') !important;
+            }
+        }
+    }
+    &:hover:not(.text-danger) {
+        @include themify($themes) {
+            background-color: themed('dropdownHover');
+            color: themed('darkTextColor');
+        }
+    }
 }
 
 .navbar {
@@ -155,26 +219,11 @@ input, select, textarea {
     .dropdown-menu {
         min-width: 200px;
         max-width: 300px;
-        @include themify($themes) {
-            color: themed('textColor');
-            background-color: themed('backgroundColor');
-        }
-
-        .dropdown-item {
-            @include themify($themes) {
-                color: themed('textColor');
-            }
-            &:hover {
-                @include themify($themes) {
-                    background-color: themed('dropdownHover');
-                }
-            }
-        }
 
         .dropdown-item-text {
             line-height: 1.3;
             @include themify($themes) {
-                color: themed('textColor');
+                color: themed('darkTextColor');
             }
 
             span, small {
@@ -182,6 +231,11 @@ input, select, textarea {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                &.text-muted {
+                    @include themify($themes) {
+                        color: themed('dropdownTextMuted') !important;
+                    }
+                }
             }
         }
     }
@@ -346,16 +400,17 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button;
 }
 
-.btn-primary {
+.btn-primary, .swal2-confirm {
     @include themify($themes) {
         border-color: themed('buttonPrimaryBorderColor');
         background-color: themed('buttonPrimaryBackgroundColor');
         color: themed('buttonPrimaryTextColor');
     }
+
     &:hover {
         @include themify($themes) {
-            border-color: themed('buttonPrimaryBorderColorHover');
-            background-color: themed('buttonPrimaryBackgroundColorHover');
+            border-color: themed('buttonPrimaryBorderColorHover') !important;
+            background-color: themed('buttonPrimaryBackgroundColorHover') !important;
         }
         color: #FFFFFF;
     }
@@ -364,31 +419,40 @@ input[type="search"]::-webkit-search-cancel-button {
 .btn-outline-primary {
     &:not(:disabled) {
         @include themify($themes) {
-            border-color: themed('buttonOutlineBorderColor');
+            border-color: themed('buttonPrimaryOutlineBorderColor');
             background-color: themed('backgroundColor');
-            color: themed('buttonOutlinePrimaryTextColor');
+            color: themed('buttonPrimaryOutlineTextColor');
         }
     }
-    &:hover {
+
+    &:hover:not(:disabled), &:active:not(:disabled) {
         @include themify($themes) {
             border-color: themed('buttonPrimaryOutlineBorderColorHover');
             background-color: themed('buttonPrimaryOutlineBackgroundColorHover');
-            color: #fff;
+        }
+        color: #FFF;
+    }
+
+    &:disabled {
+        opacity: 1;
+        @include themify($themes) {
+            color: themed('buttonPrimaryOutlineTextColor');
         }
     }
 }
 
-.btn-outline-secondary {
+.btn-outline-secondary, .swal2-cancel {
     &:not(:disabled) {
         @include themify($themes) {
-            border-color: themed('buttonOutlineBorderColor');
-            background-color: themed('buttonColor');
-            color: themed('buttonSecondaryTextColor');
+            border-color: themed('buttonSecondaryOutlineBorderColor');
+            background-color: themed('backgroundColor');
+            color: themed('buttonSecondaryOutlineTextColor');
         }
     }
-    &:hover:not(:disabled) {
+
+    &:hover:not(:disabled), &:active:not(:disabled) {
         @include themify($themes) {
-            border-color: themed('buttonOutlineBorderColorHover');
+            border-color: themed('buttonSecondaryOutlineBorderColorHover');
             background-color: themed('buttonSecondaryBackgroundColorHover');
             color: themed('buttonSecondaryTextColorHover');
         }
@@ -404,6 +468,31 @@ input[type="search"]::-webkit-search-cancel-button {
     &:focus,
     &.focus {
         box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($primary), $primary, 15%), .5);
+    }
+}
+
+.show > .btn-outline-secondary {
+    &.dropdown-toggle, &:focus {
+        @include themify($themes) {
+            color: themed('buttonSecondaryTextColorHover');
+        }   
+    }
+}
+
+.btn-outline-danger, .swal2-deny {
+    &:not(:disabled) {
+        @include themify($themes) {
+            border-color: themed('danger');
+            background-color: themed('backgroundColor');
+            color: themed('danger');
+        }
+    }
+    &:hover:not(:disabled), &:active:not(:disabled) {
+        @include themify($themes) {
+            border-color: themed('danger');
+            background-color: themed('danger');
+            color: themed('textColor');
+        }
     }
 }
 
@@ -607,6 +696,13 @@ input[type="search"]::-webkit-search-cancel-button {
         background-color: themed('foregroundColor');
         border-color: themed('borderColor');
     }
+    &.text-danger {
+        &.text-danger > .card-body {
+            @include themify($themes) {
+                color: themed('danger');
+            }
+        }
+    }
 }
 
 .card-body {
@@ -635,13 +731,6 @@ input[type="search"]::-webkit-search-cancel-button {
 .close {
     @include themify($themes) {
         color: themed('textColor');
-    }
-}
-
-.dropdown-menu, .dropdown-item  {
-    @include themify($themes) {
-        color: themed('textColor');
-        background-color: themed('backgroundColor');
     }
 }
 
@@ -871,11 +960,15 @@ app-user-billing {
 
     &.low {
         .totp-sec, .totp-code {
-            color: $danger;
+            @include themify($themes) {
+                color: themed('danger');
+            }
         }
 
         .totp-circle {
-            stroke: $danger;
+            @include themify($themes) {
+                stroke: themed('danger');
+            }
         }
     }
 }
@@ -917,26 +1010,38 @@ app-user-billing {
     }
 
     &.callout-danger {
-        border-left-color: $danger;
+        @include themify($themes) {
+            border-left-color: themed('danger');
+        }
 
         .callout-heading {
-            color: $danger;
+            @include themify($themes) {
+                color: themed('danger');
+            }
         }
     }
 
     &.callout-success {
-        border-left-color: $success;
+        @include themify($themes) {
+            border-left-color: themed('success');
+        }
 
         .callout-heading {
-            color: $success;
+            @include themify($themes) {
+                color: themed('success');
+            }
         }
     }
 
     &.callout-warning {
-        border-left-color: $warning;
+        @include themify($themes) {
+            border-left-color: themed('warning');
+        }
 
         .callout-heading {
-            color: $warning;
+            @include themify($themes) {
+                color: themed('warning');
+            }
         }
     }
 }
@@ -981,9 +1086,14 @@ app-user-billing {
 
 .form-control {
     @include themify($themes) {
-        color: themed('textColor');
+        color: themed('darkTextColor');
         background-color: themed('inputBackgroundColor');
         border-color: themed('inputBorderColor');
+    }
+    &::placeholder {
+        @include themify($themes) {
+            color: themed('inputPlaceholderColor');
+        }
     }
 }
 
