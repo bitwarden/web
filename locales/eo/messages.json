@@ -360,6 +360,9 @@
   "share": {
     "message": "Kunhavigi"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": "$VALUE$ kopiita",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Volbo"
   },
-  "shareSelected": {
-    "message": "Kunhavigi elektitajn"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "Forigi Elektitajn"
@@ -437,7 +440,7 @@
     "message": "Elektu dosieron."
   },
   "maxFileSize": {
-    "message": "Maksimuma dosiergrandeco estas 100 MB."
+    "message": "Maksimuma dosiergrandeco estas 500 MB."
   },
   "updateKey": {
     "message": "Vi ne povas uzi ĉi tiun funkcion antaŭ ol vi ĝisdatigos vian ĉifran ŝlosilon."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Redaktita ero"
   },
-  "sharedItem": {
-    "message": "Komuna ero"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Komunaj eroj"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Forigi Artikolon"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organizoj"
   },
-  "shareDesc": {
-    "message": "Elektu organizon kun kiu vi volas dividi ĉi tiun eron. Dividado transdonas posedon de la ero al la organizo. Vi ne plu estos la rekta posedanto de ĉi tiu ero post kiam ĝi estos dividita."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "Elektu organizon kun kiu vi volas dividi ĉi tiujn erojn. Dividado transdonas posedon de la eroj al la organizo. Vi ne plu estos la rekta posedanto de ĉi tiuj eroj post kiam ili estos dividitaj."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "Redaktu la kolektojn kun kiuj ĉi tiu ero estas dividita. Nur organizaj uzantoj kun aliro al ĉi tiuj kolektoj povos vidi ĉi tiun eron."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Vi elektis $COUNT$ eron (j). $SHAREABLE_COUNT$ eroj estas kompareblaj, $NONSHAREABLE_COUNT$ ne.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Enigu vian ĉefan pasvorton por eksporti viajn volbajn datumojn."
+  },
+  "export": {
+    "message": "Export"
   },
   "exportVault": {
     "message": "Eksporti Volbon"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Nenio estis importita."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Elektu la formaton de la importa dosiero"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Komuna ero $ID $.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3832,13 +3857,13 @@
     "message": "To verify your 2FA please click the button below."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Authenticate WebAuthn"
   },
   "webAuthnNotSupported": {
     "message": "WebAuthn is not supported in this browser."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn verified successfully! You may close this tab."
   },
   "hintEqualsPassword": {
     "message": "Your password hint cannot be the same as your password."
@@ -3876,11 +3901,74 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Items that have been in Trash for a while will be automatically deleted."
   },
   "passwordPrompt": {
     "message": "Master password re-prompt"
@@ -3890,5 +3978,44 @@
   },
   "passwordConfirmationDesc": {
     "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }
