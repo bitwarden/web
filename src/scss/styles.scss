@@ -140,21 +140,21 @@ input, select, textarea {
     }
 }
 
-.toast-error {
+.toast-error, .toast-container .toast-error:before {
     @include themify($themes) {
         background-color: themed('danger') !important;
         color: themed('textColor') !important;
     }
 }
 
-.toast-warning {
+.toast-warning, .toast-container .toast-warning:before {
     @include themify($themes) {
         background-color: themed('warning') !important;
         color: themed('darkTextColor') !important;
     }
 }
 
-.toast-success {
+.toast-success, .toast-container .toast-success:before {
     @include themify($themes) {
         background-color: themed('success') !important;
         color: themed('darkTextColor') !important;
