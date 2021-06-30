@@ -33,6 +33,7 @@ export class OptionsComponent implements OnInit {
     themeOptions: any[];
 
     private startingLocale: string;
+    private startingTheme: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
@@ -76,7 +77,7 @@ export class OptionsComponent implements OnInit {
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
-        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
+        this.theme = this.startingTheme = await this.storageService.get<string>(ConstantsService.themeKey);
     }
 
     async submit() {
@@ -88,7 +89,16 @@ export class OptionsComponent implements OnInit {
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
-        await this.storageService.save('theme', this.theme);
+        if (this.theme !== this.startingTheme) {
+            const htmlEl = window.document.documentElement;
+            htmlEl.classList.remove('theme_dark', 'theme_light');
+            if (this.theme == null) {
+                this.theme = await this.platformUtilsService.getDefaultSystemTheme();
+            }
+            await this.storageService.save('theme', this.theme);
+            htmlEl.classList.add('theme_' + this.theme);
+            this.startingTheme = this.theme;
+        }
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         if (this.locale !== this.startingLocale) {
             window.location.reload();
@@ -109,14 +119,5 @@ export class OptionsComponent implements OnInit {
             }
         }
         this.vaultTimeoutAction = newValue;
-    }
-
-    async themeChanged(themeUpdate: string) {
-        const htmlEl = window.document.documentElement;
-        htmlEl.classList.remove('theme_dark', 'theme_light');
-        if (themeUpdate == null) {
-            themeUpdate = await this.platformUtilsService.getDefaultSystemTheme();
-        }
-        htmlEl.classList.add('theme_' + themeUpdate);
     }
 }
