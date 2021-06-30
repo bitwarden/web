@@ -34,6 +34,7 @@ export class OptionsComponent implements OnInit {
 
     private startingLocale: string;
     private startingTheme: string;
+    private changeTheme: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
@@ -90,14 +91,14 @@ export class OptionsComponent implements OnInit {
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         if (this.theme !== this.startingTheme) {
+            this.changeTheme = this.startingTheme = this.theme;
+            await this.storageService.save('theme', this.changeTheme);
             const htmlEl = window.document.documentElement;
             htmlEl.classList.remove('theme_dark', 'theme_light');
             if (this.theme == null) {
-                this.theme = await this.platformUtilsService.getDefaultSystemTheme();
+                this.changeTheme = await this.platformUtilsService.getDefaultSystemTheme();
             }
-            await this.storageService.save('theme', this.theme);
-            htmlEl.classList.add('theme_' + this.theme);
-            this.startingTheme = this.theme;
+            htmlEl.classList.add('theme_' + this.changeTheme);
         }
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         if (this.locale !== this.startingLocale) {
