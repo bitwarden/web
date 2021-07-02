@@ -16,8 +16,7 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { ProviderSetupRequest } from 'jslib-common/models/request/provider/providerSetupRequest';
 
 @Component({
@@ -38,9 +37,8 @@ export class SetupComponent implements OnInit {
 
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
-        private userService: UserService, private stateService: StateService,
         private cryptoService: CryptoService, private apiService: ApiService,
-        private validationService: ValidationService) { }
+        private syncService: SyncService, private validationService: ValidationService) { }
 
     ngOnInit() {
         document.body.classList.remove('layout_frontend');
@@ -88,6 +86,7 @@ export class SetupComponent implements OnInit {
 
             const provider = await this.apiService.postProviderSetup(this.providerId, request);
             this.toasterService.popAsync('success', this.i18nService.t('providerSetup'));
+            await this.syncService.fullSync(true);
 
             this.router.navigate(['/providers', provider.id]);
         } catch (e) {
