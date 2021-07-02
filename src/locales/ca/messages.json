@@ -360,6 +360,9 @@
   "share": {
     "message": "Comparteix"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": "S'ha copiat $VALUE$",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Caixa forta"
   },
-  "shareSelected": {
-    "message": "Comparteix selecció"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "Suprimeix selecció"
@@ -437,7 +440,7 @@
     "message": "Seleccioneu un fitxer."
   },
   "maxFileSize": {
-    "message": "La mida màxima del fitxer és de 100 MB."
+    "message": "La mida màxima del fitxer és de 500 MB."
   },
   "updateKey": {
     "message": "No podeu utilitzar aquesta funció fins que actualitzeu la vostra clau de xifratge."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Element editat"
   },
-  "sharedItem": {
-    "message": "Element compartit"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Elements compartits"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Suprimeix element"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Utilitzeu qualsevol clau de seguretat habilitada per WebAuthn per accedir al vostre compte."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migrat de FIDO)"
   },
   "emailTitle": {
     "message": "Correu electrònic"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organitzacions"
   },
-  "shareDesc": {
-    "message": "Trieu una organització amb la qual vulgueu compartir aquest element. La compartició transfereix la propietat de l'element a l'organització. Ja no sereu el propietari directe d'aquest element una vegada que s'haja compartit."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "Trieu una organització amb la qual vulgueu compartir aquests elements. La compartició transfereix la propietat de l'element a l'organització. Ja no sereu el propietari directe d'aquests elements una vegada que s'haja compartit."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "Editeu les col·leccions amb les què es comparteix aquest element. Només els usuaris de l'organització que tinguen accés a aquestes col·leccions podran veure'l."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Heu seleccionat $COUNT$ elements. $SHAREABLE_COUNT$ elements són compartibles, $NONSHAREABLE_COUNT$ no ho són.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Introduïu la contrasenya mestra per exportar les dades de la caixa forta."
+  },
+  "export": {
+    "message": "Export"
   },
   "exportVault": {
     "message": "Exporta la caixa forta"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "No s'ha importat res."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Seleccioneu el format del fitxer d'importació"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "Clau WebAuthn $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Segur que voleu suprimir aquesta clau de seguretat?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Afegiu una clau de seguretat de WebAuthn al vostre compte"
   },
   "readKey": {
     "message": "Llegeix la clau"
@@ -1360,10 +1385,10 @@
     "message": "Hi ha hagut un problema en llegir la clau de seguretat. Torneu-ho a provar."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "A causa de les limitacions de la plataforma, WebAuthn no es pot utilitzar en totes les aplicacions Bitwarden. Heu d’habilitar un altre proveïdor d’inici de sessió en dues passas perquè pugueu accedir al vostre compte quan no es puga utilitzar WebAuthn. Plataformes compatibles:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Caixa forta web i extensions de navegador en un escriptori/portàtil amb un navegador compatible amb WebAuthn (Chrome, Opera, Vivaldi, o Firefox amb FIDO U2F activat)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "El codi de recuperació d'inici de sessió en dues passes de Bitwarden"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "S'ha compartit l'element $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "No es pot verificar el vostre correu electrònic. Proveu d'enviar un nou correu electrònic de verificació."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Es requereix verificació per correu electrònic"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Heu de verificar el vostre correu electrònic per utilitzar aquesta característica."
   },
   "updateBrowser": {
     "message": "Actualitza el navegador"
@@ -3423,7 +3448,7 @@
     "message": "Esteu segur que voleu suprimir la contrasenya?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Amagueu la meua adreça de correu electrònic als destinataris."
   },
   "disableThisSend": {
     "message": "Desactiveu aquest enviament perquè ningú no hi puga accedir.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Opcions de Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Establiu opcions per crear i editar Sends.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Els usuaris de l’organització que poden gestionar les polítiques d'aquesta, estan exempts de la seua aplicació."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "No permeteu que els usuaris amaguen la seua adreça de correu electrònic dels destinataris en crear o editar un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Actualment estan en vigor les polítiques organitzatives següents:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "No es permet als usuaris amagar la seua adreça de correu electrònic dels destinataris en crear o editar un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Administra usuaris"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Gestiona el restabliment de la contrasenya"
   },
   "disableRequireSsoError": {
     "message": "Per desactivar aquesta política, primer heu de desactivar manualment la política d’autenticació d’inici de sessió únic (SSO)."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "L'usuari Bitwarden que ha creat aquest Send ha decidit amagar la seua adreça de correu electrònic. Heu d’assegurar-vos que confieu en la font d’aquest enllaç abans d’utilitzar o descarregar el seu contingut.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "S'ha produït un error en guardar les dates de supressió i caducitat."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Per verificar el vostre 2FA, feu clic al botó següent."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Autenticar WebAutn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn no és compatible amb aquest navegador."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "<strong> WebAuthn s'ha verificat correctament! </strong> <br> Podeu tancar aquesta pestanya."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "El vostre suggeriment de contrasenya no pot ser el mateix que la vostra contrasenya."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Inscriviu-vos al restabliment de contrasenya"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Inscrit al restabliment de contrasenya"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Retireu-vos del restabliment de contrasenya"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Inscrit correctament!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Retirat correctament!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "L'usuari $ID$ està inscrit a l'assistència per restablir la contrasenya.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "L'usuari $ID$ s'ha retirat de l'assistència per restablir la contrasenya.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Els xifratges que porten més de 30 dies a la paperera se suprimiran automàticament."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Els xifratges que porten un temps a la paperera se suprimiran automàticament."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Sol·licitud de la contrasenya mestra"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Confirmació de la contrasenya mestra"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Aquesta acció està protegida. Per continuar, torneu a introduir la contrasenya principal per verificar la vostra identitat."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }
