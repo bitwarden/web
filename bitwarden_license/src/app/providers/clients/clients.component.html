@@ -31,7 +31,7 @@
                         <app-avatar [data]="o.organizationName" size="25" [circle]="true" [fontSize]="14"></app-avatar>
                     </td>
                     <td>
-                        <a href="#" appStopClick (click)="edit(o)">{{o.organizationName}}</a>
+                        <a [routerLink]="['/organizations', o.organizationId]">{{o.organizationName}}</a>
                     </td>
                     <td class="table-list-options">
                         <div class="dropdown" appListDropdown>
@@ -41,7 +41,10 @@
                                 <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-     
+                                <a class="dropdown-item" href="#" appStopClick (click)="edit(o)">
+                                    <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>
+                                    {{'edit' | i18n}}
+                                </a>
                             </div>
                         </div>
                     </td>
