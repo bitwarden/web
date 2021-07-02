@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -17,7 +16,7 @@ export class ClientsComponent implements OnInit {
 
     providerId: any;
     searchText: string;
-    loading = false;
+    loading = true;
 
     clients: ProviderOrganizationOrganizationDetailsResponse[];
     pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
@@ -27,8 +26,7 @@ export class ClientsComponent implements OnInit {
     private pagedClientsCount = 0;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private apiService: ApiService,
-        private searchService: SearchService) { }
+        private apiService: ApiService, private searchService: SearchService) { }
 
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {

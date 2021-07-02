@@ -20,7 +20,7 @@
 </ng-container>
 
 <ng-container
-    *ngIf="!loading && (clients | search:searchText:'name':'id') as searchedClients">
+    *ngIf="!loading && (clients | search:searchText:'organizationName':'id') as searchedClients">
     <p *ngIf="!searchedClients.length">{{'noClientsInList' | i18n}}</p>
     <ng-container *ngIf="searchedClients.length">
         <table class="table table-hover table-list" infiniteScroll [infiniteScrollDistance]="1"
@@ -32,21 +32,6 @@
                     </td>
                     <td>
                         <a [routerLink]="['/organizations', o.organizationId]">{{o.organizationName}}</a>
-                    </td>
-                    <td class="table-list-options">
-                        <div class="dropdown" appListDropdown>
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                appA11yTitle="{{'options' | i18n}}">
-                                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#" appStopClick (click)="edit(o)">
-                                    <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>
-                                    {{'edit' | i18n}}
-                                </a>
-                            </div>
-                        </div>
                     </td>
                 </tr>
             </tbody>
