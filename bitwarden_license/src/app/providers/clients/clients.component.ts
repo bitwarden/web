@@ -88,8 +88,4 @@ export class ClientsComponent implements OnInit {
         this.pagedClientsCount = this.pagedClients.length;
         this.didScroll = this.pagedClients.length > this.pageSize;
     }
-
-    create() {
-
-    }
 }
