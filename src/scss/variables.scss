@@ -1,11 +1,12 @@
 $primary: #175DDC;
 $primary-accent: #1252A3;
-$secondary: #ced4da;
+$secondary: #CED4DA;
 $secondary-alt: #1A3B66;
-$success: #00a65a;
+$success: #00A65A;
 $info: #555555;
-$warning: #bf7e16;
-$danger: #dd4b39;
+$warning: #BF7E16;
+$danger: #DD4B39;
+$white: #FFFFFF;
 $pending: $info;
 
 $theme-colors: (  
@@ -13,7 +14,7 @@ $theme-colors: (
     "secondary-alt": $secondary-alt,
 );
 
-$body-bg: #ffffff;
+$body-bg: $white;
 $body-color: #333333;
 
 $font-family-sans-serif: 'Open Sans','Helvetica Neue',Helvetica,
@@ -36,7 +37,7 @@ $card-spacer-y: .6rem;
 
 $list-group-item-padding-y: .6rem;
 $list-group-active-color: $body-color;
-$list-group-active-bg: #ffffff;
+$list-group-active-bg: $white;
 $list-group-active-border-color: rgba(#000000, .125);
 
 $dropdown-link-color: $body-color;
@@ -48,14 +49,14 @@ $dropdown-item-padding-x: 1rem;
 $navbar-brand-font-size: 35px;
 $navbar-brand-height: 35px;
 $navbar-brand-padding-y: 0;
-$navbar-dark-color: rgba(#ffffff, .7);
-$navbar-dark-hover-color: rgba(#ffffff, .9);
+$navbar-dark-color: rgba($white, .7);
+$navbar-dark-hover-color: rgba($white, .9);
 $navbar-nav-link-padding-x: 0.8rem;
 
-$input-bg: #fbfbfb;
-$input-focus-bg: #ffffff;
-$input-disabled-bg: #e0e0e0;
-$input-placeholder-color: #b4b4b4;
+$input-bg: #FBFBFB;
+$input-focus-bg: $white;
+$input-disabled-bg: #E0E0E0;
+$input-placeholder-color: #B4B4B4;
 
 $table-accent-bg: rgba(#000000, .02);
 $table-hover-bg: rgba(#000000, .03);
@@ -73,19 +74,22 @@ $grid-breakpoints: (
 );
 
 $text-color: #333333;
-$border-color: #ced4da;
+$border-color: $secondary;
 
 // Theme Variables
 
-$darkPrimary: #2a5ea2;//1A3B66
-$darkPrimary-alt: #1A3B66;//122947
+$lightDangerHover: #C43421;
+
+$darkPrimary: #175DDC;
+$darkPrimary-alt: #1252A3;
 $darkDanger: #FF4539;
+$darkDangerHover: #FF291A;
 $darkSuccess: #23C653;
 $darkPending: #42BFDD;
 $darkWarning: #FFEC3A;
-$darkLinks: #67ceff;
-
-$darkGrey: #D1D4DB;
+$darkLinks: #175DDC;
+$darkGrey1: #BAC0CE;
+$darkGrey2: #8D94A5;
 $darkBlue1: #4C525F;
 $darkBlue2: #3C424E;
 $darkDarkBlue1: #2F343D;
@@ -100,56 +104,71 @@ $themes: (
         pending: $pending,
         warning: $warning,
         textColor: $text-color,
+        headingColor: #333333,
         darkTextColor: #495057,
-        warningTextColor: #FFFFFF,
-        successTextColor: #FFFFFF,
-        textMuted: #6c757d,
+        warningTextColor: $white,
+        successTextColor: $white,
+        dangerTextColor: $white,
+        textMuted: #6C757D,
         linkColor: $primary,
         linkColorHover:#104097,
+        linkWeight: 400,
+        learnMoreHover: #104097,
+        iconColor: #777777,
         iconHover: $body-color,
-        iconColor: #6c757d,
-        borderColor: $border-color,
-        layoutFrontendColor: #ecf0f5,
+        layoutFrontendColor: #ECF0F5,
         backgroundColor: $body-bg,
-        foregroundColor: #FFFFFF,
-        inputBackgroundColor: #fbfbfb,
+        foregroundColor: $white,
+        borderColor: $border-color,
+        inputBackgroundColor: #FBFBFB,
+        inputDisabledBackground: #e0e0e0,
         inputBorderColor: $border-color,
         inputPlaceholderColor: #B6B8B8,
+        inputTextColor: #465057,
+        inputSearchBackgroundColor: #FBFBFB,
+        inputSearchBorderColor: $border-color,
+        inputSearchPlaceholderColor: #B6B8B8,
+        inputSearchTextColor: #465057,
         bgPrimaryColor: $primary,
         borderPrimaryColor: $primary,
-        buttonPrimaryBorderColor: $primary,
-        buttonPrimaryOutlineBorderColor: #ced4da,
-        buttonSecondaryOutlineBorderColor: #ced4da,
-        buttonPrimaryBackgroundColor: $primary,
-        buttonSecondaryBackgroundColor: #fbfbfb,
-        buttonPrimaryBackgroundColorHover: #134eb9,
-        buttonPrimaryOutlineBackgroundColorHover: #134eb9,
-        buttonSecondaryBackgroundColorHover: $secondary,
-        buttonSecondaryTextColorHover: #333333,
-        buttonIconColor: $primary,
-        buttonPrimaryBorderColorHover: #1249ae,
-        buttonPrimaryOutlineBorderColorHover: #1249ae,
-        buttonPrimaryTextColor: #FFFFFF,
-        buttonPrimaryOutlineTextColor: $primary,
-        buttonSecondaryTextColor: #6c757d,
-        buttonSecondaryOutlineTextColor: #6c757d,
-        buttonSecondaryTextColorDisabled: $secondary,
+        btnPrimary: $primary,
+        btnPrimaryHover: #134EB9,
+        btnPrimaryBorderHover: #1249AE,
+        btnPrimaryText: $white,
+        btnSecondary: $secondary,
+        btnSecondaryHover: #B8C1CA,
+        btnSecondaryBorderHover: #B1BBC4,
+        btnSecondaryText: #212529,
+        btnSecondaryTextHover: #212529,
+        btnDanger: $danger,
+        btnDangerHover: $lightDangerHover,
+        btnDangerText: $white,
+        btnLinkTextColor: $primary,
+        btnLinkTextColorHover: #104097,
         loginLogo: url("../images/logo-dark@2x.png"),
         imgFilter: invert(0) grayscale(0),
         imgLoading: url('../images/loading.svg'),
-        cdkDraggingBackground: #FFFFFF,
+        cdkDraggingBackground: $white,
         tableColorHover: #333333,
         tableRowHover: rgba(0,0,0,0.03),
-        navActiveBackground: #FFFFFF,
-        pwNumber: #007fde,
+        separator: $secondary,
+        navActiveBackground: $white,
+        navBackground: $primary,
+        navWeight: 600,
+        navActiveWeight: 600,
+        pwNumber: #007FDE,
         pwSpecial: #c40800,
-        footerBackgroundColor: #fbfbfb,
+        footerBackgroundColor: #FBFBFB,
         headerColor: rgba(0,0,0,0.03),
-        orgNavBackgroundColor: #fbfbfb,
-        dropdownBackground: #FFFFFF,
+        orgNavBackgroundColor: #FBFBFB,
+        dropdownBackground: $white,
         dropdownHover: rgba(0,0,0,0.06),
-        dropdownDangerHover: #c43421,
-        dropdownTextMuted: #6c757d
+        dropdownDangerHover: #C43421,
+        dropdownTextMuted: #6C757D,
+        codeColor: #e83e8c,
+        badgePrimaryBackground: $primary,
+        badgeSecondaryBackground: #ced4da,
+        badgeInfoBackground: #555555
     ),
     dark: (
         primary: $darkPrimary,
@@ -157,57 +176,72 @@ $themes: (
         success: $darkSuccess,
         pending: $darkPending,
         warning: $darkWarning,
-        textColor: #FFFFFF,
-        darkTextColor: $darkDarkBlue1,
+        textColor: $darkGrey1,
+        headingColor: $white,
+        darkTextColor: $darkDarkBlue2,
         warningTextColor: $darkDarkBlue1,
         successTextColor: $darkDarkBlue1,
-        textMuted: $darkGrey,
-        linkColor: $darkLinks,
-        linkColorHover:#2ba0e3,
-        iconHover: #555555,
-        iconColor: #6c757d,
+        dangerTextColor: $white,
+        textMuted: $darkGrey1,
+        linkColor: $white,
+        linkColorHover:$white,
+        linkWeight: 600,
+        learnMoreHover: $darkGrey1,
+        iconColor: #777777,
+        iconHover: $darkGrey2,
+        layoutFrontendColor: $darkDarkBlue1,
+        backgroundColor: $darkDarkBlue1,
+        foregroundColor: $darkDarkBlue2,
         borderColor: $darkBlue1,
-        layoutFrontendColor: $darkDarkBlue2,
-        backgroundColor: $darkDarkBlue2,
-        foregroundColor: $darkDarkBlue1,
-        inputBackgroundColor: $darkGrey,
+        inputBackgroundColor: $darkBlue1,
+        inputDisabledBackground: $darkDarkBlue2,
         inputBorderColor: $darkBlue1,
-        inputPlaceholderColor: $darkDarkBlue1,
+        inputPlaceholderColor: $darkGrey1,
+        inputTextColor: $white,
+        inputSearchBackgroundColor: $darkGrey1,
+        inputSearchBorderColor: $darkGrey1,
+        inputSearchPlaceholderColor: $darkBlue1,
+        inputSearchTextColor: $darkDarkBlue1,
         bgPrimaryColor: $darkPrimary,
         borderPrimaryColor: $darkPrimary,
-        buttonPrimaryBorderColor: $darkPrimary,
-        buttonPrimaryOutlineBorderColor: $darkPrimary,
-        buttonSecondaryOutlineBorderColor: $darkGrey,
-        buttonPrimaryBackgroundColor: $darkPrimary,
-        buttonSecondaryBackgroundColor: $darkGrey,
-        buttonPrimaryBackgroundColorHover: $darkPrimary-alt,
-        buttonPrimaryOutlineBackgroundColorHover: $darkPrimary,
-        buttonSecondaryBackgroundColorHover: $darkBlue2,
-        buttonSecondaryTextColorHover: $darkGrey,
-        buttonIconColor: $darkLinks,
-        buttonPrimaryBorderColorHover: $darkPrimary-alt,
-        buttonPrimaryOutlineBorderColorHover: $darkPrimary,
-        buttonPrimaryTextColor: #FFFFFF,
-        buttonPrimaryOutlineTextColor: #FFFFFF,
-        buttonSecondaryTextColor: $darkGrey,
-        buttonSecondaryOutlineTextColor: $darkGrey,
-        buttonSecondaryTextColorDisabled: #555555,
+        btnPrimary: $darkLinks,
+        btnPrimaryHover: $darkPrimary-alt,
+        btnPrimaryBorderHover: $darkPrimary-alt,
+        btnPrimaryText: $white,
+        btnSecondary: $darkBlue1,
+        btnSecondaryHover: $darkBlue2,
+        btnSecondaryBorderHover: $darkBlue2,
+        btnSecondaryText: $white,
+        btnSecondaryTextHover: $white,
+        btnDanger: $darkDanger,
+        btnDangerHover: $darkDangerHover,
+        btnDangerText: $white,
+        btnLinkText: $darkGrey1,
+        btnLinkTextHover: $white,
         loginLogo: url("../images/logo-white@2x.png"),
         imgFilter: invert(1) grayscale(1),
         imgLoading: url('../images/loading-white.svg'),
         cdkDraggingBackground: $darkDarkBlue1,
-        tableColorHover: $darkGrey,
+        tableColorHover: $darkGrey1,
         tableRowHover: $darkDarkBlue1,
+        separator: $darkBlue1,
         navActiveBackground: $darkDarkBlue1,
+        navBackground: $darkDarkBlue1,
+        navWeight: 400,
+        navActiveWeight: 600,
         pwNumber: $darkLinks,
-        pwSpecial: #ff7c70,
+        pwSpecial: #FF7C70,
         footerBackgroundColor: $darkDarkBlue2,
-        headerColor: rgba(0,0,0,0.03),
+        headerColor: rgba(0,0,0,0.1),
         orgNavBackgroundColor: $darkDarkBlue2,
-        dropdownBackground: $darkGrey,
+        dropdownBackground: $darkGrey1,
         dropdownHover: rgba(0,0,0,0.03),
-        dropdownDangerHover: #ff291a,
-        dropdownTextMuted: $darkBlue1
+        dropdownDangerHover: $darkDangerHover,
+        dropdownTextMuted: $darkBlue1,
+        codeColor: #e83e8c,
+        badgePrimaryBackground: $darkLinks,
+        badgeSecondaryBackground: $darkDarkBlue2,
+        badgeInfoBackground: $darkDarkBlue2
     ),
 );
 
@@ -227,4 +261,4 @@ $themes: (
 
 @function themed($key) {
     @return map-get($theme-map, $key);
-} 
+}
