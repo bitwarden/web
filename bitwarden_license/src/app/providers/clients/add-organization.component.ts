@@ -12,7 +12,7 @@ import { Provider } from 'jslib-common/models/domain/provider';
 
 import { OrganizationResponse } from 'jslib-common/models/response/organizationResponse';
 
-import { ProviderService } from '../provider.service';
+import { ProviderService } from '../services/provider.service';
 
 @Component({
     selector: 'provider-add-organization',
