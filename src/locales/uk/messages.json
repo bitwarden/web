@@ -361,7 +361,7 @@
     "message": "Поділитися"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Перемістити до організації"
   },
   "valueCopied": {
     "message": "$VALUE$ скопійовано",
@@ -404,7 +404,7 @@
     "message": "Сховище"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Перемістити вибране до організації"
   },
   "deleteSelected": {
     "message": "Видалити вибране"
@@ -452,7 +452,7 @@
     "message": "Запис змінено"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ переміщено до $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Вибрані записи переміщено до $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Організації"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Виберіть організацію, до якої ви бажаєте перемістити цей запис. При переміщенні до організації власність запису передається тій організації. Ви більше не будете єдиним власником цього запису після переміщення."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Виберіть організацію, до якої ви бажаєте перемістити ці записи. При переміщенні до організації власність записів передається тій організації. Ви більше не будете єдиним власником цих записів після переміщення."
   },
   "collectionsDesc": {
     "message": "Редагуйте збірки, з якими цей запис знаходиться в спільному доступі. Лише учасники організацій з доступом до цих збірок матимуть можливість бачити цей запис."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Ви вибрали $COUNT$ запис(ів). $MOVEABLE_COUNT$ запис(ів) можна перемістити до організації, $NONMOVEABLE_COUNT$ не можна.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
   },
   "export": {
-    "message": "Export"
+    "message": "Експорт"
   },
   "exportVault": {
     "message": "Експорт сховища"
@@ -1059,7 +1059,7 @@
     "message": "Нічого не імпортовано."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Помилка при розшифруванні експортованого файлу. Ваш ключ шифрування відрізняється від ключа, використаного при експортуванні даних."
   },
   "selectFormat": {
     "message": "Оберіть формат імпортованого файлу"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Запис $ID$ переміщено до організації.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3863,7 +3863,7 @@
     "message": "WebAuthn не підтримується в цьому браузері."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn успішно підтверджено!</strong><br>Ви можете закрити цю вкладку."
+    "message": "WebAuthn успішно підтверджено! Ви можете закрити цю вкладку."
   },
   "hintEqualsPassword": {
     "message": "Підказка для пароля не може бути такою самою, як ваш пароль."
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Головний пароль для користувача $ID$ скинуто.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Скинути пароль"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Продовжуючи, користувач $NAME$ вийде зі свого поточного сеансу і йому необхідно буде виконати вхід знову. Активні сеанси на інших пристроях можуть залишатися активними протягом години.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "цей користувач"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Одна або декілька політик організації вимагають дотримання таких вимог для головного пароля:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Пароль успішно скинуто!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Розгортання дозволить адміністраторам організації змінювати ваш головний пароль. Ви дійсно хочете розгорнути?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Скидання головного пароля"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Дозволити адміністраторам організації скидати головний пароль користувачів."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Користувачі в організації повинні виконати самостійне розгортання, або отримати автоматичне розгортання, перш ніж адміністратори зможуть скинути їхній пароль."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Автоматичне розгортання"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Усі користувачі отримають автоматичне розгортання на скидання пароля одразу після схвалення запрошення."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Вже наявні користувачі організації не отримають активного розгортання на скидання пароля. Їм необхідно буде виконати самостійне розгортання, перш ніж адміністратори зможуть скинути їхній пароль."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Автоматично розгортати нових користувачів"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Ця організація має корпоративну політику, яка автоматично розгортає вас на скидання пароля. Розгортання дозволятиме адміністраторам організації змінювати ваш головний пароль."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Порожня відповідь на ключі організації"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Порожня відповідь на скидання пароля"
   },
   "trashCleanupWarning": {
     "message": "Записи, що знаходяться в смітнику понад 30 днів, автоматично видалятимуться."
@@ -3980,42 +3980,42 @@
     "message": "Ця дія захищена. Щоб продовжити, повторно введіть головний пароль."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Повторно надіслати запрошення"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Ця дія не застосовується для жодного з вибраних користувачів."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Ви дійсно хочете вилучити зазначених користувачів? Цей процес може тривати кілька секунд і його неможливо перервати чи скасувати."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Підтвердити вибір"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Стан масової дії"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Успішно підтверджено."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Повторне запрошення успішне."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Успішно вилучено"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Виключено, не застосовується для цієї дії."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Цифровий відбиток"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Вилучити користувачів"
   },
   "error": {
-    "message": "Error"
+    "message": "Помилка"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Керування користувачами повинно також бути увімкнено з дозволом Керувати скиданням пароля"
   }
 }
