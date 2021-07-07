@@ -361,7 +361,7 @@
     "message": "Teilen"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "In Organisation verschieben"
   },
   "valueCopied": {
     "message": "$VALUE$ kopiert",
@@ -404,7 +404,7 @@
     "message": "Tresor"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Auswahl zur Organisation verschieben"
   },
   "deleteSelected": {
     "message": "Auswahl löschen"
@@ -452,7 +452,7 @@
     "message": "Eintrag bearbeitet"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ verschoben nach $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Ausgewählte Einträge nach $ORGNAME$ verschoben",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisationen"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Wähle eine Organisation aus, in die du diesen Eintrag verschieben möchtest. Das Verschieben in eine Organisation überträgt das Eigentum an diese Organisation. Du bist nicht mehr der direkte Besitzer dieses Eintrags, sobald er verschoben wurde."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Wähle eine Organisation aus, in die du diese Einträge verschieben möchtest. Das Verschieben in eine Organisation überträgt das Eigentum der Einträge an diese Organisation. Du bist nicht mehr der direkte Besitzer dieser Einträge, sobald sie verschoben wurden."
   },
   "collectionsDesc": {
     "message": "Bearbeiten Sie die Sammlungen, mit denen dieser Eintrag geteilt wird. Nur Organisationsmitglieder mit Zugriff auf diese Sammlungen werden diesen Eintrag sehen können."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Du hast $COUNT$ Element(e) ausgewählt. $MOVEABLE_COUNT$ Element(e) können in eine Organisation verschoben werden, $NONMOVEABLE_COUNT$ nicht.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1059,7 +1059,7 @@
     "message": "Es wurde nichts importiert."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Fehler beim Entschlüsseln der exportierten Datei. Dein Verschlüsselungscode stimmt nicht mit dem beim Export verwendeten Verschlüsselungscode überein."
   },
   "selectFormat": {
     "message": "Wählen Sie das Format Ihrer Import-Datei"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Eintrag $ID$ wurde in eine Organisation verschoben.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Master-Passwort für Benutzer $ID$ zurückgesetzt.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Passwort zurücksetzen"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Wenn du fortfährst, wird $NAME$ aus seiner aktuellen Sitzung ausgeloggt und muss sich erneut einloggen. Aktive Sitzungen auf anderen Geräten können bis zu einer Stunde weiterhin aktiv bleiben.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "dieser Benutzer"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Eine oder mehrere Organisationsrichtlinien erfordern, dass dein Master-Passwort die folgenden Anforderungen erfüllt:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Passwort erfolgreich zurückgesetzt!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Die Registrierung erlaubt Administratoren der Organisation, dein Master-Passwort zu ändern. Bist du sicher, dass du dich registrieren möchtest?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Master-Passwort zurücksetzen"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Administratoren in der Organisation erlauben, das Master-Passwort der Organisationsbenutzer zurückzusetzen."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Benutzer in der Organisation müssen sich selbst registrieren oder automatisch registriert sein, bevor Administratoren deren Master-Passwort zurücksetzen können."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatische Registrierung"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Alle Benutzer werden automatisch für das Zurücksetzen des Passworts registriert, sobald ihre Einladung angenommen wurde."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Benutzer, die bereits in der Organisation sind, werden nicht rückwirkend für das Zurücksetzen des Passworts registriert. Sie müssen sich selbst registrieren, bevor Administratoren deren Master-Passwort zurücksetzen können."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Neue Benutzer automatisch registrieren"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Diese Organisation hat eine Unternehmensrichtlinie, die dich automatisch zum Zurücksetzen deines Passworts registriert. Die Registrierung wird es Administratoren der Organisation erlauben, dein Master-Passwort zu ändern."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Die Rückmeldung der Organisationsschlüssel ist null"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Die Rückmeldung der Passwort Details Zurücksetzung ist null"
   },
   "trashCleanupWarning": {
     "message": "Chiffren, die länger als 30 Tage im Papierkorb waren, werden automatisch gelöscht."
@@ -3980,42 +3980,42 @@
     "message": "Diese Aktion ist geschützt. Um fortzufahren, geben Sie bitte Ihr Master-Passwort erneut ein, um Ihre Identität zu bestätigen."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Einladungen erneut senden"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Diese Aktion ist für keinen der ausgewählten Benutzer anwendbar."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Bist du sicher, dass du die folgenden Benutzer entfernen möchtest? Der Prozess kann einige Sekunden dauern und kann nicht unterbrochen oder abgebrochen werden."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Auswahl bestätigen"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Multi-Aktion Status"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Erfolgreich bestätigt."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Erfolgreich wieder eingeladen."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Erfolgreich entfernt"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Ausgeschlossen, nicht anwendbar für diese Aktion."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Fingerabdruck"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Benutzer entfernen"
   },
   "error": {
-    "message": "Error"
+    "message": "Fehler"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Benutzer verwalten muss ebenfalls mit der Passwort zurücksetzen Berechtigung aktiviert werden"
   }
 }

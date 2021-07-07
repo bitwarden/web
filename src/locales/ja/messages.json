@@ -361,7 +361,7 @@
     "message": "共有"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "組織に移動"
   },
   "valueCopied": {
     "message": "$VALUE$ をコピーしました",
@@ -404,7 +404,7 @@
     "message": "保管庫"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "選択したものを組織に移動"
   },
   "deleteSelected": {
     "message": "選択したものを削除"
@@ -452,7 +452,7 @@
     "message": "編集されたアイテム"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ を $ORGNAME$ に移動しました",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "選択したアイテムを $ORGNAME$ に移動しました",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "組織"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "このアイテムを移動する組織を選択してください。組織に移動すると、アイテムの所有権がその組織に移行します。 このアイテムが移動された後、あなたはこのアイテムの直接の所有者にはなりません。"
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "このアイテムを移動する組織を選択してください。組織に移動すると、アイテムの所有権がその組織に移行します。 このアイテムが移動された後、あなたはこのアイテムの直接の所有者にはなりません。"
   },
   "collectionsDesc": {
     "message": "このアイテムを共有するコレクションを編集します。共有したアイテムは、当該コレクションにアクセスできる組織ユーザーにのみ表示されます。"
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "$COUNT$ アイテムを選択しました。 $MOVEABLE_COUNT$ アイテムは組織に移動できます。 $NONMOVEABLE_COUNT$ アイテムはできません。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
   },
   "export": {
-    "message": "Export"
+    "message": "エクスポート"
   },
   "exportVault": {
     "message": "保管庫のエクスポート"
@@ -1059,7 +1059,7 @@
     "message": "何もインポートされませんでした。"
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "エクスポートされたファイルの復号でエラーが発生しました。暗号化キーが、データをエクスポートするために使用された暗号化キーと一致しません。"
   },
   "selectFormat": {
     "message": "インポートするファイルの形式を選択"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "アイテム $ID$ を組織に移動しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "ユーザー $ID$ のマスターパスワードをリセット",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "パスワードをリセット"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "続行すると、現在のセッションから $NAME$ をログアウトし、再度ログインする必要があります。 他のデバイスでのアクティブなセッションは、最大1時間アクティブになり続けます。",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "このユーザー\n"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "組織ポリシーの要件を満たすためにマスターパスワードが必要です:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "パスワードをリセットしました"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "登録すると、組織管理者はマスターパスワードを変更できます。登録してもよろしいですか？"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "マスターパスワードのリセット"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "組織内の管理者に組織ユーザーのマスターパスワードのリセットを許可します。"
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "管理者がマスターパスワードをリセットするには、組織内のユーザーは自己登録または自動登録する必要があります。"
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "自動登録"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "招待が承認されると、すべてのユーザーは自動的にパスワードリセットに登録されます。"
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "すでに組織にいるユーザーは、パスワードリセットに遡って登録されません。管理者がマスターパスワードをリセットできるようにするには、自己登録する必要があります。"
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "自動的に新規ユーザーを登録する"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "この組織には自動的にパスワードリセットに登録するポリシーがあります。登録すると、組織の管理者はマスターパスワードを変更できます。"
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "組織鍵の応答が null です"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "パスワードリセットの詳細な応答が null です"
   },
   "trashCleanupWarning": {
     "message": "Items that have been in Trash more than 30 days will be automatically deleted."
@@ -3980,42 +3980,42 @@
     "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "招待を再送信"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "この操作は、選択されたユーザーには適用されません。"
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "次のユーザーを削除してもよろしいですか？プロセスは完了まで数秒かかることがあり、中断またはキャンセルすることはできません。"
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "選択を確認"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "一括操作の状態"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "確認に成功しました"
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "再招待に成功しました"
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "削除しました "
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "除外します。このアクションには適用されません。"
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "指紋"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "ユーザーを削除"
   },
   "error": {
-    "message": "Error"
+    "message": "エラー"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "パスワードリセットの管理権限を持つユーザーの管理も有効にする必要があります"
   }
 }

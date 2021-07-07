@@ -361,7 +361,7 @@
     "message": "Partajare"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Mutare la organizație"
   },
   "valueCopied": {
     "message": "$VALUE$ s-a copiat",
@@ -404,7 +404,7 @@
     "message": "Seif"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Mutați cele selectate în organizație"
   },
   "deleteSelected": {
     "message": "Ștergere selecție"
@@ -452,7 +452,7 @@
     "message": "Articol editat"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ mutat la $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Articolele selectate au fost mutate în $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -748,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Utilizați orice cheie de securitate activată WebAuthn pentru a vă accesa contul."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migrate din FIDO)"
   },
   "emailTitle": {
     "message": "E-mail"
@@ -769,10 +769,10 @@
     "message": "Organizații"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Alegeți o organizație la care doriți să mutați acest articol. Mutarea într-o organizație, transferă proprietatea asupra articolului către organizația respectivă. Nu veți mai fi proprietarul direct al acestui articol odată ce a fost mutat."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Alegeți o organizație la care doriți să mutați aceste articole. Mutarea într-o organizație, transferă proprietatea asupra articolelor către organizația respectivă. Nu veți mai fi proprietarul direct al acestor articole odată ce au fost mutate."
   },
   "collectionsDesc": {
     "message": "Editați colecțiile cu care este partajat acest articol. Numai utilizatorii organizației cu acces la aceste colecții vor putea vedea acest articol."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Ați selectat $COUNT$ articol(e). $MOVEABLE_COUNT$ articol(e) poate/pot fi mutat(e) într-o organizație, $NONMOVEABLE_COUNT$ nu.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Introducere parolă principală pentru exportarea datelor seifului."
   },
   "export": {
-    "message": "Export"
+    "message": "Exportați"
   },
   "exportVault": {
     "message": "Export seif"
@@ -1059,7 +1059,7 @@
     "message": "Nu s-a importat nimic."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Eroare la decriptarea fișierului exportat. Cheia dvs. de criptare nu corespunde cu cheia de criptare folosită pentru a exporta datele."
   },
   "selectFormat": {
     "message": "Alegeți din listă formatul fișierului de import"
@@ -1295,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "Cheie WebAuthn $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1349,7 +1349,7 @@
     "message": "Sigur doriți să eliminați această cheie de securitate?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Adăugare de cheie de securitate WebAuthn în contul dvs."
   },
   "readKey": {
     "message": "Citire cheie"
@@ -1385,10 +1385,10 @@
     "message": "A apărut o problemă la citirea cheii de securitate. Încercați din nou."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Drept consecință a limitărilor platformei, WebAuthn nu se poate utiliza pe toate aplicațiile Bitwarden. Ar trebui să activați un alt furnizor de conectare în două etape pentru a vă accesa contul, atunci când WebAuthn nu se poate utiliza. Platforme acceptate:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Seiful web și extensiile de browser pe un desktop/laptop cu un browser activat WebAuthn (Chrome, Opera, Vivaldi sau Firefox cu FIDO U2F activat)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Codul dvs. Bitwarden de recuperare a autentificării în două etape"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Articolul $ID$ a fost mutat la o organizație.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2662,10 +2662,10 @@
     "message": "E-mailul dvs. nu a putut fi verificat. Încercați să trimiteți un nou e-mail de verificare."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Este necesară verificarea adresei de e-mail"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Trebuie să vă verificați e-mailul pentru a utiliza această caracteristică."
   },
   "updateBrowser": {
     "message": "Actualizare browser"
@@ -3448,7 +3448,7 @@
     "message": "Sigur doriți să eliminați parola?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Ascundeți adresa mea de e-mail de la destinatari."
   },
   "disableThisSend": {
     "message": "Dezactivați acest Send astfel încât nimeni să nu îl poată accesa.",
@@ -3670,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Opțiuni Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Setați opțiunile pentru crearea și editarea Send-urilor.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Utilizatorii organizației care pot gestiona politicile organizației sunt exceptați de la aplicarea acestei politici."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Nu permiteți utilizatorilor să-și ascundă adresa de e-mail de la destinatari, atunci când creează sau editează un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "În prezent, sunt în vigoare următoarele politici de organizare:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Utilizatorii nu au voie să-și ascundă adresa de e-mail de la destinatari atunci când creează sau editează un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3746,7 +3746,7 @@
     "message": "Gestionați utilizatorii"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Gestionați resetarea parolei"
   },
   "disableRequireSsoError": {
     "message": "Politica de autentificare la conectare unică (SSO) trebuie dezactivată manual înainte ca această politică să poată fi dezactivată."
@@ -3835,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Utilizatorul Bitwarden care a creat acest Send a ales să-și ascundă adresa de e-mail. Ar trebui să vă asigurați că aveți încredere în sursa acestui link înainte de utilizarea sau descărcarea conținutului acestuia.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3854,37 +3854,37 @@
     "message": "A survenit o eroare la salvarea datelor de ștergere și de expirare."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Pentru a verifica 2FA, vă rugăm să faceți clic pe butonul de mai jos."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAuthn"
+    "message": "Autentificare WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn nu este acceptat în acest browser."
   },
   "webAuthnSuccess": {
-    "message": "WebAuthn verified successfully! You may close this tab."
+    "message": "WebAuthn a fost verificat cu succes! Puteți închide această filă."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Indiciul dvs. de parolă nu poate fi aceeași cu parola."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Înscriere în resetarea parolei"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Înregistrat la resetarea parolei"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Retragere din resetarea parolei"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Înregistrare reușită!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Retragere reușită!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Utilizator $ID$ s-a înscris în asistența de resetare a parolei.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3893,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Utilizatorul $ID$ s-a retras din asistența pentru resetarea parolei.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Resetarea parolei principale pentru utilizatorul $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Resetați parola"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Procedând, $NAME$ va fi deconectat de la sesiunea curentă, solicitându-i să se conecteze din nou. Sesiunile active pe alte dispozitive pot continua să rămână active timp de până la o oră.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,99 +3923,99 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "acest utilizator"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Una sau mai multe politici ale organizației, necesită ca parola principală să îndeplinească următoarele cerințe:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Parolă resetată cu succes!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Înscrierea va permite administratorilor organizației să vă schimbe parola principală. Sigur doriți să vă înscrieți?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Resetare parolă principală"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Permite administratorilor din organizație să reseteze parola principală a utilizatorilor organizației."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Utilizatorii din organizație vor trebui să se înregistreze singuri sau, să fie înregistrați automat, înainte ca administratorii să le poată reseta parola principală."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Înregistrare automată"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Toți utilizatorii vor fi înregistrați automat în resetarea parolei odată ce invitația lor este acceptată."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Utilizatorii care fac deja parte din organizație, nu vor fi înscriși retroactiv în resetarea parolei. Ei vor trebui să se înregistreze singuri, înainte ca administratorii să poată reseta parola lor principală."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Înregistrare automată a utilizatorilor noi"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Această organizație are o politică de întreprindere care vă va înregistra automat în resetarea parolei. Înregistrarea va permite administratorilor organizației să vă schimbe parola principală."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Răspunsul Cheilor organizației este nul"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Răspunsul detaliat la resetarea parolei este nul"
   },
   "trashCleanupWarning": {
-    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Articolele care au fost în coșul de reciclare mai mult de 30 de zile vor fi șterse automat."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Items that have been in Trash for a while will be automatically deleted."
+    "message": "Articolele care au fost în coșul de reciclare de ceva vreme vor fi șterse automat."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Re-solicitare parolă principală"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Confirmare parolă principală"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Această acțiune este protejată. Pentru a continua, vă rugăm să reintroduceți parola principală pentru a vă verifica identitatea."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Retrimitere invitații"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Această acțiune nu se aplică niciunui utilizator selectat."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Sunteți sigur că doriți să eliminați următorii utilizatori? Finalizarea procesului poate dura câteva secunde și nu poate fi întrerupt sau anulat."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Confirmați selecția"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Starea operației în masă"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Confirmat cu succes."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Reinvitat cu succes."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Eliminat cu succes"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Exclus, nu se aplică pentru această acțiune."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Amprentă"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Eliminați utilizatorii"
   },
   "error": {
-    "message": "Error"
+    "message": "Eroare"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Gestionare Utilizatori trebuie de asemenea activată cu Gestionare Permisiune de Resetare a Parolei"
   }
 }
