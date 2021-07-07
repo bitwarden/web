@@ -361,7 +361,7 @@
     "message": "Jaga"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Teisalda organisatsioonile"
   },
   "valueCopied": {
     "message": "$VALUE$ on kopeeritud",
@@ -404,7 +404,7 @@
     "message": "Hoidla"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Teisalda valitud organisatsioonile"
   },
   "deleteSelected": {
     "message": "Kustuta valitud"
@@ -452,7 +452,7 @@
     "message": "Kirje on muudetud"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ teisaldati $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Valitud kirjed teisaldati $ORGNAME$-le",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisatsioon"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Vali organisatsioon, kuhu soovid seda kirjet teisaldada. Teisaldamisega saab kirje omanikuks organisatsioon. Pärast kirje teisaldamist ei ole sa enam selle otsene omanik."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Vali organisatsioon, kuhu soovid seda kirjet teisaldada. Teisaldamisega saab kirje omanikuks organisatsioon. Pärast kirje teisaldamist ei ole sa enam selle otsene omanik."
   },
   "collectionsDesc": {
     "message": "Muuda kollektsioone, millega seda kirjet jagatakse. Seda kirjet näevad üksnes organisatsiooni kasutajad, kes omavad nendele kollektsioonidele ligipääsu."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Valisid $COUNT$ kirje(t). $MOVEABLE_COUNT$ kirje(t) saab teisaldada organisatsioonile, $NONMOVEABLE_COUNT$ ei saa.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Hoidlas olevate andmete eksportimiseks on vajalik ülemparooli sisestamine."
   },
   "export": {
-    "message": "Export"
+    "message": "Ekspordi"
   },
   "exportVault": {
     "message": "Hoidla sisu eksportimine"
@@ -1059,7 +1059,7 @@
     "message": "Midagi ei imporditud."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Eksporditud faili dekrüpteerimine nurjus. Sinu krüpteerimisvõti ei ühti selle võtmega, mida kasutati andmete eksportimisel."
   },
   "selectFormat": {
     "message": "Vali imporditava faili vorming"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Kirje $ID$ on teisaldatud organisatsioonile.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2704,7 +2704,7 @@
     "message": "Kui sa ei pääse oma kontole ühegi kaheastmeliste kinnitamise meetodi abiga ligi, saad selle välja lülitada. Selleks kasuta kaheastmelise kinnitamise tühistamise koodi."
   },
   "recoverAccountTwoStep": {
-    "message": "Taasta ligipääs kaheastmelise kinnitamiseta"
+    "message": "Taasta kaheastmelise kinnitamise ligipääs"
   },
   "twoStepRecoverDisabled": {
     "message": "Sinu konto kaheastmeline kinnitamine on välja lülitatud."
@@ -3631,7 +3631,7 @@
     "message": "Hädaolukorra ligipääsust keelduti"
   },
   "passwordResetFor": {
-    "message": "$USER$ parool on taastatud. Saad nüüd uue parooliga sisse logida.",
+    "message": "$USER$ parool on lähtestatud. Saad nüüd uue parooliga sisse logida.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3746,7 +3746,7 @@
     "message": "Kasutajate haldamine"
   },
   "manageResetPassword": {
-    "message": "Parooli taastamise haldamine"
+    "message": "Parooli lähtestamise haldamine"
   },
   "disableRequireSsoError": {
     "message": "Enne selle poliitika keelamist pead Single Sign-On autentimise käsitsi välja lülitama."
@@ -3762,7 +3762,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "Sisesta Sendi nimi.",
+    "message": "Sisesta Sendi nimi (kohustuslik).",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
@@ -3869,13 +3869,13 @@
     "message": "Parooli vihje ei saa olla sama mis parool ise."
   },
   "enrollPasswordReset": {
-    "message": "Liitu parooli taastamise valikuga"
+    "message": "Liitu parooli lähtestamise valikuga"
   },
   "enrolledPasswordReset": {
-    "message": "Parooli taastamise valikuga liitunud"
+    "message": "Liitusid parooli lähtestamise valikuga"
   },
   "withdrawPasswordReset": {
-    "message": "Tühista parooli taastamise valik"
+    "message": "Tühista nõusolek parooli lähtestamiseks"
   },
   "enrollPasswordResetSuccess": {
     "message": "Liitumine õnnestus!"
@@ -3884,7 +3884,7 @@
     "message": "Tühistamine õnnestus!"
   },
   "eventEnrollPasswordReset": {
-    "message": "Kasutaja $ID$ liitus parooli taastamise valikuga.",
+    "message": "Kasutaja $ID$ liitus parooli lähtestamise valikuga.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3893,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "Kasutaja $ID$ tühistas parooli taastamise valiku.",
+    "message": "Kasutaja $ID$ tühistas parooli taastamise valiku nõusuoleku.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Kasutaja $ID$ ülemparool on lähtestatud.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Lähtesta parool"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Jätkates logitakse $NAME$ praegusest sessioonis välja, mistõttu peavad nad kontosse uuesti sisse logima. Teised kontoga ühendatud seadmed võivad jääda sisselogituks kuni üheks tunniks.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,40 +3923,40 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "see kasutaja"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Üks või enam organisatsiooni eeskirja nõuavad, et ülemparool vastaks nendele nõudmistele:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Parool on edukalt lähtestatud!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Liitumine võimaldab organisatsiooni administraatoritel sinu ülemparooli muuta. Oled kindel, et soovid liituda?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Ülemparooli lähtestamine"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Võimalda organisatsiooni administraatoritel kasutajate ülemparooli lähtestada."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Organisatsiooni kuuluvad kasutajad peavad ise liituma või nad liidetakse automaatselt, enne kui nende ülemparooli lähtestada saab."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automaatne liitumine"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Kõik kasutajad, kes aktsepteerivad kutse, liidetakse automaatselt parooli lähtestamise funktsiooniga."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Kasutajad, kes on juba organisatsiooni liikmed, liidetakse parooli lähtestamise valikuga tagasiulatuvalt. Nad peavad selle ise üle kinnitama, enne kui administraatoritel tekib võimalus nende paroole lähtestada."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Liida uued kasutajad automaatselt"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Selle organisatsiooni poliitika kohaselt liidetakse sind automaatselt ülemparooli lähtestamise funktsiooniga. Liitumisel saavad organisatsiooni administraatorid sinu ülemparooli muuta."
   },
   "resetPasswordOrgKeysError": {
     "message": "Organization Keys response is null"
@@ -3980,42 +3980,42 @@
     "message": "See tegevus on kaitstud. Jätkamiseks sisesta oma ülemparool."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Saada kutsed uuesti"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "See valik rakendub mistahes valitud kasutajatele."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Oled kindel, et soovid järgnevaid kasutajaid eemaldada? See tegevus võib võtta paar sekundit ning seda ei saa katkestada."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Kinnita valitud"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Masstegevuse staatus"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Edukalt kinnitatud."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Edukalt uuesti kutsutud."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Edukalt eemaldatud"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Välja jäetud, ei rakendu sellel tegevuse puhul."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Sõrmejälg"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Kasutajate eemaldamine"
   },
   "error": {
-    "message": "Error"
+    "message": "Viga"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "\"Parooli lähtestamise haldamine\" nõuab ka valiku \"Kasutajate haldamine\" sisselülitamist"
   }
 }
