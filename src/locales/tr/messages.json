@@ -361,7 +361,7 @@
     "message": "Paylaş"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Kuruluşa taşı"
   },
   "valueCopied": {
     "message": "$VALUE$ kopyalandı",
@@ -404,7 +404,7 @@
     "message": "Kasa"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Seçilenleri kuruluşa taşı"
   },
   "deleteSelected": {
     "message": "Seçilenleri sil"
@@ -452,7 +452,7 @@
     "message": "Kayıt düzenlendi"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ $ORGNAME$ kuruluşuna taşındı",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Seçilen kayıtlar $ORGNAME$ kuruluşuna taşındı",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -751,7 +751,7 @@
     "message": "Hesabınıza erişmek için WebAuthn uyumlu bir güvenlik anahtarı kullanın."
   },
   "webAuthnMigrated": {
-    "message": "(FIDO'dan Geçirildi)"
+    "message": "(FIDO'dan taşındı)"
   },
   "emailTitle": {
     "message": "E-posta"
@@ -769,10 +769,10 @@
     "message": "Kuruluşlar"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Bu kaydı taşımak istediğiniz kuruluşu seçin. Taşıdığınız kaydın sahipliği seçtiğiniz kuruluşa aktarılacak. Artık bu kaydın doğrudan sahibi olmayacaksınız."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Bu kayıtları taşımak istediğiniz kuruluşu seçin. Taşıdığınız kayıtların sahipliği seçtiğiniz kuruluşa aktarılacak. Artık bu kayıtların doğrudan sahibi olmayacaksınız."
   },
   "collectionsDesc": {
     "message": "Bu nesnenin şu anda paylaşıldığı koleksiyonları düzenler. Kurumdaki kullanıcılardan yalnızca bu koleksiyonlara erişimi olanlar bu nesneyi görebilirler."
@@ -837,7 +837,7 @@
     "message": "Kasadaki verilerinizi dışa aktarmak için ana parolanızı girin."
   },
   "export": {
-    "message": "Export"
+    "message": "Dışarı aktar"
   },
   "exportVault": {
     "message": "Kasayı dışa aktar"
@@ -1373,7 +1373,7 @@
     "message": "Platform sınırlamaları nedeniyle, FIDO U2F tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece FIDO U2F kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
   },
   "twoFactorU2fSupportWeb": {
-    "message": "Web kasası ve U2F etkinleştirilmiş bir tarayıcıya (FIDO U2F etkinleştirilmiş Chrome, Opera, Vivaldi veya Firefox) sahip bir masaüstü/dizüstü bilgisayarda tarayıcı uzantıları."
+    "message": "Web kasası ve U2F uyumlu bir tarayıcıya (FIDO U2F uyumlu Chrome, Opera, Vivaldi veya Firefox) sahip bir bilgisayardaki tarayıcı uzantıları."
   },
   "twoFactorU2fWaiting": {
     "message": "Güvenlik anahtarınızdaki düğmeye dokunmanız bekleniyor"
@@ -3911,7 +3911,7 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Parolayı sıfırla"
   },
   "resetPasswordLoggedOutWarning": {
     "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
@@ -3926,16 +3926,16 @@
     "message": "this user"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Bir veya daha fazla kuruluş ilkesi gereğince ana parola aşağıdaki gereksinimleri karşılamalıdır:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Parola başarıyla sıfırlandı."
   },
   "resetPasswordEnrollmentWarning": {
     "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Ana parola sıfırlama"
   },
   "resetPasswordPolicyDescription": {
     "message": "Allow administrators in the organization to reset organization users' master password."
@@ -3980,7 +3980,7 @@
     "message": "Bu işleme devam etmek için lütfen ana parolanızı yeniden girin."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Davetleri yeniden gönder"
   },
   "noSelectedUsersApplicable": {
     "message": "This action is not applicable to any of the selected users."
@@ -3995,25 +3995,25 @@
     "message": "Bulk action status"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Başarıyla onaylandı."
   },
   "bulkReinviteMessage": {
     "message": "Reinvited successfully."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Başarıyla kaldırıldı"
   },
   "bulkFilteredMessage": {
     "message": "Excluded, not applicable for this action."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Parmak izi"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Kullanıcıları kaldır"
   },
   "error": {
-    "message": "Error"
+    "message": "Hata"
   },
   "resetPasswordManageUsers": {
     "message": "Manage Users must also be enabled with the Manage Password Reset permission"

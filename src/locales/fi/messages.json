@@ -361,7 +361,7 @@
     "message": "Jaa"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Siirrä organisaatioon"
   },
   "valueCopied": {
     "message": "$VALUE$ kopioitiin",
@@ -404,7 +404,7 @@
     "message": "Holvi"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Siirrä valitut organisaatioon"
   },
   "deleteSelected": {
     "message": "Poista valitut"
@@ -452,7 +452,7 @@
     "message": "Muokattiin kohdetta"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ siirrettiin organisaatioon $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Valitut kohteet siirrettiin organisaatioon $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -731,7 +731,7 @@
     "message": "Käytä YubiKey-todennuslaitetta tilisi avaukseen. Toimii YubiKey 4 ja 5 -sarjojen sekä NEO -laitteiden kanssa."
   },
   "duoDesc": {
-    "message": "Vahvista Duo Securityn avulla käyttäen Duo Mobile ‑sovellusta, tekstiviestiä, puhelua tai U2F-todennuslaitetta.",
+    "message": "Vahvista kirjautuminen Duo Securityn avulla käyttäen Duo Mobile ‑sovellusta, tekstiviestiä, puhelua tai U2F-todennuslaitetta.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
@@ -751,7 +751,7 @@
     "message": "Käytä mitä tahansa WebAuthn‑yhteensopivaa todennuslaitetta päästäksesi käsiksi tiliisi."
   },
   "webAuthnMigrated": {
-    "message": "(Siirretty FIDO:sta)"
+    "message": "(siirretty FIDO:sta)"
   },
   "emailTitle": {
     "message": "Sähköpostiosoite"
@@ -769,10 +769,10 @@
     "message": "Organisaatiot"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Valitse organisaatio, johon haluat siirtää kohteen. Tämä siirtää kohteen organisaation omistukseen, etkä tämän jälkeen ole enää sen suora omistaja."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Valitse organisaatio, johon haluat siirtää kohteet. Tämä siirtää kohteet organisaation omistukseen, etkä tämän jälkeen ole enää niiden suora omistaja."
   },
   "collectionsDesc": {
     "message": "Muokkaa kokoelmia, joihin tämä kohde on jaettu. Kohteen näkevät vain ne organisaation käyttäjät, joilla on käyttöoikeus näihin kokoelmiin."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Olet valinnut $COUNT$ kohdetta. $MOVEABLE_COUNT$ kohdetta voidaan siirtää organisaatioon, $NONMOVEABLE_COUNT$ ei.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Syötä pääsalasanasi viedäksesi holvisi tiedot."
   },
   "export": {
-    "message": "Export"
+    "message": "Vie"
   },
   "exportVault": {
     "message": "Vie holvi"
@@ -1059,7 +1059,7 @@
     "message": "Mitään ei tuotu."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Virhe purettaessa viedyn tiedoston salausta. Salausavaimesi ei vastaa viennissä käytettyä salausavainta."
   },
   "selectFormat": {
     "message": "Valitse tuotavan tiedoston muoto"
@@ -1122,7 +1122,7 @@
     "message": "Verkkotunnusten säännöt"
   },
   "domainRulesDesc": {
-    "message": "Jos kirjautumistietosi ovat samat useille verkkotunnuksille, voit merkata sivustot vastaavanlaisiksi. Bitwarden on luonut sinulle valmiiksi globaaleita verkkotunnuksia."
+    "message": "Jos kirjautumistietosi ovat samat useille verkkotunnuksille, voit merkata sivustot vastaavanlaisiksi. Bitwarden on luonut sinulle valmiiksi joitakin globaaleja verkkotunnuksia."
   },
   "globalEqDomains": {
     "message": "Globaalit vastaavat verkkotunnukset"
@@ -1660,7 +1660,7 @@
     }
   },
   "addons": {
-    "message": "Lisäykset"
+    "message": "Laajennukset"
   },
   "premiumAccess": {
     "message": "Premium-käyttöoikeus"
@@ -1679,7 +1679,7 @@
     }
   },
   "additionalStorageGb": {
-    "message": "Lisättävä tallennustila, Gt"
+    "message": "Lisää tallennustilaa (Gt)"
   },
   "additionalStorageGbDesc": {
     "message": "Gigatavujen määrä"
@@ -1874,7 +1874,7 @@
     }
   },
   "gbStorageAdd": {
-    "message": "Lisättävä tallennustila, Gt"
+    "message": "Lisättävän tallennustilan määrä (Gt)"
   },
   "gbStorageRemove": {
     "message": "Poistettava tallennustila, Gt"
@@ -1934,7 +1934,7 @@
     "message": "Organisaation nimi"
   },
   "accountOwnedBusiness": {
-    "message": "Tämän tilin omistaa yritys."
+    "message": "Tlin omistaa yritys."
   },
   "billingEmail": {
     "message": "Laskutuksen sähköpostiosoite"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Kohde $ID$ siirrettiin organisaatioon.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3857,13 +3857,13 @@
     "message": "Vahvista kaksivaiheinen kirjautuminen (2FA) klikkaamalla alla olevaa painiketta."
   },
   "webAuthnAuthenticate": {
-    "message": "Todenna WebAuthn"
+    "message": "WebAuthn-todennus"
   },
   "webAuthnNotSupported": {
     "message": "WebAuthn ei ole tuettu tässä selaimessa."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn vahvistettiin onnistuneesti!</strong><br>Voit sulkea välilehden."
+    "message": "WebAuthn-todennus onnistui! Voit sulkea välilehden."
   },
   "hintEqualsPassword": {
     "message": "Salasanavihjeesi ei voi olla sama kuin salasanasi."
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Pääsalasanan palautus käyttäjälle $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Palauta salasana"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Jatkamalla kirjataan käyttäjät $NAME$ ulos nykyisistä istunnoistaan, jonka jälkeen heidän on kirjauduttava uudelleen. Aktiiviset istunnot toisilla laitteilla saattavat pysyä aktiivisina vielä tunnin ajan.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,52 +3923,52 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "tämä käyttäjä"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Yksi tai useampi organisaatiokäytäntö edellyttää, että pääsalasanasi täyttää seuraavat vaatimukset:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Salasanan palautus onnistui!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Liittyminen sallii organisaation ylläpitäjien vaihtaa pääsalasanasi. Haluatko varmasti liittyä?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Pääsalasanan palautus"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Salli organisaation ylläpitäjien palauttaa organisaation käyttäjien pääsalasana."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Organisaation käyttäjien on liityttävä itse tai automaattisen liitännän välityksellä ennen kuin ylläpitäjät voivat palauttaa heidän pääsalasanansa."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automaattinen liittyminen"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Kaikki käyttäjät liitetään salasanan palautukseen automaattisesti kun heidän kutsunsa hyväksytään."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Vanhoja organisaation käyttäjiä ei liitetä salasanan palautukseen takautuvasti, vaan heidän on itse liityttävä siihen ennen kuin järjestelmänvalvojat voivat palauttaa heidän pääsalasanaansa."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Liitä uudet käyttäjät automaattisesti"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Organisaatiolla on käytäntö, joka liittää sinut automaattisesti salasanan palautukseen. Liitos sallii organisaation ylläpitäjien vaihtaa pääsalasanasi."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Organisaatioavainten vastaus on tyhjä"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Salasanan palautuksen tietojen vastaus on tyhjä"
   },
   "trashCleanupWarning": {
-    "message": "Roskakorissa yli 30 päivää olleet salausavaimet poistetaan automaattisesti."
+    "message": "Roskakorissa yli 30 päivää olleet kohteet poistetaan automaattisesti."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Roskakorissa jonkin aikaa olleet salausavaimet poistetaan automaattisesti."
+    "message": "Roskakorissa jonkin aikaa olleet kohteet poistetaan automaattisesti."
   },
   "passwordPrompt": {
     "message": "Pääsalasanan uudelleenkysely"
@@ -3980,42 +3980,42 @@
     "message": "Toiminto on suojattu. Jatkaaksesi, syötä pääsalasanasi uudelleen vahvistaaksesi henkilöllisyytesi."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Lähetä kutsut uudelleen"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Toiminto ei koske valittuja käyttäjiä."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Haluatko varmasti poistaa poistaa seuraavat käyttäjät? Toiminto saattaa kestää muutamia sekunteja, eikä sitä voi keskeyttää tai peruuttaa."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Vahvista valitut"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Joukkotoiminnon tila"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Vahvistettu onnistuneesti."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Kutsuttu uudelleen onnistuneesti."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Poistettu onnistuneesti"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Ohitettu, ei koske tätä toimintoa."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Sormenjälki"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Poista käyttäjiä"
   },
   "error": {
-    "message": "Error"
+    "message": "Virhe"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Käyttäjien hallinnan on myös oltava käytössä \"Hallinnoi salasanan palautusta\" -oikeuden kanssa"
   }
 }
