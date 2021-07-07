@@ -361,7 +361,7 @@
     "message": "Partager"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Déplacer vers l'Organisation"
   },
   "valueCopied": {
     "message": "$VALUE$ copié",
@@ -404,7 +404,7 @@
     "message": "Coffre"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Déplacer la Sélection vers l'Organisation"
   },
   "deleteSelected": {
     "message": "Supprimer les éléments sélectionnés"
@@ -452,7 +452,7 @@
     "message": "Élément modifié"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ déplacés vers $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Les éléments sélectionnés ont été déplacés vers $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisations"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer cet élément. Déplacer vers une organisation transfère la propriété de l'élément à cette organisation. Vous ne serez plus le propriétaire direct de cet objet une fois qu'il a été déplacé."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer ces éléments. Le déplacement vers une organisation transfère la propriété des éléments à cette organisation. Vous ne serez plus le propriétaire direct de ces objets une fois qu'ils ont été déplacés."
   },
   "collectionsDesc": {
     "message": "Modifier les collections avec lesquelles cet élément est partagé. Seuls les utilisateurs de l'organisation avec un accès à ces collections pourront voir cet élément."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Vous avez sélectionné $COUNT$ élément(s). $MOVEABLE_COUNT$ élément(s) peuvent être déplacés vers une organisation, $NONMOVEABLE_COUNT$ ne peuvent pas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Saisissez votre mot de passe maître pour exporter les données de votre coffre."
   },
   "export": {
-    "message": "Export"
+    "message": "Exporter"
   },
   "exportVault": {
     "message": "Exporter le coffre"
@@ -1059,7 +1059,7 @@
     "message": "Rien à importer."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Erreur lors du déchiffrement du fichier exporté. Votre clé de chiffrement ne correspond pas à la clé de chiffrement utilisée pour exporter les données."
   },
   "selectFormat": {
     "message": "Sélectionnez le format du fichier à importer"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "L'élément $ID$ a été déplacé vers une organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Réinitialisation du mot de passe maître pour l'utilisateur $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Réinitialiser le Mot de Passe"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "En continuant, $NAME$ seront déconnectés de leur session actuelle, ce qui leur demandera de se reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "cet utilisateur"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Une ou plusieurs politiques d'organisation requièrent le mot de passe maître pour répondre aux exigences suivantes :"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Réinitialisation du Mot de Passe réussie!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe principal. Êtes-vous sûr de vouloir vous inscrire ?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Réinitialisation du Mot de Passe Maître"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Permettre aux administrateurs de l'organisation de réinitialiser le mot de passe maître des utilisateurs de l'organisation."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Les utilisateurs de l'organisation devront s'inscrire personnellement ou être inscrits automatiquement avant que les administrateurs puissent réinitialiser leur mot de passe principal."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Inscription Automatique"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Tous les utilisateurs seront automatiquement inscrits à la réinitialisation du mot de passe une fois leur invitation acceptée."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Les utilisateurs déjà dans l'organisation ne seront pas inscrits rétroactivement à la réinitialisation du mot de passe. Ils devront s'inscrire personnellement avant que les administrateurs puissent réinitialiser leur mot de passe maître."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Inscrire automatiquement les nouveaux utilisateurs"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Cette organisation a une politique d'entreprise qui vous inscrira automatiquement dans la réinitialisation du mot de passe. L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe principal."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "La réponse des Clés de l'Organisation est nulle"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "La réponse aux Détails de Réinitialisation du Mot de Passe est nulle"
   },
   "trashCleanupWarning": {
     "message": "Items that have been in Trash more than 30 days will be automatically deleted."
@@ -3980,42 +3980,42 @@
     "message": "Cette action est protégée. Pour continuer, veuillez ressaisir votre mot de passe maître pour vérifier votre identité."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Renvoyer les Invitations"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Cette action n'est applicable à aucun des utilisateurs sélectionnés."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Êtes-vous sûr de vouloir supprimer les utilisateurs suivants ? Le processus peut prendre quelques secondes et ne peut être interrompu ou annulé."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Confirmer la Sélection"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Statut de l'action groupée"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Confirmé avec succès."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Réinvité avec succès."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Supprimé avec succès"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Exclu, non applicable pour cette action."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Empreinte digitale"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Supprimer les utilisateurs"
   },
   "error": {
-    "message": "Error"
+    "message": "Erreur"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "La Gestion des Utilisateurs doit également être activée avec Gérer la Permission de Réinitialisation du Mot de Passe"
   }
 }
