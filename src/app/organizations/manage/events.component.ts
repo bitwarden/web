@@ -11,9 +11,9 @@ import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
-
+import { Organization } from 'jslib-common/models/domain/organization';
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
-import { ListResponse } from 'jslib-common/models/response/listResponse';
+
 import { EventView } from 'jslib-common/models/view/eventView';
 
 import { EventService } from '../../services/event.service';
@@ -26,6 +26,7 @@ export class EventsComponent implements OnInit {
     loading = true;
     loaded = false;
     organizationId: string;
+    organization: Organization;
     events: EventView[];
     start: string;
     end: string;
@@ -36,7 +37,6 @@ export class EventsComponent implements OnInit {
     morePromise: Promise<any>;
 
     private orgUsersUserIdMap = new Map<string, any>();
-    private orgUsersIdMap = new Map<string, any>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute, private eventService: EventService,
         private i18nService: I18nService, private toasterService: ToasterService, private userService: UserService,
@@ -46,8 +46,8 @@ export class EventsComponent implements OnInit {
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            const organization = await this.userService.getOrganization(this.organizationId);
-            if (organization == null || !organization.useEvents) {
+            this.organization = await this.userService.getOrganization(this.organizationId);
+            if (this.organization == null || !this.organization.useEvents) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
@@ -62,9 +62,17 @@ export class EventsComponent implements OnInit {
         const response = await this.apiService.getOrganizationUsers(this.organizationId);
         response.data.forEach(u => {
             const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
-            this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
             this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
         });
+
+        if (this.organization.providerId != null && (await this.userService.getProvider(this.organization.providerId)) != null) {
+            const response = await this.apiService.getProviderUsers(this.organization.providerId);
+            response.data.forEach(u => {
+                const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+                this.orgUsersUserIdMap.set(u.userId, { name: `${name} (${this.organization.providerName})`, email: u.email });
+            });
+        }
+
         await this.loadEvents(true);
         this.loaded = true;
     }
@@ -149,8 +157,7 @@ export class EventsComponent implements OnInit {
         const events = await Promise.all(response.data.map(async r => {
             const userId = r.actingUserId == null ? r.userId : r.actingUserId;
             const eventInfo = await this.eventService.getEventInfo(r);
-            const user = userId != null && this.orgUsersUserIdMap.has(userId) ?
-                this.orgUsersUserIdMap.get(userId) : null;
+            const user = this.getUserName(r, userId);
             return new EventView({
                 message: eventInfo.message,
                 humanReadableMessage: eventInfo.humanReadableMessage,
@@ -165,6 +172,24 @@ export class EventsComponent implements OnInit {
             });
         }));
         return { continuationToken: response.continuationToken, events: events };
+    }
+
+    private getUserName(r: EventResponse, userId: string) {
+        if (userId == null) {
+            return null;
+        }
+
+        if (this.orgUsersUserIdMap.has(userId)) {
+            return this.orgUsersUserIdMap.get(userId);
+        }
+
+        if (r.providerId != null && r.providerId == this.organization.providerId) {
+            return {
+                'name': this.organization.providerName,
+            };
+        }
+
+        return null;
     }
 
     private parseDates() {
