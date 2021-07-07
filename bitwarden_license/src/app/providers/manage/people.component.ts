@@ -37,6 +37,7 @@ import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';
 import { BulkStatusComponent } from './bulk/bulk-status.component';
 import { UserAddEditComponent } from './user-add-edit.component';
+import { EntityEventsComponent } from 'src/app/organizations/manage/entity-events.component';
 
 @Component({
     selector: 'provider-people',
@@ -54,6 +55,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
     userType = ProviderUserType;
     userStatusType = ProviderUserStatusType;
     providerId: string;
+    accessEvents = false;
 
     constructor(apiService: ApiService, private route: ActivatedRoute,
         i18nService: I18nService, componentFactoryResolver: ComponentFactoryResolver,
@@ -70,17 +72,27 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
             this.providerId = params.providerId;
             const provider = await this.userService.getProvider(this.providerId);
 
-            /*
-            if (!organization.canManageUsers) {
-                this.router.navigate(['../collections'], { relativeTo: this.route });
+            if (!provider.canManageUsers) {
+                this.router.navigate(['../'], { relativeTo: this.route });
                 return;
             }
 
-            this.accessEvents = organization.useEvents;
-            this.accessGroups = organization.useGroups;
-            */
+            this.accessEvents = provider.useEvents;
 
             await this.load();
+
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+                this.searchText = qParams.search;
+                if (qParams.viewEvents != null) {
+                    const user = this.users.filter(u => u.id === qParams.viewEvents);
+                    if (user.length > 0 && user[0].status === ProviderUserStatusType.Confirmed) {
+                        this.events(user[0]);
+                    }
+                }
+                if (queryParamsSub != null) {
+                    queryParamsSub.unsubscribe();
+                }
+            });
         });
     }
 
@@ -104,7 +116,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         await this.apiService.postProviderUserConfirm(this.providerId, user.id, request);
     }
 
-    edit (user: ProviderUserUserDetailsResponse) {
+    edit(user: ProviderUserUserDetailsResponse) {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -125,6 +137,27 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
             this.modal.close();
             this.removeUser(user);
         });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+    }
+
+    async events(user: ProviderUserUserDetailsResponse) {
+        if (this.modal != null) {
+            this.modal.close();
+        }
+
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.eventsModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<EntityEventsComponent>(
+            EntityEventsComponent, this.eventsModalRef);
+
+        childComponent.name = user.name || user.email;
+        childComponent.providerId = this.providerId;
+        childComponent.entityId = user.id;
+        childComponent.showUser = false;
+        childComponent.entity = 'user';
 
         this.modal.onClosed.subscribe(() => {
             this.modal = null;
