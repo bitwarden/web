@@ -23,6 +23,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
@@ -98,7 +99,7 @@ export class PeopleComponent implements OnInit {
         private cryptoService: CryptoService, private userService: UserService, private router: Router,
         private storageService: StorageService, private searchService: SearchService,
         private validationService: ValidationService, private policyService: PolicyService,
-        private searchPipe: SearchPipe) { }
+        private searchPipe: SearchPipe, private syncService: SyncService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -113,20 +114,20 @@ export class PeopleComponent implements OnInit {
             this.canResetPassword = organization.canManageUsersPassword;
             this.orgUseResetPassword = organization.useResetPassword;
             this.callingUserType = organization.type;
+            this.orgHasKeys = organization.hasPublicAndPrivateKeys;
 
             // Backfill pub/priv key if necessary
-            if (!organization.hasPublicAndPrivateKeys) {
+            if (this.canResetPassword && !this.orgHasKeys) {
                 const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
                 const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
                 const request = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
                 const response = await this.apiService.postOrganizationKeys(this.organizationId, request);
                 if (response != null) {
                     this.orgHasKeys = response.publicKey != null && response.privateKey != null;
+                    await this.syncService.fullSync(true); // Replace oganizations with new data
                 } else {
                     throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
                 }
-            } else {
-                this.orgHasKeys = true;
             }
 
             await this.load();
