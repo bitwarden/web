@@ -5,7 +5,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -14,7 +14,6 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUpdateRequest } from 'jslib-common/models/request/organizationUpdateRequest';
@@ -27,8 +26,6 @@ import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
 import { TaxInfoComponent } from '../../settings/tax-info.component';
 
-import { Organization } from 'jslib-common/models/domain/organization';
-import { Provider } from 'jslib-common/models/domain/provider';
 import { DeleteOrganizationComponent } from './delete-organization.component';
 
 @Component({
@@ -46,13 +43,8 @@ export class AccountComponent {
     loading = true;
     canUseApi = false;
     org: OrganizationResponse;
-    userOrg: Organization;
     formPromise: Promise<any>;
     taxFormPromise: Promise<any>;
-
-    canJoinProvider = false;
-    providers: Provider[];
-    provider: string = null;
 
     private organizationId: string;
     private modal: ModalComponent = null;
@@ -61,8 +53,7 @@ export class AccountComponent {
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private userService: UserService,
-        private router: Router) { }
+        private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -72,10 +63,6 @@ export class AccountComponent {
                 this.org = await this.apiService.getOrganization(this.organizationId);
                 this.canUseApi = this.org.useApi;
             } catch { }
-            this.providers = (await this.userService.getAllProviders()).filter(p => p.canCreateOrganizations);
-            this.userOrg = await this.userService.getOrganization(this.organizationId);
-            this.canJoinProvider = this.userOrg.providerId == null && this.providers.length > 0;
-            this.provider = this.providers[0]?.id;
         });
         this.loading = false;
     }
@@ -183,13 +170,5 @@ export class AccountComponent {
         this.modal.onClosed.subscribe(async () => {
             this.modal = null;
         });
-    }
-
-    joinProvider() {
-        if (this.providers.every(p => p.id !== this.provider)) {
-            // ID not found fail.
-        }
-
-        this.router.navigate(['/providers', this.provider, 'add', this.organizationId]);
     }
 }

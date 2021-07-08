@@ -2,11 +2,12 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
 import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/organizationSubscriptionResponse';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { Provider } from 'jslib-common/models/domain/provider';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -14,6 +15,7 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { PlanType } from 'jslib-common/enums/planType';
+import { UserService } from 'jslib-common/abstractions';
 
 @Component({
     selector: 'app-org-subscription',
@@ -32,13 +34,19 @@ export class OrganizationSubscriptionComponent implements OnInit {
     showChangePlan = false;
     sub: OrganizationSubscriptionResponse;
     selfHosted = false;
+    
+    userOrg: Organization;
+    canJoinProvider = false;
+    providers: Provider[];
+    provider: string = null;
 
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private toasterService: ToasterService,
-        private messagingService: MessagingService, private route: ActivatedRoute) {
+        private messagingService: MessagingService, private route: ActivatedRoute,
+        private userService: UserService, private router: Router) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -55,6 +63,12 @@ export class OrganizationSubscriptionComponent implements OnInit {
             return;
         }
         this.loading = true;
+
+        this.providers = (await this.userService.getAllProviders()).filter(p => p.canCreateOrganizations);
+        this.userOrg = await this.userService.getOrganization(this.organizationId);
+        this.canJoinProvider = this.userOrg.providerId == null && this.providers.length > 0;
+        this.provider = this.providers[0]?.id;
+
         this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
         this.loading = false;
     }
@@ -158,6 +172,14 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (load) {
             this.load();
         }
+    }
+
+    joinProvider() {
+        if (this.providers.every(p => p.id !== this.provider)) {
+            // ID not found fail.
+        }
+
+        this.router.navigate(['/providers', this.provider, 'add', this.organizationId]);
     }
 
     get isExpired() {
