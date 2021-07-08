@@ -91,7 +91,8 @@ export class AvatarComponent implements OnChanges, OnInit {
         if (parts.length > 1) {
             let text = '';
             for (let i = 0; i < count; i++) {
-                text += Array.from(parts[i]).splice(0, 1).join('');
+                const characters = parts[i].match(/./ug);
+                text += characters != null && characters.length > 0 ? characters[0] : '';
             }
             return text;
         }
