@@ -58,7 +58,12 @@ export class AvatarComponent implements OnChanges, OnInit {
                 chars = this.getFirstLetters(upperData, this.charCount);
             }
             if (chars == null) {
-                chars = upperData.substr(0, this.charCount);
+                chars = this.unicodeSafeSubstring(upperData, this.charCount);
+            }
+
+            // If the chars contain an emoji, only show it.
+            if (chars.match(Utils.regexpEmojiPresentation)) {
+                chars = chars.match(Utils.regexpEmojiPresentation)[0];
             }
 
             const charObj = this.getCharText(chars);
@@ -91,7 +96,7 @@ export class AvatarComponent implements OnChanges, OnInit {
         if (parts.length > 1) {
             let text = '';
             for (let i = 0; i < count; i++) {
-                text += parts[i].substr(0, 1);
+                text += this.unicodeSafeSubstring(parts[i], 1);
             }
             return text;
         }
@@ -124,5 +129,10 @@ export class AvatarComponent implements OnChanges, OnInit {
         textTag.style.fontWeight = this.fontWeight.toString();
         textTag.style.fontSize = this.fontSize + 'px';
         return textTag;
+    }
+
+    private unicodeSafeSubstring(str: string, count: number) {
+        const characters = str.match(/./ug);
+        return characters != null ? characters.slice(0, count).join('') : '';
     }
 }

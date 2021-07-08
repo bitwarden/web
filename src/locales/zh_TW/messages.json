@@ -361,7 +361,7 @@
     "message": "共享"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "移動至組織"
   },
   "valueCopied": {
     "message": "$VALUE$ 已複製",
@@ -404,7 +404,7 @@
     "message": "密碼庫"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "移動已選項目到組織"
   },
   "deleteSelected": {
     "message": "刪除選取的項目"
@@ -452,7 +452,7 @@
     "message": "項目已編輯"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "已將 $ITEMNAME$ 移動至 $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "已將選擇項目移動至 $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "組織"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "選擇您希望將這個項目移動到哪個組織。項目的擁有權將會轉移到該組織。一經移動，您將不再是此項目的直接擁有者。"
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "選擇您希望將這些項目移動到哪個組織。項目的擁有權將會轉移到該組織。一經移動，您將不再是這些項目的直接擁有者。"
   },
   "collectionsDesc": {
     "message": "編輯與此項目共享的集合。只有具有這些集合存取權限的組織使用者才能夠看到此項目。"
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "你選擇了 $COUNT$ 個項目。當中有 $MOVEABLE_COUNT$ 個項目可移動到組織當中，而有 $NONMOVEABLE_COUNT$ 個無法移動。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "輸入您的主密碼以匯出密碼庫資料。"
   },
   "export": {
-    "message": "Export"
+    "message": "匯出"
   },
   "exportVault": {
     "message": "匯出密碼庫"
@@ -1059,7 +1059,7 @@
     "message": "沒有匯入任何內容。"
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "解密匯出檔案時發生錯誤，您的加密金鑰與匯出資料時使用的金鑰不同。"
   },
   "selectFormat": {
     "message": "選擇匯入檔案的格式"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "移動項目 $ID$ 至一個組織。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3863,7 +3863,7 @@
     "message": "此瀏覽器不支援 WebAuthn。"
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn 驗證成功！</strong><br>您可以關閉此分頁。"
+    "message": "WebAuthn 驗證成功！您可以關閉此分頁。"
   },
   "hintEqualsPassword": {
     "message": "密碼提示不能與密碼相同。"
@@ -3872,7 +3872,7 @@
     "message": "注冊密碼重設"
   },
   "enrolledPasswordReset": {
-    "message": "注冊了密碼重設"
+    "message": "已注冊密碼重設"
   },
   "withdrawPasswordReset": {
     "message": "撤銷密碼重設"
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "重新設定使用者 $ID$ 的主密碼",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "重設密碼"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "接下來會將 $NAME$ 登出目前的會話，並要求他們重新登入。其他裝置上的活動會話最多會保持一個小時。",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "這個使用者"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "一個或多個組織原則要求主密碼須符合下列條件："
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "密碼重設成功！"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "註冊將允許組織管理者去變更您的主密碼。確定要註冊嗎？"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "主密碼重設"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "允許組織管理者去重新設定組織使用者的主密碼。"
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "組織使用者需要先自行註冊或將被自動註冊後管理者才能重新設定他們的主密碼。"
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "自動註冊"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "所有邀請被接受后的使用者將會被自動註冊密碼重設。"
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "已經在組織中的使用者將不會被註冊密碼重設。他們需要先自行註冊後管理者才能重設他們的主密碼。"
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "自動註冊新使用者"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "此組織設定了讓您可自動重設密碼的企業政策。設定政策後，將允許組織管理員更改您的主控密碼。"
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "組織金鑰回覆為空"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "重設密碼細節回覆為空"
   },
   "trashCleanupWarning": {
     "message": "垃圾桶中超過 30 天的密碼將會被自動刪除。"
@@ -3971,7 +3971,7 @@
     "message": "垃圾桶中超過一定時間的密碼將會被自動刪除。"
   },
   "passwordPrompt": {
-    "message": "重新提示主密碼"
+    "message": "重新詢問主密碼"
   },
   "passwordConfirmation": {
     "message": "確認主密碼"
@@ -3980,42 +3980,42 @@
     "message": "此操作受到保護。若要繼續，請重新輸入您的主密碼以驗證您的身份。"
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "重新傳送邀請"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "這個動作不適用於任何已選取的使用者。"
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "您確定要移除以下使用者嗎？處理程序需要幾秒鐘去完成而且無法被中斷或取消。"
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "確認所選"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "批次作業狀態"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "已成功確認。"
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "已成功重新邀請。"
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "已成功移除。"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "排除，不適用於這個動作。"
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "指紋"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "移除使用者"
   },
   "error": {
-    "message": "Error"
+    "message": "錯誤"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "必須開啟管理密碼重設權限後，才能開啟管理使用者權限"
   }
 }

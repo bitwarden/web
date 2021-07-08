@@ -361,7 +361,7 @@
     "message": "共享"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "移动到组织"
   },
   "valueCopied": {
     "message": "$VALUE$ 已复制",
@@ -398,13 +398,13 @@
     "description": "Copy URI to clipboard"
   },
   "myVault": {
-    "message": "我的密码库"
+    "message": "密码库"
   },
   "vault": {
     "message": "密码库"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "移动所选项目到组织"
   },
   "deleteSelected": {
     "message": "删除所选"
@@ -452,7 +452,7 @@
     "message": "项目已编辑"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ 已移动到 $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "所选项目已移动到 $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -564,7 +564,7 @@
     "message": "确认主密码"
   },
   "masterPassHint": {
-    "message": "主密码提示 (可选)"
+    "message": "主密码提示（可选）"
   },
   "masterPassHintLabel": {
     "message": "主密码提示"
@@ -769,10 +769,10 @@
     "message": "组织"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "选择一个您想将此项目移至的组织。移动到组织会将该项目的所有权转让给该组织。移动后，您将不再是此项目的直接所有者。"
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "选择一个您想将这些项目移至的组织。移动到组织会将这些项目的所有权转让给该组织。移动后，您将不再是这些项目的直接所有者。"
   },
   "collectionsDesc": {
     "message": "编辑与此项目共享的集合。只有具有这些集合访问权限的组织用户才能看到此项目。"
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "您选择了 $COUNT$ 个项目。$MOVEABLE_COUNT$ 个项目可以移动到组织，$NONMOVEABLE_COUNT$ 不能。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "输入主密码来导出你的密码库数据。"
   },
   "export": {
-    "message": "Export"
+    "message": "导出"
   },
   "exportVault": {
     "message": "导出密码库"
@@ -1059,7 +1059,7 @@
     "message": "没有导入任何内容。"
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "解密导出的文件时出错。您的加密密钥与导出数据时使用的加密密钥不匹配。"
   },
   "selectFormat": {
     "message": "选择导入文件的格式"
@@ -1452,7 +1452,7 @@
     "message": "公开密码报告"
   },
   "exposedPasswordsReportDesc": {
-    "message": "公开密码是在已知数据泄露中被发现的密码，这些数据泄露是由黑客公开发布或在黑网上销售的。"
+    "message": "已泄露密码是在已知的数据泄露中被发现的密码，这些数据已由黑客公开发布或在暗网上销售。"
   },
   "exposedPasswordsFound": {
     "message": "发现公开密码"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "已将项目 $ID$ 移动到组织。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3413,7 +3413,7 @@
     "message": "最大访问次数"
   },
   "maxAccessCountDesc": {
-    "message": "如果设置了，达到最大访问次数后用户将无法访问此 Send。",
+    "message": "如果设置，达到最大访问次数后用户将无法访问此 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3863,7 +3863,7 @@
     "message": "此浏览器不支持 WebAuthn。"
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn 验证成功！</strong><br>您可以关闭此选项卡。"
+    "message": "WebAuthn 验证成功！您可以关闭此标签页。"
   },
   "hintEqualsPassword": {
     "message": "密码提示不能与密码相同。"
@@ -3872,7 +3872,7 @@
     "message": "注册密码重置"
   },
   "enrolledPasswordReset": {
-    "message": "注册了密码重置"
+    "message": "已注册密码重置"
   },
   "withdrawPasswordReset": {
     "message": "撤销密码重置"
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "重置用户 $ID$ 的主密码。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "重置密码"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "继续操作会将 $NAME$ 登出当前会话，要求他们重新登录。在其他设备上的活动会话可能继续活动长达一个小时。",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,55 +3923,55 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "此用户"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "一个或多个组织策略要求主密码满足下列要求："
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "密码重置成功"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "注册后将允许组织管理员更改您的主密码。确定要注册吗？"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "主密码重置"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "允许组织管理员重置组织用户的主密码。"
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "组织中的用户自行注册或被自动注册后，管理员才能重置他们的主密码。"
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "自动注册"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "所有邀请被接受后的用户将会被自动注册密码重置。"
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "已经在组织中的用户将不会被注册密码重置。需要他们自行注册后，管理员才能重置他们的主密码。"
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "自动为新用户注册"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "此组织有一个企业策略，将自动为你注册密码重置。注册后将允许组织管理员更改您的主密码。"
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "组织密钥响应为空"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "重置密码详细信息响应为空"
   },
   "trashCleanupWarning": {
-    "message": "回收站中超过 30 天的密码将会被自动删除。"
+    "message": "回收站中超过 30 天的项目将会被自动删除。"
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "回收站中超过一定时间的密码将会被自动删除。"
+    "message": "回收站中超过一定时间的项目将会被自动删除。"
   },
   "passwordPrompt": {
-    "message": "重新提示主密码"
+    "message": "重新询问主密码"
   },
   "passwordConfirmation": {
     "message": "确认主密码"
@@ -3980,42 +3980,42 @@
     "message": "此操作受到保护。若要继续，请重新输入您的主密码以验证您的身份。"
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "重新发送邀请"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "此操作不适用于所选用户。"
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "您确定要移除以下用户吗？该过程可能需要几秒钟才能完成，并且不能中断或取消。"
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "确认选择"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "批量操作状态"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "确认成功。"
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "重新邀请成功。"
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "移除成功"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "排除，不适用于此操作。"
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "指纹"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "移除用户"
   },
   "error": {
-    "message": "Error"
+    "message": "错误"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "必须启用管理密码重置权限后才能启用管理用户"
   }
 }
