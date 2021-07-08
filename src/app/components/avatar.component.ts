@@ -91,7 +91,7 @@ export class AvatarComponent implements OnChanges, OnInit {
         if (parts.length > 1) {
             let text = '';
             for (let i = 0; i < count; i++) {
-                text += parts[i].substr(0, 1);
+                text += Array.from(parts[i]).splice(0, 1).join('');
             }
             return text;
         }
