@@ -361,7 +361,7 @@
     "message": "공유"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "조직으로 이동하기"
   },
   "valueCopied": {
     "message": "$VALUE$를 클립보드에 복사함",
@@ -404,7 +404,7 @@
     "message": "보관함"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "선택한 항목을 조직으로 이동함"
   },
   "deleteSelected": {
     "message": "선택 항목 삭제"
@@ -452,7 +452,7 @@
     "message": "항목 편집함"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$이(가) $ORGNAME$(으)로 이동됨",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "선택한 항목이 $ORGNAME$(으)로 이동됨",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "조직"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "이 항목을 이동할 조직을 선택하십시오. 항목이 조직으로 이동되면 소유권이 조직으로 이전됩니다. 일단 이동되면, 더는 이동된 항목의 직접적인 소유자가 아니게 됩니다."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "이 항목을 이동할 조직을 선택하십시오. 항목이 조직으로 이동되면 소유권이 조직으로 이전됩니다. 일단 이동되면, 더는 이동된 항목의 직접적인 소유자가 아니게 됩니다."
   },
   "collectionsDesc": {
     "message": "이 항목이 공유될 콜렉션을 수정하십시오. 이 콜렉션에 접근할 수 있는 조직 사용자만 이 항목을 볼 수 있습니다."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "$COUNT$개의 항목을 선택하셨습니다. $MOVEABLE_COUNT$개의 항목은 조직으로 이동시킬 수 있지만 나머지 $NONMOVEABLE_COUNT$개의 항목은 이동시킬 수 없습니다.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "보관함 데이터를 내보내려면 마스터 비밀번호를 입력하세요."
   },
   "export": {
-    "message": "Export"
+    "message": "내보내기"
   },
   "exportVault": {
     "message": "보관함 내보내기"
@@ -1059,7 +1059,7 @@
     "message": "아무것도 가져오지 못했습니다."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "내보내려는 파일을 복호화하던 중 오류가 발생했습니다. 암호화 키가 내보내려는 데이터를 암호화한 키와 일치하지 않습니다."
   },
   "selectFormat": {
     "message": "불러올 파일의 포맷"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "$ID$ 항목을 조직으로 이동시켰습니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "$ID$ 사용자의 마스터 비밀번호를 재설정합니다.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "비밀번호 재설정"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "계속 진행하면 $NAME$이 로그아웃되므로 다시 로그인해야 합니다. 다른 기기에서 접속 중인 세션은 1시간 동안 접속이 가능합니다.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,19 +3923,19 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "이 사용자"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "하나 이상의 단체 정책이 마스터 비밀번호가 다음 사항을 따르도록 요구합니다:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "비밀번호 재설정 성공!"
   },
   "resetPasswordEnrollmentWarning": {
     "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "마스터 비밀번호 재설정"
   },
   "resetPasswordPolicyDescription": {
     "message": "Allow administrators in the organization to reset organization users' master password."
@@ -3959,10 +3959,10 @@
     "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "조직 키 반응 없음"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "비밀번호 재성정 정보 반응 없음"
   },
   "trashCleanupWarning": {
     "message": "휴지통으로 이동된 암호는 30일 이후 자동으로 삭제됩니다."
@@ -3980,7 +3980,7 @@
     "message": "이 작업은 보호되어 있습니다. 계속하려면 마스터 비밀번호를 입력하여 신원을 인증하세요."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "초대장 다시 보내기"
   },
   "noSelectedUsersApplicable": {
     "message": "This action is not applicable to any of the selected users."
@@ -3989,7 +3989,7 @@
     "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "선택 항목 확인"
   },
   "bulkConfirmStatus": {
     "message": "Bulk action status"
@@ -3998,22 +3998,22 @@
     "message": "Confirmed successfully."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "성공적으로 재초대되었습니다."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "성공적으로 제거됨"
   },
   "bulkFilteredMessage": {
     "message": "Excluded, not applicable for this action."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "지문"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "사용자 삭제"
   },
   "error": {
-    "message": "Error"
+    "message": "오류"
   },
   "resetPasswordManageUsers": {
     "message": "Manage Users must also be enabled with the Manage Password Reset permission"
