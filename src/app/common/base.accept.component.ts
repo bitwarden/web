@@ -29,7 +29,7 @@ export abstract class BaseAcceptComponent implements OnInit {
 
     constructor(protected router: Router, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected route: ActivatedRoute,
-        protected userService: UserService, private stateService: StateService) { }
+        protected userService: UserService, protected stateService: StateService) { }
 
     abstract authedHandler(qParams: any): Promise<void>;
     abstract unauthedHandler(qParams: any): Promise<void>;

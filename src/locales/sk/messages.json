@@ -361,7 +361,7 @@
     "message": "Zdieľať"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Presunúť do organizácie"
   },
   "valueCopied": {
     "message": "$VALUE$ skopírované",
@@ -404,7 +404,7 @@
     "message": "Trezor"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Presunúť vybraté do organizácie"
   },
   "deleteSelected": {
     "message": "Odstrániť vybrané"
@@ -452,7 +452,7 @@
     "message": "Položka upravená"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ presunuté do $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Vybraté položky boli presunuté do $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -745,13 +745,13 @@
     "message": "FIDO U2F bezpečnostný kľúč"
   },
   "webAuthnTitle": {
-    "message": "FIDO2 WebAuth"
+    "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Použiť akýkoľvek WebAuth bezpečnostný kľúč pre prístup k vášmu účtu."
+    "message": "Použiť akýkoľvek WebAuthn bezpečnostný kľúč pre prístup k vášmu účtu."
   },
   "webAuthnMigrated": {
-    "message": "(Migrovavané z FIDO)"
+    "message": "(Migrované z FIDO)"
   },
   "emailTitle": {
     "message": "Email"
@@ -769,10 +769,10 @@
     "message": "Organizácie"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Vyberte organizáciu, do ktorej chcete presunúť túto položku. Presunom do organizácie sa vlastníctvo položky prenáša na túto organizáciu. Po presunutí už nebudete priamym vlastníkom danej položky."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Vyberte organizáciu, do ktorej chcete presunúť tieto položky. Presunom do organizácie sa vlastníctvo položky prenáša na túto organizáciu. Po presunutí už nebudete priamym vlastníkom daných položiek."
   },
   "collectionsDesc": {
     "message": "Upravte zbierky s ktorými bude táto položka zdieľaná. Iba členovia organizácie s prístupom k vybraným zbierkam budú vidieť túto položku."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Vybrali ste $COUNT$ položku(iek). $MOVEABLE_COUNT$ položka(iek) môže(u) byť presunuté do organizácie, $NONMOVEABLE_COUNT$ nemôže(u).",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Zadajte vaše hlavné heslo pre export údajov trezoru."
   },
   "export": {
-    "message": "Export"
+    "message": "Exportovať"
   },
   "exportVault": {
     "message": "Export trezoru"
@@ -1059,7 +1059,7 @@
     "message": "Nič na importovanie."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Chyba pri dešifrovaní exportovaného súboru. Váš šifrovací kľúč sa nezhoduje so šifrovacím kľúčom použitým pri exporte údajov."
   },
   "selectFormat": {
     "message": "Vyberte formát súboru importu"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Položka $ID$ presunutá do organizácie.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2662,7 +2662,7 @@
     "message": "Overovanie zlyhalo. Skúste si odoslať nový verifikačný e-mail."
   },
   "emailVerificationRequired": {
-    "message": "Vyžaduje sa overenie e-mailom"
+    "message": "Vyžaduje sa overenie e-mailu"
   },
   "emailVerificationRequiredDesc": {
     "message": "Na používanie tejto funkcie musíte overiť svoj e-mail."
@@ -3854,37 +3854,37 @@
     "message": "Pri ukladaní dátumov odstránenia a vypršania platnosti sa vyskytla chyba."
   },
   "webAuthnFallbackMsg": {
-    "message": "Na overenie 2Fa, prosím, kliknite na tlačidlo nižšie."
+    "message": "Na overenie 2FA, prosím, kliknite na tlačidlo nižšie."
   },
   "webAuthnAuthenticate": {
-    "message": "Overiť cez WebAuth"
+    "message": "Overiť cez WebAuthn"
   },
   "webAuthnNotSupported": {
     "message": "Tento prehliadač nepodporuje WebAuthn."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn bol úspešne overený!</strong><br>Túto kartu môžete zavrieť."
+    "message": "WebAuthn bol úspešne overený! Túto kartu môžete zavrieť."
   },
   "hintEqualsPassword": {
     "message": "Nápoveda pre heslo nemôže byť rovnaká ako heslo."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Zaregistrovať sa pre obnovu hesla"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Zaregistrovaný pre obnovu hesla"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Odhlásiť sa z obnovy hesla"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Registrácia úspešná!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Odhlásenie úspešné!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Používateľ $ID$ sa registroval na pomoc s obnovou hesla.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3893,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Používateľ $ID$ sa odhlásil z pomoci obnovy hesla.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Obnoviť hlavné heslo pre používateľa $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Obnoviť heslo"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Pokračovaním sa $NAME$ odhlási z aktuálnej relácie a bude sa musieť znova prihlásiť. Aktívne relácie na iných zariadeniach môžu zostať aktívne až jednu hodinu.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,52 +3923,52 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "tento používateľ"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Jedno alebo viac pravidiel organizácie požadujú, aby hlavné heslo spĺňalo nasledujúce požiadavky:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Heslo bolo úspešne obnovené!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Registrácia umožní správcom organizácie zmeniť vaše hlavné heslo. Naozaj sa chcete zaregistrovať?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Hlavné heslo obnovené"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Umožní správcom v organizácii resetovať hlavné heslo používateľov organizácie."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Používatelia v organizácii sa budú musieť sami zaregistrovať alebo byť automaticky zaregistrovaní predtým, ako budú môcť správcovia resetovať ich hlavné heslo."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatická registrácia"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Všetci používatelia budú po prijatí pozvánky automaticky zaregistrovaní na obnovenie hesla."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Používatelia, ktorí už v organizácii sú, nebudú spätne zaregistrovaní na obnovenie hesla. Budú sa musieť sami zaregistrovať predtým, ako im administrátori obnovia hlavné heslo."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Automaticky zaregistrovať nových používateľov"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Táto organizácia má podnikovú politiku, ktorá vás automaticky zaregistruje na obnovenia hesla. Registrácia umožní správcom organizácie zmeniť vaše hlavné heslo."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Prázdná odpoveď Organization Keys"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Odpoveď na obnovenie hesla je prázdna"
   },
   "trashCleanupWarning": {
-    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Položky ktoré boli v Koši viac ako 30 dní budú automaticky vymazané."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Items that have been in Trash for a while will be automatically deleted."
+    "message": "Položky v Koši budú po nejakej dobe automaticky vymazané."
   },
   "passwordPrompt": {
     "message": "Znova zadajte hlavné heslo"
@@ -3980,42 +3980,42 @@
     "message": "Táto akcia je chránená. Ak chcete pokračovať, znova zadajte hlavné heslo a overte svoju totožnosť."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Znovu poslať pozvánky"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Táto akcia sa nevzťahuje na žiadneho z vybraných používateľov."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Naozaj chcete odstrániť týchto používateľov? Dokončenie procesu môže trvať niekoľko sekúnd a nie je možné ho prerušiť ani zrušiť."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Potvrdiť vybrané"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Stav hromadnej akcie"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Úspešne potvrdené."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Opätovné pozvanie úspešné."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Odstránenie úspešné"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Vylúčené, neplatí pre túto akciu."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Odtlačok prsta"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Odstrániť používateľov"
   },
   "error": {
-    "message": "Error"
+    "message": "Chyba"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Správa používateľov musí byť povolená aj s oprávnením spravovať obnovenie hesla"
   }
 }

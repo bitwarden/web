@@ -361,7 +361,7 @@
     "message": "Delen"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Naar organisatie verplaatsen"
   },
   "valueCopied": {
     "message": "$VALUE$ gekopieerd",
@@ -404,7 +404,7 @@
     "message": "Kluis"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Selectie naar organisatie verplaatsen"
   },
   "deleteSelected": {
     "message": "Selectie verwijderen"
@@ -452,7 +452,7 @@
     "message": "Item is bewerkt"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ verplaatst naar $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Geselecteerde items verplaatst naar $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisaties"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Kies een organisatie waarnaar je dit item wilt verplaatsen. Door het verplaatsen krijgt de organisatie de eigendomsrechten van het item. Je bent niet langer de directe eigenaar meer van het item als het is verplaatst."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Kies een organisatie waarnaar je deze items wilt verplaatsen. Door het verplaatsen krijgt de organisatie de eigendomsrechten van deze items. Je bent niet langer de directe eigenaar meer van deze items als ze zijn verplaatst."
   },
   "collectionsDesc": {
     "message": "Wijzig de verzamelingen waarmee dit item gedeeld is. Alleen organisatiegebruikers met toegang tot deze verzamelingen kunnen dit item inzien."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Je hebt $COUNT$ item(s) geselecteerd. Je kunt $MOVEABLE_COUNT$ verplaatsen naar een organisatie, $NONMOVEABLE_COUNT$ niet.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Voer je hoofdwachtwoord in om de kluisgegevens te exporteren."
   },
   "export": {
-    "message": "Export"
+    "message": "Exporteren"
   },
   "exportVault": {
     "message": "Kluis exporteren"
@@ -1059,7 +1059,7 @@
     "message": "Er is niets geïmporteerd."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Fout bij het decoderen van het geëxporteerde bestand. Je encryptiesleutel komt niet overeen met de gebruikte sleutel waarmee de gegevens zijn geëxporteerd."
   },
   "selectFormat": {
     "message": "Selecteer het formaat van het importbestand"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Item $ID$ naar een organisatie verplaatst.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3863,7 +3863,7 @@
     "message": "WebAuthn wordt niet ondersteund in deze browser."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn is met succes geverifieerd!</strong><br>Je kunt dit tabblad sluiten."
+    "message": "WebAuthn met succes geverifieerd! Je kunt dit tabblad sluiten."
   },
   "hintEqualsPassword": {
     "message": "Je wachtwoordhint moet anders zijn dan je wachtwoord."
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Hoofdwachtwoord opnieuw instellen voor gebruiker $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Wachtwoord opnieuw instellen"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Doorgaan logt de huidige sessie van $NAME$ uit, waarna deze opnieuw moet aanmelden. Actieve sessies op andere apparaten kunnen mogelijk nog één uur actief blijven.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "deze gebruiker"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Een of meer organisatiebeleidseisen stelt de volgende eisen aan je hoofdwachtwoord:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Wachtwoord opnieuw ingesteld!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Inschrijving stelt organisatiebeheerders in staat om je hoofdwachtwoord te wijzigen. Weet je zeker dat je wilt inschrijven?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Hoofdwachtwoord opnieuw instellen"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Beheerders in de organisatie toestaan het hoofdwachtwoord van gebruikers van de organisatie opnieuw in te stellen."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Gebruikers in de organisatie moeten zichzelf inschrijven of automatisch worden ingeschreven voordat beheerders hun hoofdwachtwoord opnieuw kunnen instellen."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatische inschrijving"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Alle gebruikers worden automatisch ingeschreven voor wachtwoordherstel zodra hun uitnodiging wordt geaccepteerd."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Gebruikers die al deel uitmaken van de organisatie worden niet met terugwerkende kracht aangemeld voor wachtwoordherstel. Zij zullen zichzelf moeten inschrijven voordat beheerders hun hoofdwachtwoord kunnen herstellen."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Automatisch nieuwe gebruikers inschrijven"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Deze organisatie heeft een ondernemingsbeleid dat je automatisch inschrijft bij het resetten van je wachtwoord. Inschrijving stelt organisatiebeheerders in staat om je hoofdwachtwoord te wijzigen."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Reactie organisatiesleutels is null"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Reactie Wachtwoordhersteldetails is null"
   },
   "trashCleanupWarning": {
     "message": "Codes die meer dan 30 dagen in de prullenbak zitten worden automatisch verwijderd."
@@ -3980,42 +3980,42 @@
     "message": "Deze actie is beveiligd. Voer je hoofdwachtwoord opnieuw in om je identiteit vast te stellen en door te gaan."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Uitnodigingen opnieuw verzenden"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Deze actie is niet van toepassing op de geselecteerde gebruikers."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Weet je zeker dat je de volgende gebruikers wilt verwijderen? Dit proces duurt enkele seconden en kan niet worden onderbroken of geannuleerd."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Bevestig selectie"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Bulkactie status"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Succesvol bevestigd."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Succesvol opnieuw uitgenodigd."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Succesvol verwijderd"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Uitgezonderd, niet van toepassing voor deze actie."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Vingerafdruk"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Gebruikers verwijderen"
   },
   "error": {
-    "message": "Error"
+    "message": "Fout"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Gebruikers beheren moet ingeschakeld zijn met de optie Wachtwoordherstel beheren"
   }
 }

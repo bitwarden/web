@@ -361,7 +361,7 @@
     "message": "Sdílet"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Přesunout do organizace"
   },
   "valueCopied": {
     "message": "$VALUE$ zkopírováno",
@@ -404,7 +404,7 @@
     "message": "Trezor"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Přesunout vybrané do organizace"
   },
   "deleteSelected": {
     "message": "Smazat vybrané"
@@ -452,7 +452,7 @@
     "message": "Položka byla upravena"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ přesunut do $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Vybrané položky přesunuty do $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organizace"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Vyberte organizaci, do které chcete tuto položku přesunout. Přesun do organizace převede vlastnictví položky této organizaci. Po přesunutí této položky již nebudete přímým vlastníkem této položky."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Vyberte organizaci, do které chcete tyto položky přesunout. Přesun do organizace převede vlastnictví položek této organizaci. Po přesunutí již nebudete přímým vlastníkem těchto položek."
   },
   "collectionsDesc": {
     "message": "Upravit kolekce, ve kterých je tato položka sdílená. Pouze uživatelé organizace, kteří mají přístup k těmto kolekcím, budou moci tuto položku vidět."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Vybrali jste $COUNT$ položku(ek). $MOVEABLE_COUNT$ položku(ek) lze přesunout do organizace, $NONMOVEABLE_COUNT$ nelze.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Zadejte své hlavní heslo pro export dat."
   },
   "export": {
-    "message": "Export"
+    "message": "Exportovat"
   },
   "exportVault": {
     "message": "Exportovat přihlašovací údaje"
@@ -1059,7 +1059,7 @@
     "message": "Nic nebylo importováno"
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Chyba při dešifrování exportovaného souboru. Váš šifrovací klíč se neshoduje s klíčem použitým během exportu dat."
   },
   "selectFormat": {
     "message": "Vyberte formát importovaného souboru"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Položka $ID$ přesunuta do organizace.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Hlavní heslo uživatele $ID$ obnoveno.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Obnovit heslo"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Pokračováním odhlásíte $NAME$ z aktuální relace, což znamená, že se budou muset znovu přihlásit. Aktivní relace na jiných zařízeních mohou zůstat aktivní až po dobu jedné hodiny.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "tento uživatel"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Jedna nebo více zásad organizace vyžaduje, aby hlavní heslo splňovalo následující požadavky:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Heslo bylo úspěšně obnoveno!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Registrace umožní správcům organizace změnit vaše hlavní heslo. Opravdu se chcete zaregistrovat?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Obnovení hlavního hesla"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Povolte správcům v organizaci resetovat hlavní heslo uživatelů organizace."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Uživatelé v organizaci se budou muset sami zaregistrovat nebo být automaticky zaregistrovaní předtím, než budou moct správcové resetovat jejich hlavní heslo."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatická registrace"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Jakmile bude jejich pozvání přijato, všichni uživatelé budou automaticky zaregistrováni do obnovení hesla."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Uživatelé, kteří jsou již v organizaci, nebudou zpětně zaregistrováni do obnovení hesla. Než budou moci správci obnovit hlavní heslo, budou se muset zaregistrovat sami."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Automaticky zaregistrovat nové uživatele"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Tato organizace má podnikové zásady, které vás automaticky zaregistrují k obnovení hesla. Registrace umožní správcům organizace změnit vaše hlavní heslo."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Odpověď klíčů organizace je prázdná"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Odpověď na obnovení hesla je prázdná"
   },
   "trashCleanupWarning": {
     "message": "Položky, které byly v koši déle než 30 dní, budou automaticky smazány."
@@ -3980,42 +3980,42 @@
     "message": "Tato akce je chráněna. Chcete-li pokračovat, zadejte znovu vaše hlavní heslo, abychom ověřili vaší totožnost."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Znovu odeslat pozvánky"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Tuto akci nelze použít na žádného z vybraných uživatelů."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Opravdu chcete odebrat následující uživatele? Proces může trvat několik sekund a nelze jej přerušit ani zrušit."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Potvrdit vybrané"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Stav hromadné akce"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Úspěšně potvrzeno."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Znovu úspěšně pozváno."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Úspěšně odstraněno"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Vyloučené, neplatí pro tuto akci."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Otisk prstu"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Odebrat uživatele"
   },
   "error": {
-    "message": "Error"
+    "message": "Chyba"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Správa uživatelů musí být také povolena s oprávněním spravovat obnovení hesla"
   }
 }

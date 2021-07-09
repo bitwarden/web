@@ -81,6 +81,8 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
             timeout: 10000,
         };
         this.toasterService.popAsync(toast);
+
+        await this.stateService.remove('orgInvitation');
         this.router.navigate(['/vault']);
     }
 
@@ -90,6 +92,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
             // Fix URL encoding of space issue with Angular
             this.orgName = this.orgName.replace(/\+/g, ' ');
         }
+        await this.stateService.save('orgInvitation', qParams);
     }
 
     private async performResetPasswordAutoEnroll(qParams: any): Promise<boolean> {

@@ -361,7 +361,7 @@
     "message": "Del"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Flyt til organisation"
   },
   "valueCopied": {
     "message": "$VALUE$ kopieret",
@@ -404,7 +404,7 @@
     "message": "Boks"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Flyt valgte til organisation"
   },
   "deleteSelected": {
     "message": "Slet valgte"
@@ -452,7 +452,7 @@
     "message": "Redigerede element"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ flyttet til $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Valgte emner flyttet til $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisationer"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Vælg den organisation, som du vil flytte dette emne til. Flytning overfører ejerskab af emnet til organisationen, og du vil efter flytningen ikke længere være den direkte ejer af emnet."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Vælg en organisation, som du vil flytte disse emner til. Flytning overfører ejerskabet af emnerne til organisationen, og du vil efter flytningen ikke længere være den direkte ejer af disse emner."
   },
   "collectionsDesc": {
     "message": "Redigér de samlinger, som dette element deles med. Kun organisationsbrugere med adgang til disse samlinger vil kunne se dette element."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Du har valgt $COUNT$ emne(r). $MOVEABLE_COUNT$ emne(r) kan flyttes til en organisation, $NONMOVEABLE_COUNT$ kan ikke.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Indtast din hovedadgangskode for at eksportere dine data fra boksen."
   },
   "export": {
-    "message": "Export"
+    "message": "Eksportér"
   },
   "exportVault": {
     "message": "Eksportér boks"
@@ -1059,7 +1059,7 @@
     "message": "Intet blev importeret."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Fejl ved dekryptering af den eksporterede fil. Din krypteringsnøglen matcher ikke den krypteringsnøgle, som blev anvendt til dataeksporten."
   },
   "selectFormat": {
     "message": "Vælg formatet for importfilen"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Flyttede emnet $ID$ til en organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3863,7 +3863,7 @@
     "message": "Denne browser understøtter ikke WebAuthn."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn bekræftet!</strong><br>Denne fane kan lukkes."
+    "message": "WebAuthn bekræftet Du kan lukke denne fane."
   },
   "hintEqualsPassword": {
     "message": "Dit kodeordstip må ikke være identisk med din adgangskode."
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Hovedadgangskode nulstillet for bruger $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Nulstil adgangskode"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Ved at fortsætte logges $NAME$ ud af sin nuværende session, hvilket kræver, at vedkommende logger ind igen. Aktive sessioner på andre enheder forbliver muligvis aktive i op til en time.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,52 +3923,52 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "denne bruger"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Én eller flere organisationspolitikker kræver, at hovedadgangskoden opfylder følgende krav:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Adgangskode nulstillet!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Indrullering vil tillade organisationsadministratorer at ændre din hovedadgangskode. Er du sikker på, at du vil indrullere dig?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Nulstil hovedadgangskode"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Tillad administratorer i organisationen at nulstille organisationsbrugeres hovedadgangskode."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Brugere i organisationen skal selvindrullere eller være auto-indrulleret, før administratorer kan nulstille deres hovedadgangskode."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Auto-indrullering"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Alle brugere opsættes automatisk til adgangskodenulstilling, når deres invitation er accepteret."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Brugere, som allerede er i organisationen, opsættes ikke med tilbagevirkende kraft til adgangskodenulstilling. De skal selvindrullere, før administratorer kan nulstille deres hovedadgangskode."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Auto-indrullér nye brugere"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Denne organisation har en virksomhedspolitik, der auto-opsætter dig til adgangskodenulstilling. Opsætningen giver organisationsadministratorer mulighed for at ændre din hovedadgangskode."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Organisationsnøgler svar er null"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Nulstil adgangskode detaljer svar er null"
   },
   "trashCleanupWarning": {
-    "message": "Koder, som har været i papirkurven i mere end 30 dage, slettes automatisk."
+    "message": "Elementer, som har været i papirkurven i mere end 30 dage, slettes automatisk."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Koder, som har været i papirkurven i et stykke tid, slettes automatisk."
+    "message": "Elementer, som har været i papirkurven i et stykke tid, slettes automatisk."
   },
   "passwordPrompt": {
     "message": "Genanmodning om hovedadgangskode"
@@ -3980,42 +3980,42 @@
     "message": "Denne handling er beskyttet. For at fortsætte, angiv din hovedadgangskode igen for at bekræfte din identitet."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Gensend invitationer"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Denne handling er ikke anvendelig for nogen af de valgte brugere."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Er du sikker på, at du vil fjerne følgende brugere? Processen kan tage et par sekunder at fuldføre og kan ikke afbrydes eller annulleres."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Bekræft valgte"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Status for massehandling"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Bekræftet med succes."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Geninviteret med succes."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Fjernet med succes"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Udelukket, ikke anvendeligt til denne handling."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Fingeraftryk"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Fjern brugere"
   },
   "error": {
-    "message": "Error"
+    "message": "Fejl"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Administrér brugere skal også være aktiveret med tilladelsen Håndtér adgangskodenulstilling"
   }
 }

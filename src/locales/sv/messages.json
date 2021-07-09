@@ -361,7 +361,7 @@
     "message": "Dela"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Flytta till organisation"
   },
   "valueCopied": {
     "message": "$VALUE$ kopierades",
@@ -404,7 +404,7 @@
     "message": "Valv"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Flytta valda till organisation"
   },
   "deleteSelected": {
     "message": "Radera markerade"
@@ -452,7 +452,7 @@
     "message": "Redigerade objekt"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ flyttades till $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "De valda objekten flyttades till $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisationer"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Välj en organisation som du vill flytta detta objektet till. Flytt till en organisation överför ägandet av objektet till den organisationen. Du kommer inte längre att vara direkt ägare till detta objekt när det har flyttats."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Välj en organisation som du vill flytta dessa objekt till. Flytt till en organisation överför ägandet av objekten till den organisationen. Du kommer inte längre att vara direkt ägare till dessa objekt när de har flyttats."
   },
   "collectionsDesc": {
     "message": "Redigera de samlingar som detta objekt delas med. Endast organisationsanvändare med tillgång till dessa samlingar kommer att kunna se detta objekt."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Du har valt $COUNT$ objekt. $MOVEABLE_COUNT$ objekt kan flyttas till en organisation, $NONMOVEABLE_COUNT$ kan det inte.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Ange ditt huvudlösenord för att exportera ditt valv."
   },
   "export": {
-    "message": "Export"
+    "message": "Exportera"
   },
   "exportVault": {
     "message": "Exportera valv"
@@ -915,7 +915,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Om du fortsätter kommer du loggas ut från din nuvarande session och du kommer behöver logga in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+    "message": "Om du fortsätter kommer du loggas ut från sin nuvarande session vilket kräver att du loggar in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "emailChanged": {
     "message": "E-postadressen ändrades"
@@ -987,7 +987,7 @@
     "message": "Orolig att ditt konto är inloggat på en annan enhet? Fortsätt nedan för att avauktorisera alla datorer eller enheter som du har använt tidigare. Detta rekommenderas om du har använt en offentlig dator eller av misstag sparat ditt lösenord på en enhet som inte är din. Detta steg kommer också att rensa alla tidigare ihågkomna sessioner med tvåstegsverifiering."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Om du fortsätter kommer du även loggas ut från din nuvarande session och du kommer behöver logga in igen. Du kommer även behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+    "message": "Om du fortsätter kommer du loggas ut från sin nuvarande session vilket kräver att du loggar in igen. Du kommer även behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "sessionsDeauthorized": {
     "message": "Alla sessioner avauktoriserades"
@@ -1059,7 +1059,7 @@
     "message": "Ingenting importerades."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Ett fel uppstod vid dekryptering av den exporterade filen. Din krypteringsnyckel matchar inte krypteringsnyckeln som användes för att exportera datan."
   },
   "selectFormat": {
     "message": "Välj importfilens format"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Flyttade objektet $ID$ till en organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3685,7 +3685,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "Följande organisationsprinciper är aktiva just nu:"
+    "message": "Följande organisationspolicyer är aktiva just nu:"
   },
   "sendDisableHideEmailInEffect": {
     "message": "Användare får inte dölja sin e-postadress från mottagare när de skapar eller redigerar en Send.",
@@ -3854,7 +3854,7 @@
     "message": "Det gick inte att spara raderings- och utgångsdatum."
   },
   "webAuthnFallbackMsg": {
-    "message": "Vänligen klicka på knappen nedan för att verifiera din 2FA."
+    "message": "Klicka på knappen nedan för att verifiera din 2FA."
   },
   "webAuthnAuthenticate": {
     "message": "Autentisera WebAutn"
@@ -3869,19 +3869,19 @@
     "message": "Din lösenordsledtråd får inte vara samma som ditt lösenord."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Delta i lösenordsåterställning"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Deltar ​i lösenordsåterställning"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Utträd från lösenordsåterställning"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Deltagandet lyckades!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Utträdet lyckades!"
   },
   "eventEnrollPasswordReset": {
     "message": "Användare $ID$ anmälde sig till hjälp för återställning av lösenord.",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Huvudlösenordet återställdes för användaren $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Återställ lösenord"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Om du fortsätter kommer $NAME$ loggas ut från sin nuvarande session vilket kräver att de loggar in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,52 +3923,52 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "denna användare"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "En eller flera organisationspolicyer kräver att huvudlösenordet uppfyller följande krav:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Lösenordsåterställningen lyckades!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Deltagande tillåter organisationsadministratörer att ändra ditt huvudlösenord. Är du säker på att du vill delta?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Återställning av huvudlösenord"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Tillåt administratörer i organisationen att återställa organisationens användares huvudlösenord."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Användare i organisationen måste själva delta eller delta automatiskt innan administratörer kan återställa deras huvudlösenord."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatiskt deltagande"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Alla användare kommer automatiskt att delta i lösenordsåterställning när deras inbjudan accepteras."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Användare som redan är med i organisationen kommer inte att retroaktivt delta i lösenordsåterställning. De kommer behöva delta själva innan administratörer kan återställa sitt huvudlösenord."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Automatiskt deltagande för nya användare"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Denna organisation har en företagspolicy som automatiskt registrerar dig för lösenordsåterställning. Deltagandet gör det möjligt för organisationsadministratörer att ändra ditt huvudlösenord."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Svaret om organisationnycklar är null"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Svaret om detaljer om lösenordsåterställning är null"
   },
   "trashCleanupWarning": {
-    "message": "Ciphers som har varit i papperskorgen mer än 30 dagar raderas automatiskt."
+    "message": "Objekt som har varit i papperskorgen i mer än 30 dagar raderas automatiskt."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers som har varit i papperskorgen ett tag kommer att raderas automatiskt."
+    "message": "Objekt som har varit i papperskorgen ett tag raderas automatiskt."
   },
   "passwordPrompt": {
     "message": "Återupprepa huvudlösenord"
@@ -3977,45 +3977,45 @@
     "message": "Bekräfta huvudlösenord"
   },
   "passwordConfirmationDesc": {
-    "message": "Denna åtgärd är skyddad. För att fortsätta, vänligen verifiera din identitet genom att ange ditt huvudlösenord."
+    "message": "Denna åtgärd är skyddad. För att fortsätta, ange ditt huvudlösenord igen för att verifiera din identitet."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Skicka inbjudningar igen"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Denna åtgärd är inte tillämplig på någon av de valda användarna."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Är du säker på att du vill ta bort följande användare? Processen kan ta några sekunder att slutföra och kan inte pausas eller avbrytas."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Bekräfta valda"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Status för massåtgärd"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Bekräftade."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Bjöd in igen."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Tog bort"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Exkluderad, inte tillämplig för denna åtgärd."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Fingeravtryck"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Ta bort användare"
   },
   "error": {
-    "message": "Error"
+    "message": "Fel"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Hantera användare måste också aktiveras med rättigheten Hantera lösenordsåterställning"
   }
 }

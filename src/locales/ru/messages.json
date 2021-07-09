@@ -361,7 +361,7 @@
     "message": "Поделиться"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Переместить в организацию"
   },
   "valueCopied": {
     "message": "$VALUE$ скопирован(о)",
@@ -404,7 +404,7 @@
     "message": "Хранилище"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Переместить выбранное в организацию"
   },
   "deleteSelected": {
     "message": "Удалить выбранное"
@@ -452,7 +452,7 @@
     "message": "Элемент изменен"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ перемещен в $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Выбранные элементы перемещены в $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Организации"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Выберите организацию, в которую вы хотите переместить этот элемент. При перемещении в организацию право собственности на элемент переходит к этой организации. Вы больше не будете прямым владельцем этого элемента после его перемещения."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Выберите организацию, в которую вы хотите переместить эти элементы. При перемещении в организацию право собственности на элементы переходит к этой организации. Вы больше не будете прямым владельцем этих элементов после их перемещения."
   },
   "collectionsDesc": {
     "message": "Отредактируйте коллекции, с которыми совместно используется этот элемент. Данный элемент смогут видеть только пользователи организации, имеющие доступ к этим коллекциям."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Вы выбрали $COUNT$ элемента(-ов). $MOVEABLE_COUNT$ элемента(-ов) могут быть перемещены в организацию, $NONMOVEABLE_COUNT$ не могут.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Введите мастер-пароль для экспорта данных из хранилища."
   },
   "export": {
-    "message": "Export"
+    "message": "Экспорт"
   },
   "exportVault": {
     "message": "Экспортировать хранилище"
@@ -1059,7 +1059,7 @@
     "message": "Ничего не было импортировано."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Ошибка при расшифровке экспортированного файла. Ваш ключ шифрования не совпадает с ключом шифрования, используемым для экспорта данных."
   },
   "selectFormat": {
     "message": "Выберите формат файла импорта"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Элемент $ID$ перемещен в организацию.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Мастер-пароль сброшен для пользователя $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Сбросить пароль"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "В случае продолжения сессия $NAME$ будет завершена, что потребует повторной авторизации. Сессии на других устройствах могут оставаться активными до одного часа.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,52 +3923,52 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "этот пользователь"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Согласно одной или нескольким политикам организации необходимо, чтобы мастер-пароль отвечал следующим требованиям:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Пароль успешно сброшен!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Регистрация позволит администраторам организации изменять мастер-пароль. Вы действительно хотите зарегистрироваться?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Сброс мастер-пароля"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Разрешить администраторам организации сбрасывать мастер-пароль пользователей организации."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Пользователи в организации должны самостоятельно зарегистрироваться или быть автоматически зарегистрированными, чтобы администраторы могли сбросить их мастер-пароль."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Автоматическая регистрация"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Все пользователи будут автоматически зачислены на сброс пароля после того, как их приглашение будет принято."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Пользователи, уже входящие в организацию, не будут задним числом зачислены на сброс пароля. Им придется зарегистрироваться самостоятельно, чтобы администраторы могли сбросить их мастер-пароль."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Автоматически регистрировать новых пользователей"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Эта организация имеет политику предприятия, которая автоматически зачислит вас в сброс пароля. Регистрация позволит администраторам организации изменить ваш мастер-пароль."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Ответ на ключи организации пустой"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Ответ на сброс пароля пустой"
   },
   "trashCleanupWarning": {
-    "message": "Шифры, которые находились в корзине более 30 дней, будут автоматически удалены."
+    "message": "Элементы, которые находились в корзине более 30 дней, будут автоматически удалены."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Шифры, которые находились в корзине в течение некоторого времени, будут автоматически удалены."
+    "message": "Элементы, которые находились в корзине в течение некоторого времени, будут автоматически удалены."
   },
   "passwordPrompt": {
     "message": "Повторный запрос мастер-пароля"
@@ -3980,42 +3980,42 @@
     "message": "Это действие защищено. Для продолжения введите свой мастер-пароль, чтобы подтвердить свою личность."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Отправить приглашения повторно"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Это действие не применимо ни к одному из выбранных пользователей."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Вы уверены, что хотите удалить следующих пользователей? Процесс может занять несколько секунд и не может быть прерван или отменен."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Подтвердить выбранное"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Статус массового действия"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Подтверждено успешно."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Повторно приглашен успешно."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Удален(-о) успешно"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Исключено, не применимо для данного действия."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Отпечаток"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Удалить пользователей"
   },
   "error": {
-    "message": "Error"
+    "message": "Ошибка"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Управление пользователями также должно быть включено с разрешением Управление сбросом пароля"
   }
 }

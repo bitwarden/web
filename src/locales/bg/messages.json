@@ -361,7 +361,7 @@
     "message": "Споделяне"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Преместване в организация"
   },
   "valueCopied": {
     "message": "$VALUE$ — копирано",
@@ -404,7 +404,7 @@
     "message": "Трезор"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Преместване на избраните в организация"
   },
   "deleteSelected": {
     "message": "Изтриване на избраното"
@@ -452,7 +452,7 @@
     "message": "Елементът е редактиран"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ се премести в $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Избраните записи бяха преместени в $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Организации"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Изберете организацията, в която искате да преместите записа. Преместването прехвърля собствеността му към новата организация. След това няма вече директно да го притежавате."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Изберете организацията, в която искате да преместите избраните записи. Преместването прехвърля собствеността им към новата организация. След това няма вече директно да ги притежавате."
   },
   "collectionsDesc": {
     "message": "Редактиране на колекциите, с които записът е споделен. Само потребителите на организациите, с които колекцията е споделена, ще виждат записа."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Избрали сте $COUNT$ запис(а). От тях могат да се преместят: $MOVEABLE_COUNT$, не могат да се преместят: $NONMOVEABLE_COUNT$.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Въведете главната парола, за да изнесете данните."
   },
   "export": {
-    "message": "Export"
+    "message": "Изнасяне"
   },
   "exportVault": {
     "message": "Изнасяне на трезора"
@@ -1059,7 +1059,7 @@
     "message": "Нищо не бе внесено."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Грешка при дешифрирането на изнесения файл. Ключът за шифриране не отговаря на този, който е използван за изнасянето на данните."
   },
   "selectFormat": {
     "message": "Избор на форма̀та на файла за внасяне"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Записът $ID$ беше преместен в организация.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Главната парола на потребителя $ID$ беше сменена.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Смяна на паролата"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Действието ще прекрати текущата сесия на $NAME$, след което ще се наложи той отново да се впише. Активните сесии на другите устройства може да останат такива до един час.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "този потребител"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Поне една политика на организация има следните изисквания към главната парола:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Успешна смяна на паролата!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Включването ще позволи на администраторите на организацията да променят главната Ви парола. Наистина ли искате да се включите?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Смяна на главната парола"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Позволяване на администраторите на организацията да сменят главните пароли на участващите потребители."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Потребителите в организацията ще трябва да се включат сами или да бъдат включени автоматично, преди администраторите да могат да сменят главните им пароли."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Автоматично включване"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Всички потребители ще бъдат включени автоматично в смяната на пароли след като приемат поканите си."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Потребителите, които вече са част от организацията, няма да бъдат включени в смяната на паролите. Те ще трябва да се включат сами, преди администраторите да могат да сменят главните им пароли."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Автоматично включване на новите потребители"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Тази организация включва автоматично новите си потребители в смяната на пароли. Това означава, че администраторите на организацията ще могат да променят главната Ви парола."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Празен отговор на заявката за ключовете на организацията"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Празен отговор на заявката за детайли относно смяната на паролата"
   },
   "trashCleanupWarning": {
     "message": "Записите, които са били в кошчето за повече от 30 дни, ще бъдат изтривани автоматично."
@@ -3980,42 +3980,42 @@
     "message": "Това действие е защитено. За да продължите, въведете отново главната си парола, за да потвърдите самоличността си."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Изпращане на поканите наново"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Това действие не може да се изпълни за никого от избраните потребители."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Наистина ли искате да премахнете следните потребители? Процесът може да отнеме няколко секунди и не може да бъде прекъснат или отменен."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Потвърждаване на избраните"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Състояние на груповото действие"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Успешно потвърдено."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Успешно изпратени наново покани."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Успешно премахване"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Изключени като неподходящи за това действие."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Отпечатък"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Премахване на потребителите"
   },
   "error": {
-    "message": "Error"
+    "message": "Грешка"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Управлението на потребителите трябва също да бъде включено с разрешението за „Управление на помощта при смяната на паролата“"
   }
 }

@@ -361,7 +361,7 @@
     "message": "Comparteix"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Desplaça a l'organització"
   },
   "valueCopied": {
     "message": "S'ha copiat $VALUE$",
@@ -404,7 +404,7 @@
     "message": "Caixa forta"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Desplaça la selecció a l'organització"
   },
   "deleteSelected": {
     "message": "Suprimeix selecció"
@@ -452,7 +452,7 @@
     "message": "Element editat"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ desplaçat a $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Els elements seleccionats s'han desplaçat a $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organitzacions"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Trieu una organització a la qual vulgueu desplaçar aquest element. El trasllat a una organització transfereix la propietat de l'element a aquesta organització. Ja no sereu el propietari directe d'aquest element una vegada s'haja mogut."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Trieu una organització a la qual vulgueu desplaçar aquests elements. El trasllat a una organització transfereix la propietat dels elements a aquesta organització. Ja no sereu el propietari directe d'aquests elements una vegada s'hagen mogut."
   },
   "collectionsDesc": {
     "message": "Editeu les col·leccions amb les què es comparteix aquest element. Només els usuaris de l'organització que tinguen accés a aquestes col·leccions podran veure'l."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Heu seleccionat $COUNT$ elements. $MOVEABLE_COUNT$ elements es poden desplaçar a una organització, $NONMOVEABLE_COUNT$ no.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Introduïu la contrasenya mestra per exportar les dades de la caixa forta."
   },
   "export": {
-    "message": "Export"
+    "message": "Exporta"
   },
   "exportVault": {
     "message": "Exporta la caixa forta"
@@ -1059,7 +1059,7 @@
     "message": "No s'ha importat res."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Error en desxifrar el fitxer exportat. La vostra clau de xifratge no coincideix amb la clau de xifratge utilitzada per exportar les dades."
   },
   "selectFormat": {
     "message": "Seleccioneu el format del fitxer d'importació"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Desplaça l'element $ID$ a una organització.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3413,7 +3413,7 @@
     "message": "Recompte màxim d'accés"
   },
   "maxAccessCountDesc": {
-    "message": "Si s’estableix, els usuaris ja no podran accedir a aquest enviament una vegada s’assolisca el nombre màxim d’accessos.",
+    "message": "Si s’estableix, els usuaris ja no podran accedir a aquest Send una vegada s’assolisca el nombre màxim d’accessos.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3857,13 +3857,13 @@
     "message": "Per verificar el vostre 2FA, feu clic al botó següent."
   },
   "webAuthnAuthenticate": {
-    "message": "Autenticar WebAutn"
+    "message": "Autenticar WebAuthn"
   },
   "webAuthnNotSupported": {
     "message": "WebAuthn no és compatible amb aquest navegador."
   },
   "webAuthnSuccess": {
-    "message": "<strong> WebAuthn s'ha verificat correctament! </strong> <br> Podeu tancar aquesta pestanya."
+    "message": "WebAuthn s'ha verificat correctament! Podeu tancar aquesta pestanya."
   },
   "hintEqualsPassword": {
     "message": "El vostre suggeriment de contrasenya no pot ser el mateix que la vostra contrasenya."
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Restabliment de la contrasenya mestra per a l'usuari $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Restableix la contrasenya"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "En continuar, es tancarà $NAME$ de la sessió actual, cosa que requereix que torneu a iniciar la sessió. Les sessions actives en altres dispositius poden continuar estant actives fins a una hora.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,52 +3923,52 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "aquest usuari"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Una o més polítiques d’organització requereixen que la vostra contrasenya principal complisca els requisits següents:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "S'ha restablert la contrasenya correctament!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "La inscripció permetrà als administradors de l’organització canviar la vostra contrasenya mestra. Esteu segur que voleu inscriure-vos?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Restabliment de la contrasenya mestra"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Permetre als administradors de l'organització restablir la contrasenya mestra dels seus usuaris."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Els usuaris de l’organització hauran de registrar-se o ser registrats abans que els administradors puguen restablir la seua contrasenya mestra."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Inscripció automàtica"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Una vegada s'accepte la invitació, tots els usuaris s'inscriuran automàticament al restabliment de la contrasenya."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Els usuaris que ja formen part de l’organització no s’inscriuran retroactivament al restabliment de la contrasenya. Hauran de registrar-se abans que els administradors puguen restablir la seua contrasenya mestra."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Inscriviu automàticament usuaris nous"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Aquesta organització té una política empresarial que us inscriurà automàticament al restabliment de la contrasenya. La inscripció permetrà als administradors de l’organització canviar la vostra contrasenya mestra."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "La resposta de les claus d’organització és nul·la"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "La resposta Restableix detalls de contrasenya és nul·la"
   },
   "trashCleanupWarning": {
-    "message": "Els xifratges que porten més de 30 dies a la paperera se suprimiran automàticament."
+    "message": "Els elements que porten més de 30 dies a la paperera se suprimiran automàticament."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Els xifratges que porten un temps a la paperera se suprimiran automàticament."
+    "message": "Els elements que porten un temps a la paperera se suprimiran automàticament."
   },
   "passwordPrompt": {
     "message": "Sol·licitud de la contrasenya mestra"
@@ -3980,42 +3980,42 @@
     "message": "Aquesta acció està protegida. Per continuar, torneu a introduir la contrasenya principal per verificar la vostra identitat."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Tornar a enviar invitacions"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Aquesta acció no és aplicable a cap dels usuaris seleccionats."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Esteu segur que voleu eliminar els usuaris següents? El procés pot tardar uns segons a completar-se i no es pot interrompre ni cancel·lar."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Confirma la selecció"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Estat de l'acció en bloc"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Confirmat correctament."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Reconvidat correctament."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Suprimit correctament"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Exclòs, no aplicable per a aquesta acció."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Empremta digital"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Suprimeix usuaris"
   },
   "error": {
     "message": "Error"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "L'administració d'usuaris també ha d'estar habilitada amb el permís de l'administració de restabliment de contrasenyes"
   }
 }
