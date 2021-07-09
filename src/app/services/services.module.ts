@@ -38,6 +38,7 @@ import { ExportService } from 'jslib-common/services/export.service';
 import { FileUploadService } from 'jslib-common/services/fileUpload.service';
 import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
+import { MemoryStorageService } from 'jslib-common/services/memoryStorage.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
 import { PasswordRepromptService } from 'jslib-common/services/passwordReprompt.service';
