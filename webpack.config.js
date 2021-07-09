@@ -146,6 +146,10 @@ const plugins = [
         entryModule: 'src/app/app.module#AppModule',
         sourceMap: true,
     }),
+    new WorkerPlugin({
+        plugins: ['AngularCompilerPlugin'],
+        globalObject: 'self'
+    }),
 ];
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
